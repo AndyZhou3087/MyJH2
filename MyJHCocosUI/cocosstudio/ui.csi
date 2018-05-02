@@ -1,0 +1,25 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="ui" Type="Plist" ID="db3d5b91-2645-4373-89bb-aed2c6fea03a" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="True" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="ui/r001.png" />
+      <FilePathData Path="ui/r002.png" />
+      <FilePathData Path="ui/r003.png" />
+      <FilePathData Path="ui/r004.png" />
+      <FilePathData Path="ui/r005.png" />
+      <FilePathData Path="ui/main_menu_box.png" />
+      <FilePathData Path="ui/h001.png" />
+      <FilePathData Path="ui/main_achbtn.png" />
+      <FilePathData Path="ui/main_mailbtn.png" />
+      <FilePathData Path="ui/main_rankbtn.png" />
+      <FilePathData Path="ui/main_setbtn.png" />
+      <FilePathData Path="ui/main_shopbtn.png" />
+      <FilePathData Path="ui/main_btn_redpoint.png" />
+      <FilePathData Path="ui/main_addbtn.png" />
+      <FilePathData Path="ui/main_coin.png" />
+      <FilePathData Path="ui/main_coin_box.png" />
+      <FilePathData Path="ui/main_silver.png" />
+    </ImageFiles>
+    <MaxSize Width="1024" Height="1024" />
+  </Content>
+</PlistInfoProjectFile>
