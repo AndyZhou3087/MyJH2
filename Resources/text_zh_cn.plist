@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>text_zh_cn/main_01_t.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{44,152}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{44,152}</string>
+			</dict>
+			<key>text_zh_cn/main_02_t.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,152},{44,152}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{44,152}</string>
+			</dict>
+			<key>text_zh_cn/main_03_t.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,304},{44,152}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{44,152}</string>
+			</dict>
+			<key>text_zh_cn/main_04_t.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,456},{44,152}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{44,152}</string>
+			</dict>
+			<key>text_zh_cn/main_05_t.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,608},{44,152}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{44,152}</string>
+			</dict>
+			<key>text_zh_cn/main_06_t.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,760},{44,152}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{44,152}</string>
+			</dict>
+			<key>text_zh_cn/main_07_t.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,912},{44,152}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{44,152}</string>
+			</dict>
+			<key>text_zh_cn/main_08_t.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,956},{44,152}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{44,152}</string>
+			</dict>
+			<key>text_zh_cn/main_09_t.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{152,0},{44,152}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{44,152}</string>
+			</dict>
+			<key>text_zh_cn/main_10_t.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{44,0},{44,152}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{44,152}</string>
+			</dict>
+			<key>text_zh_cn/main_achbtn_text.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{122,156},{58,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{58,36}</string>
+			</dict>
+			<key>text_zh_cn/main_mailbtn_text.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{130,44},{54,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{54,36}</string>
+			</dict>
+			<key>text_zh_cn/main_packbtn_text.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{130,98},{56,34}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{56,34}</string>
+			</dict>
+			<key>text_zh_cn/main_rankbtn_text.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{84,234},{84,34}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{84,34}</string>
+			</dict>
+			<key>text_zh_cn/main_setbtn_text.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{158,154},{56,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{56,32}</string>
+			</dict>
+			<key>text_zh_cn/main_shopbtn_text.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{84,268},{58,38}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{58,38}</string>
+			</dict>
+			<key>text_zh_cn/innroomtitle.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{84,156},{78,38}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{78,38}</string>
+			</dict>
+			<key>text_zh_cn/innroolv_text.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{44,152},{154,40}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{154,40}</string>
+			</dict>
+			<key>text_zh_cn/recruit_text.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{88,0},{156,42}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{156,42}</string>
+			</dict>
+			<key>text_zh_cn/herofire_text.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{44,306},{82,48}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{82,48}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>text_zh_cn.png</string>
+			<key>realTextureFileName</key>
+			<string>text_zh_cn.png</string>
+			<key>size</key>
+			<string>{512,1024}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>512</integer>
+			<key>height</key>
+			<integer>1024</integer>
+		</dict>
+	</dict>
+</plist>

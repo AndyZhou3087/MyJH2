@@ -1,6 +1,6 @@
 #include "SoundManager.h"
 #include "SimpleAudioEngine.h"
-#include "ResourcePath.h"
+#include "Resource.h"
 
 using namespace CocosDenshion;
 

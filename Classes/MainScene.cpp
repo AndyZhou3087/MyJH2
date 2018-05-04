@@ -1,6 +1,9 @@
 ﻿#include "MainScene.h"
-#include "ResourcePath.h"
+#include "Resource.h"
 #include "MainMenuLayer.h"
+#include "GlobalInstance.h"
+#include "Building.h"
+#include "InnRoomLayer.h"
 
 USING_NS_CC;
 
@@ -40,6 +43,8 @@ bool MainScene::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	int langtype = GlobalInstance::getInstance()->getLang();
+
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("MainLayer.csb"));
 	this->addChild(csbnode);
 
@@ -60,40 +65,49 @@ bool MainScene::init()
 	scroll_1 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_1");
 	scroll_1->setScrollBarEnabled(false);
 	scroll_1->jumpToPercentHorizontal(32);
-
-	for (int i = 1; i <= 10; i++)
+	std::map<std::string, Building*>::iterator it;
+	int i = 1;
+	for (it = Building::map_buildingDatas.begin(); it != Building::map_buildingDatas.end(); it++)
 	{
 		std::string buidingNomalName;
 		std::string buidingSelectName;
+		std::string bulidingname;
 		cocos2d::ui::ImageView* buildingNomal;
 		cocos2d::ui::ImageView* buildingSelect;
+		cocos2d::ui::ImageView* buildnametext;
+
+		buidingNomalName = StringUtils::format("main_%02d_n", i);//可点击
+		buidingSelectName = StringUtils::format("main_%02d_s", i);//选中
+
+		bulidingname = StringUtils::format("main_%02d_t", i);//文字
+
+		Node* buildParent;
 		if (i <= 5)
 		{
-			buidingNomalName = StringUtils::format("main_%02d_n", i);
-			buildingNomal = (cocos2d::ui::ImageView*)scroll_3->getChildByName(buidingNomalName);
-
-			buidingSelectName = StringUtils::format("main_%02d_s", i);
-			buildingSelect = (cocos2d::ui::ImageView*)scroll_3->getChildByName(buidingSelectName);
+			buildParent = scroll_3;
 		}
-
 		else if (i <= 8)
 		{
-			buidingNomalName = StringUtils::format("main_%02d_n", i);
-			buildingNomal = (cocos2d::ui::ImageView*)scroll_2->getChildByName(buidingNomalName);
-			buidingSelectName = StringUtils::format("main_%02d_s", i);
-			buildingSelect = (cocos2d::ui::ImageView*)scroll_2->getChildByName(buidingSelectName);
+			buildParent = scroll_2;
 		}
 		else
 		{
-			buidingNomalName = StringUtils::format("main_%02d_n", i);
-			buildingNomal = (cocos2d::ui::ImageView*)scroll_1->getChildByName(buidingNomalName);
-			buidingSelectName = StringUtils::format("main_%02d_s", i);
-			buildingSelect = (cocos2d::ui::ImageView*)scroll_1->getChildByName(buidingSelectName);
+			buildParent = scroll_1;
 		}
+		buildingNomal = (cocos2d::ui::ImageView*)buildParent->getChildByName(buidingNomalName);
+
+		buildingSelect = (cocos2d::ui::ImageView*)buildParent->getChildByName(buidingSelectName);
+
+		buildnametext = (cocos2d::ui::ImageView*)buildParent->getChildByName(bulidingname);
+
+		buildnametext->loadTexture(ResourcePath::makeTextImgPath(bulidingname, langtype), cocos2d::ui::TextureResType::PLIST);
+
 		buildingNomal->setSwallowTouches(true);
 		buildingNomal->setUserData((void*)buildingSelect);
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
 		buildingSelect->setVisible(false);
+		buildingSelect->setUserData((void*)it->first.c_str());
+		i++;
 	}
 
     return true;
@@ -104,7 +118,9 @@ void MainScene::srollviewlistenEvent(Ref* ref, ui::ScrollView::EventType eventTy
 	Vec2 pos = scroll_3->getInnerContainerPosition();
 	switch (eventType) 
 	{
+		//最外层滑动时，带动后两层滑动，可修改时间调整效果
 		case ui::ScrollView::EventType::CONTAINER_MOVED:
+			//将引擎中的startAutoScrollToDestination 修改为pulic
 			scroll_2->startAutoScrollToDestination(pos, 0.1f, true);
 			scroll_1->startAutoScrollToDestination(pos, 0.2f, true);
 			break;
@@ -125,8 +141,13 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 	case cocos2d::ui::Widget::TouchEventType::MOVED:
 		break;
 	case cocos2d::ui::Widget::TouchEventType::ENDED:
+	{
 		snode->setVisible(false);
+		std::string buildname = (char*)snode->getUserData();
+		InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas[buildname]);
+		this->addChild(layer);
 		break;
+	}
 	case cocos2d::ui::Widget::TouchEventType::CANCELED:
 		snode->setVisible(false);
 		break;

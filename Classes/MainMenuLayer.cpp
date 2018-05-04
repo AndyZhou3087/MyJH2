@@ -1,6 +1,7 @@
 ﻿#include "MainMenuLayer.h"
-#include "ResourcePath.h"
+#include "Resource.h"
 #include "CommonFuncs.h"
+#include "GlobalInstance.h"
 
 USING_NS_CC;
 
@@ -25,6 +26,8 @@ bool MainMenuLayer::init()
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+	int langtype = GlobalInstance::getInstance()->getLang();
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("MainMenuLayer.csb"));
 	this->addChild(csbnode);
@@ -57,6 +60,13 @@ bool MainMenuLayer::init()
 		else if (i == COINBOX)
 		{
 			coinlbl = (cocos2d::ui::Text*)clickwidget->getChildByName("countlbl");
+		}
+
+		if (i >= SETBTN && i <= SHOPBTN)
+		{
+			cocos2d::ui::ImageView* textimg =  (cocos2d::ui::ImageView*)clickwidget->getChildByName("text");
+			std::string textname = StringUtils::format("main_%s_text", name.c_str());
+			textimg->loadTexture(ResourcePath::makeTextImgPath(textname, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 	}
 	this->schedule(schedule_selector(MainMenuLayer::updateUI), 1.0f);

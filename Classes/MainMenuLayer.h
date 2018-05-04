@@ -5,23 +5,24 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 USING_NS_CC;
+//主界面按钮
 typedef enum
 {
-	HEADBOX,
-	R001BTN,
-	R002BTN,
-	R003BTN,
-	R004BTN,
-	R005BTN,
-	SETBTN,
-	ACHBTN,
-	RANKBTN,
-	MAILBTN,
-	SHOPBTN,
-	SILVERBOX,
-	COINBOX,
-	ADDSILVERBTN,
-	ADDCOINBTN
+	HEADBOX,//头像按钮
+	R001BTN,//食物按钮
+	R002BTN,//石头按钮
+	R003BTN,//玄铁按钮
+	R004BTN,//铁矿按钮
+	R005BTN,//木材按钮
+	SETBTN,//设置按钮
+	ACHBTN,//成就按钮
+	RANKBTN,//排行榜按钮
+	MAILBTN,//邮箱按钮
+	SHOPBTN,//商场按钮
+	SILVERBOX,//银子框按钮
+	COINBOX,//金币狂按钮
+	ADDSILVERBTN,//银子“+”按钮
+	ADDCOINBTN//金币“+”按钮
 }MENUTYPE;
 class MainMenuLayer : public cocos2d::Layer
 {
@@ -33,14 +34,17 @@ public:
     virtual bool init();
 
 private:
+	//点击按钮
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	//更新UI,数值
 	void updateUI(float dt);
 private:
-	cocos2d::ui::Text* reslbl[5];
-	cocos2d::ui::Text* silverlbl;
-	cocos2d::ui::Text* coinlbl;
-	cocos2d::ui::Widget* achredpoint;
-	cocos2d::ui::Widget* mailredpoint;
+	cocos2d::ui::Text* reslbl[5];//5个资源数量LABEL
+	cocos2d::ui::Text* silverlbl;//银子数量LABEL
+	cocos2d::ui::Text* coinlbl;//金币数量LABEL
+	cocos2d::ui::Widget* achredpoint;//成就小红点
+	cocos2d::ui::Widget* mailredpoint;//邮件小红点
 };
 
 #endif

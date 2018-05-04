@@ -6,7 +6,6 @@ proj.android/bin/
 proj.android/libs/armeabi
 proj.win32/
 proj.win10/
-proj.ios_mac/
 JHCocosUI/Resources/res/
 anim/Story/Resources/res/
 .cocos-project.json

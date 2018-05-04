@@ -19,6 +19,24 @@
       <FilePathData Path="ui/main_coin.png" />
       <FilePathData Path="ui/main_coin_box.png" />
       <FilePathData Path="ui/main_silver.png" />
+      <FilePathData Path="ui/normal9bg.png" />
+      <FilePathData Path="ui/buildingactbtn_d.png" />
+      <FilePathData Path="ui/buildingactbtn_n.png" />
+      <FilePathData Path="ui/buildinglvbox.png" />
+      <FilePathData Path="ui/top1.png" />
+      <FilePathData Path="ui/buildingtitlebox.png" />
+      <FilePathData Path="ui/herobox_1.png" />
+      <FilePathData Path="ui/herobox_2.png" />
+      <FilePathData Path="ui/herobox_3.png" />
+      <FilePathData Path="ui/herobox_4.png" />
+      <FilePathData Path="ui/heroitem.png" />
+      <FilePathData Path="ui/actionbtn_blue.png" />
+      <FilePathData Path="ui/herobox_5.png" />
+      <FilePathData Path="ui/smallstar.png" />
+      <FilePathData Path="ui/herotag_0.png" />
+      <FilePathData Path="ui/closebtn.png" />
+      <FilePathData Path="text_zh_cn/crefresh_text.png" />
+      <FilePathData Path="text_zh_cn/srefresh_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

@@ -10,11 +10,8 @@ using namespace std;
 
 USING_NS_CC;
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #define encrypt_data 1
-#else
-#define encrypt_data 0
-#endif
+
 
 // 加/解密函数；bEncrypt = true 加密；bEncrypt = false 解密
 inline char* Encrypt(char* pMsg, bool bEncrypt)
@@ -101,12 +98,6 @@ inline void saveStringDataByKey(string key, string sValue = ""){
 	UserDefault::getInstance()->flush();
 }
 
-inline void saveLongDataByKey(string Key, long nVal = 0L){
-	char buffer[32];
-	sprintf(buffer, "%ld", nVal);
-	saveStringDataByKey(Key, buffer);
-}
-
 inline void saveIntDataByKey(string key, int nVal){
 	char buffer[32];
 	sprintf(buffer, "%d", nVal);
@@ -115,7 +106,7 @@ inline void saveIntDataByKey(string key, int nVal){
 
 inline void saveFloatDataByKey(string key, float nVal){
 	char buffer[32];
-	sprintf(buffer, "%f", nVal);
+	sprintf(buffer, "%.2f", nVal);
 	saveStringDataByKey(key, buffer);
 }
 

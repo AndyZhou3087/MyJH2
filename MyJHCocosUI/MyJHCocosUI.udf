@@ -4,8 +4,14 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="ui.csi" />
+          <FilePathData Path="text_zh_cn.csi" />
+          <FilePathData Path="innRoomLayer.csd" />
+          <FilePathData Path="myHeroNode.csd" />
+          <FilePathData Path="MainLayer.csd" />
+          <FilePathData Path="randHeroLayer.csd" />
+          <FilePathData Path="MainMenuLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="ui.csi" />
+        <ActiveDocument Path="randHeroLayer.csd" />
       </Value>
     </Item>
     <Item Key="CocosRecentOperation">

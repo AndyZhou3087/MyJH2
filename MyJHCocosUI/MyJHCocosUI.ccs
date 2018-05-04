@@ -3,37 +3,30 @@
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
+        <Folder Name="fonts">
+          <TTF Name="simhei.ttf" />
+        </Folder>
         <Folder Name="mainimg">
           <Image Name="main_01_n.png" />
           <Image Name="main_01_s.png" />
-          <Image Name="main_01_t.png" />
           <Image Name="main_02_n.png" />
           <Image Name="main_02_s.png" />
-          <Image Name="main_02_t.png" />
           <Image Name="main_03_n.png" />
           <Image Name="main_03_s.png" />
-          <Image Name="main_03_t.png" />
           <Image Name="main_04_n.png" />
           <Image Name="main_04_s.png" />
-          <Image Name="main_04_t.png" />
           <Image Name="main_05_n.png" />
           <Image Name="main_05_s.png" />
-          <Image Name="main_05_t.png" />
           <Image Name="main_06_n.png" />
           <Image Name="main_06_s.png" />
-          <Image Name="main_06_t.png" />
           <Image Name="main_07_n.png" />
           <Image Name="main_07_s.png" />
-          <Image Name="main_07_t.png" />
           <Image Name="main_08_n.png" />
           <Image Name="main_08_s.png" />
-          <Image Name="main_08_t.png" />
           <Image Name="main_09_n.png" />
           <Image Name="main_09_s.png" />
-          <Image Name="main_09_t.png" />
           <Image Name="main_10_n.png" />
           <Image Name="main_10_s.png" />
-          <Image Name="main_10_t.png" />
           <Image Name="main_back_b.jpg" />
           <Image Name="main_back_f.jpg" />
           <Image Name="main_bg_l.png" />
@@ -42,8 +35,45 @@
           <Image Name="main_sky.jpg" />
           <Image Name="q.jpg" />
         </Folder>
+        <Folder Name="text_zh_cn">
+          <Image Name="crefresh_text.png" />
+          <Image Name="herofire_text.png" />
+          <Image Name="innroolv_text.png" />
+          <Image Name="innroomtitle.png" />
+          <Image Name="main_01_t.png" />
+          <Image Name="main_02_t.png" />
+          <Image Name="main_03_t.png" />
+          <Image Name="main_04_t.png" />
+          <Image Name="main_05_t.png" />
+          <Image Name="main_06_t.png" />
+          <Image Name="main_07_t.png" />
+          <Image Name="main_08_t.png" />
+          <Image Name="main_09_t.png" />
+          <Image Name="main_10_t.png" />
+          <Image Name="main_achbtn_text.png" />
+          <Image Name="main_mailbtn_text.png" />
+          <Image Name="main_packbtn_text.png" />
+          <Image Name="main_rankbtn_text.png" />
+          <Image Name="main_setbtn_text.png" />
+          <Image Name="main_shopbtn_text.png" />
+          <Image Name="recruit_text.png" />
+          <Image Name="srefresh_text.png" />
+        </Folder>
         <Folder Name="ui">
+          <Image Name="actionbtn_blue.png" />
+          <Image Name="buildingactbtn_d.png" />
+          <Image Name="buildingactbtn_n.png" />
+          <Image Name="buildinglvbox.png" />
+          <Image Name="buildingtitlebox.png" />
+          <Image Name="closebtn.png" />
           <Image Name="h001.png" />
+          <Image Name="herobox_1.png" />
+          <Image Name="herobox_2.png" />
+          <Image Name="herobox_3.png" />
+          <Image Name="herobox_4.png" />
+          <Image Name="herobox_5.png" />
+          <Image Name="heroitem.png" />
+          <Image Name="herotag_0.png" />
           <Image Name="main_achbtn.png" />
           <Image Name="main_addbtn.png" />
           <Image Name="main_btn_redpoint.png" />
@@ -55,14 +85,24 @@
           <Image Name="main_setbtn.png" />
           <Image Name="main_shopbtn.png" />
           <Image Name="main_silver.png" />
+          <Image Name="normal9bg.png" />
           <Image Name="r001.png" />
           <Image Name="r002.png" />
           <Image Name="r003.png" />
           <Image Name="r004.png" />
           <Image Name="r005.png" />
+          <Image Name="smallstar.png" />
+          <Image Name="top1.png" />
         </Folder>
+        <Image Name="3.jpg" />
+        <Project Name="innRoomLayer.csd" Type="Layer" />
+        <Image Name="loadingbg.jpg" />
+        <Project Name="LoadingLayer.csd" Type="Layer" />
         <Project Name="MainLayer.csd" Type="Layer" />
         <Project Name="MainMenuLayer.csd" Type="Layer" />
+        <Project Name="myHeroNode.csd" Type="Node" />
+        <Project Name="randHeroLayer.csd" Type="Scene" />
+        <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
       </RootFolder>
     </Group>

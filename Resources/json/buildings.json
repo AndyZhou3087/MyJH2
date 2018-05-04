@@ -1,0 +1,12 @@
+{"b":[
+{"name":"outtown","maxlevel":"1","lvres":[[4002,7002,1002]],"cname":"出城"},
+{"name":"hospital","maxlevel":"2","lvres":[[2002,1003,0],[2004,1005,0]],"cname":"医馆"},
+{"name":"smithy","maxlevel":"3","lvres":[[4002,2002,1002],[4004,2004,1004,14002],[4006,2006,1006,14004]],"cname":"铁匠铺"},
+{"name":"storehouse","maxlevel":"1","lvres":[[4003,1001,0]],"cname":"仓库"},
+{"name":"trainingroom","maxlevel":"2","lvres":[[4003,0,0],[4005,1002,0]],"cname":"训练场"},
+{"name":"market","maxlevel":"1","lvres":[[1002,2002,0]],"cname":"市场"},
+{"name":"innroom","maxlevel":"1","lvres":[[4002,0,0]],"cname":"客栈"},
+{"name":"homehill","maxlevel":"1","lvres":[[4005,1005,2005]],"cname":"后山"},
+{"name":"pkground","maxlevel":"1","lvres":[[4002,0,0]],"cname":"竞技场"},
+{"name":"assemblyhall ","maxlevel":"1","lvres":[[4002,0,0]],"cname":"议事厅"}
+]}
