@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="heroNode" Type="Node" ID="ddc4a0a3-ed1b-49d0-89fe-8293c50f5ab4" Version="3.10.0.0" />
+  <PropertyGroup Name="myHeroNode" Type="Node" ID="ddc4a0a3-ed1b-49d0-89fe-8293c50f5ab4" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -25,7 +25,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="MarkedSubImage" Path="ui/herobox_1.png" Plist="ui.plist" />
+            <FileData Type="MarkedSubImage" Path="ui/herobox_0.png" Plist="ui.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="heroimg" ActionTag="-1919967725" Tag="17" IconVisible="False" LeftMargin="-326.5000" RightMargin="189.5000" TopMargin="-82.5000" BottomMargin="-58.5000" LeftEage="50" RightEage="50" TopEage="50" BottomEage="50" Scale9OriginX="50" Scale9OriginY="50" Scale9Width="37" Scale9Height="41" ctype="ImageViewObjectData">
             <Size X="137.0000" Y="141.0000" />
@@ -35,7 +35,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="MarkedSubImage" Path="ui/h001.png" Plist="ui.plist" />
+            <FileData Type="MarkedSubImage" Path="ui/h_1_0.png" Plist="ui.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="name" ActionTag="2067373338" Tag="18" IconVisible="False" LeftMargin="-137.9999" RightMargin="15.9999" TopMargin="-55.5903" BottomMargin="9.5903" FontSize="40" LabelText="小虾米" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="122.0000" Y="46.0000" />

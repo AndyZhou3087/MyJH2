@@ -6,6 +6,17 @@
         <Folder Name="fonts">
           <TTF Name="simhei.ttf" />
         </Folder>
+        <Folder Name="images">
+          <Image Name="heroattrbottom.png" />
+          <Image Name="hfull_0_0.png" />
+          <Image Name="hfull_0_1.png" />
+          <Image Name="hfull_1_0.png" />
+          <Image Name="hfull_1_1.png" />
+          <Image Name="hfull_2_0.png" />
+          <Image Name="hfull_2_1.png" />
+          <Image Name="hfull_3_0.png" />
+          <Image Name="hfull_3_1.png" />
+        </Folder>
         <Folder Name="mainimg">
           <Image Name="main_01_n.png" />
           <Image Name="main_01_s.png" />
@@ -36,7 +47,21 @@
           <Image Name="q.jpg" />
         </Folder>
         <Folder Name="text_zh_cn">
+          <Image Name="backbtn_text.png" />
+          <Image Name="changebtn_text.png" />
           <Image Name="crefresh_text.png" />
+          <Image Name="equiptext_0.png" />
+          <Image Name="equiptext_1.png" />
+          <Image Name="equiptext_2.png" />
+          <Image Name="equiptext_3.png" />
+          <Image Name="equiptext_4.png" />
+          <Image Name="equiptext_5.png" />
+          <Image Name="firebtn_text.png" />
+          <Image Name="heroattrqu_0.png" />
+          <Image Name="heroattrqu_1.png" />
+          <Image Name="heroattrqu_2.png" />
+          <Image Name="heroattrqu_3.png" />
+          <Image Name="heroattrqu_4.png" />
           <Image Name="herofire_text.png" />
           <Image Name="innroolv_text.png" />
           <Image Name="innroomtitle.png" />
@@ -57,21 +82,41 @@
           <Image Name="main_setbtn_text.png" />
           <Image Name="main_shopbtn_text.png" />
           <Image Name="recruit_text.png" />
+          <Image Name="recruitbtn_text.png" />
           <Image Name="srefresh_text.png" />
         </Folder>
         <Folder Name="ui">
           <Image Name="actionbtn_blue.png" />
+          <Image Name="blank.png" />
           <Image Name="buildingactbtn_d.png" />
           <Image Name="buildingactbtn_n.png" />
           <Image Name="buildinglvbox.png" />
           <Image Name="buildingtitlebox.png" />
           <Image Name="closebtn.png" />
-          <Image Name="h001.png" />
+          <Image Name="equipbox_0.png" />
+          <Image Name="equipbox_1.png" />
+          <Image Name="equipbox_2.png" />
+          <Image Name="equipbox_3.png" />
+          <Image Name="equipbox_4.png" />
+          <Image Name="equipbox_5.png" />
+          <Image Name="h_0_0.png" />
+          <Image Name="h_0_1.png" />
+          <Image Name="h_1_0.png" />
+          <Image Name="h_1_1.png" />
+          <Image Name="h_2_0.png" />
+          <Image Name="h_2_1.png" />
+          <Image Name="h_3_0.png" />
+          <Image Name="h_3_1.png" />
+          <Image Name="heroattradd.png" />
+          <Image Name="heroattrexpbar.png" />
+          <Image Name="heroattrexpbarbg.png" />
+          <Image Name="heroattrmodify.png" />
+          <Image Name="heroattrnamebox.png" />
+          <Image Name="herobox_0.png" />
           <Image Name="herobox_1.png" />
           <Image Name="herobox_2.png" />
           <Image Name="herobox_3.png" />
           <Image Name="herobox_4.png" />
-          <Image Name="herobox_5.png" />
           <Image Name="heroitem.png" />
           <Image Name="herotag_0.png" />
           <Image Name="main_achbtn.png" />
@@ -91,10 +136,11 @@
           <Image Name="r003.png" />
           <Image Name="r004.png" />
           <Image Name="r005.png" />
+          <Image Name="randheadbox.png" />
           <Image Name="smallstar.png" />
           <Image Name="top1.png" />
         </Folder>
-        <Image Name="3.jpg" />
+        <Project Name="heroAttrLayer.csd" Type="Layer" />
         <Project Name="innRoomLayer.csd" Type="Layer" />
         <Image Name="loadingbg.jpg" />
         <Project Name="LoadingLayer.csd" Type="Layer" />
@@ -102,6 +148,7 @@
         <Project Name="MainMenuLayer.csd" Type="Layer" />
         <Project Name="myHeroNode.csd" Type="Node" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
+        <Project Name="randHeroNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
       </RootFolder>

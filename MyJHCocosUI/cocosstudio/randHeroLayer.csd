@@ -59,7 +59,7 @@
             <PreSize X="0.1083" Y="0.0297" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/innroomtitle.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lv" ActionTag="768274109" Tag="82" IconVisible="False" LeftMargin="332.3325" RightMargin="332.6675" TopMargin="278.1237" BottomMargin="970.8763" FontSize="25" LabelText="10级" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="lv" ActionTag="768274109" Tag="82" IconVisible="False" LeftMargin="332.3344" RightMargin="332.6656" TopMargin="278.1234" BottomMargin="970.8766" FontSize="25" LabelText="10级" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="55.0000" Y="31.0000" />
             <AnchorPoint ScaleX="0.4121" ScaleY="0.6176" />
             <Position X="354.9999" Y="990.0222" />
@@ -105,7 +105,7 @@
             <PreSize X="0.2167" Y="0.0422" />
             <FileData Type="MarkedSubImage" Path="ui/main_coin_box.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="addbtn1" ActionTag="1684722985" Tag="129" IconVisible="False" LeftMargin="198.0000" RightMargin="481.9999" TopMargin="160.0000" BottomMargin="1080.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="10" Scale9Height="18" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="addbtn1" ActionTag="1684722985" Tag="129" IconVisible="False" LeftMargin="198.0000" RightMargin="482.0000" TopMargin="160.0000" BottomMargin="1080.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="10" Scale9Height="18" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="40.0000" Y="40.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="218.0000" Y="1100.0000" />
@@ -218,7 +218,7 @@
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4604" Y="0.2464" />
-            <PreSize X="0.0583" Y="0.0203" />
+            <PreSize X="0.0528" Y="0.0297" />
             <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>

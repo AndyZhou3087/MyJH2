@@ -22,6 +22,21 @@
       <FilePathData Path="text_zh_cn/innroolv_text.png" />
       <FilePathData Path="text_zh_cn/recruit_text.png" />
       <FilePathData Path="text_zh_cn/herofire_text.png" />
+      <FilePathData Path="text_zh_cn/equiptext_0.png" />
+      <FilePathData Path="text_zh_cn/equiptext_1.png" />
+      <FilePathData Path="text_zh_cn/equiptext_2.png" />
+      <FilePathData Path="text_zh_cn/equiptext_3.png" />
+      <FilePathData Path="text_zh_cn/equiptext_4.png" />
+      <FilePathData Path="text_zh_cn/equiptext_5.png" />
+      <FilePathData Path="text_zh_cn/heroattrqu_0.png" />
+      <FilePathData Path="text_zh_cn/heroattrqu_1.png" />
+      <FilePathData Path="text_zh_cn/heroattrqu_2.png" />
+      <FilePathData Path="text_zh_cn/heroattrqu_3.png" />
+      <FilePathData Path="text_zh_cn/heroattrqu_4.png" />
+      <FilePathData Path="text_zh_cn/recruitbtn_text.png" />
+      <FilePathData Path="text_zh_cn/backbtn_text.png" />
+      <FilePathData Path="text_zh_cn/changebtn_text.png" />
+      <FilePathData Path="text_zh_cn/firebtn_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

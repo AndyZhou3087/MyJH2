@@ -2,5 +2,30 @@
 <strings>
 	<s name="lvtext">级</s>
 	<s name="lvtexts">等级：</s>
-	<s name="vocation">职业：</s>
+	<s name="vocationtext">职业：</s>
+	<s name="potentialtext">品质：</s>
+	<s name="vocation_0">侠客</s>
+	<s name="vocation_1">道士</s>
+	<s name="vocation_2">和尚</s>
+	<s name="vocation_3">刺客</s>
+	<s name="vocation_4">剑客</s>
+	<s name="vocation_5">茅山</s>
+	<s name="vocation_6">密宗</s>
+	<s name="vocation_7">刺客</s>
+	<s name="vocation_8">刀客</s>
+	<s name="vocation_9">全真</s>
+	<s name="vocation_10">禅宗</s>
+	<s name="vocation_11">射手</s>
+	<s name="potential_4">级</s>
+	<s name="potential_3">甲</s>
+	<s name="potential_2">乙</s>
+	<s name="potential_1">丙</s>
+	<s name="potential_0">丁</s>
+	<s name="attrtext_0">生命值：</s>
+	<s name="attrtext_1">攻击力：</s>
+	<s name="attrtext_2">防御力：</s>
+	<s name="attrtext_3">攻击速度：</s>
+	<s name="attrtext_4">暴击几率：</s>
+	<s name="attrtext_5">闪避几率：</s>
+	
 </strings>

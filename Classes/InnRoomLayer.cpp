@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
+#include "RandHeroLayer.h"
 
 USING_NS_CC;
 
@@ -73,7 +74,7 @@ bool InnRoomLayer::init(Building* buidingData)
 	lvUpbtn->addTouchEventListener(CC_CALLBACK_2(InnRoomLayer::onBtnClick, this));
 
 	//升级按钮文字
-	cocos2d::ui::ImageView* lvUpbtntxt = (cocos2d::ui::ImageView*)recruitbtn->getChildByName("text");
+	cocos2d::ui::ImageView* lvUpbtntxt = (cocos2d::ui::ImageView*)lvUpbtn->getChildByName("text");
 	lvUpbtntxt->loadTexture(ResourcePath::makeTextImgPath("innroolv_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//关闭按钮
@@ -102,8 +103,11 @@ void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		switch (tag)
 		{
 		case 0://招募
-
+		{
+			RandHeroLayer* layer = RandHeroLayer::create();
+			this->addChild(layer);
 			break;
+		}
 		case 1://升级
 			break;
 		case 2://关闭

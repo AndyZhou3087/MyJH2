@@ -1,5 +1,6 @@
 ﻿#include "CommonFuncs.h"
 #include "SoundManager.h"
+#include "Resource.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "../cocos2d//external//win32-specific/icon/include/iconv.h"
 #endif
@@ -48,6 +49,16 @@ std::string CommonFuncs::replace_all(std::string & s, std::string const & t, std
 	while (pos != std::string::npos){ // found 
 		s.replace(pos, t_size, w);
 		pos = s.find(t, pos + r_size);
+	}
+	return s;
+}
+
+std::string CommonFuncs::trim(std::string &s)
+{
+	if (!s.empty())
+	{
+		s.erase(0, s.find_first_not_of(" "));
+		s.erase(s.find_last_not_of(" ") + 1);
 	}
 	return s;
 }
@@ -117,7 +128,7 @@ void CommonFuncs::BtnAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 void CommonFuncs::changeGray(cocos2d::Node* node)
 {
-	auto p = GLProgram::createWithFilenames("gray.vsh", "gray.fsh");
+	auto p = GLProgram::createWithFilenames(ResourcePath::makePath("gray.vsh"), ResourcePath::makePath("gray.fsh"));
 	p->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_POSITION, GLProgram::VERTEX_ATTRIB_POSITION);
 	p->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_COLOR, GLProgram::VERTEX_ATTRIB_COLOR);
 	p->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_TEX_COORD, GLProgram::VERTEX_ATTRIB_TEX_COORDS);

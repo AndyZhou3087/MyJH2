@@ -17,7 +17,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4995" Y="0.5478" />
                 <PreSize X="0.9384" Y="0.9658" />
-                <FileData Type="MarkedSubImage" Path="ui/h001.png" Plist="ui.plist" />
+                <FileData Type="MarkedSubImage" Path="ui/h_1_0.png" Plist="ui.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

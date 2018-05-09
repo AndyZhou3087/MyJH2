@@ -26,6 +26,13 @@ public:
 	static std::string replace_all(std::string & s, std::string const & t, std::string const & w);
 
 	/****************************
+	去掉首尾空格
+	@param s 源字符串
+	@return 去掉首尾空格的字符串
+	****************************/
+	static std::string trim(std::string &s);
+
+	/****************************
 	字符串转换UTF8
 	@param inbuf 字符串
 	@return 转换后的字符串

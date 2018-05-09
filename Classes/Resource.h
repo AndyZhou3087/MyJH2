@@ -44,6 +44,7 @@ public:
 	static void load(int langtype);//价值文字数据
 private:
 	static void parseXml(int langtype);//解析文字xml
+
 };
 
 #endif

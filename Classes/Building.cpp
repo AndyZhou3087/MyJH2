@@ -1,5 +1,6 @@
 ﻿#include "Building.h"
 #include "DataSave.h"
+#include "Resource.h"
 
 std::map<std::string, Building*> Building::map_buildingDatas;
 Building::Building()
@@ -10,7 +11,7 @@ Building::Building()
 
 Building::~Building()
 {
-
+	destroy();
 }
 
 void Building::destroy()
@@ -26,7 +27,7 @@ void Building::destroy()
 void Building::parseData()
 {
 	destroy();
-	rapidjson::Document doc = ReadJsonFile("json/buildings.json");
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/buildings.json"));
 	rapidjson::Value& allData = doc["b"];
 	for (unsigned int i = 0; i < allData.Size(); i++)
 	{

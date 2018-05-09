@@ -8,7 +8,7 @@
       <FilePathData Path="ui/r004.png" />
       <FilePathData Path="ui/r005.png" />
       <FilePathData Path="ui/main_menu_box.png" />
-      <FilePathData Path="ui/h001.png" />
+      <FilePathData Path="ui/h_1_0.png" />
       <FilePathData Path="ui/main_achbtn.png" />
       <FilePathData Path="ui/main_mailbtn.png" />
       <FilePathData Path="ui/main_rankbtn.png" />
@@ -25,18 +25,38 @@
       <FilePathData Path="ui/buildinglvbox.png" />
       <FilePathData Path="ui/top1.png" />
       <FilePathData Path="ui/buildingtitlebox.png" />
+      <FilePathData Path="ui/herobox_0.png" />
       <FilePathData Path="ui/herobox_1.png" />
       <FilePathData Path="ui/herobox_2.png" />
       <FilePathData Path="ui/herobox_3.png" />
-      <FilePathData Path="ui/herobox_4.png" />
       <FilePathData Path="ui/heroitem.png" />
       <FilePathData Path="ui/actionbtn_blue.png" />
-      <FilePathData Path="ui/herobox_5.png" />
+      <FilePathData Path="ui/herobox_4.png" />
       <FilePathData Path="ui/smallstar.png" />
       <FilePathData Path="ui/herotag_0.png" />
       <FilePathData Path="ui/closebtn.png" />
       <FilePathData Path="text_zh_cn/crefresh_text.png" />
       <FilePathData Path="text_zh_cn/srefresh_text.png" />
+      <FilePathData Path="ui/randheadbox.png" />
+      <FilePathData Path="ui/h_1_1.png" />
+      <FilePathData Path="ui/h_2_0.png" />
+      <FilePathData Path="ui/h_2_1.png" />
+      <FilePathData Path="ui/h_3_0.png" />
+      <FilePathData Path="ui/h_3_1.png" />
+      <FilePathData Path="ui/h_0_0.png" />
+      <FilePathData Path="ui/h_0_1.png" />
+      <FilePathData Path="ui/equipbox_0.png" />
+      <FilePathData Path="ui/equipbox_1.png" />
+      <FilePathData Path="ui/equipbox_2.png" />
+      <FilePathData Path="ui/equipbox_3.png" />
+      <FilePathData Path="ui/equipbox_4.png" />
+      <FilePathData Path="ui/equipbox_5.png" />
+      <FilePathData Path="ui/heroattrnamebox.png" />
+      <FilePathData Path="ui/heroattrmodify.png" />
+      <FilePathData Path="ui/heroattrexpbar.png" />
+      <FilePathData Path="ui/heroattrexpbarbg.png" />
+      <FilePathData Path="ui/heroattradd.png" />
+      <FilePathData Path="ui/blank.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

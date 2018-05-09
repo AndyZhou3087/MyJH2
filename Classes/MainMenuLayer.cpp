@@ -55,11 +55,11 @@ bool MainMenuLayer::init()
 		}
 		else if (i == SILVERBOX)
 		{
-			silverlbl = (cocos2d::ui::Text*)clickwidget->getChildByName("countlbl");
+			mysilverlbl = (cocos2d::ui::Text*)clickwidget->getChildByName("countlbl");
 		}
 		else if (i == COINBOX)
 		{
-			coinlbl = (cocos2d::ui::Text*)clickwidget->getChildByName("countlbl");
+			mycoinlbl = (cocos2d::ui::Text*)clickwidget->getChildByName("countlbl");
 		}
 
 		if (i >= SETBTN && i <= SHOPBTN)
@@ -79,8 +79,8 @@ void MainMenuLayer::updateUI(float dt)
 	{
 		reslbl[i]->setString("10");
 	}
-	coinlbl->setString("100");
-	silverlbl->setString("100");
+	mycoinlbl->setString("100");
+	mysilverlbl->setString("100");
 }
 
 void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

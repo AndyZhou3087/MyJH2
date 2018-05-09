@@ -7,11 +7,9 @@
           <FilePathData Path="text_zh_cn.csi" />
           <FilePathData Path="innRoomLayer.csd" />
           <FilePathData Path="myHeroNode.csd" />
-          <FilePathData Path="MainLayer.csd" />
-          <FilePathData Path="randHeroLayer.csd" />
-          <FilePathData Path="MainMenuLayer.csd" />
+          <FilePathData Path="heroAttrLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="randHeroLayer.csd" />
+        <ActiveDocument Path="heroAttrLayer.csd" />
       </Value>
     </Item>
     <Item Key="CocosRecentOperation">
