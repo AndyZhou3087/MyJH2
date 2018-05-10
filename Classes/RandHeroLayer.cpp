@@ -100,12 +100,13 @@ bool RandHeroLayer::init()
 	lblstr = StringUtils::format("%d", COINREFRESH_NUM);
 	refreshcoinlbl->setString(lblstr);
 
+	create3RandHero();
 
 	for (int i = 0; i < 3; i++)
 	{
-		heronode[i] = RandHeroNode::create();
+		heronode[i] = RandHeroNode::create(GlobalInstance::vec_rand3Heros[i]);
 		heronode[i]->setPosition(140+i*220, 730);
-		this->addChild(heronode[i]);
+		this->addChild(heronode[i], 0, i);
 	}
 
 	this->schedule(schedule_selector(RandHeroLayer::updateUI), 1.0f);
@@ -157,7 +158,32 @@ void RandHeroLayer::updateUI(float dt)
 	mycoinlbl->setString("10");
 }
 
+void RandHeroLayer::create3RandHero()
+{
+	delete3RandHero();
+	for (int i = 0; i < 3; i++)
+	{
+		Hero* randhero = new Hero();
+		randhero->generate();
+		GlobalInstance::vec_rand3Heros.push_back(randhero);
+	}
+}
+
+void RandHeroLayer::delete3RandHero()
+{
+	int randsize = GlobalInstance::vec_rand3Heros.size();
+	for (int i = 0; i < randsize; i++)
+	{
+		Hero* hero = GlobalInstance::vec_rand3Heros[i];
+		if (!hero->getIsRecruited())
+			delete GlobalInstance::vec_rand3Heros[i];
+	}
+	GlobalInstance::vec_rand3Heros.clear();
+}
+
 void RandHeroLayer::onExit()
 {
 	Layer::onExit();
 }
+
+

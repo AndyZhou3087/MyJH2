@@ -57,10 +57,13 @@ void LoadingScene::delayLoadData(float dt)
 	int langtype = DataSave::getInstance()->getLocalLang();
 	GlobalInstance::getInstance()->setLang(langtype);
 
+	//解析语言xml
 	ResourceLang::load(langtype);
 
+	//解析建筑物xml
 	Building::parseData();
 
+	//数据处理完，显示游戏场景
 	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.2f);
 }
 

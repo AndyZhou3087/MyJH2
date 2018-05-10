@@ -10,7 +10,7 @@ using namespace std;
 
 USING_NS_CC;
 
-#define encrypt_data 1
+//#define encrypt_data 1
 
 
 // 加/解密函数；bEncrypt = true 加密；bEncrypt = false 解密

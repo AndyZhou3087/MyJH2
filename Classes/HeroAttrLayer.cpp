@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
+#include "RandHeroNode.h"
 USING_NS_CC;
 
 HeroAttrLayer::HeroAttrLayer()
@@ -38,6 +39,8 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
     {
         return false;
     }
+
+	m_heroData = herodata;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 250));
 	this->addChild(color);
@@ -151,7 +154,7 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 	std::string btnname[] = { "firebtn", "changebtn", "backbtn", "recruitbtn"};//与BTNTYPE对应
 	for (int i = 0; i < sizeof(btnname) / sizeof(btnname[0]); i++)
 	{
-		cocos2d::ui::Widget* btn = (cocos2d::ui::Widget*)heroattrbottom->getChildByName(btnname[i]);
+		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)heroattrbottom->getChildByName(btnname[i]);
 		btn->setTag(i);
 		btn->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onBtnClick, this));
 
@@ -179,6 +182,8 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("recruitbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			if (etype == NEWHERO)
 			{
+				if (m_heroData->getIsRecruited())
+					btn->setEnabled(false);
 
 			}
 		}
@@ -227,7 +232,7 @@ void HeroAttrLayer::editBoxReturn(cocos2d::ui::EditBox *editBox)
 
 void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	Node* clicknode = (Node*)pSender;
+	cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
 
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
@@ -240,7 +245,17 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case ATTR_CHANGEBTN:
 			break;
 		case ATTR_RECRUITBTN:
+		{
+			m_heroData->setIsRecruited(true);
+			//加入到我的英雄列表
+			GlobalInstance::map_myHeros[m_heroData->getName()] = m_heroData;
+			//保存数据
+			GlobalInstance::getInstance()->saveHeros();
+			RandHeroNode* heroNode = (RandHeroNode*)this->getParent()->getChildByTag(this->getTag());
+			heroNode->markRecruited();
+			clicknode->setEnabled(false);
 			break;
+		}
 		case ATTR_BACKBTN:
 			this->removeFromParentAndCleanup(true);
 			break;

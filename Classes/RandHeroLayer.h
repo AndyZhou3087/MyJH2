@@ -30,14 +30,19 @@ private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	//更新UI,数值
 	void updateUI(float dt);
-	
+
+	//创建3个随机英雄数据
+	void create3RandHero();
+
+	//删除3个随机英雄数据
+	void delete3RandHero();
 private:
 	cocos2d::ui::Text* mysilverlbl;//银子数量LABEL
 	cocos2d::ui::Text* mycoinlbl;//金币数量LABEL
 
 	cocos2d::ui::Text* refreshsilverlbl;//银子刷新LABEL
 	cocos2d::ui::Text* refreshcoinlbl;//金币刷新LABEL
-	RandHeroNode* heronode[3];//3个随机的英雄
+	RandHeroNode* heronode[3];//3个随机的英雄UI
 };
 
 #endif

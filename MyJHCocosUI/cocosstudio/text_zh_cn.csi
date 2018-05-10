@@ -37,6 +37,7 @@
       <FilePathData Path="text_zh_cn/backbtn_text.png" />
       <FilePathData Path="text_zh_cn/changebtn_text.png" />
       <FilePathData Path="text_zh_cn/firebtn_text.png" />
+      <FilePathData Path="text_zh_cn/isrecruited_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

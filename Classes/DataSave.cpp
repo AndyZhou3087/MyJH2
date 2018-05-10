@@ -35,3 +35,14 @@ void DataSave::setLocalLang(int val)
 {
 	saveIntDataByKey("lang", val);
 }
+
+std::string DataSave::getHeroData(std::string herokey)
+{
+	return loadStringDataByKey(herokey, "");
+}
+
+
+void DataSave::setHeroData(std::string herokey, std::string herodata)
+{
+	saveStringDataByKey(herokey, herodata);
+}

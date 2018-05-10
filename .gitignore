@@ -7,6 +7,5 @@ proj.android/libs/armeabi
 proj.win32/
 proj.win10/
 JHCocosUI/Resources/res/
-anim/Story/Resources/res/
 .cocos-project.json
 CMakeLists.txt

@@ -38,6 +38,19 @@ public:
 	****************************/
 	void setLocalLang(int val);
 
+	/****************************
+	获取英雄数据
+	@para key, eg:hero1,列表顺序
+	****************************/
+	std::string getHeroData(std::string herokey);
+
+	/****************************
+	设置英雄数据
+	@para key, eg:hero1,列表顺序
+	@para data,组织好的一段字串
+	****************************/
+	void setHeroData(std::string herokey, std::string herodata);
+
 private:
 	static DataSave* _Context;//类实例
 

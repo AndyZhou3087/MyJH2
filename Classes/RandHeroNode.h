@@ -12,10 +12,13 @@ public:
 	RandHeroNode();
 	~RandHeroNode();
 
-	virtual bool init();
+	virtual bool init(Hero* hero);
 
-	CREATE_FUNC(RandHeroNode);
+	static RandHeroNode* create(Hero* herodata);
 
+	void markRecruited();
+public:
+	Hero* m_heroData;
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
@@ -24,11 +27,11 @@ private:
 	cocos2d::ui::Text* vocationlbl;
 	cocos2d::ui::Text* potentialtextlbl;
 	cocos2d::ui::Text* potentiallbl;
-	Hero* heroData;
+	cocos2d::ui::Widget* isrecruitedWidget;
+
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void generate();
-	std::string generateName();
+	void setData();
 };
 #endif
 

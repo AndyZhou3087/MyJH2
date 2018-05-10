@@ -96,6 +96,17 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="isrecruited_text" ActionTag="-1278589290" Tag="85" IconVisible="False" LeftMargin="-62.0000" RightMargin="-62.0000" TopMargin="-76.0000" BottomMargin="44.0000" ctype="SpriteObjectData">
+            <Size X="124.0000" Y="32.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position Y="60.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="text_zh_cn/isrecruited_text.png" Plist="text_zh_cn.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
