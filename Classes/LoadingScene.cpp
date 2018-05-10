@@ -63,6 +63,8 @@ void LoadingScene::delayLoadData(float dt)
 	//解析建筑物xml
 	Building::parseData();
 
+	//读取本地英雄
+	GlobalInstance::getInstance()->loadHeros();
 	//数据处理完，显示游戏场景
 	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.2f);
 }
