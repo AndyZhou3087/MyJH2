@@ -7,7 +7,7 @@
 
 Hero::Hero()
 {
-	m_isrecruited = false;
+	m_state = 0;
 }
 
 

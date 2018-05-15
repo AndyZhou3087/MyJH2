@@ -175,7 +175,7 @@ void RandHeroLayer::delete3RandHero()
 	for (int i = 0; i < randsize; i++)
 	{
 		Hero* hero = GlobalInstance::vec_rand3Heros[i];
-		if (!hero->getIsRecruited())
+		if (hero->getState() == HS_READY)
 			delete GlobalInstance::vec_rand3Heros[i];
 	}
 	GlobalInstance::vec_rand3Heros.clear();

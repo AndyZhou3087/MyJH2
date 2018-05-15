@@ -6,7 +6,7 @@
 #include "InnRoomLayer.h"
 
 USING_NS_CC;
-
+MainScene* g_mainScene = NULL;
 MainScene::MainScene()
 {
 
@@ -23,10 +23,10 @@ Scene* MainScene::createScene()
     auto scene = Scene::create();
     
     // 'layer' is an autorelease object
-	auto mainLayer = MainScene::create();
+	g_mainScene = MainScene::create();
 
     // add layer as a child to scene
-	scene->addChild(mainLayer);
+	scene->addChild(g_mainScene);
 
     // return the scene
     return scene;
@@ -145,7 +145,7 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		snode->setVisible(false);
 		std::string buildname = (char*)snode->getUserData();
 		InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas[buildname]);
-		this->addChild(layer);
+		this->addChild(layer, 0, buildname);
 		break;
 	}
 	case cocos2d::ui::Widget::TouchEventType::CANCELED:

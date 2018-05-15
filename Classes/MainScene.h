@@ -33,5 +33,5 @@ private:
 
 	CREATE_FUNC(MainScene);
 };
-
+extern MainScene* g_mainScene;
 #endif

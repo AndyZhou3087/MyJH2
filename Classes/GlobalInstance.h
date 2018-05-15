@@ -29,7 +29,7 @@ public:
 private:
 	static GlobalInstance* _Context;//类实例
 public:
-	static std::map<std::string, Hero*> map_myHeros;//招募的英雄
+	static std::vector<Hero*> GlobalInstance::vec_myHeros;//招募的英雄
 	static std::vector<Hero*> vec_rand3Heros;//待招募的3个英雄
 };
 #endif

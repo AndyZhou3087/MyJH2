@@ -3,6 +3,7 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "RandHeroLayer.h"
+#include "MyHeroNode.h"
 
 USING_NS_CC;
 
@@ -82,6 +83,14 @@ bool InnRoomLayer::init(Building* buidingData)
 	closebtn->setTag(2);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(InnRoomLayer::onBtnClick, this));
 
+	//我的英雄滚动控件
+	m_heroscroll = (cocos2d::ui::ScrollView*)csbnode->getChildByName("myherosscroll");
+
+	m_heroscroll->setScrollBarEnabled(false);
+	m_heroscroll->setBounceEnabled(true);
+
+	refreshMyHerosUi();
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -117,6 +126,36 @@ void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			break;
 		}
 	}
+}
+
+void InnRoomLayer::refreshMyHerosUi()
+{
+	m_heroscroll->removeAllChildrenWithCleanup(true);
+
+	int size = GlobalInstance::vec_myHeros.size();
+	int itemheight = 150;
+	int innerheight = itemheight * size;
+	int contentheight = m_heroscroll->getContentSize().height;
+	if (innerheight < contentheight)
+		innerheight = contentheight;
+	m_heroscroll->setInnerContainerSize(Size(650, innerheight));
+
+	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+	{
+		Hero* herodata = GlobalInstance::vec_myHeros[i];
+		MyHeroNode* heronode = MyHeroNode::create(herodata);
+		heronode->setPosition(Vec2(m_heroscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
+		m_heroscroll->addChild(heronode);
+	}
+}
+
+void InnRoomLayer::fireHero()
+{
+	//删除当前英雄列表
+	GlobalInstance::vec_myHeros.erase(GlobalInstance::vec_myHeros.begin() + this->getTag());
+	//保存数据
+	GlobalInstance::getInstance()->saveHeros();
+	refreshMyHerosUi();
 }
 
 void InnRoomLayer::onExit()

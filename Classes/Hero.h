@@ -9,6 +9,14 @@
 USING_NS_CC;
 
 #define HEROMAX 4
+
+typedef enum
+{
+	HS_READY = 0, //待招募
+	HS_OWNED,//招募
+	HS_TAKEON,//出征
+	HS_DEAD//死亡
+}HEROSTATE;
 class Hero
 {
 public:
@@ -20,7 +28,7 @@ public:
 	CC_SYNTHESIZE(int, m_vocation, Vocation);// 职业
 	CC_SYNTHESIZE(int, m_potential, Potential);//潜力，品质
 	CC_SYNTHESIZE(int, m_sex, Sex);//性别
-	CC_SYNTHESIZE(bool, m_isrecruited, IsRecruited);//是否招募
+	CC_SYNTHESIZE(int, m_state, State);//英雄状态，0--待招募；1--招募；2--出征；3--
 
 	//等级，根据经验值算等级
 	int getLevel();

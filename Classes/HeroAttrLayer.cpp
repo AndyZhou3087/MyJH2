@@ -3,6 +3,8 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "RandHeroNode.h"
+#include "InnRoomLayer.h"
+#include "MainScene.h"
 USING_NS_CC;
 
 HeroAttrLayer::HeroAttrLayer()
@@ -59,17 +61,13 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 
 	//装备栏
 	Node* equipnode = csbnode->getChildByName("equipnode");
-	if (etype == NEWHERO)
-	{
-		equipnode->setVisible(false);
-	}
-	else
-	{
 
-	}
 	//属性信息
 	Node* heroattrbottom = csbnode->getChildByName("heroattrbottom");
+	cocos2d::ui::Widget* moditybtn = (cocos2d::ui::Widget*)csbnode->getChildByName("moditybtn");
 
+
+	
 	//品质
 	cocos2d::ui::ImageView* heroattrqu = (cocos2d::ui::ImageView*)heroattrbottom->getChildByName("heroattrqu");
 	str = StringUtils::format("heroattrqu_%d", herodata->getPotential());
@@ -91,6 +89,14 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 	m_editName->setDelegate(this);
 	heroattrbottom->addChild(m_editName);
 	
+	if (etype == NEWHERO)
+	{
+		equipnode->setVisible(false);
+		moditybtn->setVisible(false);
+		m_editName->setVisible(false);
+	}
+
+
 	//角色职业
 	cocos2d::ui::Text* vocation = (cocos2d::ui::Text*)heroattrbottom->getChildByName("vocation");
 	str = StringUtils::format("vocation_%d", herodata->getVocation());
@@ -175,6 +181,18 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 			{
 				btn->setVisible(false);
 			}
+			else
+			{
+				//前4种职业等级10可转职，
+				if (m_heroData->getVocation() <= 3 && m_heroData->getLevel() == 9)
+				{
+					btn->setEnabled(true);
+				}
+				else
+				{
+					btn->setEnabled(false);
+				}
+			}
 		}
 		else if (i == ATTR_RECRUITBTN)
 		{
@@ -182,9 +200,13 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("recruitbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			if (etype == NEWHERO)
 			{
-				if (m_heroData->getIsRecruited())
+				if (m_heroData->getState() > 0)
 					btn->setEnabled(false);
 
+			}
+			else
+			{
+				btn->setVisible(false);
 			}
 		}
 		else if (i == ATTR_BACKBTN)
@@ -241,14 +263,19 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		switch (tag)
 		{
 		case ATTR_FIREBTN:
+		{
+			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("innroom");
+			innroomLayer->fireHero();
+			this->removeFromParentAndCleanup(true);
 			break;
+		}
 		case ATTR_CHANGEBTN:
 			break;
 		case ATTR_RECRUITBTN:
 		{
-			m_heroData->setIsRecruited(true);
+			m_heroData->setState(HS_OWNED);
 			//加入到我的英雄列表
-			GlobalInstance::map_myHeros[m_heroData->getName()] = m_heroData;
+			GlobalInstance::vec_myHeros.push_back(m_heroData);
 			//保存数据
 			GlobalInstance::getInstance()->saveHeros();
 			RandHeroNode* heroNode = (RandHeroNode*)this->getParent()->getChildByTag(this->getTag());

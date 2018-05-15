@@ -59,7 +59,7 @@
             <PreSize X="0.1083" Y="0.0297" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/innroomtitle.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lv" ActionTag="-1588301103" Tag="9" IconVisible="False" LeftMargin="332.3325" RightMargin="332.6675" TopMargin="76.1459" BottomMargin="1172.8541" FontSize="25" LabelText="10级" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="lv" ActionTag="-1588301103" Tag="9" IconVisible="False" LeftMargin="332.3344" RightMargin="332.6656" TopMargin="76.1456" BottomMargin="1172.8544" FontSize="25" LabelText="10级" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="55.0000" Y="31.0000" />
             <AnchorPoint ScaleX="0.4121" ScaleY="0.6176" />
             <Position X="354.9999" Y="1192.0000" />
@@ -139,6 +139,20 @@
             <NormalFileData Type="MarkedSubImage" Path="ui/closebtn.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="myherosscroll" ActionTag="-362075150" Tag="91" IconVisible="False" LeftMargin="35.0000" RightMargin="35.0000" TopMargin="150.0000" BottomMargin="170.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+            <Size X="650.0000" Y="960.0000" />
+            <AnchorPoint />
+            <Position X="35.0000" Y="170.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0486" Y="0.1328" />
+            <PreSize X="0.9028" Y="0.7500" />
+            <SingleColor A="255" R="255" G="150" B="100" />
+            <FirstColor A="255" R="255" G="150" B="100" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
+            <InnerNodeSize Width="650" Height="960" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

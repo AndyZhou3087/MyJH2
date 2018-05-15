@@ -8,7 +8,7 @@
 #include "platform/android/jni/JniHelper.h"
 #endif
 
-std::map<std::string, Hero*> GlobalInstance::map_myHeros;
+std::vector<Hero*> GlobalInstance::vec_myHeros;
 std::vector<Hero*> GlobalInstance::vec_rand3Heros;
 
 GlobalInstance::GlobalInstance()
@@ -31,13 +31,10 @@ GlobalInstance* GlobalInstance::getInstance() {
 
 void GlobalInstance::saveHeros()
 {
-	std::map<std::string, Hero*>::iterator hit;
-
-	int i = 0;
-	for (hit = GlobalInstance::map_myHeros.begin(); hit != GlobalInstance::map_myHeros.end(); hit++)
+	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 	{
 		std::string herokey = StringUtils::format("hero%d", i);
-		Hero* hero = GlobalInstance::map_myHeros[hit->first];
+		Hero* hero = GlobalInstance::vec_myHeros[i];
 		std::string datastr = StringUtils::format("%s-%d-%d-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex());
 		DataSave::getInstance()->setHeroData(herokey, datastr);
 	}
@@ -78,7 +75,7 @@ void GlobalInstance::loadHeros()
 				}
 			}
 			if (hero != NULL)
-				GlobalInstance::map_myHeros[hero->getName()] = hero;
+				GlobalInstance::vec_myHeros.push_back(hero);
 		}
 	}
 }

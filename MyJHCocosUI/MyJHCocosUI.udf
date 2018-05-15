@@ -1,19 +1,5 @@
 <UserData Version="3.10.0.0">
   <Properties>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="ui.csi" />
-          <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="innRoomLayer.csd" />
-          <FilePathData Path="myHeroNode.csd" />
-          <FilePathData Path="heroAttrLayer.csd" />
-          <FilePathData Path="randHeroLayer.csd" />
-          <FilePathData Path="randHeroNode.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="randHeroNode.csd" />
-      </Value>
-    </Item>
     <Item Key="CocosRecentOperation">
       <Value ctype="CocosRecentOperation">
         <LastPublishType Value="Resource" />
