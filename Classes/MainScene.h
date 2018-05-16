@@ -4,8 +4,10 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include "HttpDataSwap.h"
+
 USING_NS_CC;
-class MainScene : public cocos2d::Layer
+class MainScene : public cocos2d::Layer, public HTTPDataDelegateProtocol
 {
 public:
 	MainScene();
@@ -32,6 +34,10 @@ private:
 private:
 
 	CREATE_FUNC(MainScene);
+
+	void onFinish(int code);
+	
+	void updateTime(float dt);
 };
 extern MainScene* g_mainScene;
 #endif

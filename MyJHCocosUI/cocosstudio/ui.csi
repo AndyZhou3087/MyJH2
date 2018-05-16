@@ -57,6 +57,10 @@
       <FilePathData Path="ui/heroattrexpbarbg.png" />
       <FilePathData Path="ui/heroattradd.png" />
       <FilePathData Path="ui/blank.png" />
+      <FilePathData Path="ui/timebar.png" />
+      <FilePathData Path="ui/timebargb.png" />
+      <FilePathData Path="ui/timeicon.png" />
+      <FilePathData Path="ui/timeiconbox.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

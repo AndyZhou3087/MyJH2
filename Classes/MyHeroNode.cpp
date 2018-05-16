@@ -75,6 +75,16 @@ bool MyHeroNode::init(Hero* herodata)
 	cocos2d::ui::ImageView* actbtntxt = (cocos2d::ui::ImageView*)actbtn->getChildByName("text");
 	actbtntxt->loadTexture(ResourcePath::makeTextImgPath("herofire_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+	statetag = (cocos2d::ui::ImageView*)csbnode->getChildByName("tag");
+	statetag->setVisible(false);
+
+	for (int i = 0; i < 5; i++)
+	{
+		std::string starstr = StringUtils::format("star%d", i+1);
+		stars[i] = (cocos2d::ui::ImageView*)csbnode->getChildByName(starstr);
+		stars[i]->setVisible(false);
+	}
+
 	updateData();
 
 	return true;
@@ -95,6 +105,11 @@ void MyHeroNode::updateData()
 	lvlbl->setString(str);
 
 	namelbl->setString(m_heroData->getName());
+
+	for (int i = 0; i < m_heroData->getBreakUpper(); i++)
+	{
+		stars[i]->setVisible(true);
+	}
 }
 
 

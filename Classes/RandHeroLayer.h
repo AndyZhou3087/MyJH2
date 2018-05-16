@@ -36,6 +36,7 @@ private:
 
 	//删除3个随机英雄数据
 	void delete3RandHero();
+
 private:
 	cocos2d::ui::Text* mysilverlbl;//银子数量LABEL
 	cocos2d::ui::Text* mycoinlbl;//金币数量LABEL
@@ -43,6 +44,8 @@ private:
 	cocos2d::ui::Text* refreshsilverlbl;//银子刷新LABEL
 	cocos2d::ui::Text* refreshcoinlbl;//金币刷新LABEL
 	RandHeroNode* heronode[3];//3个随机的英雄UI
+	cocos2d::ui::LoadingBar* m_timebar;
+	cocos2d::ui::Text* m_timelbl;
 };
 
 #endif

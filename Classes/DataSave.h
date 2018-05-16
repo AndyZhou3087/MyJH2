@@ -51,6 +51,27 @@ public:
 	****************************/
 	void setHeroData(std::string herokey, std::string herodata);
 
+
+	/****************************
+	获取随机的3个英雄数据
+	****************************/
+	std::string getRand3HeroData();
+
+	/****************************
+	设置随机的3个英雄数据
+	@para data,组织好的一段字串
+	****************************/
+	void setRand3HeroData(std::string herodata);
+	
+	/****************************
+	保存刷新时间
+	****************************/
+	int getRefreshHeroTime();
+
+	/****************************
+	设置刷新时间
+	****************************/
+	void setRefreshHeroTime(int time);
 private:
 	static DataSave* _Context;//类实例
 

@@ -3,6 +3,7 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "Building.h"
+#include "Const.h"
 
 USING_NS_CC;
 
@@ -100,7 +101,15 @@ bool RandHeroLayer::init()
 	lblstr = StringUtils::format("%d", COINREFRESH_NUM);
 	refreshcoinlbl->setString(lblstr);
 
-	create3RandHero();
+	m_timebar = (cocos2d::ui::LoadingBar*)csbnode->getChildByName("timebar");
+	m_timebar->setPercent(100);
+
+	m_timelbl = (cocos2d::ui::Text*)csbnode->getChildByName("timelbl");
+
+	if (GlobalInstance::vec_rand3Heros.size() <= 0)
+		create3RandHero();
+
+	updateUI(0);
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -156,6 +165,31 @@ void RandHeroLayer::updateUI(float dt)
 {
 	mysilverlbl->setString("10");
 	mycoinlbl->setString("10");
+
+	int lefttime = 0;
+	int refreshtime = GlobalInstance::getInstance()->getRefreshHeroTime();
+	int pasttime = GlobalInstance::servertime - refreshtime;
+	if (pasttime >= RESETHEROTIME)
+	{
+		int t = GlobalInstance::servertime % RESETHEROTIME;
+
+		refreshtime = GlobalInstance::servertime - t;
+		GlobalInstance::getInstance()->saveRefreshHeroTime(refreshtime);
+
+		lefttime = RESETHEROTIME - t;
+		create3RandHero();
+		for (int i = 0; i < 3; i++)
+		{
+			heronode[i]->setData();
+		}
+	}
+	else
+	{
+		lefttime = RESETHEROTIME - pasttime;
+	}
+	std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
+	m_timelbl->setString(timestr);
+	m_timebar->setPercent(lefttime*100/ RESETHEROTIME);
 }
 
 void RandHeroLayer::create3RandHero()
@@ -167,6 +201,7 @@ void RandHeroLayer::create3RandHero()
 		randhero->generate();
 		GlobalInstance::vec_rand3Heros.push_back(randhero);
 	}
+	GlobalInstance::getInstance()->saveRand3Heros();
 }
 
 void RandHeroLayer::delete3RandHero()
@@ -174,9 +209,7 @@ void RandHeroLayer::delete3RandHero()
 	int randsize = GlobalInstance::vec_rand3Heros.size();
 	for (int i = 0; i < randsize; i++)
 	{
-		Hero* hero = GlobalInstance::vec_rand3Heros[i];
-		if (hero->getState() == HS_READY)
-			delete GlobalInstance::vec_rand3Heros[i];
+		delete GlobalInstance::vec_rand3Heros[i];
 	}
 	GlobalInstance::vec_rand3Heros.clear();
 }

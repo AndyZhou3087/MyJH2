@@ -17,6 +17,7 @@ public:
 	static RandHeroNode* create(Hero* herodata);
 
 	void markRecruited();
+	void setData();
 public:
 	Hero* m_heroData;
 private:
@@ -31,7 +32,7 @@ private:
 
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void setData();
+
 };
 #endif
 

@@ -151,10 +151,12 @@ void InnRoomLayer::refreshMyHerosUi()
 
 void InnRoomLayer::fireHero(int index)
 {
+	//释放内存
+	delete GlobalInstance::vec_myHeros[index];
 	//删除当前英雄列表
 	GlobalInstance::vec_myHeros.erase(GlobalInstance::vec_myHeros.begin() + index);
 	//保存数据
-	GlobalInstance::getInstance()->saveHeros();
+	GlobalInstance::getInstance()->saveMyHeros();
 	refreshMyHerosUi();
 }
 

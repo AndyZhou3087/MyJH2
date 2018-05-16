@@ -69,6 +69,7 @@ bool MainMenuLayer::init()
 			textimg->loadTexture(ResourcePath::makeTextImgPath(textname, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 	}
+	updateUI(0);
 	this->schedule(schedule_selector(MainMenuLayer::updateUI), 1.0f);
     return true;
 }

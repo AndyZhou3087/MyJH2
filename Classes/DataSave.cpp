@@ -41,8 +41,27 @@ std::string DataSave::getHeroData(std::string herokey)
 	return loadStringDataByKey(herokey, "");
 }
 
-
 void DataSave::setHeroData(std::string herokey, std::string herodata)
 {
 	saveStringDataByKey(herokey, herodata);
+}
+
+std::string DataSave::getRand3HeroData()
+{
+	return loadStringDataByKey("randheros", "");
+}
+
+void DataSave::setRand3HeroData(std::string herodata)
+{
+	saveStringDataByKey("randheros", herodata);
+}
+
+int DataSave::getRefreshHeroTime()
+{
+	return loadIntDataByKey("refreshherotime", 0);
+}
+
+void DataSave::setRefreshHeroTime(int time)
+{
+	saveIntDataByKey("refreshherotime", time);
 }

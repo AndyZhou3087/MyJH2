@@ -110,6 +110,8 @@ bool MainScene::init()
 		i--;
 	}
 
+	HttpDataSwap::init(this)->getServerTime();
+
     return true;
 }
 
@@ -133,6 +135,7 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 {
 	Node* clicknode = (Node*)pSender;
 	Node* snode = (Node*)clicknode->getUserData();
+	std::string buildname = (char*)snode->getUserData();
 	switch (type)
 	{
 	case cocos2d::ui::Widget::TouchEventType::BEGAN:
@@ -143,9 +146,13 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 	case cocos2d::ui::Widget::TouchEventType::ENDED:
 	{
 		snode->setVisible(false);
-		std::string buildname = (char*)snode->getUserData();
-		InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas[buildname]);
-		this->addChild(layer, 0, buildname);
+		Layer* layer = NULL;
+		if (buildname.compare("innroom") == 0)
+		{
+			layer = InnRoomLayer::create(Building::map_buildingDatas[buildname]);
+		}
+		if (layer != NULL)
+			this->addChild(layer, 0, buildname);
 		break;
 	}
 	case cocos2d::ui::Widget::TouchEventType::CANCELED:
@@ -159,4 +166,21 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 void MainScene::onExit()
 {
 	Layer::onExit();
+}
+
+void MainScene::onFinish(int code)
+{
+	if (code == SUCCESS)
+	{
+		if (GlobalInstance::getInstance()->getRefreshHeroTime() == 0)
+		{
+			GlobalInstance::getInstance()->saveRefreshHeroTime(GlobalInstance::servertime);
+		}
+		this->schedule(schedule_selector(MainScene::updateTime), 1);
+	}
+}
+
+void MainScene::updateTime(float dt)
+{
+	GlobalInstance::servertime++;
 }

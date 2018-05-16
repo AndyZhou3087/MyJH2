@@ -139,6 +139,10 @@
           <Image Name="r005.png" />
           <Image Name="randheadbox.png" />
           <Image Name="smallstar.png" />
+          <Image Name="timebar.png" />
+          <Image Name="timebargb.png" />
+          <Image Name="timeicon.png" />
+          <Image Name="timeiconbox.png" />
           <Image Name="top1.png" />
         </Folder>
         <Project Name="heroAttrLayer.csd" Type="Layer" />

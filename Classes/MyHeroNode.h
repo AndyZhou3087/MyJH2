@@ -24,6 +24,8 @@ private:
 	cocos2d::ui::Text* vocationlbl;
 	cocos2d::ui::Text* lvtextlbl;
 	cocos2d::ui::Text* lvlbl;
+	cocos2d::ui::ImageView* statetag;
+	cocos2d::ui::ImageView* stars[5];
 	Hero* m_heroData;
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

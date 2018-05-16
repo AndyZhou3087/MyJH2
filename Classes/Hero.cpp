@@ -8,12 +8,25 @@
 Hero::Hero()
 {
 	m_state = 0;
+	m_breakupper = 0;
+	m_randattr = 0.0f;
 }
 
 
 Hero::~Hero()
 {
 
+}
+
+Hero::Hero(Hero* hero)
+{
+	m_name = hero->getName();
+	m_sex = hero->getSex();
+	m_vocation = hero->getVocation();
+	m_potential = hero->getPotential();
+	m_randattr = hero->getRandAttr();
+	m_state = 0;
+	m_breakupper = 0;
 }
 
 int Hero::getLevel()
@@ -73,7 +86,7 @@ std::string Hero::generateName()
 			FILE *fp = fopen(fileName.c_str(), "r");
 			if (fp)
 			{
-				fseek(fp, randindex[i] * 14, 0);
+				fseek(fp, randindex[i] * 14, 0);//12个字节名字（4个中文），回车换行2个字节
 				char szReadBuff[13] = { 0 };
 				size_t readsize = fread(szReadBuff, 12, 1, fp);
 				if (readsize > 0)

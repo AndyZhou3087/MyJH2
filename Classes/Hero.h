@@ -22,34 +22,36 @@ class Hero
 public:
 	Hero();
 	~Hero();
-
+	Hero(Hero* hero);
 	CC_SYNTHESIZE(std::string, m_name, Name);//英雄名称，唯一不重复
 	CC_SYNTHESIZE(DynamicValueInt, m_exp, Exp); //经验值
 	CC_SYNTHESIZE(int, m_vocation, Vocation);// 职业
 	CC_SYNTHESIZE(int, m_potential, Potential);//潜力，品质
 	CC_SYNTHESIZE(int, m_sex, Sex);//性别
 	CC_SYNTHESIZE(int, m_state, State);//英雄状态，0--待招募；1--招募；2--出征；3--
+	CC_SYNTHESIZE(int, m_breakupper, BreakUpper);//突破等级
+	CC_SYNTHESIZE(float, m_randattr, RandAttr);//随机属性
 
 	//等级，根据经验值算等级
 	int getLevel();
 
 	//攻击
-	int getAtk();
+	float getAtk();
 
 	//防御
-	int getDf();
+	float getDf();
 
 	//血量
-	int getHp();
+	float getHp();
 
 	//攻击速度
-	int getAtkSpeed();
+	float getAtkSpeed();
 
 	//暴击
-	int getCrit();
+	float getCrit();
 
 	//闪避
-	int getDodge();
+	float getDodge();
 
 	//随机生成一个英雄
 	void generate();
@@ -61,5 +63,6 @@ public:
 	* 
 	*********************************************************************/
 };
+
 #endif
 

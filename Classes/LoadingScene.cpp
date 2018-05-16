@@ -54,6 +54,7 @@ bool LoadingScene::init()
 
 void LoadingScene::delayLoadData(float dt)
 {
+	GlobalInstance::getInstance()->loadInitData();
 	int langtype = DataSave::getInstance()->getLocalLang();
 	GlobalInstance::getInstance()->setLang(langtype);
 
@@ -63,8 +64,13 @@ void LoadingScene::delayLoadData(float dt)
 	//解析建筑物xml
 	Building::parseData();
 
+	//英雄基础属性
+	GlobalInstance::getInstance()->loadHerosAttrData();
+
 	//读取本地英雄
-	GlobalInstance::getInstance()->loadHeros();
+	GlobalInstance::getInstance()->loadMyHeros();
+
+	GlobalInstance::getInstance()->loadRand3Heros();
 	//数据处理完，显示游戏场景
 	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.2f);
 }

@@ -282,6 +282,63 @@
             <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="timebargb" ActionTag="-1679566337" Tag="137" IconVisible="False" LeftMargin="296.0000" RightMargin="296.0000" TopMargin="761.9999" BottomMargin="488.0001" ctype="SpriteObjectData">
+            <Size X="128.0000" Y="30.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="503.0001" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.3930" />
+            <PreSize X="0.1778" Y="0.0234" />
+            <FileData Type="MarkedSubImage" Path="ui/timebargb.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="timebar" ActionTag="-655845600" Tag="139" IconVisible="False" LeftMargin="296.0000" RightMargin="296.0000" TopMargin="762.0000" BottomMargin="488.0000" ProgressInfo="100" ctype="LoadingBarObjectData">
+            <Size X="128.0000" Y="30.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="503.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.3930" />
+            <PreSize X="0.1778" Y="0.0234" />
+            <ImageFileData Type="MarkedSubImage" Path="ui/timebar.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="timeiconbox" ActionTag="740459032" Tag="136" IconVisible="False" LeftMargin="269.8028" RightMargin="414.1972" TopMargin="759.0002" BottomMargin="484.9998" ctype="SpriteObjectData">
+            <Size X="36.0000" Y="36.0000" />
+            <Children>
+              <AbstractNodeData Name="timeicon" ActionTag="1145400376" Tag="138" IconVisible="False" LeftMargin="9.0000" RightMargin="9.0000" TopMargin="4.0000" BottomMargin="4.0000" ctype="SpriteObjectData">
+                <Size X="18.0000" Y="28.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="18.0000" Y="18.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="0.5000" Y="0.7778" />
+                <FileData Type="MarkedSubImage" Path="ui/timeicon.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="287.8028" Y="502.9998" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3997" Y="0.3930" />
+            <PreSize X="0.0500" Y="0.0281" />
+            <FileData Type="MarkedSubImage" Path="ui/timeiconbox.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="timelbl" ActionTag="-2057086658" Tag="163" IconVisible="False" LeftMargin="311.0001" RightMargin="310.9999" TopMargin="765.0000" BottomMargin="489.0000" FontSize="23" LabelText="06:50:50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="98.0000" Y="26.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0001" Y="502.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.3922" />
+            <PreSize X="0.1361" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

@@ -123,7 +123,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="start1" ActionTag="-1477770676" Tag="26" IconVisible="False" LeftMargin="-204.0013" RightMargin="186.0013" TopMargin="41.0001" BottomMargin="-59.0001" LeftEage="5" RightEage="5" TopEage="5" BottomEage="5" Scale9OriginX="5" Scale9OriginY="5" Scale9Width="8" Scale9Height="8" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="star1" ActionTag="-1477770676" Tag="26" IconVisible="False" LeftMargin="-204.0013" RightMargin="186.0013" TopMargin="41.0001" BottomMargin="-59.0001" LeftEage="5" RightEage="5" TopEage="5" BottomEage="5" Scale9OriginX="5" Scale9OriginY="5" Scale9Width="8" Scale9Height="8" ctype="ImageViewObjectData">
             <Size X="18.0000" Y="18.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-195.0013" Y="-50.0001" />
@@ -133,7 +133,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/smallstar.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="start2" ActionTag="-580709045" Tag="27" IconVisible="False" LeftMargin="-189.0011" RightMargin="171.0011" TopMargin="41.0001" BottomMargin="-59.0001" LeftEage="5" RightEage="5" TopEage="5" BottomEage="5" Scale9OriginX="5" Scale9OriginY="5" Scale9Width="8" Scale9Height="8" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="star2" ActionTag="-580709045" Tag="27" IconVisible="False" LeftMargin="-189.0011" RightMargin="171.0011" TopMargin="41.0001" BottomMargin="-59.0001" LeftEage="5" RightEage="5" TopEage="5" BottomEage="5" Scale9OriginX="5" Scale9OriginY="5" Scale9Width="8" Scale9Height="8" ctype="ImageViewObjectData">
             <Size X="18.0000" Y="18.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-180.0011" Y="-50.0001" />
@@ -143,7 +143,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/smallstar.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="start3" ActionTag="1971049767" Tag="28" IconVisible="False" LeftMargin="-174.7118" RightMargin="156.7118" TopMargin="41.0005" BottomMargin="-59.0005" LeftEage="5" RightEage="5" TopEage="5" BottomEage="5" Scale9OriginX="5" Scale9OriginY="5" Scale9Width="8" Scale9Height="8" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="star3" ActionTag="1971049767" Tag="28" IconVisible="False" LeftMargin="-174.7118" RightMargin="156.7118" TopMargin="41.0004" BottomMargin="-59.0004" LeftEage="5" RightEage="5" TopEage="5" BottomEage="5" Scale9OriginX="5" Scale9OriginY="5" Scale9Width="8" Scale9Height="8" ctype="ImageViewObjectData">
             <Size X="18.0000" Y="18.0000" />
             <AnchorPoint ScaleX="0.5395" ScaleY="0.4620" />
             <Position X="-165.0008" Y="-50.6844" />
@@ -153,7 +153,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/smallstar.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="start4" ActionTag="-177809016" Tag="29" IconVisible="False" LeftMargin="-159.0008" RightMargin="141.0008" TopMargin="41.0001" BottomMargin="-59.0001" LeftEage="5" RightEage="5" TopEage="5" BottomEage="5" Scale9OriginX="5" Scale9OriginY="5" Scale9Width="8" Scale9Height="8" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="star4" ActionTag="-177809016" Tag="29" IconVisible="False" LeftMargin="-159.0008" RightMargin="141.0008" TopMargin="41.0001" BottomMargin="-59.0001" LeftEage="5" RightEage="5" TopEage="5" BottomEage="5" Scale9OriginX="5" Scale9OriginY="5" Scale9Width="8" Scale9Height="8" ctype="ImageViewObjectData">
             <Size X="18.0000" Y="18.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-150.0008" Y="-50.0001" />
@@ -163,7 +163,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/smallstar.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="start5" ActionTag="-886587173" Tag="30" IconVisible="False" LeftMargin="-144.0010" RightMargin="126.0010" TopMargin="41.0001" BottomMargin="-59.0001" LeftEage="5" RightEage="5" TopEage="5" BottomEage="5" Scale9OriginX="5" Scale9OriginY="5" Scale9Width="8" Scale9Height="8" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="star5" ActionTag="-886587173" Tag="30" IconVisible="False" LeftMargin="-144.0010" RightMargin="126.0010" TopMargin="41.0001" BottomMargin="-59.0001" LeftEage="5" RightEage="5" TopEage="5" BottomEage="5" Scale9OriginX="5" Scale9OriginY="5" Scale9Width="8" Scale9Height="8" ctype="ImageViewObjectData">
             <Size X="18.0000" Y="18.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-135.0010" Y="-50.0001" />

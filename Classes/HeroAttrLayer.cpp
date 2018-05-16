@@ -273,9 +273,12 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 			m_heroData->setState(HS_OWNED);
 			//加入到我的英雄列表
-			GlobalInstance::vec_myHeros.push_back(m_heroData);
+			Hero* myhero = new Hero(m_heroData);
+
+			GlobalInstance::vec_myHeros.push_back(myhero);
 			//保存数据
-			GlobalInstance::getInstance()->saveHeros();
+			GlobalInstance::getInstance()->saveMyHeros();
+			GlobalInstance::getInstance()->saveRand3Heros();
 			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("innroom");
 			RandHeroNode* heroNode = (RandHeroNode*)this->getParent()->getChildByTag(this->getTag());
 			heroNode->markRecruited();

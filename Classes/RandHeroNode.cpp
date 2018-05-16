@@ -97,6 +97,9 @@ void RandHeroNode::setData()
 	potentiallbl->setColor(Color3B(POTENTIALCOLOR[m_heroData->getPotential()]));
 
 	namelbl->setString(m_heroData->getName());
+
+	if (m_heroData->getState() == HS_OWNED)
+		markRecruited();
 }
 
 void RandHeroNode::markRecruited()
