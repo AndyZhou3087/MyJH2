@@ -66,7 +66,7 @@ bool MainScene::init()
 	scroll_1->setScrollBarEnabled(false);
 	scroll_1->jumpToPercentHorizontal(32);
 	std::map<std::string, Building*>::iterator it;
-	int i = 1;
+	int i = Building::map_buildingDatas.size();
 	for (it = Building::map_buildingDatas.begin(); it != Building::map_buildingDatas.end(); it++)
 	{
 		std::string buidingNomalName;
@@ -107,7 +107,7 @@ bool MainScene::init()
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
 		buildingSelect->setVisible(false);
 		buildingSelect->setUserData((void*)it->first.c_str());
-		i++;
+		i--;
 	}
 
     return true;

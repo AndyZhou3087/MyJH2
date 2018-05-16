@@ -15,11 +15,12 @@ public:
 	static InnRoomLayer* create(Building* buidingData);
 	virtual void onExit();
     bool init(Building* buidingData);
-	void fireHero();
+	void fireHero(int index);
+	void refreshMyHerosUi();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
-	void refreshMyHerosUi();
+
 private:
 	Building* m_buidingData;//建筑物数据
 	cocos2d::ui::ScrollView* m_heroscroll;

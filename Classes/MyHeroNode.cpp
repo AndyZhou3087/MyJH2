@@ -104,7 +104,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("innroom");
-		innroomLayer->fireHero();
+		innroomLayer->fireHero(this->getTag());
 	}
 }
 

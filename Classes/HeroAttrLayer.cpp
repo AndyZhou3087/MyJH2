@@ -64,10 +64,8 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 
 	//属性信息
 	Node* heroattrbottom = csbnode->getChildByName("heroattrbottom");
-	cocos2d::ui::Widget* moditybtn = (cocos2d::ui::Widget*)csbnode->getChildByName("moditybtn");
+	cocos2d::ui::Widget* moditybtn = (cocos2d::ui::Widget*)heroattrbottom->getChildByName("moditybtn");
 
-
-	
 	//品质
 	cocos2d::ui::ImageView* heroattrqu = (cocos2d::ui::ImageView*)heroattrbottom->getChildByName("heroattrqu");
 	str = StringUtils::format("heroattrqu_%d", herodata->getPotential());
@@ -265,7 +263,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case ATTR_FIREBTN:
 		{
 			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("innroom");
-			innroomLayer->fireHero();
+			innroomLayer->fireHero(this->getTag());
 			this->removeFromParentAndCleanup(true);
 			break;
 		}
@@ -278,8 +276,10 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			GlobalInstance::vec_myHeros.push_back(m_heroData);
 			//保存数据
 			GlobalInstance::getInstance()->saveHeros();
+			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("innroom");
 			RandHeroNode* heroNode = (RandHeroNode*)this->getParent()->getChildByTag(this->getTag());
 			heroNode->markRecruited();
+			innroomLayer->refreshMyHerosUi();
 			clicknode->setEnabled(false);
 			break;
 		}

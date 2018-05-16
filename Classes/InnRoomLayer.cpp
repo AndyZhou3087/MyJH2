@@ -145,14 +145,14 @@ void InnRoomLayer::refreshMyHerosUi()
 		Hero* herodata = GlobalInstance::vec_myHeros[i];
 		MyHeroNode* heronode = MyHeroNode::create(herodata);
 		heronode->setPosition(Vec2(m_heroscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
-		m_heroscroll->addChild(heronode);
+		m_heroscroll->addChild(heronode, 0, i);
 	}
 }
 
-void InnRoomLayer::fireHero()
+void InnRoomLayer::fireHero(int index)
 {
 	//删除当前英雄列表
-	GlobalInstance::vec_myHeros.erase(GlobalInstance::vec_myHeros.begin() + this->getTag());
+	GlobalInstance::vec_myHeros.erase(GlobalInstance::vec_myHeros.begin() + index);
 	//保存数据
 	GlobalInstance::getInstance()->saveHeros();
 	refreshMyHerosUi();
