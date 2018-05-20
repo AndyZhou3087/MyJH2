@@ -71,7 +71,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="recruitbtn" ActionTag="-1771168881" Tag="10" IconVisible="False" LeftMargin="90.0593" RightMargin="425.9407" TopMargin="1181.1455" BottomMargin="14.8545" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="actionbtn" ActionTag="-1771168881" Tag="10" IconVisible="False" LeftMargin="90.0593" RightMargin="425.9407" TopMargin="1181.1455" BottomMargin="14.8545" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-532332387" Tag="12" IconVisible="False" LeftMargin="23.5216" RightMargin="24.4784" TopMargin="18.7404" BottomMargin="23.2596" LeftEage="51" RightEage="51" TopEage="13" BottomEage="13" Scale9OriginX="51" Scale9OriginY="13" Scale9Width="54" Scale9Height="16" ctype="ImageViewObjectData">
@@ -140,7 +140,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="myherosscroll" ActionTag="-362075150" Tag="91" IconVisible="False" LeftMargin="35.0000" RightMargin="35.0000" TopMargin="150.0000" BottomMargin="170.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="contentscroll" ActionTag="-362075150" Tag="91" IconVisible="False" LeftMargin="35.0000" RightMargin="35.0000" TopMargin="150.0000" BottomMargin="170.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="650.0000" Y="960.0000" />
             <AnchorPoint />
             <Position X="35.0000" Y="170.0000" />

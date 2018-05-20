@@ -4,6 +4,7 @@
 #include "GlobalInstance.h"
 #include "Building.h"
 #include "InnRoomLayer.h"
+#include "HomeHillLayer.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -66,7 +67,7 @@ bool MainScene::init()
 	scroll_1->setScrollBarEnabled(false);
 	scroll_1->jumpToPercentHorizontal(32);
 	std::map<std::string, Building*>::iterator it;
-	int i = Building::map_buildingDatas.size();
+	int i = 1;
 	for (it = Building::map_buildingDatas.begin(); it != Building::map_buildingDatas.end(); it++)
 	{
 		std::string buidingNomalName;
@@ -107,12 +108,17 @@ bool MainScene::init()
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
 		buildingSelect->setVisible(false);
 		buildingSelect->setUserData((void*)it->first.c_str());
-		i--;
+		log(it->first.c_str());
+		i++;
 	}
 
-	HttpDataSwap::init(this)->getServerTime();
-
     return true;
+}
+
+void MainScene::onEnterTransitionDidFinish()
+{
+	Layer::onEnterTransitionDidFinish();
+	HttpDataSwap::init(this)->getServerTime();
 }
 
 void MainScene::srollviewlistenEvent(Ref* ref, ui::ScrollView::EventType eventType)
@@ -147,9 +153,13 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 	{
 		snode->setVisible(false);
 		Layer* layer = NULL;
-		if (buildname.compare("innroom") == 0)
+		if (buildname.compare("6innroom") == 0)
 		{
 			layer = InnRoomLayer::create(Building::map_buildingDatas[buildname]);
+		}
+		else if (buildname.compare("7homehill") == 0)
+		{
+			layer = HomeHillLayer::create(Building::map_buildingDatas[buildname]);
 		}
 		if (layer != NULL)
 			this->addChild(layer, 0, buildname);
@@ -176,6 +186,10 @@ void MainScene::onFinish(int code)
 		{
 			GlobalInstance::getInstance()->saveRefreshHeroTime(GlobalInstance::servertime);
 		}
+		if (GlobalInstance::getInstance()->getRefreshResTime() == 0)
+		{
+			GlobalInstance::getInstance()->saveRefreshResTime(GlobalInstance::servertime);
+		}
 		this->schedule(schedule_selector(MainScene::updateTime), 1);
 	}
 }
@@ -183,4 +197,5 @@ void MainScene::onFinish(int code)
 void MainScene::updateTime(float dt)
 {
 	GlobalInstance::servertime++;
+	if ()
 }

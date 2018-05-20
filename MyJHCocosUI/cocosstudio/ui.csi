@@ -1,12 +1,12 @@
 <PlistInfoProjectFile>
   <PropertyGroup Name="ui" Type="Plist" ID="db3d5b91-2645-4373-89bb-aed2c6fea03a" Version="3.10.0.0" />
-  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="True" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
     <ImageFiles>
       <FilePathData Path="ui/r001.png" />
-      <FilePathData Path="ui/r002.png" />
       <FilePathData Path="ui/r003.png" />
       <FilePathData Path="ui/r004.png" />
       <FilePathData Path="ui/r005.png" />
+      <FilePathData Path="ui/r002.png" />
       <FilePathData Path="ui/main_menu_box.png" />
       <FilePathData Path="ui/h_1_0.png" />
       <FilePathData Path="ui/main_achbtn.png" />
@@ -35,8 +35,6 @@
       <FilePathData Path="ui/smallstar.png" />
       <FilePathData Path="ui/herotag_0.png" />
       <FilePathData Path="ui/closebtn.png" />
-      <FilePathData Path="text_zh_cn/crefresh_text.png" />
-      <FilePathData Path="text_zh_cn/srefresh_text.png" />
       <FilePathData Path="ui/randheadbox.png" />
       <FilePathData Path="ui/h_1_1.png" />
       <FilePathData Path="ui/h_2_0.png" />
@@ -61,6 +59,11 @@
       <FilePathData Path="ui/timebargb.png" />
       <FilePathData Path="ui/timeicon.png" />
       <FilePathData Path="ui/timeiconbox.png" />
+      <FilePathData Path="ui/resaddbtn.png" />
+      <FilePathData Path="ui/resitem.png" />
+      <FilePathData Path="ui/ressunbtn.png" />
+      <FilePathData Path="ui/resbox.png" />
+      <FilePathData Path="ui/resbox_qu0.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

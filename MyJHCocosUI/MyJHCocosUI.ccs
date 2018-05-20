@@ -63,6 +63,9 @@
           <Image Name="heroattrqu_3.png" />
           <Image Name="heroattrqu_4.png" />
           <Image Name="herofire_text.png" />
+          <Image Name="hilllv_text.png" />
+          <Image Name="hillrecruit.png" />
+          <Image Name="homehilltitle.png" />
           <Image Name="innroolv_text.png" />
           <Image Name="innroomtitle.png" />
           <Image Name="isrecruited_text.png" />
@@ -84,6 +87,7 @@
           <Image Name="main_shopbtn_text.png" />
           <Image Name="recruit_text.png" />
           <Image Name="recruitbtn_text.png" />
+          <Image Name="resitemlv_text.png" />
           <Image Name="srefresh_text.png" />
         </Folder>
         <Folder Name="ui">
@@ -133,11 +137,16 @@
           <Image Name="main_silver.png" />
           <Image Name="normal9bg.png" />
           <Image Name="r001.png" />
-          <Image Name="r002.png" />
           <Image Name="r003.png" />
           <Image Name="r004.png" />
           <Image Name="r005.png" />
+          <Image Name="r002.png" />
           <Image Name="randheadbox.png" />
+          <Image Name="resaddbtn.png" />
+          <Image Name="resbox.png" />
+          <Image Name="resbox_qu0.png" />
+          <Image Name="resitem.png" />
+          <Image Name="ressunbtn.png" />
           <Image Name="smallstar.png" />
           <Image Name="timebar.png" />
           <Image Name="timebargb.png" />
@@ -156,6 +165,8 @@
         <Project Name="randHeroNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
+        <Project Name="homeHillLayer.csd" Type="Layer" />
+        <Project Name="hillResNode.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>

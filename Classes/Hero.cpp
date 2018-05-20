@@ -1,9 +1,8 @@
 ﻿#include "Hero.h"
 #include "Resource.h"
 #include "CommonFuncs.h"
-
-#define FIRSTNAMECOUNT 40
-#define LASTNAMECOUNT 40
+#include "GlobalInstance.h"
+#include "Const.h"
 
 Hero::Hero()
 {
@@ -31,32 +30,45 @@ Hero::Hero(Hero* hero)
 
 int Hero::getLevel()
 {
-	return 0;
+	int size = GlobalInstance::vec_herosAttr[m_vocation].vec_exp.size();
+	for (unsigned int i = 0; i < size; i++)
+	{
+		if (m_exp.getValue() < GlobalInstance::vec_herosAttr[m_vocation].vec_exp[i])
+			return i;
+	}
+	return size-1;
 }
 
-int Hero::getAtk()
+float Hero::getAtk()
 {
-	return 0;
+	float heroatk = GlobalInstance::vec_herosAttr[m_vocation].vec_atk[getLevel()];
+
+	return heroatk;
 }
-int Hero::getDf()
+float Hero::getDf()
 {
-	return 0;
+	float herodf = GlobalInstance::vec_herosAttr[m_vocation].vec_df[getLevel()];
+	return herodf;
 }
-int Hero::getHp()
+float Hero::getHp()
 {
-	return 0;
+	float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[getLevel()];
+	return herohp;
 }
-int Hero::getAtkSpeed()
+float Hero::getAtkSpeed()
 {
-	return 0;
+	float heroatkspeed = GlobalInstance::vec_herosAttr[m_vocation].vec_atkspeed[getLevel()];
+	return heroatkspeed;
 }
-int Hero::getCrit()
+float Hero::getCrit()
 {
-	return 0;
+	float herocrit = GlobalInstance::vec_herosAttr[m_vocation].vec_crit[getLevel()];
+	return herocrit;
 }
-int Hero::getDodge()
+float Hero::getDodge()
 {
-	return 0;
+	float herododge = GlobalInstance::vec_herosAttr[m_vocation].vec_avoid[getLevel()];
+	return herododge;
 }
 
 void Hero::generate()
@@ -67,7 +79,13 @@ void Hero::generate()
 	DynamicValueInt lvdint;
 	setExp(lvdint);
 	setSex(rand() % 2);
-	setName(generateName());
+	std::string nickname;
+	bool iscontinue = true;
+	do
+	{
+		nickname = generateName();
+	} while (GlobalInstance::getInstance()->checkifSameName(nickname));
+	setName(nickname);
 }
 
 std::string Hero::generateName()

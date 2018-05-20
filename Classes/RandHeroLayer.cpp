@@ -60,7 +60,7 @@ bool RandHeroLayer::init()
 
 	//等级
 	cocos2d::ui::Text* lvUIText = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
-	std::string str = StringUtils::format("%d%s", Building::map_buildingDatas["innroom"]->level.getValue(), ResourceLang::map_lang["lvtext"].c_str());
+	std::string str = StringUtils::format("%d%s", Building::map_buildingDatas["6innroom"]->level.getValue(), ResourceLang::map_lang["lvtext"].c_str());
 	lvUIText->setString(str);
 
 
@@ -109,8 +109,6 @@ bool RandHeroLayer::init()
 	if (GlobalInstance::vec_rand3Heros.size() <= 0)
 		create3RandHero();
 
-	updateUI(0);
-
 	for (int i = 0; i < 3; i++)
 	{
 		heronode[i] = RandHeroNode::create(GlobalInstance::vec_rand3Heros[i]);
@@ -118,6 +116,7 @@ bool RandHeroLayer::init()
 		this->addChild(heronode[i], 0, i);
 	}
 
+	updateUI(0);
 	this->schedule(schedule_selector(RandHeroLayer::updateUI), 1.0f);
 
 	//屏蔽下层点击

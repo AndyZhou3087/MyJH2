@@ -1,6 +1,6 @@
 <PlistInfoProjectFile>
   <PropertyGroup Name="text_zh_cn" Type="Plist" ID="f11a539c-8271-4133-8d09-0b259584b6a8" Version="3.10.0.0" />
-  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="True" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
     <ImageFiles>
       <FilePathData Path="text_zh_cn/main_01_t.png" />
       <FilePathData Path="text_zh_cn/main_02_t.png" />
@@ -38,6 +38,12 @@
       <FilePathData Path="text_zh_cn/changebtn_text.png" />
       <FilePathData Path="text_zh_cn/firebtn_text.png" />
       <FilePathData Path="text_zh_cn/isrecruited_text.png" />
+      <FilePathData Path="text_zh_cn/srefresh_text.png" />
+      <FilePathData Path="text_zh_cn/crefresh_text.png" />
+      <FilePathData Path="text_zh_cn/hilllv_text.png" />
+      <FilePathData Path="text_zh_cn/hillrecruit.png" />
+      <FilePathData Path="text_zh_cn/homehilltitle.png" />
+      <FilePathData Path="text_zh_cn/resitemlv_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

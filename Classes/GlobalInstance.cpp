@@ -13,9 +13,13 @@ std::vector<Hero*> GlobalInstance::vec_myHeros;
 std::vector<Hero*> GlobalInstance::vec_rand3Heros;
 
 std::vector<S_HeroAttr> GlobalInstance::vec_herosAttr;
+std::vector<ResCreator*> GlobalInstance::vec_resCreators;
+
+std::map<std::string, AllResources> GlobalInstance::map_AllResources;
 
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
+int GlobalInstance::refreshResTime = 0;
 
 GlobalInstance::GlobalInstance()
 {
@@ -41,6 +45,8 @@ void GlobalInstance::loadInitData()
 
 	int langtype = DataSave::getInstance()->getLocalLang();
 	GlobalInstance::getInstance()->setLang(langtype);
+
+	refreshResTime = DataSave::getInstance()->getRefreshResTime();
 }
 
 void GlobalInstance::saveMyHeros()
@@ -213,4 +219,91 @@ void GlobalInstance::saveRefreshHeroTime(int time)
 int GlobalInstance::getRefreshHeroTime()
 {
 	return refreshHeroTime;
+}
+
+bool GlobalInstance::checkifSameName(std::string nickname)
+{
+	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+	{
+		if (nickname.compare(GlobalInstance::vec_myHeros[i]->getName()) == 0)
+		{
+			return true;
+		}
+	}
+	for (unsigned int i = 0; i < GlobalInstance::vec_rand3Heros.size(); i++)
+	{
+		if (nickname.compare(GlobalInstance::vec_rand3Heros[i]->getName()) == 0)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void GlobalInstance::saveRefreshResTime(int time)
+{
+	refreshResTime = time;
+	DataSave::getInstance()->setRefreshResTime(time);
+}
+
+
+int GlobalInstance::getRefreshResTime()
+{
+	return refreshResTime;
+}
+
+void GlobalInstance::loadResCreatorData()
+{
+	std::string str = DataSave::getInstance()->getResCreatorData();
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_tmp;
+		CommonFuncs::split(str, vec_tmp, ";");
+		for (unsigned int i = 0; i < vec_tmp.size(); i++)
+		{
+			std::vector<std::string> vec_one;
+			CommonFuncs::split(vec_tmp[i], vec_one, "-");
+			std::string cid = StringUtils::format("r%03d", i + 1);
+			ResCreator* creator = new ResCreator(cid);
+			DynamicValueInt dlv;
+			dlv.setValue(atoi(vec_one[0].c_str()));
+			creator->setLv(dlv);
+			DynamicValueInt dcount;
+			dcount.setValue(atoi(vec_one[1].c_str()));
+			creator->setFarmersCount(dcount);
+			GlobalInstance::vec_resCreators.push_back(creator);
+		}
+	}
+}
+
+void GlobalInstance::saveResCreatorData()
+{
+	std::string str;
+	for (unsigned i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
+	{
+		std::string onestr = StringUtils::format("%d-%d;", GlobalInstance::vec_resCreators[i]->getLv().getValue(), GlobalInstance::vec_resCreators[i]->getFarmersCount().getValue());
+		str.append(onestr);
+	}
+	DataSave::getInstance()->setResCreatorData(str);	
+}
+
+void GlobalInstance::loadAllResourcesData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/allresouces.json"));
+	rapidjson::Value& allData = doc["rd"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			AllResources data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = v.GetString();
+
+			v = jsonvalue["name"];
+			data.name = v.GetString();
+
+			map_AllResources[data.name] = data;
+		}
+	}
 }

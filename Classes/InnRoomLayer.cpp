@@ -61,12 +61,12 @@ bool InnRoomLayer::init(Building* buidingData)
 	lvUIText->setString(str);
 
 	//招募按钮
-	cocos2d::ui::Widget* recruitbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("recruitbtn");
-	recruitbtn->setTag(0);
-	recruitbtn->addTouchEventListener(CC_CALLBACK_2(InnRoomLayer::onBtnClick, this));
+	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
+	actionbtn->setTag(0);
+	actionbtn->addTouchEventListener(CC_CALLBACK_2(InnRoomLayer::onBtnClick, this));
 
 	//招募按钮文字
-	cocos2d::ui::ImageView* recruitbtntxt = (cocos2d::ui::ImageView*)recruitbtn->getChildByName("text");
+	cocos2d::ui::ImageView* recruitbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
 	recruitbtntxt->loadTexture(ResourcePath::makeTextImgPath("recruit_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//升级按钮
@@ -84,10 +84,10 @@ bool InnRoomLayer::init(Building* buidingData)
 	closebtn->addTouchEventListener(CC_CALLBACK_2(InnRoomLayer::onBtnClick, this));
 
 	//我的英雄滚动控件
-	m_heroscroll = (cocos2d::ui::ScrollView*)csbnode->getChildByName("myherosscroll");
+	m_contentscroll = (cocos2d::ui::ScrollView*)csbnode->getChildByName("contentscroll");
 
-	m_heroscroll->setScrollBarEnabled(false);
-	m_heroscroll->setBounceEnabled(true);
+	m_contentscroll->setScrollBarEnabled(false);
+	m_contentscroll->setBounceEnabled(true);
 
 	refreshMyHerosUi();
 
@@ -130,22 +130,22 @@ void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 void InnRoomLayer::refreshMyHerosUi()
 {
-	m_heroscroll->removeAllChildrenWithCleanup(true);
+	m_contentscroll->removeAllChildrenWithCleanup(true);
 
 	int size = GlobalInstance::vec_myHeros.size();
 	int itemheight = 150;
 	int innerheight = itemheight * size;
-	int contentheight = m_heroscroll->getContentSize().height;
+	int contentheight = m_contentscroll->getContentSize().height;
 	if (innerheight < contentheight)
 		innerheight = contentheight;
-	m_heroscroll->setInnerContainerSize(Size(650, innerheight));
+	m_contentscroll->setInnerContainerSize(Size(650, innerheight));
 
 	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 	{
 		Hero* herodata = GlobalInstance::vec_myHeros[i];
 		MyHeroNode* heronode = MyHeroNode::create(herodata);
-		heronode->setPosition(Vec2(m_heroscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
-		m_heroscroll->addChild(heronode, 0, i);
+		heronode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
+		m_contentscroll->addChild(heronode, 0, i);
 	}
 }
 

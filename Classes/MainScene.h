@@ -17,6 +17,8 @@ public:
 	virtual void onExit();
     virtual bool init();
 
+	virtual void onEnterTransitionDidFinish();
+
 	/*********************************
 	监听滑动事件
 	**********************************/

@@ -195,7 +195,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4977" Y="0.5269" />
                 <PreSize X="0.7647" Y="0.4643" />
-                <FileData Type="MarkedSubImage" Path="text_zh_cn/srefresh_text.png" Plist="ui.plist" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/srefresh_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -244,7 +244,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5110" Y="0.5309" />
                 <PreSize X="0.7549" Y="0.4762" />
-                <FileData Type="MarkedSubImage" Path="text_zh_cn/crefresh_text.png" Plist="ui.plist" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/crefresh_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

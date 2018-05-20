@@ -5,6 +5,7 @@
 #define _STATIC_DATA_H_
 #include "cocos2d.h"
 #include "Hero.h"
+#include "ResCreator.h"
 USING_NS_CC;
 
 typedef struct
@@ -19,6 +20,12 @@ typedef struct
 	std::vector<float> vec_crit;//暴击
 	std::vector<float> vec_atkspeed;//攻击速度
 }S_HeroAttr;
+
+typedef struct
+{
+	std::string id;
+	std::string name;
+}AllResources;
 
 class GlobalInstance
 {
@@ -57,6 +64,24 @@ public:
 	//设置刷新英雄时间
 	int getRefreshHeroTime();
 
+	//检查是否重名
+	bool checkifSameName(std::string nickname);
+
+
+	//保存刷新资源时间
+	void saveRefreshResTime(int time);
+
+	//设置刷新资源时间
+	int getRefreshResTime();
+
+	//解析生产资源数据
+	void loadResCreatorData();
+
+	//保存生产资源数据
+	void saveResCreatorData();
+
+	//加载资源名称
+	void loadAllResourcesData();
 private:
 	static GlobalInstance* _Context;//类实例
 public:
@@ -65,9 +90,14 @@ public:
 
 	static std::vector<S_HeroAttr> vec_herosAttr;//英雄基础属性
 
+	static std::vector<ResCreator*> vec_resCreators;//资源生产
+
+	static std::map<std::string, AllResources> map_AllResources;//资源名字
+
 	static int servertime;//服务器时间
 private:
 	static int refreshHeroTime;
+	static int refreshResTime;
 
 };
 #endif

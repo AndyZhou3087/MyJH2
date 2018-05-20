@@ -118,7 +118,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("innroom");
+		InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
 		innroomLayer->fireHero(this->getTag());
 	}
 }
@@ -128,6 +128,6 @@ void MyHeroNode::onbgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		Layer* layer = HeroAttrLayer::create(MYHERO, m_heroData);
-		g_mainScene->getChildByName("innroom")->addChild(layer, 0, this->getTag());
+		g_mainScene->getChildByName("6innroom")->addChild(layer, 0, this->getTag());
 	}
 }

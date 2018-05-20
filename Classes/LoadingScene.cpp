@@ -71,6 +71,10 @@ void LoadingScene::delayLoadData(float dt)
 	GlobalInstance::getInstance()->loadMyHeros();
 
 	GlobalInstance::getInstance()->loadRand3Heros();
+
+	GlobalInstance::getInstance()->loadResCreatorData();
+
+	GlobalInstance::getInstance()->loadAllResourcesData();
 	//数据处理完，显示游戏场景
 	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.2f);
 }

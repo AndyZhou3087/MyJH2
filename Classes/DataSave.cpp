@@ -65,3 +65,33 @@ void DataSave::setRefreshHeroTime(int time)
 {
 	saveIntDataByKey("refreshherotime", time);
 }
+
+int DataSave::getRefreshResTime()
+{
+	return loadIntDataByKey("refreshrestime", 0);
+}
+
+void DataSave::setRefreshResTime(int time)
+{
+	saveIntDataByKey("refreshrestime", time);
+}
+
+std::string DataSave::getResCreatorData()
+{
+	return loadStringDataByKey("rescreator", "");
+}
+
+void DataSave::setResCreatorData(std::string val)
+{
+	saveStringDataByKey("rescreator", val);
+}
+
+int DataSave::getFarmersCount()
+{
+	return loadIntDataByKey("farmercount", 0);
+}
+
+void DataSave::setFarmersCount(int count)
+{
+	saveIntDataByKey("farmercount", count);
+}

@@ -23,7 +23,7 @@ private:
 
 private:
 	Building* m_buidingData;//建筑物数据
-	cocos2d::ui::ScrollView* m_heroscroll;
+	cocos2d::ui::ScrollView* m_contentscroll;
 };
 
 #endif

@@ -1,6 +1,7 @@
 ﻿#include "Building.h"
 #include "DataSave.h"
 #include "Resource.h"
+#include "CommonFuncs.h"
 
 std::map<std::string, Building*> Building::map_buildingDatas;
 Building::Building()
@@ -41,21 +42,32 @@ void Building::parseData()
 			data->level.setValue(DataSave::getInstance()->getBuildLv(data->name));
 			value = jsonvalue["maxlevel"];
 			data->maxlevel.setValue(atoi(value.GetString()));
-
-			value = jsonvalue["lvres"];
-			int maxlv = data->maxlevel.getValue();
-			for (int i = 0; i < maxlv; i++)
+			if (jsonvalue.HasMember("lvres"))
 			{
-				std::vector<int> res;
-				rapidjson::Value& resvalue = value[i];
-				int size = resvalue.Size();
-				for (int j = 0; j < size; j++)
+				value = jsonvalue["lvres"];
+				int maxlv = data->maxlevel.getValue();
+				for (int i = 0; i < maxlv-1; i++)
 				{
-					int intid = resvalue[j].GetInt();
-					if (intid > 0)
-						res.push_back(resvalue[j].GetInt());
+					std::vector<std::map<std::string, int>> res;
+					rapidjson::Value& resvalue = value[i];
+					int size = resvalue.Size();
+					for (int j = 0; j < size; j++)
+					{
+						std::string onestr = resvalue[j].GetString();
+						if (onestr.length() > 0)
+						{
+							std::vector<std::string> onevec;
+							CommonFuncs::split(onestr, onevec, "-");
+							if (onevec.size() >= 2)
+							{
+								std::map<std::string, int> onemap;
+								onemap[onevec[0]] = atoi(onevec[1].c_str());
+								res.push_back(onemap);
+							}
+						}
+					}
+					data->lvupres.push_back(res);
 				}
-				data->lvupres.push_back(res);
 			}
 			map_buildingDatas[data->name] = data;
 		}

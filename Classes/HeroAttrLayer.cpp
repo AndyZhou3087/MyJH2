@@ -91,7 +91,7 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 	{
 		equipnode->setVisible(false);
 		moditybtn->setVisible(false);
-		m_editName->setVisible(false);
+		m_editName->setEnabled(false);
 	}
 
 
@@ -110,32 +110,32 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 
 	//生命值
 	hplbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("hp");
-	std::string attrstr = StringUtils::format("%d", herodata->getHp());
+	std::string attrstr = StringUtils::format("%d", (int)herodata->getHp());
 	hplbl->setString(attrstr);
 
 	//攻击值
 	atkbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("atk");
-	attrstr = StringUtils::format("%d", herodata->getAtk());
+	attrstr = StringUtils::format("%d", (int)herodata->getAtk());
 	atkbl->setString(attrstr);
 
 	//防御值
 	dflbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("df");
-	attrstr = StringUtils::format("%d", herodata->getDf());
+	attrstr = StringUtils::format("%d", (int)herodata->getDf());
 	dflbl->setString(attrstr);
 
 	//攻击速度值
 	atkspeedlbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("atkspeed");
-	attrstr = StringUtils::format("%d", herodata->getAtkSpeed());
+	attrstr = StringUtils::format("%.3f", 1.0f/herodata->getAtkSpeed());
 	atkspeedlbl->setString(attrstr);
 
 	//暴击值
 	critlbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("crit");
-	attrstr = StringUtils::format("%d", herodata->getCrit());
+	attrstr = StringUtils::format("%.3f%%", herodata->getCrit());
 	critlbl->setString(attrstr);
 
 	//闪避值
 	dodgelbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("dodge");
-	attrstr = StringUtils::format("%d", herodata->getDodge());
+	attrstr = StringUtils::format("%.3f%%", herodata->getDodge());
 	dodgelbl->setString(attrstr);
 
 	//等级
@@ -143,15 +143,25 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 	str = StringUtils::format("Lv.%d", herodata->getLevel() + 1);
 	lvUIText->setString(str);
 
-	int curexp = 10;
-	int nextlvexp = 100;
+	int curlvexp = 0;
+	int nextlvexp = 0;
+	int expsize = GlobalInstance::vec_herosAttr[herodata->getVocation()].vec_exp.size();
+	
+	if (herodata->getLevel() >= expsize)
+		nextlvexp = GlobalInstance::vec_herosAttr[herodata->getVocation()].vec_exp[expsize - 1];
+	else 
+		nextlvexp = GlobalInstance::vec_herosAttr[herodata->getVocation()].vec_exp[herodata->getLevel()];
+
+	if (herodata->getLevel() > 0)
+		curlvexp = GlobalInstance::vec_herosAttr[herodata->getVocation()].vec_exp[herodata->getLevel()-1];
+
 	//经验值
 	cocos2d::ui::Text* explbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("exp");
-	str = StringUtils::format("%d/%d", curexp, nextlvexp);
+	str = StringUtils::format("%d/%d", herodata->getExp().getValue() - curlvexp, nextlvexp - curlvexp);
 	explbl->setString(str);
 
 	cocos2d::ui::LoadingBar* expbar = (cocos2d::ui::LoadingBar*)heroattrbottom->getChildByName("heroattrexpbar");
-	float percent = curexp*100.0f / nextlvexp;
+	float percent = (herodata->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
 	expbar->setPercent(percent);
 
 	//按钮
@@ -238,7 +248,14 @@ void HeroAttrLayer::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)
 
 void HeroAttrLayer::editBoxEditingDidEnd(cocos2d::ui::EditBox* editBox)
 {
-	
+	if (GlobalInstance::getInstance()->checkifSameName(editBox->getText()))
+	{
+		editBox->setText(m_heroData->getName().c_str());
+	}
+	else
+	{
+		m_heroData->setName(editBox->getText());
+	}
 }
 
 void HeroAttrLayer::editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std::string &text)
@@ -262,7 +279,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 		case ATTR_FIREBTN:
 		{
-			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("innroom");
+			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
 			innroomLayer->fireHero(this->getTag());
 			this->removeFromParentAndCleanup(true);
 			break;
@@ -279,7 +296,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			//保存数据
 			GlobalInstance::getInstance()->saveMyHeros();
 			GlobalInstance::getInstance()->saveRand3Heros();
-			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("innroom");
+			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
 			RandHeroNode* heroNode = (RandHeroNode*)this->getParent()->getChildByTag(this->getTag());
 			heroNode->markRecruited();
 			innroomLayer->refreshMyHerosUi();
