@@ -140,7 +140,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="contentscroll" ActionTag="-2094316307" Tag="148" IconVisible="False" LeftMargin="35.0000" RightMargin="35.0000" TopMargin="150.0000" BottomMargin="170.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="contentscroll" ActionTag="-2094316307" Tag="148" IconVisible="False" LeftMargin="35.0000" RightMargin="35.0000" TopMargin="150.0000" BottomMargin="170.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="650.0000" Y="960.0000" />
             <AnchorPoint />
             <Position X="35.0000" Y="170.0000" />
@@ -154,15 +154,62 @@
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="650" Height="960" />
           </AbstractNodeData>
-          <AbstractNodeData Name="FileNode_1" ActionTag="-1021613223" Tag="298" IconVisible="True" LeftMargin="367.9999" RightMargin="352.0001" TopMargin="660.7783" BottomMargin="619.2217" StretchWidthEnable="False" StretchHeightEnable="False" InnerActionSpeed="1.0000" CustomSizeEnabled="False" ctype="ProjectNodeObjectData">
-            <Size X="0.0000" Y="0.0000" />
-            <AnchorPoint />
-            <Position X="367.9999" Y="619.2217" />
+          <AbstractNodeData Name="timebargb" ActionTag="308189112" Tag="93" IconVisible="False" LeftMargin="295.9982" RightMargin="296.0018" TopMargin="1136.9979" BottomMargin="113.0021" ctype="SpriteObjectData">
+            <Size X="128.0000" Y="30.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="359.9982" Y="128.0021" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5111" Y="0.4838" />
-            <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="hillResNode.csd" Plist="" />
+            <PrePosition X="0.5000" Y="0.1000" />
+            <PreSize X="0.1778" Y="0.0234" />
+            <FileData Type="MarkedSubImage" Path="ui/timebargb.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="timebar" ActionTag="1927010983" Tag="92" IconVisible="False" LeftMargin="295.9982" RightMargin="296.0018" TopMargin="1136.9988" BottomMargin="113.0013" ProgressInfo="100" ctype="LoadingBarObjectData">
+            <Size X="128.0000" Y="30.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="359.9982" Y="128.0013" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.1000" />
+            <PreSize X="0.1778" Y="0.0234" />
+            <ImageFileData Type="MarkedSubImage" Path="ui/timebar.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="timeiconbox" ActionTag="-1743699868" Tag="90" IconVisible="False" LeftMargin="269.8022" RightMargin="414.1978" TopMargin="1133.9990" BottomMargin="110.0010" ctype="SpriteObjectData">
+            <Size X="36.0000" Y="36.0000" />
+            <Children>
+              <AbstractNodeData Name="timeicon" ActionTag="1700783629" Tag="91" IconVisible="False" LeftMargin="9.0000" RightMargin="9.0000" TopMargin="4.0000" BottomMargin="4.0000" ctype="SpriteObjectData">
+                <Size X="18.0000" Y="28.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="18.0000" Y="18.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="0.5000" Y="0.7778" />
+                <FileData Type="MarkedSubImage" Path="ui/timeicon.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="287.8022" Y="128.0010" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3997" Y="0.1000" />
+            <PreSize X="0.0500" Y="0.0281" />
+            <FileData Type="MarkedSubImage" Path="ui/timeiconbox.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="timelbl" ActionTag="154258012" Tag="89" IconVisible="False" LeftMargin="310.9994" RightMargin="311.0006" TopMargin="1139.9988" BottomMargin="114.0012" FontSize="23" LabelText="06:50:50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="98.0000" Y="26.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="359.9994" Y="127.0012" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.0992" />
+            <PreSize X="0.1361" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

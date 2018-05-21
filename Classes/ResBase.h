@@ -8,6 +8,12 @@
 #include "DynamicValue.h"
 USING_NS_CC;
 
+typedef enum
+{
+	MYPACKAGE,
+	MYSTORAGE,
+	MYEQUIP
+}RESWHERE;
 class ResBase
 {
 public:
@@ -15,15 +21,15 @@ public:
 	~ResBase();
 
 	CC_SYNTHESIZE(std::string, m_id, Id);//ID
-	CC_SYNTHESIZE(std::string, m_name, Name);//名称
-	CC_SYNTHESIZE(DynamicValueInt, m_type, Type);//类型
+	CC_SYNTHESIZE(int, m_type, Type);//类型
 	CC_SYNTHESIZE(DynamicValueInt, m_count, Count);//个数
+	CC_SYNTHESIZE(int, m_where, Where);//在哪里
 public:
 	//使用，count：个数
 	void use(DynamicValueInt count);
 	//增加
 	void add(DynamicValueInt count);
+
 	void remove();
 };
 #endif
-

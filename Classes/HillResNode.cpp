@@ -2,6 +2,7 @@
 #include "CommonFuncs.h"
 #include "Resource.h"
 #include "GlobalInstance.h"
+#include "MyRes.h"
 
 HillResNode::HillResNode()
 {
@@ -88,33 +89,82 @@ bool HillResNode::init(ResCreator* data)
 	subbtn->addTouchEventListener(CC_CALLBACK_2(HillResNode::onBtnClick, this));
 	subbtn->setTag(2);
 
-	updateData();
+	updateData(0);
 
+	this->schedule(schedule_selector(HillResNode::updateData), 1.0f);
 	return true;
 }
 
-void HillResNode::updateData()
+void HillResNode::updateData(float dt)
 {
-	std::string str = StringUtils::format("%d/%d", m_Data->);
-	maxcap
+	std::string str;
+	ResBase* res = MyRes::getMyResource(m_Data->getName());
+	DynamicValueInt dtemp;
+	if (res != NULL)
+	{
+		dtemp.setValue(res->getCount().getValue());
+	}
+	str = StringUtils::format("%d/%d", dtemp.getValue(), m_Data->getMaxCap(m_Data->getLv().getValue()).getValue());
+	maxcap->setString(str);
+	str = StringUtils::format("%d", m_Data->getFarmersCount().getValue());
+	output->setString(str);
+
+	str = StringUtils::format("%d/%d", m_Data->getFarmersCount().getValue(), m_Data->getMaxFarmersCount().getValue());
+	farmercount->setString(str);
+
 }
 
 
-void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
+	Node* btnnode = (Node*)pSender;
+	int tag = btnnode->getTag();
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-		innroomLayer->fireHero(this->getTag());
+		switch (tag)
+		{
+		case 0:
+		{
+			DynamicValueInt dlv;
+			dlv.setValue(m_Data->getLv().getValue() + 1);
+			m_Data->setLv(dlv);
+			GlobalInstance::getInstance()->saveResCreatorData();
+			updateData(0);
+			break;
+		}
+		case 1:
+		{
+			if (m_Data->getFarmersCount().getValue() < m_Data->getMaxFarmersCount().getValue())
+			{
+				DynamicValueInt dvalue;
+				dvalue.setValue(m_Data->getFarmersCount().getValue() + 1);
+				m_Data->setFarmersCount(dvalue);
+				GlobalInstance::getInstance()->saveResCreatorData();
+				updateData(0);
+			}
+			break;
+		}
+		case 2:
+			if (m_Data->getFarmersCount().getValue() > 0)
+			{
+				DynamicValueInt dvalue;
+				dvalue.setValue(m_Data->getFarmersCount().getValue() - 1);
+				m_Data->setFarmersCount(dvalue);
+				GlobalInstance::getInstance()->saveResCreatorData();
+				updateData(0);
+			}
+			break;
+		default:
+			break;
+		}
 	}
 }
 
-void MyHeroNode::onbgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+void HillResNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Layer* layer = HeroAttrLayer::create(MYHERO, m_heroData);
-		g_mainScene->getChildByName("6innroom")->addChild(layer, 0, this->getTag());
+
 	}
 }

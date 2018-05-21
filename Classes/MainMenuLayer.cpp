@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
+#include "MyRes.h"
 
 USING_NS_CC;
 
@@ -76,12 +77,23 @@ bool MainMenuLayer::init()
 
 void MainMenuLayer::updateUI(float dt)
 {
+	std::string str;
 	for (int i = 0; i < 5; i++)
 	{
-		reslbl[i]->setString("10");
+		str = StringUtils::format("r%03d", i + 1);
+		ResBase* res = MyRes::getMyResource(str);
+		if (res != NULL)
+		{
+			str = StringUtils::format("%d", res->getCount().getValue());
+			reslbl[i]->setString(str);
+		}
+		else
+		{
+			reslbl[i]->setString("0");
+		}
 	}
-	mycoinlbl->setString("100");
-	mysilverlbl->setString("100");
+	mycoinlbl->setString("0");
+	mysilverlbl->setString("0");
 }
 
 void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

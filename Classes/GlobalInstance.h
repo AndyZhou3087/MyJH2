@@ -6,6 +6,7 @@
 #include "cocos2d.h"
 #include "Hero.h"
 #include "ResCreator.h"
+#include "ResBase.h"
 USING_NS_CC;
 
 typedef struct
@@ -82,6 +83,10 @@ public:
 
 	//加载资源名称
 	void loadAllResourcesData();
+
+	//加载我的资源
+	void loadMyResData();
+
 private:
 	static GlobalInstance* _Context;//类实例
 public:

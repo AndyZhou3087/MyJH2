@@ -14,13 +14,22 @@ ResCreator::~ResCreator()
 DynamicValueInt ResCreator::getMaxFarmersCount()
 {
 	DynamicValueInt dvalue;
-	dvalue.setValue(this->getLv().getValue() * 5);
+	dvalue.setValue((this->getLv().getValue()+1) * 5);
 	return dvalue;
 }
 
-DynamicValueInt ResCreator::getMaxCap()
+DynamicValueInt ResCreator::getMaxCap(int lv)
 {
 	DynamicValueInt dvalue;
-	dvalue.setValue(this->getLv().getValue() * 100 + 500);
+	if (lv == 0)
+	{
+		dvalue.setValue(500);
+		return dvalue;
+	}
+	else
+	{
+		DynamicValueInt lastmaxcap = getMaxCap(lv - 1);
+		dvalue.setValue(lastmaxcap.getValue()*lv/5 + lastmaxcap.getValue());
+	}
 	return dvalue;
 }

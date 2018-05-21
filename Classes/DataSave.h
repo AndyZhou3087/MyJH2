@@ -91,7 +91,7 @@ public:
 	/***************************
 	设置生产者数据
 	****************************/
-	std::string getResCreatorData()
+	std::string getResCreatorData();
 
 	/****************************
 	保存工人总数
@@ -102,6 +102,16 @@ public:
 	设置工人总数
 	****************************/
 	void setFarmersCount(int count);
+
+	/****************************
+	保存我的资源数据
+	****************************/
+	void setMyRes(std::string strval);
+
+	/****************************
+	获取我的资源数据
+	****************************/
+	std::string getMyRes();
 
 private:
 	static DataSave* _Context;//类实例

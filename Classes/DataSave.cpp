@@ -78,7 +78,7 @@ void DataSave::setRefreshResTime(int time)
 
 std::string DataSave::getResCreatorData()
 {
-	return loadStringDataByKey("rescreator", "");
+	return loadStringDataByKey("rescreator", "0-0");
 }
 
 void DataSave::setResCreatorData(std::string val)
@@ -94,4 +94,14 @@ int DataSave::getFarmersCount()
 void DataSave::setFarmersCount(int count)
 {
 	saveIntDataByKey("farmercount", count);
+}
+
+void DataSave::setMyRes(std::string strval)
+{
+	saveStringDataByKey("myres", strval);
+}
+
+std::string DataSave::getMyRes()
+{
+	return loadStringDataByKey("myres", "");
 }

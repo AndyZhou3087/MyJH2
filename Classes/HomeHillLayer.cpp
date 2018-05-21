@@ -3,6 +3,8 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "ResCreator.h"
+#include "HillResNode.h"
+#include "Const.h"
 
 USING_NS_CC;
 
@@ -88,8 +90,15 @@ bool HomeHillLayer::init(Building* buidingData)
 	m_contentscroll->setScrollBarEnabled(false);
 	m_contentscroll->setBounceEnabled(true);
 
+	m_timebar = (cocos2d::ui::LoadingBar*)csbnode->getChildByName("timebar");
+	m_timebar->setPercent(100);
+
+	m_timelbl = (cocos2d::ui::Text*)csbnode->getChildByName("timelbl");
+
 	refreshResUi();
 
+	updateTime(0);
+	this->schedule(schedule_selector(HomeHillLayer::updateTime), 1.0f);
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -131,7 +140,7 @@ void HomeHillLayer::refreshResUi()
 	m_contentscroll->removeAllChildrenWithCleanup(true);
 
 	int size = GlobalInstance::vec_resCreators.size();
-	int itemheight = 150;
+	int itemheight = 170;
 	int innerheight = itemheight * size;
 	int contentheight = m_contentscroll->getContentSize().height;
 	if (innerheight < contentheight)
@@ -141,10 +150,19 @@ void HomeHillLayer::refreshResUi()
 	for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
 	{
 		ResCreator* data = GlobalInstance::vec_resCreators[i];
-		//MyHeroNode* heronode = MyHeroNode::create(herodata);
-		//heronode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
-		//m_contentscroll->addChild(heronode, 0, i);
+		HillResNode* resnode = HillResNode::create(data);
+		resnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
+		m_contentscroll->addChild(resnode, 0, i);
 	}
+}
+
+void HomeHillLayer::updateTime(float dt)
+{
+	int pastime = GlobalInstance::servertime - GlobalInstance::getInstance()->getRefreshResTime();
+	int lefttime = REFRESHRESTIME - pastime;
+	std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
+	m_timelbl->setString(timestr);
+	m_timebar->setPercent(lefttime * 100 / REFRESHRESTIME);
 }
 
 void HomeHillLayer::onExit()

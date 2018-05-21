@@ -14,16 +14,14 @@ public:
 	ResCreator(std::string strid);
 	~ResCreator();
 
-	CC_SYNTHESIZE(DynamicValueInt, m_maxFarmersCount, MaxFarmersCount);//工人上限
 	CC_SYNTHESIZE(DynamicValueInt, m_farmersCount, FarmersCount);//工人人数
-	CC_SYNTHESIZE(DynamicValueInt, m_maxCap, MaxCap);//最大存量
 	CC_SYNTHESIZE(DynamicValueInt, m_lv, Lv);//等级
-	CC_SYNTHESIZE(std::string, m_name, Name);//等级
+	CC_SYNTHESIZE(std::string, m_name, Name);//
 public:
 
 	DynamicValueInt getMaxFarmersCount();
 
-	DynamicValueInt getMaxCap();
+	DynamicValueInt getMaxCap(int lv);
 
 	//保存当前数据
 	void saveData();

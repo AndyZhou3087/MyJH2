@@ -31,12 +31,12 @@ Hero::Hero(Hero* hero)
 int Hero::getLevel()
 {
 	int size = GlobalInstance::vec_herosAttr[m_vocation].vec_exp.size();
-	for (unsigned int i = 0; i < size; i++)
+	for (int i = 0; i < size; i++)
 	{
 		if (m_exp.getValue() < GlobalInstance::vec_herosAttr[m_vocation].vec_exp[i])
 			return i;
 	}
-	return size-1;
+	return 0;
 }
 
 float Hero::getAtk()

@@ -3,6 +3,7 @@
 #include "Hero.h"
 #include "CommonFuncs.h"
 #include "Resource.h"
+#include "MyRes.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -284,7 +285,7 @@ void GlobalInstance::saveResCreatorData()
 		std::string onestr = StringUtils::format("%d-%d;", GlobalInstance::vec_resCreators[i]->getLv().getValue(), GlobalInstance::vec_resCreators[i]->getFarmersCount().getValue());
 		str.append(onestr);
 	}
-	DataSave::getInstance()->setResCreatorData(str);	
+	DataSave::getInstance()->setResCreatorData(str.substr(0,str.length() - 1));	
 }
 
 void GlobalInstance::loadAllResourcesData()
@@ -300,10 +301,37 @@ void GlobalInstance::loadAllResourcesData()
 			rapidjson::Value& v = jsonvalue["id"];
 			data.id = v.GetString();
 
-			v = jsonvalue["name"];
+			v = jsonvalue["cname"];
 			data.name = v.GetString();
 
-			map_AllResources[data.name] = data;
+			map_AllResources[data.id] = data;
+		}
+	}
+}
+
+void GlobalInstance::loadMyResData()
+{
+	std::string str = DataSave::getInstance()->getMyRes();
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_tmp;
+		CommonFuncs::split(str, vec_tmp, ";");
+		for (unsigned int i = 0; i < vec_tmp.size(); i++)
+		{
+			std::vector<std::string> vec_one;
+			CommonFuncs::split(vec_tmp[i], vec_one, "-");
+			std::string rid = vec_one[0];
+			ResBase* res = NULL;
+			if (rid.compare(0, 1, "r") == 0)
+			{
+				res = new ResBase();
+				res->setId(rid);
+				DynamicValueInt dlv;
+				dlv.setValue(atoi(vec_one[1].c_str()));
+				res->setCount(dlv);
+				res->setWhere(atoi(vec_one[2].c_str()));
+			}
+			MyRes::vec_MyResources.push_back(res);
 		}
 	}
 }

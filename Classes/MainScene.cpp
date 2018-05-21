@@ -5,6 +5,8 @@
 #include "Building.h"
 #include "InnRoomLayer.h"
 #include "HomeHillLayer.h"
+#include "Const.h"
+#include "MyRes.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -15,7 +17,7 @@ MainScene::MainScene()
 
 MainScene::~MainScene()
 {
-	
+	g_mainScene = NULL;
 }
 
 Scene* MainScene::createScene()
@@ -197,5 +199,26 @@ void MainScene::onFinish(int code)
 void MainScene::updateTime(float dt)
 {
 	GlobalInstance::servertime++;
-	if ()
+	int respasttime = GlobalInstance::servertime - GlobalInstance::getInstance()->getRefreshResTime();
+	if (respasttime >= REFRESHRESTIME)
+	{
+		GlobalInstance::getInstance()->saveRefreshResTime(GlobalInstance::servertime - respasttime%REFRESHRESTIME);
+		for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
+		{
+			ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
+			if (rescreator->getFarmersCount().getValue() > 0)
+			{
+				int addcount = respasttime * rescreator->getFarmersCount().getValue() / REFRESHRESTIME;
+				int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
+				ResBase* resbase = MyRes::getMyResource(rescreator->getName());
+				if (resbase != NULL)
+				{
+					if (addcount + resbase->getCount().getValue() >= maxcount)
+						addcount = maxcount - resbase->getCount().getValue();
+				}
+				if (addcount > 0)
+					MyRes::Add(rescreator->getName(), addcount, MYSTORAGE);
+			}
+		}
+	}
 }

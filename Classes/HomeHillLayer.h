@@ -18,10 +18,12 @@ public:
 	void refreshResUi();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-
+	void updateTime(float dt);
 private:
 	Building* m_buidingData;//建筑物数据
 	cocos2d::ui::ScrollView* m_contentscroll;
+	cocos2d::ui::LoadingBar* m_timebar;
+	cocos2d::ui::Text* m_timelbl;
 };
 
 #endif
