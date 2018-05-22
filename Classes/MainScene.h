@@ -40,6 +40,8 @@ private:
 	void onFinish(int code);
 	
 	void updateTime(float dt);
+
+	void checkHint(float dt);
 };
 extern MainScene* g_mainScene;
 #endif

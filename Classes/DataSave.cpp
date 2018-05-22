@@ -88,12 +88,12 @@ void DataSave::setResCreatorData(std::string val)
 
 int DataSave::getFarmersCount()
 {
-	return loadIntDataByKey("farmercount", 0);
+	return loadIntDataByKey("creatorfarmers", 0);
 }
 
 void DataSave::setFarmersCount(int count)
 {
-	saveIntDataByKey("farmercount", count);
+	saveIntDataByKey("creatorfarmers", count);
 }
 
 void DataSave::setMyRes(std::string strval)
@@ -103,5 +103,15 @@ void DataSave::setMyRes(std::string strval)
 
 std::string DataSave::getMyRes()
 {
-	return loadStringDataByKey("myres", "");
+	return loadStringDataByKey("myres", "r002-100-1");
+}
+
+int DataSave::getTotalFarmers()
+{
+	return loadIntDataByKey("totalfarmers", 0);
+}
+
+void DataSave::setTotalFarmers(int val)
+{
+	saveIntDataByKey("totalfarmers", val);
 }

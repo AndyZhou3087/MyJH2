@@ -6,7 +6,8 @@
 class MyRes
 {
 public:
-	static ResBase* MyRes::getMyResource(std::string resid);
+	static ResBase* getMyResource(std::string resid);
+	static int getMyResCount(std::string resid);
 	static void Add(std::string resid, int count = 1, int inwhere = MYSTORAGE);
 public:
 

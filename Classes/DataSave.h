@@ -113,6 +113,10 @@ public:
 	****************************/
 	std::string getMyRes();
 
+	int getTotalFarmers();
+
+	void setTotalFarmers(int val);
+
 private:
 	static DataSave* _Context;//类实例
 

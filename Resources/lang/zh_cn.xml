@@ -2,6 +2,7 @@
 <strings>
 	<s name="lvtext">级</s>
 	<s name="lvtexts">等级：</s>
+	<s name="lvuptext">升级</s>
 	<s name="vocationtext">职业：</s>
 	<s name="potentialtext">品质：</s>
 	<s name="vocation_0">侠客</s>
@@ -30,4 +31,7 @@
 	<s name="maxcaptext">储备：</s>
 	<s name="outputtext">产量：</s>
 	<s name="farmercounttext">工人数量</s>
+	<s name="farmermaxhint">岗位已满</s>
+	<s name="leftfarmertext">空闲工人:</s>
+	
 </strings>

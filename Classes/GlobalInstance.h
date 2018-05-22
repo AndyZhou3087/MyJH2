@@ -87,6 +87,14 @@ public:
 	//加载我的资源
 	void loadMyResData();
 
+	//总的工人数
+	int getTotalFarmers();
+
+	//总的工人数
+	void saveTotalFarmers(int val);
+
+	int getWorkingFarmerCount();
+
 private:
 	static GlobalInstance* _Context;//类实例
 public:
@@ -103,6 +111,7 @@ public:
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;
+	static int totalFarmercount;
 
 };
 #endif

@@ -5,6 +5,7 @@
 #include "ResCreator.h"
 #include "HillResNode.h"
 #include "Const.h"
+#include "BuildingLvUpLayer.h"
 
 USING_NS_CC;
 
@@ -43,6 +44,7 @@ bool HomeHillLayer::init(Building* buidingData)
         return false;
     }
 
+	m_buidingData = buidingData;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
     
@@ -52,6 +54,12 @@ bool HomeHillLayer::init(Building* buidingData)
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("homeHillLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
+
+	cocos2d::ui::Text* leftfarmertext = (cocos2d::ui::Text*)csbnode->getChildByName("leftfarmertext");
+	leftfarmertext->setString(ResourceLang::map_lang["leftfarmertext"]);
+
+	m_leftfarmercount = (cocos2d::ui::Text*)csbnode->getChildByName("leftfarmerlbl");
+
 	//标题
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("homehilltitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -124,8 +132,11 @@ void HomeHillLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		}
 		case 1://升级
-
+		{
+			BuildingLvUpLayer* layer = BuildingLvUpLayer::create(m_buidingData);
+			this->addChild(layer);
 			break;
+		}
 		case 2://关闭
 			this->removeFromParentAndCleanup(true);
 			break;
@@ -163,6 +174,8 @@ void HomeHillLayer::updateTime(float dt)
 	std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
 	m_timelbl->setString(timestr);
 	m_timebar->setPercent(lefttime * 100 / REFRESHRESTIME);
+	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getTotalFarmers() - GlobalInstance::getInstance()->getWorkingFarmerCount());
+	m_leftfarmercount->setString(str);
 }
 
 void HomeHillLayer::onExit()

@@ -15,6 +15,7 @@ public:
 	~Building();
 
 	std::string name;//建筑物名称
+	std::string cname;//中文名字
 	DynamicValueInt maxlevel; //建筑物最高等级
 	DynamicValueInt level;// 建筑物等级
 	std::vector<std::vector<std::map<std::string,int>>> lvupres;//建筑升级资源

@@ -15,6 +15,14 @@ ResBase* MyRes::getMyResource(std::string resid)
 	return NULL;
 }
 
+int MyRes::getMyResCount(std::string resid)
+{
+	ResBase* res = getMyResource(resid);
+	if (res == NULL)
+		return 0;
+	return res->getCount().getValue();
+}
+
 void MyRes::Add(std::string resid, int count, int inwhere)
 {
 	if (resid.compare(0, 1, "r") == 0)

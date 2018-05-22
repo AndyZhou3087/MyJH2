@@ -165,7 +165,7 @@
             <FileData Type="MarkedSubImage" Path="ui/timebargb.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="timebar" ActionTag="1927010983" Tag="92" IconVisible="False" LeftMargin="295.9982" RightMargin="296.0018" TopMargin="1136.9988" BottomMargin="113.0013" ProgressInfo="100" ctype="LoadingBarObjectData">
+          <AbstractNodeData Name="timebar" ActionTag="1927010983" Tag="92" IconVisible="False" LeftMargin="295.9982" RightMargin="296.0018" TopMargin="1136.9987" BottomMargin="113.0013" ProgressInfo="100" ctype="LoadingBarObjectData">
             <Size X="128.0000" Y="30.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="359.9982" Y="128.0013" />
@@ -207,6 +207,30 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.0992" />
             <PreSize X="0.1361" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="leftfarmertext" ActionTag="1859945785" Tag="103" IconVisible="False" LeftMargin="57.6394" RightMargin="560.3606" TopMargin="101.3000" BottomMargin="1152.7000" FontSize="23" LabelText="空闲工人:" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="102.0000" Y="26.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="57.6394" Y="1165.7000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.0801" Y="0.9107" />
+            <PreSize X="0.1417" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="leftfarmerlbl" ActionTag="907027201" Tag="104" IconVisible="False" LeftMargin="163.9096" RightMargin="541.0903" TopMargin="100.5085" BottomMargin="1150.4915" FontSize="25" LabelText="2" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="15.0000" Y="29.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="163.9096" Y="1164.9915" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.2277" Y="0.9101" />
+            <PreSize X="0.0208" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />

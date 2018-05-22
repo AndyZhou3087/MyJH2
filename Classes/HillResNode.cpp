@@ -3,6 +3,7 @@
 #include "Resource.h"
 #include "GlobalInstance.h"
 #include "MyRes.h"
+#include "MovingLabel.h"
 
 HillResNode::HillResNode()
 {
@@ -106,6 +107,12 @@ void HillResNode::updateData(float dt)
 	}
 	str = StringUtils::format("%d/%d", dtemp.getValue(), m_Data->getMaxCap(m_Data->getLv().getValue()).getValue());
 	maxcap->setString(str);
+	
+	if (dtemp.getValue() >= m_Data->getMaxCap(m_Data->getLv().getValue()).getValue())
+		maxcap->setTextColor(Color4B(255, 0, 0, 255));
+	else
+		maxcap->setTextColor(Color4B(255, 255, 255, 255));
+
 	str = StringUtils::format("%d", m_Data->getFarmersCount().getValue());
 	output->setString(str);
 
@@ -142,6 +149,11 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 				m_Data->setFarmersCount(dvalue);
 				GlobalInstance::getInstance()->saveResCreatorData();
 				updateData(0);
+			}
+			else
+			{
+
+				MovingLabel::show(ResourceLang::map_lang["farmermaxhint"]);
 			}
 			break;
 		}

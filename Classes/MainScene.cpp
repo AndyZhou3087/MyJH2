@@ -7,6 +7,7 @@
 #include "HomeHillLayer.h"
 #include "Const.h"
 #include "MyRes.h"
+#include "MovingLabel.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -63,7 +64,6 @@ bool MainScene::init()
 	scroll_2 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_2");
 	scroll_2->setScrollBarEnabled(false);
 	scroll_2->jumpToPercentHorizontal(32);
-	scroll_2->setSwallowTouches(false);
 
 	scroll_1 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_1");
 	scroll_1->setScrollBarEnabled(false);
@@ -210,15 +210,29 @@ void MainScene::updateTime(float dt)
 			{
 				int addcount = respasttime * rescreator->getFarmersCount().getValue() / REFRESHRESTIME;
 				int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
+
+				std::string showtext = StringUtils::format("%s+%d", GlobalInstance::map_AllResources[rescreator->getName()].name.c_str(), addcount);
+				MovingLabel::show(showtext);
 				ResBase* resbase = MyRes::getMyResource(rescreator->getName());
 				if (resbase != NULL)
 				{
 					if (addcount + resbase->getCount().getValue() >= maxcount)
 						addcount = maxcount - resbase->getCount().getValue();
 				}
+				else
+				{
+					if (addcount > maxcount)
+						addcount = maxcount;
+				}
 				if (addcount > 0)
 					MyRes::Add(rescreator->getName(), addcount, MYSTORAGE);
+
 			}
 		}
 	}
+}
+
+void MainScene::checkHint(float dt)
+{
+
 }

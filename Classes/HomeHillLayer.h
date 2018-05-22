@@ -24,6 +24,7 @@ private:
 	cocos2d::ui::ScrollView* m_contentscroll;
 	cocos2d::ui::LoadingBar* m_timebar;
 	cocos2d::ui::Text* m_timelbl;
+	cocos2d::ui::Text* m_leftfarmercount;
 };
 
 #endif

@@ -118,6 +118,7 @@ void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			break;
 		}
 		case 1://升级
+
 			break;
 		case 2://关闭
 			this->removeFromParentAndCleanup(true);

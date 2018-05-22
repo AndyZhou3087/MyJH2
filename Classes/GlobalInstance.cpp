@@ -22,6 +22,8 @@ int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
 int GlobalInstance::refreshResTime = 0;
 
+int GlobalInstance::totalFarmercount = 0;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -48,6 +50,8 @@ void GlobalInstance::loadInitData()
 	GlobalInstance::getInstance()->setLang(langtype);
 
 	refreshResTime = DataSave::getInstance()->getRefreshResTime();
+
+	totalFarmercount = DataSave::getInstance()->getTotalFarmers();
 }
 
 void GlobalInstance::saveMyHeros()
@@ -334,4 +338,25 @@ void GlobalInstance::loadMyResData()
 			MyRes::vec_MyResources.push_back(res);
 		}
 	}
+}
+
+int GlobalInstance::getTotalFarmers()
+{
+	return totalFarmercount;
+}
+
+void GlobalInstance::saveTotalFarmers(int val)
+{
+	totalFarmercount = val;
+	DataSave::getInstance()->setTotalFarmers(val);
+}
+
+int GlobalInstance::getWorkingFarmerCount()
+{
+	int count = 0;
+	for (unsigned i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
+	{
+		count += GlobalInstance::vec_resCreators[i]->getFarmersCount().getValue();
+	}
+	return count;
 }
