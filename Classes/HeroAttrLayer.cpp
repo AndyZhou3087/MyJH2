@@ -57,7 +57,7 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 
 	//英雄全身图
 	cocos2d::ui::ImageView* herofullimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("hfull");
-	std::string str = StringUtils::format("h_%d_%d.png", herodata->getVocation(), herodata->getSex());
+	std::string str = StringUtils::format("hfull_%d_%d.png", herodata->getVocation(), herodata->getSex());
 	herofullimg->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 
 	//装备栏
@@ -289,7 +289,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case ATTR_RECRUITBTN:
 		{
-			if (GlobalInstance::vec_myHeros.size() >= (10 + Building::map_buildingDatas["6innroom"]->level.getValue()))
+			if (GlobalInstance::vec_myHeros.size() < (10 + Building::map_buildingDatas["6innroom"]->level.getValue()))
 			{
 				m_heroData->setState(HS_OWNED);
 				//加入到我的英雄列表

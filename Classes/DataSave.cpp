@@ -108,7 +108,7 @@ std::string DataSave::getMyRes()
 
 int DataSave::getTotalFarmers()
 {
-	return loadIntDataByKey("totalfarmers", 0);
+	return loadIntDataByKey("totalfarmers", 5);
 }
 
 void DataSave::setTotalFarmers(int val)
