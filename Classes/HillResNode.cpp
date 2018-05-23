@@ -131,7 +131,7 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	{
 		switch (tag)
 		{
-		case 0:
+		case 0://升级按钮
 		{
 			DynamicValueInt dlv;
 			dlv.setValue(m_Data->getLv().getValue() + 1);
@@ -140,19 +140,25 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			updateData(0);
 			break;
 		}
-		case 1:
+		case 1://增加工人
 		{
 			if (m_Data->getFarmersCount().getValue() < m_Data->getMaxFarmersCount().getValue())
 			{
-				DynamicValueInt dvalue;
-				dvalue.setValue(m_Data->getFarmersCount().getValue() + 1);
-				m_Data->setFarmersCount(dvalue);
-				GlobalInstance::getInstance()->saveResCreatorData();
-				updateData(0);
+				if (GlobalInstance::getInstance()->getTotalFarmers() - GlobalInstance::getInstance()->getWorkingFarmerCount() > 0)
+				{
+					DynamicValueInt dvalue;
+					dvalue.setValue(m_Data->getFarmersCount().getValue() + 1);
+					m_Data->setFarmersCount(dvalue);
+					GlobalInstance::getInstance()->saveResCreatorData();
+					updateData(0);
+				}
+				else
+				{
+					MovingLabel::show(ResourceLang::map_lang["farmerlack"]);
+				}
 			}
 			else
 			{
-
 				MovingLabel::show(ResourceLang::map_lang["farmermaxhint"]);
 			}
 			break;

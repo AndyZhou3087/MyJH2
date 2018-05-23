@@ -21,9 +21,12 @@ private:
 	//更新UI,数值
 	void updateUI(float dt);
 
+	//资源足够升级
+	bool checkResIsEnough();
 private:
 	cocos2d::ui::Text* namelbl[3];//资源名字ABEL
 	cocos2d::ui::Text* countlbl[3];//资源数量LABEL
+	cocos2d::ui::Text* coincountlbl;//需要的元宝数
 	Building* m_building;
 };
 

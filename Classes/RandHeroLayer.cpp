@@ -60,7 +60,7 @@ bool RandHeroLayer::init()
 
 	//等级
 	cocos2d::ui::Text* lvUIText = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
-	std::string str = StringUtils::format("%d%s", Building::map_buildingDatas["6innroom"]->level.getValue(), ResourceLang::map_lang["lvtext"].c_str());
+	std::string str = StringUtils::format("%d%s", Building::map_buildingDatas["6innroom"]->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
 	lvUIText->setString(str);
 
 

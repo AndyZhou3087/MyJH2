@@ -6,7 +6,7 @@
       <ObjectData Name="Layer" Tag="94" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
-          <AbstractNodeData Name="smallbg" ActionTag="-567090314" Tag="59" IconVisible="False" LeftMargin="60.0000" RightMargin="60.0000" TopMargin="409.0000" BottomMargin="209.0000" LeftEage="198" RightEage="198" TopEage="218" BottomEage="218" Scale9OriginX="198" Scale9OriginY="218" Scale9Width="204" Scale9Height="226" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="smallbg" ActionTag="-567090314" Tag="59" IconVisible="False" LeftMargin="60.0000" RightMargin="60.0000" TopMargin="409.0000" BottomMargin="209.0000" TouchEnable="True" LeftEage="198" RightEage="198" TopEage="218" BottomEage="218" Scale9OriginX="198" Scale9OriginY="218" Scale9Width="204" Scale9Height="226" ctype="ImageViewObjectData">
             <Size X="600.0000" Y="662.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="540.0000" />

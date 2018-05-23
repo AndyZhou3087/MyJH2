@@ -54,7 +54,7 @@ void MyRes::saveData()
 	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
 	{
 		std::string onestr;
-		ResBase* res = vec_MyResources[0];
+		ResBase* res = vec_MyResources[i];
 		if (res->getId().compare(0, 1, "r") == 0)
 		{
 			onestr = StringUtils::format("%s-%d-%d;", res->getId().c_str(), res->getCount().getValue(), res->getWhere());

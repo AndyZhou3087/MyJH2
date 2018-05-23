@@ -5,6 +5,7 @@
 #include "RandHeroNode.h"
 #include "InnRoomLayer.h"
 #include "MainScene.h"
+#include "MovingLabel.h"
 USING_NS_CC;
 
 HeroAttrLayer::HeroAttrLayer()
@@ -288,20 +289,27 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case ATTR_RECRUITBTN:
 		{
-			m_heroData->setState(HS_OWNED);
-			//加入到我的英雄列表
-			Hero* myhero = new Hero(m_heroData);
+			if (GlobalInstance::vec_myHeros.size() >= (10 + Building::map_buildingDatas["6innroom"]->level.getValue()))
+			{
+				m_heroData->setState(HS_OWNED);
+				//加入到我的英雄列表
+				Hero* myhero = new Hero(m_heroData);
 
-			GlobalInstance::vec_myHeros.push_back(myhero);
-			//保存数据
-			GlobalInstance::getInstance()->saveMyHeros();
-			GlobalInstance::getInstance()->saveRand3Heros();
-			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-			RandHeroNode* heroNode = (RandHeroNode*)this->getParent()->getChildByTag(this->getTag());
-			heroNode->markRecruited();
-			innroomLayer->refreshMyHerosUi();
-			clicknode->setEnabled(false);
-			break;
+				GlobalInstance::vec_myHeros.push_back(myhero);
+				//保存数据
+				GlobalInstance::getInstance()->saveMyHeros();
+				GlobalInstance::getInstance()->saveRand3Heros();
+				InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+				RandHeroNode* heroNode = (RandHeroNode*)this->getParent()->getChildByTag(this->getTag());
+				heroNode->markRecruited();
+				innroomLayer->refreshMyHerosUi();
+				clicknode->setEnabled(false);
+				break;
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["myheromax"]);
+			}
 		}
 		case ATTR_BACKBTN:
 			this->removeFromParentAndCleanup(true);

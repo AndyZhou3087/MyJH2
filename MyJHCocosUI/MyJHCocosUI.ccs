@@ -52,6 +52,7 @@
           <Image Name="changebtn_text.png" />
           <Image Name="crefresh_text.png" />
           <Image Name="drlvupbtn_text.png" />
+          <Image Name="drrecruitbtn_text.png" />
           <Image Name="equiptext_0.png" />
           <Image Name="equiptext_1.png" />
           <Image Name="equiptext_2.png" />
@@ -172,6 +173,7 @@
         <Project Name="randHeroNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
+        <Project Name="employFarmers.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

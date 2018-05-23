@@ -51,7 +51,6 @@ public:
 	****************************/
 	void setHeroData(std::string herokey, std::string herodata);
 
-
 	/****************************
 	获取随机的3个英雄数据
 	****************************/
@@ -113,9 +112,28 @@ public:
 	****************************/
 	std::string getMyRes();
 
+	/****************************
+	获取招募的工人总数
+	****************************/
 	int getTotalFarmers();
 
+	/****************************
+	保存招募的工人总数
+	****************************/
 	void setTotalFarmers(int val);
+
+	/****************************
+	获取建筑物等级
+	@para 建筑物名称
+	****************************/
+	int getBuildingLv(std::string buildingname);
+
+	/****************************
+	保存建筑物等级
+	@para 建筑物名称
+	@para 建筑物等级
+	****************************/
+	void setBuildingLv(std::string buildingname, int val);
 
 private:
 	static DataSave* _Context;//类实例

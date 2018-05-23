@@ -6,6 +6,8 @@
 #include "HillResNode.h"
 #include "Const.h"
 #include "BuildingLvUpLayer.h"
+#include "MovingLabel.h"
+#include "EmployFarmerLayer.h"
 
 USING_NS_CC;
 
@@ -66,7 +68,7 @@ bool HomeHillLayer::init(Building* buidingData)
 
 	//等级
 	cocos2d::ui::Text* lvUIText = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
-	std::string str = StringUtils::format("%d%s", buidingData->level.getValue(), ResourceLang::map_lang["lvtext"].c_str());
+	std::string str = StringUtils::format("%d%s", buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
 	lvUIText->setString(str);
 
 	//招募按钮
@@ -129,12 +131,21 @@ void HomeHillLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 		case 0://招募
 		{
+			EmployFarmerLayer* layer = EmployFarmerLayer::create();
+			this->addChild(layer);
 			break;
 		}
 		case 1://升级
 		{
-			BuildingLvUpLayer* layer = BuildingLvUpLayer::create(m_buidingData);
-			this->addChild(layer);
+			if (m_buidingData->level.getValue() < m_buidingData->maxlevel.getValue() - 1)
+			{
+				BuildingLvUpLayer* layer = BuildingLvUpLayer::create(m_buidingData);
+				this->addChild(layer);
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["maxlv"]);
+			}
 			break;
 		}
 		case 2://关闭
@@ -165,6 +176,21 @@ void HomeHillLayer::refreshResUi()
 		resnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 		m_contentscroll->addChild(resnode, 0, i);
 	}
+}
+
+void HomeHillLayer::lvup()
+{
+	std::string cid = StringUtils::format("r%03d", m_buidingData->level.getValue() + 1);
+	ResCreator* creator = new ResCreator(cid);
+	DynamicValueInt dlv;
+	dlv.setValue(0);
+	creator->setLv(dlv);
+	DynamicValueInt dcount;
+	dcount.setValue(0);
+	creator->setFarmersCount(dcount);
+	GlobalInstance::vec_resCreators.push_back(creator);
+	GlobalInstance::getInstance()->saveResCreatorData();
+	refreshResUi();
 }
 
 void HomeHillLayer::updateTime(float dt)

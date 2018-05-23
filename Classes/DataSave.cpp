@@ -115,3 +115,13 @@ void DataSave::setTotalFarmers(int val)
 {
 	saveIntDataByKey("totalfarmers", val);
 }
+
+int DataSave::getBuildingLv(std::string buildingname)
+{
+	return loadIntDataByKey(buildingname, 0);
+}
+
+void DataSave::setBuildingLv(std::string buildingname, int val)
+{
+	saveIntDataByKey(buildingname, val);
+}

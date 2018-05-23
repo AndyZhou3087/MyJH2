@@ -46,6 +46,7 @@
       <FilePathData Path="text_zh_cn/resitemlv_text.png" />
       <FilePathData Path="text_zh_cn/drlvupbtn_text.png" />
       <FilePathData Path="text_zh_cn/lvupbtn_text.png" />
+      <FilePathData Path="text_zh_cn/drrecruitbtn_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

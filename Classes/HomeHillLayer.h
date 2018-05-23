@@ -16,6 +16,8 @@ public:
 	virtual void onExit();
     bool init(Building* buidingData);
 	void refreshResUi();
+
+	void lvup();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void updateTime(float dt);

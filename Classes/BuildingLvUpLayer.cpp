@@ -5,6 +5,9 @@
 #include "Building.h"
 #include "Const.h"
 #include "MyRes.h"
+#include "MovingLabel.h"
+#include "DataSave.h"
+#include "HomeHillLayer.h"
 
 USING_NS_CC;
 
@@ -69,7 +72,7 @@ bool BuildingLvUpLayer::init(Building* building)
 		std::map<std::string, int> map_res = lvupres[i];
 		std::map<std::string, int>::iterator map_it = map_res.begin();
 
-		std::string resid = StringUtils::format("%s", map_it->first.c_str());
+		std::string resid = map_it->first;
 		str = StringUtils::format("res%d", i);
 		cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
 
@@ -106,10 +109,9 @@ bool BuildingLvUpLayer::init(Building* building)
 	cocos2d::ui::ImageView* drlvupbtntxt = (cocos2d::ui::ImageView*)drlvupbtn->getChildByName("text");
 	drlvupbtntxt->loadTexture(ResourcePath::makeTextImgPath("drlvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::Text* countlbl = (cocos2d::ui::Text*)csbnode->getChildByName("countlbl");
-	str = StringUtils::format("x%d", (m_building->level.getValue() + 1) * 100);
-	countlbl->setString(str);
+	coincountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("countlbl");
 
+	updateUI(0);
 	this->schedule(schedule_selector(BuildingLvUpLayer::updateUI), 1);
 
 	//屏蔽下层点击
@@ -137,7 +139,36 @@ void BuildingLvUpLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::T
 		switch (tag)
 		{
 		case 0://升级
+			if (checkResIsEnough())
+			{
+				std::vector<std::map<std::string, int>> lvupres = m_building->lvupres[m_building->level.getValue()];
 
+				for (int i = 0; i < 3; i++)
+				{
+					std::map<std::string, int> map_res = lvupres[i];
+					std::map<std::string, int>::iterator map_it = map_res.begin();
+
+					std::string resid = map_it->first;
+					int mycount = MyRes::getMyResCount(resid);
+					MyRes::Add(resid, -map_res[resid]);
+				}
+				m_building->level.setValue(m_building->level.getValue() + 1);
+				DataSave::getInstance()->setBuildingLv(m_building->name, m_building->level.getValue());
+				if (m_building->name.compare("7homehill") == 0)
+				{
+					HomeHillLayer* homeHillLayer = (HomeHillLayer*)this->getParent();
+					homeHillLayer->lvup();
+				}
+				else
+				{
+
+				}
+
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["reslack"]);
+			}
 			break;
 		case 1://直接升级
 			break;
@@ -159,7 +190,7 @@ void BuildingLvUpLayer::updateUI(float dt)
 		std::map<std::string, int> map_res = lvupres[i];
 		std::map<std::string, int>::iterator map_it = map_res.begin();
 
-		std::string resid = StringUtils::format("%s", map_it->first.c_str());
+		std::string resid = map_it->first;
 		int mycount = MyRes::getMyResCount(resid);
 		std::string str = StringUtils::format("%d/%d", MyRes::getMyResCount(resid), map_res[resid]);
 
@@ -169,6 +200,29 @@ void BuildingLvUpLayer::updateUI(float dt)
 		else
 			countlbl[i]->setTextColor(Color4B(255, 255, 255, 255));
 	}
+
+	std::string str = StringUtils::format("x%d", (m_building->level.getValue() + 1) * 100);
+	coincountlbl->setString(str);
+}
+
+
+//资源足够升级
+bool BuildingLvUpLayer::checkResIsEnough()
+{
+	std::vector<std::map<std::string, int>> lvupres = m_building->lvupres[m_building->level.getValue()];
+
+	for (int i = 0; i < 3; i++)
+	{
+		std::map<std::string, int> map_res = lvupres[i];
+		std::map<std::string, int>::iterator map_it = map_res.begin();
+
+		std::string resid = map_it->first;
+		int mycount = MyRes::getMyResCount(resid);
+
+		if (mycount < map_res[resid])
+			return false;
+	}
+	return true;
 }
 
 void BuildingLvUpLayer::onExit()

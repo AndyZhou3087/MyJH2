@@ -2,6 +2,7 @@
 #include "DataSave.h"
 #include "Resource.h"
 #include "CommonFuncs.h"
+#include "DataSave.h"
 
 std::map<std::string, Building*> Building::map_buildingDatas;
 Building::Building()
@@ -46,7 +47,7 @@ void Building::parseData()
 			value = jsonvalue["maxlevel"];
 			data->maxlevel.setValue(atoi(value.GetString()));
 
-			data->level.setValue(0);
+			data->level.setValue(DataSave::getInstance()->getBuildingLv(data->name));
 
 			if (jsonvalue.HasMember("lvres"))
 			{

@@ -192,6 +192,7 @@ void MainScene::onFinish(int code)
 		{
 			GlobalInstance::getInstance()->saveRefreshResTime(GlobalInstance::servertime);
 		}
+		updateTime(0);
 		this->schedule(schedule_selector(MainScene::updateTime), 1);
 	}
 }
