@@ -104,7 +104,11 @@ std::string Hero::generateName()
 			FILE *fp = fopen(fileName.c_str(), "r");
 			if (fp)
 			{
-				fseek(fp, randindex[i] * 14, 0);//12个字节名字（4个中文），回车换行2个字节
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+				fseek(fp, randindex[i] * 14, 0);//12个字节名字（4个中文），WIN32回车换行2个字节
+#else
+				fseek(fp, randindex[i] * 13, 0);//12个字节名字（4个中文），IOS回车换行1个字节
+#endif
 				char szReadBuff[13] = { 0 };
 				size_t readsize = fread(szReadBuff, 12, 1, fp);
 				if (readsize > 0)
