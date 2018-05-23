@@ -1,4 +1,4 @@
-﻿/****************************************************************
+/****************************************************************
 静态数据操作类
 ****************************************************************/
 #ifndef _STATIC_DATA_H_
@@ -98,7 +98,7 @@ public:
 private:
 	static GlobalInstance* _Context;//类实例
 public:
-	static std::vector<Hero*> GlobalInstance::vec_myHeros;//招募的英雄
+	static std::vector<Hero*> vec_myHeros;//招募的英雄
 	static std::vector<Hero*> vec_rand3Heros;//待招募的3个英雄
 
 	static std::vector<S_HeroAttr> vec_herosAttr;//英雄基础属性

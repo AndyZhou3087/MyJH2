@@ -1,11 +1,11 @@
-﻿#include "GlobalInstance.h"
+#include "GlobalInstance.h"
 #include "DataSave.h"
 #include "Hero.h"
 #include "CommonFuncs.h"
 #include "Resource.h"
 #include "MyRes.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-#include "iosfunc.h"
+//#include "iosfunc.h"
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/jni/JniHelper.h"
 #endif
