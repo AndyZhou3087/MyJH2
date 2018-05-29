@@ -252,6 +252,7 @@ void HeroAttrLayer::editBoxEditingDidEnd(cocos2d::ui::EditBox* editBox)
 	if (GlobalInstance::getInstance()->checkifSameName(editBox->getText()))
 	{
 		editBox->setText(m_heroData->getName().c_str());
+		MovingLabel::show(ResourceLang::map_lang["samename"]);
 	}
 	else
 	{

@@ -5,9 +5,8 @@
 #include "ResCreator.h"
 #include "HillResNode.h"
 #include "Const.h"
-#include "BuildingLvUpLayer.h"
+#include "ConsumeResActionLayer.h"
 #include "MovingLabel.h"
-#include "EmployFarmerLayer.h"
 
 USING_NS_CC;
 
@@ -57,6 +56,7 @@ bool HomeHillLayer::init(Building* buidingData)
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
+	//空闲工人数
 	cocos2d::ui::Text* leftfarmertext = (cocos2d::ui::Text*)csbnode->getChildByName("leftfarmertext");
 	leftfarmertext->setString(ResourceLang::map_lang["leftfarmertext"]);
 
@@ -100,6 +100,7 @@ bool HomeHillLayer::init(Building* buidingData)
 	m_contentscroll->setScrollBarEnabled(false);
 	m_contentscroll->setBounceEnabled(true);
 
+	//倒计时
 	m_timebar = (cocos2d::ui::LoadingBar*)csbnode->getChildByName("timebar");
 	m_timebar->setPercent(100);
 
@@ -131,15 +132,16 @@ void HomeHillLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 		case 0://招募
 		{
-			EmployFarmerLayer* layer = EmployFarmerLayer::create();
+			ConsumeResActionLayer* layer = ConsumeResActionLayer::create(NULL, CA_EMPLOYFARMER);
 			this->addChild(layer);
 			break;
 		}
 		case 1://升级
 		{
+			//等级是否最大
 			if (m_buidingData->level.getValue() < m_buidingData->maxlevel.getValue() - 1)
 			{
-				BuildingLvUpLayer* layer = BuildingLvUpLayer::create(m_buidingData);
+				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_buidingData, CA_BUILDINGLVUP);
 				this->addChild(layer);
 			}
 			else

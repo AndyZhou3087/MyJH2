@@ -159,7 +159,7 @@
           <Image Name="top1.png" />
         </Folder>
         <Image Name="5.jpg" />
-        <Project Name="buildingLvUpLayer.csd" Type="Layer" />
+        <Project Name="consumeResActionLayer.csd" Type="Layer" />
         <Project Name="heroAttrLayer.csd" Type="Layer" />
         <Project Name="hillResNode.csd" Type="Node" />
         <Project Name="homeHillLayer.csd" Type="Layer" />
@@ -173,7 +173,6 @@
         <Project Name="randHeroNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
-        <Project Name="employFarmers.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

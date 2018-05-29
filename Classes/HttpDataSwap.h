@@ -38,6 +38,7 @@ public:
 
 	/**
 	* @brief 数据完成
+	@return 错误代码0--成功，其它--错误
 	*/
 	virtual void onFinish(int code) {};
 };

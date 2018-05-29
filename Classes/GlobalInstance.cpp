@@ -1,4 +1,4 @@
-#include "GlobalInstance.h"
+﻿#include "GlobalInstance.h"
 #include "DataSave.h"
 #include "Hero.h"
 #include "CommonFuncs.h"
@@ -294,7 +294,9 @@ void GlobalInstance::saveResCreatorData()
 
 void GlobalInstance::loadAllResourcesData()
 {
-	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/allresouces.json"));
+	int langtype = DataSave::getInstance()->getLocalLang();
+	std::string langname = StringUtils::format("lang/%s/allresname.json", ResourceLang::makeLangName(langtype).c_str());
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath(langname));
 	rapidjson::Value& allData = doc["rd"];
 	for (unsigned int i = 0; i < allData.Size(); i++)
 	{

@@ -39,9 +39,6 @@ void Building::parseData()
 			Building* data = new Building;
 			rapidjson::Value& value = jsonvalue["name"];
 			data->name = value.GetString();
-			
-			value = jsonvalue["cname"];
-			data->cname = value.GetString();
 
 			data->level.setValue(DataSave::getInstance()->getBuildLv(data->name));
 			value = jsonvalue["maxlevel"];

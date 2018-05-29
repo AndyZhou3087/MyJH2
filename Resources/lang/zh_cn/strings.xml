@@ -28,6 +28,7 @@
 	<s name="attrtext_3">攻击速度：</s>
 	<s name="attrtext_4">暴击几率：</s>
 	<s name="attrtext_5">闪避几率：</s>
+	<s name="samename">重复的名字！</s>
 	<s name="maxcaptext">储备：</s>
 	<s name="outputtext">产量：</s>
 	<s name="farmercounttext">工人数量</s>
@@ -40,4 +41,5 @@
 	<s name="needfoodtext">需要食物%d</s>
 	<s name="lackfoodtext">需要食物%d</s>
 	<s name="myheromax">无法容纳更多的侠客，请升级客栈</s>
+	<s name="lvrescreatortitle">升级%s最大储备到%d</s>
 </strings>

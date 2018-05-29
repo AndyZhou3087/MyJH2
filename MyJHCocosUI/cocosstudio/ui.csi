@@ -65,6 +65,6 @@
       <FilePathData Path="ui/resbox.png" />
       <FilePathData Path="ui/resbox_qu0.png" />
     </ImageFiles>
-    <MaxSize Width="1024" Height="1024" />
+    <MaxSize Width="2048" Height="2048" />
   </Content>
 </PlistInfoProjectFile>

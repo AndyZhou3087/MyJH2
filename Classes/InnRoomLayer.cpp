@@ -4,7 +4,7 @@
 #include "GlobalInstance.h"
 #include "RandHeroLayer.h"
 #include "MyHeroNode.h"
-#include "BuildingLvUpLayer.h"
+#include "ConsumeResActionLayer.h"
 #include "MovingLabel.h"
 
 USING_NS_CC;
@@ -123,7 +123,7 @@ void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		case 1://升级
 			if (m_buidingData->level.getValue() < m_buidingData->maxlevel.getValue() - 1)
 			{
-				BuildingLvUpLayer* layer = BuildingLvUpLayer::create(m_buidingData);
+				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_buidingData, CA_BUILDINGLVUP);
 				this->addChild(layer);
 			}
 			else

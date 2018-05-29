@@ -18,7 +18,7 @@ void DataSave::purgeGameSave() {
 
 int DataSave::getBuildLv(std::string name)
 {
-	return loadIntDataByKey(name, 1);
+	return loadIntDataByKey(name, 0);
 }
 
 void DataSave::setBuildLv(std::string name, int val)

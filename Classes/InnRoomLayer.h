@@ -16,6 +16,7 @@ public:
 	virtual void onExit();
     bool init(Building* buidingData);
 	void fireHero(int index);
+	//更新scrollview
 	void refreshMyHerosUi();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

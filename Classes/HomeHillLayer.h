@@ -15,8 +15,9 @@ public:
 	static HomeHillLayer* create(Building* buidingData);
 	virtual void onExit();
     bool init(Building* buidingData);
+	//更新scrollview
 	void refreshResUi();
-
+	//升级
 	void lvup();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

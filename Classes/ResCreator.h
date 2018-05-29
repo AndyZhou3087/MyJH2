@@ -16,18 +16,19 @@ public:
 
 	CC_SYNTHESIZE(DynamicValueInt, m_farmersCount, FarmersCount);//工人人数
 	CC_SYNTHESIZE(DynamicValueInt, m_lv, Lv);//等级
-	CC_SYNTHESIZE(std::string, m_name, Name);//
+	CC_SYNTHESIZE(std::string, m_name, Name);//名称ID
 public:
-
+	//最大的工人数量
 	DynamicValueInt getMaxFarmersCount();
 
+	//最大容量
 	DynamicValueInt getMaxCap(int lv);
 
 	//保存当前数据
 	void saveData();
 private:
-	DynamicValueInt m_maxFarmersCount;
-	DynamicValueInt m_maxCap;
+	DynamicValueInt m_maxFarmersCount;//最大工人数
+	DynamicValueInt m_maxCap;//最大容量
 };
 #endif
 

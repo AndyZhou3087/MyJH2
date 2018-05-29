@@ -67,7 +67,7 @@ void ResourceLang::parseXml(int langtype)
 	tinyxml2::XMLDocument *pDoc = new tinyxml2::XMLDocument();
 	unsigned char pBuffer[5000];
 	memset(pBuffer, 0x00, sizeof(pBuffer));
-	std::string langname = StringUtils::format("lang/%s.xml", ResourceLang::makeLangName(langtype).c_str());
+	std::string langname = StringUtils::format("lang/%s/strings.xml", ResourceLang::makeLangName(langtype).c_str());
 	strcpy((char *)pBuffer, FileUtils::getInstance()->getStringFromFile(langname).c_str());
 	int err = pDoc->Parse((const char*)pBuffer);
 	if (err != 0)

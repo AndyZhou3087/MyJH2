@@ -4,7 +4,8 @@
 #include "GlobalInstance.h"
 #include "MyRes.h"
 #include "MovingLabel.h"
-
+#include "ConsumeResActionLayer.h"
+#include "MainScene.h"
 HillResNode::HillResNode()
 {
 
@@ -133,11 +134,15 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		{
 		case 0://升级按钮
 		{
-			DynamicValueInt dlv;
-			dlv.setValue(m_Data->getLv().getValue() + 1);
-			m_Data->setLv(dlv);
-			GlobalInstance::getInstance()->saveResCreatorData();
-			updateData(0);
+			if (m_Data->getLv().getValue() >= 49)
+			{
+				MovingLabel::show(ResourceLang::map_lang["maxlv"]);
+			}
+			else
+			{
+				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_Data, CA_RESCREATORLVUP);
+				g_mainScene->addChild(layer);
+			}
 			break;
 		}
 		case 1://增加工人
