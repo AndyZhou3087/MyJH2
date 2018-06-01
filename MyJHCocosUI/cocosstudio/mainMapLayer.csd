@@ -43,7 +43,7 @@
             <FirstColor A="255" R="255" G="150" B="100" />
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
-            <InnerNodeSize Width="720" Height="1396" />
+            <InnerNodeSize Width="2000" Height="1396" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

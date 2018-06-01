@@ -15,11 +15,10 @@ public:
 
 	virtual bool init();
 
-	CREATE_FUNC(MainMapScene);
-
+	static cocos2d::Scene* createScene();
 
 private:
-
+	CREATE_FUNC(MainMapScene);
 	/****************************
 	点击地名
 	*****************************/

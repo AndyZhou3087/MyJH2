@@ -1,4 +1,5 @@
 ﻿#include "MainMapScene.h"
+#include "Resource.h"
 
 MainMapScene::MainMapScene()
 {
@@ -11,9 +12,24 @@ MainMapScene::~MainMapScene()
 
 }
 
+Scene* MainMapScene::createScene()
+{
+	// 'scene' is an autorelease object
+	auto scene = Scene::create();
+
+	// 'layer' is an autorelease object
+	auto mainLayer = MainMapScene::create();
+
+	// add layer as a child to scene
+	scene->addChild(mainLayer);
+
+	// return the scene
+	return scene;
+}
+
 bool MainMapScene::init()
 {
-	Node* csbnode = CSLoader::createNode("mainMapLayer.csb");
+	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("mainMapLayer.csb"));
 	this->addChild(csbnode);
 
 	cocos2d::ui::ScrollView* mapscroll = (cocos2d::ui::ScrollView*)csbnode->getChildByName("mapscroll");

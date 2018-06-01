@@ -4,6 +4,7 @@
 #include "GlobalInstance.h"
 #include "MovingLabel.h"
 #include "MyRes.h"
+#include "MainMapScene.h"
 
 USING_NS_CC;
 
@@ -145,6 +146,7 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 					MyRes::Add(carryResids[i], -addcount);
 				}
 			}
+			Director::getInstance()->replaceScene(MainMapScene::createScene());
 			
 			break;
 		}
