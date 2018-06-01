@@ -5,6 +5,8 @@
 #include "MainScene.h"
 #include "InnRoomLayer.h"
 #include "GlobalInstance.h"
+#include "SelectMyHerosLayer.h"
+#include "CardHeroNode.h"
 
 MyHeroNode::MyHeroNode()
 {
@@ -17,10 +19,10 @@ MyHeroNode::~MyHeroNode()
 
 }
 
-MyHeroNode* MyHeroNode::create(Hero* herodata)
+MyHeroNode* MyHeroNode::create(Hero* herodata, int showtype)
 {
 	MyHeroNode *pRet = new(std::nothrow)MyHeroNode();
-	if (pRet && pRet->init(herodata))
+	if (pRet && pRet->init(herodata, showtype))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -33,11 +35,11 @@ MyHeroNode* MyHeroNode::create(Hero* herodata)
 	}
 }
 
-bool MyHeroNode::init(Hero* herodata)
+bool MyHeroNode::init(Hero* herodata, int showtype)
 {
 
 	m_heroData = herodata;
-
+	m_showtype = showtype;
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("myHeroNode.csb"));
 	this->addChild(csbnode);
 
@@ -65,18 +67,18 @@ bool MyHeroNode::init(Hero* herodata)
 
 	lvlbl = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
 
-	//解雇按钮
+	//按钮
 	cocos2d::ui::Widget* actbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actbtn->addTouchEventListener(CC_CALLBACK_2(MyHeroNode::onBtnClick, this));
 
 	int langtype = GlobalInstance::getInstance()->getLang();
 
-	//解雇按钮文字
-	cocos2d::ui::ImageView* actbtntxt = (cocos2d::ui::ImageView*)actbtn->getChildByName("text");
-	actbtntxt->loadTexture(ResourcePath::makeTextImgPath("herofire_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	//按钮文字
+	actbtntxt = (cocos2d::ui::ImageView*)actbtn->getChildByName("text");
 
 	statetag = (cocos2d::ui::ImageView*)csbnode->getChildByName("tag");
-	statetag->setVisible(false);
+
+	setStateTag(herodata->getState());
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -118,8 +120,47 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-		innroomLayer->fireHero(this->getTag());
+		if (m_showtype == HS_OWNED)
+		{
+			GlobalInstance::getInstance()->fireHero(this->getTag());
+			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+			if (innroomLayer != NULL)
+				innroomLayer->refreshMyHerosUi();
+		}
+		else if (m_showtype == HS_TAKEON)
+		{
+			SelectMyHerosLayer* selectheroLayer = (SelectMyHerosLayer*)g_mainScene->getChildByName("0outtown")->getChildByName("selectmyheroslayer");
+			CardHeroNode* cardheroNode = (CardHeroNode*)g_mainScene->getChildByName("0outtown")->getChildByTag(selectheroLayer->getTag());
+			if (m_heroData->getState() == HS_OWNED)
+			{
+				//清楚掉之前选择的
+				for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+				{
+					if (GlobalInstance::vec_myHeros[i]->getPos() == selectheroLayer->getTag() + 1)
+					{
+						GlobalInstance::vec_myHeros[i]->setState(HS_OWNED);
+						GlobalInstance::vec_myHeros[i]->setPos(0);
+						selectheroLayer->getMyHeroNode(i)->setStateTag(m_heroData->getState());
+						break;
+					}
+				}
+				m_heroData->setState(HS_TAKEON);
+				m_heroData->setPos(selectheroLayer->getTag() + 1);
+				GlobalInstance::getInstance()->saveMyHeros();
+				setStateTag(m_heroData->getState());
+				cardheroNode->setData(m_heroData);
+			}
+			else if (m_heroData->getState() == HS_TAKEON)
+			{
+				CardHeroNode* cardheroNode = (CardHeroNode*)g_mainScene->getChildByName("0outtown")->getChildByTag(m_heroData->getPos() - 1);
+				m_heroData->setState(HS_OWNED);
+				m_heroData->setPos(0);
+				GlobalInstance::getInstance()->saveMyHeros();
+				setStateTag(m_heroData->getState());
+				cardheroNode->setData(NULL);
+			}
+
+		}
 	}
 }
 
@@ -127,7 +168,35 @@ void MyHeroNode::onbgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Layer* layer = HeroAttrLayer::create(MYHERO, m_heroData);
-		g_mainScene->getChildByName("6innroom")->addChild(layer, 0, this->getTag());
+		Layer* layer = HeroAttrLayer::create(m_heroData);
+		g_mainScene->addChild(layer, 0, this->getTag());
 	}
+}
+
+void MyHeroNode::setStateTag(int state)
+{
+	int langtype = GlobalInstance::getInstance()->getLang();
+
+	std::string btntextstr;
+	if (m_showtype == HS_TAKEON)
+	{
+		if (state == HS_TAKEON)
+		{
+			statetag->setVisible(true);
+			statetag->loadTexture(ResourcePath::makePath("ui/herotag_0.png"), cocos2d::ui::Widget::TextureResType::PLIST);
+			btntextstr = "herocancel_text";
+
+		}
+		else if (state == HS_OWNED)
+		{
+			statetag->setVisible(false);
+			btntextstr = "herofight_text";
+		}
+	}
+	else
+	{
+		statetag->setVisible(false);
+		btntextstr = "herofight_text";
+	}
+	actbtntxt->loadTexture(ResourcePath::makeTextImgPath(btntextstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 }

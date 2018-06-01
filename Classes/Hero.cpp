@@ -9,6 +9,7 @@ Hero::Hero()
 	m_state = 0;
 	m_breakupper = 0;
 	m_randattr = 0.0f;
+	m_pos = 0;
 }
 
 
@@ -24,8 +25,9 @@ Hero::Hero(Hero* hero)
 	m_vocation = hero->getVocation();
 	m_potential = hero->getPotential();
 	m_randattr = hero->getRandAttr();
-	m_state = 0;
+	m_state = hero->getState();
 	m_breakupper = 0;
+	m_pos = 0;
 }
 
 int Hero::getLevel()

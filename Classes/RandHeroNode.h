@@ -12,14 +12,13 @@ public:
 	RandHeroNode();
 	~RandHeroNode();
 
-	virtual bool init(Hero* hero);
+	virtual bool init();
 
-	static RandHeroNode* create(Hero* herodata);
+	static RandHeroNode* create();
 
 	void markRecruited();
-	void setData();
+	void setData(Hero* herodata);
 public:
-	Hero* m_heroData;
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;

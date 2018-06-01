@@ -72,7 +72,7 @@ bool HillResNode::init(ResCreator* data)
 
 	//按钮
 	cocos2d::ui::Widget* actbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
-	actbtn->setTag(0);
+	actbtn->setTag(1000);
 	actbtn->addTouchEventListener(CC_CALLBACK_2(HillResNode::onBtnClick, this));
 
 	int langtype = GlobalInstance::getInstance()->getLang();
@@ -84,12 +84,12 @@ bool HillResNode::init(ResCreator* data)
 	//加号按钮
 	cocos2d::ui::Widget* addbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("addbtn");
 	addbtn->addTouchEventListener(CC_CALLBACK_2(HillResNode::onBtnClick, this));
-	addbtn->setTag(1);
+	addbtn->setTag(1001);
 
 	//减号按钮
 	cocos2d::ui::Widget* subbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("subbtn");
 	subbtn->addTouchEventListener(CC_CALLBACK_2(HillResNode::onBtnClick, this));
-	subbtn->setTag(2);
+	subbtn->setTag(1002);
 
 	updateData(0);
 
@@ -132,7 +132,7 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	{
 		switch (tag)
 		{
-		case 0://升级按钮
+		case 1000://升级按钮
 		{
 			if (m_Data->getLv().getValue() >= 49)
 			{
@@ -145,7 +145,7 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			}
 			break;
 		}
-		case 1://增加工人
+		case 1001://增加工人
 		{
 			if (m_Data->getFarmersCount().getValue() < m_Data->getMaxFarmersCount().getValue())
 			{
@@ -168,7 +168,7 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			}
 			break;
 		}
-		case 2:
+		case 1002:
 			if (m_Data->getFarmersCount().getValue() > 0)
 			{
 				DynamicValueInt dvalue;

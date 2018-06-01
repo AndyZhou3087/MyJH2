@@ -39,6 +39,12 @@ public:
 	void setLocalLang(int val);
 
 	/****************************
+	删除本地英雄数据
+	@para: heroindex 英雄对于的索引
+	****************************/
+	void deleteLocalHero(int heroindex);
+
+	/****************************
 	获取英雄数据
 	@para key, eg:hero1,列表顺序
 	****************************/

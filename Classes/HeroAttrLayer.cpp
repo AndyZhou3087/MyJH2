@@ -6,6 +6,8 @@
 #include "InnRoomLayer.h"
 #include "MainScene.h"
 #include "MovingLabel.h"
+#include "OutTownLayer.h"
+#include "SelectMyHerosLayer.h"
 USING_NS_CC;
 
 HeroAttrLayer::HeroAttrLayer()
@@ -19,10 +21,10 @@ HeroAttrLayer::~HeroAttrLayer()
 }
 
 
-HeroAttrLayer* HeroAttrLayer::create(ENTERTYPE etype, Hero* herodata)
+HeroAttrLayer* HeroAttrLayer::create(Hero* herodata)
 {
 	HeroAttrLayer *pRet = new(std::nothrow)HeroAttrLayer();
-	if (pRet && pRet->init(etype, herodata))
+	if (pRet && pRet->init(herodata))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -36,7 +38,7 @@ HeroAttrLayer* HeroAttrLayer::create(ENTERTYPE etype, Hero* herodata)
 }
 
 // on "init" you need to initialize your instance
-bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
+bool HeroAttrLayer::init(Hero* herodata)
 {
     if ( !Layer::init() )
     {
@@ -88,7 +90,7 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 	m_editName->setDelegate(this);
 	heroattrbottom->addChild(m_editName);
 	
-	if (etype == NEWHERO)
+	if (m_heroData->getState() == HS_READY)
 	{
 		equipnode->setVisible(false);
 		moditybtn->setVisible(false);
@@ -177,7 +179,7 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("firebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			if (etype == NEWHERO)
+			if (m_heroData->getState() == HS_READY)
 			{
 				btn->setVisible(false);
 			}
@@ -186,7 +188,7 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("changebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			if (etype == NEWHERO)
+			if (m_heroData->getState() == HS_READY)
 			{
 				btn->setVisible(false);
 			}
@@ -207,7 +209,7 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("recruitbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			if (etype == NEWHERO)
+			if (m_heroData->getState() == HS_READY)
 			{
 				if (m_heroData->getState() > 0)
 					btn->setEnabled(false);
@@ -220,7 +222,7 @@ bool HeroAttrLayer::init(ENTERTYPE etype, Hero* herodata)
 		}
 		else if (i == ATTR_BACKBTN)
 		{
-			if (etype == NEWHERO)
+			if (m_heroData->getState() == HS_READY)
 			{
 				btn->setPositionX(500);
 			}
@@ -281,8 +283,18 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 		case ATTR_FIREBTN:
 		{
+			GlobalInstance::getInstance()->fireHero(this->getTag());
 			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-			innroomLayer->fireHero(this->getTag());
+			if (innroomLayer != NULL)
+			{
+				innroomLayer->refreshMyHerosUi();
+			}
+			else
+			{
+				OutTownLayer* outTown = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
+				SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
+				sellayer->refreshMyHerosUi();
+			}
 			this->removeFromParentAndCleanup(true);
 			break;
 		}

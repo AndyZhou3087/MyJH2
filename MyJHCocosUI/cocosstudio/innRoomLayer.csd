@@ -16,7 +16,7 @@
             <PreSize X="0.9306" Y="0.8594" />
             <FileData Type="MarkedSubImage" Path="ui/normal9bg.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="top1" ActionTag="-1817995225" Tag="5" IconVisible="False" LeftMargin="3.0000" RightMargin="3.0000" TopMargin="10.0000" BottomMargin="1140.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="top" ActionTag="-1817995225" Tag="5" IconVisible="False" LeftMargin="3.0000" RightMargin="3.0000" TopMargin="10.0000" BottomMargin="1140.0000" ctype="SpriteObjectData">
             <Size X="714.0000" Y="130.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="1205.0000" />

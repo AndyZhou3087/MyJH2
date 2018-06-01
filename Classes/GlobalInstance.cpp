@@ -24,6 +24,8 @@ int GlobalInstance::refreshResTime = 0;
 
 int GlobalInstance::totalFarmercount = 0;
 
+Hero* GlobalInstance::myCardHeros[6];
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -52,6 +54,11 @@ void GlobalInstance::loadInitData()
 	refreshResTime = DataSave::getInstance()->getRefreshResTime();
 
 	totalFarmercount = DataSave::getInstance()->getTotalFarmers();
+
+	for (int i = 0; i < 6; i++)
+	{
+		myCardHeros[i] = NULL;
+	}
 }
 
 void GlobalInstance::saveMyHeros()
@@ -60,7 +67,7 @@ void GlobalInstance::saveMyHeros()
 	{
 		std::string herokey = StringUtils::format("hero%d", i);
 		Hero* hero = GlobalInstance::vec_myHeros[i];
-		std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr());
+		std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos());
 		DataSave::getInstance()->setHeroData(herokey, datastr);
 	}
 }
@@ -80,7 +87,7 @@ void GlobalInstance::loadMyHeros()
 			{
 				std::vector<std::string> vec_tmp;
 				CommonFuncs::split(vec_retstr[0], vec_tmp, "-");
-				if (vec_tmp.size() >= 5)
+				if (vec_tmp.size() >= 8)
 				{
 					hero = new Hero();
 					hero->setName(vec_tmp[0]);
@@ -91,6 +98,13 @@ void GlobalInstance::loadMyHeros()
 					hero->setPotential(atoi(vec_tmp[3].c_str()));
 					hero->setSex(atoi(vec_tmp[4].c_str()));
 					hero->setRandAttr(atof(vec_tmp[5].c_str()));
+					hero->setState(atoi(vec_tmp[6].c_str()));
+					int pos = atoi(vec_tmp[7].c_str());
+					hero->setPos(pos);
+					if (pos > 0)
+					{
+						GlobalInstance::myCardHeros[pos - 1] = hero;
+					}
 				}
 			}
 			if (vec_retstr.size() > 1)//装备属性
@@ -133,7 +147,7 @@ void GlobalInstance::loadRand3Heros()
 		{
 			std::vector<std::string> vec_tmp;
 			CommonFuncs::split(vec_retstr[i], vec_tmp, "-");
-			if (vec_tmp.size() >= 5)
+			if (vec_tmp.size() >= 7)
 			{
 				hero = new Hero();
 				hero->setName(vec_tmp[0]);
@@ -144,7 +158,7 @@ void GlobalInstance::loadRand3Heros()
 				hero->setPotential(atoi(vec_tmp[3].c_str()));
 				hero->setSex(atoi(vec_tmp[4].c_str()));
 				hero->setRandAttr(atof(vec_tmp[5].c_str()));
-				hero->setState(atof(vec_tmp[6].c_str()));
+				hero->setState(atoi(vec_tmp[6].c_str()));
 			}
 			if (hero != NULL)
 				GlobalInstance::vec_rand3Heros.push_back(hero);
@@ -361,4 +375,26 @@ int GlobalInstance::getWorkingFarmerCount()
 		count += GlobalInstance::vec_resCreators[i]->getFarmersCount().getValue();
 	}
 	return count;
+}
+
+void GlobalInstance::fireHero(int index)
+{
+	//先删除掉所有本地英雄节点数据
+	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+	{
+		DataSave::getInstance()->deleteLocalHero(i);
+	}
+
+	//释放内存
+	delete GlobalInstance::vec_myHeros[index];
+	//删除当前英雄列表
+	GlobalInstance::vec_myHeros.erase(GlobalInstance::vec_myHeros.begin() + index);
+
+	//保存数据
+	GlobalInstance::getInstance()->saveMyHeros();
+}
+
+int GlobalInstance::getTotalCaryy()
+{
+	return 100;
 }

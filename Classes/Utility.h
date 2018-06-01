@@ -94,7 +94,6 @@ inline void saveStringDataByKey(string key, string sValue = ""){
 	string encryptvalue = sValue;
 #endif
 	UserDefault::getInstance()->setStringForKey(keybuffer, encryptvalue);
-
 	UserDefault::getInstance()->flush();
 }
 
@@ -130,6 +129,14 @@ inline float loadFloatDataByKey(string key, float defaultValue = 0.0f){
 		return defaultValue;
 	}
 	return atof(s.c_str());
+}
+
+inline void removeEleByKey(string key)
+{
+	char keybuffer[32];
+	sprintf(keybuffer, "%s", key.c_str());
+	UserDefault::getInstance()->deleteValueForKey(keybuffer);
+	UserDefault::getInstance()->flush();
 }
 
 #endif // _H_UTILITY_H_

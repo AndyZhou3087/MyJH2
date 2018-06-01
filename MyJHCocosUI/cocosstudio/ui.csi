@@ -64,6 +64,9 @@
       <FilePathData Path="ui/ressunbtn.png" />
       <FilePathData Path="ui/resbox.png" />
       <FilePathData Path="ui/resbox_qu0.png" />
+      <FilePathData Path="ui/cardnamebox.png" />
+      <FilePathData Path="ui/top2.png" />
+      <FilePathData Path="ui/ninegrid.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

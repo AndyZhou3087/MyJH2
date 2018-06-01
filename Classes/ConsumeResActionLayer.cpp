@@ -184,7 +184,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 	}
 	//按钮1
 	cocos2d::ui::Widget* lvupbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("lvupbtn");
-	lvupbtn->setTag(0);
+	lvupbtn->setTag(1000);
 	lvupbtn->addTouchEventListener(CC_CALLBACK_2(ConsumeResActionLayer::onBtnClick, this));
 	//按钮1文字
 	cocos2d::ui::ImageView* lvupbtntxt = (cocos2d::ui::ImageView*)lvupbtn->getChildByName("text");
@@ -192,7 +192,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 
 	//按钮2
 	cocos2d::ui::Widget* drlvupbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("drlvupbtn");
-	drlvupbtn->setTag(1);
+	drlvupbtn->setTag(1001);
 	drlvupbtn->addTouchEventListener(CC_CALLBACK_2(ConsumeResActionLayer::onBtnClick, this));
 	//按钮2文字
 	cocos2d::ui::ImageView* drlvupbtntxt = (cocos2d::ui::ImageView*)drlvupbtn->getChildByName("text");
@@ -229,7 +229,7 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 	{
 		switch (tag)
 		{
-		case 0://升级
+		case 1000://升级
 			if (checkResIsEnough())//资源足够
 			{	//std::vector<std::map<std::string, int>> lvupres = m_building->lvupres[m_building->level.getValue()];
 				//减掉资源
@@ -278,10 +278,7 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 				MovingLabel::show(ResourceLang::map_lang["reslack"]);
 			}
 			break;
-		case 1://直接升级
-			break;
-		case 2://关闭
-			this->removeFromParentAndCleanup(true);
+		case 1001://直接升级
 			break;
 		default:
 			break;

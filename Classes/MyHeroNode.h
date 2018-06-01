@@ -12,9 +12,9 @@ public:
 	MyHeroNode();
 	~MyHeroNode();
 
-	bool init(Hero* herodata);
+	bool init(Hero* herodata, int showtype = HS_OWNED);
 
-	static MyHeroNode* create(Hero* herodata);
+	static MyHeroNode* create(Hero* herodata, int showtype = HS_OWNED);
 
 private:
 	cocos2d::ui::ImageView* headbox;
@@ -24,13 +24,17 @@ private:
 	cocos2d::ui::Text* vocationlbl;
 	cocos2d::ui::Text* lvtextlbl;
 	cocos2d::ui::Text* lvlbl;
+	cocos2d::ui::ImageView* actbtntxt;
 	cocos2d::ui::ImageView* statetag;
 	cocos2d::ui::ImageView* stars[5];
 	Hero* m_heroData;
+	int m_showtype;
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onbgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void updateData();
+
+	void setStateTag(int state);
 };
 #endif
 

@@ -17,10 +17,10 @@ RandHeroNode::~RandHeroNode()
 
 }
 
-RandHeroNode* RandHeroNode::create(Hero* herodata)
+RandHeroNode* RandHeroNode::create()
 {
 	RandHeroNode *pRet = new(std::nothrow)RandHeroNode();
-	if (pRet && pRet->init(herodata))
+	if (pRet && pRet->init())
 	{
 		pRet->autorelease();
 		return pRet;
@@ -33,7 +33,7 @@ RandHeroNode* RandHeroNode::create(Hero* herodata)
 	}
 }
 
-bool RandHeroNode::init(Hero* herodata)
+bool RandHeroNode::init()
 {
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("randHeroNode.csb"));
 	this->addChild(csbnode);
@@ -64,9 +64,6 @@ bool RandHeroNode::init(Hero* herodata)
 	isrecruitedWidget = (cocos2d::ui::Text*)csbnode->getChildByName("isrecruited_text");
 	isrecruitedWidget->setVisible(false);
 
-	m_heroData = herodata;
-
-	setData();
 	return true;
 }
 
@@ -74,32 +71,34 @@ void RandHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Layer* layer = HeroAttrLayer::create(NEWHERO, m_heroData);
+		Layer* layer = HeroAttrLayer::create((Hero*)this->getUserData());
 		this->getParent()->addChild(layer, 0, this->getTag());
 	}
 }
 
-void RandHeroNode::setData()
+void RandHeroNode::setData(Hero* herodata)
 {
-	std::string str = StringUtils::format("ui/h_%d_%d.png", m_heroData->getVocation(), m_heroData->getSex());
+	std::string str = StringUtils::format("ui/h_%d_%d.png", herodata->getVocation(), herodata->getSex());
 	headimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	str = StringUtils::format("ui/herobox_%d.png", m_heroData->getPotential());
+	str = StringUtils::format("ui/herobox_%d.png", herodata->getPotential());
 	headbox->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	str = StringUtils::format("vocation_%d", m_heroData->getVocation());
+	str = StringUtils::format("vocation_%d", herodata->getVocation());
 	vocationlbl->setString(ResourceLang::map_lang[str]);
 
-	str = StringUtils::format("potential_%d", m_heroData->getPotential());
+	str = StringUtils::format("potential_%d", herodata->getPotential());
 	potentiallbl->setString(ResourceLang::map_lang[str]);
 
-	potentialtextlbl->setColor(Color3B(POTENTIALCOLOR[m_heroData->getPotential()]));
-	potentiallbl->setColor(Color3B(POTENTIALCOLOR[m_heroData->getPotential()]));
+	potentialtextlbl->setColor(Color3B(POTENTIALCOLOR[herodata->getPotential()]));
+	potentiallbl->setColor(Color3B(POTENTIALCOLOR[herodata->getPotential()]));
 
-	namelbl->setString(m_heroData->getName());
+	namelbl->setString(herodata->getName());
 
-	if (m_heroData->getState() == HS_OWNED)
+	if (herodata->getState() == HS_OWNED)
 		markRecruited();
+
+	this->setUserData((void*)herodata);
 }
 
 void RandHeroNode::markRecruited()

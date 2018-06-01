@@ -9,13 +9,7 @@ USING_NS_CC;
 
 typedef enum
 {
-	NEWHERO,//招募新英雄
-	MYHERO//已有英雄
-}ENTERTYPE;
-
-typedef enum
-{
-	ATTR_FIREBTN,//解雇按钮
+	ATTR_FIREBTN = 1000,//解雇按钮
 	ATTR_CHANGEBTN,//转职按钮
 	ATTR_BACKBTN,//返回按钮
 	ATTR_RECRUITBTN//招募按钮
@@ -26,9 +20,9 @@ class HeroAttrLayer : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate
 public:
 	HeroAttrLayer();
 	~HeroAttrLayer();
-	static HeroAttrLayer* create(ENTERTYPE etype, Hero* herodata);
+	static HeroAttrLayer* create(Hero* herodata);
 	virtual void onExit();
-    bool init(ENTERTYPE etype, Hero* herodata);
+    bool init(Hero* herodata);
 
 private:
 

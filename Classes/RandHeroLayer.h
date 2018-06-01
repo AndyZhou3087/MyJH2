@@ -9,7 +9,7 @@ USING_NS_CC;
 
 typedef enum
 {
-	BTN_S_REFRESH,//银子刷新
+	BTN_S_REFRESH = 1000,//银子刷新
 	BTN_C_REFRESH,//元宝刷新
 	BTN_ADD_SILVERBOX,//增加银子
 	BTN_ADD_SILVER,//增加银子

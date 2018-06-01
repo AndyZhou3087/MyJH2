@@ -15,7 +15,6 @@ public:
 	static InnRoomLayer* create(Building* buidingData);
 	virtual void onExit();
     bool init(Building* buidingData);
-	void fireHero(int index);
 	//更新scrollview
 	void refreshMyHerosUi();
 private:

@@ -36,6 +36,12 @@ void DataSave::setLocalLang(int val)
 	saveIntDataByKey("lang", val);
 }
 
+void DataSave::deleteLocalHero(int heroindex)
+{
+	std::string key = StringUtils::format("hero%d", heroindex);
+	removeEleByKey(key);
+}
+
 std::string DataSave::getHeroData(std::string herokey)
 {
 	return loadStringDataByKey(herokey, "");

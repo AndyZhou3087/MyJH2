@@ -6,6 +6,7 @@
 #include "MyHeroNode.h"
 #include "ConsumeResActionLayer.h"
 #include "MovingLabel.h"
+#include "DataSave.h"
 
 USING_NS_CC;
 
@@ -65,7 +66,7 @@ bool InnRoomLayer::init(Building* buidingData)
 
 	//招募按钮
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
-	actionbtn->setTag(0);
+	actionbtn->setTag(1000);
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(InnRoomLayer::onBtnClick, this));
 
 	//招募按钮文字
@@ -74,7 +75,7 @@ bool InnRoomLayer::init(Building* buidingData)
 
 	//升级按钮
 	cocos2d::ui::Widget* lvUpbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("lvupbtn");
-	lvUpbtn->setTag(1);
+	lvUpbtn->setTag(1001);
 	lvUpbtn->addTouchEventListener(CC_CALLBACK_2(InnRoomLayer::onBtnClick, this));
 
 	//升级按钮文字
@@ -83,7 +84,7 @@ bool InnRoomLayer::init(Building* buidingData)
 
 	//关闭按钮
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
-	closebtn->setTag(2);
+	closebtn->setTag(1002);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(InnRoomLayer::onBtnClick, this));
 
 	//我的英雄滚动控件
@@ -114,13 +115,13 @@ void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		int tag = clicknode->getTag();
 		switch (tag)
 		{
-		case 0://招募
+		case 1000://招募
 		{
 			RandHeroLayer* layer = RandHeroLayer::create();
 			this->addChild(layer);
 			break;
 		}
-		case 1://升级
+		case 1001://升级
 			if (m_buidingData->level.getValue() < m_buidingData->maxlevel.getValue() - 1)
 			{
 				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_buidingData, CA_BUILDINGLVUP);
@@ -131,7 +132,7 @@ void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				MovingLabel::show(ResourceLang::map_lang["maxlv"]);
 			}
 			break;
-		case 2://关闭
+		case 1002://关闭
 			this->removeFromParentAndCleanup(true);
 			break;
 		default:
@@ -159,17 +160,6 @@ void InnRoomLayer::refreshMyHerosUi()
 		heronode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 		m_contentscroll->addChild(heronode, 0, i);
 	}
-}
-
-void InnRoomLayer::fireHero(int index)
-{
-	//释放内存
-	delete GlobalInstance::vec_myHeros[index];
-	//删除当前英雄列表
-	GlobalInstance::vec_myHeros.erase(GlobalInstance::vec_myHeros.begin() + index);
-	//保存数据
-	GlobalInstance::getInstance()->saveMyHeros();
-	refreshMyHerosUi();
 }
 
 void InnRoomLayer::onExit()

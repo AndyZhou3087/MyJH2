@@ -36,8 +36,8 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/h_1_0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="2067373338" Tag="18" IconVisible="False" LeftMargin="-103.0003" RightMargin="-18.9997" TopMargin="-55.5908" BottomMargin="9.5908" FontSize="40" LabelText="小虾米" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="122.0000" Y="46.0000" />
+          <AbstractNodeData Name="name" ActionTag="2067373338" Tag="18" IconVisible="False" LeftMargin="-103.0003" RightMargin="-3.9997" TopMargin="-53.2964" BottomMargin="13.2964" FontSize="35" LabelText="小虾米" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="107.0000" Y="40.0000" />
             <AnchorPoint ScaleY="0.6176" />
             <Position X="-103.0003" Y="38.0004" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />

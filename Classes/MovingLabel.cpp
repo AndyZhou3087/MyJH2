@@ -42,7 +42,7 @@ MovingLabel* MovingLabel::create(std::string text, Vec2 pos)
 
 bool MovingLabel::init(std::string text, Vec2 pos)
 {
-	Label::initWithTTF(text, "fonts/simhei.ttf", 20);
+	Label::initWithTTF(text, "fonts/simhei.ttf", 25);
 	setPosition(pos);
 	this->enableOutline(Color4B(0,0,0, 255), 1);
 	this->enableShadow();

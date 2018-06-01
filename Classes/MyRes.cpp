@@ -3,11 +3,11 @@
 
 std::vector<ResBase* > MyRes::vec_MyResources;
 
-ResBase* MyRes::getMyResource(std::string resid)
+ResBase* MyRes::getMyResource(std::string resid, int inwhere)
 {
 	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
 	{
-		if (vec_MyResources[i]->getId().compare(resid) == 0)
+		if (vec_MyResources[i]->getId().compare(resid) == 0 && vec_MyResources[i]->getWhere() == inwhere)
 		{
 			return vec_MyResources[i];
 		}
@@ -15,9 +15,9 @@ ResBase* MyRes::getMyResource(std::string resid)
 	return NULL;
 }
 
-int MyRes::getMyResCount(std::string resid)
+int MyRes::getMyResCount(std::string resid, int inwhere)
 {
-	ResBase* res = getMyResource(resid);
+	ResBase* res = getMyResource(resid, inwhere);
 	if (res == NULL)
 		return 0;
 	return res->getCount().getValue();
@@ -27,7 +27,7 @@ void MyRes::Add(std::string resid, int count, int inwhere)
 {
 	if (resid.compare(0, 1, "r") == 0)
 	{
-		ResBase* res = getMyResource(resid);
+		ResBase* res = getMyResource(resid, inwhere);
 		if (res == NULL)
 		{
 			res = new ResBase();
@@ -47,6 +47,7 @@ void MyRes::Add(std::string resid, int count, int inwhere)
 	}
 	saveData();
 }
+
 
 void MyRes::saveData()
 {

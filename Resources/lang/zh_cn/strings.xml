@@ -17,7 +17,7 @@
 	<s name="vocation_9">全真</s>
 	<s name="vocation_10">禅宗</s>
 	<s name="vocation_11">射手</s>
-	<s name="potential_4">级</s>
+	<s name="potential_4">极</s>
 	<s name="potential_3">甲</s>
 	<s name="potential_2">乙</s>
 	<s name="potential_1">丙</s>
@@ -42,4 +42,7 @@
 	<s name="lackfoodtext">需要食物%d</s>
 	<s name="myheromax">无法容纳更多的侠客，请升级客栈</s>
 	<s name="lvrescreatortitle">升级%s最大储备到%d</s>
+	<s name="carrytext">负重：</s>
+	<s name="carryovertext">背不动更多东西了</s>
+	<s name="lacktext">缺少%s</s>
 </strings>

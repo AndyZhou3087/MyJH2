@@ -47,6 +47,10 @@
       <FilePathData Path="text_zh_cn/drlvupbtn_text.png" />
       <FilePathData Path="text_zh_cn/lvupbtn_text.png" />
       <FilePathData Path="text_zh_cn/drrecruitbtn_text.png" />
+      <FilePathData Path="text_zh_cn/outtowntitle.png" />
+      <FilePathData Path="text_zh_cn/goout_text.png" />
+      <FilePathData Path="text_zh_cn/herocancel_text.png" />
+      <FilePathData Path="text_zh_cn/herofight_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

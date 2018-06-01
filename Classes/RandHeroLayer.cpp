@@ -111,8 +111,9 @@ bool RandHeroLayer::init()
 
 	for (int i = 0; i < 3; i++)
 	{
-		heronode[i] = RandHeroNode::create(GlobalInstance::vec_rand3Heros[i]);
+		heronode[i] = RandHeroNode::create();
 		heronode[i]->setPosition(140+i*220, 730);
+		heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
 		this->addChild(heronode[i], 0, i);
 	}
 
@@ -179,7 +180,7 @@ void RandHeroLayer::updateUI(float dt)
 		create3RandHero();
 		for (int i = 0; i < 3; i++)
 		{
-			heronode[i]->setData();
+			heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
 		}
 	}
 	else

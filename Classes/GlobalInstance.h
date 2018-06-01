@@ -93,7 +93,14 @@ public:
 	//总的工人数
 	void saveTotalFarmers(int val);
 
+	//正在工作的工人数
 	int getWorkingFarmerCount();
+
+	//解雇英雄
+	void fireHero(int index);
+
+	//英雄出城时总的负重
+	int getTotalCaryy();
 
 private:
 	static GlobalInstance* _Context;//类实例
@@ -108,6 +115,8 @@ public:
 	static std::map<std::string, AllResources> map_AllResources;//资源名字
 
 	static int servertime;//服务器时间
+
+	static Hero* myCardHeros[6];
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

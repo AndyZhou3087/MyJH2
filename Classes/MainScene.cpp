@@ -8,6 +8,7 @@
 #include "Const.h"
 #include "MyRes.h"
 #include "MovingLabel.h"
+#include "OutTownLayer.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -162,6 +163,10 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		else if (buildname.compare("7homehill") == 0)
 		{
 			layer = HomeHillLayer::create(Building::map_buildingDatas[buildname]);
+		}
+		else if (buildname.compare("0outtown") == 0)
+		{
+			layer = OutTownLayer::create();
 		}
 		if (layer != NULL)
 			this->addChild(layer, 0, buildname);
