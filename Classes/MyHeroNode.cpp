@@ -195,8 +195,14 @@ void MyHeroNode::setStateTag(int state)
 	}
 	else
 	{
-		statetag->setVisible(false);
-		btntextstr = "herofight_text";
+		if (state == HS_TAKEON)
+		{
+			statetag->setVisible(true);
+			statetag->loadTexture(ResourcePath::makePath("ui/herotag_0.png"), cocos2d::ui::Widget::TextureResType::PLIST);
+		}
+		else
+			statetag->setVisible(false);
+		btntextstr = "firebtn_text";
 	}
 	actbtntxt->loadTexture(ResourcePath::makeTextImgPath(btntextstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 }
