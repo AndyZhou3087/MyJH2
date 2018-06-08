@@ -45,4 +45,5 @@
 	<s name="carrytext">负重：</s>
 	<s name="carryovertext">背不动更多东西了</s>
 	<s name="lacktext">缺少%s</s>
+	<s name="selectmaptext">请选择要传送的位置</s>
 </strings>

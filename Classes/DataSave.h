@@ -141,6 +141,26 @@ public:
 	****************************/
 	void setBuildingLv(std::string buildingname, int val);
 
+	/****************************
+	获取我的银两
+	****************************/
+	int getMySoliverCount();
+
+	/****************************
+	设置我的银两
+	****************************/
+	void setMySoliverCount(int val);
+
+	/****************************
+	设置我的元宝
+	****************************/
+	int getMyCoinCount();
+
+	/****************************
+	设置我的元宝
+	****************************/
+	void setMyCoinCount(int val);
+
 private:
 	static DataSave* _Context;//类实例
 

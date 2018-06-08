@@ -67,27 +67,28 @@ bool RandHeroLayer::init()
 	std::string btnname[] = { "srefreshbtn", "crefreshbtn", "silverbox", "addbtn1", "coinbox", "addbtn2","closebtn"};//与BTNTYPE对应
 	for (int i = 0; i < sizeof(btnname) / sizeof(btnname[0]); i++)
 	{
+		int tag = i + BTN_S_REFRESH;
 		cocos2d::ui::Widget* btn = (cocos2d::ui::Widget*)csbnode->getChildByName(btnname[i]);
-		btn->setTag(i);
+		btn->setTag(tag);
 		btn->addTouchEventListener(CC_CALLBACK_2(RandHeroLayer::onBtnClick, this));
 
-		if (i == BTN_S_REFRESH)
+		if (tag == BTN_S_REFRESH)
 		{
 			//银子刷新按钮文字
 			cocos2d::ui::ImageView* srefreshbtntxt = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("srefresh_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
-		else if (i == BTN_C_REFRESH)
+		else if (tag == BTN_C_REFRESH)
 		{
 			//元宝刷新按钮文字
 			cocos2d::ui::ImageView* crefreshbtntxt = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			crefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("crefresh_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
-		else if (i == BTN_ADD_SILVERBOX)
+		else if (tag == BTN_ADD_SILVERBOX)
 		{
 			mysilverlbl = (cocos2d::ui::Text*)btn->getChildByName("countlbl");
 		}
-		else if (i == BTN_ADD_COINBOX)
+		else if (tag == BTN_ADD_COINBOX)
 		{
 			mycoinlbl = (cocos2d::ui::Text*)btn->getChildByName("countlbl");
 		}
@@ -163,8 +164,11 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 void RandHeroLayer::updateUI(float dt)
 {
-	mysilverlbl->setString("10");
-	mycoinlbl->setString("10");
+	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
+	mysilverlbl->setString(str);
+
+	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
+	mycoinlbl->setString(str);
 
 	int lefttime = 0;
 	int refreshtime = GlobalInstance::getInstance()->getRefreshHeroTime();

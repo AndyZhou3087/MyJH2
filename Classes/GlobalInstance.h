@@ -22,10 +22,26 @@ typedef struct
 	std::vector<float> vec_atkspeed;//攻击速度
 }S_HeroAttr;
 
+//小地图数据
+typedef struct
+{
+	std::string id;
+	std::string imgname;//小地图图片
+	int ph;//小地图消耗的精力，体力
+}S_SubMap;
+
+//大地图数据
+typedef struct
+{
+	std::string id;
+	std::map<std::string, S_SubMap> map_sublist;//小地图list
+}S_MainMap;
+
 typedef struct
 {
 	std::string id;
 	std::string name;
+	std::string desc;
 }AllResources;
 
 class GlobalInstance
@@ -99,9 +115,18 @@ public:
 	//解雇英雄
 	void fireHero(int index);
 
-	//英雄出城时总的负重
+	//英雄总的负重
 	int getTotalCaryy();
 
+	void parseMapJson();
+
+	DynamicValueInt getMySoliverCount();
+
+	void addMySoliverCount(DynamicValueInt val);
+
+	DynamicValueInt getMyCoinCount();
+
+	void addMyCoinCount(DynamicValueInt val);
 private:
 	static GlobalInstance* _Context;//类实例
 public:
@@ -116,11 +141,15 @@ public:
 
 	static int servertime;//服务器时间
 
-	static Hero* myCardHeros[6];
+	static Hero* myCardHeros[6];//出城选择的6个英雄
+
+	static std::map<std::string, S_MainMap> map_mapsdata;//地图数据
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;
 	static int totalFarmercount;
+	static DynamicValueInt mySoliverCount;
+	static DynamicValueInt myCoinCount;
 
 };
 #endif

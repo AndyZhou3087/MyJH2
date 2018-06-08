@@ -92,8 +92,10 @@ void MainMenuLayer::updateUI(float dt)
 			reslbl[i]->setString("0");
 		}
 	}
-	mycoinlbl->setString("0");
-	mysilverlbl->setString("0");
+	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
+	mycoinlbl->setString(str);
+	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
+	mysilverlbl->setString(str);
 }
 
 void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

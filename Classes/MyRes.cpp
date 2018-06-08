@@ -23,6 +23,19 @@ int MyRes::getMyResCount(std::string resid, int inwhere)
 	return res->getCount().getValue();
 }
 
+int MyRes::getMyPackageResCount()
+{
+	int count = 0;
+	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
+	{
+		if (vec_MyResources[i]->getWhere() == MYPACKAGE)
+		{
+			count += vec_MyResources[i]->getCount().getValue();
+		}
+	}
+	return count;
+}
+
 void MyRes::Add(std::string resid, int count, int inwhere)
 {
 	if (resid.compare(0, 1, "r") == 0)

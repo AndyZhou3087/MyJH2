@@ -214,7 +214,7 @@ void MainScene::updateTime(float dt)
 			ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
 			if (rescreator->getFarmersCount().getValue() > 0)
 			{
-				int addcount = respasttime * rescreator->getFarmersCount().getValue() / REFRESHRESTIME;
+				int addcount = respasttime / REFRESHRESTIME * rescreator->getFarmersCount().getValue();
 				int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
 
 				std::string showtext = StringUtils::format("%s+%d", GlobalInstance::map_AllResources[rescreator->getName()].name.c_str(), addcount);

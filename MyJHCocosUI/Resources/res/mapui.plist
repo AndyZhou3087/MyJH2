@@ -7,13 +7,134 @@
 			<key>mapui/m1-1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{57,85}}</string>
+				<string>{{993,0},{28,91}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
-				<string>{57,85}</string>
+				<string>{28,91}</string>
+			</dict>
+			<key>mapui/gocitybtn.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{512,0},{106,106}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{106,106}</string>
+			</dict>
+			<key>mapui/mapbtn.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{618,0},{106,106}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{106,106}</string>
+			</dict>
+			<key>mapui/mappackbtn.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{724,0},{106,106}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{106,106}</string>
+			</dict>
+			<key>mapui/mapdownbtn.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{128,92}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{128,92}</string>
+			</dict>
+			<key>mapui/mapleftbtn.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{128,0},{128,92}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{128,92}</string>
+			</dict>
+			<key>mapui/maprightbtn.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{256,0},{128,92}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{128,92}</string>
+			</dict>
+			<key>mapui/mapupbtn.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{384,0},{128,92}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{128,92}</string>
+			</dict>
+			<key>mapui/mapnamebox0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{830,59},{53,159}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{53,159}</string>
+			</dict>
+			<key>mapui/mapnamebox1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{142,92},{47,138}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{47,138}</string>
+			</dict>
+			<key>mapui/mapname_sel0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{830,0},{59,163}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{59,163}</string>
+			</dict>
+			<key>mapui/mapname_sel1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,92},{51,142}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{51,142}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -25,14 +146,14 @@
 			<key>realTextureFileName</key>
 			<string>mapui.png</string>
 			<key>size</key>
-			<string>{64,128}</string>
+			<string>{1024,256}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>64</integer>
+			<integer>1024</integer>
 			<key>height</key>
-			<integer>128</integer>
+			<integer>256</integer>
 		</dict>
 	</dict>
 </plist>

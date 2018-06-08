@@ -26,6 +26,11 @@ int GlobalInstance::totalFarmercount = 0;
 
 Hero* GlobalInstance::myCardHeros[6];
 
+std::map<std::string, S_MainMap> GlobalInstance::map_mapsdata;
+
+DynamicValueInt GlobalInstance::mySoliverCount;
+DynamicValueInt GlobalInstance::myCoinCount;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -59,6 +64,9 @@ void GlobalInstance::loadInitData()
 	{
 		myCardHeros[i] = NULL;
 	}
+
+	GlobalInstance::mySoliverCount.setValue(DataSave::getInstance()->getMySoliverCount());
+	GlobalInstance::myCoinCount.setValue(DataSave::getInstance()->getMyCoinCount());
 }
 
 void GlobalInstance::saveMyHeros()
@@ -309,7 +317,7 @@ void GlobalInstance::saveResCreatorData()
 void GlobalInstance::loadAllResourcesData()
 {
 	int langtype = DataSave::getInstance()->getLocalLang();
-	std::string langname = StringUtils::format("lang/%s/allresname.json", ResourceLang::makeLangName(langtype).c_str());
+	std::string langname = StringUtils::format("lang/%s/allresdesc.json", ResourceLang::makeLangName(langtype).c_str());
 	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath(langname));
 	rapidjson::Value& allData = doc["rd"];
 	for (unsigned int i = 0; i < allData.Size(); i++)
@@ -323,6 +331,12 @@ void GlobalInstance::loadAllResourcesData()
 
 			v = jsonvalue["cname"];
 			data.name = v.GetString();
+
+			if (jsonvalue.HasMember("desc"))
+			{
+				v = jsonvalue["desc"];
+				data.desc = v.GetString();
+			}
 
 			map_AllResources[data.id] = data;
 		}
@@ -397,4 +411,56 @@ void GlobalInstance::fireHero(int index)
 int GlobalInstance::getTotalCaryy()
 {
 	return 100;
+}
+
+void GlobalInstance::parseMapJson()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/mainmap.json"));
+	rapidjson::Value& mainData = doc["m"];
+
+	for (unsigned int i = 0; i < mainData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = mainData[i];
+		S_MainMap s_mainmap;
+		s_mainmap.id = jsonvalue["id"].GetString();
+		map_mapsdata[s_mainmap.id] = s_mainmap;
+	}
+
+	rapidjson::Document docsub = ReadJsonFile(ResourcePath::makePath("json/submap.json"));
+	rapidjson::Value& subData = docsub["m"];
+	for (unsigned int i = 0; i < subData.Size(); i++)
+	{
+		S_SubMap s_submap;
+		rapidjson::Value& jsonvalue = subData[i];
+		rapidjson::Value& v = jsonvalue["id"];
+		s_submap.id = v.GetString();
+		v = jsonvalue["t"];
+		s_submap.imgname = v.GetString();
+		v = jsonvalue["ph"];
+		s_submap.ph = atoi(v.GetString());
+		std::string mainid = s_submap.id.substr(0, s_submap.id.find_last_of("-"));
+		map_mapsdata[mainid].map_sublist[s_submap.id] = s_submap;
+	}
+}
+
+DynamicValueInt GlobalInstance::getMySoliverCount()
+{
+	return GlobalInstance::mySoliverCount;
+}
+
+void GlobalInstance::addMySoliverCount(DynamicValueInt val)
+{
+	GlobalInstance::mySoliverCount.setValue(GlobalInstance::mySoliverCount.getValue() + val.getValue());
+	DataSave::getInstance()->setMySoliverCount(GlobalInstance::mySoliverCount.getValue());
+}
+
+DynamicValueInt GlobalInstance::getMyCoinCount()
+{
+	return GlobalInstance::myCoinCount;
+}
+
+void GlobalInstance::addMyCoinCount(DynamicValueInt val)
+{
+	GlobalInstance::myCoinCount.setValue(GlobalInstance::myCoinCount.getValue() + val.getValue());
+	DataSave::getInstance()->setMyCoinCount(GlobalInstance::myCoinCount.getValue());
 }

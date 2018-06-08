@@ -113,7 +113,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 
 	//生命值
 	hplbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("hp");
-	std::string attrstr = StringUtils::format("%d", (int)herodata->getHp());
+	std::string attrstr = StringUtils::format("%d/%d", (int)herodata->getMyHp(), (int)herodata->getMaxHp());
 	hplbl->setString(attrstr);
 
 	//攻击值
@@ -171,11 +171,12 @@ bool HeroAttrLayer::init(Hero* herodata)
 	std::string btnname[] = { "firebtn", "changebtn", "backbtn", "recruitbtn"};//与BTNTYPE对应
 	for (int i = 0; i < sizeof(btnname) / sizeof(btnname[0]); i++)
 	{
+		int tag = i + ATTR_FIREBTN;
 		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)heroattrbottom->getChildByName(btnname[i]);
-		btn->setTag(i);
+		btn->setTag(tag);
 		btn->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onBtnClick, this));
 
-		if (i == ATTR_FIREBTN)
+		if (tag == ATTR_FIREBTN)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("firebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -184,7 +185,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 				btn->setVisible(false);
 			}
 		}
-		else if (i == ATTR_CHANGEBTN)
+		else if (tag == ATTR_CHANGEBTN)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("changebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -205,14 +206,14 @@ bool HeroAttrLayer::init(Hero* herodata)
 				}
 			}
 		}
-		else if (i == ATTR_RECRUITBTN)
+		else if (tag == ATTR_RECRUITBTN)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("recruitbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			if (m_heroData->getState() == HS_READY)
 			{
-				if (m_heroData->getState() > 0)
-					btn->setEnabled(false);
+				//if (m_heroData->getState() > 0)
+				//	btn->setEnabled(false);
 
 			}
 			else
@@ -220,8 +221,10 @@ bool HeroAttrLayer::init(Hero* herodata)
 				btn->setVisible(false);
 			}
 		}
-		else if (i == ATTR_BACKBTN)
+		else if (tag == ATTR_BACKBTN)
 		{
+			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
+			txtimg->loadTexture(ResourcePath::makeTextImgPath("backbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			if (m_heroData->getState() == HS_READY)
 			{
 				btn->setPositionX(500);

@@ -30,7 +30,11 @@
           <Image Name="hfull_3_0.png" />
           <Image Name="hfull_3_1.png" />
           <Image Name="mapbg.jpg" />
+          <Image Name="mapblockbottom.png" />
+          <Image Name="mapblocktop.png" />
           <Image Name="smallbg.png" />
+          <Image Name="t001.jpg" />
+          <Image Name="t002.jpg" />
         </Folder>
         <Folder Name="mainimg">
           <Image Name="main_01_n.png" />
@@ -62,7 +66,18 @@
           <Image Name="q.jpg" />
         </Folder>
         <Folder Name="mapui">
+          <Image Name="gocitybtn.png" />
           <Image Name="m1-1.png" />
+          <Image Name="mapbtn.png" />
+          <Image Name="mapdownbtn.png" />
+          <Image Name="mapleftbtn.png" />
+          <Image Name="mapname_sel0.png" />
+          <Image Name="mapname_sel1.png" />
+          <Image Name="mapnamebox0.png" />
+          <Image Name="mapnamebox1.png" />
+          <Image Name="mappackbtn.png" />
+          <Image Name="maprightbtn.png" />
+          <Image Name="mapupbtn.png" />
         </Folder>
         <Folder Name="text_zh_cn">
           <Image Name="backbtn_text.png" />
@@ -77,6 +92,7 @@
           <Image Name="equiptext_4.png" />
           <Image Name="equiptext_5.png" />
           <Image Name="firebtn_text.png" />
+          <Image Name="gocitybtn_text.png" />
           <Image Name="goout_text.png" />
           <Image Name="heroattrqu_0.png" />
           <Image Name="heroattrqu_1.png" />
@@ -105,10 +121,11 @@
           <Image Name="main_10_t.png" />
           <Image Name="main_achbtn_text.png" />
           <Image Name="main_mailbtn_text.png" />
-          <Image Name="main_packbtn_text.png" />
           <Image Name="main_rankbtn_text.png" />
           <Image Name="main_setbtn_text.png" />
           <Image Name="main_shopbtn_text.png" />
+          <Image Name="mapbtn_text.png" />
+          <Image Name="mappackbtn_text.png" />
           <Image Name="outtowntitle.png" />
           <Image Name="recruit_text.png" />
           <Image Name="recruitbtn_text.png" />
@@ -148,6 +165,8 @@
           <Image Name="herobox_2.png" />
           <Image Name="herobox_3.png" />
           <Image Name="herobox_4.png" />
+          <Image Name="herohpbar.png" />
+          <Image Name="herohpbarbg.png" />
           <Image Name="heroitem.png" />
           <Image Name="herotag_0.png" />
           <Image Name="main_achbtn.png" />
@@ -184,6 +203,7 @@
         </Folder>
         <Project Name="cardHeroNode.csd" Type="Node" />
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
+        <Project Name="fightHeroNode.csd" Type="Node" />
         <Project Name="heroAttrLayer.csd" Type="Layer" />
         <Project Name="hillResNode.csd" Type="Node" />
         <Project Name="homeHillLayer.csd" Type="Layer" />
@@ -191,16 +211,19 @@
         <Image Name="loadingbg.jpg" />
         <Project Name="LoadingLayer.csd" Type="Layer" />
         <Project Name="MainLayer.csd" Type="Layer" />
+        <Project Name="mainMapLayer.csd" Type="Layer" />
         <Project Name="MainMenuLayer.csd" Type="Layer" />
+        <Project Name="mapBlockLayer.csd" Type="Layer" />
+        <PlistInfo Name="mapui.csi" Type="Plist" />
         <Project Name="myHeroNode.csd" Type="Node" />
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
+        <Project Name="selectMapNode.csd" Type="Node" />
         <Project Name="selectMyHerosLayer.csd" Type="Layer" />
+        <Project Name="selectSubMapLayer.csd" Type="Layer" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
-        <Project Name="mainMapLayer.csd" Type="Layer" />
-        <PlistInfo Name="mapui.csi" Type="Plist" />
       </RootFolder>
     </Group>
   </SolutionFolder>

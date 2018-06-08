@@ -52,7 +52,7 @@ float Hero::getDf()
 	float herodf = GlobalInstance::vec_herosAttr[m_vocation].vec_df[getLevel()];
 	return herodf;
 }
-float Hero::getHp()
+float Hero::getMaxHp()
 {
 	float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[getLevel()];
 	return herohp;
@@ -88,6 +88,8 @@ void Hero::generate()
 		nickname = generateName();
 	} while (GlobalInstance::getInstance()->checkifSameName(nickname));
 	setName(nickname);
+
+	m_myhp = getMaxHp();
 }
 
 std::string Hero::generateName()

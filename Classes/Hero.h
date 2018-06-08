@@ -33,7 +33,7 @@ public:
 	CC_SYNTHESIZE(int, m_breakupper, BreakUpper);//突破等级
 	CC_SYNTHESIZE(float, m_randattr, RandAttr);//随机属性
 	CC_SYNTHESIZE(int, m_pos, Pos);//出城时选择的位置，1开始，0表示不选择
-
+	CC_SYNTHESIZE(float, m_myhp, MyHp);//血量
 	//等级，根据经验值算等级
 	int getLevel();
 
@@ -44,7 +44,7 @@ public:
 	float getDf();
 
 	//血量
-	float getHp();
+	float getMaxHp();
 
 	//攻击速度
 	float getAtkSpeed();
