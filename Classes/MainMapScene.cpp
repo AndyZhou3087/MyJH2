@@ -53,7 +53,7 @@ bool MainMapScene::init()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 		mapname->setVisible(true);
 #else
-		mapname->setVisible(false);
+		mapname->setVisible(true);
 #endif
 	}
 
