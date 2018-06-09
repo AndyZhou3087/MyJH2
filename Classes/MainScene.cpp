@@ -111,7 +111,6 @@ bool MainScene::init()
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
 		buildingSelect->setVisible(false);
 		buildingSelect->setUserData((void*)it->first.c_str());
-		log(it->first.c_str());
 		i++;
 	}
 
