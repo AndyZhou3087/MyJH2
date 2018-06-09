@@ -78,6 +78,8 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 
 	statetag = (cocos2d::ui::ImageView*)csbnode->getChildByName("tag");
 
+	tagtext = (cocos2d::ui::Text*)statetag->getChildByName("text");
+
 	setStateTag(herodata->getState());
 
 	for (int i = 0; i < 5; i++)
@@ -217,6 +219,11 @@ void MyHeroNode::setStateTag(int state)
 		else
 			statetag->setVisible(false);
 		btntextstr = "firebtn_text";
+	}
+	if (statetag->isVisible())
+	{
+		std::string tagtextstr = StringUtils::format("%d", m_heroData->getPos());
+		tagtext->setString(tagtextstr);
 	}
 	actbtntxt->loadTexture(ResourcePath::makeTextImgPath(btntextstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 }

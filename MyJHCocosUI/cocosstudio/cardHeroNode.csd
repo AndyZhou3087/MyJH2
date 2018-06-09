@@ -40,7 +40,7 @@
           <AbstractNodeData Name="name" ActionTag="1788380904" Tag="104" IconVisible="False" LeftMargin="-36.0000" RightMargin="-36.0000" TopMargin="42.0001" BottomMargin="-68.0001" FontSize="23" LabelText="小虾米" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="72.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="0.0000" Y="-55.0001" />
+            <Position Y="-55.0001" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
@@ -49,8 +49,8 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="-1745047259" Tag="105" IconVisible="False" LeftMargin="-41.6245" RightMargin="-41.3755" TopMargin="-25.4999" BottomMargin="2.4999" FontSize="20" LabelText="点击选择" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="83.0000" Y="23.0000" />
+          <AbstractNodeData Name="desc" ActionTag="-1745047259" Tag="105" IconVisible="False" LeftMargin="-41.6245" RightMargin="-41.3755" TopMargin="-36.9999" BottomMargin="-9.0001" FontSize="20" LabelText="点击选择&#xA;①" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="83.0000" Y="46.0000" />
             <AnchorPoint ScaleX="0.5015" ScaleY="0.5000" />
             <Position Y="13.9999" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />

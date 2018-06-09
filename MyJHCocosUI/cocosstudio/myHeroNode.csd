@@ -175,6 +175,20 @@
           </AbstractNodeData>
           <AbstractNodeData Name="tag" ActionTag="1285520522" Tag="31" IconVisible="False" LeftMargin="-308.0014" RightMargin="262.0014" TopMargin="19.0000" BottomMargin="-65.0000" LeftEage="15" RightEage="15" TopEage="15" BottomEage="15" Scale9OriginX="15" Scale9OriginY="15" Scale9Width="16" Scale9Height="16" ctype="ImageViewObjectData">
             <Size X="46.0000" Y="46.0000" />
+            <Children>
+              <AbstractNodeData Name="text" ActionTag="-2073929665" Tag="26" IconVisible="False" LeftMargin="14.5000" RightMargin="16.5000" TopMargin="9.5000" BottomMargin="7.5000" FontSize="25" LabelText="2" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="15.0000" Y="29.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="22.0000" Y="22.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4783" Y="0.4783" />
+                <PreSize X="0.3261" Y="0.6304" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="80" G="38" B="12" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-285.0014" Y="-42.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
