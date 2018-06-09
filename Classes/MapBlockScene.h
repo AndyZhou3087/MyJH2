@@ -6,7 +6,10 @@
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
+#include "cocos-ext.h"
+
 USING_NS_CC;
+USING_NS_CC_EXT;
 
 typedef enum
 {
@@ -23,7 +26,7 @@ typedef enum
 	BTN_PACKAGE
 }BTNTYPE;
 
-class MapBlockScene :public Layer
+class MapBlockScene :public Layer, public ScrollViewDelegate
 {
 public:
 	MapBlockScene();
@@ -40,6 +43,12 @@ private:
 	void onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	void updateLabel();
+
+	void createMap();
+
+	virtual void scrollViewDidScroll(ScrollView* view);
+
+	virtual void scrollViewDidZoom(ScrollView* view);
 private:
 	cocos2d::ui::Text* carrycountlbl;
 	cocos2d::ui::Text* foodcountlbl;

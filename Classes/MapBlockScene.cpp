@@ -41,6 +41,11 @@ bool MapBlockScene::init()
 	foodcountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("r001count");
 	solivercountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("solivercountlbl");
 
+	cocos2d::ui::ScrollView* mapscroll = (cocos2d::ui::ScrollView*)csbnode->getChildByName("ScrollView");
+	mapscroll->setVisible(false);
+
+	createMap();
+
 	updateLabel();
 
 	cocos2d::ui::Widget* gocitybtn = (cocos2d::ui::Widget*)csbnode->getChildByName("gocitybtn");
@@ -63,7 +68,7 @@ void MapBlockScene::updateLabel()
 {
 	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageResCount(), GlobalInstance::getInstance()->getTotalCaryy());
 	carrycountlbl->setString(str);
-	str = StringUtils::format("%d", MyRes::getMyResCount("r001"), MYPACKAGE);
+	str = StringUtils::format("%d", MyRes::getMyResCount("r001", MYPACKAGE));
 	foodcountlbl->setString(str);
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	foodcountlbl->setString(str);
@@ -85,4 +90,36 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		}
 	}
+}
+
+void MapBlockScene::createMap()
+{
+	Sprite* mapbg = Sprite::create("images/mapbg.jpg");
+	mapbg->setPosition(Vec2(-360, -1213));
+	ScrollView* scrollView = ScrollView::create();
+	scrollView->setViewSize(Size(720, 800));
+	scrollView->setColor(Color3B(255, 0, 0));
+	scrollView->setAnchorPoint(Vec2(0.5, 0.5f));
+	scrollView->setPosition(360, 645);
+
+	scrollView->setContainer(mapbg);
+	scrollView->setContentSize(mapbg->getContentSize());
+	scrollView->setTouchEnabled(true);
+	scrollView->setDirection(ScrollView::Direction::BOTH);
+	scrollView->setMinScale(0.5);
+	scrollView->setMaxScale(2);
+	scrollView->setBounceable(false);
+	scrollView->setDelegate(this);
+	this->addChild(scrollView);
+}
+
+void MapBlockScene::scrollViewDidScroll(ScrollView* view)
+{
+	return;
+}
+
+void MapBlockScene::scrollViewDidZoom(ScrollView* view)
+{
+	return;
+
 }

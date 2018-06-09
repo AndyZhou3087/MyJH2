@@ -272,6 +272,33 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="ScrollView" ActionTag="-1427034659" Tag="56" IconVisible="False" LeftMargin="-0.0006" RightMargin="0.0006" TopMargin="235.0000" BottomMargin="245.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical_Horizontal" ctype="ScrollViewObjectData">
+            <Size X="720.0000" Y="800.0000" />
+            <Children>
+              <AbstractNodeData Name="mapbg" ActionTag="-1830516729" Tag="57" IconVisible="False" LeftMargin="1.0000" RightMargin="-1.0000" ctype="SpriteObjectData">
+                <Size X="2424.0000" Y="1600.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="1213.0000" Y="800.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5004" Y="0.5000" />
+                <PreSize X="3.3667" Y="2.0000" />
+                <FileData Type="Normal" Path="images/mapbg.jpg" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="359.9994" Y="645.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.5039" />
+            <PreSize X="1.0000" Y="0.6250" />
+            <SingleColor A="255" R="255" G="150" B="100" />
+            <FirstColor A="255" R="255" G="150" B="100" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
+            <InnerNodeSize Width="2424" Height="1600" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
