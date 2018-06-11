@@ -1,4 +1,4 @@
-﻿#include "selectMyHerosLayer.h"
+﻿#include "SelectMyHerosLayer.h"
 #include "Resource.h"
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"

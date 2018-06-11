@@ -22,10 +22,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
-package org.cocos2dx.cpp;
+package com.csfb.myjh;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import org.cocos2dx.lib.Cocos2dxActivity;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class AppActivity extends Cocos2dxActivity {
 
@@ -42,7 +47,8 @@ public class AppActivity extends Cocos2dxActivity {
             return;
         }
         // DO OTHER INITIALIZATION BELOW
-        
+        Utils.init(this);
+        Utils.UUID();
     }
 
 }

@@ -3,8 +3,10 @@
 #define _H_CONST_H_
 #include "cocos2d.h"
 
-#define FIRSTNAMECOUNT 40
-#define LASTNAMECOUNT 40
+#define ANDOIRJNICLSNAME "com/csfb/myjh/Utils"
+
+#define FIRSTNAMECOUNT 10
+#define LASTNAMECOUNT 10
 #define RESETHEROTIME 21600
 #define REFRESHRESTIME 60
 

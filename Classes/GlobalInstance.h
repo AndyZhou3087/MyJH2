@@ -53,7 +53,32 @@ public:
 	类实例，单例模式
 	****************************/
 	static GlobalInstance* getInstance();
+
+	/****************************
+	获取设备唯一ID
+	*****************************/
+	static std::string UUID();
+
+	/****************************
+	版本code
+	*****************************/
+	std::string getVersionCode();
+
+	/****************************
+	包名com.csfb.jh
+	*****************************/
+	std::string getPackageName();
+
+	/****************************
+	渠道号
+	*****************************/
+	std::string getChannelId();
+
+	int getSysSecTime();
+
+	int createRandomNum(int val);
 public:
+
 	//加载初始化数据
 
 	void loadInitData();

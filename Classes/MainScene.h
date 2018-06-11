@@ -42,6 +42,10 @@ private:
 	void updateTime(float dt);
 
 	void checkHint(float dt);
+
+	int m_startClickX;
+	int m_startClickY;
+	bool m_isDraging;
 };
 extern MainScene* g_mainScene;
 #endif

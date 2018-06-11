@@ -94,20 +94,22 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 void MapBlockScene::createMap()
 {
-	//Sprite* mapbg = Sprite::create("images/mapbg.jpg");
-	//mapbg->setPosition(Vec2(0, 0));
+	Sprite* scrollcontainer = Sprite::create("images/mapbg.jpg");
+	scrollcontainer->setPosition(Vec2(0, 0));
+
+	//Node *scrollcontainer = LayerColor::create(Color4B(255, 0, 0, 255));
+	//scrollcontainer->setContentSize(Size(2424, 1600));
 	ScrollView* scrollView = ScrollView::create();
 	scrollView->setViewSize(Size(720, 800));
 	scrollView->setPosition(0, 245);
-	Node *scrollcontainer = LayerColor::create(Color4B(255,0,0,255));
-	scrollcontainer->setContentSize(Size(2424, 1600));
+
 	scrollView->setContainer(scrollcontainer);
 
 	scrollView->setTouchEnabled(true);
 	scrollView->setDirection(ScrollView::Direction::BOTH);
 	scrollView->setMinScale(0.5);
 	scrollView->setMaxScale(2);
-	scrollView->setBounceable(true);
+	scrollView->setBounceable(false);
 	scrollView->setDelegate(this);
 	this->addChild(scrollView);
 	float offsetx = scrollcontainer->getContentSize().width / 2 - scrollView->getViewSize().width / 2;
