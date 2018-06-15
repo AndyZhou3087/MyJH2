@@ -11,14 +11,12 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="ui.csi" />
           <FilePathData Path="mapui.csi" />
           <FilePathData Path="mapBlockLayer.csd" />
           <FilePathData Path="mainMapLayer.csd" />
-          <FilePathData Path="myHeroNode.csd" />
-          <FilePathData Path="cardHeroNode.csd" />
+          <FilePathData Path="selectMapNode.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="mainMapLayer.csd" />
+        <ActiveDocument Path="mapBlockLayer.csd" />
       </Value>
     </Item>
   </Properties>

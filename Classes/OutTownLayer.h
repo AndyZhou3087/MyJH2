@@ -15,7 +15,7 @@ public:
 	static OutTownLayer* create();
 	virtual void onExit();
     bool init();
-
+	CardHeroNode* getMyCardHeroNode(int index);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -23,6 +23,8 @@ private:
 	bool isCarryOver();
 
 	void updateCaryyCountLbl();
+
+
 private:
 	CardHeroNode* m_myCardHerosNode[6];
 	cocos2d::ui::Text* carrylbl;

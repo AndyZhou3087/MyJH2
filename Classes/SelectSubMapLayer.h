@@ -11,13 +11,16 @@ class SelectSubMapLayer : public cocos2d::Layer
 public:
 	SelectSubMapLayer();
 	~SelectSubMapLayer();
-	static SelectSubMapLayer* create(std::string mapid);
+	static SelectSubMapLayer* create(std::string mainmapid);
     bool init(std::string mapid);
 	
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	void showCloudAnim(Vec2 pos);
 private:
+	std::string m_mainmapid;
 };
 
 #endif

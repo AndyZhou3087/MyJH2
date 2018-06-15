@@ -267,7 +267,7 @@
                 <Position X="1239.9696" Y="0.0001" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.0000" />
+                <PrePosition X="0.5000" />
                 <PreSize X="1.0000" Y="0.2078" />
                 <FileData Type="Normal" Path="mainimg/main_back_f.jpg" Plist="" />
               </AbstractNodeData>

@@ -5,6 +5,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "Building.h"
+#include "MyHeroNode.h"
 USING_NS_CC;
 
 class InnRoomLayer : public cocos2d::Layer
@@ -17,9 +18,10 @@ public:
     bool init(Building* buidingData);
 	//更新scrollview
 	void refreshMyHerosUi();
+
+	MyHeroNode* getMyHeroNode(int index);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-
 
 private:
 	Building* m_buidingData;//建筑物数据

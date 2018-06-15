@@ -53,6 +53,42 @@
       <FilePathData Path="text_zh_cn/gocitybtn_text.png" />
       <FilePathData Path="text_zh_cn/mapbtn_text.png" />
       <FilePathData Path="text_zh_cn/mappackbtn_text.png" />
+      <FilePathData Path="text_zh_cn/m1-1.png" />
+      <FilePathData Path="text_zh_cn/m1-10.png" />
+      <FilePathData Path="text_zh_cn/m1-2.png" />
+      <FilePathData Path="text_zh_cn/m1-3.png" />
+      <FilePathData Path="text_zh_cn/m1-4.png" />
+      <FilePathData Path="text_zh_cn/m1-5.png" />
+      <FilePathData Path="text_zh_cn/m1-6.png" />
+      <FilePathData Path="text_zh_cn/m1-7.png" />
+      <FilePathData Path="text_zh_cn/m1-8.png" />
+      <FilePathData Path="text_zh_cn/m1-9.png" />
+      <FilePathData Path="text_zh_cn/m2-1.png" />
+      <FilePathData Path="text_zh_cn/m2-10.png" />
+      <FilePathData Path="text_zh_cn/m2-2.png" />
+      <FilePathData Path="text_zh_cn/m2-3.png" />
+      <FilePathData Path="text_zh_cn/m2-4.png" />
+      <FilePathData Path="text_zh_cn/m2-5.png" />
+      <FilePathData Path="text_zh_cn/m2-6.png" />
+      <FilePathData Path="text_zh_cn/m2-7.png" />
+      <FilePathData Path="text_zh_cn/m2-8.png" />
+      <FilePathData Path="text_zh_cn/m2-9.png" />
+      <FilePathData Path="text_zh_cn/m3-1.png" />
+      <FilePathData Path="text_zh_cn/m3-10.png" />
+      <FilePathData Path="text_zh_cn/m3-2.png" />
+      <FilePathData Path="text_zh_cn/m3-3.png" />
+      <FilePathData Path="text_zh_cn/m3-4.png" />
+      <FilePathData Path="text_zh_cn/m3-5.png" />
+      <FilePathData Path="text_zh_cn/m3-6.png" />
+      <FilePathData Path="text_zh_cn/m3-7.png" />
+      <FilePathData Path="text_zh_cn/m3-8.png" />
+      <FilePathData Path="text_zh_cn/m3-9.png" />
+      <FilePathData Path="text_zh_cn/m4-1.png" />
+      <FilePathData Path="text_zh_cn/m4-2.png" />
+      <FilePathData Path="text_zh_cn/m4-3.png" />
+      <FilePathData Path="text_zh_cn/m4-4.png" />
+      <FilePathData Path="text_zh_cn/m4-5.png" />
+      <FilePathData Path="text_zh_cn/submaptitle_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

@@ -226,3 +226,8 @@ void OutTownLayer::onExit()
 {
 	Layer::onExit();
 }
+
+CardHeroNode* OutTownLayer::getMyCardHeroNode(int index)
+{
+	return m_myCardHerosNode[index];
+}

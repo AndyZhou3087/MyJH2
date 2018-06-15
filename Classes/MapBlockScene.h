@@ -7,6 +7,8 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "cocos-ext.h"
+#include "MapBlock.h"
+#include "FightHeroNode.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -32,27 +34,49 @@ public:
 	MapBlockScene();
 	~MapBlockScene();
 
-	virtual bool init();
+	bool init(std::string mapname);
 
-	static cocos2d::Scene* createScene();
+	static cocos2d::Scene* createScene(std::string mapname);
+
+	FightHeroNode* getFightHeroNode(int index);
 
 private:
-	CREATE_FUNC(MapBlockScene);
+	static MapBlockScene* create(std::string mapname);
 
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	void updateLabel();
 
+	void parseMapXml(std::string mapname);
+
 	void createMap();
+
+	void setMyPos();
+
+	void stopMoving();
+
+	bool checkRoad(int blockindex);
 
 	virtual void scrollViewDidScroll(ScrollView* view);
 
 	virtual void scrollViewDidZoom(ScrollView* view);
+
 private:
+	Node* m_csbnode;
+	ParticleSystemQuad* myposParticle;
 	cocos2d::ui::Text* carrycountlbl;
 	cocos2d::ui::Text* foodcountlbl;
 	cocos2d::ui::Text* solivercountlbl;
+	int blockRowCount;
+	int blockColCount;
+	Node *m_mapscrollcontainer;
+	std::map<int, MapBlock*> map_mapBlocks;
+	std::vector<int> vec_startpos;
+	int mycurCol;
+	int mycurRow;
+	bool isMoving;
 };
+extern MapBlockScene* g_MapBlockScene;
 #endif
 

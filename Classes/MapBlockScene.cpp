@@ -1,56 +1,96 @@
 ﻿#include "MapBlockScene.h"
 #include "Resource.h"
-#include "FightHeroNode.h"
 #include "GlobalInstance.h"
 #include "MyRes.h"
 #include "CommonFuncs.h"
+#include "tinyxml2/tinyxml2.h"
 #include "MainScene.h"
+#include "Const.h"
+#include "MainMapScene.h"
+#include "MovingLabel.h"
+
+MapBlockScene* g_MapBlockScene = NULL;
 
 MapBlockScene::MapBlockScene()
 {
-
+	myposParticle = NULL;
+	isMoving = false;
 }
 
 
 MapBlockScene::~MapBlockScene()
 {
-
+	g_MapBlockScene = NULL;
 }
 
-Scene* MapBlockScene::createScene()
+Scene* MapBlockScene::createScene(std::string mapname)
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
 
 	// 'layer' is an autorelease object
-	auto mapLayer = MapBlockScene::create();
+	g_MapBlockScene = MapBlockScene::create(mapname);
 
 	// add layer as a child to scene
-	scene->addChild(mapLayer);
+	scene->addChild(g_MapBlockScene);
 
 	// return the scene
 	return scene;
 }
 
-bool MapBlockScene::init()
+MapBlockScene* MapBlockScene::create(std::string mapname)
 {
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("mapBlockLayer.csb"));
-	this->addChild(csbnode);
+	MapBlockScene *pRet = new(std::nothrow)MapBlockScene();
+	if (pRet && pRet->init(mapname))
+	{
+		pRet->autorelease();
+		return pRet;
+	}
+	else
+	{
+		delete pRet;
+		pRet = nullptr;
+		return nullptr;
+	}
+}
 
-	carrycountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("carrycount");
-	foodcountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("r001count");
-	solivercountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("solivercountlbl");
+bool MapBlockScene::init(std::string mapname)
+{
+	m_csbnode = CSLoader::createNode(ResourcePath::makePath("mapBlockLayer.csb"));
+	this->addChild(m_csbnode);
 
-	cocos2d::ui::ScrollView* mapscroll = (cocos2d::ui::ScrollView*)csbnode->getChildByName("ScrollView");
-	mapscroll->setVisible(false);
+	Node* topnode = m_csbnode->getChildByName("mapblocktop");
 
-	createMap();
+	carrycountlbl = (cocos2d::ui::Text*)topnode->getChildByName("carrycount");
+	foodcountlbl = (cocos2d::ui::Text*)topnode->getChildByName("r001count");
+	solivercountlbl = (cocos2d::ui::Text*)topnode->getChildByName("solivercountlbl");
+
+	parseMapXml(mapname);
+
+	int count = vec_startpos.size();
+
+	int r = GlobalInstance::getInstance()->createRandomNum(count);
+	mycurCol = vec_startpos[r] % blockColCount;
+	mycurRow = vec_startpos[r] / blockColCount;
+
+	setMyPos();
 
 	updateLabel();
 
-	cocos2d::ui::Widget* gocitybtn = (cocos2d::ui::Widget*)csbnode->getChildByName("gocitybtn");
+	Node* bottomnode = m_csbnode->getChildByName("mapblockbottom");
+
+	cocos2d::ui::Widget* gocitybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("gocitybtn");
 	gocitybtn->setTag(BTN_GOCITY);
 	gocitybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+
+	std::string keyname[] = {"upbtn", "downbtn", "leftbtn", "rightbtn"};
+
+	for (int i = 0; i < 4; i++)
+	{
+		cocos2d::ui::Widget* keybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName(keyname[i]);
+		keybtn->setTag(i+ KEY_UP);
+		keybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onArrowKey, this));
+	}
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -58,7 +98,7 @@ bool MapBlockScene::init()
 		fightHeroNode->setPosition(60 + 120 * i, 1196);
 		fightHeroNode->setScale(0.84f);
 		fightHeroNode->setData(GlobalInstance::myCardHeros[i]);
-		addChild(fightHeroNode);
+		addChild(fightHeroNode, 0, i);
 	}
 
 	return true;
@@ -91,29 +131,130 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		}
 	}
 }
+void MapBlockScene::onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		Node* clicknode = (Node*)pSender;
+		int tag = clicknode->getTag();
+		bool isStartPos = false;
+
+		if (isMoving)
+			return;
+
+		switch (tag)
+		{
+			case KEY_UP:
+			{
+				if (mycurRow >= blockRowCount - 1)
+					return;
+				int bindex = (mycurRow + 1)*blockColCount + mycurCol;
+				if (!checkRoad(bindex))
+					return;
+				if (map_mapBlocks[bindex]->getPosType() == 0)
+					isStartPos = true;
+
+				mycurRow += 1;
+				setMyPos();
+				break;
+			}
+			case KEY_DOWN:
+			{
+				if (mycurRow <= 0)
+					return;
+				int bindex = (mycurRow - 1)*blockColCount + mycurCol;
+				if (!checkRoad(bindex))
+					return;
+				if (map_mapBlocks[bindex]->getPosType() == 0)
+					isStartPos = true;
+				mycurRow -= 1;
+				setMyPos();
+				break;
+			}
+			case KEY_LEFT:
+			{
+				if (mycurCol <= 0)
+					return;
+
+				int bindex = (mycurRow)*blockColCount + mycurCol - 1;
+				if (!checkRoad(bindex))
+					return;
+				if (map_mapBlocks[bindex]->getPosType() == 0)
+					isStartPos = true;
+				mycurCol -= 1;
+				setMyPos();
+				break;
+			}
+			case KEY_RIGHT:
+			{
+				if (mycurCol <= 0)
+					return;
+
+				int bindex = (mycurRow)*blockColCount + mycurCol + 1;
+				if (!checkRoad(bindex))
+					return;
+				if (map_mapBlocks[bindex]->getPosType() == 0)
+					isStartPos = true;
+				mycurCol += 1;
+				setMyPos();
+				break;
+			}
+
+			default:
+				break;
+		}
+		if (isStartPos)
+		{
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+		}
+	}
+}
+
+void MapBlockScene::stopMoving()
+{
+	isMoving = false;
+}
+
+bool MapBlockScene::checkRoad(int blockindex)
+{
+	if (!map_mapBlocks[blockindex]->getWalkable())
+	{
+		MovingLabel::show(ResourceLang::map_lang["noroad"]);
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
 
 void MapBlockScene::createMap()
 {
-	Sprite* scrollcontainer = Sprite::create("images/mapbg.jpg");
-	scrollcontainer->setPosition(Vec2(0, 0));
-
-	//Node *scrollcontainer = LayerColor::create(Color4B(255, 0, 0, 255));
-	//scrollcontainer->setContentSize(Size(2424, 1600));
 	ScrollView* scrollView = ScrollView::create();
 	scrollView->setViewSize(Size(720, 800));
-	scrollView->setPosition(0, 245);
+	scrollView->setPosition(0, 242);
+	m_csbnode->addChild(scrollView, -1);
 
-	scrollView->setContainer(scrollcontainer);
+	int mapW = blockColCount * MAPBLOCKWIDTH;
+	int mapH = blockRowCount* MAPBLOCKHEIGHT;
+	m_mapscrollcontainer = LayerColor::create(Color4B(0, 0, 0, 255));
+	m_mapscrollcontainer->setContentSize(Size(blockColCount * MAPBLOCKWIDTH, blockRowCount* MAPBLOCKHEIGHT));
+
+	float scalex = scrollView->getViewSize().width / mapW;
+	float scaley = scrollView->getViewSize().height / mapH;
+	scrollView->setContainer(m_mapscrollcontainer);
 
 	scrollView->setTouchEnabled(true);
 	scrollView->setDirection(ScrollView::Direction::BOTH);
-	scrollView->setMinScale(0.5);
+	scrollView->setMinScale(MIN(scalex, scaley));
 	scrollView->setMaxScale(2);
-	scrollView->setBounceable(false);
+	scrollView->setBounceable(true);
 	scrollView->setDelegate(this);
-	this->addChild(scrollView);
-	float offsetx = scrollcontainer->getContentSize().width / 2 - scrollView->getViewSize().width / 2;
-	float offsety = scrollcontainer->getContentSize().height / 2 - scrollView->getViewSize().height / 2;
+
+	float offsetx = m_mapscrollcontainer->getContentSize().width / 2 - scrollView->getViewSize().width / 2;
+	float offsety = m_mapscrollcontainer->getContentSize().height / 2 - scrollView->getViewSize().height / 2;
+
 	scrollView->setContentOffset(Vec2(-offsetx, -offsety));
 }
 
@@ -126,4 +267,161 @@ void MapBlockScene::scrollViewDidZoom(ScrollView* view)
 {
 	return;
 
+}
+
+
+void MapBlockScene::setMyPos()
+{
+	int px = mycurCol *MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2;
+	int py = mycurRow * MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2;
+	if (myposParticle == NULL)
+	{
+		myposParticle = ParticleSystemQuad::create("particle/hr.plist");
+		m_mapscrollcontainer->addChild(myposParticle, 3000);
+		myposParticle->setPosition(Vec2(px, py));
+	}
+	else
+	{
+		isMoving = true;
+		myposParticle->runAction(Sequence::create(MoveTo::create(1.0f, Vec2(px, py)), CallFunc::create(CC_CALLBACK_0(MapBlockScene::stopMoving, this)), NULL));
+	}
+
+}
+
+FightHeroNode* MapBlockScene::getFightHeroNode(int index)
+{
+	return (FightHeroNode*)this->getChildByTag(index);
+}
+
+void MapBlockScene::parseMapXml(std::string mapname)
+{
+	tinyxml2::XMLDocument *pDoc = new tinyxml2::XMLDocument();
+	std::string filename = StringUtils::format("mapdata/%s.xml", mapname.c_str());
+	std::string contentstr = FileUtils::getInstance()->getStringFromFile(filename);
+	int err = pDoc->Parse(contentstr.c_str());
+	if (err != 0)
+	{
+		delete pDoc;
+		return;
+	}
+	//根节点
+	tinyxml2::XMLElement *rootEle = pDoc->RootElement();
+	//根节点属性
+	blockRowCount = rootEle->IntAttribute("rs");
+	blockColCount = rootEle->IntAttribute("cs");
+	createMap();
+	//获取第一个节点属性
+	//const XMLAttribute *attribute = rootEle->FirstAttribute();
+	//打印节点属性名和值
+	//log("attribute<em>name = %s,attribute</em>value = %s", attribute->Name(), attribute->Value());</p>
+	tinyxml2::XMLElement *element = rootEle->FirstChildElement();
+	while (element != NULL)
+	{
+		if (strcmp(element->Name(), "Cell") == 0)
+		{
+			int r = element->IntAttribute("r");
+			int c = element->IntAttribute("c");
+			int postype = element->IntAttribute("p");
+			bool walkable = element->IntAttribute("w")==1?true:false;
+			std::string boardname = element->Attribute("m");
+			const char* buildchar = element->Attribute("d");
+			std::string buildname;
+			if (buildchar != NULL)
+				buildname = buildchar;
+
+			MapBlock* mb = MapBlock::create(blockRowCount - 1 - r, c, boardname, buildname);
+			int rc = (blockRowCount - 1 - r)*blockColCount + c;
+			int zorder = (blockRowCount - 1 - r)*blockColCount + blockColCount - c;
+			m_mapscrollcontainer->addChild(mb, zorder);
+			mb->Col = c;
+			mb->Row = r;
+			mb->setPosType(postype);
+			mb->setWalkable(walkable);
+			map_mapBlocks[rc] = mb;
+			if (postype == 0)
+			{
+				mb->setWalkable(true);
+				vec_startpos.push_back(rc);
+			}
+
+			tinyxml2::XMLElement* e0 = element->FirstChildElement();
+			while (e0 != NULL)
+			{
+				std::string ename = element->Name();
+				if (ename.compare("event") == 0)
+				{
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(e0->GetText(), vec_tmp, ";");
+					for (unsigned int i = 0; i < vec_tmp.size(); i++)
+					{
+						mb->vec_eventrnd.push_back(atoi(vec_tmp[i].c_str()));
+					}
+				}
+				else if (ename.compare("npcid") == 0)
+				{
+					mb->setPosNpcID(e0->GetText());
+				}
+				else if (ename.compare("npcrnd") == 0)
+				{
+					mb->setPosNpcRnd(atoi(e0->GetText()));
+				}
+				else if (ename.compare(0, 5, "msatt") == 0)
+				{
+					ThrProperty mdata;
+					int index = atoi(ename.substr(ename.length() - 1).c_str());
+					mdata.sid = e0->Attribute("id");
+					mdata.intPara1 = e0->IntAttribute("qu");
+					mdata.intPara2 = atoi(e0->GetText());
+					mb->monsters[index] = mdata;
+				}
+				else if (ename.compare(0, 5, "msawd") == 0)
+				{
+					ThrProperty mdata;
+					mdata.sid = e0->Attribute("id");
+					mdata.intPara1 = e0->IntAttribute("qu");
+					mdata.intPara2 = atoi(e0->GetText());
+					mb->vec_RewardsRes.push_back(mdata);
+				}
+				else if (ename.compare("A") == 0 || ename.compare("B") == 0)
+				{
+					ChoiceData cdata;
+					cdata.content = e0->Attribute("cname");
+					tinyxml2::XMLElement* e01 = e0->FirstChildElement();
+					while (e01 != NULL)
+					{
+						std::string e01name = e0->Name();
+						if (e01name.compare("lossres") == 0)
+						{
+							ThrProperty mdata;
+							mdata.sid = e01->Attribute("id");
+							mdata.intPara1 = atoi(e01->GetText());
+							mdata.intPara2 = 0;
+							cdata.lostRes = mdata;
+						}
+						else if (e01name.compare("eboss") == 0)
+						{
+							cdata.effectNpc = e01->GetText();
+						}
+						else if (e01name.compare("rettype") == 0)
+						{
+							cdata.result = atoi(e01->GetText());
+						}
+						else
+						{
+							ThrProperty mdata;
+							mdata.sid = e01->Attribute("id");
+							mdata.intPara1 = e01->IntAttribute("qu");
+							mdata.intPara2 = atoi(e01->GetText());
+							cdata.vec_getRes.push_back(mdata);
+						}
+						e01 = e01->NextSiblingElement();
+					}
+					mb->vec_choiceDatas.push_back(cdata);
+				}
+				e0 = e0->NextSiblingElement();
+			}
+		}
+		element = element->NextSiblingElement();
+	}
+	delete pDoc;
 }

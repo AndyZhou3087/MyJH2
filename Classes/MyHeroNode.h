@@ -15,7 +15,7 @@ public:
 	bool init(Hero* herodata, int showtype = HS_OWNED);
 
 	static MyHeroNode* create(Hero* herodata, int showtype = HS_OWNED);
-
+	void updateData();
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
@@ -30,10 +30,11 @@ private:
 	cocos2d::ui::ImageView* stars[5];
 	Hero* m_heroData;
 	int m_showtype;
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onbgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void updateData();
+
 
 	void setStateTag(int state);
 };

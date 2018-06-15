@@ -13,6 +13,7 @@ Hero::Hero()
 	m_breakupper = 0;
 	m_randattr = 0.0f;
 	m_pos = 0;
+	m_myhp = 0;
 }
 
 
@@ -31,6 +32,7 @@ Hero::Hero(Hero* hero)
 	m_state = hero->getState();
 	m_breakupper = 0;
 	m_pos = 0;
+	m_myhp = 0;
 }
 
 int Hero::getLevel()
@@ -102,11 +104,9 @@ std::string Hero::generateName()
 	std::string namestr;
 	std::string heronamefile[] = { "heroname/firstname.txt" , "heroname/lastname.txt" };
 	int randindex[] = { rfirst ,rlast };
-	log("zhou rand = %d, %d", rfirst, rlast);
 	for (int i = 0; i < 2; i++)
 	{
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)//android apk是压缩包无法通过fopen操作Asset文件
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)//android apk是压缩包无法通过fopen操作Asset文件，通过cocos的文件操作，需要读取整个文件，文件可能有1w行，所有改用java文件处理
 		std::string ret;
 		JniMethodInfo methodInfo;
 		if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "readAssetStringByLine", "(Ljava/lang/String;I)Ljava/lang/String;"))
@@ -117,7 +117,6 @@ std::string Hero::generateName()
 		}
 		CommonFuncs::trim(ret);
 		namestr += ret;
-		log("zhou namestr = %s", namestr.c_str());
 #else
 		std::string fileName = FileUtils::getInstance()->fullPathForFilename(ResourcePath::makePath(heronamefile[i]));
 		if (fileName.length() > 0)

@@ -48,7 +48,6 @@ public class AppActivity extends Cocos2dxActivity {
         }
         // DO OTHER INITIALIZATION BELOW
         Utils.init(this);
-        Utils.UUID();
     }
 
 }

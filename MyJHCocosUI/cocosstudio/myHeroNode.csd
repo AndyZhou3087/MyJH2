@@ -96,22 +96,22 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="actionbtn" ActionTag="-1365440984" Tag="23" IconVisible="False" LeftMargin="163.2440" RightMargin="-287.2440" TopMargin="19.0004" BottomMargin="-57.0004" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="94" Scale9Height="16" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-            <Size X="124.0000" Y="38.0000" />
+          <AbstractNodeData Name="actionbtn" ActionTag="-1365440984" Tag="23" IconVisible="False" LeftMargin="116.2436" RightMargin="-260.2436" TopMargin="-20.9998" BottomMargin="-59.0002" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="114" Scale9Height="58" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="144.0000" Y="80.0000" />
             <Children>
-              <AbstractNodeData Name="text" ActionTag="60284931" Tag="25" IconVisible="False" LeftMargin="14.0000" RightMargin="28.0000" TopMargin="-21.0000" BottomMargin="11.0000" LeftEage="27" RightEage="27" TopEage="15" BottomEage="15" Scale9OriginX="27" Scale9OriginY="15" Scale9Width="28" Scale9Height="18" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="text" ActionTag="60284931" Tag="25" IconVisible="False" LeftMargin="24.0000" RightMargin="38.0000" TopMargin="1.0000" BottomMargin="31.0000" LeftEage="27" RightEage="27" TopEage="15" BottomEage="15" Scale9OriginX="27" Scale9OriginY="15" Scale9Width="28" Scale9Height="18" ctype="ImageViewObjectData">
                 <Size X="82.0000" Y="48.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="55.0000" Y="35.0000" />
+                <Position X="65.0000" Y="55.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4435" Y="0.9211" />
-                <PreSize X="0.6613" Y="1.2632" />
+                <PrePosition X="0.4514" Y="0.6875" />
+                <PreSize X="0.5694" Y="0.6000" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/herofire_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="225.2440" Y="-38.0004" />
+            <Position X="188.2436" Y="-19.0002" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />

@@ -292,9 +292,12 @@ public class Utils {
             //BufferedReader bf = new BufferedReader(new  InputStreamReader(assetManager.open(filename)));
             DataInputStream dataInputStream = new DataInputStream(assetManager.open(filename));
 			dataInputStream.skip(line*14);
-			String ss = new String(dataInputStream.readLine().getBytes());
-            result = ss;
-            Log.d("", "zhou read file  "+filename+":"+result);
+			byte namebype[] = new byte[12];
+			if (dataInputStream.read(namebype, 0, 12) > 0)
+			{
+				String ss = new String(namebype);
+				result = ss.trim();
+			}
         } catch (Exception e) {
         	e.printStackTrace();
         }

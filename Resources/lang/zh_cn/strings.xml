@@ -45,7 +45,6 @@
 	<s name="carrytext">负重：</s>
 	<s name="carryovertext">背不动更多东西了</s>
 	<s name="lacktext">缺少%s</s>
-	<s name="selectmaptext">请选择要传送的位置</s>
 	<s name="selherohinttext">点击选择&#xA;%s</s>
 	<s name="selheronum1">①</s>
 	<s name="selheronum2">②</s>
@@ -53,4 +52,5 @@
 	<s name="selheronum4">④</s>
 	<s name="selheronum5">⑤</s>
 	<s name="selheronum6">⑥</s>
+	<s name="noroad">此路不通</s>
 </strings>

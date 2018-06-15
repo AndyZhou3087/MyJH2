@@ -2,7 +2,6 @@
   <PropertyGroup Name="mapui" Type="Plist" ID="e7979076-3ecf-4246-8286-084c0e604406" Version="3.10.0.0" />
   <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="True" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
     <ImageFiles>
-      <FilePathData Path="mapui/m1-1.png" />
       <FilePathData Path="mapui/gocitybtn.png" />
       <FilePathData Path="mapui/mapbtn.png" />
       <FilePathData Path="mapui/mappackbtn.png" />
@@ -14,6 +13,21 @@
       <FilePathData Path="mapui/mapnamebox1.png" />
       <FilePathData Path="mapui/mapname_sel0.png" />
       <FilePathData Path="mapui/mapname_sel1.png" />
+      <FilePathData Path="mapui/mtag0.png" />
+      <FilePathData Path="mapui/submaptitlecloud.png" />
+      <FilePathData Path="mapui/submapnodeitem.png" />
+      <FilePathData Path="mapui/submapanimcloud.png" />
+      <FilePathData Path="mapui/boardblock_0.png" />
+      <FilePathData Path="mapui/boardblock_1.png" />
+      <FilePathData Path="mapui/boardblock_2.png" />
+      <FilePathData Path="mapui/boardblock_3.png" />
+      <FilePathData Path="mapui/boardblock_4.png" />
+      <FilePathData Path="mapui/boardblock_5.png" />
+      <FilePathData Path="mapui/boardblock_6.png" />
+      <FilePathData Path="mapui/boardblock_7.png" />
+      <FilePathData Path="mapui/buildblock_10.png" />
+      <FilePathData Path="mapui/buildblock_8.png" />
+      <FilePathData Path="mapui/buildblock_9.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>
