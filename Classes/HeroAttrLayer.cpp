@@ -8,6 +8,8 @@
 #include "MovingLabel.h"
 #include "OutTownLayer.h"
 #include "SelectMyHerosLayer.h"
+#include "MapBlockScene.h"
+
 USING_NS_CC;
 
 HeroAttrLayer::HeroAttrLayer()
@@ -90,7 +92,9 @@ bool HeroAttrLayer::init(Hero* herodata)
 	m_editName->setDelegate(this);
 	heroattrbottom->addChild(m_editName);
 	
-	if (m_heroData->getState() == HS_READY)
+	int herostate = m_heroData->getState();
+
+	if (herostate == HS_READY)
 	{
 		equipnode->setVisible(false);
 		moditybtn->setVisible(false);
@@ -180,29 +184,37 @@ bool HeroAttrLayer::init(Hero* herodata)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("firebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			if (m_heroData->getState() == HS_READY)
+			if (herostate == HS_READY || herostate == HS_TAKEON)
 			{
 				btn->setVisible(false);
+			}
+			else if (herostate == HS_OWNED)
+			{
+				btn->setVisible(true);
 			}
 		}
 		else if (tag == ATTR_CHANGEBTN)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("changebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			if (m_heroData->getState() == HS_READY)
+			if (herostate == HS_READY || herostate == HS_TAKEON)
 			{
 				btn->setVisible(false);
 			}
-			else
+			else if (herostate == HS_OWNED)
 			{
 				//前4种职业等级10可转职，
-				if (m_heroData->getVocation() <= 3 && m_heroData->getLevel() == 9)
+				if (m_heroData->getVocation() <= 3)
 				{
-					btn->setEnabled(true);
+					btn->setVisible(true);
+					if (m_heroData->getLevel() == 9)
+						btn->setEnabled(true);
+					else
+						btn->setEnabled(false);
 				}
 				else
 				{
-					btn->setEnabled(false);
+					btn->setVisible(false);
 				}
 			}
 		}
@@ -210,10 +222,9 @@ bool HeroAttrLayer::init(Hero* herodata)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("recruitbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			if (m_heroData->getState() == HS_READY)
+			if (herostate == HS_READY)
 			{
-				//if (m_heroData->getState() > 0)
-				//	btn->setEnabled(false);
+				btn->setVisible(true);
 
 			}
 			else
@@ -225,13 +236,17 @@ bool HeroAttrLayer::init(Hero* herodata)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("backbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			if (m_heroData->getState() == HS_READY)
+			if (herostate == HS_READY)
 			{
 				btn->setPositionX(500);
 			}
-			else
+			else if (herostate == HS_OWNED)
 			{
 				btn->setPositionX(600);
+			}
+			else if (herostate == HS_TAKEON)
+			{
+				btn->setPositionX(360);
 			}
 		}
 	}
@@ -252,7 +267,7 @@ void HeroAttrLayer::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)
 
 }
 
-void HeroAttrLayer::editBoxEditingDidEnd(cocos2d::ui::EditBox* editBox)
+void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox, EditBoxEndAction action)
 {
 	if (GlobalInstance::getInstance()->checkifSameName(editBox->getText()))
 	{
@@ -262,6 +277,26 @@ void HeroAttrLayer::editBoxEditingDidEnd(cocos2d::ui::EditBox* editBox)
 	else
 	{
 		m_heroData->setName(editBox->getText());
+
+		if (g_mainScene != NULL)
+		{
+			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+			if (innroomLayer != NULL)
+			{
+				innroomLayer->getMyHeroNode(this->getTag())->updateData();
+			}
+			else
+			{
+				OutTownLayer* outTown = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
+				outTown->getMyCardHeroNode(this->getTag())->setData(GlobalInstance::myCardHeros[this->getTag()]);
+				SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
+				sellayer->getMyHeroNode(this->getTag())->updateData();
+			}
+		}
+		else if (g_MapBlockScene != NULL)
+		{
+			g_MapBlockScene->getFightHeroNode(this->getTag())->setData(GlobalInstance::myCardHeros[this->getTag()]);
+		}
 	}
 }
 

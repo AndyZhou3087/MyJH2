@@ -4,8 +4,9 @@
 #include "CommonFuncs.h"
 #include "Resource.h"
 #include "MyRes.h"
+#include "Const.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-//#include "iosfunc.h"
+#include "iosfunc.h"
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/jni/JniHelper.h"
 #endif
@@ -48,6 +49,110 @@ GlobalInstance* GlobalInstance::getInstance() {
 	}
 	return _Context;
 }
+
+std::string GlobalInstance::UUID()
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	return getDeviceIDInKeychain();
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	return "00000000-0000-0000-0000-000000000000";
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	std::string ret;
+	JniMethodInfo methodInfo;
+	
+	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "UUID", "()Ljava/lang/String;"))
+	{
+		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
+	}
+	return ret;
+#endif
+}
+
+std::string GlobalInstance::getVersionCode()
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	return getvercode();
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	return "1.0.0";
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	std::string ret;
+	JniMethodInfo methodInfo;
+	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getVersion", "()Ljava/lang/String;"))
+	{
+		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
+	}
+	return ret;
+#endif
+}
+
+std::string GlobalInstance::getPackageName()
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	return getbundleid();
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	return "com.kuxx.jh";
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	std::string ret;
+	JniMethodInfo methodInfo;
+	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getPkgName", "()Ljava/lang/String;"))
+	{
+		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
+	}
+	return ret;
+#endif
+}
+
+std::string GlobalInstance::getChannelId()
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	return getbundleid();
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	return "win32";
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	std::string ret;
+	JniMethodInfo methodInfo;
+	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getChannelID", "()Ljava/lang/String;"))
+	{
+		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
+	}
+	return ret;
+#endif
+}
+
+
+int GlobalInstance::getSysSecTime()
+{
+	time_t timep;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	time(&timep);
+#else
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	timep = tv.tv_sec;
+#endif
+	return timep;
+}
+
+int GlobalInstance::createRandomNum(int val)
+{
+	int syssec = GlobalInstance::getSysSecTime();
+	int static randNum = 0;
+	randNum += 3600 * 24;
+	syssec += randNum;
+	if (randNum < 0 || randNum > INT32_MAX)
+	{
+		syssec = 0;
+		randNum = 0;
+	}
+	srand(syssec);
+	int r = rand() % val;
+	return r;
+}
+
 
 void GlobalInstance::loadInitData()
 {

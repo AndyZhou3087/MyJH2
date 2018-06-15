@@ -141,6 +141,6 @@ void CommonFuncs::changeGray(cocos2d::Node* node)
 void CommonFuncs::removeGray(cocos2d::Node* node)
 {
 	std::string str = GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP;//ShaderPositionTextureColor_noMVP;
-	GLProgram * pProgram = ShaderCache::getInstance()->getGLProgram(str);
+	GLProgram * pProgram = GLProgramCache::getInstance()->getGLProgram(str);
 	node->setGLProgram(pProgram);
 }

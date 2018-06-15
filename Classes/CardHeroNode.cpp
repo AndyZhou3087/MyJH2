@@ -3,9 +3,6 @@
 #include "Resource.h"
 #include "SelectMyHerosLayer.h"
 
-//5个品质英雄颜色
-//Color3B POTENTIALCOLOR[5] = { Color3B(36, 255, 82), Color3B(52, 179, 240), Color3B(252, 77, 226), Color3B(255, 214, 71), Color3B(255, 69, 69)};
-
 CardHeroNode::CardHeroNode()
 {
 
@@ -103,5 +100,8 @@ void CardHeroNode::setData(Hero* herodata)
 		lvlbl->setVisible(false);
 		namelbl->setVisible(false);
 		desclbl->setVisible(true);
+		std::string indexstr = StringUtils::format("selheronum%d", this->getTag() + 1);
+		std::string descstr = StringUtils::format(ResourceLang::map_lang["selherohinttext"].c_str(), ResourceLang::map_lang[indexstr].c_str());
+		desclbl->setString(descstr);
 	}
 }

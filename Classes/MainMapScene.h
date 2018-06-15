@@ -6,7 +6,9 @@
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
+
 USING_NS_CC;
+
 class MainMapScene :public Layer
 {
 public:

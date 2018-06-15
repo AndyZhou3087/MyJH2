@@ -3,7 +3,6 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "RandHeroLayer.h"
-#include "MyHeroNode.h"
 #include "ConsumeResActionLayer.h"
 #include "MovingLabel.h"
 #include "DataSave.h"
@@ -161,6 +160,13 @@ void InnRoomLayer::refreshMyHerosUi()
 		m_contentscroll->addChild(heronode, 0, i);
 	}
 }
+
+
+MyHeroNode* InnRoomLayer::getMyHeroNode(int index)
+{
+	return (MyHeroNode*)m_contentscroll->getChildByTag(index);
+}
+
 
 void InnRoomLayer::onExit()
 {

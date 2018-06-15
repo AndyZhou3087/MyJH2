@@ -85,8 +85,8 @@ bool OutTownLayer::init()
 	{
 		m_myCardHerosNode[i] = CardHeroNode::create();
 		m_myCardHerosNode[i]->setPosition(Vec2(140 + i%3*215, /*745 + */1030-i/3*250));
-		m_myCardHerosNode[i]->setData(GlobalInstance::myCardHeros[i]);
 		this->addChild(m_myCardHerosNode[i], 0, i);
+		m_myCardHerosNode[i]->setData(GlobalInstance::myCardHeros[i]);
 	}
 	std::string str;
 	for (int i = 0; i < 1; i++)
@@ -225,4 +225,9 @@ bool OutTownLayer::isCarryOver()
 void OutTownLayer::onExit()
 {
 	Layer::onExit();
+}
+
+CardHeroNode* OutTownLayer::getMyCardHeroNode(int index)
+{
+	return m_myCardHerosNode[index];
 }

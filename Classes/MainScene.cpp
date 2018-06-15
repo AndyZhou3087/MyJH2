@@ -14,7 +14,7 @@ USING_NS_CC;
 MainScene* g_mainScene = NULL;
 MainScene::MainScene()
 {
-
+	m_isDraging = false;
 }
 
 MainScene::~MainScene()
@@ -104,17 +104,32 @@ bool MainScene::init()
 
 		buildnametext = (cocos2d::ui::ImageView*)buildParent->getChildByName(bulidingname);
 
-		buildnametext->loadTexture(ResourcePath::makeTextImgPath(bulidingname, langtype), cocos2d::ui::TextureResType::PLIST);
+		buildnametext->loadTexture(ResourcePath::makeTextImgPath(bulidingname, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-		buildingNomal->setSwallowTouches(true);
+		buildingNomal->setSwallowTouches(false);
 		buildingNomal->setUserData((void*)buildingSelect);
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
 		buildingSelect->setVisible(false);
 		buildingSelect->setUserData((void*)it->first.c_str());
-		log(it->first.c_str());
 		i++;
 	}
 
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = [=](Touch *touch, Event *event)
+	{
+		m_isDraging = false;
+		m_startClickX = touch->getLocation().x;
+		m_startClickY = touch->getLocation().y;
+		return true;
+	};
+
+	listener->onTouchMoved = [=](Touch *touch, Event *event)
+	{
+		if (fabsf(m_startClickX - touch->getLocation().x) > 20 || fabsf(m_startClickY - touch->getLocation().y) > 20)
+			m_isDraging = true;
+	};
+	listener->setSwallowTouches(true);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
 }
 
@@ -147,36 +162,42 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 	std::string buildname = (char*)snode->getUserData();
 	switch (type)
 	{
-	case cocos2d::ui::Widget::TouchEventType::BEGAN:
-		snode->setVisible(true);
-		break;
-	case cocos2d::ui::Widget::TouchEventType::MOVED:
-		break;
-	case cocos2d::ui::Widget::TouchEventType::ENDED:
-	{
-		snode->setVisible(false);
-		Layer* layer = NULL;
-		if (buildname.compare("6innroom") == 0)
+		case cocos2d::ui::Widget::TouchEventType::BEGAN:
 		{
-			layer = InnRoomLayer::create(Building::map_buildingDatas[buildname]);
+			snode->setVisible(true);
 		}
-		else if (buildname.compare("7homehill") == 0)
+		break;
+		case cocos2d::ui::Widget::TouchEventType::MOVED:
+			break;
+		case cocos2d::ui::Widget::TouchEventType::ENDED:
 		{
-			layer = HomeHillLayer::create(Building::map_buildingDatas[buildname]);
+			snode->setVisible(false);
+			if (m_isDraging)
+				return;
+			Layer* layer = NULL;
+			if (buildname.compare("6innroom") == 0)
+			{
+				layer = InnRoomLayer::create(Building::map_buildingDatas[buildname]);
+			}
+			else if (buildname.compare("7homehill") == 0)
+			{
+				layer = HomeHillLayer::create(Building::map_buildingDatas[buildname]);
+			}
+			else if (buildname.compare("0outtown") == 0)
+			{
+				layer = OutTownLayer::create();
+			}
+			if (layer != NULL)
+				this->addChild(layer, 0, buildname);
+			break;
 		}
-		else if (buildname.compare("0outtown") == 0)
+		case cocos2d::ui::Widget::TouchEventType::CANCELED:
 		{
-			layer = OutTownLayer::create();
+			snode->setVisible(false);
 		}
-		if (layer != NULL)
-			this->addChild(layer, 0, buildname);
-		break;
-	}
-	case cocos2d::ui::Widget::TouchEventType::CANCELED:
-		snode->setVisible(false);
-		break;
-	default:
-		break;
+			break;
+		default:
+			break;
 	}
 }
 

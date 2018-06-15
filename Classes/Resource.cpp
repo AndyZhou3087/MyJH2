@@ -63,7 +63,6 @@ void ResourceLang::load(int langtype)
 
 void ResourceLang::parseXml(int langtype)
 {
-
 	tinyxml2::XMLDocument *pDoc = new tinyxml2::XMLDocument();
 	unsigned char pBuffer[5000];
 	memset(pBuffer, 0x00, sizeof(pBuffer));

@@ -2,6 +2,8 @@ cocos2d/
 proj.linux/
 proj.win32/
 proj.win10/
+proj.android/.idea/
+bin/
 JHCocosUI/Resources/res/
 .cocos-project.json
 CMakeLists.txt

@@ -78,6 +78,8 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 
 	statetag = (cocos2d::ui::ImageView*)csbnode->getChildByName("tag");
 
+	tagtext = (cocos2d::ui::Text*)statetag->getChildByName("text");
+
 	setStateTag(herodata->getState());
 
 	for (int i = 0; i < 5; i++)
@@ -130,7 +132,8 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		else if (m_showtype == HS_TAKEON)
 		{
 			SelectMyHerosLayer* selectheroLayer = (SelectMyHerosLayer*)g_mainScene->getChildByName("0outtown")->getChildByName("selectmyheroslayer");
-			CardHeroNode* cardheroNode = (CardHeroNode*)g_mainScene->getChildByName("0outtown")->getChildByTag(selectheroLayer->getTag());
+			int selectIndex = selectheroLayer->getTag();
+			CardHeroNode* cardheroNode = (CardHeroNode*)g_mainScene->getChildByName("0outtown")->getChildByTag(selectIndex);
 			if (m_heroData->getState() == HS_OWNED)
 			{
 				//清楚掉之前选择的
@@ -140,23 +143,36 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					{
 						GlobalInstance::vec_myHeros[i]->setState(HS_OWNED);
 						GlobalInstance::vec_myHeros[i]->setPos(0);
-						selectheroLayer->getMyHeroNode(i)->setStateTag(m_heroData->getState());
+						selectheroLayer->getMyHeroNode(i)->setStateTag(HS_OWNED);
 						break;
 					}
 				}
 				m_heroData->setState(HS_TAKEON);
-				m_heroData->setPos(selectheroLayer->getTag() + 1);
+				m_heroData->setPos(selectIndex + 1);
+				GlobalInstance::myCardHeros[selectIndex] = m_heroData;
 				GlobalInstance::getInstance()->saveMyHeros();
-				setStateTag(m_heroData->getState());
+				setStateTag(HS_TAKEON);
+				
 				cardheroNode->setData(m_heroData);
 			}
 			else if (m_heroData->getState() == HS_TAKEON)
 			{
-				CardHeroNode* cardheroNode = (CardHeroNode*)g_mainScene->getChildByName("0outtown")->getChildByTag(m_heroData->getPos() - 1);
+				int heroinwhere = 0;
+				if (selectIndex + 1 == m_heroData->getPos())//取消框里的那个英雄
+				{
+					heroinwhere = selectIndex;
+				}
+				else//取消另外一个框的英雄
+				{
+					heroinwhere = m_heroData->getPos() - 1;
+					cardheroNode = (CardHeroNode*)g_mainScene->getChildByName("0outtown")->getChildByTag(heroinwhere);
+				}
+				GlobalInstance::myCardHeros[heroinwhere] = NULL;
+
 				m_heroData->setState(HS_OWNED);
 				m_heroData->setPos(0);
 				GlobalInstance::getInstance()->saveMyHeros();
-				setStateTag(m_heroData->getState());
+				setStateTag(HS_OWNED);
 				cardheroNode->setData(NULL);
 			}
 
@@ -203,6 +219,11 @@ void MyHeroNode::setStateTag(int state)
 		else
 			statetag->setVisible(false);
 		btntextstr = "firebtn_text";
+	}
+	if (statetag->isVisible())
+	{
+		std::string tagtextstr = StringUtils::format("%d", m_heroData->getPos());
+		tagtext->setString(tagtextstr);
 	}
 	actbtntxt->loadTexture(ResourcePath::makeTextImgPath(btntextstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 }

@@ -41,7 +41,7 @@ private:
 	*************************************/
 	void editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox);
 
-	void editBoxEditingDidEnd(cocos2d::ui::EditBox* editBox);
+	void editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox, EditBoxEndAction action);
 
 	void editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std::string &text);
 

@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
-    buildToolsVersion PROP_BUILD_TOOLS_VERSION
 
     defaultConfig {
         applicationId "com.kxx.myjh"
@@ -102,6 +101,7 @@ android {
             }
         }
     }
+    buildToolsVersion '27.0.3'
 }
 
 android.applicationVariants.all { variant ->

@@ -1,6 +1,7 @@
 ﻿#include "FightHeroNode.h"
 #include "CommonFuncs.h"
 #include "Resource.h"
+#include "HeroAttrLayer.h"
 
 FightHeroNode::FightHeroNode()
 {
@@ -54,11 +55,17 @@ void FightHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		if (m_heroData != NULL)
+		{
+			Layer* layer = HeroAttrLayer::create(m_heroData);
+			this->getParent()->addChild(layer, 0, this->getTag());
+		}
 	}
 }
 
 void FightHeroNode::setData(Hero* herodata)
 {
+	m_heroData = herodata;
 	if (herodata != NULL)
 	{
 		std::string str = StringUtils::format("cardh_%d_%d.png", herodata->getVocation(), herodata->getSex());
