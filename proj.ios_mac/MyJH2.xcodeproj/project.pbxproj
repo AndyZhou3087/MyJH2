@@ -19,18 +19,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		294D0D641D0D56D500F7F5D4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294D0D631D0D56D500F7F5D4 /* CoreText.framework */; };
-		3EACC98F19EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
-		3EACC99019EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
-		46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
-		46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
-		46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7719C43A67006E1F66 /* CloseSelected.png */; };
-		46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7719C43A67006E1F66 /* CloseSelected.png */; };
-		46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7A19C43A67006E1F66 /* HelloWorld.png */; };
-		46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7A19C43A67006E1F66 /* HelloWorld.png */; };
-		46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
-		46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
-		46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */; };
-		46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */; };
 		503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 503AE0F617EB97AB00D1A890 /* Icon.icns */; };
 		503AE10517EB98FF00D1A890 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 503AE10317EB98FF00D1A890 /* main.cpp */; };
 		503AE11B17EB9C5A00D1A890 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503AE11A17EB9C5A00D1A890 /* IOKit.framework */; };
@@ -45,72 +33,79 @@
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
-		722E37C720CA844200E73F9E /* CardHeroNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 722E37BB20CA844000E73F9E /* CardHeroNode.cpp */; };
-		722E37C820CA844200E73F9E /* ConsumeResActionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 722E37BC20CA844000E73F9E /* ConsumeResActionLayer.cpp */; };
-		722E37C920CA844200E73F9E /* MainMapScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 722E37BD20CA844100E73F9E /* MainMapScene.cpp */; };
-		722E37CA20CA844200E73F9E /* SelectSubMapLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 722E37C220CA844200E73F9E /* SelectSubMapLayer.cpp */; };
-		722E37CB20CA844200E73F9E /* MapBlockScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 722E37C420CA844200E73F9E /* MapBlockScene.cpp */; };
-		722E37CC20CA844200E73F9E /* SelectMyHerosLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 722E37C620CA844200E73F9E /* SelectMyHerosLayer.cpp */; };
-		722E37D820CA850C00E73F9E /* mapui.plist in Resources */ = {isa = PBXBuildFile; fileRef = 722E37CD20CA850A00E73F9E /* mapui.plist */; };
-		722E37D920CA850C00E73F9E /* selectMapNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 722E37CE20CA850A00E73F9E /* selectMapNode.csb */; };
-		722E37DA20CA850C00E73F9E /* cardHeroNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 722E37CF20CA850A00E73F9E /* cardHeroNode.csb */; };
-		722E37DB20CA850C00E73F9E /* fightHeroNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 722E37D020CA850B00E73F9E /* fightHeroNode.csb */; };
-		722E37DC20CA850C00E73F9E /* mainMapLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 722E37D120CA850B00E73F9E /* mainMapLayer.csb */; };
-		722E37DD20CA850C00E73F9E /* consumeResActionLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 722E37D220CA850B00E73F9E /* consumeResActionLayer.csb */; };
-		722E37DE20CA850C00E73F9E /* selectSubMapLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 722E37D320CA850B00E73F9E /* selectSubMapLayer.csb */; };
-		722E37DF20CA850C00E73F9E /* mapBlockLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 722E37D420CA850B00E73F9E /* mapBlockLayer.csb */; };
-		722E37E020CA850C00E73F9E /* mapui.png in Resources */ = {isa = PBXBuildFile; fileRef = 722E37D520CA850C00E73F9E /* mapui.png */; };
-		722E37E120CA850C00E73F9E /* outTownLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 722E37D620CA850C00E73F9E /* outTownLayer.csb */; };
-		722E37E220CA850C00E73F9E /* selectMyHerosLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 722E37D720CA850C00E73F9E /* selectMyHerosLayer.csb */; };
-		722E37E720CA878700E73F9E /* OutTownLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 722E37E320CA878600E73F9E /* OutTownLayer.cpp */; };
-		722E37E820CA878700E73F9E /* FightHeroNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 722E37E420CA878600E73F9E /* FightHeroNode.cpp */; };
-		72CC3A5E20B558C500A99C0A /* DataSave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A2320B558BF00A99C0A /* DataSave.cpp */; };
-		72CC3A5F20B558C500A99C0A /* HttpUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A2420B558BF00A99C0A /* HttpUtil.cpp */; };
-		72CC3A6020B558C500A99C0A /* MyHeroNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A2520B558BF00A99C0A /* MyHeroNode.cpp */; };
-		72CC3A6120B558C500A99C0A /* RandHeroLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A2620B558BF00A99C0A /* RandHeroLayer.cpp */; };
-		72CC3A6220B558C500A99C0A /* HttpDataSwap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A2820B558BF00A99C0A /* HttpDataSwap.cpp */; };
-		72CC3A6320B558C500A99C0A /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A2B20B558C000A99C0A /* LoadingScene.cpp */; };
-		72CC3A6420B558C500A99C0A /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A2F20B558C000A99C0A /* Building.cpp */; };
-		72CC3A6520B558C500A99C0A /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A3020B558C000A99C0A /* Hero.cpp */; };
-		72CC3A6620B558C500A99C0A /* RandHeroNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A3420B558C000A99C0A /* RandHeroNode.cpp */; };
-		72CC3A6720B558C500A99C0A /* MyRes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A3820B558C100A99C0A /* MyRes.cpp */; };
-		72CC3A6820B558C500A99C0A /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A3920B558C100A99C0A /* json.cpp */; };
-		72CC3A6920B558C500A99C0A /* MovingLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A3A20B558C100A99C0A /* MovingLabel.cpp */; };
-		72CC3A6A20B558C500A99C0A /* ResCreator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A3C20B558C100A99C0A /* ResCreator.cpp */; };
-		72CC3A6B20B558C500A99C0A /* InnRoomLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A3F20B558C100A99C0A /* InnRoomLayer.cpp */; };
-		72CC3A6C20B558C500A99C0A /* HomeHillLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A4120B558C200A99C0A /* HomeHillLayer.cpp */; };
-		72CC3A6D20B558C500A99C0A /* GlobalInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A4420B558C200A99C0A /* GlobalInstance.cpp */; };
-		72CC3A6E20B558C500A99C0A /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A4620B558C200A99C0A /* MainScene.cpp */; };
-		72CC3A6F20B558C500A99C0A /* DataBase64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A4920B558C300A99C0A /* DataBase64.cpp */; };
-		72CC3A7120B558C500A99C0A /* HeroAttrLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A4C20B558C300A99C0A /* HeroAttrLayer.cpp */; };
-		72CC3A7220B558C500A99C0A /* MainMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A4D20B558C300A99C0A /* MainMenuLayer.cpp */; };
-		72CC3A7320B558C500A99C0A /* ResBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A4E20B558C300A99C0A /* ResBase.cpp */; };
-		72CC3A7420B558C500A99C0A /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A4F20B558C300A99C0A /* MD5.cpp */; };
-		72CC3A7520B558C500A99C0A /* CommonFuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A5120B558C400A99C0A /* CommonFuncs.cpp */; };
-		72CC3A7620B558C500A99C0A /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A5220B558C400A99C0A /* SoundManager.cpp */; };
-		72CC3A7820B558C500A99C0A /* HillResNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A5A20B558C500A99C0A /* HillResNode.cpp */; };
-		72CC3A7920B558C500A99C0A /* Resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CC3A5D20B558C500A99C0A /* Resource.cpp */; };
-		72CC3A9120B558E400A99C0A /* myHeroNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A7A20B558E100A99C0A /* myHeroNode.csb */; };
-		72CC3A9220B558E400A99C0A /* loadingbg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A7B20B558E100A99C0A /* loadingbg.jpg */; };
-		72CC3A9320B558E400A99C0A /* json in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A7C20B558E100A99C0A /* json */; };
-		72CC3A9420B558E400A99C0A /* randHeroLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A7D20B558E100A99C0A /* randHeroLayer.csb */; };
-		72CC3A9520B558E400A99C0A /* ui.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A7E20B558E100A99C0A /* ui.plist */; };
-		72CC3A9620B558E400A99C0A /* hillResNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A7F20B558E200A99C0A /* hillResNode.csb */; };
-		72CC3A9720B558E400A99C0A /* LoadingLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8020B558E200A99C0A /* LoadingLayer.csb */; };
-		72CC3A9820B558E400A99C0A /* homeHillLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8120B558E200A99C0A /* homeHillLayer.csb */; };
-		72CC3A9A20B558E400A99C0A /* mainimg in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8320B558E200A99C0A /* mainimg */; };
-		72CC3A9B20B558E400A99C0A /* ui.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8420B558E200A99C0A /* ui.png */; };
-		72CC3A9C20B558E400A99C0A /* text_zh_cn.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8520B558E200A99C0A /* text_zh_cn.png */; };
-		72CC3A9D20B558E400A99C0A /* lang in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8620B558E200A99C0A /* lang */; };
-		72CC3A9F20B558E400A99C0A /* heroname in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8820B558E200A99C0A /* heroname */; };
-		72CC3AA020B558E400A99C0A /* innRoomLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8920B558E200A99C0A /* innRoomLayer.csb */; };
-		72CC3AA120B558E400A99C0A /* MainLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8A20B558E300A99C0A /* MainLayer.csb */; };
-		72CC3AA220B558E400A99C0A /* MainMenuLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8B20B558E300A99C0A /* MainMenuLayer.csb */; };
-		72CC3AA320B558E400A99C0A /* heroAttrLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8C20B558E300A99C0A /* heroAttrLayer.csb */; };
-		72CC3AA420B558E400A99C0A /* text_zh_cn.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8D20B558E300A99C0A /* text_zh_cn.plist */; };
-		72CC3AA520B558E400A99C0A /* images in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8E20B558E300A99C0A /* images */; };
-		72CC3AA620B558E400A99C0A /* randHeroNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A8F20B558E300A99C0A /* randHeroNode.csb */; };
-		72CC3AA720B558E400A99C0A /* Default in Resources */ = {isa = PBXBuildFile; fileRef = 72CC3A9020B558E300A99C0A /* Default */; };
+		720452DB20D892200011D560 /* DataSave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7204528A20D892180011D560 /* DataSave.cpp */; };
+		720452DC20D892200011D560 /* HttpUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7204528B20D892190011D560 /* HttpUtil.cpp */; };
+		720452DD20D892200011D560 /* MyHeroNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7204528C20D892190011D560 /* MyHeroNode.cpp */; };
+		720452DE20D892200011D560 /* RandHeroLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7204528D20D892190011D560 /* RandHeroLayer.cpp */; };
+		720452DF20D892200011D560 /* HttpDataSwap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7204528F20D892190011D560 /* HttpDataSwap.cpp */; };
+		720452E020D892200011D560 /* JHKeychain.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7204529020D892190011D560 /* JHKeychain.mm */; };
+		720452E120D892200011D560 /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7204529320D892190011D560 /* LoadingScene.cpp */; };
+		720452E220D892200011D560 /* OutTownLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7204529520D892190011D560 /* OutTownLayer.cpp */; };
+		720452E320D892200011D560 /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7204529B20D8921A0011D560 /* Building.cpp */; };
+		720452E420D892200011D560 /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7204529C20D8921A0011D560 /* Hero.cpp */; };
+		720452E520D892200011D560 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 720452A020D8921A0011D560 /* MBProgressHUD.m */; };
+		720452E620D892200011D560 /* RandHeroNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452A320D8921A0011D560 /* RandHeroNode.cpp */; };
+		720452E720D892200011D560 /* MyRes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452A920D8921B0011D560 /* MyRes.cpp */; };
+		720452E820D892200011D560 /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452AA20D8921B0011D560 /* json.cpp */; };
+		720452E920D892200011D560 /* MovingLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452AB20D8921B0011D560 /* MovingLabel.cpp */; };
+		720452EA20D892200011D560 /* ResCreator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452AC20D8921B0011D560 /* ResCreator.cpp */; };
+		720452EB20D892200011D560 /* SelectMyHerosLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452AD20D8921B0011D560 /* SelectMyHerosLayer.cpp */; };
+		720452EC20D892200011D560 /* FightHeroNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452AF20D8921B0011D560 /* FightHeroNode.cpp */; };
+		720452ED20D892200011D560 /* InnRoomLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452B420D8921C0011D560 /* InnRoomLayer.cpp */; };
+		720452EE20D892200011D560 /* iosfunc.mm in Sources */ = {isa = PBXBuildFile; fileRef = 720452B620D8921C0011D560 /* iosfunc.mm */; };
+		720452EF20D892200011D560 /* HomeHillLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452B720D8921C0011D560 /* HomeHillLayer.cpp */; };
+		720452F020D892200011D560 /* GlobalInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452BA20D8921D0011D560 /* GlobalInstance.cpp */; };
+		720452F120D892200011D560 /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452BC20D8921D0011D560 /* MainScene.cpp */; };
+		720452F220D892200011D560 /* MapBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452BD20D8921D0011D560 /* MapBlock.cpp */; };
+		720452F320D892200011D560 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452BE20D8921D0011D560 /* AppDelegate.cpp */; };
+		720452F420D892200011D560 /* DataBase64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452C120D8921D0011D560 /* DataBase64.cpp */; };
+		720452F520D892200011D560 /* ConsumeResActionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452C220D8921D0011D560 /* ConsumeResActionLayer.cpp */; };
+		720452F620D892200011D560 /* HeroAttrLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452C320D8921E0011D560 /* HeroAttrLayer.cpp */; };
+		720452F720D892200011D560 /* MainMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452C520D8921E0011D560 /* MainMenuLayer.cpp */; };
+		720452F820D892200011D560 /* ResBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452C620D8921E0011D560 /* ResBase.cpp */; };
+		720452F920D892200011D560 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452C720D8921E0011D560 /* MD5.cpp */; };
+		720452FA20D892200011D560 /* SelectSubMapLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452C820D8921E0011D560 /* SelectSubMapLayer.cpp */; };
+		720452FB20D892200011D560 /* CommonFuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452CA20D8921E0011D560 /* CommonFuncs.cpp */; };
+		720452FC20D892200011D560 /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452CB20D8921E0011D560 /* SoundManager.cpp */; };
+		720452FD20D892200011D560 /* MainMapScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452CE20D8921F0011D560 /* MainMapScene.cpp */; };
+		720452FE20D892200011D560 /* HillResNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452D320D8921F0011D560 /* HillResNode.cpp */; };
+		720452FF20D892200011D560 /* MapBlockScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452D520D8921F0011D560 /* MapBlockScene.cpp */; };
+		7204530020D892200011D560 /* CardHeroNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452D620D892200011D560 /* CardHeroNode.cpp */; };
+		7204530120D892200011D560 /* Resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720452DA20D892200011D560 /* Resource.cpp */; };
+		7204532420D892640011D560 /* mapui.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7204530220D8925F0011D560 /* mapui.plist */; };
+		7204532520D892640011D560 /* loadingbg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7204530320D8925F0011D560 /* loadingbg.jpg */; };
+		7204532620D892640011D560 /* ui.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7204530420D892600011D560 /* ui.plist */; };
+		7204532720D892640011D560 /* mapdata in Resources */ = {isa = PBXBuildFile; fileRef = 7204530520D892600011D560 /* mapdata */; };
+		7204532820D892640011D560 /* hillResNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204530620D892600011D560 /* hillResNode.csb */; };
+		7204532920D892640011D560 /* LoadingLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204530720D892600011D560 /* LoadingLayer.csb */; };
+		7204532A20D892640011D560 /* mapBlockLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204530820D892600011D560 /* mapBlockLayer.csb */; };
+		7204532B20D892640011D560 /* text_zh_cn.png in Resources */ = {isa = PBXBuildFile; fileRef = 7204530920D892600011D560 /* text_zh_cn.png */; };
+		7204532C20D892640011D560 /* lang in Resources */ = {isa = PBXBuildFile; fileRef = 7204530A20D892600011D560 /* lang */; };
+		7204532D20D892640011D560 /* heroname in Resources */ = {isa = PBXBuildFile; fileRef = 7204530B20D892610011D560 /* heroname */; };
+		7204532E20D892640011D560 /* MainLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204530C20D892610011D560 /* MainLayer.csb */; };
+		7204532F20D892640011D560 /* MainMenuLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204530D20D892610011D560 /* MainMenuLayer.csb */; };
+		7204533020D892640011D560 /* heroAttrLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204530E20D892610011D560 /* heroAttrLayer.csb */; };
+		7204533120D892640011D560 /* particle in Resources */ = {isa = PBXBuildFile; fileRef = 7204530F20D892610011D560 /* particle */; };
+		7204533220D892640011D560 /* randHeroNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204531020D892610011D560 /* randHeroNode.csb */; };
+		7204533320D892640011D560 /* Default in Resources */ = {isa = PBXBuildFile; fileRef = 7204531120D892610011D560 /* Default */; };
+		7204533420D892640011D560 /* randHeroLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204531220D892620011D560 /* randHeroLayer.csb */; };
+		7204533520D892640011D560 /* json in Resources */ = {isa = PBXBuildFile; fileRef = 7204531320D892620011D560 /* json */; };
+		7204533620D892640011D560 /* cardHeroNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204531420D892620011D560 /* cardHeroNode.csb */; };
+		7204533720D892640011D560 /* fightHeroNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204531520D892620011D560 /* fightHeroNode.csb */; };
+		7204533820D892640011D560 /* selectSubMapLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204531620D892620011D560 /* selectSubMapLayer.csb */; };
+		7204533920D892640011D560 /* consumeResActionLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204531720D892620011D560 /* consumeResActionLayer.csb */; };
+		7204533A20D892640011D560 /* homeHillLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204531820D892620011D560 /* homeHillLayer.csb */; };
+		7204533B20D892640011D560 /* mainimg in Resources */ = {isa = PBXBuildFile; fileRef = 7204531920D892620011D560 /* mainimg */; };
+		7204533C20D892640011D560 /* mapui.png in Resources */ = {isa = PBXBuildFile; fileRef = 7204531A20D892620011D560 /* mapui.png */; };
+		7204533D20D892640011D560 /* selectMyHerosLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204531B20D892630011D560 /* selectMyHerosLayer.csb */; };
+		7204533E20D892640011D560 /* ui.png in Resources */ = {isa = PBXBuildFile; fileRef = 7204531C20D892630011D560 /* ui.png */; };
+		7204533F20D892640011D560 /* selectMapNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204531D20D892630011D560 /* selectMapNode.csb */; };
+		7204534020D892640011D560 /* mainMapLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204531E20D892630011D560 /* mainMapLayer.csb */; };
+		7204534120D892640011D560 /* innRoomLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204531F20D892630011D560 /* innRoomLayer.csb */; };
+		7204534220D892640011D560 /* text_zh_cn.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7204532020D892630011D560 /* text_zh_cn.plist */; };
+		7204534320D892640011D560 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 7204532120D892630011D560 /* images */; };
+		7204534420D892640011D560 /* outTownLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204532220D892630011D560 /* outTownLayer.csb */; };
+		7204534520D892640011D560 /* myHeroNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204532320D892640011D560 /* myHeroNode.csb */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -179,14 +174,6 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		294D0D631D0D56D500F7F5D4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
-		3EACC98E19EE6D4300EB3C5E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
-		46880B7619C43A67006E1F66 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
-		46880B7719C43A67006E1F66 /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
-		46880B7A19C43A67006E1F66 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelloWorld.png; sourceTree = "<group>"; };
-		46880B8419C43A87006E1F66 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
-		46880B8519C43A87006E1F66 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HelloWorldScene.cpp; sourceTree = "<group>"; };
-		46880B8719C43A87006E1F66 /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldScene.h; sourceTree = "<group>"; };
 		503AE0F617EB97AB00D1A890 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		503AE0F717EB97AB00D1A890 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		503AE10317EB98FF00D1A890 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = mac/main.cpp; sourceTree = "<group>"; };
@@ -197,110 +184,122 @@
 		5087E78817EB974C00C73F5D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		5087E78A17EB975400C73F5D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
-		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		722E37BB20CA844000E73F9E /* CardHeroNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CardHeroNode.cpp; sourceTree = "<group>"; };
-		722E37BC20CA844000E73F9E /* ConsumeResActionLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsumeResActionLayer.cpp; sourceTree = "<group>"; };
-		722E37BD20CA844100E73F9E /* MainMapScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMapScene.cpp; sourceTree = "<group>"; };
-		722E37BE20CA844100E73F9E /* SelectMyHerosLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMyHerosLayer.h; sourceTree = "<group>"; };
-		722E37BF20CA844100E73F9E /* CardHeroNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardHeroNode.h; sourceTree = "<group>"; };
-		722E37C020CA844100E73F9E /* MapBlockScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBlockScene.h; sourceTree = "<group>"; };
-		722E37C120CA844100E73F9E /* MainMapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMapScene.h; sourceTree = "<group>"; };
-		722E37C220CA844200E73F9E /* SelectSubMapLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SelectSubMapLayer.cpp; sourceTree = "<group>"; };
-		722E37C320CA844200E73F9E /* SelectSubMapLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSubMapLayer.h; sourceTree = "<group>"; };
-		722E37C420CA844200E73F9E /* MapBlockScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapBlockScene.cpp; sourceTree = "<group>"; };
-		722E37C520CA844200E73F9E /* ConsumeResActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsumeResActionLayer.h; sourceTree = "<group>"; };
-		722E37C620CA844200E73F9E /* SelectMyHerosLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SelectMyHerosLayer.cpp; sourceTree = "<group>"; };
-		722E37CD20CA850A00E73F9E /* mapui.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mapui.plist; sourceTree = "<group>"; };
-		722E37CE20CA850A00E73F9E /* selectMapNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = selectMapNode.csb; sourceTree = "<group>"; };
-		722E37CF20CA850A00E73F9E /* cardHeroNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = cardHeroNode.csb; sourceTree = "<group>"; };
-		722E37D020CA850B00E73F9E /* fightHeroNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = fightHeroNode.csb; sourceTree = "<group>"; };
-		722E37D120CA850B00E73F9E /* mainMapLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainMapLayer.csb; sourceTree = "<group>"; };
-		722E37D220CA850B00E73F9E /* consumeResActionLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = consumeResActionLayer.csb; sourceTree = "<group>"; };
-		722E37D320CA850B00E73F9E /* selectSubMapLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = selectSubMapLayer.csb; sourceTree = "<group>"; };
-		722E37D420CA850B00E73F9E /* mapBlockLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = mapBlockLayer.csb; sourceTree = "<group>"; };
-		722E37D520CA850C00E73F9E /* mapui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapui.png; sourceTree = "<group>"; };
-		722E37D620CA850C00E73F9E /* outTownLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = outTownLayer.csb; sourceTree = "<group>"; };
-		722E37D720CA850C00E73F9E /* selectMyHerosLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = selectMyHerosLayer.csb; sourceTree = "<group>"; };
-		722E37E320CA878600E73F9E /* OutTownLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OutTownLayer.cpp; sourceTree = "<group>"; };
-		722E37E420CA878600E73F9E /* FightHeroNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FightHeroNode.cpp; sourceTree = "<group>"; };
-		722E37E520CA878700E73F9E /* FightHeroNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightHeroNode.h; sourceTree = "<group>"; };
-		722E37E620CA878700E73F9E /* OutTownLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutTownLayer.h; sourceTree = "<group>"; };
-		72CC3A2320B558BF00A99C0A /* DataSave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataSave.cpp; sourceTree = "<group>"; };
-		72CC3A2420B558BF00A99C0A /* HttpUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HttpUtil.cpp; sourceTree = "<group>"; };
-		72CC3A2520B558BF00A99C0A /* MyHeroNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyHeroNode.cpp; sourceTree = "<group>"; };
-		72CC3A2620B558BF00A99C0A /* RandHeroLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RandHeroLayer.cpp; sourceTree = "<group>"; };
-		72CC3A2720B558BF00A99C0A /* RandHeroNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandHeroNode.h; sourceTree = "<group>"; };
-		72CC3A2820B558BF00A99C0A /* HttpDataSwap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HttpDataSwap.cpp; sourceTree = "<group>"; };
-		72CC3A2920B558C000A99C0A /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
-		72CC3A2A20B558C000A99C0A /* MyRes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRes.h; sourceTree = "<group>"; };
-		72CC3A2B20B558C000A99C0A /* LoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadingScene.cpp; sourceTree = "<group>"; };
-		72CC3A2C20B558C000A99C0A /* MovingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovingLabel.h; sourceTree = "<group>"; };
-		72CC3A2D20B558C000A99C0A /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
-		72CC3A2E20B558C000A99C0A /* ResCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResCreator.h; sourceTree = "<group>"; };
-		72CC3A2F20B558C000A99C0A /* Building.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Building.cpp; sourceTree = "<group>"; };
-		72CC3A3020B558C000A99C0A /* Hero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hero.cpp; sourceTree = "<group>"; };
-		72CC3A3120B558C000A99C0A /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
-		72CC3A3220B558C000A99C0A /* RandHeroLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandHeroLayer.h; sourceTree = "<group>"; };
-		72CC3A3320B558C000A99C0A /* HomeHillLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHillLayer.h; sourceTree = "<group>"; };
-		72CC3A3420B558C000A99C0A /* RandHeroNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RandHeroNode.cpp; sourceTree = "<group>"; };
-		72CC3A3520B558C100A99C0A /* HeroAttrLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroAttrLayer.h; sourceTree = "<group>"; };
-		72CC3A3620B558C100A99C0A /* Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
-		72CC3A3720B558C100A99C0A /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScene.h; sourceTree = "<group>"; };
-		72CC3A3820B558C100A99C0A /* MyRes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyRes.cpp; sourceTree = "<group>"; };
-		72CC3A3920B558C100A99C0A /* json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json.cpp; sourceTree = "<group>"; };
-		72CC3A3A20B558C100A99C0A /* MovingLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MovingLabel.cpp; sourceTree = "<group>"; };
-		72CC3A3C20B558C100A99C0A /* ResCreator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResCreator.cpp; sourceTree = "<group>"; };
-		72CC3A3D20B558C100A99C0A /* MyHeroNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHeroNode.h; sourceTree = "<group>"; };
-		72CC3A3E20B558C100A99C0A /* ResBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResBase.h; sourceTree = "<group>"; };
-		72CC3A3F20B558C100A99C0A /* InnRoomLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InnRoomLayer.cpp; sourceTree = "<group>"; };
-		72CC3A4020B558C200A99C0A /* DataSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSave.h; sourceTree = "<group>"; };
-		72CC3A4120B558C200A99C0A /* HomeHillLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomeHillLayer.cpp; sourceTree = "<group>"; };
-		72CC3A4220B558C200A99C0A /* GlobalInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalInstance.h; sourceTree = "<group>"; };
-		72CC3A4320B558C200A99C0A /* DataBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBase64.h; sourceTree = "<group>"; };
-		72CC3A4420B558C200A99C0A /* GlobalInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlobalInstance.cpp; sourceTree = "<group>"; };
-		72CC3A4520B558C200A99C0A /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
-		72CC3A4620B558C200A99C0A /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainScene.cpp; sourceTree = "<group>"; };
-		72CC3A4720B558C200A99C0A /* HttpDataSwap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDataSwap.h; sourceTree = "<group>"; };
-		72CC3A4820B558C200A99C0A /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
-		72CC3A4920B558C300A99C0A /* DataBase64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataBase64.cpp; sourceTree = "<group>"; };
-		72CC3A4B20B558C300A99C0A /* InnRoomLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnRoomLayer.h; sourceTree = "<group>"; };
-		72CC3A4C20B558C300A99C0A /* HeroAttrLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeroAttrLayer.cpp; sourceTree = "<group>"; };
-		72CC3A4D20B558C300A99C0A /* MainMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuLayer.cpp; sourceTree = "<group>"; };
-		72CC3A4E20B558C300A99C0A /* ResBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResBase.cpp; sourceTree = "<group>"; };
-		72CC3A4F20B558C300A99C0A /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MD5.cpp; sourceTree = "<group>"; };
-		72CC3A5020B558C400A99C0A /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
-		72CC3A5120B558C400A99C0A /* CommonFuncs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommonFuncs.cpp; sourceTree = "<group>"; };
-		72CC3A5220B558C400A99C0A /* SoundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundManager.cpp; sourceTree = "<group>"; };
-		72CC3A5420B558C400A99C0A /* HillResNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HillResNode.h; sourceTree = "<group>"; };
-		72CC3A5520B558C400A99C0A /* DynamicValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicValue.h; sourceTree = "<group>"; };
-		72CC3A5720B558C400A99C0A /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
-		72CC3A5820B558C400A99C0A /* CommonFuncs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFuncs.h; sourceTree = "<group>"; };
-		72CC3A5920B558C400A99C0A /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
-		72CC3A5A20B558C500A99C0A /* HillResNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HillResNode.cpp; sourceTree = "<group>"; };
-		72CC3A5B20B558C500A99C0A /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
-		72CC3A5C20B558C500A99C0A /* HttpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpUtil.h; sourceTree = "<group>"; };
-		72CC3A5D20B558C500A99C0A /* Resource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Resource.cpp; sourceTree = "<group>"; };
-		72CC3A7A20B558E100A99C0A /* myHeroNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = myHeroNode.csb; sourceTree = "<group>"; };
-		72CC3A7B20B558E100A99C0A /* loadingbg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = loadingbg.jpg; sourceTree = "<group>"; };
-		72CC3A7C20B558E100A99C0A /* json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = json; sourceTree = "<group>"; };
-		72CC3A7D20B558E100A99C0A /* randHeroLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = randHeroLayer.csb; sourceTree = "<group>"; };
-		72CC3A7E20B558E100A99C0A /* ui.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ui.plist; sourceTree = "<group>"; };
-		72CC3A7F20B558E200A99C0A /* hillResNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = hillResNode.csb; sourceTree = "<group>"; };
-		72CC3A8020B558E200A99C0A /* LoadingLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoadingLayer.csb; sourceTree = "<group>"; };
-		72CC3A8120B558E200A99C0A /* homeHillLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = homeHillLayer.csb; sourceTree = "<group>"; };
-		72CC3A8320B558E200A99C0A /* mainimg */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mainimg; sourceTree = "<group>"; };
-		72CC3A8420B558E200A99C0A /* ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui.png; sourceTree = "<group>"; };
-		72CC3A8520B558E200A99C0A /* text_zh_cn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text_zh_cn.png; sourceTree = "<group>"; };
-		72CC3A8620B558E200A99C0A /* lang */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lang; sourceTree = "<group>"; };
-		72CC3A8820B558E200A99C0A /* heroname */ = {isa = PBXFileReference; lastKnownFileType = folder; path = heroname; sourceTree = "<group>"; };
-		72CC3A8920B558E200A99C0A /* innRoomLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = innRoomLayer.csb; sourceTree = "<group>"; };
-		72CC3A8A20B558E300A99C0A /* MainLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = MainLayer.csb; sourceTree = "<group>"; };
-		72CC3A8B20B558E300A99C0A /* MainMenuLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = MainMenuLayer.csb; sourceTree = "<group>"; };
-		72CC3A8C20B558E300A99C0A /* heroAttrLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = heroAttrLayer.csb; sourceTree = "<group>"; };
-		72CC3A8D20B558E300A99C0A /* text_zh_cn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = text_zh_cn.plist; sourceTree = "<group>"; };
-		72CC3A8E20B558E300A99C0A /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
-		72CC3A8F20B558E300A99C0A /* randHeroNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = randHeroNode.csb; sourceTree = "<group>"; };
-		72CC3A9020B558E300A99C0A /* Default */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Default; sourceTree = "<group>"; };
+		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		7204528A20D892180011D560 /* DataSave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataSave.cpp; sourceTree = "<group>"; };
+		7204528B20D892190011D560 /* HttpUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HttpUtil.cpp; sourceTree = "<group>"; };
+		7204528C20D892190011D560 /* MyHeroNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyHeroNode.cpp; sourceTree = "<group>"; };
+		7204528D20D892190011D560 /* RandHeroLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RandHeroLayer.cpp; sourceTree = "<group>"; };
+		7204528E20D892190011D560 /* RandHeroNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandHeroNode.h; sourceTree = "<group>"; };
+		7204528F20D892190011D560 /* HttpDataSwap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HttpDataSwap.cpp; sourceTree = "<group>"; };
+		7204529020D892190011D560 /* JHKeychain.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JHKeychain.mm; sourceTree = "<group>"; };
+		7204529120D892190011D560 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		7204529220D892190011D560 /* MyRes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRes.h; sourceTree = "<group>"; };
+		7204529320D892190011D560 /* LoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadingScene.cpp; sourceTree = "<group>"; };
+		7204529420D892190011D560 /* MapBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBlock.h; sourceTree = "<group>"; };
+		7204529520D892190011D560 /* OutTownLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OutTownLayer.cpp; sourceTree = "<group>"; };
+		7204529620D892190011D560 /* MovingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovingLabel.h; sourceTree = "<group>"; };
+		7204529720D892190011D560 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		7204529820D892190011D560 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
+		7204529920D892190011D560 /* MainMapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMapScene.h; sourceTree = "<group>"; };
+		7204529A20D8921A0011D560 /* ResCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResCreator.h; sourceTree = "<group>"; };
+		7204529B20D8921A0011D560 /* Building.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Building.cpp; sourceTree = "<group>"; };
+		7204529C20D8921A0011D560 /* Hero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hero.cpp; sourceTree = "<group>"; };
+		7204529D20D8921A0011D560 /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
+		7204529E20D8921A0011D560 /* ConsumeResActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsumeResActionLayer.h; sourceTree = "<group>"; };
+		7204529F20D8921A0011D560 /* HomeHillLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHillLayer.h; sourceTree = "<group>"; };
+		720452A020D8921A0011D560 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		720452A120D8921A0011D560 /* RandHeroLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandHeroLayer.h; sourceTree = "<group>"; };
+		720452A220D8921A0011D560 /* HeroAttrLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroAttrLayer.h; sourceTree = "<group>"; };
+		720452A320D8921A0011D560 /* RandHeroNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RandHeroNode.cpp; sourceTree = "<group>"; };
+		720452A420D8921A0011D560 /* Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
+		720452A520D8921A0011D560 /* CardHeroNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardHeroNode.h; sourceTree = "<group>"; };
+		720452A620D8921B0011D560 /* SelectSubMapLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSubMapLayer.h; sourceTree = "<group>"; };
+		720452A720D8921B0011D560 /* iosfunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iosfunc.h; sourceTree = "<group>"; };
+		720452A820D8921B0011D560 /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScene.h; sourceTree = "<group>"; };
+		720452A920D8921B0011D560 /* MyRes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyRes.cpp; sourceTree = "<group>"; };
+		720452AA20D8921B0011D560 /* json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json.cpp; sourceTree = "<group>"; };
+		720452AB20D8921B0011D560 /* MovingLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MovingLabel.cpp; sourceTree = "<group>"; };
+		720452AC20D8921B0011D560 /* ResCreator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResCreator.cpp; sourceTree = "<group>"; };
+		720452AD20D8921B0011D560 /* SelectMyHerosLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SelectMyHerosLayer.cpp; sourceTree = "<group>"; };
+		720452AE20D8921B0011D560 /* MyHeroNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHeroNode.h; sourceTree = "<group>"; };
+		720452AF20D8921B0011D560 /* FightHeroNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FightHeroNode.cpp; sourceTree = "<group>"; };
+		720452B020D8921C0011D560 /* FightHeroNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightHeroNode.h; sourceTree = "<group>"; };
+		720452B120D8921C0011D560 /* ResBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResBase.h; sourceTree = "<group>"; };
+		720452B220D8921C0011D560 /* SelectMyHerosLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMyHerosLayer.h; sourceTree = "<group>"; };
+		720452B320D8921C0011D560 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		720452B420D8921C0011D560 /* InnRoomLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InnRoomLayer.cpp; sourceTree = "<group>"; };
+		720452B520D8921C0011D560 /* DataSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSave.h; sourceTree = "<group>"; };
+		720452B620D8921C0011D560 /* iosfunc.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iosfunc.mm; sourceTree = "<group>"; };
+		720452B720D8921C0011D560 /* HomeHillLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomeHillLayer.cpp; sourceTree = "<group>"; };
+		720452B820D8921C0011D560 /* GlobalInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalInstance.h; sourceTree = "<group>"; };
+		720452B920D8921D0011D560 /* DataBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBase64.h; sourceTree = "<group>"; };
+		720452BA20D8921D0011D560 /* GlobalInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlobalInstance.cpp; sourceTree = "<group>"; };
+		720452BB20D8921D0011D560 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
+		720452BC20D8921D0011D560 /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainScene.cpp; sourceTree = "<group>"; };
+		720452BD20D8921D0011D560 /* MapBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapBlock.cpp; sourceTree = "<group>"; };
+		720452BE20D8921D0011D560 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
+		720452BF20D8921D0011D560 /* HttpDataSwap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDataSwap.h; sourceTree = "<group>"; };
+		720452C020D8921D0011D560 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		720452C120D8921D0011D560 /* DataBase64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataBase64.cpp; sourceTree = "<group>"; };
+		720452C220D8921D0011D560 /* ConsumeResActionLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsumeResActionLayer.cpp; sourceTree = "<group>"; };
+		720452C320D8921E0011D560 /* HeroAttrLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeroAttrLayer.cpp; sourceTree = "<group>"; };
+		720452C420D8921E0011D560 /* InnRoomLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnRoomLayer.h; sourceTree = "<group>"; };
+		720452C520D8921E0011D560 /* MainMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuLayer.cpp; sourceTree = "<group>"; };
+		720452C620D8921E0011D560 /* ResBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResBase.cpp; sourceTree = "<group>"; };
+		720452C720D8921E0011D560 /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MD5.cpp; sourceTree = "<group>"; };
+		720452C820D8921E0011D560 /* SelectSubMapLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SelectSubMapLayer.cpp; sourceTree = "<group>"; };
+		720452C920D8921E0011D560 /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
+		720452CA20D8921E0011D560 /* CommonFuncs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommonFuncs.cpp; sourceTree = "<group>"; };
+		720452CB20D8921E0011D560 /* SoundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundManager.cpp; sourceTree = "<group>"; };
+		720452CC20D8921F0011D560 /* JHKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHKeychain.h; sourceTree = "<group>"; };
+		720452CD20D8921F0011D560 /* HillResNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HillResNode.h; sourceTree = "<group>"; };
+		720452CE20D8921F0011D560 /* MainMapScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMapScene.cpp; sourceTree = "<group>"; };
+		720452CF20D8921F0011D560 /* DynamicValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicValue.h; sourceTree = "<group>"; };
+		720452D020D8921F0011D560 /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
+		720452D120D8921F0011D560 /* CommonFuncs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFuncs.h; sourceTree = "<group>"; };
+		720452D220D8921F0011D560 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		720452D320D8921F0011D560 /* HillResNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HillResNode.cpp; sourceTree = "<group>"; };
+		720452D420D8921F0011D560 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
+		720452D520D8921F0011D560 /* MapBlockScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapBlockScene.cpp; sourceTree = "<group>"; };
+		720452D620D892200011D560 /* CardHeroNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CardHeroNode.cpp; sourceTree = "<group>"; };
+		720452D720D892200011D560 /* HttpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpUtil.h; sourceTree = "<group>"; };
+		720452D820D892200011D560 /* MapBlockScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBlockScene.h; sourceTree = "<group>"; };
+		720452D920D892200011D560 /* OutTownLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutTownLayer.h; sourceTree = "<group>"; };
+		720452DA20D892200011D560 /* Resource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Resource.cpp; sourceTree = "<group>"; };
+		7204530220D8925F0011D560 /* mapui.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mapui.plist; sourceTree = "<group>"; };
+		7204530320D8925F0011D560 /* loadingbg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = loadingbg.jpg; sourceTree = "<group>"; };
+		7204530420D892600011D560 /* ui.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ui.plist; sourceTree = "<group>"; };
+		7204530520D892600011D560 /* mapdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mapdata; sourceTree = "<group>"; };
+		7204530620D892600011D560 /* hillResNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = hillResNode.csb; sourceTree = "<group>"; };
+		7204530720D892600011D560 /* LoadingLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoadingLayer.csb; sourceTree = "<group>"; };
+		7204530820D892600011D560 /* mapBlockLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = mapBlockLayer.csb; sourceTree = "<group>"; };
+		7204530920D892600011D560 /* text_zh_cn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text_zh_cn.png; sourceTree = "<group>"; };
+		7204530A20D892600011D560 /* lang */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lang; sourceTree = "<group>"; };
+		7204530B20D892610011D560 /* heroname */ = {isa = PBXFileReference; lastKnownFileType = folder; path = heroname; sourceTree = "<group>"; };
+		7204530C20D892610011D560 /* MainLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = MainLayer.csb; sourceTree = "<group>"; };
+		7204530D20D892610011D560 /* MainMenuLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = MainMenuLayer.csb; sourceTree = "<group>"; };
+		7204530E20D892610011D560 /* heroAttrLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = heroAttrLayer.csb; sourceTree = "<group>"; };
+		7204530F20D892610011D560 /* particle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = particle; sourceTree = "<group>"; };
+		7204531020D892610011D560 /* randHeroNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = randHeroNode.csb; sourceTree = "<group>"; };
+		7204531120D892610011D560 /* Default */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Default; sourceTree = "<group>"; };
+		7204531220D892620011D560 /* randHeroLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = randHeroLayer.csb; sourceTree = "<group>"; };
+		7204531320D892620011D560 /* json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = json; sourceTree = "<group>"; };
+		7204531420D892620011D560 /* cardHeroNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = cardHeroNode.csb; sourceTree = "<group>"; };
+		7204531520D892620011D560 /* fightHeroNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = fightHeroNode.csb; sourceTree = "<group>"; };
+		7204531620D892620011D560 /* selectSubMapLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = selectSubMapLayer.csb; sourceTree = "<group>"; };
+		7204531720D892620011D560 /* consumeResActionLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = consumeResActionLayer.csb; sourceTree = "<group>"; };
+		7204531820D892620011D560 /* homeHillLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = homeHillLayer.csb; sourceTree = "<group>"; };
+		7204531920D892620011D560 /* mainimg */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mainimg; sourceTree = "<group>"; };
+		7204531A20D892620011D560 /* mapui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapui.png; sourceTree = "<group>"; };
+		7204531B20D892630011D560 /* selectMyHerosLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = selectMyHerosLayer.csb; sourceTree = "<group>"; };
+		7204531C20D892630011D560 /* ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui.png; sourceTree = "<group>"; };
+		7204531D20D892630011D560 /* selectMapNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = selectMapNode.csb; sourceTree = "<group>"; };
+		7204531E20D892630011D560 /* mainMapLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainMapLayer.csb; sourceTree = "<group>"; };
+		7204531F20D892630011D560 /* innRoomLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = innRoomLayer.csb; sourceTree = "<group>"; };
+		7204532020D892630011D560 /* text_zh_cn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = text_zh_cn.plist; sourceTree = "<group>"; };
+		7204532120D892630011D560 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		7204532220D892630011D560 /* outTownLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = outTownLayer.csb; sourceTree = "<group>"; };
+		7204532320D892640011D560 /* myHeroNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = myHeroNode.csb; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -437,43 +436,41 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				722E37CF20CA850A00E73F9E /* cardHeroNode.csb */,
-				722E37D220CA850B00E73F9E /* consumeResActionLayer.csb */,
-				722E37D020CA850B00E73F9E /* fightHeroNode.csb */,
-				722E37D120CA850B00E73F9E /* mainMapLayer.csb */,
-				722E37D420CA850B00E73F9E /* mapBlockLayer.csb */,
-				722E37CD20CA850A00E73F9E /* mapui.plist */,
-				722E37D520CA850C00E73F9E /* mapui.png */,
-				722E37D620CA850C00E73F9E /* outTownLayer.csb */,
-				722E37CE20CA850A00E73F9E /* selectMapNode.csb */,
-				722E37D720CA850C00E73F9E /* selectMyHerosLayer.csb */,
-				722E37D320CA850B00E73F9E /* selectSubMapLayer.csb */,
-				72CC3A9020B558E300A99C0A /* Default */,
-				72CC3A8C20B558E300A99C0A /* heroAttrLayer.csb */,
-				72CC3A8820B558E200A99C0A /* heroname */,
-				72CC3A7F20B558E200A99C0A /* hillResNode.csb */,
-				72CC3A8120B558E200A99C0A /* homeHillLayer.csb */,
-				72CC3A8E20B558E300A99C0A /* images */,
-				72CC3A8920B558E200A99C0A /* innRoomLayer.csb */,
-				72CC3A7C20B558E100A99C0A /* json */,
-				72CC3A8620B558E200A99C0A /* lang */,
-				72CC3A7B20B558E100A99C0A /* loadingbg.jpg */,
-				72CC3A8020B558E200A99C0A /* LoadingLayer.csb */,
-				72CC3A8320B558E200A99C0A /* mainimg */,
-				72CC3A8A20B558E300A99C0A /* MainLayer.csb */,
-				72CC3A8B20B558E300A99C0A /* MainMenuLayer.csb */,
-				72CC3A7A20B558E100A99C0A /* myHeroNode.csb */,
-				72CC3A7D20B558E100A99C0A /* randHeroLayer.csb */,
-				72CC3A8F20B558E300A99C0A /* randHeroNode.csb */,
-				72CC3A8D20B558E300A99C0A /* text_zh_cn.plist */,
-				72CC3A8520B558E200A99C0A /* text_zh_cn.png */,
-				72CC3A7E20B558E100A99C0A /* ui.plist */,
-				72CC3A8420B558E200A99C0A /* ui.png */,
+				7204531420D892620011D560 /* cardHeroNode.csb */,
+				7204531720D892620011D560 /* consumeResActionLayer.csb */,
+				7204531120D892610011D560 /* Default */,
+				7204531520D892620011D560 /* fightHeroNode.csb */,
+				7204530E20D892610011D560 /* heroAttrLayer.csb */,
+				7204530B20D892610011D560 /* heroname */,
+				7204530620D892600011D560 /* hillResNode.csb */,
+				7204531820D892620011D560 /* homeHillLayer.csb */,
+				7204532120D892630011D560 /* images */,
+				7204531F20D892630011D560 /* innRoomLayer.csb */,
+				7204531320D892620011D560 /* json */,
+				7204530A20D892600011D560 /* lang */,
+				7204530320D8925F0011D560 /* loadingbg.jpg */,
+				7204530720D892600011D560 /* LoadingLayer.csb */,
+				7204531920D892620011D560 /* mainimg */,
+				7204530C20D892610011D560 /* MainLayer.csb */,
+				7204531E20D892630011D560 /* mainMapLayer.csb */,
+				7204530D20D892610011D560 /* MainMenuLayer.csb */,
+				7204530820D892600011D560 /* mapBlockLayer.csb */,
+				7204530520D892600011D560 /* mapdata */,
+				7204530220D8925F0011D560 /* mapui.plist */,
+				7204531A20D892620011D560 /* mapui.png */,
+				7204532320D892640011D560 /* myHeroNode.csb */,
+				7204532220D892630011D560 /* outTownLayer.csb */,
+				7204530F20D892610011D560 /* particle */,
+				7204531220D892620011D560 /* randHeroLayer.csb */,
+				7204531020D892610011D560 /* randHeroNode.csb */,
+				7204531D20D892630011D560 /* selectMapNode.csb */,
+				7204531B20D892630011D560 /* selectMyHerosLayer.csb */,
+				7204531620D892620011D560 /* selectSubMapLayer.csb */,
+				7204532020D892630011D560 /* text_zh_cn.plist */,
+				7204530920D892600011D560 /* text_zh_cn.png */,
+				7204530420D892600011D560 /* ui.plist */,
+				7204531C20D892630011D560 /* ui.png */,
 				521A8EA819F11F5000D177D7 /* fonts */,
-				3EACC98E19EE6D4300EB3C5E /* res */,
-				46880B7619C43A67006E1F66 /* CloseNormal.png */,
-				46880B7719C43A67006E1F66 /* CloseSelected.png */,
-				46880B7A19C43A67006E1F66 /* HelloWorld.png */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -482,81 +479,87 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				722E37E420CA878600E73F9E /* FightHeroNode.cpp */,
-				722E37E520CA878700E73F9E /* FightHeroNode.h */,
-				722E37E320CA878600E73F9E /* OutTownLayer.cpp */,
-				722E37E620CA878700E73F9E /* OutTownLayer.h */,
-				722E37BB20CA844000E73F9E /* CardHeroNode.cpp */,
-				722E37BF20CA844100E73F9E /* CardHeroNode.h */,
-				722E37BC20CA844000E73F9E /* ConsumeResActionLayer.cpp */,
-				722E37C520CA844200E73F9E /* ConsumeResActionLayer.h */,
-				722E37BD20CA844100E73F9E /* MainMapScene.cpp */,
-				722E37C120CA844100E73F9E /* MainMapScene.h */,
-				722E37C420CA844200E73F9E /* MapBlockScene.cpp */,
-				722E37C020CA844100E73F9E /* MapBlockScene.h */,
-				722E37C620CA844200E73F9E /* SelectMyHerosLayer.cpp */,
-				722E37BE20CA844100E73F9E /* SelectMyHerosLayer.h */,
-				722E37C220CA844200E73F9E /* SelectSubMapLayer.cpp */,
-				722E37C320CA844200E73F9E /* SelectSubMapLayer.h */,
-				72CC3A2F20B558C000A99C0A /* Building.cpp */,
-				72CC3A5020B558C400A99C0A /* Building.h */,
-				72CC3A5120B558C400A99C0A /* CommonFuncs.cpp */,
-				72CC3A5820B558C400A99C0A /* CommonFuncs.h */,
-				72CC3A4820B558C200A99C0A /* Const.h */,
-				72CC3A4920B558C300A99C0A /* DataBase64.cpp */,
-				72CC3A4320B558C200A99C0A /* DataBase64.h */,
-				72CC3A2320B558BF00A99C0A /* DataSave.cpp */,
-				72CC3A4020B558C200A99C0A /* DataSave.h */,
-				72CC3A5520B558C400A99C0A /* DynamicValue.h */,
-				72CC3A4420B558C200A99C0A /* GlobalInstance.cpp */,
-				72CC3A4220B558C200A99C0A /* GlobalInstance.h */,
-				72CC3A3020B558C000A99C0A /* Hero.cpp */,
-				72CC3A5720B558C400A99C0A /* Hero.h */,
-				72CC3A4C20B558C300A99C0A /* HeroAttrLayer.cpp */,
-				72CC3A3520B558C100A99C0A /* HeroAttrLayer.h */,
-				72CC3A5A20B558C500A99C0A /* HillResNode.cpp */,
-				72CC3A5420B558C400A99C0A /* HillResNode.h */,
-				72CC3A4120B558C200A99C0A /* HomeHillLayer.cpp */,
-				72CC3A3320B558C000A99C0A /* HomeHillLayer.h */,
-				72CC3A2820B558BF00A99C0A /* HttpDataSwap.cpp */,
-				72CC3A4720B558C200A99C0A /* HttpDataSwap.h */,
-				72CC3A2420B558BF00A99C0A /* HttpUtil.cpp */,
-				72CC3A5C20B558C500A99C0A /* HttpUtil.h */,
-				72CC3A3F20B558C100A99C0A /* InnRoomLayer.cpp */,
-				72CC3A4B20B558C300A99C0A /* InnRoomLayer.h */,
-				72CC3A3920B558C100A99C0A /* json.cpp */,
-				72CC3A5920B558C400A99C0A /* json.h */,
-				72CC3A2B20B558C000A99C0A /* LoadingScene.cpp */,
-				72CC3A3720B558C100A99C0A /* LoadingScene.h */,
-				72CC3A4D20B558C300A99C0A /* MainMenuLayer.cpp */,
-				72CC3A3120B558C000A99C0A /* MainMenuLayer.h */,
-				72CC3A4620B558C200A99C0A /* MainScene.cpp */,
-				72CC3A2D20B558C000A99C0A /* MainScene.h */,
-				72CC3A4F20B558C300A99C0A /* MD5.cpp */,
-				72CC3A4520B558C200A99C0A /* MD5.h */,
-				72CC3A3A20B558C100A99C0A /* MovingLabel.cpp */,
-				72CC3A2C20B558C000A99C0A /* MovingLabel.h */,
-				72CC3A2520B558BF00A99C0A /* MyHeroNode.cpp */,
-				72CC3A3D20B558C100A99C0A /* MyHeroNode.h */,
-				72CC3A3820B558C100A99C0A /* MyRes.cpp */,
-				72CC3A2A20B558C000A99C0A /* MyRes.h */,
-				72CC3A2620B558BF00A99C0A /* RandHeroLayer.cpp */,
-				72CC3A3220B558C000A99C0A /* RandHeroLayer.h */,
-				72CC3A3420B558C000A99C0A /* RandHeroNode.cpp */,
-				72CC3A2720B558BF00A99C0A /* RandHeroNode.h */,
-				72CC3A4E20B558C300A99C0A /* ResBase.cpp */,
-				72CC3A3E20B558C100A99C0A /* ResBase.h */,
-				72CC3A3C20B558C100A99C0A /* ResCreator.cpp */,
-				72CC3A2E20B558C000A99C0A /* ResCreator.h */,
-				72CC3A5D20B558C500A99C0A /* Resource.cpp */,
-				72CC3A3620B558C100A99C0A /* Resource.h */,
-				72CC3A5220B558C400A99C0A /* SoundManager.cpp */,
-				72CC3A5B20B558C500A99C0A /* SoundManager.h */,
-				72CC3A2920B558C000A99C0A /* Utility.h */,
-				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
-				46880B8519C43A87006E1F66 /* AppDelegate.h */,
-				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
-				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
+				720452BE20D8921D0011D560 /* AppDelegate.cpp */,
+				720452B320D8921C0011D560 /* AppDelegate.h */,
+				7204529B20D8921A0011D560 /* Building.cpp */,
+				720452C920D8921E0011D560 /* Building.h */,
+				720452D620D892200011D560 /* CardHeroNode.cpp */,
+				720452A520D8921A0011D560 /* CardHeroNode.h */,
+				720452CA20D8921E0011D560 /* CommonFuncs.cpp */,
+				720452D120D8921F0011D560 /* CommonFuncs.h */,
+				720452C020D8921D0011D560 /* Const.h */,
+				720452C220D8921D0011D560 /* ConsumeResActionLayer.cpp */,
+				7204529E20D8921A0011D560 /* ConsumeResActionLayer.h */,
+				720452C120D8921D0011D560 /* DataBase64.cpp */,
+				720452B920D8921D0011D560 /* DataBase64.h */,
+				7204528A20D892180011D560 /* DataSave.cpp */,
+				720452B520D8921C0011D560 /* DataSave.h */,
+				720452CF20D8921F0011D560 /* DynamicValue.h */,
+				720452AF20D8921B0011D560 /* FightHeroNode.cpp */,
+				720452B020D8921C0011D560 /* FightHeroNode.h */,
+				720452BA20D8921D0011D560 /* GlobalInstance.cpp */,
+				720452B820D8921C0011D560 /* GlobalInstance.h */,
+				7204529C20D8921A0011D560 /* Hero.cpp */,
+				720452D020D8921F0011D560 /* Hero.h */,
+				720452C320D8921E0011D560 /* HeroAttrLayer.cpp */,
+				720452A220D8921A0011D560 /* HeroAttrLayer.h */,
+				720452D320D8921F0011D560 /* HillResNode.cpp */,
+				720452CD20D8921F0011D560 /* HillResNode.h */,
+				720452B720D8921C0011D560 /* HomeHillLayer.cpp */,
+				7204529F20D8921A0011D560 /* HomeHillLayer.h */,
+				7204528F20D892190011D560 /* HttpDataSwap.cpp */,
+				720452BF20D8921D0011D560 /* HttpDataSwap.h */,
+				7204528B20D892190011D560 /* HttpUtil.cpp */,
+				720452D720D892200011D560 /* HttpUtil.h */,
+				720452B420D8921C0011D560 /* InnRoomLayer.cpp */,
+				720452C420D8921E0011D560 /* InnRoomLayer.h */,
+				720452A720D8921B0011D560 /* iosfunc.h */,
+				720452B620D8921C0011D560 /* iosfunc.mm */,
+				720452CC20D8921F0011D560 /* JHKeychain.h */,
+				7204529020D892190011D560 /* JHKeychain.mm */,
+				720452AA20D8921B0011D560 /* json.cpp */,
+				720452D220D8921F0011D560 /* json.h */,
+				7204529320D892190011D560 /* LoadingScene.cpp */,
+				720452A820D8921B0011D560 /* LoadingScene.h */,
+				720452CE20D8921F0011D560 /* MainMapScene.cpp */,
+				7204529920D892190011D560 /* MainMapScene.h */,
+				720452C520D8921E0011D560 /* MainMenuLayer.cpp */,
+				7204529D20D8921A0011D560 /* MainMenuLayer.h */,
+				720452BC20D8921D0011D560 /* MainScene.cpp */,
+				7204529820D892190011D560 /* MainScene.h */,
+				720452BD20D8921D0011D560 /* MapBlock.cpp */,
+				7204529420D892190011D560 /* MapBlock.h */,
+				720452D520D8921F0011D560 /* MapBlockScene.cpp */,
+				720452D820D892200011D560 /* MapBlockScene.h */,
+				7204529120D892190011D560 /* MBProgressHUD.h */,
+				720452A020D8921A0011D560 /* MBProgressHUD.m */,
+				720452C720D8921E0011D560 /* MD5.cpp */,
+				720452BB20D8921D0011D560 /* MD5.h */,
+				720452AB20D8921B0011D560 /* MovingLabel.cpp */,
+				7204529620D892190011D560 /* MovingLabel.h */,
+				7204528C20D892190011D560 /* MyHeroNode.cpp */,
+				720452AE20D8921B0011D560 /* MyHeroNode.h */,
+				720452A920D8921B0011D560 /* MyRes.cpp */,
+				7204529220D892190011D560 /* MyRes.h */,
+				7204529520D892190011D560 /* OutTownLayer.cpp */,
+				720452D920D892200011D560 /* OutTownLayer.h */,
+				7204528D20D892190011D560 /* RandHeroLayer.cpp */,
+				720452A120D8921A0011D560 /* RandHeroLayer.h */,
+				720452A320D8921A0011D560 /* RandHeroNode.cpp */,
+				7204528E20D892190011D560 /* RandHeroNode.h */,
+				720452C620D8921E0011D560 /* ResBase.cpp */,
+				720452B120D8921C0011D560 /* ResBase.h */,
+				720452AC20D8921B0011D560 /* ResCreator.cpp */,
+				7204529A20D8921A0011D560 /* ResCreator.h */,
+				720452DA20D892200011D560 /* Resource.cpp */,
+				720452A420D8921A0011D560 /* Resource.h */,
+				720452AD20D8921B0011D560 /* SelectMyHerosLayer.cpp */,
+				720452B220D8921C0011D560 /* SelectMyHerosLayer.h */,
+				720452C820D8921E0011D560 /* SelectSubMapLayer.cpp */,
+				720452A620D8921B0011D560 /* SelectSubMapLayer.h */,
+				720452CB20D8921E0011D560 /* SoundManager.cpp */,
+				720452D420D8921F0011D560 /* SoundManager.h */,
+				7204529720D892190011D560 /* Utility.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -628,6 +631,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = 4XUL6A3335;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MyJH2" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -684,57 +692,44 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72CC3A9520B558E400A99C0A /* ui.plist in Resources */,
-				722E37DC20CA850C00E73F9E /* mainMapLayer.csb in Resources */,
-				722E37DA20CA850C00E73F9E /* cardHeroNode.csb in Resources */,
-				72CC3A9320B558E400A99C0A /* json in Resources */,
-				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
-				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
-				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
-				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
-				72CC3A9D20B558E400A99C0A /* lang in Resources */,
-				72CC3AA220B558E400A99C0A /* MainMenuLayer.csb in Resources */,
-				722E37DB20CA850C00E73F9E /* fightHeroNode.csb in Resources */,
-				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
-				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
-				722E37DE20CA850C00E73F9E /* selectSubMapLayer.csb in Resources */,
-				722E37E020CA850C00E73F9E /* mapui.png in Resources */,
-				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
-				72CC3AA320B558E400A99C0A /* heroAttrLayer.csb in Resources */,
-				72CC3A9820B558E400A99C0A /* homeHillLayer.csb in Resources */,
-				722E37DD20CA850C00E73F9E /* consumeResActionLayer.csb in Resources */,
-				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
-				72CC3A9C20B558E400A99C0A /* text_zh_cn.png in Resources */,
-				72CC3AA120B558E400A99C0A /* MainLayer.csb in Resources */,
-				72CC3A9F20B558E400A99C0A /* heroname in Resources */,
-				72CC3A9620B558E400A99C0A /* hillResNode.csb in Resources */,
-				72CC3AA720B558E400A99C0A /* Default in Resources */,
-				72CC3A9720B558E400A99C0A /* LoadingLayer.csb in Resources */,
-				72CC3A9220B558E400A99C0A /* loadingbg.jpg in Resources */,
-				72CC3AA520B558E400A99C0A /* images in Resources */,
+				7204534320D892640011D560 /* images in Resources */,
+				7204533520D892640011D560 /* json in Resources */,
+				7204534020D892640011D560 /* mainMapLayer.csb in Resources */,
+				1A88B2641FC3D9C9005C14AE /* Images.xcassets in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
-				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
-				722E37DF20CA850C00E73F9E /* mapBlockLayer.csb in Resources */,
-				722E37E120CA850C00E73F9E /* outTownLayer.csb in Resources */,
-				72CC3AA620B558E400A99C0A /* randHeroNode.csb in Resources */,
-				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
-				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
-				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
-				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
-				72CC3A9A20B558E400A99C0A /* mainimg in Resources */,
-				72CC3AA020B558E400A99C0A /* innRoomLayer.csb in Resources */,
-				72CC3A9120B558E400A99C0A /* myHeroNode.csb in Resources */,
-				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
-				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
-				72CC3A9B20B558E400A99C0A /* ui.png in Resources */,
-				5087E77E17EB970100C73F5D /* Default.png in Resources */,
-				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
-				722E37E220CA850C00E73F9E /* selectMyHerosLayer.csb in Resources */,
-				722E37D820CA850C00E73F9E /* mapui.plist in Resources */,
-				72CC3A9420B558E400A99C0A /* randHeroLayer.csb in Resources */,
-				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
-				72CC3AA420B558E400A99C0A /* text_zh_cn.plist in Resources */,
-				722E37D920CA850C00E73F9E /* selectMapNode.csb in Resources */,
+				7204533120D892640011D560 /* particle in Resources */,
+				7204533220D892640011D560 /* randHeroNode.csb in Resources */,
+				7204533720D892640011D560 /* fightHeroNode.csb in Resources */,
+				7204533920D892640011D560 /* consumeResActionLayer.csb in Resources */,
+				7204533820D892640011D560 /* selectSubMapLayer.csb in Resources */,
+				7204532C20D892640011D560 /* lang in Resources */,
+				7204534220D892640011D560 /* text_zh_cn.plist in Resources */,
+				7204533A20D892640011D560 /* homeHillLayer.csb in Resources */,
+				7204532620D892640011D560 /* ui.plist in Resources */,
+				7204532B20D892640011D560 /* text_zh_cn.png in Resources */,
+				7204534420D892640011D560 /* outTownLayer.csb in Resources */,
+				7204533D20D892640011D560 /* selectMyHerosLayer.csb in Resources */,
+				7204533420D892640011D560 /* randHeroLayer.csb in Resources */,
+				7204532420D892640011D560 /* mapui.plist in Resources */,
+				7204533320D892640011D560 /* Default in Resources */,
+				7204532A20D892640011D560 /* mapBlockLayer.csb in Resources */,
+				1AF87B891F6F781D007BE51C /* LaunchScreenBackground.png in Resources */,
+				7204532920D892640011D560 /* LoadingLayer.csb in Resources */,
+				7204532820D892640011D560 /* hillResNode.csb in Resources */,
+				1AF87B881F6F781D007BE51C /* LaunchScreen.storyboard in Resources */,
+				7204532520D892640011D560 /* loadingbg.jpg in Resources */,
+				7204533B20D892640011D560 /* mainimg in Resources */,
+				7204533E20D892640011D560 /* ui.png in Resources */,
+				7204534120D892640011D560 /* innRoomLayer.csb in Resources */,
+				7204533620D892640011D560 /* cardHeroNode.csb in Resources */,
+				7204533C20D892640011D560 /* mapui.png in Resources */,
+				7204533020D892640011D560 /* heroAttrLayer.csb in Resources */,
+				7204533F20D892640011D560 /* selectMapNode.csb in Resources */,
+				7204532720D892640011D560 /* mapdata in Resources */,
+				7204532E20D892640011D560 /* MainLayer.csb in Resources */,
+				7204532F20D892640011D560 /* MainMenuLayer.csb in Resources */,
+				7204534520D892640011D560 /* myHeroNode.csb in Resources */,
+				7204532D20D892640011D560 /* heroname in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,12 +737,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
-				3EACC99019EE6D4300EB3C5E /* res in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
-				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
-				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,44 +749,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				722E37C720CA844200E73F9E /* CardHeroNode.cpp in Sources */,
-				72CC3A7120B558C500A99C0A /* HeroAttrLayer.cpp in Sources */,
-				72CC3A6920B558C500A99C0A /* MovingLabel.cpp in Sources */,
-				72CC3A6D20B558C500A99C0A /* GlobalInstance.cpp in Sources */,
-				72CC3A6A20B558C500A99C0A /* ResCreator.cpp in Sources */,
-				72CC3A7820B558C500A99C0A /* HillResNode.cpp in Sources */,
-				72CC3A7920B558C500A99C0A /* Resource.cpp in Sources */,
-				72CC3A7520B558C500A99C0A /* CommonFuncs.cpp in Sources */,
-				72CC3A6020B558C500A99C0A /* MyHeroNode.cpp in Sources */,
-				722E37C820CA844200E73F9E /* ConsumeResActionLayer.cpp in Sources */,
-				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
-				72CC3A6120B558C500A99C0A /* RandHeroLayer.cpp in Sources */,
-				72CC3A6520B558C500A99C0A /* Hero.cpp in Sources */,
-				72CC3A6420B558C500A99C0A /* Building.cpp in Sources */,
-				72CC3A6F20B558C500A99C0A /* DataBase64.cpp in Sources */,
-				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
-				72CC3A7320B558C500A99C0A /* ResBase.cpp in Sources */,
-				72CC3A7420B558C500A99C0A /* MD5.cpp in Sources */,
-				722E37E820CA878700E73F9E /* FightHeroNode.cpp in Sources */,
-				72CC3A6C20B558C500A99C0A /* HomeHillLayer.cpp in Sources */,
-				72CC3A6620B558C500A99C0A /* RandHeroNode.cpp in Sources */,
-				72CC3A6E20B558C500A99C0A /* MainScene.cpp in Sources */,
-				72CC3A5E20B558C500A99C0A /* DataSave.cpp in Sources */,
-				72CC3A6B20B558C500A99C0A /* InnRoomLayer.cpp in Sources */,
-				72CC3A6820B558C500A99C0A /* json.cpp in Sources */,
-				72CC3A7620B558C500A99C0A /* SoundManager.cpp in Sources */,
-				722E37CA20CA844200E73F9E /* SelectSubMapLayer.cpp in Sources */,
-				72CC3A6220B558C500A99C0A /* HttpDataSwap.cpp in Sources */,
-				722E37CC20CA844200E73F9E /* SelectMyHerosLayer.cpp in Sources */,
-				722E37CB20CA844200E73F9E /* MapBlockScene.cpp in Sources */,
-				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
-				722E37C920CA844200E73F9E /* MainMapScene.cpp in Sources */,
-				72CC3A7220B558C500A99C0A /* MainMenuLayer.cpp in Sources */,
-				72CC3A6720B558C500A99C0A /* MyRes.cpp in Sources */,
-				722E37E720CA878700E73F9E /* OutTownLayer.cpp in Sources */,
-				503AE10117EB989F00D1A890 /* main.m in Sources */,
-				72CC3A5F20B558C500A99C0A /* HttpUtil.cpp in Sources */,
-				72CC3A6320B558C500A99C0A /* LoadingScene.cpp in Sources */,
+				720452FB20D892200011D560 /* CommonFuncs.cpp in Sources */,
+				720452DE20D892200011D560 /* RandHeroLayer.cpp in Sources */,
+				720452F420D892200011D560 /* DataBase64.cpp in Sources */,
+				720452EA20D892200011D560 /* ResCreator.cpp in Sources */,
+				720452EE20D892200011D560 /* iosfunc.mm in Sources */,
+				720452F820D892200011D560 /* ResBase.cpp in Sources */,
+				720452E420D892200011D560 /* Hero.cpp in Sources */,
+				720452F320D892200011D560 /* AppDelegate.cpp in Sources */,
+				720452EB20D892200011D560 /* SelectMyHerosLayer.cpp in Sources */,
+				720452E020D892200011D560 /* JHKeychain.mm in Sources */,
+				720452F620D892200011D560 /* HeroAttrLayer.cpp in Sources */,
+				720452F020D892200011D560 /* GlobalInstance.cpp in Sources */,
+				720452FD20D892200011D560 /* MainMapScene.cpp in Sources */,
+				720452E820D892200011D560 /* json.cpp in Sources */,
+				720452ED20D892200011D560 /* InnRoomLayer.cpp in Sources */,
+				1AF87B781F6F77F7007BE51C /* AppController.mm in Sources */,
+				720452F920D892200011D560 /* MD5.cpp in Sources */,
+				720452FF20D892200011D560 /* MapBlockScene.cpp in Sources */,
+				720452E320D892200011D560 /* Building.cpp in Sources */,
+				720452FC20D892200011D560 /* SoundManager.cpp in Sources */,
+				720452DD20D892200011D560 /* MyHeroNode.cpp in Sources */,
+				1AF87B8B1F6F782A007BE51C /* RootViewController.mm in Sources */,
+				7204530020D892200011D560 /* CardHeroNode.cpp in Sources */,
+				7204530120D892200011D560 /* Resource.cpp in Sources */,
+				720452FA20D892200011D560 /* SelectSubMapLayer.cpp in Sources */,
+				720452DC20D892200011D560 /* HttpUtil.cpp in Sources */,
+				720452F220D892200011D560 /* MapBlock.cpp in Sources */,
+				720452DB20D892200011D560 /* DataSave.cpp in Sources */,
+				720452DF20D892200011D560 /* HttpDataSwap.cpp in Sources */,
+				720452F520D892200011D560 /* ConsumeResActionLayer.cpp in Sources */,
+				720452E720D892200011D560 /* MyRes.cpp in Sources */,
+				720452EC20D892200011D560 /* FightHeroNode.cpp in Sources */,
+				720452EF20D892200011D560 /* HomeHillLayer.cpp in Sources */,
+				720452E920D892200011D560 /* MovingLabel.cpp in Sources */,
+				720452F720D892200011D560 /* MainMenuLayer.cpp in Sources */,
+				1AF87B8A1F6F7822007BE51C /* main.m in Sources */,
+				720452E120D892200011D560 /* LoadingScene.cpp in Sources */,
+				720452E220D892200011D560 /* OutTownLayer.cpp in Sources */,
+				720452FE20D892200011D560 /* HillResNode.cpp in Sources */,
+				720452E520D892200011D560 /* MBProgressHUD.m in Sources */,
+				720452E620D892200011D560 /* RandHeroNode.cpp in Sources */,
+				720452F120D892200011D560 /* MainScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -803,9 +798,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
-				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,6 +825,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = 4XUL6A3335;
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -845,7 +839,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
@@ -866,6 +860,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = 4XUL6A3335;
 				ENABLE_BITCODE = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -878,7 +873,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",

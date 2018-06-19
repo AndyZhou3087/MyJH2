@@ -39,10 +39,10 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 @property (nonatomic, strong) NSArray *bezelConstraints;
 @property (nonatomic, strong) UIView *topSpacer;
 @property (nonatomic, strong) UIView *bottomSpacer;
-@property (nonatomic, weak) NSTimer *graceTimer;
-@property (nonatomic, weak) NSTimer *minShowTimer;
-@property (nonatomic, weak) NSTimer *hideDelayTimer;
-@property (nonatomic, weak) CADisplayLink *progressObjectDisplayLink;
+@property (nonatomic, assign) NSTimer *graceTimer;
+@property (nonatomic, assign) NSTimer *minShowTimer;
+@property (nonatomic, assign) NSTimer *hideDelayTimer;
+@property (nonatomic, assign) CADisplayLink *progressObjectDisplayLink;
 
 // Deprecated
 @property (assign) BOOL taskInProgress;
