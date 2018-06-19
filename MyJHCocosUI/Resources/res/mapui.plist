@@ -7,7 +7,7 @@
 			<key>mapui/gocitybtn.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{732,191},{106,106}}</string>
+				<string>{{903,384},{106,106}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -18,7 +18,7 @@
 			<key>mapui/mapbtn.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{838,276},{106,106}}</string>
+				<string>{{883,490},{106,106}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -29,7 +29,7 @@
 			<key>mapui/mappackbtn.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,126},{106,106}}</string>
+				<string>{{870,596},{106,106}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -40,95 +40,95 @@
 			<key>mapui/mapdownbtn.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{886,0},{128,92}}</string>
+				<string>{{910,0},{128,92}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{128,92}</string>
 			</dict>
 			<key>mapui/mapleftbtn.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{886,92},{128,92}}</string>
+				<string>{{910,128},{128,92}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{128,92}</string>
 			</dict>
 			<key>mapui/maprightbtn.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{732,99},{128,92}}</string>
+				<string>{{910,256},{128,92}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{128,92}</string>
 			</dict>
 			<key>mapui/mapupbtn.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{860,184},{128,92}}</string>
+				<string>{{811,298},{128,92}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{128,92}</string>
 			</dict>
 			<key>mapui/mapnamebox0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{269,126},{53,159}}</string>
+				<string>{{870,702},{53,159}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{53,159}</string>
 			</dict>
 			<key>mapui/mapnamebox1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{428,177},{47,138}}</string>
+				<string>{{976,598},{47,138}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{47,138}</string>
 			</dict>
 			<key>mapui/mapname_sel0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{106,126},{59,163}}</string>
+				<string>{{811,570},{59,163}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{59,163}</string>
 			</dict>
 			<key>mapui/mapname_sel1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{428,126},{51,142}}</string>
+				<string>{{923,702},{51,142}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{51,142}</string>
 			</dict>
 			<key>mapui/mtag0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{988,254},{38,34}}</string>
+				<string>{{989,560},{38,34}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -139,7 +139,7 @@
 			<key>mapui/submaptitlecloud.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{988,184},{70,28}}</string>
+				<string>{{989,490},{70,28}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -150,29 +150,29 @@
 			<key>mapui/submapnodeitem.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{588,126}}</string>
+				<string>{{0,0},{708,149}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
-				<string>{588,126}</string>
+				<string>{708,149}</string>
 			</dict>
 			<key>mapui/submapanimcloud.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{588,0},{298,99}}</string>
+				<string>{{811,0},{298,99}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{298,99}</string>
 			</dict>
 			<key>mapui/boardblock_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{269,179},{72,72}}</string>
+				<string>{{923,844},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -183,7 +183,7 @@
 			<key>mapui/boardblock_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{341,179},{72,72}}</string>
+				<string>{{0,916},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -194,7 +194,7 @@
 			<key>mapui/boardblock_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{106,185},{72,72}}</string>
+				<string>{{72,916},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -205,7 +205,7 @@
 			<key>mapui/boardblock_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{178,185},{72,72}}</string>
+				<string>{{144,916},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -216,7 +216,7 @@
 			<key>mapui/boardblock_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,232},{72,72}}</string>
+				<string>{{216,916},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -227,7 +227,7 @@
 			<key>mapui/boardblock_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{413,224},{72,72}}</string>
+				<string>{{288,916},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -238,7 +238,7 @@
 			<key>mapui/boardblock_6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{485,224},{72,72}}</string>
+				<string>{{360,916},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -249,7 +249,7 @@
 			<key>mapui/boardblock_7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{250,251},{72,72}}</string>
+				<string>{{432,916},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -260,7 +260,7 @@
 			<key>mapui/buildblock_10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{588,99},{144,144}}</string>
+				<string>{{504,861},{144,144}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -271,7 +271,7 @@
 			<key>mapui/buildblock_8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{944,292},{144,72}}</string>
+				<string>{{811,426},{144,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -282,13 +282,35 @@
 			<key>mapui/buildblock_9.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{322,251},{72,72}}</string>
+				<string>{{648,916},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{72,72}</string>
+			</dict>
+			<key>mapui/mapdescbox.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{708,0},{693,103}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{693,103}</string>
+			</dict>
+			<key>mapui/morearrow.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{974,736},{34,28}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{34,28}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -300,14 +322,14 @@
 			<key>realTextureFileName</key>
 			<string>mapui.png</string>
 			<key>size</key>
-			<string>{1024,512}</string>
+			<string>{1024,1024}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
 			<integer>1024</integer>
 			<key>height</key>
-			<integer>512</integer>
+			<integer>1024</integer>
 		</dict>
 	</dict>
 </plist>

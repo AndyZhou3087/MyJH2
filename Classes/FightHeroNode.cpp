@@ -77,7 +77,7 @@ void FightHeroNode::setData(Hero* herodata)
 
 		namelbl->setString(herodata->getName());
 		namelbl->setVisible(true);
-		float percent = herodata->getMyHp()*100/herodata->getMaxHp();
+		float percent = herodata->getHp()*100/herodata->getMaxHp();
 		hp_bar->setPercent(percent);
 	}
 	else

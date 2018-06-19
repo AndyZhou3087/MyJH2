@@ -79,6 +79,7 @@
           <Image Name="buildblock_9.png" />
           <Image Name="gocitybtn.png" />
           <Image Name="mapbtn.png" />
+          <Image Name="mapdescbox.png" />
           <Image Name="mapdownbtn.png" />
           <Image Name="mapleftbtn.png" />
           <Image Name="mapname_sel0.png" />
@@ -88,6 +89,7 @@
           <Image Name="mappackbtn.png" />
           <Image Name="maprightbtn.png" />
           <Image Name="mapupbtn.png" />
+          <Image Name="morearrow.png" />
           <Image Name="mtag0.png" />
           <Image Name="submapanimcloud.png" />
           <Image Name="submapnodeitem.png" />
@@ -123,30 +125,30 @@
           <Image Name="innroomtitle.png" />
           <Image Name="isrecruited_text.png" />
           <Image Name="lvupbtn_text.png" />
-          <Image Name="m1-1.png" />
-          <Image Name="m1-10.png" />
-          <Image Name="m1-2.png" />
-          <Image Name="m1-3.png" />
-          <Image Name="m1-4.png" />
-          <Image Name="m1-5.png" />
-          <Image Name="m1-6.png" />
-          <Image Name="m1-7.png" />
-          <Image Name="m1-8.png" />
-          <Image Name="m1-9.png" />
+          <Image Name="m15-1.png" />
+          <Image Name="m15-10.png" />
+          <Image Name="m15-2.png" />
+          <Image Name="m15-3.png" />
           <Image Name="m2-1.png" />
-          <Image Name="m2-10.png" />
-          <Image Name="m2-2.png" />
+          <Image Name="m15-5.png" />
+          <Image Name="m15-6.png" />
+          <Image Name="m15-7.png" />
+          <Image Name="m15-8.png" />
+          <Image Name="m1-2.png" />
+          <Image Name="m22-1.png" />
+          <Image Name="m1-4.png" />
           <Image Name="m2-3.png" />
-          <Image Name="m2-4.png" />
           <Image Name="m2-5.png" />
-          <Image Name="m2-6.png" />
-          <Image Name="m2-7.png" />
-          <Image Name="m2-8.png" />
-          <Image Name="m2-9.png" />
+          <Image Name="m22-4.png" />
+          <Image Name="m1-3.png" />
+          <Image Name="m22-6.png" />
+          <Image Name="m1-1.png" />
+          <Image Name="m22-8.png" />
+          <Image Name="m22-9.png" />
           <Image Name="m3-1.png" />
           <Image Name="m3-10.png" />
           <Image Name="m3-2.png" />
-          <Image Name="m3-3.png" />
+          <Image Name="m2-4.png" />
           <Image Name="m3-4.png" />
           <Image Name="m3-5.png" />
           <Image Name="m3-6.png" />
@@ -154,7 +156,7 @@
           <Image Name="m3-8.png" />
           <Image Name="m3-9.png" />
           <Image Name="m4-1.png" />
-          <Image Name="m4-2.png" />
+          <Image Name="m2-2.png" />
           <Image Name="m4-3.png" />
           <Image Name="m4-4.png" />
           <Image Name="m4-5.png" />
@@ -257,7 +259,6 @@
         <Project Name="heroAttrLayer.csd" Type="Layer" />
         <Project Name="hillResNode.csd" Type="Node" />
         <Project Name="homeHillLayer.csd" Type="Layer" />
-        <PlistParticleFile Name="hr.plist" />
         <Project Name="innRoomLayer.csd" Type="Layer" />
         <Image Name="loadingbg.jpg" />
         <Project Name="LoadingLayer.csd" Type="Layer" />

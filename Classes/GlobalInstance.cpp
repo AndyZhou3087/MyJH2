@@ -180,7 +180,7 @@ void GlobalInstance::saveMyHeros()
 	{
 		std::string herokey = StringUtils::format("hero%d", i);
 		Hero* hero = GlobalInstance::vec_myHeros[i];
-		std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos());
+		std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp());
 		DataSave::getInstance()->setHeroData(herokey, datastr);
 	}
 }
@@ -218,6 +218,8 @@ void GlobalInstance::loadMyHeros()
 					{
 						GlobalInstance::myCardHeros[pos - 1] = hero;
 					}
+
+					hero->setHp(atof(vec_tmp[8].c_str()));
 				}
 			}
 			if (vec_retstr.size() > 1)//装备属性
@@ -539,10 +541,16 @@ void GlobalInstance::parseMapJson()
 		rapidjson::Value& jsonvalue = subData[i];
 		rapidjson::Value& v = jsonvalue["id"];
 		s_submap.id = v.GetString();
-		v = jsonvalue["t"];
-		s_submap.imgname = v.GetString();
+
 		v = jsonvalue["ph"];
 		s_submap.ph = atoi(v.GetString());
+
+		v = jsonvalue["awd"];
+		for (unsigned int i = 0; i < v.Size(); i++)
+		{
+			s_submap.vec_awd.push_back(v[i].GetString());
+		}
+
 		std::string mainid = s_submap.id.substr(0, s_submap.id.find_last_of("-"));
 		map_mapsdata[mainid].map_sublist[s_submap.id] = s_submap;
 	}

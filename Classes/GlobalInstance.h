@@ -26,8 +26,8 @@ typedef struct
 typedef struct
 {
 	std::string id;
-	std::string imgname;//小地图图片
 	int ph;//小地图消耗的精力，体力
+	std::vector<std::string> vec_awd;//可能获得物品
 }S_SubMap;
 
 //大地图数据

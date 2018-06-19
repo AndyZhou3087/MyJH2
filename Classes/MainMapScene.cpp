@@ -36,6 +36,7 @@ bool MainMapScene::init()
 	cocos2d::ui::ScrollView* mapscroll = (cocos2d::ui::ScrollView*)csbnode->getChildByName("mapscroll");
 	mapscroll->setScrollBarEnabled(false);
 	mapscroll->setSwallowTouches(false);
+	mapscroll->jumpToPercentHorizontal(100);
 
 	cocos2d::ui::Widget* mapbg = (cocos2d::ui::Widget*)mapscroll->getChildByName("mapbg");
 	mapbg->setScale(0.8f);
@@ -50,10 +51,20 @@ bool MainMapScene::init()
 		normal->setUserData((void*)select);
 		normal->addTouchEventListener(CC_CALLBACK_2(MainMapScene::onclick, this));
 		normal->setSwallowTouches(false);
+		std::string mname = mapname->getName();
+		int c = atoi(mname.substr(1, mname.find_first_of("-") - 1).c_str());
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 		mapname->setVisible(true);
 #else
-		mapname->setVisible(true);
+		if (c <= 2)
+		{
+			mapname->setVisible(true);
+		}
+		else
+		{
+			mapname->setVisible(false);
+		}
 #endif
 	}
 

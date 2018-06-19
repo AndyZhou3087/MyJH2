@@ -137,6 +137,22 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		{
 		case 1000://出城
 		{
+			bool isselecthero = false;
+			for (int i = 0; i < 6; i++)
+			{
+				if (GlobalInstance::myCardHeros[i] != NULL)
+				{
+					isselecthero = true;
+					break;
+				}
+			}
+			if (!isselecthero)
+			{
+				MovingLabel::show(ResourceLang::map_lang["noherosout"]);
+				return;
+			}
+			
+
 			for (int i = 0; i < 3; i++)
 			{
 				int addcount = caryycount[i] - MyRes::getMyResCount(carryResids[i], MYPACKAGE);

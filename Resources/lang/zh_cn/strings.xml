@@ -53,4 +53,8 @@
 	<s name="selheronum5">⑤</s>
 	<s name="selheronum6">⑥</s>
 	<s name="noroad">此路不通</s>
+	<s name="hpdesc">（消耗体力 %d）</s>
+	<s name="awarddesc">可获得物品：%s</s>	
+	<s name="zhdunhao">、</s>
+	<s name="noherosout">请选择出城侠客！</s>	
 </strings>

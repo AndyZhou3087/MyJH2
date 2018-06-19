@@ -28,6 +28,8 @@
       <FilePathData Path="mapui/buildblock_10.png" />
       <FilePathData Path="mapui/buildblock_8.png" />
       <FilePathData Path="mapui/buildblock_9.png" />
+      <FilePathData Path="mapui/mapdescbox.png" />
+      <FilePathData Path="mapui/morearrow.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

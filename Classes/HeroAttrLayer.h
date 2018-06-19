@@ -53,6 +53,9 @@ private:
 	//名字编辑控件
 	cocos2d::ui::EditBox* m_editName;
 
+	//修改PEN按钮
+	cocos2d::ui::Widget* moditybtn;
+
 	//血量label
 	cocos2d::ui::Text* hplbl;
 

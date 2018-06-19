@@ -69,7 +69,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 
 	//属性信息
 	Node* heroattrbottom = csbnode->getChildByName("heroattrbottom");
-	cocos2d::ui::Widget* moditybtn = (cocos2d::ui::Widget*)heroattrbottom->getChildByName("moditybtn");
+	moditybtn = (cocos2d::ui::Widget*)heroattrbottom->getChildByName("moditybtn");
 
 	//品质
 	cocos2d::ui::ImageView* heroattrqu = (cocos2d::ui::ImageView*)heroattrbottom->getChildByName("heroattrqu");
@@ -117,7 +117,11 @@ bool HeroAttrLayer::init(Hero* herodata)
 
 	//生命值
 	hplbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("hp");
-	std::string attrstr = StringUtils::format("%d/%d", (int)herodata->getMyHp(), (int)herodata->getMaxHp());
+
+	int hp = herodata->getHp();
+	if (hp < -1)
+		hp = herodata->getMaxHp();
+	std::string attrstr = StringUtils::format("%d/%d", hp, (int)herodata->getMaxHp());
 	hplbl->setString(attrstr);
 
 	//攻击值
@@ -355,6 +359,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				heroNode->markRecruited();
 				innroomLayer->refreshMyHerosUi();
 				clicknode->setEnabled(false);
+
 				break;
 			}
 			else

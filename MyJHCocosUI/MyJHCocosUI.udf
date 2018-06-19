@@ -7,17 +7,5 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="mapui.csi" />
-          <FilePathData Path="mapBlockLayer.csd" />
-          <FilePathData Path="mainMapLayer.csd" />
-          <FilePathData Path="selectMapNode.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="mapBlockLayer.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>
