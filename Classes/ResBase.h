@@ -14,6 +14,18 @@ typedef enum
 	MYSTORAGE,
 	MYEQUIP
 }RESWHERE;
+
+typedef enum
+{
+	T_RES_0 = 0,//基础资源
+	T_ARMOR,//武器
+	T_EQUIP,//防具
+	T_HANDARMOR,//护手
+	T_WG,//外功
+	T_NG,//内功
+	T_JSTONE,//首饰，宝石
+	T_OTHER
+}RESTYPE;
 class ResBase
 {
 public:

@@ -97,6 +97,14 @@
         </Folder>
         <Folder Name="text_zh_cn">
           <Image Name="backbtn_text.png" />
+          <Image Name="catabtn0_text_n.png" />
+          <Image Name="catabtn0_text_s.png" />
+          <Image Name="catabtn1_text_n.png" />
+          <Image Name="catabtn1_text_s.png" />
+          <Image Name="catabtn2_text_n.png" />
+          <Image Name="catabtn2_text_s.png" />
+          <Image Name="catabtn3_text_n.png" />
+          <Image Name="catabtn3_text_s.png" />
           <Image Name="changebtn_text.png" />
           <Image Name="crefresh_text.png" />
           <Image Name="drlvupbtn_text.png" />
@@ -107,6 +115,7 @@
           <Image Name="equiptext_3.png" />
           <Image Name="equiptext_4.png" />
           <Image Name="equiptext_5.png" />
+          <Image Name="fastdecompose_text.png" />
           <Image Name="firebtn_text.png" />
           <Image Name="gocitybtn_text.png" />
           <Image Name="goout_text.png" />
@@ -182,6 +191,7 @@
           <Image Name="recruitbtn_text.png" />
           <Image Name="resitemlv_text.png" />
           <Image Name="srefresh_text.png" />
+          <Image Name="storehousetitle.png" />
           <Image Name="submaptitle_text.png" />
         </Folder>
         <Folder Name="ui">
@@ -192,6 +202,8 @@
           <Image Name="buildinglvbox.png" />
           <Image Name="buildingtitlebox.png" />
           <Image Name="cardnamebox.png" />
+          <Image Name="catabtn_n.png" />
+          <Image Name="catabtn_s.png" />
           <Image Name="closebtn.png" />
           <Image Name="equipbox_0.png" />
           <Image Name="equipbox_1.png" />
@@ -276,6 +288,7 @@
         <Project Name="selectSubMapLayer.csd" Type="Layer" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
+        <Project Name="storeHouseLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

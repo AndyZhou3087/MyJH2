@@ -100,7 +100,7 @@ bool OutTownLayer::init()
 		subbtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onSubBtnClick, this));
 
 		str = StringUtils::format("carrycount%d", i);
-		caryycountlbl[i] = (cocos2d::ui::Text*)csbnode->getChildByName("carrycount0");
+		caryycountlbl[i] = (cocos2d::ui::Text*)csbnode->getChildByName(str);
 
 		caryycount[i] = MyRes::getMyResCount(carryResids[i], MYPACKAGE);
 	}

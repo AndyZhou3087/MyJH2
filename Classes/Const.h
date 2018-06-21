@@ -5,6 +5,8 @@
 
 #define ANDOIRJNICLSNAME "com/csfb/myjh/Utils"
 
+#define FONT_NAME "fonts/simhei.ttf"
+
 #define FIRSTNAMECOUNT 10
 #define LASTNAMECOUNT 10
 #define RESETHEROTIME 21600

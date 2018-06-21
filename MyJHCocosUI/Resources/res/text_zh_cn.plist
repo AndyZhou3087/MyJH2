@@ -117,7 +117,7 @@
 			<key>text_zh_cn/main_achbtn_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{386,189},{58,36}}</string>
+				<string>{{564,126},{58,36}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -128,7 +128,7 @@
 			<key>text_zh_cn/main_mailbtn_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{446,189},{54,36}}</string>
+				<string>{{684,133},{54,36}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -150,7 +150,7 @@
 			<key>text_zh_cn/main_setbtn_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{645,99},{56,32}}</string>
+				<string>{{682,171},{56,32}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -161,7 +161,7 @@
 			<key>text_zh_cn/main_shopbtn_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{87,407},{58,38}}</string>
+				<string>{{624,99},{58,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -172,7 +172,7 @@
 			<key>text_zh_cn/innroomtitle.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{95,99},{78,38}}</string>
+				<string>{{143,99},{78,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -205,7 +205,7 @@
 			<key>text_zh_cn/herofire_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,99},{82,48}}</string>
+				<string>{{1,185},{82,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -216,7 +216,7 @@
 			<key>text_zh_cn/equiptext_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{703,129},{44,26}}</string>
+				<string>{{513,281},{44,26}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -227,7 +227,7 @@
 			<key>text_zh_cn/equiptext_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{638,133},{44,26}}</string>
+				<string>{{559,303},{44,26}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -238,7 +238,7 @@
 			<key>text_zh_cn/equiptext_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{560,177},{52,28}}</string>
+				<string>{{513,251},{52,28}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -249,18 +249,18 @@
 			<key>text_zh_cn/equiptext_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{703,99},{50,28}}</string>
+				<string>{{567,251},{50,28}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{50,28}</string>
 			</dict>
 			<key>text_zh_cn/equiptext_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{730,157},{44,24}}</string>
+				<string>{{479,320},{44,24}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -271,7 +271,7 @@
 			<key>text_zh_cn/equiptext_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{684,157},{44,26}}</string>
+				<string>{{513,309},{44,26}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -348,29 +348,29 @@
 			<key>text_zh_cn/backbtn_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{175,133},{74,34}}</string>
+				<string>{{223,164},{74,34}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{74,34}</string>
 			</dict>
 			<key>text_zh_cn/changebtn_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{133,179},{76,38}}</string>
+				<string>{{143,179},{76,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{76,38}</string>
 			</dict>
 			<key>text_zh_cn/firebtn_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{51,99},{74,42}}</string>
+				<string>{{99,99},{74,42}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -436,7 +436,7 @@
 			<key>text_zh_cn/homehilltitle.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{175,99},{80,32}}</string>
+				<string>{{221,130},{80,32}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -447,11 +447,11 @@
 			<key>text_zh_cn/resitemlv_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,407},{84,48}}</string>
+				<string>{{1,99},{84,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{84,48}</string>
 			</dict>
@@ -491,18 +491,18 @@
 			<key>text_zh_cn/outtowntitle.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{139,219},{78,36}}</string>
+				<string>{{183,99},{78,36}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{78,36}</string>
 			</dict>
 			<key>text_zh_cn/goout_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{135,99},{72,38}}</string>
+				<string>{{183,179},{72,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -513,7 +513,7 @@
 			<key>text_zh_cn/herocancel_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,183},{80,46}}</string>
+				<string>{{51,99},{80,46}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -524,18 +524,18 @@
 			<key>text_zh_cn/herofight_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{49,183},{82,44}}</string>
+				<string>{{51,181},{82,44}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{82,44}</string>
 			</dict>
 			<key>text_zh_cn/gocitybtn_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{342,128},{62,32}}</string>
+				<string>{{684,99},{62,32}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -546,7 +546,7 @@
 			<key>text_zh_cn/mapbtn_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{406,127},{60,30}}</string>
+				<string>{{436,190},{60,30}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -557,7 +557,7 @@
 			<key>text_zh_cn/mappackbtn_text.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{502,185},{56,34}}</string>
+				<string>{{624,139},{56,34}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -568,7 +568,7 @@
 			<key>text_zh_cn/m15-1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{211,169},{28,88}}</string>
+				<string>{{236,240},{28,88}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -579,7 +579,7 @@
 			<key>text_zh_cn/m15-10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{219,228},{27,87}}</string>
+				<string>{{259,193},{27,87}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -590,7 +590,7 @@
 			<key>text_zh_cn/m15-2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{352,257},{27,72}}</string>
+				<string>{{401,99},{27,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -601,7 +601,7 @@
 			<key>text_zh_cn/m15-3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{77,260},{24,92}}</string>
+				<string>{{393,128},{24,92}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -612,18 +612,18 @@
 			<key>text_zh_cn/m2-1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{426,254},{24,73}}</string>
+				<string>{{638,175},{24,73}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{24,73}</string>
 			</dict>
 			<key>text_zh_cn/m15-5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{264,257},{27,86}}</string>
+				<string>{{326,222},{27,86}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -634,7 +634,7 @@
 			<key>text_zh_cn/m15-6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{308,228},{27,86}}</string>
+				<string>{{348,193},{27,86}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -645,7 +645,7 @@
 			<key>text_zh_cn/m15-7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{171,257},{28,91}}</string>
+				<string>{{143,257},{28,91}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -656,7 +656,7 @@
 			<key>text_zh_cn/m15-8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{377,162},{25,72}}</string>
+				<string>{{550,99},{25,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -667,11 +667,11 @@
 			<key>text_zh_cn/m1-2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{614,122},{22,69}}</string>
+				<string>{{309,437},{22,69}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{22,69}</string>
 			</dict>
@@ -689,7 +689,7 @@
 			<key>text_zh_cn/m1-4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{347,99},{26,73}}</string>
+				<string>{{475,99},{26,73}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -700,7 +700,7 @@
 			<key>text_zh_cn/m2-3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{422,99},{25,71}}</string>
+				<string>{{414,222},{25,71}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -711,7 +711,7 @@
 			<key>text_zh_cn/m2-5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{251,133},{27,89}}</string>
+				<string>{{259,164},{27,89}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -722,7 +722,7 @@
 			<key>text_zh_cn/m22-4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{301,162},{31,74}}</string>
+				<string>{{350,159},{31,74}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -733,7 +733,7 @@
 			<key>text_zh_cn/m1-3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{469,227},{24,72}}</string>
+				<string>{{533,199},{24,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -755,11 +755,11 @@
 			<key>text_zh_cn/m1-1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{569,99},{21,74}}</string>
+				<string>{{418,318},{21,74}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{21,74}</string>
 			</dict>
@@ -788,7 +788,7 @@
 			<key>text_zh_cn/m3-1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{451,159},{24,72}}</string>
+				<string>{{533,225},{24,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -799,18 +799,18 @@
 			<key>text_zh_cn/m3-10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{468,126},{24,72}}</string>
+				<string>{{607,248},{24,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{24,72}</string>
 			</dict>
 			<key>text_zh_cn/m3-2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{257,99},{27,88}}</string>
+				<string>{{303,130},{27,88}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -821,11 +821,11 @@
 			<key>text_zh_cn/m2-4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{495,99},{24,72}}</string>
+				<string>{{487,246},{24,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{24,72}</string>
 			</dict>
@@ -843,7 +843,7 @@
 			<key>text_zh_cn/m3-5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{49,229},{29,88}}</string>
+				<string>{{221,99},{29,88}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -854,7 +854,7 @@
 			<key>text_zh_cn/m3-6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1,265},{20,74}}</string>
+				<string>{{51,265},{20,74}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -865,11 +865,11 @@
 			<key>text_zh_cn/m3-7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{542,125},{23,70}}</string>
+				<string>{{393,318},{23,70}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{23,70}</string>
 			</dict>
@@ -887,7 +887,7 @@
 			<key>text_zh_cn/m3-9.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{219,199},{27,88}}</string>
+				<string>{{311,99},{27,88}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -909,29 +909,29 @@
 			<key>text_zh_cn/m2-2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{396,227},{25,71}}</string>
+				<string>{{611,175},{25,71}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{25,71}</string>
 			</dict>
 			<key>text_zh_cn/m4-3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{525,152},{23,72}}</string>
+				<string>{{454,249},{23,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{23,72}</string>
 			</dict>
 			<key>text_zh_cn/m4-4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{309,195},{25,75}}</string>
+				<string>{{487,127},{25,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -960,6 +960,116 @@
 				<true />
 				<key>sourceSize</key>
 				<string>{284,32}</string>
+			</dict>
+			<key>text_zh_cn/storehousetitle.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{97,181},{82,44}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{82,44}</string>
+			</dict>
+			<key>text_zh_cn/catabtn0_text_n.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{390,251},{62,33}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{62,33}</string>
+			</dict>
+			<key>text_zh_cn/catabtn0_text_s.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{490,154},{62,33}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{62,33}</string>
+			</dict>
+			<key>text_zh_cn/catabtn1_text_n.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{385,390},{54,29}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{54,29}</string>
+			</dict>
+			<key>text_zh_cn/catabtn1_text_s.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{309,406},{54,29}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{54,29}</string>
+			</dict>
+			<key>text_zh_cn/catabtn2_text_n.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{426,154},{62,34}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{62,34}</string>
+			</dict>
+			<key>text_zh_cn/catabtn2_text_s.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{326,251},{62,34}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{62,34}</string>
+			</dict>
+			<key>text_zh_cn/catabtn3_text_n.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{554,164},{55,33}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{55,33}</string>
+			</dict>
+			<key>text_zh_cn/catabtn3_text_s.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{498,189},{55,33}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{55,33}</string>
+			</dict>
+			<key>text_zh_cn/fastdecompose_text.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,407},{146,40}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{146,40}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>

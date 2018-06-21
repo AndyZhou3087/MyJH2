@@ -69,6 +69,8 @@
       <FilePathData Path="ui/ninegrid.png" />
       <FilePathData Path="ui/herohpbar.png" />
       <FilePathData Path="ui/herohpbarbg.png" />
+      <FilePathData Path="ui/catabtn_n.png" />
+      <FilePathData Path="ui/catabtn_s.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>
