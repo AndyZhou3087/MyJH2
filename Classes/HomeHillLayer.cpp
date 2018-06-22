@@ -67,9 +67,9 @@ bool HomeHillLayer::init(Building* buidingData)
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("homehilltitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//等级
-	cocos2d::ui::Text* lvUIText = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
+	lvUIlbl = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
 	std::string str = StringUtils::format("%d%s", buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
-	lvUIText->setString(str);
+	lvUIlbl->setString(str);
 
 	//招募按钮
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
@@ -182,6 +182,9 @@ void HomeHillLayer::refreshResUi()
 
 void HomeHillLayer::lvup()
 {
+	std::string str = StringUtils::format("%d%s", m_buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
+	lvUIlbl->setString(str);
+
 	std::string cid = StringUtils::format("r%03d", m_buidingData->level.getValue() + 1);
 	ResCreator* creator = new ResCreator(cid);
 	DynamicValueInt dlv;

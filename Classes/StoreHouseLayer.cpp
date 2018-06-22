@@ -89,19 +89,19 @@ void StoreHouseLayer::updateContent(int category)
 		
 		if (category != i)
 		{
-			std::string textstr = StringUtils::format("catabtn%d_text_n", i);
+			std::string textstr = StringUtils::format("stcatabtn%d_text_n", i);
 			btntext->loadTexture(ResourcePath::makeTextImgPath(textstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			vec_categoryBtn[i]->setBright(true);
 		}
 		else
 		{
-			std::string textstr = StringUtils::format("catabtn%d_text_s", i);
+			std::string textstr = StringUtils::format("stcatabtn%d_text_s", i);
 			vec_categoryBtn[i]->setBright(false);
 			btntext->loadTexture(ResourcePath::makeTextImgPath(textstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 	}
 
-	int itemheight = 140;
+	int itemheight = 160;
 	int ressize = MyRes::vec_MyResources.size();
 	if (category != 0)
 	{
@@ -195,10 +195,12 @@ void StoreHouseLayer::loadData()
 		ResBase* res = MyRes::vec_MyResources[i];
 		if (res->getType() == T_WG || res->getType() == T_NG)
 			map_cateRes[CATA_1].push_back(MyRes::vec_MyResources[i]);
-		else if (res->getType() == T_ARMOR || res->getType() == T_EQUIP || res->getType() == T_HANDARMOR || res->getType() == T_JSTONE)
+		else if (res->getType() == T_ARMOR || res->getType() == T_EQUIP || res->getType() == T_HANDARMOR || res->getType() == T_FASHION)
 			map_cateRes[CATA_2].push_back(MyRes::vec_MyResources[i]);
 		else
+		{
 			map_cateRes[CATA_3].push_back(MyRes::vec_MyResources[i]);
+		}
 	}
 
 	std::map<int, std::vector<ResBase*>>::iterator bit;

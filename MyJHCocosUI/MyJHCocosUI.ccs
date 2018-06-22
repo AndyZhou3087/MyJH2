@@ -97,17 +97,10 @@
         </Folder>
         <Folder Name="text_zh_cn">
           <Image Name="backbtn_text.png" />
-          <Image Name="catabtn0_text_n.png" />
-          <Image Name="catabtn0_text_s.png" />
-          <Image Name="catabtn1_text_n.png" />
-          <Image Name="catabtn1_text_s.png" />
-          <Image Name="catabtn2_text_n.png" />
-          <Image Name="catabtn2_text_s.png" />
-          <Image Name="catabtn3_text_n.png" />
-          <Image Name="catabtn3_text_s.png" />
           <Image Name="changebtn_text.png" />
           <Image Name="crefresh_text.png" />
           <Image Name="drlvupbtn_text.png" />
+          <Image Name="drmakeresbtn_text.png" />
           <Image Name="drrecruitbtn_text.png" />
           <Image Name="equiptext_0.png" />
           <Image Name="equiptext_1.png" />
@@ -184,33 +177,100 @@
           <Image Name="main_rankbtn_text.png" />
           <Image Name="main_setbtn_text.png" />
           <Image Name="main_shopbtn_text.png" />
+          <Image Name="makeresbtn_text.png" />
           <Image Name="mapbtn_text.png" />
           <Image Name="mappackbtn_text.png" />
           <Image Name="outtowntitle.png" />
           <Image Name="recruit_text.png" />
           <Image Name="recruitbtn_text.png" />
           <Image Name="resitemlv_text.png" />
+          <Image Name="smcatabtn0_text_n.png" />
+          <Image Name="smcatabtn0_text_s.png" />
+          <Image Name="smcatabtn1_text_n.png" />
+          <Image Name="smcatabtn1_text_s.png" />
+          <Image Name="smcatabtn2_text_n.png" />
+          <Image Name="smcatabtn2_text_s.png" />
+          <Image Name="smcatabtn3_text_n.png" />
+          <Image Name="smcatabtn3_text_s.png" />
+          <Image Name="smcatabtn4_text_n.png" />
+          <Image Name="smcatabtn4_text_s.png" />
+          <Image Name="smithylv_text.png" />
+          <Image Name="smithytilte.png" />
           <Image Name="srefresh_text.png" />
+          <Image Name="stcatabtn0_text_n.png" />
+          <Image Name="stcatabtn0_text_s.png" />
+          <Image Name="stcatabtn1_text_n.png" />
+          <Image Name="stcatabtn1_text_s.png" />
+          <Image Name="stcatabtn2_text_n.png" />
+          <Image Name="stcatabtn2_text_s.png" />
+          <Image Name="stcatabtn3_text_n.png" />
+          <Image Name="stcatabtn3_text_s.png" />
           <Image Name="storehousetitle.png" />
           <Image Name="submaptitle_text.png" />
         </Folder>
         <Folder Name="ui">
+          <Image Name="a001.png" />
+          <Image Name="a002.png" />
+          <Image Name="a003.png" />
+          <Image Name="a004.png" />
+          <Image Name="a005.png" />
+          <Image Name="a006.png" />
+          <Image Name="a007.png" />
+          <Image Name="a008.png" />
+          <Image Name="a009.png" />
+          <Image Name="a010.png" />
+          <Image Name="a011.png" />
+          <Image Name="a012.png" />
+          <Image Name="a013.png" />
+          <Image Name="a014.png" />
+          <Image Name="a015.png" />
+          <Image Name="a016.png" />
+          <Image Name="a017.png" />
+          <Image Name="a018.png" />
+          <Image Name="a019.png" />
+          <Image Name="a020.png" />
+          <Image Name="a021.png" />
+          <Image Name="a022.png" />
+          <Image Name="a023.png" />
+          <Image Name="a024.png" />
+          <Image Name="a025.png" />
+          <Image Name="a026.png" />
+          <Image Name="a027.png" />
+          <Image Name="a028.png" />
           <Image Name="actionbtn_blue.png" />
+          <Image Name="b001.png" />
+          <Image Name="b002.png" />
+          <Image Name="b003.png" />
+          <Image Name="b004.png" />
           <Image Name="blank.png" />
           <Image Name="buildingactbtn_d.png" />
           <Image Name="buildingactbtn_n.png" />
           <Image Name="buildinglvbox.png" />
           <Image Name="buildingtitlebox.png" />
+          <Image Name="c001.png" />
           <Image Name="cardnamebox.png" />
           <Image Name="catabtn_n.png" />
           <Image Name="catabtn_s.png" />
           <Image Name="closebtn.png" />
+          <Image Name="d001.png" />
+          <Image Name="d002.png" />
+          <Image Name="d003.png" />
+          <Image Name="d004.png" />
+          <Image Name="d005.png" />
+          <Image Name="e001.png" />
+          <Image Name="e002.png" />
+          <Image Name="e003.png" />
+          <Image Name="e004.png" />
           <Image Name="equipbox_0.png" />
           <Image Name="equipbox_1.png" />
           <Image Name="equipbox_2.png" />
           <Image Name="equipbox_3.png" />
           <Image Name="equipbox_4.png" />
           <Image Name="equipbox_5.png" />
+          <Image Name="f001.png" />
+          <Image Name="f002.png" />
+          <Image Name="f003.png" />
+          <Image Name="f004.png" />
           <Image Name="h_0_0.png" />
           <Image Name="h_0_1.png" />
           <Image Name="h_1_0.png" />
@@ -219,6 +279,10 @@
           <Image Name="h_2_1.png" />
           <Image Name="h_3_0.png" />
           <Image Name="h_3_1.png" />
+          <Image Name="h001.png" />
+          <Image Name="h002.png" />
+          <Image Name="h003.png" />
+          <Image Name="h004.png" />
           <Image Name="heroattradd.png" />
           <Image Name="heroattrexpbar.png" />
           <Image Name="heroattrexpbarbg.png" />
@@ -233,6 +297,10 @@
           <Image Name="herohpbarbg.png" />
           <Image Name="heroitem.png" />
           <Image Name="herotag_0.png" />
+          <Image Name="m001.png" />
+          <Image Name="m002.png" />
+          <Image Name="m003.png" />
+          <Image Name="m004.png" />
           <Image Name="main_achbtn.png" />
           <Image Name="main_addbtn.png" />
           <Image Name="main_btn_redpoint.png" />
@@ -255,8 +323,16 @@
           <Image Name="resaddbtn.png" />
           <Image Name="resbox.png" />
           <Image Name="resbox_qu0.png" />
+          <Image Name="resbox_qu1.png" />
+          <Image Name="resbox_qu2.png" />
+          <Image Name="resbox_qu3.png" />
+          <Image Name="resbox_qu4.png" />
           <Image Name="resitem.png" />
           <Image Name="ressunbtn.png" />
+          <Image Name="s001.png" />
+          <Image Name="s002.png" />
+          <Image Name="s003.png" />
+          <Image Name="s004.png" />
           <Image Name="smallstar.png" />
           <Image Name="timebar.png" />
           <Image Name="timebargb.png" />
@@ -264,6 +340,21 @@
           <Image Name="timeiconbox.png" />
           <Image Name="top1.png" />
           <Image Name="top2.png" />
+          <Image Name="y001.png" />
+          <Image Name="y002.png" />
+          <Image Name="y003.png" />
+          <Image Name="y004.png" />
+          <Image Name="y005.png" />
+          <Image Name="y006.png" />
+          <Image Name="y007.png" />
+          <Image Name="y008.png" />
+          <Image Name="y009.png" />
+          <Image Name="y010.png" />
+          <Image Name="y011.png" />
+          <Image Name="y012.png" />
+          <Image Name="y013.png" />
+          <Image Name="y014.png" />
+          <Image Name="y015.png" />
         </Folder>
         <Project Name="cardHeroNode.csd" Type="Node" />
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
@@ -277,6 +368,7 @@
         <Project Name="MainLayer.csd" Type="Layer" />
         <Project Name="mainMapLayer.csd" Type="Layer" />
         <Project Name="MainMenuLayer.csd" Type="Layer" />
+        <Project Name="makeResNode.csd" Type="Node" />
         <Project Name="mapBlockLayer.csd" Type="Layer" />
         <PlistInfo Name="mapui.csi" Type="Plist" />
         <Project Name="myHeroNode.csd" Type="Node" />
@@ -286,9 +378,10 @@
         <Project Name="selectMapNode.csd" Type="Node" />
         <Project Name="selectMyHerosLayer.csd" Type="Layer" />
         <Project Name="selectSubMapLayer.csd" Type="Layer" />
+        <Project Name="smithyLayer.csd" Type="Layer" />
+        <Project Name="storeHouseLayer.csd" Type="Layer" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
-        <Project Name="storeHouseLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

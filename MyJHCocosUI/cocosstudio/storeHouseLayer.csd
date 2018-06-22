@@ -104,7 +104,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5294" />
                     <PreSize X="0.4079" Y="0.4853" />
-                    <FileData Type="MarkedSubImage" Path="text_zh_cn/catabtn0_text_n.png" Plist="text_zh_cn.plist" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/stcatabtn0_text_n.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -131,7 +131,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5294" />
                     <PreSize X="0.3553" Y="0.4265" />
-                    <FileData Type="MarkedSubImage" Path="text_zh_cn/catabtn1_text_n.png" Plist="text_zh_cn.plist" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/stcatabtn1_text_n.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -150,15 +150,15 @@
               <AbstractNodeData Name="btn2" ActionTag="-419330462" Tag="66" IconVisible="False" LeftMargin="3.9999" RightMargin="-155.9999" TopMargin="-34.0001" BottomMargin="-33.9999" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="122" Scale9Height="46" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="152.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="text" ActionTag="1303056485" Tag="67" IconVisible="False" LeftMargin="44.9996" RightMargin="45.0004" TopMargin="15.0004" BottomMargin="18.9996" LeftEage="20" RightEage="20" TopEage="10" BottomEage="10" Scale9OriginX="20" Scale9OriginY="10" Scale9Width="22" Scale9Height="14" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="text" ActionTag="1303056485" Tag="67" IconVisible="False" LeftMargin="49.0001" RightMargin="40.9999" TopMargin="15.0003" BottomMargin="18.9997" LeftEage="20" RightEage="20" TopEage="10" BottomEage="10" Scale9OriginX="20" Scale9OriginY="10" Scale9Width="22" Scale9Height="14" ctype="ImageViewObjectData">
                     <Size X="62.0000" Y="34.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="75.9996" Y="35.9996" />
+                    <Position X="80.0001" Y="35.9997" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.5294" />
+                    <PrePosition X="0.5263" Y="0.5294" />
                     <PreSize X="0.4079" Y="0.5000" />
-                    <FileData Type="MarkedSubImage" Path="text_zh_cn/catabtn2_text_n.png" Plist="text_zh_cn.plist" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/stcatabtn2_text_n.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -185,7 +185,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5294" />
                     <PreSize X="0.3618" Y="0.4853" />
-                    <FileData Type="MarkedSubImage" Path="text_zh_cn/catabtn3_text_n.png" Plist="text_zh_cn.plist" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/stcatabtn3_text_n.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -209,7 +209,7 @@
             <PrePosition X="0.5000" Y="0.8754" />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scrollview" ActionTag="-1589782516" Tag="70" IconVisible="False" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="195.0000" BottomMargin="175.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="scrollview" ActionTag="-1589782516" Tag="70" IconVisible="False" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="195.0000" BottomMargin="175.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="640.0000" Y="910.0000" />
             <AnchorPoint />
             <Position X="40.0000" Y="175.0000" />

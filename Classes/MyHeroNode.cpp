@@ -45,6 +45,7 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 
 	cocos2d::ui::Widget* bgitem = (cocos2d::ui::Widget*)csbnode->getChildByName("itembg");
 	bgitem->addTouchEventListener(CC_CALLBACK_2(MyHeroNode::onbgClick, this));
+	bgitem->setSwallowTouches(false);
 
 	//头像框
 	headbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("herobox");

@@ -425,11 +425,11 @@ void GlobalInstance::loadAllResourcesData()
 {
 	int langtype = DataSave::getInstance()->getLocalLang();
 	std::string langname = StringUtils::format("lang/%s/allresdesc.json", ResourceLang::makeLangName(langtype).c_str());
-	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath(langname));
-	rapidjson::Value& allData = doc["rd"];
-	for (unsigned int i = 0; i < allData.Size(); i++)
+	rapidjson::Document rddoc = ReadJsonFile(ResourcePath::makePath(langname));
+	rapidjson::Value& rdallData = rddoc["rd"];
+	for (unsigned int i = 0; i < rdallData.Size(); i++)
 	{
-		rapidjson::Value& jsonvalue = allData[i];
+		rapidjson::Value& jsonvalue = rdallData[i];
 		if (jsonvalue.IsObject())
 		{
 			AllResources data;
@@ -448,6 +448,36 @@ void GlobalInstance::loadAllResourcesData()
 			map_AllResources[data.id] = data;
 		}
 	}
+
+	rapidjson::Document rsdoc = ReadJsonFile(ResourcePath::makePath("json/resaction.json"));
+	rapidjson::Value& rsallData = rsdoc["r"];
+	for (unsigned int i = 0; i < rsallData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = rsallData[i];
+		if (jsonvalue.IsObject())
+		{
+			rapidjson::Value& v = jsonvalue["id"];
+			std::string rid = v.GetString();
+
+			if (jsonvalue.HasMember("nres"))
+			{
+				v = jsonvalue["nres"];
+				for (unsigned int j = 0;j < v.Size(); j++)
+				{
+					std::string onestr = v[j].GetString();
+					if (onestr.length() > 3)
+					{
+						std::map<std::string, int> map_tmp;
+						std::vector<std::string> vec_tmp;
+						CommonFuncs::split(onestr, vec_tmp, "-");
+						map_tmp[vec_tmp[0]] = atoi(vec_tmp[1].c_str());
+						map_AllResources[rid].vec_needres.push_back(map_tmp);
+					}
+
+				}
+			}
+		}
+	}
 }
 
 void GlobalInstance::loadMyResData()
@@ -462,17 +492,69 @@ void GlobalInstance::loadMyResData()
 			std::vector<std::string> vec_one;
 			CommonFuncs::split(vec_tmp[i], vec_one, "-");
 			std::string rid = vec_one[0];
-			ResBase* res = NULL;
-			if (rid.compare(0, 1, "r") == 0)
+
+			std::string types[] = { "r","a","e","h","f","w","x","s","c","d","m","b","y" };
+			int m = 0;
+			for (; m < sizeof(types) / sizeof(types[0]); m++)
 			{
-				res = new ResBase();
-				res->setId(rid);
-				DynamicValueInt dlv;
-				dlv.setValue(atoi(vec_one[1].c_str()));
-				res->setCount(dlv);
-				res->setWhere(atoi(vec_one[2].c_str()));
+				if (rid.compare(0, 1, types[m]) == 0)
+					break;
 			}
-			MyRes::vec_MyResources.push_back(res);
+			if (m >= T_ARMOR && m <= T_FASHION)
+			{
+				Equip* res = new Equip();
+				res->setId(rid);
+				res->setType(m);
+				DynamicValueInt dv;
+				dv.setValue(atoi(vec_one[1].c_str()));
+				res->setCount(dv);
+				res->setWhere(atoi(vec_one[2].c_str()));
+
+				DynamicValueInt dv1;
+				dv1.setValue(atoi(vec_one[3].c_str()));
+				res->setQU(dv1);
+
+				DynamicValueInt dv2;
+				dv2.setValue(atoi(vec_one[4].c_str()));
+				res->setLv(dv2);
+
+				CommonFuncs::split(vec_one[5], res->vec_stones, ",");
+
+				MyRes::vec_MyResources.push_back(res);
+			}
+			else if (m >= T_WG && m <= T_NG)
+			{
+				GongFa* res = new GongFa();
+				res->setId(rid);
+				res->setType(m);
+				DynamicValueInt dv;
+				dv.setValue(atoi(vec_one[1].c_str()));
+				res->setCount(dv);
+				res->setWhere(atoi(vec_one[2].c_str()));
+
+				DynamicValueInt dv1;
+				dv1.setValue(atoi(vec_one[3].c_str()));
+				res->setQU(dv1);
+
+				DynamicValueInt dv2;
+				dv2.setValue(atoi(vec_one[4].c_str()));
+				res->setLv(dv2);
+
+				MyRes::vec_MyResources.push_back(res);
+			}
+
+			else
+			{
+				ResBase* res = new ResBase();
+				res->setId(rid);
+				res->setType(m);
+				DynamicValueInt dv;
+				dv.setValue(atoi(vec_one[1].c_str()));
+				res->setCount(dv);
+				res->setWhere(atoi(vec_one[2].c_str()));
+				MyRes::vec_MyResources.push_back(res);
+			}
+			
 		}
 	}
 }

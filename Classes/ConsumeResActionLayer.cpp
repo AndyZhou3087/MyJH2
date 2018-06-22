@@ -7,8 +7,11 @@
 #include "MyRes.h"
 #include "MovingLabel.h"
 #include "DataSave.h"
+#include "InnRoomLayer.h"
 #include "HomeHillLayer.h"
 #include "ResCreator.h"
+#include "SmithyLayer.h"
+
 
 USING_NS_CC;
 
@@ -107,6 +110,18 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 		map_res["r002"] = dint.getValue();
 		vec_res.push_back(map_res);
 		coincount.setValue(dint.getValue()/10);
+	}
+	else if (actiontype == CA_MAKERES)//合成资源
+	{
+		btn1_text = "makeresbtn_text";
+		btn2_text = "drmakeresbtn_text";
+		std::string resid = (char*)m_data;
+		titlestr = GlobalInstance::map_AllResources[resid].name;
+
+		vec_res = GlobalInstance::map_AllResources[resid].vec_needres;
+		DynamicValueInt dint;
+		dint.setValue(100);
+		coincount.setValue(dint.getValue() / 10);
 	}
 	//标题
 	cocos2d::ui::Text* title = (cocos2d::ui::Text*)csbnode->getChildByName("titlename");
@@ -242,35 +257,8 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 					int mycount = MyRes::getMyResCount(resid);
 					MyRes::Add(resid, -map_res[resid]);
 				}
-				if (m_actiontype == CA_BUILDINGLVUP)
-				{
+				action();
 
-					Building* bdata = (Building*)m_data;
-					bdata->level.setValue(bdata->level.getValue() + 1);
-					DataSave::getInstance()->setBuildingLv(bdata->name, bdata->level.getValue());
-					if (bdata->name.compare("7homehill") == 0)
-					{
-						HomeHillLayer* homeHillLayer = (HomeHillLayer*)this->getParent();
-						homeHillLayer->lvup();
-					}
-					else
-					{
-
-					}
-				}
-				else if (m_actiontype == CA_EMPLOYFARMER)
-				{
-					//工人数增加5
-					GlobalInstance::getInstance()->saveTotalFarmers(GlobalInstance::getInstance()->getTotalFarmers() + 5);
-				}
-				else if (m_actiontype == CA_RESCREATORLVUP)
-				{
-					ResCreator* rdata = (ResCreator*)m_data;
-					DynamicValueInt dlv;
-					dlv.setValue(rdata->getLv().getValue() + 1);
-					rdata->setLv(dlv);
-					GlobalInstance::getInstance()->saveResCreatorData();
-				}
 				this->removeFromParentAndCleanup(true);
 			}
 			else
@@ -283,6 +271,50 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 		default:
 			break;
 		}
+	}
+}
+
+void ConsumeResActionLayer::action()
+{
+	if (m_actiontype == CA_BUILDINGLVUP)
+	{
+		Building* bdata = (Building*)m_data;
+		bdata->level.setValue(bdata->level.getValue() + 1);
+		DataSave::getInstance()->setBuildingLv(bdata->name, bdata->level.getValue());
+
+		if (bdata->name.compare("7homehill") == 0)
+		{
+			InnRoomLayer* innroomLayer = (InnRoomLayer*)this->getParent();
+			innroomLayer->lvup();
+		}
+		else if (bdata->name.compare("7homehill") == 0)
+		{
+			HomeHillLayer* homeHillLayer = (HomeHillLayer*)this->getParent();
+			homeHillLayer->lvup();
+		}
+		else if (bdata->name.compare("2smithy") == 0)
+		{
+			SmithyLayer* smithyLayer = (SmithyLayer*)this->getParent();
+			smithyLayer->lvup();
+		}
+	}
+	else if (m_actiontype == CA_EMPLOYFARMER)
+	{
+		//工人数增加5
+		GlobalInstance::getInstance()->saveTotalFarmers(GlobalInstance::getInstance()->getTotalFarmers() + 5);
+	}
+	else if (m_actiontype == CA_RESCREATORLVUP)
+	{
+		ResCreator* rdata = (ResCreator*)m_data;
+		DynamicValueInt dlv;
+		dlv.setValue(rdata->getLv().getValue() + 1);
+		rdata->setLv(dlv);
+		GlobalInstance::getInstance()->saveResCreatorData();
+	}
+	else if (m_actiontype == CA_MAKERES)
+	{
+		std::string rid = (char*)m_data;
+		MyRes::Add(rid, 1);
 	}
 }
 

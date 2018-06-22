@@ -49,8 +49,7 @@ void Building::parseData()
 			if (jsonvalue.HasMember("lvres"))
 			{
 				value = jsonvalue["lvres"];
-				int maxlv = data->maxlevel.getValue();
-				for (int i = 0; i < maxlv-1; i++)
+				for (unsigned int i = 0; i < value.Size()-1; i++)
 				{
 					std::vector<std::map<std::string, int>> res;
 					rapidjson::Value& resvalue = value[i];
@@ -71,6 +70,26 @@ void Building::parseData()
 						}
 					}
 					data->lvupres.push_back(res);
+				}
+			}
+			if (jsonvalue.HasMember("exdata"))
+			{
+				value = jsonvalue["exdata"];
+			
+				for (unsigned int i = 0; i < value.Size(); i++)
+				{
+					std::vector<std::string> vec_res;
+					rapidjson::Value& resvalue = value[i];
+					int size = resvalue.Size();
+					for (int j = 0; j < size; j++)
+					{
+						std::string onestr = resvalue[j].GetString();
+						if (onestr.length() > 0)
+						{
+							vec_res.push_back(onestr);
+						}
+					}
+					data->vec_exdata.push_back(vec_res);
 				}
 			}
 			map_buildingDatas[data->name] = data;

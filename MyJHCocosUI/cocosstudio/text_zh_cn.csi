@@ -90,15 +90,29 @@
       <FilePathData Path="text_zh_cn/m4-5.png" />
       <FilePathData Path="text_zh_cn/submaptitle_text.png" />
       <FilePathData Path="text_zh_cn/storehousetitle.png" />
-      <FilePathData Path="text_zh_cn/catabtn0_text_n.png" />
-      <FilePathData Path="text_zh_cn/catabtn0_text_s.png" />
-      <FilePathData Path="text_zh_cn/catabtn1_text_n.png" />
-      <FilePathData Path="text_zh_cn/catabtn1_text_s.png" />
-      <FilePathData Path="text_zh_cn/catabtn2_text_n.png" />
-      <FilePathData Path="text_zh_cn/catabtn2_text_s.png" />
-      <FilePathData Path="text_zh_cn/catabtn3_text_n.png" />
-      <FilePathData Path="text_zh_cn/catabtn3_text_s.png" />
+      <FilePathData Path="text_zh_cn/stcatabtn0_text_n.png" />
+      <FilePathData Path="text_zh_cn/stcatabtn0_text_s.png" />
+      <FilePathData Path="text_zh_cn/stcatabtn1_text_n.png" />
+      <FilePathData Path="text_zh_cn/stcatabtn1_text_s.png" />
+      <FilePathData Path="text_zh_cn/stcatabtn2_text_n.png" />
+      <FilePathData Path="text_zh_cn/stcatabtn2_text_s.png" />
+      <FilePathData Path="text_zh_cn/stcatabtn3_text_n.png" />
+      <FilePathData Path="text_zh_cn/stcatabtn3_text_s.png" />
       <FilePathData Path="text_zh_cn/fastdecompose_text.png" />
+      <FilePathData Path="text_zh_cn/smcatabtn0_text_s.png" />
+      <FilePathData Path="text_zh_cn/smcatabtn1_text_n.png" />
+      <FilePathData Path="text_zh_cn/smcatabtn1_text_s.png" />
+      <FilePathData Path="text_zh_cn/smcatabtn2_text_n.png" />
+      <FilePathData Path="text_zh_cn/smcatabtn2_text_s.png" />
+      <FilePathData Path="text_zh_cn/smcatabtn3_text_n.png" />
+      <FilePathData Path="text_zh_cn/smcatabtn3_text_s.png" />
+      <FilePathData Path="text_zh_cn/smcatabtn4_text_n.png" />
+      <FilePathData Path="text_zh_cn/smcatabtn4_text_s.png" />
+      <FilePathData Path="text_zh_cn/smithytilte.png" />
+      <FilePathData Path="text_zh_cn/smithylv_text.png" />
+      <FilePathData Path="text_zh_cn/smcatabtn0_text_n.png" />
+      <FilePathData Path="text_zh_cn/drmakeresbtn_text.png" />
+      <FilePathData Path="text_zh_cn/makeresbtn_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

@@ -28,6 +28,7 @@ private:
 	cocos2d::ui::LoadingBar* m_timebar;
 	cocos2d::ui::Text* m_timelbl;
 	cocos2d::ui::Text* m_leftfarmercount;
+	cocos2d::ui::Text* lvUIlbl;
 };
 
 #endif

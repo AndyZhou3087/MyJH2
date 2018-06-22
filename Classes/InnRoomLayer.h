@@ -19,6 +19,8 @@ public:
 	//更新scrollview
 	void refreshMyHerosUi();
 
+	void lvup();
+
 	MyHeroNode* getMyHeroNode(int index);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -26,6 +28,7 @@ private:
 private:
 	Building* m_buidingData;//建筑物数据
 	cocos2d::ui::ScrollView* m_contentscroll;
+	cocos2d::ui::Text* lvUIlbl;
 };
 
 #endif

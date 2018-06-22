@@ -10,6 +10,7 @@
 #include "MovingLabel.h"
 #include "OutTownLayer.h"
 #include "StoreHouseLayer.h"
+#include "SmithyLayer.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -203,6 +204,10 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			{
 				layer = StoreHouseLayer::create();
 			}
+			else if (buildname.compare("2smithy") == 0)
+			{
+				layer = SmithyLayer::create(Building::map_buildingDatas[buildname]);
+			}
 			if (layer != NULL)
 			{
 				this->addChild(layer, 0, buildname);
@@ -260,19 +265,13 @@ void MainScene::updateTime(float dt)
 
 				std::string showtext = StringUtils::format("%s+%d", GlobalInstance::map_AllResources[rescreator->getName()].name.c_str(), addcount);
 				MovingLabel::show(showtext);
-				ResBase* resbase = MyRes::getMyResource(rescreator->getName());
-				if (resbase != NULL)
-				{
-					if (addcount + resbase->getCount().getValue() >= maxcount)
-						addcount = maxcount - resbase->getCount().getValue();
-				}
-				else
-				{
-					if (addcount > maxcount)
-						addcount = maxcount;
-				}
+				int rcount = MyRes::getMyResCount(rescreator->getName());
+
+				if (addcount + rcount >= maxcount)
+					addcount = maxcount - rcount;
+
 				if (addcount > 0)
-					MyRes::Add(rescreator->getName(), addcount, MYSTORAGE);
+					MyRes::Add(rescreator->getName(), addcount);
 
 			}
 		}

@@ -11,7 +11,8 @@ typedef enum
 {
 	CA_BUILDINGLVUP,//建筑物升级
 	CA_EMPLOYFARMER,//雇用工人
-	CA_RESCREATORLVUP//升级资源容量
+	CA_RESCREATORLVUP,//升级资源容量
+	CA_MAKERES//制作资源
 }CACTIONTYPE;
 class ConsumeResActionLayer : public cocos2d::Layer
 {
@@ -32,6 +33,9 @@ private:
 
 	//资源足够升级
 	bool checkResIsEnough();
+
+	//操作
+	void action();
 private:
 	cocos2d::ui::Text* namelbl[3];//资源名字ABEL
 	cocos2d::ui::Text* countlbl[3];//资源数量LABEL

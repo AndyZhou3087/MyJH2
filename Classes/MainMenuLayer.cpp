@@ -80,17 +80,11 @@ void MainMenuLayer::updateUI(float dt)
 	std::string str;
 	for (int i = 0; i < 5; i++)
 	{
-		str = StringUtils::format("r%03d", i + 1);
-		ResBase* res = MyRes::getMyResource(str);
-		if (res != NULL)
-		{
-			str = StringUtils::format("%d", res->getCount().getValue());
-			reslbl[i]->setString(str);
-		}
-		else
-		{
-			reslbl[i]->setString("0");
-		}
+		std::string rid = StringUtils::format("r%03d", i + 1);
+
+		str = StringUtils::format("%d", MyRes::getMyResCount(rid));
+		reslbl[i]->setString(str);
+
 	}
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
 	mycoinlbl->setString(str);

@@ -42,6 +42,7 @@ typedef struct
 	std::string id;
 	std::string name;
 	std::string desc;
+	std::vector<std::map<std::string, int>> vec_needres;//合成需要的资源
 }AllResources;
 
 class GlobalInstance
