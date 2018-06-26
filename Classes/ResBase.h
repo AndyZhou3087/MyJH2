@@ -43,9 +43,5 @@ public:
 	CC_SYNTHESIZE(DynamicValueInt, m_count, Count);//个数
 	CC_SYNTHESIZE(int, m_where, Where);//在哪里
 public:
-	//增加，负数代表使用
-	void add(DynamicValueInt count);
-
-	void remove();
 };
 #endif

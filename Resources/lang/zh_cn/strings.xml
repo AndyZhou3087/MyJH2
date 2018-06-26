@@ -56,5 +56,9 @@
 	<s name="hpdesc">（消耗体力 %d）</s>
 	<s name="awarddesc">可获得物品：%s</s>	
 	<s name="zhdunhao">、</s>
-	<s name="noherosout">请选择出城侠客！</s>	
+	<s name="noherosout">请选择出城侠客！</s>
+	<s name="rescount">数量：%d</s>
+	<s name="decomposesucc">%s分解成功-->%s</s>
+	<s name="decomposehint">请点击分解物品</s>
+	<s name="decomposefail">不能分解</s>
 </strings>

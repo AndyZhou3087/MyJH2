@@ -113,6 +113,10 @@
       <FilePathData Path="text_zh_cn/smcatabtn0_text_n.png" />
       <FilePathData Path="text_zh_cn/drmakeresbtn_text.png" />
       <FilePathData Path="text_zh_cn/makeresbtn_text.png" />
+      <FilePathData Path="text_zh_cn/okbtn_text.png" />
+      <FilePathData Path="text_zh_cn/closebtn_text.png" />
+      <FilePathData Path="text_zh_cn/usebtn_text.png" />
+      <FilePathData Path="text_zh_cn/decomposebtn_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

@@ -15,7 +15,7 @@ public:
 	~GongFa();
 
 	CC_SYNTHESIZE(DynamicValueInt, m_qu, QU);//品质
-	CC_SYNTHESIZE(DynamicValueInt, m_lv, Lv);//等级
+	CC_SYNTHESIZE(DynamicValueInt, m_exp, Exp);//经验值，等级
 public:
 };
 #endif

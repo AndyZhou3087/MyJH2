@@ -7,5 +7,26 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="text_zh_cn.csi" />
+          <FilePathData Path="ui.csi" />
+          <FilePathData Path="consumeResActionLayer.csd" />
+          <FilePathData Path="storeHouseLayer.csd" />
+          <FilePathData Path="outTownLayer.csd" />
+          <FilePathData Path="MainLayer.csd" />
+          <FilePathData Path="innRoomLayer.csd" />
+          <FilePathData Path="smithyLayer.csd" />
+          <FilePathData Path="myHeroNode.csd" />
+          <FilePathData Path="randHeroNode.csd" />
+          <FilePathData Path="selectMapNode.csd" />
+          <FilePathData Path="makeResNode.csd" />
+          <FilePathData Path="hillResNode.csd" />
+          <FilePathData Path="resDescLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="text_zh_cn.csi" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>

@@ -28,6 +28,8 @@ public:
 	void updateContent(int category);
 
 	void lvup();
+
+	void makeRes(std::string resid);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

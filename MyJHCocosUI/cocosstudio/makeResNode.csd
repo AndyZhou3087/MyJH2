@@ -36,15 +36,15 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/resbox_qu0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="res" ActionTag="1652485009" Tag="161" IconVisible="False" LeftMargin="-289.0001" RightMargin="231.0001" TopMargin="-27.0002" BottomMargin="-26.9998" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="20" Scale9Height="20" ctype="ImageViewObjectData">
-            <Size X="58.0000" Y="54.0000" />
+          <AbstractNodeData Name="res" ActionTag="1652485009" Tag="161" IconVisible="False" LeftMargin="-314.5001" RightMargin="205.5001" TopMargin="-54.5002" BottomMargin="-54.4998" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="71" Scale9Height="75" ctype="ImageViewObjectData">
+            <Size X="109.0000" Y="109.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-260.0001" Y="0.0002" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
+            <FileData Type="MarkedSubImage" Path="ui/a001.png" Plist="ui.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="name" ActionTag="763399710" Tag="160" IconVisible="False" LeftMargin="-185.1654" RightMargin="127.1654" TopMargin="-44.1456" BottomMargin="12.1456" FontSize="28" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="58.0000" Y="32.0000" />

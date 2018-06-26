@@ -159,7 +159,7 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				if (addcount != 0)
 				{
 					MyRes::Add(carryResids[i], addcount, MYPACKAGE);
-					MyRes::Add(carryResids[i], -addcount);
+					MyRes::Use(carryResids[i], addcount);
 				}
 			}
 			GlobalInstance::getInstance()->parseMapJson();

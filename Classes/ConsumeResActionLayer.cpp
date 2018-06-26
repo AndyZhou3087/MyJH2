@@ -252,10 +252,8 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 				{
 					std::map<std::string, int> map_res = vec_res[i];
 					std::map<std::string, int>::iterator map_it = map_res.begin();
-
 					std::string resid = map_it->first;
-					int mycount = MyRes::getMyResCount(resid);
-					MyRes::Add(resid, -map_res[resid]);
+					MyRes::Use(resid, map_res[resid]);
 				}
 				action();
 
@@ -314,7 +312,8 @@ void ConsumeResActionLayer::action()
 	else if (m_actiontype == CA_MAKERES)
 	{
 		std::string rid = (char*)m_data;
-		MyRes::Add(rid, 1);
+		SmithyLayer* smithyLayer = (SmithyLayer*)this->getParent();
+		smithyLayer->makeRes(rid);
 	}
 }
 

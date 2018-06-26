@@ -98,7 +98,9 @@
         <Folder Name="text_zh_cn">
           <Image Name="backbtn_text.png" />
           <Image Name="changebtn_text.png" />
+          <Image Name="closebtn_text.png" />
           <Image Name="crefresh_text.png" />
+          <Image Name="decomposebtn_text.png" />
           <Image Name="drlvupbtn_text.png" />
           <Image Name="drmakeresbtn_text.png" />
           <Image Name="drrecruitbtn_text.png" />
@@ -180,6 +182,7 @@
           <Image Name="makeresbtn_text.png" />
           <Image Name="mapbtn_text.png" />
           <Image Name="mappackbtn_text.png" />
+          <Image Name="okbtn_text.png" />
           <Image Name="outtowntitle.png" />
           <Image Name="recruit_text.png" />
           <Image Name="recruitbtn_text.png" />
@@ -207,6 +210,7 @@
           <Image Name="stcatabtn3_text_s.png" />
           <Image Name="storehousetitle.png" />
           <Image Name="submaptitle_text.png" />
+          <Image Name="usebtn_text.png" />
         </Folder>
         <Folder Name="ui">
           <Image Name="a001.png" />
@@ -382,6 +386,7 @@
         <Project Name="storeHouseLayer.csd" Type="Layer" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
+        <Project Name="resDescLayer.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

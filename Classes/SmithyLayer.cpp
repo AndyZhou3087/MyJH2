@@ -5,6 +5,7 @@
 #include "ConsumeResActionLayer.h"
 #include "MovingLabel.h"
 #include "DataSave.h"
+#include "MyRes.h"
 
 USING_NS_CC;
 
@@ -238,6 +239,46 @@ void SmithyLayer::lvup()
 
 	loadData();
 	updateContent(lastCategoryindex);
+}
+
+void SmithyLayer::makeRes(std::string resid)
+{
+	//品质概率
+	int qu = 0;
+	int rnd = GlobalInstance::getInstance()->createRandomNum(100);
+	if (m_buidingData->level.getValue() < 4)
+	{
+		qu = 0;
+	}
+	else if (m_buidingData->level.getValue() < 9)
+	{
+		if (rnd < 80)
+			qu = 0;
+		else
+			qu = 1;
+	}
+	else if (m_buidingData->level.getValue() < 14)
+	{
+		if (rnd < 60)
+			qu = 0;
+		else if (rnd < 90)
+			qu = 1;
+		else
+			qu = 2;
+	}
+	else
+	{
+		if (rnd < 55)
+			qu = 0;
+		else if (rnd < 85)
+			qu = 1;
+		else if (rnd < 95)
+			qu = 2;
+		else
+			qu = 3;
+	}
+	int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
+	MyRes::Add(resid, 1, MYSTORAGE, qu, stc);
 }
 
 void SmithyLayer::onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

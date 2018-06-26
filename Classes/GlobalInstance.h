@@ -153,6 +153,8 @@ public:
 	DynamicValueInt getMyCoinCount();
 
 	void addMyCoinCount(DynamicValueInt val);
+
+	int generateStoneCount(int qu);
 private:
 	static GlobalInstance* _Context;//类实例
 public:

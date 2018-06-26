@@ -7,10 +7,13 @@
 #include "GlobalInstance.h"
 #include "MyRes.h"
 #include "MyMenu.h"
+#include "ResDescLayer.h"
+#include "MovingLabel.h"
 
 StoreHouseLayer::StoreHouseLayer()
 {
 	lastCategoryindex = 0;
+	isfastcomposing = false;
 }
 
 
@@ -103,6 +106,9 @@ void StoreHouseLayer::updateContent(int category)
 
 	int itemheight = 160;
 	int ressize = MyRes::vec_MyResources.size();
+
+	map_cateRes.clear();
+	loadData();
 	if (category != 0)
 	{
 		ressize = map_cateRes[category].size();
@@ -110,7 +116,6 @@ void StoreHouseLayer::updateContent(int category)
 	else
 	{
 		int catasort[] = { CATA_3 , CATA_1, CATA_2 };
-		map_cateRes[category].clear();
 		for (int i = 0; i < 3; i++)
 		{
 			map_cateRes[category].insert(map_cateRes[category].end(), map_cateRes[catasort[i]].begin(), map_cateRes[catasort[i]].end());
@@ -177,7 +182,23 @@ void StoreHouseLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		this->removeFromParentAndCleanup(true);
+		Node* btnnode = (Node*)pSender;
+		int tag = btnnode->getTag();
+		switch (tag)
+		{
+		case 1000:
+		{
+			MovingLabel::show(ResourceLang::map_lang["decomposehint"]);
+			isfastcomposing = true;
+
+			break;
+		}
+		case 1001:
+			this->removeFromParentAndCleanup(true);
+			break;
+		default:
+			break;
+		}
 	}
 }
 
@@ -185,6 +206,27 @@ void StoreHouseLayer::onclick(Ref* pSender)
 {
 	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 	Node* node = (Node*)pSender;
+	ResBase* res = (ResBase*)node->getUserData();
+	if (isfastcomposing)
+	{
+		decompose(res);
+	}
+	else
+	{
+		if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
+		{
+
+		}
+		else if (res->getType() >= T_WG && res->getType() <= T_NG)
+		{
+
+		}
+		else
+		{
+			ResDescLayer* layer = ResDescLayer::create(res, 0);
+			this->addChild(layer);
+		}
+	}
 }
 
 void StoreHouseLayer::loadData()
@@ -229,8 +271,43 @@ void StoreHouseLayer::onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		if (lastCategoryindex == node->getTag())
 			return;
 
+		isfastcomposing = false;
 		lastCategoryindex = node->getTag();
 
 		updateContent(node->getTag());
+	}
+}
+
+void StoreHouseLayer::decompose(ResBase* res)
+{
+	std::string resid = res->getId();
+	std::string str;
+	int size = GlobalInstance::map_AllResources[resid].vec_needres.size();
+	if (size > 0)
+	{
+		for (int i = 0; i < size; i++)
+		{
+			std::map<std::string, int> one_res = GlobalInstance::map_AllResources[resid].vec_needres[i];
+			std::map<std::string, int>::iterator oneit = one_res.begin();
+			std::string cresid = oneit->first;
+			int count = one_res[oneit->first] / 2;
+			if (count > 0)
+			{
+				MyRes::Add(cresid, count);
+				std::string resstr = StringUtils::format("%sx%d ", GlobalInstance::map_AllResources[cresid].name.c_str(), count);
+				str.append(resstr);
+			}
+		}
+		MyRes::Use(res, 1);
+
+		std::string showstr = StringUtils::format(ResourceLang::map_lang["decomposesucc"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str(), str.c_str());
+		MovingLabel::show(showstr);
+
+
+		updateContent(lastCategoryindex);
+	}
+	else
+	{
+		MovingLabel::show(ResourceLang::map_lang["decomposefail"]);
 	}
 }

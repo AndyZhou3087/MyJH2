@@ -538,7 +538,7 @@ void GlobalInstance::loadMyResData()
 
 				DynamicValueInt dv2;
 				dv2.setValue(atoi(vec_one[4].c_str()));
-				res->setLv(dv2);
+				res->setExp(dv2);
 
 				MyRes::vec_MyResources.push_back(res);
 			}
@@ -658,4 +658,67 @@ void GlobalInstance::addMyCoinCount(DynamicValueInt val)
 {
 	GlobalInstance::myCoinCount.setValue(GlobalInstance::myCoinCount.getValue() + val.getValue());
 	DataSave::getInstance()->setMyCoinCount(GlobalInstance::myCoinCount.getValue());
+}
+
+int GlobalInstance::generateStoneCount(int qu)
+{
+	int count = 0;
+	//镶嵌孔个数
+	int rnd = GlobalInstance::getInstance()->createRandomNum(100);
+	if (qu == 0)
+	{
+		if (rnd < 80)
+			count = 0;
+		else if (rnd < 90)
+			count = 1;
+		else if (rnd < 98)
+			count = 2;
+		else
+			count = 3;
+	}
+	else if (qu == 1)
+	{
+		if (rnd < 60)
+			count = 0;
+		else if (rnd < 90)
+			count = 1;
+		else if (rnd < 98)
+			count = 2;
+		else
+			count = 3;
+	}
+	else if (qu == 2)
+	{
+		if (rnd < 50)
+			count = 0;
+		else if (rnd < 80)
+			count = 1;
+		else if (rnd < 95)
+			count = 2;
+		else
+			count = 3;
+	}
+	else if (qu == 3)
+	{
+		if (rnd < 40)
+			count = 0;
+		else if (rnd < 80)
+			count = 1;
+		else if (rnd < 95)
+			count = 2;
+		else
+			count = 3;
+	}
+	else
+	{
+		if (rnd < 40)
+			count = 0;
+		else if (rnd < 75)
+			count = 1;
+		else if (rnd < 95)
+			count = 2;
+		else
+			count = 3;
+	}
+	return count;
 }

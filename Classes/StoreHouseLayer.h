@@ -23,7 +23,8 @@ public:
 	virtual bool init();
 
 	CREATE_FUNC(StoreHouseLayer);
-	void updateContent(int category);
+
+	void decompose(ResBase* res);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -31,12 +32,14 @@ private:
 	void onclick(Ref* pSender);
 	cocos2d::ui::ScrollView* scrollview;
 	void loadData();
+	void updateContent(int category);
 	static bool less_callback(ResBase* a, ResBase* b);
 private:
 	std::vector<cocos2d::ui::Button*> vec_categoryBtn;
 	std::map<int, std::vector<ResBase*>> map_cateRes;
 	int lastCategoryindex;
 	int langtype;
+	bool isfastcomposing;
 };
 #endif
 
