@@ -72,6 +72,10 @@ private:
 
 	void removeBlackFog(int mapiter);
 
+	void initBlockData();
+
+	void doMyStatus();
+
 private:
 	Node* m_csbnode;
 	ParticleSystemQuad* myposParticle;

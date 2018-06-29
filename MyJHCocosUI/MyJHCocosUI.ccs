@@ -20,6 +20,13 @@
           <Image Name="cardherobox_2.png" />
           <Image Name="cardherobox_3.png" />
           <Image Name="cardherobox_4.png" />
+          <Image Name="event1.jpg" />
+          <Image Name="event2.jpg" />
+          <Image Name="event3.jpg" />
+          <Image Name="event4.jpg" />
+          <Image Name="event5.jpg" />
+          <Image Name="event6.jpg" />
+          <Image Name="event7.jpg" />
           <Image Name="heroattrbottom.png" />
           <Image Name="hfull_0_0.png" />
           <Image Name="hfull_0_1.png" />
@@ -447,7 +454,6 @@
         <Project Name="storeHouseLayer.csd" Type="Layer" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
-        <Project Name="equipDescLayer.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
