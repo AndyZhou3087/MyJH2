@@ -4,12 +4,12 @@
     <m id="n001" minlv="1" maxlv="2" minqu="0" maxqu="0">40</m>
     <m id="n013" minlv="1" maxlv="2" minqu="0" maxqu="0">40</m>
     <m id="n015" minlv="1" maxlv="2" minqu="0" maxqu="0">20</m>
-    <ma id="a001" c="1" qu="0">30.00</ma>
-    <ma id="e001" c="1" qu="0">30.00</ma>
-    <ma id="f001" c="1" qu="0">30.00</ma>
-    <ma id="h001" c="1" qu="0">30.00</ma>
     <ma id="r001" c="20" qu="0">30.00</ma>
     <ma id="r002" c="20" qu="0">30.00</ma>
+    <ma id="r003" c="20" qu="0">30.00</ma>
+    <ma id="r004" c="20" qu="0">30.00</ma>
+    <ma id="r005" c="20" qu="0">30.00</ma>
+    <ma id="m001" c="2" qu="0">30.00</ma>
   </Monstors>
   <Cells rs="16" cs="16">
     <Cell c="0" r="0" p="-1" w="0" m="5.png" />
@@ -128,12 +128,15 @@
     <Cell c="7" r="1" p="-1" w="0" m="43.png" />
     <Cell c="7" r="2" p="-1" w="0" m="11.png" />
     <Cell c="7" r="3" p="3" w="1" m="44.png">
-      <event>0;0;0;0;0;0;0</event>
       <npcid>n014</npcid>
       <npcrnd>25</npcrnd>
       <msatt1 id="n001" qu="0">1</msatt1>
       <msatt3 id="n013" qu="0">1</msatt3>
       <msatt5 id="n014" qu="0">1</msatt5>
+      <msawd1 id="w006" qu="0" rnd="30.00">1</msawd1>
+      <msawd2 id="h001" qu="0" rnd="100.00">1</msawd2>
+      <msawd3 id="a005" qu="0" rnd="30.00">1</msawd3>
+      <msawd4 id="a013" qu="0" rnd="100.00">1</msawd4>
     </Cell>
     <Cell c="7" r="4" p="-1" w="1" m="43.png" />
     <Cell c="7" r="5" p="-1" w="1" m="44.png" />
@@ -144,7 +147,9 @@
     <Cell c="7" r="10" p="-1" w="1" m="44.png" />
     <Cell c="7" r="11" p="-1" w="1" m="44.png" />
     <Cell c="7" r="12" p="-1" w="1" m="11.png" />
-    <Cell c="7" r="13" p="-1" w="1" m="11.png" />
+    <Cell c="7" r="13" p="-1" w="1" m="11.png">
+      <event>0;0;0;0;0;50;0</event>
+    </Cell>
     <Cell c="7" r="14" p="-1" w="1" m="11.png" />
     <Cell c="7" r="15" p="0" w="1" m="11.png" />
     <Cell c="8" r="0" p="-1" w="0" m="46.png" />
@@ -160,7 +165,9 @@
     <Cell c="8" r="10" p="-1" w="1" m="44.png" />
     <Cell c="8" r="11" p="-1" w="1" m="44.png" />
     <Cell c="8" r="12" p="-1" w="1" m="11.png" />
-    <Cell c="8" r="13" p="-1" w="1" m="11.png" />
+    <Cell c="8" r="13" p="-1" w="1" m="11.png">
+      <event>0;0;0;0;0;0;50</event>
+    </Cell>
     <Cell c="8" r="14" p="-1" w="1" m="11.png" />
     <Cell c="8" r="15" p="0" w="1" m="11.png" />
     <Cell c="9" r="0" p="-1" w="0" m="46.png" />
