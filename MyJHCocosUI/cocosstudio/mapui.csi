@@ -84,6 +84,21 @@
       <FilePathData Path="mapui/buildblock_6.png" />
       <FilePathData Path="mapui/buildblock_7.png" />
       <FilePathData Path="mapui/blockblack.png" />
+      <FilePathData Path="mapui/boardblock_48.png" />
+      <FilePathData Path="mapui/boardblock_49.png" />
+      <FilePathData Path="mapui/boardblock_50.png" />
+      <FilePathData Path="mapui/boardblock_51.png" />
+      <FilePathData Path="mapui/boardblock_52.png" />
+      <FilePathData Path="mapui/boardblock_53.png" />
+      <FilePathData Path="mapui/boardblock_54.png" />
+      <FilePathData Path="mapui/boardblock_55.png" />
+      <FilePathData Path="mapui/boardblock_56.png" />
+      <FilePathData Path="mapui/boardblock_57.png" />
+      <FilePathData Path="mapui/boardblock_58.png" />
+      <FilePathData Path="mapui/boardblock_59.png" />
+      <FilePathData Path="mapui/boardblock_60.png" />
+      <FilePathData Path="mapui/boardblock_61.png" />
+      <FilePathData Path="mapui/boardblock_62.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

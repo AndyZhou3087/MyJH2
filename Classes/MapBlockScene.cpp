@@ -524,7 +524,7 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						else if (ename.compare(0, 5, "msatt") == 0)
 						{
 							FOURProperty mdata;
-							int index = atoi(ename.substr(ename.length() - 1).c_str());
+							int index = atoi(ename.substr(ename.length() - 1).c_str()) - 1;
 							mdata.sid = e0->Attribute("id");
 							mdata.intPara1 = e0->IntAttribute("qu");
 							mdata.intPara2 = atoi(e0->GetText());
