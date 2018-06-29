@@ -192,7 +192,7 @@ void MapBlockScene::onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			}
 			case KEY_RIGHT:
 			{
-				if (mycurCol <= 0)
+				if (mycurCol >= blockColCount - 1)
 					return;
 
 				int bindex = (mycurRow)*blockColCount + mycurCol + 1;
