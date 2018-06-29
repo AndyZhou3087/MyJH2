@@ -1,6 +1,11 @@
 ﻿#include "MapBlock.h"
 #include "Const.h"
 
+std::vector<FOURProperty> MapBlock::vec_randMonsters;
+std::vector<FOURProperty> MapBlock::vec_randMonstersRes;
+int MapBlock::randMonstersMinCount= 0;
+int MapBlock::randMonstersMaxCount = 0;
+
 MapBlock::MapBlock()
 {
 	m_postype = -1;

@@ -8,6 +8,7 @@
 #include "Const.h"
 #include "MainMapScene.h"
 #include "MovingLabel.h"
+#include "MapEventLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -217,6 +218,8 @@ void MapBlockScene::onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 void MapBlockScene::stopMoving()
 {
+
+	doMyStatus();
 	isMoving = false;
 }
 
@@ -287,10 +290,11 @@ void MapBlockScene::setMyPos()
 	else
 	{
 		isMoving = true;
-		myposParticle->runAction(Sequence::create(MoveTo::create(0.7f, Vec2(px, py)), CallFunc::create(CC_CALLBACK_0(MapBlockScene::stopMoving, this)), NULL));
+		myposParticle->runAction(Sequence::create(MoveTo::create(0.5f, Vec2(px, py)), CallFunc::create(CC_CALLBACK_0(MapBlockScene::stopMoving, this)), NULL));
 	}
 
 	updateFogVisible();
+
 }
 
 void MapBlockScene::ajustStartPos()
@@ -375,6 +379,37 @@ void MapBlockScene::removeBlackFog(int mapiter)
 	map_mapFogBlacks[mapiter] = NULL;
 }
 
+void MapBlockScene::initBlockData()
+{
+	MapBlock::vec_randMonsters.clear();
+	MapBlock::vec_randMonstersRes.clear();
+	MapBlock::randMonstersMinCount = 0;
+	MapBlock::randMonstersMaxCount = 0;
+}
+
+void MapBlockScene::doMyStatus()
+{
+	int ret = -1;
+	int mycr = mycurRow*blockColCount + mycurCol;
+	MapBlock* mapblock = map_mapBlocks[mycr];
+	std::map<int, int>::iterator rnd_it;
+	int r = GlobalInstance::getInstance()->createRandomNum(100);
+	
+	for (rnd_it = mapblock->map_eventrnd.begin(); rnd_it != mapblock->map_eventrnd.end(); rnd_it++)
+	{
+		if (r < mapblock->map_eventrnd[rnd_it->first])
+		{
+			ret = rnd_it->first;
+			break;
+		}
+	}
+	if (ret >= 0)
+	{
+		MapEventLayer* mlayer = MapEventLayer::create(ret);
+		this->addChild(mlayer);
+	}
+}
+
 void MapBlockScene::parseMapXml(std::string mapname)
 {
 	tinyxml2::XMLDocument *pDoc = new tinyxml2::XMLDocument();
@@ -393,7 +428,31 @@ void MapBlockScene::parseMapXml(std::string mapname)
 	{
 		if (strcmp(dataele->Name(), "Monstors") == 0)
 		{
-
+			MapBlock::randMonstersMinCount = dataele->IntAttribute("minc");
+			MapBlock::randMonstersMaxCount = dataele->IntAttribute("maxc");
+			tinyxml2::XMLElement *msele = dataele->FirstChildElement();
+			while (msele != NULL)
+			{
+				if (strcmp(msele->Name(), "m") == 0)
+				{
+					FOURProperty mdata;
+					mdata.sid = msele->Attribute("id");
+					mdata.intPara1 = msele->IntAttribute("minlv") * 1000+ msele->IntAttribute("maxlv");
+					mdata.intPara2 = msele->IntAttribute("minqu") * 1000 + msele->IntAttribute("maxqu");
+					mdata.floatPara3 = atof(msele->GetText());
+					MapBlock::vec_randMonsters.push_back(mdata);
+				}
+				else if (strcmp(msele->Name(), "ma") == 0)
+				{
+					FOURProperty mdata;
+					mdata.sid = msele->Attribute("id");
+					mdata.intPara1 = msele->IntAttribute("c");
+					mdata.intPara2 = msele->IntAttribute("qu");
+					mdata.floatPara3 = atof(msele->GetText());
+					MapBlock::vec_randMonstersRes.push_back(mdata);
+				}
+				msele = msele->NextSiblingElement();
+			}
 		}
 		else if (strcmp(dataele->Name(), "Cells") == 0)
 		{
@@ -438,14 +497,20 @@ void MapBlockScene::parseMapXml(std::string mapname)
 					tinyxml2::XMLElement* e0 = element->FirstChildElement();
 					while (e0 != NULL)
 					{
-						std::string ename = element->Name();
+						std::string ename = e0->Name();
 						if (ename.compare("event") == 0)
 						{
 							std::vector<std::string> vec_tmp;
 							CommonFuncs::split(e0->GetText(), vec_tmp, ";");
+							int ernd = 0;
 							for (unsigned int i = 0; i < vec_tmp.size(); i++)
 							{
-								mb->vec_eventrnd.push_back(atoi(vec_tmp[i].c_str()));
+								int rnd = atoi(vec_tmp[i].c_str());
+								if (rnd > 0)
+								{
+									ernd += rnd;
+									mb->map_eventrnd[i] = ernd;
+								}
 							}
 						}
 						else if (ename.compare("npcid") == 0)
@@ -458,19 +523,21 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						}
 						else if (ename.compare(0, 5, "msatt") == 0)
 						{
-							ThrProperty mdata;
+							FOURProperty mdata;
 							int index = atoi(ename.substr(ename.length() - 1).c_str());
 							mdata.sid = e0->Attribute("id");
 							mdata.intPara1 = e0->IntAttribute("qu");
 							mdata.intPara2 = atoi(e0->GetText());
-							mb->monsters[index] = mdata;
+							mdata.floatPara3 = 100.0f;
+							mb->npcs[index] = mdata;
 						}
 						else if (ename.compare(0, 5, "msawd") == 0)
 						{
-							ThrProperty mdata;
+							FOURProperty mdata;
 							mdata.sid = e0->Attribute("id");
 							mdata.intPara1 = e0->IntAttribute("qu");
 							mdata.intPara2 = atoi(e0->GetText());
+							mdata.floatPara3 = e0->FloatAttribute("rnd");
 							mb->vec_RewardsRes.push_back(mdata);
 						}
 						else if (ename.compare("A") == 0 || ename.compare("B") == 0)
@@ -483,10 +550,11 @@ void MapBlockScene::parseMapXml(std::string mapname)
 								std::string e01name = e0->Name();
 								if (e01name.compare("lossres") == 0)
 								{
-									ThrProperty mdata;
+									FOURProperty mdata;
 									mdata.sid = e01->Attribute("id");
 									mdata.intPara1 = atoi(e01->GetText());
 									mdata.intPara2 = 0;
+									mdata.floatPara3 = 100.0f;
 									cdata.lostRes = mdata;
 								}
 								else if (e01name.compare("eboss") == 0)
@@ -499,10 +567,11 @@ void MapBlockScene::parseMapXml(std::string mapname)
 								}
 								else
 								{
-									ThrProperty mdata;
+									FOURProperty mdata;
 									mdata.sid = e01->Attribute("id");
 									mdata.intPara1 = e01->IntAttribute("qu");
 									mdata.intPara2 = atoi(e01->GetText());
+									mdata.floatPara3 = e01->FloatAttribute("rnd");
 									cdata.vec_getRes.push_back(mdata);
 								}
 								e01 = e01->NextSiblingElement();
