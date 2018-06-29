@@ -4,6 +4,7 @@ proj.win32/
 proj.win10/
 proj.android/.idea/
 bin/
+MyJHCocosUI/Resources/res
 MyJHCocosUI/config.json
 MyJHCocosUI/MyJHCocosUI.ccs
 MyJHCocosUI/MyJHCocosUI.cfg
