@@ -788,7 +788,7 @@
 			<key>mapui/buildblock_12.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{297,522},{69,72}}</string>
+				<string>{{445,596},{69,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -905,6 +905,171 @@
 				<false />
 				<key>sourceSize</key>
 				<string>{106,106}</string>
+			</dict>
+			<key>mapui/boardblock_48.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{297,522},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_49.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{297,596},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_50.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{371,300},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_51.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{445,300},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_52.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{519,300},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_53.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{593,300},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_54.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{371,374},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_55.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{371,448},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_56.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{371,522},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_57.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{371,596},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_58.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{445,374},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_59.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{519,374},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_60.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{593,374},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_61.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{445,448},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mapui/boardblock_62.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{445,522},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
