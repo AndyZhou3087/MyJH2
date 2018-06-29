@@ -151,3 +151,23 @@ void DataSave::setMyCoinCount(int val)
 {
 	saveIntDataByKey("coin", val);
 }
+
+std::string DataSave::getMarketStock()
+{
+	return loadStringDataByKey("marketstock", "");
+}
+
+void DataSave::setMarketStock(std::string val)
+{
+	saveStringDataByKey("marketstock", val);
+}
+
+int DataSave::getRefreshMarketTime()
+{
+	return loadIntDataByKey("refreshmarkettime", 0);
+}
+
+void DataSave::setRefreshMarketTime(int time)
+{
+	saveIntDataByKey("refreshmarkettime", time);
+}

@@ -164,7 +164,7 @@ void HomeHillLayer::refreshResUi()
 	m_contentscroll->removeAllChildrenWithCleanup(true);
 
 	int size = GlobalInstance::vec_resCreators.size();
-	int itemheight = 170;
+	int itemheight = 190;
 	int innerheight = itemheight * size;
 	int contentheight = m_contentscroll->getContentSize().height;
 	if (innerheight < contentheight)
@@ -201,10 +201,10 @@ void HomeHillLayer::lvup()
 void HomeHillLayer::updateTime(float dt)
 {
 	int pastime = GlobalInstance::servertime - GlobalInstance::getInstance()->getRefreshResTime();
-	int lefttime = REFRESHRESTIME - pastime;
+	int lefttime = RES_REFRESHTIME - pastime;
 	std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
 	m_timelbl->setString(timestr);
-	m_timebar->setPercent(lefttime * 100 / REFRESHRESTIME);
+	m_timebar->setPercent(lefttime * 100 / RES_REFRESHTIME);
 	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getTotalFarmers() - GlobalInstance::getInstance()->getWorkingFarmerCount());
 	m_leftfarmercount->setString(str);
 }

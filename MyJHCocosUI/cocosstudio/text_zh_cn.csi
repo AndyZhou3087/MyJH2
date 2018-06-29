@@ -117,6 +117,10 @@
       <FilePathData Path="text_zh_cn/closebtn_text.png" />
       <FilePathData Path="text_zh_cn/usebtn_text.png" />
       <FilePathData Path="text_zh_cn/decomposebtn_text.png" />
+      <FilePathData Path="text_zh_cn/markettitle.png" />
+      <FilePathData Path="text_zh_cn/marketlvup_text.png" />
+      <FilePathData Path="text_zh_cn/refreshbtn_text.png" />
+      <FilePathData Path="text_zh_cn/buybtn_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

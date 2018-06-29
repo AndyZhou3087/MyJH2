@@ -161,6 +161,26 @@ public:
 	****************************/
 	void setMyCoinCount(int val);
 
+	/****************************
+	市场库存
+	****************************/
+	std::string getMarketStock();
+
+	/****************************
+	设置我的元宝
+	****************************/
+	void setMarketStock(std::string val);
+
+	/****************************
+	保存刷新市场时间
+	****************************/
+	void setRefreshMarketTime(int time);
+
+	/****************************
+	获取刷新市场时间
+	****************************/
+	int getRefreshMarketTime();
+
 private:
 	static DataSave* _Context;//类实例
 

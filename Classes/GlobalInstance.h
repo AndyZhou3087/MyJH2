@@ -43,6 +43,7 @@ typedef struct
 	std::string name;
 	std::string desc;
 	std::vector<std::map<std::string, int>> vec_needres;//合成需要的资源
+	int saleval;//价格
 }AllResources;
 
 class GlobalInstance
@@ -154,7 +155,14 @@ public:
 
 	void addMyCoinCount(DynamicValueInt val);
 
+	//根据装备品质生成镶嵌孔数
 	int generateStoneCount(int qu);
+
+	//保存刷新市场时间
+	void saveRefreshMarketTime(int time);
+
+	//设置刷新资源时间
+	int getRefreshMarketTime();
 private:
 	static GlobalInstance* _Context;//类实例
 public:
@@ -175,6 +183,7 @@ public:
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;
+	static int refreshMarketTime;
 	static int totalFarmercount;
 	static DynamicValueInt mySoliverCount;
 	static DynamicValueInt myCoinCount;

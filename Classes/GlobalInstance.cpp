@@ -23,6 +23,8 @@ int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
 int GlobalInstance::refreshResTime = 0;
 
+int GlobalInstance::refreshMarketTime = 0;
+
 int GlobalInstance::totalFarmercount = 0;
 
 Hero* GlobalInstance::myCardHeros[6];
@@ -164,6 +166,8 @@ void GlobalInstance::loadInitData()
 	refreshResTime = DataSave::getInstance()->getRefreshResTime();
 
 	totalFarmercount = DataSave::getInstance()->getTotalFarmers();
+
+	refreshMarketTime = DataSave::getInstance()->getRefreshMarketTime();
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -476,6 +480,11 @@ void GlobalInstance::loadAllResourcesData()
 
 				}
 			}
+			if (jsonvalue.HasMember("sale"))
+			{
+				v = jsonvalue["sale"];
+				map_AllResources[rid].saleval = atoi(v.GetString());
+			}
 		}
 	}
 }
@@ -721,4 +730,16 @@ int GlobalInstance::generateStoneCount(int qu)
 			count = 3;
 	}
 	return count;
+}
+
+void GlobalInstance::saveRefreshMarketTime(int time)
+{
+	refreshMarketTime = time;
+	DataSave::getInstance()->setRefreshMarketTime(time);
+}
+
+
+int GlobalInstance::getRefreshMarketTime()
+{
+	return refreshMarketTime;
 }

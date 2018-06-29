@@ -128,7 +128,7 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 	}
 
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
-	desclbl->setString(GlobalInstance::map_AllResources[mainmapid].name);
+	desclbl->setString(GlobalInstance::map_AllResources[mainmapid].desc);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -155,22 +155,22 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		Node* clicknode = (Node*)pSender;
-		showCloudAnim(clicknode->getParent()->getPosition());
+		showCloudAnim(clicknode->getParent()->getParent(), clicknode->getParent()->getPosition());
 		std::string mapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag());
 		Director::getInstance()->replaceScene(TransitionFade::create(3.0f, MapBlockScene::createScene(mapid)));
 	}
 }
 
-void SelectSubMapLayer::showCloudAnim(Vec2 pos)
+void SelectSubMapLayer::showCloudAnim(Node* target, Vec2 pos)
 {
 	Sprite* cloud1 = Sprite::createWithSpriteFrameName("mapui/submapanimcloud.png");
 	cloud1->setPosition(pos);
-	this->addChild(cloud1);
+	target->addChild(cloud1);
 	cloud1->runAction(Spawn::create(MoveBy::create(1.0f, Vec2(150, 0)), FadeOut::create(1.5f), NULL));
 
 	Sprite* cloud2 = Sprite::createWithSpriteFrameName("mapui/submapanimcloud.png");
 	cloud2->setFlippedX(true);
 	cloud2->setPosition(pos);
-	this->addChild(cloud2);
+	target->addChild(cloud2);
 	cloud2->runAction(Spawn::create(MoveBy::create(1.0f, Vec2(-150, 0)), FadeOut::create(1.5f), NULL));
 }

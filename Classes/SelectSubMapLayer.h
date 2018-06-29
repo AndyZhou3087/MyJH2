@@ -18,7 +18,7 @@ private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
-	void showCloudAnim(Vec2 pos);
+	void showCloudAnim(Node* target, Vec2 pos);
 private:
 	std::string m_mainmapid;
 };

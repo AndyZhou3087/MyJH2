@@ -53,7 +53,8 @@ bool SmithyLayer::init(Building* buidingData)
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("smithyLayer.csb"));
 	this->addChild(csbnode);
-	int langtype = GlobalInstance::getInstance()->getLang();
+
+	langtype = GlobalInstance::getInstance()->getLang();
 	//标题
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("smithytilte", langtype), cocos2d::ui::Widget::TextureResType::PLIST);

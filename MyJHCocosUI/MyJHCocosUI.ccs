@@ -66,15 +66,69 @@
           <Image Name="q.jpg" />
         </Folder>
         <Folder Name="mapui">
+          <Image Name="blockblack.png" />
           <Image Name="boardblock_0.png" />
           <Image Name="boardblock_1.png" />
+          <Image Name="boardblock_10.png" />
+          <Image Name="boardblock_11.png" />
+          <Image Name="boardblock_12.png" />
+          <Image Name="boardblock_13.png" />
+          <Image Name="boardblock_14.png" />
+          <Image Name="boardblock_15.png" />
+          <Image Name="boardblock_16.png" />
+          <Image Name="boardblock_17.png" />
+          <Image Name="boardblock_18.png" />
+          <Image Name="boardblock_19.png" />
           <Image Name="boardblock_2.png" />
+          <Image Name="boardblock_20.png" />
+          <Image Name="boardblock_21.png" />
+          <Image Name="boardblock_22.png" />
+          <Image Name="boardblock_23.png" />
+          <Image Name="boardblock_24.png" />
+          <Image Name="boardblock_25.png" />
+          <Image Name="boardblock_26.png" />
+          <Image Name="boardblock_27.png" />
+          <Image Name="boardblock_28.png" />
+          <Image Name="boardblock_29.png" />
           <Image Name="boardblock_3.png" />
+          <Image Name="boardblock_30.png" />
+          <Image Name="boardblock_31.png" />
+          <Image Name="boardblock_32.png" />
+          <Image Name="boardblock_33.png" />
+          <Image Name="boardblock_34.png" />
+          <Image Name="boardblock_35.png" />
+          <Image Name="boardblock_36.png" />
+          <Image Name="boardblock_37.png" />
+          <Image Name="boardblock_38.png" />
+          <Image Name="boardblock_39.png" />
           <Image Name="boardblock_4.png" />
+          <Image Name="boardblock_40.png" />
+          <Image Name="boardblock_41.png" />
+          <Image Name="boardblock_42.png" />
+          <Image Name="boardblock_43.png" />
+          <Image Name="boardblock_44.png" />
+          <Image Name="boardblock_45.png" />
+          <Image Name="boardblock_46.png" />
+          <Image Name="boardblock_47.png" />
           <Image Name="boardblock_5.png" />
           <Image Name="boardblock_6.png" />
           <Image Name="boardblock_7.png" />
+          <Image Name="boardblock_8.png" />
+          <Image Name="boardblock_9.png" />
+          <Image Name="buildblock_0.png" />
+          <Image Name="buildblock_1.png" />
           <Image Name="buildblock_10.png" />
+          <Image Name="buildblock_11.png" />
+          <Image Name="buildblock_12.png" />
+          <Image Name="buildblock_13.png" />
+          <Image Name="buildblock_14.png" />
+          <Image Name="buildblock_15.png" />
+          <Image Name="buildblock_2.png" />
+          <Image Name="buildblock_3.png" />
+          <Image Name="buildblock_4.png" />
+          <Image Name="buildblock_5.png" />
+          <Image Name="buildblock_6.png" />
+          <Image Name="buildblock_7.png" />
           <Image Name="buildblock_8.png" />
           <Image Name="buildblock_9.png" />
           <Image Name="gocitybtn.png" />
@@ -97,6 +151,7 @@
         </Folder>
         <Folder Name="text_zh_cn">
           <Image Name="backbtn_text.png" />
+          <Image Name="buybtn_text.png" />
           <Image Name="changebtn_text.png" />
           <Image Name="closebtn_text.png" />
           <Image Name="crefresh_text.png" />
@@ -182,10 +237,13 @@
           <Image Name="makeresbtn_text.png" />
           <Image Name="mapbtn_text.png" />
           <Image Name="mappackbtn_text.png" />
+          <Image Name="marketlvup_text.png" />
+          <Image Name="markettitle.png" />
           <Image Name="okbtn_text.png" />
           <Image Name="outtowntitle.png" />
           <Image Name="recruit_text.png" />
           <Image Name="recruitbtn_text.png" />
+          <Image Name="refreshbtn_text.png" />
           <Image Name="resitemlv_text.png" />
           <Image Name="smcatabtn0_text_n.png" />
           <Image Name="smcatabtn0_text_s.png" />
@@ -375,10 +433,13 @@
         <Project Name="makeResNode.csd" Type="Node" />
         <Project Name="mapBlockLayer.csd" Type="Layer" />
         <PlistInfo Name="mapui.csi" Type="Plist" />
+        <Project Name="marketLayer.csd" Type="Layer" />
+        <Project Name="marketResNode.csd" Type="Node" />
         <Project Name="myHeroNode.csd" Type="Node" />
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
+        <Project Name="resDescLayer.csd" Type="Scene" />
         <Project Name="selectMapNode.csd" Type="Node" />
         <Project Name="selectMyHerosLayer.csd" Type="Layer" />
         <Project Name="selectSubMapLayer.csd" Type="Layer" />
@@ -386,7 +447,6 @@
         <Project Name="storeHouseLayer.csd" Type="Layer" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
-        <Project Name="resDescLayer.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

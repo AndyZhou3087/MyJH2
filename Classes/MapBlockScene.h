@@ -54,6 +54,8 @@ private:
 
 	void setMyPos();
 
+	void ajustStartPos();
+
 	void stopMoving();
 
 	bool checkRoad(int blockindex);
@@ -61,6 +63,14 @@ private:
 	virtual void scrollViewDidScroll(ScrollView* view);
 
 	virtual void scrollViewDidZoom(ScrollView* view);
+
+	void createBlackFog();
+
+	void updateFogVisible();
+
+	bool checkBlockVisible(int mapiter);
+
+	void removeBlackFog(Node* pnode);
 
 private:
 	Node* m_csbnode;
@@ -70,8 +80,10 @@ private:
 	cocos2d::ui::Text* solivercountlbl;
 	int blockRowCount;
 	int blockColCount;
+	ScrollView* scrollView;
 	Node *m_mapscrollcontainer;
 	std::map<int, MapBlock*> map_mapBlocks;
+	std::map<int, Sprite*> map_mapFogBlacks;
 	std::vector<int> vec_startpos;
 	int mycurCol;
 	int mycurRow;

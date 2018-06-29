@@ -67,6 +67,8 @@ bool MapBlockScene::init(std::string mapname)
 
 	parseMapXml(mapname);
 
+	createBlackFog();
+
 	int count = vec_startpos.size();
 
 	int r = GlobalInstance::getInstance()->createRandomNum(count);
@@ -74,6 +76,8 @@ bool MapBlockScene::init(std::string mapname)
 	mycurRow = vec_startpos[r] / blockColCount;
 
 	setMyPos();
+
+	ajustStartPos();
 
 	updateLabel();
 
@@ -231,7 +235,7 @@ bool MapBlockScene::checkRoad(int blockindex)
 
 void MapBlockScene::createMap()
 {
-	ScrollView* scrollView = ScrollView::create();
+	scrollView = ScrollView::create();
 	scrollView->setViewSize(Size(720, 800));
 	scrollView->setPosition(0, 242);
 	m_csbnode->addChild(scrollView, -1);
@@ -277,20 +281,102 @@ void MapBlockScene::setMyPos()
 	if (myposParticle == NULL)
 	{
 		myposParticle = ParticleSystemQuad::create("particle/hr.plist");
-		m_mapscrollcontainer->addChild(myposParticle, 3000);
+		m_mapscrollcontainer->addChild(myposParticle, 10000);
 		myposParticle->setPosition(Vec2(px, py));
 	}
 	else
 	{
 		isMoving = true;
-		myposParticle->runAction(Sequence::create(MoveTo::create(1.0f, Vec2(px, py)), CallFunc::create(CC_CALLBACK_0(MapBlockScene::stopMoving, this)), NULL));
+		myposParticle->runAction(Sequence::create(MoveTo::create(0.7f, Vec2(px, py)), CallFunc::create(CC_CALLBACK_0(MapBlockScene::stopMoving, this)), NULL));
 	}
 
+	updateFogVisible();
+}
+
+void MapBlockScene::ajustStartPos()
+{
+	float offsetx = myposParticle->getPosition().x  - scrollView->getViewSize().width / 2;
+	float offsety = myposParticle->getPosition().y - scrollView->getViewSize().height / 2;
+
+	if (offsetx < 0)
+		offsetx = 0;
+	if (offsety < 0)
+		offsety = 0;
+
+	if (offsetx > m_mapscrollcontainer->getContentSize().width - scrollView->getViewSize().width)
+		offsetx = m_mapscrollcontainer->getContentSize().width - scrollView->getViewSize().width;
+	if (offsety > m_mapscrollcontainer->getContentSize().height - scrollView->getViewSize().height)
+		offsety = m_mapscrollcontainer->getContentSize().height - scrollView->getViewSize().height;
+
+
+	scrollView->setContentOffset(Vec2(-offsetx, -offsety));
 }
 
 FightHeroNode* MapBlockScene::getFightHeroNode(int index)
 {
 	return (FightHeroNode*)this->getChildByTag(index);
+}
+
+void MapBlockScene::createBlackFog()
+{
+	std::map<int, MapBlock*>::iterator it;
+	for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+	{
+		if (!checkBlockVisible(it->first))
+		{
+			Sprite* black = Sprite::createWithSpriteFrameName("mapui/blockblack.png");
+			black->setAnchorPoint(Vec2(0.5, 0.5));
+			black->setPosition(Vec2(it->first%blockColCount*MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, it->first / blockColCount*MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2));
+			m_mapscrollcontainer->addChild(black, 3000);
+			map_mapFogBlacks[it->first] = black;
+		}
+		else
+		{
+			map_mapFogBlacks[it->first] = NULL;
+		}
+	}
+}
+
+bool MapBlockScene::checkBlockVisible(int mapiter)
+{
+	int mycr = mycurRow*blockColCount + mycurCol;
+	MapBlock* mapblock = map_mapBlocks[mapiter];
+	bool isvisible = false;
+	if (mapiter == mycr || mapiter == (mycr + 1) || mapiter == (mycr - 1) || mapiter == (mycr + blockColCount) || mapiter == (mycr - blockColCount))
+	{
+		isvisible = true;
+	}
+	else
+	{
+		if (mapblock->getIsCanSee())
+			isvisible = true;
+	}
+	return isvisible;
+
+}
+
+void MapBlockScene::updateFogVisible()
+{
+	std::map<int, MapBlock*>::iterator it;
+	for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+	{
+		if (checkBlockVisible(it->first))
+		{
+			map_mapBlocks[it->first]->setIsCanSee(true);
+			std::map<int, Sprite*>::iterator fit = map_mapFogBlacks.find(it->first);
+			if (fit != map_mapFogBlacks.end())
+			{
+				if (map_mapFogBlacks[it->first] != NULL)
+					map_mapFogBlacks[it->first]->runAction(Sequence::create(FadeOut::create(0.7f), CallFunc::create(CC_CALLBACK_0(MapBlockScene::removeBlackFog, this, (Node*)map_mapFogBlacks[it->first])), NULL));
+			}
+		}
+	}
+}
+
+void MapBlockScene::removeBlackFog(Node* pnode)
+{
+	pnode->removeFromParentAndCleanup(true);
+	pnode = NULL;
 }
 
 void MapBlockScene::parseMapXml(std::string mapname)
@@ -305,123 +391,135 @@ void MapBlockScene::parseMapXml(std::string mapname)
 		return;
 	}
 	//根节点
-	tinyxml2::XMLElement *rootEle = pDoc->RootElement();
-	//根节点属性
-	blockRowCount = rootEle->IntAttribute("rs");
-	blockColCount = rootEle->IntAttribute("cs");
-	createMap();
-	//获取第一个节点属性
-	//const XMLAttribute *attribute = rootEle->FirstAttribute();
-	//打印节点属性名和值
-	//log("attribute<em>name = %s,attribute</em>value = %s", attribute->Name(), attribute->Value());</p>
-	tinyxml2::XMLElement *element = rootEle->FirstChildElement();
-	while (element != NULL)
+	tinyxml2::XMLElement *rootele = pDoc->RootElement();
+	tinyxml2::XMLElement *dataele = rootele->FirstChildElement();
+	while (dataele != NULL)
 	{
-		if (strcmp(element->Name(), "Cell") == 0)
+		if (strcmp(dataele->Name(), "Monstors") == 0)
 		{
-			int r = element->IntAttribute("r");
-			int c = element->IntAttribute("c");
-			int postype = element->IntAttribute("p");
-			bool walkable = element->IntAttribute("w")==1?true:false;
-			std::string boardname = element->Attribute("m");
-			const char* buildchar = element->Attribute("d");
-			std::string buildname;
-			if (buildchar != NULL)
-				buildname = buildchar;
 
-			MapBlock* mb = MapBlock::create(blockRowCount - 1 - r, c, boardname, buildname);
-			int rc = (blockRowCount - 1 - r)*blockColCount + c;
-			int zorder = (blockRowCount - 1 - r)*blockColCount + blockColCount - c;
-			m_mapscrollcontainer->addChild(mb, zorder);
-			mb->Col = c;
-			mb->Row = r;
-			mb->setPosType(postype);
-			mb->setWalkable(walkable);
-			map_mapBlocks[rc] = mb;
-			if (postype == 0)
+		}
+		else if (strcmp(dataele->Name(), "Cells") == 0)
+		{
+			blockRowCount = dataele->IntAttribute("rs");
+			blockColCount = dataele->IntAttribute("cs");
+			createMap();
+			//获取第一个节点属性
+			//const XMLAttribute *attribute = rootEle->FirstAttribute();
+			//打印节点属性名和值
+			//log("attribute<em>name = %s,attribute</em>value = %s", attribute->Name(), attribute->Value());</p>
+			tinyxml2::XMLElement *element = dataele->FirstChildElement();
+			while (element != NULL)
 			{
-				mb->setWalkable(true);
-				vec_startpos.push_back(rc);
-			}
-
-			tinyxml2::XMLElement* e0 = element->FirstChildElement();
-			while (e0 != NULL)
-			{
-				std::string ename = element->Name();
-				if (ename.compare("event") == 0)
+				if (strcmp(element->Name(), "Cell") == 0)
 				{
-					std::vector<std::string> vec_tmp;
-					CommonFuncs::split(e0->GetText(), vec_tmp, ";");
-					for (unsigned int i = 0; i < vec_tmp.size(); i++)
+					int r = element->IntAttribute("r");
+					int c = element->IntAttribute("c");
+					int postype = element->IntAttribute("p");
+					bool walkable = element->IntAttribute("w") == 1 ? true : false;
+					std::string boardname = element->Attribute("m");
+					const char* buildchar = element->Attribute("d");
+					std::string buildname;
+					if (buildchar != NULL)
+						buildname = buildchar;
+
+					MapBlock* mb = MapBlock::create(blockRowCount - 1 - r, c, boardname, buildname);
+					
+					int rc = (blockRowCount - 1 - r)*blockColCount + c;
+					int zorder = (blockRowCount - 1 - r)*blockColCount + blockColCount - c;
+					m_mapscrollcontainer->addChild(mb, zorder);
+					mb->Col = c;
+					mb->Row = r;
+					mb->setPosType(postype);
+					mb->setWalkable(walkable);
+					map_mapBlocks[rc] = mb;
+					if (postype == 0)
 					{
-						mb->vec_eventrnd.push_back(atoi(vec_tmp[i].c_str()));
+						mb->setWalkable(true);
+						vec_startpos.push_back(rc);
 					}
-				}
-				else if (ename.compare("npcid") == 0)
-				{
-					mb->setPosNpcID(e0->GetText());
-				}
-				else if (ename.compare("npcrnd") == 0)
-				{
-					mb->setPosNpcRnd(atoi(e0->GetText()));
-				}
-				else if (ename.compare(0, 5, "msatt") == 0)
-				{
-					ThrProperty mdata;
-					int index = atoi(ename.substr(ename.length() - 1).c_str());
-					mdata.sid = e0->Attribute("id");
-					mdata.intPara1 = e0->IntAttribute("qu");
-					mdata.intPara2 = atoi(e0->GetText());
-					mb->monsters[index] = mdata;
-				}
-				else if (ename.compare(0, 5, "msawd") == 0)
-				{
-					ThrProperty mdata;
-					mdata.sid = e0->Attribute("id");
-					mdata.intPara1 = e0->IntAttribute("qu");
-					mdata.intPara2 = atoi(e0->GetText());
-					mb->vec_RewardsRes.push_back(mdata);
-				}
-				else if (ename.compare("A") == 0 || ename.compare("B") == 0)
-				{
-					ChoiceData cdata;
-					cdata.content = e0->Attribute("cname");
-					tinyxml2::XMLElement* e01 = e0->FirstChildElement();
-					while (e01 != NULL)
+
+					tinyxml2::XMLElement* e0 = element->FirstChildElement();
+					while (e0 != NULL)
 					{
-						std::string e01name = e0->Name();
-						if (e01name.compare("lossres") == 0)
+						std::string ename = element->Name();
+						if (ename.compare("event") == 0)
+						{
+							std::vector<std::string> vec_tmp;
+							CommonFuncs::split(e0->GetText(), vec_tmp, ";");
+							for (unsigned int i = 0; i < vec_tmp.size(); i++)
+							{
+								mb->vec_eventrnd.push_back(atoi(vec_tmp[i].c_str()));
+							}
+						}
+						else if (ename.compare("npcid") == 0)
+						{
+							mb->setPosNpcID(e0->GetText());
+						}
+						else if (ename.compare("npcrnd") == 0)
+						{
+							mb->setPosNpcRnd(atoi(e0->GetText()));
+						}
+						else if (ename.compare(0, 5, "msatt") == 0)
 						{
 							ThrProperty mdata;
-							mdata.sid = e01->Attribute("id");
-							mdata.intPara1 = atoi(e01->GetText());
-							mdata.intPara2 = 0;
-							cdata.lostRes = mdata;
+							int index = atoi(ename.substr(ename.length() - 1).c_str());
+							mdata.sid = e0->Attribute("id");
+							mdata.intPara1 = e0->IntAttribute("qu");
+							mdata.intPara2 = atoi(e0->GetText());
+							mb->monsters[index] = mdata;
 						}
-						else if (e01name.compare("eboss") == 0)
-						{
-							cdata.effectNpc = e01->GetText();
-						}
-						else if (e01name.compare("rettype") == 0)
-						{
-							cdata.result = atoi(e01->GetText());
-						}
-						else
+						else if (ename.compare(0, 5, "msawd") == 0)
 						{
 							ThrProperty mdata;
-							mdata.sid = e01->Attribute("id");
-							mdata.intPara1 = e01->IntAttribute("qu");
-							mdata.intPara2 = atoi(e01->GetText());
-							cdata.vec_getRes.push_back(mdata);
+							mdata.sid = e0->Attribute("id");
+							mdata.intPara1 = e0->IntAttribute("qu");
+							mdata.intPara2 = atoi(e0->GetText());
+							mb->vec_RewardsRes.push_back(mdata);
 						}
-						e01 = e01->NextSiblingElement();
+						else if (ename.compare("A") == 0 || ename.compare("B") == 0)
+						{
+							ChoiceData cdata;
+							cdata.content = e0->Attribute("cname");
+							tinyxml2::XMLElement* e01 = e0->FirstChildElement();
+							while (e01 != NULL)
+							{
+								std::string e01name = e0->Name();
+								if (e01name.compare("lossres") == 0)
+								{
+									ThrProperty mdata;
+									mdata.sid = e01->Attribute("id");
+									mdata.intPara1 = atoi(e01->GetText());
+									mdata.intPara2 = 0;
+									cdata.lostRes = mdata;
+								}
+								else if (e01name.compare("eboss") == 0)
+								{
+									cdata.effectNpc = e01->GetText();
+								}
+								else if (e01name.compare("rettype") == 0)
+								{
+									cdata.result = atoi(e01->GetText());
+								}
+								else
+								{
+									ThrProperty mdata;
+									mdata.sid = e01->Attribute("id");
+									mdata.intPara1 = e01->IntAttribute("qu");
+									mdata.intPara2 = atoi(e01->GetText());
+									cdata.vec_getRes.push_back(mdata);
+								}
+								e01 = e01->NextSiblingElement();
+							}
+							mb->vec_choiceDatas.push_back(cdata);
+						}
+						e0 = e0->NextSiblingElement();
 					}
-					mb->vec_choiceDatas.push_back(cdata);
 				}
-				e0 = e0->NextSiblingElement();
+				element = element->NextSiblingElement();
 			}
 		}
-		element = element->NextSiblingElement();
+		dataele = dataele->NextSiblingElement();
 	}
 	delete pDoc;
 }

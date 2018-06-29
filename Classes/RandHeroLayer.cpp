@@ -173,14 +173,14 @@ void RandHeroLayer::updateUI(float dt)
 	int lefttime = 0;
 	int refreshtime = GlobalInstance::getInstance()->getRefreshHeroTime();
 	int pasttime = GlobalInstance::servertime - refreshtime;
-	if (pasttime >= RESETHEROTIME)
+	if (pasttime >= HERO_RESETTIME)
 	{
-		int t = GlobalInstance::servertime % RESETHEROTIME;
+		int t = GlobalInstance::servertime % HERO_RESETTIME;
 
 		refreshtime = GlobalInstance::servertime - t;
 		GlobalInstance::getInstance()->saveRefreshHeroTime(refreshtime);
 
-		lefttime = RESETHEROTIME - t;
+		lefttime = HERO_RESETTIME - t;
 		create3RandHero();
 		for (int i = 0; i < 3; i++)
 		{
@@ -189,11 +189,11 @@ void RandHeroLayer::updateUI(float dt)
 	}
 	else
 	{
-		lefttime = RESETHEROTIME - pasttime;
+		lefttime = HERO_RESETTIME - pasttime;
 	}
 	std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
 	m_timelbl->setString(timestr);
-	m_timebar->setPercent(lefttime*100/ RESETHEROTIME);
+	m_timebar->setPercent(lefttime*100/ HERO_RESETTIME);
 }
 
 void RandHeroLayer::create3RandHero()

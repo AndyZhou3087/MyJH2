@@ -356,7 +356,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				GlobalInstance::getInstance()->saveRand3Heros();
 				InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
 				RandHeroNode* heroNode = (RandHeroNode*)this->getParent()->getChildByTag(this->getTag());
-				heroNode->markRecruited();
+				heroNode->markRecruited(true);
 				innroomLayer->refreshMyHerosUi();
 				clicknode->setEnabled(false);
 

@@ -62,7 +62,7 @@ bool RandHeroNode::init()
 	potentiallbl = (cocos2d::ui::Text*)csbnode->getChildByName("potential");
 
 	isrecruitedWidget = (cocos2d::ui::Text*)csbnode->getChildByName("isrecruited_text");
-	isrecruitedWidget->setVisible(false);
+	markRecruited(false);
 
 	return true;
 }
@@ -96,12 +96,14 @@ void RandHeroNode::setData(Hero* herodata)
 	namelbl->setString(herodata->getName());
 
 	if (herodata->getState() == HS_OWNED)
-		markRecruited();
+		markRecruited(true);
+	else if (herodata->getState() == HS_READY)
+		markRecruited(false);
 
 	this->setUserData((void*)herodata);
 }
 
-void RandHeroNode::markRecruited()
+void RandHeroNode::markRecruited(bool ismask)
 {
-	isrecruitedWidget->setVisible(true);
+	isrecruitedWidget->setVisible(ismask);
 }

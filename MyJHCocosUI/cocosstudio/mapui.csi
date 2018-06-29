@@ -1,6 +1,6 @@
 <PlistInfoProjectFile>
   <PropertyGroup Name="mapui" Type="Plist" ID="e7979076-3ecf-4246-8286-084c0e604406" Version="3.10.0.0" />
-  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="True" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
     <ImageFiles>
       <FilePathData Path="mapui/gocitybtn.png" />
       <FilePathData Path="mapui/mapbtn.png" />
@@ -30,6 +30,60 @@
       <FilePathData Path="mapui/buildblock_9.png" />
       <FilePathData Path="mapui/mapdescbox.png" />
       <FilePathData Path="mapui/morearrow.png" />
+      <FilePathData Path="mapui/boardblock_10.png" />
+      <FilePathData Path="mapui/boardblock_11.png" />
+      <FilePathData Path="mapui/boardblock_12.png" />
+      <FilePathData Path="mapui/boardblock_13.png" />
+      <FilePathData Path="mapui/boardblock_14.png" />
+      <FilePathData Path="mapui/boardblock_15.png" />
+      <FilePathData Path="mapui/boardblock_16.png" />
+      <FilePathData Path="mapui/boardblock_17.png" />
+      <FilePathData Path="mapui/boardblock_18.png" />
+      <FilePathData Path="mapui/boardblock_19.png" />
+      <FilePathData Path="mapui/boardblock_20.png" />
+      <FilePathData Path="mapui/boardblock_21.png" />
+      <FilePathData Path="mapui/boardblock_22.png" />
+      <FilePathData Path="mapui/boardblock_23.png" />
+      <FilePathData Path="mapui/boardblock_24.png" />
+      <FilePathData Path="mapui/boardblock_25.png" />
+      <FilePathData Path="mapui/boardblock_26.png" />
+      <FilePathData Path="mapui/boardblock_27.png" />
+      <FilePathData Path="mapui/boardblock_28.png" />
+      <FilePathData Path="mapui/boardblock_29.png" />
+      <FilePathData Path="mapui/boardblock_30.png" />
+      <FilePathData Path="mapui/boardblock_31.png" />
+      <FilePathData Path="mapui/boardblock_32.png" />
+      <FilePathData Path="mapui/boardblock_33.png" />
+      <FilePathData Path="mapui/boardblock_34.png" />
+      <FilePathData Path="mapui/boardblock_35.png" />
+      <FilePathData Path="mapui/boardblock_36.png" />
+      <FilePathData Path="mapui/boardblock_37.png" />
+      <FilePathData Path="mapui/boardblock_38.png" />
+      <FilePathData Path="mapui/boardblock_39.png" />
+      <FilePathData Path="mapui/boardblock_40.png" />
+      <FilePathData Path="mapui/boardblock_41.png" />
+      <FilePathData Path="mapui/boardblock_42.png" />
+      <FilePathData Path="mapui/boardblock_43.png" />
+      <FilePathData Path="mapui/boardblock_44.png" />
+      <FilePathData Path="mapui/boardblock_45.png" />
+      <FilePathData Path="mapui/boardblock_46.png" />
+      <FilePathData Path="mapui/boardblock_47.png" />
+      <FilePathData Path="mapui/boardblock_8.png" />
+      <FilePathData Path="mapui/boardblock_9.png" />
+      <FilePathData Path="mapui/buildblock_0.png" />
+      <FilePathData Path="mapui/buildblock_1.png" />
+      <FilePathData Path="mapui/buildblock_11.png" />
+      <FilePathData Path="mapui/buildblock_12.png" />
+      <FilePathData Path="mapui/buildblock_13.png" />
+      <FilePathData Path="mapui/buildblock_14.png" />
+      <FilePathData Path="mapui/buildblock_15.png" />
+      <FilePathData Path="mapui/buildblock_2.png" />
+      <FilePathData Path="mapui/buildblock_3.png" />
+      <FilePathData Path="mapui/buildblock_4.png" />
+      <FilePathData Path="mapui/buildblock_5.png" />
+      <FilePathData Path="mapui/buildblock_6.png" />
+      <FilePathData Path="mapui/buildblock_7.png" />
+      <FilePathData Path="mapui/blockblack.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

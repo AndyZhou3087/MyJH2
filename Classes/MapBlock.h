@@ -49,7 +49,15 @@ public:
 	CC_SYNTHESIZE(int, m_postype, PosType);//每个地图块位置信息
 	CC_SYNTHESIZE(std::string, m_posnpcid, PosNpcID);//每个地图块NPCID
 	CC_SYNTHESIZE(int, m_posnpcrnd, PosNpcRnd);//每个地图块NPCID出现的概率
+	CC_SYNTHESIZE(bool, m_iscansee, IsCanSee);//视野是否可见
+
 private:
+	/******************************************************
+	此方法override Sprite setTextureCoords方法
+	拼图时，上下会有一条黑线，移动时也有明显的分割线
+	该方法中打开 宏CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL即可
+	*******************************************************/
+	void setTextureCoords(const Rect& rectInPoints, V3F_C4B_T2F_Quad* outQuad);
 public:
 	std::vector<int> vec_eventrnd;//7个事件概率
 	ThrProperty monsters[6];//6个怪物数据
@@ -57,7 +65,6 @@ public:
 	std::vector<ChoiceData> vec_choiceDatas;//任务选择获得的物品
 	int Col;//所在列
 	int Row;//转换成左上后所在行，编辑器是左上开始。比如编辑器0，0，应该对应 总行-1 - 0(编辑所在行)
-
 };
 
 #endif

@@ -11,6 +11,7 @@
 #include "OutTownLayer.h"
 #include "StoreHouseLayer.h"
 #include "SmithyLayer.h"
+#include "MarketLayer.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -208,6 +209,11 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			{
 				layer = SmithyLayer::create(Building::map_buildingDatas[buildname]);
 			}
+			else if (buildname.compare("5market") == 0)
+			{
+				layer = MarketLayer::create(Building::map_buildingDatas[buildname]);
+			}
+
 			if (layer != NULL)
 			{
 				this->addChild(layer, 0, buildname);
@@ -243,6 +249,10 @@ void MainScene::onFinish(int code)
 		{
 			GlobalInstance::getInstance()->saveRefreshResTime(GlobalInstance::servertime);
 		}
+		if (GlobalInstance::getInstance()->getRefreshMarketTime() == 0)
+		{
+			GlobalInstance::getInstance()->saveRefreshMarketTime(GlobalInstance::servertime);
+		}
 		updateTime(0);
 		this->schedule(schedule_selector(MainScene::updateTime), 1);
 	}
@@ -252,15 +262,15 @@ void MainScene::updateTime(float dt)
 {
 	GlobalInstance::servertime++;
 	int respasttime = GlobalInstance::servertime - GlobalInstance::getInstance()->getRefreshResTime();
-	if (respasttime >= REFRESHRESTIME)
+	if (respasttime >= RES_REFRESHTIME)
 	{
-		GlobalInstance::getInstance()->saveRefreshResTime(GlobalInstance::servertime - respasttime%REFRESHRESTIME);
+		GlobalInstance::getInstance()->saveRefreshResTime(GlobalInstance::servertime - respasttime%RES_REFRESHTIME);
 		for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
 		{
 			ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
 			if (rescreator->getFarmersCount().getValue() > 0)
 			{
-				int addcount = respasttime / REFRESHRESTIME * rescreator->getFarmersCount().getValue();
+				int addcount = respasttime / RES_REFRESHTIME * rescreator->getFarmersCount().getValue();
 				int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
 
 				std::string showtext = StringUtils::format("%s+%d", GlobalInstance::map_AllResources[rescreator->getName()].name.c_str(), addcount);
