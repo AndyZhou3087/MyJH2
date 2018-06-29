@@ -330,10 +330,6 @@ void MapBlockScene::createBlackFog()
 			m_mapscrollcontainer->addChild(black, 3000);
 			map_mapFogBlacks[it->first] = black;
 		}
-		else
-		{
-			map_mapFogBlacks[it->first] = NULL;
-		}
 	}
 }
 
@@ -367,16 +363,16 @@ void MapBlockScene::updateFogVisible()
 			if (fit != map_mapFogBlacks.end())
 			{
 				if (map_mapFogBlacks[it->first] != NULL)
-					map_mapFogBlacks[it->first]->runAction(Sequence::create(FadeOut::create(0.7f), CallFunc::create(CC_CALLBACK_0(MapBlockScene::removeBlackFog, this, (Node*)map_mapFogBlacks[it->first])), NULL));
+					map_mapFogBlacks[it->first]->runAction(Sequence::create(FadeOut::create(1.2f), CallFunc::create(CC_CALLBACK_0(MapBlockScene::removeBlackFog, this, it->first)), NULL));
 			}
 		}
 	}
 }
 
-void MapBlockScene::removeBlackFog(Node* pnode)
+void MapBlockScene::removeBlackFog(int mapiter)
 {
-	pnode->removeFromParentAndCleanup(true);
-	pnode = NULL;
+	map_mapFogBlacks[mapiter]->removeFromParentAndCleanup(true);
+	map_mapFogBlacks[mapiter] = NULL;
 }
 
 void MapBlockScene::parseMapXml(std::string mapname)

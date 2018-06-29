@@ -70,7 +70,7 @@ private:
 
 	bool checkBlockVisible(int mapiter);
 
-	void removeBlackFog(Node* pnode);
+	void removeBlackFog(int mapiter);
 
 private:
 	Node* m_csbnode;
