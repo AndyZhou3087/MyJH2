@@ -141,6 +141,7 @@ void MarketLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			}
 			break;
 		case 1001://刷新
+			resetStockRes();
 			break;
 		case 1002://关闭
 			this->removeFromParentAndCleanup(true);

@@ -4,6 +4,7 @@
 #include "GlobalInstance.h"
 #include "Building.h"
 #include "Const.h"
+#include "MovingLabel.h"
 
 USING_NS_CC;
 
@@ -143,9 +144,32 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		switch (tag)
 		{
 		case BTN_S_REFRESH://银子刷新
-
+			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= SILVERREFRESH_NUM)
+			{
+				create3RandHero();
+				for (int i = 0; i < 3; i++)
+				{
+					heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
+				}
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
+			}
 			break;
 		case BTN_C_REFRESH://元宝刷新
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= COINREFRESH_NUM)
+			{
+				create3RandHero();
+				for (int i = 0; i < 3; i++)
+				{
+					heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
+				}
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+			}
 			break;
 		case BTN_ADD_SILVERBOX://增加银子
 		case BTN_ADD_SILVER://增加银子

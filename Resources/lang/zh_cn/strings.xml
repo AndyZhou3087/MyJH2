@@ -63,6 +63,7 @@
 	<s name="decomposefail">不能分解</s>
 	<s name="outofstock">没有更多库存了！</s>
 	<s name="nomoresilver">银两不足！</s>
+	<s name="nomorecoin">元宝不足！</s>
 	<s name="storeisfull">仓库放不下更多的%s了！</s>
 	<s name="marketbuyok">成功购买%s！</s>
 </strings>
