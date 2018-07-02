@@ -171,3 +171,13 @@ void DataSave::setRefreshMarketTime(int time)
 {
 	saveIntDataByKey("refreshmarkettime", time);
 }
+
+void DataSave::setMapVisibleArea(std::string mapkey, std::string val)
+{
+	saveStringDataByKey(mapkey, val);
+}
+
+std::string DataSave::getMapVisibleArea(std::string mapkey)
+{
+	return loadStringDataByKey(mapkey, "");
+}
