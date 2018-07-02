@@ -304,6 +304,6 @@
       <FilePathData Path="ui/x16.png" />
       <FilePathData Path="ui/q003.png" />
     </ImageFiles>
-    <MaxSize Width="2048" Height="2048" />
+    <MaxSize Width="4096" Height="4096" />
   </Content>
 </PlistInfoProjectFile>
