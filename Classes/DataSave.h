@@ -181,6 +181,16 @@ public:
 	****************************/
 	int getRefreshMarketTime();
 
+	/****************************
+	保存每个地图的可视区域
+	****************************/
+	void setMapVisibleArea(std::string mapkey, std::string val);
+
+	/****************************
+	获取每个地图的可视区域
+	****************************/
+	std::string getMapVisibleArea(std::string mapkey);
+
 private:
 	static DataSave* _Context;//类实例
 
