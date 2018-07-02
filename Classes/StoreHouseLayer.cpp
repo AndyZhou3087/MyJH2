@@ -9,6 +9,7 @@
 #include "MyMenu.h"
 #include "ResDescLayer.h"
 #include "MovingLabel.h"
+#include "EquipDescLayer.h"
 
 StoreHouseLayer::StoreHouseLayer()
 {
@@ -215,11 +216,12 @@ void StoreHouseLayer::onclick(Ref* pSender)
 	{
 		if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
 		{
-
+			EquipDescLayer* layer = EquipDescLayer::create(res, 0);
+			this->addChild(layer);
 		}
 		else if (res->getType() >= T_WG && res->getType() <= T_NG)
 		{
-
+			
 		}
 		else
 		{

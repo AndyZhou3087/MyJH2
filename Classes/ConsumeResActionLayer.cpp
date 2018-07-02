@@ -12,8 +12,9 @@
 #include "ResCreator.h"
 #include "SmithyLayer.h"
 
-
 USING_NS_CC;
+
+#define COINREFRESH_NUM 100
 
 ConsumeResActionLayer::ConsumeResActionLayer()
 {
@@ -265,6 +266,15 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 			}
 			break;
 		case 1001://直接升级
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= COINREFRESH_NUM)
+			{
+				action();
+				this->removeFromParentAndCleanup(true);
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+			}
 			break;
 		default:
 			break;

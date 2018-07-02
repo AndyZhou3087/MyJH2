@@ -18,6 +18,8 @@ std::vector<S_HeroAttr> GlobalInstance::vec_herosAttr;
 std::vector<ResCreator*> GlobalInstance::vec_resCreators;
 
 std::map<std::string, AllResources> GlobalInstance::map_AllResources;
+std::map<std::string, EquipData> GlobalInstance::map_Equip;
+
 
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
@@ -423,6 +425,51 @@ void GlobalInstance::saveResCreatorData()
 		str.append(onestr);
 	}
 	DataSave::getInstance()->setResCreatorData(str.substr(0,str.length() - 1));	
+}
+
+void GlobalInstance::loadEquipData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/equip.json"));
+	rapidjson::Value& allData = doc["g"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			EquipData data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = v.GetString();
+
+			v = jsonvalue["name"];
+			data.name = v.GetString();
+
+			v = jsonvalue["maxhp"];
+			data.maxhp = atoi(v.GetString());
+
+			v = jsonvalue["atk"];
+			data.atk = atoi(v.GetString());
+
+			v = jsonvalue["df"];
+			data.df = atoi(v.GetString());
+
+			v = jsonvalue["avoid"];
+			data.avoid = atof(v.GetString());
+
+			v = jsonvalue["crit"];
+			data.crit = atof(v.GetString());
+
+			v = jsonvalue["speed"];
+			data.speed = atof(v.GetString());
+
+			v = jsonvalue["bns"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.bns.push_back(v[m].GetFloat());
+			}
+
+			map_Equip[data.id] = data;
+		}
+	}
 }
 
 void GlobalInstance::loadAllResourcesData()

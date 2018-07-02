@@ -66,4 +66,10 @@
 	<s name="nomorecoin">元宝不足！</s>
 	<s name="storeisfull">仓库放不下更多的%s了！</s>
 	<s name="marketbuyok">成功购买%s！</s>
+	<s name="livelabel">生命值 +%d</s>
+	<s name="attlabel">攻击力 +%d</s>
+	<s name="dflabel">防御力 +%d</s>
+	<s name="speedlabel">攻击速度 +%f</s>
+	<s name="critlabel">暴击几率 +%f</s>
+	<s name="avoidlabel">闪避几率 +%f</s>
 </strings>

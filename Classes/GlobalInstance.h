@@ -46,6 +46,19 @@ typedef struct
 	int saleval;//价格
 }AllResources;
 
+typedef struct
+{
+	std::string id;
+	std::string name;
+	std::vector<float> bns;//额外加成
+	int maxhp;
+	int atk;
+	int df;
+	float avoid;//闪避率
+	float crit;//暴击率
+	float speed;//攻击速度
+}EquipData;
+
 class GlobalInstance
 {
 public:
@@ -130,6 +143,9 @@ public:
 	//加载我的资源
 	void loadMyResData();
 
+	//加载装备资源
+	void loadEquipData();
+
 	//总的工人数
 	int getTotalFarmers();
 
@@ -174,6 +190,8 @@ public:
 	static std::vector<ResCreator*> vec_resCreators;//资源生产
 
 	static std::map<std::string, AllResources> map_AllResources;//资源名字
+
+	static std::map<std::string, EquipData> map_Equip;//装备名字
 
 	static int servertime;//服务器时间
 
