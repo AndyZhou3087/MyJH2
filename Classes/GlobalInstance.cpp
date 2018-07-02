@@ -705,6 +705,12 @@ void GlobalInstance::addMySoliverCount(DynamicValueInt val)
 	DataSave::getInstance()->setMySoliverCount(GlobalInstance::mySoliverCount.getValue());
 }
 
+void GlobalInstance::costMySoliverCount(DynamicValueInt val)
+{
+	GlobalInstance::mySoliverCount.setValue(GlobalInstance::mySoliverCount.getValue() - val.getValue());
+	DataSave::getInstance()->setMySoliverCount(GlobalInstance::mySoliverCount.getValue());
+}
+
 DynamicValueInt GlobalInstance::getMyCoinCount()
 {
 	return GlobalInstance::myCoinCount;
@@ -713,6 +719,12 @@ DynamicValueInt GlobalInstance::getMyCoinCount()
 void GlobalInstance::addMyCoinCount(DynamicValueInt val)
 {
 	GlobalInstance::myCoinCount.setValue(GlobalInstance::myCoinCount.getValue() + val.getValue());
+	DataSave::getInstance()->setMyCoinCount(GlobalInstance::myCoinCount.getValue());
+}
+
+void GlobalInstance::costMyCoinCount(DynamicValueInt val)
+{
+	GlobalInstance::myCoinCount.setValue(GlobalInstance::myCoinCount.getValue() - val.getValue());
 	DataSave::getInstance()->setMyCoinCount(GlobalInstance::myCoinCount.getValue());
 }
 

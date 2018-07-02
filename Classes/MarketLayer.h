@@ -29,6 +29,8 @@ public:
 
 	void buyRes(int iterindex, int count);
 
+	void resetStockRes();
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -41,8 +43,6 @@ private:
 	void saveStockRes();
 
 	void updateUI(float dt);
-
-	void resetStockRes();
 private:
 	std::vector<MK_RES> vec_Res;
 	cocos2d::ui::Text* lvUIlbl;

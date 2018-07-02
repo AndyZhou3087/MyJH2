@@ -138,6 +138,13 @@ void StoreHouseLayer::updateContent(int category)
 		scrollview->addChild(boxbg);
 
 		std::string qustr = "ui/resbox_qu0.png";
+		int qu = 0;
+		if (category == 2)
+		{
+			Equip* equ = (Equip*)map_cateRes[category][m];
+			qu = equ->getQU().getValue();
+			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
 
 		Sprite * qubox = Sprite::createWithSpriteFrameName(qustr);
 
@@ -160,6 +167,15 @@ void StoreHouseLayer::updateContent(int category)
 		std::string resid = map_cateRes[category][m]->getId();
 
 		std::string str = StringUtils::format("ui/%s.png", resid.c_str());
+		if (qu == 3)
+		{
+			str = StringUtils::format("ui/%s_2.png", resid.c_str());
+		}
+		else if (qu == 4)
+		{
+			str = StringUtils::format("ui/%s_3.png", resid.c_str());
+		}
+
 		Sprite * res = Sprite::createWithSpriteFrameName(str);
 		res->setPosition(Vec2(boxItem->getContentSize().width / 2, boxItem->getContentSize().height / 2));
 		boxItem->addChild(res);
@@ -216,7 +232,7 @@ void StoreHouseLayer::onclick(Ref* pSender)
 	{
 		if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
 		{
-			EquipDescLayer* layer = EquipDescLayer::create(res, 0);
+			EquipDescLayer* layer = EquipDescLayer::create(res, 0);//从仓库进入
 			this->addChild(layer);
 		}
 		else if (res->getType() >= T_WG && res->getType() <= T_NG)

@@ -167,9 +167,13 @@ public:
 
 	void addMySoliverCount(DynamicValueInt val);
 
+	void costMySoliverCount(DynamicValueInt val);
+
 	DynamicValueInt getMyCoinCount();
 
 	void addMyCoinCount(DynamicValueInt val);
+
+	void costMyCoinCount(DynamicValueInt val);
 
 	//根据装备品质生成镶嵌孔数
 	int generateStoneCount(int qu);

@@ -146,6 +146,9 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case BTN_S_REFRESH://银子刷新
 			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= SILVERREFRESH_NUM)
 			{
+				DynamicValueInt dval;
+				dval.setValue(SILVERREFRESH_NUM);
+				GlobalInstance::getInstance()->costMySoliverCount(dval);
 				create3RandHero();
 				for (int i = 0; i < 3; i++)
 				{
@@ -160,6 +163,9 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case BTN_C_REFRESH://元宝刷新
 			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= COINREFRESH_NUM)
 			{
+				DynamicValueInt dval;
+				dval.setValue(COINREFRESH_NUM);
+				GlobalInstance::getInstance()->costMyCoinCount(dval);
 				create3RandHero();
 				for (int i = 0; i < 3; i++)
 				{
