@@ -158,9 +158,6 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 			str = StringUtils::format("resbox%d", i);
 			cocos2d::ui::Widget* resbox = (cocos2d::ui::Widget*)csbnode->getChildByName(str);
 
-			str = StringUtils::format("resbox%d_qu", i);
-			cocos2d::ui::Widget* resboxqu = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
-
 			if (vec_res.size() == 1)
 			{
 				resbox->setPositionX(360);
@@ -169,7 +166,6 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 			{
 				resbox->setPositionX(240 + i*230);
 			}
-			resboxqu->setPositionX(resbox->getPositionX());
 			res->setPositionX(resbox->getPositionX());
 			namelbl[i]->setPositionX(resbox->getPositionX());
 			countlbl[i]->setPositionX(resbox->getPositionX());

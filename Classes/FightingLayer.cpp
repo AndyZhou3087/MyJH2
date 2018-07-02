@@ -1,0 +1,93 @@
+#include "FightingLayer.h"
+#include "Resource.h"
+#include "CommonFuncs.h"
+#include "GlobalInstance.h"
+#include "Const.h"
+#include "MovingLabel.h"
+#include "MyRes.h"
+
+USING_NS_CC;
+
+FightingLayer::FightingLayer()
+{
+
+}
+
+FightingLayer::~FightingLayer()
+{
+
+}
+
+
+FightingLayer* FightingLayer::create(MapBlock* mapblock)
+{
+	FightingLayer *pRet = new(std::nothrow)FightingLayer();
+	if (pRet && pRet->init(mapblock))
+	{
+		pRet->autorelease();
+		return pRet;
+	}
+	else
+	{
+		delete pRet;
+		pRet = nullptr;
+		return nullptr;
+	}
+}
+
+// on "init" you need to initialize your instance
+bool FightingLayer::init(MapBlock* mapblock)
+{
+	if (!Layer::init())
+	{
+		return false;
+	}
+
+	m_mapblock = mapblock;
+	//LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
+	//this->addChild(color);
+
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+	Node* bg = Sprite::create(ResourcePath::makeImagePath("fightingbg.jpg"));
+	bg->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
+	this->addChild(bg);
+
+	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("fightLayer.csb"));
+	this->addChild(csbnode);
+	int langtype = GlobalInstance::getInstance()->getLang();
+
+	//°´Å¥
+	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
+	actionbtn->addTouchEventListener(CC_CALLBACK_2(FightingLayer::onBtnClick, this));
+
+	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
+
+	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("escapebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	//ÆÁ±ÎÏÂ²ãµã»÷
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = [=](Touch *touch, Event *event)
+	{
+		return true;
+	};
+
+	listener->setSwallowTouches(true);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	return true;
+}
+
+void FightingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		this->removeFromParentAndCleanup(true);
+	}
+}
+
+void FightingLayer::onExit()
+{
+	Layer::onExit();
+}

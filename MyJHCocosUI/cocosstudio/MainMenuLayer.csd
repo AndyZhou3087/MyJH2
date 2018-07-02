@@ -31,14 +31,14 @@
           <AbstractNodeData Name="r001box" ActionTag="-1050598203" Tag="46" IconVisible="False" LeftMargin="165.7739" RightMargin="408.2261" TopMargin="-13.2188" BottomMargin="1147.2188" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
             <Size X="146.0000" Y="146.0000" />
             <Children>
-              <AbstractNodeData Name="r" ActionTag="162247954" Tag="47" IconVisible="False" LeftMargin="39.0006" RightMargin="48.9994" TopMargin="41.9986" BottomMargin="50.0014" ctype="SpriteObjectData">
-                <Size X="58.0000" Y="54.0000" />
+              <AbstractNodeData Name="r" ActionTag="162247954" Tag="47" IconVisible="False" LeftMargin="13.5006" RightMargin="23.4994" TopMargin="14.4986" BottomMargin="22.5014" ctype="SpriteObjectData">
+                <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="68.0006" Y="77.0014" />
-                <Scale ScaleX="1.6000" ScaleY="1.6000" />
+                <Scale ScaleX="1.3000" ScaleY="1.3000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4658" Y="0.5274" />
-                <PreSize X="0.3973" Y="0.3699" />
+                <PreSize X="0.7466" Y="0.7466" />
                 <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
@@ -65,14 +65,14 @@
           <AbstractNodeData Name="r002box" ActionTag="-1531638326" Tag="49" IconVisible="False" LeftMargin="259.7903" RightMargin="314.2097" TopMargin="-13.2188" BottomMargin="1147.2188" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
             <Size X="146.0000" Y="146.0000" />
             <Children>
-              <AbstractNodeData Name="r" ActionTag="-389680303" Tag="50" IconVisible="False" LeftMargin="38.0006" RightMargin="47.9994" TopMargin="42.9986" BottomMargin="51.0014" ctype="SpriteObjectData">
-                <Size X="72.0000" Y="46.0000" />
+              <AbstractNodeData Name="r" ActionTag="-389680303" Tag="50" IconVisible="False" LeftMargin="13.5006" RightMargin="23.4994" TopMargin="14.4986" BottomMargin="22.5014" ctype="SpriteObjectData">
+                <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="68.0006" Y="77.0014" />
-                <Scale ScaleX="1.6000" ScaleY="1.6000" />
+                <Scale ScaleX="1.3000" ScaleY="1.3000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4658" Y="0.5274" />
-                <PreSize X="0.4110" Y="0.3562" />
+                <PreSize X="0.7466" Y="0.7466" />
                 <FileData Type="MarkedSubImage" Path="ui/r002.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
@@ -99,14 +99,14 @@
           <AbstractNodeData Name="r003box" ActionTag="898152365" Tag="52" IconVisible="False" LeftMargin="353.8066" RightMargin="220.1934" TopMargin="-13.2188" BottomMargin="1147.2188" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
             <Size X="146.0000" Y="146.0000" />
             <Children>
-              <AbstractNodeData Name="r" ActionTag="1204023052" Tag="53" IconVisible="False" LeftMargin="36.0006" RightMargin="45.9994" TopMargin="44.9986" BottomMargin="53.0014" ctype="SpriteObjectData">
-                <Size X="60.0000" Y="52.0000" />
+              <AbstractNodeData Name="r" ActionTag="1204023052" Tag="53" IconVisible="False" LeftMargin="13.5006" RightMargin="23.4994" TopMargin="14.4986" BottomMargin="22.5014" ctype="SpriteObjectData">
+                <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="68.0006" Y="77.0014" />
-                <Scale ScaleX="1.6000" ScaleY="1.6000" />
+                <Scale ScaleX="1.3000" ScaleY="1.3000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4658" Y="0.5274" />
-                <PreSize X="0.4384" Y="0.3288" />
+                <PreSize X="0.7466" Y="0.7466" />
                 <FileData Type="MarkedSubImage" Path="ui/r003.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
@@ -133,14 +133,14 @@
           <AbstractNodeData Name="r004box" ActionTag="1293526549" Tag="55" IconVisible="False" LeftMargin="447.8230" RightMargin="126.1770" TopMargin="-13.2188" BottomMargin="1147.2188" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
             <Size X="146.0000" Y="146.0000" />
             <Children>
-              <AbstractNodeData Name="r" ActionTag="-1217243523" Tag="56" IconVisible="False" LeftMargin="35.0006" RightMargin="44.9994" TopMargin="43.9986" BottomMargin="52.0014" ctype="SpriteObjectData">
-                <Size X="64.0000" Y="48.0000" />
+              <AbstractNodeData Name="r" ActionTag="-1217243523" Tag="56" IconVisible="False" LeftMargin="13.5006" RightMargin="23.4994" TopMargin="14.4986" BottomMargin="22.5014" ctype="SpriteObjectData">
+                <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="68.0006" Y="77.0014" />
-                <Scale ScaleX="1.6000" ScaleY="1.6000" />
+                <Scale ScaleX="1.3000" ScaleY="1.3000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4658" Y="0.5274" />
-                <PreSize X="0.4521" Y="0.3425" />
+                <PreSize X="0.7466" Y="0.7466" />
                 <FileData Type="MarkedSubImage" Path="ui/r004.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
@@ -167,14 +167,14 @@
           <AbstractNodeData Name="r005box" ActionTag="532274056" Tag="58" IconVisible="False" LeftMargin="541.8394" RightMargin="32.1606" TopMargin="-13.2188" BottomMargin="1147.2188" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
             <Size X="146.0000" Y="146.0000" />
             <Children>
-              <AbstractNodeData Name="r" ActionTag="1024453301" Tag="59" IconVisible="False" LeftMargin="32.0006" RightMargin="41.9994" TopMargin="45.9986" BottomMargin="54.0014" ctype="SpriteObjectData">
-                <Size X="66.0000" Y="50.0000" />
+              <AbstractNodeData Name="r" ActionTag="1024453301" Tag="59" IconVisible="False" LeftMargin="13.5006" RightMargin="23.4994" TopMargin="14.4986" BottomMargin="22.5014" ctype="SpriteObjectData">
+                <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="68.0006" Y="77.0014" />
-                <Scale ScaleX="1.6000" ScaleY="1.6000" />
+                <Scale ScaleX="1.3000" ScaleY="1.3000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4658" Y="0.5274" />
-                <PreSize X="0.4932" Y="0.3151" />
+                <PreSize X="0.7466" Y="0.7466" />
                 <FileData Type="MarkedSubImage" Path="ui/r005.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
