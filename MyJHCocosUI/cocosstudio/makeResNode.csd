@@ -26,8 +26,8 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox_qu" ActionTag="191247616" Tag="162" IconVisible="False" LeftMargin="-314.5001" RightMargin="205.5001" TopMargin="-54.5002" BottomMargin="-54.4998" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="27" Scale9Height="27" ctype="ImageViewObjectData">
-            <Size X="109.0000" Y="109.0000" />
+          <AbstractNodeData Name="resbox_qu" ActionTag="191247616" Tag="162" IconVisible="False" LeftMargin="-322.5001" RightMargin="197.5001" TopMargin="-62.5002" BottomMargin="-62.4998" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+            <Size X="125.0000" Y="125.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-260.0001" Y="0.0002" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />

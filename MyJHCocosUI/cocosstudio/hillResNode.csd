@@ -27,8 +27,8 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox_qu" ActionTag="742543901" Tag="244" IconVisible="False" LeftMargin="-314.5001" RightMargin="205.5001" TopMargin="-75.5000" BottomMargin="-33.5000" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="27" Scale9Height="27" ctype="ImageViewObjectData">
-            <Size X="109.0000" Y="109.0000" />
+          <AbstractNodeData Name="resbox_qu" ActionTag="742543901" Tag="244" IconVisible="False" LeftMargin="-322.5001" RightMargin="197.5001" TopMargin="-83.5000" BottomMargin="-41.5000" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+            <Size X="125.0000" Y="125.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-260.0001" Y="21.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -37,7 +37,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/resbox_qu0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="res" ActionTag="1619788730" Tag="311" IconVisible="False" LeftMargin="-289.0001" RightMargin="231.0001" TopMargin="-48.0000" BottomMargin="-6.0000" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="20" Scale9Height="20" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="res" ActionTag="1619788730" Tag="311" IconVisible="False" LeftMargin="-289.0001" RightMargin="231.0001" TopMargin="-48.0000" BottomMargin="-6.0000" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="71" Scale9Height="75" ctype="ImageViewObjectData">
             <Size X="58.0000" Y="54.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-260.0001" Y="21.0000" />
