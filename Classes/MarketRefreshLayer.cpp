@@ -1,4 +1,4 @@
-#include "MarkerRefreshLayer.h"
+#include "MarketRefreshLayer.h"
 #include "Resource.h"
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
@@ -12,20 +12,20 @@ USING_NS_CC;
 #define SILVERREFRESH_NUM 100
 #define COINREFRESH_NUM 10
 
-MarkerRefreshLayer::MarkerRefreshLayer()
+MarketRefreshLayer::MarketRefreshLayer()
 {
 
 }
 
-MarkerRefreshLayer::~MarkerRefreshLayer()
+MarketRefreshLayer::~MarketRefreshLayer()
 {
 
 }
 
 
-MarkerRefreshLayer* MarkerRefreshLayer::create()
+MarketRefreshLayer* MarketRefreshLayer::create()
 {
-	MarkerRefreshLayer *pRet = new(std::nothrow)MarkerRefreshLayer();
+	MarketRefreshLayer *pRet = new(std::nothrow)MarketRefreshLayer();
 	if (pRet && pRet->init())
 	{
 		pRet->autorelease();
@@ -40,7 +40,7 @@ MarkerRefreshLayer* MarkerRefreshLayer::create()
 }
 
 // on "init" you need to initialize your instance
-bool MarkerRefreshLayer::init()
+bool MarketRefreshLayer::init()
 {
 	if (!Layer::init())
 	{
@@ -62,15 +62,15 @@ bool MarkerRefreshLayer::init()
 
 	//°´Å¥
 	cocos2d::ui::Widget* coinbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("coinbtn");
-	coinbtn->addTouchEventListener(CC_CALLBACK_2(MarkerRefreshLayer::onreBtnClick, this));
+	coinbtn->addTouchEventListener(CC_CALLBACK_2(MarketRefreshLayer::onreBtnClick, this));
 	coinbtn->setTag(10);
 
 	cocos2d::ui::Widget* sliverbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("sliverbtn");
-	sliverbtn->addTouchEventListener(CC_CALLBACK_2(MarkerRefreshLayer::onreBtnClick, this));
+	sliverbtn->addTouchEventListener(CC_CALLBACK_2(MarketRefreshLayer::onreBtnClick, this));
 	sliverbtn->setTag(100);
 
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
-	closebtn->addTouchEventListener(CC_CALLBACK_2(MarkerRefreshLayer::closebtnClick, this));
+	closebtn->addTouchEventListener(CC_CALLBACK_2(MarketRefreshLayer::closebtnClick, this));
 
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
@@ -87,7 +87,7 @@ bool MarkerRefreshLayer::init()
 	return true;
 }
 
-void MarkerRefreshLayer::onreBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+void MarketRefreshLayer::onreBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
@@ -138,7 +138,7 @@ void MarkerRefreshLayer::onreBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget
 	}
 }
 
-void MarkerRefreshLayer::closebtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+void MarketRefreshLayer::closebtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
@@ -147,7 +147,7 @@ void MarkerRefreshLayer::closebtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 	}
 }
 
-void MarkerRefreshLayer::onExit()
+void MarketRefreshLayer::onExit()
 {
 	Layer::onExit();
 }

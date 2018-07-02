@@ -8,7 +8,7 @@
 #include "MyRes.h"
 #include "MarketResNode.h"
 #include "Const.h"
-#include "MarkerRefreshLayer.h"
+#include "MarketRefreshLayer.h"
 
 USING_NS_CC;
 
@@ -144,7 +144,7 @@ void MarketLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		case 1001://刷新
 			//resetStockRes();
 			{
-				MarkerRefreshLayer* layer = MarkerRefreshLayer::create();
+				MarketRefreshLayer* layer = MarketRefreshLayer::create();
 				this->addChild(layer);
 			}
 			

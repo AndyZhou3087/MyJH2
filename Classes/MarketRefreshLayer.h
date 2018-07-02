@@ -9,13 +9,13 @@
 USING_NS_CC;
 
 
-class MarkerRefreshLayer : public cocos2d::Layer
+class MarketRefreshLayer : public cocos2d::Layer
 {
 public:
-	MarkerRefreshLayer();
-	~MarkerRefreshLayer();
+	MarketRefreshLayer();
+	~MarketRefreshLayer();
 
-	static MarkerRefreshLayer* create();
+	static MarketRefreshLayer* create();
 	virtual void onExit();
 	bool init();
 private:
