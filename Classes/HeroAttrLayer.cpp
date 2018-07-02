@@ -119,8 +119,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 	hplbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("hp");
 
 	int hp = herodata->getHp();
-	if (hp < -1)
-		hp = herodata->getMaxHp();
+
 	std::string attrstr = StringUtils::format("%d/%d", hp, (int)herodata->getMaxHp());
 	hplbl->setString(attrstr);
 

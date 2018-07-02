@@ -48,6 +48,10 @@ bool FightHeroNode::init()
 	//血量进度条
 	hp_bar = (cocos2d::ui::LoadingBar*)csbnode->getChildByName("hpbar");
 
+	atkspeed_bar = (cocos2d::ui::LoadingBar*)csbnode->getChildByName("atkspeedbar");
+
+	atkspeed_barbg = (cocos2d::ui::Widget*)csbnode->getChildByName("heroatkspeedbarbg");
+
 	return true;
 }
 
@@ -79,12 +83,30 @@ void FightHeroNode::setData(Hero* herodata)
 		namelbl->setVisible(true);
 		float percent = herodata->getHp()*100/herodata->getMaxHp();
 		hp_bar->setPercent(percent);
+		if (this->getScale() < 1.0f)
+		{
+			atkspeed_bar->setVisible(false);
+			atkspeed_barbg->setVisible(false);
+		}
+		else
+		{
+			atkspeed_bar->setPercent(100);
+		}
 	}
 	else
 	{
-		headbox->loadTexture(ResourcePath::makeImagePath("cardherobox_.png"), cocos2d::ui::Widget::TextureResType::LOCAL);
-		headimg->setVisible(false);
-		namelbl->setVisible(false);
-		hp_bar->setVisible(false);
+		if (this->getScale() < 1.0f)
+		{
+			headbox->loadTexture(ResourcePath::makeImagePath("cardherobox_.png"), cocos2d::ui::Widget::TextureResType::LOCAL);
+			headimg->setVisible(false);
+			namelbl->setVisible(false);
+			hp_bar->setVisible(false);
+			atkspeed_bar->setVisible(false);
+			atkspeed_barbg->setVisible(false);
+		}
+		else
+		{
+			this->setVisible(false);
+		}
 	}
 }

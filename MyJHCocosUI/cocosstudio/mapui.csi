@@ -99,6 +99,8 @@
       <FilePathData Path="mapui/boardblock_60.png" />
       <FilePathData Path="mapui/boardblock_61.png" />
       <FilePathData Path="mapui/boardblock_62.png" />
+      <FilePathData Path="mapui/heroatkspeedbar.png" />
+      <FilePathData Path="mapui/heroatkspeedbarbg.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

@@ -32,7 +32,25 @@ Hero::Hero(Hero* hero)
 	m_state = hero->getState();
 	m_breakupper = 0;
 	m_pos = 0;
-	m_hp = -100;
+	m_hp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[0];
+}
+
+float Hero::getHp()
+{
+	if (m_hp < -1)
+	{
+		m_hp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[0];
+	}
+	else if (m_hp < 0)
+	{
+		m_hp = 0;
+	}
+	return m_hp;
+}
+
+void Hero::setHp(float hp)
+{
+	m_hp = hp;
 }
 
 int Hero::getLevel()

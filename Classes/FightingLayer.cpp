@@ -5,6 +5,7 @@
 #include "Const.h"
 #include "MovingLabel.h"
 #include "MyRes.h"
+#include "FightHeroNode.h"
 
 USING_NS_CC;
 
@@ -59,13 +60,21 @@ bool FightingLayer::init(MapBlock* mapblock)
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	//°´Å¥
-	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
-	actionbtn->addTouchEventListener(CC_CALLBACK_2(FightingLayer::onBtnClick, this));
+	cocos2d::ui::Widget* escapebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("escapebtn");
+	escapebtn->addTouchEventListener(CC_CALLBACK_2(FightingLayer::onBtnClick, this));
 
-	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
+	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)escapebtn->getChildByName("text");
 
 	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("escapebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+
+	for (int i = 0; i < 6; i++)
+	{
+		FightHeroNode * fightHeroNode = FightHeroNode::create();
+		fightHeroNode->setPosition(145 + i%3*215, 435 -  i/3*240);
+		fightHeroNode->setData(GlobalInstance::myCardHeros[i]);
+		addChild(fightHeroNode, 0, i);
+	}
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)

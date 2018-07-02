@@ -10,6 +10,7 @@
 #include "MovingLabel.h"
 #include "MapEventLayer.h"
 #include "DataSave.h"
+#include "FightingLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -148,6 +149,9 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 		case BTN_GOCITY:
 			Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MainScene::createScene()));
+			break;
+		case BTN_MAP:
+			
 			break;
 		default:
 			break;
@@ -491,7 +495,7 @@ void MapBlockScene::doMyStatus()
 	}
 	else
 	{
-
+		this->addChild(FightingLayer::create(mapblock));
 	}
 	if (status != MAP_S_NOTING)
 	{

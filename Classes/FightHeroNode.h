@@ -22,6 +22,8 @@ private:
 	cocos2d::ui::ImageView* headimg;
 	cocos2d::ui::Text* namelbl;
 	cocos2d::ui::LoadingBar* hp_bar;
+	cocos2d::ui::LoadingBar* atkspeed_bar;
+	cocos2d::ui::Widget* atkspeed_barbg;
 	Hero* m_heroData;
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
