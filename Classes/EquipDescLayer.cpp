@@ -138,7 +138,6 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 			status = S_EQUIP_OTHER;
 			srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("okbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
-			
 	}
 	else
 	{
