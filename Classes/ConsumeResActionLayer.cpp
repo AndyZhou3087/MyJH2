@@ -175,9 +175,6 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 			std::string str = StringUtils::format("resbox%d", i);
 			cocos2d::ui::Widget* widget = (cocos2d::ui::Widget*)csbnode->getChildByName(str);
 			widget->setVisible(false);
-			str = StringUtils::format("resbox%d_qu", i);
-			widget = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
-			widget->setVisible(false);
 
 			str = StringUtils::format("res%d", i);
 			widget = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
@@ -286,7 +283,7 @@ void ConsumeResActionLayer::action()
 		bdata->level.setValue(bdata->level.getValue() + 1);
 		DataSave::getInstance()->setBuildingLv(bdata->name, bdata->level.getValue());
 
-		if (bdata->name.compare("7homehill") == 0)
+		if (bdata->name.compare("6innroom") == 0)
 		{
 			InnRoomLayer* innroomLayer = (InnRoomLayer*)this->getParent();
 			innroomLayer->lvup();

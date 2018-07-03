@@ -116,7 +116,7 @@
             <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="slivertext" ActionTag="-487549080" Tag="318" IconVisible="False" LeftMargin="493.6442" RightMargin="164.3558" TopMargin="837.3063" BottomMargin="408.6938" FontSize="30" LabelText="x100" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="slivertext" ActionTag="-487549080" Tag="318" IconVisible="False" LeftMargin="493.6442" RightMargin="164.3558" TopMargin="837.3062" BottomMargin="408.6938" FontSize="30" LabelText="x100" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="62.0000" Y="34.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="493.6442" Y="425.6938" />
@@ -128,18 +128,18 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="closebtn" ActionTag="-575747972" Tag="319" IconVisible="False" LeftMargin="577.6786" RightMargin="62.3214" TopMargin="287.6421" BottomMargin="864.3579" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="50" Scale9Height="106" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-            <Size X="80.0000" Y="128.0000" />
+          <AbstractNodeData Name="closebtn" ActionTag="-575747972" Tag="319" IconVisible="False" LeftMargin="579.9399" RightMargin="74.0601" TopMargin="298.5508" BottomMargin="915.4492" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="36" Scale9Height="44" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="66.0000" Y="66.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="617.6786" Y="928.3579" />
+            <Position X="612.9399" Y="948.4492" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.8579" Y="0.7253" />
-            <PreSize X="0.1111" Y="0.1000" />
+            <PrePosition X="0.8513" Y="0.7410" />
+            <PreSize X="0.0917" Y="0.0516" />
             <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="MarkedSubImage" Path="ui/closebtn.png" Plist="ui.plist" />
-            <PressedFileData Type="MarkedSubImage" Path="ui/closebtn.png" Plist="ui.plist" />
-            <NormalFileData Type="MarkedSubImage" Path="ui/closebtn.png" Plist="ui.plist" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/closebtn2.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/closebtn2.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/closebtn2.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
