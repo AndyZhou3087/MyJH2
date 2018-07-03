@@ -303,8 +303,15 @@
       <FilePathData Path="ui/x034.png" />
       <FilePathData Path="ui/x035.png" />
       <FilePathData Path="ui/x036.png" />
-      <FilePathData Path="ui/x16.png" />
       <FilePathData Path="ui/equipstonebox.png" />
+      <FilePathData Path="ui/x016.png" />
+      <FilePathData Path="ui/taskfinish.png" />
+      <FilePathData Path="ui/taskframe.png" />
+      <FilePathData Path="ui/taskdayget.png" />
+      <FilePathData Path="ui/taskdaygo.png" />
+      <FilePathData Path="ui/setpline0.png" />
+      <FilePathData Path="ui/taskprobar.png" />
+      <FilePathData Path="ui/taskprobg.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

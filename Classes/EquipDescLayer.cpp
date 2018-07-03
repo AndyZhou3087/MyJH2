@@ -65,14 +65,14 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
-	std::string str = StringUtils::format("ui/%s.png", GlobalInstance::map_Equip[res->getId()].id.c_str());
+	std::string str = StringUtils::format("ui/%s.png", res->getId().c_str());
 	if (s == 3)
 	{
-		str = StringUtils::format("ui/%s_2.png", GlobalInstance::map_Equip[res->getId()].id.c_str());
+		str = StringUtils::format("ui/%s_2.png", res->getId().c_str());
 	}
 	else if (s == 4)
 	{
-		str = StringUtils::format("ui/%s_3.png", GlobalInstance::map_Equip[res->getId()].id.c_str());
+		str = StringUtils::format("ui/%s_3.png", res->getId().c_str());
 	}
 	p_res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 

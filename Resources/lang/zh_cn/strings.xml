@@ -72,9 +72,4 @@
 	<s name="speedlabel">攻击速度 +%f</s>
 	<s name="critlabel">暴击几率 +%.2f%%</s>
 	<s name="avoidlabel">闪避几率 +%.2f%%</s>
-	<s name="materialr001">食材:</s>
-	<s name="materialr002">木材:</s>
-	<s name="materialr003">石矿:</s>
-	<s name="materialr004">铁矿:</s>
-	<s name="materialr005">银矿:</s>
 </strings>
