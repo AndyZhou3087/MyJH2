@@ -12,6 +12,7 @@
 #include "StoreHouseLayer.h"
 #include "SmithyLayer.h"
 #include "MarketLayer.h"
+#include "TaskLayer.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -212,6 +213,10 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			else if (buildname.compare("5market") == 0)
 			{
 				layer = MarketLayer::create(Building::map_buildingDatas[buildname]);
+			}
+			else if (buildname.compare("9assemblyhall") == 0)
+			{
+				layer = TaskLayer::create();
 			}
 
 			if (layer != NULL)

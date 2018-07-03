@@ -125,6 +125,13 @@
       <FilePathData Path="text_zh_cn/break_text.png" />
       <FilePathData Path="text_zh_cn/stonein_text.png" />
       <FilePathData Path="text_zh_cn/equipprop_text.png" />
+      <FilePathData Path="text_zh_cn/halltitle.png" />
+      <FilePathData Path="text_zh_cn/task_text_0_n.png" />
+      <FilePathData Path="text_zh_cn/task_text_0_s.png" />
+      <FilePathData Path="text_zh_cn/task_text_1_n.png" />
+      <FilePathData Path="text_zh_cn/task_text_1_s.png" />
+      <FilePathData Path="text_zh_cn/task_text_2_n.png" />
+      <FilePathData Path="text_zh_cn/task_text_2_s.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

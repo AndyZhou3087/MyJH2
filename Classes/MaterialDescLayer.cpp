@@ -83,8 +83,8 @@ void MaterialDescLayer::loadMaterialDesc()
 	}
 
 	int rcount = MyRes::getMyResCount(m_resid);
-	std::string s = StringUtils::format("material%s", m_resid.c_str());
-	str.append(ResourceLang::map_lang[s]);
+	std::string s = StringUtils::format("%s:", GlobalInstance::map_AllResources[m_resid].name.c_str());
+	str.append(s);
 	str.append(StringUtils::format("%d/%d", rcount, maxcount));
 
 	m_text->setString(str);
