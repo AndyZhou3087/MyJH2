@@ -8,6 +8,7 @@
 #include "MyMenu.h"
 #include "Equip.h"
 #include "GongFa.h"
+#include "TakeOnLayer.h"
 
 SelectEquipLayer::SelectEquipLayer()
 {
@@ -191,6 +192,8 @@ void SelectEquipLayer::onclick(Ref* pSender)
 	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 	Node* node = (Node*)pSender;
 
+	TakeOnLayer* layer = TakeOnLayer::create((Equip*)node->getUserData());
+	this->addChild(layer);
 }
 
 void SelectEquipLayer::loadData()
