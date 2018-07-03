@@ -189,7 +189,7 @@ void StoreHouseLayer::updateContent(int category)
 		Label *countlbl = Label::createWithTTF(countstr, FONT_NAME, 23);
 		countlbl->setAnchorPoint(Vec2(1, 0));
 		countlbl->setColor(Color3B::WHITE);
-		countlbl->setPosition(Vec2(boxItem->getContentSize().width - 5, 0));
+		countlbl->setPosition(Vec2(boxItem->getContentSize().width - 10, 10));
 		boxItem->addChild(countlbl);
 	}
 }
