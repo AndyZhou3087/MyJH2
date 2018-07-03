@@ -9,6 +9,7 @@
 #include "OutTownLayer.h"
 #include "SelectMyHerosLayer.h"
 #include "MapBlockScene.h"
+#include "SelectEquipLayer.h"
 
 USING_NS_CC;
 
@@ -66,7 +67,13 @@ bool HeroAttrLayer::init(Hero* herodata)
 
 	//装备栏
 	Node* equipnode = csbnode->getChildByName("equipnode");
-
+	int equiptype[] = {T_ARMOR, T_EQUIP, T_NG, T_WG, T_HANDARMOR, T_FASHION};
+	for (unsigned int i = 0; i < equipnode->getChildrenCount(); i++)
+	{
+		cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
+		node->setTag(equiptype[i]);
+		node->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onEquipClick, this));
+	}
 	//属性信息
 	Node* heroattrbottom = csbnode->getChildByName("heroattrbottom");
 	moditybtn = (cocos2d::ui::Widget*)heroattrbottom->getChildByName("moditybtn");
@@ -372,6 +379,16 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		default:
 			break;
 		}
+	}
+}
+
+void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
+		SelectEquipLayer* slayer = SelectEquipLayer::create(clicknode->getTag());
+		this->addChild(slayer);
 	}
 }
 

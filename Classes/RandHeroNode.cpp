@@ -2,9 +2,7 @@
 #include "CommonFuncs.h"
 #include "Resource.h"
 #include "HeroAttrLayer.h"
-
-//5个品质英雄颜色
-Color3B POTENTIALCOLOR[5] = { Color3B(36, 255, 82), Color3B(52, 179, 240), Color3B(252, 77, 226), Color3B(255, 214, 71), Color3B(255, 69, 69)};
+#include "Const.h"
 
 RandHeroNode::RandHeroNode()
 {

@@ -78,6 +78,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 
 	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	namelbl->setString(GlobalInstance::map_Equip[res->getId()].name);
+	namelbl->setTextColor(Color4B(POTENTIALCOLOR[s]));
 
 	cocos2d::ui::Text* attactlb = (cocos2d::ui::Text*)csbnode->getChildByName("attactlb");
 	str = StringUtils::format(ResourceLang::map_lang["attlabel"].c_str(), GlobalInstance::map_Equip[res->getId()].atk);
@@ -106,11 +107,13 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	cocos2d::ui::Text* qua = (cocos2d::ui::Text*)csbnode->getChildByName("qua");
 	str = ResourceLang::map_lang["potentialtext"];
 	qua->setString(str);
+	qua->setTextColor(Color4B(POTENTIALCOLOR[s]));
 
 	cocos2d::ui::Text* quatext = (cocos2d::ui::Text*)csbnode->getChildByName("quatext");
 	std::string st = StringUtils::format("potential_%d", s);
 	str = ResourceLang::map_lang[st];
 	quatext->setString(str);
+	quatext->setTextColor(Color4B(POTENTIALCOLOR[s]));
 
 	//增加了多少攻击力
 	cocos2d::ui::Text* attaddlb = (cocos2d::ui::Text*)csbnode->getChildByName("attaddlb");
