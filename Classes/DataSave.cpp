@@ -112,6 +112,16 @@ std::string DataSave::getMyRes()
 	return loadStringDataByKey("myres", "r002-100-1");
 }
 
+void DataSave::setMyMainTask(std::string strval)
+{
+	saveStringDataByKey("MainTask", strval);
+}
+
+std::string DataSave::getMyMainTask()
+{
+	return loadStringDataByKey("MainTask", "1-1-2-0");//id-是否完成-type-是否领取
+}
+
 int DataSave::getTotalFarmers()
 {
 	return loadIntDataByKey("totalfarmers", 5);

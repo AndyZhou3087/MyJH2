@@ -80,6 +80,11 @@ void LoadingScene::delayLoadData(float dt)
 
 	GlobalInstance::getInstance()->loadEquipData();
 
+	//读取主线任务配置
+	GlobalInstance::getInstance()->loadTaskMainData();
+	//读取主线任务
+	GlobalInstance::getInstance()->loadMyTaskMainData();
+
 	//数据处理完，显示游戏场景
 	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.2f);
 }

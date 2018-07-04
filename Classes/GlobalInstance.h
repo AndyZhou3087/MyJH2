@@ -59,6 +59,37 @@ typedef struct
 	float speed;//攻击速度
 }EquipData;
 
+typedef struct
+{
+	int id;
+	std::string name;
+	std::vector<int> type;//条件二选一，0表示给东西，1表示战斗,二选一即可完成任务
+	std::string desc;
+	std::string place;
+	std::string npcid;
+	std::string bossword;
+	std::vector<std::map<std::string, int>> need1;//条件二选一，物品，r001-10(id-count)
+	std::string need1desc;
+	int need2;//条件二选一，战斗，填写type
+	std::string need2desc;
+	std::vector<int> mutex1;//互斥1，1-1,id为1的type为1的互斥
+	std::vector<int> mutex2;//互斥2
+	std::vector<std::map<std::string, int>> reward1;//条件1的奖励
+	std::vector<std::map<std::string, int>> reward2;//条件2的奖励
+	int isfinish;//是否完成此任务，0未完成，1完成
+	int finishtype;//完成任务类型，0表示条件1完成，1表示条件2完成
+	int isGetReward;
+}TaskMainData;
+
+typedef struct
+{
+	int id;
+	int type;
+	int isfinish;//是否完成此任务，0未完成，1完成
+	int isGetReward;
+}
+MyTaskMainData;
+
 class GlobalInstance
 {
 public:
@@ -146,6 +177,15 @@ public:
 	//加载装备资源
 	void loadEquipData();
 
+	//加载主线任务
+	void loadTaskMainData();
+
+	//加载已完成主线任务
+	void loadMyTaskMainData();
+
+	//保存已完成主线任务
+	void saveMyTaskMainData();
+
 	//总的工人数
 	int getTotalFarmers();
 
@@ -196,6 +236,10 @@ public:
 	static std::map<std::string, AllResources> map_AllResources;//资源名字
 
 	static std::map<std::string, EquipData> map_Equip;//装备名字
+
+	static std::vector<TaskMainData> map_TaskMain;//主线任务
+	static std::vector<MyTaskMainData> map_myTaskMain;//已完成的主线任务
+	static TaskMainData* myCurTaskMain;
 
 	static int servertime;//服务器时间
 

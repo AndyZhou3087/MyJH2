@@ -4,10 +4,10 @@
 #include "Const.h"
 #include "SoundManager.h"
 #include "Resource.h"
-#include "GlobalInstance.h"
 #include "MyRes.h"
 #include "MyMenu.h"
 #include "MovingLabel.h"
+#include "TaskMainNode.h"
 
 TaskLayer::TaskLayer()
 {
@@ -54,7 +54,6 @@ bool TaskLayer::init()
 		btn->addTouchEventListener(CC_CALLBACK_2(TaskLayer::onCategory, this));
 		vec_categoryBtn.push_back(btn);
 	}
-	loadData();
 	updateContent(0);
 
 	auto listener = EventListenerTouchOneByOne::create();
@@ -92,9 +91,24 @@ void TaskLayer::updateContent(int category)
 		}
 	}
 
-	loadData();
+	loadData(category);
+
+	int ressize;
+	if (category == 0)
+	{
+		ressize = GlobalInstance::map_TaskMain.size();
+		sort(GlobalInstance::map_TaskMain.begin(), GlobalInstance::map_TaskMain.end(), larger_callback);
+	}
+	else if (category == 1)
+	{
+		ressize = 20;
+	}
+	else
+	{
+		ressize = 10;
+	}
+
 	int itemheight = 140;
-	int ressize = 10;
 	int innerheight = itemheight * ressize;
 
 	int contentheight = scrollview->getContentSize().height;
@@ -104,9 +118,19 @@ void TaskLayer::updateContent(int category)
 
 	for (int i = 0; i < ressize; i++)
 	{
-		Node* node = CSLoader::createNode(ResourcePath::makePath("taskMainNode.csb"));
-		cocos2d::ui::ImageView* resitem = (cocos2d::ui::ImageView*)node->getChildByName("resitem");
-		resitem->setSwallowTouches(false);
+		Node* node;
+		if (category == 0)
+		{
+			node = TaskMainNode::create(&GlobalInstance::map_TaskMain[i],this);
+		}
+		else if (category == 1)
+		{
+			
+		}
+		else
+		{
+			
+		}
 		scrollview->addChild(node);
 		node->setPosition(Vec2(scrollview->getContentSize().width/2, innerheight - i*itemheight - itemheight*0.5));
 	}
@@ -122,9 +146,31 @@ void TaskLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 	}
 }
 
-void TaskLayer::loadData()
+bool TaskLayer::larger_callback(TaskMainData a, TaskMainData b)
 {
+	int needcountA = a.isfinish;
+	int needcountB = b.isfinish;
+	if (needcountA < needcountB)
+		return true;
+	else
+		return false;
+}
 
+void TaskLayer::loadData(int category)
+{
+	if (category == 0)
+	{
+		for (int i = 0; i < GlobalInstance::map_myTaskMain.size(); i++)
+		{
+			int id = GlobalInstance::map_myTaskMain[i].id;
+			if (id == GlobalInstance::map_TaskMain[i].id)
+			{
+				GlobalInstance::map_TaskMain[i].isfinish = GlobalInstance::map_myTaskMain[i].isfinish;
+				GlobalInstance::map_TaskMain[i].finishtype = GlobalInstance::map_myTaskMain[i].type;
+				GlobalInstance::map_TaskMain[i].isGetReward = GlobalInstance::map_myTaskMain[i].isGetReward;
+			}
+		}
+	}
 
 }
 
