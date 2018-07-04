@@ -151,6 +151,20 @@ bool TakeOnLayer::init(Equip* res_equip)
 		}
 	}
 
+	for (int i = 0; i < 3; i++)
+	{
+		str = StringUtils::format("stone%d", i);
+		cocos2d::ui::ImageView* suitresbox = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
+		if (i < m_equip->vec_stones.size())
+		{
+
+		}
+		else
+		{
+
+		}
+	}
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{

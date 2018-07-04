@@ -38,6 +38,18 @@ int MyRes::getMyPackageCount()
 	return count;
 }
 
+ResBase* MyRes::getMyPutOnRes(std::string sid)
+{
+	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
+	{
+		if (vec_MyResources[i]->getId().compare(sid) == 0 && vec_MyResources[i]->getWhere() == MYEQUIP)
+		{
+			return vec_MyResources[i];
+		}
+	}
+	return NULL;
+}
+
 void MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescount)
 {
 	std::string types[] = {"r","a","e","h","f","w","x","s","c","d","m","b","y"};

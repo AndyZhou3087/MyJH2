@@ -74,4 +74,6 @@
 	<s name="avoidlabel">闪避几率 +%.2f%%</s>
 	<s name="suit1">套装效果1：</s>
 	<s name="suit2">套装效果2：</s>
+	<s name="nohas">未拥有</s>
+	<s name="noputon">未装备</s>
 </strings>

@@ -73,7 +73,7 @@
           <AbstractNodeData Name="heroatkspeedbarbg" ActionTag="1847250843" Tag="890" IconVisible="False" LeftMargin="-71.0000" RightMargin="-71.0000" TopMargin="93.5000" BottomMargin="-102.5000" ctype="SpriteObjectData">
             <Size X="142.0000" Y="9.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="0.0000" Y="-98.0000" />
+            <Position Y="-98.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
