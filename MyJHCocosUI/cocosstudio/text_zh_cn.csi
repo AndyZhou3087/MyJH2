@@ -145,6 +145,9 @@
       <FilePathData Path="text_zh_cn/task_text_1_s.png" />
       <FilePathData Path="text_zh_cn/task_text_2_n.png" />
       <FilePathData Path="text_zh_cn/task_text_2_s.png" />
+      <FilePathData Path="text_zh_cn/taskfinish.png" />
+      <FilePathData Path="text_zh_cn/taskdayget.png" />
+      <FilePathData Path="text_zh_cn/taskdaygo.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

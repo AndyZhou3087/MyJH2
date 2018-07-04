@@ -318,6 +318,9 @@
           <Image Name="task_text_1_s.png" />
           <Image Name="task_text_2_n.png" />
           <Image Name="task_text_2_s.png" />
+          <Image Name="taskdayget.png" />
+          <Image Name="taskdaygo.png" />
+          <Image Name="taskfinish.png" />
           <Image Name="usebtn_text.png" />
         </Folder>
         <Folder Name="ui">
@@ -406,6 +409,7 @@
           <Image Name="a028-2.png" />
           <Image Name="a028-3.png" />
           <Image Name="actionbtn_blue.png" />
+          <Image Name="actionbtn_yellow.png" />
           <Image Name="b001.png" />
           <Image Name="b002.png" />
           <Image Name="b003.png" />
@@ -533,9 +537,6 @@
           <Image Name="s004.png" />
           <Image Name="setpline0.png" />
           <Image Name="smallstar.png" />
-          <Image Name="taskdayget.png" />
-          <Image Name="taskdaygo.png" />
-          <Image Name="taskfinish.png" />
           <Image Name="taskframe.png" />
           <Image Name="taskprobar.png" />
           <Image Name="taskprobg.png" />
@@ -669,6 +670,7 @@
         <Project Name="takeOnLayer.csd" Type="Layer" />
         <Project Name="taskDayNode.csd" Type="Node" />
         <Project Name="taskLayer.csd" Type="Layer" />
+        <Project Name="taskMainNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
       </RootFolder>

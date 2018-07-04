@@ -97,18 +97,30 @@
             <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="actionbtn" ActionTag="1682057673" Tag="268" IconVisible="False" LeftMargin="138.9125" RightMargin="-262.9125" TopMargin="-31.8141" BottomMargin="-30.1859" TouchEnable="True" FontSize="14" ButtonText="Button" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="94" Scale9Height="40" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-            <Size X="124.0000" Y="62.0000" />
+          <AbstractNodeData Name="actionbtn" ActionTag="1682057673" Tag="268" IconVisible="False" LeftMargin="134.5510" RightMargin="-278.5510" TopMargin="-25.5090" BottomMargin="-54.4910" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="114" Scale9Height="58" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="144.0000" Y="80.0000" />
+            <Children>
+              <AbstractNodeData Name="text" ActionTag="1745257508" Tag="83" IconVisible="False" LeftMargin="29.2761" RightMargin="34.7239" TopMargin="-2.8027" BottomMargin="34.8027" LeftEage="26" RightEage="26" TopEage="15" BottomEage="15" Scale9OriginX="26" Scale9OriginY="15" Scale9Width="28" Scale9Height="18" ctype="ImageViewObjectData">
+                <Size X="80.0000" Y="48.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="69.2761" Y="58.8027" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4811" Y="0.7350" />
+                <PreSize X="0.5556" Y="0.6000" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/taskdaygo.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="200.9125" Y="0.8141" />
+            <Position X="206.5510" Y="-14.4910" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="MarkedSubImage" Path="ui/taskdaygo.png" Plist="ui.plist" />
-            <PressedFileData Type="MarkedSubImage" Path="ui/taskdaygo.png" Plist="ui.plist" />
-            <NormalFileData Type="MarkedSubImage" Path="ui/taskdaygo.png" Plist="ui.plist" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/actionbtn_blue.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/actionbtn_blue.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/actionbtn_blue.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
@@ -144,7 +156,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.3352" Y="0.6221" />
                 <PreSize X="0.3478" Y="0.7813" />
-                <FileData Type="MarkedSubImage" Path="ui/taskfinish.png" Plist="ui.plist" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/taskfinish.png" Plist="text_zh_cn.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
             </Children>

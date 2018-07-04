@@ -50,7 +50,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.3352" Y="0.6221" />
                 <PreSize X="0.3478" Y="0.7813" />
-                <FileData Type="MarkedSubImage" Path="ui/taskfinish.png" Plist="ui.plist" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/taskfinish.png" Plist="text_zh_cn.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
             </Children>
