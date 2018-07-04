@@ -464,7 +464,7 @@ void GlobalInstance::loadEquipData()
 			v = jsonvalue["bns"];
 			for (unsigned int m = 0; m < v.Size(); m++)
 			{
-				data.bns.push_back(v[m].GetFloat());
+				data.vec_bns.push_back(v[m].GetFloat());
 			}
 
 			map_Equip[data.id] = data;

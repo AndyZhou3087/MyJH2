@@ -148,6 +148,10 @@
       <FilePathData Path="text_zh_cn/taskfinish.png" />
       <FilePathData Path="text_zh_cn/taskdayget.png" />
       <FilePathData Path="text_zh_cn/taskdaygo.png" />
+      <FilePathData Path="text_zh_cn/selectbtn_text.png" />
+      <FilePathData Path="text_zh_cn/strenthbtn_text.png" />
+      <FilePathData Path="text_zh_cn/replacebtn_text.png" />
+      <FilePathData Path="text_zh_cn/takeoffbtn_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

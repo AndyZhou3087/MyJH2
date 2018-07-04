@@ -102,18 +102,16 @@ void SelectEquipLayer::updateContent()
 	{
 		std::string qustr = "ui/resbox_qu0.png";
 
-		int qu = 0;
+		int qu = vec_res[m]->getQU().getValue();
 		int lv = 0;
 		if (vec_res[m]->getType() >= T_ARMOR && vec_res[m]->getType() <= T_FASHION)
 		{
 			Equip* equip = (Equip*)vec_res[m];
-			qu = equip->getQU().getValue();
 			lv = equip->getLv().getValue();
 		}
 		else if (vec_res[m]->getType() >= T_WG && vec_res[m]->getType() <= T_NG)
 		{
 			GongFa* gf = (GongFa*)vec_res[m];
-			qu = gf->getQU().getValue();
 			lv = gf->getLv().getValue();
 		}
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
@@ -201,7 +199,7 @@ void SelectEquipLayer::loadData()
 	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
 	{
 		ResBase* res = MyRes::vec_MyResources[i];
-		if (res->getType() == m_restype)
+		if (res->getType() == m_restype && res->getWhere() == MYSTORAGE)
 			vec_res.push_back(res);
 	}
 }

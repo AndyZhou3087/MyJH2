@@ -59,8 +59,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	smallbg->setSwallowTouches(true);
 
 	cocos2d::ui::ImageView* resbox_qu = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox_qu");
-	Equip* qres = (Equip*)res;
-	int s = qres->getQU().getValue();
+	int s = res->getQU().getValue();
 	std::string qustr = StringUtils::format("ui/resbox_qu%d.png", s);
 	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
@@ -80,40 +79,35 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	namelbl->setString(GlobalInstance::map_Equip[res->getId()].name);
 	namelbl->setTextColor(Color4B(POTENTIALCOLOR[s]));
 
-	cocos2d::ui::Text* attactlb = (cocos2d::ui::Text*)csbnode->getChildByName("attactlb");
-	str = StringUtils::format(ResourceLang::map_lang["attlabel"].c_str(), GlobalInstance::map_Equip[res->getId()].atk);
-	attactlb->setString(str);
-
-	cocos2d::ui::Text* protectlb = (cocos2d::ui::Text*)csbnode->getChildByName("protectlb");
-	str = StringUtils::format(ResourceLang::map_lang["dflabel"].c_str(), GlobalInstance::map_Equip[res->getId()].df);
-	protectlb->setString(str);
-
-	cocos2d::ui::Text* livelb = (cocos2d::ui::Text*)csbnode->getChildByName("livelb");
-	str = StringUtils::format(ResourceLang::map_lang["livelabel"].c_str(), GlobalInstance::map_Equip[res->getId()].maxhp);
-	livelb->setString(str);
-
-	cocos2d::ui::Text* attspeedlb = (cocos2d::ui::Text*)csbnode->getChildByName("attspeedlb");
-	str = StringUtils::format(ResourceLang::map_lang["speedlabel"].c_str(), GlobalInstance::map_Equip[res->getId()].speed);
-	attspeedlb->setString(str);
-
-	cocos2d::ui::Text* vioattlb = (cocos2d::ui::Text*)csbnode->getChildByName("vioattlb");
-	str = StringUtils::format(ResourceLang::map_lang["critlabel"].c_str(), GlobalInstance::map_Equip[res->getId()].avoid*100);
-	vioattlb->setString(str);
-
-	cocos2d::ui::Text* evadelb = (cocos2d::ui::Text*)csbnode->getChildByName("evadelb");
-	str = StringUtils::format(ResourceLang::map_lang["avoidlabel"].c_str(), GlobalInstance::map_Equip[res->getId()].crit*100);
-	evadelb->setString(str);
-
 	cocos2d::ui::Text* qua = (cocos2d::ui::Text*)csbnode->getChildByName("qua");
 	str = ResourceLang::map_lang["potentialtext"];
 	qua->setString(str);
-	qua->setTextColor(Color4B(POTENTIALCOLOR[s]));
 
 	cocos2d::ui::Text* quatext = (cocos2d::ui::Text*)csbnode->getChildByName("quatext");
 	std::string st = StringUtils::format("potential_%d", s);
 	str = ResourceLang::map_lang[st];
 	quatext->setString(str);
 	quatext->setTextColor(Color4B(POTENTIALCOLOR[s]));
+
+	float bns = GlobalInstance::map_Equip[res->getId()].vec_bns[s];
+
+	float attrval[] = {
+		GlobalInstance::map_Equip[res->getId()].maxhp * bns,
+		GlobalInstance::map_Equip[res->getId()].atk * bns,
+		GlobalInstance::map_Equip[res->getId()].df * bns,
+		GlobalInstance::map_Equip[res->getId()].speed *bns,
+		GlobalInstance::map_Equip[res->getId()].crit * bns,
+		GlobalInstance::map_Equip[res->getId()].avoid* bns
+	};
+
+	for (int i = 0; i <= 5; i++)
+	{
+		str = StringUtils::format("attrtext_%d",i);
+		cocos2d::ui::Text* attrlbl = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+		str = StringUtils::format("addattrtext_%d", i);
+		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), attrval[i]);
+		attrlbl->setString(str);
+	}
 
 	//增加了多少攻击力
 	cocos2d::ui::Text* attaddlb = (cocos2d::ui::Text*)csbnode->getChildByName("attaddlb");

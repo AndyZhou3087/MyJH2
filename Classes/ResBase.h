@@ -42,6 +42,7 @@ public:
 	CC_SYNTHESIZE(int, m_type, Type);//类型
 	CC_SYNTHESIZE(DynamicValueInt, m_count, Count);//个数
 	CC_SYNTHESIZE(int, m_where, Where);//在哪里
+	CC_SYNTHESIZE(DynamicValueInt, m_qu, QU);//品质
 public:
 };
 #endif

@@ -133,16 +133,10 @@ void StoreHouseLayer::updateContent(int category)
 	for (unsigned int m = 0; m < map_cateRes[category].size(); m++)
 	{
 
-		Sprite * boxbg = Sprite::createWithSpriteFrameName("ui/resbox.png");
-		boxbg->setPosition(Vec2(boxbg->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
-		scrollview->addChild(boxbg);
-
-		std::string qustr = "ui/resbox_qu0.png";
-		int qu = 0;
-		if (category == 2)
+		std::string qustr = "ui/resbox.png";
+		int qu = map_cateRes[category][m]->getQU().getValue();
+		if (qu >= 0)
 		{
-			Equip* equ = (Equip*)map_cateRes[category][m];
-			qu = equ->getQU().getValue();
 			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
 
@@ -155,7 +149,7 @@ void StoreHouseLayer::updateContent(int category)
 			CC_CALLBACK_1(StoreHouseLayer::onclick, this));
 		boxItem->setUserData((void*)map_cateRes[category][m]);
 
-		boxItem->setPosition(boxbg->getPosition());
+		boxItem->setPosition(Vec2(qubox->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
 
 		MyMenu* menu = MyMenu::create();
 		menu->addChild(boxItem);

@@ -14,7 +14,6 @@ public:
 	GongFa();
 	~GongFa();
 
-	CC_SYNTHESIZE(DynamicValueInt, m_qu, QU);//品质
 	CC_SYNTHESIZE(DynamicValueInt, m_exp, Exp);//经验值
 	DynamicValueInt getLv();
 public:

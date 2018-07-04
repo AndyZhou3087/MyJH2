@@ -50,7 +50,7 @@ typedef struct
 {
 	std::string id;
 	std::string name;
-	std::vector<float> bns;//额外加成
+	std::vector<float> vec_bns;//额外加成
 	int maxhp;
 	int atk;
 	int df;

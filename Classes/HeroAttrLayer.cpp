@@ -10,8 +10,14 @@
 #include "SelectMyHerosLayer.h"
 #include "MapBlockScene.h"
 #include "SelectEquipLayer.h"
+#include "Equip.h"
+#include "GongFa.h"
+#include "MyRes.h"
+#include "TakeOnLayer.h"
 
 USING_NS_CC;
+
+int equiptype[] = { T_ARMOR, T_EQUIP, T_NG, T_WG, T_HANDARMOR, T_FASHION };
 
 HeroAttrLayer::HeroAttrLayer()
 {
@@ -58,7 +64,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("heroAttrLayer.csb"));
 	this->addChild(csbnode);
-	int langtype = GlobalInstance::getInstance()->getLang();
+	langtype = GlobalInstance::getInstance()->getLang();
 
 	//英雄全身图
 	cocos2d::ui::ImageView* herofullimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("hfull");
@@ -66,13 +72,17 @@ bool HeroAttrLayer::init(Hero* herodata)
 	herofullimg->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 
 	//装备栏
-	Node* equipnode = csbnode->getChildByName("equipnode");
-	int equiptype[] = {T_ARMOR, T_EQUIP, T_NG, T_WG, T_HANDARMOR, T_FASHION};
+	equipnode = csbnode->getChildByName("equipnode");
 	for (unsigned int i = 0; i < equipnode->getChildrenCount(); i++)
 	{
 		cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
-		node->setTag(equiptype[i]);
+		node->setTag(i);
 		node->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onEquipClick, this));
+		ResBase* eres = MyRes::getMyPutOnResByType(equiptype[i]);
+		if (eres != NULL)
+		{
+			updateEquipUi(eres, i);
+		}
 	}
 	//属性信息
 	Node* heroattrbottom = csbnode->getChildByName("heroattrbottom");
@@ -115,7 +125,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 	vocation->setString(ResourceLang::map_lang[str]);
 
 	//角色属性文字
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i <= 5; i++)
 	{
 		str = StringUtils::format("attrtext_%d", i);
 		cocos2d::ui::Text* attrtext = (cocos2d::ui::Text*)heroattrbottom->getChildByName(str);
@@ -387,9 +397,70 @@ void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
-		SelectEquipLayer* slayer = SelectEquipLayer::create(clicknode->getTag());
-		this->addChild(slayer);
+		clickindex = clicknode->getTag();
+		Layer* layer;
+		ResBase* res = MyRes::getMyPutOnResByType(equiptype[clickindex]);
+		if (res == NULL)
+			layer = SelectEquipLayer::create(equiptype[clickindex]);
+		else
+			layer = TakeOnLayer::create((Equip*)res);
+		this->addChild(layer);
 	}
+}
+
+void HeroAttrLayer::takeOn(ResBase* res)
+{
+	res->setWhere(MYEQUIP);
+	updateEquipUi(res, clickindex);
+}
+
+void HeroAttrLayer::takeOff(ResBase* res)
+{
+	res->setWhere(MYSTORAGE);
+	updateEquipUi(NULL, clickindex);
+}
+
+void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
+{
+	cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(barindex);
+	cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
+
+
+	qubox->ignoreContentAdaptWithSize(true);
+	cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)node->getChildByName("img");
+	resimg->ignoreContentAdaptWithSize(true);
+	std::string qustr;
+	std::string resstr;
+	if (res != NULL)
+	{
+		qubox->setAnchorPoint(Vec2(0.5, 0.5));
+		qubox->setPosition(Vec2(qubox->getParent()->getContentSize().width / 2, qubox->getParent()->getContentSize().height / 2));
+
+		int type = res->getType();
+		int qu = res->getQU().getValue();
+		if (type >= T_ARMOR && type <= T_FASHION)
+		{
+			qubox->setScale(0.84f);
+			resimg->setScale(0.84f);
+		}
+		else if (type >= T_WG && type <= T_NG)
+		{
+		}
+		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		resstr = StringUtils::format("ui/%s.png", res->getId().c_str());
+	}
+	else
+	{
+		qubox->setAnchorPoint(Vec2(0, 1));
+		qubox->setPosition(Vec2(8, 98));
+		qubox->setScale(1.0f);
+		resimg->setScale(1.0f);
+		qustr = "ui/heroattradd.png";
+		resstr = ResourcePath::makeTextImgPath(StringUtils::format("equiptext_%d", barindex), langtype);
+	}
+	qubox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
+	resimg->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
+	MyRes::saveData();
 }
 
 void HeroAttrLayer::onExit()

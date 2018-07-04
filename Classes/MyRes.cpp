@@ -38,11 +38,23 @@ int MyRes::getMyPackageCount()
 	return count;
 }
 
-ResBase* MyRes::getMyPutOnRes(std::string sid)
+ResBase* MyRes::getMyPutOnResById(std::string sid)
 {
 	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
 	{
 		if (vec_MyResources[i]->getId().compare(sid) == 0 && vec_MyResources[i]->getWhere() == MYEQUIP)
+		{
+			return vec_MyResources[i];
+		}
+	}
+	return NULL;
+}
+
+ResBase* MyRes::getMyPutOnResByType(int type)
+{
+	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
+	{
+		if (vec_MyResources[i]->getType() == type && vec_MyResources[i]->getWhere() == MYEQUIP)
 		{
 			return vec_MyResources[i];
 		}

@@ -30,6 +30,7 @@ private:
 
 	void parseSuitJson();
 private:
+	int langtype;
 	Equip* m_equip;
 	std::map<std::string, EquipSuit> map_suit;
 };
