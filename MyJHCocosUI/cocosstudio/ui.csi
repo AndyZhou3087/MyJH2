@@ -311,6 +311,7 @@
       <FilePathData Path="ui/y014.png" />
       <FilePathData Path="ui/y015.png" />
       <FilePathData Path="ui/actionbtn_yellow.png" />
+      <FilePathData Path="ui/taskbtn.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

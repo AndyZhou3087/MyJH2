@@ -42,16 +42,15 @@
           <AbstractNodeData Name="finish" ActionTag="1392050042" Tag="257" IconVisible="False" LeftMargin="-281.7020" RightMargin="51.7020" TopMargin="-53.8613" BottomMargin="-10.1387" ctype="SpriteObjectData">
             <Size X="230.0000" Y="64.0000" />
             <Children>
-              <AbstractNodeData Name="taskfinish_3" ActionTag="303639479" Tag="258" IconVisible="False" LeftMargin="37.0940" RightMargin="112.9060" TopMargin="-0.8152" BottomMargin="14.8152" ctype="SpriteObjectData">
+              <AbstractNodeData Name="Image" ActionTag="-1588485114" Tag="84" IconVisible="False" LeftMargin="38.0814" RightMargin="111.9186" TopMargin="-0.4984" BottomMargin="14.4984" LeftEage="26" RightEage="26" TopEage="16" BottomEage="16" Scale9OriginX="26" Scale9OriginY="16" Scale9Width="28" Scale9Height="18" ctype="ImageViewObjectData">
                 <Size X="80.0000" Y="50.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="77.0940" Y="39.8152" />
+                <Position X="78.0814" Y="39.4984" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3352" Y="0.6221" />
+                <PrePosition X="0.3395" Y="0.6172" />
                 <PreSize X="0.3478" Y="0.7813" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/taskfinish.png" Plist="text_zh_cn.plist" />
-                <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

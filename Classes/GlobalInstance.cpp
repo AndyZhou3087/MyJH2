@@ -20,6 +20,10 @@ std::vector<ResCreator*> GlobalInstance::vec_resCreators;
 std::map<std::string, AllResources> GlobalInstance::map_AllResources;
 std::map<std::string, EquipData> GlobalInstance::map_Equip;
 
+std::vector<TaskMainData> GlobalInstance::map_TaskMain;
+std::vector<MyTaskMainData> GlobalInstance::map_myTaskMain;
+
+TaskMainData* GlobalInstance::myCurTaskMain;
 
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
@@ -414,6 +418,162 @@ void GlobalInstance::loadResCreatorData()
 			GlobalInstance::vec_resCreators.push_back(creator);
 		}
 	}
+}
+
+void GlobalInstance::loadTaskMainData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/maintask.json"));
+	rapidjson::Value& allData = doc["sq"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			TaskMainData data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = atoi(v.GetString());
+
+			v = jsonvalue["title"];
+			data.name = v.GetString();
+
+			v = jsonvalue["type"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.type.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["desc"];
+			data.desc = v.GetString();
+
+			v = jsonvalue["place"];
+			data.place = v.GetString();
+
+			v = jsonvalue["npc"];
+			data.npcid = v.GetString();
+
+			v = jsonvalue["bossword"];
+			data.bossword = v.GetString();
+
+			v = jsonvalue["need1"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 3)
+				{
+					std::map<std::string, int> map_tmp;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					map_tmp[vec_tmp[0]] = atoi(vec_tmp[1].c_str());
+					data.need1.push_back(map_tmp);
+				}
+			}
+
+			v = jsonvalue["need1desc"];
+			data.need1desc = v.GetString();
+
+			v = jsonvalue["need2"];
+			data.need2 = atoi(v.GetString());
+
+			v = jsonvalue["need2desc"];
+			data.need2desc = v.GetString();
+
+			v = jsonvalue["mutex1"];
+			std::string str = v.GetString();
+			if (str.length() > 1)
+			{
+				std::string onestr = v.GetString();
+				std::vector<std::string> vec_tmp;
+				CommonFuncs::split(onestr, vec_tmp, "-");
+				data.mutex1.push_back(atoi(vec_tmp[0].c_str()));
+				data.mutex1.push_back(atoi(vec_tmp[1].c_str()));
+			}
+
+			v = jsonvalue["mutex2"];
+			str = v.GetString();
+			if (str.length() > 1)
+			{
+				std::string onestr = v.GetString();
+				std::vector<std::string> vec_tmp;
+				CommonFuncs::split(onestr, vec_tmp, "-");
+				data.mutex2.push_back(atoi(vec_tmp[0].c_str()));
+				data.mutex2.push_back(atoi(vec_tmp[1].c_str()));
+			}
+
+			v = jsonvalue["reward1"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 3)
+				{
+					std::map<std::string, int> map_tmp;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					map_tmp[vec_tmp[0]] = atoi(vec_tmp[1].c_str());
+					data.reward1.push_back(map_tmp);
+				}
+			}
+
+			v = jsonvalue["reward2"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 3)
+				{
+					std::map<std::string, int> map_tmp;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					map_tmp[vec_tmp[0]] = atoi(vec_tmp[1].c_str());
+					data.reward2.push_back(map_tmp);
+				}
+			}
+			
+			data.isfinish = 0;
+			data.finishtype = -1;
+			data.isGetReward = 0;
+
+			map_TaskMain.push_back(data);
+		}
+	}
+}
+
+void GlobalInstance::loadMyTaskMainData()
+{
+	std::string str = DataSave::getInstance()->getMyMainTask();
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_tmp;
+		CommonFuncs::split(str, vec_tmp, ";");
+		for (int i = 0; i < vec_tmp.size(); i++)
+		{
+			std::vector<std::string> vec_one;
+			CommonFuncs::split(vec_tmp[i], vec_one, "-");
+
+			MyTaskMainData data;
+
+			data.id = atoi(vec_one[0].c_str());
+			data.isfinish = atoi(vec_one[1].c_str());
+			data.type = atoi(vec_one[2].c_str());
+			data.isGetReward = atoi(vec_one[3].c_str());
+			map_myTaskMain.push_back(data);
+		}
+
+		myCurTaskMain = &map_TaskMain[vec_tmp.size()];
+	}
+	else
+	{
+		myCurTaskMain = &map_TaskMain[0];
+	}
+}
+
+void GlobalInstance::saveMyTaskMainData()
+{
+	std::string str;
+	for (unsigned i = 0; i < GlobalInstance::map_myTaskMain.size(); i++)
+	{
+		std::string onestr = StringUtils::format("%d-%d-%d-%d;", GlobalInstance::map_myTaskMain[i].id, GlobalInstance::map_myTaskMain[i].isfinish, GlobalInstance::map_myTaskMain[i].type, GlobalInstance::map_myTaskMain[i].isGetReward);
+		str.append(onestr);
+	}
+	DataSave::getInstance()->setMyMainTask(str.substr(0, str.length() - 1));
 }
 
 void GlobalInstance::saveResCreatorData()
