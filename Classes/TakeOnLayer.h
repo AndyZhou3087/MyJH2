@@ -4,6 +4,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "Equip.h"
+#include "Hero.h"
 USING_NS_CC;
 
 typedef struct
@@ -20,9 +21,9 @@ public:
 
 	~TakeOnLayer();
 
-	virtual bool init(Equip* res_equip);
+	virtual bool init(Equip* res_equip, Hero* herodata);
 
-	static TakeOnLayer* create(Equip* res_equip);
+	static TakeOnLayer* create(Equip* res_equip, Hero* herodata);
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -33,6 +34,7 @@ private:
 	int langtype;
 	Equip* m_equip;
 	std::map<std::string, EquipSuit> map_suit;
+	Hero* m_herodata;
 };
 #endif
 

@@ -1,5 +1,6 @@
 ﻿#include "MyRes.h"
 #include "DataSave.h"
+#include "Equipable.h"
 
 std::vector<ResBase* > MyRes::vec_MyResources;
 
@@ -38,25 +39,39 @@ int MyRes::getMyPackageCount()
 	return count;
 }
 
-ResBase* MyRes::getMyPutOnResById(std::string sid)
+ResBase* MyRes::getMyPutOnResById(std::string sid, std::string whos)
 {
 	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
 	{
-		if (vec_MyResources[i]->getId().compare(sid) == 0 && vec_MyResources[i]->getWhere() == MYEQUIP)
+		ResBase* res = vec_MyResources[i];
+		if (res->getId().compare(sid) == 0 && res->getWhere() == MYEQUIP)
 		{
-			return vec_MyResources[i];
+			if (res->getType() >= T_ARMOR && res->getType() <= T_NG)
+			{
+				Equipable* e = (Equipable*)res;
+				if (e->getWhos().compare(whos) == 0)
+					return e;
+			}
+			return res;
 		}
 	}
 	return NULL;
 }
 
-ResBase* MyRes::getMyPutOnResByType(int type)
+ResBase* MyRes::getMyPutOnResByType(int type, std::string whos)
 {
 	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
 	{
-		if (vec_MyResources[i]->getType() == type && vec_MyResources[i]->getWhere() == MYEQUIP)
+		ResBase* res = vec_MyResources[i];
+		if (res->getType() == type && res->getWhere() == MYEQUIP)
 		{
-			return vec_MyResources[i];
+			if (res->getType() >= T_ARMOR && res->getType() <= T_NG)
+			{
+				Equipable* e = (Equipable*)res;
+				if (e->getWhos().compare(whos) == 0)
+					return e;
+			}
+			return res;
 		}
 	}
 	return NULL;
@@ -225,13 +240,13 @@ void MyRes::saveData()
 				else
 					stonestr.append(eres->vec_stones[i]);
 			}
-			onestr = StringUtils::format("%s-%d-%d-%d-%d-%s;", res->getId().c_str(), res->getCount().getValue(), res->getWhere(), eres->getQU().getValue(), eres->getLv().getValue(), stonestr.c_str());
+			onestr = StringUtils::format("%s-%d-%d-%d-%d-%s-%s;", res->getId().c_str(), res->getCount().getValue(), res->getWhere(), eres->getQU().getValue(), eres->getLv().getValue(), stonestr.c_str(), eres->getWhos().c_str());
 		}
 		else if (res->getType() >= T_WG && res->getType() <= T_NG)
 		{
 			GongFa* gres = (GongFa*)res;
 
-			onestr = StringUtils::format("%s-%d-%d-%d-%d;", res->getId().c_str(), res->getCount().getValue(), res->getWhere(), gres->getQU().getValue(), gres->getExp().getValue());
+			onestr = StringUtils::format("%s-%d-%d-%d-%d-%s;", res->getId().c_str(), res->getCount().getValue(), res->getWhere(), gres->getQU().getValue(), gres->getExp().getValue(), gres->getWhos().c_str());
 		}
 		else
 		{

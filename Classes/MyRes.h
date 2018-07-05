@@ -23,10 +23,10 @@ public:
 	static int getMyPackageCount();
 
 	//获取装备栏中的物品
-	static ResBase* getMyPutOnResById(std::string sid);
+	static ResBase* getMyPutOnResById(std::string sid, std::string whos);
 
 	//获取装备栏中的物品BYTYPE
-	static ResBase* getMyPutOnResByType(int type);
+	static ResBase* getMyPutOnResByType(int type, std::string who);
 public:
 
 	static std::vector<ResBase* > vec_MyResources;//我的资源，包括背包，仓库，装备上的

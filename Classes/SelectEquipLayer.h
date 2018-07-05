@@ -4,6 +4,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "ResBase.h"
+#include "Hero.h"
 USING_NS_CC;
 
 class SelectEquipLayer :public Layer
@@ -13,9 +14,9 @@ public:
 
 	~SelectEquipLayer();
 
-	virtual bool init(int restype);
+	virtual bool init(int restype, Hero* herodata);
 
-	static SelectEquipLayer* create(int restype);
+	static SelectEquipLayer* create(int restype, Hero* herodata);
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -26,6 +27,7 @@ private:
 private:
 	int m_restype;
 	std::vector<ResBase*> vec_res;
+	Hero* m_herodata;
 };
 #endif
 

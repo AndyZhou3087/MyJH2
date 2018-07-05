@@ -10,8 +10,7 @@
 #include "SelectMyHerosLayer.h"
 #include "MapBlockScene.h"
 #include "SelectEquipLayer.h"
-#include "Equip.h"
-#include "GongFa.h"
+#include "Equipable.h"
 #include "MyRes.h"
 #include "TakeOnLayer.h"
 
@@ -78,7 +77,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 		cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
 		node->setTag(i);
 		node->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onEquipClick, this));
-		ResBase* eres = MyRes::getMyPutOnResByType(equiptype[i]);
+		ResBase* eres = MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
 		if (eres != NULL)
 		{
 			updateEquipUi(eres, i);
@@ -399,18 +398,20 @@ void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
 		clickindex = clicknode->getTag();
 		Layer* layer;
-		ResBase* res = MyRes::getMyPutOnResByType(equiptype[clickindex]);
+		ResBase* res = MyRes::getMyPutOnResByType(equiptype[clickindex], m_heroData->getName());
 		if (res == NULL)
-			layer = SelectEquipLayer::create(equiptype[clickindex]);
+			layer = SelectEquipLayer::create(equiptype[clickindex], m_heroData);
 		else
-			layer = TakeOnLayer::create((Equip*)res);
+			layer = TakeOnLayer::create((Equip*)res, m_heroData);
 		this->addChild(layer);
 	}
 }
 
 void HeroAttrLayer::takeOn(ResBase* res)
 {
-	res->setWhere(MYEQUIP);
+	Equipable* equipable = (Equipable*)res;
+	equipable->setWhere(MYEQUIP);
+	equipable->setWhos(m_heroData->getName());
 	updateEquipUi(res, clickindex);
 }
 
@@ -420,12 +421,21 @@ void HeroAttrLayer::takeOff(ResBase* res)
 	updateEquipUi(NULL, clickindex);
 }
 
+void HeroAttrLayer::changeEquip(ResBase* res)
+{
+	Equipable* takeOnEquip = (Equipable*)MyRes::getMyPutOnResByType(res->getType(), m_heroData->getName());
+	if (takeOnEquip != NULL)
+	{
+		takeOnEquip->setWhere(MYSTORAGE);
+		takeOnEquip->setWhos("");
+	}
+	takeOn(res);
+}
+
 void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 {
 	cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(barindex);
 	cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
-
-
 	qubox->ignoreContentAdaptWithSize(true);
 	cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)node->getChildByName("img");
 	resimg->ignoreContentAdaptWithSize(true);
@@ -437,7 +447,7 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 		qubox->setPosition(Vec2(qubox->getParent()->getContentSize().width / 2, qubox->getParent()->getContentSize().height / 2));
 
 		int type = res->getType();
-		int qu = res->getQU().getValue();
+		int qu =  ((Equipable*)res)->getQU().getValue();
 		if (type >= T_ARMOR && type <= T_FASHION)
 		{
 			qubox->setScale(0.84f);

@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
-#include "ResBase.h"
+#include "Equip.h"
 USING_NS_CC;
 
 typedef enum
@@ -27,7 +27,7 @@ private:
 
 private:
 	int status;
-	ResBase* m_res;
+	Equip* m_res;
 };
 
 #endif

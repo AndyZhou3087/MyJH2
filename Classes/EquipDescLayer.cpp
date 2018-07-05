@@ -44,7 +44,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		return false;
 	}
 
-	m_res = res;
+	m_res = (Equip*)res;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
 
@@ -59,7 +59,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	smallbg->setSwallowTouches(true);
 
 	cocos2d::ui::ImageView* resbox_qu = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox_qu");
-	int s = res->getQU().getValue();
+	int s = m_res->getQU().getValue();
 	std::string qustr = StringUtils::format("ui/resbox_qu%d.png", s);
 	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
