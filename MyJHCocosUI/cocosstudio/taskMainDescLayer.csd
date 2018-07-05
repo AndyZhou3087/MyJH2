@@ -16,7 +16,7 @@
             <PreSize X="0.8333" Y="0.5172" />
             <FileData Type="Normal" Path="images/smallbg.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="accbtn" ActionTag="-1278662692" Tag="113" IconVisible="False" LeftMargin="137.2276" RightMargin="142.7725" TopMargin="866.3259" BottomMargin="287.6741" TouchEnable="True" FontSize="45" ButtonText="接受任务" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="accbtn" ActionTag="-1278662692" Tag="113" IconVisible="False" LeftMargin="137.2276" RightMargin="142.7724" TopMargin="866.3259" BottomMargin="287.6741" TouchEnable="True" FontSize="45" ButtonText="接受任务" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="440.0000" Y="126.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="357.2276" Y="350.6741" />
@@ -32,13 +32,13 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="closebtn" ActionTag="680774181" Tag="114" IconVisible="False" LeftMargin="137.2276" RightMargin="142.7725" TopMargin="1050.3583" BottomMargin="103.6417" TouchEnable="True" FontSize="45" ButtonText="离开" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="closebtn" ActionTag="680774181" Tag="114" IconVisible="False" LeftMargin="137.2275" RightMargin="142.7725" TopMargin="1034.3580" BottomMargin="119.6420" TouchEnable="True" FontSize="45" ButtonText="离开" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="440.0000" Y="126.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="357.2276" Y="166.6417" />
+            <Position X="357.2275" Y="182.6420" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4961" Y="0.1302" />
+            <PrePosition X="0.4961" Y="0.1427" />
             <PreSize X="0.6111" Y="0.0984" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <TextColor A="255" R="255" G="255" B="255" />
@@ -48,7 +48,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="1651148662" Tag="115" IconVisible="False" LeftMargin="151.6320" RightMargin="341.3680" TopMargin="249.5787" BottomMargin="979.4213" FontSize="45" LabelText="魔教的威胁" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="name" ActionTag="1651148662" Tag="115" IconVisible="False" LeftMargin="151.6320" RightMargin="341.3680" TopMargin="249.5786" BottomMargin="979.4213" FontSize="45" LabelText="魔教的威胁" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="227.0000" Y="51.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="265.1320" Y="1004.9213" />
@@ -94,14 +94,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="-855785338" Tag="119" IconVisible="False" LeftMargin="136.8901" RightMargin="133.1099" TopMargin="364.0189" BottomMargin="715.9811" IsCustomSize="True" FontSize="30" LabelText="魔教的威胁" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="450.0000" Y="200.0000" />
+          <AbstractNodeData Name="desc" ActionTag="-855785338" Tag="119" IconVisible="False" LeftMargin="126.8902" RightMargin="123.1097" TopMargin="352.0179" BottomMargin="747.9821" IsCustomSize="True" FontSize="30" LabelText="魔教的威胁" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="470.0000" Y="180.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="361.8901" Y="815.9811" />
+            <Position X="361.8902" Y="837.9821" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5026" Y="0.6375" />
-            <PreSize X="0.6250" Y="0.1563" />
+            <PrePosition X="0.5026" Y="0.6547" />
+            <PreSize X="0.6528" Y="0.1406" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
@@ -121,6 +121,32 @@
             <NormalFileData Type="MarkedSubImage" Path="ui/taskbtn.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="rewardlabel" ActionTag="-1134415561" Tag="20" IconVisible="False" LeftMargin="125.0909" RightMargin="114.9091" TopMargin="553.8877" BottomMargin="671.1123" IsCustomSize="True" FontSize="25" LabelText="任务完成可获得奖励：（你的选择会影响你的奖励，谨慎选择）" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="480.0000" Y="55.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="125.0909" Y="698.6123" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1737" Y="0.5458" />
+            <PreSize X="0.6667" Y="0.0430" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="ScrollView" ActionTag="-443032628" Tag="28" IconVisible="False" LeftMargin="114.0773" RightMargin="105.9227" TopMargin="613.8711" BottomMargin="496.1289" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+            <Size X="500.0000" Y="170.0000" />
+            <AnchorPoint />
+            <Position X="114.0773" Y="496.1289" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1584" Y="0.3876" />
+            <PreSize X="0.6944" Y="0.1328" />
+            <SingleColor A="255" R="255" G="255" B="255" />
+            <FirstColor A="255" R="255" G="150" B="100" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
+            <InnerNodeSize Width="500" Height="170" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

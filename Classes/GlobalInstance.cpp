@@ -5,6 +5,8 @@
 #include "Resource.h"
 #include "MyRes.h"
 #include "Const.h"
+#include "Quest.h"
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -21,8 +23,7 @@ std::map<std::string, AllResources> GlobalInstance::map_AllResources;
 std::map<std::string, EquipData> GlobalInstance::map_Equip;
 
 std::vector<TaskMainData> GlobalInstance::vec_TaskMain;
-
-TaskMainData GlobalInstance::myCurTaskMain;
+TaskMainData GlobalInstance::myCurMainData;
 
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
@@ -532,7 +533,7 @@ void GlobalInstance::loadTaskMainData()
 				}
 			}
 			
-			data.isfinish = 0;
+			data.isfinish = 1;//默认未接受任务
 			data.finishtype = 0;
 
 			vec_TaskMain.push_back(data);
@@ -558,27 +559,54 @@ void GlobalInstance::loadMyTaskMainData()
 			}
 		}
 
-		myCurTaskMain = vec_TaskMain[vec_tmp.size()];
+		Quest::initFinishTaskData();
+
+		if (vec_TaskMain[vec_tmp.size()-1].isfinish == MAIN_ACC)
+		{
+			myCurMainData = vec_TaskMain[vec_tmp.size()-1];
+		}
+		else
+		{
+			myCurMainData = vec_TaskMain[vec_tmp.size()];
+		}
+		
 	}
 	else
 	{
-		myCurTaskMain = vec_TaskMain[0];
+		myCurMainData = vec_TaskMain[0];
 	}
 }
 
 void GlobalInstance::saveMyTaskMainData()
 {
 	std::string str;
+	std::string mystr = "";
+	sort(vec_TaskMain.begin(), vec_TaskMain.end(), larger_callback);
 	for (unsigned i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
 	{
 		TaskMainData data = GlobalInstance::vec_TaskMain[i];
-		if (data.isfinish == MAIN_FINISH)
+		if (data.isfinish >= MAIN_FINISH)
 		{
 			std::string onestr = StringUtils::format("%d-%d-%d;", data.id, data.isfinish, data.finishtype);
 			str.append(onestr);
 		}
+		if (data.isfinish == MAIN_ACC)
+		{
+			mystr = StringUtils::format("%d-%d-%d;", data.id, data.isfinish, data.finishtype);
+		}
 	}
+	str.append(mystr);
 	DataSave::getInstance()->setMyMainTask(str.substr(0, str.length() - 1));
+}
+
+bool GlobalInstance::larger_callback(TaskMainData a, TaskMainData b)
+{
+	int idA = a.id;
+	int idB = b.id;
+	if (idA < idB)
+		return true;
+	else
+		return false;
 }
 
 void GlobalInstance::saveResCreatorData()
