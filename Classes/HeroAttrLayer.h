@@ -25,6 +25,8 @@ public:
 	virtual void onExit();
     bool init(Hero* herodata);
 
+	void changeEquip(ResBase* res);
+
 	void takeOn(ResBase* res);
 
 	void takeOff(ResBase* res);

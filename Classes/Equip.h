@@ -5,10 +5,10 @@
 #define _EQUIP_H_
 #include "cocos2d.h"
 #include "DynamicValue.h"
-#include "ResBase.h"
+#include "Equipable.h"
 USING_NS_CC;
 
-class Equip: public ResBase
+class Equip: public Equipable
 {
 public:
 	Equip();

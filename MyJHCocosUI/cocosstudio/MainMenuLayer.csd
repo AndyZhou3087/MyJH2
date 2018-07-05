@@ -42,7 +42,7 @@
                 <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="countlbl" ActionTag="1233672929" Tag="48" IconVisible="False" LeftMargin="90.9059" RightMargin="55.0941" TopMargin="126.0828" BottomMargin="19.9172" FontSize="40" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="countlbl" ActionTag="1233672929" Tag="48" IconVisible="False" LeftMargin="90.9059" RightMargin="55.0941" TopMargin="126.0828" BottomMargin="19.9172" FontSize="35" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="0.0000" Y="0.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="90.9059" Y="19.9172" />
@@ -50,6 +50,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.6226" Y="0.1364" />
                 <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -76,7 +77,7 @@
                 <FileData Type="MarkedSubImage" Path="ui/r002.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="countlbl" ActionTag="-565050270" Tag="51" IconVisible="False" LeftMargin="90.9059" RightMargin="55.0941" TopMargin="126.0828" BottomMargin="19.9172" FontSize="40" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="countlbl" ActionTag="-565050270" Tag="51" IconVisible="False" LeftMargin="90.9059" RightMargin="55.0941" TopMargin="126.0828" BottomMargin="19.9172" FontSize="35" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="0.0000" Y="0.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="90.9059" Y="19.9172" />
@@ -84,6 +85,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.6226" Y="0.1364" />
                 <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -110,7 +112,7 @@
                 <FileData Type="MarkedSubImage" Path="ui/r003.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="countlbl" ActionTag="-479047849" Tag="54" IconVisible="False" LeftMargin="90.9059" RightMargin="55.0941" TopMargin="126.0828" BottomMargin="19.9172" FontSize="40" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="countlbl" ActionTag="-479047849" Tag="54" IconVisible="False" LeftMargin="90.9059" RightMargin="55.0941" TopMargin="126.0828" BottomMargin="19.9172" FontSize="35" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="0.0000" Y="0.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="90.9059" Y="19.9172" />
@@ -118,6 +120,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.6226" Y="0.1364" />
                 <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -144,7 +147,7 @@
                 <FileData Type="MarkedSubImage" Path="ui/r004.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="countlbl" ActionTag="-1187702983" Tag="57" IconVisible="False" LeftMargin="90.9059" RightMargin="55.0941" TopMargin="126.0828" BottomMargin="19.9172" FontSize="40" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="countlbl" ActionTag="-1187702983" Tag="57" IconVisible="False" LeftMargin="90.9059" RightMargin="55.0941" TopMargin="126.0828" BottomMargin="19.9172" FontSize="35" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="0.0000" Y="0.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="90.9059" Y="19.9172" />
@@ -152,6 +155,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.6226" Y="0.1364" />
                 <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -178,7 +182,7 @@
                 <FileData Type="MarkedSubImage" Path="ui/r005.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="countlbl" ActionTag="981134697" Tag="60" IconVisible="False" LeftMargin="90.9059" RightMargin="55.0941" TopMargin="126.0828" BottomMargin="19.9172" FontSize="40" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="countlbl" ActionTag="981134697" Tag="60" IconVisible="False" LeftMargin="90.9059" RightMargin="55.0941" TopMargin="126.0828" BottomMargin="19.9172" FontSize="35" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="0.0000" Y="0.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="90.9059" Y="19.9172" />
@@ -186,6 +190,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.6226" Y="0.1364" />
                 <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>

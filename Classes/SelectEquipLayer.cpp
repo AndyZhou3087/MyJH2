@@ -6,8 +6,7 @@
 #include "GlobalInstance.h"
 #include "MyRes.h"
 #include "MyMenu.h"
-#include "Equip.h"
-#include "GongFa.h"
+#include "Equipable.h"
 #include "TakeOnLayer.h"
 
 SelectEquipLayer::SelectEquipLayer()
@@ -22,10 +21,10 @@ SelectEquipLayer::~SelectEquipLayer()
 }
 
 
-SelectEquipLayer* SelectEquipLayer::create(int restype)
+SelectEquipLayer* SelectEquipLayer::create(int restype, Hero* herodata)
 {
 	SelectEquipLayer *pRet = new(std::nothrow)SelectEquipLayer();
-	if (pRet && pRet->init(restype))
+	if (pRet && pRet->init(restype, herodata))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -38,8 +37,10 @@ SelectEquipLayer* SelectEquipLayer::create(int restype)
 	}
 }
 
-bool SelectEquipLayer::init(int restype)
+bool SelectEquipLayer::init(int restype, Hero* herodata)
 {
+	m_herodata = herodata;
+
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
 
@@ -102,7 +103,7 @@ void SelectEquipLayer::updateContent()
 	{
 		std::string qustr = "ui/resbox_qu0.png";
 
-		int qu = vec_res[m]->getQU().getValue();
+		int qu = ((Equipable*)vec_res[m])->getQU().getValue();
 		int lv = 0;
 		if (vec_res[m]->getType() >= T_ARMOR && vec_res[m]->getType() <= T_FASHION)
 		{
@@ -190,7 +191,7 @@ void SelectEquipLayer::onclick(Ref* pSender)
 	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 	Node* node = (Node*)pSender;
 
-	TakeOnLayer* layer = TakeOnLayer::create((Equip*)node->getUserData());
+	TakeOnLayer* layer = TakeOnLayer::create((Equip*)node->getUserData(), m_herodata);
 	this->addChild(layer);
 }
 

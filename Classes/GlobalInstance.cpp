@@ -736,6 +736,8 @@ void GlobalInstance::loadMyResData()
 
 				CommonFuncs::split(vec_one[5], res->vec_stones, ",");
 
+				res->setWhos(vec_one[6]);
+
 				MyRes::vec_MyResources.push_back(res);
 			}
 			else if (m >= T_WG && m <= T_NG)
@@ -755,6 +757,8 @@ void GlobalInstance::loadMyResData()
 				DynamicValueInt dv2;
 				dv2.setValue(atoi(vec_one[4].c_str()));
 				res->setExp(dv2);
+
+				res->setWhos(vec_one[5]);
 
 				MyRes::vec_MyResources.push_back(res);
 			}

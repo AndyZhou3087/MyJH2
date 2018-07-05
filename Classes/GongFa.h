@@ -5,10 +5,10 @@
 #define _GONGFA_H_
 #include "cocos2d.h"
 #include "DynamicValue.h"
-#include "ResBase.h"
+#include "Equipable.h"
 USING_NS_CC;
 
-class GongFa : public ResBase
+class GongFa : public Equipable
 {
 public:
 	GongFa();

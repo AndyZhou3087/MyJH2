@@ -10,6 +10,7 @@
 #include "HeroAttrLayer.h"
 #include "SelectEquipLayer.h"
 
+static bool isChangeEquip = false;
 TakeOnLayer::TakeOnLayer()
 {
 
@@ -18,14 +19,15 @@ TakeOnLayer::TakeOnLayer()
 
 TakeOnLayer::~TakeOnLayer()
 {
-
+	isChangeEquip = false;
 }
 
 
-TakeOnLayer* TakeOnLayer::create(Equip* res_equip)
+TakeOnLayer* TakeOnLayer::create(Equip* res_equip, Hero* herodata)
 {
 	TakeOnLayer *pRet = new(std::nothrow)TakeOnLayer();
-	if (pRet && pRet->init(res_equip))
+
+	if (pRet && pRet->init(res_equip, herodata))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -38,8 +40,9 @@ TakeOnLayer* TakeOnLayer::create(Equip* res_equip)
 	}
 }
 
-bool TakeOnLayer::init(Equip* res_equip)
+bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 {
+	m_herodata = herodata;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
 
@@ -132,7 +135,7 @@ bool TakeOnLayer::init(Equip* res_equip)
 
 					cocos2d::ui::Text* statlbl = (cocos2d::ui::Text*)suitresbox->getChildByName("status");
 
-					ResBase* eres = MyRes::getMyPutOnResById(eid);
+					Equipable* eres = (Equipable*)MyRes::getMyPutOnResById(eid, herodata->getName());
 					if (eres == NULL)
 					{
 						if (MyRes::getMyResCount(eid) <= 0)
@@ -290,11 +293,17 @@ bool TakeOnLayer::init(Equip* res_equip)
 	cocos2d::ui::ImageView* strenthbtntxt = (cocos2d::ui::ImageView*)strenthbtn->getChildByName("text");
 	strenthbtntxt->loadTexture(ResourcePath::makeTextImgPath("strenthbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	if (MyRes::getMyPutOnResById(m_equip->getId()) == NULL)
+	if (MyRes::getMyPutOnResById(m_equip->getId(), herodata->getName()) == NULL)
 	{
 		actionbtn->setTag(1002);
 		actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("selectbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		takeoffbtn->setVisible(false);
+	}
+
+	if (isChangeEquip)
+	{
+		actionbtn->setPositionX(360);
+		strenthbtn->setVisible(false);
 	}
 
 	auto listener = EventListenerTouchOneByOne::create();
@@ -327,15 +336,25 @@ void TakeOnLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		}
 		case 1001://更换
 		{
-			SelectEquipLayer* layer = SelectEquipLayer::create(m_equip->getType());
+			isChangeEquip = true;
+			SelectEquipLayer* layer = SelectEquipLayer::create(m_equip->getType(), m_herodata);
 			this->addChild(layer);
 			break;
 		}
 		case 1002://选择
 		{
-			HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent()->getParent();
-			heroAttrLayer->takeOn(m_equip);
-			this->getParent()->removeFromParentAndCleanup(true);
+			if (isChangeEquip)
+			{
+				HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent()->getParent()->getParent();
+				heroAttrLayer->changeEquip(m_equip);
+				this->getParent()->getParent()->removeFromParentAndCleanup(true);
+			}
+			else
+			{
+				HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent()->getParent();
+				heroAttrLayer->takeOn(m_equip);
+				this->getParent()->removeFromParentAndCleanup(true);
+			}
 			break;
 		}
 		case 1003://卸下
