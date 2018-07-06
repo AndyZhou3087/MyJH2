@@ -564,6 +564,7 @@ void GlobalInstance::loadMyTaskMainData()
 		if (vec_TaskMain[vec_tmp.size()-1].isfinish == MAIN_ACC)
 		{
 			myCurMainData = vec_TaskMain[vec_tmp.size()-1];
+			Quest::initCurNeedData();
 		}
 		else
 		{

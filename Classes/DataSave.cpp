@@ -122,6 +122,16 @@ std::string DataSave::getMyMainTask()
 	return loadStringDataByKey("MainTask", "1-2-2");//id-状态-type
 }
 
+void DataSave::setMyCurTaskNeed(std::string strval)
+{
+	saveStringDataByKey("CurTaskNeed", strval);
+}
+
+std::string DataSave::getMyCurTaskNeed()
+{
+	return loadStringDataByKey("CurTaskNeed", "r006-100");//id-count
+}
+
 int DataSave::getTotalFarmers()
 {
 	return loadIntDataByKey("totalfarmers", 5);
