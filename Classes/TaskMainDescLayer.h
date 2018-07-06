@@ -20,7 +20,16 @@ public:
 	static TaskMainDescLayer* create(TaskMainData* data);
 
 private:
+	cocos2d::ui::Button* accbtn;
+
+private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	void accpTask();
+	void getRewards();
+
+private:
+	TaskMainData* m_data;
 };
 #endif
 

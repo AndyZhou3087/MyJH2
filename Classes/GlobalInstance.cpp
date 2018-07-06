@@ -5,6 +5,8 @@
 #include "Resource.h"
 #include "MyRes.h"
 #include "Const.h"
+#include "Quest.h"
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -20,10 +22,8 @@ std::vector<ResCreator*> GlobalInstance::vec_resCreators;
 std::map<std::string, AllResources> GlobalInstance::map_AllResources;
 std::map<std::string, EquipData> GlobalInstance::map_Equip;
 
-std::vector<TaskMainData> GlobalInstance::map_TaskMain;
-std::vector<MyTaskMainData> GlobalInstance::map_myTaskMain;
-
-TaskMainData* GlobalInstance::myCurTaskMain;
+std::vector<TaskMainData> GlobalInstance::vec_TaskMain;
+TaskMainData GlobalInstance::myCurMainData;
 
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
@@ -505,11 +505,14 @@ void GlobalInstance::loadTaskMainData()
 				std::string onestr = v[i].GetString();
 				if (onestr.length() > 3)
 				{
-					std::map<std::string, int> map_tmp;
+					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
 					CommonFuncs::split(onestr, vec_tmp, "-");
-					map_tmp[vec_tmp[0]] = atoi(vec_tmp[1].c_str());
-					data.reward1.push_back(map_tmp);
+					for (int j = 0; j < vec_tmp.size(); j++)
+					{
+						vec.push_back(vec_tmp[j]);
+					}
+					data.reward1.push_back(vec);
 				}
 			}
 
@@ -519,19 +522,21 @@ void GlobalInstance::loadTaskMainData()
 				std::string onestr = v[i].GetString();
 				if (onestr.length() > 3)
 				{
-					std::map<std::string, int> map_tmp;
+					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
 					CommonFuncs::split(onestr, vec_tmp, "-");
-					map_tmp[vec_tmp[0]] = atoi(vec_tmp[1].c_str());
-					data.reward2.push_back(map_tmp);
+					for (int j = 0; j < vec_tmp.size(); j++)
+					{
+						vec.push_back(vec_tmp[j]);
+					}
+					data.reward2.push_back(vec);
 				}
 			}
 			
-			data.isfinish = 0;
-			data.finishtype = -1;
-			data.isGetReward = 0;
+			data.isfinish = 1;//默认未接受任务
+			data.finishtype = 0;
 
-			map_TaskMain.push_back(data);
+			vec_TaskMain.push_back(data);
 		}
 	}
 }
@@ -547,33 +552,61 @@ void GlobalInstance::loadMyTaskMainData()
 		{
 			std::vector<std::string> vec_one;
 			CommonFuncs::split(vec_tmp[i], vec_one, "-");
-
-			MyTaskMainData data;
-
-			data.id = atoi(vec_one[0].c_str());
-			data.isfinish = atoi(vec_one[1].c_str());
-			data.type = atoi(vec_one[2].c_str());
-			data.isGetReward = atoi(vec_one[3].c_str());
-			map_myTaskMain.push_back(data);
+			if (vec_TaskMain[i].id == atoi(vec_one[0].c_str()))
+			{
+				vec_TaskMain[i].isfinish = atoi(vec_one[1].c_str());
+				vec_TaskMain[i].finishtype = atoi(vec_one[2].c_str());
+			}
 		}
 
-		myCurTaskMain = &map_TaskMain[vec_tmp.size()];
+		Quest::initFinishTaskData();
+
+		if (vec_TaskMain[vec_tmp.size()-1].isfinish == MAIN_ACC)
+		{
+			myCurMainData = vec_TaskMain[vec_tmp.size()-1];
+		}
+		else
+		{
+			myCurMainData = vec_TaskMain[vec_tmp.size()];
+		}
+		
 	}
 	else
 	{
-		myCurTaskMain = &map_TaskMain[0];
+		myCurMainData = vec_TaskMain[0];
 	}
 }
 
 void GlobalInstance::saveMyTaskMainData()
 {
 	std::string str;
-	for (unsigned i = 0; i < GlobalInstance::map_myTaskMain.size(); i++)
+	std::string mystr = "";
+	sort(vec_TaskMain.begin(), vec_TaskMain.end(), larger_callback);
+	for (unsigned i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
 	{
-		std::string onestr = StringUtils::format("%d-%d-%d-%d;", GlobalInstance::map_myTaskMain[i].id, GlobalInstance::map_myTaskMain[i].isfinish, GlobalInstance::map_myTaskMain[i].type, GlobalInstance::map_myTaskMain[i].isGetReward);
-		str.append(onestr);
+		TaskMainData data = GlobalInstance::vec_TaskMain[i];
+		if (data.isfinish >= MAIN_FINISH)
+		{
+			std::string onestr = StringUtils::format("%d-%d-%d;", data.id, data.isfinish, data.finishtype);
+			str.append(onestr);
+		}
+		if (data.isfinish == MAIN_ACC)
+		{
+			mystr = StringUtils::format("%d-%d-%d;", data.id, data.isfinish, data.finishtype);
+		}
 	}
+	str.append(mystr);
 	DataSave::getInstance()->setMyMainTask(str.substr(0, str.length() - 1));
+}
+
+bool GlobalInstance::larger_callback(TaskMainData a, TaskMainData b)
+{
+	int idA = a.id;
+	int idB = b.id;
+	if (idA < idB)
+		return true;
+	else
+		return false;
 }
 
 void GlobalInstance::saveResCreatorData()

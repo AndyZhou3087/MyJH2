@@ -119,7 +119,7 @@ void DataSave::setMyMainTask(std::string strval)
 
 std::string DataSave::getMyMainTask()
 {
-	return loadStringDataByKey("MainTask", "1-1-2-0");//id-是否完成-type-是否领取
+	return loadStringDataByKey("MainTask", "1-2-2");//id-状态-type
 }
 
 int DataSave::getTotalFarmers()

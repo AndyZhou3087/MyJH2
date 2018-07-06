@@ -59,11 +59,27 @@ typedef struct
 	float speed;//攻击速度
 }EquipData;
 
+typedef enum
+{
+	//是否完成此任务，0已接受未完成，1未接受任务，2已完成未领取，3已领取奖励
+	MAIN_ACC = 0,
+	MAIN_TASK,
+	MAIN_FINISH,
+	MAIN_GET
+}TASKMAINSTATE;
+
+typedef enum
+{
+	//1表示给东西，2表示战斗,二选一即可完成任务(只有1和2两种类型)
+	MAIN_GIVE = 1,
+	MAIN_FIGHT
+}TASKMAINTYPE;
+
 typedef struct
 {
 	int id;
 	std::string name;
-	std::vector<int> type;//条件二选一，0表示给东西，1表示战斗,二选一即可完成任务
+	std::vector<int> type;//条件二选一，1表示给东西，2表示战斗,二选一即可完成任务(只有1和2两种类型)
 	std::string desc;
 	std::string place;
 	std::string npcid;
@@ -74,21 +90,11 @@ typedef struct
 	std::string need2desc;
 	std::vector<int> mutex1;//互斥1，1-1,id为1的type为1的互斥
 	std::vector<int> mutex2;//互斥2
-	std::vector<std::map<std::string, int>> reward1;//条件1的奖励
-	std::vector<std::map<std::string, int>> reward2;//条件2的奖励
-	int isfinish;//是否完成此任务，0未完成，1完成
-	int finishtype;//完成任务类型，0表示条件1完成，1表示条件2完成
-	int isGetReward;
+	std::vector<std::vector<std::string>> reward1;//条件1的奖励
+	std::vector<std::vector<std::string>> reward2;//条件2的奖励
+	int isfinish;//是否完成此任务，0已接受未完成，1未接受任务，2已完成未领取，3已领取奖励
+	int finishtype;//完成任务类型，1表示条件1完成，2表示条件2完成
 }TaskMainData;
-
-typedef struct
-{
-	int id;
-	int type;
-	int isfinish;//是否完成此任务，0未完成，1完成
-	int isGetReward;
-}
-MyTaskMainData;
 
 class GlobalInstance
 {
@@ -223,6 +229,9 @@ public:
 
 	//设置刷新资源时间
 	int getRefreshMarketTime();
+
+	//主线任务进行排序
+	static bool larger_callback(TaskMainData a, TaskMainData b);
 private:
 	static GlobalInstance* _Context;//类实例
 public:
@@ -237,9 +246,9 @@ public:
 
 	static std::map<std::string, EquipData> map_Equip;//装备名字
 
-	static std::vector<TaskMainData> map_TaskMain;//主线任务
-	static std::vector<MyTaskMainData> map_myTaskMain;//已完成的主线任务
-	static TaskMainData* myCurTaskMain;
+	static std::vector<TaskMainData> vec_TaskMain;//主线任务
+
+	static TaskMainData myCurMainData;//当前主线任务
 
 	static int servertime;//服务器时间
 

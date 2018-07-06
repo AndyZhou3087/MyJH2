@@ -17,7 +17,7 @@ TaskLayer::TaskLayer()
 
 TaskLayer::~TaskLayer()
 {
-
+	GlobalInstance::getInstance()->saveMyTaskMainData();
 }
 
 bool TaskLayer::init()
@@ -96,8 +96,8 @@ void TaskLayer::updateContent(int category)
 	int ressize;
 	if (category == 0)
 	{
-		ressize = GlobalInstance::map_TaskMain.size();
-		sort(GlobalInstance::map_TaskMain.begin(), GlobalInstance::map_TaskMain.end(), larger_callback);
+		ressize = GlobalInstance::vec_TaskMain.size();
+		sort(GlobalInstance::vec_TaskMain.begin(), GlobalInstance::vec_TaskMain.end(), larger_callback);
 	}
 	else if (category == 1)
 	{
@@ -121,7 +121,7 @@ void TaskLayer::updateContent(int category)
 		Node* node;
 		if (category == 0)
 		{
-			node = TaskMainNode::create(&GlobalInstance::map_TaskMain[i],this);
+			node = TaskMainNode::create(&GlobalInstance::vec_TaskMain[i],this);
 		}
 		else if (category == 1)
 		{
@@ -158,19 +158,6 @@ bool TaskLayer::larger_callback(TaskMainData a, TaskMainData b)
 
 void TaskLayer::loadData(int category)
 {
-	if (category == 0)
-	{
-		for (int i = 0; i < GlobalInstance::map_myTaskMain.size(); i++)
-		{
-			int id = GlobalInstance::map_myTaskMain[i].id;
-			if (id == GlobalInstance::map_TaskMain[i].id)
-			{
-				GlobalInstance::map_TaskMain[i].isfinish = GlobalInstance::map_myTaskMain[i].isfinish;
-				GlobalInstance::map_TaskMain[i].finishtype = GlobalInstance::map_myTaskMain[i].type;
-				GlobalInstance::map_TaskMain[i].isGetReward = GlobalInstance::map_myTaskMain[i].isGetReward;
-			}
-		}
-	}
 
 }
 

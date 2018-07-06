@@ -68,17 +68,23 @@ bool TaskMainNode::init(TaskMainData* data, TaskLayer* layer)
 
 void TaskMainNode::updateData(float dt)
 {
-	if (m_Data->isfinish == 0)
-	{
-		finish->setVisible(false);
-	}
-	else
+	if (m_Data->isfinish == MAIN_FINISH)
 	{
 		finish->setVisible(true);
 	}
-	if (m_Data->isGetReward == 1)
+	else if (m_Data->isfinish == MAIN_GET)
 	{
+		finish->setVisible(true);
 		redpoint->setVisible(false);
+	}
+	else
+	{
+		finish->setVisible(false);
+		redpoint->setVisible(false);
+		if (m_Data->id == GlobalInstance::myCurMainData.id)
+		{
+			redpoint->setVisible(true);
+		}
 	}
 
 }
