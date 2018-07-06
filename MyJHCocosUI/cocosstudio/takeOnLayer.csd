@@ -233,18 +233,17 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="equipstonebox_0" ActionTag="596155604" Tag="156" IconVisible="False" LeftMargin="90.8932" RightMargin="504.1068" TopMargin="721.1300" BottomMargin="433.8700" ctype="SpriteObjectData">
+          <AbstractNodeData Name="equipstonebox_0" ActionTag="-365043298" Tag="209" IconVisible="False" LeftMargin="90.8900" RightMargin="504.1100" TopMargin="721.1300" BottomMargin="433.8700" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="153.3932" Y="496.3700" />
+            <Position X="153.3900" Y="496.3700" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.2130" Y="0.3878" />
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/equipstonebox.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="equipstonebox_1" ActionTag="726648011" Tag="158" IconVisible="False" LeftMargin="294.1000" RightMargin="300.9000" TopMargin="721.1300" BottomMargin="433.8700" ctype="SpriteObjectData">
+          <AbstractNodeData Name="equipstonebox_1" ActionTag="1447436186" Tag="210" IconVisible="False" LeftMargin="294.1000" RightMargin="300.9000" TopMargin="721.1300" BottomMargin="433.8700" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="356.6000" Y="496.3700" />
@@ -253,9 +252,8 @@
             <PrePosition X="0.4953" Y="0.3878" />
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/equipstonebox.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="equipstonebox_2" ActionTag="-1187169691" Tag="157" IconVisible="False" LeftMargin="497.3100" RightMargin="97.6900" TopMargin="721.1300" BottomMargin="433.8700" ctype="SpriteObjectData">
+          <AbstractNodeData Name="equipstonebox_2" ActionTag="-1278247879" Tag="211" IconVisible="False" LeftMargin="497.3100" RightMargin="97.6900" TopMargin="721.1300" BottomMargin="433.8700" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="559.8100" Y="496.3700" />
@@ -264,7 +262,6 @@
             <PrePosition X="0.7775" Y="0.3878" />
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/equipstonebox.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="stone0" ActionTag="-1065392877" Tag="44" IconVisible="False" LeftMargin="130.3900" RightMargin="543.6100" TopMargin="760.6300" BottomMargin="473.3700" TouchEnable="True" Scale9Width="46" Scale9Height="46" ctype="ImageViewObjectData">
             <Size X="46.0000" Y="46.0000" />

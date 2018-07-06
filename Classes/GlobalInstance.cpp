@@ -774,7 +774,6 @@ void GlobalInstance::loadMyResData()
 				res->setWhere(atoi(vec_one[2].c_str()));
 				MyRes::vec_MyResources.push_back(res);
 			}
-			
 		}
 	}
 }
@@ -952,7 +951,7 @@ int GlobalInstance::generateStoneCount(int qu)
 		else
 			count = 3;
 	}
-	return count;
+	return 3;//count;
 }
 
 void GlobalInstance::saveRefreshMarketTime(int time)

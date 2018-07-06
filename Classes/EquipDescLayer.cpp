@@ -89,7 +89,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	quatext->setString(str);
 	quatext->setTextColor(Color4B(POTENTIALCOLOR[s]));
 
-	float bns = GlobalInstance::map_Equip[res->getId()].vec_bns[s];
+	float bns = POTENTIAL_BNS[s];
 
 	float attrval[] = {
 		GlobalInstance::map_Equip[res->getId()].maxhp * bns,
@@ -136,9 +136,13 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 			srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("okbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 	}
+	else if (fromwhere == 1)//takeon界面查看套装装备信息
+	{
+		actionbtn->setVisible(false);
+	}
 	else
 	{
-		status = S_EQUIP_SEL;
+		status = S_EQUIP_USE;
 		srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("usebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	}
 

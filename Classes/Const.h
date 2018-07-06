@@ -19,4 +19,9 @@
 const static float creatorResLvUpPara[] = {0.5f, 0.9f, 0.7f, 0.8f, 1.0f};
 //5个品质颜色
 const static Color3B POTENTIALCOLOR[5] = { Color3B(36, 255, 82), Color3B(52, 179, 240), Color3B(252, 77, 226), Color3B(255, 214, 71), Color3B(255, 69, 69) };
+
+//镶嵌宝石加成
+const static float stonebns[] = { 10.0f,10.0f,10.0f,10.0f,10.0f };
+
+const static float POTENTIAL_BNS[] = {1.0f, 1.27f, 1.63f, 2.08f, 2.63f};
 #endif // _H_CONST_H_

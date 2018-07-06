@@ -8,6 +8,7 @@
 #include "MyMenu.h"
 #include "Equipable.h"
 #include "TakeOnLayer.h"
+#include "SetInStoneLayer.h"
 
 SelectEquipLayer::SelectEquipLayer()
 {
@@ -101,21 +102,31 @@ void SelectEquipLayer::updateContent()
 
 	for (unsigned int m = 0; m < vec_res.size(); m++)
 	{
-		std::string qustr = "ui/resbox_qu0.png";
+		std::string qustr = "ui/resbox.png";
 
-		int qu = ((Equipable*)vec_res[m])->getQU().getValue();
+		int qu = -1;
 		int lv = 0;
 		if (vec_res[m]->getType() >= T_ARMOR && vec_res[m]->getType() <= T_FASHION)
 		{
 			Equip* equip = (Equip*)vec_res[m];
 			lv = equip->getLv().getValue();
+			qu = equip->getQU().getValue();
+
 		}
 		else if (vec_res[m]->getType() >= T_WG && vec_res[m]->getType() <= T_NG)
 		{
 			GongFa* gf = (GongFa*)vec_res[m];
-			lv = gf->getLv().getValue();
+			lv = gf->getLv().getValue() + 1;
+			qu = gf->getQU().getValue();
 		}
-		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		else
+		{
+			lv = vec_res[m]->getCount().getValue();
+		}
+		if (qu >= 0)
+		{
+			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
 
 		Sprite * qubox = Sprite::createWithSpriteFrameName(qustr);
 
@@ -161,7 +172,6 @@ void SelectEquipLayer::updateContent()
 		countlbl->setAnchorPoint(Vec2(1, 0));
 		countlbl->setColor(Color3B::WHITE);
 		countlbl->setPosition(Vec2(boxItem->getContentSize().width - 10, 10));
-
 		boxItem->addChild(countlbl);
 	}
 }
@@ -190,9 +200,17 @@ void SelectEquipLayer::onclick(Ref* pSender)
 {
 	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 	Node* node = (Node*)pSender;
-
-	TakeOnLayer* layer = TakeOnLayer::create((Equip*)node->getUserData(), m_herodata);
-	this->addChild(layer);
+	ResBase* res = (ResBase*)node->getUserData();
+	Layer* layer;
+	if (res->getType() >= T_ARMOR && res->getType() <= T_NG)
+	{
+		layer = TakeOnLayer::create((Equip*)res, m_herodata);
+	}
+	else
+	{
+		layer = SetInStoneLayer::create(res, this->getTag());
+	}
+	this->addChild(layer, 0, this->getTag());
 }
 
 void SelectEquipLayer::loadData()

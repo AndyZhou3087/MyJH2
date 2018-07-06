@@ -132,11 +132,11 @@ void StoreHouseLayer::updateContent(int category)
 
 	for (unsigned int m = 0; m < map_cateRes[category].size(); m++)
 	{
-
 		std::string qustr = "ui/resbox.png";
-		int qu = ((Equipable*)map_cateRes[category][m])->getQU().getValue();
-		if (qu >= 0)
+		int qu = 0;
+		if (map_cateRes[category][m]->getType() >= T_ARMOR && map_cateRes[category][m]->getType() <= T_NG)
 		{
+			qu = ((Equipable*)map_cateRes[category][m])->getQU().getValue();
 			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
 

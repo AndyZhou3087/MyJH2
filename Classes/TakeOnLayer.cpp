@@ -9,17 +9,28 @@
 #include "MyRes.h"
 #include "HeroAttrLayer.h"
 #include "SelectEquipLayer.h"
+#include "EquipDescLayer.h"
 
 static bool isChangeEquip = false;
 TakeOnLayer::TakeOnLayer()
 {
-
+	nohasEquip = NULL;
+	stone_atkbns = 0;
+	stone_dfbns = 0;
+	stone_hpbns = 0;
+	stone_dodgebns = 0;
+	stone_critbns = 0;
 }
 
 
 TakeOnLayer::~TakeOnLayer()
 {
 	isChangeEquip = false;
+	if (nohasEquip != NULL)
+	{
+		delete nohasEquip;
+		nohasEquip = NULL;
+	}
 }
 
 
@@ -46,7 +57,7 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
 
-	Node *csbnode = CSLoader::createNode(ResourcePath::makePath("takeOnLayer.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("takeOnLayer.csb"));
 	this->addChild(csbnode);
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -95,11 +106,15 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 
 	parseSuitJson();
 
-	float hpbns = 0.0f;
-	float atkbns = 0.0f;
-	float dfbns = 0.0f;
-	float critbns = 0.0f;
-	float dodgebns = 0.0f;
+	int equ = m_equip->getQU().getValue();
+
+	float bns = POTENTIAL_BNS[equ];
+
+	suithpbns = 0.0f;
+	suitdfbns = 0.0f;
+
+	int basehp = GlobalInstance::map_Equip[m_equip->getId()].maxhp;
+	int basedf = GlobalInstance::map_Equip[m_equip->getId()].df;
 
 	if (map_suit.find(m_equip->getId()) != map_suit.end())
 	{
@@ -119,18 +134,26 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 				std::string eid = map_suit[m_equip->getId()].vec_suit[i];
 				str = StringUtils::format("ui/%s.png", eid.c_str());
 				suitres->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+				suitres->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onEquipclick, this));
 
 				if (i > 0)
 				{
 
 					std::string attrstr;
+					float suitval = 0;
 					if (i == 1)
+					{
 						attrstr = "addattrtext_0";
+						suitval = map_suit[m_equip->getId()].vec_bns[i - 1] * basehp / 100;
+					}
 					else if (i == 2)
+					{
 						attrstr = "addattrtext_2";
+						suitval = map_suit[m_equip->getId()].vec_bns[i - 1] * basedf / 100;
+					}
 					std::string suittextstr = StringUtils::format("suit%d", i);
 					std::string s2 = StringUtils::format("%s%s", ResourceLang::map_lang[suittextstr].c_str(), ResourceLang::map_lang[attrstr].c_str());
-					str = StringUtils::format(s2.c_str(), map_suit[m_equip->getId()].vec_bns[i-1]);
+					str = StringUtils::format(s2.c_str(), suitval);
 					suitresdesc->setString(str);
 
 					cocos2d::ui::Text* statlbl = (cocos2d::ui::Text*)suitresbox->getChildByName("status");
@@ -149,21 +172,32 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 						suitresdesc->setOpacity(128);
 						suitres->setOpacity(128);
 						suitresbox->setOpacity(128);
+
+						nohasEquip = new Equip();
+						nohasEquip->setId(eid);
+						suitres->setUserData((void*)nohasEquip);
 					}
 					else
 					{
 						str = StringUtils::format("ui/resbox_qu%d.png", eres->getQU().getValue());
 						suitresbox->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 						if (i == 1)
-							hpbns += map_suit[m_equip->getId()].vec_bns[i - 1];
+						{
+							suithpbns += basehp * map_suit[m_equip->getId()].vec_bns[i - 1] / 100;
+						}
 						else if (i == 2)
-							dfbns = map_suit[m_equip->getId()].vec_bns[i - 1];
+						{
+							edf += basedf * map_suit[m_equip->getId()].vec_bns[i - 1] / 100;
+						}
+						suitres->setUserData((void*)eres);
+
 					}
 				}
 				else
 				{
 					str = StringUtils::format("ui/resbox_qu%d.png", m_equip->getQU().getValue());
 					suitresbox->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+					suitres->setUserData((void*)m_equip);
 				}
 			}
 			else
@@ -185,93 +219,8 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 			suitres->setVisible(false);
 		}
 	}
+	updateUI();
 
-	std::string stonedescstr[] = {"addattrtext_1","addattrtext_2","addattrtext_0","addattrtext_5","addattrtext_4"};
-	float stonebns[] = { 10.0f,10.0f,10.0f,10.0f,10.0f };
-	for (int i = 0; i < 3; i++)
-	{
-		str = StringUtils::format("stone%d", i);
-		cocos2d::ui::ImageView* stone = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
-
-		str = StringUtils::format("stonedesc%d", i);
-		cocos2d::ui::Text* stonedesc = (cocos2d::ui::Text*)csbnode->getChildByName(str);
-		if (i < m_equip->vec_stones.size())
-		{
-			std::string stoneid = m_equip->vec_stones[i];
-			if (stoneid.length() > 0)
-			{
-				str = StringUtils::format("ui/%s.png", m_equip->vec_stones[i].c_str());
-				stone->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
-				int intv = (atoi(stoneid.substr(1).c_str()) -1)/3;
-				std::string ss = ResourceLang::map_lang[stonedescstr[intv]];
-				str = StringUtils::format(ss.c_str(), stonebns[intv]);
-				stonedesc->setString(str);
-
-				if (intv == 0)
-					atkbns += stonebns[intv];
-				else if (intv == 1)
-					dfbns += stonebns[intv];
-				else if (intv == 2)
-					hpbns+= stonebns[intv];
-				else if (intv == 3)
-					dodgebns+= stonebns[intv];
-				else if (intv == 4)
-					critbns += stonebns[intv];
-			}
-			else
-			{
-				stone->setVisible(false);
-				stonedesc->setVisible(false);
-			}
-		}
-		else
-		{
-			stone->setVisible(false);
-			stonedesc->setVisible(false);
-		}
-	}
-
-	langtype = GlobalInstance::getInstance()->getLang();
-	cocos2d::ui::ImageView* proptextimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("equipprop");
-	proptextimg->loadTexture(ResourcePath::makeTextImgPath("equipprop_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-
-	float bns = GlobalInstance::map_Equip[m_equip->getId()].vec_bns[qu];
-	int max = GlobalInstance::map_Equip[m_equip->getId()].maxhp;
-	float hp = bns * GlobalInstance::map_Equip[m_equip->getId()].maxhp;
-	hp *= (1 + hpbns/100);
-
-	float atk = bns * GlobalInstance::map_Equip[m_equip->getId()].atk;
-	atk *= (1 + atkbns/100);
-
-	float df = bns *GlobalInstance::map_Equip[m_equip->getId()].df;
-
-	df *= (1 + dfbns/100);
-
-	float atkspeed = GlobalInstance::map_Equip[m_equip->getId()].speed;
-
-	float crit = bns*GlobalInstance::map_Equip[m_equip->getId()].crit;
-	crit += critbns;
-
-	float dodge = bns*GlobalInstance::map_Equip[m_equip->getId()].avoid;
-	dodge += dodgebns;
-
-	float attrval[] = {
-		hp,
-		atk,
-		df,
-		atkspeed,
-		crit,
-		dodge
-	};
-	//角色属性文字
-	for (int i = 0; i <= 5; i++)
-	{
-		str = StringUtils::format("attrtext_%d", i);
-		cocos2d::ui::Text* attrlbl = (cocos2d::ui::Text*)csbnode->getChildByName(str);
-		str = StringUtils::format("addattrtext_%d", i);
-		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), attrval[i]);
-		attrlbl->setString(str);
-	}
 	//选择，更换按钮
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actionbtn->setTag(1001);
@@ -318,7 +267,6 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 	return true;
 }
 
-
 void TakeOnLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
@@ -353,6 +301,7 @@ void TakeOnLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			{
 				HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent()->getParent();
 				heroAttrLayer->takeOn(m_equip);
+				updateAttr();
 				this->getParent()->removeFromParentAndCleanup(true);
 			}
 			break;
@@ -374,10 +323,198 @@ void TakeOnLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	}
 }
 
-void TakeOnLayer::onclick(Ref* pSender)
+void TakeOnLayer::onEquipclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-	Node* node = (Node*)pSender;
+	CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		Node* node = (Node*)pSender;
+
+		EquipDescLayer* layer = EquipDescLayer::create((ResBase*)node->getUserData(), 1);
+		this->addChild(layer);
+	}
+}
+
+void TakeOnLayer::onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		Node* node = (Node*)pSender;
+
+		SelectEquipLayer* layer = SelectEquipLayer::create(T_STONE, m_herodata);
+
+		this->addChild(layer, 0, node->getTag());
+	}
+}
+
+void TakeOnLayer::setInStone(ResBase* stoneres, int which)
+{
+	std::string stoneid = stoneres->getId();
+	MyRes::Use(stoneid);
+	MyRes::Add(stoneid, MYEQUIP);
+	m_equip->vec_stones[which] = stoneid;
+	updateUI();
+}
+
+void TakeOnLayer::setOutStone(ResBase* stoneres, int which)
+{
+	std::string stoneid = stoneres->getId();
+	MyRes::Add(stoneid);
+	MyRes::Use(stoneid, MYEQUIP);
+	m_equip->vec_stones[which] = "o";
+
+	int intv = (atoi(stoneid.substr(1).c_str()) - 1) / 3;
+
+	if (intv == 0)
+		stone_atkbns -= stonebns[intv];
+	else if (intv == 1)
+		stone_dfbns -= stonebns[intv];
+	else if (intv == 2)
+		stone_hpbns -= stonebns[intv];
+	else if (intv == 3)
+		stone_dodgebns -= stonebns[intv];
+	else if (intv == 4)
+		stone_critbns -= stonebns[intv];
+	updateUI();
+}
+
+void TakeOnLayer::chageStone(ResBase* stoneres, int which)
+{
+	std::string laststone = m_equip->vec_stones[which];
+	MyRes::Add(laststone);
+	MyRes::Use(laststone, MYEQUIP);
+
+	int intv = (atoi(laststone.substr(1).c_str()) - 1) / 3;
+	if (intv == 0)
+		stone_atkbns -= stonebns[intv];
+	else if (intv == 1)
+		stone_dfbns -= stonebns[intv];
+	else if (intv == 2)
+		stone_hpbns -= stonebns[intv];
+	else if (intv == 3)
+		stone_dodgebns -= stonebns[intv];
+	else if (intv == 4)
+		stone_critbns -= stonebns[intv];
+
+	std::string stoneid = stoneres->getId();
+	MyRes::Use(stoneid);
+	MyRes::Add(stoneid, MYEQUIP);
+	m_equip->vec_stones[which] = stoneid;
+	updateUI();
+}
+
+void TakeOnLayer::updateUI()
+{
+	std::string stonedescstr[] = { "addattrtext_1","addattrtext_2","addattrtext_0","addattrtext_5","addattrtext_4" };
+
+	for (int i = 0; i < 3; i++)
+	{
+		std::string str = StringUtils::format("stone%d", i);
+		cocos2d::ui::ImageView* stone = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
+
+		str = StringUtils::format("equipstonebox_%d", i);
+		cocos2d::ui::ImageView* equipstonebox = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
+
+		str = StringUtils::format("stonedesc%d", i);
+		cocos2d::ui::Text* stonedesc = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+		if (i < m_equip->vec_stones.size())
+		{
+			std::string stoneid = m_equip->vec_stones[i];
+			if (stoneid.length() > 1)
+			{
+				str = StringUtils::format("ui/%s.png", m_equip->vec_stones[i].c_str());
+				stone->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+				stone->ignoreContentAdaptWithSize(true);
+				stone->setVisible(true);
+
+				int intv = (atoi(stoneid.substr(1).c_str()) - 1) / 3;
+				std::string ss = ResourceLang::map_lang[stonedescstr[intv]];
+				str = StringUtils::format(ss.c_str(), stonebns[intv]);
+
+				if (intv == 0)
+					stone_atkbns += stonebns[intv];
+				else if (intv == 1)
+					stone_dfbns += stonebns[intv];
+				else if (intv == 2)
+					stone_hpbns += stonebns[intv];
+				else if (intv == 3)
+				{
+					str = str.substr(0, str.length() - 1);
+					stone_dodgebns += stonebns[intv];
+				}
+				else if (intv == 4)
+				{
+					str = str.substr(0, str.length() - 1);
+					stone_critbns += stonebns[intv];
+				}
+				stonedesc->setString(str);
+				stonedesc->setVisible(false);
+			}
+			else
+			{
+				stone->setVisible(false);
+				stonedesc->setVisible(false);
+			}
+			stone->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onStoneclick, this));
+			stone->setTag(i);
+
+			equipstonebox->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onStoneclick, this));
+			equipstonebox->setTag(i);
+		}
+		else
+		{
+			stone->setVisible(false);
+			stonedesc->setVisible(false);
+			equipstonebox->setVisible(false);
+		}
+	}
+
+	updateAttr();
+}
+
+void TakeOnLayer::updateAttr()
+{
+	int equ = m_equip->getQU().getValue();
+	float ebns = POTENTIAL_BNS[equ];
+
+	ehp = ebns * GlobalInstance::map_Equip[m_equip->getId()].maxhp;
+	eatk = ebns * GlobalInstance::map_Equip[m_equip->getId()].atk;
+	edf = ebns *  GlobalInstance::map_Equip[m_equip->getId()].df;
+
+	eatkspeed = ebns * GlobalInstance::map_Equip[m_equip->getId()].speed;
+	ecrit = ebns * GlobalInstance::map_Equip[m_equip->getId()].crit;
+	edodge = ebns * GlobalInstance::map_Equip[m_equip->getId()].avoid;
+
+	if (MyRes::getMyPutOnResByType(m_equip->getType(), m_herodata->getName()) != NULL)
+	{
+		int hqu = m_herodata->getVocation();
+		float hbns = GlobalInstance::map_Equip[m_equip->getId()].vec_bns[hqu];
+		ehp += hbns * GlobalInstance::map_Equip[m_equip->getId()].maxhp;
+		eatk += hbns * GlobalInstance::map_Equip[m_equip->getId()].atk;
+		edf += hbns *  GlobalInstance::map_Equip[m_equip->getId()].df;
+
+		eatkspeed += hbns * GlobalInstance::map_Equip[m_equip->getId()].speed;
+		ecrit = + hbns * GlobalInstance::map_Equip[m_equip->getId()].crit;
+		edodge = + hbns * GlobalInstance::map_Equip[m_equip->getId()].avoid;
+	}
+
+	float attrval[] = {
+		ehp + stone_hpbns + suithpbns,
+		eatk + stone_atkbns,
+		edf + stone_dfbns + suitdfbns,
+		eatkspeed,
+		ecrit + stone_critbns,
+		edodge + stone_dodgebns
+	};
+	//角色属性文字
+	for (int i = 0; i <= 5; i++)
+	{
+		std::string str = StringUtils::format("attrtext_%d", i);
+		cocos2d::ui::Text* attrlbl = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+		str = StringUtils::format("addattrtext_%d", i);
+		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), attrval[i]);
+		attrlbl->setString(str);
+	}
 }
 
 void TakeOnLayer::parseSuitJson()

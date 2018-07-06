@@ -52,7 +52,6 @@ ResBase* MyRes::getMyPutOnResById(std::string sid, std::string whos)
 				if (e->getWhos().compare(whos) == 0)
 					return e;
 			}
-			return res;
 		}
 	}
 	return NULL;
@@ -71,7 +70,6 @@ ResBase* MyRes::getMyPutOnResByType(int type, std::string whos)
 				if (e->getWhos().compare(whos) == 0)
 					return e;
 			}
-			return res;
 		}
 	}
 	return NULL;
@@ -102,7 +100,8 @@ void MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescou
 
 		if (stonescount > 0)
 		{
-			res->vec_stones.push_back("");
+			for (int n = 0; n < stonescount; n++)
+				res->vec_stones.push_back("o");//用一个占位
 		}
 		vec_MyResources.push_back(res);
 	}

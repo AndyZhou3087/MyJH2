@@ -541,7 +541,6 @@
           <Image Name="s004.png" />
           <Image Name="setpline0.png" />
           <Image Name="smallstar.png" />
-          <Image Name="taskbtn.png" />
           <Image Name="taskframe.png" />
           <Image Name="taskprobar.png" />
           <Image Name="taskprobg.png" />
@@ -678,7 +677,7 @@
         <Project Name="taskMainNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
-        <Project Name="taskMainDescLayer.csd" Type="Layer" />
+        <Project Name="setinStoneLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

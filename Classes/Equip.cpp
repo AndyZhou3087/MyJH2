@@ -2,6 +2,7 @@
 
 Equip::Equip()
 {
+	m_qu.setValue(0);
 }
 
 
