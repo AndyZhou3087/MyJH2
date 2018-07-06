@@ -17,9 +17,10 @@ bool Quest::initFinishTaskData()
 	return true;
 }
 
-int Quest::getMutexMainQuestType()
+int Quest::getMutexMainQuestType(int id,int type)
 {
 
+	return -1;
 }
 
 void Quest::AddFinishQuest(TaskMainData data)

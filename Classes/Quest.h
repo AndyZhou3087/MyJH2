@@ -14,8 +14,8 @@ public:
 	//添加已完成任务
 	static void AddFinishQuest(TaskMainData data);
 
-	//判断互斥,若有返回互斥id的类型，若无则返回-1
-	static int getMutexMainQuestType();
+	//判断二选一条件下是否有互斥,若有返回互斥id的类型，若无则返回-1
+	static int getMutexMainQuestType(int id, int type);
 
 public:
 	static std::vector<TaskMainData> myFinishMainQuest;
