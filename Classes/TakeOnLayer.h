@@ -27,7 +27,7 @@ public:
 
 	void setInStone(ResBase* stoneres, int which);
 
-	void setOutStone(ResBase* stoneres, int which);
+	void setOutStone(std::string stoneid, int which);
 	
 	void chageStone(ResBase* stoneres, int which);
 private:

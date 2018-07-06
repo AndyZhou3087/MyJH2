@@ -247,13 +247,16 @@ void StoreHouseLayer::loadData()
 	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
 	{
 		ResBase* res = MyRes::vec_MyResources[i];
-		if (res->getType() == T_WG || res->getType() == T_NG)
-			map_cateRes[CATA_1].push_back(MyRes::vec_MyResources[i]);
-		else if (res->getType() == T_ARMOR || res->getType() == T_EQUIP || res->getType() == T_HANDARMOR || res->getType() == T_FASHION)
-			map_cateRes[CATA_2].push_back(MyRes::vec_MyResources[i]);
-		else
+		if (res->getWhere() == MYSTORAGE)
 		{
-			map_cateRes[CATA_3].push_back(MyRes::vec_MyResources[i]);
+			if (res->getType() == T_WG || res->getType() == T_NG)
+				map_cateRes[CATA_1].push_back(MyRes::vec_MyResources[i]);
+			else if (res->getType() == T_ARMOR || res->getType() == T_EQUIP || res->getType() == T_HANDARMOR || res->getType() == T_FASHION)
+				map_cateRes[CATA_2].push_back(MyRes::vec_MyResources[i]);
+			else
+			{
+				map_cateRes[CATA_3].push_back(MyRes::vec_MyResources[i]);
+			}
 		}
 	}
 
