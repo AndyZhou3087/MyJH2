@@ -208,7 +208,7 @@ void SelectEquipLayer::onclick(Ref* pSender)
 	}
 	else
 	{
-		layer = SetInStoneLayer::create(res, this->getTag());
+		layer = SetInStoneLayer::create(res, this->getTag(), m_herodata);
 	}
 	this->addChild(layer, 0, this->getTag());
 }

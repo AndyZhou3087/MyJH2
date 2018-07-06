@@ -10,6 +10,7 @@
 #include "HeroAttrLayer.h"
 #include "SelectEquipLayer.h"
 #include "EquipDescLayer.h"
+#include "SetInStoneLayer.h"
 
 static bool isChangeEquip = false;
 TakeOnLayer::TakeOnLayer()
@@ -341,9 +342,16 @@ void TakeOnLayer::onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	{
 		Node* node = (Node*)pSender;
 
-		SelectEquipLayer* layer = SelectEquipLayer::create(T_STONE, m_herodata);
-
-		this->addChild(layer, 0, node->getTag());
+		if (m_equip->vec_stones[node->getTag()].length() > 1)
+		{
+			SetInStoneLayer* layer = SetInStoneLayer::create(m_equip, node->getTag(), m_herodata);
+			this->addChild(layer,0, node->getTag());
+		}
+		else
+		{
+			SelectEquipLayer* layer = SelectEquipLayer::create(T_STONE, m_herodata);
+			this->addChild(layer, 0, node->getTag());
+		}
 	}
 }
 
@@ -351,30 +359,16 @@ void TakeOnLayer::setInStone(ResBase* stoneres, int which)
 {
 	std::string stoneid = stoneres->getId();
 	MyRes::Use(stoneid);
-	MyRes::Add(stoneid, MYEQUIP);
+	MyRes::Add(stoneid, 1, MYEQUIP);
 	m_equip->vec_stones[which] = stoneid;
 	updateUI();
 }
 
-void TakeOnLayer::setOutStone(ResBase* stoneres, int which)
+void TakeOnLayer::setOutStone(std::string stoneid, int which)
 {
-	std::string stoneid = stoneres->getId();
 	MyRes::Add(stoneid);
-	MyRes::Use(stoneid, MYEQUIP);
+	MyRes::Use(stoneid, 1, MYEQUIP);
 	m_equip->vec_stones[which] = "o";
-
-	int intv = (atoi(stoneid.substr(1).c_str()) - 1) / 3;
-
-	if (intv == 0)
-		stone_atkbns -= stonebns[intv];
-	else if (intv == 1)
-		stone_dfbns -= stonebns[intv];
-	else if (intv == 2)
-		stone_hpbns -= stonebns[intv];
-	else if (intv == 3)
-		stone_dodgebns -= stonebns[intv];
-	else if (intv == 4)
-		stone_critbns -= stonebns[intv];
 	updateUI();
 }
 
@@ -382,23 +376,11 @@ void TakeOnLayer::chageStone(ResBase* stoneres, int which)
 {
 	std::string laststone = m_equip->vec_stones[which];
 	MyRes::Add(laststone);
-	MyRes::Use(laststone, MYEQUIP);
-
-	int intv = (atoi(laststone.substr(1).c_str()) - 1) / 3;
-	if (intv == 0)
-		stone_atkbns -= stonebns[intv];
-	else if (intv == 1)
-		stone_dfbns -= stonebns[intv];
-	else if (intv == 2)
-		stone_hpbns -= stonebns[intv];
-	else if (intv == 3)
-		stone_dodgebns -= stonebns[intv];
-	else if (intv == 4)
-		stone_critbns -= stonebns[intv];
+	MyRes::Use(laststone, 1, MYEQUIP);
 
 	std::string stoneid = stoneres->getId();
 	MyRes::Use(stoneid);
-	MyRes::Add(stoneid, MYEQUIP);
+	MyRes::Add(stoneid, 1, MYEQUIP);
 	m_equip->vec_stones[which] = stoneid;
 	updateUI();
 }
@@ -406,6 +388,12 @@ void TakeOnLayer::chageStone(ResBase* stoneres, int which)
 void TakeOnLayer::updateUI()
 {
 	std::string stonedescstr[] = { "addattrtext_1","addattrtext_2","addattrtext_0","addattrtext_5","addattrtext_4" };
+
+	stone_atkbns = 0;
+	stone_dfbns = 0;
+	stone_hpbns = 0;
+	stone_dodgebns = 0;
+	stone_critbns = 0;
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -470,6 +458,7 @@ void TakeOnLayer::updateUI()
 	}
 
 	updateAttr();
+	MyRes::saveData();
 }
 
 void TakeOnLayer::updateAttr()

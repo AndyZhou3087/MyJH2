@@ -76,7 +76,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	p_res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
-	namelbl->setString(GlobalInstance::map_Equip[res->getId()].name);
+	namelbl->setString(GlobalInstance::map_AllResources[res->getId()].name);
 	namelbl->setTextColor(Color4B(POTENTIALCOLOR[s]));
 
 	cocos2d::ui::Text* qua = (cocos2d::ui::Text*)csbnode->getChildByName("qua");
