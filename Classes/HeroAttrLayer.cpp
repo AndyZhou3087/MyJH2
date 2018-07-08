@@ -13,6 +13,7 @@
 #include "Equipable.h"
 #include "MyRes.h"
 #include "TakeOnLayer.h"
+#include "EquipDescLayer.h"
 
 USING_NS_CC;
 
@@ -72,7 +73,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 
 	//装备栏
 	equipnode = csbnode->getChildByName("equipnode");
-	for (unsigned int i = 0; i < equipnode->getChildrenCount(); i++)
+	for (int i = 0; i < equipnode->getChildrenCount(); i++)
 	{
 		cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
 		node->setTag(i);
@@ -81,6 +82,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 		if (eres != NULL)
 		{
 			updateEquipUi(eres, i);
+			m_heroData->setEquipable((Equipable*)eres, eres->getType());
 		}
 	}
 	//属性信息
@@ -134,36 +136,38 @@ bool HeroAttrLayer::init(Hero* herodata)
 	//生命值
 	hplbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("hp");
 
-	int hp = herodata->getHp();
+	//int hp = herodata->getHp();
 
-	std::string attrstr = StringUtils::format("%d/%d", hp, (int)herodata->getMaxHp());
-	hplbl->setString(attrstr);
+	//std::string attrstr = StringUtils::format("%d/%d", hp, (int)herodata->getMaxHp());
+	//hplbl->setString(attrstr);
 
 	//攻击值
 	atkbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("atk");
-	attrstr = StringUtils::format("%d", (int)herodata->getAtk());
-	atkbl->setString(attrstr);
+	//attrstr = StringUtils::format("%d", (int)herodata->getAtk());
+	//atkbl->setString(attrstr);
 
 	//防御值
 	dflbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("df");
-	attrstr = StringUtils::format("%d", (int)herodata->getDf());
-	dflbl->setString(attrstr);
+	//attrstr = StringUtils::format("%d", (int)herodata->getDf());
+	//dflbl->setString(attrstr);
 
 	//攻击速度值
 	atkspeedlbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("atkspeed");
-	attrstr = StringUtils::format("%.3f", 1.0f/herodata->getAtkSpeed());
-	atkspeedlbl->setString(attrstr);
+	//attrstr = StringUtils::format("%.3f", 1.0f/herodata->getAtkSpeed());
+	//atkspeedlbl->setString(attrstr);
 
 	//暴击值
 	critlbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("crit");
-	attrstr = StringUtils::format("%.3f%%", herodata->getCrit());
-	critlbl->setString(attrstr);
+	//attrstr = StringUtils::format("%.3f%%", herodata->getCrit());
+	//critlbl->setString(attrstr);
 
 	//闪避值
 	dodgelbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("dodge");
-	attrstr = StringUtils::format("%.3f%%", herodata->getDodge());
-	dodgelbl->setString(attrstr);
+	//attrstr = StringUtils::format("%.3f%%", herodata->getDodge());
+	//dodgelbl->setString(attrstr);
 
+	updataAtrrUI(0);
+	this->schedule(schedule_selector(HeroAttrLayer::updataAtrrUI), 2.0f);
 	//等级
 	cocos2d::ui::Text* lvUIText = (cocos2d::ui::Text*)heroattrbottom->getChildByName("lv");
 	str = StringUtils::format("Lv.%d", herodata->getLevel() + 1);
@@ -399,10 +403,21 @@ void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		clickindex = clicknode->getTag();
 		Layer* layer;
 		ResBase* res = MyRes::getMyPutOnResByType(equiptype[clickindex], m_heroData->getName());
+
+	
 		if (res == NULL)
 			layer = SelectEquipLayer::create(equiptype[clickindex], m_heroData);
 		else
-			layer = TakeOnLayer::create((Equip*)res, m_heroData);
+		{
+			if (equiptype[clickindex] == T_WG || equiptype[clickindex] == T_NG)
+			{
+				layer = EquipDescLayer::create(res, 2);
+			}
+			else
+			{
+				layer = TakeOnLayer::create((Equip*)res, m_heroData);
+			}
+		}
 		this->addChild(layer);
 	}
 }
@@ -412,6 +427,7 @@ void HeroAttrLayer::takeOn(ResBase* res)
 	Equipable* equipable = (Equipable*)res;
 	equipable->setWhere(MYEQUIP);
 	equipable->setWhos(m_heroData->getName());
+	m_heroData->setEquipable((Equipable*)res, res->getType());
 	updateEquipUi(res, clickindex);
 }
 
@@ -419,6 +435,7 @@ void HeroAttrLayer::takeOff(ResBase* res)
 {
 	res->setWhere(MYSTORAGE);
 	updateEquipUi(NULL, clickindex);
+	m_heroData->setEquipable(NULL, res->getType());
 }
 
 void HeroAttrLayer::changeEquip(ResBase* res)
@@ -443,10 +460,11 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 	std::string resstr;
 	if (res != NULL)
 	{
+		int type = res->getType();
 		qubox->setAnchorPoint(Vec2(0.5, 0.5));
 		qubox->setPosition(Vec2(qubox->getParent()->getContentSize().width / 2, qubox->getParent()->getContentSize().height / 2));
 
-		int type = res->getType();
+
 		int qu =  ((Equipable*)res)->getQU().getValue();
 		if (type >= T_ARMOR && type <= T_FASHION)
 		{
@@ -455,6 +473,8 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 		}
 		else if (type >= T_WG && type <= T_NG)
 		{
+			qubox->setScale(1.0f);
+			resimg->setScale(1.0f);
 		}
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		resstr = StringUtils::format("ui/%s.png", res->getId().c_str());
@@ -462,7 +482,10 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 	else
 	{
 		qubox->setAnchorPoint(Vec2(0, 1));
-		qubox->setPosition(Vec2(8, 98));
+		if (clickindex == 2 || clickindex == 3)//武功，内功
+			qubox->setPosition(Vec2(8, 117));
+		else
+			qubox->setPosition(Vec2(8, 98));
 		qubox->setScale(1.0f);
 		resimg->setScale(1.0f);
 		qustr = "ui/heroattradd.png";
@@ -471,6 +494,33 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 	qubox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 	resimg->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
 	MyRes::saveData();
+}
+
+void HeroAttrLayer::updataAtrrUI(float dt)
+{
+	int hp = m_heroData->getHp();
+	std::string attrstr = StringUtils::format("%d/%d", hp, (int)m_heroData->getMaxHp());
+	hplbl->setString(attrstr);
+
+	//攻击值
+	attrstr = StringUtils::format("%d", (int)m_heroData->getAtk());
+	atkbl->setString(attrstr);
+
+	//防御值
+	attrstr = StringUtils::format("%d", (int)m_heroData->getDf());
+	dflbl->setString(attrstr);
+
+	//攻击速度值
+	attrstr = StringUtils::format("%.3f", 1.0f / m_heroData->getAtkSpeed());
+	atkspeedlbl->setString(attrstr);
+
+	//暴击值
+	attrstr = StringUtils::format("%.3f%%", m_heroData->getCrit());
+	critlbl->setString(attrstr);
+
+	//闪避值
+	attrstr = StringUtils::format("%.3f%%", m_heroData->getDodge());
+	dodgelbl->setString(attrstr);
 }
 
 void HeroAttrLayer::onExit()

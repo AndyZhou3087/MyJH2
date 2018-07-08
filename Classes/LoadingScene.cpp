@@ -78,7 +78,10 @@ void LoadingScene::delayLoadData(float dt)
 
 	GlobalInstance::getInstance()->loadMyResData();
 
+	GlobalInstance::getInstance()->parseSuitJson();
 	GlobalInstance::getInstance()->loadEquipData();
+
+	GlobalInstance::getInstance()->loadGFData();
 
 	//读取主线任务配置
 	GlobalInstance::getInstance()->loadTaskMainData();

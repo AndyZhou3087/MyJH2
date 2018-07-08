@@ -17,5 +17,23 @@ public:
 	CC_SYNTHESIZE(DynamicValueInt, m_exp, Exp);//经验值
 	DynamicValueInt getLv();
 public:
+
+	//攻击
+	float getAtk();
+
+	//防御
+	float getDf();
+
+	//血量
+	float getHp();
+
+	//攻击速度
+	float getAtkSpeed();
+
+	//暴击
+	float getCrit();
+
+	//闪避
+	float getDodge();
 };
 #endif

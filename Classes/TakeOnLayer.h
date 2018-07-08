@@ -7,13 +7,6 @@
 #include "Hero.h"
 USING_NS_CC;
 
-typedef struct
-{
-	std::string id;
-	std::vector<std::string> vec_suit;
-	std::vector<float> vec_bns;
-}EquipSuit;
-
 class TakeOnLayer :public Layer
 {
 public:
@@ -35,33 +28,17 @@ private:
 	void onEquipclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
-	void parseSuitJson();
-
 	void updateUI();
 
 	void updateAttr();
 private:
 	int langtype;
 	Equip* m_equip;
-	std::map<std::string, EquipSuit> map_suit;
 	Hero* m_herodata;
 	Equip* nohasEquip;
 
-	float ehp;
-	float eatk;
-	float edf;
-	float eatkspeed;
-	float ecrit;
-	float edodge;
+	std::vector<cocos2d::ui::Text*> vec_suitDesc;
 
-	float stone_atkbns;
-	float stone_dfbns;
-	float stone_hpbns;
-	float stone_dodgebns;
-	float stone_critbns;
-
-	float suithpbns;
-	float suitdfbns;
 	Node *csbnode;
 };
 #endif

@@ -9,6 +9,7 @@
 #include "Equipable.h"
 #include "TakeOnLayer.h"
 #include "SetInStoneLayer.h"
+#include "EquipDescLayer.h"
 
 SelectEquipLayer::SelectEquipLayer()
 {
@@ -202,9 +203,13 @@ void SelectEquipLayer::onclick(Ref* pSender)
 	Node* node = (Node*)pSender;
 	ResBase* res = (ResBase*)node->getUserData();
 	Layer* layer;
-	if (res->getType() >= T_ARMOR && res->getType() <= T_NG)
+	if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
 	{
 		layer = TakeOnLayer::create((Equip*)res, m_herodata);
+	}
+	else if (res->getType() >= T_WG && res->getType() <= T_NG)
+	{
+		layer = EquipDescLayer::create(res, 3);
 	}
 	else
 	{

@@ -101,7 +101,7 @@ void MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescou
 		if (stonescount > 0)
 		{
 			for (int n = 0; n < stonescount; n++)
-				res->vec_stones.push_back("o");//用一个占位
+			res->vec_stones.push_back("o");//用一个占位
 		}
 		vec_MyResources.push_back(res);
 	}

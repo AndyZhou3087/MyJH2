@@ -16,7 +16,24 @@ public:
 
 	CC_SYNTHESIZE(DynamicValueInt, m_qu, QU);//品质
 	CC_SYNTHESIZE(std::string, m_whos, Whos);//谁装配上了
-	DynamicValueInt getLv();
+	virtual DynamicValueInt getLv();
 public:
+	//攻击
+	virtual float getAtk();
+
+	//防御
+	virtual float getDf();
+
+	//血量
+	virtual float getHp();
+
+	//攻击速度
+	virtual float getAtkSpeed();
+
+	//暴击
+	virtual float getCrit();
+
+	//闪避
+	virtual float getDodge();
 };
 #endif

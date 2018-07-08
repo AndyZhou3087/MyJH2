@@ -4,14 +4,14 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
-#include "Equip.h"
+#include "Equipable.h"
 USING_NS_CC;
 
 typedef enum
 {
-	S_EQUIP_USE,
+	S_EQUIP_SEL,
 	S_EQUIP_DECOMPOSE,
-	S_EQUIP_TAKEONGF,
+	S_EQUIP_TAKEOFF,
 	S_EQUIP_OTHER
 }S_EQUIP_STATUS;
 class EquipDescLayer : public cocos2d::Layer
@@ -28,7 +28,7 @@ private:
 
 private:
 	int status;
-	Equip* m_res;
+	Equipable* m_res;
 };
 
 #endif

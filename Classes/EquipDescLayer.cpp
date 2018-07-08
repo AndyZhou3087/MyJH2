@@ -6,6 +6,7 @@
 #include "MovingLabel.h"
 #include "MyRes.h"
 #include "StoreHouseLayer.h"
+#include "HeroAttrLayer.h"
 
 USING_NS_CC;
 
@@ -44,7 +45,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		return false;
 	}
 
-	m_res = (Equip*)res;
+	m_res = (Equipable*)res;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
 
@@ -89,23 +90,35 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	quatext->setString(str);
 	quatext->setTextColor(Color4B(POTENTIALCOLOR[s]));
 
-	float bns = POTENTIAL_BNS[s];
-
-	float attrval[] = {
-		GlobalInstance::map_Equip[res->getId()].maxhp * bns,
-		GlobalInstance::map_Equip[res->getId()].atk * bns,
-		GlobalInstance::map_Equip[res->getId()].df * bns,
-		GlobalInstance::map_Equip[res->getId()].speed *bns,
-		GlobalInstance::map_Equip[res->getId()].crit * bns,
-		GlobalInstance::map_Equip[res->getId()].avoid* bns
-	};
+	std::vector<float> vec_attrval;
+	
+	if (m_res->getType() >= T_ARMOR && m_res->getType() <= T_FASHION)
+	{
+		float bns = POTENTIAL_BNS[s];
+		vec_attrval.push_back(GlobalInstance::map_Equip[res->getId()].maxhp * bns);
+		vec_attrval.push_back(GlobalInstance::map_Equip[res->getId()].atk * bns);
+		vec_attrval.push_back(GlobalInstance::map_Equip[res->getId()].df * bns);
+		vec_attrval.push_back(GlobalInstance::map_Equip[res->getId()].speed * bns);
+		vec_attrval.push_back(GlobalInstance::map_Equip[res->getId()].crit * bns);
+		vec_attrval.push_back(GlobalInstance::map_Equip[res->getId()].avoid * bns);
+	}
+	else if (m_res->getType() >= T_WG && m_res->getType() <= T_NG)
+	{
+		GongFa* gf = (GongFa*)m_res;
+		vec_attrval.push_back(gf->getHp());
+		vec_attrval.push_back(gf->getAtk());
+		vec_attrval.push_back(gf->getDf());
+		vec_attrval.push_back(gf->getAtkSpeed());
+		vec_attrval.push_back(gf->getCrit());
+		vec_attrval.push_back(gf->getDodge());
+	}
 
 	for (int i = 0; i <= 5; i++)
 	{
 		str = StringUtils::format("attrtext_%d",i);
 		cocos2d::ui::Text* attrlbl = (cocos2d::ui::Text*)csbnode->getChildByName(str);
 		str = StringUtils::format("addattrtext_%d", i);
-		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), attrval[i]);
+		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), vec_attrval[i]);
 		attrlbl->setString(str);
 	}
 
@@ -140,11 +153,19 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	{
 		actionbtn->setVisible(false);
 	}
-	else
+	else if (fromwhere == 2)//换下功法
 	{
-		status = S_EQUIP_USE;
-		srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("usebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		status = S_EQUIP_TAKEOFF;
+
+		srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("takeoffbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	}
+	else if (fromwhere == 3)//选择功法
+	{
+		status = S_EQUIP_SEL;
+
+		srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("selectbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -171,8 +192,21 @@ void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
 			if (storelayer != NULL)
 				storelayer->decompose(m_res);
+			this->removeFromParentAndCleanup(true);
 		}
-		this->removeFromParentAndCleanup(true);
+		else if (status == S_EQUIP_TAKEOFF)
+		{
+			HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent();
+			heroAttrLayer->takeOff(m_res);
+			this->removeFromParentAndCleanup(true);
+		}
+		else if (status == S_EQUIP_SEL)
+		{
+			HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent()->getParent();
+			heroAttrLayer->takeOn(m_res);
+			this->getParent()->removeFromParentAndCleanup(true);
+		}
+
 	}
 }
 

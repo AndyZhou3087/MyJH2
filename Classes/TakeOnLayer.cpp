@@ -16,11 +16,6 @@ static bool isChangeEquip = false;
 TakeOnLayer::TakeOnLayer()
 {
 	nohasEquip = NULL;
-	stone_atkbns = 0;
-	stone_dfbns = 0;
-	stone_hpbns = 0;
-	stone_dodgebns = 0;
-	stone_critbns = 0;
 }
 
 
@@ -105,19 +100,14 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 	desc->setString(GlobalInstance::map_AllResources[m_equip->getId()].desc);
 
-	parseSuitJson();
-
 	int equ = m_equip->getQU().getValue();
 
 	float bns = POTENTIAL_BNS[equ];
 
-	suithpbns = 0.0f;
-	suitdfbns = 0.0f;
-
 	int basehp = GlobalInstance::map_Equip[m_equip->getId()].maxhp;
 	int basedf = GlobalInstance::map_Equip[m_equip->getId()].df;
 
-	if (map_suit.find(m_equip->getId()) != map_suit.end())
+	if (GlobalInstance::map_EquipSuit.find(m_equip->getId()) != GlobalInstance::map_EquipSuit.end())
 	{
 		for (unsigned int i = 0; i < 3; i++)
 		{
@@ -130,32 +120,16 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 			str = StringUtils::format("res_%d", i);
 			cocos2d::ui::ImageView* suitres = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
 
-			if (i < map_suit[m_equip->getId()].vec_suit.size())
+			if (i < GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit.size())
 			{
-				std::string eid = map_suit[m_equip->getId()].vec_suit[i];
+				std::string eid = GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit[i];
 				str = StringUtils::format("ui/%s.png", eid.c_str());
 				suitres->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 				suitres->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onEquipclick, this));
 
 				if (i > 0)
 				{
-
-					std::string attrstr;
-					float suitval = 0;
-					if (i == 1)
-					{
-						attrstr = "addattrtext_0";
-						suitval = map_suit[m_equip->getId()].vec_bns[i - 1] * basehp / 100;
-					}
-					else if (i == 2)
-					{
-						attrstr = "addattrtext_2";
-						suitval = map_suit[m_equip->getId()].vec_bns[i - 1] * basedf / 100;
-					}
-					std::string suittextstr = StringUtils::format("suit%d", i);
-					std::string s2 = StringUtils::format("%s%s", ResourceLang::map_lang[suittextstr].c_str(), ResourceLang::map_lang[attrstr].c_str());
-					str = StringUtils::format(s2.c_str(), suitval);
-					suitresdesc->setString(str);
+					vec_suitDesc.push_back(suitresdesc);
 
 					cocos2d::ui::Text* statlbl = (cocos2d::ui::Text*)suitresbox->getChildByName("status");
 
@@ -182,14 +156,6 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 					{
 						str = StringUtils::format("ui/resbox_qu%d.png", eres->getQU().getValue());
 						suitresbox->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
-						if (i == 1)
-						{
-							suithpbns += basehp * map_suit[m_equip->getId()].vec_bns[i - 1] / 100;
-						}
-						else if (i == 2)
-						{
-							edf += basedf * map_suit[m_equip->getId()].vec_bns[i - 1] / 100;
-						}
 						suitres->setUserData((void*)eres);
 
 					}
@@ -387,13 +353,27 @@ void TakeOnLayer::chageStone(ResBase* stoneres, int which)
 
 void TakeOnLayer::updateUI()
 {
-	std::string stonedescstr[] = { "addattrtext_1","addattrtext_2","addattrtext_0","addattrtext_5","addattrtext_4" };
+	for (int i = 0; i < vec_suitDesc.size(); i++)
+	{
+		std::string attrstr;
+		float suitval = 0;
+		if (i == 0)
+		{
+			attrstr = "addattrtext_0";
+			suitval = m_equip->getSuitHp();
+		}
+		else if (i == 1)
+		{
+			attrstr = "addattrtext_2";
+			suitval = m_equip->getSuitDf();
+		}
+		std::string suittextstr = StringUtils::format("suit%d", i+1);
+		std::string s2 = StringUtils::format("%s%s", ResourceLang::map_lang[suittextstr].c_str(), ResourceLang::map_lang[attrstr].c_str());
+		std::string str = StringUtils::format(s2.c_str(), suitval);
+		vec_suitDesc[i]->setString(str);
+	}
 
-	stone_atkbns = 0;
-	stone_dfbns = 0;
-	stone_hpbns = 0;
-	stone_dodgebns = 0;
-	stone_critbns = 0;
+	std::string stonedescstr[] = { "addattrtext_1","addattrtext_2","addattrtext_0","addattrtext_5","addattrtext_4" };
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -415,26 +395,11 @@ void TakeOnLayer::updateUI()
 				stone->ignoreContentAdaptWithSize(true);
 				stone->setVisible(true);
 
-				int intv = (atoi(stoneid.substr(1).c_str()) - 1) / 3;
+				int intid = atoi(stoneid.substr(1).c_str()) - 1;
+				int intv = intid / 3;vvv
 				std::string ss = ResourceLang::map_lang[stonedescstr[intv]];
-				str = StringUtils::format(ss.c_str(), stonebns[intv]);
+				str = StringUtils::format(ss.c_str(), STONE_BNS[intv][intid % 3];);
 
-				if (intv == 0)
-					stone_atkbns += stonebns[intv];
-				else if (intv == 1)
-					stone_dfbns += stonebns[intv];
-				else if (intv == 2)
-					stone_hpbns += stonebns[intv];
-				else if (intv == 3)
-				{
-					str = str.substr(0, str.length() - 1);
-					stone_dodgebns += stonebns[intv];
-				}
-				else if (intv == 4)
-				{
-					str = str.substr(0, str.length() - 1);
-					stone_critbns += stonebns[intv];
-				}
 				stonedesc->setString(str);
 				stonedesc->setVisible(false);
 			}
@@ -462,38 +427,27 @@ void TakeOnLayer::updateUI()
 }
 
 void TakeOnLayer::updateAttr()
-{
-	int equ = m_equip->getQU().getValue();
-	float ebns = POTENTIAL_BNS[equ];
-
-	ehp = ebns * GlobalInstance::map_Equip[m_equip->getId()].maxhp;
-	eatk = ebns * GlobalInstance::map_Equip[m_equip->getId()].atk;
-	edf = ebns *  GlobalInstance::map_Equip[m_equip->getId()].df;
-
-	eatkspeed = ebns * GlobalInstance::map_Equip[m_equip->getId()].speed;
-	ecrit = ebns * GlobalInstance::map_Equip[m_equip->getId()].crit;
-	edodge = ebns * GlobalInstance::map_Equip[m_equip->getId()].avoid;
-
-	if (MyRes::getMyPutOnResByType(m_equip->getType(), m_herodata->getName()) != NULL)
+{	
+	float suithp = 0;
+	float suitdf = 0;
+	if (GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit.size() >= 2)
 	{
-		int hqu = m_herodata->getVocation();
-		float hbns = GlobalInstance::map_Equip[m_equip->getId()].vec_bns[hqu];
-		ehp += hbns * GlobalInstance::map_Equip[m_equip->getId()].maxhp;
-		eatk += hbns * GlobalInstance::map_Equip[m_equip->getId()].atk;
-		edf += hbns *  GlobalInstance::map_Equip[m_equip->getId()].df;
-
-		eatkspeed += hbns * GlobalInstance::map_Equip[m_equip->getId()].speed;
-		ecrit = + hbns * GlobalInstance::map_Equip[m_equip->getId()].crit;
-		edodge = + hbns * GlobalInstance::map_Equip[m_equip->getId()].avoid;
+		if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit[1], m_herodata->getName()) != NULL)
+			suithp = m_equip->getSuitHp();
+	}
+	if (GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit.size() >= 3)
+	{
+		if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit[2], m_herodata->getName()) != NULL)
+			suitdf = m_equip->getSuitDf();
 	}
 
 	float attrval[] = {
-		ehp + stone_hpbns + suithpbns,
-		eatk + stone_atkbns,
-		edf + stone_dfbns + suitdfbns,
-		eatkspeed,
-		ecrit + stone_critbns,
-		edodge + stone_dodgebns
+		m_equip->getHp() + suithp,
+		m_equip->getAtk(),
+		m_equip->getDf() + suitdf,
+		m_equip->getAtkSpeed(),
+		m_equip->getCrit(),
+		m_equip->getDodge()
 	};
 	//角色属性文字
 	for (int i = 0; i <= 5; i++)
@@ -503,33 +457,5 @@ void TakeOnLayer::updateAttr()
 		str = StringUtils::format("addattrtext_%d", i);
 		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), attrval[i]);
 		attrlbl->setString(str);
-	}
-}
-
-void TakeOnLayer::parseSuitJson()
-{
-	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/suitequip.json"));
-	rapidjson::Value& allData = doc["sq"];
-	for (unsigned int i = 0; i < allData.Size(); i++)
-	{
-		rapidjson::Value& jsonvalue = allData[i];
-		if (jsonvalue.IsObject())
-		{
-			EquipSuit data;
-			rapidjson::Value& v = jsonvalue["id"];
-			data.id = v.GetString();
-
-			v = jsonvalue["suite"];
-			for (unsigned int m = 0; m < v.Size(); m++)
-			{
-				data.vec_suit.push_back(v[m].GetString());
-			}
-			v = jsonvalue["bns"];
-			for (unsigned int m = 0; m < v.Size(); m++)
-			{
-				data.vec_bns.push_back(v[m].GetDouble());
-			}
-			map_suit[data.id] = data;
-		}
 	}
 }

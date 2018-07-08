@@ -21,7 +21,8 @@ std::vector<ResCreator*> GlobalInstance::vec_resCreators;
 
 std::map<std::string, AllResources> GlobalInstance::map_AllResources;
 std::map<std::string, EquipData> GlobalInstance::map_Equip;
-
+std::map<std::string, GFData> GlobalInstance::map_GF;
+std::map<std::string, EquipSuit> GlobalInstance::map_EquipSuit;
 std::vector<TaskMainData> GlobalInstance::vec_TaskMain;
 TaskMainData GlobalInstance::myCurMainData;
 
@@ -665,6 +666,82 @@ void GlobalInstance::loadEquipData()
 	}
 }
 
+void GlobalInstance::loadGFData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/gf.json"));
+	rapidjson::Value& allData = doc["g"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			GFData data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = v.GetString();
+
+			v = jsonvalue["name"];
+			data.name = v.GetString();
+
+			v = jsonvalue["qu"];
+			data.qu = atoi(v.GetString());
+
+			v = jsonvalue["skill"];
+			data.skill = atoi(v.GetString());
+
+			v = jsonvalue["skillbns"];
+
+			for (int m = 0; m < v.Size(); m++)
+			{
+				data.vec_skillbns.push_back(v[m].GetInt());
+			}
+			
+			v = jsonvalue["maxhp"];
+			for (unsigned  int m = 0; m < v.Size(); m++)
+			{
+				data.vec_hp.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["atk"];
+			for (unsigned  int m = 0; m < v.Size(); m++)
+			{
+				data.vec_atk.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["df"];
+			for (unsigned  int m = 0; m < v.Size(); m++)
+			{
+				data.vec_df.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["avoid"];
+			for (unsigned  int m = 0; m < v.Size(); m++)
+			{
+				data.vec_avoid.push_back(v[m].GetFloat());
+			}
+
+			v = jsonvalue["crit"];
+			for (unsigned  int m = 0; m < v.Size(); m++)
+			{
+				data.vec_crit.push_back(v[m].GetFloat());
+			}
+
+			v = jsonvalue["speed"];
+			for (unsigned  int m = 0; m < v.Size(); m++)
+			{
+				data.vec_speed.push_back(v[m].GetFloat());
+			}
+
+			v = jsonvalue["bns"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_herobns.push_back(v[m].GetFloat());
+			}
+
+			map_GF[data.id] = data;
+		}
+	}
+}
+
 void GlobalInstance::loadAllResourcesData()
 {
 	int langtype = DataSave::getInstance()->getLocalLang();
@@ -997,4 +1074,32 @@ void GlobalInstance::saveRefreshMarketTime(int time)
 int GlobalInstance::getRefreshMarketTime()
 {
 	return refreshMarketTime;
+}
+
+void GlobalInstance::parseSuitJson()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/suitequip.json"));
+	rapidjson::Value& allData = doc["sq"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			EquipSuit data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = v.GetString();
+
+			v = jsonvalue["suite"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_suit.push_back(v[m].GetString());
+			}
+			v = jsonvalue["bns"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_bns.push_back(v[m].GetDouble());
+			}
+			map_EquipSuit[data.id] = data;
+		}
+	}
 }

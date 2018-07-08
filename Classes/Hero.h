@@ -6,6 +6,7 @@
 #include "cocos2d.h"
 #include "json.h"
 #include "DynamicValue.h"
+#include "Equipable.h"
 USING_NS_CC;
 
 #define HEROMAX 4
@@ -66,10 +67,13 @@ private:
 	//随机生成一个名字
 	std::string generateName();
 	float m_hp;//血量
+	Equipable* takeOnEquip[6];//6个装备，包括武功和内功
 public:
 	/********************************************************************
-	* 
+	* 根据类型获取对应的装备
 	*********************************************************************/
+	Equipable* getEquipable(int etype);
+	void setEquipable(Equipable* edata, int etype);
 };
 
 #endif

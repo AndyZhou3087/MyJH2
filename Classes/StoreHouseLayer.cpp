@@ -224,14 +224,10 @@ void StoreHouseLayer::onclick(Ref* pSender)
 	}
 	else
 	{
-		if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
+		if (res->getType() >= T_ARMOR && res->getType() <= T_NG)
 		{
 			EquipDescLayer* layer = EquipDescLayer::create(res, 0);//从仓库进入
 			this->addChild(layer);
-		}
-		else if (res->getType() >= T_WG && res->getType() <= T_NG)
-		{
-			
 		}
 		else
 		{

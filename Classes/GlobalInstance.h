@@ -59,6 +59,29 @@ typedef struct
 	float speed;//攻击速度
 }EquipData;
 
+typedef struct
+{
+	std::string id;
+	std::vector<std::string> vec_suit;
+	std::vector<float> vec_bns;
+}EquipSuit;
+
+typedef struct
+{
+	std::string id;
+	std::string name;
+	std::vector<float> vec_herobns;//对应英雄职业加成
+	std::vector<int> vec_skillbns;//技能加成
+	int skill;
+	int qu;
+	std::vector<int> vec_hp;
+	std::vector<int> vec_atk;
+	std::vector<int> vec_df;
+	std::vector<float> vec_avoid;//闪避率
+	std::vector<float> vec_crit;//暴击率
+	std::vector<float> vec_speed;//攻击速度
+}GFData;
+
 typedef enum
 {
 	//是否完成此任务，0已接受未完成，1未接受任务，2已完成未领取，3已领取奖励
@@ -183,6 +206,9 @@ public:
 	//加载装备资源
 	void loadEquipData();
 
+	//加载功法资源
+	void loadGFData();
+
 	//加载主线任务
 	void loadTaskMainData();
 
@@ -208,6 +234,9 @@ public:
 	int getTotalCaryy();
 
 	void parseMapJson();
+
+	//解析套装数据
+	void parseSuitJson();
 
 	DynamicValueInt getMySoliverCount();
 
@@ -244,7 +273,11 @@ public:
 
 	static std::map<std::string, AllResources> map_AllResources;//资源名字
 
+	static std::map<std::string, EquipSuit> map_EquipSuit;//套装
+
 	static std::map<std::string, EquipData> map_Equip;//装备名字
+
+	static std::map<std::string, GFData> GlobalInstance::map_GF;
 
 	static std::vector<TaskMainData> vec_TaskMain;//主线任务
 

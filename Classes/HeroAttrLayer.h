@@ -54,6 +54,8 @@ private:
 	void editBoxReturn(cocos2d::ui::EditBox *editBox);
 
 	void updateEquipUi(ResBase* res, int barindex);
+
+	void updataAtrrUI(float dt);
 private:
 
 	//装备栏
