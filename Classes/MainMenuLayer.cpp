@@ -3,6 +3,7 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "MyRes.h"
+#include "TaskTalkLayer.h"
 
 USING_NS_CC;
 
@@ -165,6 +166,9 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			}
 			break;
 		case SETBTN:
+			//测试
+			//this->addChild(TaskTalkLayer::create());
+
 			break;
 		case ACHBTN:
 			break;

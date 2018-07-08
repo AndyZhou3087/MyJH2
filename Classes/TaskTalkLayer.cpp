@@ -1,4 +1,4 @@
-#include "TaskMainDescLayer.h"
+#include "TaskTalkLayer.h"
 #include <algorithm>
 #include "CommonFuncs.h"
 #include "Const.h"
@@ -7,23 +7,23 @@
 #include "MyRes.h"
 #include "MyMenu.h"
 #include "MovingLabel.h"
-#include "TaskMainNode.h"
+#include "Quest.h"
 
-TaskMainDescLayer::TaskMainDescLayer()
+TaskTalkLayer::TaskTalkLayer()
 {
 
 }
 
 
-TaskMainDescLayer::~TaskMainDescLayer()
+TaskTalkLayer::~TaskTalkLayer()
 {
 
 }
 
-TaskMainDescLayer* TaskMainDescLayer::create(TaskMainData* data)
+TaskTalkLayer* TaskTalkLayer::create()
 {
-	TaskMainDescLayer *pRet = new(std::nothrow)TaskMainDescLayer();
-	if (pRet && pRet->init(data))
+	TaskTalkLayer *pRet = new(std::nothrow)TaskTalkLayer();
+	if (pRet && pRet->init())
 	{
 		pRet->autorelease();
 		return pRet;
@@ -36,9 +36,9 @@ TaskMainDescLayer* TaskMainDescLayer::create(TaskMainData* data)
 	}
 }
 
-bool TaskMainDescLayer::init(TaskMainData* data)
+bool TaskTalkLayer::init()
 {
-	m_data = data;
+	data = &GlobalInstance::myCurMainData;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
 
@@ -55,7 +55,7 @@ bool TaskMainDescLayer::init(TaskMainData* data)
 	name->setString(data->name);
 
 	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)m_csbnode->getChildByName("desc");
-	desc->setString(data->desc);
+	desc->setString(data->bossword);
 
 	//npc头像
 	/*cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
@@ -66,52 +66,53 @@ bool TaskMainDescLayer::init(TaskMainData* data)
 	cocos2d::ui::Text* npcname = (cocos2d::ui::Text*)m_csbnode->getChildByName("npcname");
 	npcname->setString(data->);*/
 
-	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("closebtn");
-	closebtn->setPosition(Vec2(357, 183));
+	closebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("closebtn");
+	closebtn->setPosition(Vec2(357, 131));
 	closebtn->setTag(0);
-	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskMainDescLayer::onBtnClick, this));
+	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtnClick, this));
 
-	accbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("accbtn");
-	accbtn->setPosition(Vec2(357, 376));
-	accbtn->setTag(1);
-	accbtn->addTouchEventListener(CC_CALLBACK_2(TaskMainDescLayer::onBtnClick, this));
+	givebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("accbtn");
+	givebtn->setPosition(Vec2(357, 429));
+	givebtn->setTag(1);
+	givebtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtnClick, this));
+	givebtn->setTitleText(data->need1desc);
 
-	cocos2d::ui::Button* getbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("getbtn");
-	getbtn->setPosition(Vec2(357, 376));
-	getbtn->setTag(2);
-	getbtn->addTouchEventListener(CC_CALLBACK_2(TaskMainDescLayer::onBtnClick, this));
+	fightbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("getbtn");
+	fightbtn->setVisible(true);
+	fightbtn->setPosition(Vec2(357, 285));
+	fightbtn->setTag(2);
+	fightbtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtnClick, this));
+	fightbtn->setTitleText(data->need2desc);
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("ScrollView");
 	scrollView->setScrollBarEnabled(false);
 	scrollView->setBounceEnabled(true);
 
-	if (data->isfinish == MAIN_FINISH)
+	if (data->type.size()<2)
 	{
-		getbtn->setVisible(true);
-		accbtn->setVisible(false);
-	}
-	else if (data->isfinish == MAIN_GET)
-	{
-		getbtn->setVisible(false);
-		accbtn->setVisible(false);
-	}
-	else if (data->isfinish == MAIN_ACC)
-	{
-		getbtn->setVisible(false);
-		accbtn->setVisible(true);
-		accbtn->setTitleText(ResourceLang::map_lang["accmaintask"]);
-		accbtn->setTouchEnabled(false);
+		if (data->type[0] == MAIN_GIVE)
+		{
+			fightbtn->setVisible(false);
+			givebtn->setPosition(Vec2(357, 376));
+		}
+		else
+		{
+			givebtn->setVisible(false);
+			fightbtn->setPosition(Vec2(357, 376));
+		}
+		closebtn->setPosition(Vec2(357, 183));
 	}
 	else
 	{
-		getbtn->setVisible(false);
-		accbtn->setVisible(true);
-	}
-
-	if (data->id != GlobalInstance::myCurMainData.id && data->isfinish == MAIN_TASK)
-	{
-		getbtn->setVisible(false);
-		accbtn->setVisible(false);
+		//判断是否互斥
+		if (Quest::getMutexMainQuestType(data->id, data->type[0]))
+		{
+			givebtn->setTouchEnabled(false);
+		}
+		if (Quest::getMutexMainQuestType(data->id, data->type[1]))
+		{
+			fightbtn->setTouchEnabled(false);
+		}
 	}
 
 	std::vector<std::vector<std::string>> rewards;
@@ -121,12 +122,12 @@ bool TaskMainDescLayer::init(TaskMainData* data)
 		{
 			rewards = data->reward1;
 		}
-		else 
+		else
 		{
 			rewards = data->reward2;
 		}
 	}
-	else 
+	else
 	{
 		for (int m = 0; m < data->reward1.size(); m++)
 		{
@@ -178,7 +179,7 @@ bool TaskMainDescLayer::init(TaskMainData* data)
 		box->addChild(namelbl);
 
 	}
-
+	
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -193,7 +194,7 @@ bool TaskMainDescLayer::init(TaskMainData* data)
 	return true;
 }
 
-void TaskMainDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
@@ -205,49 +206,14 @@ void TaskMainDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::T
 		case 0:
 			this->removeFromParentAndCleanup(true);
 			break;
-		case 1: //接受任务
-			accbtn->setTitleText(ResourceLang::map_lang["accmaintask"]);
-			accbtn->setTouchEnabled(false);
-			accpTask();
+		case 1: //条件1
+			
 			break;
-		case 2: //完成后领取奖励
-			node->setVisible(false);
-			getRewards();
+		case 2: //条件2
+			
 			break;
 		default:
 			break;
 		}
-	}
-}
-
-void TaskMainDescLayer::accpTask()
-{
-	m_data->isfinish = MAIN_ACC;
-	GlobalInstance::myCurMainData.isfinish = MAIN_ACC;
-}
-
-void TaskMainDescLayer::getRewards()
-{
-	m_data->isfinish = MAIN_GET;
-	std::vector<std::vector<std::string>> rewarr;
-	if (m_data->finishtype == MAIN_GIVE)
-	{
-		rewarr = m_data->reward1;
-	}
-	else
-	{
-		rewarr = m_data->reward2;
-	}
-	for (int i = 0; i < rewarr.size(); i++)
-	{
-		std::vector<std::string> one_res = rewarr[i];
-		std::string resid = one_res[0];
-		int count = atoi(one_res[1].c_str());
-		int qu = -1;
-		if (one_res.size()>2 && one_res[2].length()>0)
-		{
-			qu = atoi(one_res[2].c_str());
-		}
-		MyRes::Add(resid, count, MYSTORAGE, qu);
 	}
 }
