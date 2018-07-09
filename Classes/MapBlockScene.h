@@ -93,6 +93,8 @@ private:
 
 	void go(MAP_KEYTYPE keyArrow);
 
+	void createRndMonsters();
+
 private:
 	Node* m_csbnode;
 	ParticleSystemQuad* myposParticle;
@@ -113,6 +115,8 @@ private:
 	Node* m_longTouchNode;
 	int randStartPos;
 	std::string m_mapid;
+	int walkcount;
+	int monsterComeRnd;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

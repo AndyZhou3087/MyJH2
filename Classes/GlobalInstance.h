@@ -119,6 +119,24 @@ typedef struct
 	int finishtype;//完成任务类型，1表示条件1完成，2表示条件2完成
 }TaskMainData;
 
+typedef struct
+{
+	int vocation;
+	std::vector<int> vec_maxhp;
+	std::vector<int> vec_atk;
+	std::vector<int> vec_df;
+	std::vector<float> vec_avoid;//闪避率
+	std::vector<float> vec_crit;//暴击率
+	std::vector<float> vec_speed;//攻击速度
+	std::vector<int> vec_bnsexp;//战斗获得经验值
+}NPCAttrData;
+
+typedef struct
+{
+	std::string id;
+	int vocation;
+}NPCData;
+
 class GlobalInstance
 {
 public:
@@ -259,6 +277,8 @@ public:
 	//设置刷新资源时间
 	int getRefreshMarketTime();
 
+	void loadNpcData();
+
 	//主线任务进行排序
 	static bool larger_callback(TaskMainData a, TaskMainData b);
 private:
@@ -279,13 +299,17 @@ public:
 
 	static std::map<std::string, GFData> GlobalInstance::map_GF;
 
+	static std::map<int, NPCAttrData> GlobalInstance::map_NpcAttrData;
+
+	static std::map<std::string, NPCData> GlobalInstance::map_Npcs;
+
 	static std::vector<TaskMainData> vec_TaskMain;//主线任务
 
 	static TaskMainData myCurMainData;//当前主线任务
 
 	static int servertime;//服务器时间
 
-	static Hero* myCardHeros[6];//出城选择的6个英雄
+	static Npc* myCardHeros[6];//出城选择的6个英雄
 
 	static std::map<std::string, S_MainMap> map_mapsdata;//地图数据
 private:

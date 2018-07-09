@@ -21,6 +21,8 @@ MapBlockScene::MapBlockScene()
 
 	m_isLongPress = false;
 	m_longTouchNode = NULL;
+	walkcount = 0;
+	monsterComeRnd = 20;
 }
 
 
@@ -233,6 +235,8 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 		break;
 	}
 	setMyPos();
+	walkcount++;
+	monsterComeRnd += (5 + walkcount);
 
 	if (mycurCol == vec_startpos[randStartPos] % blockColCount && mycurRow == vec_startpos[randStartPos] / blockColCount)
 	{
@@ -495,12 +499,64 @@ void MapBlockScene::doMyStatus()
 	}
 	else
 	{
-		this->addChild(FightingLayer::create(mapblock));
+		if (mapblock->getPosType() == POS_NOTHING)
+		{
+			int r = GlobalInstance::getInstance()->createRandomNum(100);
+			if (r < monsterComeRnd)
+			{
+				monsterComeRnd = 20;
+				walkcount = 0;
+				std::vector<Npc*> vec_enemys;
+				int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
+				for (int i = 0; i < rndcount; i++)
+				{
+					int r1 = GlobalInstance::getInstance()->createRandomNum(100);
+					int rnd = 0;
+					for (unsigned int m = 0; m < MapBlock::vec_randMonsters.size(); m++)
+					{
+						FOURProperty propty = MapBlock::vec_randMonsters[m];
+						rnd += propty.floatPara3;
+						if (r1 < rnd)
+						{
+							int minlv = propty.intPara1 / 1000;
+							int maxlv = propty.intPara1 % 1000;
+							int minqu = propty.intPara2 / 1000;
+							int maxqu = propty.intPara2 % 1000;
+							int rlv = minlv + GlobalInstance::getInstance()->createRandomNum(maxlv- minlv + 1);
+							int rqu = minqu + GlobalInstance::getInstance()->createRandomNum(maxqu - minqu + 1);
+
+							Npc* enemyhero = new Npc();
+							std::string sid = MapBlock::vec_randMonsters[m].sid;
+							enemyhero->setId(sid);
+							enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
+							enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
+							enemyhero->setPotential(rqu);
+							enemyhero->setLevel(rlv);
+							enemyhero->setHp(enemyhero->getMaxHp());
+							vec_enemys.push_back(enemyhero);
+							break;
+						}
+					}
+
+				}
+				if (vec_enemys.size() > 0)
+					this->addChild(FightingLayer::create(vec_enemys));
+			}
+		}
+		else if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS)
+		{
+
+		}
 	}
 	if (status != MAP_S_NOTING)
 	{
 		cacelLongTouch();
 	}
+}
+
+void MapBlockScene::createRndMonsters()
+{
+
 }
 
 void MapBlockScene::parseMapXml(std::string mapname)
@@ -530,7 +586,7 @@ void MapBlockScene::parseMapXml(std::string mapname)
 				{
 					FOURProperty mdata;
 					mdata.sid = msele->Attribute("id");
-					mdata.intPara1 = msele->IntAttribute("minlv") * 1000+ msele->IntAttribute("maxlv");
+					mdata.intPara1 = msele->IntAttribute("minlv") * 1000 + msele->IntAttribute("maxlv");
 					mdata.intPara2 = msele->IntAttribute("minqu") * 1000 + msele->IntAttribute("maxqu");
 					mdata.floatPara3 = atof(msele->GetText());
 					MapBlock::vec_randMonsters.push_back(mdata);

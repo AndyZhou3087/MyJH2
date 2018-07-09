@@ -86,7 +86,15 @@ float Hero::getAtk()
 	{
 		if (takeOnEquip[i] != NULL)
 		{
-			float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			float herobns;
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+			}
 			heroatk += (takeOnEquip[i]->getAtk()*herobns);
 		}
 	}
@@ -113,7 +121,8 @@ float Hero::getDf()
 			}
 			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
 			{
-				herodf += takeOnEquip[i]->getDf();
+				float herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+				herodf += takeOnEquip[i]->getDf()*herobns;
 			}
 		}
 	}
@@ -141,7 +150,8 @@ float Hero::getMaxHp()
 			}
 			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
 			{
-				herohp += takeOnEquip[i]->getHp();
+				float herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+				herohp += takeOnEquip[i]->getHp() * herobns;
 			}
 		}
 	}
@@ -157,7 +167,15 @@ float Hero::getAtkSpeed()
 	{
 		if (takeOnEquip[i] != NULL)
 		{
-			float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			float herobns;
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+			}
 			heroatkspeed += (takeOnEquip[i]->getAtkSpeed()*herobns);
 		}
 	}
@@ -170,7 +188,15 @@ float Hero::getCrit()
 	{
 		if (takeOnEquip[i] != NULL)
 		{
-			float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			float herobns;
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+			}
 			herocrit += (takeOnEquip[i]->getCrit()*herobns);
 		}
 	}
@@ -183,7 +209,15 @@ float Hero::getDodge()
 	{
 		if (takeOnEquip[i] != NULL)
 		{
-			float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			float herobns;
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+			}
 			herododge += (takeOnEquip[i]->getDodge()*herobns);
 		}
 	}

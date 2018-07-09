@@ -83,6 +83,8 @@ void LoadingScene::delayLoadData(float dt)
 
 	GlobalInstance::getInstance()->loadGFData();
 
+	GlobalInstance::getInstance()->loadNpcData();
+
 	//读取主线任务配置
 	GlobalInstance::getInstance()->loadTaskMainData();
 	//读取主线任务

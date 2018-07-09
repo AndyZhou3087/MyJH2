@@ -311,14 +311,16 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 			else
 			{
 				OutTownLayer* outTown = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
-				outTown->getMyCardHeroNode(this->getTag())->setData(GlobalInstance::myCardHeros[this->getTag()]);
+				outTown->getMyCardHeroNode(this->getTag())->setData((Hero*)GlobalInstance::myCardHeros[this->getTag()]);
 				SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
 				sellayer->getMyHeroNode(this->getTag())->updateData();
 			}
 		}
 		else if (g_MapBlockScene != NULL)
 		{
-			g_MapBlockScene->getFightHeroNode(this->getTag())->setData(GlobalInstance::myCardHeros[this->getTag()]);
+			//g_MapBlockScene->getFightHeroNode(this->getTag())->setData((Npc*)GlobalInstance::myCardHeros[this->getTag()]);
+			moditybtn->setVisible(false);
+			m_editName->setEnabled(false);
 		}
 	}
 }

@@ -16,14 +16,17 @@ FightingLayer::FightingLayer()
 
 FightingLayer::~FightingLayer()
 {
-
+	for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
+	{
+		delete m_enemyHeros[i];
+	}
 }
 
 
-FightingLayer* FightingLayer::create(MapBlock* mapblock)
+FightingLayer* FightingLayer::create(std::vector<Npc*> enemyHeros)
 {
 	FightingLayer *pRet = new(std::nothrow)FightingLayer();
-	if (pRet && pRet->init(mapblock))
+	if (pRet && pRet->init(enemyHeros))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -37,14 +40,14 @@ FightingLayer* FightingLayer::create(MapBlock* mapblock)
 }
 
 // on "init" you need to initialize your instance
-bool FightingLayer::init(MapBlock* mapblock)
+bool FightingLayer::init(std::vector<Npc*> enemyHeros)
 {
 	if (!Layer::init())
 	{
 		return false;
 	}
 
-	m_mapblock = mapblock;
+	m_enemyHeros = enemyHeros;
 	//LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	//this->addChild(color);
 
@@ -75,6 +78,15 @@ bool FightingLayer::init(MapBlock* mapblock)
 		fightHeroNode->setData(GlobalInstance::myCardHeros[i]);
 		addChild(fightHeroNode, 0, i);
 	}
+
+	for (unsigned int i = 0; i < enemyHeros.size(); i++)
+	{
+		FightHeroNode * fightHeroNode = FightHeroNode::create();
+		fightHeroNode->setPosition(145 + i % 3 * 215, 835 + i / 3 * 240);
+		fightHeroNode->setData(m_enemyHeros[i], 1);
+		addChild(fightHeroNode, 0, i);
+	}
+
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)

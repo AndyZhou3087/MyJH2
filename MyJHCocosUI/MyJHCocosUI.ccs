@@ -136,9 +136,45 @@
           <Image Name="boardblock_60.png" />
           <Image Name="boardblock_61.png" />
           <Image Name="boardblock_62.png" />
+          <Image Name="boardblock_63.png" />
+          <Image Name="boardblock_64.png" />
+          <Image Name="boardblock_65.png" />
+          <Image Name="boardblock_66.png" />
+          <Image Name="boardblock_67.png" />
+          <Image Name="boardblock_68.png" />
+          <Image Name="boardblock_69.png" />
           <Image Name="boardblock_7.png" />
+          <Image Name="boardblock_70.png" />
+          <Image Name="boardblock_71.png" />
+          <Image Name="boardblock_72.png" />
+          <Image Name="boardblock_73.png" />
+          <Image Name="boardblock_74.png" />
+          <Image Name="boardblock_75.png" />
+          <Image Name="boardblock_76.png" />
+          <Image Name="boardblock_77.png" />
+          <Image Name="boardblock_78.png" />
+          <Image Name="boardblock_79.png" />
           <Image Name="boardblock_8.png" />
+          <Image Name="boardblock_80.png" />
+          <Image Name="boardblock_81.png" />
+          <Image Name="boardblock_82.png" />
+          <Image Name="boardblock_83.png" />
+          <Image Name="boardblock_84.png" />
+          <Image Name="boardblock_85.png" />
+          <Image Name="boardblock_86.png" />
+          <Image Name="boardblock_87.png" />
+          <Image Name="boardblock_88.png" />
+          <Image Name="boardblock_89.png" />
           <Image Name="boardblock_9.png" />
+          <Image Name="boardblock_90.png" />
+          <Image Name="boardblock_91.png" />
+          <Image Name="boardblock_92.png" />
+          <Image Name="boardblock_93.png" />
+          <Image Name="boardblock_94.png" />
+          <Image Name="boardblock_95.png" />
+          <Image Name="boardblock_96.png" />
+          <Image Name="boardblock_97.png" />
+          <Image Name="boardblock_98.png" />
           <Image Name="buildblock_0.png" />
           <Image Name="buildblock_1.png" />
           <Image Name="buildblock_10.png" />
@@ -147,7 +183,18 @@
           <Image Name="buildblock_13.png" />
           <Image Name="buildblock_14.png" />
           <Image Name="buildblock_15.png" />
+          <Image Name="buildblock_17.png" />
+          <Image Name="buildblock_18.png" />
+          <Image Name="buildblock_19.png" />
           <Image Name="buildblock_2.png" />
+          <Image Name="buildblock_20.png" />
+          <Image Name="buildblock_21.png" />
+          <Image Name="buildblock_22.png" />
+          <Image Name="buildblock_23.png" />
+          <Image Name="buildblock_24.png" />
+          <Image Name="buildblock_25.png" />
+          <Image Name="buildblock_26.png" />
+          <Image Name="buildblock_27.png" />
           <Image Name="buildblock_3.png" />
           <Image Name="buildblock_4.png" />
           <Image Name="buildblock_5.png" />
@@ -171,6 +218,19 @@
           <Image Name="mapupbtn.png" />
           <Image Name="morearrow.png" />
           <Image Name="mtag0.png" />
+          <Image Name="n001.png" />
+          <Image Name="n002.png" />
+          <Image Name="n003.png" />
+          <Image Name="n004.png" />
+          <Image Name="n005.png" />
+          <Image Name="n006.png" />
+          <Image Name="n007.png" />
+          <Image Name="n008.png" />
+          <Image Name="n009.png" />
+          <Image Name="n010.png" />
+          <Image Name="n011.png" />
+          <Image Name="n012.png" />
+          <Image Name="n013.png" />
           <Image Name="submapanimcloud.png" />
           <Image Name="submapnodeitem.png" />
           <Image Name="submaptitlecloud.png" />
@@ -541,7 +601,6 @@
           <Image Name="s004.png" />
           <Image Name="setpline0.png" />
           <Image Name="smallstar.png" />
-          <Image Name="taskbtn.png" />
           <Image Name="taskframe.png" />
           <Image Name="taskprobar.png" />
           <Image Name="taskprobg.png" />
@@ -670,16 +729,15 @@
         <Project Name="selectMapNode.csd" Type="Node" />
         <Project Name="selectMyHerosLayer.csd" Type="Layer" />
         <Project Name="selectSubMapLayer.csd" Type="Layer" />
-        <Project Name="setinStoneLayer.csd" Type="Layer" />
         <Project Name="smithyLayer.csd" Type="Layer" />
         <Project Name="storeHouseLayer.csd" Type="Layer" />
         <Project Name="takeOnLayer.csd" Type="Layer" />
         <Project Name="taskDayNode.csd" Type="Node" />
         <Project Name="taskLayer.csd" Type="Layer" />
-        <Project Name="taskMainDescLayer.csd" Type="Layer" />
         <Project Name="taskMainNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
+        <Project Name="setinStoneLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -22,7 +22,12 @@ std::vector<ResCreator*> GlobalInstance::vec_resCreators;
 std::map<std::string, AllResources> GlobalInstance::map_AllResources;
 std::map<std::string, EquipData> GlobalInstance::map_Equip;
 std::map<std::string, GFData> GlobalInstance::map_GF;
+
 std::map<std::string, EquipSuit> GlobalInstance::map_EquipSuit;
+
+std::map<int, NPCAttrData> GlobalInstance::map_NpcAttrData;
+std::map<std::string, NPCData> GlobalInstance::map_Npcs;
+
 std::vector<TaskMainData> GlobalInstance::vec_TaskMain;
 TaskMainData GlobalInstance::myCurMainData;
 
@@ -34,7 +39,7 @@ int GlobalInstance::refreshMarketTime = 0;
 
 int GlobalInstance::totalFarmercount = 0;
 
-Hero* GlobalInstance::myCardHeros[6];
+Npc* GlobalInstance::myCardHeros[6];
 
 std::map<std::string, S_MainMap> GlobalInstance::map_mapsdata;
 
@@ -739,6 +744,83 @@ void GlobalInstance::loadGFData()
 			}
 
 			map_GF[data.id] = data;
+		}
+	}
+}
+
+void GlobalInstance::loadNpcData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/npcatr.json"));
+	rapidjson::Value& allData = doc["n"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			NPCAttrData data;
+			rapidjson::Value& v = jsonvalue["vocation"];
+			data.vocation = atoi(v.GetString());
+
+			v = jsonvalue["maxhp"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_maxhp.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["atk"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_atk.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["df"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_df.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["avoid"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_avoid.push_back(v[m].GetFloat());
+			}
+
+			v = jsonvalue["crit"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_crit.push_back(v[m].GetFloat());
+			}
+
+			v = jsonvalue["speed"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_speed.push_back(v[m].GetFloat());
+			}
+
+			v = jsonvalue["exp"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_bnsexp.push_back(v[m].GetFloat());
+			}
+
+			map_NpcAttrData[data.vocation] = data;
+		}
+	}
+
+	doc = ReadJsonFile(ResourcePath::makePath("json/npc.json"));
+	allData = doc["n"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			NPCData data;
+			rapidjson::Value& v = jsonvalue["vocation"];
+			data.vocation = atoi(v.GetString());
+
+			v = jsonvalue["id"];
+			data.id = v.GetString();
+			map_Npcs[data.id] = data;
 		}
 	}
 }

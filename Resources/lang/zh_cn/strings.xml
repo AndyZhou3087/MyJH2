@@ -69,9 +69,9 @@
 	<s name="addattrtext_0">生命值 +%.0f</s>
 	<s name="addattrtext_1">攻击力 +%.0f</s>
 	<s name="addattrtext_2">防御力 +%.0f</s>
-	<s name="addattrtext_3">攻击速度 +%.2f</s>
-	<s name="addattrtext_4">暴击几率 +%.2f%%</s>
-	<s name="addattrtext_5">闪避几率 +%.2f%%</s>
+	<s name="addattrtext_3">攻击速度 +%.3f</s>
+	<s name="addattrtext_4">暴击几率 +%.3f%%</s>
+	<s name="addattrtext_5">闪避几率 +%.3f%%</s>
 	<s name="suit1">套装效果1：</s>
 	<s name="suit2">套装效果2：</s>
 	<s name="nohas">未拥有</s>

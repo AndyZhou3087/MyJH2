@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
-#include "MapBlock.h"
+#include "Hero.h"
 USING_NS_CC;
 
 class FightingLayer : public cocos2d::Layer
@@ -13,14 +13,14 @@ public:
 	FightingLayer();
 	~FightingLayer();
 
-	static FightingLayer* create(MapBlock* mapblock);
+	static FightingLayer* create(std::vector<Npc*> enemyHeros);
 	virtual void onExit();
-	bool init(MapBlock* mapblock);
+	bool init(std::vector<Npc*> enemyHeros);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 private:
-	MapBlock* m_mapblock;
+	std::vector<Npc*> m_enemyHeros;
 };
 
 #endif

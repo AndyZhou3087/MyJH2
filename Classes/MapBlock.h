@@ -40,6 +40,17 @@ typedef struct
 	std::string result;//结果
 }ChoiceData;
 
+
+typedef enum
+{
+	POS_NOTHING = -1,
+	POS_START = 0,
+	POS_MONSTER,
+	POS_NPC,
+	POS_BOSS,
+	POS_TBOSS
+}POSTYPE;
+
 class MapBlock : public Sprite
 {
 public:
