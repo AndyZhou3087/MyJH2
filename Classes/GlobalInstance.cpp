@@ -26,6 +26,9 @@ std::map<std::string, EquipSuit> GlobalInstance::map_EquipSuit;
 std::vector<TaskMainData> GlobalInstance::vec_TaskMain;
 TaskMainData GlobalInstance::myCurMainData;
 
+std::vector<TaskBranchData> GlobalInstance::vec_TaskBranch;
+TaskBranchData GlobalInstance::myCurBranchData;
+
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
 int GlobalInstance::refreshResTime = 0;
@@ -562,7 +565,7 @@ void GlobalInstance::loadMyTaskMainData()
 
 		Quest::initFinishTaskData();
 
-		if (vec_TaskMain[vec_tmp.size()-1].isfinish == MAIN_ACC)
+		if (vec_TaskMain[vec_tmp.size()-1].isfinish == QUEST_ACC)
 		{
 			myCurMainData = vec_TaskMain[vec_tmp.size()-1];
 			Quest::initCurNeedData();
@@ -587,12 +590,12 @@ void GlobalInstance::saveMyTaskMainData()
 	for (unsigned i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
 	{
 		TaskMainData data = GlobalInstance::vec_TaskMain[i];
-		if (data.isfinish >= MAIN_FINISH)
+		if (data.isfinish >= QUEST_FINISH)
 		{
 			std::string onestr = StringUtils::format("%d-%d-%d;", data.id, data.isfinish, data.finishtype);
 			str.append(onestr);
 		}
-		if (data.isfinish == MAIN_ACC)
+		if (data.isfinish == QUEST_ACC)
 		{
 			mystr = StringUtils::format("%d-%d-%d;", data.id, data.isfinish, data.finishtype);
 		}
@@ -601,7 +604,147 @@ void GlobalInstance::saveMyTaskMainData()
 	DataSave::getInstance()->setMyMainTask(str.substr(0, str.length() - 1));
 }
 
+void GlobalInstance::loadTaskBranchData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/branchtask.json"));
+	rapidjson::Value& allData = doc["sq"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			TaskBranchData data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = atoi(v.GetString());
+
+			v = jsonvalue["title"];
+			data.name = v.GetString();
+
+			v = jsonvalue["type"];
+			data.type = atoi(v.GetString());
+
+			v = jsonvalue["desc"];
+			data.desc = v.GetString();
+
+			v = jsonvalue["place"];
+			data.place = v.GetString();
+
+			v = jsonvalue["npc"];
+			data.npcid = v.GetString();
+
+			v = jsonvalue["bossword"];
+			data.bossword = v.GetString();
+
+			v = jsonvalue["need"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 3)
+				{
+					std::vector<std::string> vec;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					for (int j = 0; j < vec_tmp.size(); j++)
+					{
+						vec.push_back(vec_tmp[j]);
+					}
+					data.need.push_back(vec);
+				}
+			}
+
+			v = jsonvalue["needdesc"];
+			data.needdesc = v.GetString();
+
+			v = jsonvalue["reward"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 3)
+				{
+					std::vector<std::string> vec;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					for (int j = 0; j < vec_tmp.size(); j++)
+					{
+						vec.push_back(vec_tmp[j]);
+					}
+					data.reward.push_back(vec);
+				}
+			}
+
+			data.isfinish = 1;//默认未接受任务
+
+			vec_TaskBranch.push_back(data);
+		}
+	}
+}
+
+void GlobalInstance::loadMyTaskBranchData()
+{
+	std::string str = DataSave::getInstance()->getMyBranchTask();
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_tmp;
+		CommonFuncs::split(str, vec_tmp, ";");
+		for (int i = 0; i < vec_tmp.size(); i++)
+		{
+			std::vector<std::string> vec_one;
+			CommonFuncs::split(vec_tmp[i], vec_one, "-");
+			if (vec_TaskBranch[i].id == atoi(vec_one[0].c_str()))
+			{
+				vec_TaskBranch[i].isfinish = atoi(vec_one[1].c_str());
+			}
+		}
+
+		if (vec_TaskBranch[vec_tmp.size() - 1].isfinish == QUEST_ACC)
+		{
+			myCurBranchData = vec_TaskBranch[vec_tmp.size() - 1];
+		}
+		else
+		{
+			myCurBranchData = vec_TaskBranch[vec_tmp.size()];
+		}
+
+	}
+	else
+	{
+		myCurBranchData = vec_TaskBranch[0];
+	}
+}
+
+void GlobalInstance::saveMyTaskBranchData()
+{
+	std::string str;
+	std::string mystr = "";
+	sort(vec_TaskBranch.begin(), vec_TaskBranch.end(), larger_branchcallback);
+	for (unsigned i = 0; i < GlobalInstance::vec_TaskBranch.size(); i++)
+	{
+		TaskBranchData data = GlobalInstance::vec_TaskBranch[i];
+		if (data.isfinish >= QUEST_FINISH)
+		{
+			std::string onestr = StringUtils::format("%d-%d;", data.id, data.isfinish);
+			str.append(onestr);
+		}
+		if (data.isfinish == QUEST_ACC)
+		{
+			mystr = StringUtils::format("%d-%d;", data.id, data.isfinish);
+		}
+	}
+	str.append(mystr);
+	DataSave::getInstance()->setMyBranchTask(str.substr(0, str.length() - 1));
+}
+
 bool GlobalInstance::larger_callback(TaskMainData a, TaskMainData b)
+{
+	int idA = a.id;
+	int idB = b.id;
+	if (idA < idB)
+		return true;
+	else
+		return false;
+}
+
+bool GlobalInstance::larger_branchcallback(TaskBranchData a, TaskBranchData b)
 {
 	int idA = a.id;
 	int idB = b.id;

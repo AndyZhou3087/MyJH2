@@ -10,9 +10,10 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="MainMenuLayer.csd" />
+          <FilePathData Path="taskDayNode.csd" />
+          <FilePathData Path="taskLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="MainMenuLayer.csd" />
+        <ActiveDocument Path="taskLayer.csd" />
       </Value>
     </Item>
   </Properties>

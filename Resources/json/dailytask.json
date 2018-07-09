@@ -1,0 +1,7 @@
+{"sq":[
+{"id":"1","type":"1","count":"3","goods":["r001-100",r002-100],"points":"50"},
+{"id":"2","type":"2","count":"4","goods":["r001-100"],"points":"100"},
+{"id":"3","type":"3","count":"5","goods":["r001-100"],"points":"200"},
+{"id":"4","type":"4","count":"6","goods":["r001-100"],"points":"150"},
+{"id":"5","type":"5","count":"7","goods":["r001-100"],"points":"100"},
+]}

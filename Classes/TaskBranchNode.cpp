@@ -4,24 +4,24 @@
 #include "GlobalInstance.h"
 #include "MyRes.h"
 #include "MovingLabel.h"
-#include "TaskMainNode.h"
-#include "TaskMainDescLayer.h"
+#include "TaskBranchNode.h"
+#include "TaskBranchDescLayer.h"
 
-TaskMainNode::TaskMainNode()
+TaskBranchNode::TaskBranchNode()
 {
 
 }
 
 
-TaskMainNode::~TaskMainNode()
+TaskBranchNode::~TaskBranchNode()
 {
 
 }
 
-TaskMainNode* TaskMainNode::create(TaskMainData* data, TaskLayer* layer)
+TaskBranchNode* TaskBranchNode::create(TaskBranchData* data, TaskLayer* layer)
 {
-	TaskMainNode *pRet = new(std::nothrow)TaskMainNode();
-	if (pRet && pRet->init(data,layer))
+	TaskBranchNode *pRet = new(std::nothrow)TaskBranchNode();
+	if (pRet && pRet->init(data, layer))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -34,7 +34,7 @@ TaskMainNode* TaskMainNode::create(TaskMainData* data, TaskLayer* layer)
 	}
 }
 
-bool TaskMainNode::init(TaskMainData* data, TaskLayer* layer)
+bool TaskBranchNode::init(TaskBranchData* data, TaskLayer* layer)
 {
 	m_layer = layer;
 	m_Data = data;
@@ -45,7 +45,7 @@ bool TaskMainNode::init(TaskMainData* data, TaskLayer* layer)
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	cocos2d::ui::ImageView* resitem = (cocos2d::ui::ImageView*)csbnode->getChildByName("resitem");
-	resitem->addTouchEventListener(CC_CALLBACK_2(TaskMainNode::onImgClick, this));
+	resitem->addTouchEventListener(CC_CALLBACK_2(TaskBranchNode::onImgClick, this));
 	resitem->setSwallowTouches(false);
 
 	//Ãû×Ö
@@ -62,11 +62,11 @@ bool TaskMainNode::init(TaskMainData* data, TaskLayer* layer)
 
 	updateData(0);
 
-	this->schedule(schedule_selector(TaskMainNode::updateData), 1.0f);
+	this->schedule(schedule_selector(TaskBranchNode::updateData), 1.0f);
 	return true;
 }
 
-void TaskMainNode::updateData(float dt)
+void TaskBranchNode::updateData(float dt)
 {
 	if (m_Data->isfinish == QUEST_FINISH)
 	{
@@ -81,7 +81,7 @@ void TaskMainNode::updateData(float dt)
 	{
 		finish->setVisible(false);
 		redpoint->setVisible(false);
-		if (m_Data->id == GlobalInstance::myCurMainData.id)
+		if (m_Data->id == GlobalInstance::myCurBranchData.id)
 		{
 			redpoint->setVisible(true);
 		}
@@ -89,12 +89,12 @@ void TaskMainNode::updateData(float dt)
 
 }
 
-void TaskMainNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+void TaskBranchNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Node* node = TaskMainDescLayer::create(m_Data);
-		if (m_layer!=NULL)
+		Node* node = TaskBranchDescLayer::create(m_Data);
+		if (m_layer != NULL)
 		{
 			m_layer->addChild(node);
 		}

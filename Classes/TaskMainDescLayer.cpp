@@ -85,17 +85,17 @@ bool TaskMainDescLayer::init(TaskMainData* data)
 	scrollView->setScrollBarEnabled(false);
 	scrollView->setBounceEnabled(true);
 
-	if (data->isfinish == MAIN_FINISH)
+	if (data->isfinish == QUEST_FINISH)
 	{
 		getbtn->setVisible(true);
 		accbtn->setVisible(false);
 	}
-	else if (data->isfinish == MAIN_GET)
+	else if (data->isfinish == QUEST_GET)
 	{
 		getbtn->setVisible(false);
 		accbtn->setVisible(false);
 	}
-	else if (data->isfinish == MAIN_ACC)
+	else if (data->isfinish == QUEST_ACC)
 	{
 		getbtn->setVisible(false);
 		accbtn->setVisible(true);
@@ -108,7 +108,7 @@ bool TaskMainDescLayer::init(TaskMainData* data)
 		accbtn->setVisible(true);
 	}
 
-	if (data->id != GlobalInstance::myCurMainData.id && data->isfinish == MAIN_TASK)
+	if (data->id != GlobalInstance::myCurMainData.id && data->isfinish == QUEST_TASK)
 	{
 		getbtn->setVisible(false);
 		accbtn->setVisible(false);
@@ -117,7 +117,7 @@ bool TaskMainDescLayer::init(TaskMainData* data)
 	std::vector<std::vector<std::string>> rewards;
 	if (data->type.size() == 1)
 	{
-		if (data->type[0] == MAIN_GIVE)
+		if (data->type[0] == QUEST_GIVE)
 		{
 			rewards = data->reward1;
 		}
@@ -222,15 +222,15 @@ void TaskMainDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::T
 
 void TaskMainDescLayer::accpTask()
 {
-	m_data->isfinish = MAIN_ACC;
-	GlobalInstance::myCurMainData.isfinish = MAIN_ACC;
+	m_data->isfinish = QUEST_ACC;
+	GlobalInstance::myCurMainData.isfinish = QUEST_ACC;
 }
 
 void TaskMainDescLayer::getRewards()
 {
-	m_data->isfinish = MAIN_GET;
+	m_data->isfinish = QUEST_GET;
 	std::vector<std::vector<std::string>> rewarr;
-	if (m_data->finishtype == MAIN_GIVE)
+	if (m_data->finishtype == QUEST_GIVE)
 	{
 		rewarr = m_data->reward1;
 	}

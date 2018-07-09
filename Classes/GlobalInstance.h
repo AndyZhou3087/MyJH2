@@ -85,18 +85,30 @@ typedef struct
 typedef enum
 {
 	//是否完成此任务，0已接受未完成，1未接受任务，2已完成未领取，3已领取奖励
-	MAIN_ACC = 0,
-	MAIN_TASK,
-	MAIN_FINISH,
-	MAIN_GET
-}TASKMAINSTATE;
+	QUEST_ACC = 0,
+	QUEST_TASK,
+	QUEST_FINISH,
+	QUEST_GET
+}QUESTSTATE;
 
 typedef enum
 {
 	//1表示给东西，2表示战斗,二选一即可完成任务(只有1和2两种类型)
-	MAIN_GIVE = 1,
-	MAIN_FIGHT
-}TASKMAINTYPE;
+	QUEST_GIVE = 1,
+	QUEST_FIGHT
+}QUESTTYPE;
+
+typedef enum
+{
+	FINISH_BRANCH = 0,//完成x个支线任务
+	FRESH_PUBENLIST,//刷新x次酒馆招募
+	UPGRADE_HERO,//升级x次英雄角色
+	UPGRADE_BUILDING,//升级x次建筑物
+	STRENG_EQUIP,//强化x次装备
+	STRENG_WG,//强化x次武功
+	DECOMPOSE_EQUIP,//分解x次装备
+	SET_GEM //镶嵌x次宝石
+}QUESTDAYTYPE;
 
 typedef struct
 {
@@ -118,6 +130,21 @@ typedef struct
 	int isfinish;//是否完成此任务，0已接受未完成，1未接受任务，2已完成未领取，3已领取奖励
 	int finishtype;//完成任务类型，1表示条件1完成，2表示条件2完成
 }TaskMainData;
+
+typedef struct
+{
+	int id;
+	std::string name;
+	std::string desc;
+	std::string place;
+	std::string npcid;
+	std::string bossword;
+	int type;//条件,1表示给东西，2表示战斗
+	std::vector<std::vector<std::string>> need;//物品，r001-10(id-count)
+	std::string needdesc;
+	std::vector<std::vector<std::string>> reward;//条件1的奖励
+	int isfinish;//是否完成此任务，0已接受未完成，1未接受任务，2已完成未领取，3已领取奖励
+}TaskBranchData;
 
 class GlobalInstance
 {
@@ -218,6 +245,15 @@ public:
 	//保存已完成主线任务
 	void saveMyTaskMainData();
 
+	//加载支线任务
+	void loadTaskBranchData();
+
+	//加载已完成支线任务
+	void loadMyTaskBranchData();
+
+	//保存已完成支线任务
+	void saveMyTaskBranchData();
+
 	//总的工人数
 	int getTotalFarmers();
 
@@ -261,6 +297,8 @@ public:
 
 	//主线任务进行排序
 	static bool larger_callback(TaskMainData a, TaskMainData b);
+	//支线任务进行排序
+	static bool larger_branchcallback(TaskBranchData a, TaskBranchData b);
 private:
 	static GlobalInstance* _Context;//类实例
 public:
@@ -282,6 +320,10 @@ public:
 	static std::vector<TaskMainData> vec_TaskMain;//主线任务
 
 	static TaskMainData myCurMainData;//当前主线任务
+
+	static std::vector<TaskBranchData> vec_TaskBranch;//支线任务
+
+	static TaskBranchData myCurBranchData;//当前支线任务
 
 	static int servertime;//服务器时间
 

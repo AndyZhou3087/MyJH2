@@ -112,6 +112,16 @@ std::string DataSave::getMyRes()
 	return loadStringDataByKey("myres", "r002-100-1");
 }
 
+void DataSave::setMyBranchTask(std::string strval)
+{
+	saveStringDataByKey("BranchTask", strval);
+}
+
+std::string DataSave::getMyBranchTask()
+{
+	return loadStringDataByKey("BranchTask", "");//id-状态
+}
+
 void DataSave::setMyMainTask(std::string strval)
 {
 	saveStringDataByKey("MainTask", strval);
@@ -119,7 +129,7 @@ void DataSave::setMyMainTask(std::string strval)
 
 std::string DataSave::getMyMainTask()
 {
-	return loadStringDataByKey("MainTask", "1-2-2");//id-状态-type
+	return loadStringDataByKey("MainTask", "");//id-状态-type
 }
 
 void DataSave::setMyCurTaskNeed(std::string strval)
@@ -129,7 +139,17 @@ void DataSave::setMyCurTaskNeed(std::string strval)
 
 std::string DataSave::getMyCurTaskNeed()
 {
-	return loadStringDataByKey("CurTaskNeed", "r006-100");//id-count
+	return loadStringDataByKey("CurTaskNeed", "");//id-count
+}
+
+void DataSave::setMyCurBranchNeed(std::string strval)
+{
+	saveStringDataByKey("CurBranchNeed", strval);
+}
+
+std::string DataSave::getMyCurBranchNeed()
+{
+	return loadStringDataByKey("CurBranchNeed", "");//id-count
 }
 
 int DataSave::getTotalFarmers()

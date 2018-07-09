@@ -8,6 +8,7 @@ class Quest
 {
 public:
 
+	/*************主线任务数据逻辑**************/
 	//初始化已完成的任务
 	static bool initFinishTaskData();
 
@@ -29,12 +30,32 @@ public:
 	//判断消耗的物品数量是否达标
 	static bool getResCountFinish();
 
-	static void saveData();
+	static void saveMainData();
+
+	static void finishQuest();
+
+	/*************支线任务数据逻辑**************/
+
+	//判断是否接受此npc任务
+	static bool getBranchQuestNpc(std::string npcid);
+
+	//判断赠送物品情况下消耗的物品id和数量
+	static void setResBranchQuestData(std::string resid, int count, std::string npcid);
+
+	//判断消耗的物品数量是否达标
+	static bool getResBranchFinish();
+
+	static void saveBranchData();
+
+	static void finishBranchQuest();
 
 public:
 	static std::vector<TaskMainData> myFinishMainQuest;
 
 	static std::map<std::string, int> map_NpcQuestRes;
+
+	//支线任务npc物品
+	static std::map<std::string, int> map_NpcBranchQuestRes;
 
 };
 
