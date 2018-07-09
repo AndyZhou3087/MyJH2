@@ -9,8 +9,15 @@
 #include "OutTownLayer.h"
 #include "SelectMyHerosLayer.h"
 #include "MapBlockScene.h"
+#include "SelectEquipLayer.h"
+#include "Equipable.h"
+#include "MyRes.h"
+#include "TakeOnLayer.h"
+#include "EquipDescLayer.h"
 
 USING_NS_CC;
+
+int equiptype[] = { T_ARMOR, T_EQUIP, T_NG, T_WG, T_HANDARMOR, T_FASHION };
 
 HeroAttrLayer::HeroAttrLayer()
 {
@@ -57,7 +64,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("heroAttrLayer.csb"));
 	this->addChild(csbnode);
-	int langtype = GlobalInstance::getInstance()->getLang();
+	langtype = GlobalInstance::getInstance()->getLang();
 
 	//英雄全身图
 	cocos2d::ui::ImageView* herofullimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("hfull");
@@ -65,11 +72,22 @@ bool HeroAttrLayer::init(Hero* herodata)
 	herofullimg->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 
 	//装备栏
-	Node* equipnode = csbnode->getChildByName("equipnode");
-
+	equipnode = csbnode->getChildByName("equipnode");
+	for (int i = 0; i < equipnode->getChildrenCount(); i++)
+	{
+		cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
+		node->setTag(i);
+		node->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onEquipClick, this));
+		ResBase* eres = MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
+		if (eres != NULL)
+		{
+			updateEquipUi(eres, i);
+			m_heroData->setEquipable((Equipable*)eres, eres->getType());
+		}
+	}
 	//属性信息
 	Node* heroattrbottom = csbnode->getChildByName("heroattrbottom");
-	cocos2d::ui::Widget* moditybtn = (cocos2d::ui::Widget*)heroattrbottom->getChildByName("moditybtn");
+	moditybtn = (cocos2d::ui::Widget*)heroattrbottom->getChildByName("moditybtn");
 
 	//品质
 	cocos2d::ui::ImageView* heroattrqu = (cocos2d::ui::ImageView*)heroattrbottom->getChildByName("heroattrqu");
@@ -108,7 +126,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 	vocation->setString(ResourceLang::map_lang[str]);
 
 	//角色属性文字
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i <= 5; i++)
 	{
 		str = StringUtils::format("attrtext_%d", i);
 		cocos2d::ui::Text* attrtext = (cocos2d::ui::Text*)heroattrbottom->getChildByName(str);
@@ -117,34 +135,39 @@ bool HeroAttrLayer::init(Hero* herodata)
 
 	//生命值
 	hplbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("hp");
-	std::string attrstr = StringUtils::format("%d/%d", (int)herodata->getMyHp(), (int)herodata->getMaxHp());
-	hplbl->setString(attrstr);
+
+	//int hp = herodata->getHp();
+
+	//std::string attrstr = StringUtils::format("%d/%d", hp, (int)herodata->getMaxHp());
+	//hplbl->setString(attrstr);
 
 	//攻击值
 	atkbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("atk");
-	attrstr = StringUtils::format("%d", (int)herodata->getAtk());
-	atkbl->setString(attrstr);
+	//attrstr = StringUtils::format("%d", (int)herodata->getAtk());
+	//atkbl->setString(attrstr);
 
 	//防御值
 	dflbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("df");
-	attrstr = StringUtils::format("%d", (int)herodata->getDf());
-	dflbl->setString(attrstr);
+	//attrstr = StringUtils::format("%d", (int)herodata->getDf());
+	//dflbl->setString(attrstr);
 
 	//攻击速度值
 	atkspeedlbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("atkspeed");
-	attrstr = StringUtils::format("%.3f", 1.0f/herodata->getAtkSpeed());
-	atkspeedlbl->setString(attrstr);
+	//attrstr = StringUtils::format("%.3f", 1.0f/herodata->getAtkSpeed());
+	//atkspeedlbl->setString(attrstr);
 
 	//暴击值
 	critlbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("crit");
-	attrstr = StringUtils::format("%.3f%%", herodata->getCrit());
-	critlbl->setString(attrstr);
+	//attrstr = StringUtils::format("%.3f%%", herodata->getCrit());
+	//critlbl->setString(attrstr);
 
 	//闪避值
 	dodgelbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("dodge");
-	attrstr = StringUtils::format("%.3f%%", herodata->getDodge());
-	dodgelbl->setString(attrstr);
+	//attrstr = StringUtils::format("%.3f%%", herodata->getDodge());
+	//dodgelbl->setString(attrstr);
 
+	updataAtrrUI(0);
+	this->schedule(schedule_selector(HeroAttrLayer::updataAtrrUI), 2.0f);
 	//等级
 	cocos2d::ui::Text* lvUIText = (cocos2d::ui::Text*)heroattrbottom->getChildByName("lv");
 	str = StringUtils::format("Lv.%d", herodata->getLevel() + 1);
@@ -288,14 +311,16 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 			else
 			{
 				OutTownLayer* outTown = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
-				outTown->getMyCardHeroNode(this->getTag())->setData(GlobalInstance::myCardHeros[this->getTag()]);
+				outTown->getMyCardHeroNode(this->getTag())->setData((Hero*)GlobalInstance::myCardHeros[this->getTag()]);
 				SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
 				sellayer->getMyHeroNode(this->getTag())->updateData();
 			}
 		}
 		else if (g_MapBlockScene != NULL)
 		{
-			g_MapBlockScene->getFightHeroNode(this->getTag())->setData(GlobalInstance::myCardHeros[this->getTag()]);
+			//g_MapBlockScene->getFightHeroNode(this->getTag())->setData((Npc*)GlobalInstance::myCardHeros[this->getTag()]);
+			moditybtn->setVisible(false);
+			m_editName->setEnabled(false);
 		}
 	}
 }
@@ -352,9 +377,10 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				GlobalInstance::getInstance()->saveRand3Heros();
 				InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
 				RandHeroNode* heroNode = (RandHeroNode*)this->getParent()->getChildByTag(this->getTag());
-				heroNode->markRecruited();
+				heroNode->markRecruited(true);
 				innroomLayer->refreshMyHerosUi();
 				clicknode->setEnabled(false);
+
 				break;
 			}
 			else
@@ -369,6 +395,134 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		}
 	}
+}
+
+void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
+		clickindex = clicknode->getTag();
+		Layer* layer;
+		ResBase* res = MyRes::getMyPutOnResByType(equiptype[clickindex], m_heroData->getName());
+
+	
+		if (res == NULL)
+			layer = SelectEquipLayer::create(equiptype[clickindex], m_heroData);
+		else
+		{
+			if (equiptype[clickindex] == T_WG || equiptype[clickindex] == T_NG)
+			{
+				layer = EquipDescLayer::create(res, 2);
+			}
+			else
+			{
+				layer = TakeOnLayer::create((Equip*)res, m_heroData);
+			}
+		}
+		this->addChild(layer);
+	}
+}
+
+void HeroAttrLayer::takeOn(ResBase* res)
+{
+	Equipable* equipable = (Equipable*)res;
+	equipable->setWhere(MYEQUIP);
+	equipable->setWhos(m_heroData->getName());
+	m_heroData->setEquipable((Equipable*)res, res->getType());
+	updateEquipUi(res, clickindex);
+}
+
+void HeroAttrLayer::takeOff(ResBase* res)
+{
+	res->setWhere(MYSTORAGE);
+	updateEquipUi(NULL, clickindex);
+	m_heroData->setEquipable(NULL, res->getType());
+}
+
+void HeroAttrLayer::changeEquip(ResBase* res)
+{
+	Equipable* takeOnEquip = (Equipable*)MyRes::getMyPutOnResByType(res->getType(), m_heroData->getName());
+	if (takeOnEquip != NULL)
+	{
+		takeOnEquip->setWhere(MYSTORAGE);
+		takeOnEquip->setWhos("");
+	}
+	takeOn(res);
+}
+
+void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
+{
+	cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(barindex);
+	cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
+	qubox->ignoreContentAdaptWithSize(true);
+	cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)node->getChildByName("img");
+	resimg->ignoreContentAdaptWithSize(true);
+	std::string qustr;
+	std::string resstr;
+	if (res != NULL)
+	{
+		int type = res->getType();
+		qubox->setAnchorPoint(Vec2(0.5, 0.5));
+		qubox->setPosition(Vec2(qubox->getParent()->getContentSize().width / 2, qubox->getParent()->getContentSize().height / 2));
+
+
+		int qu =  ((Equipable*)res)->getQU().getValue();
+		if (type >= T_ARMOR && type <= T_FASHION)
+		{
+			qubox->setScale(0.84f);
+			resimg->setScale(0.84f);
+		}
+		else if (type >= T_WG && type <= T_NG)
+		{
+			qubox->setScale(1.0f);
+			resimg->setScale(1.0f);
+		}
+		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		resstr = StringUtils::format("ui/%s.png", res->getId().c_str());
+	}
+	else
+	{
+		qubox->setAnchorPoint(Vec2(0, 1));
+		if (clickindex == 2 || clickindex == 3)//武功，内功
+			qubox->setPosition(Vec2(8, 117));
+		else
+			qubox->setPosition(Vec2(8, 98));
+		qubox->setScale(1.0f);
+		resimg->setScale(1.0f);
+		qustr = "ui/heroattradd.png";
+		resstr = ResourcePath::makeTextImgPath(StringUtils::format("equiptext_%d", barindex), langtype);
+	}
+	qubox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
+	resimg->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
+	MyRes::saveData();
+}
+
+void HeroAttrLayer::updataAtrrUI(float dt)
+{
+	int hp = m_heroData->getHp();
+	std::string attrstr = StringUtils::format("%d/%d", hp, (int)m_heroData->getMaxHp());
+	hplbl->setString(attrstr);
+
+	//攻击值
+	attrstr = StringUtils::format("%d", (int)m_heroData->getAtk());
+	atkbl->setString(attrstr);
+
+	//防御值
+	attrstr = StringUtils::format("%d", (int)m_heroData->getDf());
+	dflbl->setString(attrstr);
+
+	//攻击速度值
+	attrstr = StringUtils::format("%.3f", 1.0f / m_heroData->getAtkSpeed());
+	atkspeedlbl->setString(attrstr);
+
+	//暴击值
+	attrstr = StringUtils::format("%.3f%%", m_heroData->getCrit());
+	critlbl->setString(attrstr);
+
+	//闪避值
+	attrstr = StringUtils::format("%.3f%%", m_heroData->getDodge());
+	dodgelbl->setString(attrstr);
 }
 
 void HeroAttrLayer::onExit()

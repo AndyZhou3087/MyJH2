@@ -14,6 +14,24 @@ typedef enum
 	MYSTORAGE,
 	MYEQUIP
 }RESWHERE;
+
+typedef enum
+{
+	T_RES_0 = 0,//基础资源
+	T_ARMOR,//武器
+	T_EQUIP,//防具
+	T_HANDARMOR,//护手
+	T_FASHION,//首饰
+	T_WG,//外功
+	T_NG,//内功
+	T_RENS,//人参，提升经验值
+	T_FU,//闭关用的符
+	T_DAN,//突破用的丹
+	T_MIJI,//参悟秘籍，升级功法
+	T_BOX,//宝箱
+	T_STONE,//玉，宝石，镶嵌用的
+	T_OTHER
+}RESTYPE;
 class ResBase
 {
 public:
@@ -25,11 +43,5 @@ public:
 	CC_SYNTHESIZE(DynamicValueInt, m_count, Count);//个数
 	CC_SYNTHESIZE(int, m_where, Where);//在哪里
 public:
-	//使用，count：个数
-	void use(DynamicValueInt count);
-	//增加
-	void add(DynamicValueInt count);
-
-	void remove();
 };
 #endif

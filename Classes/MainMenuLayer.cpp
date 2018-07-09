@@ -3,12 +3,15 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "MyRes.h"
+#include "TaskTalkLayer.h"
+#include "TaskBranchTalkLayer.h"
+#include "Quest.h"
 
 USING_NS_CC;
 
 MainMenuLayer::MainMenuLayer()
 {
-
+	malayer = NULL;
 }
 
 MainMenuLayer::~MainMenuLayer()
@@ -80,17 +83,11 @@ void MainMenuLayer::updateUI(float dt)
 	std::string str;
 	for (int i = 0; i < 5; i++)
 	{
-		str = StringUtils::format("r%03d", i + 1);
-		ResBase* res = MyRes::getMyResource(str);
-		if (res != NULL)
-		{
-			str = StringUtils::format("%d", res->getCount().getValue());
-			reslbl[i]->setString(str);
-		}
-		else
-		{
-			reslbl[i]->setString("0");
-		}
+		std::string rid = StringUtils::format("r%03d", i + 1);
+
+		str = StringUtils::format("%d", MyRes::getMyResCount(rid));
+		reslbl[i]->setString(str);
+
 	}
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
 	mycoinlbl->setString(str);
@@ -111,16 +108,75 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		case HEADBOX:
 			break;
 		case R001BTN:
+			malayer = (MaterialDescLayer*)this->getChildByName("MaterialDescLayer");
+			if (malayer==NULL)
+			{
+				malayer = MaterialDescLayer::create("r001");
+				this->addChild(malayer,0,"MaterialDescLayer");
+			}
+			else
+			{
+				malayer->setResId("r001");
+			}
 			break;
 		case R002BTN:
+			malayer = (MaterialDescLayer*)this->getChildByName("MaterialDescLayer");
+			if (malayer == NULL)
+			{
+				malayer = MaterialDescLayer::create("r002");
+				this->addChild(malayer, 0, "MaterialDescLayer");
+			}
+			else
+			{
+				malayer->setResId("r002");
+			}
 			break;
 		case R003BTN:
+			malayer = (MaterialDescLayer*)this->getChildByName("MaterialDescLayer");
+			if (malayer == NULL)
+			{
+				malayer = MaterialDescLayer::create("r003");
+				this->addChild(malayer, 0, "MaterialDescLayer");
+			}
+			else
+			{
+				malayer->setResId("r003");
+			}
 			break;
 		case R004BTN:
+			malayer = (MaterialDescLayer*)this->getChildByName("MaterialDescLayer");
+			if (malayer == NULL)
+			{
+				malayer = MaterialDescLayer::create("r004");
+				this->addChild(malayer, 0, "MaterialDescLayer");
+			}
+			else
+			{
+				malayer->setResId("r004");
+			}
 			break;
 		case R005BTN:
+			malayer = (MaterialDescLayer*)this->getChildByName("MaterialDescLayer");
+			if (malayer == NULL)
+			{
+				malayer = MaterialDescLayer::create("r005");
+				this->addChild(malayer, 0, "MaterialDescLayer");
+			}
+			else
+			{
+				malayer->setResId("r005");
+			}
 			break;
 		case SETBTN:
+			//测试
+			/*if (Quest::getMainQuestNpc("n014"))
+			{
+				this->addChild(TaskTalkLayer::create("n014"));
+			}
+			else if (Quest::getBranchQuestNpc("n014"))
+			{
+				this->addChild(TaskBranchTalkLayer::create("n014"));
+			}*/
 			break;
 		case ACHBTN:
 			break;

@@ -3,6 +3,11 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "Const.h"
+#include "ResBase.h"
+#include "GlobalInstance.h"
+#include "Equip.h"
+#include "GongFa.h"
+#include "MyRes.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/jni/JniHelper.h"
 #endif
@@ -13,7 +18,11 @@ Hero::Hero()
 	m_breakupper = 0;
 	m_randattr = 0.0f;
 	m_pos = 0;
-	m_myhp = 0;
+	m_hp = INT32_MIN;
+	for (int i = 0; i < 6; i++)
+	{
+		takeOnEquip[i] = NULL;
+	}
 }
 
 
@@ -32,7 +41,30 @@ Hero::Hero(Hero* hero)
 	m_state = hero->getState();
 	m_breakupper = 0;
 	m_pos = 0;
-	m_myhp = 0;
+	m_hp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[0];
+	for (int i = 0; i < 6; i++)
+	{
+		takeOnEquip[i] = NULL;
+	}
+}
+
+float Hero::getHp()
+{
+	if (m_hp < -100)
+	{
+		m_hp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[0];
+	}
+	else if (m_hp < 0)
+	{
+		m_hp = 0;
+	}
+
+	return m_hp;
+}
+
+void Hero::setHp(float hp)
+{
+	m_hp = hp;
 }
 
 int Hero::getLevel()
@@ -49,32 +81,146 @@ int Hero::getLevel()
 float Hero::getAtk()
 {
 	float heroatk = GlobalInstance::vec_herosAttr[m_vocation].vec_atk[getLevel()];
-
+	
+	for (int i = 0; i < 6; i++)
+	{
+		if (takeOnEquip[i] != NULL)
+		{
+			float herobns;
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+			}
+			heroatk += (takeOnEquip[i]->getAtk()*herobns);
+		}
+	}
 	return heroatk;
 }
 float Hero::getDf()
 {
 	float herodf = GlobalInstance::vec_herosAttr[m_vocation].vec_df[getLevel()];
+	
+	for (int i = 0; i < 6; i++)
+	{
+		if (takeOnEquip[i] != NULL)
+		{
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+				Equip* equip = (Equip*)takeOnEquip[i];
+				herodf += (equip->getDf()*herobns);
+				if (GlobalInstance::map_EquipSuit[equip->getId()].vec_suit.size() >= 3)
+				{
+					if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[equip->getId()].vec_suit[2], getName()) != NULL)
+						herodf += equip->getSuitDf();
+				}
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				float herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+				herodf += takeOnEquip[i]->getDf()*herobns;
+			}
+		}
+	}
+
 	return herodf;
 }
 float Hero::getMaxHp()
 {
 	float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[getLevel()];
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (takeOnEquip[i] != NULL)
+		{
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+				Equip* equip = (Equip*)takeOnEquip[i];
+				herohp += (equip->getHp()*herobns);
+				if (GlobalInstance::map_EquipSuit[equip->getId()].vec_suit.size() >= 2)
+				{
+					if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[equip->getId()].vec_suit[1], getName()) != NULL)
+						herohp += equip->getSuitHp();
+				}
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				float herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+				herohp += takeOnEquip[i]->getHp() * herobns;
+			}
+		}
+	}
+	if (getHp() > herohp)
+		setHp(herohp);
 	return herohp;
 }
 float Hero::getAtkSpeed()
 {
 	float heroatkspeed = GlobalInstance::vec_herosAttr[m_vocation].vec_atkspeed[getLevel()];
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (takeOnEquip[i] != NULL)
+		{
+			float herobns;
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+			}
+			heroatkspeed += (takeOnEquip[i]->getAtkSpeed()*herobns);
+		}
+	}
 	return heroatkspeed;
 }
 float Hero::getCrit()
 {
 	float herocrit = GlobalInstance::vec_herosAttr[m_vocation].vec_crit[getLevel()];
+	for (int i = 0; i < 6; i++)
+	{
+		if (takeOnEquip[i] != NULL)
+		{
+			float herobns;
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+			}
+			herocrit += (takeOnEquip[i]->getCrit()*herobns);
+		}
+	}
 	return herocrit;
 }
 float Hero::getDodge()
 {
 	float herododge = GlobalInstance::vec_herosAttr[m_vocation].vec_avoid[getLevel()];
+	for (int i = 0; i < 6; i++)
+	{
+		if (takeOnEquip[i] != NULL)
+		{
+			float herobns;
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+			}
+			herododge += (takeOnEquip[i]->getDodge()*herobns);
+		}
+	}
 	return herododge;
 }
 
@@ -94,7 +240,7 @@ void Hero::generate()
 	} while (GlobalInstance::getInstance()->checkifSameName(nickname));
 	setName(nickname);
 
-	m_myhp = getMaxHp();
+	m_hp = getMaxHp();
 }
 
 std::string Hero::generateName()
@@ -145,4 +291,14 @@ std::string Hero::generateName()
 #endif
 	}
 	return namestr;
+}
+
+Equipable* Hero::getEquipable(int etype)
+{
+	return takeOnEquip[etype - 1];
+}
+void Hero::setEquipable(Equipable* edata, int etype)
+{
+	//因为类型是按顺序排的，第一个被基础资源占了，所有按类型-1
+	takeOnEquip[etype - 1] = edata;
 }

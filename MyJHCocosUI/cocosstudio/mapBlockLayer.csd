@@ -57,14 +57,14 @@
                 <OutlineColor A="255" R="80" G="38" B="12" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="r001" ActionTag="36149542" Tag="275" IconVisible="False" LeftMargin="407.0912" RightMargin="254.9088" TopMargin="172.4378" BottomMargin="27.5622" ctype="SpriteObjectData">
-                <Size X="58.0000" Y="54.0000" />
+              <AbstractNodeData Name="r001" ActionTag="36149542" Tag="275" IconVisible="False" LeftMargin="381.5912" RightMargin="229.4088" TopMargin="144.9378" BottomMargin="0.0622" ctype="SpriteObjectData">
+                <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="436.0912" Y="54.5622" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <Scale ScaleX="0.7000" ScaleY="0.7000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.6057" Y="0.2148" />
-                <PreSize X="0.0806" Y="0.2126" />
+                <PreSize X="0.1514" Y="0.4291" />
                 <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>

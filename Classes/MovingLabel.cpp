@@ -1,4 +1,5 @@
 ﻿#include "MovingLabel.h"
+#include "Const.h"
 
 std::queue<MovingLabel*> MovingLabel::queue_labels;
 MovingLabel::MovingLabel()
@@ -42,7 +43,7 @@ MovingLabel* MovingLabel::create(std::string text, Vec2 pos)
 
 bool MovingLabel::init(std::string text, Vec2 pos)
 {
-	Label::initWithTTF(text, "fonts/simhei.ttf", 25);
+	Label::initWithTTF(text, FONT_NAME, 25);
 	setPosition(pos);
 	this->enableOutline(Color4B(0,0,0, 255), 1);
 	this->enableShadow();

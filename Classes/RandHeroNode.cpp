@@ -2,9 +2,7 @@
 #include "CommonFuncs.h"
 #include "Resource.h"
 #include "HeroAttrLayer.h"
-
-//5个品质英雄颜色
-Color3B POTENTIALCOLOR[5] = { Color3B(36, 255, 82), Color3B(52, 179, 240), Color3B(252, 77, 226), Color3B(255, 214, 71), Color3B(255, 69, 69)};
+#include "Const.h"
 
 RandHeroNode::RandHeroNode()
 {
@@ -62,7 +60,7 @@ bool RandHeroNode::init()
 	potentiallbl = (cocos2d::ui::Text*)csbnode->getChildByName("potential");
 
 	isrecruitedWidget = (cocos2d::ui::Text*)csbnode->getChildByName("isrecruited_text");
-	isrecruitedWidget->setVisible(false);
+	markRecruited(false);
 
 	return true;
 }
@@ -96,12 +94,14 @@ void RandHeroNode::setData(Hero* herodata)
 	namelbl->setString(herodata->getName());
 
 	if (herodata->getState() == HS_OWNED)
-		markRecruited();
+		markRecruited(true);
+	else if (herodata->getState() == HS_READY)
+		markRecruited(false);
 
 	this->setUserData((void*)herodata);
 }
 
-void RandHeroNode::markRecruited()
+void RandHeroNode::markRecruited(bool ismask)
 {
-	isrecruitedWidget->setVisible(true);
+	isrecruitedWidget->setVisible(ismask);
 }

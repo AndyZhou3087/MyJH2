@@ -1,4 +1,4 @@
-﻿//
+//
 //  iosfunc.m
 //
 //  Created by  admin on 16-11-25.
@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "iosfunc.h"
 #include "MBProgressHUD.h"
-#import <UShareUI/UShareUI.h>
+//#import <UShareUI/UShareUI.h>
 #import "JHKeychain.h"
 
 const char * getuuid()

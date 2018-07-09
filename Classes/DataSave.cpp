@@ -112,6 +112,46 @@ std::string DataSave::getMyRes()
 	return loadStringDataByKey("myres", "r002-100-1");
 }
 
+void DataSave::setMyBranchTask(std::string strval)
+{
+	saveStringDataByKey("BranchTask", strval);
+}
+
+std::string DataSave::getMyBranchTask()
+{
+	return loadStringDataByKey("BranchTask", "");//id-状态
+}
+
+void DataSave::setMyMainTask(std::string strval)
+{
+	saveStringDataByKey("MainTask", strval);
+}
+
+std::string DataSave::getMyMainTask()
+{
+	return loadStringDataByKey("MainTask", "");//id-状态-type
+}
+
+void DataSave::setMyCurTaskNeed(std::string strval)
+{
+	saveStringDataByKey("CurTaskNeed", strval);
+}
+
+std::string DataSave::getMyCurTaskNeed()
+{
+	return loadStringDataByKey("CurTaskNeed", "");//id-count
+}
+
+void DataSave::setMyCurBranchNeed(std::string strval)
+{
+	saveStringDataByKey("CurBranchNeed", strval);
+}
+
+std::string DataSave::getMyCurBranchNeed()
+{
+	return loadStringDataByKey("CurBranchNeed", "");//id-count
+}
+
 int DataSave::getTotalFarmers()
 {
 	return loadIntDataByKey("totalfarmers", 5);
@@ -150,4 +190,34 @@ int DataSave::getMyCoinCount()
 void DataSave::setMyCoinCount(int val)
 {
 	saveIntDataByKey("coin", val);
+}
+
+std::string DataSave::getMarketStock()
+{
+	return loadStringDataByKey("marketstock", "");
+}
+
+void DataSave::setMarketStock(std::string val)
+{
+	saveStringDataByKey("marketstock", val);
+}
+
+int DataSave::getRefreshMarketTime()
+{
+	return loadIntDataByKey("refreshmarkettime", 0);
+}
+
+void DataSave::setRefreshMarketTime(int time)
+{
+	saveIntDataByKey("refreshmarkettime", time);
+}
+
+void DataSave::setMapVisibleArea(std::string mapkey, std::string val)
+{
+	saveStringDataByKey(mapkey, val);
+}
+
+std::string DataSave::getMapVisibleArea(std::string mapkey)
+{
+	return loadStringDataByKey(mapkey, "");
 }

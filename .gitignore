@@ -4,6 +4,6 @@ proj.win32/
 proj.win10/
 proj.android/.idea/
 bin/
-JHCocosUI/Resources/res/
+MyJHCocosUI/Resources/res
 .cocos-project.json
 CMakeLists.txt

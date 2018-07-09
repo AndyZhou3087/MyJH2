@@ -9,6 +9,10 @@
 #include "MyRes.h"
 #include "MovingLabel.h"
 #include "OutTownLayer.h"
+#include "StoreHouseLayer.h"
+#include "SmithyLayer.h"
+#include "MarketLayer.h"
+#include "TaskLayer.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -109,6 +113,15 @@ bool MainScene::init()
 		buildingNomal->setSwallowTouches(false);
 		buildingNomal->setUserData((void*)buildingSelect);
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
+
+		if (i == 4)
+		{
+			std::string buidingNomalName_1 = StringUtils::format("main_%02d_n_1", i);
+			cocos2d::ui::ImageView* buildingNomal_1 = (cocos2d::ui::ImageView*)buildParent->getChildByName(buidingNomalName_1);
+			buildingNomal_1->setSwallowTouches(false);
+			buildingNomal_1->setUserData((void*)buildingSelect);
+			buildingNomal_1->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
+		}
 		buildingSelect->setVisible(false);
 		buildingSelect->setUserData((void*)it->first.c_str());
 		i++;
@@ -157,7 +170,7 @@ void MainScene::srollviewlistenEvent(Ref* ref, ui::ScrollView::EventType eventTy
 
 void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	Node* clicknode = (Node*)pSender;
+	cocos2d::ui::ImageView* clicknode = (cocos2d::ui::ImageView*)pSender;
 	Node* snode = (Node*)clicknode->getUserData();
 	std::string buildname = (char*)snode->getUserData();
 	switch (type)
@@ -174,7 +187,9 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			snode->setVisible(false);
 			if (m_isDraging)
 				return;
+
 			Layer* layer = NULL;
+
 			if (buildname.compare("6innroom") == 0)
 			{
 				layer = InnRoomLayer::create(Building::map_buildingDatas[buildname]);
@@ -187,15 +202,36 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			{
 				layer = OutTownLayer::create();
 			}
+			else if (buildname.compare("3storehouse") == 0)
+			{
+				layer = StoreHouseLayer::create();
+			}
+			else if (buildname.compare("2smithy") == 0)
+			{
+				layer = SmithyLayer::create(Building::map_buildingDatas[buildname]);
+			}
+			else if (buildname.compare("5market") == 0)
+			{
+				layer = MarketLayer::create(Building::map_buildingDatas[buildname]);
+			}
+			else if (buildname.compare("9assemblyhall") == 0)
+			{
+				layer = TaskLayer::create();
+			}
+
 			if (layer != NULL)
+			{
 				this->addChild(layer, 0, buildname);
+			}
+
 			break;
 		}
 		case cocos2d::ui::Widget::TouchEventType::CANCELED:
 		{
 			snode->setVisible(false);
-		}
+		
 			break;
+		}
 		default:
 			break;
 	}
@@ -218,6 +254,10 @@ void MainScene::onFinish(int code)
 		{
 			GlobalInstance::getInstance()->saveRefreshResTime(GlobalInstance::servertime);
 		}
+		if (GlobalInstance::getInstance()->getRefreshMarketTime() == 0)
+		{
+			GlobalInstance::getInstance()->saveRefreshMarketTime(GlobalInstance::servertime);
+		}
 		updateTime(0);
 		this->schedule(schedule_selector(MainScene::updateTime), 1);
 	}
@@ -227,32 +267,26 @@ void MainScene::updateTime(float dt)
 {
 	GlobalInstance::servertime++;
 	int respasttime = GlobalInstance::servertime - GlobalInstance::getInstance()->getRefreshResTime();
-	if (respasttime >= REFRESHRESTIME)
+	if (respasttime >= RES_REFRESHTIME)
 	{
-		GlobalInstance::getInstance()->saveRefreshResTime(GlobalInstance::servertime - respasttime%REFRESHRESTIME);
+		GlobalInstance::getInstance()->saveRefreshResTime(GlobalInstance::servertime - respasttime%RES_REFRESHTIME);
 		for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
 		{
 			ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
 			if (rescreator->getFarmersCount().getValue() > 0)
 			{
-				int addcount = respasttime / REFRESHRESTIME * rescreator->getFarmersCount().getValue();
+				int addcount = respasttime / RES_REFRESHTIME * rescreator->getFarmersCount().getValue();
 				int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
 
 				std::string showtext = StringUtils::format("%s+%d", GlobalInstance::map_AllResources[rescreator->getName()].name.c_str(), addcount);
 				MovingLabel::show(showtext);
-				ResBase* resbase = MyRes::getMyResource(rescreator->getName());
-				if (resbase != NULL)
-				{
-					if (addcount + resbase->getCount().getValue() >= maxcount)
-						addcount = maxcount - resbase->getCount().getValue();
-				}
-				else
-				{
-					if (addcount > maxcount)
-						addcount = maxcount;
-				}
+				int rcount = MyRes::getMyResCount(rescreator->getName());
+
+				if (addcount + rcount >= maxcount)
+					addcount = maxcount - rcount;
+
 				if (addcount > 0)
-					MyRes::Add(rescreator->getName(), addcount, MYSTORAGE);
+					MyRes::Add(rescreator->getName(), addcount);
 
 			}
 		}

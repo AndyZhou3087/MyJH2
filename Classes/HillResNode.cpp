@@ -43,6 +43,7 @@ bool HillResNode::init(ResCreator* data)
 
 	cocos2d::ui::Widget* resbox = (cocos2d::ui::Widget*)csbnode->getChildByName("resbox");
 	resbox->addTouchEventListener(CC_CALLBACK_2(HillResNode::onImgClick, this));
+	resbox->setSwallowTouches(false);
 
 	cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	std::string str = StringUtils::format("ui/%s.png", data->getName().c_str());
@@ -99,14 +100,12 @@ bool HillResNode::init(ResCreator* data)
 
 void HillResNode::updateData(float dt)
 {
-	std::string str;
-	ResBase* res = MyRes::getMyResource(m_Data->getName());
+
 	DynamicValueInt dtemp;
-	if (res != NULL)
-	{
-		dtemp.setValue(res->getCount().getValue());
-	}
-	str = StringUtils::format("%d/%d", dtemp.getValue(), m_Data->getMaxCap(m_Data->getLv().getValue()).getValue());
+
+	dtemp.setValue(MyRes::getMyResCount(m_Data->getName()));
+
+	std::string str = StringUtils::format("%d/%d", dtemp.getValue(), m_Data->getMaxCap(m_Data->getLv().getValue()).getValue());
 	maxcap->setString(str);
 	
 	if (dtemp.getValue() >= m_Data->getMaxCap(m_Data->getLv().getValue()).getValue())

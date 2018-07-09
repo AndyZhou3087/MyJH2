@@ -86,7 +86,7 @@ bool OutTownLayer::init()
 		m_myCardHerosNode[i] = CardHeroNode::create();
 		m_myCardHerosNode[i]->setPosition(Vec2(140 + i%3*215, /*745 + */1030-i/3*250));
 		this->addChild(m_myCardHerosNode[i], 0, i);
-		m_myCardHerosNode[i]->setData(GlobalInstance::myCardHeros[i]);
+		m_myCardHerosNode[i]->setData((Hero*)GlobalInstance::myCardHeros[i]);
 	}
 	std::string str;
 	for (int i = 0; i < 1; i++)
@@ -100,7 +100,7 @@ bool OutTownLayer::init()
 		subbtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onSubBtnClick, this));
 
 		str = StringUtils::format("carrycount%d", i);
-		caryycountlbl[i] = (cocos2d::ui::Text*)csbnode->getChildByName("carrycount0");
+		caryycountlbl[i] = (cocos2d::ui::Text*)csbnode->getChildByName(str);
 
 		caryycount[i] = MyRes::getMyResCount(carryResids[i], MYPACKAGE);
 	}
@@ -137,13 +137,29 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		{
 		case 1000://出城
 		{
+			bool isselecthero = false;
+			for (int i = 0; i < 6; i++)
+			{
+				if (GlobalInstance::myCardHeros[i] != NULL)
+				{
+					isselecthero = true;
+					break;
+				}
+			}
+			if (!isselecthero)
+			{
+				MovingLabel::show(ResourceLang::map_lang["noherosout"]);
+				return;
+			}
+			
+
 			for (int i = 0; i < 3; i++)
 			{
 				int addcount = caryycount[i] - MyRes::getMyResCount(carryResids[i], MYPACKAGE);
 				if (addcount != 0)
 				{
 					MyRes::Add(carryResids[i], addcount, MYPACKAGE);
-					MyRes::Add(carryResids[i], -addcount);
+					MyRes::Use(carryResids[i], addcount);
 				}
 			}
 			GlobalInstance::getInstance()->parseMapJson();

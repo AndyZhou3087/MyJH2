@@ -16,7 +16,7 @@ public:
 
 	static RandHeroNode* create();
 
-	void markRecruited();
+	void markRecruited(bool ismask);
 	void setData(Hero* herodata);
 public:
 private:

@@ -176,7 +176,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The HUD delegate object. Receives HUD state notifications.
  */
-@property (weak, nonatomic) id<MBProgressHUDDelegate> delegate;
+@property (assign, nonatomic) id<MBProgressHUDDelegate> delegate;
 
 /**
  * Called after the HUD is hiden.

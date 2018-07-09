@@ -26,8 +26,8 @@ typedef struct
 typedef struct
 {
 	std::string id;
-	std::string imgname;//小地图图片
 	int ph;//小地图消耗的精力，体力
+	std::vector<std::string> vec_awd;//可能获得物品
 }S_SubMap;
 
 //大地图数据
@@ -42,7 +42,127 @@ typedef struct
 	std::string id;
 	std::string name;
 	std::string desc;
+	std::vector<std::map<std::string, int>> vec_needres;//合成需要的资源
+	int saleval;//价格
 }AllResources;
+
+typedef struct
+{
+	std::string id;
+	std::string name;
+	std::vector<float> vec_bns;//额外加成
+	int maxhp;
+	int atk;
+	int df;
+	float avoid;//闪避率
+	float crit;//暴击率
+	float speed;//攻击速度
+}EquipData;
+
+typedef struct
+{
+	std::string id;
+	std::vector<std::string> vec_suit;
+	std::vector<float> vec_bns;
+}EquipSuit;
+
+typedef struct
+{
+	std::string id;
+	std::string name;
+	std::vector<float> vec_herobns;//对应英雄职业加成
+	std::vector<int> vec_skillbns;//技能加成
+	int skill;
+	int qu;
+	std::vector<int> vec_hp;
+	std::vector<int> vec_atk;
+	std::vector<int> vec_df;
+	std::vector<float> vec_avoid;//闪避率
+	std::vector<float> vec_crit;//暴击率
+	std::vector<float> vec_speed;//攻击速度
+}GFData;
+
+typedef enum
+{
+	//是否完成此任务，0已接受未完成，1未接受任务，2已完成未领取，3已领取奖励
+	QUEST_ACC = 0,
+	QUEST_TASK,
+	QUEST_FINISH,
+	QUEST_GET
+}QUESTSTATE;
+
+typedef enum
+{
+	//1表示给东西，2表示战斗,二选一即可完成任务(只有1和2两种类型)
+	QUEST_GIVE = 1,
+	QUEST_FIGHT
+}QUESTTYPE;
+
+typedef enum
+{
+	FINISH_BRANCH = 0,//完成x个支线任务
+	FRESH_PUBENLIST,//刷新x次酒馆招募
+	UPGRADE_HERO,//升级x次英雄角色
+	UPGRADE_BUILDING,//升级x次建筑物
+	STRENG_EQUIP,//强化x次装备
+	STRENG_WG,//强化x次武功
+	DECOMPOSE_EQUIP,//分解x次装备
+	SET_GEM //镶嵌x次宝石
+}QUESTDAYTYPE;
+
+typedef struct
+{
+	int id;
+	std::string name;
+	std::vector<int> type;//条件二选一，1表示给东西，2表示战斗,二选一即可完成任务(只有1和2两种类型)
+	std::string desc;
+	std::string place;
+	std::string npcid;
+	std::string bossword;
+	std::vector<std::map<std::string, int>> need1;//条件二选一，物品，r001-10(id-count)
+	std::string need1desc;
+	int need2;//条件二选一，战斗，填写type
+	std::string need2desc;
+	std::vector<int> mutex1;//互斥1，1-1,id为1的type为1的互斥
+	std::vector<int> mutex2;//互斥2
+	std::vector<std::vector<std::string>> reward1;//条件1的奖励
+	std::vector<std::vector<std::string>> reward2;//条件2的奖励
+	int isfinish;//是否完成此任务，0已接受未完成，1未接受任务，2已完成未领取，3已领取奖励
+	int finishtype;//完成任务类型，1表示条件1完成，2表示条件2完成
+}TaskMainData;
+
+typedef struct
+{
+	int id;
+	std::string name;
+	std::string desc;
+	std::string place;
+	std::string npcid;
+	std::string bossword;
+	int type;//条件,1表示给东西，2表示战斗
+	std::vector<std::vector<std::string>> need;//物品，r001-10(id-count)
+	std::string needdesc;
+	std::vector<std::vector<std::string>> reward;//条件1的奖励
+	int isfinish;//是否完成此任务，0已接受未完成，1未接受任务，2已完成未领取，3已领取奖励
+}TaskBranchData;
+
+typedef struct
+{
+	int vocation;
+	std::vector<int> vec_maxhp;
+	std::vector<int> vec_atk;
+	std::vector<int> vec_df;
+	std::vector<float> vec_avoid;//闪避率
+	std::vector<float> vec_crit;//暴击率
+	std::vector<float> vec_speed;//攻击速度
+	std::vector<int> vec_bnsexp;//战斗获得经验值
+}NPCAttrData;
+
+typedef struct
+{
+	std::string id;
+	int vocation;
+}NPCData;
 
 class GlobalInstance
 {
@@ -128,6 +248,30 @@ public:
 	//加载我的资源
 	void loadMyResData();
 
+	//加载装备资源
+	void loadEquipData();
+
+	//加载功法资源
+	void loadGFData();
+
+	//加载主线任务
+	void loadTaskMainData();
+
+	//加载已完成主线任务
+	void loadMyTaskMainData();
+
+	//保存已完成主线任务
+	void saveMyTaskMainData();
+
+	//加载支线任务
+	void loadTaskBranchData();
+
+	//加载已完成支线任务
+	void loadMyTaskBranchData();
+
+	//保存已完成支线任务
+	void saveMyTaskBranchData();
+
 	//总的工人数
 	int getTotalFarmers();
 
@@ -145,13 +289,36 @@ public:
 
 	void parseMapJson();
 
+	//解析套装数据
+	void parseSuitJson();
+
 	DynamicValueInt getMySoliverCount();
 
 	void addMySoliverCount(DynamicValueInt val);
 
+	void costMySoliverCount(DynamicValueInt val);
+
 	DynamicValueInt getMyCoinCount();
 
 	void addMyCoinCount(DynamicValueInt val);
+
+	void costMyCoinCount(DynamicValueInt val);
+
+	//根据装备品质生成镶嵌孔数
+	int generateStoneCount(int qu);
+
+	//保存刷新市场时间
+	void saveRefreshMarketTime(int time);
+
+	//设置刷新资源时间
+	int getRefreshMarketTime();
+
+	void loadNpcData();
+
+	//主线任务进行排序
+	static bool larger_callback(TaskMainData a, TaskMainData b);
+	//支线任务进行排序
+	static bool larger_branchcallback(TaskBranchData a, TaskBranchData b);
 private:
 	static GlobalInstance* _Context;//类实例
 public:
@@ -164,14 +331,33 @@ public:
 
 	static std::map<std::string, AllResources> map_AllResources;//资源名字
 
+	static std::map<std::string, EquipSuit> map_EquipSuit;//套装
+
+	static std::map<std::string, EquipData> map_Equip;//装备名字
+
+	static std::map<std::string, GFData> GlobalInstance::map_GF;
+
+	static std::map<int, NPCAttrData> GlobalInstance::map_NpcAttrData;
+
+	static std::map<std::string, NPCData> GlobalInstance::map_Npcs;
+
+	static std::vector<TaskMainData> vec_TaskMain;//主线任务
+
+	static TaskMainData myCurMainData;//当前主线任务
+
+	static std::vector<TaskBranchData> vec_TaskBranch;//支线任务
+
+	static TaskBranchData myCurBranchData;//当前支线任务
+
 	static int servertime;//服务器时间
 
-	static Hero* myCardHeros[6];//出城选择的6个英雄
+	static Npc* myCardHeros[6];//出城选择的6个英雄
 
 	static std::map<std::string, S_MainMap> map_mapsdata;//地图数据
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;
+	static int refreshMarketTime;
 	static int totalFarmercount;
 	static DynamicValueInt mySoliverCount;
 	static DynamicValueInt myCoinCount;

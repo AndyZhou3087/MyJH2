@@ -67,9 +67,9 @@ bool HomeHillLayer::init(Building* buidingData)
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("homehilltitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//等级
-	cocos2d::ui::Text* lvUIText = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
+	lvUIlbl = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
 	std::string str = StringUtils::format("%d%s", buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
-	lvUIText->setString(str);
+	lvUIlbl->setString(str);
 
 	//招募按钮
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
@@ -164,7 +164,7 @@ void HomeHillLayer::refreshResUi()
 	m_contentscroll->removeAllChildrenWithCleanup(true);
 
 	int size = GlobalInstance::vec_resCreators.size();
-	int itemheight = 170;
+	int itemheight = 190;
 	int innerheight = itemheight * size;
 	int contentheight = m_contentscroll->getContentSize().height;
 	if (innerheight < contentheight)
@@ -182,6 +182,9 @@ void HomeHillLayer::refreshResUi()
 
 void HomeHillLayer::lvup()
 {
+	std::string str = StringUtils::format("%d%s", m_buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
+	lvUIlbl->setString(str);
+
 	std::string cid = StringUtils::format("r%03d", m_buidingData->level.getValue() + 1);
 	ResCreator* creator = new ResCreator(cid);
 	DynamicValueInt dlv;
@@ -198,10 +201,10 @@ void HomeHillLayer::lvup()
 void HomeHillLayer::updateTime(float dt)
 {
 	int pastime = GlobalInstance::servertime - GlobalInstance::getInstance()->getRefreshResTime();
-	int lefttime = REFRESHRESTIME - pastime;
+	int lefttime = RES_REFRESHTIME - pastime;
 	std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
 	m_timelbl->setString(timestr);
-	m_timebar->setPercent(lefttime * 100 / REFRESHRESTIME);
+	m_timebar->setPercent(lefttime * 100 / RES_REFRESHTIME);
 	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getTotalFarmers() - GlobalInstance::getInstance()->getWorkingFarmerCount());
 	m_leftfarmercount->setString(str);
 }

@@ -18,6 +18,7 @@ public:
 	DynamicValueInt maxlevel; //建筑物最高等级
 	DynamicValueInt level;// 建筑物等级
 	std::vector<std::vector<std::map<std::string,int>>> lvupres;//建筑升级资源
+	std::vector<std::vector<std::string>> vec_exdata;
 public:
 	/********************************************************************
 	* 解析每个建筑物的数据

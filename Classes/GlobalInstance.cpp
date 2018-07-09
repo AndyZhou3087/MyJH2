@@ -5,6 +5,8 @@
 #include "Resource.h"
 #include "MyRes.h"
 #include "Const.h"
+#include "Quest.h"
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -18,14 +20,29 @@ std::vector<S_HeroAttr> GlobalInstance::vec_herosAttr;
 std::vector<ResCreator*> GlobalInstance::vec_resCreators;
 
 std::map<std::string, AllResources> GlobalInstance::map_AllResources;
+std::map<std::string, EquipData> GlobalInstance::map_Equip;
+std::map<std::string, GFData> GlobalInstance::map_GF;
+
+std::map<std::string, EquipSuit> GlobalInstance::map_EquipSuit;
+
+std::map<int, NPCAttrData> GlobalInstance::map_NpcAttrData;
+std::map<std::string, NPCData> GlobalInstance::map_Npcs;
+
+std::vector<TaskMainData> GlobalInstance::vec_TaskMain;
+TaskMainData GlobalInstance::myCurMainData;
+
+std::vector<TaskBranchData> GlobalInstance::vec_TaskBranch;
+TaskBranchData GlobalInstance::myCurBranchData;
 
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
 int GlobalInstance::refreshResTime = 0;
 
+int GlobalInstance::refreshMarketTime = 0;
+
 int GlobalInstance::totalFarmercount = 0;
 
-Hero* GlobalInstance::myCardHeros[6];
+Npc* GlobalInstance::myCardHeros[6];
 
 std::map<std::string, S_MainMap> GlobalInstance::map_mapsdata;
 
@@ -165,6 +182,8 @@ void GlobalInstance::loadInitData()
 
 	totalFarmercount = DataSave::getInstance()->getTotalFarmers();
 
+	refreshMarketTime = DataSave::getInstance()->getRefreshMarketTime();
+
 	for (int i = 0; i < 6; i++)
 	{
 		myCardHeros[i] = NULL;
@@ -180,7 +199,7 @@ void GlobalInstance::saveMyHeros()
 	{
 		std::string herokey = StringUtils::format("hero%d", i);
 		Hero* hero = GlobalInstance::vec_myHeros[i];
-		std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos());
+		std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp());
 		DataSave::getInstance()->setHeroData(herokey, datastr);
 	}
 }
@@ -218,6 +237,8 @@ void GlobalInstance::loadMyHeros()
 					{
 						GlobalInstance::myCardHeros[pos - 1] = hero;
 					}
+
+					hero->setHp(atof(vec_tmp[8].c_str()));
 				}
 			}
 			if (vec_retstr.size() > 1)//装备属性
@@ -408,6 +429,336 @@ void GlobalInstance::loadResCreatorData()
 	}
 }
 
+void GlobalInstance::loadTaskMainData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/maintask.json"));
+	rapidjson::Value& allData = doc["sq"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			TaskMainData data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = atoi(v.GetString());
+
+			v = jsonvalue["title"];
+			data.name = v.GetString();
+
+			v = jsonvalue["type"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.type.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["desc"];
+			data.desc = v.GetString();
+
+			v = jsonvalue["place"];
+			data.place = v.GetString();
+
+			v = jsonvalue["npc"];
+			data.npcid = v.GetString();
+
+			v = jsonvalue["bossword"];
+			data.bossword = v.GetString();
+
+			v = jsonvalue["need1"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 3)
+				{
+					std::map<std::string, int> map_tmp;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					map_tmp[vec_tmp[0]] = atoi(vec_tmp[1].c_str());
+					data.need1.push_back(map_tmp);
+				}
+			}
+
+			v = jsonvalue["need1desc"];
+			data.need1desc = v.GetString();
+
+			v = jsonvalue["need2"];
+			data.need2 = atoi(v.GetString());
+
+			v = jsonvalue["need2desc"];
+			data.need2desc = v.GetString();
+
+			v = jsonvalue["mutex1"];
+			std::string str = v.GetString();
+			if (str.length() > 1)
+			{
+				std::string onestr = v.GetString();
+				std::vector<std::string> vec_tmp;
+				CommonFuncs::split(onestr, vec_tmp, "-");
+				data.mutex1.push_back(atoi(vec_tmp[0].c_str()));
+				data.mutex1.push_back(atoi(vec_tmp[1].c_str()));
+			}
+
+			v = jsonvalue["mutex2"];
+			str = v.GetString();
+			if (str.length() > 1)
+			{
+				std::string onestr = v.GetString();
+				std::vector<std::string> vec_tmp;
+				CommonFuncs::split(onestr, vec_tmp, "-");
+				data.mutex2.push_back(atoi(vec_tmp[0].c_str()));
+				data.mutex2.push_back(atoi(vec_tmp[1].c_str()));
+			}
+
+			v = jsonvalue["reward1"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 3)
+				{
+					std::vector<std::string> vec;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					for (int j = 0; j < vec_tmp.size(); j++)
+					{
+						vec.push_back(vec_tmp[j]);
+					}
+					data.reward1.push_back(vec);
+				}
+			}
+
+			v = jsonvalue["reward2"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 3)
+				{
+					std::vector<std::string> vec;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					for (int j = 0; j < vec_tmp.size(); j++)
+					{
+						vec.push_back(vec_tmp[j]);
+					}
+					data.reward2.push_back(vec);
+				}
+			}
+			
+			data.isfinish = 1;//默认未接受任务
+			data.finishtype = 0;
+
+			vec_TaskMain.push_back(data);
+		}
+	}
+}
+
+void GlobalInstance::loadMyTaskMainData()
+{
+	std::string str = DataSave::getInstance()->getMyMainTask();
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_tmp;
+		CommonFuncs::split(str, vec_tmp, ";");
+		for (int i = 0; i < vec_tmp.size(); i++)
+		{
+			std::vector<std::string> vec_one;
+			CommonFuncs::split(vec_tmp[i], vec_one, "-");
+			if (vec_TaskMain[i].id == atoi(vec_one[0].c_str()))
+			{
+				vec_TaskMain[i].isfinish = atoi(vec_one[1].c_str());
+				vec_TaskMain[i].finishtype = atoi(vec_one[2].c_str());
+			}
+		}
+
+		Quest::initFinishTaskData();
+
+		if (vec_TaskMain[vec_tmp.size()-1].isfinish == QUEST_ACC)
+		{
+			myCurMainData = vec_TaskMain[vec_tmp.size()-1];
+			Quest::initCurNeedData();
+		}
+		else
+		{
+			myCurMainData = vec_TaskMain[vec_tmp.size()];
+		}
+		
+	}
+	else
+	{
+		myCurMainData = vec_TaskMain[0];
+	}
+}
+
+void GlobalInstance::saveMyTaskMainData()
+{
+	std::string str;
+	std::string mystr = "";
+	sort(vec_TaskMain.begin(), vec_TaskMain.end(), larger_callback);
+	for (unsigned i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
+	{
+		TaskMainData data = GlobalInstance::vec_TaskMain[i];
+		if (data.isfinish >= QUEST_FINISH)
+		{
+			std::string onestr = StringUtils::format("%d-%d-%d;", data.id, data.isfinish, data.finishtype);
+			str.append(onestr);
+		}
+		if (data.isfinish == QUEST_ACC)
+		{
+			mystr = StringUtils::format("%d-%d-%d;", data.id, data.isfinish, data.finishtype);
+		}
+	}
+	str.append(mystr);
+	DataSave::getInstance()->setMyMainTask(str.substr(0, str.length() - 1));
+}
+
+void GlobalInstance::loadTaskBranchData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/branchtask.json"));
+	rapidjson::Value& allData = doc["sq"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			TaskBranchData data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = atoi(v.GetString());
+
+			v = jsonvalue["title"];
+			data.name = v.GetString();
+
+			v = jsonvalue["type"];
+			data.type = atoi(v.GetString());
+
+			v = jsonvalue["desc"];
+			data.desc = v.GetString();
+
+			v = jsonvalue["place"];
+			data.place = v.GetString();
+
+			v = jsonvalue["npc"];
+			data.npcid = v.GetString();
+
+			v = jsonvalue["bossword"];
+			data.bossword = v.GetString();
+
+			v = jsonvalue["need"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 3)
+				{
+					std::vector<std::string> vec;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					for (int j = 0; j < vec_tmp.size(); j++)
+					{
+						vec.push_back(vec_tmp[j]);
+					}
+					data.need.push_back(vec);
+				}
+			}
+
+			v = jsonvalue["needdesc"];
+			data.needdesc = v.GetString();
+
+			v = jsonvalue["reward"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 3)
+				{
+					std::vector<std::string> vec;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					for (int j = 0; j < vec_tmp.size(); j++)
+					{
+						vec.push_back(vec_tmp[j]);
+					}
+					data.reward.push_back(vec);
+				}
+			}
+
+			data.isfinish = 1;//默认未接受任务
+
+			vec_TaskBranch.push_back(data);
+		}
+	}
+}
+
+void GlobalInstance::loadMyTaskBranchData()
+{
+	std::string str = DataSave::getInstance()->getMyBranchTask();
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_tmp;
+		CommonFuncs::split(str, vec_tmp, ";");
+		for (int i = 0; i < vec_tmp.size(); i++)
+		{
+			std::vector<std::string> vec_one;
+			CommonFuncs::split(vec_tmp[i], vec_one, "-");
+			if (vec_TaskBranch[i].id == atoi(vec_one[0].c_str()))
+			{
+				vec_TaskBranch[i].isfinish = atoi(vec_one[1].c_str());
+			}
+		}
+
+		if (vec_TaskBranch[vec_tmp.size() - 1].isfinish == QUEST_ACC)
+		{
+			myCurBranchData = vec_TaskBranch[vec_tmp.size() - 1];
+		}
+		else
+		{
+			myCurBranchData = vec_TaskBranch[vec_tmp.size()];
+		}
+
+	}
+	else
+	{
+		myCurBranchData = vec_TaskBranch[0];
+	}
+}
+
+void GlobalInstance::saveMyTaskBranchData()
+{
+	std::string str;
+	std::string mystr = "";
+	sort(vec_TaskBranch.begin(), vec_TaskBranch.end(), larger_branchcallback);
+	for (unsigned i = 0; i < GlobalInstance::vec_TaskBranch.size(); i++)
+	{
+		TaskBranchData data = GlobalInstance::vec_TaskBranch[i];
+		if (data.isfinish >= QUEST_FINISH)
+		{
+			std::string onestr = StringUtils::format("%d-%d;", data.id, data.isfinish);
+			str.append(onestr);
+		}
+		if (data.isfinish == QUEST_ACC)
+		{
+			mystr = StringUtils::format("%d-%d;", data.id, data.isfinish);
+		}
+	}
+	str.append(mystr);
+	DataSave::getInstance()->setMyBranchTask(str.substr(0, str.length() - 1));
+}
+
+bool GlobalInstance::larger_callback(TaskMainData a, TaskMainData b)
+{
+	int idA = a.id;
+	int idB = b.id;
+	if (idA < idB)
+		return true;
+	else
+		return false;
+}
+
+bool GlobalInstance::larger_branchcallback(TaskBranchData a, TaskBranchData b)
+{
+	int idA = a.id;
+	int idB = b.id;
+	if (idA < idB)
+		return true;
+	else
+		return false;
+}
+
 void GlobalInstance::saveResCreatorData()
 {
 	std::string str;
@@ -419,15 +770,213 @@ void GlobalInstance::saveResCreatorData()
 	DataSave::getInstance()->setResCreatorData(str.substr(0,str.length() - 1));	
 }
 
+void GlobalInstance::loadEquipData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/equip.json"));
+	rapidjson::Value& allData = doc["g"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			EquipData data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = v.GetString();
+
+			v = jsonvalue["name"];
+			data.name = v.GetString();
+
+			v = jsonvalue["maxhp"];
+			data.maxhp = atoi(v.GetString());
+
+			v = jsonvalue["atk"];
+			data.atk = atoi(v.GetString());
+
+			v = jsonvalue["df"];
+			data.df = atoi(v.GetString());
+
+			v = jsonvalue["avoid"];
+			data.avoid = atof(v.GetString());
+
+			v = jsonvalue["crit"];
+			data.crit = atof(v.GetString());
+
+			v = jsonvalue["speed"];
+			data.speed = atof(v.GetString());
+
+			v = jsonvalue["bns"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_bns.push_back(v[m].GetFloat());
+			}
+
+			map_Equip[data.id] = data;
+		}
+	}
+}
+
+void GlobalInstance::loadGFData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/gf.json"));
+	rapidjson::Value& allData = doc["g"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			GFData data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = v.GetString();
+
+			v = jsonvalue["name"];
+			data.name = v.GetString();
+
+			v = jsonvalue["qu"];
+			data.qu = atoi(v.GetString());
+
+			v = jsonvalue["skill"];
+			data.skill = atoi(v.GetString());
+
+			v = jsonvalue["skillbns"];
+
+			for (int m = 0; m < v.Size(); m++)
+			{
+				data.vec_skillbns.push_back(v[m].GetInt());
+			}
+			
+			v = jsonvalue["maxhp"];
+			for (unsigned  int m = 0; m < v.Size(); m++)
+			{
+				data.vec_hp.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["atk"];
+			for (unsigned  int m = 0; m < v.Size(); m++)
+			{
+				data.vec_atk.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["df"];
+			for (unsigned  int m = 0; m < v.Size(); m++)
+			{
+				data.vec_df.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["avoid"];
+			for (unsigned  int m = 0; m < v.Size(); m++)
+			{
+				data.vec_avoid.push_back(v[m].GetFloat());
+			}
+
+			v = jsonvalue["crit"];
+			for (unsigned  int m = 0; m < v.Size(); m++)
+			{
+				data.vec_crit.push_back(v[m].GetFloat());
+			}
+
+			v = jsonvalue["speed"];
+			for (unsigned  int m = 0; m < v.Size(); m++)
+			{
+				data.vec_speed.push_back(v[m].GetFloat());
+			}
+
+			v = jsonvalue["bns"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_herobns.push_back(v[m].GetFloat());
+			}
+
+			map_GF[data.id] = data;
+		}
+	}
+}
+
+void GlobalInstance::loadNpcData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/npcatr.json"));
+	rapidjson::Value& allData = doc["n"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			NPCAttrData data;
+			rapidjson::Value& v = jsonvalue["vocation"];
+			data.vocation = atoi(v.GetString());
+
+			v = jsonvalue["maxhp"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_maxhp.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["atk"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_atk.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["df"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_df.push_back(v[m].GetInt());
+			}
+
+			v = jsonvalue["avoid"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_avoid.push_back(v[m].GetFloat());
+			}
+
+			v = jsonvalue["crit"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_crit.push_back(v[m].GetFloat());
+			}
+
+			v = jsonvalue["speed"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_speed.push_back(v[m].GetFloat());
+			}
+
+			v = jsonvalue["exp"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_bnsexp.push_back(v[m].GetFloat());
+			}
+
+			map_NpcAttrData[data.vocation] = data;
+		}
+	}
+
+	doc = ReadJsonFile(ResourcePath::makePath("json/npc.json"));
+	allData = doc["n"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			NPCData data;
+			rapidjson::Value& v = jsonvalue["vocation"];
+			data.vocation = atoi(v.GetString());
+
+			v = jsonvalue["id"];
+			data.id = v.GetString();
+			map_Npcs[data.id] = data;
+		}
+	}
+}
+
 void GlobalInstance::loadAllResourcesData()
 {
 	int langtype = DataSave::getInstance()->getLocalLang();
 	std::string langname = StringUtils::format("lang/%s/allresdesc.json", ResourceLang::makeLangName(langtype).c_str());
-	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath(langname));
-	rapidjson::Value& allData = doc["rd"];
-	for (unsigned int i = 0; i < allData.Size(); i++)
+	rapidjson::Document rddoc = ReadJsonFile(ResourcePath::makePath(langname));
+	rapidjson::Value& rdallData = rddoc["rd"];
+	for (unsigned int i = 0; i < rdallData.Size(); i++)
 	{
-		rapidjson::Value& jsonvalue = allData[i];
+		rapidjson::Value& jsonvalue = rdallData[i];
 		if (jsonvalue.IsObject())
 		{
 			AllResources data;
@@ -446,6 +995,41 @@ void GlobalInstance::loadAllResourcesData()
 			map_AllResources[data.id] = data;
 		}
 	}
+
+	rapidjson::Document rsdoc = ReadJsonFile(ResourcePath::makePath("json/resaction.json"));
+	rapidjson::Value& rsallData = rsdoc["r"];
+	for (unsigned int i = 0; i < rsallData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = rsallData[i];
+		if (jsonvalue.IsObject())
+		{
+			rapidjson::Value& v = jsonvalue["id"];
+			std::string rid = v.GetString();
+
+			if (jsonvalue.HasMember("nres"))
+			{
+				v = jsonvalue["nres"];
+				for (unsigned int j = 0;j < v.Size(); j++)
+				{
+					std::string onestr = v[j].GetString();
+					if (onestr.length() > 3)
+					{
+						std::map<std::string, int> map_tmp;
+						std::vector<std::string> vec_tmp;
+						CommonFuncs::split(onestr, vec_tmp, "-");
+						map_tmp[vec_tmp[0]] = atoi(vec_tmp[1].c_str());
+						map_AllResources[rid].vec_needres.push_back(map_tmp);
+					}
+
+				}
+			}
+			if (jsonvalue.HasMember("sale"))
+			{
+				v = jsonvalue["sale"];
+				map_AllResources[rid].saleval = atoi(v.GetString());
+			}
+		}
+	}
 }
 
 void GlobalInstance::loadMyResData()
@@ -460,17 +1044,72 @@ void GlobalInstance::loadMyResData()
 			std::vector<std::string> vec_one;
 			CommonFuncs::split(vec_tmp[i], vec_one, "-");
 			std::string rid = vec_one[0];
-			ResBase* res = NULL;
-			if (rid.compare(0, 1, "r") == 0)
+
+			std::string types[] = { "r","a","e","h","f","w","x","s","c","d","m","b","y" };
+			int m = 0;
+			for (; m < sizeof(types) / sizeof(types[0]); m++)
 			{
-				res = new ResBase();
-				res->setId(rid);
-				DynamicValueInt dlv;
-				dlv.setValue(atoi(vec_one[1].c_str()));
-				res->setCount(dlv);
-				res->setWhere(atoi(vec_one[2].c_str()));
+				if (rid.compare(0, 1, types[m]) == 0)
+					break;
 			}
-			MyRes::vec_MyResources.push_back(res);
+			if (m >= T_ARMOR && m <= T_FASHION)
+			{
+				Equip* res = new Equip();
+				res->setId(rid);
+				res->setType(m);
+				DynamicValueInt dv;
+				dv.setValue(atoi(vec_one[1].c_str()));
+				res->setCount(dv);
+				res->setWhere(atoi(vec_one[2].c_str()));
+
+				DynamicValueInt dv1;
+				dv1.setValue(atoi(vec_one[3].c_str()));
+				res->setQU(dv1);
+
+				DynamicValueInt dv2;
+				dv2.setValue(atoi(vec_one[4].c_str()));
+				res->setLv(dv2);
+
+				CommonFuncs::split(vec_one[5], res->vec_stones, ",");
+
+				res->setWhos(vec_one[6]);
+
+				MyRes::vec_MyResources.push_back(res);
+			}
+			else if (m >= T_WG && m <= T_NG)
+			{
+				GongFa* res = new GongFa();
+				res->setId(rid);
+				res->setType(m);
+				DynamicValueInt dv;
+				dv.setValue(atoi(vec_one[1].c_str()));
+				res->setCount(dv);
+				res->setWhere(atoi(vec_one[2].c_str()));
+
+				DynamicValueInt dv1;
+				dv1.setValue(atoi(vec_one[3].c_str()));
+				res->setQU(dv1);
+
+				DynamicValueInt dv2;
+				dv2.setValue(atoi(vec_one[4].c_str()));
+				res->setExp(dv2);
+
+				res->setWhos(vec_one[5]);
+
+				MyRes::vec_MyResources.push_back(res);
+			}
+
+			else
+			{
+				ResBase* res = new ResBase();
+				res->setId(rid);
+				res->setType(m);
+				DynamicValueInt dv;
+				dv.setValue(atoi(vec_one[1].c_str()));
+				res->setCount(dv);
+				res->setWhere(atoi(vec_one[2].c_str()));
+				MyRes::vec_MyResources.push_back(res);
+			}
 		}
 	}
 }
@@ -539,10 +1178,16 @@ void GlobalInstance::parseMapJson()
 		rapidjson::Value& jsonvalue = subData[i];
 		rapidjson::Value& v = jsonvalue["id"];
 		s_submap.id = v.GetString();
-		v = jsonvalue["t"];
-		s_submap.imgname = v.GetString();
+
 		v = jsonvalue["ph"];
 		s_submap.ph = atoi(v.GetString());
+
+		v = jsonvalue["awd"];
+		for (unsigned int i = 0; i < v.Size(); i++)
+		{
+			s_submap.vec_awd.push_back(v[i].GetString());
+		}
+
 		std::string mainid = s_submap.id.substr(0, s_submap.id.find_last_of("-"));
 		map_mapsdata[mainid].map_sublist[s_submap.id] = s_submap;
 	}
@@ -559,6 +1204,12 @@ void GlobalInstance::addMySoliverCount(DynamicValueInt val)
 	DataSave::getInstance()->setMySoliverCount(GlobalInstance::mySoliverCount.getValue());
 }
 
+void GlobalInstance::costMySoliverCount(DynamicValueInt val)
+{
+	GlobalInstance::mySoliverCount.setValue(GlobalInstance::mySoliverCount.getValue() - val.getValue());
+	DataSave::getInstance()->setMySoliverCount(GlobalInstance::mySoliverCount.getValue());
+}
+
 DynamicValueInt GlobalInstance::getMyCoinCount()
 {
 	return GlobalInstance::myCoinCount;
@@ -568,4 +1219,113 @@ void GlobalInstance::addMyCoinCount(DynamicValueInt val)
 {
 	GlobalInstance::myCoinCount.setValue(GlobalInstance::myCoinCount.getValue() + val.getValue());
 	DataSave::getInstance()->setMyCoinCount(GlobalInstance::myCoinCount.getValue());
+}
+
+void GlobalInstance::costMyCoinCount(DynamicValueInt val)
+{
+	GlobalInstance::myCoinCount.setValue(GlobalInstance::myCoinCount.getValue() - val.getValue());
+	DataSave::getInstance()->setMyCoinCount(GlobalInstance::myCoinCount.getValue());
+}
+
+int GlobalInstance::generateStoneCount(int qu)
+{
+	int count = 0;
+	//镶嵌孔个数
+	int rnd = GlobalInstance::getInstance()->createRandomNum(100);
+	if (qu == 0)
+	{
+		if (rnd < 80)
+			count = 0;
+		else if (rnd < 90)
+			count = 1;
+		else if (rnd < 98)
+			count = 2;
+		else
+			count = 3;
+	}
+	else if (qu == 1)
+	{
+		if (rnd < 60)
+			count = 0;
+		else if (rnd < 90)
+			count = 1;
+		else if (rnd < 98)
+			count = 2;
+		else
+			count = 3;
+	}
+	else if (qu == 2)
+	{
+		if (rnd < 50)
+			count = 0;
+		else if (rnd < 80)
+			count = 1;
+		else if (rnd < 95)
+			count = 2;
+		else
+			count = 3;
+	}
+	else if (qu == 3)
+	{
+		if (rnd < 40)
+			count = 0;
+		else if (rnd < 80)
+			count = 1;
+		else if (rnd < 95)
+			count = 2;
+		else
+			count = 3;
+	}
+	else
+	{
+		if (rnd < 40)
+			count = 0;
+		else if (rnd < 75)
+			count = 1;
+		else if (rnd < 95)
+			count = 2;
+		else
+			count = 3;
+	}
+	return 3;//count;
+}
+
+void GlobalInstance::saveRefreshMarketTime(int time)
+{
+	refreshMarketTime = time;
+	DataSave::getInstance()->setRefreshMarketTime(time);
+}
+
+
+int GlobalInstance::getRefreshMarketTime()
+{
+	return refreshMarketTime;
+}
+
+void GlobalInstance::parseSuitJson()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/suitequip.json"));
+	rapidjson::Value& allData = doc["sq"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			EquipSuit data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = v.GetString();
+
+			v = jsonvalue["suite"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_suit.push_back(v[m].GetString());
+			}
+			v = jsonvalue["bns"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_bns.push_back(v[m].GetDouble());
+			}
+			map_EquipSuit[data.id] = data;
+		}
+	}
 }

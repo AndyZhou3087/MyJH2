@@ -83,39 +83,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="MarkedSubImage" Path="ui/equipbox_1.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="equipbox_2" ActionTag="-196722863" Tag="142" IconVisible="False" LeftMargin="2.9368" RightMargin="-127.9368" TopMargin="-72.0000" BottomMargin="-53.0000" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
-                <Size X="125.0000" Y="125.0000" />
-                <Children>
-                  <AbstractNodeData Name="qubox" ActionTag="-1425847401" Tag="44" IconVisible="False" LeftMargin="7.9987" RightMargin="77.0013" TopMargin="8.0003" BottomMargin="76.9997" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="14" Scale9Height="14" ctype="ImageViewObjectData">
-                    <Size X="40.0000" Y="40.0000" />
-                    <AnchorPoint ScaleY="1.0000" />
-                    <Position X="7.9987" Y="116.9997" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.0640" Y="0.9360" />
-                    <PreSize X="0.3200" Y="0.3200" />
-                    <FileData Type="MarkedSubImage" Path="ui/heroattradd.png" Plist="ui.plist" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="img" ActionTag="1731631728" Tag="45" IconVisible="False" LeftMargin="8.0000" RightMargin="65.0000" TopMargin="89.0000" BottomMargin="8.0000" LeftEage="14" RightEage="14" TopEage="8" BottomEage="8" Scale9OriginX="14" Scale9OriginY="8" Scale9Width="24" Scale9Height="12" ctype="ImageViewObjectData">
-                    <Size X="52.0000" Y="28.0000" />
-                    <AnchorPoint />
-                    <Position X="8.0000" Y="8.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.0640" Y="0.0640" />
-                    <PreSize X="0.4160" Y="0.2240" />
-                    <FileData Type="MarkedSubImage" Path="text_zh_cn/equiptext_2.png" Plist="text_zh_cn.plist" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="65.4368" Y="9.5000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="ui/equipbox_2.png" Plist="ui.plist" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="equipbox_3" ActionTag="-1707297070" Tag="143" IconVisible="False" LeftMargin="-126.7035" RightMargin="1.7035" TopMargin="-72.0001" BottomMargin="-52.9999" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="equipbox_2" ActionTag="-1707297070" Tag="143" IconVisible="False" LeftMargin="-126.7035" RightMargin="1.7035" TopMargin="-72.0001" BottomMargin="-52.9999" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
                 <Size X="125.0000" Y="125.0000" />
                 <Children>
                   <AbstractNodeData Name="qubox" ActionTag="251130786" Tag="46" IconVisible="False" LeftMargin="7.9998" RightMargin="77.0002" TopMargin="8.0000" BottomMargin="77.0000" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="14" Scale9Height="14" ctype="ImageViewObjectData">
@@ -146,6 +114,38 @@
                 <PrePosition />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="MarkedSubImage" Path="ui/equipbox_3.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="equipbox_3" ActionTag="-196722863" Tag="142" IconVisible="False" LeftMargin="2.9368" RightMargin="-127.9368" TopMargin="-72.0000" BottomMargin="-53.0000" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+                <Size X="125.0000" Y="125.0000" />
+                <Children>
+                  <AbstractNodeData Name="qubox" ActionTag="-1425847401" Tag="44" IconVisible="False" LeftMargin="7.9987" RightMargin="77.0013" TopMargin="8.0003" BottomMargin="76.9997" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="14" Scale9Height="14" ctype="ImageViewObjectData">
+                    <Size X="40.0000" Y="40.0000" />
+                    <AnchorPoint ScaleY="1.0000" />
+                    <Position X="7.9987" Y="116.9997" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.0640" Y="0.9360" />
+                    <PreSize X="0.3200" Y="0.3200" />
+                    <FileData Type="MarkedSubImage" Path="ui/heroattradd.png" Plist="ui.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img" ActionTag="1731631728" Tag="45" IconVisible="False" LeftMargin="8.0000" RightMargin="65.0000" TopMargin="89.0000" BottomMargin="8.0000" LeftEage="14" RightEage="14" TopEage="8" BottomEage="8" Scale9OriginX="14" Scale9OriginY="8" Scale9Width="24" Scale9Height="12" ctype="ImageViewObjectData">
+                    <Size X="52.0000" Y="28.0000" />
+                    <AnchorPoint />
+                    <Position X="8.0000" Y="8.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.0640" Y="0.0640" />
+                    <PreSize X="0.4160" Y="0.2240" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/equiptext_2.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="65.4368" Y="9.5000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/equipbox_2.png" Plist="ui.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="equipbox_4" ActionTag="422518104" Tag="144" IconVisible="False" LeftMargin="132.5771" RightMargin="-238.5771" TopMargin="-53.0001" BottomMargin="-52.9999" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
                 <Size X="106.0000" Y="106.0000" />

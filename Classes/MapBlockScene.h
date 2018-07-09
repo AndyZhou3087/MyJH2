@@ -28,6 +28,13 @@ typedef enum
 	BTN_PACKAGE
 }BTNTYPE;
 
+typedef enum
+{
+	MAP_S_NOTING = 0,
+	MAP_S_EVENT,
+	MAP_S_FIGHT
+}MAP_STATUS;
+
 class MapBlockScene :public Layer, public ScrollViewDelegate
 {
 public:
@@ -35,6 +42,8 @@ public:
 	~MapBlockScene();
 
 	bool init(std::string mapname);
+
+	virtual void onExit();
 
 	static cocos2d::Scene* createScene(std::string mapname);
 
@@ -54,13 +63,37 @@ private:
 
 	void setMyPos();
 
+	//视线移动到角色中心
+	void ajustMyPos();
+
 	void stopMoving();
 
-	bool checkRoad(int blockindex);
+	bool checkRoad(MAP_KEYTYPE keyArrow);
 
 	virtual void scrollViewDidScroll(ScrollView* view);
 
 	virtual void scrollViewDidZoom(ScrollView* view);
+
+	void createBlackFog();
+
+	void updateFogVisible();
+
+	bool checkBlockVisible(int mapiter);
+
+	void removeBlackFog(int mapiter);
+
+	void initBlockData();
+	
+	void doMyStatus();
+
+	//长按，1S以上算长按
+	void longTouchUpdate(float delay);
+
+	void cacelLongTouch();
+
+	void go(MAP_KEYTYPE keyArrow);
+
+	void createRndMonsters();
 
 private:
 	Node* m_csbnode;
@@ -70,12 +103,20 @@ private:
 	cocos2d::ui::Text* solivercountlbl;
 	int blockRowCount;
 	int blockColCount;
+	ScrollView* scrollView;
 	Node *m_mapscrollcontainer;
 	std::map<int, MapBlock*> map_mapBlocks;
+	std::map<int, Sprite*> map_mapFogBlacks;
 	std::vector<int> vec_startpos;
 	int mycurCol;
 	int mycurRow;
 	bool isMoving;
+	bool m_isLongPress;
+	Node* m_longTouchNode;
+	int randStartPos;
+	std::string m_mapid;
+	int walkcount;
+	int monsterComeRnd;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif
