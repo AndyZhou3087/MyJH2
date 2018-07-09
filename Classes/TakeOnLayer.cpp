@@ -396,9 +396,9 @@ void TakeOnLayer::updateUI()
 				stone->setVisible(true);
 
 				int intid = atoi(stoneid.substr(1).c_str()) - 1;
-				int intv = intid / 3;vvv
+				int intv = intid / 3;
 				std::string ss = ResourceLang::map_lang[stonedescstr[intv]];
-				str = StringUtils::format(ss.c_str(), STONE_BNS[intv][intid % 3];);
+				str = StringUtils::format(ss.c_str(), STONE_BNS[intv][intid % 3]);
 
 				stonedesc->setString(str);
 				stonedesc->setVisible(false);

@@ -108,7 +108,8 @@ bool SetInStoneLayer::init(ResBase* res, int which, Hero* herodata)
 	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	namelbl->setString(GlobalInstance::map_AllResources[stoneid].name);
 
-	int intv = (atoi(stoneid.substr(1).c_str()) - 1) / 3;
+	int intid = atoi(stoneid.substr(1).c_str()) - 1;
+	int intv = intid / 3;
 	int textindex = 0;
 	if (intv == 0)
 		textindex = 1;
@@ -124,7 +125,7 @@ bool SetInStoneLayer::init(ResBase* res, int which, Hero* herodata)
 	cocos2d::ui::Text* attrlbl = (cocos2d::ui::Text*)csbnode->getChildByName("attrtext_0");
 
 	str = StringUtils::format("addattrtext_%d", textindex);
-	str = StringUtils::format(ResourceLang::map_lang[str].c_str(), stonebns[intv]);
+	str = StringUtils::format(ResourceLang::map_lang[str].c_str(), STONE_BNS[intv][intid%3]);
 	if (textindex >= 0 && textindex <= 2)
 		str.append("%");
 	attrlbl->setString(str);
