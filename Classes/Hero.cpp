@@ -81,12 +81,13 @@ int Hero::getLevel()
 float Hero::getAtk()
 {
 	float heroatk = GlobalInstance::vec_herosAttr[m_vocation].vec_atk[getLevel()];
-
+	
 	for (int i = 0; i < 6; i++)
 	{
 		if (takeOnEquip[i] != NULL)
 		{
-			heroatk += takeOnEquip[i]->getAtk();
+			float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			heroatk += (takeOnEquip[i]->getAtk()*herobns);
 		}
 	}
 	return heroatk;
@@ -101,8 +102,9 @@ float Hero::getDf()
 		{
 			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
 			{
+				float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
 				Equip* equip = (Equip*)takeOnEquip[i];
-				herodf += equip->getDf();
+				herodf += (equip->getDf()*herobns);
 				if (GlobalInstance::map_EquipSuit[equip->getId()].vec_suit.size() >= 3)
 				{
 					if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[equip->getId()].vec_suit[2], getName()) != NULL)
@@ -128,8 +130,9 @@ float Hero::getMaxHp()
 		{
 			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
 			{
+				float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
 				Equip* equip = (Equip*)takeOnEquip[i];
-				herohp += equip->getHp();
+				herohp += (equip->getHp()*herobns);
 				if (GlobalInstance::map_EquipSuit[equip->getId()].vec_suit.size() >= 2)
 				{
 					if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[equip->getId()].vec_suit[1], getName()) != NULL)
@@ -154,7 +157,8 @@ float Hero::getAtkSpeed()
 	{
 		if (takeOnEquip[i] != NULL)
 		{
-			heroatkspeed += takeOnEquip[i]->getAtkSpeed();
+			float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			heroatkspeed += (takeOnEquip[i]->getAtkSpeed()*herobns);
 		}
 	}
 	return heroatkspeed;
@@ -166,7 +170,8 @@ float Hero::getCrit()
 	{
 		if (takeOnEquip[i] != NULL)
 		{
-			herocrit += takeOnEquip[i]->getCrit();
+			float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			herocrit += (takeOnEquip[i]->getCrit()*herobns);
 		}
 	}
 	return herocrit;
@@ -178,7 +183,8 @@ float Hero::getDodge()
 	{
 		if (takeOnEquip[i] != NULL)
 		{
-			herododge += takeOnEquip[i]->getDodge();
+			float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			herododge += (takeOnEquip[i]->getDodge()*herobns);
 		}
 	}
 	return herododge;
