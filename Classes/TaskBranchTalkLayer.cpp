@@ -1,4 +1,4 @@
-#include "TaskTalkLayer.h"
+#include "TaskBranchTalkLayer.h"
 #include <algorithm>
 #include "CommonFuncs.h"
 #include "Const.h"
@@ -9,20 +9,20 @@
 #include "MovingLabel.h"
 #include "Quest.h"
 
-TaskTalkLayer::TaskTalkLayer()
+TaskBranchTalkLayer::TaskBranchTalkLayer()
 {
 
 }
 
 
-TaskTalkLayer::~TaskTalkLayer()
+TaskBranchTalkLayer::~TaskBranchTalkLayer()
 {
 
 }
 
-TaskTalkLayer* TaskTalkLayer::create( std::string npcid)
+TaskBranchTalkLayer* TaskBranchTalkLayer::create( std::string npcid)
 {
-	TaskTalkLayer *pRet = new(std::nothrow)TaskTalkLayer();
+	TaskBranchTalkLayer *pRet = new(std::nothrow)TaskBranchTalkLayer();
 	if (pRet && pRet->init(npcid))
 	{
 		pRet->autorelease();
@@ -36,11 +36,11 @@ TaskTalkLayer* TaskTalkLayer::create( std::string npcid)
 	}
 }
 
-bool TaskTalkLayer::init(std::string npcid)
+bool TaskBranchTalkLayer::init(std::string npcid)
 {
 	m_npcid = npcid;
 
-	TaskMainData* data = &GlobalInstance::myCurMainData;
+	TaskBranchData* data = &GlobalInstance::myCurBranchData;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
 
@@ -69,77 +69,29 @@ bool TaskTalkLayer::init(std::string npcid)
 	npcname->setString(data->);*/
 
 	closebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("closebtn");
-	closebtn->setPosition(Vec2(357, 131));
+	closebtn->setPosition(Vec2(357, 183));
 	closebtn->setTag(0);
-	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtnClick, this));
+	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskBranchTalkLayer::onBtnClick, this));
 
 	givebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("accbtn");
-	givebtn->setPosition(Vec2(357, 429));
+	givebtn->setPosition(Vec2(357, 376));
 	givebtn->setTag(1);
-	givebtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtnClick, this));
-	givebtn->setTitleText(data->need1desc);
-
-	fightbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("getbtn");
-	fightbtn->setVisible(true);
-	fightbtn->setPosition(Vec2(357, 285));
-	fightbtn->setTag(2);
-	fightbtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtnClick, this));
-	fightbtn->setTitleText(data->need2desc);
+	givebtn->addTouchEventListener(CC_CALLBACK_2(TaskBranchTalkLayer::onBtnClick, this));
+	givebtn->setTitleText(data->needdesc);
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("ScrollView");
 	scrollView->setScrollBarEnabled(false);
 	scrollView->setBounceEnabled(true);
 
-	if (data->type.size()<2)
+	cocos2d::ui::Text* rewardlabel = (cocos2d::ui::Text*)m_csbnode->getChildByName("rewardlabel");
+
+	if (data->type != QUEST_GIVE)
 	{
-		if (data->type[0] == QUEST_GIVE)
-		{
-			fightbtn->setVisible(false);
-			givebtn->setPosition(Vec2(357, 376));
-		}
-		else
-		{
-			givebtn->setVisible(false);
-			fightbtn->setPosition(Vec2(357, 376));
-		}
-		closebtn->setPosition(Vec2(357, 183));
-	}
-	else
-	{
-		//判断是否互斥
-		if (Quest::getMutexMainQuestType(data->id, data->type[0]))
-		{
-			givebtn->setTouchEnabled(false);
-		}
-		if (Quest::getMutexMainQuestType(data->id, data->type[1]))
-		{
-			fightbtn->setTouchEnabled(false);
-		}
+		scrollView->setVisible(false);
+		rewardlabel->setVisible(false);
 	}
 
-	std::vector<std::vector<std::string>> rewards;
-	if (data->type.size() == 1)
-	{
-		if (data->type[0] == QUEST_GIVE)
-		{
-			rewards = data->reward1;
-		}
-		else
-		{
-			rewards = data->reward2;
-		}
-	}
-	else
-	{
-		for (int m = 0; m < data->reward1.size(); m++)
-		{
-			rewards.push_back(data->reward1[m]);
-		}
-		for (int n = 0; n < data->reward2.size(); n++)
-		{
-			rewards.push_back(data->reward2[n]);
-		}
-	}
+	std::vector<std::vector<std::string>> rewards = data->need;
 
 	for (int i = 0; i < rewards.size(); i++)
 	{
@@ -196,7 +148,7 @@ bool TaskTalkLayer::init(std::string npcid)
 	return true;
 }
 
-void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+void TaskBranchTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
@@ -209,10 +161,7 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			this->removeFromParentAndCleanup(true);
 			break;
 		case 1: //条件1
-			Quest::setResQuestData("r006", 500, m_npcid);//测试
-			break;
-		case 2: //条件2
-			
+			Quest::setResBranchQuestData("r006", 500, m_npcid);//测试
 			break;
 		default:
 			break;

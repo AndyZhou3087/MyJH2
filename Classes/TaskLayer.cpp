@@ -8,6 +8,7 @@
 #include "MyMenu.h"
 #include "MovingLabel.h"
 #include "TaskMainNode.h"
+#include "TaskBranchNode.h"
 
 TaskLayer::TaskLayer()
 {
@@ -18,6 +19,7 @@ TaskLayer::TaskLayer()
 TaskLayer::~TaskLayer()
 {
 	GlobalInstance::getInstance()->saveMyTaskMainData();
+	GlobalInstance::getInstance()->saveMyTaskBranchData();
 }
 
 bool TaskLayer::init()
@@ -101,7 +103,8 @@ void TaskLayer::updateContent(int category)
 	}
 	else if (category == 1)
 	{
-		ressize = 20;
+		ressize = GlobalInstance::vec_TaskBranch.size();
+		sort(GlobalInstance::vec_TaskBranch.begin(), GlobalInstance::vec_TaskBranch.end(), larger_branchcallback);
 	}
 	else
 	{
@@ -125,7 +128,7 @@ void TaskLayer::updateContent(int category)
 		}
 		else if (category == 1)
 		{
-			
+			node = TaskBranchNode::create(&GlobalInstance::vec_TaskBranch[i], this);
 		}
 		else
 		{
@@ -147,6 +150,16 @@ void TaskLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 }
 
 bool TaskLayer::larger_callback(TaskMainData a, TaskMainData b)
+{
+	int needcountA = a.isfinish;
+	int needcountB = b.isfinish;
+	if (needcountA < needcountB)
+		return true;
+	else
+		return false;
+}
+
+bool TaskLayer::larger_branchcallback(TaskBranchData a, TaskBranchData b)
 {
 	int needcountA = a.isfinish;
 	int needcountB = b.isfinish;

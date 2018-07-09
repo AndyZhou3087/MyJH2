@@ -4,6 +4,8 @@
 #include "GlobalInstance.h"
 #include "MyRes.h"
 #include "TaskTalkLayer.h"
+#include "TaskBranchTalkLayer.h"
+#include "Quest.h"
 
 USING_NS_CC;
 
@@ -167,8 +169,14 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			break;
 		case SETBTN:
 			//测试
-			//this->addChild(TaskTalkLayer::create());
-
+			/*if (Quest::getMainQuestNpc("n014"))
+			{
+				this->addChild(TaskTalkLayer::create("n014"));
+			}
+			else if (Quest::getBranchQuestNpc("n014"))
+			{
+				this->addChild(TaskBranchTalkLayer::create("n014"));
+			}*/
 			break;
 		case ACHBTN:
 			break;

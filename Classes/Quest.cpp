@@ -6,12 +6,14 @@ std::vector<TaskMainData> Quest::myFinishMainQuest;
 
 std::map<std::string, int> Quest::map_NpcQuestRes;
 
+std::map<std::string, int> Quest::map_NpcBranchQuestRes;
+
 bool Quest::initFinishTaskData()
 {
 	for (int i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
 	{
 		TaskMainData data = GlobalInstance::vec_TaskMain[i];
-		if (data.isfinish >= MAIN_FINISH)
+		if (data.isfinish >= QUEST_FINISH)
 		{
 			myFinishMainQuest.push_back(data);
 		}
@@ -45,7 +47,7 @@ void Quest::AddFinishQuest(TaskMainData data)
 	DataSave::getInstance()->setMyCurTaskNeed("");
 }
 
-void Quest::saveData()
+void Quest::saveMainData()
 {
 	std::string str;
 	for (unsigned int i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
@@ -68,7 +70,7 @@ bool Quest::getMutexMainQuestType(int id, int type)
 	for (int i = 0; i < myFinishMainQuest.size(); i++)
 	{
 		TaskMainData data = myFinishMainQuest[i];
-		if (data.finishtype == MAIN_GIVE)
+		if (data.finishtype == QUEST_GIVE)
 		{
 			if (data.mutex1.size() > 0)
 			{
@@ -106,7 +108,7 @@ bool Quest::getMutexMainQuestType(int id, int type)
 
 bool Quest::getMainQuestNpc(std::string npcid)
 {
-	if (GlobalInstance::myCurMainData.isfinish == MAIN_TASK && npcid.compare(GlobalInstance::myCurMainData.npcid) == 0)
+	if (GlobalInstance::myCurMainData.isfinish == QUEST_ACC && npcid.compare(GlobalInstance::myCurMainData.npcid) == 0)
 	{
 		return true;
 	}
@@ -137,15 +139,22 @@ void Quest::setResQuestData(std::string resid, int count, std::string npcid)
 	std::map<std::string, int>::iterator it;
 	for (it = map_NpcQuestRes.begin(); it != map_NpcQuestRes.end(); it++)
 	{
-		std::string onestr = StringUtils::format("%s-%d;", it->first, map_NpcQuestRes[it->first]);
+		std::string cresid = it->first;
+		std::string onestr = StringUtils::format("%s-%d;", cresid.c_str(), map_NpcQuestRes[it->first]);
 		curstr.append(onestr);
 	}
-	DataSave::getInstance()->setMyCurTaskNeed(curstr);
+	DataSave::getInstance()->setMyCurTaskNeed(curstr.substr(0, curstr.length() - 1));
+
+	//判断是否给予完成
+	if (getResCountFinish())
+	{
+		finishQuest();
+	}
 }
 
 bool Quest::getResCountFinish()
 {
-	if (GlobalInstance::myCurMainData.isfinish == MAIN_TASK)
+	if (GlobalInstance::myCurMainData.isfinish == QUEST_TASK)
 	{
 		return false;
 	}
@@ -166,4 +175,105 @@ bool Quest::getResCountFinish()
 		return true;
 	}
 	return false;
+}
+
+void Quest::finishQuest()
+{
+	GlobalInstance::myCurMainData.isfinish = QUEST_FINISH;
+	GlobalInstance::myCurMainData.finishtype = QUEST_GIVE;
+	saveMainData();
+}
+
+/*************支线任务**************/
+
+bool Quest::getBranchQuestNpc(std::string npcid)
+{
+	if (GlobalInstance::myCurBranchData.isfinish == QUEST_ACC && npcid.compare(GlobalInstance::myCurBranchData.npcid) == 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void Quest::setResBranchQuestData(std::string resid, int count, std::string npcid)
+{
+	if (!getBranchQuestNpc(npcid))
+	{
+		return;
+	}
+	for (int i = 0; i < GlobalInstance::myCurBranchData.need.size(); i++)
+	{
+		std::vector<std::string> one_res = GlobalInstance::myCurBranchData.need[i];
+		std::string cresid = one_res[0];
+		int count = atoi(one_res[1].c_str());
+		if (resid.compare(cresid) == 0)
+		{
+			map_NpcBranchQuestRes[resid] += count;
+		}
+	}
+
+	std::string curstr;
+	std::map<std::string, int>::iterator it;
+	for (it = map_NpcBranchQuestRes.begin(); it != map_NpcBranchQuestRes.end(); it++)
+	{
+		std::string cresid = it->first;
+		std::string onestr = StringUtils::format("%s-%d;", cresid.c_str(), map_NpcBranchQuestRes[it->first]);
+		curstr.append(onestr);
+	}
+	DataSave::getInstance()->setMyCurBranchNeed(curstr.substr(0, curstr.length() - 1));
+
+	//判断是否给予完成
+	if (getResBranchFinish())
+	{
+		finishBranchQuest();
+	}
+}
+
+bool Quest::getResBranchFinish()
+{
+	if (GlobalInstance::myCurBranchData.isfinish == QUEST_TASK)
+	{
+		return false;
+	}
+	int fcount = 0;
+	for (int i = 0; i < GlobalInstance::myCurBranchData.need.size(); i++)
+	{
+		std::vector<std::string> one_res = GlobalInstance::myCurBranchData.need[i];
+		std::string cresid = one_res[0];
+		int count = atoi(one_res[1].c_str());
+		if (map_NpcBranchQuestRes[cresid] >= count)
+		{
+			fcount++;
+		}
+	}
+
+	if (fcount == GlobalInstance::myCurBranchData.need.size())
+	{
+		return true;
+	}
+	return false;
+}
+
+void Quest::finishBranchQuest()
+{
+	GlobalInstance::myCurBranchData.isfinish = QUEST_FINISH;
+	saveBranchData();
+}
+
+void Quest::saveBranchData()
+{
+	std::string str;
+	for (unsigned int i = 0; i < GlobalInstance::vec_TaskBranch.size(); i++)
+	{
+		if (GlobalInstance::myCurBranchData.id == GlobalInstance::vec_TaskBranch[i].id)
+		{
+			GlobalInstance::vec_TaskBranch[i].isfinish = GlobalInstance::myCurBranchData.isfinish;
+			GlobalInstance::myCurBranchData = GlobalInstance::vec_TaskBranch[i + 1];//当前任务下一个
+			break;
+		}
+	}
+	GlobalInstance::getInstance()->saveMyTaskBranchData();
 }

@@ -1,8 +1,8 @@
 #pragma once
 #pragma once
 #pragma once
-#ifndef _TaskTalk_LAYER_H_
-#define _TaskTalk_LAYER_H_
+#ifndef _TaskBranchTalk_LAYER_H_
+#define _TaskBranchTalk_LAYER_H_
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
@@ -10,15 +10,15 @@
 
 USING_NS_CC;
 
-class TaskTalkLayer :public Layer
+class TaskBranchTalkLayer :public Layer
 {
 public:
-	TaskTalkLayer();
-	~TaskTalkLayer();
+	TaskBranchTalkLayer();
+	~TaskBranchTalkLayer();
 
 	virtual bool init(std::string npcid);
 
-	static TaskTalkLayer* create(std::string npcid);
+	static TaskBranchTalkLayer* create(std::string npcid);
 
 private:
 	cocos2d::ui::Button* givebtn;
