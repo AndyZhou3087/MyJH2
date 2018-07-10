@@ -28,10 +28,13 @@ public:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	void onPointClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	Node* m_csbnode;
 	cocos2d::ui::ScrollView* scrollview;
 	void loadData(int category);
 	void updateContent(int category);
+	void updateDaily(float dt);
 
 	static bool larger_callback(TaskMainData a, TaskMainData b);
 	static bool larger_branchcallback(TaskBranchData a, TaskBranchData b);
@@ -39,6 +42,9 @@ private:
 	std::vector<cocos2d::ui::Button*> vec_categoryBtn;
 	int lastCategoryindex;
 	int langtype;
+	cocos2d::ui::Widget* pnode;
+	cocos2d::ui::Text* mypoint;
+	cocos2d::ui::LoadingBar* probar;
 };
 #endif
 

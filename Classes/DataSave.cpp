@@ -152,6 +152,16 @@ std::string DataSave::getMyCurBranchNeed()
 	return loadStringDataByKey("CurBranchNeed", "");//id-count
 }
 
+void DataSave::setMyDailyTaskData(std::string strval)
+{
+	saveStringDataByKey("DailyTask", strval);
+}
+
+std::string DataSave::getMyyDailyTaskData()
+{
+	return loadStringDataByKey("DailyTask", "");//id-state
+}
+
 int DataSave::getTotalFarmers()
 {
 	return loadIntDataByKey("totalfarmers", 5);
@@ -160,6 +170,16 @@ int DataSave::getTotalFarmers()
 void DataSave::setTotalFarmers(int val)
 {
 	saveIntDataByKey("totalfarmers", val);
+}
+
+void DataSave::setMyDailyPoint(int point)
+{
+	saveIntDataByKey("DailyPoint", point);
+}
+
+int DataSave::getMyyDailyPoint()
+{
+	return loadIntDataByKey("DailyPoint", 50);
 }
 
 int DataSave::getBuildingLv(std::string buildingname)

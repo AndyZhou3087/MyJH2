@@ -9,6 +9,8 @@
 #include "MovingLabel.h"
 #include "TaskMainNode.h"
 #include "TaskBranchNode.h"
+#include "TaskDailyNode.h"
+#include "DataSave.h"
 
 TaskLayer::TaskLayer()
 {
@@ -20,6 +22,7 @@ TaskLayer::~TaskLayer()
 {
 	GlobalInstance::getInstance()->saveMyTaskMainData();
 	GlobalInstance::getInstance()->saveMyTaskBranchData();
+	GlobalInstance::getInstance()->saveMyDailyTaskData();
 }
 
 bool TaskLayer::init()
@@ -35,6 +38,15 @@ bool TaskLayer::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	langtype = GlobalInstance::getInstance()->getLang();
+
+	pnode = (cocos2d::ui::Widget*)m_csbnode->getChildByName("pnode");
+	mypoint = (cocos2d::ui::Text*)pnode->getChildByName("mypoint");
+	std::string pstr = StringUtils::format("%d", DataSave::getInstance()->getMyyDailyPoint());
+	mypoint->setString(pstr);
+
+	probar = (cocos2d::ui::LoadingBar*)pnode->getChildByName("probar");
+	float per = DataSave::getInstance()->getMyyDailyPoint() * 100 / 200;
+	probar->setPercent(per);
 
 	//БъЬт
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("titleimg");
@@ -57,6 +69,9 @@ bool TaskLayer::init()
 		vec_categoryBtn.push_back(btn);
 	}
 	updateContent(0);
+
+	updateDaily(0);
+	this->schedule(schedule_selector(TaskLayer::updateDaily), 1.0f);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -100,15 +115,21 @@ void TaskLayer::updateContent(int category)
 	{
 		ressize = GlobalInstance::vec_TaskMain.size();
 		sort(GlobalInstance::vec_TaskMain.begin(), GlobalInstance::vec_TaskMain.end(), larger_callback);
+		scrollview->setContentSize(Size(scrollview->getContentSize().width, 1010));
+		pnode->setVisible(false);
 	}
 	else if (category == 1)
 	{
 		ressize = GlobalInstance::vec_TaskBranch.size();
 		sort(GlobalInstance::vec_TaskBranch.begin(), GlobalInstance::vec_TaskBranch.end(), larger_branchcallback);
+		scrollview->setContentSize(Size(scrollview->getContentSize().width, 1010));
+		pnode->setVisible(false);
 	}
 	else
 	{
-		ressize = 10;
+		ressize = GlobalInstance::map_DTdata.size();
+		scrollview->setContentSize(Size(scrollview->getContentSize().width, 850));
+		pnode->setVisible(true);
 	}
 
 	int itemheight = 140;
@@ -119,23 +140,63 @@ void TaskLayer::updateContent(int category)
 		innerheight = contentheight;
 	scrollview->setInnerContainerSize(Size(scrollview->getContentSize().width, innerheight));
 
-	for (int i = 0; i < ressize; i++)
+	if (category != 2)
 	{
-		Node* node;
-		if (category == 0)
+		for (int i = 0; i < ressize; i++)
 		{
-			node = TaskMainNode::create(&GlobalInstance::vec_TaskMain[i],this);
+			Node* node;
+			if (category == 0)
+			{
+				node = TaskMainNode::create(&GlobalInstance::vec_TaskMain[i], this);
+			}
+			else if (category == 1)
+			{
+				node = TaskBranchNode::create(&GlobalInstance::vec_TaskBranch[i], this);
+			}
+			scrollview->addChild(node);
+			node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - i*itemheight - itemheight*0.5));
 		}
-		else if (category == 1)
+	}
+	else
+	{
+		std::vector<DailyTaskData*> vec_fin;
+		std::vector<DailyTaskData*> vec_unfin;
+		std::vector<DailyTaskData*> vec_get;
+		std::map<std::string, DailyTaskData>::iterator it;
+		for (it = GlobalInstance::map_DTdata.begin(); it != GlobalInstance::map_DTdata.end(); it++)
 		{
-			node = TaskBranchNode::create(&GlobalInstance::vec_TaskBranch[i], this);
+			DailyTaskData data = GlobalInstance::map_DTdata[it->first];
+			if (data.state == DAILY_RECEIVE)
+			{
+				vec_get.push_back(&GlobalInstance::map_DTdata[it->first]);
+			}
+			else if (data.state == DAILY_FINISHED)
+			{
+				vec_fin.push_back(&GlobalInstance::map_DTdata[it->first]);
+			}
+			else
+			{
+				vec_unfin.push_back(&GlobalInstance::map_DTdata[it->first]);
+			}
 		}
-		else
+		for (int i = 0; i < vec_fin.size(); i++)
 		{
-			
+			Node* node = TaskDailyNode::create(vec_fin[i]);
+			scrollview->addChild(node);
+			node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - i*itemheight - itemheight*0.5));
 		}
-		scrollview->addChild(node);
-		node->setPosition(Vec2(scrollview->getContentSize().width/2, innerheight - i*itemheight - itemheight*0.5));
+		for (int i = 0; i < vec_unfin.size(); i++)
+		{
+			Node* node = TaskDailyNode::create(vec_unfin[i]);
+			scrollview->addChild(node);
+			node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - (i + vec_fin.size())*itemheight - itemheight*0.5));
+		}
+		for (int i = 0; i < vec_get.size(); i++)
+		{
+			Node* node = TaskDailyNode::create(vec_get[i]);
+			scrollview->addChild(node);
+			node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - (i + vec_fin.size() + vec_unfin.size())*itemheight - itemheight*0.5));
+		}
 	}
 	
 }
@@ -169,11 +230,72 @@ bool TaskLayer::larger_branchcallback(TaskBranchData a, TaskBranchData b)
 		return false;
 }
 
-void TaskLayer::loadData(int category)
+void TaskLayer::updateDaily(float dt)
 {
-
+	int m_point = DataSave::getInstance()->getMyyDailyPoint();
+	std::string pstr = StringUtils::format("%d", m_point);
+	mypoint->setString(pstr);
+	float per = m_point * 100 / 200;
+	probar->setPercent(per);
 }
 
+void TaskLayer::loadData(int category)
+{
+	if (category == 2)
+	{
+		int m_point = DataSave::getInstance()->getMyyDailyPoint();
+		cocos2d::ui::Widget* point;
+		if (m_point >= 200)
+		{
+			point = (cocos2d::ui::Widget*)pnode->getChildByName("point_4");
+			point->addTouchEventListener(CC_CALLBACK_2(TaskLayer::onPointClick, this));
+			point->setTag(200);
+		}
+		else if (m_point >= 150)
+		{
+			point = (cocos2d::ui::Widget*)pnode->getChildByName("point_3");
+			point->addTouchEventListener(CC_CALLBACK_2(TaskLayer::onPointClick, this));
+			point->setTag(150);
+		}
+		else if (m_point >= 100)
+		{
+			point = (cocos2d::ui::Widget*)pnode->getChildByName("point_2");
+			point->addTouchEventListener(CC_CALLBACK_2(TaskLayer::onPointClick, this));
+			point->setTag(100);
+		}
+		else if (m_point >= 50)
+		{
+			point = (cocos2d::ui::Widget*)pnode->getChildByName("point_1");
+			point->addTouchEventListener(CC_CALLBACK_2(TaskLayer::onPointClick, this));
+			point->setTag(50);
+		}
+	}
+}
+
+void TaskLayer::onPointClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		Node* pnode = (Node*)pSender;
+		int tag = pnode->getTag();
+		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)pSender;
+		node->setTouchEnabled(false);
+		switch (tag)
+		{
+		case 50:
+			break;
+		case 100:
+			break;
+		case 150:
+			break;
+		case 200:
+			break;
+		default:
+			break;
+		}
+	}
+}
 
 void TaskLayer::onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {

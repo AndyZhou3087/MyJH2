@@ -312,6 +312,21 @@
       <FilePathData Path="ui/y015.png" />
       <FilePathData Path="ui/actionbtn_yellow.png" />
       <FilePathData Path="ui/taskbtn.png" />
+      <FilePathData Path="ui/dailytask_0.png" />
+      <FilePathData Path="ui/dailytask_1.png" />
+      <FilePathData Path="ui/dailytask_2.png" />
+      <FilePathData Path="ui/dailytask_3.png" />
+      <FilePathData Path="ui/dailytask_4.png" />
+      <FilePathData Path="ui/dailytask_5.png" />
+      <FilePathData Path="ui/dailytask_6.png" />
+      <FilePathData Path="ui/dailytask_7.png" />
+      <FilePathData Path="ui/taskdailyf.png" />
+      <FilePathData Path="ui/taskdailybigbar.png" />
+      <FilePathData Path="ui/taskdailybigbg.png" />
+      <FilePathData Path="ui/pointicon_0.png" />
+      <FilePathData Path="ui/pointicon_1.png" />
+      <FilePathData Path="ui/pointicon_2.png" />
+      <FilePathData Path="ui/pointicon_3.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
