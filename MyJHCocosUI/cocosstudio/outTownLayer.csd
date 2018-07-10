@@ -145,14 +145,15 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="carrylbl" ActionTag="-1427088676" Tag="103" IconVisible="False" LeftMargin="349.7234" RightMargin="279.2766" TopMargin="1045.4498" BottomMargin="209.5502" FontSize="25" LabelText="300/300" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="91.0000" Y="25.0000" />
+          <AbstractNodeData Name="carrylbl" ActionTag="-1427088676" Tag="103" IconVisible="False" LeftMargin="349.7235" RightMargin="277.2765" TopMargin="1045.4497" BottomMargin="205.5502" FontSize="25" LabelText="300/300" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="93.0000" Y="29.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="349.7234" Y="222.0502" />
+            <Position X="349.7235" Y="220.0502" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="121" G="78" B="46" />
-            <PrePosition X="0.4857" Y="0.1735" />
-            <PreSize X="0.1264" Y="0.0195" />
+            <PrePosition X="0.4857" Y="0.1719" />
+            <PreSize X="0.1292" Y="0.0227" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>

@@ -93,13 +93,13 @@
             <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="cointext" ActionTag="-1295305006" Tag="316" IconVisible="False" LeftMargin="227.6895" RightMargin="445.3105" TopMargin="838.3208" BottomMargin="407.6792" FontSize="30" LabelText="x10" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="cointext" ActionTag="-1295305006" Tag="316" IconVisible="False" LeftMargin="227.6894" RightMargin="445.3106" TopMargin="840.3062" BottomMargin="405.6938" FontSize="30" LabelText="x10" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="47.0000" Y="34.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="227.6895" Y="424.6792" />
+            <Position X="227.6894" Y="422.6938" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3162" Y="0.3318" />
+            <PrePosition X="0.3162" Y="0.3302" />
             <PreSize X="0.0653" Y="0.0266" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
@@ -116,13 +116,13 @@
             <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="slivertext" ActionTag="-487549080" Tag="318" IconVisible="False" LeftMargin="493.6442" RightMargin="164.3558" TopMargin="837.3062" BottomMargin="408.6938" FontSize="30" LabelText="x100" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="slivertext" ActionTag="-487549080" Tag="318" IconVisible="False" LeftMargin="493.6436" RightMargin="164.3564" TopMargin="840.3062" BottomMargin="405.6938" FontSize="30" LabelText="x100" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="62.0000" Y="34.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="493.6442" Y="425.6938" />
+            <Position X="493.6436" Y="422.6938" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6856" Y="0.3326" />
+            <PrePosition X="0.6856" Y="0.3302" />
             <PreSize X="0.0861" Y="0.0266" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
