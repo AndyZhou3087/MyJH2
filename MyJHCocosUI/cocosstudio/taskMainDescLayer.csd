@@ -6,7 +6,7 @@
       <ObjectData Name="Layer" Tag="35" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
-          <AbstractNodeData Name="bg" ActionTag="1336713266" Tag="60" IconVisible="False" LeftMargin="60.7130" RightMargin="59.2870" TopMargin="102.9602" BottomMargin="515.0399" Scale9Enable="True" LeftEage="132" RightEage="132" TopEage="62" BottomEage="62" Scale9OriginX="132" Scale9OriginY="62" Scale9Width="336" Scale9Height="538" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="bg" ActionTag="1336713266" Tag="60" IconVisible="False" LeftMargin="60.7130" RightMargin="59.2870" TopMargin="102.9601" BottomMargin="515.0399" Scale9Enable="True" LeftEage="132" RightEage="132" TopEage="62" BottomEage="62" Scale9OriginX="132" Scale9OriginY="62" Scale9Width="336" Scale9Height="538" ctype="ImageViewObjectData">
             <Size X="600.0000" Y="662.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.7130" Y="846.0399" />
@@ -71,16 +71,15 @@
             <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="icon" ActionTag="1544261441" Tag="117" IconVisible="False" LeftMargin="438.7302" RightMargin="144.2698" TopMargin="129.9346" BottomMargin="1009.0654" ctype="SpriteObjectData">
-            <Size X="137.0000" Y="141.0000" />
+          <AbstractNodeData Name="icon" ActionTag="-405337763" Tag="42" IconVisible="False" LeftMargin="442.4030" RightMargin="145.5970" TopMargin="124.5529" BottomMargin="994.4471" LeftEage="43" RightEage="43" TopEage="53" BottomEage="53" Scale9OriginX="43" Scale9OriginY="53" Scale9Width="46" Scale9Height="55" ctype="ImageViewObjectData">
+            <Size X="132.0000" Y="161.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="507.2302" Y="1079.5654" />
+            <Position X="508.4030" Y="1074.9471" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7045" Y="0.8434" />
-            <PreSize X="0.1903" Y="0.1102" />
-            <FileData Type="MarkedSubImage" Path="ui/h_0_0.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
+            <PrePosition X="0.7061" Y="0.8398" />
+            <PreSize X="0.1833" Y="0.1258" />
+            <FileData Type="MarkedSubImage" Path="mapui/n012.png" Plist="mapui.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="npcname" ActionTag="-1546222213" Tag="118" IconVisible="False" LeftMargin="514.6318" RightMargin="102.3682" TopMargin="252.5828" BottomMargin="1004.4173" FontSize="20" LabelText="魔教的威胁" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="103.0000" Y="23.0000" />

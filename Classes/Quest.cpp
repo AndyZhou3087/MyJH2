@@ -277,3 +277,19 @@ void Quest::saveBranchData()
 	}
 	GlobalInstance::getInstance()->saveMyTaskBranchData();
 }
+
+/*************每日数据逻辑**************/
+
+void Quest::setDailyTask(int type, int count)
+{
+	std::map<std::string, DailyTaskData>::iterator it;
+	for (it = GlobalInstance::map_DTdata.begin(); it != GlobalInstance::map_DTdata.end(); it++)
+	{
+		DailyTaskData* data = &GlobalInstance::map_DTdata[it->first];
+		if (data->type == type && data->count == count)
+		{
+			data->state = DAILY_FINISHED;
+			break;
+		}
+	}
+}

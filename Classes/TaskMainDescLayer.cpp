@@ -58,13 +58,13 @@ bool TaskMainDescLayer::init(TaskMainData* data)
 	desc->setString(data->desc);
 
 	//npcÍ·Ïñ
-	/*cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
-	std::string str = StringUtils::format("ui/%s.png", data->npcid);
+	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
+	std::string str = StringUtils::format("mapui/%s.png", data->npcid.c_str());
 	icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//npcÃû×Ö
 	cocos2d::ui::Text* npcname = (cocos2d::ui::Text*)m_csbnode->getChildByName("npcname");
-	npcname->setString(data->);*/
+	npcname->setString(GlobalInstance::map_Npcs[data->npcid].name);
 
 	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("closebtn");
 	closebtn->setPosition(Vec2(357, 183));

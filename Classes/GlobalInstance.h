@@ -100,6 +100,14 @@ typedef enum
 
 typedef enum
 {
+	//0未完成,1已完成，2已领取
+	DAILY_UNFINISHED = 0,
+	DAILY_FINISHED,
+	DAILY_RECEIVE,
+}DAILYSTATE;
+
+typedef enum
+{
 	FINISH_BRANCH = 0,//完成x个支线任务
 	FRESH_PUBENLIST,//刷新x次酒馆招募
 	UPGRADE_HERO,//升级x次英雄角色
@@ -148,6 +156,16 @@ typedef struct
 
 typedef struct
 {
+	std::string id;
+	int type;
+	int count;
+	std::vector<std::vector<std::string>> goods;//物品，r001-10(id-count)
+	int points;
+	int state;//当前状态
+}DailyTaskData;
+
+typedef struct
+{
 	int vocation;
 	std::vector<int> vec_maxhp;
 	std::vector<int> vec_atk;
@@ -161,6 +179,7 @@ typedef struct
 typedef struct
 {
 	std::string id;
+	std::string name;
 	int vocation;
 }NPCData;
 
@@ -315,6 +334,13 @@ public:
 
 	void loadNpcData();
 
+	//加载每日配置
+	void loadDailyTaskData();
+	//读取每日数据
+	void getMyDailyTaskData();
+	//保存已完成的每日任务数据
+	void saveMyDailyTaskData();
+
 	//主线任务进行排序
 	static bool larger_callback(TaskMainData a, TaskMainData b);
 	//支线任务进行排序
@@ -348,6 +374,8 @@ public:
 	static std::vector<TaskBranchData> vec_TaskBranch;//支线任务
 
 	static TaskBranchData myCurBranchData;//当前支线任务
+
+	static std::map<std::string, DailyTaskData> map_DTdata;//每日任务
 
 	static int servertime;//服务器时间
 

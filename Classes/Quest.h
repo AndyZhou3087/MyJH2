@@ -49,6 +49,10 @@ public:
 
 	static void finishBranchQuest();
 
+	/*************每日数据逻辑**************/
+	//每日任务
+	static void setDailyTask(int type, int count);
+
 public:
 	static std::vector<TaskMainData> myFinishMainQuest;
 

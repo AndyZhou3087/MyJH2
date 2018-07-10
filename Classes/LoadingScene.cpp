@@ -95,6 +95,11 @@ void LoadingScene::delayLoadData(float dt)
 	//读取支线任务
 	GlobalInstance::getInstance()->loadMyTaskBranchData();
 
+	//读取每日任务配置
+	GlobalInstance::getInstance()->loadDailyTaskData();
+	//读取每日任务数据
+	GlobalInstance::getInstance()->getMyDailyTaskData();
+
 	//数据处理完，显示游戏场景
 	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.2f);
 }

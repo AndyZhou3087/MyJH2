@@ -12,6 +12,7 @@
         <OpenedDocuments>
           <FilePathData Path="taskDayNode.csd" />
           <FilePathData Path="taskLayer.csd" />
+          <FilePathData Path="ui.csi" />
         </OpenedDocuments>
         <ActiveDocument Path="taskLayer.csd" />
       </Value>

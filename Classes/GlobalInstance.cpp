@@ -34,6 +34,8 @@ TaskMainData GlobalInstance::myCurMainData;
 std::vector<TaskBranchData> GlobalInstance::vec_TaskBranch;
 TaskBranchData GlobalInstance::myCurBranchData;
 
+std::map<std::string, DailyTaskData> GlobalInstance::map_DTdata;
+
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
 int GlobalInstance::refreshResTime = 0;
@@ -739,6 +741,87 @@ void GlobalInstance::saveMyTaskBranchData()
 	DataSave::getInstance()->setMyBranchTask(str.substr(0, str.length() - 1));
 }
 
+void GlobalInstance::loadDailyTaskData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/dailytask.json"));
+	rapidjson::Value& allData = doc["sq"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			DailyTaskData data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = v.GetString();
+
+			v = jsonvalue["type"];
+			data.type = atoi(v.GetString());
+
+			v = jsonvalue["count"];
+			data.count = atoi(v.GetString());
+
+			v = jsonvalue["goods"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 3)
+				{
+					std::vector<std::string> vec;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					for (int j = 0; j < vec_tmp.size(); j++)
+					{
+						vec.push_back(vec_tmp[j]);
+					}
+					data.goods.push_back(vec);
+				}
+			}
+
+			v = jsonvalue["points"];
+			data.points = atoi(v.GetString());
+
+			data.state = DAILY_UNFINISHED;
+
+			map_DTdata[data.id] = data;
+		}
+	}
+}
+
+void GlobalInstance::getMyDailyTaskData()
+{
+	std::string str = DataSave::getInstance()->getMyyDailyTaskData();
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_tmp;
+		CommonFuncs::split(str, vec_tmp, ";");
+		for (int i = 0; i < vec_tmp.size(); i++)
+		{
+			std::vector<std::string> vec_one;
+			CommonFuncs::split(vec_tmp[i], vec_one, "-");
+			if (map_DTdata[vec_one[0]].id.compare(vec_one[0]) == 0)
+			{
+				map_DTdata[vec_one[0]].state = atoi(vec_one[1].c_str());
+			}
+		}
+	}
+}
+
+void GlobalInstance::saveMyDailyTaskData()
+{
+	std::string str;
+	std::map<std::string, DailyTaskData>::iterator it;
+	for (it = map_DTdata.begin(); it != map_DTdata.end(); it++)
+	{
+		DailyTaskData data = map_DTdata[it->first];
+		if (data.state >= DAILY_FINISHED)
+		{
+			std::string onestr = StringUtils::format("%d-%d;", data.id, data.state);
+			str.append(onestr);
+		}
+	}
+	DataSave::getInstance()->setMyDailyTaskData(str.substr(0, str.length() - 1));
+}
+
 bool GlobalInstance::larger_callback(TaskMainData a, TaskMainData b)
 {
 	int idA = a.id;
@@ -963,6 +1046,10 @@ void GlobalInstance::loadNpcData()
 
 			v = jsonvalue["id"];
 			data.id = v.GetString();
+
+			v = jsonvalue["cname"];
+			data.name = v.GetString();
+
 			map_Npcs[data.id] = data;
 		}
 	}
