@@ -311,7 +311,7 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 			else
 			{
 				OutTownLayer* outTown = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
-				outTown->getMyCardHeroNode(this->getTag())->setData((Hero*)GlobalInstance::myCardHeros[this->getTag()]);
+				outTown->getMyCardHeroNode(this->getTag())->setData(GlobalInstance::myCardHeros[this->getTag()]);
 				SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
 				sellayer->getMyHeroNode(this->getTag())->updateData();
 			}
@@ -513,7 +513,7 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 	dflbl->setString(attrstr);
 
 	//攻击速度值
-	attrstr = StringUtils::format("%.3f", 1.0f / m_heroData->getAtkSpeed());
+	attrstr = StringUtils::format("%.3f", m_heroData->getAtkSpeed());
 	atkspeedlbl->setString(attrstr);
 
 	//暴击值

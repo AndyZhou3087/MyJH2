@@ -114,7 +114,7 @@ bool MapBlockScene::init(std::string mapname)
 	for (int i = 0; i < 4; i++)
 	{
 		cocos2d::ui::Widget* keybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName(keyname[i]);
-		keybtn->setTag(i+ KEY_UP);
+		keybtn->setTag(i + KEY_UP);
 		keybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onArrowKey, this));
 	}
 
@@ -501,47 +501,7 @@ void MapBlockScene::doMyStatus()
 	{
 		if (mapblock->getPosType() == POS_NOTHING)
 		{
-			int r = GlobalInstance::getInstance()->createRandomNum(100);
-			if (r < monsterComeRnd)
-			{
-				monsterComeRnd = 20;
-				walkcount = 0;
-				std::vector<Npc*> vec_enemys;
-				int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
-				for (int i = 0; i < rndcount; i++)
-				{
-					int r1 = GlobalInstance::getInstance()->createRandomNum(100);
-					int rnd = 0;
-					for (unsigned int m = 0; m < MapBlock::vec_randMonsters.size(); m++)
-					{
-						FOURProperty propty = MapBlock::vec_randMonsters[m];
-						rnd += propty.floatPara3;
-						if (r1 < rnd)
-						{
-							int minlv = propty.intPara1 / 1000;
-							int maxlv = propty.intPara1 % 1000;
-							int minqu = propty.intPara2 / 1000;
-							int maxqu = propty.intPara2 % 1000;
-							int rlv = minlv + GlobalInstance::getInstance()->createRandomNum(maxlv- minlv + 1);
-							int rqu = minqu + GlobalInstance::getInstance()->createRandomNum(maxqu - minqu + 1);
-
-							Npc* enemyhero = new Npc();
-							std::string sid = MapBlock::vec_randMonsters[m].sid;
-							enemyhero->setId(sid);
-							enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
-							enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
-							enemyhero->setPotential(rqu);
-							enemyhero->setLevel(rlv);
-							enemyhero->setHp(enemyhero->getMaxHp());
-							vec_enemys.push_back(enemyhero);
-							break;
-						}
-					}
-
-				}
-				if (vec_enemys.size() > 0)
-					this->addChild(FightingLayer::create(vec_enemys));
-			}
+			createRndMonsters();
 		}
 		else if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS)
 		{
@@ -556,8 +516,54 @@ void MapBlockScene::doMyStatus()
 
 void MapBlockScene::createRndMonsters()
 {
+	int r = GlobalInstance::getInstance()->createRandomNum(100);
+	if (r < monsterComeRnd)
+	{
+		monsterComeRnd = 20;
+		walkcount = 0;
+		std::vector<Npc*> vec_enemys;
+		int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
+		for (int i = 0; i < rndcount; i++)
+		{
+			int r1 = GlobalInstance::getInstance()->createRandomNum(100);
+			int rnd = 0;
+			for (unsigned int m = 0; m < MapBlock::vec_randMonsters.size(); m++)
+			{
+				FOURProperty propty = MapBlock::vec_randMonsters[m];
+				rnd += propty.floatPara3;
+				if (r1 < rnd)
+				{
+					int minlv = propty.intPara1 / 1000;
+					int maxlv = propty.intPara1 % 1000;
+					int minqu = propty.intPara2 / 1000;
+					int maxqu = propty.intPara2 % 1000;
+					int rlv = minlv + GlobalInstance::getInstance()->createRandomNum(maxlv - minlv + 1);
+					int rqu = minqu + GlobalInstance::getInstance()->createRandomNum(maxqu - minqu + 1);
+
+					Npc* enemyhero = new Npc();
+					std::string sid = MapBlock::vec_randMonsters[m].sid;
+					enemyhero->setId(sid);
+					enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
+					enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
+					enemyhero->setPotential(rqu);
+					enemyhero->setLevel(rlv);
+					enemyhero->setHp(enemyhero->getMaxHp());
+					vec_enemys.push_back(enemyhero);
+					break;
+				}
+			}
+
+		}
+		if (vec_enemys.size() > 0)
+			this->addChild(FightingLayer::create(vec_enemys));
+	}
+}
+
+void MapBlockScene::showFightResult(int result)
+{
 
 }
+
 
 void MapBlockScene::parseMapXml(std::string mapname)
 {

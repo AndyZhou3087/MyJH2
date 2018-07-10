@@ -16,6 +16,15 @@ public:
 	static FightingLayer* create(std::vector<Npc*> enemyHeros);
 	virtual void onExit();
 	bool init(std::vector<Npc*> enemyHeros);
+
+	void showAtk(Npc* ndata);
+	void pauseAtkSchedule();
+	void resumeAtkSchedule();
+
+	void myHeroDeath(int which);
+
+	//1--Ê¤Àû£¬0-Ê§°Ü,-1Õ½¶·ÖÐ
+	int checkFightResult();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 

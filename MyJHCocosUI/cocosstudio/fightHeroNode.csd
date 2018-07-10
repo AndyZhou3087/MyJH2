@@ -91,6 +91,16 @@
             <PreSize X="0.0000" Y="0.0000" />
             <ImageFileData Type="MarkedSubImage" Path="mapui/heroatkspeedbar.png" Plist="mapui.plist" />
           </AbstractNodeData>
+          <AbstractNodeData Name="statusicon" ActionTag="-828042260" Tag="817" IconVisible="False" LeftMargin="-61.0000" RightMargin="-61.0000" TopMargin="-24.0000" BottomMargin="-24.0000" LeftEage="40" RightEage="40" TopEage="15" BottomEage="15" Scale9OriginX="40" Scale9OriginY="15" Scale9Width="42" Scale9Height="18" ctype="ImageViewObjectData">
+            <Size X="122.0000" Y="48.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="mapui/hurticon.png" Plist="mapui.plist" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

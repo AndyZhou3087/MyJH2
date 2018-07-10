@@ -205,6 +205,7 @@
           <Image Name="gocitybtn.png" />
           <Image Name="heroatkspeedbar.png" />
           <Image Name="heroatkspeedbarbg.png" />
+          <Image Name="hurticon.png" />
           <Image Name="mapbtn.png" />
           <Image Name="mapdescbox.png" />
           <Image Name="mapdownbtn.png" />
@@ -738,6 +739,7 @@
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="setinStoneLayer.csd" Type="Layer" />
+        <Project Name="fighterAttrLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

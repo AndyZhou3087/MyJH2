@@ -18,6 +18,13 @@ public:
 	static FightHeroNode* create();
 
 	void setData(Npc* data, int datatype = 0);
+
+
+	void pauseTimeSchedule();
+
+	void resumeTimeSchedule();
+
+	void hurt(float hp);
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
@@ -25,10 +32,21 @@ private:
 	cocos2d::ui::LoadingBar* hp_bar;
 	cocos2d::ui::LoadingBar* atkspeed_bar;
 	cocos2d::ui::Widget* atkspeed_barbg;
+	cocos2d::ui::ImageView* statusimg;
 	Npc* m_Data;
 	int m_datatype;
+	float atkspeed;
+	float timedt;
+	bool ispausing;
+	float hurtup;
+	void update(float dt);
+
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	void hpAnim();
+	void atkAnimFinish();
+	void hurtAnimFinish();
 
 };
 #endif

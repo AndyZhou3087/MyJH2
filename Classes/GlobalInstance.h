@@ -351,7 +351,7 @@ public:
 
 	static int servertime;//服务器时间
 
-	static Npc* myCardHeros[6];//出城选择的6个英雄
+	static Hero* myCardHeros[6];//出城选择的6个英雄
 
 	static std::map<std::string, S_MainMap> map_mapsdata;//地图数据
 private:

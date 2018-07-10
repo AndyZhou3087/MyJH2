@@ -1,11 +1,17 @@
 ﻿#include "FightHeroNode.h"
 #include "CommonFuncs.h"
 #include "Resource.h"
-#include "HeroAttrLayer.h"
+#include "FighterAttrLayer.h"
+#include "FightingLayer.h"
+#include "LoadingBarProgressTimer.h"
+#include "GlobalInstance.h"
 
 FightHeroNode::FightHeroNode()
 {
-
+	atkspeed = 0.0f;
+	timedt = 0.0f;
+	ispausing = false;
+	hurtup = 0.0f;
 }
 
 
@@ -42,6 +48,9 @@ bool FightHeroNode::init()
 	//头像
 	headimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("head");
 
+	statusimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("statusicon");
+	statusimg->setVisible(false);
+
 	//名字
 	namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 
@@ -61,10 +70,16 @@ void FightHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 	{
 		if (m_Data != NULL)
 		{
-			if (m_datatype == 0)
+			FighterAttrLayer* layer = FighterAttrLayer::create(m_Data);
+			this->getParent()->addChild(layer, 0, this->getTag());
+			if (this->getScale() < 1.0f)
+				layer->setContentPos(Vec2(360, 1000));
+			else
 			{
-				Layer* layer = HeroAttrLayer::create((Hero*)m_Data);
-				this->getParent()->addChild(layer, 0, this->getTag());
+				if (m_datatype == 0)
+					layer->setContentPos(Vec2(360, 270));
+				else
+					layer->setContentPos(Vec2(360, 900));
 			}
 		}
 	}
@@ -72,8 +87,8 @@ void FightHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 void FightHeroNode::setData(Npc* data, int datatype)
 {
-	m_datatype = datatype;
 	m_Data = data;
+	m_datatype = datatype;
 	if (data != NULL)
 	{
 		std::string str;
@@ -107,7 +122,9 @@ void FightHeroNode::setData(Npc* data, int datatype)
 		}
 		else
 		{
-			atkspeed_bar->setPercent(100);
+			atkspeed_bar->setPercent(0);
+			atkspeed = 1.0f/data->getAtkSpeed();
+			this->scheduleUpdate();
 		}
 	}
 	else
@@ -127,3 +144,76 @@ void FightHeroNode::setData(Npc* data, int datatype)
 		}
 	}
 }
+
+void FightHeroNode::update(float dt)
+{
+	if (ispausing)
+		return;
+
+	timedt += dt;
+	if (timedt >= atkspeed)
+	{
+		timedt = 0.0f;
+		FightingLayer* fighting = (FightingLayer*)this->getParent();
+		fighting->pauseAtkSchedule();
+		this->runAction(Sequence::create(ScaleTo::create(0.2f, 1.5f), ScaleTo::create(0.1f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
+	}
+	atkspeed_bar->setPercent(timedt * 100 / atkspeed);
+}
+
+void FightHeroNode::pauseTimeSchedule()
+{
+	if (m_Data != NULL && this->isVisible())
+	{
+		ispausing = true;
+	}
+}
+
+void FightHeroNode::resumeTimeSchedule()
+{
+	if (m_Data != NULL && this->isVisible())
+		ispausing = false;
+}
+
+
+void FightHeroNode::hurt(float hp)
+{
+	if (m_Data != NULL && this->isVisible())
+	{
+		hurtup = hp;
+		statusimg->loadTexture("mapui/hurticon.png", cocos2d::ui::Widget::TextureResType::PLIST);
+		ActionInterval* ac1 = Spawn::create(Show::create(), FadeIn::create(0.15f), EaseSineIn::create(ScaleTo::create(0.15f, 1)), NULL);
+		statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), CallFunc::create(CC_CALLBACK_0(FightHeroNode::hurtAnimFinish, this)), NULL));
+	}
+}
+
+void FightHeroNode::atkAnimFinish()
+{
+	FightingLayer* fighting = (FightingLayer*)this->getParent();
+	fighting->showAtk(m_Data);
+}
+
+void FightHeroNode::hpAnim()
+{
+	float lefthp = m_Data->getHp() - hurtup;
+	if (lefthp < 0)
+		lefthp = 0;
+	m_Data->setHp(lefthp);
+	float percent = lefthp * 100 / m_Data->getMaxHp();
+	hp_bar->runAction(LoadingBarProgressTo::create(0.2f, percent));
+}
+
+void FightHeroNode::hurtAnimFinish()
+{
+	FightingLayer* fighting = (FightingLayer*)this->getParent();
+	if (m_Data->getHp() <= 0)
+	{
+		this->setVisible(false);
+		if (m_datatype == 0)
+		{
+			fighting->myHeroDeath(this->getTag());
+		}
+	}
+	fighting->resumeAtkSchedule();
+}
+

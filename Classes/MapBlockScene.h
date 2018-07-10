@@ -49,6 +49,7 @@ public:
 
 	FightHeroNode* getFightHeroNode(int index);
 
+	void showFightResult(int result);
 private:
 	static MapBlockScene* create(std::string mapname);
 
@@ -94,7 +95,6 @@ private:
 	void go(MAP_KEYTYPE keyArrow);
 
 	void createRndMonsters();
-
 private:
 	Node* m_csbnode;
 	ParticleSystemQuad* myposParticle;

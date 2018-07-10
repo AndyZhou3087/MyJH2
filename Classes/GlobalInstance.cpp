@@ -42,7 +42,7 @@ int GlobalInstance::refreshMarketTime = 0;
 
 int GlobalInstance::totalFarmercount = 0;
 
-Npc* GlobalInstance::myCardHeros[6];
+Hero* GlobalInstance::myCardHeros[6];
 
 std::map<std::string, S_MainMap> GlobalInstance::map_mapsdata;
 
@@ -230,10 +230,11 @@ void GlobalInstance::loadMyHeros()
 					hero->setPotential(atoi(vec_tmp[3].c_str()));
 					hero->setSex(atoi(vec_tmp[4].c_str()));
 					hero->setRandAttr(atof(vec_tmp[5].c_str()));
-					hero->setState(atoi(vec_tmp[6].c_str()));
+					int state = atoi(vec_tmp[6].c_str());
+					hero->setState(state);
 					int pos = atoi(vec_tmp[7].c_str());
 					hero->setPos(pos);
-					if (pos > 0)
+					if (pos > 0 && state != HS_DEAD)
 					{
 						GlobalInstance::myCardHeros[pos - 1] = hero;
 					}
@@ -354,7 +355,7 @@ void GlobalInstance::loadHerosAttrData()
 			v = jsonvalue["speed"];
 			for (unsigned int m = 0; m < v.Size(); m++)
 			{
-				data.vec_atkspeed.push_back(1.0f/v[m].GetDouble());
+				data.vec_atkspeed.push_back(v[m].GetDouble());
 			}
 
 			vec_herosAttr.push_back(data);
