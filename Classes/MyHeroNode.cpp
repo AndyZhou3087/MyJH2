@@ -144,7 +144,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					{
 						GlobalInstance::vec_myHeros[i]->setState(HS_OWNED);
 						GlobalInstance::vec_myHeros[i]->setPos(0);
-						selectheroLayer->getMyHeroNode(i)->setStateTag(HS_OWNED);
+						selectheroLayer->getMyHeroNode(this->getTag())->setStateTag(HS_OWNED);
 						break;
 					}
 				}

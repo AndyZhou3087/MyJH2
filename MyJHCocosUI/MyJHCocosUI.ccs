@@ -7,6 +7,7 @@
           <TTF Name="simhei.ttf" />
         </Folder>
         <Folder Name="images">
+          <Image Name="brownbox.png" />
           <Image Name="cardh_0_0.png" />
           <Image Name="cardh_0_1.png" />
           <Image Name="cardh_1_0.png" />
@@ -39,6 +40,7 @@
           <Image Name="mapbg.jpg" />
           <Image Name="mapblockbottom.png" />
           <Image Name="mapblocktop.png" />
+          <Image Name="selectequipbg.png" />
           <Image Name="smallbg.png" />
           <Image Name="t001.jpg" />
           <Image Name="t002.jpg" />
@@ -134,9 +136,45 @@
           <Image Name="boardblock_60.png" />
           <Image Name="boardblock_61.png" />
           <Image Name="boardblock_62.png" />
+          <Image Name="boardblock_63.png" />
+          <Image Name="boardblock_64.png" />
+          <Image Name="boardblock_65.png" />
+          <Image Name="boardblock_66.png" />
+          <Image Name="boardblock_67.png" />
+          <Image Name="boardblock_68.png" />
+          <Image Name="boardblock_69.png" />
           <Image Name="boardblock_7.png" />
+          <Image Name="boardblock_70.png" />
+          <Image Name="boardblock_71.png" />
+          <Image Name="boardblock_72.png" />
+          <Image Name="boardblock_73.png" />
+          <Image Name="boardblock_74.png" />
+          <Image Name="boardblock_75.png" />
+          <Image Name="boardblock_76.png" />
+          <Image Name="boardblock_77.png" />
+          <Image Name="boardblock_78.png" />
+          <Image Name="boardblock_79.png" />
           <Image Name="boardblock_8.png" />
+          <Image Name="boardblock_80.png" />
+          <Image Name="boardblock_81.png" />
+          <Image Name="boardblock_82.png" />
+          <Image Name="boardblock_83.png" />
+          <Image Name="boardblock_84.png" />
+          <Image Name="boardblock_85.png" />
+          <Image Name="boardblock_86.png" />
+          <Image Name="boardblock_87.png" />
+          <Image Name="boardblock_88.png" />
+          <Image Name="boardblock_89.png" />
           <Image Name="boardblock_9.png" />
+          <Image Name="boardblock_90.png" />
+          <Image Name="boardblock_91.png" />
+          <Image Name="boardblock_92.png" />
+          <Image Name="boardblock_93.png" />
+          <Image Name="boardblock_94.png" />
+          <Image Name="boardblock_95.png" />
+          <Image Name="boardblock_96.png" />
+          <Image Name="boardblock_97.png" />
+          <Image Name="boardblock_98.png" />
           <Image Name="buildblock_0.png" />
           <Image Name="buildblock_1.png" />
           <Image Name="buildblock_10.png" />
@@ -145,7 +183,18 @@
           <Image Name="buildblock_13.png" />
           <Image Name="buildblock_14.png" />
           <Image Name="buildblock_15.png" />
+          <Image Name="buildblock_17.png" />
+          <Image Name="buildblock_18.png" />
+          <Image Name="buildblock_19.png" />
           <Image Name="buildblock_2.png" />
+          <Image Name="buildblock_20.png" />
+          <Image Name="buildblock_21.png" />
+          <Image Name="buildblock_22.png" />
+          <Image Name="buildblock_23.png" />
+          <Image Name="buildblock_24.png" />
+          <Image Name="buildblock_25.png" />
+          <Image Name="buildblock_26.png" />
+          <Image Name="buildblock_27.png" />
           <Image Name="buildblock_3.png" />
           <Image Name="buildblock_4.png" />
           <Image Name="buildblock_5.png" />
@@ -154,6 +203,9 @@
           <Image Name="buildblock_8.png" />
           <Image Name="buildblock_9.png" />
           <Image Name="gocitybtn.png" />
+          <Image Name="heroatkspeedbar.png" />
+          <Image Name="heroatkspeedbarbg.png" />
+          <Image Name="hurticon.png" />
           <Image Name="mapbtn.png" />
           <Image Name="mapdescbox.png" />
           <Image Name="mapdownbtn.png" />
@@ -167,12 +219,27 @@
           <Image Name="mapupbtn.png" />
           <Image Name="morearrow.png" />
           <Image Name="mtag0.png" />
+          <Image Name="n001.png" />
+          <Image Name="n002.png" />
+          <Image Name="n003.png" />
+          <Image Name="n004.png" />
+          <Image Name="n005.png" />
+          <Image Name="n006.png" />
+          <Image Name="n007.png" />
+          <Image Name="n008.png" />
+          <Image Name="n009.png" />
+          <Image Name="n010.png" />
+          <Image Name="n011.png" />
+          <Image Name="n012.png" />
+          <Image Name="n013.png" />
+          <Image Name="n014.png" />
           <Image Name="submapanimcloud.png" />
           <Image Name="submapnodeitem.png" />
           <Image Name="submaptitlecloud.png" />
         </Folder>
         <Folder Name="text_zh_cn">
           <Image Name="backbtn_text.png" />
+          <Image Name="break_text.png" />
           <Image Name="buybtn_text.png" />
           <Image Name="changebtn_text.png" />
           <Image Name="closebtn_text.png" />
@@ -181,16 +248,19 @@
           <Image Name="drlvupbtn_text.png" />
           <Image Name="drmakeresbtn_text.png" />
           <Image Name="drrecruitbtn_text.png" />
+          <Image Name="equipprop_text.png" />
           <Image Name="equiptext_0.png" />
           <Image Name="equiptext_1.png" />
           <Image Name="equiptext_2.png" />
           <Image Name="equiptext_3.png" />
           <Image Name="equiptext_4.png" />
           <Image Name="equiptext_5.png" />
+          <Image Name="escapebtn_text.png" />
           <Image Name="fastdecompose_text.png" />
           <Image Name="firebtn_text.png" />
           <Image Name="gocitybtn_text.png" />
           <Image Name="goout_text.png" />
+          <Image Name="halltitle.png" />
           <Image Name="heroattrqu_0.png" />
           <Image Name="heroattrqu_1.png" />
           <Image Name="heroattrqu_2.png" />
@@ -207,9 +277,11 @@
           <Image Name="isrecruited_text.png" />
           <Image Name="lvupbtn_text.png" />
           <Image Name="m1-1.png" />
+          <Image Name="m1-10.png" />
           <Image Name="m1-2.png" />
           <Image Name="m1-3.png" />
           <Image Name="m1-4.png" />
+          <Image Name="m1-5.png" />
           <Image Name="m15-1.png" />
           <Image Name="m15-10.png" />
           <Image Name="m15-2.png" />
@@ -218,7 +290,12 @@
           <Image Name="m15-6.png" />
           <Image Name="m15-7.png" />
           <Image Name="m15-8.png" />
+          <Image Name="m1-6.png" />
+          <Image Name="m1-7.png" />
+          <Image Name="m1-8.png" />
+          <Image Name="m1-9.png" />
           <Image Name="m2-1.png" />
+          <Image Name="m2-10.png" />
           <Image Name="m2-2.png" />
           <Image Name="m22-1.png" />
           <Image Name="m22-4.png" />
@@ -228,9 +305,14 @@
           <Image Name="m2-3.png" />
           <Image Name="m2-4.png" />
           <Image Name="m2-5.png" />
+          <Image Name="m2-6.png" />
+          <Image Name="m2-7.png" />
+          <Image Name="m2-8.png" />
+          <Image Name="m2-9.png" />
           <Image Name="m3-1.png" />
           <Image Name="m3-10.png" />
           <Image Name="m3-2.png" />
+          <Image Name="m3-3.png" />
           <Image Name="m3-4.png" />
           <Image Name="m3-5.png" />
           <Image Name="m3-6.png" />
@@ -238,6 +320,7 @@
           <Image Name="m3-8.png" />
           <Image Name="m3-9.png" />
           <Image Name="m4-1.png" />
+          <Image Name="m4-2.png" />
           <Image Name="m4-3.png" />
           <Image Name="m4-4.png" />
           <Image Name="m4-5.png" />
@@ -266,7 +349,9 @@
           <Image Name="recruit_text.png" />
           <Image Name="recruitbtn_text.png" />
           <Image Name="refreshbtn_text.png" />
+          <Image Name="replacebtn_text.png" />
           <Image Name="resitemlv_text.png" />
+          <Image Name="selectbtn_text.png" />
           <Image Name="smcatabtn0_text_n.png" />
           <Image Name="smcatabtn0_text_s.png" />
           <Image Name="smcatabtn1_text_n.png" />
@@ -288,44 +373,115 @@
           <Image Name="stcatabtn2_text_s.png" />
           <Image Name="stcatabtn3_text_n.png" />
           <Image Name="stcatabtn3_text_s.png" />
+          <Image Name="stonein_text.png" />
           <Image Name="storehousetitle.png" />
+          <Image Name="strenthbtn_text.png" />
           <Image Name="submaptitle_text.png" />
+          <Image Name="takeoffbtn_text.png" />
+          <Image Name="task_text_0_n.png" />
+          <Image Name="task_text_0_s.png" />
+          <Image Name="task_text_1_n.png" />
+          <Image Name="task_text_1_s.png" />
+          <Image Name="task_text_2_n.png" />
+          <Image Name="task_text_2_s.png" />
+          <Image Name="taskbtn.png" />
+          <Image Name="taskdayget.png" />
+          <Image Name="taskdaygo.png" />
+          <Image Name="taskfinish.png" />
           <Image Name="usebtn_text.png" />
         </Folder>
         <Folder Name="ui">
           <Image Name="a001.png" />
+          <Image Name="a001-2.png" />
+          <Image Name="a001-3.png" />
           <Image Name="a002.png" />
+          <Image Name="a002-2.png" />
+          <Image Name="a002-3.png" />
           <Image Name="a003.png" />
+          <Image Name="a003-2.png" />
+          <Image Name="a003-3.png" />
           <Image Name="a004.png" />
+          <Image Name="a004-2.png" />
+          <Image Name="a004-3.png" />
           <Image Name="a005.png" />
+          <Image Name="a005-2.png" />
+          <Image Name="a005-3.png" />
           <Image Name="a006.png" />
+          <Image Name="a006-2.png" />
+          <Image Name="a006-3.png" />
           <Image Name="a007.png" />
+          <Image Name="a007-2.png" />
+          <Image Name="a007-3.png" />
           <Image Name="a008.png" />
+          <Image Name="a008-2.png" />
+          <Image Name="a008-3.png" />
           <Image Name="a009.png" />
+          <Image Name="a009-2.png" />
+          <Image Name="a009-3.png" />
           <Image Name="a010.png" />
+          <Image Name="a010-2.png" />
+          <Image Name="a010-3.png" />
           <Image Name="a011.png" />
+          <Image Name="a011-2.png" />
+          <Image Name="a011-3.png" />
           <Image Name="a012.png" />
+          <Image Name="a012-2.png" />
+          <Image Name="a012-3.png" />
           <Image Name="a013.png" />
+          <Image Name="a013-2.png" />
+          <Image Name="a013-3.png" />
           <Image Name="a014.png" />
+          <Image Name="a014-2.png" />
+          <Image Name="a014-3.png" />
           <Image Name="a015.png" />
+          <Image Name="a015-2.png" />
+          <Image Name="a015-3.png" />
           <Image Name="a016.png" />
+          <Image Name="a016-2.png" />
+          <Image Name="a016-3.png" />
           <Image Name="a017.png" />
+          <Image Name="a017-2.png" />
+          <Image Name="a017-3.png" />
           <Image Name="a018.png" />
+          <Image Name="a018-2.png" />
+          <Image Name="a018-3.png" />
           <Image Name="a019.png" />
+          <Image Name="a019-2.png" />
+          <Image Name="a019-3.png" />
           <Image Name="a020.png" />
+          <Image Name="a020-2.png" />
+          <Image Name="a020-3.png" />
           <Image Name="a021.png" />
+          <Image Name="a021-2.png" />
+          <Image Name="a021-3.png" />
           <Image Name="a022.png" />
+          <Image Name="a022-2.png" />
+          <Image Name="a022-3.png" />
           <Image Name="a023.png" />
+          <Image Name="a023-2.png" />
+          <Image Name="a023-3.png" />
           <Image Name="a024.png" />
+          <Image Name="a024-2.png" />
+          <Image Name="a024-3.png" />
           <Image Name="a025.png" />
+          <Image Name="a025-2.png" />
+          <Image Name="a025-3.png" />
           <Image Name="a026.png" />
+          <Image Name="a026-2.png" />
+          <Image Name="a026-3.png" />
           <Image Name="a027.png" />
+          <Image Name="a027-2.png" />
+          <Image Name="a027-3.png" />
           <Image Name="a028.png" />
+          <Image Name="a028-2.png" />
+          <Image Name="a028-3.png" />
           <Image Name="actionbtn_blue.png" />
+          <Image Name="actionbtn_yellow.png" />
           <Image Name="b001.png" />
           <Image Name="b002.png" />
           <Image Name="b003.png" />
           <Image Name="b004.png" />
+          <Image Name="bigstar.png" />
           <Image Name="blank.png" />
           <Image Name="buildingactbtn_d.png" />
           <Image Name="buildingactbtn_n.png" />
@@ -336,25 +492,51 @@
           <Image Name="catabtn_n.png" />
           <Image Name="catabtn_s.png" />
           <Image Name="closebtn.png" />
+          <Image Name="closebtn2.png" />
           <Image Name="d001.png" />
           <Image Name="d002.png" />
           <Image Name="d003.png" />
           <Image Name="d004.png" />
           <Image Name="d005.png" />
+          <Image Name="dailytask_0.png" />
+          <Image Name="dailytask_1.png" />
+          <Image Name="dailytask_2.png" />
+          <Image Name="dailytask_3.png" />
+          <Image Name="dailytask_4.png" />
+          <Image Name="dailytask_5.png" />
+          <Image Name="dailytask_6.png" />
+          <Image Name="dailytask_7.png" />
           <Image Name="e001.png" />
+          <Image Name="e001-2.png" />
+          <Image Name="e001-3.png" />
           <Image Name="e002.png" />
+          <Image Name="e002-2.png" />
+          <Image Name="e002-3.png" />
           <Image Name="e003.png" />
+          <Image Name="e003-2.png" />
+          <Image Name="e003-3.png" />
           <Image Name="e004.png" />
+          <Image Name="e004-2.png" />
+          <Image Name="e004-3.png" />
           <Image Name="equipbox_0.png" />
           <Image Name="equipbox_1.png" />
           <Image Name="equipbox_2.png" />
           <Image Name="equipbox_3.png" />
           <Image Name="equipbox_4.png" />
           <Image Name="equipbox_5.png" />
+          <Image Name="equipstonebox.png" />
           <Image Name="f001.png" />
+          <Image Name="f001-2.png" />
+          <Image Name="f001-3.png" />
           <Image Name="f002.png" />
+          <Image Name="f002-2.png" />
+          <Image Name="f002-3.png" />
           <Image Name="f003.png" />
+          <Image Name="f003-2.png" />
+          <Image Name="f003-3.png" />
           <Image Name="f004.png" />
+          <Image Name="f004-2.png" />
+          <Image Name="f004-3.png" />
           <Image Name="h_0_0.png" />
           <Image Name="h_0_1.png" />
           <Image Name="h_1_0.png" />
@@ -364,9 +546,17 @@
           <Image Name="h_3_0.png" />
           <Image Name="h_3_1.png" />
           <Image Name="h001.png" />
+          <Image Name="h001-2.png" />
+          <Image Name="h001-3.png" />
           <Image Name="h002.png" />
+          <Image Name="h002-2.png" />
+          <Image Name="h002-3.png" />
           <Image Name="h003.png" />
+          <Image Name="h003-2.png" />
+          <Image Name="h003-3.png" />
           <Image Name="h004.png" />
+          <Image Name="h004-2.png" />
+          <Image Name="h004-3.png" />
           <Image Name="heroattradd.png" />
           <Image Name="heroattrexpbar.png" />
           <Image Name="heroattrexpbarbg.png" />
@@ -398,6 +588,13 @@
           <Image Name="main_silver.png" />
           <Image Name="ninegrid.png" />
           <Image Name="normal9bg.png" />
+          <Image Name="pointicon_0.png" />
+          <Image Name="pointicon_1.png" />
+          <Image Name="pointicon_2.png" />
+          <Image Name="pointicon_3.png" />
+          <Image Name="q001.png" />
+          <Image Name="q002.png" />
+          <Image Name="q003.png" />
           <Image Name="r001.png" />
           <Image Name="r002.png" />
           <Image Name="r003.png" />
@@ -417,13 +614,93 @@
           <Image Name="s002.png" />
           <Image Name="s003.png" />
           <Image Name="s004.png" />
+          <Image Name="setpline0.png" />
           <Image Name="smallstar.png" />
+          <Image Name="taskbtn.png" />
+          <Image Name="taskdailybigbar.png" />
+          <Image Name="taskdailybigbg.png" />
+          <Image Name="taskdailyf.png" />
+          <Image Name="taskframe.png" />
+          <Image Name="taskprobar.png" />
+          <Image Name="taskprobg.png" />
           <Image Name="timebar.png" />
           <Image Name="timebargb.png" />
           <Image Name="timeicon.png" />
           <Image Name="timeiconbox.png" />
           <Image Name="top1.png" />
           <Image Name="top2.png" />
+          <Image Name="w001.png" />
+          <Image Name="w002.png" />
+          <Image Name="w003.png" />
+          <Image Name="w004.png" />
+          <Image Name="w005.png" />
+          <Image Name="w006.png" />
+          <Image Name="w007.png" />
+          <Image Name="w008.png" />
+          <Image Name="w009.png" />
+          <Image Name="w010.png" />
+          <Image Name="w011.png" />
+          <Image Name="w012.png" />
+          <Image Name="w013.png" />
+          <Image Name="w014.png" />
+          <Image Name="w015.png" />
+          <Image Name="w016.png" />
+          <Image Name="w017.png" />
+          <Image Name="w018.png" />
+          <Image Name="w019.png" />
+          <Image Name="w020.png" />
+          <Image Name="w021.png" />
+          <Image Name="w022.png" />
+          <Image Name="w023.png" />
+          <Image Name="w024.png" />
+          <Image Name="w025.png" />
+          <Image Name="w026.png" />
+          <Image Name="w027.png" />
+          <Image Name="w028.png" />
+          <Image Name="w029.png" />
+          <Image Name="w030.png" />
+          <Image Name="w031.png" />
+          <Image Name="w032.png" />
+          <Image Name="w033.png" />
+          <Image Name="w034.png" />
+          <Image Name="w035.png" />
+          <Image Name="w036.png" />
+          <Image Name="x001.png" />
+          <Image Name="x002.png" />
+          <Image Name="x003.png" />
+          <Image Name="x004.png" />
+          <Image Name="x005.png" />
+          <Image Name="x006.png" />
+          <Image Name="x007.png" />
+          <Image Name="x008.png" />
+          <Image Name="x009.png" />
+          <Image Name="x010.png" />
+          <Image Name="x011.png" />
+          <Image Name="x012.png" />
+          <Image Name="x013.png" />
+          <Image Name="x014.png" />
+          <Image Name="x015.png" />
+          <Image Name="x016.png" />
+          <Image Name="x017.png" />
+          <Image Name="x018.png" />
+          <Image Name="x019.png" />
+          <Image Name="x020.png" />
+          <Image Name="x021.png" />
+          <Image Name="x022.png" />
+          <Image Name="x023.png" />
+          <Image Name="x024.png" />
+          <Image Name="x025.png" />
+          <Image Name="x026.png" />
+          <Image Name="x027.png" />
+          <Image Name="x028.png" />
+          <Image Name="x029.png" />
+          <Image Name="x030.png" />
+          <Image Name="x031.png" />
+          <Image Name="x032.png" />
+          <Image Name="x033.png" />
+          <Image Name="x034.png" />
+          <Image Name="x035.png" />
+          <Image Name="x036.png" />
           <Image Name="y001.png" />
           <Image Name="y002.png" />
           <Image Name="y003.png" />
@@ -442,7 +719,10 @@
         </Folder>
         <Project Name="cardHeroNode.csd" Type="Node" />
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
+        <Project Name="equipDescLayer.csd" Type="Layer" />
+        <Project Name="fighterAttrLayer.csd" Type="Layer" />
         <Project Name="fightHeroNode.csd" Type="Node" />
+        <Project Name="fightLayer.csd" Type="Layer" />
         <Project Name="heroAttrLayer.csd" Type="Layer" />
         <Project Name="hillResNode.csd" Type="Node" />
         <Project Name="homeHillLayer.csd" Type="Layer" />
@@ -454,22 +734,31 @@
         <Project Name="MainMenuLayer.csd" Type="Layer" />
         <Project Name="makeResNode.csd" Type="Node" />
         <Project Name="mapBlockLayer.csd" Type="Layer" />
+        <Project Name="mapEventLayer.csd" Type="Layer" />
         <PlistInfo Name="mapui.csi" Type="Plist" />
         <Project Name="marketLayer.csd" Type="Layer" />
+        <Project Name="marketRefreshLayer.csd" Type="Layer" />
         <Project Name="marketResNode.csd" Type="Node" />
+        <Project Name="materialDescNode.csd" Type="Node" />
         <Project Name="myHeroNode.csd" Type="Node" />
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
         <Project Name="resDescLayer.csd" Type="Scene" />
+        <Project Name="selectEquipLayer.csd" Type="Scene" />
         <Project Name="selectMapNode.csd" Type="Node" />
         <Project Name="selectMyHerosLayer.csd" Type="Layer" />
         <Project Name="selectSubMapLayer.csd" Type="Layer" />
+        <Project Name="setinStoneLayer.csd" Type="Layer" />
         <Project Name="smithyLayer.csd" Type="Layer" />
         <Project Name="storeHouseLayer.csd" Type="Layer" />
+        <Project Name="takeOnLayer.csd" Type="Layer" />
+        <Project Name="taskDayNode.csd" Type="Node" />
+        <Project Name="taskLayer.csd" Type="Layer" />
+        <Project Name="taskMainDescLayer.csd" Type="Layer" />
+        <Project Name="taskMainNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
-        <Project Name="mapEventLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

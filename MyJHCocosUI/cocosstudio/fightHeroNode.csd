@@ -40,7 +40,7 @@
           <AbstractNodeData Name="name" ActionTag="-1569687309" Tag="215" IconVisible="False" LeftMargin="-36.0000" RightMargin="-36.0000" TopMargin="42.0001" BottomMargin="-68.0001" FontSize="23" LabelText="小虾米" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="72.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="0.0000" Y="-55.0001" />
+            <Position Y="-55.0001" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
@@ -69,6 +69,37 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <ImageFileData Type="MarkedSubImage" Path="ui/herohpbar.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="heroatkspeedbarbg" ActionTag="1847250843" Tag="890" IconVisible="False" LeftMargin="-71.0000" RightMargin="-71.0000" TopMargin="93.5000" BottomMargin="-102.5000" ctype="SpriteObjectData">
+            <Size X="142.0000" Y="9.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position Y="-98.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="mapui/heroatkspeedbarbg.png" Plist="mapui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="atkspeedbar" ActionTag="-1098691705" Tag="891" IconVisible="False" LeftMargin="-71.0000" RightMargin="-71.0000" TopMargin="93.5000" BottomMargin="-102.5000" ctype="LoadingBarObjectData">
+            <Size X="142.0000" Y="9.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position Y="-98.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <ImageFileData Type="MarkedSubImage" Path="mapui/heroatkspeedbar.png" Plist="mapui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="statusicon" ActionTag="-828042260" Tag="817" IconVisible="False" LeftMargin="-61.0000" RightMargin="-61.0000" TopMargin="-24.0000" BottomMargin="-24.0000" LeftEage="40" RightEage="40" TopEage="15" BottomEage="15" Scale9OriginX="40" Scale9OriginY="15" Scale9Width="42" Scale9Height="18" ctype="ImageViewObjectData">
+            <Size X="122.0000" Y="48.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="mapui/hurticon.png" Plist="mapui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

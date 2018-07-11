@@ -5,6 +5,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "Hero.h"
+#include "ResBase.h"
 USING_NS_CC;
 
 typedef enum
@@ -24,6 +25,11 @@ public:
 	virtual void onExit();
     bool init(Hero* herodata);
 
+	void changeEquip(ResBase* res);
+
+	void takeOn(ResBase* res);
+
+	void takeOff(ResBase* res);
 private:
 
 	/************************************
@@ -46,8 +52,14 @@ private:
 	void editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std::string &text);
 
 	void editBoxReturn(cocos2d::ui::EditBox *editBox);
+
+	void updateEquipUi(ResBase* res, int barindex);
+
+	void updataAtrrUI(float dt);
 private:
 
+	//装备栏
+	Node* equipnode;
 	//英雄数据
 	Hero* m_heroData;
 	//名字编辑控件
@@ -73,6 +85,11 @@ private:
 
 	//闪避label
 	cocos2d::ui::Text* dodgelbl;
+
+	//点击的装备栏位置
+	int clickindex;
+
+	int langtype;
 };
 
 #endif

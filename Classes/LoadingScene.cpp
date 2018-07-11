@@ -77,6 +77,29 @@ void LoadingScene::delayLoadData(float dt)
 	GlobalInstance::getInstance()->loadAllResourcesData();
 
 	GlobalInstance::getInstance()->loadMyResData();
+
+	GlobalInstance::getInstance()->parseSuitJson();
+	GlobalInstance::getInstance()->loadEquipData();
+
+	GlobalInstance::getInstance()->loadGFData();
+
+	GlobalInstance::getInstance()->loadNpcData();
+
+	//读取主线任务配置
+	GlobalInstance::getInstance()->loadTaskMainData();
+	//读取主线任务
+	GlobalInstance::getInstance()->loadMyTaskMainData();
+
+	//读取支线任务配置
+	GlobalInstance::getInstance()->loadTaskBranchData();
+	//读取支线任务
+	GlobalInstance::getInstance()->loadMyTaskBranchData();
+
+	//读取每日任务配置
+	GlobalInstance::getInstance()->loadDailyTaskData();
+	//读取每日任务数据
+	GlobalInstance::getInstance()->getMyDailyTaskData();
+
 	//数据处理完，显示游戏场景
 	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.2f);
 }

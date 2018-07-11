@@ -4,6 +4,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "Hero.h"
+#include "Npc.h"
 USING_NS_CC;
 
 class FightHeroNode :public Node
@@ -16,15 +17,38 @@ public:
 
 	static FightHeroNode* create();
 
-	void setData(Hero* herodata);
+	void setData(Npc* data, int datatype = 0);
+
+
+	void pauseTimeSchedule();
+
+	void resumeTimeSchedule();
+
+	void hurt(float hp);
+
+	void updateHp();
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
 	cocos2d::ui::Text* namelbl;
 	cocos2d::ui::LoadingBar* hp_bar;
-	Hero* m_heroData;
+	cocos2d::ui::LoadingBar* atkspeed_bar;
+	cocos2d::ui::Widget* atkspeed_barbg;
+	cocos2d::ui::ImageView* statusimg;
+	Npc* m_Data;
+	int m_datatype;
+	float atkspeed;
+	float timedt;
+	bool ispausing;
+	float hurtup;
+	void update(float dt);
+	void hpAnim();
+	void setBlankBox();
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	void atkAnimFinish();
+	void hurtAnimFinish();
 
 };
 #endif

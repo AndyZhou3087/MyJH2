@@ -109,12 +109,17 @@ void SelectMyHerosLayer::refreshMyHerosUi()
 		innerheight = contentheight;
 	m_contentscroll->setInnerContainerSize(Size(650, innerheight));
 
+	int c = 0;
 	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 	{
 		Hero* herodata = GlobalInstance::vec_myHeros[i];
-		MyHeroNode* heronode = MyHeroNode::create(herodata, m_wheretype);
-		heronode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
-		m_contentscroll->addChild(heronode, 0, i);
+		if (herodata->getState() != HS_DEAD)
+		{
+			MyHeroNode* heronode = MyHeroNode::create(herodata, m_wheretype);
+			heronode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - c * itemheight - itemheight / 2));
+			m_contentscroll->addChild(heronode, 0, c);
+			c++;
+		}
 	}
 }
 

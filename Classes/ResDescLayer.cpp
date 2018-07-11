@@ -58,13 +58,18 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 	cocos2d::ui::Widget* smallbg = (cocos2d::ui::Widget*)csbnode->getChildByName("smallbg");
 	smallbg->setSwallowTouches(true);
 
+	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
+	std::string str = StringUtils::format("ui/%s.png", GlobalInstance::map_AllResources[res->getId()].id.c_str());
+	p_res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+
+
 	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	namelbl->setString(GlobalInstance::map_AllResources[res->getId()].name);
 
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desclbl");
 	desclbl->setString(GlobalInstance::map_AllResources[res->getId()].desc);
 
-	std::string str = StringUtils::format(ResourceLang::map_lang["rescount"].c_str(), res->getCount().getValue());
+	str = StringUtils::format(ResourceLang::map_lang["rescount"].c_str(), res->getCount().getValue());
 
 	cocos2d::ui::Text* coutlbl = (cocos2d::ui::Text*)csbnode->getChildByName("coutlbl");
 	coutlbl->setString(str);

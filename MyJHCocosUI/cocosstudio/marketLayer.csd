@@ -222,14 +222,15 @@
             <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="silvercountlbl" ActionTag="-584315568" Tag="86" IconVisible="False" LeftMargin="552.5176" RightMargin="92.4824" TopMargin="107.2231" BottomMargin="1142.7769" FontSize="30" LabelText="10000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="75.0000" Y="30.0000" />
+          <AbstractNodeData Name="silvercountlbl" ActionTag="-584315568" Tag="86" IconVisible="False" LeftMargin="552.5175" RightMargin="90.4825" TopMargin="107.2233" BottomMargin="1138.7767" FontSize="30" LabelText="10000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="77.0000" Y="34.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="552.5176" Y="1157.7769" />
+            <Position X="552.5175" Y="1155.7767" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="121" G="78" B="46" />
-            <PrePosition X="0.7674" Y="0.9045" />
-            <PreSize X="0.1042" Y="0.0234" />
+            <PrePosition X="0.7674" Y="0.9030" />
+            <PreSize X="0.1069" Y="0.0266" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
@@ -244,14 +245,15 @@
             <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="coincountlbl" ActionTag="200492008" Tag="111" IconVisible="False" LeftMargin="114.7401" RightMargin="560.2599" TopMargin="107.2231" BottomMargin="1142.7769" FontSize="30" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="45.0000" Y="30.0000" />
+          <AbstractNodeData Name="coincountlbl" ActionTag="200492008" Tag="111" IconVisible="False" LeftMargin="114.7401" RightMargin="558.2599" TopMargin="107.2233" BottomMargin="1138.7767" FontSize="30" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="47.0000" Y="34.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="114.7401" Y="1157.7769" />
+            <Position X="114.7401" Y="1155.7767" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="194" G="144" B="0" />
-            <PrePosition X="0.1594" Y="0.9045" />
-            <PreSize X="0.0625" Y="0.0234" />
+            <PrePosition X="0.1594" Y="0.9030" />
+            <PreSize X="0.0653" Y="0.0266" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>

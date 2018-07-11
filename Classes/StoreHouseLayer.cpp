@@ -9,6 +9,7 @@
 #include "MyMenu.h"
 #include "ResDescLayer.h"
 #include "MovingLabel.h"
+#include "EquipDescLayer.h"
 
 StoreHouseLayer::StoreHouseLayer()
 {
@@ -131,12 +132,13 @@ void StoreHouseLayer::updateContent(int category)
 
 	for (unsigned int m = 0; m < map_cateRes[category].size(); m++)
 	{
-
-		Sprite * boxbg = Sprite::createWithSpriteFrameName("ui/resbox.png");
-		boxbg->setPosition(Vec2(boxbg->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
-		scrollview->addChild(boxbg);
-
-		std::string qustr = "ui/resbox_qu0.png";
+		std::string qustr = "ui/resbox.png";
+		int qu = 0;
+		if (map_cateRes[category][m]->getType() >= T_ARMOR && map_cateRes[category][m]->getType() <= T_NG)
+		{
+			qu = ((Equipable*)map_cateRes[category][m])->getQU().getValue();
+			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
 
 		Sprite * qubox = Sprite::createWithSpriteFrameName(qustr);
 
@@ -147,7 +149,7 @@ void StoreHouseLayer::updateContent(int category)
 			CC_CALLBACK_1(StoreHouseLayer::onclick, this));
 		boxItem->setUserData((void*)map_cateRes[category][m]);
 
-		boxItem->setPosition(boxbg->getPosition());
+		boxItem->setPosition(Vec2(qubox->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
 
 		MyMenu* menu = MyMenu::create();
 		menu->addChild(boxItem);
@@ -159,6 +161,15 @@ void StoreHouseLayer::updateContent(int category)
 		std::string resid = map_cateRes[category][m]->getId();
 
 		std::string str = StringUtils::format("ui/%s.png", resid.c_str());
+		if (qu == 3)
+		{
+			str = StringUtils::format("ui/%s_2.png", resid.c_str());
+		}
+		else if (qu == 4)
+		{
+			str = StringUtils::format("ui/%s_3.png", resid.c_str());
+		}
+
 		Sprite * res = Sprite::createWithSpriteFrameName(str);
 		res->setPosition(Vec2(boxItem->getContentSize().width / 2, boxItem->getContentSize().height / 2));
 		boxItem->addChild(res);
@@ -172,7 +183,7 @@ void StoreHouseLayer::updateContent(int category)
 		Label *countlbl = Label::createWithTTF(countstr, FONT_NAME, 23);
 		countlbl->setAnchorPoint(Vec2(1, 0));
 		countlbl->setColor(Color3B::WHITE);
-		countlbl->setPosition(Vec2(boxItem->getContentSize().width - 5, 0));
+		countlbl->setPosition(Vec2(boxItem->getContentSize().width - 10, 10));
 		boxItem->addChild(countlbl);
 	}
 }
@@ -213,13 +224,10 @@ void StoreHouseLayer::onclick(Ref* pSender)
 	}
 	else
 	{
-		if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
+		if (res->getType() >= T_ARMOR && res->getType() <= T_NG)
 		{
-
-		}
-		else if (res->getType() >= T_WG && res->getType() <= T_NG)
-		{
-
+			EquipDescLayer* layer = EquipDescLayer::create(res, 0);//从仓库进入
+			this->addChild(layer);
 		}
 		else
 		{
@@ -235,13 +243,16 @@ void StoreHouseLayer::loadData()
 	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
 	{
 		ResBase* res = MyRes::vec_MyResources[i];
-		if (res->getType() == T_WG || res->getType() == T_NG)
-			map_cateRes[CATA_1].push_back(MyRes::vec_MyResources[i]);
-		else if (res->getType() == T_ARMOR || res->getType() == T_EQUIP || res->getType() == T_HANDARMOR || res->getType() == T_FASHION)
-			map_cateRes[CATA_2].push_back(MyRes::vec_MyResources[i]);
-		else
+		if (res->getWhere() == MYSTORAGE)
 		{
-			map_cateRes[CATA_3].push_back(MyRes::vec_MyResources[i]);
+			if (res->getType() == T_WG || res->getType() == T_NG)
+				map_cateRes[CATA_1].push_back(MyRes::vec_MyResources[i]);
+			else if (res->getType() == T_ARMOR || res->getType() == T_EQUIP || res->getType() == T_HANDARMOR || res->getType() == T_FASHION)
+				map_cateRes[CATA_2].push_back(MyRes::vec_MyResources[i]);
+			else
+			{
+				map_cateRes[CATA_3].push_back(MyRes::vec_MyResources[i]);
+			}
 		}
 	}
 

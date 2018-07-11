@@ -9,6 +9,8 @@
 #include "MainMapScene.h"
 #include "MovingLabel.h"
 #include "MapEventLayer.h"
+#include "DataSave.h"
+#include "FightingLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -16,6 +18,11 @@ MapBlockScene::MapBlockScene()
 {
 	myposParticle = NULL;
 	isMoving = false;
+
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
+	walkcount = 0;
+	monsterComeRnd = 20;
 }
 
 
@@ -55,8 +62,24 @@ MapBlockScene* MapBlockScene::create(std::string mapname)
 	}
 }
 
+void MapBlockScene::onExit()
+{
+	std::string str;
+	std::map<int, MapBlock*>::iterator it;
+	for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+	{
+		std::string onestr = StringUtils::format("%d,", map_mapBlocks[it->first]->getIsCanSee() ? 1 : 0);
+		str.append(onestr);
+	}
+	DataSave::getInstance()->setMapVisibleArea(m_mapid, str.substr(0, str.length()-1));
+
+	Layer::onExit();
+}
+
 bool MapBlockScene::init(std::string mapname)
 {
+	m_mapid = mapname;
+
 	m_csbnode = CSLoader::createNode(ResourcePath::makePath("mapBlockLayer.csb"));
 	this->addChild(m_csbnode);
 
@@ -72,13 +95,11 @@ bool MapBlockScene::init(std::string mapname)
 
 	int count = vec_startpos.size();
 
-	int r = GlobalInstance::getInstance()->createRandomNum(count);
-	mycurCol = vec_startpos[r] % blockColCount;
-	mycurRow = vec_startpos[r] / blockColCount;
+	randStartPos = GlobalInstance::getInstance()->createRandomNum(count);
+	mycurCol = vec_startpos[randStartPos] % blockColCount;
+	mycurRow = vec_startpos[randStartPos] / blockColCount;
 
 	setMyPos();
-
-	ajustStartPos();
 
 	updateLabel();
 
@@ -93,7 +114,7 @@ bool MapBlockScene::init(std::string mapname)
 	for (int i = 0; i < 4; i++)
 	{
 		cocos2d::ui::Widget* keybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName(keyname[i]);
-		keybtn->setTag(i+ KEY_UP);
+		keybtn->setTag(i + KEY_UP);
 		keybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onArrowKey, this));
 	}
 
@@ -131,6 +152,9 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case BTN_GOCITY:
 			Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MainScene::createScene()));
 			break;
+		case BTN_MAP:
+			
+			break;
 		default:
 			break;
 		}
@@ -139,101 +163,141 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 void MapBlockScene::onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
-	if (type == ui::Widget::TouchEventType::ENDED)
+	Node* clicknode = (Node*)pSender;
+	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
-		Node* clicknode = (Node*)pSender;
-		int tag = clicknode->getTag();
-		bool isStartPos = false;
+		m_longTouchNode = clicknode;
+		if (!isScheduled(schedule_selector(MapBlockScene::longTouchUpdate)))
+			schedule(schedule_selector(MapBlockScene::longTouchUpdate), 0.7f);
+		if (!m_isLongPress)
+			go((MAP_KEYTYPE)clicknode->getTag());
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		//if (!m_isLongPress)
+		//	go((MAP_KEYTYPE)clicknode->getTag());
+		cacelLongTouch();
+	}
+	else if (type == ui::Widget::TouchEventType::CANCELED)
+	{
+		cacelLongTouch();
+	}
+}
 
-		if (isMoving)
-			return;
+void MapBlockScene::longTouchUpdate(float delay)
+{
+	m_isLongPress = true;
+	if (m_longTouchNode != NULL) {
+		go((MAP_KEYTYPE)m_longTouchNode->getTag());
+		unschedule(schedule_selector(MapBlockScene::longTouchUpdate));
+	}
+}
 
-		switch (tag)
-		{
-			case KEY_UP:
-			{
-				if (mycurRow >= blockRowCount - 1)
-					return;
-				int bindex = (mycurRow + 1)*blockColCount + mycurCol;
-				if (!checkRoad(bindex))
-					return;
-				if (map_mapBlocks[bindex]->getPosType() == 0)
-					isStartPos = true;
+void MapBlockScene::cacelLongTouch()
+{
+	unschedule(schedule_selector(MapBlockScene::longTouchUpdate));
+	m_longTouchNode = NULL;
+	m_isLongPress = false;
+}
 
-				mycurRow += 1;
-				setMyPos();
-				break;
-			}
-			case KEY_DOWN:
-			{
-				if (mycurRow <= 0)
-					return;
-				int bindex = (mycurRow - 1)*blockColCount + mycurCol;
-				if (!checkRoad(bindex))
-					return;
-				if (map_mapBlocks[bindex]->getPosType() == 0)
-					isStartPos = true;
-				mycurRow -= 1;
-				setMyPos();
-				break;
-			}
-			case KEY_LEFT:
-			{
-				if (mycurCol <= 0)
-					return;
+void MapBlockScene::go(MAP_KEYTYPE keyArrow)
+{
+	if (isMoving)
+		return;
 
-				int bindex = (mycurRow)*blockColCount + mycurCol - 1;
-				if (!checkRoad(bindex))
-					return;
-				if (map_mapBlocks[bindex]->getPosType() == 0)
-					isStartPos = true;
-				mycurCol -= 1;
-				setMyPos();
-				break;
-			}
-			case KEY_RIGHT:
-			{
-				if (mycurCol >= blockColCount - 1)
-					return;
+	if (!checkRoad(keyArrow))
+		return;
 
-				int bindex = (mycurRow)*blockColCount + mycurCol + 1;
-				if (!checkRoad(bindex))
-					return;
-				if (map_mapBlocks[bindex]->getPosType() == 0)
-					isStartPos = true;
-				mycurCol += 1;
-				setMyPos();
-				break;
-			}
+	switch (keyArrow)
+	{
+	case KEY_UP:
+	{
+		mycurRow += 1;
+		break;
+	}
+	case KEY_DOWN:
+	{
+		mycurRow -= 1;
+		break;
+	}
+	case KEY_LEFT:
+	{
+		mycurCol -= 1;
+		break;
+	}
+	case KEY_RIGHT:
+	{
+		mycurCol += 1;
+		break;
+	}
 
-			default:
-				break;
-		}
-		if (isStartPos)
-		{
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
-		}
+	default:
+		break;
+	}
+	setMyPos();
+	walkcount++;
+	monsterComeRnd += (5 + walkcount);
+
+	if (mycurCol == vec_startpos[randStartPos] % blockColCount && mycurRow == vec_startpos[randStartPos] / blockColCount)
+	{
+		cacelLongTouch();
+		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
 	}
 }
 
 void MapBlockScene::stopMoving()
 {
-
 	doMyStatus();
 	isMoving = false;
+	if (m_isLongPress) 
+	{
+		go((MAP_KEYTYPE)m_longTouchNode->getTag());
+	}
+
 }
 
-bool MapBlockScene::checkRoad(int blockindex)
+bool MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
 {
-	if (!map_mapBlocks[blockindex]->getWalkable())
+	int bindex = 0;
+	switch (keyArrow)
+	{
+		case KEY_UP:
+		{
+			bindex = (mycurRow + 1)*blockColCount + mycurCol;
+			if (mycurRow >= blockRowCount - 1)
+				return false;
+		}
+		break;
+		case KEY_DOWN:
+		{
+			bindex = (mycurRow - 1)*blockColCount + mycurCol;
+			if (mycurRow <= 0)
+				return false;
+		}
+		break;
+		case KEY_LEFT:
+		{
+			bindex = (mycurRow)*blockColCount + mycurCol - 1;
+			if (mycurCol <= 0)
+				return false;
+		}
+		break;
+		case KEY_RIGHT:
+		{
+			bindex = (mycurRow)*blockColCount + mycurCol + 1;
+			if (mycurCol >= blockColCount - 1)
+				return false;
+		}
+		break;
+		default:
+			break;
+	}
+	if (!map_mapBlocks[bindex]->getWalkable())
 	{
 		MovingLabel::show(ResourceLang::map_lang["noroad"]);
 		return false;
 	}
-	else
-	{
-		return true;
-	}
+	return true;
 }
 
 void MapBlockScene::createMap()
@@ -293,11 +357,13 @@ void MapBlockScene::setMyPos()
 		myposParticle->runAction(Sequence::create(MoveTo::create(0.5f, Vec2(px, py)), CallFunc::create(CC_CALLBACK_0(MapBlockScene::stopMoving, this)), NULL));
 	}
 
+	ajustMyPos();
+
 	updateFogVisible();
 
 }
 
-void MapBlockScene::ajustStartPos()
+void MapBlockScene::ajustMyPos()
 {
 	float offsetx = myposParticle->getPosition().x  - scrollView->getViewSize().width / 2;
 	float offsety = myposParticle->getPosition().y - scrollView->getViewSize().height / 2;
@@ -313,7 +379,7 @@ void MapBlockScene::ajustStartPos()
 		offsety = m_mapscrollcontainer->getContentSize().height - scrollView->getViewSize().height;
 
 
-	scrollView->setContentOffset(Vec2(-offsetx, -offsety));
+	scrollView->setContentOffsetInDuration(Vec2(-offsetx, -offsety), 0.5f);
 }
 
 FightHeroNode* MapBlockScene::getFightHeroNode(int index)
@@ -324,6 +390,21 @@ FightHeroNode* MapBlockScene::getFightHeroNode(int index)
 void MapBlockScene::createBlackFog()
 {
 	std::map<int, MapBlock*>::iterator it;
+
+	std::string str = DataSave::getInstance()->getMapVisibleArea(m_mapid);
+
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_tmp;
+		CommonFuncs::split(str, vec_tmp, ",");
+		int i = 0;
+		for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+		{
+			int val = atoi(vec_tmp[i].c_str());
+			map_mapBlocks[it->first]->setIsCanSee(val==1?true:false);
+			i++;
+		}
+	}
 	for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
 	{
 		if (!checkBlockVisible(it->first))
@@ -390,14 +471,15 @@ void MapBlockScene::initBlockData()
 void MapBlockScene::doMyStatus()
 {
 	int ret = -1;
+	int status = MAP_S_NOTING;
 	int mycr = mycurRow*blockColCount + mycurCol;
 	MapBlock* mapblock = map_mapBlocks[mycr];
 	std::map<int, int>::iterator rnd_it;
-	int r = GlobalInstance::getInstance()->createRandomNum(100);
+	int r = GlobalInstance::getInstance()->createRandomNum(100) + 1;
 	
 	for (rnd_it = mapblock->map_eventrnd.begin(); rnd_it != mapblock->map_eventrnd.end(); rnd_it++)
 	{
-		if (r < mapblock->map_eventrnd[rnd_it->first])
+		if (r <= mapblock->map_eventrnd[rnd_it->first])
 		{
 			ret = rnd_it->first;
 			break;
@@ -405,10 +487,128 @@ void MapBlockScene::doMyStatus()
 	}
 	if (ret >= 0)
 	{
+		status = MAP_S_EVENT;
+		//触发过一次不再触发
+		for (rnd_it = mapblock->map_eventrnd.begin(); rnd_it != mapblock->map_eventrnd.end(); rnd_it++)
+		{
+			mapblock->map_eventrnd[rnd_it->first] = 0;
+		}
+
 		MapEventLayer* mlayer = MapEventLayer::create(ret);
 		this->addChild(mlayer);
 	}
+	else
+	{
+		vec_enemys.clear();
+		if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS )
+		{
+			creatNpcOrBoss(mapblock);
+		}
+		else if (mapblock->getPosType() == POS_NOTHING)
+		{
+			createRndMonsters();
+		}
+		if (vec_enemys.size() > 0)
+			this->addChild(FightingLayer::create(vec_enemys));
+	}
+	if (status != MAP_S_NOTING)
+	{
+		cacelLongTouch();
+	}
 }
+
+void MapBlockScene::createRndMonsters()
+{
+	int r = GlobalInstance::getInstance()->createRandomNum(100);
+	if (r < monsterComeRnd)
+	{
+		monsterComeRnd = 20;
+		walkcount = 0;
+		int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
+		for (int i = 0; i < rndcount; i++)
+		{
+			int r1 = GlobalInstance::getInstance()->createRandomNum(100);
+			int rnd = 0;
+			for (unsigned int m = 0; m < MapBlock::vec_randMonsters.size(); m++)
+			{
+				FOURProperty propty = MapBlock::vec_randMonsters[m];
+				rnd += propty.floatPara3;
+				if (r1 < rnd)
+				{
+					int minlv = propty.intPara1 / 1000;
+					int maxlv = propty.intPara1 % 1000;
+					int minqu = propty.intPara2 / 1000;
+					int maxqu = propty.intPara2 % 1000;
+					int rlv = minlv + GlobalInstance::getInstance()->createRandomNum(maxlv - minlv + 1);
+					int rqu = minqu + GlobalInstance::getInstance()->createRandomNum(maxqu - minqu + 1);
+
+					Npc* enemyhero = new Npc();
+					std::string sid = MapBlock::vec_randMonsters[m].sid;
+					enemyhero->setId(sid);
+					enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
+					enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
+					enemyhero->setPotential(rqu);
+					enemyhero->setLevel(rlv);
+					enemyhero->setHp(enemyhero->getMaxHp());
+					vec_enemys.push_back(enemyhero);
+					break;
+				}
+			}
+
+		}
+	}
+}
+
+void MapBlockScene::creatNpcOrBoss(MapBlock* mbolck)
+{
+	int r1 = GlobalInstance::getInstance()->createRandomNum(100);
+	if (r1 < mbolck->getPosNpcRnd())
+	{
+		for (unsigned int m = 0; m < 6; m++)
+		{
+			FOURProperty propty = mbolck->npcs[m];
+			if (propty.sid.length() <= 0)
+			{
+				vec_enemys.push_back(NULL);
+			}
+			else
+			{
+				Npc* enemyhero = new Npc();
+				std::string sid = propty.sid;
+				enemyhero->setId(sid);
+				enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
+				enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
+				enemyhero->setPotential(propty.intPara1);
+				enemyhero->setLevel(propty.intPara2);
+				enemyhero->setHp(enemyhero->getMaxHp());
+				vec_enemys.push_back(enemyhero);
+			}
+		}
+	}
+}
+
+void MapBlockScene::updateHeroUI(int which)
+{
+	FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(which);
+	fnode->updateHp();
+	GlobalInstance::getInstance()->saveMyHeros();
+}
+
+void MapBlockScene::showFightResult(int result)
+{
+	if (result == 0)
+	{
+		for (int i = 0; i < 6; i++)
+			GlobalInstance::myCardHeros[i] = NULL;
+
+		Director::getInstance()->replaceScene(MainScene::createScene());
+	}
+	else
+	{
+
+	}
+}
+
 
 void MapBlockScene::parseMapXml(std::string mapname)
 {
@@ -437,7 +637,7 @@ void MapBlockScene::parseMapXml(std::string mapname)
 				{
 					FOURProperty mdata;
 					mdata.sid = msele->Attribute("id");
-					mdata.intPara1 = msele->IntAttribute("minlv") * 1000+ msele->IntAttribute("maxlv");
+					mdata.intPara1 = msele->IntAttribute("minlv") * 1000 + msele->IntAttribute("maxlv");
 					mdata.intPara2 = msele->IntAttribute("minqu") * 1000 + msele->IntAttribute("maxqu");
 					mdata.floatPara3 = atof(msele->GetText());
 					MapBlock::vec_randMonsters.push_back(mdata);

@@ -65,16 +65,6 @@
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox_qu" ActionTag="-774511459" Tag="56" IconVisible="False" LeftMargin="305.5000" RightMargin="305.5000" TopMargin="449.3505" BottomMargin="721.6495" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="27" Scale9Height="27" ctype="ImageViewObjectData">
-            <Size X="109.0000" Y="109.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="776.1495" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.6064" />
-            <PreSize X="0.1514" Y="0.0852" />
-            <FileData Type="MarkedSubImage" Path="ui/resbox_qu0.png" Plist="ui.plist" />
-          </AbstractNodeData>
           <AbstractNodeData Name="res" ActionTag="-1248232258" Tag="55" IconVisible="False" LeftMargin="305.5000" RightMargin="305.5000" TopMargin="449.3505" BottomMargin="721.6495" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="71" Scale9Height="75" ctype="ImageViewObjectData">
             <Size X="109.0000" Y="109.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

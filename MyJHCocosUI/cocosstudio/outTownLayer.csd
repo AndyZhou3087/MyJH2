@@ -103,14 +103,14 @@
           <AbstractNodeData Name="r001box" ActionTag="-558264668" Tag="89" IconVisible="False" LeftMargin="142.0000" RightMargin="432.0000" TopMargin="697.0000" BottomMargin="437.0000" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
             <Size X="146.0000" Y="146.0000" />
             <Children>
-              <AbstractNodeData Name="r" ActionTag="-602867631" Tag="90" IconVisible="False" LeftMargin="39.0006" RightMargin="48.9994" TopMargin="42.0000" BottomMargin="50.0000" ctype="SpriteObjectData">
-                <Size X="58.0000" Y="54.0000" />
+              <AbstractNodeData Name="r" ActionTag="-602867631" Tag="90" IconVisible="False" LeftMargin="13.5006" RightMargin="23.4994" TopMargin="14.5000" BottomMargin="22.5000" ctype="SpriteObjectData">
+                <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="68.0006" Y="77.0000" />
-                <Scale ScaleX="1.6000" ScaleY="1.6000" />
+                <Scale ScaleX="1.3000" ScaleY="1.3000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4658" Y="0.5274" />
-                <PreSize X="0.3973" Y="0.3699" />
+                <PreSize X="0.7466" Y="0.7466" />
                 <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
@@ -145,14 +145,15 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="carrylbl" ActionTag="-1427088676" Tag="103" IconVisible="False" LeftMargin="349.7234" RightMargin="279.2766" TopMargin="1045.4497" BottomMargin="209.5502" FontSize="25" LabelText="300/300" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="91.0000" Y="25.0000" />
+          <AbstractNodeData Name="carrylbl" ActionTag="-1427088676" Tag="103" IconVisible="False" LeftMargin="349.7235" RightMargin="277.2765" TopMargin="1045.4497" BottomMargin="205.5502" FontSize="25" LabelText="300/300" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="93.0000" Y="29.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="349.7234" Y="222.0502" />
+            <Position X="349.7235" Y="220.0502" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="121" G="78" B="46" />
-            <PrePosition X="0.4857" Y="0.1735" />
-            <PreSize X="0.1264" Y="0.0195" />
+            <PrePosition X="0.4857" Y="0.1719" />
+            <PreSize X="0.1292" Y="0.0227" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>

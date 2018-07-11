@@ -121,6 +121,37 @@
       <FilePathData Path="text_zh_cn/marketlvup_text.png" />
       <FilePathData Path="text_zh_cn/refreshbtn_text.png" />
       <FilePathData Path="text_zh_cn/buybtn_text.png" />
+      <FilePathData Path="text_zh_cn/escapebtn_text.png" />
+      <FilePathData Path="text_zh_cn/stonein_text.png" />
+      <FilePathData Path="text_zh_cn/equipprop_text.png" />
+      <FilePathData Path="text_zh_cn/break_text.png" />
+      <FilePathData Path="text_zh_cn/halltitle.png" />
+      <FilePathData Path="text_zh_cn/m1-10.png" />
+      <FilePathData Path="text_zh_cn/m1-5.png" />
+      <FilePathData Path="text_zh_cn/m1-6.png" />
+      <FilePathData Path="text_zh_cn/m1-7.png" />
+      <FilePathData Path="text_zh_cn/m1-8.png" />
+      <FilePathData Path="text_zh_cn/m1-9.png" />
+      <FilePathData Path="text_zh_cn/m2-10.png" />
+      <FilePathData Path="text_zh_cn/m2-6.png" />
+      <FilePathData Path="text_zh_cn/m2-7.png" />
+      <FilePathData Path="text_zh_cn/m2-8.png" />
+      <FilePathData Path="text_zh_cn/m2-9.png" />
+      <FilePathData Path="text_zh_cn/m3-3.png" />
+      <FilePathData Path="text_zh_cn/m4-2.png" />
+      <FilePathData Path="text_zh_cn/task_text_0_n.png" />
+      <FilePathData Path="text_zh_cn/task_text_0_s.png" />
+      <FilePathData Path="text_zh_cn/task_text_1_n.png" />
+      <FilePathData Path="text_zh_cn/task_text_1_s.png" />
+      <FilePathData Path="text_zh_cn/task_text_2_n.png" />
+      <FilePathData Path="text_zh_cn/task_text_2_s.png" />
+      <FilePathData Path="text_zh_cn/taskfinish.png" />
+      <FilePathData Path="text_zh_cn/taskdayget.png" />
+      <FilePathData Path="text_zh_cn/taskdaygo.png" />
+      <FilePathData Path="text_zh_cn/selectbtn_text.png" />
+      <FilePathData Path="text_zh_cn/strenthbtn_text.png" />
+      <FilePathData Path="text_zh_cn/replacebtn_text.png" />
+      <FilePathData Path="text_zh_cn/takeoffbtn_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

@@ -57,14 +57,14 @@
                 <OutlineColor A="255" R="80" G="38" B="12" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="r001" ActionTag="36149542" Tag="275" IconVisible="False" LeftMargin="407.0912" RightMargin="254.9088" TopMargin="172.4378" BottomMargin="27.5622" ctype="SpriteObjectData">
-                <Size X="58.0000" Y="54.0000" />
+              <AbstractNodeData Name="r001" ActionTag="36149542" Tag="275" IconVisible="False" LeftMargin="381.5912" RightMargin="229.4088" TopMargin="144.9378" BottomMargin="0.0622" ctype="SpriteObjectData">
+                <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="436.0912" Y="54.5622" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <Scale ScaleX="0.7000" ScaleY="0.7000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.6057" Y="0.2148" />
-                <PreSize X="0.0806" Y="0.2126" />
+                <PreSize X="0.1514" Y="0.4291" />
                 <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
@@ -80,14 +80,15 @@
                 <OutlineColor A="255" R="80" G="38" B="12" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="solivercountlbl" ActionTag="-149161726" Tag="315" IconVisible="False" LeftMargin="625.1865" RightMargin="81.8135" TopMargin="187.0232" BottomMargin="41.9768" FontSize="25" LabelText="0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="13.0000" Y="25.0000" />
+              <AbstractNodeData Name="solivercountlbl" ActionTag="-149161726" Tag="315" IconVisible="False" LeftMargin="625.1866" RightMargin="79.8134" TopMargin="187.0223" BottomMargin="37.9777" FontSize="25" LabelText="0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="15.0000" Y="29.0000" />
                 <AnchorPoint ScaleY="0.5000" />
-                <Position X="625.1865" Y="54.4768" />
+                <Position X="625.1866" Y="52.4777" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.8683" Y="0.2145" />
-                <PreSize X="0.0181" Y="0.0984" />
+                <PrePosition X="0.8683" Y="0.2066" />
+                <PreSize X="0.0208" Y="0.1142" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>

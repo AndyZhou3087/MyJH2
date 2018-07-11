@@ -12,8 +12,9 @@
 #include "ResCreator.h"
 #include "SmithyLayer.h"
 
-
 USING_NS_CC;
+
+#define COINREFRESH_NUM 100
 
 ConsumeResActionLayer::ConsumeResActionLayer()
 {
@@ -157,9 +158,6 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 			str = StringUtils::format("resbox%d", i);
 			cocos2d::ui::Widget* resbox = (cocos2d::ui::Widget*)csbnode->getChildByName(str);
 
-			str = StringUtils::format("resbox%d_qu", i);
-			cocos2d::ui::Widget* resboxqu = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
-
 			if (vec_res.size() == 1)
 			{
 				resbox->setPositionX(360);
@@ -168,7 +166,6 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 			{
 				resbox->setPositionX(240 + i*230);
 			}
-			resboxqu->setPositionX(resbox->getPositionX());
 			res->setPositionX(resbox->getPositionX());
 			namelbl[i]->setPositionX(resbox->getPositionX());
 			countlbl[i]->setPositionX(resbox->getPositionX());
@@ -177,9 +174,6 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 		{
 			std::string str = StringUtils::format("resbox%d", i);
 			cocos2d::ui::Widget* widget = (cocos2d::ui::Widget*)csbnode->getChildByName(str);
-			widget->setVisible(false);
-			str = StringUtils::format("resbox%d_qu", i);
-			widget = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
 			widget->setVisible(false);
 
 			str = StringUtils::format("res%d", i);
@@ -265,6 +259,15 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 			}
 			break;
 		case 1001://直接升级
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= COINREFRESH_NUM)
+			{
+				action();
+				this->removeFromParentAndCleanup(true);
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+			}
 			break;
 		default:
 			break;
@@ -280,7 +283,7 @@ void ConsumeResActionLayer::action()
 		bdata->level.setValue(bdata->level.getValue() + 1);
 		DataSave::getInstance()->setBuildingLv(bdata->name, bdata->level.getValue());
 
-		if (bdata->name.compare("7homehill") == 0)
+		if (bdata->name.compare("6innroom") == 0)
 		{
 			InnRoomLayer* innroomLayer = (InnRoomLayer*)this->getParent();
 			innroomLayer->lvup();
