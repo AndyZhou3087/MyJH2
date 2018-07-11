@@ -162,6 +162,17 @@ std::string DataSave::getMyyDailyTaskData()
 	return loadStringDataByKey("DailyTask", "");//id-state
 }
 
+//保存当前时间天数：从1970-1-1开始
+void DataSave::setMyFreshDate(int d)
+{
+	saveIntDataByKey("FreshDate", d);
+}
+
+int DataSave::getMyFreshDate()
+{
+	return loadIntDataByKey("FreshDate", 0);
+}
+
 //每日类型任务次数
 void DataSave::setDailyTypeCount(std::string strval)
 {
@@ -171,6 +182,16 @@ void DataSave::setDailyTypeCount(std::string strval)
 std::string DataSave::getDailyTypeCount()
 {
 	return loadStringDataByKey("DailyTypeCount", "0-0;1-0;2-0;3-0;4-0;5-0;6-0;7-0");//type-count
+}
+
+void DataSave::setMyDailyReward(std::string strval)
+{
+	saveStringDataByKey("DailyReward", strval);//8个类型
+}
+
+std::string DataSave::getMyyDailyReward()
+{
+	return loadStringDataByKey("DailyReward", "50-0;100-0;150-0;200-0");//积分-状态
 }
 
 int DataSave::getTotalFarmers()
@@ -190,7 +211,7 @@ void DataSave::setMyDailyPoint(int point)
 
 int DataSave::getMyyDailyPoint()
 {
-	return loadIntDataByKey("DailyPoint", 50);
+	return loadIntDataByKey("DailyPoint", 0);
 }
 
 int DataSave::getBuildingLv(std::string buildingname)

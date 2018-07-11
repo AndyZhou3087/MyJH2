@@ -11,6 +11,7 @@
 #include "HomeHillLayer.h"
 #include "ResCreator.h"
 #include "SmithyLayer.h"
+#include "Quest.h"
 
 USING_NS_CC;
 
@@ -250,6 +251,9 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 					MyRes::Use(resid, map_res[resid]);
 				}
 				action();
+				
+				//记录每日任务
+				Quest::setDailyTask(UPGRADE_BUILDING, 1);
 
 				this->removeFromParentAndCleanup(true);
 			}
@@ -261,6 +265,8 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 		case 1001://直接升级
 			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= COINREFRESH_NUM)
 			{
+				//记录每日任务
+				Quest::setDailyTask(UPGRADE_BUILDING, 1);
 				action();
 				this->removeFromParentAndCleanup(true);
 			}

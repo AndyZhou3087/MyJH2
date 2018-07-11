@@ -11,6 +11,7 @@
 #include "TaskBranchNode.h"
 #include "TaskDailyNode.h"
 #include "DataSave.h"
+#include "Quest.h"
 
 TaskLayer::TaskLayer()
 {
@@ -73,6 +74,13 @@ bool TaskLayer::init()
 	updateDaily(0);
 	this->schedule(schedule_selector(TaskLayer::updateDaily), 1.0f);
 
+
+	int t = GlobalInstance::servertime / 60 / 60 / 24;
+	if (t > DataSave::getInstance()->getMyFreshDate())
+	{
+		Quest::resetDailyTask();
+	}
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -107,8 +115,6 @@ void TaskLayer::updateContent(int category)
 			btntext->loadTexture(ResourcePath::makeTextImgPath(textstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 	}
-
-	loadData(category);
 
 	int ressize;
 	if (category == 0)
@@ -237,6 +243,7 @@ void TaskLayer::updateDaily(float dt)
 	mypoint->setString(pstr);
 	float per = m_point * 100 / 200;
 	probar->setPercent(per);
+	loadData(lastCategoryindex);
 }
 
 void TaskLayer::loadData(int category)
@@ -244,30 +251,22 @@ void TaskLayer::loadData(int category)
 	if (category == 2)
 	{
 		int m_point = DataSave::getInstance()->getMyyDailyPoint();
-		cocos2d::ui::Widget* point;
-		if (m_point >= 200)
+
+		std::map<int, int>::iterator it;
+		for (it = Quest::map_PointReward.begin(); it != Quest::map_PointReward.end(); it++)
 		{
-			point = (cocos2d::ui::Widget*)pnode->getChildByName("point_4");
+			std::string str = StringUtils::format("point_%d", it->first);
+			cocos2d::ui::Widget* point = (cocos2d::ui::Widget*)pnode->getChildByName(str);
 			point->addTouchEventListener(CC_CALLBACK_2(TaskLayer::onPointClick, this));
-			point->setTag(200);
-		}
-		else if (m_point >= 150)
-		{
-			point = (cocos2d::ui::Widget*)pnode->getChildByName("point_3");
-			point->addTouchEventListener(CC_CALLBACK_2(TaskLayer::onPointClick, this));
-			point->setTag(150);
-		}
-		else if (m_point >= 100)
-		{
-			point = (cocos2d::ui::Widget*)pnode->getChildByName("point_2");
-			point->addTouchEventListener(CC_CALLBACK_2(TaskLayer::onPointClick, this));
-			point->setTag(100);
-		}
-		else if (m_point >= 50)
-		{
-			point = (cocos2d::ui::Widget*)pnode->getChildByName("point_1");
-			point->addTouchEventListener(CC_CALLBACK_2(TaskLayer::onPointClick, this));
-			point->setTag(50);
+			point->setTag(it->first);
+			if (m_point < it->first || Quest::map_PointReward[it->first] == 1)
+			{
+				point->setTouchEnabled(false);
+			}
+			else
+			{
+				point->setTouchEnabled(true);
+			}
 		}
 	}
 }
@@ -294,6 +293,8 @@ void TaskLayer::onPointClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		default:
 			break;
 		}
+
+		Quest::saveDailyPointReward(tag);
 	}
 }
 

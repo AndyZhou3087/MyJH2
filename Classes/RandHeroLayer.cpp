@@ -5,6 +5,7 @@
 #include "Building.h"
 #include "Const.h"
 #include "MovingLabel.h"
+#include "Quest.h"
 
 USING_NS_CC;
 
@@ -154,6 +155,8 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				{
 					heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
 				}
+				//记录刷新次数
+				Quest::setDailyTask(FRESH_PUBENLIST, 1);
 			}
 			else
 			{
@@ -171,6 +174,8 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				{
 					heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
 				}
+				//记录刷新次数
+				Quest::setDailyTask(FRESH_PUBENLIST, 1);
 			}
 			else
 			{
