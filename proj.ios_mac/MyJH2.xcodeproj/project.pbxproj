@@ -106,6 +106,22 @@
 		7204534320D892640011D560 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 7204532120D892630011D560 /* images */; };
 		7204534420D892640011D560 /* outTownLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204532220D892630011D560 /* outTownLayer.csb */; };
 		7204534520D892640011D560 /* myHeroNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7204532320D892640011D560 /* myHeroNode.csb */; };
+		7232D81E20E639D600299738 /* MarketLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7232D80B20E639D300299738 /* MarketLayer.cpp */; };
+		7232D81F20E639D600299738 /* GongFa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7232D80D20E639D300299738 /* GongFa.cpp */; };
+		7232D82020E639D600299738 /* MapEventLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7232D81020E639D400299738 /* MapEventLayer.cpp */; };
+		7232D82120E639D600299738 /* MarketResNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7232D81120E639D400299738 /* MarketResNode.cpp */; };
+		7232D82220E639D600299738 /* Equip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7232D81320E639D400299738 /* Equip.cpp */; };
+		7232D82320E639D600299738 /* SmithyLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7232D81520E639D400299738 /* SmithyLayer.cpp */; };
+		7232D82420E639D600299738 /* StoreHouseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7232D81620E639D500299738 /* StoreHouseLayer.cpp */; };
+		7232D82520E639D600299738 /* MyMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7232D81920E639D500299738 /* MyMenu.cpp */; };
+		7232D82620E639D600299738 /* ResDescLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7232D81D20E639D500299738 /* ResDescLayer.cpp */; };
+		7232D82E20E63A0700299738 /* mapEventLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7232D82720E63A0500299738 /* mapEventLayer.csb */; };
+		7232D82F20E63A0700299738 /* marketLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7232D82820E63A0500299738 /* marketLayer.csb */; };
+		7232D83020E63A0700299738 /* marketResNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7232D82920E63A0600299738 /* marketResNode.csb */; };
+		7232D83120E63A0700299738 /* smithyLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7232D82A20E63A0600299738 /* smithyLayer.csb */; };
+		7232D83220E63A0700299738 /* storeHouseLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7232D82B20E63A0600299738 /* storeHouseLayer.csb */; };
+		7232D83320E63A0700299738 /* makeResNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7232D82C20E63A0700299738 /* makeResNode.csb */; };
+		7232D83420E63A0700299738 /* resDescLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7232D82D20E63A0700299738 /* resDescLayer.csb */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -300,6 +316,31 @@
 		7204532120D892630011D560 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		7204532220D892630011D560 /* outTownLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = outTownLayer.csb; sourceTree = "<group>"; };
 		7204532320D892640011D560 /* myHeroNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = myHeroNode.csb; sourceTree = "<group>"; };
+		7232D80B20E639D300299738 /* MarketLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MarketLayer.cpp; sourceTree = "<group>"; };
+		7232D80D20E639D300299738 /* GongFa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GongFa.cpp; sourceTree = "<group>"; };
+		7232D80E20E639D300299738 /* MyMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMenu.h; sourceTree = "<group>"; };
+		7232D80F20E639D400299738 /* SmithyLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmithyLayer.h; sourceTree = "<group>"; };
+		7232D81020E639D400299738 /* MapEventLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapEventLayer.cpp; sourceTree = "<group>"; };
+		7232D81120E639D400299738 /* MarketResNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MarketResNode.cpp; sourceTree = "<group>"; };
+		7232D81220E639D400299738 /* MapEventLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapEventLayer.h; sourceTree = "<group>"; };
+		7232D81320E639D400299738 /* Equip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Equip.cpp; sourceTree = "<group>"; };
+		7232D81420E639D400299738 /* Equip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Equip.h; sourceTree = "<group>"; };
+		7232D81520E639D400299738 /* SmithyLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmithyLayer.cpp; sourceTree = "<group>"; };
+		7232D81620E639D500299738 /* StoreHouseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StoreHouseLayer.cpp; sourceTree = "<group>"; };
+		7232D81720E639D500299738 /* MarketLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketLayer.h; sourceTree = "<group>"; };
+		7232D81820E639D500299738 /* MarketResNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketResNode.h; sourceTree = "<group>"; };
+		7232D81920E639D500299738 /* MyMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyMenu.cpp; sourceTree = "<group>"; };
+		7232D81A20E639D500299738 /* GongFa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GongFa.h; sourceTree = "<group>"; };
+		7232D81B20E639D500299738 /* ResDescLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResDescLayer.h; sourceTree = "<group>"; };
+		7232D81C20E639D500299738 /* StoreHouseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreHouseLayer.h; sourceTree = "<group>"; };
+		7232D81D20E639D500299738 /* ResDescLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResDescLayer.cpp; sourceTree = "<group>"; };
+		7232D82720E63A0500299738 /* mapEventLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = mapEventLayer.csb; sourceTree = "<group>"; };
+		7232D82820E63A0500299738 /* marketLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = marketLayer.csb; sourceTree = "<group>"; };
+		7232D82920E63A0600299738 /* marketResNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = marketResNode.csb; sourceTree = "<group>"; };
+		7232D82A20E63A0600299738 /* smithyLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = smithyLayer.csb; sourceTree = "<group>"; };
+		7232D82B20E63A0600299738 /* storeHouseLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = storeHouseLayer.csb; sourceTree = "<group>"; };
+		7232D82C20E63A0700299738 /* makeResNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = makeResNode.csb; sourceTree = "<group>"; };
+		7232D82D20E63A0700299738 /* resDescLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = resDescLayer.csb; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -436,6 +477,13 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7232D82C20E63A0700299738 /* makeResNode.csb */,
+				7232D82720E63A0500299738 /* mapEventLayer.csb */,
+				7232D82820E63A0500299738 /* marketLayer.csb */,
+				7232D82920E63A0600299738 /* marketResNode.csb */,
+				7232D82D20E63A0700299738 /* resDescLayer.csb */,
+				7232D82A20E63A0600299738 /* smithyLayer.csb */,
+				7232D82B20E63A0600299738 /* storeHouseLayer.csb */,
 				7204531420D892620011D560 /* cardHeroNode.csb */,
 				7204531720D892620011D560 /* consumeResActionLayer.csb */,
 				7204531120D892610011D560 /* Default */,
@@ -479,6 +527,24 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7232D81320E639D400299738 /* Equip.cpp */,
+				7232D81420E639D400299738 /* Equip.h */,
+				7232D80D20E639D300299738 /* GongFa.cpp */,
+				7232D81A20E639D500299738 /* GongFa.h */,
+				7232D81020E639D400299738 /* MapEventLayer.cpp */,
+				7232D81220E639D400299738 /* MapEventLayer.h */,
+				7232D80B20E639D300299738 /* MarketLayer.cpp */,
+				7232D81720E639D500299738 /* MarketLayer.h */,
+				7232D81120E639D400299738 /* MarketResNode.cpp */,
+				7232D81820E639D500299738 /* MarketResNode.h */,
+				7232D81920E639D500299738 /* MyMenu.cpp */,
+				7232D80E20E639D300299738 /* MyMenu.h */,
+				7232D81D20E639D500299738 /* ResDescLayer.cpp */,
+				7232D81B20E639D500299738 /* ResDescLayer.h */,
+				7232D81520E639D400299738 /* SmithyLayer.cpp */,
+				7232D80F20E639D400299738 /* SmithyLayer.h */,
+				7232D81620E639D500299738 /* StoreHouseLayer.cpp */,
+				7232D81C20E639D500299738 /* StoreHouseLayer.h */,
 				720452BE20D8921D0011D560 /* AppDelegate.cpp */,
 				720452B320D8921C0011D560 /* AppDelegate.h */,
 				7204529B20D8921A0011D560 /* Building.cpp */,
@@ -699,13 +765,16 @@
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				7204533120D892640011D560 /* particle in Resources */,
 				7204533220D892640011D560 /* randHeroNode.csb in Resources */,
+				7232D83020E63A0700299738 /* marketResNode.csb in Resources */,
 				7204533720D892640011D560 /* fightHeroNode.csb in Resources */,
 				7204533920D892640011D560 /* consumeResActionLayer.csb in Resources */,
 				7204533820D892640011D560 /* selectSubMapLayer.csb in Resources */,
+				7232D83320E63A0700299738 /* makeResNode.csb in Resources */,
 				7204532C20D892640011D560 /* lang in Resources */,
 				7204534220D892640011D560 /* text_zh_cn.plist in Resources */,
 				7204533A20D892640011D560 /* homeHillLayer.csb in Resources */,
 				7204532620D892640011D560 /* ui.plist in Resources */,
+				7232D83420E63A0700299738 /* resDescLayer.csb in Resources */,
 				7204532B20D892640011D560 /* text_zh_cn.png in Resources */,
 				7204534420D892640011D560 /* outTownLayer.csb in Resources */,
 				7204533D20D892640011D560 /* selectMyHerosLayer.csb in Resources */,
@@ -714,6 +783,7 @@
 				7204533320D892640011D560 /* Default in Resources */,
 				7204532A20D892640011D560 /* mapBlockLayer.csb in Resources */,
 				1AF87B891F6F781D007BE51C /* LaunchScreenBackground.png in Resources */,
+				7232D82F20E63A0700299738 /* marketLayer.csb in Resources */,
 				7204532920D892640011D560 /* LoadingLayer.csb in Resources */,
 				7204532820D892640011D560 /* hillResNode.csb in Resources */,
 				1AF87B881F6F781D007BE51C /* LaunchScreen.storyboard in Resources */,
@@ -725,11 +795,14 @@
 				7204533C20D892640011D560 /* mapui.png in Resources */,
 				7204533020D892640011D560 /* heroAttrLayer.csb in Resources */,
 				7204533F20D892640011D560 /* selectMapNode.csb in Resources */,
+				7232D83220E63A0700299738 /* storeHouseLayer.csb in Resources */,
 				7204532720D892640011D560 /* mapdata in Resources */,
 				7204532E20D892640011D560 /* MainLayer.csb in Resources */,
 				7204532F20D892640011D560 /* MainMenuLayer.csb in Resources */,
 				7204534520D892640011D560 /* myHeroNode.csb in Resources */,
 				7204532D20D892640011D560 /* heroname in Resources */,
+				7232D83120E63A0700299738 /* smithyLayer.csb in Resources */,
+				7232D82E20E63A0700299738 /* mapEventLayer.csb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,38 +831,47 @@
 				720452E420D892200011D560 /* Hero.cpp in Sources */,
 				720452F320D892200011D560 /* AppDelegate.cpp in Sources */,
 				720452EB20D892200011D560 /* SelectMyHerosLayer.cpp in Sources */,
+				7232D81E20E639D600299738 /* MarketLayer.cpp in Sources */,
 				720452E020D892200011D560 /* JHKeychain.mm in Sources */,
 				720452F620D892200011D560 /* HeroAttrLayer.cpp in Sources */,
 				720452F020D892200011D560 /* GlobalInstance.cpp in Sources */,
 				720452FD20D892200011D560 /* MainMapScene.cpp in Sources */,
+				7232D82520E639D600299738 /* MyMenu.cpp in Sources */,
 				720452E820D892200011D560 /* json.cpp in Sources */,
 				720452ED20D892200011D560 /* InnRoomLayer.cpp in Sources */,
 				1AF87B781F6F77F7007BE51C /* AppController.mm in Sources */,
+				7232D81F20E639D600299738 /* GongFa.cpp in Sources */,
 				720452F920D892200011D560 /* MD5.cpp in Sources */,
 				720452FF20D892200011D560 /* MapBlockScene.cpp in Sources */,
 				720452E320D892200011D560 /* Building.cpp in Sources */,
 				720452FC20D892200011D560 /* SoundManager.cpp in Sources */,
+				7232D82420E639D600299738 /* StoreHouseLayer.cpp in Sources */,
 				720452DD20D892200011D560 /* MyHeroNode.cpp in Sources */,
 				1AF87B8B1F6F782A007BE51C /* RootViewController.mm in Sources */,
 				7204530020D892200011D560 /* CardHeroNode.cpp in Sources */,
+				7232D82020E639D600299738 /* MapEventLayer.cpp in Sources */,
 				7204530120D892200011D560 /* Resource.cpp in Sources */,
 				720452FA20D892200011D560 /* SelectSubMapLayer.cpp in Sources */,
 				720452DC20D892200011D560 /* HttpUtil.cpp in Sources */,
 				720452F220D892200011D560 /* MapBlock.cpp in Sources */,
 				720452DB20D892200011D560 /* DataSave.cpp in Sources */,
 				720452DF20D892200011D560 /* HttpDataSwap.cpp in Sources */,
+				7232D82220E639D600299738 /* Equip.cpp in Sources */,
 				720452F520D892200011D560 /* ConsumeResActionLayer.cpp in Sources */,
 				720452E720D892200011D560 /* MyRes.cpp in Sources */,
 				720452EC20D892200011D560 /* FightHeroNode.cpp in Sources */,
 				720452EF20D892200011D560 /* HomeHillLayer.cpp in Sources */,
+				7232D82120E639D600299738 /* MarketResNode.cpp in Sources */,
 				720452E920D892200011D560 /* MovingLabel.cpp in Sources */,
 				720452F720D892200011D560 /* MainMenuLayer.cpp in Sources */,
 				1AF87B8A1F6F7822007BE51C /* main.m in Sources */,
 				720452E120D892200011D560 /* LoadingScene.cpp in Sources */,
 				720452E220D892200011D560 /* OutTownLayer.cpp in Sources */,
+				7232D82320E639D600299738 /* SmithyLayer.cpp in Sources */,
 				720452FE20D892200011D560 /* HillResNode.cpp in Sources */,
 				720452E520D892200011D560 /* MBProgressHUD.m in Sources */,
 				720452E620D892200011D560 /* RandHeroNode.cpp in Sources */,
+				7232D82620E639D600299738 /* ResDescLayer.cpp in Sources */,
 				720452F120D892200011D560 /* MainScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
