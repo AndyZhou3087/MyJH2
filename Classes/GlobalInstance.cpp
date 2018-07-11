@@ -1045,11 +1045,11 @@ void GlobalInstance::loadNpcData()
 		}
 	}
 
-	doc = ReadJsonFile(ResourcePath::makePath("json/npc.json"));
-	allData = doc["n"];
-	for (unsigned int i = 0; i < allData.Size(); i++)
+	rapidjson::Document docnpc = ReadJsonFile(ResourcePath::makePath("json/npc.json"));
+	rapidjson::Value& allNpcs = docnpc["n"];
+	for (unsigned int i = 0; i < allNpcs.Size(); i++)
 	{
-		rapidjson::Value& jsonvalue = allData[i];
+		rapidjson::Value& jsonvalue = allNpcs[i];
 		if (jsonvalue.IsObject())
 		{
 			NPCData data;
