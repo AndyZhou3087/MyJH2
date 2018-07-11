@@ -3,10 +3,9 @@
 #include "CommonFuncs.h"
 
 std::vector<TaskMainData> Quest::myFinishMainQuest;
-
 std::map<std::string, int> Quest::map_NpcQuestRes;
-
 std::map<std::string, int> Quest::map_NpcBranchQuestRes;
+std::map<int, int> Quest::map_DailyTypeCount;
 
 bool Quest::initFinishTaskData()
 {
@@ -261,6 +260,7 @@ void Quest::finishBranchQuest()
 {
 	GlobalInstance::myCurBranchData.isfinish = QUEST_FINISH;
 	saveBranchData();
+
 }
 
 void Quest::saveBranchData()
@@ -280,16 +280,40 @@ void Quest::saveBranchData()
 
 /*************每日数据逻辑**************/
 
+void Quest::initDailyTypeCount(std::string str)
+{
+	std::vector<std::string> vec_tmp;
+	CommonFuncs::split(str, vec_tmp, ";");
+	for (int i = 0; i < vec_tmp.size(); i++)
+	{
+		std::vector<std::string> vec_one;
+		CommonFuncs::split(vec_tmp[i], vec_one, "-");
+		map_DailyTypeCount[atoi(vec_one[0].c_str())] = atoi(vec_one[1].c_str());
+	}
+}
+
 void Quest::setDailyTask(int type, int count)
 {
+	map_DailyTypeCount[type] += count;
+
 	std::map<std::string, DailyTaskData>::iterator it;
 	for (it = GlobalInstance::map_DTdata.begin(); it != GlobalInstance::map_DTdata.end(); it++)
 	{
 		DailyTaskData* data = &GlobalInstance::map_DTdata[it->first];
-		if (data->type == type && data->count == count)
+		if (data->type == type && data->count == map_DailyTypeCount[type])
 		{
 			data->state = DAILY_FINISHED;
 			break;
 		}
 	}
+	GlobalInstance::getInstance()->saveMyDailyTaskData();
+
+	std::string str;
+	std::map<int, int>::iterator mit;
+	for (mit = map_DailyTypeCount.begin(); mit != map_DailyTypeCount.end(); mit++)
+	{
+		std::string onestr = StringUtils::format("%d-%d;", mit->first, mit->second);
+		str.append(onestr);
+	}
+	DataSave::getInstance()->setDailyTypeCount(str.substr(0, str.length() - 1));
 }

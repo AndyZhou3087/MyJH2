@@ -6,6 +6,7 @@
 #include "TaskDailyNode.h"
 #include "Const.h"
 #include "DataSave.h"
+#include "TaskLayer.h"
 
 TaskDailyNode::TaskDailyNode()
 {
@@ -137,6 +138,13 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		switch (tag)
 		{
 		case FINISH_BRANCH:
+		{
+			TaskLayer* layer = (TaskLayer*)this->getParent()->getParent()->getParent()->getParent();
+			if (layer!=NULL)
+			{
+				layer->skipContent();
+			}
+		}
 			break;
 		case FRESH_PUBENLIST:
 			break;
