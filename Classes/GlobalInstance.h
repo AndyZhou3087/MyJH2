@@ -361,11 +361,11 @@ public:
 
 	static std::map<std::string, EquipData> map_Equip;//装备名字
 
-	static std::map<std::string, GFData> GlobalInstance::map_GF;
+	static std::map<std::string, GFData> map_GF;
 
-	static std::map<int, NPCAttrData> GlobalInstance::map_NpcAttrData;
+	static std::map<int, NPCAttrData> map_NpcAttrData;
 
-	static std::map<std::string, NPCData> GlobalInstance::map_Npcs;
+	static std::map<std::string, NPCData> map_Npcs;
 
 	static std::vector<TaskMainData> vec_TaskMain;//主线任务
 

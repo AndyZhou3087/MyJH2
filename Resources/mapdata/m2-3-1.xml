@@ -7,12 +7,12 @@
     <m id="n004" minlv="15" maxlv="20" minqu="0" maxqu="2">20</m>
     <m id="n005" minlv="15" maxlv="20" minqu="0" maxqu="2">10</m>
     <m id="n006" minlv="15" maxlv="20" minqu="0" maxqu="2">10</m>
-    <ma id="r001" c="20" qu="0">30.00</ma>
-    <ma id="r002" c="20" qu="0">30.00</ma>
-    <ma id="r003" c="20" qu="0">30.00</ma>
-    <ma id="r004" c="20" qu="0">30.00</ma>
-    <ma id="r005" c="20" qu="0">30.00</ma>
-    <ma id="s001" c="20" qu="0">30.00</ma>
+    <ma id="r001" c="20" qu="0">20.00</ma>
+    <ma id="r002" c="20" qu="0">20.00</ma>
+    <ma id="r003" c="20" qu="0">20.00</ma>
+    <ma id="r004" c="20" qu="0">20.00</ma>
+    <ma id="r005" c="20" qu="0">20.00</ma>
+    <ma id="s001" c="2" qu="0">20.00</ma>
   </Monstors>
   <Cells rs="26" cs="26">
     <Cell c="0" r="0" p="-1" w="0" m="73.png" />
