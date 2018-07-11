@@ -805,6 +805,12 @@ void GlobalInstance::getMyDailyTaskData()
 			}
 		}
 	}
+
+	str = DataSave::getInstance()->getDailyTypeCount();
+	if (str.length()>0)
+	{
+		Quest::initDailyTypeCount(str);
+	}
 }
 
 void GlobalInstance::saveMyDailyTaskData()
@@ -816,7 +822,7 @@ void GlobalInstance::saveMyDailyTaskData()
 		DailyTaskData data = map_DTdata[it->first];
 		if (data.state >= DAILY_FINISHED)
 		{
-			std::string onestr = StringUtils::format("%d-%d;", data.id, data.state);
+			std::string onestr = StringUtils::format("%d-%d;", atoi(data.id.c_str()), data.state);
 			str.append(onestr);
 		}
 	}
