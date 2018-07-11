@@ -61,7 +61,7 @@ bool TaskBranchTalkLayer::init(std::string npcid)
 
 	//npcÍ·Ïñ
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
-	std::string str = StringUtils::format("mapui/%s.png", data->npcid);
+	std::string str = StringUtils::format("mapui/%s.png", data->npcid.c_str());
 	icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//npcÃû×Ö
