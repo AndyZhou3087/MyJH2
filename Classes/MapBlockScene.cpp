@@ -22,7 +22,7 @@ MapBlockScene::MapBlockScene()
 	m_isLongPress = false;
 	m_longTouchNode = NULL;
 	walkcount = 0;
-	monsterComeRnd = 20;
+	monsterComeRnd = 10;
 }
 
 
@@ -522,7 +522,7 @@ void MapBlockScene::createRndMonsters()
 	int r = GlobalInstance::getInstance()->createRandomNum(100);
 	if (r < monsterComeRnd)
 	{
-		monsterComeRnd = 20;
+		monsterComeRnd = 10;
 		walkcount = 0;
 		int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
 		for (int i = 0; i < rndcount; i++)

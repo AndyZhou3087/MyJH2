@@ -89,7 +89,7 @@ void FightHeroNode::setData(Npc* data, int datatype)
 {
 	m_Data = data;
 	m_datatype = datatype;
-	if (data != NULL)
+	if (data != NULL && data->getHp() > 0)
 	{
 		std::string str;
 		
@@ -206,7 +206,10 @@ void FightHeroNode::hurtAnimFinish()
 	if (m_datatype == 0)
 	{
 		if (m_Data->getHp() <= 0.000001f)
+		{
 			((Hero*)m_Data)->setState(HS_DEAD);
+			((Hero*)m_Data)->setPos(0);
+		}
 		fighting->updateMapHero(this->getTag());
 	}
 

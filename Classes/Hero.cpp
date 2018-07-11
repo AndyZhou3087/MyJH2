@@ -80,7 +80,7 @@ int Hero::getLevel()
 
 float Hero::getAtk()
 {
-	float heroatk = GlobalInstance::vec_herosAttr[m_vocation].vec_atk[getLevel()];
+	float heroatk = GlobalInstance::vec_herosAttr[m_vocation].vec_atk[getLevel()] * POTENTIAL_BNS[m_potential];
 	
 	for (int i = 0; i < 6; i++)
 	{
@@ -102,7 +102,7 @@ float Hero::getAtk()
 }
 float Hero::getDf()
 {
-	float herodf = GlobalInstance::vec_herosAttr[m_vocation].vec_df[getLevel()];
+	float herodf = GlobalInstance::vec_herosAttr[m_vocation].vec_df[getLevel()] * POTENTIAL_BNS[m_potential];
 	
 	for (int i = 0; i < 6; i++)
 	{
@@ -131,7 +131,7 @@ float Hero::getDf()
 }
 float Hero::getMaxHp()
 {
-	float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[getLevel()];
+	float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[getLevel()] * POTENTIAL_BNS[m_potential];
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -161,7 +161,7 @@ float Hero::getMaxHp()
 }
 float Hero::getAtkSpeed()
 {
-	float heroatkspeed = GlobalInstance::vec_herosAttr[m_vocation].vec_atkspeed[getLevel()];
+	float heroatkspeed = GlobalInstance::vec_herosAttr[m_vocation].vec_atkspeed[getLevel()] * POTENTIAL_BNS[m_potential];
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -183,7 +183,7 @@ float Hero::getAtkSpeed()
 }
 float Hero::getCrit()
 {
-	float herocrit = GlobalInstance::vec_herosAttr[m_vocation].vec_crit[getLevel()];
+	float herocrit = GlobalInstance::vec_herosAttr[m_vocation].vec_crit[getLevel()] * POTENTIAL_BNS[m_potential];
 	for (int i = 0; i < 6; i++)
 	{
 		if (takeOnEquip[i] != NULL)
@@ -204,7 +204,7 @@ float Hero::getCrit()
 }
 float Hero::getDodge()
 {
-	float herododge = GlobalInstance::vec_herosAttr[m_vocation].vec_avoid[getLevel()];
+	float herododge = GlobalInstance::vec_herosAttr[m_vocation].vec_avoid[getLevel()] * POTENTIAL_BNS[m_potential];
 	for (int i = 0; i < 6; i++)
 	{
 		if (takeOnEquip[i] != NULL)
