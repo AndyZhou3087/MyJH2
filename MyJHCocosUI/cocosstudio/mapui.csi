@@ -162,6 +162,7 @@
       <FilePathData Path="mapui/n012.png" />
       <FilePathData Path="mapui/n013.png" />
       <FilePathData Path="mapui/hurticon.png" />
+      <FilePathData Path="mapui/n014.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

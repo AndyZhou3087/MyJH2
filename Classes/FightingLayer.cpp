@@ -114,12 +114,10 @@ void FightingLayer::onExit()
 	Layer::onExit();
 }
 
-void FightingLayer::myHeroDeath(int which)
+void FightingLayer::updateMapHero(int which)
 {
-	GlobalInstance::myCardHeros[which]->setState(HS_DEAD);
 	//GlobalInstance::myCardHeros[which] = NULL;
-	if (g_MapBlockScene != NULL)
-		g_MapBlockScene->removeChildByTag(which);
+	g_MapBlockScene->updateHeroUI(which);
 }
 
 void FightingLayer::pauseAtkSchedule()
@@ -213,7 +211,7 @@ int FightingLayer::checkFightResult()
 	index = 0;
 	for (int i = 0; i < 6; i++)
 	{
-		if (GlobalInstance::myCardHeros[i] == NULL)
+		if (GlobalInstance::myCardHeros[i] == NULL || GlobalInstance::myCardHeros[i]->getHp() <= 0.000001f)
 		{
 			index++;
 		}

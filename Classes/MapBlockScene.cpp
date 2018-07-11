@@ -499,14 +499,17 @@ void MapBlockScene::doMyStatus()
 	}
 	else
 	{
-		if (mapblock->getPosType() == POS_NOTHING)
+		vec_enemys.clear();
+		if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS )
+		{
+			creatNpcOrBoss(mapblock);
+		}
+		else if (mapblock->getPosType() == POS_NOTHING)
 		{
 			createRndMonsters();
 		}
-		else if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS)
-		{
-
-		}
+		if (vec_enemys.size() > 0)
+			this->addChild(FightingLayer::create(vec_enemys));
 	}
 	if (status != MAP_S_NOTING)
 	{
@@ -521,7 +524,6 @@ void MapBlockScene::createRndMonsters()
 	{
 		monsterComeRnd = 20;
 		walkcount = 0;
-		std::vector<Npc*> vec_enemys;
 		int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
 		for (int i = 0; i < rndcount; i++)
 		{
@@ -554,14 +556,57 @@ void MapBlockScene::createRndMonsters()
 			}
 
 		}
-		if (vec_enemys.size() > 0)
-			this->addChild(FightingLayer::create(vec_enemys));
 	}
+}
+
+void MapBlockScene::creatNpcOrBoss(MapBlock* mbolck)
+{
+	int r1 = GlobalInstance::getInstance()->createRandomNum(100);
+	if (r1 < mbolck->getPosNpcRnd())
+	{
+		for (unsigned int m = 0; m < 6; m++)
+		{
+			FOURProperty propty = mbolck->npcs[m];
+			if (propty.sid.length() <= 0)
+			{
+				vec_enemys.push_back(NULL);
+			}
+			else
+			{
+				Npc* enemyhero = new Npc();
+				std::string sid = propty.sid;
+				enemyhero->setId(sid);
+				enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
+				enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
+				enemyhero->setPotential(propty.intPara1);
+				enemyhero->setLevel(propty.intPara2);
+				enemyhero->setHp(enemyhero->getMaxHp());
+				vec_enemys.push_back(enemyhero);
+			}
+		}
+	}
+}
+
+void MapBlockScene::updateHeroUI(int which)
+{
+	FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(which);
+	fnode->updateHp();
+	GlobalInstance::getInstance()->saveMyHeros();
 }
 
 void MapBlockScene::showFightResult(int result)
 {
+	if (result == 0)
+	{
+		for (int i = 0; i < 6; i++)
+			GlobalInstance::myCardHeros[i] = NULL;
 
+		Director::getInstance()->replaceScene(MainScene::createScene());
+	}
+	else
+	{
+
+	}
 }
 
 

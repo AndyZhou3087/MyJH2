@@ -131,12 +131,7 @@ void FightHeroNode::setData(Npc* data, int datatype)
 	{
 		if (this->getScale() < 1.0f)
 		{
-			headbox->loadTexture(ResourcePath::makeImagePath("cardherobox_.png"), cocos2d::ui::Widget::TextureResType::LOCAL);
-			headimg->setVisible(false);
-			namelbl->setVisible(false);
-			hp_bar->setVisible(false);
-			atkspeed_bar->setVisible(false);
-			atkspeed_barbg->setVisible(false);
+			setBlankBox();
 		}
 		else
 		{
@@ -183,7 +178,7 @@ void FightHeroNode::hurt(float hp)
 		hurtup = hp;
 		statusimg->loadTexture("mapui/hurticon.png", cocos2d::ui::Widget::TextureResType::PLIST);
 		ActionInterval* ac1 = Spawn::create(Show::create(), FadeIn::create(0.15f), EaseSineIn::create(ScaleTo::create(0.15f, 1)), NULL);
-		statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), CallFunc::create(CC_CALLBACK_0(FightHeroNode::hurtAnimFinish, this)), NULL));
+		statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), NULL));
 	}
 }
 
@@ -199,21 +194,48 @@ void FightHeroNode::hpAnim()
 	if (lefthp < 0)
 		lefthp = 0;
 	m_Data->setHp(lefthp);
-	float percent = lefthp * 100 / m_Data->getMaxHp();
-	hp_bar->runAction(LoadingBarProgressTo::create(0.2f, percent));
+	float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
+	hp_bar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), CallFunc::create(CC_CALLBACK_0(FightHeroNode::hurtAnimFinish, this)), NULL));
 }
 
 void FightHeroNode::hurtAnimFinish()
 {
 	FightingLayer* fighting = (FightingLayer*)this->getParent();
-	if (m_Data->getHp() <= 0)
+	updateHp();
+
+	if (m_datatype == 0)
 	{
-		this->setVisible(false);
-		if (m_datatype == 0)
+		if (m_Data->getHp() <= 0.000001f)
+			((Hero*)m_Data)->setState(HS_DEAD);
+		fighting->updateMapHero(this->getTag());
+	}
+
+	fighting->resumeAtkSchedule();
+}
+
+
+void FightHeroNode::updateHp()
+{
+	float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
+	hp_bar->setPercent(percent);
+	if (m_Data->getHp() <= 0.000001f)
+	{
+		if (this->getScale() < 1.0f)
+			setBlankBox();
+		else
 		{
-			fighting->myHeroDeath(this->getTag());
+			this->setVisible(false);
 		}
 	}
-	fighting->resumeAtkSchedule();
+}
+
+void FightHeroNode::setBlankBox()
+{
+	headbox->loadTexture(ResourcePath::makeImagePath("cardherobox_.png"), cocos2d::ui::Widget::TextureResType::LOCAL);
+	headimg->setVisible(false);
+	namelbl->setVisible(false);
+	hp_bar->setVisible(false);
+	atkspeed_bar->setVisible(false);
+	atkspeed_barbg->setVisible(false);
 }
 

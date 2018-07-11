@@ -25,6 +25,8 @@ public:
 	void resumeTimeSchedule();
 
 	void hurt(float hp);
+
+	void updateHp();
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
@@ -40,11 +42,11 @@ private:
 	bool ispausing;
 	float hurtup;
 	void update(float dt);
-
+	void hpAnim();
+	void setBlankBox();
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
-	void hpAnim();
 	void atkAnimFinish();
 	void hurtAnimFinish();
 

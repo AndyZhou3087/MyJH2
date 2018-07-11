@@ -21,7 +21,7 @@ public:
 	void pauseAtkSchedule();
 	void resumeAtkSchedule();
 
-	void myHeroDeath(int which);
+	void updateMapHero(int which);
 
 	//1--Ê¤Àû£¬0-Ê§°Ü,-1Õ½¶·ÖÐ
 	int checkFightResult();

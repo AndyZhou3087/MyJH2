@@ -50,6 +50,8 @@ public:
 	FightHeroNode* getFightHeroNode(int index);
 
 	void showFightResult(int result);
+
+	void updateHeroUI(int which);
 private:
 	static MapBlockScene* create(std::string mapname);
 
@@ -95,6 +97,9 @@ private:
 	void go(MAP_KEYTYPE keyArrow);
 
 	void createRndMonsters();
+
+	void creatNpcOrBoss(MapBlock* mbolck);
+
 private:
 	Node* m_csbnode;
 	ParticleSystemQuad* myposParticle;
@@ -117,6 +122,8 @@ private:
 	std::string m_mapid;
 	int walkcount;
 	int monsterComeRnd;
+
+	std::vector<Npc*> vec_enemys;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif
