@@ -109,7 +109,7 @@ void DataSave::setMyRes(std::string strval)
 
 std::string DataSave::getMyRes()
 {
-	return loadStringDataByKey("myres", "r002-100-1");
+	return loadStringDataByKey("myres", "r001-10000-1;r002-10000-1;r003-10000-1;r004-10000-1;r005-10000-1");
 }
 
 void DataSave::setMyBranchTask(std::string strval)
@@ -205,7 +205,7 @@ void DataSave::setBuildingLv(std::string buildingname, int val)
 
 int DataSave::getMySoliverCount()
 {
-	return loadIntDataByKey("soliver", 0);
+	return loadIntDataByKey("soliver", 1000000);
 }
 
 void DataSave::setMySoliverCount(int val)
@@ -215,7 +215,7 @@ void DataSave::setMySoliverCount(int val)
 
 int DataSave::getMyCoinCount()
 {
-	return loadIntDataByKey("coin", 0);
+	return loadIntDataByKey("coin", 1000000);
 }
 
 void DataSave::setMyCoinCount(int val)
