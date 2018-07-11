@@ -162,6 +162,17 @@ std::string DataSave::getMyyDailyTaskData()
 	return loadStringDataByKey("DailyTask", "");//id-state
 }
 
+//每日类型任务次数
+void DataSave::setDailyTypeCount(std::string strval)
+{
+	saveStringDataByKey("DailyTypeCount", strval);//8个类型
+}
+
+std::string DataSave::getDailyTypeCount()
+{
+	return loadStringDataByKey("DailyTypeCount", "0-0;1-0;2-0;3-0;4-0;5-0;6-0;7-0");//type-count
+}
+
 int DataSave::getTotalFarmers()
 {
 	return loadIntDataByKey("totalfarmers", 5);

@@ -45,6 +45,9 @@ private:
 	cocos2d::ui::Widget* pnode;
 	cocos2d::ui::Text* mypoint;
 	cocos2d::ui::LoadingBar* probar;
+
+public:
+	void skipContent();
 };
 #endif
 

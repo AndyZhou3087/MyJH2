@@ -51,6 +51,8 @@ public:
 
 	/*************每日数据逻辑**************/
 	//每日任务
+	static void initDailyTypeCount(std::string str);
+	//每日任务
 	static void setDailyTask(int type, int count);
 
 public:
@@ -60,6 +62,9 @@ public:
 
 	//支线任务npc物品
 	static std::map<std::string, int> map_NpcBranchQuestRes;
+
+	//每日任务type-count
+	static std::map<int, int> map_DailyTypeCount;
 
 };
 

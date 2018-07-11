@@ -311,3 +311,9 @@ void TaskLayer::onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 		updateContent(node->getTag());
 	}
 }
+
+void TaskLayer::skipContent()
+{
+	lastCategoryindex = 1;
+	updateContent(1);
+}
