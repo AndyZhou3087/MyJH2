@@ -87,4 +87,5 @@
 	<s name="dailytype_7">镶嵌%d次宝石</s>
 	<s name="dailyrlabel">奖励:</s>
 	<s name="dailypoint">积分x%d</s>
+	<s name="winexp">经验值+%d</s>
 </strings>

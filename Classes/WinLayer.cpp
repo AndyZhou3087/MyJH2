@@ -65,7 +65,7 @@ bool WinLayer::init(std::vector<FOURProperty> reward_res, int winexp)
 	{
 		FightHeroNode * fightHeroNode = FightHeroNode::create();
 		fightHeroNode->setPosition(145 + i%3*215, 680 -  i/3*280);
-		fightHeroNode->setData(GlobalInstance::myCardHeros[i]);
+		fightHeroNode->setData(GlobalInstance::myCardHeros[i], F_HERO, FS_SUCC);
 		addChild(fightHeroNode, 0, i);
 		if (GlobalInstance::myCardHeros[i] != NULL)
 			fightHeroNode->setWinState(100);

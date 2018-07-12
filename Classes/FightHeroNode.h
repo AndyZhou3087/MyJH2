@@ -7,6 +7,21 @@
 #include "Npc.h"
 USING_NS_CC;
 
+typedef enum
+{
+	F_HERO,
+	F_NPC
+}FIGHTDATA_TYPE;
+
+typedef enum
+{
+	FS_READY,//准备状态，地图块界面上的
+	FS_FIGHTING,//战斗中
+	FS_SUCC,//成功接收界面里的
+	FS_FAIL//失败结算界面里的
+}FIGHTNODE_STATE;
+
+
 class FightHeroNode :public Node
 {
 public:
@@ -17,7 +32,7 @@ public:
 
 	static FightHeroNode* create();
 
-	void setData(Npc* data, int datatype = 0);
+	void setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE state);
 
 
 	void pauseTimeSchedule();
@@ -39,11 +54,13 @@ private:
 	cocos2d::ui::ImageView* statusimg;
 	cocos2d::ui::ImageView* retbox;
 	cocos2d::ui::ImageView* rettext;
+	cocos2d::ui::Text* winexplbl;
 	Npc* m_Data;
-	int m_datatype;
+	FIGHTDATA_TYPE m_datatype;
+	FIGHTNODE_STATE m_state;
 	float atkspeed;
 	float timedt;
-	bool isfighting;
+	bool ispause;
 	float hurtup;
 	void update(float dt);
 	void hpAnim();

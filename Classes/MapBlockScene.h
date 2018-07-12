@@ -100,6 +100,8 @@ private:
 
 	void creatNpcOrBoss(MapBlock* mbolck);
 
+	int getWinExp();
+
 private:
 	Node* m_csbnode;
 	ParticleSystemQuad* myposParticle;
