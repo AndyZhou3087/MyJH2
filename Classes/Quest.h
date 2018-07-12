@@ -34,6 +34,8 @@ public:
 
 	static void finishQuest();
 
+	static void finishFightMain();
+
 	/*************支线任务数据逻辑**************/
 
 	//判断是否接受此npc任务

@@ -82,7 +82,7 @@ bool TaskDailyNode::init(DailyTaskData* data)
 	taskprotext = (cocos2d::ui::Text*)csbnode->getChildByName("taskprotext");
 
 	//奖励的物品
-	for (int i = 0; i < data->goods.size(); i++)
+	for (unsigned int i = 0; i < data->goods.size(); i++)
 	{
 		std::vector<std::string> vec = data->goods[i];
 		int count = atoi(vec[1].c_str());
@@ -219,7 +219,7 @@ void TaskDailyNode::ongetClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		m_point += m_Data->points;
 		DataSave::getInstance()->setMyDailyPoint(m_point);
 		//物品
-		for (int i = 0; i < m_Data->goods.size(); i++)
+		for (unsigned int i = 0; i < m_Data->goods.size(); i++)
 		{
 			std::vector<std::string> one_res = m_Data->goods[i];
 			std::string resid = one_res[0];

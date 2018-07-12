@@ -1,6 +1,8 @@
 #include "Quest.h"
 #include "DataSave.h"
 #include "CommonFuncs.h"
+#include "MyRes.h"
+#include "Resource.h"
 
 std::vector<TaskMainData> Quest::myFinishMainQuest;
 std::map<std::string, int> Quest::map_NpcQuestRes;
@@ -10,7 +12,7 @@ std::map<int, int> Quest::map_PointReward;
 
 bool Quest::initFinishTaskData()
 {
-	for (int i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
+	for (unsigned int i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
 	{
 		TaskMainData data = GlobalInstance::vec_TaskMain[i];
 		if (data.isfinish >= QUEST_FINISH)
@@ -29,7 +31,7 @@ void Quest::initCurNeedData()
 	{
 		std::vector<std::string> vec_tmp;
 		CommonFuncs::split(str, vec_tmp, ";");
-		for (int i = 0; i < vec_tmp.size(); i++)
+		for (unsigned int i = 0; i < vec_tmp.size(); i++)
 		{
 			std::vector<std::string> vec_one;
 			CommonFuncs::split(vec_tmp[i], vec_one, "-");
@@ -67,7 +69,7 @@ void Quest::saveMainData()
 
 bool Quest::getMutexMainQuestType(int id, int type)
 {
-	for (int i = 0; i < myFinishMainQuest.size(); i++)
+	for (unsigned int i = 0; i < myFinishMainQuest.size(); i++)
 	{
 		TaskMainData data = myFinishMainQuest[i];
 		if (data.finishtype == QUEST_GIVE)
@@ -124,7 +126,7 @@ void Quest::setResQuestData(std::string resid, int count, std::string npcid)
 	{
 		return;
 	}
-	for (int i = 0; i < GlobalInstance::myCurMainData.need1.size(); i++)
+	for (unsigned int i = 0; i < GlobalInstance::myCurMainData.need1.size(); i++)
 	{
 		std::map<std::string, int> one_res = GlobalInstance::myCurMainData.need1[i];
 		std::map<std::string, int>::iterator oneit = one_res.begin();
@@ -132,6 +134,7 @@ void Quest::setResQuestData(std::string resid, int count, std::string npcid)
 		if (resid.compare(cresid) == 0)
 		{
 			map_NpcQuestRes[resid] += count;
+			MyRes::Use(resid, count, MYPACKAGE);
 		}
 	}
 
@@ -159,7 +162,7 @@ bool Quest::getResCountFinish()
 		return false;
 	}
 	int fcount = 0;
-	for (int i = 0; i < GlobalInstance::myCurMainData.need1.size(); i++)
+	for (unsigned int i = 0; i < GlobalInstance::myCurMainData.need1.size(); i++)
 	{
 		std::map<std::string, int> one_res = GlobalInstance::myCurMainData.need1[i];
 		std::map<std::string, int>::iterator oneit = one_res.begin();
@@ -184,6 +187,13 @@ void Quest::finishQuest()
 	saveMainData();
 }
 
+void Quest::finishFightMain()
+{
+	GlobalInstance::myCurMainData.isfinish = QUEST_FINISH;
+	GlobalInstance::myCurMainData.finishtype = QUEST_FIGHT;
+	saveMainData();
+}
+
 /*************支线任务**************/
 
 bool Quest::getBranchQuestNpc(std::string npcid)
@@ -204,7 +214,7 @@ void Quest::setResBranchQuestData(std::string resid, int count, std::string npci
 	{
 		return;
 	}
-	for (int i = 0; i < GlobalInstance::myCurBranchData.need.size(); i++)
+	for (unsigned int i = 0; i < GlobalInstance::myCurBranchData.need.size(); i++)
 	{
 		std::vector<std::string> one_res = GlobalInstance::myCurBranchData.need[i];
 		std::string cresid = one_res[0];
@@ -239,7 +249,7 @@ bool Quest::getResBranchFinish()
 		return false;
 	}
 	int fcount = 0;
-	for (int i = 0; i < GlobalInstance::myCurBranchData.need.size(); i++)
+	for (unsigned int i = 0; i < GlobalInstance::myCurBranchData.need.size(); i++)
 	{
 		std::vector<std::string> one_res = GlobalInstance::myCurBranchData.need[i];
 		std::string cresid = one_res[0];
@@ -285,7 +295,7 @@ void Quest::initDailyTypeCount(std::string str)
 {
 	std::vector<std::string> vec_tmp;
 	CommonFuncs::split(str, vec_tmp, ";");
-	for (int i = 0; i < vec_tmp.size(); i++)
+	for (unsigned int i = 0; i < vec_tmp.size(); i++)
 	{
 		std::vector<std::string> vec_one;
 		CommonFuncs::split(vec_tmp[i], vec_one, "-");
@@ -297,7 +307,7 @@ void Quest::initDailyPointReward(std::string str)
 {
 	std::vector<std::string> vec_tmp;
 	CommonFuncs::split(str, vec_tmp, ";");
-	for (int i = 0; i < vec_tmp.size(); i++)
+	for (unsigned int i = 0; i < vec_tmp.size(); i++)
 	{
 		std::vector<std::string> vec_one;
 		CommonFuncs::split(vec_tmp[i], vec_one, "-");

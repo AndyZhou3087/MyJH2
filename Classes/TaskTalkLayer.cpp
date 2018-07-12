@@ -6,8 +6,10 @@
 #include "Resource.h"
 #include "MyRes.h"
 #include "MyMenu.h"
-#include "MovingLabel.h"
 #include "Quest.h"
+#include "MapBlockScene.h"
+#include "FightingLayer.h"
+#include "MovingLabel.h"
 
 TaskTalkLayer::TaskTalkLayer()
 {
@@ -20,10 +22,10 @@ TaskTalkLayer::~TaskTalkLayer()
 
 }
 
-TaskTalkLayer* TaskTalkLayer::create( std::string npcid)
+TaskTalkLayer* TaskTalkLayer::create(std::string npcid, std::vector<Npc*> vec_enemys)
 {
 	TaskTalkLayer *pRet = new(std::nothrow)TaskTalkLayer();
-	if (pRet && pRet->init(npcid))
+	if (pRet && pRet->init(npcid, vec_enemys))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -36,9 +38,10 @@ TaskTalkLayer* TaskTalkLayer::create( std::string npcid)
 	}
 }
 
-bool TaskTalkLayer::init(std::string npcid)
+bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 {
 	m_npcid = npcid;
+	m_vec_enemys = vec_enemys;
 
 	TaskMainData* data = &GlobalInstance::myCurMainData;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
@@ -131,17 +134,17 @@ bool TaskTalkLayer::init(std::string npcid)
 	}
 	else
 	{
-		for (int m = 0; m < data->reward1.size(); m++)
+		for (unsigned int m = 0; m < data->reward1.size(); m++)
 		{
 			rewards.push_back(data->reward1[m]);
 		}
-		for (int n = 0; n < data->reward2.size(); n++)
+		for (unsigned int n = 0; n < data->reward2.size(); n++)
 		{
 			rewards.push_back(data->reward2[n]);
 		}
 	}
 
-	for (int i = 0; i < rewards.size(); i++)
+	for (unsigned int i = 0; i < rewards.size(); i++)
 	{
 		std::vector<std::string> one_res = rewards[i];
 		std::string resid = one_res[0];
@@ -209,10 +212,23 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			this->removeFromParentAndCleanup(true);
 			break;
 		case 1: //条件1
-			Quest::setResQuestData("r006", 500, m_npcid);//测试
+			for (unsigned int i = 0; i < GlobalInstance::myCurMainData.need1.size(); i++)
+			{
+				std::map<std::string, int> one_res = GlobalInstance::myCurMainData.need1[i];
+				std::map<std::string, int>::iterator oneit = one_res.begin();
+				std::string cresid = oneit->first;
+				if (MyRes::getMyResCount(cresid, MYPACKAGE) < oneit->second)
+				{
+					MovingLabel::show(ResourceLang::map_lang["reslack"]);
+					break;
+				}
+				Quest::setResQuestData(cresid, oneit->second, m_npcid);
+				this->removeFromParentAndCleanup(true);
+			}
 			break;
 		case 2: //条件2
-			
+			g_MapBlockScene->addChild(FightingLayer::create(m_vec_enemys));
+			this->removeFromParentAndCleanup(true);
 			break;
 		default:
 			break;

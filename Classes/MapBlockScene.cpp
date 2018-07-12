@@ -12,6 +12,9 @@
 #include "DataSave.h"
 #include "FightingLayer.h"
 #include "WinLayer.h"
+#include "Quest.h"
+#include "TaskTalkLayer.h"
+#include "TaskBranchTalkLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -510,7 +513,29 @@ void MapBlockScene::doMyStatus()
 			createRndMonsters();
 		}
 		if (vec_enemys.size() > 0)
-			this->addChild(FightingLayer::create(vec_enemys));
+		{
+			//先判断任务
+			bool isTask = false;
+			for (unsigned int i = 0; i < vec_enemys.size(); i++)
+			{
+				if (Quest::getMainQuestNpc(vec_enemys[i]->getId()))
+				{
+					isTask = true;
+					this->addChild(TaskTalkLayer::create(vec_enemys[i]->getId(), vec_enemys));
+					break;
+				}
+				else if (Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
+				{
+					isTask = true;
+					this->addChild(TaskBranchTalkLayer::create(vec_enemys[i]->getId(), vec_enemys));
+					break;
+				}
+			}
+			if (!isTask)
+			{
+				this->addChild(FightingLayer::create(vec_enemys));
+			}
+		}
 	}
 	if (status != MAP_S_NOTING)
 	{
@@ -606,6 +631,17 @@ void MapBlockScene::showFightResult(int result)
 	}
 	else
 	{
+		for (unsigned int i = 0; i < vec_enemys.size(); i++)
+		{
+			if (Quest::getMainQuestNpc(vec_enemys[i]->getId()))
+			{
+				Quest::finishFightMain();
+			}
+			else if (Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
+			{
+				Quest::finishBranchQuest();
+			}
+		}
 		std::vector<FOURProperty> vec;
 		WinLayer* winlayer = WinLayer::create(vec, 100);
 		this->addChild(winlayer);

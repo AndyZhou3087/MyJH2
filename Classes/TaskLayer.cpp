@@ -185,19 +185,19 @@ void TaskLayer::updateContent(int category)
 				vec_unfin.push_back(&GlobalInstance::map_DTdata[it->first]);
 			}
 		}
-		for (int i = 0; i < vec_fin.size(); i++)
+		for (unsigned int i = 0; i < vec_fin.size(); i++)
 		{
 			Node* node = TaskDailyNode::create(vec_fin[i]);
 			scrollview->addChild(node);
 			node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - i*itemheight - itemheight*0.5));
 		}
-		for (int i = 0; i < vec_unfin.size(); i++)
+		for (unsigned int i = 0; i < vec_unfin.size(); i++)
 		{
 			Node* node = TaskDailyNode::create(vec_unfin[i]);
 			scrollview->addChild(node);
 			node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - (i + vec_fin.size())*itemheight - itemheight*0.5));
 		}
-		for (int i = 0; i < vec_get.size(); i++)
+		for (unsigned int i = 0; i < vec_get.size(); i++)
 		{
 			Node* node = TaskDailyNode::create(vec_get[i]);
 			scrollview->addChild(node);

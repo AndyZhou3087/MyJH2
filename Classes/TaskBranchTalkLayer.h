@@ -7,6 +7,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "GlobalInstance.h"
+#include "Npc.h"
 
 USING_NS_CC;
 
@@ -16,9 +17,9 @@ public:
 	TaskBranchTalkLayer();
 	~TaskBranchTalkLayer();
 
-	virtual bool init(std::string npcid);
+	virtual bool init(std::string npcid, std::vector<Npc*> vec_enemys);
 
-	static TaskBranchTalkLayer* create(std::string npcid);
+	static TaskBranchTalkLayer* create(std::string npcid, std::vector<Npc*> vec_enemys);
 
 private:
 	cocos2d::ui::Button* givebtn;
@@ -26,6 +27,7 @@ private:
 	cocos2d::ui::Button* closebtn;
 
 	std::string m_npcid;
+	std::vector<Npc*> m_vec_enemys;
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

@@ -168,15 +168,6 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			}
 			break;
 		case SETBTN:
-			//测试
-			/*if (Quest::getMainQuestNpc("n012"))
-			{
-				this->addChild(TaskTalkLayer::create("n012"));
-			}
-			else if (Quest::getBranchQuestNpc("n013"))
-			{
-				this->addChild(TaskBranchTalkLayer::create("n013"));
-			}*/
 			break;
 		case ACHBTN:
 			break;

@@ -116,7 +116,7 @@ bool TaskBranchDescLayer::init(TaskBranchData* data)
 
 	std::vector<std::vector<std::string>> rewards = data->reward;
 
-	for (int i = 0; i < rewards.size(); i++)
+	for (unsigned int i = 0; i < rewards.size(); i++)
 	{
 		std::vector<std::string> one_res = rewards[i];
 		std::string resid = one_res[0];
@@ -208,7 +208,7 @@ void TaskBranchDescLayer::getRewards()
 {
 	m_data->isfinish = QUEST_GET;
 	std::vector<std::vector<std::string>> rewarr = m_data->reward;
-	for (int i = 0; i < rewarr.size(); i++)
+	for (unsigned int i = 0; i < rewarr.size(); i++)
 	{
 		std::vector<std::string> one_res = rewarr[i];
 		std::string resid = one_res[0];
