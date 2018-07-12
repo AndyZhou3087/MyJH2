@@ -76,7 +76,7 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros)
 	{
 		FightHeroNode * fightHeroNode = FightHeroNode::create();
 		fightHeroNode->setPosition(145 + i%3*215, 435 -  i/3*240);
-		fightHeroNode->setData(GlobalInstance::myCardHeros[i]);
+		fightHeroNode->setData(GlobalInstance::myCardHeros[i], F_HERO, FS_FIGHTING);
 		addChild(fightHeroNode, 0, i);
 	}
 
@@ -84,7 +84,7 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros)
 	{
 		FightHeroNode * fightHeroNode = FightHeroNode::create();
 		fightHeroNode->setPosition(145 + i % 3 * 215, 835 + i / 3 * 240);
-		fightHeroNode->setData(m_enemyHeros[i], 1);
+		fightHeroNode->setData(m_enemyHeros[i], F_NPC, FS_FIGHTING);
 		addChild(fightHeroNode, 0, 6+i);
 	}
 
@@ -143,12 +143,14 @@ void FightingLayer::resumeAtkSchedule()
 		for (int i = 0; i < 6; i++)
 		{
 			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(i);
-			fnode->resumeTimeSchedule();
+			if (fnode != NULL)
+				fnode->resumeTimeSchedule();
 		}
 		for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
 		{
 			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + i);
-			fnode->resumeTimeSchedule();
+			if (fnode != NULL)
+				fnode->resumeTimeSchedule();
 		}
 	}
 	else

@@ -10,7 +10,7 @@ FightHeroNode::FightHeroNode()
 {
 	atkspeed = 0.0f;
 	timedt = 0.0f;
-	isfighting = true;
+	ispause = false;
 	hurtup = 0.0f;
 }
 
@@ -68,6 +68,9 @@ bool FightHeroNode::init()
 	rettext = (cocos2d::ui::ImageView*)retbox->getChildByName("text");
 	retbox->setVisible(false);
 
+	winexplbl = (cocos2d::ui::Text*)csbnode->getChildByName("winexp");
+	winexplbl->setVisible(false);
+
 	return true;
 }
 
@@ -79,35 +82,36 @@ void FightHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		{
 			FighterAttrLayer* layer = FighterAttrLayer::create(m_Data);
 			this->getParent()->addChild(layer, 0, this->getTag());
-			if (this->getScale() < 1.0f)
+			if (m_state == FS_READY)
 				layer->setContentPos(Vec2(360, 1000));
-			else
+			else if (m_state == FS_FIGHTING)
 			{
-				if (m_datatype == 0)
+				if (m_datatype == F_HERO)
 					layer->setContentPos(Vec2(360, 270));
-				else
+				else if (m_datatype == F_NPC)
 					layer->setContentPos(Vec2(360, 900));
 			}
 		}
 	}
 }
 
-void FightHeroNode::setData(Npc* data, int datatype)
+void FightHeroNode::setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE state)
 {
 	m_Data = data;
 	m_datatype = datatype;
+	m_state = state;
 	if (data != NULL && data->getHp() > 0)
 	{
 		std::string str;
 		
-		if (datatype == 0)
+		if (datatype == F_HERO)
 		{
 			int sex = ((Hero*)m_Data)->getSex();
 			str = StringUtils::format("cardh_%d_%d.png", data->getVocation(), sex);
 			str = ResourcePath::makeImagePath(str);
 			headimg->loadTexture(str, cocos2d::ui::Widget::TextureResType::LOCAL);
 		}
-		else if (datatype == 1)
+		else if (datatype == F_NPC)
 		{
 			str = StringUtils::format("mapui/%s.png", data->getId().c_str());
 			headimg->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
@@ -122,7 +126,7 @@ void FightHeroNode::setData(Npc* data, int datatype)
 		namelbl->setVisible(true);
 		float percent = data->getHp()*100/ data->getMaxHp();
 		hp_bar->setPercent(percent);
-		if (this->getScale() >= 1.0f)
+		if (state == FS_FIGHTING)
 		{
 			atkspeed_bar->setVisible(true);
 			atkspeed_barbg->setVisible(true);
@@ -133,20 +137,13 @@ void FightHeroNode::setData(Npc* data, int datatype)
 	}
 	else
 	{
-		if (this->getScale() < 1.0f)
-		{
-			setBlankBox();
-		}
-		else
-		{
-			this->setVisible(false);
-		}
+		setBlankBox();
 	}
 }
 
 void FightHeroNode::update(float dt)
 {
-	if (!isfighting)
+	if (ispause)
 		return;
 
 	timedt += dt;
@@ -163,16 +160,16 @@ void FightHeroNode::update(float dt)
 
 void FightHeroNode::pauseTimeSchedule()
 {
-	if (m_Data != NULL && this->isVisible())
+	if (m_Data != NULL)
 	{
-		isfighting = false;
+		ispause = true;
 	}
 }
 
 void FightHeroNode::resumeTimeSchedule()
 {
-	if (m_Data != NULL && this->isVisible())
-		isfighting = true;
+	if (m_Data != NULL)
+		ispause = false;
 }
 
 
@@ -208,10 +205,11 @@ void FightHeroNode::hurtAnimFinish()
 	FightingLayer* fighting = (FightingLayer*)this->getParent();
 	updateHp();
 
-	if (m_datatype == 0)
+	if (m_datatype == F_HERO)
 	{
 		if (m_Data->getHp() <= 0.000001f)
 		{
+			this->unscheduleUpdate();
 			((Hero*)m_Data)->setState(HS_DEAD);
 			((Hero*)m_Data)->setPos(0);
 		}
@@ -228,29 +226,34 @@ void FightHeroNode::updateHp()
 	hp_bar->setPercent(percent);
 	if (m_Data->getHp() <= 0.000001f)
 	{
-		if (this->getScale() < 1.0f)
-			setBlankBox();
-		else
-		{
-			this->setVisible(false);
-		}
+		setBlankBox();
 	}
 }
 
 void FightHeroNode::setBlankBox()
 {
-	headbox->loadTexture(ResourcePath::makeImagePath("cardherobox_.png"), cocos2d::ui::Widget::TextureResType::LOCAL);
-	headimg->setVisible(false);
-	namelbl->setVisible(false);
-	hp_bar->setVisible(false);
-	atkspeed_bar->setVisible(false);
-	atkspeed_barbg->setVisible(false);
+	if (m_state == FS_READY)
+	{
+		headbox->loadTexture(ResourcePath::makeImagePath("cardherobox_.png"), cocos2d::ui::Widget::TextureResType::LOCAL);
+		headimg->setVisible(false);
+		namelbl->setVisible(false);
+		hp_bar->setVisible(false);
+		atkspeed_bar->setVisible(false);
+		atkspeed_barbg->setVisible(false);
+	}
+	else if (m_state == FS_FIGHTING)
+	{
+		this->setVisible(false);
+	}
+	else if (m_state == FS_SUCC)
+	{
+		if (m_Data == NULL)
+			this->setVisible(false);
+	}
 }
 
 void FightHeroNode::setWinState(int winexp)
 {
-	atkspeed_bar->setVisible(false);
-	atkspeed_barbg->setVisible(false);
 	int langtype = GlobalInstance::getInstance()->getLang();
 	Hero* myhero = (Hero*)m_Data;
 	if (myhero->getState() != HS_DEAD)
@@ -261,8 +264,15 @@ void FightHeroNode::setWinState(int winexp)
 		myhero->setExp(vl);
 		hp_bar->loadTexture("mapui/winexpbar.png", cocos2d::ui::Widget::TextureResType::PLIST);
 
+		std::string str = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), winexp);
+		winexplbl->setString(str);
+		winexplbl->setVisible(true);
+		FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
+		FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(0.5f, Vec2(0, 20)), FadeOut::create(0.5f), NULL);
+		winexplbl->runAction(Sequence::create(scales, moveandout, NULL));
+
 		int maxlv = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp.size();
-		int curlv = 0;
+		int curlv = -1;
 		for (int i = 0; i < maxlv; i++)
 		{
 			if (myhero->getExp().getValue() >= GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[i])
@@ -270,12 +280,31 @@ void FightHeroNode::setWinState(int winexp)
 			else
 				break;
 		}
-		int moreexp = myhero->getExp().getValue() - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[curlv];
+
+		int moreexp = 0;
+		int needexp = 0;
+
 		int nextlv = curlv + 1;
 
 		if (nextlv >= maxlv)
+		{
 			nextlv = maxlv - 1;
-		int needexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv] - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv - 1];
+			DynamicValueInt vl;
+			vl.setValue(GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv]);
+			myhero->setExp(vl);
+		}
+
+		if (curlv < 0)
+		{
+			moreexp = myhero->getExp().getValue() - 0;
+			needexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[0];
+		}
+		else
+		{
+			moreexp = myhero->getExp().getValue() - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[curlv];
+			needexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv] - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv - 1];
+		}
+
 		float percent = moreexp * 100 / needexp;
 		hp_bar->setPercent(percent);
 		if (curlv > mylv)//升级

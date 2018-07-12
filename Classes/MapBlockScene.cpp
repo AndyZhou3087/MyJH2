@@ -127,7 +127,7 @@ bool MapBlockScene::init(std::string mapname)
 		FightHeroNode * fightHeroNode = FightHeroNode::create();
 		fightHeroNode->setPosition(60 + 120 * i, 1196);
 		fightHeroNode->setScale(0.84f);
-		fightHeroNode->setData(GlobalInstance::myCardHeros[i]);
+		fightHeroNode->setData(GlobalInstance::myCardHeros[i], F_HERO, FS_READY);
 		addChild(fightHeroNode, 0, i);
 	}
 
@@ -574,7 +574,7 @@ void MapBlockScene::createRndMonsters()
 					enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
 					enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
 					enemyhero->setPotential(rqu);
-					enemyhero->setLevel(rlv);
+					enemyhero->setLevel(rlv - 1);
 					enemyhero->setHp(enemyhero->getMaxHp());
 					vec_enemys.push_back(enemyhero);
 					break;
@@ -605,7 +605,7 @@ void MapBlockScene::creatNpcOrBoss(MapBlock* mbolck)
 				enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
 				enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
 				enemyhero->setPotential(propty.intPara1);
-				enemyhero->setLevel(propty.intPara2);
+				enemyhero->setLevel(propty.intPara2 - 1);
 				enemyhero->setHp(enemyhero->getMaxHp());
 				vec_enemys.push_back(enemyhero);
 			}
@@ -642,10 +642,29 @@ void MapBlockScene::showFightResult(int result)
 				Quest::finishBranchQuest();
 			}
 		}
+		int count = 0;
+		for (int i = 0; i < 6; i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL &&  GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
+				count++;
+		}
 		std::vector<FOURProperty> vec;
-		WinLayer* winlayer = WinLayer::create(vec, 100);
+		WinLayer* winlayer = WinLayer::create(vec, getWinExp()/count);
 		this->addChild(winlayer);
 	}
+}
+
+int MapBlockScene::getWinExp()
+{
+	int exp = 0;
+	for (unsigned int i = 0; i < vec_enemys.size(); i++)
+	{
+		if (vec_enemys[i] != NULL)
+		{	
+			exp += GlobalInstance::map_NpcAttrData[vec_enemys[i]->getVocation()].vec_bnsexp[vec_enemys[i]->getLevel()];
+		}
+	}
+	return exp;
 }
 
 
