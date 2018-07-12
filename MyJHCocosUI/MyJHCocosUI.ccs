@@ -247,6 +247,7 @@
           <Image Name="closebtn_text.png" />
           <Image Name="continuebtn_text.png" />
           <Image Name="crefresh_text.png" />
+          <Image Name="cure_text.png" />
           <Image Name="decomposebtn_text.png" />
           <Image Name="drlvupbtn_text.png" />
           <Image Name="drmakeresbtn_text.png" />
@@ -275,6 +276,7 @@
           <Image Name="hilllv_text.png" />
           <Image Name="hillrecruit.png" />
           <Image Name="homehilltitle.png" />
+          <Image Name="hospital_text.png" />
           <Image Name="innroolv_text.png" />
           <Image Name="innroomtitle.png" />
           <Image Name="isrecruited_text.png" />
@@ -764,6 +766,7 @@
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="winLayer.csd" Type="Layer" />
+        <Project Name="hospitalLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

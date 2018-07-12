@@ -544,6 +544,9 @@ void GlobalInstance::loadTaskMainData()
 					data.reward2.push_back(vec);
 				}
 			}
+
+			v = jsonvalue["isGo"];
+			data.isGo = atoi(v.GetString());
 			
 			data.isfinish = 1;//默认未接受任务
 			data.finishtype = 0;

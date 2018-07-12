@@ -212,6 +212,9 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			this->removeFromParentAndCleanup(true);
 			break;
 		case 1: //条件1
+		{
+			bool isEnough = true;
+			int isGo = GlobalInstance::myCurMainData.isGo;
 			for (unsigned int i = 0; i < GlobalInstance::myCurMainData.need1.size(); i++)
 			{
 				std::map<std::string, int> one_res = GlobalInstance::myCurMainData.need1[i];
@@ -219,12 +222,21 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				std::string cresid = oneit->first;
 				if (MyRes::getMyResCount(cresid, MYPACKAGE) < oneit->second)
 				{
+					isEnough = false;
 					MovingLabel::show(ResourceLang::map_lang["reslack"]);
 					break;
 				}
 				Quest::setResQuestData(cresid, oneit->second, m_npcid);
+			}
+			if (isEnough)
+			{
+				if (isGo == 1)
+				{
+					g_MapBlockScene->addChild(FightingLayer::create(m_vec_enemys));
+				}
 				this->removeFromParentAndCleanup(true);
 			}
+		}
 			break;
 		case 2: //条件2
 			g_MapBlockScene->addChild(FightingLayer::create(m_vec_enemys));

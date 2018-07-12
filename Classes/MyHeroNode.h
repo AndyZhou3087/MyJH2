@@ -27,7 +27,9 @@ private:
 	cocos2d::ui::ImageView* actbtntxt;
 	cocos2d::ui::ImageView* statetag;
 	cocos2d::ui::Text* tagtext;
+	cocos2d::ui::Text* count;
 	cocos2d::ui::ImageView* stars[5];
+	cocos2d::ui::Widget* silver;
 	Hero* m_heroData;
 	int m_showtype;
 
