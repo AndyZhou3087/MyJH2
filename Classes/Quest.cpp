@@ -6,6 +6,7 @@ std::vector<TaskMainData> Quest::myFinishMainQuest;
 std::map<std::string, int> Quest::map_NpcQuestRes;
 std::map<std::string, int> Quest::map_NpcBranchQuestRes;
 std::map<int, int> Quest::map_DailyTypeCount;
+std::map<int, int> Quest::map_PointReward;
 
 bool Quest::initFinishTaskData()
 {
@@ -260,7 +261,7 @@ void Quest::finishBranchQuest()
 {
 	GlobalInstance::myCurBranchData.isfinish = QUEST_FINISH;
 	saveBranchData();
-
+	setDailyTask(FINISH_BRANCH, 1);
 }
 
 void Quest::saveBranchData()
@@ -292,6 +293,31 @@ void Quest::initDailyTypeCount(std::string str)
 	}
 }
 
+void Quest::initDailyPointReward(std::string str)
+{
+	std::vector<std::string> vec_tmp;
+	CommonFuncs::split(str, vec_tmp, ";");
+	for (int i = 0; i < vec_tmp.size(); i++)
+	{
+		std::vector<std::string> vec_one;
+		CommonFuncs::split(vec_tmp[i], vec_one, "-");
+		map_PointReward[atoi(vec_one[0].c_str())] = atoi(vec_one[1].c_str());
+	}
+}
+
+void Quest::saveDailyPointReward(int p)
+{
+	map_PointReward[p] = 1;
+	std::string str;
+	std::map<int, int>::iterator it;
+	for (it = map_PointReward.begin(); it != map_PointReward.end(); it++)
+	{
+		std::string onestr = StringUtils::format("%d-%d;", it->first, it->second);
+		str.append(onestr);
+	}
+	DataSave::getInstance()->setMyDailyReward(str.substr(0, str.length() - 1));
+}
+
 void Quest::setDailyTask(int type, int count)
 {
 	map_DailyTypeCount[type] += count;
@@ -316,4 +342,24 @@ void Quest::setDailyTask(int type, int count)
 		str.append(onestr);
 	}
 	DataSave::getInstance()->setDailyTypeCount(str.substr(0, str.length() - 1));
+}
+
+void Quest::resetDailyTask()
+{
+	DataSave::getInstance()->setDailyTypeCount("0-0;1-0;2-0;3-0;4-0;5-0;6-0;7-0");
+	DataSave::getInstance()->setMyDailyReward("50-0;100-0;150-0;200-0");
+	DataSave::getInstance()->setMyDailyPoint(0);
+	GlobalInstance::getInstance()->loadDailyTaskData();
+	int t = GlobalInstance::servertime / 60 / 60 / 24;
+	DataSave::getInstance()->setMyFreshDate(t);
+	std::string str = DataSave::getInstance()->getDailyTypeCount();
+	if (str.length()>0)
+	{
+		initDailyTypeCount(str);
+	}
+	str = DataSave::getInstance()->getMyyDailyReward();
+	if (str.length()>0)
+	{
+		initDailyPointReward(str);
+	}
 }

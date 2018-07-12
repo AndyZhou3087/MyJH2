@@ -7,6 +7,12 @@
 #include "Const.h"
 #include "DataSave.h"
 #include "TaskLayer.h"
+#include "Building.h"
+#include "MainScene.h"
+#include "InnRoomLayer.h"
+#include "SmithyLayer.h"
+#include "StoreHouseLayer.h"
+#include "Quest.h"
 
 TaskDailyNode::TaskDailyNode()
 {
@@ -121,7 +127,11 @@ void TaskDailyNode::updateData(float dt)
 		actionbtn->setVisible(false);
 	}
 
-	int c = 0;//²âÊÔ
+	int c = Quest::map_DailyTypeCount[m_Data->type];
+	if (c >= m_Data->count)
+	{
+		c = m_Data->count;
+	}
 	float h = c * 100 / m_Data->count;
 	taskprobar->setPercent(h);
 	std::string str = StringUtils::format("%d/%d", c, m_Data->count);
@@ -147,18 +157,46 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		}
 			break;
 		case FRESH_PUBENLIST:
+		{
+			InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
+			g_mainScene->addChild(layer, 0, "6innroom");
+		}
 			break;
 		case UPGRADE_HERO:
+		{
+			InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
+			g_mainScene->addChild(layer, 0, "6innroom");
+		}
 			break;
 		case UPGRADE_BUILDING:
+		{
+			SmithyLayer* layer = SmithyLayer::create(Building::map_buildingDatas["2smithy"]);
+			g_mainScene->addChild(layer, 0, "2smithy");
+		}
 			break;
 		case STRENG_EQUIP:
+		{
+			StoreHouseLayer* layer = StoreHouseLayer::create();
+			g_mainScene->addChild(layer, 0, "3storehouse");
+		}
 			break;
 		case STRENG_WG:
+		{
+			StoreHouseLayer* layer = StoreHouseLayer::create();
+			g_mainScene->addChild(layer, 0, "3storehouse");
+		}
 			break;
 		case DECOMPOSE_EQUIP:
+		{
+			StoreHouseLayer* layer = StoreHouseLayer::create();
+			g_mainScene->addChild(layer, 0, "3storehouse");
+		}
 			break;
 		case SET_GEM:
+		{
+			InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
+			g_mainScene->addChild(layer, 0, "6innroom");
+		}
 			break;
 		default:
 			break;
@@ -171,6 +209,9 @@ void TaskDailyNode::ongetClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
+		btn->setTouchEnabled(false);
+
 		m_Data->state = DAILY_RECEIVE;
 		GlobalInstance::getInstance()->saveMyDailyTaskData();
 		//»ý·Ö

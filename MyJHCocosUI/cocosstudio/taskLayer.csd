@@ -175,7 +175,7 @@
               <AbstractNodeData Name="Image_2" ActionTag="-2140819876" Tag="47" IconVisible="False" LeftMargin="-315.0000" RightMargin="-315.0000" TopMargin="-75.0000" BottomMargin="-75.0000" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="16" Scale9Height="16" ctype="ImageViewObjectData">
                 <Size X="630.0000" Y="150.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position Y="0.0000" />
+                <Position />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -225,7 +225,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="point_1" ActionTag="-1954860955" Tag="64" IconVisible="False" LeftMargin="-174.0515" RightMargin="114.0515" TopMargin="-32.4745" BottomMargin="-27.5255" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="point_50" ActionTag="-1954860955" Tag="64" IconVisible="False" LeftMargin="-174.0515" RightMargin="114.0515" TopMargin="-32.4745" BottomMargin="-27.5255" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
                 <Size X="60.0000" Y="60.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-144.0515" Y="2.4745" />
@@ -235,7 +235,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="MarkedSubImage" Path="ui/pointicon_0.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="point_2" ActionTag="1840622255" Tag="65" IconVisible="False" LeftMargin="-34.4630" RightMargin="-25.5370" TopMargin="-32.2609" BottomMargin="-27.7391" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="point_100" ActionTag="1840622255" Tag="65" IconVisible="False" LeftMargin="-34.4630" RightMargin="-25.5370" TopMargin="-32.2609" BottomMargin="-27.7391" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
                 <Size X="60.0000" Y="60.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-4.4630" Y="2.2609" />
@@ -245,7 +245,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="MarkedSubImage" Path="ui/pointicon_0.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="point_3" ActionTag="-410996174" Tag="66" IconVisible="False" LeftMargin="105.7764" RightMargin="-165.7764" TopMargin="-33.2235" BottomMargin="-26.7765" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="point_150" ActionTag="-410996174" Tag="66" IconVisible="False" LeftMargin="105.7764" RightMargin="-165.7764" TopMargin="-33.2235" BottomMargin="-26.7765" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
                 <Size X="60.0000" Y="60.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="135.7764" Y="3.2235" />
@@ -255,7 +255,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="MarkedSubImage" Path="ui/pointicon_0.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="point_4" ActionTag="-1098556247" Tag="67" IconVisible="False" LeftMargin="245.1905" RightMargin="-305.1905" TopMargin="-32.8361" BottomMargin="-27.1639" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="point_200" ActionTag="-1098556247" Tag="67" IconVisible="False" LeftMargin="245.1905" RightMargin="-305.1905" TopMargin="-32.8361" BottomMargin="-27.1639" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
                 <Size X="60.0000" Y="60.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="275.1905" Y="2.8361" />

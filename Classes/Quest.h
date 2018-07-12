@@ -52,8 +52,15 @@ public:
 	/*************每日数据逻辑**************/
 	//每日任务
 	static void initDailyTypeCount(std::string str);
+	//每日积分
+	static void initDailyPointReward(std::string str);
+	//保存当天积分
+	static void saveDailyPointReward(int p);
 	//每日任务
 	static void setDailyTask(int type, int count);
+
+	//重置每日任务
+	static void resetDailyTask();
 
 public:
 	static std::vector<TaskMainData> myFinishMainQuest;
@@ -65,6 +72,9 @@ public:
 
 	//每日任务type-count
 	static std::map<int, int> map_DailyTypeCount;
+
+	//积分奖励count-state
+	static std::map<int, int> map_PointReward;
 
 };
 

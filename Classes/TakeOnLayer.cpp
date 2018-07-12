@@ -11,6 +11,7 @@
 #include "SelectEquipLayer.h"
 #include "EquipDescLayer.h"
 #include "SetInStoneLayer.h"
+#include "Quest.h"
 
 static bool isChangeEquip = false;
 TakeOnLayer::TakeOnLayer()
@@ -323,6 +324,7 @@ void TakeOnLayer::onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 void TakeOnLayer::setInStone(ResBase* stoneres, int which)
 {
+	Quest::setDailyTask(SET_GEM, 1);
 	std::string stoneid = stoneres->getId();
 	MyRes::Use(stoneid);
 	MyRes::Add(stoneid, 1, MYEQUIP);

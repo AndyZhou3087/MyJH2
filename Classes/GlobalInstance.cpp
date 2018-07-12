@@ -811,6 +811,11 @@ void GlobalInstance::getMyDailyTaskData()
 	{
 		Quest::initDailyTypeCount(str);
 	}
+	str = DataSave::getInstance()->getMyyDailyReward();
+	if (str.length()>0)
+	{
+		Quest::initDailyPointReward(str);
+	}
 }
 
 void GlobalInstance::saveMyDailyTaskData()

@@ -10,6 +10,7 @@
 #include "ResDescLayer.h"
 #include "MovingLabel.h"
 #include "EquipDescLayer.h"
+#include "Quest.h"
 
 StoreHouseLayer::StoreHouseLayer()
 {
@@ -316,6 +317,8 @@ void StoreHouseLayer::decompose(ResBase* res)
 
 
 		updateContent(lastCategoryindex);
+
+		Quest::setDailyTask(DECOMPOSE_EQUIP, 1);
 	}
 	else
 	{
