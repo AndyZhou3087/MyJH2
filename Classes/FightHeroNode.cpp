@@ -10,7 +10,7 @@ FightHeroNode::FightHeroNode()
 {
 	atkspeed = 0.0f;
 	timedt = 0.0f;
-	ispausing = false;
+	isfighting = true;
 	hurtup = 0.0f;
 }
 
@@ -60,6 +60,13 @@ bool FightHeroNode::init()
 	atkspeed_bar = (cocos2d::ui::LoadingBar*)csbnode->getChildByName("atkspeedbar");
 
 	atkspeed_barbg = (cocos2d::ui::Widget*)csbnode->getChildByName("heroatkspeedbarbg");
+
+	atkspeed_bar->setVisible(false);
+	atkspeed_barbg->setVisible(false);
+
+	retbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("ret");
+	rettext = (cocos2d::ui::ImageView*)retbox->getChildByName("text");
+	retbox->setVisible(false);
 
 	return true;
 }
@@ -115,15 +122,12 @@ void FightHeroNode::setData(Npc* data, int datatype)
 		namelbl->setVisible(true);
 		float percent = data->getHp()*100/ data->getMaxHp();
 		hp_bar->setPercent(percent);
-		if (this->getScale() < 1.0f)
+		if (this->getScale() >= 1.0f)
 		{
-			atkspeed_bar->setVisible(false);
-			atkspeed_barbg->setVisible(false);
-		}
-		else
-		{
+			atkspeed_bar->setVisible(true);
+			atkspeed_barbg->setVisible(true);
 			atkspeed_bar->setPercent(0);
-			atkspeed = 1.0f/data->getAtkSpeed();
+			atkspeed = 1.0f / data->getAtkSpeed();
 			this->scheduleUpdate();
 		}
 	}
@@ -142,7 +146,7 @@ void FightHeroNode::setData(Npc* data, int datatype)
 
 void FightHeroNode::update(float dt)
 {
-	if (ispausing)
+	if (!isfighting)
 		return;
 
 	timedt += dt;
@@ -153,6 +157,7 @@ void FightHeroNode::update(float dt)
 		fighting->pauseAtkSchedule();
 		this->runAction(Sequence::create(ScaleTo::create(0.2f, 1.5f), ScaleTo::create(0.1f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
 	}
+	
 	atkspeed_bar->setPercent(timedt * 100 / atkspeed);
 }
 
@@ -160,14 +165,14 @@ void FightHeroNode::pauseTimeSchedule()
 {
 	if (m_Data != NULL && this->isVisible())
 	{
-		ispausing = true;
+		isfighting = false;
 	}
 }
 
 void FightHeroNode::resumeTimeSchedule()
 {
 	if (m_Data != NULL && this->isVisible())
-		ispausing = false;
+		isfighting = true;
 }
 
 
@@ -240,5 +245,59 @@ void FightHeroNode::setBlankBox()
 	hp_bar->setVisible(false);
 	atkspeed_bar->setVisible(false);
 	atkspeed_barbg->setVisible(false);
+}
+
+void FightHeroNode::setWinState(int winexp)
+{
+	atkspeed_bar->setVisible(false);
+	atkspeed_barbg->setVisible(false);
+	int langtype = GlobalInstance::getInstance()->getLang();
+	Hero* myhero = (Hero*)m_Data;
+	if (myhero->getState() != HS_DEAD)
+	{
+		int mylv = myhero->getLevel();
+		DynamicValueInt vl;
+		vl.setValue(myhero->getExp().getValue() + winexp);
+		myhero->setExp(vl);
+		hp_bar->loadTexture("mapui/winexpbar.png", cocos2d::ui::Widget::TextureResType::PLIST);
+
+		int maxlv = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp.size();
+		int curlv = 0;
+		for (int i = 0; i < maxlv; i++)
+		{
+			if (myhero->getExp().getValue() >= GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[i])
+				curlv = i;
+			else
+				break;
+		}
+		int moreexp = myhero->getExp().getValue() - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[curlv];
+		int nextlv = curlv + 1;
+
+		if (nextlv >= maxlv)
+			nextlv = maxlv - 1;
+		int needexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv] - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv - 1];
+		float percent = moreexp * 100 / needexp;
+		hp_bar->setPercent(percent);
+		if (curlv > mylv)//升级
+		{
+			retbox->setVisible(true);
+
+			rettext->loadTexture(ResourcePath::makeTextImgPath("winlvup_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+			FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
+			FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(0.5f, Vec2(0, 20)), FadeOut::create(0.5f), NULL);
+			rettext->runAction(Sequence::create(scales, moveandout, NULL));
+		}
+	}
+	else
+	{
+		retbox->setVisible(true);
+		rettext->loadTexture(ResourcePath::makeTextImgPath("windeath_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+		CommonFuncs::changeGray(headbox);
+		CommonFuncs::changeGray(headimg);
+		CommonFuncs::changeGray(hp_bar);
+		CommonFuncs::changeGray(retbox);
+	}
 }
 

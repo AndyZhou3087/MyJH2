@@ -101,6 +101,28 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="mapui/hurticon.png" Plist="mapui.plist" />
           </AbstractNodeData>
+          <AbstractNodeData Name="ret" ActionTag="802272612" Tag="100" IconVisible="False" LeftMargin="-66.5000" RightMargin="-66.5000" TopMargin="27.9990" BottomMargin="-75.9990" LeftEage="40" RightEage="40" TopEage="15" BottomEage="15" Scale9OriginX="40" Scale9OriginY="15" Scale9Width="53" Scale9Height="18" ctype="ImageViewObjectData">
+            <Size X="133.0000" Y="48.0000" />
+            <Children>
+              <AbstractNodeData Name="text" ActionTag="-1657698620" Tag="101" IconVisible="False" LeftMargin="38.0000" RightMargin="39.0000" TopMargin="10.0000" BottomMargin="10.0000" LeftEage="21" RightEage="21" TopEage="9" BottomEage="9" Scale9OriginX="21" Scale9OriginY="9" Scale9Width="14" Scale9Height="10" ctype="ImageViewObjectData">
+                <Size X="56.0000" Y="28.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="66.0000" Y="24.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4962" Y="0.5000" />
+                <PreSize X="0.4211" Y="0.5833" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/winlvup_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position Y="-51.9990" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="mapui/winretbox.png" Plist="mapui.plist" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

@@ -125,12 +125,14 @@ void FightingLayer::pauseAtkSchedule()
 	for (int i = 0; i < 6; i++)
 	{
 		FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(i);
-		fnode->pauseTimeSchedule();
+		if (fnode != NULL)
+			fnode->pauseTimeSchedule();
 	}
 	for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
 	{
 		FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + i);
-		fnode->pauseTimeSchedule();
+		if (fnode != NULL)
+			fnode->pauseTimeSchedule();
 	}
 }
 void FightingLayer::resumeAtkSchedule()

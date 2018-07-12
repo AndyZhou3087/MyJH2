@@ -11,6 +11,7 @@
 #include "MapEventLayer.h"
 #include "DataSave.h"
 #include "FightingLayer.h"
+#include "WinLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -598,14 +599,16 @@ void MapBlockScene::showFightResult(int result)
 {
 	if (result == 0)
 	{
-		for (int i = 0; i < 6; i++)
-			GlobalInstance::myCardHeros[i] = NULL;
+		//for (int i = 0; i < 6; i++)
+		//	GlobalInstance::myCardHeros[i] = NULL;
 
 		Director::getInstance()->replaceScene(MainScene::createScene());
 	}
 	else
 	{
-
+		std::vector<FOURProperty> vec;
+		WinLayer* winlayer = WinLayer::create(vec, 100);
+		this->addChild(winlayer);
 	}
 }
 

@@ -17,7 +17,7 @@ typedef enum
 }BLOCKPOSTYPE;
 
 /*************
-3个属性的结构体
+4个属性的结构体
 第一个属性string
 第二个属性int
 第三个属性int

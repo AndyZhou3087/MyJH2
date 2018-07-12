@@ -44,6 +44,7 @@
           <Image Name="smallbg.png" />
           <Image Name="t001.jpg" />
           <Image Name="t002.jpg" />
+          <Image Name="wintitle.png" />
         </Folder>
         <Folder Name="mainimg">
           <Image Name="main_01_n.png" />
@@ -236,6 +237,8 @@
           <Image Name="submapanimcloud.png" />
           <Image Name="submapnodeitem.png" />
           <Image Name="submaptitlecloud.png" />
+          <Image Name="winexpbar.png" />
+          <Image Name="winretbox.png" />
         </Folder>
         <Folder Name="text_zh_cn">
           <Image Name="backbtn_text.png" />
@@ -243,6 +246,7 @@
           <Image Name="buybtn_text.png" />
           <Image Name="changebtn_text.png" />
           <Image Name="closebtn_text.png" />
+          <Image Name="continuebtn_text.png" />
           <Image Name="crefresh_text.png" />
           <Image Name="decomposebtn_text.png" />
           <Image Name="drlvupbtn_text.png" />
@@ -384,11 +388,12 @@
           <Image Name="task_text_1_s.png" />
           <Image Name="task_text_2_n.png" />
           <Image Name="task_text_2_s.png" />
-          <Image Name="taskbtn.png" />
           <Image Name="taskdayget.png" />
           <Image Name="taskdaygo.png" />
           <Image Name="taskfinish.png" />
           <Image Name="usebtn_text.png" />
+          <Image Name="windeath_text.png" />
+          <Image Name="winlvup_text.png" />
         </Folder>
         <Folder Name="ui">
           <Image Name="a001.png" />
@@ -759,6 +764,7 @@
         <Project Name="taskMainNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
+        <Project Name="winLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

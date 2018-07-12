@@ -7,5 +7,21 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="text_zh_cn.csi" />
+          <FilePathData Path="ui.csi" />
+          <FilePathData Path="mapui.csi" />
+          <FilePathData Path="taskDayNode.csd" />
+          <FilePathData Path="taskLayer.csd" />
+          <FilePathData Path="cardHeroNode.csd" />
+          <FilePathData Path="winLayer.csd" />
+          <FilePathData Path="consumeResActionLayer.csd" />
+          <FilePathData Path="fightHeroNode.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="fightHeroNode.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>

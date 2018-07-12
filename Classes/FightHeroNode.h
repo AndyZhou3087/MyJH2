@@ -27,6 +27,8 @@ public:
 	void hurt(float hp);
 
 	void updateHp();
+
+	void setWinState(int winexp);
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
@@ -35,15 +37,19 @@ private:
 	cocos2d::ui::LoadingBar* atkspeed_bar;
 	cocos2d::ui::Widget* atkspeed_barbg;
 	cocos2d::ui::ImageView* statusimg;
+	cocos2d::ui::ImageView* retbox;
+	cocos2d::ui::ImageView* rettext;
 	Npc* m_Data;
 	int m_datatype;
 	float atkspeed;
 	float timedt;
-	bool ispausing;
+	bool isfighting;
 	float hurtup;
 	void update(float dt);
 	void hpAnim();
 	void setBlankBox();
+
+
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
