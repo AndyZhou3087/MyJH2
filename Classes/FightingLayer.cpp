@@ -17,10 +17,10 @@ FightingLayer::FightingLayer()
 
 FightingLayer::~FightingLayer()
 {
-	for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
+	/*for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
 	{
 		delete m_enemyHeros[i];
-	}
+	}*/
 }
 
 
