@@ -68,6 +68,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 
 	//英雄全身图
 	cocos2d::ui::ImageView* herofullimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("hfull");
+	herofullimg->ignoreContentAdaptWithSize(true);
 	std::string str = StringUtils::format("hfull_%d_%d.png", herodata->getVocation(), herodata->getSex());
 	herofullimg->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 
