@@ -484,7 +484,18 @@ void GlobalInstance::loadTaskMainData()
 			data.need1desc = v.GetString();
 
 			v = jsonvalue["need2"];
-			data.need2 = atoi(v.GetString());
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 3)
+				{
+					std::map<std::string, int> map_tmp;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					map_tmp[vec_tmp[0]] = atoi(vec_tmp[1].c_str());
+					data.need2.push_back(map_tmp);
+				}
+			}
 
 			v = jsonvalue["need2desc"];
 			data.need2desc = v.GetString();
@@ -545,8 +556,15 @@ void GlobalInstance::loadTaskMainData()
 				}
 			}
 
-			v = jsonvalue["isGo"];
-			data.isGo = atoi(v.GetString());
+			v = jsonvalue["bossword1"];
+			data.bossword1 = v.GetString();
+			v = jsonvalue["bossword2"];
+			data.bossword2 = v.GetString();
+
+			v = jsonvalue["fight1"]; 
+			data.isFight1 = atoi(v.GetString());
+			v = jsonvalue["fight2"];
+			data.isFight2 = atoi(v.GetString());
 			
 			data.isfinish = 1;//默认未接受任务
 			data.finishtype = 0;

@@ -645,7 +645,7 @@ void MapBlockScene::showFightResult(int result)
 		{
 			if (Quest::getMainQuestNpc(vec_enemys[i]->getId()))
 			{
-				Quest::finishFightMain();
+				Quest::finishFightMain(QUEST_FIGHT);
 			}
 			else if (Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
 			{
