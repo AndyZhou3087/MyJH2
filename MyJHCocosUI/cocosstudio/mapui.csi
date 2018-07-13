@@ -162,9 +162,9 @@
       <FilePathData Path="mapui/n012.png" />
       <FilePathData Path="mapui/n013.png" />
       <FilePathData Path="mapui/hurticon.png" />
-      <FilePathData Path="mapui/n014.png" />
       <FilePathData Path="mapui/winexpbar.png" />
       <FilePathData Path="mapui/winretbox.png" />
+      <FilePathData Path="mapui/winsepbox.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

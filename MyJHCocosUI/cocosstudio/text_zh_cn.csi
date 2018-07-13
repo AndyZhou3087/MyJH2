@@ -155,6 +155,11 @@
       <FilePathData Path="text_zh_cn/continuebtn_text.png" />
       <FilePathData Path="text_zh_cn/windeath_text.png" />
       <FilePathData Path="text_zh_cn/winlvup_text.png" />
+      <FilePathData Path="text_zh_cn/winrewardtitle.png" />
+      <FilePathData Path="text_zh_cn/drop_text.png" />
+      <FilePathData Path="text_zh_cn/package_text.png" />
+      <FilePathData Path="text_zh_cn/continuegamebtn_text.png" />
+      <FilePathData Path="text_zh_cn/allgetbtn_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

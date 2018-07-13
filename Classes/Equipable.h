@@ -14,7 +14,6 @@ public:
 	Equipable();
 	~Equipable();
 
-	CC_SYNTHESIZE(DynamicValueInt, m_qu, QU);//品质
 	CC_SYNTHESIZE(std::string, m_whos, Whos);//谁装配上了
 	virtual DynamicValueInt getLv();
 public:

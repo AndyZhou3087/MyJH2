@@ -238,18 +238,22 @@
           <Image Name="submaptitlecloud.png" />
           <Image Name="winexpbar.png" />
           <Image Name="winretbox.png" />
+          <Image Name="winsepbox.png" />
         </Folder>
         <Folder Name="text_zh_cn">
+          <Image Name="allgetbtn_text.png" />
           <Image Name="backbtn_text.png" />
           <Image Name="break_text.png" />
           <Image Name="buybtn_text.png" />
           <Image Name="changebtn_text.png" />
           <Image Name="closebtn_text.png" />
           <Image Name="continuebtn_text.png" />
+          <Image Name="continuegamebtn_text.png" />
           <Image Name="crefresh_text.png" />
           <Image Name="decomposebtn_text.png" />
           <Image Name="drlvupbtn_text.png" />
           <Image Name="drmakeresbtn_text.png" />
+          <Image Name="drop_text.png" />
           <Image Name="drrecruitbtn_text.png" />
           <Image Name="equipprop_text.png" />
           <Image Name="equiptext_0.png" />
@@ -349,6 +353,7 @@
           <Image Name="markettitle.png" />
           <Image Name="okbtn_text.png" />
           <Image Name="outtowntitle.png" />
+          <Image Name="package_text.png" />
           <Image Name="recruit_text.png" />
           <Image Name="recruitbtn_text.png" />
           <Image Name="refreshbtn_text.png" />
@@ -393,6 +398,7 @@
           <Image Name="usebtn_text.png" />
           <Image Name="windeath_text.png" />
           <Image Name="winlvup_text.png" />
+          <Image Name="winrewardtitle.png" />
         </Folder>
         <Folder Name="ui">
           <Image Name="a001.png" />
@@ -764,6 +770,7 @@
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="winLayer.csd" Type="Layer" />
+        <Project Name="winRewardLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

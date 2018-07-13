@@ -557,7 +557,17 @@ void MapBlockScene::createRndMonsters()
 			}
 
 		}
+		vec_winrewards.clear();
+		for (unsigned int i = 0; i < MapBlock::vec_randMonstersRes.size(); i++)
+		{
+			FOURProperty propty = MapBlock::vec_randMonstersRes[i];
+			int rnd = propty.floatPara3 * 100;
+			int r2 = GlobalInstance::getInstance()->createRandomNum(10000);
+			if (r2 < rnd)
+				vec_winrewards.push_back(propty);
+		}
 	}
+
 }
 
 void MapBlockScene::creatNpcOrBoss(MapBlock* mbolck)
@@ -612,8 +622,7 @@ void MapBlockScene::showFightResult(int result)
 			if (GlobalInstance::myCardHeros[i] != NULL &&  GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
 				count++;
 		}
-		std::vector<FOURProperty> vec;
-		WinLayer* winlayer = WinLayer::create(vec, getWinExp()/count);
+		WinLayer* winlayer = WinLayer::create(vec_winrewards, getWinExp()/count);
 		this->addChild(winlayer);
 	}
 }
@@ -757,8 +766,8 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						{
 							FOURProperty mdata;
 							mdata.sid = e0->Attribute("id");
-							mdata.intPara1 = e0->IntAttribute("qu");
-							mdata.intPara2 = atoi(e0->GetText());
+							mdata.intPara1 = atoi(e0->GetText());
+							mdata.intPara2 = e0->IntAttribute("qu");
 							mdata.floatPara3 = e0->FloatAttribute("rnd");
 							mb->vec_RewardsRes.push_back(mdata);
 						}
@@ -791,8 +800,8 @@ void MapBlockScene::parseMapXml(std::string mapname)
 								{
 									FOURProperty mdata;
 									mdata.sid = e01->Attribute("id");
-									mdata.intPara1 = e01->IntAttribute("qu");
-									mdata.intPara2 = atoi(e01->GetText());
+									mdata.intPara1 = atoi(e01->GetText());
+									mdata.intPara2 = e01->IntAttribute("qu");
 									mdata.floatPara3 = e01->FloatAttribute("rnd");
 									cdata.vec_getRes.push_back(mdata);
 								}

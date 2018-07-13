@@ -4,6 +4,7 @@
 #include "GlobalInstance.h"
 #include "Const.h"
 #include "FightHeroNode.h"
+#include "WinRewardLayer.h"
 
 USING_NS_CC;
 
@@ -41,6 +42,7 @@ bool WinLayer::init(std::vector<FOURProperty> reward_res, int winexp)
 	{
 		return false;
 	}
+	m_rewards = reward_res;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
@@ -88,7 +90,8 @@ void WinLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		
+		WinRewardLayer* layer = WinRewardLayer::create(m_rewards);
+		this->addChild(layer);
 	}
 }
 

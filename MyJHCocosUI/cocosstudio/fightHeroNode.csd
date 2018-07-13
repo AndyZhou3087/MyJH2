@@ -123,10 +123,10 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="mapui/winretbox.png" Plist="mapui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="winexp" ActionTag="1074920301" Tag="13" IconVisible="False" LeftMargin="-27.0000" RightMargin="-27.0000" TopMargin="70.5000" BottomMargin="-89.5000" FontSize="15" LabelText="经验值：" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="54.0000" Y="19.0000" />
+          <AbstractNodeData Name="winexp" ActionTag="1074920301" Tag="13" IconVisible="False" LeftMargin="-32.0000" RightMargin="-32.0000" TopMargin="74.5001" BottomMargin="-97.5001" FontSize="18" LabelText="经验值：" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="64.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position Y="-80.0000" />
+            <Position Y="-86.0001" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="107" G="239" B="1" />
             <PrePosition />

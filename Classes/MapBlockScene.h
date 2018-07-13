@@ -126,6 +126,7 @@ private:
 	int monsterComeRnd;
 
 	std::vector<Npc*> vec_enemys;
+	std::vector<FOURProperty> vec_winrewards;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

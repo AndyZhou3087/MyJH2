@@ -100,7 +100,7 @@ void FightHeroNode::setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE 
 	m_Data = data;
 	m_datatype = datatype;
 	m_state = state;
-	if (data != NULL && data->getHp() > 0)
+	if (data != NULL && (data->getHp() > 0 || state == FS_SUCC))
 	{
 		std::string str;
 		
@@ -256,57 +256,59 @@ void FightHeroNode::setWinState(int winexp)
 {
 	int langtype = GlobalInstance::getInstance()->getLang();
 	Hero* myhero = (Hero*)m_Data;
+
+	int mylv = myhero->getLevel();
+	DynamicValueInt vl;
+	vl.setValue(myhero->getExp().getValue() + winexp);
+	myhero->setExp(vl);
+	hp_bar->loadTexture("mapui/winexpbar.png", cocos2d::ui::Widget::TextureResType::PLIST);
+
+	std::string str = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), winexp);
+	winexplbl->setString(str);
+	winexplbl->setVisible(true);
+	FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
+	FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(1.5f, Vec2(0, 10)), NULL);
+	winexplbl->runAction(Sequence::create(scales, moveandout, NULL));
+
+	int maxlv = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp.size();
+	int curlv = -1;
+	for (int i = 0; i < maxlv; i++)
+	{
+		if (myhero->getExp().getValue() >= GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[i])
+			curlv = i;
+		else
+			break;
+	}
+
+	int moreexp = 0;
+	int needexp = 0;
+
+	int nextlv = curlv + 1;
+
+	if (nextlv >= maxlv)
+	{
+		nextlv = maxlv - 1;
+		DynamicValueInt vl;
+		vl.setValue(GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv]);
+		myhero->setExp(vl);
+	}
+
+	if (curlv < 0)
+	{
+		moreexp = myhero->getExp().getValue() - 0;
+		needexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[0];
+	}
+	else
+	{
+		moreexp = myhero->getExp().getValue() - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[curlv];
+		needexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv] - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv - 1];
+	}
+
+	float percent = moreexp * 100 / needexp;
+	hp_bar->setPercent(percent);
+
 	if (myhero->getState() != HS_DEAD)
 	{
-		int mylv = myhero->getLevel();
-		DynamicValueInt vl;
-		vl.setValue(myhero->getExp().getValue() + winexp);
-		myhero->setExp(vl);
-		hp_bar->loadTexture("mapui/winexpbar.png", cocos2d::ui::Widget::TextureResType::PLIST);
-
-		std::string str = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), winexp);
-		winexplbl->setString(str);
-		winexplbl->setVisible(true);
-		FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
-		FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(0.5f, Vec2(0, 20)), FadeOut::create(0.5f), NULL);
-		winexplbl->runAction(Sequence::create(scales, moveandout, NULL));
-
-		int maxlv = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp.size();
-		int curlv = -1;
-		for (int i = 0; i < maxlv; i++)
-		{
-			if (myhero->getExp().getValue() >= GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[i])
-				curlv = i;
-			else
-				break;
-		}
-
-		int moreexp = 0;
-		int needexp = 0;
-
-		int nextlv = curlv + 1;
-
-		if (nextlv >= maxlv)
-		{
-			nextlv = maxlv - 1;
-			DynamicValueInt vl;
-			vl.setValue(GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv]);
-			myhero->setExp(vl);
-		}
-
-		if (curlv < 0)
-		{
-			moreexp = myhero->getExp().getValue() - 0;
-			needexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[0];
-		}
-		else
-		{
-			moreexp = myhero->getExp().getValue() - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[curlv];
-			needexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv] - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv - 1];
-		}
-
-		float percent = moreexp * 100 / needexp;
-		hp_bar->setPercent(percent);
 		if (curlv > mylv)//升级
 		{
 			retbox->setVisible(true);
@@ -314,8 +316,8 @@ void FightHeroNode::setWinState(int winexp)
 			rettext->loadTexture(ResourcePath::makeTextImgPath("winlvup_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 			FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
-			FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(0.5f, Vec2(0, 20)), FadeOut::create(0.5f), NULL);
-			rettext->runAction(Sequence::create(scales, moveandout, NULL));
+			FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(1.5f, Vec2(0, 40)), NULL);
+			retbox->runAction(Sequence::create(scales, moveandout, NULL));
 		}
 	}
 	else
