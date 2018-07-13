@@ -114,17 +114,9 @@ bool TaskMainDescLayer::init(TaskMainData* data)
 		accbtn->setVisible(false);
 	}
 
-	std::vector<std::vector<std::string>> rewards;
 	if (data->type.size() == 1)
 	{
-		if (data->type[0] == QUEST_GIVE)
-		{
-			rewards = data->reward1;
-		}
-		else 
-		{
-			rewards = data->reward2;
-		}
+		rewards = data->reward1;
 	}
 	else 
 	{
@@ -229,18 +221,9 @@ void TaskMainDescLayer::accpTask()
 void TaskMainDescLayer::getRewards()
 {
 	m_data->isfinish = QUEST_GET;
-	std::vector<std::vector<std::string>> rewarr;
-	if (m_data->finishtype == QUEST_GIVE)
+	for (unsigned int i = 0; i < rewards.size(); i++)
 	{
-		rewarr = m_data->reward1;
-	}
-	else
-	{
-		rewarr = m_data->reward2;
-	}
-	for (unsigned int i = 0; i < rewarr.size(); i++)
-	{
-		std::vector<std::string> one_res = rewarr[i];
+		std::vector<std::string> one_res = rewards[i];
 		std::string resid = one_res[0];
 		int count = atoi(one_res[1].c_str());
 		int qu = -1;

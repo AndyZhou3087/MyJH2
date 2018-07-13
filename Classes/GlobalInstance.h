@@ -93,9 +93,9 @@ typedef enum
 
 typedef enum
 {
-	//1表示给东西，2表示战斗,二选一即可完成任务(只有1和2两种类型)
-	QUEST_GIVE = 1,
-	QUEST_FIGHT
+	QUEST_GIVE = 1,//1表示给东西
+	QUEST_FIGHT,//战斗
+	QUEST_NOTFIGHT//不战斗
 }QUESTTYPE;
 
 typedef enum
@@ -129,13 +129,16 @@ typedef struct
 	std::string bossword;
 	std::vector<std::map<std::string, int>> need1;//条件二选一，物品，r001-10(id-count)
 	std::string need1desc;
-	int need2;//条件二选一，战斗，填写type
+	std::vector<std::map<std::string, int>> need2;//条件二选一，战斗，填写type
 	std::string need2desc;
 	std::vector<int> mutex1;//互斥1，1-1,id为1的type为1的互斥
 	std::vector<int> mutex2;//互斥2
 	std::vector<std::vector<std::string>> reward1;//条件1的奖励
 	std::vector<std::vector<std::string>> reward2;//条件2的奖励
-	int isGo;
+	std::string bossword1;
+	std::string bossword2;
+	int isFight1;
+	int isFight2;
 	int isfinish;//是否完成此任务，0已接受未完成，1未接受任务，2已完成未领取，3已领取奖励
 	int finishtype;//完成任务类型，1表示条件1完成，2表示条件2完成
 }TaskMainData;

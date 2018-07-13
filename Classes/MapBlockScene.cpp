@@ -540,17 +540,20 @@ void MapBlockScene::doMyStatus()
 			bool isTask = false;
 			for (unsigned int i = 0; i < vec_enemys.size(); i++)
 			{
-				if (Quest::getMainQuestNpc(vec_enemys[i]->getId()))
+				if (vec_enemys[i]!=NULL)
 				{
-					isTask = true;
-					this->addChild(TaskTalkLayer::create(vec_enemys[i]->getId(), vec_enemys));
-					break;
-				}
-				else if (Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
-				{
-					isTask = true;
-					this->addChild(TaskBranchTalkLayer::create(vec_enemys[i]->getId(), vec_enemys));
-					break;
+					if (Quest::getMainQuestNpc(vec_enemys[i]->getId()))
+					{
+						isTask = true;
+						this->addChild(TaskTalkLayer::create(vec_enemys[i]->getId(), vec_enemys));
+						break;
+					}
+					else if (Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
+					{
+						isTask = true;
+						this->addChild(TaskBranchTalkLayer::create(vec_enemys[i]->getId(), vec_enemys));
+						break;
+					}
 				}
 			}
 			if (!isTask)
@@ -665,7 +668,7 @@ void MapBlockScene::showFightResult(int result)
 		{
 			if (Quest::getMainQuestNpc(vec_enemys[i]->getId()))
 			{
-				Quest::finishFightMain();
+				Quest::finishFightMain(QUEST_FIGHT);
 			}
 			else if (Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
 			{

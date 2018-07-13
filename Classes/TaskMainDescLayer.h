@@ -30,6 +30,7 @@ private:
 
 private:
 	TaskMainData* m_data;
+	std::vector<std::vector<std::string>> rewards;
 };
 #endif
 

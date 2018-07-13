@@ -67,12 +67,31 @@ void Quest::saveMainData()
 	GlobalInstance::getInstance()->saveMyTaskMainData();
 }
 
+int Quest::getTypeBtn(int id,int ftype)
+{
+	for (unsigned int i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
+	{
+		if (GlobalInstance::vec_TaskMain[i].id == id)
+		{
+			for (unsigned int j = 0; j < GlobalInstance::vec_TaskMain[i].type.size(); j++)
+			{
+				if (GlobalInstance::vec_TaskMain[i].type[j] == GlobalInstance::vec_TaskMain[i].finishtype)
+				{
+					return j;
+				}
+			}
+			break;
+		}
+	}
+	return -1;
+}
+
 bool Quest::getMutexMainQuestType(int id, int type)
 {
 	for (unsigned int i = 0; i < myFinishMainQuest.size(); i++)
 	{
 		TaskMainData data = myFinishMainQuest[i];
-		if (data.finishtype == QUEST_GIVE)
+		if (getTypeBtn(data.id, data.finishtype) == BTN_1)
 		{
 			if (data.mutex1.size() > 0)
 			{
@@ -134,24 +153,45 @@ void Quest::setResQuestData(std::string resid, int count, std::string npcid)
 		if (resid.compare(cresid) == 0)
 		{
 			map_NpcQuestRes[resid] += count;
-			MyRes::Use(resid, count, MYPACKAGE);
+			if (cresid.compare("r006") == 0)//银两
+			{
+				if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= count)
+				{
+					DynamicValueInt dval;
+					dval.setValue(count);
+					GlobalInstance::getInstance()->costMySoliverCount(dval);
+				}
+			}
+			else if (cresid.compare("r007") == 0)//元宝
+			{
+				if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= count)
+				{
+					DynamicValueInt dval;
+					dval.setValue(count);
+					GlobalInstance::getInstance()->costMyCoinCount(dval);
+				}
+			}
+			else
+			{
+				MyRes::Use(resid, count, MYPACKAGE);
+			}
 		}
 	}
-
-	std::string curstr;
-	std::map<std::string, int>::iterator it;
-	for (it = map_NpcQuestRes.begin(); it != map_NpcQuestRes.end(); it++)
-	{
-		std::string cresid = it->first;
-		std::string onestr = StringUtils::format("%s-%d;", cresid.c_str(), map_NpcQuestRes[it->first]);
-		curstr.append(onestr);
-	}
-	DataSave::getInstance()->setMyCurTaskNeed(curstr.substr(0, curstr.length() - 1));
 
 	//判断是否给予完成
 	if (getResCountFinish())
 	{
 		finishQuest();
+
+		std::string curstr;
+		std::map<std::string, int>::iterator it;
+		for (it = map_NpcQuestRes.begin(); it != map_NpcQuestRes.end(); it++)
+		{
+			std::string cresid = it->first;
+			std::string onestr = StringUtils::format("%s-%d;", cresid.c_str(), map_NpcQuestRes[it->first]);
+			curstr.append(onestr);
+		}
+		DataSave::getInstance()->setMyCurTaskNeed(curstr.substr(0, curstr.length() - 1));
 	}
 }
 
@@ -187,10 +227,10 @@ void Quest::finishQuest()
 	saveMainData();
 }
 
-void Quest::finishFightMain()
+void Quest::finishFightMain(int ftype)
 {
 	GlobalInstance::myCurMainData.isfinish = QUEST_FINISH;
-	GlobalInstance::myCurMainData.finishtype = QUEST_FIGHT;
+	GlobalInstance::myCurMainData.finishtype = ftype;
 	saveMainData();
 }
 
@@ -225,20 +265,20 @@ void Quest::setResBranchQuestData(std::string resid, int count, std::string npci
 		}
 	}
 
-	std::string curstr;
-	std::map<std::string, int>::iterator it;
-	for (it = map_NpcBranchQuestRes.begin(); it != map_NpcBranchQuestRes.end(); it++)
-	{
-		std::string cresid = it->first;
-		std::string onestr = StringUtils::format("%s-%d;", cresid.c_str(), map_NpcBranchQuestRes[it->first]);
-		curstr.append(onestr);
-	}
-	DataSave::getInstance()->setMyCurBranchNeed(curstr.substr(0, curstr.length() - 1));
-
 	//判断是否给予完成
 	if (getResBranchFinish())
 	{
 		finishBranchQuest();
+
+		std::string curstr;
+		std::map<std::string, int>::iterator it;
+		for (it = map_NpcBranchQuestRes.begin(); it != map_NpcBranchQuestRes.end(); it++)
+		{
+			std::string cresid = it->first;
+			std::string onestr = StringUtils::format("%s-%d;", cresid.c_str(), map_NpcBranchQuestRes[it->first]);
+			curstr.append(onestr);
+		}
+		DataSave::getInstance()->setMyCurBranchNeed(curstr.substr(0, curstr.length() - 1));
 	}
 }
 

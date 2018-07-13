@@ -4,6 +4,13 @@
 
 #include "cocos2d.h"
 #include "GlobalInstance.h"
+
+typedef enum
+{
+	BTN_1 = 0,
+	BTN_2,
+}MAINBTNTYPE;
+
 class Quest
 {
 public:
@@ -34,7 +41,9 @@ public:
 
 	static void finishQuest();
 
-	static void finishFightMain();
+	static void finishFightMain(int ftype);
+
+	static int getTypeBtn(int id, int ftype);
 
 	/*************支线任务数据逻辑**************/
 
