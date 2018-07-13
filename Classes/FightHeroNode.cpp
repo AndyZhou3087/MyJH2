@@ -100,7 +100,7 @@ void FightHeroNode::setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE 
 	m_Data = data;
 	m_datatype = datatype;
 	m_state = state;
-	if (data != NULL && (data->getHp() > 0 || state == FS_SUCC))
+	if (data != NULL && (data->getHp() > 0 || state == FS_SUCC || state == FS_FAIL))
 	{
 		std::string str;
 		
@@ -213,6 +213,7 @@ void FightHeroNode::hurtAnimFinish()
 			((Hero*)m_Data)->setState(HS_DEAD);
 			((Hero*)m_Data)->setPos(0);
 		}
+		GlobalInstance::getInstance()->saveHero((Hero*)m_Data);
 		fighting->updateMapHero(this->getTag());
 	}
 
@@ -245,7 +246,7 @@ void FightHeroNode::setBlankBox()
 	{
 		this->setVisible(false);
 	}
-	else if (m_state == FS_SUCC)
+	else if (m_state == FS_SUCC || m_state == FS_FAIL)
 	{
 		if (m_Data == NULL)
 			this->setVisible(false);
@@ -332,3 +333,14 @@ void FightHeroNode::setWinState(int winexp)
 	}
 }
 
+void FightHeroNode::setFailState()
+{
+	int langtype = GlobalInstance::getInstance()->getLang();
+	retbox->setVisible(true);
+	rettext->loadTexture(ResourcePath::makeTextImgPath("windeath_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	CommonFuncs::changeGray(headbox);
+	CommonFuncs::changeGray(headimg);
+	CommonFuncs::changeGray(hp_bar);
+	CommonFuncs::changeGray(retbox);
+}

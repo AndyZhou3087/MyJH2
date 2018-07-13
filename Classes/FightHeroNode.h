@@ -44,6 +44,8 @@ public:
 	void updateHp();
 
 	void setWinState(int winexp);
+
+	void setFailState();
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;

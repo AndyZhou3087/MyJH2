@@ -1,5 +1,5 @@
-#ifndef __WIN_LAYER_H__
-#define __WIN_LAYER_H__
+#ifndef __FIGHTINGRESULT_LAYER_H__
+#define __FIGHTINGRESULT_LAYER_H__
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
@@ -7,13 +7,13 @@
 #include "MapBlock.h"
 USING_NS_CC;
 
-class WinLayer : public cocos2d::Layer
+class FightingResultLayer : public cocos2d::Layer
 {
 public:
-	WinLayer();
-	~WinLayer();
+	FightingResultLayer();
+	~FightingResultLayer();
 
-	static WinLayer* create(std::vector<FOURProperty> reward_res, int winexp);
+	static FightingResultLayer* create(std::vector<FOURProperty> reward_res, int winexp);
 	virtual void onExit();
 	bool init(std::vector<FOURProperty> reward_res, int winexp);
 private:

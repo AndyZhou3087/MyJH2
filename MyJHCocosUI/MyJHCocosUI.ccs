@@ -80,7 +80,27 @@
           <Image Name="boardblock_0.png" />
           <Image Name="boardblock_1.png" />
           <Image Name="boardblock_10.png" />
+          <Image Name="boardblock_100.png" />
+          <Image Name="boardblock_101.png" />
+          <Image Name="boardblock_102.png" />
+          <Image Name="boardblock_103.png" />
+          <Image Name="boardblock_104.png" />
+          <Image Name="boardblock_105.png" />
+          <Image Name="boardblock_106.png" />
+          <Image Name="boardblock_107.png" />
+          <Image Name="boardblock_108.png" />
+          <Image Name="boardblock_109.png" />
           <Image Name="boardblock_11.png" />
+          <Image Name="boardblock_110.png" />
+          <Image Name="boardblock_111.png" />
+          <Image Name="boardblock_112.png" />
+          <Image Name="boardblock_113.png" />
+          <Image Name="boardblock_114.png" />
+          <Image Name="boardblock_115.png" />
+          <Image Name="boardblock_116.png" />
+          <Image Name="boardblock_117.png" />
+          <Image Name="boardblock_118.png" />
+          <Image Name="boardblock_119.png" />
           <Image Name="boardblock_12.png" />
           <Image Name="boardblock_13.png" />
           <Image Name="boardblock_14.png" />
@@ -176,6 +196,7 @@
           <Image Name="boardblock_96.png" />
           <Image Name="boardblock_97.png" />
           <Image Name="boardblock_98.png" />
+          <Image Name="boardblock_99.png" />
           <Image Name="buildblock_0.png" />
           <Image Name="buildblock_1.png" />
           <Image Name="buildblock_10.png" />
@@ -196,7 +217,17 @@
           <Image Name="buildblock_25.png" />
           <Image Name="buildblock_26.png" />
           <Image Name="buildblock_27.png" />
+          <Image Name="buildblock_28.png" />
+          <Image Name="buildblock_29.png" />
           <Image Name="buildblock_3.png" />
+          <Image Name="buildblock_30.png" />
+          <Image Name="buildblock_31.png" />
+          <Image Name="buildblock_32.png" />
+          <Image Name="buildblock_33.png" />
+          <Image Name="buildblock_34.png" />
+          <Image Name="buildblock_35.png" />
+          <Image Name="buildblock_36.png" />
+          <Image Name="buildblock_37.png" />
           <Image Name="buildblock_4.png" />
           <Image Name="buildblock_5.png" />
           <Image Name="buildblock_6.png" />
@@ -354,6 +385,7 @@
           <Image Name="mappackbtn_text.png" />
           <Image Name="marketlvup_text.png" />
           <Image Name="markettitle.png" />
+          <Image Name="mypackagetitle.png" />
           <Image Name="okbtn_text.png" />
           <Image Name="outtowntitle.png" />
           <Image Name="package_text.png" />
@@ -556,10 +588,26 @@
           <Image Name="h_0_1.png" />
           <Image Name="h_1_0.png" />
           <Image Name="h_1_1.png" />
+          <Image Name="h_10_0.png" />
+          <Image Name="h_10_1.png" />
+          <Image Name="h_11_0.png" />
+          <Image Name="h_11_1.png" />
           <Image Name="h_2_0.png" />
           <Image Name="h_2_1.png" />
           <Image Name="h_3_0.png" />
           <Image Name="h_3_1.png" />
+          <Image Name="h_4_0.png" />
+          <Image Name="h_4_1.png" />
+          <Image Name="h_5_0.png" />
+          <Image Name="h_5_1.png" />
+          <Image Name="h_6_0.png" />
+          <Image Name="h_6_1.png" />
+          <Image Name="h_7_0.png" />
+          <Image Name="h_7_1.png" />
+          <Image Name="h_8_0.png" />
+          <Image Name="h_8_1.png" />
+          <Image Name="h_9_0.png" />
+          <Image Name="h_9_1.png" />
           <Image Name="h001.png" />
           <Image Name="h001-2.png" />
           <Image Name="h001-3.png" />
@@ -738,6 +786,7 @@
         <Project Name="fighterAttrLayer.csd" Type="Layer" />
         <Project Name="fightHeroNode.csd" Type="Node" />
         <Project Name="fightLayer.csd" Type="Layer" />
+        <Project Name="fightResultLayer.csd" Type="Layer" />
         <Project Name="heroAttrLayer.csd" Type="Layer" />
         <Project Name="hillResNode.csd" Type="Node" />
         <Project Name="homeHillLayer.csd" Type="Layer" />
@@ -762,9 +811,9 @@
         <Project Name="resDescLayer.csd" Type="Scene" />
         <Project Name="selectEquipLayer.csd" Type="Scene" />
         <Project Name="selectMapNode.csd" Type="Node" />
-        <Project Name="selectMyHerosLayer.csd" Type="Layer" />
         <Project Name="selectSubMapLayer.csd" Type="Layer" />
         <Project Name="setinStoneLayer.csd" Type="Layer" />
+        <Project Name="simpleLayer.csd" Type="Layer" />
         <Project Name="smithyLayer.csd" Type="Layer" />
         <Project Name="storeHouseLayer.csd" Type="Layer" />
         <Project Name="takeOnLayer.csd" Type="Layer" />
@@ -774,7 +823,6 @@
         <Project Name="taskMainNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
-        <Project Name="winLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
         <Project Name="trainLayer.csd" Type="Layer" />
       </RootFolder>

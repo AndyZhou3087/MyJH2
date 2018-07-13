@@ -48,7 +48,7 @@ bool SelectMyHerosLayer::init(int wheretype)
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("selectMyHerosLayer.csb"));
+	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("simpleLayer.csb"));
 	this->addChild(csbnode, 0, "selct");
 	int langtype = GlobalInstance::getInstance()->getLang();
 	//标题
@@ -59,6 +59,14 @@ bool SelectMyHerosLayer::init(int wheretype)
 		titlenamstr = "";
 
 	titleimg->loadTexture(ResourcePath::makeTextImgPath(titlenamstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
+
+	int size = GlobalInstance::vec_myHeros.size();
+	if (size > 0)
+		desc->setVisible(false);
+	else
+		desc->setString(ResourceLang::map_lang["heroempty"]);
 
 	//关闭按钮
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
