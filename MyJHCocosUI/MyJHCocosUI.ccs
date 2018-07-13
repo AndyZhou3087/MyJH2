@@ -398,6 +398,8 @@
           <Image Name="taskdayget.png" />
           <Image Name="taskdaygo.png" />
           <Image Name="taskfinish.png" />
+          <Image Name="train_text.png" />
+          <Image Name="trainlv_text.png" />
           <Image Name="usebtn_text.png" />
           <Image Name="windeath_text.png" />
           <Image Name="winlvup_text.png" />
@@ -774,6 +776,7 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="winLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="trainLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

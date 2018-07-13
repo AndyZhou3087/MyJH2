@@ -64,8 +64,9 @@ bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 
 	//npcÍ·Ïñ
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
-	std::string str = StringUtils::format("mapui/%s.png", data->npcid.c_str());
+	std::string str = "ui/h_0_0.png"; //StringUtils::format("mapui/%s.png", data->npcid.c_str());
 	icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+	icon->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
 
 	//npcÃû×Ö
 	cocos2d::ui::Text* npcname = (cocos2d::ui::Text*)m_csbnode->getChildByName("npcname");

@@ -162,6 +162,8 @@
       <FilePathData Path="text_zh_cn/allgetbtn_text.png" />
       <FilePathData Path="text_zh_cn/hospital_text.png" />
       <FilePathData Path="text_zh_cn/cure_text.png" />
+      <FilePathData Path="text_zh_cn/train_text.png" />
+      <FilePathData Path="text_zh_cn/trainlv_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

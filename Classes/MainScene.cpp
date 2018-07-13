@@ -14,6 +14,7 @@
 #include "MarketLayer.h"
 #include "TaskLayer.h"
 #include "HospitalLayer.h"
+#include "TrainLayer.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -222,6 +223,10 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			else if (buildname.compare("1hospital") == 0)
 			{
 				layer = HospitalLayer::create();
+			}
+			else if (buildname.compare("4trainigroom") == 0)
+			{
+				layer = TrainLayer::create(Building::map_buildingDatas[buildname]);
 			}
 
 			if (layer != NULL)
