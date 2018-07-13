@@ -155,6 +155,8 @@
       <FilePathData Path="text_zh_cn/continuebtn_text.png" />
       <FilePathData Path="text_zh_cn/windeath_text.png" />
       <FilePathData Path="text_zh_cn/winlvup_text.png" />
+      <FilePathData Path="text_zh_cn/hospital_text.png" />
+      <FilePathData Path="text_zh_cn/cure_text.png" />
       <FilePathData Path="text_zh_cn/winrewardtitle.png" />
       <FilePathData Path="text_zh_cn/drop_text.png" />
       <FilePathData Path="text_zh_cn/package_text.png" />

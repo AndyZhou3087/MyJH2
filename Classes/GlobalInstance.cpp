@@ -520,7 +520,7 @@ void GlobalInstance::loadTaskMainData()
 					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
 					CommonFuncs::split(onestr, vec_tmp, "-");
-					for (int j = 0; j < vec_tmp.size(); j++)
+					for (unsigned int j = 0; j < vec_tmp.size(); j++)
 					{
 						vec.push_back(vec_tmp[j]);
 					}
@@ -537,13 +537,16 @@ void GlobalInstance::loadTaskMainData()
 					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
 					CommonFuncs::split(onestr, vec_tmp, "-");
-					for (int j = 0; j < vec_tmp.size(); j++)
+					for (unsigned int j = 0; j < vec_tmp.size(); j++)
 					{
 						vec.push_back(vec_tmp[j]);
 					}
 					data.reward2.push_back(vec);
 				}
 			}
+
+			v = jsonvalue["isGo"];
+			data.isGo = atoi(v.GetString());
 			
 			data.isfinish = 1;//默认未接受任务
 			data.finishtype = 0;
@@ -560,7 +563,7 @@ void GlobalInstance::loadMyTaskMainData()
 	{
 		std::vector<std::string> vec_tmp;
 		CommonFuncs::split(str, vec_tmp, ";");
-		for (int i = 0; i < vec_tmp.size(); i++)
+		for (unsigned int i = 0; i < vec_tmp.size(); i++)
 		{
 			std::vector<std::string> vec_one;
 			CommonFuncs::split(vec_tmp[i], vec_one, "-");
@@ -652,7 +655,7 @@ void GlobalInstance::loadTaskBranchData()
 					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
 					CommonFuncs::split(onestr, vec_tmp, "-");
-					for (int j = 0; j < vec_tmp.size(); j++)
+					for (unsigned int j = 0; j < vec_tmp.size(); j++)
 					{
 						vec.push_back(vec_tmp[j]);
 					}
@@ -672,7 +675,7 @@ void GlobalInstance::loadTaskBranchData()
 					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
 					CommonFuncs::split(onestr, vec_tmp, "-");
-					for (int j = 0; j < vec_tmp.size(); j++)
+					for (unsigned int j = 0; j < vec_tmp.size(); j++)
 					{
 						vec.push_back(vec_tmp[j]);
 					}
@@ -694,7 +697,7 @@ void GlobalInstance::loadMyTaskBranchData()
 	{
 		std::vector<std::string> vec_tmp;
 		CommonFuncs::split(str, vec_tmp, ";");
-		for (int i = 0; i < vec_tmp.size(); i++)
+		for (unsigned int i = 0; i < vec_tmp.size(); i++)
 		{
 			std::vector<std::string> vec_one;
 			CommonFuncs::split(vec_tmp[i], vec_one, "-");
@@ -770,7 +773,7 @@ void GlobalInstance::loadDailyTaskData()
 					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
 					CommonFuncs::split(onestr, vec_tmp, "-");
-					for (int j = 0; j < vec_tmp.size(); j++)
+					for (unsigned int j = 0; j < vec_tmp.size(); j++)
 					{
 						vec.push_back(vec_tmp[j]);
 					}
@@ -795,7 +798,7 @@ void GlobalInstance::getMyDailyTaskData()
 	{
 		std::vector<std::string> vec_tmp;
 		CommonFuncs::split(str, vec_tmp, ";");
-		for (int i = 0; i < vec_tmp.size(); i++)
+		for (unsigned int i = 0; i < vec_tmp.size(); i++)
 		{
 			std::vector<std::string> vec_one;
 			CommonFuncs::split(vec_tmp[i], vec_one, "-");

@@ -8,6 +8,8 @@
 #include "MyMenu.h"
 #include "MovingLabel.h"
 #include "Quest.h"
+#include "MapBlockScene.h"
+#include "FightingLayer.h"
 
 TaskBranchTalkLayer::TaskBranchTalkLayer()
 {
@@ -20,10 +22,10 @@ TaskBranchTalkLayer::~TaskBranchTalkLayer()
 
 }
 
-TaskBranchTalkLayer* TaskBranchTalkLayer::create( std::string npcid)
+TaskBranchTalkLayer* TaskBranchTalkLayer::create(std::string npcid, std::vector<Npc*> vec_enemys)
 {
 	TaskBranchTalkLayer *pRet = new(std::nothrow)TaskBranchTalkLayer();
-	if (pRet && pRet->init(npcid))
+	if (pRet && pRet->init(npcid, vec_enemys))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -36,9 +38,10 @@ TaskBranchTalkLayer* TaskBranchTalkLayer::create( std::string npcid)
 	}
 }
 
-bool TaskBranchTalkLayer::init(std::string npcid)
+bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 {
 	m_npcid = npcid;
+	m_vec_enemys = vec_enemys;
 
 	TaskBranchData* data = &GlobalInstance::myCurBranchData;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
@@ -93,7 +96,7 @@ bool TaskBranchTalkLayer::init(std::string npcid)
 
 	std::vector<std::vector<std::string>> rewards = data->need;
 
-	for (int i = 0; i < rewards.size(); i++)
+	for (unsigned int i = 0; i < rewards.size(); i++)
 	{
 		std::vector<std::string> one_res = rewards[i];
 		std::string resid = one_res[0];
@@ -161,7 +164,27 @@ void TaskBranchTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 			this->removeFromParentAndCleanup(true);
 			break;
 		case 1: //Ìõ¼þ1
-			Quest::setResBranchQuestData("r006", 500, m_npcid);//²âÊÔ
+			if (GlobalInstance::myCurBranchData.type == QUEST_GIVE)
+			{
+				for (unsigned int i = 0; i < GlobalInstance::myCurBranchData.need.size(); i++)
+				{
+					std::vector<std::string> one_res = GlobalInstance::myCurBranchData.need[i];
+					std::string cresid = one_res[0];
+					int count = atoi(one_res[1].c_str());
+					if (MyRes::getMyResCount(cresid, MYPACKAGE) < count)
+					{
+						MovingLabel::show(ResourceLang::map_lang["reslack"]);
+						break;
+					}
+					Quest::setResQuestData(cresid, count, m_npcid);
+					this->removeFromParentAndCleanup(true);
+				}
+			}
+			else
+			{
+				g_MapBlockScene->addChild(FightingLayer::create(m_vec_enemys));
+				this->removeFromParentAndCleanup(true);
+			}
 			break;
 		default:
 			break;

@@ -128,17 +128,17 @@ bool TaskMainDescLayer::init(TaskMainData* data)
 	}
 	else 
 	{
-		for (int m = 0; m < data->reward1.size(); m++)
+		for (unsigned int m = 0; m < data->reward1.size(); m++)
 		{
 			rewards.push_back(data->reward1[m]);
 		}
-		for (int n = 0; n < data->reward2.size(); n++)
+		for (unsigned int n = 0; n < data->reward2.size(); n++)
 		{
 			rewards.push_back(data->reward2[n]);
 		}
 	}
 
-	for (int i = 0; i < rewards.size(); i++)
+	for (unsigned int i = 0; i < rewards.size(); i++)
 	{
 		std::vector<std::string> one_res = rewards[i];
 		std::string resid = one_res[0];
@@ -238,7 +238,7 @@ void TaskMainDescLayer::getRewards()
 	{
 		rewarr = m_data->reward2;
 	}
-	for (int i = 0; i < rewarr.size(); i++)
+	for (unsigned int i = 0; i < rewarr.size(); i++)
 	{
 		std::vector<std::string> one_res = rewarr[i];
 		std::string resid = one_res[0];

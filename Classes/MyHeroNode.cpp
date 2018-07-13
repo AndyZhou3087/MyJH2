@@ -7,6 +7,9 @@
 #include "GlobalInstance.h"
 #include "SelectMyHerosLayer.h"
 #include "CardHeroNode.h"
+#include "HospitalLayer.h"
+
+#define RSILVERCOUNT 100
 
 MyHeroNode::MyHeroNode()
 {
@@ -72,6 +75,11 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	cocos2d::ui::Widget* actbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actbtn->addTouchEventListener(CC_CALLBACK_2(MyHeroNode::onBtnClick, this));
 
+	silver = (cocos2d::ui::Widget*)csbnode->getChildByName("silver");
+	count = (cocos2d::ui::Text*)silver->getChildByName("count");
+	std::string s = StringUtils::format("%d", (herodata->getLevel() + 1) * RSILVERCOUNT);
+	count->setString(s);
+
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	//按钮文字
@@ -91,6 +99,14 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	}
 
 	updateData();
+
+	if (m_showtype == HS_DEAD)
+	{
+		bgitem->setTouchEnabled(false);
+		statetag->setVisible(false);
+		actbtntxt->loadTexture(ResourcePath::makeTextImgPath("cure_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		silver->setVisible(true);
+	}
 
 	return true;
 }
@@ -176,7 +192,24 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				setStateTag(HS_OWNED);
 				cardheroNode->setData(NULL);
 			}
+		}
+		else if (m_showtype == HS_DEAD)
+		{
+			DynamicValueInt dval = GlobalInstance::getInstance()->getMySoliverCount();
+			if (dval.getValue() >= (m_heroData->getLevel() + 1) * RSILVERCOUNT)
+			{
+				DynamicValueInt dva;
+				dva.setValue((m_heroData->getLevel() + 1) * RSILVERCOUNT);
+				GlobalInstance::getInstance()->costMySoliverCount(dva);
 
+				m_heroData->setState(HS_OWNED);
+				GlobalInstance::getInstance()->saveMyHeros();
+				HospitalLayer* hospitalLayer = (HospitalLayer*)g_mainScene->getChildByName("1hospital");
+				if (hospitalLayer != NULL)
+				{
+					hospitalLayer->updateContent();
+				}
+			}
 		}
 	}
 }
