@@ -27,6 +27,14 @@ private:
 	void updateScrollviewContent();
 
 	void loadScrollviewData();
+
+	void loadMyPackageRes();
+
+	void addDropRes(ResBase* res);
+
+	void reduceDropRes(ResBase* res, int count, int iteindex);
+
+	void delayClose(float dt);
 private:
 	cocos2d::ui::Text* carrycountlbl;
 	std::vector<FOURProperty> m_rewards;

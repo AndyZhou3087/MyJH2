@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="selectMyHerosLayer" Type="Layer" ID="970bee1a-d9ec-4c66-9107-5cb62d4ed624" Version="3.10.0.0" />
+  <PropertyGroup Name="simpleLayer" Type="Layer" ID="970bee1a-d9ec-4c66-9107-5cb62d4ed624" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -76,6 +76,18 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="650" Height="1100" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="desc" ActionTag="1670329134" Tag="56" IconVisible="False" LeftMargin="171.0000" RightMargin="171.0000" TopMargin="584.0000" BottomMargin="664.0000" FontSize="28" LabelText="空空如也~~请到客栈招募侠客！" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="378.0000" Y="32.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="680.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.5000" Y="0.5313" />
+            <PreSize X="0.5250" Y="0.0250" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

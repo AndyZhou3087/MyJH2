@@ -11,10 +11,11 @@
 #include "MapEventLayer.h"
 #include "DataSave.h"
 #include "FightingLayer.h"
-#include "WinLayer.h"
+#include "FightingResultLayer.h"
 #include "Quest.h"
 #include "TaskTalkLayer.h"
 #include "TaskBranchTalkLayer.h"
+#include "MyPackageLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -32,6 +33,14 @@ MapBlockScene::MapBlockScene()
 
 MapBlockScene::~MapBlockScene()
 {
+	for (int i = 0; i < 6; i++)
+	{
+		if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() == HS_DEAD)
+		{
+			GlobalInstance::myCardHeros[i] = NULL;
+		}
+	}
+
 	g_MapBlockScene = NULL;
 }
 
@@ -113,6 +122,14 @@ bool MapBlockScene::init(std::string mapname)
 	gocitybtn->setTag(BTN_GOCITY);
 	gocitybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
 
+	cocos2d::ui::Widget* mapbtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("mapbtn");
+	mapbtn->setTag(BTN_MAP);
+	mapbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+
+	cocos2d::ui::Widget* mypackagebtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("packagebtn");
+	mypackagebtn->setTag(BTN_PACKAGE);
+	mypackagebtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+
 	std::string keyname[] = {"upbtn", "downbtn", "leftbtn", "rightbtn"};
 
 	for (int i = 0; i < 4; i++)
@@ -157,7 +174,13 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MainScene::createScene()));
 			break;
 		case BTN_MAP:
-			
+			Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MainMapScene::createScene()));
+			break;
+		case BTN_PACKAGE:
+		{			
+			MyPackageLayer* layer = MyPackageLayer::create();
+			this->addChild(layer);
+		}
 			break;
 		default:
 			break;
@@ -257,7 +280,6 @@ void MapBlockScene::stopMoving()
 	{
 		go((MAP_KEYTYPE)m_longTouchNode->getTag());
 	}
-
 }
 
 bool MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
@@ -627,17 +649,15 @@ void MapBlockScene::updateHeroUI(int which)
 {
 	FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(which);
 	fnode->updateHp();
-	GlobalInstance::getInstance()->saveMyHeros();
 }
 
 void MapBlockScene::showFightResult(int result)
 {
 	if (result == 0)
 	{
-		//for (int i = 0; i < 6; i++)
-		//	GlobalInstance::myCardHeros[i] = NULL;
-
-		Director::getInstance()->replaceScene(MainScene::createScene());
+		std::vector<FOURProperty> vec;
+		FightingResultLayer* FRlayer = FightingResultLayer::create(vec, 0);
+		this->addChild(FRlayer);
 	}
 	else
 	{
@@ -658,8 +678,8 @@ void MapBlockScene::showFightResult(int result)
 			if (GlobalInstance::myCardHeros[i] != NULL &&  GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
 				count++;
 		}
-		WinLayer* winlayer = WinLayer::create(vec_winrewards, getWinExp()/count);
-		this->addChild(winlayer);
+		FightingResultLayer* FRlayer = FightingResultLayer::create(vec_winrewards, getWinExp()/count);
+		this->addChild(FRlayer);
 	}
 }
 

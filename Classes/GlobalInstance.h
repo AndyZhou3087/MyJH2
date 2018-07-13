@@ -228,6 +228,8 @@ public:
 	//保存英雄数据到本地
 	void saveMyHeros();
 
+	void saveHero(Hero* hero);
+
 	//从本地读取英雄数据
 	void loadMyHeros();
 

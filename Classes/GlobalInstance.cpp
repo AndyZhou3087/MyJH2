@@ -206,6 +206,21 @@ void GlobalInstance::saveMyHeros()
 	}
 }
 
+void GlobalInstance::saveHero(Hero* hero)
+{
+	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+	{
+		if (hero->getName().compare(GlobalInstance::vec_myHeros[i]->getName()) == 0)
+		{
+			std::string herokey = StringUtils::format("hero%d", i);
+			Hero* hero = GlobalInstance::vec_myHeros[i];
+			std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp());
+			DataSave::getInstance()->setHeroData(herokey, datastr);
+			break;
+		}
+	}
+}
+
 void GlobalInstance::loadMyHeros()
 {
 	for (int i = 0; i < 50; i++)

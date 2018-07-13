@@ -139,6 +139,28 @@ void MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescou
 	saveData();
 }
 
+void MyRes::Add(ResBase* res, int count, int inwhere)
+{
+	if (count == 0)
+		count = res->getCount().getValue();
+
+	int type = res->getType();
+	if (type >= T_ARMOR && type <= T_FASHION || (type >= T_WG && type <= T_NG))
+	{
+		DynamicValueInt dv;
+		dv.setValue(count);
+		res->setCount(dv);
+
+		res->setWhere(inwhere);
+		vec_MyResources.push_back(res);
+	}
+	else
+	{
+		Add(res->getId(), count, inwhere);
+	}
+	saveData();
+}
+
 int MyRes::Use(int iterindex, int count)
 {
 	ResBase* res = vec_MyResources[iterindex];
@@ -215,6 +237,28 @@ int MyRes::Use(std::string resid, int count, int inwhere)
 		return 0;
 
 	return Use(res, count, inwhere);
+}
+
+void MyRes::putMyPackagesToStorage()
+{
+	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
+	{
+		ResBase* res = vec_MyResources[i];
+		if (res->getWhere() == MYPACKAGE)
+		{
+			Add(res, res->getCount().getValue(), MYSTORAGE);
+		}
+	}
+
+	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
+	{
+		ResBase* res = vec_MyResources[i];
+		if (res->getWhere() == MYPACKAGE)
+		{
+			Use(res, res->getCount().getValue(), MYPACKAGE);
+		}
+	}
+
 }
 
 

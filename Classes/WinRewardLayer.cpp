@@ -16,7 +16,10 @@ WinRewardLayer::WinRewardLayer()
 
 WinRewardLayer::~WinRewardLayer()
 {
-
+	for (unsigned int i = 0; i < vec_dropdownres.size(); i++)
+	{
+		delete vec_dropdownres[i];
+	}
 }
 
 WinRewardLayer* WinRewardLayer::create(std::vector<FOURProperty> reward_res)
@@ -158,6 +161,7 @@ void WinRewardLayer::updateScrollviewContent()
 				qubox,
 				CC_CALLBACK_1(WinRewardLayer::onclick, this));
 			boxItem->setUserData((void*)vec_res[m]);
+			boxItem->setTag(i * 10000 + m);
 
 			boxItem->setPosition(Vec2(qubox->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
 
@@ -165,7 +169,6 @@ void WinRewardLayer::updateScrollviewContent()
 			menu->addChild(boxItem);
 			menu->setTouchlimit(sv);
 			menu->setPosition(Vec2(0, 0));
-
 			sv->addChild(menu);
 
 			std::string resid = vec_res[m]->getId();
@@ -197,29 +200,61 @@ void WinRewardLayer::updateScrollviewContent()
 			boxItem->addChild(countlbl);
 		}
 	}
+	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::getInstance()->getTotalCaryy());
+	carrycountlbl->setString(str);
 }
 
 void WinRewardLayer::loadScrollviewData()
 {
+	std::string types[] = { "r","a","e","h","f","w","x","s","c","d","m","b","y" };
+
 	for (unsigned int i = 0; i < m_rewards.size(); i++)
 	{
-		ResBase* res = new ResBase();
-		res->setId(m_rewards[i].sid);
+		std::string rid = m_rewards[i].sid;
+
+		int t = 0;
+		for (; t < sizeof(types) / sizeof(types[0]); t++)
+		{
+			if (rid.compare(0, 1, types[t]) == 0)
+				break;
+		}
+		int qu = m_rewards[i].intPara2;
+		ResBase* res;
+		if (t >= T_ARMOR && t <= T_FASHION)
+		{
+			res = new Equip();
+			int stonecount = GlobalInstance::getInstance()->generateStoneCount(qu);
+
+			for (int m = 0; m < stonecount; m++)
+			{
+				((Equip*)res)->vec_stones.push_back("o");
+			}
+		}
+		else
+			res = new ResBase();
+		res->setType(t);
+		res->setId(rid);
 		DynamicValueInt dv;
 		dv.setValue(m_rewards[i].intPara1);
 		res->setCount(dv);
-		dv.setValue(m_rewards[i].intPara2);
+		dv.setValue(qu);
 		res->setQU(dv);
+		res->setWhere(MYPACKAGE);
+
 		vec_dropdownres.push_back(res);
 	}
+	loadMyPackageRes();
+}
 
+void WinRewardLayer::loadMyPackageRes()
+{
+	vec_mypackagres.clear();
 	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
 	{
 		ResBase* res = MyRes::vec_MyResources[i];
 		if (res->getWhere() == MYPACKAGE)
 			vec_mypackagres.push_back(res);
 	}
-
 }
 
 void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -227,17 +262,45 @@ void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Node* btnnode = (Node*)pSender;
+		cocos2d::ui::Button* btnnode = (cocos2d::ui::Button*)pSender;
 		int tag = btnnode->getTag();
 		switch (tag)
 		{
 		case 1000://allget
 		{
+			int packagecount = 0;
+
+			for (unsigned int i = 0; i < vec_dropdownres.size(); i++)
+			{
+				packagecount += vec_dropdownres[i]->getCount().getValue();
+			}
+
+			if (MyRes::getMyPackageCount() + packagecount > GlobalInstance::getInstance()->getTotalCaryy())
+			{
+				MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
+				return;
+			}
+
+			btnnode->setEnabled(false);
+			float dt = 0.1f;
+			if (vec_dropdownres.size() > 0)
+			{
+				for (unsigned int i = 0; i < vec_dropdownres.size(); i++)
+				{
+					MyRes::Add(vec_dropdownres[i], vec_dropdownres[i]->getCount().getValue(), MYPACKAGE);
+				}
+				vec_dropdownres.clear();
+				loadMyPackageRes();
+
+				updateScrollviewContent();
+				dt = 1.0f;
+			}
+			//this->scheduleOnce(schedule_selector(WinRewardLayer::delayClose), dt);
 			break;
 		}
 		case 1001://continue
 		{
-
+			this->getParent()->removeFromParentAndCleanup(true);
 		}
 			break;
 		case 1002://close
@@ -253,4 +316,116 @@ void WinRewardLayer::onclick(Ref* pSender)
 {
 	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 	Node* node = (Node*)pSender;
+	int tag = node->getTag();
+	if (tag / 10000 == 0)//点击的是两个scrollview的 0--掉落，1--背包
+	{
+		if (MyRes::getMyPackageCount() + 1 > GlobalInstance::getInstance()->getTotalCaryy())
+		{
+			MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
+			return;
+		}
+		ResBase* res = (ResBase*)node->getUserData();
+		reduceDropRes(res, 1, tag % 10000);
+	}
+	else if (tag / 10000 == 1)
+	{
+		ResBase* res = (ResBase*)node->getUserData();
+		addDropRes(res);
+	}
+	updateScrollviewContent();
+}
+
+void WinRewardLayer::delayClose(float dt)
+{
+	this->getParent()->removeFromParentAndCleanup(true);
+}
+
+void WinRewardLayer::addDropRes(ResBase* res)
+{
+	int type = res->getType();
+
+	if (type >= T_ARMOR && type <= T_FASHION)
+	{
+		Equip* ores = (Equip*)res;
+		Equip* eres = new Equip();
+		eres->setId(ores->getId());
+		eres->setCount(ores->getCount());
+		eres->setLv(ores->getLv());
+		eres->setQU(ores->getQU());
+		eres->setType(ores->getType());
+		eres->setWhere(ores->getWhere());
+		eres->setWhos(ores->getWhos());
+		vec_dropdownres.push_back(res);
+	}
+	else if (type >= T_WG && type <= T_NG)
+	{
+		GongFa* ores = (GongFa*)res;
+		GongFa* eres = new GongFa();
+		eres->setId(ores->getId());
+		eres->setCount(ores->getCount());
+		eres->setExp(ores->getExp());
+		eres->setQU(ores->getQU());
+		eres->setType(ores->getType());
+		eres->setWhere(ores->getWhere());
+		eres->setWhos(ores->getWhos());
+		vec_dropdownres.push_back(res);
+	}
+	else
+	{
+		//std::string resid;
+		int index = -1;
+		for (unsigned int i = 0; i < vec_dropdownres.size(); i++)
+		{
+			if (vec_dropdownres[i]->getId().compare(res->getId()) == 0)
+			{
+				index = i;
+				break;
+			}
+		}
+
+		if (index >= 0)
+		{
+			DynamicValueInt dv;
+			dv.setValue(vec_dropdownres[index]->getCount().getValue() + 1);
+			vec_dropdownres[index]->setCount(dv);
+		}
+		else
+		{
+			ResBase* nres = new ResBase();
+			nres->setId(res->getId());
+			nres->setType(type);
+			nres->setWhere(MYPACKAGE);
+			DynamicValueInt dv;
+			dv.setValue(1);
+			nres->setCount(dv);
+			vec_dropdownres.push_back(nres);
+		}
+	}
+	MyRes::Use(res, 1, MYPACKAGE);
+	loadMyPackageRes();
+}
+
+void WinRewardLayer::reduceDropRes(ResBase* res, int count, int iteindex)
+{
+	int type = res->getType();
+
+	if (type >= T_ARMOR && type <= T_FASHION || (type >= T_WG && type <= T_NG))
+	{
+		vec_dropdownres.erase(vec_dropdownres.begin() + iteindex);
+	}
+	else
+	{
+		if (vec_dropdownres[iteindex]->getCount().getValue() > count)
+		{
+			DynamicValueInt dv;
+			dv.setValue(vec_dropdownres[iteindex]->getCount().getValue() - count);
+			vec_dropdownres[iteindex]->setCount(dv);
+		}
+		else
+		{
+			vec_dropdownres.erase(vec_dropdownres.begin() + iteindex);
+		}
+	}
+	MyRes::Add(res, count, MYPACKAGE);
+	loadMyPackageRes();
 }

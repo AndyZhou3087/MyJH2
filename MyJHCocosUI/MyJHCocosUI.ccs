@@ -354,6 +354,7 @@
           <Image Name="mappackbtn_text.png" />
           <Image Name="marketlvup_text.png" />
           <Image Name="markettitle.png" />
+          <Image Name="mypackagetitle.png" />
           <Image Name="okbtn_text.png" />
           <Image Name="outtowntitle.png" />
           <Image Name="package_text.png" />
@@ -760,7 +761,7 @@
         <Project Name="resDescLayer.csd" Type="Scene" />
         <Project Name="selectEquipLayer.csd" Type="Scene" />
         <Project Name="selectMapNode.csd" Type="Node" />
-        <Project Name="selectMyHerosLayer.csd" Type="Layer" />
+        <Project Name="simpleLayer.csd" Type="Layer" />
         <Project Name="selectSubMapLayer.csd" Type="Layer" />
         <Project Name="setinStoneLayer.csd" Type="Layer" />
         <Project Name="smithyLayer.csd" Type="Layer" />
@@ -772,7 +773,7 @@
         <Project Name="taskMainNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
-        <Project Name="winLayer.csd" Type="Layer" />
+        <Project Name="fightResultLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>

@@ -13,6 +13,8 @@ public:
 
 	static void Add(std::string resid, int count = 1, int inwhere = MYSTORAGE, int qu = 0, int stonescount = 0);
 
+	static void Add(ResBase* res, int count = 0, int inwhere = MYSTORAGE);
+
 	//像装备，功法同一个ID会有多个，无法只根据ID查找
 	static int Use(ResBase* res, int count = 1, int inwhere = MYSTORAGE);
 
@@ -27,6 +29,9 @@ public:
 
 	//获取装备栏中的物品BYTYPE
 	static ResBase* getMyPutOnResByType(int type, std::string who);
+
+	//将背包中的物品放到仓库中，回城使用
+	static void putMyPackagesToStorage();
 public:
 
 	static std::vector<ResBase* > vec_MyResources;//我的资源，包括背包，仓库，装备上的
