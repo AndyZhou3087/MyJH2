@@ -327,6 +327,22 @@
       <FilePathData Path="ui/pointicon_1.png" />
       <FilePathData Path="ui/pointicon_2.png" />
       <FilePathData Path="ui/pointicon_3.png" />
+      <FilePathData Path="ui/h_10_0.png" />
+      <FilePathData Path="ui/h_10_1.png" />
+      <FilePathData Path="ui/h_11_0.png" />
+      <FilePathData Path="ui/h_11_1.png" />
+      <FilePathData Path="ui/h_4_0.png" />
+      <FilePathData Path="ui/h_4_1.png" />
+      <FilePathData Path="ui/h_5_0.png" />
+      <FilePathData Path="ui/h_5_1.png" />
+      <FilePathData Path="ui/h_6_0.png" />
+      <FilePathData Path="ui/h_6_1.png" />
+      <FilePathData Path="ui/h_7_0.png" />
+      <FilePathData Path="ui/h_7_1.png" />
+      <FilePathData Path="ui/h_8_0.png" />
+      <FilePathData Path="ui/h_8_1.png" />
+      <FilePathData Path="ui/h_9_0.png" />
+      <FilePathData Path="ui/h_9_1.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

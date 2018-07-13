@@ -166,6 +166,37 @@
       <FilePathData Path="mapui/winretbox.png" />
       <FilePathData Path="mapui/winsepbox.png" />
       <FilePathData Path="mapui/n014.png" />
+      <FilePathData Path="mapui/boardblock_100.png" />
+      <FilePathData Path="mapui/boardblock_101.png" />
+      <FilePathData Path="mapui/boardblock_102.png" />
+      <FilePathData Path="mapui/boardblock_103.png" />
+      <FilePathData Path="mapui/boardblock_104.png" />
+      <FilePathData Path="mapui/boardblock_105.png" />
+      <FilePathData Path="mapui/boardblock_106.png" />
+      <FilePathData Path="mapui/boardblock_107.png" />
+      <FilePathData Path="mapui/boardblock_108.png" />
+      <FilePathData Path="mapui/boardblock_109.png" />
+      <FilePathData Path="mapui/boardblock_110.png" />
+      <FilePathData Path="mapui/boardblock_111.png" />
+      <FilePathData Path="mapui/boardblock_112.png" />
+      <FilePathData Path="mapui/boardblock_113.png" />
+      <FilePathData Path="mapui/boardblock_114.png" />
+      <FilePathData Path="mapui/boardblock_115.png" />
+      <FilePathData Path="mapui/boardblock_116.png" />
+      <FilePathData Path="mapui/boardblock_117.png" />
+      <FilePathData Path="mapui/boardblock_118.png" />
+      <FilePathData Path="mapui/boardblock_119.png" />
+      <FilePathData Path="mapui/boardblock_99.png" />
+      <FilePathData Path="mapui/buildblock_28.png" />
+      <FilePathData Path="mapui/buildblock_29.png" />
+      <FilePathData Path="mapui/buildblock_30.png" />
+      <FilePathData Path="mapui/buildblock_31.png" />
+      <FilePathData Path="mapui/buildblock_32.png" />
+      <FilePathData Path="mapui/buildblock_33.png" />
+      <FilePathData Path="mapui/buildblock_34.png" />
+      <FilePathData Path="mapui/buildblock_35.png" />
+      <FilePathData Path="mapui/buildblock_36.png" />
+      <FilePathData Path="mapui/buildblock_37.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
