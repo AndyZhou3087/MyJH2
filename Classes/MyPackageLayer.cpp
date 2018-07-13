@@ -51,8 +51,8 @@ bool MyPackageLayer::init()
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("mypackagetitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
-	titleimg->setVisible(false);
+	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
+	desc->setVisible(false);
 
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
 	closebtn->setTag(1000);
