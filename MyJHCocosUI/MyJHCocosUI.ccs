@@ -233,6 +233,7 @@
           <Image Name="n011.png" />
           <Image Name="n012.png" />
           <Image Name="n013.png" />
+          <Image Name="n014.png" />
           <Image Name="submapanimcloud.png" />
           <Image Name="submapnodeitem.png" />
           <Image Name="submaptitlecloud.png" />
@@ -772,7 +773,6 @@
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="winLayer.csd" Type="Layer" />
-        <Project Name="hospitalLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>

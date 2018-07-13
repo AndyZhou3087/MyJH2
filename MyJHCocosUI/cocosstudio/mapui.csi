@@ -165,6 +165,7 @@
       <FilePathData Path="mapui/winexpbar.png" />
       <FilePathData Path="mapui/winretbox.png" />
       <FilePathData Path="mapui/winsepbox.png" />
+      <FilePathData Path="mapui/n014.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
