@@ -5,6 +5,8 @@
 #include "ConsumeResActionLayer.h"
 #include "MovingLabel.h"
 #include "DataSave.h"
+#include "Hero.h"
+#include "MyHeroNode.h"
 
 USING_NS_CC;
 
@@ -108,8 +110,8 @@ void TrainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		case 1000://Éý¼¶
 			if (m_buidingData->level.getValue() < m_buidingData->maxlevel.getValue() - 1)
 			{
-				/*ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_buidingData, CA_BUILDINGLVUP);
-				this->addChild(layer);*/
+				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_buidingData, CA_BUILDINGLVUP);
+				this->addChild(layer);
 			}
 			else
 			{
@@ -134,38 +136,32 @@ void TrainLayer::updateContent()
 {
 	m_contentscroll->removeAllChildrenWithCleanup(true);
 
-	int itemheight = 140;
+	int itemheight = 160;
 
-	/*int size = map_cateRes[category].size();
+	int size = GlobalInstance::vec_myHeros.size();
 	int innerheight = itemheight * size;
 	int contentheight = m_contentscroll->getContentSize().height;
 	if (innerheight < contentheight)
 		innerheight = contentheight;
 	m_contentscroll->setInnerContainerSize(Size(720, innerheight));
 
-
+	std::vector<Hero*> vec_trainheros;
 	for (int i = 0; i < size; i++)
 	{
-		Node* itemnode = CSLoader::createNode(ResourcePath::makePath("makeResNode.csb"));
+		Hero* hero = GlobalInstance::vec_myHeros[i];
+		if (hero->getState()!=HS_DEAD)
+		{
+			vec_trainheros.push_back(hero);
+		}
+	}
 
-		itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
-		m_contentscroll->addChild(itemnode);
-
-		cocos2d::ui::Widget* itembg = (cocos2d::ui::Widget*)itemnode->getChildByName("resitem");
-		itembg->addTouchEventListener(CC_CALLBACK_2(TrainLayer::onItemClick, this));
-		itembg->setUserData((void*)map_cateRes[category][i].c_str());
-		itembg->setSwallowTouches(false);
-
-		cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)itemnode->getChildByName("res");
-		std::string resstr = StringUtils::format("ui/%s.png", map_cateRes[category][i].c_str());
-		resimg->loadTexture(ResourcePath::makePath(resstr), cocos2d::ui::Widget::TextureResType::PLIST);
-
-		cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)itemnode->getChildByName("name");
-		namelbl->setString(GlobalInstance::map_AllResources[map_cateRes[category][i]].name);
-
-		cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)itemnode->getChildByName("desc");
-		desclbl->setString(GlobalInstance::map_AllResources[map_cateRes[category][i]].desc);
-	}*/
+	for (unsigned int i = 0; i < vec_trainheros.size(); i++)
+	{
+		Hero* hero = vec_trainheros[i];
+		MyHeroNode* node = MyHeroNode::create(hero, HS_TRAINING);
+		m_contentscroll->addChild(node);
+		node->setPosition(Vec2(319, innerheight - i*itemheight - itemheight*0.5));
+	}
 }
 
 void TrainLayer::lvup()

@@ -9,6 +9,7 @@
 #include "CardHeroNode.h"
 #include "HospitalLayer.h"
 #include "MovingLabel.h"
+#include "Const.h"
 
 #define RSILVERCOUNT 100
 
@@ -90,6 +91,8 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 
 	tagtext = (cocos2d::ui::Text*)statetag->getChildByName("text");
 
+	countdown = (cocos2d::ui::Text*)csbnode->getChildByName("countdown");
+
 	setStateTag(herodata->getState());
 
 	for (int i = 0; i < 5; i++)
@@ -108,8 +111,41 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 		actbtntxt->loadTexture(ResourcePath::makeTextImgPath("cure_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		silver->setVisible(true);
 	}
+	else if (m_showtype == HS_TRAINING)
+	{
+		bgitem->setTouchEnabled(false);
+		actbtntxt->loadTexture(ResourcePath::makeTextImgPath("training_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		if (herodata->getState() == HS_TRAINING)
+		{
+			actbtntxt->loadTexture(ResourcePath::makeTextImgPath("herocancel_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			countdown->setVisible(true);
+			this->schedule(schedule_selector(MyHeroNode::updateTime), 1.0f);
+		}
+	}
 
 	return true;
+}
+
+void MyHeroNode::updateTime(float dt)
+{
+	int lefttime = 0;
+	int refreshtime = GlobalInstance::getInstance()->getRefreshHeroTime();
+	int pasttime = GlobalInstance::servertime - refreshtime;
+	if (pasttime >= m_heroData->getTrainhour())
+	{
+		int t = GlobalInstance::servertime % m_heroData->getTrainhour();
+
+		refreshtime = GlobalInstance::servertime - t;
+		GlobalInstance::getInstance()->saveRefreshHeroTime(refreshtime);
+
+		lefttime = m_heroData->getTrainhour() - t;
+	}
+	else
+	{
+		lefttime = m_heroData->getTrainhour() - pasttime;
+	}
+	std::string timestr = StringUtils::format("%02d:%02d", lefttime % 3600 / 60, lefttime % 3600 % 60);
+	countdown->setString(timestr);
 }
 
 void MyHeroNode::updateData()

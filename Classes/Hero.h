@@ -18,7 +18,8 @@ typedef enum
 	HS_OWNED,//已招募
 	HS_TAKEON,//出城
 	HS_ONCHALLENGE,//竞技
-	HS_DEAD//死亡
+	HS_DEAD,//死亡
+	HS_TRAINING//训练
 }HEROSTATE;
 class Hero :public Npc
 {
@@ -33,6 +34,7 @@ public:
 	CC_SYNTHESIZE(int, m_breakupper, BreakUpper);//突破等级
 	CC_SYNTHESIZE(float, m_randattr, RandAttr);//随机属性
 	CC_SYNTHESIZE(int, m_pos, Pos);//出城时选择的位置，1开始，0表示不选择
+	CC_SYNTHESIZE(int, m_trainhour, Trainhour);//选择训练的时间，0--未训练，3600--一小时，7200--两小时，10800--三小时
 
 	//血量
 	float getHp();

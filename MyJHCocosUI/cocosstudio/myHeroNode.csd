@@ -222,6 +222,18 @@
             <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="countdown" ActionTag="1089127727" VisibleForFrame="False" Tag="142" IconVisible="False" LeftMargin="-195.1344" RightMargin="132.1344" TopMargin="15.5032" BottomMargin="-43.5032" FontSize="23" LabelText="59:59" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="63.0000" Y="28.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-163.6344" Y="-29.5032" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="239" B="195" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="143" G="84" B="49" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
