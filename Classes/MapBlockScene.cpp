@@ -666,13 +666,16 @@ void MapBlockScene::showFightResult(int result)
 	{
 		for (unsigned int i = 0; i < vec_enemys.size(); i++)
 		{
-			if (Quest::getMainQuestNpc(vec_enemys[i]->getId()))
+			if (vec_enemys[i] != NULL)
 			{
-				Quest::finishFightMain(QUEST_FIGHT);
-			}
-			else if (Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
-			{
-				Quest::finishBranchQuest();
+				if (Quest::getMainQuestNpc(vec_enemys[i]->getId()))
+				{
+					Quest::finishFightMain(QUEST_FIGHT);
+				}
+				else if (Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
+				{
+					Quest::finishBranchQuest();
+				}
 			}
 		}
 		int count = 0;
