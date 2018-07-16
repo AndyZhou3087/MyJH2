@@ -155,6 +155,7 @@ void FightingLayer::resumeAtkSchedule()
 	}
 	else
 	{
+		pauseAtkSchedule();
 		this->removeFromParentAndCleanup(true);
 		if (g_MapBlockScene != NULL)
 			g_MapBlockScene->showFightResult(ret);

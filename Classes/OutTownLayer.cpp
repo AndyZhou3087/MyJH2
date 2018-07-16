@@ -11,6 +11,9 @@ USING_NS_CC;
 std::string carryResids[] = {"r001", "r011", "r012"};
 OutTownLayer::OutTownLayer()
 {
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
+
 	for (int i=0;i<3;i++)
 		caryycount[i] = 0;
 }
@@ -94,10 +97,12 @@ bool OutTownLayer::init()
 		str = StringUtils::format("addbtn%d", i);
 		cocos2d::ui::Button* addbtn = (cocos2d::ui::Button*)csbnode->getChildByName(str);
 		addbtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onAddBtnClick, this));
+		addbtn->setTag(10000 + i);
 
 		str = StringUtils::format("subbtn%d", i);
 		cocos2d::ui::Button* subbtn = (cocos2d::ui::Button*)csbnode->getChildByName(str);
 		subbtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onSubBtnClick, this));
+		subbtn->setTag(20000 + i);
 
 		str = StringUtils::format("carrycount%d", i);
 		caryycountlbl[i] = (cocos2d::ui::Text*)csbnode->getChildByName(str);
@@ -179,54 +184,98 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 void OutTownLayer::onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
+	Node* clicknode = (Node*)pSender;
+	if (type == ui::Widget::TouchEventType::BEGAN)
+	{
+		m_longTouchNode = clicknode;
+		if (!isScheduled(schedule_selector(OutTownLayer::longTouchUpdate)))
+			schedule(schedule_selector(OutTownLayer::longTouchUpdate), 0.2f);
+	}
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Node* clicknode = (Node*)pSender;
-		std::string name = clicknode->getName();
-		int index = atoi(name.substr(name.length() - 1).c_str());
-		if (isCarryOver())
-		{
-			MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
-		}
-		else
-		{
-			if (caryycount[index] >= MyRes::getMyResCount(carryResids[index]))
-			{
-				std::string str = StringUtils::format(ResourceLang::map_lang["lacktext"].c_str(), GlobalInstance::map_AllResources[carryResids[index]].name.c_str());
-				MovingLabel::show(str);
-				return;
-			}
-			caryycount[index]++;
-			updateCaryyCountLbl();
-		}
+		cancelLongTouch();
+		addRes(clicknode);
 	}
+}
+
+void OutTownLayer::addRes(Node* clicknode)
+{
+	std::string name = clicknode->getName();
+	int index = atoi(name.substr(name.length() - 1).c_str());
+	if (isCarryOver())
+	{
+		MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
+	}
+	else
+	{
+		if (caryycount[index] >= MyRes::getMyResCount(carryResids[index]))
+		{
+			std::string str = StringUtils::format(ResourceLang::map_lang["lacktext"].c_str(), GlobalInstance::map_AllResources[carryResids[index]].name.c_str());
+			MovingLabel::show(str);
+			return;
+		}
+		caryycount[index]++;
+		updateCaryyCountLbl();
+	}
+}
+
+void OutTownLayer::onSubBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	Node* clicknode = (Node*)pSender;
+	if (type == ui::Widget::TouchEventType::BEGAN)
+	{
+		m_longTouchNode = clicknode;
+		if (!isScheduled(schedule_selector(OutTownLayer::longTouchUpdate)))
+			schedule(schedule_selector(OutTownLayer::longTouchUpdate), 0.2f);
+	}
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		cancelLongTouch();
+		subRes(clicknode);
+	}
+}
+
+void OutTownLayer::longTouchUpdate(float delay)
+{
+	m_isLongPress = true;
+	if (m_longTouchNode != NULL) {
+		if (m_longTouchNode->getTag() / 10000 == 1)
+			addRes(m_longTouchNode);
+		else if (m_longTouchNode->getTag() / 10000 == 2)
+			subRes(m_longTouchNode);
+
+	}
+}
+
+void OutTownLayer::cancelLongTouch()
+{
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
+	unschedule(schedule_selector(OutTownLayer::longTouchUpdate));
+}
+
+void OutTownLayer::subRes(Node* clicknode)
+{
+	std::string name = clicknode->getName();
+	int index = atoi(name.substr(name.length() - 1).c_str());
+
+	if (caryycount[index] <= 0)
+		return;
+
+	caryycount[index]--;
+	updateCaryyCountLbl();
 }
 
 void OutTownLayer::updateCaryyCountLbl()
 {
-	std::string str = StringUtils::format("%d/%d", caryycount[0] + caryycount[1]+ caryycount[2], GlobalInstance::getInstance()->getTotalCaryy());
+	std::string str = StringUtils::format("%d/%d", caryycount[0] + caryycount[1] + caryycount[2], GlobalInstance::getInstance()->getTotalCaryy());
 	carrylbl->setString(str);
 
 	str = StringUtils::format("%d/%d", caryycount[0], MyRes::getMyResCount(carryResids[0]) + MyRes::getMyResCount(carryResids[0], MYPACKAGE));
 	caryycountlbl[0]->setString(str);
 }
 
-void OutTownLayer::onSubBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
-{
-	CommonFuncs::BtnAction(pSender, type);
-	if (type == ui::Widget::TouchEventType::ENDED)
-	{
-		Node* clicknode = (Node*)pSender;
-		std::string name = clicknode->getName();
-		int index = atoi(name.substr(name.length() - 1).c_str());
-
-		if (caryycount[index] <= 0)
-			return;
-
-		caryycount[index]--;
-		updateCaryyCountLbl();
-	}
-}
 
 bool OutTownLayer::isCarryOver()
 {

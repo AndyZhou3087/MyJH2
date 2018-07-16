@@ -19,6 +19,8 @@
 
 MapBlockScene* g_MapBlockScene = NULL;
 
+#define DEFAULTRND 10
+
 MapBlockScene::MapBlockScene()
 {
 	myposParticle = NULL;
@@ -27,7 +29,7 @@ MapBlockScene::MapBlockScene()
 	m_isLongPress = false;
 	m_longTouchNode = NULL;
 	walkcount = 0;
-	monsterComeRnd = 10;
+	monsterComeRnd = DEFAULTRND;
 }
 
 
@@ -103,7 +105,7 @@ bool MapBlockScene::init(std::string mapname)
 	solivercountlbl = (cocos2d::ui::Text*)topnode->getChildByName("solivercountlbl");
 
 	lackfoodlbl = (cocos2d::ui::Text*)topnode->getChildByName("lackfood");
-	lackfoodlbl->setVisible(false);
+	lackfoodlbl->setOpacity(0);
 	lackfoodlbl->runAction(RepeatForever::create(Blink::create(1.0f, 1)));
 
 	sitelbl = (cocos2d::ui::Text*)topnode->getChildByName("site");
@@ -120,7 +122,8 @@ bool MapBlockScene::init(std::string mapname)
 
 	setMyPos();
 
-	updateLabel();
+	updateLabel(0);
+	this->schedule(schedule_selector(MapBlockScene::updateLabel), 1.0f);
 
 	Node* bottomnode = m_csbnode->getChildByName("mapblockbottom");
 
@@ -157,7 +160,7 @@ bool MapBlockScene::init(std::string mapname)
 	return true;
 }
 
-void MapBlockScene::updateLabel()
+void MapBlockScene::updateLabel(float dt)
 {
 	int foodcount = MyRes::getMyResCount("r001", MYPACKAGE);
 	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::getInstance()->getTotalCaryy());
@@ -166,8 +169,11 @@ void MapBlockScene::updateLabel()
 	foodcountlbl->setString(str);
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	solivercountlbl->setString(str);
-
-	lackfoodlbl->setVisible(foodcount <= 5);
+	
+	if (foodcount <= 5)
+		lackfoodlbl->setOpacity(255);
+	else
+		lackfoodlbl->setOpacity(0);
 }
 
 void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -280,7 +286,6 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	monsterComeRnd += (5 + walkcount);
 
 	MyRes::Use("r001", 1, MYPACKAGE);
-	updateLabel();
 
 	if (mycurCol == vec_startpos[randStartPos] % blockColCount && mycurRow == vec_startpos[randStartPos] / blockColCount)
 	{
@@ -403,7 +408,7 @@ void MapBlockScene::setMyPos()
 	ajustMyPos();
 
 	updateFogVisible();
-	std::string str = StringUtils::format("%d,%d", mycurRow + 1, mycurCol + 1);
+	std::string str = StringUtils::format("%d,%d", blockRowCount - mycurRow, blockColCount - mycurCol);
 	sitelbl->setString(str);
 }
 
@@ -544,6 +549,7 @@ void MapBlockScene::doMyStatus()
 	else
 	{
 		vec_enemys.clear();
+		vec_winrewards.clear();
 		if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS )
 		{
 			creatNpcOrBoss(mapblock);
@@ -554,6 +560,7 @@ void MapBlockScene::doMyStatus()
 		}
 		if (vec_enemys.size() > 0)
 		{
+			cacelLongTouch();
 			//先判断任务
 			bool isTask = false;
 			for (unsigned int i = 0; i < vec_enemys.size(); i++)
@@ -588,10 +595,13 @@ void MapBlockScene::doMyStatus()
 
 void MapBlockScene::createRndMonsters()
 {
-	int r = GlobalInstance::getInstance()->createRandomNum(100);
+	int r = 100;
+	
+	if (walkcount > 1)
+		r = GlobalInstance::getInstance()->createRandomNum(100);
 	if (r < monsterComeRnd)
 	{
-		monsterComeRnd = 10;
+		monsterComeRnd = DEFAULTRND;
 		walkcount = 0;
 		int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
 		for (int i = 0; i < rndcount; i++)
@@ -625,7 +635,7 @@ void MapBlockScene::createRndMonsters()
 			}
 
 		}
-		vec_winrewards.clear();
+
 		for (unsigned int i = 0; i < MapBlock::vec_randMonstersRes.size(); i++)
 		{
 			FOURProperty propty = MapBlock::vec_randMonstersRes[i];

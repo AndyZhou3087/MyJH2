@@ -23,13 +23,19 @@ private:
 	bool isCarryOver();
 
 	void updateCaryyCountLbl();
+	void longTouchUpdate(float delay);
+	void cancelLongTouch();
 
-
+	void addRes(Node* clicknode);
+	void subRes(Node* clicknode);
 private:
 	CardHeroNode* m_myCardHerosNode[6];
 	cocos2d::ui::Text* carrylbl;
 	int caryycount[3];
 	cocos2d::ui::Text* caryycountlbl[3];
+
+	bool m_isLongPress;
+	Node* m_longTouchNode;
 };
 
 #endif
