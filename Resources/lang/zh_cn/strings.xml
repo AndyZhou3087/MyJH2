@@ -89,4 +89,5 @@
 	<s name="dailypoint">积分x%d</s>
 	<s name="winexp">经验值+%d</s>
 	<s name="heroempty">空空如也~~请到客栈招募侠客！</s>
+	<s name="lackfoodhint">食物匮乏</s>
 </strings>

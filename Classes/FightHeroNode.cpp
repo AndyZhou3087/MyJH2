@@ -253,23 +253,28 @@ void FightHeroNode::setBlankBox()
 	}
 }
 
-void FightHeroNode::setWinState(int winexp)
+void FightHeroNode::setFightState(int winexp)
 {
 	int langtype = GlobalInstance::getInstance()->getLang();
 	Hero* myhero = (Hero*)m_Data;
 
 	int mylv = myhero->getLevel();
-	DynamicValueInt vl;
-	vl.setValue(myhero->getExp().getValue() + winexp);
-	myhero->setExp(vl);
 	hp_bar->loadTexture("mapui/winexpbar.png", cocos2d::ui::Widget::TextureResType::PLIST);
 
-	std::string str = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), winexp);
-	winexplbl->setString(str);
-	winexplbl->setVisible(true);
-	FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
-	FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(1.5f, Vec2(0, 10)), NULL);
-	winexplbl->runAction(Sequence::create(scales, moveandout, NULL));
+	if (winexp > 0 && myhero->getState() != HS_DEAD)
+	{
+
+		DynamicValueInt dv;
+		dv.setValue(myhero->getExp().getValue() + winexp);
+		myhero->setExp(dv);
+
+		std::string str = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), winexp);
+		winexplbl->setString(str);
+		winexplbl->setVisible(true);
+		FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
+		FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(1.5f, Vec2(0, 10)), NULL);
+		winexplbl->runAction(Sequence::create(scales, moveandout, NULL));
+	}
 
 	int maxlv = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp.size();
 	int curlv = -1;
@@ -310,37 +315,29 @@ void FightHeroNode::setWinState(int winexp)
 
 	if (myhero->getState() != HS_DEAD)
 	{
-		if (curlv > mylv)//升级
+		if (curlv+1 > mylv)//升级
 		{
 			retbox->setVisible(true);
 
 			rettext->loadTexture(ResourcePath::makeTextImgPath("winlvup_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 			FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
-			FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(1.5f, Vec2(0, 40)), NULL);
+			FiniteTimeAction* moveandout = Spawn::create(EaseSineOut::create(MoveBy::create(1.2f, Vec2(0, 40))), NULL);
 			retbox->runAction(Sequence::create(scales, moveandout, NULL));
 		}
 	}
 	else
 	{
-		retbox->setVisible(true);
 		rettext->loadTexture(ResourcePath::makeTextImgPath("windeath_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		retbox->setVisible(true);
+		retbox->setPositionY(retbox->getPositionY() + 40);
+		retbox->setScale(3);
+
+		retbox->runAction(Speed::create(ScaleTo::create(1.2f, 1.0f), 5));
 
 		CommonFuncs::changeGray(headbox);
 		CommonFuncs::changeGray(headimg);
-		CommonFuncs::changeGray(hp_bar);
+		CommonFuncs::changeGray(hp_bar->getVirtualRenderer());
 		CommonFuncs::changeGray(retbox);
 	}
-}
-
-void FightHeroNode::setFailState()
-{
-	int langtype = GlobalInstance::getInstance()->getLang();
-	retbox->setVisible(true);
-	rettext->loadTexture(ResourcePath::makeTextImgPath("windeath_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-
-	CommonFuncs::changeGray(headbox);
-	CommonFuncs::changeGray(headimg);
-	CommonFuncs::changeGray(hp_bar);
-	CommonFuncs::changeGray(retbox);
 }

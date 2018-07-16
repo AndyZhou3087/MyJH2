@@ -108,6 +108,8 @@ private:
 	cocos2d::ui::Text* carrycountlbl;
 	cocos2d::ui::Text* foodcountlbl;
 	cocos2d::ui::Text* solivercountlbl;
+	cocos2d::ui::Text* sitelbl;
+	cocos2d::ui::Text* lackfoodlbl;
 	int blockRowCount;
 	int blockColCount;
 	ScrollView* scrollView;
