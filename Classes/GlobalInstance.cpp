@@ -201,7 +201,7 @@ void GlobalInstance::saveMyHeros()
 	{
 		std::string herokey = StringUtils::format("hero%d", i);
 		Hero* hero = GlobalInstance::vec_myHeros[i];
-		std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp());
+		std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp(), hero->getTrainhour());
 		DataSave::getInstance()->setHeroData(herokey, datastr);
 	}
 }
@@ -214,7 +214,7 @@ void GlobalInstance::saveHero(Hero* hero)
 		{
 			std::string herokey = StringUtils::format("hero%d", i);
 			Hero* hero = GlobalInstance::vec_myHeros[i];
-			std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp());
+			std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp(), hero->getTrainhour());
 			DataSave::getInstance()->setHeroData(herokey, datastr);
 			break;
 		}
@@ -236,7 +236,7 @@ void GlobalInstance::loadMyHeros()
 			{
 				std::vector<std::string> vec_tmp;
 				CommonFuncs::split(vec_retstr[0], vec_tmp, "-");
-				if (vec_tmp.size() >= 8)
+				if (vec_tmp.size() >= 9)
 				{
 					hero = new Hero();
 					hero->setName(vec_tmp[0]);
@@ -257,6 +257,7 @@ void GlobalInstance::loadMyHeros()
 					}
 
 					hero->setHp(atof(vec_tmp[8].c_str()));
+					hero->setTrainhour(atoi(vec_tmp[9].c_str()));
 				}
 			}
 			if (vec_retstr.size() > 1)//装备属性
@@ -278,7 +279,7 @@ void GlobalInstance::saveRand3Heros()
 	for (unsigned int i = 0; i < GlobalInstance::vec_rand3Heros.size(); i++)
 	{
 		Hero* hero = GlobalInstance::vec_rand3Heros[i];
-		std::string onestr = StringUtils::format("%s-%d-%d-%d-%d-%.02f-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState());
+		std::string onestr = StringUtils::format("%s-%d-%d-%d-%d-%.02f-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getTrainhour());
 		str.append(onestr);
 
 	}

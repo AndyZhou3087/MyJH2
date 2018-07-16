@@ -12,6 +12,7 @@
 #include "ResCreator.h"
 #include "SmithyLayer.h"
 #include "Quest.h"
+#include "TrainLayer.h"
 
 USING_NS_CC;
 
@@ -303,6 +304,11 @@ void ConsumeResActionLayer::action()
 		{
 			SmithyLayer* smithyLayer = (SmithyLayer*)this->getParent();
 			smithyLayer->lvup();
+		}
+		else if (bdata->name.compare("4trainigroom") == 0)
+		{
+			TrainLayer* trainLayer = (TrainLayer*)this->getParent();
+			trainLayer->lvup();
 		}
 	}
 	else if (m_actiontype == CA_EMPLOYFARMER)
