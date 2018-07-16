@@ -41,7 +41,7 @@ Hero::Hero(Hero* hero)
 	m_state = hero->getState();
 	m_breakupper = 0;
 	m_pos = 0;
-	m_hp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[0];
+	m_hp = hero->getHp();
 	for (int i = 0; i < 6; i++)
 	{
 		takeOnEquip[i] = NULL;
@@ -52,7 +52,7 @@ float Hero::getHp()
 {
 	if (m_hp < -100)
 	{
-		m_hp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[0];
+		m_hp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[0] * POTENTIAL_BNS[m_potential];
 	}
 	else if (m_hp < 0)
 	{
@@ -155,8 +155,8 @@ float Hero::getMaxHp()
 			}
 		}
 	}
-	if (getHp() > herohp)
-		setHp(herohp);
+	if (m_hp > herohp)
+		m_hp = herohp;
 	return herohp;
 }
 float Hero::getAtkSpeed()

@@ -84,12 +84,7 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp)
 		fightHeroNode->setData(GlobalInstance::myCardHeros[i], F_HERO, fs);
 		addChild(fightHeroNode, 0, i);
 		if (GlobalInstance::myCardHeros[i] != NULL)
-		{
-			if (fs == FS_SUCC)
-				fightHeroNode->setWinState(winexp);
-			else
-				fightHeroNode->setFailState();
-		}
+			fightHeroNode->setFightState(winexp);
 	}
 
 	//фа╠ноб╡Ц╣Ц╩В

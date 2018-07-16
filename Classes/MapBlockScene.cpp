@@ -102,6 +102,12 @@ bool MapBlockScene::init(std::string mapname)
 	foodcountlbl = (cocos2d::ui::Text*)topnode->getChildByName("r001count");
 	solivercountlbl = (cocos2d::ui::Text*)topnode->getChildByName("solivercountlbl");
 
+	lackfoodlbl = (cocos2d::ui::Text*)topnode->getChildByName("lackfood");
+	lackfoodlbl->setVisible(false);
+	lackfoodlbl->runAction(RepeatForever::create(Blink::create(1.0f, 1)));
+
+	sitelbl = (cocos2d::ui::Text*)topnode->getChildByName("site");
+
 	parseMapXml(mapname);
 
 	createBlackFog();
@@ -134,9 +140,9 @@ bool MapBlockScene::init(std::string mapname)
 
 	for (int i = 0; i < 4; i++)
 	{
-		cocos2d::ui::Widget* keybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName(keyname[i]);
-		keybtn->setTag(i + KEY_UP);
-		keybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onArrowKey, this));
+	cocos2d::ui::Widget* keybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName(keyname[i]);
+	keybtn->setTag(i + KEY_UP);
+	keybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onArrowKey, this));
 	}
 
 	for (int i = 0; i < 6; i++)
@@ -153,12 +159,15 @@ bool MapBlockScene::init(std::string mapname)
 
 void MapBlockScene::updateLabel()
 {
+	int foodcount = MyRes::getMyResCount("r001", MYPACKAGE);
 	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::getInstance()->getTotalCaryy());
 	carrycountlbl->setString(str);
-	str = StringUtils::format("%d", MyRes::getMyResCount("r001", MYPACKAGE));
+	str = StringUtils::format("%d", foodcount);
 	foodcountlbl->setString(str);
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
-	foodcountlbl->setString(str);
+	solivercountlbl->setString(str);
+
+	lackfoodlbl->setVisible(foodcount <= 5);
 }
 
 void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -177,11 +186,11 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MainMapScene::createScene()));
 			break;
 		case BTN_PACKAGE:
-		{			
+		{
 			MyPackageLayer* layer = MyPackageLayer::create();
 			this->addChild(layer);
 		}
-			break;
+		break;
 		default:
 			break;
 		}
@@ -232,6 +241,11 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	if (isMoving)
 		return;
 
+	if (MyRes::getMyResCount("r001", MYPACKAGE) <= 0)
+	{
+
+		return;
+	}
 	if (!checkRoad(keyArrow))
 		return;
 
@@ -264,6 +278,9 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	setMyPos();
 	walkcount++;
 	monsterComeRnd += (5 + walkcount);
+
+	MyRes::Use("r001", 1, MYPACKAGE);
+	updateLabel();
 
 	if (mycurCol == vec_startpos[randStartPos] % blockColCount && mycurRow == vec_startpos[randStartPos] / blockColCount)
 	{
@@ -386,7 +403,8 @@ void MapBlockScene::setMyPos()
 	ajustMyPos();
 
 	updateFogVisible();
-
+	std::string str = StringUtils::format("%d,%d", mycurRow + 1, mycurCol + 1);
+	sitelbl->setString(str);
 }
 
 void MapBlockScene::ajustMyPos()

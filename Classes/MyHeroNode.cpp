@@ -8,6 +8,7 @@
 #include "SelectMyHerosLayer.h"
 #include "CardHeroNode.h"
 #include "HospitalLayer.h"
+#include "MovingLabel.h"
 #include "Const.h"
 
 #define RSILVERCOUNT 100
@@ -239,12 +240,17 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				GlobalInstance::getInstance()->costMySoliverCount(dva);
 
 				m_heroData->setState(HS_OWNED);
+				m_heroData->setHp(m_heroData->getMaxHp());
 				GlobalInstance::getInstance()->saveMyHeros();
 				HospitalLayer* hospitalLayer = (HospitalLayer*)g_mainScene->getChildByName("1hospital");
 				if (hospitalLayer != NULL)
 				{
 					hospitalLayer->updateContent();
 				}
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
 			}
 		}
 	}

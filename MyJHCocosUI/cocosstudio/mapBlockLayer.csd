@@ -103,6 +103,18 @@
                 <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
+              <AbstractNodeData Name="lackfood" ActionTag="12762374" Tag="100" IconVisible="False" LeftMargin="474.2112" RightMargin="162.7888" TopMargin="211.5319" BottomMargin="19.4681" FontSize="20" LabelText="食物匮乏" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="83.0000" Y="23.0000" />
+                <AnchorPoint ScaleY="0.6176" />
+                <Position X="474.2112" Y="33.6729" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="0" B="0" />
+                <PrePosition X="0.6586" Y="0.1326" />
+                <PreSize X="0.1153" Y="0.0906" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="80" G="38" B="12" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleY="1.0000" />
             <Position Y="1280.0000" />
