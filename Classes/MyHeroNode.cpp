@@ -10,6 +10,7 @@
 #include "HospitalLayer.h"
 #include "MovingLabel.h"
 #include "Const.h"
+#include "TrainSelectLayer.h"
 
 #define RSILVERCOUNT 100
 
@@ -129,20 +130,20 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 void MyHeroNode::updateTime(float dt)
 {
 	int lefttime = 0;
-	int refreshtime = GlobalInstance::getInstance()->getRefreshHeroTime();
+	int refreshtime = m_heroData->getTrainTime();
 	int pasttime = GlobalInstance::servertime - refreshtime;
-	if (pasttime >= m_heroData->getTrainhour())
+	if (pasttime >= m_heroData->getTrainHour())
 	{
-		int t = GlobalInstance::servertime % m_heroData->getTrainhour();
+		int t = GlobalInstance::servertime % m_heroData->getTrainHour();
 
 		refreshtime = GlobalInstance::servertime - t;
-		GlobalInstance::getInstance()->saveRefreshHeroTime(refreshtime);
+		m_heroData->setTrainTime(refreshtime);
 
-		lefttime = m_heroData->getTrainhour() - t;
+		lefttime = m_heroData->getTrainHour() - t;
 	}
 	else
 	{
-		lefttime = m_heroData->getTrainhour() - pasttime;
+		lefttime = m_heroData->getTrainHour() - pasttime;
 	}
 	std::string timestr = StringUtils::format("%02d:%02d", lefttime % 3600 / 60, lefttime % 3600 % 60);
 	countdown->setString(timestr);
@@ -251,6 +252,18 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			else
 			{
 				MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
+			}
+		}
+		else if (m_showtype == HS_TRAINING)
+		{
+			if (m_heroData->getState() == HS_OWNED)
+			{
+				TrainSelectLayer* layer = TrainSelectLayer::create(m_heroData);
+				g_mainScene->addChild(layer, 1, "TrainSelectLayer");
+			}
+			else if (m_heroData->getState() == HS_TRAINING)
+			{
+
 			}
 		}
 	}

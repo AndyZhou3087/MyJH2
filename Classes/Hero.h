@@ -34,7 +34,8 @@ public:
 	CC_SYNTHESIZE(int, m_breakupper, BreakUpper);//突破等级
 	CC_SYNTHESIZE(float, m_randattr, RandAttr);//随机属性
 	CC_SYNTHESIZE(int, m_pos, Pos);//出城时选择的位置，1开始，0表示不选择
-	CC_SYNTHESIZE(int, m_trainhour, Trainhour);//选择训练的时间，0--未训练，3600--一小时，7200--两小时，10800--三小时
+	CC_SYNTHESIZE(int, m_trainhour, TrainHour);//选择训练的时间，0--未训练，3600--一小时，18000--两小时，28800--三小时
+	CC_SYNTHESIZE(int, m_traintime, TrainTime);//训练的时间
 
 	//血量
 	float getHp();

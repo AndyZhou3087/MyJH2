@@ -431,8 +431,10 @@
           <Image Name="taskdaygo.png" />
           <Image Name="taskfinish.png" />
           <Image Name="train_text.png" />
+          <Image Name="traincoin_text.png" />
           <Image Name="training_text.png" />
           <Image Name="trainlv_text.png" />
+          <Image Name="trainstart_text.png" />
           <Image Name="usebtn_text.png" />
           <Image Name="windeath_text.png" />
           <Image Name="winlvup_text.png" />
@@ -693,6 +695,10 @@
           <Image Name="timeiconbox.png" />
           <Image Name="top1.png" />
           <Image Name="top2.png" />
+          <Image Name="train_select.png" />
+          <Image Name="trainning_1.png" />
+          <Image Name="trainning_2.png" />
+          <Image Name="trainning_3.png" />
           <Image Name="w001.png" />
           <Image Name="w002.png" />
           <Image Name="w003.png" />
@@ -826,6 +832,7 @@
         <Project Name="trainLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="trainSelectLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>
