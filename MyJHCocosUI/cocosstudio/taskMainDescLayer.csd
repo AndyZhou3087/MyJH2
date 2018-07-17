@@ -93,18 +93,6 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="43" G="30" B="20" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="-855785338" Tag="119" IconVisible="False" LeftMargin="126.8903" RightMargin="123.1097" TopMargin="298.0170" BottomMargin="801.9830" IsCustomSize="True" FontSize="25" LabelText="魔教的威胁" ShadowOffsetX="1.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="470.0000" Y="180.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="361.8903" Y="891.9830" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5026" Y="0.6969" />
-            <PreSize X="0.6528" Y="0.1406" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="43" G="30" B="20" />
-          </AbstractNodeData>
           <AbstractNodeData Name="getbtn" ActionTag="189690347" VisibleForFrame="False" Tag="120" IconVisible="False" LeftMargin="138.2272" RightMargin="141.7728" TopMargin="932.3237" BottomMargin="221.6763" TouchEnable="True" FontSize="30" ButtonText="领取奖励" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="440.0000" Y="126.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -146,6 +134,20 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="500" Height="170" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="descscoll" ActionTag="776063844" Tag="13" IconVisible="False" LeftMargin="131.2171" RightMargin="118.7830" TopMargin="289.3926" BottomMargin="810.6074" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+            <Size X="470.0000" Y="180.0000" />
+            <AnchorPoint />
+            <Position X="131.2171" Y="810.6074" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1822" Y="0.6333" />
+            <PreSize X="0.6528" Y="0.1406" />
+            <SingleColor A="255" R="255" G="255" B="255" />
+            <FirstColor A="255" R="255" G="150" B="100" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
+            <InnerNodeSize Width="500" Height="1000" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

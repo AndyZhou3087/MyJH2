@@ -63,9 +63,10 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)m_csbnode->getChildByName("name");
 	name->setString(data->name);
 
-	desc = (cocos2d::ui::Text*)m_csbnode->getChildByName("desc");
+	/*desc = (cocos2d::ui::Text*)m_csbnode->getChildByName("desc");
 	desc->setVisible(false);
-	desc->setString(data->bossword);
+	desc->setString(data->bossword);*/
+	descscoll = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("descscoll");
 
 	checkWordLblColor(data->bossword);
 
@@ -359,15 +360,19 @@ void TaskTalkLayer::questNotFight(std::string bwords)
 
 void TaskTalkLayer::checkWordLblColor(std::string wordstr)
 {
-	m_wordlbl = Label::createWithTTF(wordstr, "fonts/simhei.TTF", 30);
+	m_wordlbl = Label::createWithTTF(wordstr, "fonts/simhei.TTF", 25);
 	m_wordlbl->setLineBreakWithoutSpace(true);
 	m_wordlbl->setAnchorPoint(Vec2(0, 1));
 	m_wordlbl->setHorizontalAlignment(CCTextAlignment::LEFT);
 	m_wordlbl->setVerticalAlignment(CCVerticalTextAlignment::TOP);
-	m_wordlbl->setMaxLineWidth(470);
-	m_wordlbl->setPosition(Vec2(127, 982));
-	this->addChild(m_wordlbl, 0, "talklbl");
-
+	m_wordlbl->setMaxLineWidth(descscoll->getContentSize().width);
+	descscoll->addChild(m_wordlbl, 0, "talklbl");
+	int innerheight = m_wordlbl->getStringNumLines() * 25;//contentlbl->getHeight();
+	int contentheight = descscoll->getContentSize().height;
+	if (innerheight < contentheight)
+		innerheight = contentheight;
+	descscoll->setInnerContainerSize(Size(descscoll->getContentSize().width, innerheight));
+	m_wordlbl->setPosition(Vec2(0, innerheight));
 
 	int index = 0;
 	while (m_wordlbl->getLetter(index) != NULL)

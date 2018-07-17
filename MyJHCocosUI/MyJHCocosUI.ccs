@@ -830,11 +830,11 @@
         <Project Name="taskMainDescLayer.csd" Type="Layer" />
         <Project Name="taskMainNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
+        <Project Name="trainCancelLayer.csd" Type="Layer" />
         <Project Name="trainLayer.csd" Type="Layer" />
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="trainCancelLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

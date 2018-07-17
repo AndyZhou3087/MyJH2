@@ -12,6 +12,8 @@
 #include "Const.h"
 #include "TrainSelectLayer.h"
 #include "TrainHintLayer.h"
+#include "TrainLayer.h"
+#include "Building.h"
 
 #define RSILVERCOUNT 100
 
@@ -144,6 +146,12 @@ void MyHeroNode::updateTime(float dt)
 	int pasttime = GlobalInstance::servertime - refreshtime;
 	if (pasttime >= m_heroData->getTrainHour())
 	{
+		int lv = Building::map_buildingDatas["4trainigroom"]->level.getValue();
+		int bexp = Building::map_buildingDatas["4trainigroom"]->vec_exdatatrain[lv];
+		DynamicValueInt dexp;
+		dexp.setValue(m_heroData->getExp().getValue() + m_heroData->getTrainHour() / 3600 * bexp);
+		m_heroData->setExp(dexp);
+
 		m_heroData->setTrainHour(0);
 		m_heroData->setTrainTime(0);
 		m_heroData->setState(HS_OWNED);
