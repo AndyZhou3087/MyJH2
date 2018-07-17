@@ -77,15 +77,13 @@ private:
 
 	virtual void scrollViewDidZoom(ScrollView* view);
 
-	void createBlackFog();
+	void createFog();
 
-	void updateFogVisible();
+	void updateFog(float dt);
 
-	bool checkBlockVisible(int mapiter);
+	void addFogBlock(int row, int col);
 
-	void removeBlackFog(int mapiter);
-
-	void initBlockData();
+	void resetBlockData();
 	
 	void doMyStatus();
 
@@ -102,6 +100,9 @@ private:
 
 	int getWinExp();
 
+	void createMyRender();
+
+	void updateMyRender(float dt);
 private:
 	Node* m_csbnode;
 	ParticleSystemQuad* myposParticle;
@@ -115,7 +116,6 @@ private:
 	ScrollView* scrollView;
 	Node *m_mapscrollcontainer;
 	std::map<int, MapBlock*> map_mapBlocks;
-	std::map<int, Sprite*> map_mapFogBlacks;
 	std::vector<int> vec_startpos;
 	int mycurCol;
 	int mycurRow;
@@ -129,6 +129,9 @@ private:
 
 	std::vector<Npc*> vec_enemys;
 	std::vector<FOURProperty> vec_winrewards;
+	RenderTexture* _fogrender;
+	RenderTexture* _myrender;
+	Sprite* _mylight;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

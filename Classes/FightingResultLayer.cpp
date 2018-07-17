@@ -69,7 +69,7 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp)
 	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("continuebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	FIGHTNODE_STATE fs = FS_SUCC;
-	if (reward_res.size() <= 0)
+	if (winexp <= 0)
 	{
 		fs = FS_FAIL;
 		actionbtn->setTag(1001);

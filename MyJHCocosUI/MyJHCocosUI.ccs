@@ -431,7 +431,6 @@
           <Image Name="taskdaygo.png" />
           <Image Name="taskfinish.png" />
           <Image Name="train_text.png" />
-          <Image Name="training_text.png" />
           <Image Name="trainlv_text.png" />
           <Image Name="usebtn_text.png" />
           <Image Name="windeath_text.png" />

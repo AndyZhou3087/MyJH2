@@ -110,9 +110,11 @@ bool MapBlockScene::init(std::string mapname)
 
 	sitelbl = (cocos2d::ui::Text*)topnode->getChildByName("site");
 
+	resetBlockData();
+
 	parseMapXml(mapname);
 
-	createBlackFog();
+	createFog();
 
 	int count = vec_startpos.size();
 
@@ -157,8 +159,11 @@ bool MapBlockScene::init(std::string mapname)
 		addChild(fightHeroNode, 0, i);
 	}
 
+	//scheduleUpdate();
+
 	return true;
 }
+
 
 void MapBlockScene::updateLabel(float dt)
 {
@@ -391,25 +396,38 @@ void MapBlockScene::scrollViewDidZoom(ScrollView* view)
 
 void MapBlockScene::setMyPos()
 {
-	int px = mycurCol *MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2;
+	int px = mycurCol * MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2;
 	int py = mycurRow * MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2;
 	if (myposParticle == NULL)
 	{
 		myposParticle = ParticleSystemQuad::create("particle/hr.plist");
 		m_mapscrollcontainer->addChild(myposParticle, 10000);
 		myposParticle->setPosition(Vec2(px, py));
+
+		createMyRender();
 	}
 	else
 	{
 		isMoving = true;
 		myposParticle->runAction(Sequence::create(MoveTo::create(0.5f, Vec2(px, py)), CallFunc::create(CC_CALLBACK_0(MapBlockScene::stopMoving, this)), NULL));
+
+		this->schedule(schedule_selector(MapBlockScene::updateMyRender), 0.05f);
 	}
 
 	ajustMyPos();
 
-	updateFogVisible();
+	this->scheduleOnce(schedule_selector(MapBlockScene::updateFog), 0.3f);
+
 	std::string str = StringUtils::format("%d,%d", blockRowCount - mycurRow, blockColCount - mycurCol);
 	sitelbl->setString(str);
+}
+
+void MapBlockScene::updateMyRender(float dt)
+{
+	_myrender->beginWithClear(0, 0, 0, 0.4f, 0, 0);
+	_mylight->setPosition(myposParticle->getPosition());
+	_mylight->visit();
+	_myrender->end();
 }
 
 void MapBlockScene::ajustMyPos()
@@ -436,7 +454,25 @@ FightHeroNode* MapBlockScene::getFightHeroNode(int index)
 	return (FightHeroNode*)this->getChildByTag(index);
 }
 
-void MapBlockScene::createBlackFog()
+void MapBlockScene::createMyRender()
+{
+	_myrender = RenderTexture::create(m_mapscrollcontainer->getContentSize().width, m_mapscrollcontainer->getContentSize().height);
+	_myrender->setPosition(m_mapscrollcontainer->getContentSize().width / 2, m_mapscrollcontainer->getContentSize().height / 2);
+	m_mapscrollcontainer->addChild(_myrender, 30000);
+
+	_myrender->beginWithClear(0, 0, 0, 0.5f, 0, 0);
+
+	_mylight = Sprite::create("fog.png");
+	_mylight->setBlendFunc({ GL_ZERO, GL_ONE_MINUS_SRC_ALPHA });
+	_mylight->setAnchorPoint(Vec2(0.5, 0.5));
+	_mylight->setPosition(myposParticle->getPosition());
+	_mylight->setScale(4);
+	_myrender->addChild(_mylight);
+	_mylight->visit();
+	_myrender->end();
+}
+
+void MapBlockScene::createFog()
 {
 	std::map<int, MapBlock*>::iterator it;
 
@@ -454,62 +490,45 @@ void MapBlockScene::createBlackFog()
 			i++;
 		}
 	}
+
+	_fogrender = RenderTexture::create(m_mapscrollcontainer->getContentSize().width, m_mapscrollcontainer->getContentSize().height);
+	_fogrender->setPosition(m_mapscrollcontainer->getContentSize().width / 2, m_mapscrollcontainer->getContentSize().height / 2);
+	m_mapscrollcontainer->addChild(_fogrender, 20000);
+
+	_fogrender->beginWithClear(0, 0, 0, 1.0f, 0, 0);
 	for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
 	{
-		if (!checkBlockVisible(it->first))
+		if (map_mapBlocks[it->first]->getIsCanSee())
 		{
-			Sprite* black = Sprite::createWithSpriteFrameName("mapui/blockblack.png");
-			black->setAnchorPoint(Vec2(0.5, 0.5));
-			black->setPosition(Vec2(it->first%blockColCount*MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, it->first / blockColCount*MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2));
-			m_mapscrollcontainer->addChild(black, 3000);
-			map_mapFogBlacks[it->first] = black;
+			addFogBlock(it->first / blockColCount, it->first%blockColCount);
 		}
 	}
+	_fogrender->end();
 }
 
-bool MapBlockScene::checkBlockVisible(int mapiter)
+void MapBlockScene::updateFog(float dt)
 {
-	int mycr = mycurRow*blockColCount + mycurCol;
-	MapBlock* mapblock = map_mapBlocks[mapiter];
-	bool isvisible = false;
-	if (mapiter == mycr || mapiter == (mycr + 1) || mapiter == (mycr - 1) || mapiter == (mycr + blockColCount) || mapiter == (mycr - blockColCount))
+	if (!map_mapBlocks[mycurRow*blockColCount + mycurCol]->getIsCanSee())
 	{
-		isvisible = true;
-	}
-	else
-	{
-		if (mapblock->getIsCanSee())
-			isvisible = true;
-	}
-	return isvisible;
-
-}
-
-void MapBlockScene::updateFogVisible()
-{
-	std::map<int, MapBlock*>::iterator it;
-	for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
-	{
-		if (checkBlockVisible(it->first))
-		{
-			map_mapBlocks[it->first]->setIsCanSee(true);
-			std::map<int, Sprite*>::iterator fit = map_mapFogBlacks.find(it->first);
-			if (fit != map_mapFogBlacks.end())
-			{
-				if (map_mapFogBlacks[it->first] != NULL)
-					map_mapFogBlacks[it->first]->runAction(Sequence::create(FadeOut::create(1.2f), CallFunc::create(CC_CALLBACK_0(MapBlockScene::removeBlackFog, this, it->first)), NULL));
-			}
-		}
+		_fogrender->begin();
+		addFogBlock(mycurRow, mycurCol);
+		_fogrender->end();
+		map_mapBlocks[mycurRow*blockColCount + mycurCol]->setIsCanSee(true);
 	}
 }
 
-void MapBlockScene::removeBlackFog(int mapiter)
+void MapBlockScene::addFogBlock(int row, int col)
 {
-	map_mapFogBlacks[mapiter]->removeFromParentAndCleanup(true);
-	map_mapFogBlacks[mapiter] = NULL;
+	Sprite * sp = Sprite::create("fog.png");
+	sp->setBlendFunc({ GL_ZERO, GL_ONE_MINUS_SRC_ALPHA });
+	sp->setAnchorPoint(Vec2(0.5, 0.5));
+	sp->setPosition(Vec2(col*MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, row*MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2));
+	sp->setScale(4);
+	_fogrender->addChild(sp);
+	sp->visit();
 }
 
-void MapBlockScene::initBlockData()
+void MapBlockScene::resetBlockData()
 {
 	MapBlock::vec_randMonsters.clear();
 	MapBlock::vec_randMonstersRes.clear();
@@ -583,7 +602,7 @@ void MapBlockScene::doMyStatus()
 			}
 			if (!isTask)
 			{
-				this->addChild(FightingLayer::create(vec_enemys));
+				//this->addChild(FightingLayer::create(vec_enemys));
 			}
 		}
 	}

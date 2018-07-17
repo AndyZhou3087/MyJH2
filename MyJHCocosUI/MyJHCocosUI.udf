@@ -7,5 +7,24 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="text_zh_cn.csi" />
+          <FilePathData Path="ui.csi" />
+          <FilePathData Path="mapui.csi" />
+          <FilePathData Path="storeHouseLayer.csd" />
+          <FilePathData Path="winRewardLayer.csd" />
+          <FilePathData Path="marketLayer.csd" />
+          <FilePathData Path="fightResultLayer.csd" />
+          <FilePathData Path="mapBlockLayer.csd" />
+          <FilePathData Path="MainLayer.csd" />
+          <FilePathData Path="trainLayer.csd" />
+          <FilePathData Path="fightHeroNode.csd" />
+          <FilePathData Path="outTownLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="outTownLayer.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>
