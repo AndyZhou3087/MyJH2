@@ -343,6 +343,10 @@
       <FilePathData Path="ui/h_8_1.png" />
       <FilePathData Path="ui/h_9_0.png" />
       <FilePathData Path="ui/h_9_1.png" />
+      <FilePathData Path="ui/train_select.png" />
+      <FilePathData Path="ui/trainning_1.png" />
+      <FilePathData Path="ui/trainning_2.png" />
+      <FilePathData Path="ui/trainning_3.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

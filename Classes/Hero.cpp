@@ -19,6 +19,8 @@ Hero::Hero()
 	m_randattr = 0.0f;
 	m_pos = 0;
 	m_hp = INT32_MIN;
+	m_trainhour = 0;
+	m_traintime = 0;
 	for (int i = 0; i < 6; i++)
 	{
 		takeOnEquip[i] = NULL;

@@ -166,6 +166,8 @@
       <FilePathData Path="text_zh_cn/trainlv_text.png" />
       <FilePathData Path="text_zh_cn/mypackagetitle.png" />
       <FilePathData Path="text_zh_cn/training_text.png" />
+      <FilePathData Path="text_zh_cn/traincoin_text.png" />
+      <FilePathData Path="text_zh_cn/trainstart_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>
