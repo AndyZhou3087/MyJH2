@@ -405,13 +405,12 @@ void MapBlockScene::setMyPos()
 		myposParticle->setPosition(Vec2(px, py));
 
 		createMyRender();
+		this->schedule(schedule_selector(MapBlockScene::updateMyRender), 0.05f);
 	}
 	else
 	{
 		isMoving = true;
 		myposParticle->runAction(Sequence::create(MoveTo::create(0.5f, Vec2(px, py)), CallFunc::create(CC_CALLBACK_0(MapBlockScene::stopMoving, this)), NULL));
-
-		this->schedule(schedule_selector(MapBlockScene::updateMyRender), 0.05f);
 	}
 
 	ajustMyPos();
