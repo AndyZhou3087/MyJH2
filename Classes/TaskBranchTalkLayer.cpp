@@ -55,6 +55,9 @@ bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 
 	int langtype = GlobalInstance::getInstance()->getLang();
 
+	cocos2d::ui::Text* rewardlabel = (cocos2d::ui::Text*)m_csbnode->getChildByName("rewardlabel");
+	rewardlabel->setString(ResourceLang::map_lang["taskrewardtip"]);
+
 	//БъЬт
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)m_csbnode->getChildByName("name");
 	name->setString(data->name);
@@ -76,6 +79,7 @@ bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	closebtn->setPosition(Vec2(357, 183));
 	closebtn->setTag(0);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskBranchTalkLayer::onBtnClick, this));
+	closebtn->setTitleText(ResourceLang::map_lang["closetext"]);
 
 	givebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("accbtn");
 	givebtn->setPosition(Vec2(357, 376));
@@ -86,8 +90,6 @@ bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("ScrollView");
 	scrollView->setScrollBarEnabled(false);
 	scrollView->setBounceEnabled(true);
-
-	cocos2d::ui::Text* rewardlabel = (cocos2d::ui::Text*)m_csbnode->getChildByName("rewardlabel");
 
 	if (data->type != QUEST_GIVE)
 	{

@@ -50,6 +50,9 @@ bool TaskBranchDescLayer::init(TaskBranchData* data)
 
 	int langtype = GlobalInstance::getInstance()->getLang();
 
+	cocos2d::ui::Text* rewardlabel = (cocos2d::ui::Text*)m_csbnode->getChildByName("rewardlabel");
+	rewardlabel->setString(ResourceLang::map_lang["taskrewardtip"]);
+
 	//БъЬт
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)m_csbnode->getChildByName("name");
 	name->setString(data->name);
@@ -71,16 +74,19 @@ bool TaskBranchDescLayer::init(TaskBranchData* data)
 	closebtn->setPosition(Vec2(357, 183));
 	closebtn->setTag(0);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskBranchDescLayer::onBtnClick, this));
+	closebtn->setTitleText(ResourceLang::map_lang["closetext"]);
 
 	accbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("accbtn");
 	accbtn->setPosition(Vec2(357, 376));
 	accbtn->setTag(1);
 	accbtn->addTouchEventListener(CC_CALLBACK_2(TaskBranchDescLayer::onBtnClick, this));
+	accbtn->setTitleText(ResourceLang::map_lang["acctasktext"]);
 
 	cocos2d::ui::Button* getbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("getbtn");
 	getbtn->setPosition(Vec2(357, 376));
 	getbtn->setTag(2);
 	getbtn->addTouchEventListener(CC_CALLBACK_2(TaskBranchDescLayer::onBtnClick, this));
+	getbtn->setTitleText(ResourceLang::map_lang["getrewardtext"]);
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("ScrollView");
 	scrollView->setScrollBarEnabled(false);

@@ -267,6 +267,11 @@ void TaskLayer::loadData(int category)
 			{
 				point->setTouchEnabled(true);
 			}
+
+			str = StringUtils::format("%dpoint", it->first);
+			cocos2d::ui::Text* plabel = (cocos2d::ui::Text*)pnode->getChildByName(str);
+			str = StringUtils::format(ResourceLang::map_lang["pointtext"].c_str(), it->first);
+			plabel->setString(str);
 		}
 	}
 }

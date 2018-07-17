@@ -17,7 +17,7 @@ TrainLayer::TrainLayer()
 
 TrainLayer::~TrainLayer()
 {
-
+	GlobalInstance::getInstance()->saveMyHeros();
 }
 
 

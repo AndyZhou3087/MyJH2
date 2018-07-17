@@ -69,6 +69,9 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 
 	checkWordLblColor(data->bossword);
 
+	cocos2d::ui::Text* rewardlabel = (cocos2d::ui::Text*)m_csbnode->getChildByName("rewardlabel");
+	rewardlabel->setString(ResourceLang::map_lang["taskrewardtip"]);
+
 	//npc头像
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
 	std::string str = "ui/h_0_0.png"; //StringUtils::format("mapui/%s.png", data->npcid.c_str());
@@ -83,6 +86,7 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	closebtn->setPosition(Vec2(357, 131));
 	closebtn->setTag(0);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtnClick, this));
+	closebtn->setTitleText(ResourceLang::map_lang["closetext"]);
 
 	givebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("accbtn");
 	givebtn->setPosition(Vec2(357, 429));
@@ -211,7 +215,7 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		switch (tag)
 		{
 		case 0:
-			if (btn->getTitleText().compare(CommonFuncs::gbk2utf("确定")) == 0)
+			if (btn->getTitleText().compare(ResourceLang::map_lang["okbtntext"]) == 0)
 			{
 				if (isGo == 1)
 				{
@@ -318,7 +322,7 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 		{
 			checkWordLblColor(bwords);
 		}
-		closebtn->setTitleText(CommonFuncs::gbk2utf("确定"));
+		closebtn->setTitleText(ResourceLang::map_lang["okbtntext"]);
 		fightbtn->setVisible(false);
 		givebtn->setVisible(false);
 	}
@@ -330,7 +334,7 @@ void TaskTalkLayer::questFight(std::string bwords)
 	{
 		isFight = true;
 		checkWordLblColor(bwords);
-		closebtn->setTitleText(CommonFuncs::gbk2utf("确定"));
+		closebtn->setTitleText(ResourceLang::map_lang["okbtntext"]);
 		fightbtn->setVisible(false);
 		givebtn->setVisible(false);
 	}
@@ -347,7 +351,7 @@ void TaskTalkLayer::questNotFight(std::string bwords)
 	{
 		checkWordLblColor(bwords);
 	}
-	closebtn->setTitleText(CommonFuncs::gbk2utf("确定"));
+	closebtn->setTitleText(ResourceLang::map_lang["okbtntext"]);
 	fightbtn->setVisible(false);
 	givebtn->setVisible(false);
 	Quest::finishFightMain(QUEST_NOTFIGHT);

@@ -96,7 +96,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="actionbtn" ActionTag="-1365440984" Tag="23" IconVisible="False" LeftMargin="133.2430" RightMargin="-277.2430" TopMargin="-35.9991" BottomMargin="-44.0009" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="114" Scale9Height="58" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="actionbtn" ActionTag="-953088813" Tag="81" IconVisible="False" LeftMargin="133.3915" RightMargin="-277.3915" TopMargin="-36.2234" BottomMargin="-43.7766" TouchEnable="True" LeftEage="47" RightEage="47" TopEage="26" BottomEage="26" Scale9OriginX="47" Scale9OriginY="26" Scale9Width="50" Scale9Height="28" ctype="ImageViewObjectData">
             <Size X="144.0000" Y="80.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="60284931" Tag="25" IconVisible="False" LeftMargin="24.0000" RightMargin="38.0000" TopMargin="1.0000" BottomMargin="31.0000" LeftEage="27" RightEage="27" TopEage="15" BottomEage="15" Scale9OriginX="27" Scale9OriginY="15" Scale9Width="28" Scale9Height="18" ctype="ImageViewObjectData">
@@ -111,17 +111,12 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="205.2430" Y="-4.0009" />
+            <Position X="205.3915" Y="-3.7766" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="MarkedSubImage" Path="ui/actionbtn_blue.png" Plist="ui.plist" />
-            <PressedFileData Type="MarkedSubImage" Path="ui/actionbtn_blue.png" Plist="ui.plist" />
-            <NormalFileData Type="MarkedSubImage" Path="ui/actionbtn_blue.png" Plist="ui.plist" />
-            <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <FileData Type="MarkedSubImage" Path="ui/actionbtn_blue.png" Plist="ui.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="star1" ActionTag="-1477770676" Tag="26" IconVisible="False" LeftMargin="-204.0013" RightMargin="186.0013" TopMargin="41.0001" BottomMargin="-59.0001" LeftEage="5" RightEage="5" TopEage="5" BottomEage="5" Scale9OriginX="5" Scale9OriginY="5" Scale9Width="8" Scale9Height="8" ctype="ImageViewObjectData">
             <Size X="18.0000" Y="18.0000" />

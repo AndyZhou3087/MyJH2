@@ -31,8 +31,10 @@ private:
 	cocos2d::ui::Text* count;
 	cocos2d::ui::ImageView* stars[5];
 	cocos2d::ui::Widget* silver;
+	cocos2d::ui::ImageView* actbtn;
 	Hero* m_heroData;
 	int m_showtype;
+	int langtype;
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
