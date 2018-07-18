@@ -1296,6 +1296,22 @@ int GlobalInstance::getTotalCaryy()
 	return 100;
 }
 
+int GlobalInstance::calcFoodMakeOut()
+{
+	int foodountcount = 0;
+	if (GlobalInstance::vec_resCreators.size() > 0)
+	{
+		int needfood[] = { 2,3,4,10 };
+		foodountcount = GlobalInstance::vec_resCreators[0]->getFarmersCount().getValue();
+		for (unsigned int i = 1; i < GlobalInstance::vec_resCreators.size(); i++)
+		{
+			ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
+			foodountcount -= rescreator->getFarmersCount().getValue() * needfood[i - 1];
+		}
+	}
+	return foodountcount;
+}
+
 void GlobalInstance::parseMapJson()
 {
 	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/mainmap.json"));

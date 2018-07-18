@@ -6,6 +6,8 @@
 #include "MovingLabel.h"
 #include "ConsumeResActionLayer.h"
 #include "MainScene.h"
+#include "Const.h"
+
 HillResNode::HillResNode()
 {
 
@@ -94,7 +96,7 @@ bool HillResNode::init(ResCreator* data)
 
 	updateData(0);
 
-	this->schedule(schedule_selector(HillResNode::updateData), 1.0f);
+	this->schedule(schedule_selector(HillResNode::updateData), 0.2f);
 	return true;
 }
 
@@ -113,7 +115,18 @@ void HillResNode::updateData(float dt)
 	else
 		maxcap->setTextColor(Color4B(255, 255, 255, 255));
 
-	str = StringUtils::format("%d", m_Data->getFarmersCount().getValue());
+	int outcount = 0;
+	if (m_Data->getName().compare("r001") == 0)
+		outcount = GlobalInstance::getInstance()->calcFoodMakeOut();
+	else
+		outcount = m_Data->getFarmersCount().getValue();
+
+	if (outcount >= 0)
+		output->setTextColor(Color4B(255, 255, 255, 255));
+	else
+		output->setTextColor(Color4B(255, 0, 0, 255));
+
+	str = StringUtils::format("%d", outcount);
 	output->setString(str);
 
 	str = StringUtils::format("%d/%d", m_Data->getFarmersCount().getValue(), m_Data->getMaxFarmersCount().getValue());
@@ -133,7 +146,7 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		{
 		case 1000://升级按钮
 		{
-			if (m_Data->getLv().getValue() >= 49)
+			if (m_Data->getLv().getValue() >= (RESCREATOREMAXLV-1))
 			{
 				MovingLabel::show(ResourceLang::map_lang["maxlv"]);
 			}
@@ -167,7 +180,7 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			}
 			break;
 		}
-		case 1002:
+		case 1002://减少工人
 			if (m_Data->getFarmersCount().getValue() > 0)
 			{
 				DynamicValueInt dvalue;

@@ -287,17 +287,27 @@ void MainScene::updateTime(float dt)
 			ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
 			if (rescreator->getFarmersCount().getValue() > 0)
 			{
-				int addcount = respasttime / RES_REFRESHTIME * rescreator->getFarmersCount().getValue();
+				int addcount = 0;
+				if (rescreator->getName().compare("r001") == 0)
+					addcount = GlobalInstance::getInstance()->calcFoodMakeOut();
+				else
+					addcount = respasttime / RES_REFRESHTIME * rescreator->getFarmersCount().getValue();
 				int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
 
-				std::string showtext = StringUtils::format("%s+%d", GlobalInstance::map_AllResources[rescreator->getName()].name.c_str(), addcount);
+				std::string formatstr;
+				if (addcount < 0)
+					formatstr = "%s%d";
+				else
+					formatstr = "%s+%d";
+
+				std::string showtext = StringUtils::format(formatstr.c_str(), GlobalInstance::map_AllResources[rescreator->getName()].name.c_str(), addcount);
 				MovingLabel::show(showtext);
 				int rcount = MyRes::getMyResCount(rescreator->getName());
 
 				if (addcount + rcount >= maxcount)
 					addcount = maxcount - rcount;
 
-				if (addcount > 0)
+				if (addcount != 0)
 					MyRes::Add(rescreator->getName(), addcount);
 
 			}
