@@ -12,7 +12,7 @@ USING_NS_CC;
 
 FightingLayer::FightingLayer()
 {
-
+	fightcount = 0;
 }
 
 FightingLayer::~FightingLayer()
@@ -64,10 +64,11 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros)
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	//°´Å¥
-	cocos2d::ui::Widget* escapebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("escapebtn");
-	escapebtn->addTouchEventListener(CC_CALLBACK_2(FightingLayer::onBtnClick, this));
+	m_escapebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("escapebtn");
+	m_escapebtn->addTouchEventListener(CC_CALLBACK_2(FightingLayer::onBtnClick, this));
+	m_escapebtn->setVisible(false);
 
-	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)escapebtn->getChildByName("text");
+	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)m_escapebtn->getChildByName("text");
 
 	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("escapebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
@@ -118,6 +119,10 @@ void FightingLayer::updateMapHero(int which)
 {
 	//GlobalInstance::myCardHeros[which] = NULL;
 	g_MapBlockScene->updateHeroUI(which);
+	fightcount++;
+
+	if (fightcount > 10)
+		m_escapebtn->setVisible(true);
 }
 
 void FightingLayer::pauseAtkSchedule()

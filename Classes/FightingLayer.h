@@ -30,6 +30,8 @@ private:
 
 private:
 	std::vector<Npc*> m_enemyHeros;
+	cocos2d::ui::Widget* m_escapebtn;
+	int fightcount;
 };
 
 #endif

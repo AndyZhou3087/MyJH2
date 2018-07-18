@@ -101,4 +101,5 @@
 	<s name="hour1">五小时</s>
 	<s name="hour2">八小时</s>
 	<s name="traintipstext">当前训练还未结束，还需要%02d:%02d:%02d。结束后无法获得训练经验，是否确认取消？</s>
+	<s name="makesucc">制作成功%s！</s>	
 </strings>

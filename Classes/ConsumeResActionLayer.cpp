@@ -239,7 +239,7 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 	{
 		switch (tag)
 		{
-		case 1000://升级
+		case 1000://升级，制作
 			if (checkResIsEnough())//资源足够
 			{	//std::vector<std::map<std::string, int>> lvupres = m_building->lvupres[m_building->level.getValue()];
 				//减掉资源
@@ -262,7 +262,7 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 				MovingLabel::show(ResourceLang::map_lang["reslack"]);
 			}
 			break;
-		case 1001://直接升级
+		case 1001://直接升级，立即制作
 			{
 				Building* bdata = (Building*)m_data;
 				if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= (bdata->level.getValue() + 1) * 100)
@@ -339,6 +339,7 @@ void ConsumeResActionLayer::action()
 		std::string rid = (char*)m_data;
 		SmithyLayer* smithyLayer = (SmithyLayer*)this->getParent();
 		smithyLayer->makeRes(rid);
+		MovingLabel::show(ResourceLang::map_lang["makesucc"]);
 	}
 }
 
