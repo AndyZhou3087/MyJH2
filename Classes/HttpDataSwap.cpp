@@ -76,9 +76,19 @@ void HttpDataSwap::postAllData()
 	}
 	writedoc.AddMember("myheros", dataArray, allocator);
 	postdata = JsonWriter(writedoc);
-	log("zhou postdata = %s", postdata.c_str());
 	//postdata
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpPostAllDataCB, this), postdata);
+}
+
+void HttpDataSwap::getAllData()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_getplayerfile?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetAllDataCB, this));
 }
 
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
@@ -110,6 +120,30 @@ void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::strin
 }
 
 void HttpDataSwap::httpPostAllDataCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpGetAllDataCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
 	if (code == 0)

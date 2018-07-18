@@ -4,6 +4,7 @@
 #include "DataSave.h"
 #include "GlobalInstance.h"
 #include "Building.h"
+#include "HttpDataSwap.h"
 
 USING_NS_CC;
 
@@ -47,6 +48,8 @@ bool LoadingScene::init()
 	this->addChild(csbnode);
 
 	this->scheduleOnce(schedule_selector(LoadingScene::delayLoadData), 0.2f);
+
+	HttpDataSwap::init(NULL)->getAllData();
 
     return true;
 }
