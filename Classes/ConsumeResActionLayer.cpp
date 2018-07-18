@@ -13,10 +13,9 @@
 #include "SmithyLayer.h"
 #include "Quest.h"
 #include "TrainLayer.h"
+#include "MarketLayer.h"
 
 USING_NS_CC;
-
-#define COINREFRESH_NUM 100
 
 ConsumeResActionLayer::ConsumeResActionLayer()
 {
@@ -264,16 +263,22 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 			}
 			break;
 		case 1001://直接升级
-			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= COINREFRESH_NUM)
 			{
-				//记录每日任务
-				Quest::setDailyTask(UPGRADE_BUILDING, 1);
-				action();
-				this->removeFromParentAndCleanup(true);
-			}
-			else
-			{
-				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+				Building* bdata = (Building*)m_data;
+				if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= (bdata->level.getValue() + 1) * 100)
+				{
+					DynamicValueInt dv;
+					dv.setValue((bdata->level.getValue() + 1) * 100);
+					GlobalInstance::getInstance()->costMyCoinCount(dv);
+					//记录每日任务
+					Quest::setDailyTask(UPGRADE_BUILDING, 1);
+					action();
+					this->removeFromParentAndCleanup(true);
+				}
+				else
+				{
+					MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+				}
 			}
 			break;
 		default:
@@ -304,6 +309,11 @@ void ConsumeResActionLayer::action()
 		{
 			SmithyLayer* smithyLayer = (SmithyLayer*)this->getParent();
 			smithyLayer->lvup();
+		}
+		else if (bdata->name.compare("5market") == 0)
+		{
+			MarketLayer* marketLayer = (MarketLayer*)this->getParent();
+			marketLayer->lvup();
 		}
 		else if (bdata->name.compare("4trainigroom") == 0)
 		{
