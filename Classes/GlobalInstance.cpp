@@ -74,7 +74,7 @@ std::string GlobalInstance::UUID()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getDeviceIDInKeychain();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "00000000-0000-0000-0000-000000000000";
+	return "865499033926005-********************";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
@@ -199,10 +199,7 @@ void GlobalInstance::saveMyHeros()
 {
 	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 	{
-		std::string herokey = StringUtils::format("hero%d", i);
-		Hero* hero = GlobalInstance::vec_myHeros[i];
-		std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp(), hero->getTrainHour(), hero->getTrainTime());
-		DataSave::getInstance()->setHeroData(herokey, datastr);
+		saveHeroByIndex(i);
 	}
 }
 
@@ -212,13 +209,18 @@ void GlobalInstance::saveHero(Hero* hero)
 	{
 		if (hero->getName().compare(GlobalInstance::vec_myHeros[i]->getName()) == 0)
 		{
-			std::string herokey = StringUtils::format("hero%d", i);
-			Hero* hero = GlobalInstance::vec_myHeros[i];
-			std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp(), hero->getTrainHour(), hero->getTrainTime());
-			DataSave::getInstance()->setHeroData(herokey, datastr);
+			saveHeroByIndex(i);
 			break;
 		}
 	}
+}
+
+void GlobalInstance::saveHeroByIndex(int index)
+{
+	std::string herokey = StringUtils::format("hero%d", index);
+	Hero* hero = GlobalInstance::vec_myHeros[index];
+	std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp(), hero->getTrainHour(), hero->getTrainTime());
+	DataSave::getInstance()->setHeroData(herokey, datastr);
 }
 
 void GlobalInstance::loadMyHeros()

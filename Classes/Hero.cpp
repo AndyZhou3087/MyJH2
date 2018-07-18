@@ -14,6 +14,7 @@
 
 Hero::Hero()
 {
+	m_sex = 0;
 	m_state = 0;
 	m_breakupper = 0;
 	m_randattr = 0.0f;
@@ -44,6 +45,8 @@ Hero::Hero(Hero* hero)
 	m_breakupper = 0;
 	m_pos = 0;
 	m_hp = hero->getHp();
+	m_trainhour = hero->getTrainHour();
+	m_traintime = hero->getTrainTime();
 	for (int i = 0; i < 6; i++)
 	{
 		takeOnEquip[i] = NULL;
@@ -233,7 +236,7 @@ void Hero::generate()
 
 	DynamicValueInt lvdint;
 	setExp(lvdint);
-	setSex(GlobalInstance::getInstance()->createRandomNum(2));
+	//setSex(GlobalInstance::getInstance()->createRandomNum(2));
 	std::string nickname;
 	bool iscontinue = true;
 	do

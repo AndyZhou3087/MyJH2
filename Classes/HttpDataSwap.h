@@ -16,6 +16,8 @@ public:
 
 	void getServerTime();
 
+	void postAllData();
+
 	void setDelegate(HTTPDataDelegateProtocol *delegateProtocol);
 
 private:
@@ -27,7 +29,9 @@ private:
 	void release();
 private:
 
-	void httpGetServerTimeCB(std::string retdata, int code, std::string tag);
+	void httpGetServerTimeCB(std::string retdata, int code, std::string extdata);
+
+	void httpPostAllDataCB(std::string retdata, int code, std::string extdata);
 
 };
 

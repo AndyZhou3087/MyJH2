@@ -353,6 +353,8 @@ public:
 	static bool larger_branchcallback(TaskBranchData a, TaskBranchData b);
 private:
 	static GlobalInstance* _Context;//类实例
+
+	void saveHeroByIndex(int index);
 public:
 	static std::vector<Hero*> vec_myHeros;//招募的英雄
 	static std::vector<Hero*> vec_rand3Heros;//待招募的3个英雄
