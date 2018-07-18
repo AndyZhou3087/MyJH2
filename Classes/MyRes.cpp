@@ -145,7 +145,7 @@ void MyRes::Add(ResBase* res, int count, int inwhere)
 		count = res->getCount().getValue();
 
 	int type = res->getType();
-	if (type >= T_ARMOR && type <= T_FASHION || (type >= T_WG && type <= T_NG))
+	if ((type >= T_ARMOR && type <= T_FASHION) || (type >= T_WG && type <= T_NG))
 	{
 		DynamicValueInt dv;
 		dv.setValue(count);

@@ -601,7 +601,7 @@ void MapBlockScene::doMyStatus()
 			}
 			if (!isTask)
 			{
-				//this->addChild(FightingLayer::create(vec_enemys));
+				this->addChild(FightingLayer::create(vec_enemys));
 			}
 		}
 	}
@@ -691,6 +691,15 @@ void MapBlockScene::creatNpcOrBoss(MapBlock* mbolck)
 				vec_enemys.push_back(enemyhero);
 			}
 		}
+	}
+
+	for (unsigned int i = 0; i < mbolck->vec_RewardsRes.size(); i++)
+	{
+		FOURProperty propty = mbolck->vec_RewardsRes[i];
+		int rnd = propty.floatPara3 * 100;
+		int r2 = GlobalInstance::getInstance()->createRandomNum(10000);
+		if (r2 < rnd)
+			vec_winrewards.push_back(propty);
 	}
 }
 

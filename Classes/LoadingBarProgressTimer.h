@@ -18,7 +18,7 @@ public:
 	virtual LoadingBarProgressTo* clone() const override;
 	virtual LoadingBarProgressTo* reverse() const override;
     virtual void startWithTarget(Node *target) override;
-    void update(float time);
+	virtual void update(float time);
     
 	LoadingBarProgressTo();
 	~LoadingBarProgressTo();
