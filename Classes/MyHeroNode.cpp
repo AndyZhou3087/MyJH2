@@ -11,6 +11,9 @@
 #include "MovingLabel.h"
 #include "Const.h"
 #include "TrainSelectLayer.h"
+#include "TrainHintLayer.h"
+#include "TrainLayer.h"
+#include "Building.h"
 
 #define RSILVERCOUNT 100
 
@@ -75,7 +78,7 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	lvlbl = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
 
 	//按钮
-	cocos2d::ui::Widget* actbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
+	actbtn = (cocos2d::ui::ImageView*)csbnode->getChildByName("actionbtn");
 	actbtn->addTouchEventListener(CC_CALLBACK_2(MyHeroNode::onBtnClick, this));
 
 	silver = (cocos2d::ui::Widget*)csbnode->getChildByName("silver");
@@ -83,7 +86,7 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	std::string s = StringUtils::format("%d", (herodata->getLevel() + 1) * RSILVERCOUNT);
 	count->setString(s);
 
-	int langtype = GlobalInstance::getInstance()->getLang();
+	langtype = GlobalInstance::getInstance()->getLang();
 
 	//按钮文字
 	actbtntxt = (cocos2d::ui::ImageView*)actbtn->getChildByName("text");
@@ -115,13 +118,8 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	else if (m_showtype == HS_TRAINING)
 	{
 		bgitem->setTouchEnabled(false);
-		actbtntxt->loadTexture(ResourcePath::makeTextImgPath("training_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-		if (herodata->getState() == HS_TRAINING)
-		{
-			actbtntxt->loadTexture(ResourcePath::makeTextImgPath("herocancel_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			countdown->setVisible(true);
-			this->schedule(schedule_selector(MyHeroNode::updateTime), 1.0f);
-		}
+		updateTime(0);
+		this->schedule(schedule_selector(MyHeroNode::updateTime), 1.0f);
 	}
 
 	return true;
@@ -129,23 +127,41 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 
 void MyHeroNode::updateTime(float dt)
 {
+	actbtntxt->loadTexture(ResourcePath::makeTextImgPath("training_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	actbtn->loadTexture("ui/actionbtn_blue.png", cocos2d::ui::Widget::TextureResType::PLIST);
+	countdown->setVisible(false);
+	if (m_heroData->getState() == HS_TRAINING)
+	{
+		actbtntxt->loadTexture(ResourcePath::makeTextImgPath("herocancel_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		actbtn->loadTexture("ui/actionbtn_yellow.png", cocos2d::ui::Widget::TextureResType::PLIST);
+		countdown->setVisible(true);
+	}
+	else
+	{
+		return;
+	}
+
 	int lefttime = 0;
 	int refreshtime = m_heroData->getTrainTime();
 	int pasttime = GlobalInstance::servertime - refreshtime;
 	if (pasttime >= m_heroData->getTrainHour())
 	{
-		int t = GlobalInstance::servertime % m_heroData->getTrainHour();
+		int lv = Building::map_buildingDatas["4trainigroom"]->level.getValue();
+		int bexp = Building::map_buildingDatas["4trainigroom"]->vec_exdatatrain[lv];
+		DynamicValueInt dexp;
+		dexp.setValue(m_heroData->getExp().getValue() + m_heroData->getTrainHour() / 3600 * bexp);
+		m_heroData->setExp(dexp);
 
-		refreshtime = GlobalInstance::servertime - t;
-		m_heroData->setTrainTime(refreshtime);
-
-		lefttime = m_heroData->getTrainHour() - t;
+		m_heroData->setTrainHour(0);
+		m_heroData->setTrainTime(0);
+		m_heroData->setState(HS_OWNED);
+		countdown->setVisible(false);
 	}
 	else
 	{
 		lefttime = m_heroData->getTrainHour() - pasttime;
 	}
-	std::string timestr = StringUtils::format("%02d:%02d", lefttime % 3600 / 60, lefttime % 3600 % 60);
+	std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
 	countdown->setString(timestr);
 }
 
@@ -263,7 +279,8 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			}
 			else if (m_heroData->getState() == HS_TRAINING)
 			{
-
+				TrainHintLayer* layer = TrainHintLayer::create(m_heroData);
+				g_mainScene->addChild(layer, 1, "TrainHintLayer");
 			}
 		}
 	}

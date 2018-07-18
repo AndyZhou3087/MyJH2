@@ -19,6 +19,7 @@ public:
 	DynamicValueInt level;// 建筑物等级
 	std::vector<std::vector<std::map<std::string,int>>> lvupres;//建筑升级资源
 	std::vector<std::vector<std::string>> vec_exdata;
+	std::vector<int> vec_exdatatrain;
 public:
 	/********************************************************************
 	* 解析每个建筑物的数据

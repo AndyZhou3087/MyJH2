@@ -63,11 +63,15 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)m_csbnode->getChildByName("name");
 	name->setString(data->name);
 
-	desc = (cocos2d::ui::Text*)m_csbnode->getChildByName("desc");
+	/*desc = (cocos2d::ui::Text*)m_csbnode->getChildByName("desc");
 	desc->setVisible(false);
-	desc->setString(data->bossword);
+	desc->setString(data->bossword);*/
+	descscoll = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("descscoll");
 
 	checkWordLblColor(data->bossword);
+
+	cocos2d::ui::Text* rewardlabel = (cocos2d::ui::Text*)m_csbnode->getChildByName("rewardlabel");
+	rewardlabel->setString(ResourceLang::map_lang["taskrewardtip"]);
 
 	//npc头像
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
@@ -83,6 +87,7 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	closebtn->setPosition(Vec2(357, 131));
 	closebtn->setTag(0);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtnClick, this));
+	closebtn->setTitleText(ResourceLang::map_lang["closetext"]);
 
 	givebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("accbtn");
 	givebtn->setPosition(Vec2(357, 429));
@@ -211,7 +216,7 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		switch (tag)
 		{
 		case 0:
-			if (btn->getTitleText().compare(CommonFuncs::gbk2utf("确定")) == 0)
+			if (btn->getTitleText().compare(ResourceLang::map_lang["okbtntext"]) == 0)
 			{
 				if (isGo == 1)
 				{
@@ -318,7 +323,7 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 		{
 			checkWordLblColor(bwords);
 		}
-		closebtn->setTitleText(CommonFuncs::gbk2utf("确定"));
+		closebtn->setTitleText(ResourceLang::map_lang["okbtntext"]);
 		fightbtn->setVisible(false);
 		givebtn->setVisible(false);
 	}
@@ -330,7 +335,7 @@ void TaskTalkLayer::questFight(std::string bwords)
 	{
 		isFight = true;
 		checkWordLblColor(bwords);
-		closebtn->setTitleText(CommonFuncs::gbk2utf("确定"));
+		closebtn->setTitleText(ResourceLang::map_lang["okbtntext"]);
 		fightbtn->setVisible(false);
 		givebtn->setVisible(false);
 	}
@@ -347,7 +352,7 @@ void TaskTalkLayer::questNotFight(std::string bwords)
 	{
 		checkWordLblColor(bwords);
 	}
-	closebtn->setTitleText(CommonFuncs::gbk2utf("确定"));
+	closebtn->setTitleText(ResourceLang::map_lang["okbtntext"]);
 	fightbtn->setVisible(false);
 	givebtn->setVisible(false);
 	Quest::finishFightMain(QUEST_NOTFIGHT);
@@ -355,15 +360,19 @@ void TaskTalkLayer::questNotFight(std::string bwords)
 
 void TaskTalkLayer::checkWordLblColor(std::string wordstr)
 {
-	m_wordlbl = Label::createWithTTF(wordstr, "fonts/simhei.TTF", 30);
+	m_wordlbl = Label::createWithTTF(wordstr, "fonts/simhei.TTF", 25);
 	m_wordlbl->setLineBreakWithoutSpace(true);
 	m_wordlbl->setAnchorPoint(Vec2(0, 1));
 	m_wordlbl->setHorizontalAlignment(CCTextAlignment::LEFT);
 	m_wordlbl->setVerticalAlignment(CCVerticalTextAlignment::TOP);
-	m_wordlbl->setMaxLineWidth(470);
-	m_wordlbl->setPosition(Vec2(127, 982));
-	this->addChild(m_wordlbl, 0, "talklbl");
-
+	m_wordlbl->setMaxLineWidth(descscoll->getContentSize().width);
+	descscoll->addChild(m_wordlbl, 0, "talklbl");
+	int innerheight = m_wordlbl->getStringNumLines() * 25;//contentlbl->getHeight();
+	int contentheight = descscoll->getContentSize().height;
+	if (innerheight < contentheight)
+		innerheight = contentheight;
+	descscoll->setInnerContainerSize(Size(descscoll->getContentSize().width, innerheight));
+	m_wordlbl->setPosition(Vec2(0, innerheight));
 
 	int index = 0;
 	while (m_wordlbl->getLetter(index) != NULL)

@@ -88,7 +88,7 @@ bool TaskDailyNode::init(DailyTaskData* data)
 		int count = atoi(vec[1].c_str());
 		std::string str = StringUtils::format("ui/%s.png", vec[0].c_str());
 		Sprite * res = Sprite::createWithSpriteFrameName(str);
-		res->setPosition(Vec2(-21 + i * 70, 0));
+		res->setPosition(Vec2(0 + i * 70, 0));
 		this->addChild(res);
 		res->setScale(0.4f);
 
@@ -96,7 +96,7 @@ bool TaskDailyNode::init(DailyTaskData* data)
 		Label *namelbl = Label::createWithTTF(str, FONT_NAME, 16);
 		namelbl->setColor(Color3B(0, 0, 0));
 		namelbl->setAnchorPoint(Vec2(0, 0.5));
-		namelbl->setPosition(Vec2(-3 + i * 70, -8));
+		namelbl->setPosition(Vec2(18 + i * 70, -7));
 		this->addChild(namelbl);
 	}
 

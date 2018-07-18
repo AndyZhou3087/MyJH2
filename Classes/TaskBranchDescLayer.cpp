@@ -50,12 +50,27 @@ bool TaskBranchDescLayer::init(TaskBranchData* data)
 
 	int langtype = GlobalInstance::getInstance()->getLang();
 
+	cocos2d::ui::Text* rewardlabel = (cocos2d::ui::Text*)m_csbnode->getChildByName("rewardlabel");
+	rewardlabel->setString(ResourceLang::map_lang["taskrewardtip"]);
+
 	//±êÌâ
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)m_csbnode->getChildByName("name");
 	name->setString(data->name);
 
-	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)m_csbnode->getChildByName("desc");
-	desc->setString(data->desc);
+	cocos2d::ui::ScrollView* descscoll = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("descscoll");
+	Label* contentlbl = Label::createWithTTF(data->desc, "fonts/simhei.TTF", 25);
+	contentlbl->setAnchorPoint(Vec2(0, 1));
+	contentlbl->setColor(Color3B(255, 255, 255));
+	contentlbl->setHorizontalAlignment(TextHAlignment::LEFT);
+	contentlbl->setLineBreakWithoutSpace(true);
+	contentlbl->setMaxLineWidth(descscoll->getContentSize().width);
+	descscoll->addChild(contentlbl);
+	int innerheight = contentlbl->getStringNumLines() * 25;//contentlbl->getHeight();
+	int contentheight = descscoll->getContentSize().height;
+	if (innerheight < contentheight)
+		innerheight = contentheight;
+	descscoll->setInnerContainerSize(Size(descscoll->getContentSize().width, innerheight));
+	contentlbl->setPosition(Vec2(0, innerheight));
 
 	//npcÍ·Ïñ
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
@@ -71,16 +86,19 @@ bool TaskBranchDescLayer::init(TaskBranchData* data)
 	closebtn->setPosition(Vec2(357, 183));
 	closebtn->setTag(0);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskBranchDescLayer::onBtnClick, this));
+	closebtn->setTitleText(ResourceLang::map_lang["closetext"]);
 
 	accbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("accbtn");
 	accbtn->setPosition(Vec2(357, 376));
 	accbtn->setTag(1);
 	accbtn->addTouchEventListener(CC_CALLBACK_2(TaskBranchDescLayer::onBtnClick, this));
+	accbtn->setTitleText(ResourceLang::map_lang["acctasktext"]);
 
 	cocos2d::ui::Button* getbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("getbtn");
 	getbtn->setPosition(Vec2(357, 376));
 	getbtn->setTag(2);
 	getbtn->addTouchEventListener(CC_CALLBACK_2(TaskBranchDescLayer::onBtnClick, this));
+	getbtn->setTitleText(ResourceLang::map_lang["getrewardtext"]);
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("ScrollView");
 	scrollView->setScrollBarEnabled(false);

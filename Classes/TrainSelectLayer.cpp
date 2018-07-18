@@ -17,6 +17,7 @@
 USING_NS_CC;
 
 const static int resCount[3] = { 100, 500, 800 };
+const static int timeCount[3] = { 3600, 18000, 28800 };
 
 TrainSelectLayer::TrainSelectLayer()
 {
@@ -202,7 +203,9 @@ void TrainSelectLayer::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 
 void TrainSelectLayer::action()
 {
-
+	m_data->setState(HS_TRAINING);
+	m_data->setTrainHour(timeCount[lastSelectIndex]);
+	m_data->setTrainTime(GlobalInstance::servertime);
 }
 
 void TrainSelectLayer::updateUI()

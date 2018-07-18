@@ -36,6 +36,7 @@ private:
 	int m_wordcount;
 	int isGo;
 	bool isFight;
+	cocos2d::ui::ScrollView* descscoll;
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

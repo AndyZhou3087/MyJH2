@@ -76,20 +76,31 @@ void Building::parseData()
 			{
 				value = jsonvalue["exdata"];
 			
-				for (unsigned int i = 0; i < value.Size(); i++)
+				if (data->name.compare("4trainigroom") == 0)
 				{
-					std::vector<std::string> vec_res;
-					rapidjson::Value& resvalue = value[i];
-					int size = resvalue.Size();
-					for (int j = 0; j < size; j++)
+					for (unsigned int i = 0; i < value.Size(); i++)
 					{
-						std::string onestr = resvalue[j].GetString();
-						if (onestr.length() > 1)
-						{
-							vec_res.push_back(onestr);
-						}
+						int exp = value[i].GetInt();
+						data->vec_exdatatrain.push_back(exp);
 					}
-					data->vec_exdata.push_back(vec_res);
+				}
+				else
+				{
+					for (unsigned int i = 0; i < value.Size(); i++)
+					{
+						std::vector<std::string> vec_res;
+						rapidjson::Value& resvalue = value[i];
+						int size = resvalue.Size();
+						for (int j = 0; j < size; j++)
+						{
+							std::string onestr = resvalue[j].GetString();
+							if (onestr.length() > 1)
+							{
+								vec_res.push_back(onestr);
+							}
+						}
+						data->vec_exdata.push_back(vec_res);
+					}
 				}
 			}
 			map_buildingDatas[data->name] = data;
