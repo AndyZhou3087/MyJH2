@@ -20,6 +20,8 @@ private:
 	void showAction();
 	void removeSelf();
 
+	void showNext();
+
 private:
 	static std::queue<MovingLabel*> queue_labels;
 	bool ismoving;
