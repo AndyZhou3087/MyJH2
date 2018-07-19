@@ -166,7 +166,7 @@ bool MapBlockScene::init(std::string mapname)
 void MapBlockScene::updateLabel(float dt)
 {
 	int foodcount = MyRes::getMyResCount("r001", MYPACKAGE);
-	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::getInstance()->getTotalCaryy());
+	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::getInstance()->getTotalCarry());
 	carrycountlbl->setString(str);
 	str = StringUtils::format("%d", foodcount);
 	foodcountlbl->setString(str);

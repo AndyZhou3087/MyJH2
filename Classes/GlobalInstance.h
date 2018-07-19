@@ -311,7 +311,7 @@ public:
 	void fireHero(int index);
 
 	//英雄总的负重
-	int getTotalCaryy();
+	int getTotalCarry();
 
 	//食物产出，工人采资源会影响食物产出
 	int calcFoodMakeOut();

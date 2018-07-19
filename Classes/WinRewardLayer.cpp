@@ -200,7 +200,7 @@ void WinRewardLayer::updateScrollviewContent()
 			boxItem->addChild(countlbl);
 		}
 	}
-	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::getInstance()->getTotalCaryy());
+	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::getInstance()->getTotalCarry());
 	carrycountlbl->setString(str);
 }
 
@@ -275,7 +275,7 @@ void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				packagecount += vec_dropdownres[i]->getCount().getValue();
 			}
 
-			if (MyRes::getMyPackageCount() + packagecount > GlobalInstance::getInstance()->getTotalCaryy())
+			if (MyRes::getMyPackageCount() + packagecount > GlobalInstance::getInstance()->getTotalCarry())
 			{
 				MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
 				return;
@@ -319,7 +319,7 @@ void WinRewardLayer::onclick(Ref* pSender)
 	int tag = node->getTag();
 	if (tag / 10000 == 0)//点击的是两个scrollview的 0--掉落，1--背包
 	{
-		if (MyRes::getMyPackageCount() + 1 > GlobalInstance::getInstance()->getTotalCaryy())
+		if (MyRes::getMyPackageCount() + 1 > GlobalInstance::getInstance()->getTotalCarry())
 		{
 			MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
 			return;

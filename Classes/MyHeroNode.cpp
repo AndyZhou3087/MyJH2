@@ -14,6 +14,7 @@
 #include "TrainHintLayer.h"
 #include "TrainLayer.h"
 #include "Building.h"
+#include "OutTownLayer.h"
 
 #define RSILVERCOUNT 100
 
@@ -204,7 +205,8 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		{
 			SelectMyHerosLayer* selectheroLayer = (SelectMyHerosLayer*)g_mainScene->getChildByName("0outtown")->getChildByName("selectmyheroslayer");
 			int selectIndex = selectheroLayer->getTag();
-			CardHeroNode* cardheroNode = (CardHeroNode*)g_mainScene->getChildByName("0outtown")->getChildByTag(selectIndex);
+			OutTownLayer* outTownLayer = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
+			CardHeroNode* cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(selectIndex);
 			if (m_heroData->getState() == HS_OWNED)
 			{
 				//清楚掉之前选择的
@@ -236,7 +238,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				else//取消另外一个框的英雄
 				{
 					heroinwhere = m_heroData->getPos() - 1;
-					cardheroNode = (CardHeroNode*)g_mainScene->getChildByName("0outtown")->getChildByTag(heroinwhere);
+					cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(heroinwhere);
 				}
 				GlobalInstance::myCardHeros[heroinwhere] = NULL;
 
@@ -246,6 +248,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				setStateTag(HS_OWNED);
 				cardheroNode->setData(NULL);
 			}
+			outTownLayer->updateHeroCarry();
 		}
 		else if (m_showtype == HS_DEAD)
 		{

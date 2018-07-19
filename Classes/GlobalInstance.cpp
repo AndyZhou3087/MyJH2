@@ -1296,9 +1296,18 @@ void GlobalInstance::fireHero(int index)
 	GlobalInstance::getInstance()->saveMyHeros();
 }
 
-int GlobalInstance::getTotalCaryy()
+int GlobalInstance::getTotalCarry()
 {
-	return 100;
+	int ret = 30;
+
+	for (unsigned int i = 0; i < 6; i++)
+	{
+		if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
+		{
+			ret += (GlobalInstance::myCardHeros[i]->getLevel() + 1) * 10;
+		}
+	}
+	return ret;
 }
 
 int GlobalInstance::calcFoodMakeOut()
