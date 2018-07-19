@@ -40,6 +40,7 @@
           <Image Name="mapbg.jpg" />
           <Image Name="mapblockbottom.png" />
           <Image Name="mapblocktop.png" />
+          <Image Name="materialbox.png" />
           <Image Name="selectequipbg.png" />
           <Image Name="smallbg.png" />
           <Image Name="t001.jpg" />
@@ -76,7 +77,6 @@
           <Image Name="q.jpg" />
         </Folder>
         <Folder Name="mapui">
-          <Image Name="blockblack.png" />
           <Image Name="boardblock_0.png" />
           <Image Name="boardblock_1.png" />
           <Image Name="boardblock_10.png" />
@@ -234,6 +234,7 @@
           <Image Name="buildblock_7.png" />
           <Image Name="buildblock_8.png" />
           <Image Name="buildblock_9.png" />
+          <Image Name="fog.png" />
           <Image Name="gocitybtn.png" />
           <Image Name="heroatkspeedbar.png" />
           <Image Name="heroatkspeedbarbg.png" />

@@ -4,7 +4,6 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
-#include "MaterialDescLayer.h"
 
 USING_NS_CC;
 //主界面按钮
@@ -47,8 +46,6 @@ private:
 	cocos2d::ui::Text* mycoinlbl;//金币数量LABEL
 	cocos2d::ui::Widget* achredpoint;//成就小红点
 	cocos2d::ui::Widget* mailredpoint;//邮件小红点
-
-	MaterialDescLayer* malayer;
 };
 
 #endif

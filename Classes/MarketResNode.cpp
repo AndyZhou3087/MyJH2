@@ -55,7 +55,13 @@ bool MarketResNode::init(std::string resid, int rescount)
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 	desclbl->setString(GlobalInstance::map_AllResources[resid].desc);
 
-	totalsilverlbl = (cocos2d::ui::Text*)csbnode->getChildByName("totalsilver");
+	totalpricelbl = (cocos2d::ui::Text*)csbnode->getChildByName("totalprice");
+
+	priceicon = (cocos2d::ui::ImageView*)csbnode->getChildByName("priceicon");
+	priceicon->ignoreContentAdaptWithSize(true);
+
+	if (GlobalInstance::map_AllResources[resid].coinval > 0)
+		priceicon->loadTexture(ResourcePath::makePath("ui/main_coin.png"), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	rescountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("rescount");
 
@@ -96,9 +102,28 @@ void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case 1000://购买按钮
 		{
 			std::string showstr;
-			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() < buycount * GlobalInstance::map_AllResources[m_resid].saleval)
+
+			int saleval = 0;
+			DynamicValueInt myrich;
+			bool iscoinsale = false;
+			if (GlobalInstance::map_AllResources[m_resid].coinval > 0)
 			{
-				showstr = ResourceLang::map_lang["nomoresilver"];
+				saleval = GlobalInstance::map_AllResources[m_resid].coinval;
+				myrich.setValue(GlobalInstance::getInstance()->getMyCoinCount().getValue());
+				iscoinsale = true;
+			}
+			else
+			{
+				saleval = GlobalInstance::map_AllResources[m_resid].silverval;
+				myrich.setValue(GlobalInstance::getInstance()->getMySoliverCount().getValue());
+			}
+
+			if (myrich.getValue() < buycount * saleval)
+			{
+				if (iscoinsale)
+					showstr = ResourceLang::map_lang["nomorecoin"];
+				else
+					showstr = ResourceLang::map_lang["nomoresilver"];
 			}
 			else
 			{
@@ -160,18 +185,31 @@ void MarketResNode::reset(int maxcount)
 }
 
 void MarketResNode::updateData()
-{
-	std::string salestr = StringUtils::format("%d", buycount * GlobalInstance::map_AllResources[m_resid].saleval);
-	totalsilverlbl->setString(salestr);
-
-	if (GlobalInstance::getInstance()->getMySoliverCount().getValue() < buycount * GlobalInstance::map_AllResources[m_resid].saleval)
+{	
+	int saleval = 0;
+	DynamicValueInt myrich;
+	if (GlobalInstance::map_AllResources[m_resid].coinval > 0)
 	{
-		totalsilverlbl->setColor(Color3B(255, 0, 0));
+		saleval = GlobalInstance::map_AllResources[m_resid].coinval;
+		myrich.setValue(GlobalInstance::getInstance()->getMyCoinCount().getValue());
 	}
 	else
 	{
-		totalsilverlbl->setColor(Color3B(121, 78, 46));
+		saleval = GlobalInstance::map_AllResources[m_resid].silverval;
+		myrich.setValue(GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	}
+
+	if (myrich.getValue() < buycount * saleval)
+	{
+		totalpricelbl->setColor(Color3B(255, 0, 0));
+	}
+	else
+	{
+		totalpricelbl->setColor(Color3B(121, 78, 46));
+	}
+
+	std::string salestr = StringUtils::format("%d", buycount * saleval);
+	totalpricelbl->setString(salestr);
 
 	std::string countstr = StringUtils::format("%d/%d", buycount, totalrescount);
 	rescountlbl->setString(countstr);

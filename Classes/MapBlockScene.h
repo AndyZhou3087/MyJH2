@@ -103,6 +103,10 @@ private:
 	void createMyRender();
 
 	void updateMyRender(float dt);
+
+	void checkFood();
+
+	bool checklive();
 private:
 	Node* m_csbnode;
 	ParticleSystemQuad* myposParticle;
@@ -110,7 +114,6 @@ private:
 	cocos2d::ui::Text* foodcountlbl;
 	cocos2d::ui::Text* solivercountlbl;
 	cocos2d::ui::Text* sitelbl;
-	cocos2d::ui::Text* lackfoodlbl;
 	int blockRowCount;
 	int blockColCount;
 	ScrollView* scrollView;
@@ -132,6 +135,7 @@ private:
 	RenderTexture* _fogrender;
 	RenderTexture* _myrender;
 	Sprite* _mylight;
+	float fogscale;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

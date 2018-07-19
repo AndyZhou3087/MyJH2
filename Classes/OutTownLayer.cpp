@@ -107,18 +107,10 @@ bool OutTownLayer::init()
 		str = StringUtils::format("carrycount%d", i);
 		caryycountlbl[i] = (cocos2d::ui::Text*)csbnode->getChildByName(str);
 
-		caryycount[i] = MyRes::getMyResCount(carryResids[i], MYPACKAGE);
+		//caryycount[i] = MyRes::getMyResCount(carryResids[i]);
 	}
 
-	//还可以带多少食物
-	caryycount[0] = GlobalInstance::getInstance()->getTotalCaryy() - caryycount[0] - caryycount[1] - caryycount[2];
-	if (caryycount[0] > MyRes::getMyResCount(carryResids[0]))
-		caryycount[0] = MyRes::getMyResCount(carryResids[0]) + MyRes::getMyResCount(carryResids[0], MYPACKAGE);
-	else
-		caryycount[0] += MyRes::getMyResCount(carryResids[0], MYPACKAGE);
-
-
-	updateCaryyCountLbl();
+	updateHeroCarry();
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -160,7 +152,7 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 			for (int i = 0; i < 3; i++)
 			{
-				int addcount = caryycount[i] - MyRes::getMyResCount(carryResids[i], MYPACKAGE);
+				int addcount = caryycount[i];
 				if (addcount != 0)
 				{
 					MyRes::Add(carryResids[i], addcount, MYPACKAGE);
@@ -269,11 +261,20 @@ void OutTownLayer::subRes(Node* clicknode)
 
 void OutTownLayer::updateCaryyCountLbl()
 {
-	std::string str = StringUtils::format("%d/%d", caryycount[0] + caryycount[1] + caryycount[2], GlobalInstance::getInstance()->getTotalCaryy());
+	std::string str = StringUtils::format("%d/%d", caryycount[0] + caryycount[1] + caryycount[2], GlobalInstance::getInstance()->getTotalCarry());
 	carrylbl->setString(str);
 
-	str = StringUtils::format("%d/%d", caryycount[0], MyRes::getMyResCount(carryResids[0]) + MyRes::getMyResCount(carryResids[0], MYPACKAGE));
+	str = StringUtils::format("%d/%d", caryycount[0], MyRes::getMyResCount(carryResids[0]));
 	caryycountlbl[0]->setString(str);
+}
+
+void OutTownLayer::updateHeroCarry()
+{
+	caryycount[0] = GlobalInstance::getInstance()->getTotalCarry() - caryycount[1] - caryycount[2];
+	if (caryycount[0] > MyRes::getMyResCount(carryResids[0]))
+		caryycount[0] = MyRes::getMyResCount(carryResids[0]);
+
+	updateCaryyCountLbl();
 }
 
 
@@ -284,7 +285,7 @@ bool OutTownLayer::isCarryOver()
 	{
 		count += caryycount[i];
 	}
-	return count >= GlobalInstance::getInstance()->getTotalCaryy();
+	return count >= GlobalInstance::getInstance()->getTotalCarry();
 }
 
 void OutTownLayer::onExit()

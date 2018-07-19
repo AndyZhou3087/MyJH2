@@ -15,9 +15,9 @@ MovingLabel::~MovingLabel()
 
 }
 
-void MovingLabel::show(std::string text, Vec2 pos)
+void MovingLabel::show(std::string text, Color4B color, Vec2 pos)
 {
-	MovingLabel* label = MovingLabel::create(text, pos);
+	MovingLabel* label = MovingLabel::create(text, color, pos);
 	queue_labels.push(label);
 	Director::getInstance()->getRunningScene()->addChild(label, 10);
 	if (queue_labels.size() == 1)
@@ -26,10 +26,10 @@ void MovingLabel::show(std::string text, Vec2 pos)
 	}
 }
 
-MovingLabel* MovingLabel::create(std::string text, Vec2 pos)
+MovingLabel* MovingLabel::create(std::string text, Color4B color, Vec2 pos)
 {
 	MovingLabel *pRet = new(std::nothrow)MovingLabel();
-	if (pRet && pRet->init(text, pos))
+	if (pRet && pRet->init(text, color, pos))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -42,10 +42,11 @@ MovingLabel* MovingLabel::create(std::string text, Vec2 pos)
 	}
 }
 
-bool MovingLabel::init(std::string text, Vec2 pos)
+bool MovingLabel::init(std::string text, Color4B color, Vec2 pos)
 {
 	Label::initWithTTF(text, FONT_NAME, 25);
 	setPosition(pos);
+	this->setTextColor(color);
 	this->enableOutline(Color4B(0,0,0, 200), 1);
 	this->enableShadow();
 	this->setScale(0.0f);

@@ -17,14 +17,7 @@ public:
 	virtual void onExit();
 	bool init(std::string resid);
 
-	void setResId(std::string resid);
-
 private:
-	std::string m_resid;
-	cocos2d::ui::Text* m_text;
-
-private:
-	void loadMaterialDesc();
 	void delayRemoveSelf(float dt);
 };
 

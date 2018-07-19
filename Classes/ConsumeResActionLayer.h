@@ -43,6 +43,7 @@ private:
 	void* m_data;//需要传递的数据
 	int m_actiontype;//CACTIONTYPE
 	std::vector<std::map<std::string, int>> vec_res;//需要的资源的数据
+	DynamicValueInt costcoindv;//立即动作需要的元宝数
 };
 
 #endif

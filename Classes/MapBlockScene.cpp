@@ -16,6 +16,7 @@
 #include "TaskTalkLayer.h"
 #include "TaskBranchTalkLayer.h"
 #include "MyPackageLayer.h"
+#include "MainScene.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -30,6 +31,7 @@ MapBlockScene::MapBlockScene()
 	m_longTouchNode = NULL;
 	walkcount = 0;
 	monsterComeRnd = DEFAULTRND;
+	fogscale = 4.0f;
 }
 
 
@@ -104,10 +106,6 @@ bool MapBlockScene::init(std::string mapname)
 	foodcountlbl = (cocos2d::ui::Text*)topnode->getChildByName("r001count");
 	solivercountlbl = (cocos2d::ui::Text*)topnode->getChildByName("solivercountlbl");
 
-	lackfoodlbl = (cocos2d::ui::Text*)topnode->getChildByName("lackfood");
-	lackfoodlbl->setOpacity(0);
-	lackfoodlbl->runAction(RepeatForever::create(Blink::create(1.0f, 1)));
-
 	sitelbl = (cocos2d::ui::Text*)topnode->getChildByName("site");
 
 	resetBlockData();
@@ -168,17 +166,12 @@ bool MapBlockScene::init(std::string mapname)
 void MapBlockScene::updateLabel(float dt)
 {
 	int foodcount = MyRes::getMyResCount("r001", MYPACKAGE);
-	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::getInstance()->getTotalCaryy());
+	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::getInstance()->getTotalCarry());
 	carrycountlbl->setString(str);
 	str = StringUtils::format("%d", foodcount);
 	foodcountlbl->setString(str);
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	solivercountlbl->setString(str);
-	
-	if (foodcount <= 5)
-		lackfoodlbl->setOpacity(255);
-	else
-		lackfoodlbl->setOpacity(0);
 }
 
 void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -252,11 +245,6 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	if (isMoving)
 		return;
 
-	if (MyRes::getMyResCount("r001", MYPACKAGE) <= 0)
-	{
-
-		return;
-	}
 	if (!checkRoad(keyArrow))
 		return;
 
@@ -297,6 +285,10 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 		cacelLongTouch();
 		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
 	}
+	else
+	{
+		checkFood();
+	}
 }
 
 void MapBlockScene::stopMoving()
@@ -307,6 +299,57 @@ void MapBlockScene::stopMoving()
 	{
 		go((MAP_KEYTYPE)m_longTouchNode->getTag());
 	}
+}
+
+void MapBlockScene::checkFood()
+{
+	int foodcount = MyRes::getMyResCount("r001", MYPACKAGE);
+
+	if (foodcount <= 10 && foodcount > 0)
+	{
+		if (foodcount % 5 == 0)
+			MovingLabel::show(ResourceLang::map_lang["lackfoodhint"]);
+	}
+	else if (foodcount <= 0)
+	{
+		MovingLabel::show(ResourceLang::map_lang["nofoodhint"], Color4B(Color3B(204,4,4)));
+
+		for (int i = 0; i < 6; i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL)
+			{
+				float hp = GlobalInstance::myCardHeros[i]->getHp();
+				hp -= GlobalInstance::myCardHeros[i]->getMaxHp()*0.2;
+				if (hp <= 0)
+				{
+					hp = 0;
+					GlobalInstance::myCardHeros[i]->setState(HS_DEAD);
+					GlobalInstance::myCardHeros[i]->setPos(0);
+				}
+				GlobalInstance::myCardHeros[i]->setHp(hp);
+				updateHeroUI(i);
+			}
+		}
+		if (!checklive())
+		{
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+		}
+	}
+}
+
+bool MapBlockScene::checklive()
+{
+	int index = 0;
+	for (int i = 0; i < 6; i++)
+	{
+		if (GlobalInstance::myCardHeros[i] == NULL || GlobalInstance::myCardHeros[i]->getState() == HS_DEAD)
+		{
+			index++;
+		}
+	}
+	if (index == 6)
+		return false;
+	return true;
 }
 
 bool MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
@@ -461,11 +504,11 @@ void MapBlockScene::createMyRender()
 
 	_myrender->beginWithClear(0, 0, 0, 0.5f, 0, 0);
 
-	_mylight = Sprite::create("fog.png");
+	_mylight = Sprite::createWithSpriteFrameName("mapui/fog.png");
 	_mylight->setBlendFunc({ GL_ZERO, GL_ONE_MINUS_SRC_ALPHA });
 	_mylight->setAnchorPoint(Vec2(0.5, 0.5));
 	_mylight->setPosition(myposParticle->getPosition());
-	_mylight->setScale(4);
+	_mylight->setScale(fogscale);
 	_myrender->addChild(_mylight);
 	_mylight->visit();
 	_myrender->end();
@@ -518,11 +561,11 @@ void MapBlockScene::updateFog(float dt)
 
 void MapBlockScene::addFogBlock(int row, int col)
 {
-	Sprite * sp = Sprite::create("fog.png");
+	Sprite * sp = Sprite::createWithSpriteFrameName("mapui/fog.png");
 	sp->setBlendFunc({ GL_ZERO, GL_ONE_MINUS_SRC_ALPHA });
 	sp->setAnchorPoint(Vec2(0.5, 0.5));
 	sp->setPosition(Vec2(col*MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, row*MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2));
-	sp->setScale(4);
+	sp->setScale(fogscale);
 	_fogrender->addChild(sp);
 	sp->visit();
 }

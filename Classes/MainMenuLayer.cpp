@@ -3,6 +3,7 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "MyRes.h"
+#include "MaterialDescLayer.h"
 #include "TaskTalkLayer.h"
 #include "TaskBranchTalkLayer.h"
 #include "Quest.h"
@@ -11,7 +12,7 @@ USING_NS_CC;
 
 MainMenuLayer::MainMenuLayer()
 {
-	malayer = NULL;
+
 }
 
 MainMenuLayer::~MainMenuLayer()
@@ -108,64 +109,14 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		case HEADBOX:
 			break;
 		case R001BTN:
-			malayer = (MaterialDescLayer*)this->getChildByName("MaterialDescLayer");
-			if (malayer==NULL)
-			{
-				malayer = MaterialDescLayer::create("r001");
-				this->addChild(malayer,0,"MaterialDescLayer");
-			}
-			else
-			{
-				malayer->setResId("r001");
-			}
-			break;
 		case R002BTN:
-			malayer = (MaterialDescLayer*)this->getChildByName("MaterialDescLayer");
-			if (malayer == NULL)
-			{
-				malayer = MaterialDescLayer::create("r002");
-				this->addChild(malayer, 0, "MaterialDescLayer");
-			}
-			else
-			{
-				malayer->setResId("r002");
-			}
-			break;
 		case R003BTN:
-			malayer = (MaterialDescLayer*)this->getChildByName("MaterialDescLayer");
-			if (malayer == NULL)
-			{
-				malayer = MaterialDescLayer::create("r003");
-				this->addChild(malayer, 0, "MaterialDescLayer");
-			}
-			else
-			{
-				malayer->setResId("r003");
-			}
-			break;
 		case R004BTN:
-			malayer = (MaterialDescLayer*)this->getChildByName("MaterialDescLayer");
-			if (malayer == NULL)
-			{
-				malayer = MaterialDescLayer::create("r004");
-				this->addChild(malayer, 0, "MaterialDescLayer");
-			}
-			else
-			{
-				malayer->setResId("r004");
-			}
-			break;
 		case R005BTN:
-			malayer = (MaterialDescLayer*)this->getChildByName("MaterialDescLayer");
-			if (malayer == NULL)
-			{
-				malayer = MaterialDescLayer::create("r005");
-				this->addChild(malayer, 0, "MaterialDescLayer");
-			}
-			else
-			{
-				malayer->setResId("r005");
-			}
+		{
+			Layer * malayer = MaterialDescLayer::create(clicknode->getName());
+			this->addChild(malayer, 0, "MaterialDescLayer");
+		}
 			break;
 		case SETBTN:
 			break;

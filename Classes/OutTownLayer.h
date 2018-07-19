@@ -16,6 +16,8 @@ public:
 	virtual void onExit();
     bool init();
 	CardHeroNode* getMyCardHeroNode(int index);
+
+	void updateHeroCarry();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

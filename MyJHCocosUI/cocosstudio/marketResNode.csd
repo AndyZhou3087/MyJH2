@@ -49,18 +49,17 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="silver" ActionTag="-1942197293" Tag="196" IconVisible="False" LeftMargin="-308.1184" RightMargin="270.1184" TopMargin="43.2010" BottomMargin="-81.2010" ctype="SpriteObjectData">
+          <AbstractNodeData Name="priceicon" ActionTag="-1365739156" Tag="157" IconVisible="False" LeftMargin="-309.0000" RightMargin="271.0000" TopMargin="43.0000" BottomMargin="-81.0000" LeftEage="12" RightEage="12" TopEage="12" BottomEage="12" Scale9OriginX="12" Scale9OriginY="12" Scale9Width="14" Scale9Height="14" ctype="ImageViewObjectData">
             <Size X="38.0000" Y="38.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-289.1184" Y="-62.2010" />
-            <Scale ScaleX="0.7000" ScaleY="0.7000" />
+            <Position X="-290.0000" Y="-62.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="totalsilver" ActionTag="375398316" Tag="153" IconVisible="False" LeftMargin="-270.6777" RightMargin="232.6777" TopMargin="50.5837" BottomMargin="-76.5837" FontSize="23" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="totalprice" ActionTag="375398316" Tag="153" IconVisible="False" LeftMargin="-270.6777" RightMargin="232.6777" TopMargin="50.5837" BottomMargin="-76.5837" FontSize="23" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="38.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="-270.6777" Y="-63.5837" />
