@@ -221,7 +221,7 @@ int FightingLayer::checkFightResult()
 	index = 0;
 	for (int i = 0; i < 6; i++)
 	{
-		if (GlobalInstance::myCardHeros[i] == NULL || GlobalInstance::myCardHeros[i]->getHp() <= 0.000001f)
+		if (GlobalInstance::myCardHeros[i] == NULL || GlobalInstance::myCardHeros[i]->getState() == HS_DEAD)
 		{
 			index++;
 		}

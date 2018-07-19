@@ -104,4 +104,5 @@
 	<s name="makesucc">制作成功！</s>
 	<s name="makeresdesc">「%s」</s>
 	<s name="lvupsucc">%s升级->%d成功！</s>
+	<s name="nofoodhint">食物不足扣除所有角色20%生命值</s>
 </strings>

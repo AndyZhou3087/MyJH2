@@ -12,11 +12,11 @@ public:
 	~MovingLabel();
 
 
-	static void show(std::string text, Vec2 pos = Vec2(360, 640));
+	static void show(std::string text, Color4B color = Color4B(Color3B::WHITE), Vec2 pos = Vec2(360, 640));
 private:
-	bool init(std::string text, Vec2 pos);
+	bool init(std::string text, Color4B color, Vec2 pos);
 
-	static MovingLabel* create(std::string text, Vec2 pos);
+	static MovingLabel* create(std::string text, Color4B color, Vec2 pos);
 	void showAction();
 	void removeSelf();
 
