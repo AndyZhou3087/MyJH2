@@ -40,6 +40,7 @@
           <Image Name="mapbg.jpg" />
           <Image Name="mapblockbottom.png" />
           <Image Name="mapblocktop.png" />
+          <Image Name="materialbox.png" />
           <Image Name="selectequipbg.png" />
           <Image Name="smallbg.png" />
           <Image Name="t001.jpg" />

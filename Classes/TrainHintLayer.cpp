@@ -87,10 +87,6 @@ bool TrainHintLayer::init(Hero* herodata)
 	{
 		return true;
 	};
-	listener->onTouchEnded = [=](Touch *touch, Event *event)
-	{
-		return true;
-	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;

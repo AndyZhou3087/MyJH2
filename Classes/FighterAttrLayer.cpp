@@ -69,7 +69,6 @@ bool FighterAttrLayer::init(Npc* npcdata)
 		attrlbl->setString(str);
 	}
 
-	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
