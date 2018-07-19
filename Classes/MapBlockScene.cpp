@@ -433,7 +433,6 @@ void MapBlockScene::scrollViewDidScroll(ScrollView* view)
 void MapBlockScene::scrollViewDidZoom(ScrollView* view)
 {
 	return;
-
 }
 
 
@@ -660,7 +659,7 @@ void MapBlockScene::createRndMonsters()
 	
 	if (walkcount > 1)
 		r = GlobalInstance::getInstance()->createRandomNum(100);
-	if (r < monsterComeRnd)
+	if (r < monsterComeRnd/3)
 	{
 		monsterComeRnd = DEFAULTRND;
 		walkcount = 0;
