@@ -280,6 +280,11 @@ void SmithyLayer::makeRes(std::string resid)
 	}
 	int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
 	MyRes::Add(resid, 1, MYSTORAGE, qu, stc);
+
+	std::string qukey = StringUtils::format("potential_%d", qu);
+	std::string resstr = StringUtils::format(ResourceLang::map_lang["makeresdesc"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str());
+	std::string desc = StringUtils::format("%s%s%s%s", ResourceLang::map_lang["makesucc"].c_str(), resstr.c_str(), ResourceLang::map_lang["potentialtext"].c_str(), ResourceLang::map_lang[qukey].c_str());
+	MovingLabel::show(desc);
 }
 
 void SmithyLayer::onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

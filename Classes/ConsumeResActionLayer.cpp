@@ -320,6 +320,8 @@ void ConsumeResActionLayer::action()
 			TrainLayer* trainLayer = (TrainLayer*)this->getParent();
 			trainLayer->lvup();
 		}
+		std::string desc = StringUtils::format(ResourceLang::map_lang["lvupsucc"].c_str(), GlobalInstance::map_AllResources[bdata->name].name.c_str(), bdata->level.getValue() + 1);
+		MovingLabel::show(desc);
 	}
 	else if (m_actiontype == CA_EMPLOYFARMER)
 	{
@@ -339,7 +341,6 @@ void ConsumeResActionLayer::action()
 		std::string rid = (char*)m_data;
 		SmithyLayer* smithyLayer = (SmithyLayer*)this->getParent();
 		smithyLayer->makeRes(rid);
-		MovingLabel::show(ResourceLang::map_lang["makesucc"]);
 	}
 }
 

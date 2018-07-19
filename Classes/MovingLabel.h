@@ -21,7 +21,7 @@ private:
 	void removeSelf();
 
 	void showNext();
-
+	void changeTextColor();
 private:
 	static std::queue<MovingLabel*> queue_labels;
 	bool ismoving;

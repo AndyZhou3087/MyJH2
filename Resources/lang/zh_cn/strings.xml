@@ -58,7 +58,7 @@
 	<s name="zhdunhao">、</s>
 	<s name="noherosout">请选择出城侠客！</s>
 	<s name="rescount">数量：%d</s>
-	<s name="decomposesucc">%s分解成功-->%s</s>
+	<s name="decomposesucc">「%s」分解成功-->%s</s>
 	<s name="decomposehint">请点击分解物品</s>
 	<s name="decomposefail">不能分解</s>
 	<s name="outofstock">没有更多库存了！</s>
@@ -101,5 +101,7 @@
 	<s name="hour1">五小时</s>
 	<s name="hour2">八小时</s>
 	<s name="traintipstext">当前训练还未结束，还需要%02d:%02d:%02d。结束后无法获得训练经验，是否确认取消？</s>
-	<s name="makesucc">制作成功%s！</s>	
+	<s name="makesucc">制作成功！</s>
+	<s name="makeresdesc">「%s」</s>
+	<s name="lvupsucc">%s升级->%d成功！</s>
 </strings>
