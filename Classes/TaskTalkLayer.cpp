@@ -97,7 +97,7 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 
 	fightbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("getbtn");
 	fightbtn->setVisible(true);
-	fightbtn->setPosition(Vec2(357, 270));
+	fightbtn->setPosition(Vec2(357, 280));
 	if (data->type.size() > 1)
 	{
 		fightbtn->setTag(data->type[1]);
@@ -360,7 +360,7 @@ void TaskTalkLayer::questNotFight(std::string bwords)
 
 void TaskTalkLayer::checkWordLblColor(std::string wordstr)
 {
-	m_wordlbl = Label::createWithTTF(wordstr, "fonts/simhei.TTF", 25);
+	m_wordlbl = Label::createWithTTF(wordstr, FONT_NAME, 25);
 	m_wordlbl->setLineBreakWithoutSpace(true);
 	m_wordlbl->setAnchorPoint(Vec2(0, 1));
 	m_wordlbl->setHorizontalAlignment(CCTextAlignment::LEFT);
