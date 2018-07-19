@@ -238,9 +238,21 @@ void MarketLayer::buyRes(int iterindex, int count)
 	MyRes::Add(resid, count);
 
 	vec_Res[iterindex].stockcount -= count;
-	DynamicValueInt dval;
-	dval.setValue(-count * GlobalInstance::map_AllResources[resid].saleval);
-	GlobalInstance::getInstance()->addMySoliverCount(dval);
+
+	if (GlobalInstance::map_AllResources[resid].coinval > 0)
+	{
+		int saleval = GlobalInstance::map_AllResources[resid].coinval;
+		DynamicValueInt dval;
+		dval.setValue(count * saleval);
+		GlobalInstance::getInstance()->costMyCoinCount(dval);
+	}
+	else
+	{
+		int saleval = GlobalInstance::map_AllResources[resid].silverval;
+		DynamicValueInt dval;
+		dval.setValue(count * saleval);
+		GlobalInstance::getInstance()->costMySoliverCount(dval);
+	}
 	saveStockRes();
 }
 

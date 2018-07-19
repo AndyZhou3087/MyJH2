@@ -43,7 +43,8 @@ typedef struct
 	std::string name;
 	std::string desc;
 	std::vector<std::map<std::string, int>> vec_needres;//合成需要的资源
-	int saleval;//价格
+	int silverval;//银子价格
+	int coinval;//元宝价格
 }AllResources;
 
 typedef struct

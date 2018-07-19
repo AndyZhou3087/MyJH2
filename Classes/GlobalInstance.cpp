@@ -1165,7 +1165,12 @@ void GlobalInstance::loadAllResourcesData()
 			if (jsonvalue.HasMember("sale"))
 			{
 				v = jsonvalue["sale"];
-				map_AllResources[rid].saleval = atoi(v.GetString());
+				map_AllResources[rid].silverval = atoi(v.GetString());
+			}
+			if (jsonvalue.HasMember("coin"))
+			{
+				v = jsonvalue["coin"];
+				map_AllResources[rid].coinval = atoi(v.GetString());
 			}
 		}
 	}

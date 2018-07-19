@@ -69,7 +69,7 @@ bool TrainSelectLayer::init(Hero* herodata)
 	cocos2d::ui::Widget* smallbg = (cocos2d::ui::Widget*)csbnode->getChildByName("smallbg");
 	smallbg->setSwallowTouches(true);
 
-	coincount.setValue(GlobalInstance::map_AllResources["r001"].saleval * 100 + GlobalInstance::map_AllResources["c001"].saleval);//需要的元宝
+	coincount.setValue((GlobalInstance::map_AllResources["r001"].silverval * 100 + GlobalInstance::map_AllResources["c001"].silverval)/10);//需要的元宝
 
 	//标题
 	cocos2d::ui::Text* title = (cocos2d::ui::Text*)csbnode->getChildByName("titlename");
@@ -232,7 +232,7 @@ void TrainSelectLayer::updateUI()
 		}
 	}
 
-	coincount.setValue(GlobalInstance::map_AllResources["r001"].saleval * resCount[lastSelectIndex] + GlobalInstance::map_AllResources["c001"].saleval);//需要的元宝
+	coincount.setValue((GlobalInstance::map_AllResources["r001"].silverval * resCount[lastSelectIndex] + GlobalInstance::map_AllResources["c001"].silverval)/10);//需要的元宝
 	std::string coinstr = StringUtils::format("x%d", coincount.getValue());
 	coincountlbl->setString(coinstr);
 }

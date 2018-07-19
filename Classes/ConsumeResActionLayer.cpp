@@ -70,7 +70,6 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 	std::string titlestr;		//标题
 	std::string btn1_text;//按钮1中的文字图片
 	std::string btn2_text;//按钮2中的文字图
-	DynamicValueInt coincount; //需要的元宝
 	if (actiontype == CA_BUILDINGLVUP)//建筑物升级
 	{
 		btn1_text = "lvupbtn_text";
@@ -78,7 +77,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 		Building* bdata = (Building*)data;
 		titlestr = StringUtils::format("%s%s", GlobalInstance::map_AllResources[bdata->name].name.c_str(), ResourceLang::map_lang["lvuptext"].c_str());
 		vec_res = bdata->lvupres[bdata->level.getValue()];
-		coincount.setValue((bdata->level.getValue() + 1) * 100);
+		costcoindv.setValue((bdata->level.getValue() + 1) * 100);
 	}
 	else if (actiontype == CA_EMPLOYFARMER)//雇佣工人
 	{
@@ -94,7 +93,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 		std::map<std::string, int> map_res;
 		map_res["r001"] = dint.getValue();
 		vec_res.push_back(map_res);
-		coincount.setValue(dint.getValue()/10);
+		costcoindv.setValue(GlobalInstance::map_AllResources["r001"].silverval * dint.getValue()/10);
 	}
 	else if (actiontype == CA_RESCREATORLVUP)//升级资源容量
 	{
@@ -111,7 +110,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 		std::map<std::string, int> map_res;
 		map_res["r002"] = dint.getValue();
 		vec_res.push_back(map_res);
-		coincount.setValue(dint.getValue()/10);
+		costcoindv.setValue(GlobalInstance::map_AllResources["r002"].silverval * dint.getValue()/10);
 	}
 	else if (actiontype == CA_MAKERES)//合成资源
 	{
@@ -121,9 +120,14 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 		titlestr = GlobalInstance::map_AllResources[resid].name;
 
 		vec_res = GlobalInstance::map_AllResources[resid].vec_needres;
-		DynamicValueInt dint;
-		dint.setValue(100);
-		coincount.setValue(dint.getValue() / 10);
+
+		int costcount = 0;
+		for (unsigned int i = 0; i < vec_res.size(); i++)
+		{
+			std::map<std::string, int>::iterator it = vec_res[i].begin();
+			costcount += GlobalInstance::map_AllResources[it->first].silverval * vec_res[i][it->first] / 10;
+		}
+		costcoindv.setValue(costcount);
 	}
 	//标题
 	cocos2d::ui::Text* title = (cocos2d::ui::Text*)csbnode->getChildByName("titlename");
@@ -209,7 +213,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 	drlvupbtntxt->loadTexture(ResourcePath::makeTextImgPath(btn2_text, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	coincountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("countlbl");
-	std::string coinstr = StringUtils::format("x%d", coincount.getValue());
+	std::string coinstr = StringUtils::format("x%d", costcoindv.getValue());
 	coincountlbl->setString(coinstr);
 
 	updateUI(0);
@@ -251,9 +255,6 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 					MyRes::Use(resid, map_res[resid]);
 				}
 				action();
-				
-				//记录每日任务
-				Quest::setDailyTask(UPGRADE_BUILDING, 1);
 
 				this->removeFromParentAndCleanup(true);
 			}
@@ -265,13 +266,9 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 		case 1001://直接升级，立即制作
 			{
 				Building* bdata = (Building*)m_data;
-				if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= (bdata->level.getValue() + 1) * 100)
+				if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= costcoindv.getValue())
 				{
-					DynamicValueInt dv;
-					dv.setValue((bdata->level.getValue() + 1) * 100);
-					GlobalInstance::getInstance()->costMyCoinCount(dv);
-					//记录每日任务
-					Quest::setDailyTask(UPGRADE_BUILDING, 1);
+					GlobalInstance::getInstance()->costMyCoinCount(costcoindv);
 					action();
 					this->removeFromParentAndCleanup(true);
 				}
@@ -322,6 +319,9 @@ void ConsumeResActionLayer::action()
 		}
 		std::string desc = StringUtils::format(ResourceLang::map_lang["lvupsucc"].c_str(), GlobalInstance::map_AllResources[bdata->name].name.c_str(), bdata->level.getValue() + 1);
 		MovingLabel::show(desc);
+
+		//记录每日任务
+		Quest::setDailyTask(UPGRADE_BUILDING, 1);
 	}
 	else if (m_actiontype == CA_EMPLOYFARMER)
 	{

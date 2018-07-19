@@ -17,7 +17,8 @@ public:
 
 	void reset(int maxcount);
 private:
-	cocos2d::ui::Text* totalsilverlbl;
+	cocos2d::ui::Text* totalpricelbl;
+	cocos2d::ui::ImageView* priceicon;
 	cocos2d::ui::Text* rescountlbl;
 	int buycount;
 	int totalrescount;
