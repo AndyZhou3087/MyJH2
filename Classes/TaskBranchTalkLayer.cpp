@@ -63,7 +63,7 @@ bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	name->setString(data->name);
 
 	cocos2d::ui::ScrollView* descscoll = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("descscoll");
-	Label* contentlbl = Label::createWithTTF(data->bossword, "fonts/simhei.TTF", 25);
+	Label* contentlbl = Label::createWithTTF(data->bossword, FONT_NAME, 25);
 	contentlbl->setAnchorPoint(Vec2(0, 1));
 	contentlbl->setColor(Color3B(255, 255, 255));
 	contentlbl->setHorizontalAlignment(TextHAlignment::LEFT);

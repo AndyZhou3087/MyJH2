@@ -117,12 +117,21 @@ void TaskLayer::updateContent(int category)
 	}
 
 	int ressize;
+	int mcount = 0;
 	if (category == 0)
 	{
 		ressize = GlobalInstance::vec_TaskMain.size();
 		sort(GlobalInstance::vec_TaskMain.begin(), GlobalInstance::vec_TaskMain.end(), larger_callback);
 		scrollview->setContentSize(Size(scrollview->getContentSize().width, 1010));
 		pnode->setVisible(false);
+
+		for (int i = 0; i < ressize; i++)
+		{
+			if (GlobalInstance::vec_TaskMain[i].isfinish > QUEST_TASK || GlobalInstance::vec_TaskMain[i].id == GlobalInstance::myCurMainData.id)
+			{
+				mcount++;
+			}
+		}
 	}
 	else if (category == 1)
 	{
@@ -130,6 +139,14 @@ void TaskLayer::updateContent(int category)
 		sort(GlobalInstance::vec_TaskBranch.begin(), GlobalInstance::vec_TaskBranch.end(), larger_branchcallback);
 		scrollview->setContentSize(Size(scrollview->getContentSize().width, 1010));
 		pnode->setVisible(false);
+
+		for (int i = 0; i < ressize; i++)
+		{
+			if (GlobalInstance::vec_TaskBranch[i].isfinish > QUEST_TASK || GlobalInstance::vec_TaskBranch[i].id == GlobalInstance::myCurBranchData.id)
+			{
+				mcount++;
+			}
+		}
 	}
 	else
 	{
@@ -139,7 +156,7 @@ void TaskLayer::updateContent(int category)
 	}
 
 	int itemheight = 140;
-	int innerheight = itemheight * ressize;
+	int innerheight = itemheight * mcount;
 
 	int contentheight = scrollview->getContentSize().height;
 	if (innerheight < contentheight)
@@ -148,19 +165,31 @@ void TaskLayer::updateContent(int category)
 
 	if (category != 2)
 	{
+		int m_count = 0;
+		int b_count = 0;
 		for (int i = 0; i < ressize; i++)
 		{
 			Node* node;
 			if (category == 0)
 			{
-				node = TaskMainNode::create(&GlobalInstance::vec_TaskMain[i], this);
+				if (GlobalInstance::vec_TaskMain[i].isfinish > QUEST_TASK || GlobalInstance::vec_TaskMain[i].id == GlobalInstance::myCurMainData.id)
+				{
+					m_count++;
+					node = TaskMainNode::create(&GlobalInstance::vec_TaskMain[i], this);
+					scrollview->addChild(node);
+					node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - m_count*itemheight + itemheight*0.5));
+				}
 			}
 			else if (category == 1)
 			{
-				node = TaskBranchNode::create(&GlobalInstance::vec_TaskBranch[i], this);
+				if (GlobalInstance::vec_TaskBranch[i].isfinish > QUEST_TASK || GlobalInstance::vec_TaskBranch[i].id == GlobalInstance::myCurBranchData.id)
+				{
+					b_count++;
+					node = TaskBranchNode::create(&GlobalInstance::vec_TaskBranch[i], this);
+					scrollview->addChild(node);
+					node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - b_count*itemheight + itemheight*0.5));
+				}
 			}
-			scrollview->addChild(node);
-			node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - i*itemheight - itemheight*0.5));
 		}
 	}
 	else
