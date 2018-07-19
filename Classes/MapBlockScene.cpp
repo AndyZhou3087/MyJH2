@@ -31,6 +31,7 @@ MapBlockScene::MapBlockScene()
 	m_longTouchNode = NULL;
 	walkcount = 0;
 	monsterComeRnd = DEFAULTRND;
+	fogscale = 4.0f;
 }
 
 
@@ -503,11 +504,11 @@ void MapBlockScene::createMyRender()
 
 	_myrender->beginWithClear(0, 0, 0, 0.5f, 0, 0);
 
-	_mylight = Sprite::create("fog.png");
+	_mylight = Sprite::createWithSpriteFrameName("mapui/fog.png");
 	_mylight->setBlendFunc({ GL_ZERO, GL_ONE_MINUS_SRC_ALPHA });
 	_mylight->setAnchorPoint(Vec2(0.5, 0.5));
 	_mylight->setPosition(myposParticle->getPosition());
-	_mylight->setScale(4);
+	_mylight->setScale(fogscale);
 	_myrender->addChild(_mylight);
 	_mylight->visit();
 	_myrender->end();
@@ -560,11 +561,11 @@ void MapBlockScene::updateFog(float dt)
 
 void MapBlockScene::addFogBlock(int row, int col)
 {
-	Sprite * sp = Sprite::create("fog.png");
+	Sprite * sp = Sprite::createWithSpriteFrameName("mapui/fog.png");
 	sp->setBlendFunc({ GL_ZERO, GL_ONE_MINUS_SRC_ALPHA });
 	sp->setAnchorPoint(Vec2(0.5, 0.5));
 	sp->setPosition(Vec2(col*MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, row*MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2));
-	sp->setScale(4);
+	sp->setScale(fogscale);
 	_fogrender->addChild(sp);
 	sp->visit();
 }

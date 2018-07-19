@@ -83,7 +83,6 @@
       <FilePathData Path="mapui/buildblock_5.png" />
       <FilePathData Path="mapui/buildblock_6.png" />
       <FilePathData Path="mapui/buildblock_7.png" />
-      <FilePathData Path="mapui/blockblack.png" />
       <FilePathData Path="mapui/boardblock_48.png" />
       <FilePathData Path="mapui/boardblock_49.png" />
       <FilePathData Path="mapui/boardblock_50.png" />
@@ -197,6 +196,7 @@
       <FilePathData Path="mapui/buildblock_35.png" />
       <FilePathData Path="mapui/buildblock_36.png" />
       <FilePathData Path="mapui/buildblock_37.png" />
+      <FilePathData Path="mapui/fog.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

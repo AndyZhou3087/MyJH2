@@ -135,6 +135,7 @@ private:
 	RenderTexture* _fogrender;
 	RenderTexture* _myrender;
 	Sprite* _mylight;
+	float fogscale;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif
