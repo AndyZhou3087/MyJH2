@@ -61,7 +61,7 @@ bool TaskBranchDescLayer::init(TaskBranchData* data)
 	Label* contentlbl = Label::createWithTTF(data->desc, FONT_NAME, 25);
 	contentlbl->setAnchorPoint(Vec2(0, 1));
 	contentlbl->setColor(Color3B(255, 255, 255));
-	contentlbl->setHorizontalAlignment(TextHAlignment::LEFT);
+	//contentlbl->setHorizontalAlignment(TextHAlignment::LEFT);
 	contentlbl->setLineBreakWithoutSpace(true);
 	contentlbl->setMaxLineWidth(descscoll->getContentSize().width);
 	descscoll->addChild(contentlbl);

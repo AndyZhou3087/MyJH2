@@ -18,10 +18,10 @@ TrainHintLayer::~TrainHintLayer()
 }
 
 
-TrainHintLayer* TrainHintLayer::create(Hero* herodata)
+TrainHintLayer* TrainHintLayer::create(Hero* herodata, MyHeroNode* myNode)
 {
 	TrainHintLayer *pRet = new(std::nothrow)TrainHintLayer();
-	if (pRet && pRet->init(herodata))
+	if (pRet && pRet->init(herodata, myNode))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -35,7 +35,7 @@ TrainHintLayer* TrainHintLayer::create(Hero* herodata)
 }
 
 // on "init" you need to initialize your instance
-bool TrainHintLayer::init(Hero* herodata)
+bool TrainHintLayer::init(Hero* herodata, MyHeroNode* myNode)
 {
 	if (!Layer::init())
 	{
@@ -43,6 +43,7 @@ bool TrainHintLayer::init(Hero* herodata)
 	}
 
 	m_herodata = herodata;
+	myheroNode = myNode;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
@@ -110,6 +111,7 @@ void TrainHintLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				m_herodata->setTrainHour(0);
 				m_herodata->setTrainTime(0);
 				m_herodata->setState(HS_OWNED);
+				myheroNode->updateContent();
 			}
 			this->removeFromParentAndCleanup(true);
 		default:

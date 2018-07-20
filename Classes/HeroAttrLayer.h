@@ -13,7 +13,8 @@ typedef enum
 	ATTR_FIREBTN = 1000,//解雇按钮
 	ATTR_CHANGEBTN,//转职按钮
 	ATTR_BACKBTN,//返回按钮
-	ATTR_RECRUITBTN//招募按钮
+	ATTR_RECRUITBTN,//招募按钮
+	ATTR_LVBTN//升级按钮
 }ATTRBTN;
 
 class HeroAttrLayer : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate

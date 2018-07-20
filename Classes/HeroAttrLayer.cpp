@@ -196,7 +196,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 	expbar->setPercent(percent);
 
 	//按钮
-	std::string btnname[] = { "firebtn", "changebtn", "backbtn", "recruitbtn"};//与BTNTYPE对应
+	std::string btnname[] = { "firebtn", "changebtn", "backbtn", "recruitbtn", "lvgbtn"};//与BTNTYPE对应
 	for (int i = 0; i < sizeof(btnname) / sizeof(btnname[0]); i++)
 	{
 		int tag = i + ATTR_FIREBTN;
@@ -234,7 +234,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 					if (m_heroData->getLevel() == 9)
 						btn->setEnabled(true);
 					else
-						btn->setEnabled(false);
+						btn->setVisible(false);
 				}
 				else
 				{
@@ -271,6 +271,31 @@ bool HeroAttrLayer::init(Hero* herodata)
 			else if (herostate == HS_TAKEON)
 			{
 				btn->setPositionX(360);
+			}
+		}
+		else if (tag == ATTR_LVBTN)
+		{
+			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
+			txtimg->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			if (herostate == HS_READY || herostate == HS_TAKEON)
+			{
+				btn->setVisible(false);
+			}
+			else if (herostate == HS_OWNED)
+			{
+				//前4种职业等级10可转职，
+				if (m_heroData->getVocation() <= 3)
+				{
+					btn->setVisible(false);
+					if (m_heroData->getLevel() % 10 == 9)
+						btn->setEnabled(false);
+					else
+						btn->setVisible(true);
+				}
+				else
+				{
+					btn->setVisible(true);
+				}
 			}
 		}
 	}
@@ -362,6 +387,8 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			this->removeFromParentAndCleanup(true);
 			break;
 		}
+		case ATTR_LVBTN:
+			break;
 		case ATTR_CHANGEBTN:
 			break;
 		case ATTR_RECRUITBTN:

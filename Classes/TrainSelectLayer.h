@@ -7,6 +7,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "Building.h"
 #include "Hero.h"
+#include "MyHeroNode.h"
 USING_NS_CC;
 
 class TrainSelectLayer : public cocos2d::Layer
@@ -15,9 +16,9 @@ public:
 	TrainSelectLayer();
 	~TrainSelectLayer();
 
-	static TrainSelectLayer* create(Hero* herodata);
+	static TrainSelectLayer* create(Hero* herodata, MyHeroNode* myNode);
 	virtual void onExit();
-	bool init(Hero* herodata);
+	bool init(Hero* herodata, MyHeroNode* myNode);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -38,6 +39,7 @@ private:
 	std::vector<std::map<std::string, int>> vec_res;//需要的资源的数据
 	DynamicValueInt coincount;
 	int lastSelectIndex;
+	MyHeroNode* myheroNode;
 };
 
 #endif
