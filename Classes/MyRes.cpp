@@ -250,6 +250,11 @@ void MyRes::putMyPackagesToStorage()
 		}
 	}
 
+	clearMyPackages();
+}
+
+void MyRes::clearMyPackages()
+{
 	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
 	{
 		ResBase* res = vec_MyResources[i];
@@ -258,7 +263,6 @@ void MyRes::putMyPackagesToStorage()
 			Use(res, res->getCount().getValue(), MYPACKAGE);
 		}
 	}
-
 }
 
 

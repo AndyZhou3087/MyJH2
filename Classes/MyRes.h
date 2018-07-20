@@ -32,6 +32,9 @@ public:
 
 	//将背包中的物品放到仓库中，回城使用
 	static void putMyPackagesToStorage();
+
+	//扔掉背包中的所有数据
+	static void clearMyPackages();
 public:
 
 	static std::vector<ResBase* > vec_MyResources;//我的资源，包括背包，仓库，装备上的

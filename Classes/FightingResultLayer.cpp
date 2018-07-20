@@ -75,6 +75,8 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp)
 		actionbtn->setTag(1001);
 		actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("closebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		title->loadTexture(ResourcePath::makeImagePath("failtitle.png"), cocos2d::ui::Widget::TextureResType::LOCAL);
+
+		MyRes::clearMyPackages();
 	}
 
 	for (int i = 0; i < 6; i++)

@@ -129,8 +129,6 @@ bool MainScene::init()
 		i++;
 	}
 
-	MyRes::putMyPackagesToStorage();
-
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{

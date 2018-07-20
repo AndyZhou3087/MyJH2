@@ -44,6 +44,7 @@ MapBlockScene::~MapBlockScene()
 			GlobalInstance::myCardHeros[i] = NULL;
 		}
 	}
+	MyRes::putMyPackagesToStorage();
 
 	g_MapBlockScene = NULL;
 }
