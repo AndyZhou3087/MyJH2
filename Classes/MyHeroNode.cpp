@@ -291,7 +291,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			}
 			else if (m_heroData->getState() == HS_TRAINING)
 			{
-				TrainHintLayer* layer = TrainHintLayer::create(m_heroData);
+				TrainHintLayer* layer = TrainHintLayer::create(m_heroData,this);
 				g_mainScene->addChild(layer, 1, "TrainHintLayer");
 			}
 		}

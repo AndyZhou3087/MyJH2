@@ -7,6 +7,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "ResBase.h"
 #include "Hero.h"
+#include "MyHeroNode.h"
 USING_NS_CC;
 
 class TrainHintLayer : public cocos2d::Layer
@@ -15,12 +16,13 @@ public:
 	TrainHintLayer();
 	~TrainHintLayer();
 
-	static TrainHintLayer* create(Hero* herodata);
-	bool init(Hero* herodata);
+	static TrainHintLayer* create(Hero* herodata, MyHeroNode* myNode);
+	bool init(Hero* herodata, MyHeroNode* myNode);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:
 	Hero* m_herodata;
+	MyHeroNode* myheroNode;
 };
 
 #endif
