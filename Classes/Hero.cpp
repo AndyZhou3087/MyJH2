@@ -231,8 +231,9 @@ float Hero::getDodge()
 
 void Hero::generate()
 {
-	setVocation(GlobalInstance::getInstance()->createRandomNum(HEROMAX));
-	setPotential(GlobalInstance::getInstance()->createRandomNum(5));
+	setVocation(GlobalInstance::getInstance()->createRandomNum(BASEHEROMAX));
+
+	setPotential(GlobalInstance::getInstance()->generateHeroPotential());
 
 	DynamicValueInt lvdint;
 	setExp(lvdint);

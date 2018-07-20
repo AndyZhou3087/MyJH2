@@ -39,11 +39,15 @@ MapBlockScene::~MapBlockScene()
 {
 	for (int i = 0; i < 6; i++)
 	{
-		if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() == HS_DEAD)
+		if (GlobalInstance::myCardHeros[i] != NULL)
 		{
-			GlobalInstance::myCardHeros[i] = NULL;
+			if (GlobalInstance::myCardHeros[i]->getState() == HS_DEAD)
+				GlobalInstance::myCardHeros[i] = NULL;
+			else
+				GlobalInstance::myCardHeros[i]->setHp(GlobalInstance::myCardHeros[i]->getMaxHp());
 		}
 	}
+	MyRes::putMyPackagesToStorage();
 
 	g_MapBlockScene = NULL;
 }
@@ -433,7 +437,6 @@ void MapBlockScene::scrollViewDidScroll(ScrollView* view)
 void MapBlockScene::scrollViewDidZoom(ScrollView* view)
 {
 	return;
-
 }
 
 
@@ -660,7 +663,7 @@ void MapBlockScene::createRndMonsters()
 	
 	if (walkcount > 1)
 		r = GlobalInstance::getInstance()->createRandomNum(100);
-	if (r < monsterComeRnd)
+	if (r < monsterComeRnd/3)
 	{
 		monsterComeRnd = DEFAULTRND;
 		walkcount = 0;
@@ -750,6 +753,8 @@ void MapBlockScene::updateHeroUI(int which)
 {
 	FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(which);
 	fnode->updateHp();
+
+	GlobalInstance::getInstance()->saveHero(GlobalInstance::myCardHeros[which]);
 }
 
 void MapBlockScene::showFightResult(int result)

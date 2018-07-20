@@ -342,7 +342,11 @@ public:
 	//设置刷新资源时间
 	int getRefreshMarketTime();
 
+	//加载NPC数据
 	void loadNpcData();
+
+	//根据客栈等级概率生成品质
+	int generateHeroPotential();
 
 	//加载每日配置
 	void loadDailyTaskData();

@@ -10,7 +10,7 @@
 #include "Npc.h"
 USING_NS_CC;
 
-#define HEROMAX 4
+#define BASEHEROMAX 4
 
 typedef enum
 {

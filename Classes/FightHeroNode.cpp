@@ -5,6 +5,7 @@
 #include "FightingLayer.h"
 #include "LoadingBarProgressTimer.h"
 #include "GlobalInstance.h"
+#include "MapBlockScene.h"
 
 FightHeroNode::FightHeroNode()
 {
@@ -213,7 +214,6 @@ void FightHeroNode::hurtAnimFinish()
 			((Hero*)m_Data)->setState(HS_DEAD);
 			((Hero*)m_Data)->setPos(0);
 		}
-		GlobalInstance::getInstance()->saveHero((Hero*)m_Data);
 		fighting->updateMapHero(this->getTag());
 	}
 
@@ -324,6 +324,14 @@ void FightHeroNode::setFightState(int winexp)
 			FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
 			FiniteTimeAction* moveandout = Spawn::create(EaseSineOut::create(MoveBy::create(1.2f, Vec2(0, 40))), NULL);
 			retbox->runAction(Sequence::create(scales, moveandout, NULL));
+			myhero->setHp(myhero->getMaxHp());
+			if (g_MapBlockScene != NULL)
+				g_MapBlockScene->updateHeroUI(this->getTag());
+
+		}
+		else
+		{
+			GlobalInstance::getInstance()->saveHero(myhero);
 		}
 	}
 	else
