@@ -26,10 +26,10 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/herobox_0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="heroimg" ActionTag="-1919967725" Tag="17" IconVisible="False" LeftMargin="-291.5010" RightMargin="154.5010" TopMargin="-82.5000" BottomMargin="-58.5000" LeftEage="50" RightEage="50" TopEage="50" BottomEage="50" Scale9OriginX="50" Scale9OriginY="50" Scale9Width="37" Scale9Height="41" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="heroimg" ActionTag="-1919967725" Tag="17" IconVisible="False" LeftMargin="-293.5013" RightMargin="156.5013" TopMargin="-80.5000" BottomMargin="-60.5000" LeftEage="50" RightEage="50" TopEage="50" BottomEage="50" Scale9OriginX="50" Scale9OriginY="50" Scale9Width="37" Scale9Height="41" ctype="ImageViewObjectData">
             <Size X="137.0000" Y="141.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-223.0010" Y="12.0000" />
+            <Position X="-225.0013" Y="10.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
@@ -227,6 +227,18 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="143" G="84" B="49" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="hpdesc" ActionTag="-864076973" Tag="41" IconVisible="False" LeftMargin="103.0800" RightMargin="-246.0800" TopMargin="36.0989" BottomMargin="-57.0989" FontSize="18" LabelText="体力：100(00:59)" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="143.0000" Y="21.0000" />
+            <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+            <Position X="246.0800" Y="-46.5989" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>

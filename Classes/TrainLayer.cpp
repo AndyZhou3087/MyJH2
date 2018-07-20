@@ -136,7 +136,7 @@ void TrainLayer::updateContent()
 {
 	m_contentscroll->removeAllChildrenWithCleanup(true);
 
-	int itemheight = 160;
+	int itemheight = 170;
 
 	int size = GlobalInstance::vec_myHeros.size();
 	int innerheight = itemheight * size;

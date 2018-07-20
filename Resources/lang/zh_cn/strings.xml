@@ -105,4 +105,6 @@
 	<s name="makeresdesc">「%s」</s>
 	<s name="lvupsucc">%s升级->%d成功！</s>
 	<s name="nofoodhint">食物不足扣除所有角色20%生命值</s>
+	<s name="powermaxtext">已满</s>
+	<s name="powerdesc">体力：%d（%s）</s>
 </strings>

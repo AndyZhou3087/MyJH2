@@ -82,11 +82,11 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 	str = StringUtils::format("ui/%s.png", m_equip->getId().c_str());
 	if (qu == 3)
 	{
-		str = StringUtils::format("ui/%s_2.png", m_equip->getId().c_str());
+		str = StringUtils::format("ui/%s-2.png", m_equip->getId().c_str());
 	}
 	else if (qu == 4)
 	{
-		str = StringUtils::format("ui/%s_3.png", m_equip->getId().c_str());
+		str = StringUtils::format("ui/%s-3.png", m_equip->getId().c_str());
 	}
 	p_res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 

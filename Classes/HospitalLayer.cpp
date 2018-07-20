@@ -95,7 +95,7 @@ void HospitalLayer::updateContent()
 	}
 
 	int size = vec_deadheros.size();
-	int itemheight = 160;
+	int itemheight = 170;
 	int innerheight = itemheight * size;
 	int contentheight = scrollview->getContentSize().height;
 	if (innerheight < contentheight)

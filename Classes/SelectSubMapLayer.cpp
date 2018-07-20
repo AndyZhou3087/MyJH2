@@ -157,7 +157,31 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 		Node* clicknode = (Node*)pSender;
 		showCloudAnim(clicknode->getParent()->getParent(), clicknode->getParent()->getPosition());
 		std::string mapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag());
-		Director::getInstance()->replaceScene(TransitionFade::create(3.0f, MapBlockScene::createScene(mapid)));
+		int needph = GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].ph;
+		bool isphok = true;
+		for (int i=0;i<6;i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getPower().getValue() < needph)
+				isphok = false;
+		}
+		if (isphok)
+		{
+
+			DynamicValueInt dv;
+			for (int i = 0; i<6; i++)
+			{
+				if (GlobalInstance::myCardHeros[i] != NULL)
+				{
+					if (GlobalInstance::myCardHeros[i]->getPower().getValue() >= 100)
+						GlobalInstance::myCardHeros[i]->setPowerTime(GlobalInstance::servertime);
+
+					dv.setValue(GlobalInstance::myCardHeros[i]->getPower().getValue() - needph);
+					GlobalInstance::myCardHeros[i]->setPower(dv);
+
+				}
+			}
+			Director::getInstance()->replaceScene(TransitionFade::create(3.0f, MapBlockScene::createScene(mapid)));
+		}
 	}
 }
 

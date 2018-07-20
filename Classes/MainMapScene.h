@@ -6,10 +6,11 @@
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
+#include "HttpDataSwap.h"
 
 USING_NS_CC;
 
-class MainMapScene :public Layer
+class MainMapScene :public Layer, public HTTPDataDelegateProtocol
 {
 public:
 	MainMapScene();
@@ -26,7 +27,8 @@ private:
 	*****************************/
 	void onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
-
+	void updateTime(float dt);
+	void onFinish(int code);
 
 private:
 	int m_startClickX;

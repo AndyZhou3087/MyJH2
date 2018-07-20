@@ -22,6 +22,8 @@ Hero::Hero()
 	m_hp = INT32_MIN;
 	m_trainhour = 0;
 	m_traintime = 0;
+	m_power.setValue(100);
+	m_powertime = 0;
 	for (int i = 0; i < 6; i++)
 	{
 		takeOnEquip[i] = NULL;
@@ -47,6 +49,8 @@ Hero::Hero(Hero* hero)
 	m_hp = hero->getHp();
 	m_trainhour = hero->getTrainHour();
 	m_traintime = hero->getTrainTime();
+	m_power = hero->getPower();
+	m_powertime = hero->getPowerTime();
 	for (int i = 0; i < 6; i++)
 	{
 		takeOnEquip[i] = NULL;

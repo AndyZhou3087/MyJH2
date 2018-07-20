@@ -1,6 +1,7 @@
 ﻿#include "MainMapScene.h"
 #include "Resource.h"
 #include "SelectSubMapLayer.h"
+#include "GlobalInstance.h"
 
 MainMapScene::MainMapScene()
 {
@@ -86,6 +87,8 @@ bool MainMapScene::init()
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
+	HttpDataSwap::init(NULL)->getServerTime();
+
 	return true;
 }
 
@@ -116,5 +119,19 @@ void MainMapScene::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 		break;
 	default:
 		break;
+	}
+}
+
+void MainMapScene::updateTime(float dt)
+{
+	GlobalInstance::servertime++;
+}
+
+void MainMapScene::onFinish(int code)
+{
+	if (code == SUCCESS)
+	{
+		updateTime(0);
+		this->schedule(schedule_selector(MainMapScene::updateTime), 1);
 	}
 }

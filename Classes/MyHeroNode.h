@@ -33,6 +33,7 @@ private:
 	cocos2d::ui::ImageView* stars[5];
 	cocos2d::ui::Widget* silver;
 	cocos2d::ui::ImageView* actbtn;
+	cocos2d::ui::Text* hpdesc;
 	Hero* m_heroData;
 	int m_showtype;
 	int langtype;

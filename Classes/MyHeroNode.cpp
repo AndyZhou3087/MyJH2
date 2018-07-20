@@ -98,6 +98,8 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 
 	countdown = (cocos2d::ui::Text*)csbnode->getChildByName("countdown");
 
+	hpdesc = (cocos2d::ui::Text*)csbnode->getChildByName("hpdesc");
+
 	setStateTag(herodata->getState());
 
 	for (int i = 0; i < 5; i++)
@@ -120,9 +122,16 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	{
 		bgitem->setTouchEnabled(false);
 		updateContent();
-		updateTime(0);
-		this->schedule(schedule_selector(MyHeroNode::updateTime), 1.0f);
+
 	}
+	if (m_heroData->getPower().getValue() >= 100)
+	{
+		std::string hpstr = StringUtils::format(ResourceLang::map_lang["powerdesc"].c_str(), m_heroData->getPower().getValue(), ResourceLang::map_lang["powermaxtext"].c_str());;
+		hpdesc->setString(hpstr);
+	}
+
+	updateTime(0);
+	this->schedule(schedule_selector(MyHeroNode::updateTime), 1.0f);
 
 	return true;
 }
@@ -145,33 +154,62 @@ void MyHeroNode::updateContent()
 
 void MyHeroNode::updateTime(float dt)
 {
-	if (m_heroData->getState() != HS_TRAINING)
+	if (m_heroData->getState() == HS_TRAINING)
 	{
-		return;
-	}
+		int lefttime = 0;
+		int refreshtime = m_heroData->getTrainTime();
+		int pasttime = GlobalInstance::servertime - refreshtime;
+		if (pasttime >= m_heroData->getTrainHour())
+		{
+			int lv = Building::map_buildingDatas["4trainigroom"]->level.getValue();
+			int bexp = Building::map_buildingDatas["4trainigroom"]->vec_exdatatrain[lv];
+			DynamicValueInt dexp;
+			dexp.setValue(m_heroData->getExp().getValue() + m_heroData->getTrainHour() / 3600 * bexp);
+			m_heroData->setExp(dexp);
 
-	int lefttime = 0;
-	int refreshtime = m_heroData->getTrainTime();
-	int pasttime = GlobalInstance::servertime - refreshtime;
-	if (pasttime >= m_heroData->getTrainHour())
-	{
-		int lv = Building::map_buildingDatas["4trainigroom"]->level.getValue();
-		int bexp = Building::map_buildingDatas["4trainigroom"]->vec_exdatatrain[lv];
-		DynamicValueInt dexp;
-		dexp.setValue(m_heroData->getExp().getValue() + m_heroData->getTrainHour() / 3600 * bexp);
-		m_heroData->setExp(dexp);
-
-		m_heroData->setTrainHour(0);
-		m_heroData->setTrainTime(0);
-		m_heroData->setState(HS_OWNED);
-		countdown->setVisible(false);
+			m_heroData->setTrainHour(0);
+			m_heroData->setTrainTime(0);
+			m_heroData->setState(HS_OWNED);
+			countdown->setVisible(false);
+		}
+		else
+		{
+			lefttime = m_heroData->getTrainHour() - pasttime;
+		}
+		std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
+		countdown->setString(timestr);
 	}
 	else
 	{
-		lefttime = m_heroData->getTrainHour() - pasttime;
+		if (m_heroData->getPower().getValue() < 100)
+		{
+			int pasttime = GlobalInstance::servertime - m_heroData->getPowerTime();
+			int lefttime = HEROPOWER_RESETTIME - pasttime % HEROPOWER_RESETTIME;
+			std::string timestr = StringUtils::format("%02d:%02d", lefttime / 60, lefttime % 60);
+
+			DynamicValueInt dv;
+			int count = pasttime / HEROPOWER_RESETTIME;
+			if (count > 0)
+			{
+				m_heroData->setPowerTime(GlobalInstance::servertime);
+				if (count + m_heroData->getPower().getValue() > 100)
+					count = 100;
+				else
+					count += m_heroData->getPower().getValue();
+				dv.setValue(count);
+
+				m_heroData->setPower(dv);
+			}
+
+			std::string hpstr;
+			if (count >= 100)
+				timestr = ResourceLang::map_lang["powermaxtext"].c_str();
+
+			hpstr = StringUtils::format(ResourceLang::map_lang["powerdesc"].c_str(), m_heroData->getPower().getValue(), timestr.c_str());
+			hpdesc->setString(hpstr);
+			GlobalInstance::getInstance()->saveHero(m_heroData);
+		}
 	}
-	std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
-	countdown->setString(timestr);
 }
 
 void MyHeroNode::updateData()

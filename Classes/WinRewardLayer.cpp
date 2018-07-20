@@ -176,11 +176,11 @@ void WinRewardLayer::updateScrollviewContent()
 			std::string str = StringUtils::format("ui/%s.png", resid.c_str());
 			if (qu == 3)
 			{
-				str = StringUtils::format("ui/%s_2.png", resid.c_str());
+				str = StringUtils::format("ui/%s-2.png", resid.c_str());
 			}
 			else if (qu == 4)
 			{
-				str = StringUtils::format("ui/%s_3.png", resid.c_str());
+				str = StringUtils::format("ui/%s-3.png", resid.c_str());
 			}
 
 			Sprite * res = Sprite::createWithSpriteFrameName(str);
@@ -409,7 +409,7 @@ void WinRewardLayer::reduceDropRes(ResBase* res, int count, int iteindex)
 {
 	int type = res->getType();
 
-	if (type >= T_ARMOR && type <= T_FASHION || (type >= T_WG && type <= T_NG))
+	if ((type >= T_ARMOR && type <= T_FASHION) || (type >= T_WG && type <= T_NG))
 	{
 		vec_dropdownres.erase(vec_dropdownres.begin() + iteindex);
 	}
