@@ -7,5 +7,15 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="makeResNode.csd" />
+          <FilePathData Path="marketResNode.csd" />
+          <FilePathData Path="MainMenuLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="marketResNode.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>

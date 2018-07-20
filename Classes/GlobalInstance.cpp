@@ -1459,6 +1459,18 @@ int GlobalInstance::generateStoneCount(int qu)
 	return 3;//count;
 }
 
+int GlobalInstance::generateHeroPotential()
+{
+	int innroomlv = DataSave::getInstance()->getBuildingLv("6innroom");
+	if (innroomlv < 10)
+		return 3;
+	else if (innroomlv < 19)
+		return 4;
+	else
+		return 5;
+	return 1;
+}
+
 void GlobalInstance::saveRefreshMarketTime(int time)
 {
 	refreshMarketTime = time;
