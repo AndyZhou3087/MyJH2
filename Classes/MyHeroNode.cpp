@@ -209,17 +209,17 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			CardHeroNode* cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(selectIndex);
 			if (m_heroData->getState() == HS_OWNED)
 			{
-				//清楚掉之前选择的
-				for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
-				{
-					if (GlobalInstance::vec_myHeros[i]->getPos() == selectheroLayer->getTag() + 1)
-					{
-						GlobalInstance::vec_myHeros[i]->setState(HS_OWNED);
-						GlobalInstance::vec_myHeros[i]->setPos(0);
-						selectheroLayer->getMyHeroNode(this->getTag())->setStateTag(HS_OWNED);
-						break;
-					}
-				}
+				////清楚掉之前选择的
+				//for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+				//{
+				//	if (GlobalInstance::vec_myHeros[i]->getPos() == selectheroLayer->getTag() + 1)
+				//	{
+				//		GlobalInstance::vec_myHeros[i]->setState(HS_OWNED);
+				//		GlobalInstance::vec_myHeros[i]->setPos(0);
+				//		selectheroLayer->getMyHeroNode(this->getTag())->setStateTag(HS_OWNED);
+				//		break;
+				//	}
+				//}
 				m_heroData->setState(HS_TAKEON);
 				m_heroData->setPos(selectIndex + 1);
 				GlobalInstance::myCardHeros[selectIndex] = m_heroData;
@@ -227,6 +227,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				setStateTag(HS_TAKEON);
 				
 				cardheroNode->setData(m_heroData);
+				selectheroLayer->removeFromParentAndCleanup(true);
 			}
 			else if (m_heroData->getState() == HS_TAKEON)
 			{
