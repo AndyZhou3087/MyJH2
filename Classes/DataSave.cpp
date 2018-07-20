@@ -226,7 +226,7 @@ void DataSave::setBuildingLv(std::string buildingname, int val)
 
 int DataSave::getMySoliverCount()
 {
-	return loadIntDataByKey("soliver", 1000000);
+	return loadIntDataByKey("soliver", 50000000);
 }
 
 void DataSave::setMySoliverCount(int val)
@@ -236,7 +236,7 @@ void DataSave::setMySoliverCount(int val)
 
 int DataSave::getMyCoinCount()
 {
-	return loadIntDataByKey("coin", 1000000);
+	return loadIntDataByKey("coin", 50000000);
 }
 
 void DataSave::setMyCoinCount(int val)

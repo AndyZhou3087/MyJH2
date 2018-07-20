@@ -68,11 +68,11 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	std::string str = StringUtils::format("ui/%s.png", res->getId().c_str());
 	if (s == 3)
 	{
-		str = StringUtils::format("ui/%s_2.png", res->getId().c_str());
+		str = StringUtils::format("ui/%s-2.png", res->getId().c_str());
 	}
 	else if (s == 4)
 	{
-		str = StringUtils::format("ui/%s_3.png", res->getId().c_str());
+		str = StringUtils::format("ui/%s-3.png", res->getId().c_str());
 	}
 	p_res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 

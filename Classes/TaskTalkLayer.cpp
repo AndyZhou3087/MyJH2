@@ -169,11 +169,11 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 		std::string str = StringUtils::format("ui/%s.png", resid.c_str());
 		if (qu == 3)
 		{
-			str = StringUtils::format("ui/%s_2.png", resid.c_str());
+			str = StringUtils::format("ui/%s-2.png", resid.c_str());
 		}
 		else if (qu == 4)
 		{
-			str = StringUtils::format("ui/%s_3.png", resid.c_str());
+			str = StringUtils::format("ui/%s-3.png", resid.c_str());
 		}
 		Sprite * res = Sprite::createWithSpriteFrameName(str);
 		res->setPosition(Vec2(box->getContentSize().width / 2, box->getContentSize().height / 2));
