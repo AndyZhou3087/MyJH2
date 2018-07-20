@@ -219,7 +219,8 @@ void GlobalInstance::saveHeroByIndex(int index)
 {
 	std::string herokey = StringUtils::format("hero%d", index);
 	Hero* hero = GlobalInstance::vec_myHeros[index];
-	std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp(), hero->getTrainHour(), hero->getTrainTime());
+	std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f-%d-%d-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp(), 
+		hero->getTrainHour(), hero->getTrainTime(), hero->getPower().getValue(), hero->getPowerTime());
 	DataSave::getInstance()->setHeroData(herokey, datastr);
 }
 
@@ -238,7 +239,7 @@ void GlobalInstance::loadMyHeros()
 			{
 				std::vector<std::string> vec_tmp;
 				CommonFuncs::split(vec_retstr[0], vec_tmp, "-");
-				if (vec_tmp.size() >= 10)
+				if (vec_tmp.size() >= 13)
 				{
 					hero = new Hero();
 					hero->setName(vec_tmp[0]);
@@ -261,6 +262,10 @@ void GlobalInstance::loadMyHeros()
 					hero->setHp(atof(vec_tmp[8].c_str()));
 					hero->setTrainHour(atoi(vec_tmp[9].c_str()));
 					hero->setTrainTime(atoi(vec_tmp[10].c_str()));
+					DynamicValueInt pdv;
+					pdv.setValue(atoi(vec_tmp[11].c_str()));
+					hero->setPower(pdv);
+					hero->setPowerTime(atoi(vec_tmp[12].c_str()));
 				}
 			}
 			if (vec_retstr.size() > 1)//装备属性
