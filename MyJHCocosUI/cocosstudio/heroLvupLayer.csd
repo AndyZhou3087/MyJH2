@@ -345,50 +345,6 @@
             <FileData Type="MarkedSubImage" Path="ui/resbox_qu3.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="s001img" ActionTag="696526651" Tag="114" IconVisible="False" LeftMargin="36.1617" RightMargin="574.8383" TopMargin="733.4633" BottomMargin="437.5367" ctype="SpriteObjectData">
-            <Size X="109.0000" Y="109.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="90.6617" Y="492.0367" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1259" Y="0.3844" />
-            <PreSize X="0.1514" Y="0.0852" />
-            <FileData Type="MarkedSubImage" Path="ui/s001.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="s002img" ActionTag="1834623052" Tag="115" IconVisible="False" LeftMargin="217.5664" RightMargin="393.4336" TopMargin="733.0443" BottomMargin="437.9557" ctype="SpriteObjectData">
-            <Size X="109.0000" Y="109.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="272.0664" Y="492.4557" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3779" Y="0.3847" />
-            <PreSize X="0.1514" Y="0.0852" />
-            <FileData Type="MarkedSubImage" Path="ui/s002.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="s003img" ActionTag="440972063" Tag="116" IconVisible="False" LeftMargin="397.0927" RightMargin="213.9073" TopMargin="732.8693" BottomMargin="438.1307" ctype="SpriteObjectData">
-            <Size X="109.0000" Y="109.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="451.5927" Y="492.6307" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6272" Y="0.3849" />
-            <PreSize X="0.1514" Y="0.0852" />
-            <FileData Type="MarkedSubImage" Path="ui/s003.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="s004 img" ActionTag="114914429" Tag="117" IconVisible="False" LeftMargin="577.6071" RightMargin="33.3929" TopMargin="733.3331" BottomMargin="437.6669" ctype="SpriteObjectData">
-            <Size X="109.0000" Y="109.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="632.1071" Y="492.1669" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.8779" Y="0.3845" />
-            <PreSize X="0.1514" Y="0.0852" />
-            <FileData Type="MarkedSubImage" Path="ui/s004.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
           <AbstractNodeData Name="s001text" ActionTag="-1241369260" Tag="118" IconVisible="False" LeftMargin="98.4152" RightMargin="578.5848" TopMargin="819.0724" BottomMargin="437.9276" FontSize="20" LabelText="2000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="43.0000" Y="23.0000" />
             <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
@@ -436,6 +392,46 @@
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="s001img" ActionTag="1629808762" Tag="122" IconVisible="False" LeftMargin="36.0625" RightMargin="574.9375" TopMargin="733.1346" BottomMargin="437.8653" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+            <Size X="109.0000" Y="109.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="90.5625" Y="492.3653" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1258" Y="0.3847" />
+            <PreSize X="0.1514" Y="0.0852" />
+            <FileData Type="MarkedSubImage" Path="ui/s001.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="s002img" ActionTag="-1939926453" Tag="123" IconVisible="False" LeftMargin="217.4061" RightMargin="393.5939" TopMargin="734.4418" BottomMargin="436.5583" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+            <Size X="109.0000" Y="109.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="271.9061" Y="491.0583" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3776" Y="0.3836" />
+            <PreSize X="0.1514" Y="0.0852" />
+            <FileData Type="MarkedSubImage" Path="ui/s002.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="s003img" ActionTag="-1729057895" Tag="124" IconVisible="False" LeftMargin="397.4031" RightMargin="213.5969" TopMargin="732.0560" BottomMargin="438.9440" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+            <Size X="109.0000" Y="109.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="451.9031" Y="493.4440" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.6276" Y="0.3855" />
+            <PreSize X="0.1514" Y="0.0852" />
+            <FileData Type="MarkedSubImage" Path="ui/s003.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="s004img" ActionTag="-1065630275" Tag="125" IconVisible="False" LeftMargin="578.7469" RightMargin="32.2531" TopMargin="734.0364" BottomMargin="436.9636" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+            <Size X="109.0000" Y="109.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="633.2469" Y="491.4636" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.8795" Y="0.3840" />
+            <PreSize X="0.1514" Y="0.0852" />
+            <FileData Type="MarkedSubImage" Path="ui/s004.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

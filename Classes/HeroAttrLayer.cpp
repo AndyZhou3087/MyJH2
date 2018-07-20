@@ -14,6 +14,7 @@
 #include "MyRes.h"
 #include "TakeOnLayer.h"
 #include "EquipDescLayer.h"
+#include "HeroLvupLayer.h"
 
 USING_NS_CC;
 
@@ -388,6 +389,10 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		}
 		case ATTR_LVBTN:
+		{
+			HeroLvupLayer* lvlayer = HeroLvupLayer::create(m_heroData);
+			this->addChild(lvlayer);
+		}
 			break;
 		case ATTR_CHANGEBTN:
 			break;
