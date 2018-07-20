@@ -39,9 +39,12 @@ MapBlockScene::~MapBlockScene()
 {
 	for (int i = 0; i < 6; i++)
 	{
-		if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() == HS_DEAD)
+		if (GlobalInstance::myCardHeros[i] != NULL)
 		{
-			GlobalInstance::myCardHeros[i] = NULL;
+			if (GlobalInstance::myCardHeros[i]->getState() == HS_DEAD)
+				GlobalInstance::myCardHeros[i] = NULL;
+			else
+				GlobalInstance::myCardHeros[i]->setHp(GlobalInstance::myCardHeros[i]->getMaxHp());
 		}
 	}
 	MyRes::putMyPackagesToStorage();
