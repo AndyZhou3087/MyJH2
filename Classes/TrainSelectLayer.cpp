@@ -30,10 +30,10 @@ TrainSelectLayer::~TrainSelectLayer()
 }
 
 
-TrainSelectLayer* TrainSelectLayer::create(Hero* herodata)
+TrainSelectLayer* TrainSelectLayer::create(Hero* herodata, MyHeroNode* myNode)
 {
 	TrainSelectLayer *pRet = new(std::nothrow)TrainSelectLayer();
-	if (pRet && pRet->init(herodata))
+	if (pRet && pRet->init(herodata, myNode))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -47,7 +47,7 @@ TrainSelectLayer* TrainSelectLayer::create(Hero* herodata)
 }
 
 // on "init" you need to initialize your instance
-bool TrainSelectLayer::init(Hero* herodata)
+bool TrainSelectLayer::init(Hero* herodata, MyHeroNode* myNode)
 {
 	if (!Layer::init())
 	{
@@ -55,6 +55,7 @@ bool TrainSelectLayer::init(Hero* herodata)
 	}
 
 	m_data = herodata;
+	myheroNode = myNode;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
@@ -206,6 +207,7 @@ void TrainSelectLayer::action()
 	m_data->setState(HS_TRAINING);
 	m_data->setTrainHour(timeCount[lastSelectIndex]);
 	m_data->setTrainTime(GlobalInstance::servertime);
+	myheroNode->updateContent();
 }
 
 void TrainSelectLayer::updateUI()

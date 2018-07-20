@@ -363,8 +363,8 @@ void TaskTalkLayer::checkWordLblColor(std::string wordstr)
 	m_wordlbl = Label::createWithTTF(wordstr, FONT_NAME, 25);
 	m_wordlbl->setLineBreakWithoutSpace(true);
 	m_wordlbl->setAnchorPoint(Vec2(0, 1));
-	m_wordlbl->setHorizontalAlignment(CCTextAlignment::LEFT);
-	m_wordlbl->setVerticalAlignment(CCVerticalTextAlignment::TOP);
+	/*m_wordlbl->setHorizontalAlignment(CCTextAlignment::LEFT);
+	m_wordlbl->setVerticalAlignment(CCVerticalTextAlignment::TOP);*/
 	m_wordlbl->setMaxLineWidth(descscoll->getContentSize().width);
 	descscoll->addChild(m_wordlbl, 0, "talklbl");
 	int innerheight = m_wordlbl->getStringNumLines() * 25;//contentlbl->getHeight();

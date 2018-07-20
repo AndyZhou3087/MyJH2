@@ -119,6 +119,7 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	else if (m_showtype == HS_TRAINING)
 	{
 		bgitem->setTouchEnabled(false);
+		updateContent();
 		updateTime(0);
 		this->schedule(schedule_selector(MyHeroNode::updateTime), 1.0f);
 	}
@@ -126,11 +127,8 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	return true;
 }
 
-void MyHeroNode::updateTime(float dt)
+void MyHeroNode::updateContent()
 {
-	actbtntxt->loadTexture(ResourcePath::makeTextImgPath("training_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-	actbtn->loadTexture("ui/actionbtn_blue.png", cocos2d::ui::Widget::TextureResType::PLIST);
-	countdown->setVisible(false);
 	if (m_heroData->getState() == HS_TRAINING)
 	{
 		actbtntxt->loadTexture(ResourcePath::makeTextImgPath("herocancel_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -138,6 +136,16 @@ void MyHeroNode::updateTime(float dt)
 		countdown->setVisible(true);
 	}
 	else
+	{
+		actbtntxt->loadTexture(ResourcePath::makeTextImgPath("training_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		actbtn->loadTexture("ui/actionbtn_blue.png", cocos2d::ui::Widget::TextureResType::PLIST);
+		countdown->setVisible(false);
+	}
+}
+
+void MyHeroNode::updateTime(float dt)
+{
+	if (m_heroData->getState() != HS_TRAINING)
 	{
 		return;
 	}
@@ -277,7 +285,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		{
 			if (m_heroData->getState() == HS_OWNED)
 			{
-				TrainSelectLayer* layer = TrainSelectLayer::create(m_heroData);
+				TrainSelectLayer* layer = TrainSelectLayer::create(m_heroData,this);
 				g_mainScene->addChild(layer, 1, "TrainSelectLayer");
 			}
 			else if (m_heroData->getState() == HS_TRAINING)

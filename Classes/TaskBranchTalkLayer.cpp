@@ -66,7 +66,7 @@ bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	Label* contentlbl = Label::createWithTTF(data->bossword, FONT_NAME, 25);
 	contentlbl->setAnchorPoint(Vec2(0, 1));
 	contentlbl->setColor(Color3B(255, 255, 255));
-	contentlbl->setHorizontalAlignment(TextHAlignment::LEFT);
+	//contentlbl->setHorizontalAlignment(TextHAlignment::LEFT);
 	contentlbl->setLineBreakWithoutSpace(true);
 	contentlbl->setMaxLineWidth(descscoll->getContentSize().width);
 	descscoll->addChild(contentlbl);
