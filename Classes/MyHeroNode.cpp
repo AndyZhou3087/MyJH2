@@ -98,6 +98,8 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 
 	countdown = (cocos2d::ui::Text*)csbnode->getChildByName("countdown");
 
+	hpdesc = (cocos2d::ui::Text*)csbnode->getChildByName("hpdesc");
+
 	setStateTag(herodata->getState());
 
 	for (int i = 0; i < 5; i++)

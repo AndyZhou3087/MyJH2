@@ -110,7 +110,7 @@ void SelectMyHerosLayer::refreshMyHerosUi()
 	m_contentscroll->removeAllChildrenWithCleanup(true);
 
 	int size = GlobalInstance::vec_myHeros.size();
-	int itemheight = 150;
+	int itemheight = 170;
 	int innerheight = itemheight * size;
 	int contentheight = m_contentscroll->getContentSize().height;
 	if (innerheight < contentheight)

@@ -36,6 +36,8 @@ public:
 	CC_SYNTHESIZE(int, m_pos, Pos);//出城时选择的位置，1开始，0表示不选择
 	CC_SYNTHESIZE(int, m_trainhour, TrainHour);//选择训练的时间，0--未训练，3600--一小时，18000--两小时，28800--三小时
 	CC_SYNTHESIZE(int, m_traintime, TrainTime);//训练的时间
+	CC_SYNTHESIZE(int, m_power, Power);//精力
+	CC_SYNTHESIZE(int, m_powertime, PowerTime);//精力时间
 
 	//血量
 	float getHp();
