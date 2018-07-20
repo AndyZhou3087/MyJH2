@@ -753,6 +753,8 @@ void MapBlockScene::updateHeroUI(int which)
 {
 	FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(which);
 	fnode->updateHp();
+
+	GlobalInstance::getInstance()->saveHero(GlobalInstance::myCardHeros[which]);
 }
 
 void MapBlockScene::showFightResult(int result)

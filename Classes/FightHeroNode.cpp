@@ -214,7 +214,6 @@ void FightHeroNode::hurtAnimFinish()
 			((Hero*)m_Data)->setState(HS_DEAD);
 			((Hero*)m_Data)->setPos(0);
 		}
-		GlobalInstance::getInstance()->saveHero((Hero*)m_Data);
 		fighting->updateMapHero(this->getTag());
 	}
 
@@ -328,6 +327,11 @@ void FightHeroNode::setFightState(int winexp)
 			myhero->setHp(myhero->getMaxHp());
 			if (g_MapBlockScene != NULL)
 				g_MapBlockScene->updateHeroUI(this->getTag());
+
+		}
+		else
+		{
+			GlobalInstance::getInstance()->saveHero(myhero);
 		}
 	}
 	else
