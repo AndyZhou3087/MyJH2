@@ -345,7 +345,7 @@ public:
 	//加载NPC数据
 	void loadNpcData();
 
-	//根据客栈等级生成品质
+	//根据客栈等级概率生成品质
 	int generateHeroPotential();
 
 	//加载每日配置

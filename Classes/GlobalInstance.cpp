@@ -1463,12 +1463,39 @@ int GlobalInstance::generateHeroPotential()
 {
 	int innroomlv = DataSave::getInstance()->getBuildingLv("6innroom");
 	if (innroomlv < 10)
-		return 3;
+	{
+		int r = GlobalInstance::getInstance()->createRandomNum(100);
+		if (r < 50)
+			return 0;
+		else if (r < 90)
+			return 1;
+		return 2;
+	}
 	else if (innroomlv < 19)
-		return 4;
+	{
+		int r = GlobalInstance::getInstance()->createRandomNum(100);
+		if (r < 50)
+			return 0;
+		else if (r < 80)
+			return 1;
+		else if (r < 99)
+			return 2;
+		return 3;
+	}
 	else
-		return 5;
-	return 1;
+	{
+		int r = GlobalInstance::getInstance()->createRandomNum(10000);
+		if (r < 4999)
+			return 0;
+		else if (r < 7999)
+			return 1;
+		else if (r < 9899)
+			return 2;
+		else if (r < 9999)
+			return 3;
+		return 4;
+	}
+	return 0;
 }
 
 void GlobalInstance::saveRefreshMarketTime(int time)

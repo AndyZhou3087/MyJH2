@@ -233,7 +233,7 @@ void Hero::generate()
 {
 	setVocation(GlobalInstance::getInstance()->createRandomNum(BASEHEROMAX));
 
-	setPotential(GlobalInstance::getInstance()->createRandomNum(GlobalInstance::getInstance()->generateHeroPotential()));
+	setPotential(GlobalInstance::getInstance()->generateHeroPotential());
 
 	DynamicValueInt lvdint;
 	setExp(lvdint);
