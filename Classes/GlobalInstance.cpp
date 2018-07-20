@@ -1351,10 +1351,13 @@ void GlobalInstance::parseMapJson()
 		v = jsonvalue["ph"];
 		s_submap.ph = atoi(v.GetString());
 
-		v = jsonvalue["awd"];
-		for (unsigned int i = 0; i < v.Size(); i++)
+		if (jsonvalue.HasMember("awd"))
 		{
-			s_submap.vec_awd.push_back(v[i].GetString());
+			v = jsonvalue["awd"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				s_submap.vec_awd.push_back(v[i].GetString());
+			}
 		}
 
 		std::string mainid = s_submap.id.substr(0, s_submap.id.find_last_of("-"));

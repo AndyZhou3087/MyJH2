@@ -144,7 +144,15 @@ void InnRoomLayer::refreshMyHerosUi()
 {
 	m_contentscroll->removeAllChildrenWithCleanup(true);
 
-	int size = GlobalInstance::vec_myHeros.size();
+	int count = 0;
+	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+	{
+		Hero* herodata = GlobalInstance::vec_myHeros[i];
+		if (herodata->getState() != HS_DEAD)
+			count++;
+	}
+
+	int size = count;
 	int itemheight = 170;
 	int innerheight = itemheight * size;
 	int contentheight = m_contentscroll->getContentSize().height;

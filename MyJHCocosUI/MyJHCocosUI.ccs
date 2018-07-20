@@ -29,7 +29,6 @@
           <Image Name="event6.jpg" />
           <Image Name="event7.jpg" />
           <Image Name="heroattrbottom.png" />
-          <Image Name="herobg.jpg" />
           <Image Name="hfull_0_0.png" />
           <Image Name="hfull_0_1.png" />
           <Image Name="hfull_1_0.png" />
@@ -669,6 +668,12 @@
           <Image Name="r003.png" />
           <Image Name="r004.png" />
           <Image Name="r005.png" />
+          <Image Name="r006.png" />
+          <Image Name="r007.png" />
+          <Image Name="r008.png" />
+          <Image Name="r009.png" />
+          <Image Name="r010.png" />
+          <Image Name="r011.png" />
           <Image Name="randheadbox.png" />
           <Image Name="resaddbtn.png" />
           <Image Name="resbox.png" />
@@ -837,7 +842,6 @@
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="heroLvupLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>
