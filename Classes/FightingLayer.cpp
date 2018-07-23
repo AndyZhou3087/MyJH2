@@ -176,7 +176,7 @@ void FightingLayer::showAtk(Npc* ndata)
 			if (m_enemyHeros[i] != NULL && m_enemyHeros[i]->getHp() > 0)
 			{
 				FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + i);
-				if (fnode->isVisible())
+				if (fnode->isVisible() && ndata->getHp() > 0)
 				{
 					float atkhp = ndata->getAtk();
 					fnode->hurt(atkhp);
@@ -192,7 +192,7 @@ void FightingLayer::showAtk(Npc* ndata)
 			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getHp() > 0)
 			{
 				FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(i);
-				if (fnode->isVisible())
+				if (fnode->isVisible() && ndata->getHp() > 0)
 				{
 					float atkhp = ndata->getAtk();
 					fnode->hurt(atkhp);
@@ -210,7 +210,7 @@ int FightingLayer::checkFightResult()
 	int esize = m_enemyHeros.size();
 	for (int i = 0; i < esize; i++)
 	{
-		if (m_enemyHeros[i] == NULL || m_enemyHeros[i]->getHp() <= 0.000001f)
+		if (m_enemyHeros[i] == NULL || m_enemyHeros[i]->getHp() <= 0)
 		{
 			index++;
 		}

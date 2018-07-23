@@ -148,7 +148,7 @@ void FightHeroNode::update(float dt)
 		return;
 
 	timedt += dt;
-	if (timedt >= atkspeed)
+	if (timedt >= atkspeed && this->isVisible())
 	{
 		timedt = 0.0f;
 		FightingLayer* fighting = (FightingLayer*)this->getParent();
@@ -183,12 +183,15 @@ void FightHeroNode::hurt(float hp)
 		ActionInterval* ac1 = Spawn::create(Show::create(), FadeIn::create(0.15f), EaseSineIn::create(ScaleTo::create(0.15f, 1)), NULL);
 		statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), NULL));
 	}
-}
+} 
 
 void FightHeroNode::atkAnimFinish()
 {
-	FightingLayer* fighting = (FightingLayer*)this->getParent();
-	fighting->showAtk(m_Data);
+	if (this->isVisible())
+	{
+		FightingLayer* fighting = (FightingLayer*)this->getParent();
+		fighting->showAtk(m_Data);
+	}
 }
 
 void FightHeroNode::hpAnim()
@@ -208,7 +211,7 @@ void FightHeroNode::hurtAnimFinish()
 
 	if (m_datatype == F_HERO)
 	{
-		if (m_Data->getHp() <= 0.000001f)
+		if (m_Data->getHp() <= 0)
 		{
 			this->unscheduleUpdate();
 			((Hero*)m_Data)->setState(HS_DEAD);
@@ -225,7 +228,7 @@ void FightHeroNode::updateHp()
 {
 	float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
 	hp_bar->setPercent(percent);
-	if (m_Data->getHp() <= 0.000001f)
+	if (m_Data->getHp() <= 0)
 	{
 		setBlankBox();
 	}
