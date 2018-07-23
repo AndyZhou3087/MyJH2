@@ -36,6 +36,8 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
+
+	Director::getInstance()->setProjection(Director::Projection::_2D);
     // initialize director
 	auto director = Director::getInstance();
 	auto glview = director->getOpenGLView();
@@ -55,7 +57,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	director->setAnimationInterval(1.0f / 60);
 
 	// Set the design resolution
-	glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::EXACT_FIT);
+	glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::FIXED_WIDTH);
     //Size frameSize = glview->getFrameSize();
     //// if the frame's height is larger than the height of medium size.
     //if (frameSize.height > mediumResolutionSize.height)
