@@ -264,7 +264,7 @@ void OutTownLayer::updateCaryyCountLbl()
 	std::string str = StringUtils::format("%d/%d", caryycount[0] + caryycount[1] + caryycount[2], GlobalInstance::getInstance()->getTotalCarry());
 	carrylbl->setString(str);
 
-	str = StringUtils::format("%d/%d", caryycount[0], MyRes::getMyResCount(carryResids[0]));
+	str = StringUtils::format("%d", caryycount[0]);
 	caryycountlbl[0]->setString(str);
 }
 
