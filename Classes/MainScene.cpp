@@ -298,15 +298,17 @@ void MainScene::updateTime(float dt)
 				else
 					formatstr = "%s+%d";
 
-				std::string showtext = StringUtils::format(formatstr.c_str(), GlobalInstance::map_AllResources[rescreator->getName()].name.c_str(), addcount);
-				MovingLabel::show(showtext);
 				int rcount = MyRes::getMyResCount(rescreator->getName());
 
 				if (addcount + rcount >= maxcount)
 					addcount = maxcount - rcount;
 
 				if (addcount != 0)
+				{
 					MyRes::Add(rescreator->getName(), addcount);
+					std::string showtext = StringUtils::format(formatstr.c_str(), GlobalInstance::map_AllResources[rescreator->getName()].name.c_str(), addcount);
+					MovingLabel::show(showtext);
+				}
 
 			}
 		}
