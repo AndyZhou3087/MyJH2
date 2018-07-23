@@ -37,7 +37,6 @@ static int register_all_packages()
 
 bool AppDelegate::applicationDidFinishLaunching() {
 
-	Director::getInstance()->setProjection(Director::Projection::_2D);
     // initialize director
 	auto director = Director::getInstance();
 	auto glview = director->getOpenGLView();
@@ -57,7 +56,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	director->setAnimationInterval(1.0f / 60);
 
 	// Set the design resolution
-	glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::FIXED_WIDTH);
+	glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::SHOW_ALL);
     //Size frameSize = glview->getFrameSize();
     //// if the frame's height is larger than the height of medium size.
     //if (frameSize.height > mediumResolutionSize.height)
@@ -74,7 +73,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     //{        
     //    director->setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));
     //}
-
+	director->setProjection(Director::Projection::_2D);
     register_all_packages();
 
     // create a scene. it's an autorelease object
