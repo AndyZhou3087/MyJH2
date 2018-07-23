@@ -230,6 +230,10 @@ void WinRewardLayer::loadScrollviewData()
 				((Equip*)res)->vec_stones.push_back("o");
 			}
 		}
+		else if (t >= T_WG && t <= T_NG)
+		{
+			res = new GongFa();
+		}
 		else
 			res = new ResBase();
 		res->setType(t);

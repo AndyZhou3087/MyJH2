@@ -244,9 +244,50 @@ void MyRes::putMyPackagesToStorage()
 	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
 	{
 		ResBase* res = vec_MyResources[i];
+		int type = res->getType();
 		if (res->getWhere() == MYPACKAGE)
 		{
-			Add(res, res->getCount().getValue(), MYSTORAGE);
+			if (type >= T_ARMOR && type <= T_FASHION)
+			{
+				Equip* ores = (Equip*)res;
+				Equip* eres = new Equip();
+				eres->setId(res->getId());
+				eres->setType(type);
+				DynamicValueInt dvalue;
+				dvalue.setValue(res->getCount().getValue());
+				eres->setCount(dvalue);
+
+				DynamicValueInt quvalue;
+				quvalue.setValue(res->getQU().getValue());
+				eres->setQU(quvalue);
+				eres->setWhere(MYSTORAGE);
+				int ssize = ores->vec_stones.size();
+				if (ssize > 0)
+				{
+					for (int n = 0; n < ssize; n++)
+						eres->vec_stones.push_back(ores->vec_stones[n]);
+				}
+				vec_MyResources.push_back(eres);
+			}
+			else if (type >= T_WG && type <= T_NG)
+			{
+				GongFa* gres = new GongFa();
+				gres->setId(res->getId());
+				gres->setType(type);
+				DynamicValueInt dvalue;
+				dvalue.setValue(res->getCount().getValue());
+				gres->setCount(dvalue);
+
+				DynamicValueInt quvalue;
+				quvalue.setValue(res->getQU().getValue());
+				gres->setQU(quvalue);
+				gres->setWhere(MYSTORAGE);
+				vec_MyResources.push_back(gres);
+			}
+			else
+			{
+				Add(res->getId(), res->getCount().getValue(), MYSTORAGE);
+			}
 		}
 	}
 
