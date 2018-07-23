@@ -47,7 +47,6 @@ MapBlockScene::~MapBlockScene()
 				GlobalInstance::myCardHeros[i]->setHp(GlobalInstance::myCardHeros[i]->getMaxHp());
 		}
 	}
-	MyRes::putMyPackagesToStorage();
 
 	g_MapBlockScene = NULL;
 }
