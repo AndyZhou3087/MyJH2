@@ -1307,7 +1307,7 @@ int GlobalInstance::getTotalCarry()
 
 	for (unsigned int i = 0; i < 6; i++)
 	{
-		if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
+		if (GlobalInstance::myCardHeros[i] != NULL)
 		{
 			ret += (GlobalInstance::myCardHeros[i]->getLevel() + 1) * 10;
 		}
