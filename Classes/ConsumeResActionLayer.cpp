@@ -121,12 +121,12 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 
 		vec_res = GlobalInstance::map_AllResources[resid].vec_needres;
 
-		int costcount = 0;
-		for (unsigned int i = 0; i < vec_res.size(); i++)
-		{
-			std::map<std::string, int>::iterator it = vec_res[i].begin();
-			costcount += GlobalInstance::map_AllResources[it->first].silverval * vec_res[i][it->first] / 10;
-		}
+		int costcount = GlobalInstance::map_AllResources[resid].silverval/10;
+		//for (unsigned int i = 0; i < vec_res.size(); i++)
+		//{
+		//	std::map<std::string, int>::iterator it = vec_res[i].begin();
+		//	costcount += GlobalInstance::map_AllResources[it->first].silverval * vec_res[i][it->first] / 10;
+		//}
 		costcoindv.setValue(costcount);
 	}
 	//标题
