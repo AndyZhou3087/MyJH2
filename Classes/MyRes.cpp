@@ -1,6 +1,7 @@
 ﻿#include "MyRes.h"
 #include "DataSave.h"
 #include "Equipable.h"
+#include "Const.h"
 
 std::vector<ResBase* > MyRes::vec_MyResources;
 
@@ -77,11 +78,10 @@ ResBase* MyRes::getMyPutOnResByType(int type, std::string whos)
 
 void MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescount)
 {
-	std::string types[] = {"r","a","e","h","f","w","x","s","c","d","m","b","y"};
 	int i = 0;
-	for (; i < sizeof(types)/sizeof(types[0]);i++)
+	for (; i < sizeof(RES_TYPES_CHAR)/sizeof(RES_TYPES_CHAR[0]);i++)
 	{
-		if (resid.compare(0, 1, types[i]) == 0)
+		if (resid.compare(0, 1, RES_TYPES_CHAR[i]) == 0)
 			break;
 	}
 
@@ -222,11 +222,10 @@ int MyRes::Use(ResBase* res, int count, int where)
 
 int MyRes::Use(std::string resid, int count, int inwhere)
 {
-	std::string types[] = { "r","a","e","h","f","w","x","s","c","d","m","b","y" };
 	int i = 0;
-	for (; i < sizeof(types) / sizeof(types[0]); i++)
+	for (; i < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); i++)
 	{
-		if (resid.compare(0, 1, types[i]) == 0)
+		if (resid.compare(0, 1, RES_TYPES_CHAR[i]) == 0)
 			break;
 	}
 

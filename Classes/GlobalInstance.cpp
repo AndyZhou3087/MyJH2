@@ -1194,11 +1194,10 @@ void GlobalInstance::loadMyResData()
 			CommonFuncs::split(vec_tmp[i], vec_one, "-");
 			std::string rid = vec_one[0];
 
-			std::string types[] = { "r","a","e","h","f","w","x","s","c","d","m","b","y" };
 			int m = 0;
-			for (; m < sizeof(types) / sizeof(types[0]); m++)
+			for (; m < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); m++)
 			{
-				if (rid.compare(0, 1, types[m]) == 0)
+				if (rid.compare(0, 1, RES_TYPES_CHAR[m]) == 0)
 					break;
 			}
 			if (m >= T_ARMOR && m <= T_FASHION)

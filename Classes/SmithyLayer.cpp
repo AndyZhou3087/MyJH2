@@ -150,7 +150,7 @@ void SmithyLayer::loadData()
 					map_cateRes[SMCATA_1].push_back(resid);
 				else if (resid.compare(0, 1, "e") == 0)
 					map_cateRes[SMCATA_2].push_back(resid);
-				else if (resid.compare(0, 1, "h") == 0)
+				else if (resid.compare(0, 1, "g") == 0)
 					map_cateRes[SMCATA_3].push_back(resid);
 				else if (resid.compare(0, 1, "f") == 0)
 					map_cateRes[SMCATA_4].push_back(resid);

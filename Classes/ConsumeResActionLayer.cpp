@@ -114,6 +114,8 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 		map_res["r002"] = dint.getValue();
 		vec_res.push_back(map_res);
 		costcoindv.setValue(GlobalInstance::map_AllResources["r002"].silverval * dint.getValue()/10);
+
+		showNextLvDesc(NULL);
 	}
 	else if (actiontype == CA_MAKERES)//合成资源
 	{
@@ -332,6 +334,7 @@ void ConsumeResActionLayer::action()
 	{
 		//工人数增加5
 		GlobalInstance::getInstance()->saveTotalFarmers(GlobalInstance::getInstance()->getTotalFarmers() + 5);
+		showNextLvDesc(NULL);
 	}
 	else if (m_actiontype == CA_RESCREATORLVUP)
 	{
@@ -395,36 +398,63 @@ bool ConsumeResActionLayer::checkResIsEnough()
 
 void ConsumeResActionLayer::showNextLvDesc(Building* building)
 {
-	if (building->level.getValue() >= building->maxlevel.getValue() - 1)
-	{
-		nextlvdesc->setVisible(false);
-		return;
-	}
 	std::string descstr;
-	//if (building->name.compare("6innroom") == 0)
-	//{
-	//	
-	//}
-	//else if (building->name.compare("7homehill") == 0)
-	//{
-	//	HomeHillLayer* homeHillLayer = (HomeHillLayer*)this->getParent();
-	//	homeHillLayer->lvup();
-	//}
-	//else if (building->name.compare("2smithy") == 0)
-	//{
-	//	SmithyLayer* smithyLayer = (SmithyLayer*)this->getParent();
-	//	smithyLayer->lvup();
-	//}
-	//else if (building->name.compare("5market") == 0)
-	//{
-	//	MarketLayer* marketLayer = (MarketLayer*)this->getParent();
-	//	marketLayer->lvup();
-	//}
-	//else if (building->name.compare("4trainigroom") == 0)
-	//{
-	//	TrainLayer* trainLayer = (TrainLayer*)this->getParent();
-	//	trainLayer->lvup();
-	//}
+	if (building != NULL)
+	{
+		if (building->level.getValue() >= building->maxlevel.getValue() - 1)
+		{
+			nextlvdesc->setVisible(false);
+			return;
+		}
+		std::string desckey = StringUtils::format("%snextlvdesc", building->name.c_str());
+		descstr = ResourceLang::map_lang[desckey];
+		int nextlv = building->level.getValue() + 1;
+
+		if (building->name.compare("7homehill") == 0)
+		{
+			std::string rid = StringUtils::format("r%03d", nextlv + 1);
+			descstr = StringUtils::format(descstr.c_str(), GlobalInstance::map_AllResources[rid].name.c_str());
+		}
+		else if (building->name.compare("2smithy") == 0)
+		{
+			std::string str;
+
+			for (unsigned int i = 0; i < building->vec_exdata[nextlv].size(); i++)
+			{
+				std::string resid = building->vec_exdata[nextlv][i];
+				str.append(GlobalInstance::map_AllResources[resid].name);
+				if (i < building->vec_exdata[nextlv].size() - 1)
+					str.append(ResourceLang::map_lang["zhdunhao"]);
+			}
+			descstr = StringUtils::format(descstr.c_str(), str.c_str());
+		}
+		else if (building->name.compare("5market") == 0)
+		{
+			std::string str;
+
+			for (unsigned int i = 0; i < building->vec_exdata[nextlv].size(); i++)
+			{
+				std::vector<std::string> vec_res;
+
+				CommonFuncs::split(building->vec_exdata[nextlv][i], vec_res, "-");
+
+				std::string resid = vec_res[0];
+				str.append(GlobalInstance::map_AllResources[resid].name);
+				if (i < building->vec_exdata[nextlv].size() - 1)
+					str.append(ResourceLang::map_lang["zhdunhao"]);
+			}
+			descstr = StringUtils::format(descstr.c_str(), str.c_str());
+
+		}
+		else if (building->name.compare("4trainigroom") == 0)
+		{
+			descstr = StringUtils::format(descstr.c_str(), building->vec_exdatatrain[nextlv]);
+		}
+	}
+	else
+	{
+		descstr = ResourceLang::map_lang["rescreatornextlvdesc"];
+	}
 	nextlvdesc->setString(descstr);
 }
 

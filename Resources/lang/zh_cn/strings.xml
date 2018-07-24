@@ -114,4 +114,10 @@
 	<s name="changesuretext">确定要突破吗？</s>
 	<s name="breaktext">突破</s>
 	<s name="breakcondition">突破条件</s>
+	<s name="6innroomnextlvdesc">升级后侠客容量+1，提升招募高品质侠客的概率</s>
+	<s name="2smithynextlvdesc">升级后可制造%s</s>
+	<s name="4trainigroomnextlvdesc">升级后每小时训练经验+%d</s>
+	<s name="7homehillnextlvdesc">升级后可解锁「%s」资源采集</s>
+	<s name="5marketnextlvdesc">升级后可购买%s</s>
+	<s name="rescreatornextlvdesc">升级后采集工人数量+5</s>
 </strings>

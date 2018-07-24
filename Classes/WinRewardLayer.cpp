@@ -206,16 +206,14 @@ void WinRewardLayer::updateScrollviewContent()
 
 void WinRewardLayer::loadScrollviewData()
 {
-	std::string types[] = { "r","a","e","h","f","w","x","s","c","d","m","b","y" };
-
 	for (unsigned int i = 0; i < m_rewards.size(); i++)
 	{
 		std::string rid = m_rewards[i].sid;
 
 		int t = 0;
-		for (; t < sizeof(types) / sizeof(types[0]); t++)
+		for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
 		{
-			if (rid.compare(0, 1, types[t]) == 0)
+			if (rid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
 				break;
 		}
 		int qu = m_rewards[i].intPara2;
