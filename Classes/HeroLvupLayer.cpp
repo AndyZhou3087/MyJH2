@@ -12,6 +12,7 @@
 #include "SelectEquipLayer.h"
 #include "MyRes.h"
 #include "DynamicValue.h"
+#include "HeroAttrLayer.h"
 
 USING_NS_CC;
 
@@ -27,7 +28,7 @@ HeroLvupLayer::HeroLvupLayer()
 
 HeroLvupLayer::~HeroLvupLayer()
 {
-
+	
 }
 
 
@@ -208,6 +209,11 @@ void HeroLvupLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
+		{
+			return;
+		}
+
 		int tag = clicknode->getTag();
 		int count;
 		switch (tag)
@@ -226,6 +232,17 @@ void HeroLvupLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			break;
 		default:
 			break;
+		}
+
+		if ((m_heroData->getLevel() + 1) % 10 == 0 && m_heroData->getChangeJob() == m_heroData->getLevel() / 10)
+		{
+			HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
+			if (attlay!=NULL)
+			{
+				attlay->changeButton();
+				MovingLabel::show(ResourceLang::map_lang["changebreak"]);
+				return;
+			}
 		}
 
 		std::string str = StringUtils::format("s00%d", tag);
