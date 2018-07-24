@@ -113,6 +113,7 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 
 	if (m_showtype == HS_DEAD)
 	{
+		hpdesc->setVisible(false);
 		bgitem->setTouchEnabled(false);
 		statetag->setVisible(false);
 		actbtntxt->loadTexture(ResourcePath::makeTextImgPath("cure_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);

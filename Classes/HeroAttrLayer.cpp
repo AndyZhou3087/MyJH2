@@ -436,6 +436,11 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				heroNode->markRecruited(true);
 				innroomLayer->refreshMyHerosUi();
 				clicknode->setEnabled(false);
+				if (this->getParent()!=NULL)
+				{
+					this->getParent()->removeFromParentAndCleanup(true);
+					//this->removeFromParentAndCleanup(true);
+				}
 
 				break;
 			}
