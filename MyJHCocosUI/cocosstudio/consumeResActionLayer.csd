@@ -225,13 +225,25 @@
             <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="countlbl" ActionTag="1058945096" Tag="198" IconVisible="False" LeftMargin="477.0003" RightMargin="184.9996" TopMargin="975.2719" BottomMargin="272.7281" FontSize="28" LabelText="x100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="countlbl" ActionTag="1058945096" Tag="198" IconVisible="False" LeftMargin="477.0003" RightMargin="184.9997" TopMargin="975.2719" BottomMargin="272.7281" FontSize="28" LabelText="x100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="58.0000" Y="32.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="477.0003" Y="288.7281" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.6625" Y="0.2256" />
+            <PreSize X="0.0806" Y="0.0250" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="nextlvdesc" ActionTag="82446224" Tag="22" IconVisible="False" LeftMargin="331.0000" RightMargin="331.0000" TopMargin="839.0000" BottomMargin="409.0000" FontSize="28" LabelText="x100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="58.0000" Y="32.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="425.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.3320" />
             <PreSize X="0.0806" Y="0.0250" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />

@@ -67,6 +67,8 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 	cocos2d::ui::Widget* smallbg = (cocos2d::ui::Widget*)csbnode->getChildByName("smallbg");
 	smallbg->setSwallowTouches(true);
 
+	nextlvdesc = (cocos2d::ui::Text*)csbnode->getChildByName("nextlvdesc");
+
 	std::string titlestr;		//标题
 	std::string btn1_text;//按钮1中的文字图片
 	std::string btn2_text;//按钮2中的文字图
@@ -78,6 +80,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 		titlestr = StringUtils::format("%s%s", GlobalInstance::map_AllResources[bdata->name].name.c_str(), ResourceLang::map_lang["lvuptext"].c_str());
 		vec_res = bdata->lvupres[bdata->level.getValue()];
 		costcoindv.setValue((bdata->level.getValue() + 1) * 100);
+		showNextLvDesc(bdata);
 	}
 	else if (actiontype == CA_EMPLOYFARMER)//雇佣工人
 	{
@@ -322,6 +325,8 @@ void ConsumeResActionLayer::action()
 
 		//记录每日任务
 		Quest::setDailyTask(UPGRADE_BUILDING, 1);
+
+		showNextLvDesc(bdata);
 	}
 	else if (m_actiontype == CA_EMPLOYFARMER)
 	{
@@ -386,6 +391,41 @@ bool ConsumeResActionLayer::checkResIsEnough()
 			return false;
 	}
 	return true;
+}
+
+void ConsumeResActionLayer::showNextLvDesc(Building* building)
+{
+	if (building->level.getValue() >= building->maxlevel.getValue() - 1)
+	{
+		nextlvdesc->setVisible(false);
+		return;
+	}
+	std::string descstr;
+	//if (building->name.compare("6innroom") == 0)
+	//{
+	//	
+	//}
+	//else if (building->name.compare("7homehill") == 0)
+	//{
+	//	HomeHillLayer* homeHillLayer = (HomeHillLayer*)this->getParent();
+	//	homeHillLayer->lvup();
+	//}
+	//else if (building->name.compare("2smithy") == 0)
+	//{
+	//	SmithyLayer* smithyLayer = (SmithyLayer*)this->getParent();
+	//	smithyLayer->lvup();
+	//}
+	//else if (building->name.compare("5market") == 0)
+	//{
+	//	MarketLayer* marketLayer = (MarketLayer*)this->getParent();
+	//	marketLayer->lvup();
+	//}
+	//else if (building->name.compare("4trainigroom") == 0)
+	//{
+	//	TrainLayer* trainLayer = (TrainLayer*)this->getParent();
+	//	trainLayer->lvup();
+	//}
+	nextlvdesc->setString(descstr);
 }
 
 void ConsumeResActionLayer::onExit()
