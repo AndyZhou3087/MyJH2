@@ -35,6 +35,10 @@ private:
 	void reduceDropRes(ResBase* res, int count, int iteindex);
 
 	void delayClose(float dt);
+
+	void releaseDropRes(int interindex);
+
+	static bool sortDropResByType(ResBase* a, ResBase* b);
 private:
 	cocos2d::ui::Text* carrycountlbl;
 	std::vector<FOURProperty> m_rewards;

@@ -325,12 +325,12 @@
       <msatt4 id="n013" qu="1">30</msatt4>
       <msatt5 id="n014" qu="2">30</msatt5>
       <msatt6 id="n013" qu="1">30</msatt6>
-      <msawd1 id="y002" qu="0" rnd="20.00">1</msawd1>
-      <msawd2 id="y005" qu="0" rnd="20.00">1</msawd2>
-      <msawd3 id="y008" qu="0" rnd="20.00">1</msawd3>
-      <msawd4 id="y011" qu="0" rnd="20.00">1</msawd4>
-      <msawd5 id="y014" qu="0" rnd="20.00">1</msawd5>
-      <msawd6 id="b002" qu="0" rnd="20.00">1</msawd6>
+      <msawd1 id="y002" qu="0" rnd="10.00">1</msawd1>
+      <msawd2 id="y005" qu="0" rnd="10.00">1</msawd2>
+      <msawd3 id="y008" qu="0" rnd="10.00">1</msawd3>
+      <msawd4 id="y011" qu="0" rnd="10.00">1</msawd4>
+      <msawd5 id="y014" qu="0" rnd="10.00">1</msawd5>
+      <msawd6 id="b002" qu="0" rnd="10.00">1</msawd6>
     </Cell>
     <Cell c="12" r="2" p="-1" w="1" m="63.png">
       <event>0;0;50;0;0;0;0</event>

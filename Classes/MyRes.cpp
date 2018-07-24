@@ -145,18 +145,58 @@ void MyRes::Add(ResBase* res, int count, int inwhere)
 		count = res->getCount().getValue();
 
 	int type = res->getType();
-	if ((type >= T_ARMOR && type <= T_FASHION) || (type >= T_WG && type <= T_NG))
+	if (type >= T_ARMOR && type <= T_FASHION)
 	{
-		DynamicValueInt dv;
-		dv.setValue(count);
-		res->setCount(dv);
+		Equip* ores = (Equip*)res;
+		Equip* eres = new Equip();
+		eres->setId(res->getId());
+		eres->setType(type);
+		DynamicValueInt dvalue;
+		dvalue.setValue(count);
+		eres->setCount(dvalue);
 
-		res->setWhere(inwhere);
-		vec_MyResources.push_back(res);
+		DynamicValueInt quvalue;
+		quvalue.setValue(res->getQU().getValue());
+		eres->setQU(quvalue);
+		eres->setWhere(inwhere);
+		int ssize = ores->vec_stones.size();
+		if (ssize > 0)
+		{
+			for (int n = 0; n < ssize; n++)
+				eres->vec_stones.push_back(ores->vec_stones[n]);
+		}
+		vec_MyResources.push_back(eres);
+	}
+	else if (type >= T_WG && type <= T_NG)
+	{
+		GongFa* gres = new GongFa();
+		gres->setId(res->getId());
+		gres->setType(type);
+		DynamicValueInt dvalue;
+		dvalue.setValue(count);
+		gres->setCount(dvalue);
+
+		DynamicValueInt quvalue;
+		quvalue.setValue(res->getQU().getValue());
+		gres->setQU(quvalue);
+		gres->setWhere(inwhere);
+		vec_MyResources.push_back(gres);
 	}
 	else
 	{
-		Add(res->getId(), count, inwhere);
+		ResBase* ores = getMyRes(res->getId(), inwhere);
+		if (ores == NULL)
+		{
+			ores = new ResBase();
+			ores->setId(res->getId());
+			ores->setType(type);
+			ores->setWhere(inwhere);
+			vec_MyResources.push_back(ores);
+		}
+
+		DynamicValueInt dvalue;
+		dvalue.setValue(ores->getCount().getValue() + count);
+		ores->setCount(dvalue);
 	}
 	saveData();
 }
@@ -246,50 +286,9 @@ void MyRes::putMyPackagesToStorage()
 		int type = res->getType();
 		if (res->getWhere() == MYPACKAGE)
 		{
-			if (type >= T_ARMOR && type <= T_FASHION)
-			{
-				Equip* ores = (Equip*)res;
-				Equip* eres = new Equip();
-				eres->setId(res->getId());
-				eres->setType(type);
-				DynamicValueInt dvalue;
-				dvalue.setValue(res->getCount().getValue());
-				eres->setCount(dvalue);
-
-				DynamicValueInt quvalue;
-				quvalue.setValue(res->getQU().getValue());
-				eres->setQU(quvalue);
-				eres->setWhere(MYSTORAGE);
-				int ssize = ores->vec_stones.size();
-				if (ssize > 0)
-				{
-					for (int n = 0; n < ssize; n++)
-						eres->vec_stones.push_back(ores->vec_stones[n]);
-				}
-				vec_MyResources.push_back(eres);
-			}
-			else if (type >= T_WG && type <= T_NG)
-			{
-				GongFa* gres = new GongFa();
-				gres->setId(res->getId());
-				gres->setType(type);
-				DynamicValueInt dvalue;
-				dvalue.setValue(res->getCount().getValue());
-				gres->setCount(dvalue);
-
-				DynamicValueInt quvalue;
-				quvalue.setValue(res->getQU().getValue());
-				gres->setQU(quvalue);
-				gres->setWhere(MYSTORAGE);
-				vec_MyResources.push_back(gres);
-			}
-			else
-			{
-				Add(res->getId(), res->getCount().getValue(), MYSTORAGE);
-			}
+			Add(res, res->getCount().getValue(), MYSTORAGE);
 		}
 	}
-
 	clearMyPackages();
 }
 
@@ -304,7 +303,6 @@ void MyRes::clearMyPackages()
 		}
 	}
 }
-
 
 void MyRes::saveData()
 {
