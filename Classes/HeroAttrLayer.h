@@ -31,6 +31,10 @@ public:
 	void takeOn(ResBase* res);
 
 	void takeOff(ResBase* res);
+
+	void changeButton();
+
+	void changelvButton();
 private:
 
 	/************************************
@@ -58,7 +62,8 @@ private:
 
 	void updataAtrrUI(float dt);
 private:
-
+	//
+	Node* heroattrbottom;
 	//装备栏
 	Node* equipnode;
 	//英雄数据
@@ -86,6 +91,16 @@ private:
 
 	//闪避label
 	cocos2d::ui::Text* dodgelbl;
+
+	//经验
+	cocos2d::ui::LoadingBar* expbar;
+	cocos2d::ui::Text* explbl;
+
+	//等级
+	cocos2d::ui::Text* lvUIText;
+
+	//职业
+	cocos2d::ui::Text* vocation;
 
 	//点击的装备栏位置
 	int clickindex;

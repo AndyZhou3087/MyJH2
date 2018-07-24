@@ -6,14 +6,14 @@
       <ObjectData Name="Layer" Tag="137" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
-          <AbstractNodeData Name="herobg" ActionTag="-1401816393" Tag="108" IconVisible="False" ctype="SpriteObjectData">
+          <AbstractNodeData Name="herobg" ActionTag="-1401816393" Tag="108" IconVisible="False" LeftMargin="337.0000" RightMargin="337.0000" TopMargin="617.0000" BottomMargin="617.0000" ctype="SpriteObjectData">
             <Size X="720.0000" Y="1280.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="640.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5000" />
-            <PreSize X="1.0000" Y="1.0000" />
+            <PreSize X="0.0639" Y="0.0359" />
             <FileData Type="Normal" Path="images/herobg.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
@@ -393,7 +393,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="s001img" ActionTag="1629808762" Tag="122" IconVisible="False" LeftMargin="36.0625" RightMargin="574.9375" TopMargin="733.1346" BottomMargin="437.8653" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="s001img" ActionTag="1629808762" Tag="122" IconVisible="False" LeftMargin="36.0625" RightMargin="574.9375" TopMargin="733.1347" BottomMargin="437.8653" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
             <Size X="109.0000" Y="109.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="90.5625" Y="492.3653" />
@@ -403,7 +403,7 @@
             <PreSize X="0.1514" Y="0.0852" />
             <FileData Type="MarkedSubImage" Path="ui/s001.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="s002img" ActionTag="-1939926453" Tag="123" IconVisible="False" LeftMargin="217.4061" RightMargin="393.5939" TopMargin="734.4418" BottomMargin="436.5583" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="s002img" ActionTag="-1939926453" Tag="123" IconVisible="False" LeftMargin="217.4061" RightMargin="393.5939" TopMargin="734.4417" BottomMargin="436.5583" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
             <Size X="109.0000" Y="109.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="271.9061" Y="491.0583" />

@@ -9,13 +9,13 @@
 	<s name="vocation_1">道士</s>
 	<s name="vocation_2">和尚</s>
 	<s name="vocation_3">刺客</s>
-	<s name="vocation_4">剑客</s>
-	<s name="vocation_5">道长</s>
-	<s name="vocation_6">武僧</s>
-	<s name="vocation_7">峨眉</s>
-	<s name="vocation_8">刀客</s>
-	<s name="vocation_9">真人</s>
-	<s name="vocation_10">禅师</s>
+	<s name="vocation_4">武当</s>
+	<s name="vocation_5">点苍</s>
+	<s name="vocation_6">茅山</s>
+	<s name="vocation_7">太一</s>
+	<s name="vocation_8">密宗</s>
+	<s name="vocation_9">禅宗</s>
+	<s name="vocation_10">峨眉</s>
 	<s name="vocation_11">唐门</s>
 	<s name="potential_4">极</s>
 	<s name="potential_3">甲</s>
@@ -107,4 +107,11 @@
 	<s name="nofoodhint">食物不足扣除所有角色20%生命值</s>
 	<s name="powermaxtext">已满</s>
 	<s name="powerdesc">体力：%d（%s）</s>
+	<s name="changebreak">请先转职或突破再进行升级</s>
+	<s name="changecondition">转职条件</s>
+	<s name="changeclosetext">再考虑一下…</s>
+	<s name="changetext1">转职成为%s</s>
+	<s name="changesuretext">确定要突破吗？</s>
+	<s name="breaktext">突破</s>
+	<s name="breakcondition">突破条件</s>
 </strings>

@@ -15,6 +15,7 @@
 #include "TakeOnLayer.h"
 #include "EquipDescLayer.h"
 #include "HeroLvupLayer.h"
+#include "ChangeVocationLayer.h"
 
 USING_NS_CC;
 
@@ -27,7 +28,8 @@ HeroAttrLayer::HeroAttrLayer()
 
 HeroAttrLayer::~HeroAttrLayer()
 {
-	
+	//保存数据
+	GlobalInstance::getInstance()->saveMyHeros();
 }
 
 
@@ -88,7 +90,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 		}
 	}
 	//属性信息
-	Node* heroattrbottom = csbnode->getChildByName("heroattrbottom");
+	heroattrbottom = csbnode->getChildByName("heroattrbottom");
 	moditybtn = (cocos2d::ui::Widget*)heroattrbottom->getChildByName("moditybtn");
 
 	//品质
@@ -123,7 +125,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 
 
 	//角色职业
-	cocos2d::ui::Text* vocation = (cocos2d::ui::Text*)heroattrbottom->getChildByName("vocation");
+	vocation = (cocos2d::ui::Text*)heroattrbottom->getChildByName("vocation");
 	str = StringUtils::format("vocation_%d", herodata->getVocation());
 	vocation->setString(ResourceLang::map_lang[str]);
 
@@ -168,10 +170,8 @@ bool HeroAttrLayer::init(Hero* herodata)
 	//attrstr = StringUtils::format("%.3f%%", herodata->getDodge());
 	//dodgelbl->setString(attrstr);
 
-	updataAtrrUI(0);
-	this->schedule(schedule_selector(HeroAttrLayer::updataAtrrUI), 2.0f);
 	//等级
-	cocos2d::ui::Text* lvUIText = (cocos2d::ui::Text*)heroattrbottom->getChildByName("lv");
+	lvUIText = (cocos2d::ui::Text*)heroattrbottom->getChildByName("lv");
 	str = StringUtils::format("Lv.%d", herodata->getLevel() + 1);
 	lvUIText->setString(str);
 
@@ -188,13 +188,16 @@ bool HeroAttrLayer::init(Hero* herodata)
 		curlvexp = GlobalInstance::vec_herosAttr[herodata->getVocation()].vec_exp[herodata->getLevel()-1];
 
 	//经验值
-	cocos2d::ui::Text* explbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("exp");
+	explbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("exp");
 	str = StringUtils::format("%d/%d", herodata->getExp().getValue() - curlvexp, nextlvexp - curlvexp);
 	explbl->setString(str);
 
-	cocos2d::ui::LoadingBar* expbar = (cocos2d::ui::LoadingBar*)heroattrbottom->getChildByName("heroattrexpbar");
+	expbar = (cocos2d::ui::LoadingBar*)heroattrbottom->getChildByName("heroattrexpbar");
 	float percent = (herodata->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
 	expbar->setPercent(percent);
+
+	updataAtrrUI(0);
+	this->schedule(schedule_selector(HeroAttrLayer::updataAtrrUI), 2.0f);
 
 	//按钮
 	std::string btnname[] = { "firebtn", "changebtn", "backbtn", "recruitbtn", "lvgbtn"};//与BTNTYPE对应
@@ -232,8 +235,18 @@ bool HeroAttrLayer::init(Hero* herodata)
 				if (m_heroData->getVocation() <= 3)
 				{
 					btn->setVisible(true);
-					if (m_heroData->getLevel() == 9)
+					if ((m_heroData->getLevel() + 1) % 10 == 0)
+					{
 						btn->setEnabled(true);
+						if (m_heroData->getLevel() + 1 != 10)
+						{
+							txtimg->loadTexture(ResourcePath::makeTextImgPath("break_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+						}
+						if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
+						{
+							btn->setEnabled(false);
+						}
+					}
 					else
 						btn->setVisible(false);
 				}
@@ -288,7 +301,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 				if (m_heroData->getVocation() <= 3)
 				{
 					btn->setVisible(false);
-					if (m_heroData->getLevel() % 10 == 9)
+					if ((m_heroData->getLevel() + 1) % 10 == 0)
 						btn->setEnabled(false);
 					else
 						btn->setVisible(true);
@@ -395,6 +408,16 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		}
 			break;
 		case ATTR_CHANGEBTN:
+			if (m_heroData->getLevel() + 1 == 10)
+			{
+				ChangeVocationLayer* clayer = ChangeVocationLayer::create(m_heroData);
+				this->addChild(clayer);
+			}
+			else
+			{
+				ChangeVocationLayer* clayer = ChangeVocationLayer::create(m_heroData, 1);
+				this->addChild(clayer);
+			}
 			break;
 		case ATTR_RECRUITBTN:
 		{
@@ -428,6 +451,32 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		}
 	}
+}
+
+void HeroAttrLayer::changeButton()
+{
+	cocos2d::ui::Button* btn = (cocos2d::ui::Button*)heroattrbottom->getChildByName("changebtn");
+	cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
+	cocos2d::ui::Button* lvbtn = (cocos2d::ui::Button*)heroattrbottom->getChildByName("lvgbtn");
+	lvbtn->setVisible(false);
+	btn->setVisible(true);
+	if (m_heroData->getLevel() + 1 == 10)
+	{
+		txtimg->loadTexture(ResourcePath::makeTextImgPath("changebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+	else
+	{
+		txtimg->loadTexture(ResourcePath::makeTextImgPath("break_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+}
+
+void HeroAttrLayer::changelvButton()
+{
+	cocos2d::ui::Button* btn = (cocos2d::ui::Button*)heroattrbottom->getChildByName("changebtn");
+	cocos2d::ui::Button* lvbtn = (cocos2d::ui::Button*)heroattrbottom->getChildByName("lvgbtn");
+	lvbtn->setVisible(true);
+	lvbtn->setTouchEnabled(true);
+	btn->setVisible(false);
 }
 
 void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -556,6 +605,32 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 	//闪避值
 	attrstr = StringUtils::format("%.3f%%", m_heroData->getDodge());
 	dodgelbl->setString(attrstr);
+
+	//等级
+	attrstr = StringUtils::format("Lv.%d", m_heroData->getLevel() + 1);
+	lvUIText->setString(attrstr);
+
+	int curlvexp = 0;
+	int nextlvexp = 0;
+	int expsize = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp.size();
+
+	if (m_heroData->getLevel() >= expsize)
+		nextlvexp = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[expsize - 1];
+	else
+		nextlvexp = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getLevel()];
+
+	if (m_heroData->getLevel() > 0)
+		curlvexp = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getLevel() - 1];
+
+	//经验值
+	attrstr = StringUtils::format("%d/%d", m_heroData->getExp().getValue() - curlvexp, nextlvexp - curlvexp);
+	explbl->setString(attrstr);
+
+	float percent = (m_heroData->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
+	expbar->setPercent(percent);
+
+	attrstr = StringUtils::format("vocation_%d", m_heroData->getVocation());
+	vocation->setString(ResourceLang::map_lang[attrstr]);
 }
 
 void HeroAttrLayer::onExit()
