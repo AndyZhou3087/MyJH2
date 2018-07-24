@@ -333,6 +333,10 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				TrainHintLayer* layer = TrainHintLayer::create(m_heroData,this);
 				g_mainScene->addChild(layer, 1, "TrainHintLayer");
 			}
+			else if (m_heroData->getState() == HS_TAKEON)
+			{
+				MovingLabel::show(ResourceLang::map_lang["canttrain"]);
+			}
 		}
 	}
 }
