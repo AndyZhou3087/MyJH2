@@ -114,4 +114,5 @@
 	<s name="changesuretext">确定要突破吗？</s>
 	<s name="breaktext">突破</s>
 	<s name="breakcondition">突破条件</s>
+	<s name="notenouph">%s不足</s>
 </strings>

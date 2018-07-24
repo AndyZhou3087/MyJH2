@@ -27,7 +27,7 @@ private:
 	void updateUI();
 
 	//资源足够升级
-	bool checkResIsEnough();
+	bool checkResIsEnough(int index);
 
 	//操作
 	void action();

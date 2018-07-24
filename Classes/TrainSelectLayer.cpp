@@ -149,22 +149,43 @@ void TrainSelectLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 		switch (tag)
 		{
 		case 1000://训练
-			if (checkResIsEnough())//资源足够
+			if (checkResIsEnough(lastSelectIndex))//资源足够
 			{	
 				//减掉资源
 				for (unsigned int i = 0; i < vec_res.size(); i++)
 				{
-					std::map<std::string, int> map_res = vec_res[i];
-					std::map<std::string, int>::iterator map_it = map_res.begin();
-					std::string resid = map_it->first;
-					MyRes::Use(resid, map_res[resid]);
+					if (i == lastSelectIndex)
+					{
+						std::map<std::string, int>::iterator map_it;
+						for (map_it = vec_res[lastSelectIndex].begin(); map_it != vec_res[lastSelectIndex].end(); map_it++)
+						{
+							std::map<std::string, int> map_res = vec_res[lastSelectIndex];
+							std::string resid = map_it->first;
+							MyRes::Use(resid, map_res[resid]);
+						}
+					}
 				}
 				action();
 				this->removeFromParentAndCleanup(true);
 			}
 			else
 			{
-				MovingLabel::show(ResourceLang::map_lang["reslack"]);
+				if (MyRes::getMyResCount("r001") < vec_res[lastSelectIndex]["r001"] && MyRes::getMyResCount("c001") < vec_res[lastSelectIndex]["c001"])
+				{
+					std::string astr = StringUtils::format("%s,%s", GlobalInstance::map_AllResources["r001"].name.c_str(), GlobalInstance::map_AllResources["c001"].name.c_str());
+					std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), astr.c_str());
+					MovingLabel::show(str);
+				}
+				else if (MyRes::getMyResCount("r001") < vec_res[lastSelectIndex]["r001"])
+				{
+					std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources["r001"].name.c_str());
+					MovingLabel::show(str);
+				}
+				else
+				{
+					std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources["c001"].name.c_str());
+					MovingLabel::show(str);
+				}
 			}
 			break;
 		case 1001://直接训练
@@ -241,18 +262,23 @@ void TrainSelectLayer::updateUI()
 
 
 //资源足够训练
-bool TrainSelectLayer::checkResIsEnough()
+bool TrainSelectLayer::checkResIsEnough(int index)
 {
 	for (unsigned int i = 0; i < vec_res.size(); i++)
 	{
-		std::map<std::string, int> map_res = vec_res[i];
-		std::map<std::string, int>::iterator map_it = map_res.begin();
+		if (i == index)
+		{
+			std::map<std::string, int>::iterator map_it;
+			for (map_it = vec_res[index].begin(); map_it != vec_res[index].end(); map_it++)
+			{
+				std::map<std::string, int> map_res = vec_res[index];
+				std::string resid = map_it->first;
+				int mycount = MyRes::getMyResCount(resid);
 
-		std::string resid = map_it->first;
-		int mycount = MyRes::getMyResCount(resid);
-
-		if (mycount < map_res[resid])
-			return false;
+				if (mycount < map_res[resid])
+					return false;
+			}
+		}
 	}
 	return true;
 }
