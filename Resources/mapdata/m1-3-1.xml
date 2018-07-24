@@ -203,11 +203,12 @@
       <msatt2 id="n015" qu="1">10</msatt2>
       <msatt3 id="n004" qu="1">10</msatt3>
       <msatt5 id="n017" qu="1">10</msatt5>
-      <msawd1 id="w016" qu="0" rnd="50.00">1</msawd1>
-      <msawd2 id="d001" qu="0" rnd="50.00">1</msawd2>
-      <msawd3 id="a001" qu="1" rnd="50.00">1</msawd3>
-      <msawd4 id="a009" qu="1" rnd="50.00">1</msawd4>
-      <msawd5 id="m001" qu="0" rnd="50.00">1</msawd5>
+      <msawd1 id="w016" qu="0" rnd="25.00">1</msawd1>
+      <msawd2 id="d001" qu="0" rnd="25.00">1</msawd2>
+      <msawd3 id="a001" qu="1" rnd="25.00">1</msawd3>
+      <msawd4 id="a009" qu="1" rnd="25.00">1</msawd4>
+      <msawd5 id="m001" qu="0" rnd="25.00">1</msawd5>
+      <msawd6 id="r008" qu="0" rnd="20.00">10</msawd6>
     </Cell>
     <Cell c="9" r="1" p="-1" w="1" m="22.png" />
     <Cell c="9" r="2" p="-1" w="1" m="22.png" />
@@ -326,7 +327,7 @@
     <Cell c="14" r="15" p="-1" w="1" m="22.png" />
     <Cell c="14" r="16" p="-1" w="1" m="22.png" />
     <Cell c="14" r="17" p="-1" w="1" m="22.png" />
-    <Cell c="14" r="18" p="-1" w="0" m="22.png" />
+    <Cell c="14" r="18" p="-1" w="0" m="22.png" d="1.png" />
     <Cell c="14" r="19" p="-1" w="0" m="22.png" />
     <Cell c="15" r="0" p="-1" w="0" m="6.png" d="15.png" />
     <Cell c="15" r="1" p="-1" w="1" m="22.png" />
@@ -366,10 +367,10 @@
     <Cell c="16" r="13" p="-1" w="1" m="22.png" />
     <Cell c="16" r="14" p="-1" w="1" m="22.png" />
     <Cell c="16" r="15" p="-1" w="1" m="22.png" />
-    <Cell c="16" r="16" p="-1" w="0" m="22.png" d="3.png" />
+    <Cell c="16" r="16" p="-1" w="0" m="22.png" d="1.png" />
     <Cell c="16" r="17" p="-1" w="0" m="22.png" />
-    <Cell c="16" r="18" p="-1" w="1" m="22.png" />
-    <Cell c="16" r="19" p="-1" w="1" m="22.png" d="3.png" />
+    <Cell c="16" r="18" p="-1" w="1" m="22.png" d="1.png" />
+    <Cell c="16" r="19" p="-1" w="1" m="22.png" />
     <Cell c="17" r="0" p="-1" w="0" m="6.png" d="15.png" />
     <Cell c="17" r="1" p="-1" w="1" m="22.png" />
     <Cell c="17" r="2" p="-1" w="1" m="22.png" />
@@ -385,8 +386,8 @@
     <Cell c="17" r="12" p="-1" w="1" m="22.png" />
     <Cell c="17" r="13" p="-1" w="1" m="22.png" />
     <Cell c="17" r="14" p="-1" w="1" m="22.png" />
-    <Cell c="17" r="15" p="-1" w="0" m="22.png" d="3.png" />
-    <Cell c="17" r="16" p="-1" w="1" m="22.png" d="3.png" />
+    <Cell c="17" r="15" p="-1" w="0" m="22.png" d="1.png" />
+    <Cell c="17" r="16" p="-1" w="1" m="22.png" />
     <Cell c="17" r="17" p="-1" w="1" m="22.png" d="1.png" />
     <Cell c="17" r="18" p="-1" w="1" m="22.png" />
     <Cell c="17" r="19" p="-1" w="1" m="22.png" d="3.png" />
@@ -404,12 +405,12 @@
     <Cell c="18" r="11" p="-1" w="1" m="22.png" />
     <Cell c="18" r="12" p="-1" w="1" m="22.png" />
     <Cell c="18" r="13" p="-1" w="1" m="22.png" />
-    <Cell c="18" r="14" p="-1" w="0" m="22.png" d="3.png" />
-    <Cell c="18" r="15" p="-1" w="0" m="22.png" d="1.png" />
-    <Cell c="18" r="16" p="-1" w="1" m="22.png" />
+    <Cell c="18" r="14" p="-1" w="0" m="22.png" d="1.png" />
+    <Cell c="18" r="15" p="-1" w="0" m="22.png" />
+    <Cell c="18" r="16" p="-1" w="1" m="22.png" d="1.png" />
     <Cell c="18" r="17" p="-1" w="1" m="22.png" />
-    <Cell c="18" r="18" p="-1" w="1" m="22.png" />
-    <Cell c="18" r="19" p="-1" w="1" m="22.png" d="3.png" />
+    <Cell c="18" r="18" p="-1" w="1" m="22.png" d="1.png" />
+    <Cell c="18" r="19" p="-1" w="1" m="22.png" />
     <Cell c="19" r="0" p="-1" w="0" m="6.png" d="15.png" />
     <Cell c="19" r="1" p="-1" w="1" m="22.png" />
     <Cell c="19" r="2" p="-1" w="1" m="22.png" />
@@ -424,11 +425,11 @@
     <Cell c="19" r="11" p="-1" w="1" m="22.png" />
     <Cell c="19" r="12" p="-1" w="1" m="22.png" />
     <Cell c="19" r="13" p="-1" w="1" m="22.png" />
-    <Cell c="19" r="14" p="-1" w="0" m="22.png" d="3.png" />
+    <Cell c="19" r="14" p="-1" w="0" m="22.png" />
     <Cell c="19" r="15" p="-1" w="0" m="22.png" />
     <Cell c="19" r="16" p="-1" w="1" m="22.png" />
-    <Cell c="19" r="17" p="-1" w="1" m="22.png" d="3.png" />
-    <Cell c="19" r="18" p="-1" w="1" m="22.png" d="3.png" />
+    <Cell c="19" r="17" p="-1" w="1" m="22.png" />
+    <Cell c="19" r="18" p="-1" w="1" m="22.png" />
     <Cell c="19" r="19" p="-1" w="1" m="22.png" d="3.png" />
   </Cells>
 </cfg>

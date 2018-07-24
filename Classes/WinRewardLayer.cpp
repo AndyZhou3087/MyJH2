@@ -16,10 +16,6 @@ WinRewardLayer::WinRewardLayer()
 
 WinRewardLayer::~WinRewardLayer()
 {
-	for (unsigned int i = 0; i < vec_dropdownres.size(); i++)
-	{
-		delete vec_dropdownres[i];
-	}
 }
 
 WinRewardLayer* WinRewardLayer::create(std::vector<FOURProperty> reward_res)
@@ -127,7 +123,10 @@ void WinRewardLayer::updateScrollviewContent()
 
 		std::vector<ResBase*> vec_res;
 		if (i == 0)
+		{
+			std::sort(vec_dropdownres.begin(), vec_dropdownres.end(), sortDropResByType);
 			vec_res = vec_dropdownres;
+		}
 		else
 			vec_res = vec_mypackagres;
 		int ressize = vec_res.size();
@@ -280,24 +279,66 @@ void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			if (MyRes::getMyPackageCount() + packagecount > GlobalInstance::getInstance()->getTotalCarry())
 			{
 				MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
-				return;
-			}
 
-			btnnode->setEnabled(false);
-			float dt = 0.1f;
-			if (vec_dropdownres.size() > 0)
-			{
+				int cancarry = GlobalInstance::getInstance()->getTotalCarry() - MyRes::getMyPackageCount();
 				for (unsigned int i = 0; i < vec_dropdownres.size(); i++)
 				{
-					MyRes::Add(vec_dropdownres[i], vec_dropdownres[i]->getCount().getValue(), MYPACKAGE);
-				}
-				vec_dropdownres.clear();
-				loadMyPackageRes();
+					if (cancarry <= 0)
+						break;
 
-				updateScrollviewContent();
-				dt = 1.0f;
+					if (vec_dropdownres[i]->getType() >= T_ARMOR && vec_dropdownres[i]->getType() <= T_FASHION)//装备类的是一个一个的
+					{
+						cancarry--;
+						MyRes::Add(vec_dropdownres[i], vec_dropdownres[i]->getCount().getValue(), MYPACKAGE);
+					}
+					else
+					{
+						int addcount = 0;
+						if (cancarry >= vec_dropdownres[i]->getCount().getValue())
+							addcount = vec_dropdownres[i]->getCount().getValue();
+						else
+							addcount = cancarry;
+						cancarry -= addcount;
+						MyRes::Add(vec_dropdownres[i], addcount, MYPACKAGE);
+						DynamicValueInt dv;
+						dv.setValue(vec_dropdownres[i]->getCount().getValue() - addcount);
+						vec_dropdownres[i]->setCount(dv);
+					}
+
+				}
+				//return;
 			}
-			//this->scheduleOnce(schedule_selector(WinRewardLayer::delayClose), dt);
+			else
+			{
+				btnnode->setEnabled(false);
+				float dt = 0.1f;
+				if (vec_dropdownres.size() > 0)
+				{
+					for (unsigned int i = 0; i < vec_dropdownres.size(); i++)
+					{
+						MyRes::Add(vec_dropdownres[i], vec_dropdownres[i]->getCount().getValue(), MYPACKAGE);
+						DynamicValueInt dv;
+						vec_dropdownres[i]->setCount(dv);
+					}
+
+					dt = 1.0f;
+				}
+				//this->scheduleOnce(schedule_selector(WinRewardLayer::delayClose), dt);
+			}
+
+			loadMyPackageRes();
+
+			std::vector<ResBase*>::iterator it;
+			for (it = vec_dropdownres.begin(); it != vec_dropdownres.end();)
+			{
+				if ((*it)->getCount().getValue() <= 0)
+					it = vec_dropdownres.erase(it);
+				else
+					it++;
+			}
+
+			updateScrollviewContent();
+
 			break;
 		}
 		case 1001://continue
@@ -409,11 +450,14 @@ void WinRewardLayer::addDropRes(ResBase* res)
 
 void WinRewardLayer::reduceDropRes(ResBase* res, int count, int iteindex)
 {
+	MyRes::Add(res, count, MYPACKAGE);
+	loadMyPackageRes();
+
 	int type = res->getType();
 
 	if ((type >= T_ARMOR && type <= T_FASHION) || (type >= T_WG && type <= T_NG))
 	{
-		vec_dropdownres.erase(vec_dropdownres.begin() + iteindex);
+		releaseDropRes(iteindex);
 	}
 	else
 	{
@@ -425,9 +469,22 @@ void WinRewardLayer::reduceDropRes(ResBase* res, int count, int iteindex)
 		}
 		else
 		{
-			vec_dropdownres.erase(vec_dropdownres.begin() + iteindex);
+			releaseDropRes(iteindex);
 		}
 	}
-	MyRes::Add(res, count, MYPACKAGE);
-	loadMyPackageRes();
+}
+
+void WinRewardLayer::releaseDropRes(int interindex)
+{
+	delete vec_dropdownres[interindex];
+	vec_dropdownres.erase(vec_dropdownres.begin() + interindex);
+}
+
+
+bool WinRewardLayer::sortDropResByType(ResBase* a, ResBase* b)
+{
+	if (a->getType() > b->getType())
+		return true;
+	else 
+		return false;
 }

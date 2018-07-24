@@ -197,6 +197,46 @@
       <FilePathData Path="mapui/buildblock_36.png" />
       <FilePathData Path="mapui/buildblock_37.png" />
       <FilePathData Path="mapui/fog.png" />
+      <FilePathData Path="mapui/boardblock_120.png" />
+      <FilePathData Path="mapui/boardblock_121.png" />
+      <FilePathData Path="mapui/boardblock_122.png" />
+      <FilePathData Path="mapui/boardblock_123.png" />
+      <FilePathData Path="mapui/boardblock_124.png" />
+      <FilePathData Path="mapui/boardblock_125.png" />
+      <FilePathData Path="mapui/boardblock_126.png" />
+      <FilePathData Path="mapui/boardblock_127.png" />
+      <FilePathData Path="mapui/boardblock_128.png" />
+      <FilePathData Path="mapui/boardblock_129.png" />
+      <FilePathData Path="mapui/boardblock_130.png" />
+      <FilePathData Path="mapui/boardblock_131.png" />
+      <FilePathData Path="mapui/boardblock_132.png" />
+      <FilePathData Path="mapui/boardblock_133.png" />
+      <FilePathData Path="mapui/boardblock_134.png" />
+      <FilePathData Path="mapui/boardblock_135.png" />
+      <FilePathData Path="mapui/boardblock_136.png" />
+      <FilePathData Path="mapui/boardblock_137.png" />
+      <FilePathData Path="mapui/boardblock_138.png" />
+      <FilePathData Path="mapui/boardblock_139.png" />
+      <FilePathData Path="mapui/boardblock_140.png" />
+      <FilePathData Path="mapui/boardblock_141.png" />
+      <FilePathData Path="mapui/buildblock_38.png" />
+      <FilePathData Path="mapui/buildblock_39.png" />
+      <FilePathData Path="mapui/buildblock_40.png" />
+      <FilePathData Path="mapui/buildblock_41.png" />
+      <FilePathData Path="mapui/buildblock_42.png" />
+      <FilePathData Path="mapui/buildblock_43.png" />
+      <FilePathData Path="mapui/buildblock_44.png" />
+      <FilePathData Path="mapui/buildblock_45.png" />
+      <FilePathData Path="mapui/buildblock_46.png" />
+      <FilePathData Path="mapui/buildblock_47.png" />
+      <FilePathData Path="mapui/buildblock_48.png" />
+      <FilePathData Path="mapui/buildblock_49.png" />
+      <FilePathData Path="mapui/buildblock_50.png" />
+      <FilePathData Path="mapui/buildblock_51.png" />
+      <FilePathData Path="mapui/buildblock_52.png" />
+      <FilePathData Path="mapui/buildblock_53.png" />
+      <FilePathData Path="mapui/buildblock_54.png" />
+      <FilePathData Path="mapui/buildblock_55.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
