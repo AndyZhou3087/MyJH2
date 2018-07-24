@@ -36,6 +36,9 @@ private:
 
 	//操作
 	void action();
+
+	void showNextLvDesc(Building* building);
+
 private:
 	cocos2d::ui::Text* namelbl[3];//资源名字ABEL
 	cocos2d::ui::Text* countlbl[3];//资源数量LABEL
@@ -44,6 +47,7 @@ private:
 	int m_actiontype;//CACTIONTYPE
 	std::vector<std::map<std::string, int>> vec_res;//需要的资源的数据
 	DynamicValueInt costcoindv;//立即动作需要的元宝数
+	cocos2d::ui::Text* nextlvdesc;
 };
 
 #endif
