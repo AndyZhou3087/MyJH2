@@ -21,6 +21,7 @@ MainScene* g_mainScene = NULL;
 MainScene::MainScene()
 {
 	m_isDraging = false;
+	costFoodsT = 0;
 }
 
 MainScene::~MainScene()
@@ -270,6 +271,8 @@ void MainScene::onFinish(int code)
 		{
 			GlobalInstance::getInstance()->saveRefreshMarketTime(GlobalInstance::servertime);
 		}
+		costFoodsT = 0;
+
 		updateTime(0);
 		this->schedule(schedule_selector(MainScene::updateTime), 1);
 	}
@@ -285,13 +288,25 @@ void MainScene::updateTime(float dt)
 		for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
 		{
 			ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
-			if (rescreator->getFarmersCount().getValue() > 0)
+			if (rescreator->getFarmersCount().getValue() >= 0)
 			{
 				int addcount = 0;
 				if (rescreator->getName().compare("r001") == 0)
-					addcount = GlobalInstance::getInstance()->calcFoodMakeOut();
+				{
+					int foodout = GlobalInstance::getInstance()->calcFoodMakeOut();
+					addcount = foodout * respasttime / RES_REFRESHTIME;
+					if (addcount + MyRes::getMyResCount("r001") < 0)
+					{
+						costFoodsT = (abs(addcount) - MyRes::getMyResCount("r001")) / abs(foodout);
+					}
+				}
 				else
-					addcount = respasttime / RES_REFRESHTIME * rescreator->getFarmersCount().getValue();
+				{
+					if (MyRes::getMyResCount("r001") <= 0)
+						addcount = 0;
+					else
+						addcount = (respasttime / RES_REFRESHTIME - costFoodsT)  * rescreator->getFarmersCount().getValue();
+				}
 				int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
 
 				std::string formatstr;
@@ -304,6 +319,11 @@ void MainScene::updateTime(float dt)
 
 				if (addcount + rcount >= maxcount)
 					addcount = maxcount - rcount;
+
+				if (addcount < 0 && rcount < abs(addcount))
+				{
+					addcount = -rcount;
+				}
 
 				if (addcount != 0)
 				{

@@ -119,7 +119,12 @@ void HillResNode::updateData(float dt)
 	if (m_Data->getName().compare("r001") == 0)
 		outcount = GlobalInstance::getInstance()->calcFoodMakeOut();
 	else
-		outcount = m_Data->getFarmersCount().getValue();
+	{
+		if (MyRes::getMyResCount("r001") <= 0)
+			outcount = 0;
+		else
+			outcount = m_Data->getFarmersCount().getValue();
+	}
 
 	if (outcount >= 0)
 		output->setTextColor(Color4B(255, 255, 255, 255));
@@ -163,11 +168,35 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			{
 				if (GlobalInstance::getInstance()->getTotalFarmers() - GlobalInstance::getInstance()->getWorkingFarmerCount() > 0)
 				{
-					DynamicValueInt dvalue;
-					dvalue.setValue(m_Data->getFarmersCount().getValue() + 1);
-					m_Data->setFarmersCount(dvalue);
-					GlobalInstance::getInstance()->saveResCreatorData();
-					updateData(0);
+					int foodcount = GlobalInstance::getInstance()->calcFoodMakeOut();
+					if (GlobalInstance::vec_resCreators.size() > 0)
+					{
+						int needfood[] = { 2,3,4,10 };
+						for (unsigned int i = 1; i < GlobalInstance::vec_resCreators.size(); i++)
+						{
+							ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
+							if (m_Data->getName().compare(rescreator->getName()) == 0)
+							{
+								foodcount -= needfood[i - 1];
+								break;
+							}
+						}
+					}
+
+
+					if (foodcount + MyRes::getMyResCount("r001") < 0)
+					{
+						std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources["r001"].name.c_str());
+						MovingLabel::show(str);
+					}
+					else
+					{
+						DynamicValueInt dvalue;
+						dvalue.setValue(m_Data->getFarmersCount().getValue() + 1);
+						m_Data->setFarmersCount(dvalue);
+						GlobalInstance::getInstance()->saveResCreatorData();
+						updateData(0);
+					}
 				}
 				else
 				{

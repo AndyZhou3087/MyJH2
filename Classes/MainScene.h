@@ -46,6 +46,7 @@ private:
 	int m_startClickX;
 	int m_startClickY;
 	bool m_isDraging;
+	int costFoodsT;
 };
 extern MainScene* g_mainScene;
 #endif
