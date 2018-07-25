@@ -73,7 +73,6 @@ void MovingLabel::showAction()
 
 void MovingLabel::changeTextColor()
 {
-	std::size_t findpos;
 	std::string lbltext = this->getString();
 
 	//std::map<std::string, AllResources>::iterator it;
@@ -94,14 +93,15 @@ void MovingLabel::changeTextColor()
 
 	if (lbltext.find(ResourceLang::map_lang["makesucc"]) != std::string::npos)
 	{
-		std::size_t findpos;
+		std::size_t findpos = std::string::npos;
 		for (int i = 0; i < 5; i++)
 		{
 			std::string qukey = StringUtils::format("potential_%d", i);
 			std::string qustr = ResourceLang::map_lang[qukey];
-			findpos = lbltext.find_last_of(qustr);
+			findpos = lbltext.substr(lbltext.length() - 4).find_last_of(qustr);
 			if (findpos != std::string::npos)
 			{
+				findpos = lbltext.length() - 4 + findpos;
 				for (int m = findpos/3; m < (findpos + qustr.length())/3; m++)
 				{
 					this->getLetter(m)->setColor(POTENTIALCOLOR[i]);

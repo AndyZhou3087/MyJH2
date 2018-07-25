@@ -165,7 +165,7 @@ void SelectEquipLayer::updateContent()
 
 		Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 23);
 		namelbl->setColor(Color3B(26, 68, 101));
-		namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -20));
+		namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -10));
 		boxItem->addChild(namelbl);
 
 		std::string countstr = StringUtils::format("%d", lv);

@@ -147,7 +147,7 @@ bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 		str = StringUtils::format("%sx%d", GlobalInstance::map_AllResources[resid].name.c_str(), count);
 		Label *namelbl = Label::createWithTTF(str, FONT_NAME, 23);
 		namelbl->setColor(Color3B(255, 255, 255));
-		namelbl->setPosition(Vec2(box->getContentSize().width / 2, -20));
+		namelbl->setPosition(Vec2(box->getContentSize().width / 2, -10));
 		box->addChild(namelbl);
 
 	}
