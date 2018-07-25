@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include "SelectSubMapLayer.h"
 #include "GlobalInstance.h"
+#include "Const.h"
 
 MainMapScene::MainMapScene()
 {
@@ -87,7 +88,7 @@ bool MainMapScene::init()
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-	HttpDataSwap::init(NULL)->getServerTime();
+	HttpDataSwap::init(this)->getServerTime();
 
 	return true;
 }
@@ -133,5 +134,30 @@ void MainMapScene::onFinish(int code)
 	{
 		updateTime(0);
 		this->schedule(schedule_selector(MainMapScene::updateTime), 1);
+
+		for (int i = 0; i < 6; i++)
+		{
+			Hero* myhero = GlobalInstance::myCardHeros[i];
+			if (myhero != NULL && myhero->getPower().getValue() < 100)
+			{
+				int pasttime = GlobalInstance::servertime - myhero->getPowerTime();
+
+				DynamicValueInt dv;
+				int count = pasttime / HEROPOWER_RESETTIME;
+				if (count > 0)
+				{
+					myhero->setPowerTime(GlobalInstance::servertime);
+					if (count + myhero->getPower().getValue() > 100)
+						count = 100;
+					else
+						count += myhero->getPower().getValue();
+					dv.setValue(count);
+
+					myhero->setPower(dv);
+					GlobalInstance::getInstance()->saveHero(myhero);
+				}
+			}
+		}
+
 	}
 }

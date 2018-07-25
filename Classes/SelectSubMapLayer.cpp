@@ -4,6 +4,8 @@
 #include "GlobalInstance.h"
 #include "Const.h"
 #include "MapBlockScene.h"
+#include "Resource.h"
+#include "MovingLabel.h"
 
 USING_NS_CC;
 
@@ -159,10 +161,16 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 		std::string mapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag());
 		int needph = GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].ph;
 		bool isphok = true;
+
+		std::string nohpherostr;
 		for (int i=0;i<6;i++)
 		{
 			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getPower().getValue() < needph)
+			{
+				nohpherostr.append(GlobalInstance::myCardHeros[i]->getName());
+				nohpherostr.append(ResourceLang::map_lang["zhdunhao"]);
 				isphok = false;
+			}
 		}
 		if (isphok)
 		{
@@ -177,10 +185,16 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 
 					dv.setValue(GlobalInstance::myCardHeros[i]->getPower().getValue() - needph);
 					GlobalInstance::myCardHeros[i]->setPower(dv);
-
+					GlobalInstance::getInstance()->saveHero(GlobalInstance::myCardHeros[i]);
 				}
 			}
 			Director::getInstance()->replaceScene(TransitionFade::create(3.0f, MapBlockScene::createScene(mapid)));
+		}
+		else
+		{
+			nohpherostr = nohpherostr.substr(0, nohpherostr.length() - 3);
+			nohpherostr.append(ResourceLang::map_lang["nomorehp"]);
+			MovingLabel::show(nohpherostr);
 		}
 	}
 }
