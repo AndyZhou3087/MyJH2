@@ -6,6 +6,7 @@
 #include "Const.h"
 #include "MovingLabel.h"
 #include "Quest.h"
+#include "HintBoxLayer.h"
 
 USING_NS_CC;
 
@@ -13,7 +14,7 @@ USING_NS_CC;
 #define COINREFRESH_NUM 10
 RandHeroLayer::RandHeroLayer()
 {
-
+	isTopPotential = false;
 }
 
 RandHeroLayer::~RandHeroLayer()
@@ -147,16 +148,14 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case BTN_S_REFRESH://银子刷新
 			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= SILVERREFRESH_NUM)
 			{
-				DynamicValueInt dval;
-				dval.setValue(SILVERREFRESH_NUM);
-				GlobalInstance::getInstance()->costMySoliverCount(dval);
-				create3RandHero();
-				for (int i = 0; i < 3; i++)
+				if (isTopPotential)
 				{
-					heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
+					HintBoxLayer* hint = HintBoxLayer::create(ResourceLang::map_lang["hintrefresh"],1);
+					this->addChild(hint);
+					return;
 				}
-				//记录刷新次数
-				Quest::setDailyTask(FRESH_PUBENLIST, 1);
+				
+				refresh3Hero(1);
 			}
 			else
 			{
@@ -166,16 +165,14 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case BTN_C_REFRESH://元宝刷新
 			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= COINREFRESH_NUM)
 			{
-				DynamicValueInt dval;
-				dval.setValue(COINREFRESH_NUM);
-				GlobalInstance::getInstance()->costMyCoinCount(dval);
-				create3RandHero();
-				for (int i = 0; i < 3; i++)
+				if (isTopPotential)
 				{
-					heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
+					HintBoxLayer* hint = HintBoxLayer::create(ResourceLang::map_lang["hintrefresh"],2);
+					this->addChild(hint);
+					return;
 				}
-				//记录刷新次数
-				Quest::setDailyTask(FRESH_PUBENLIST, 1);
+
+				refresh3Hero(2);
 			}
 			else
 			{
@@ -194,6 +191,36 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		default:
 			break;
 		}
+	}
+}
+
+void RandHeroLayer::refresh3Hero(int i)
+{
+	if (i == 1)
+	{
+		DynamicValueInt dval;
+		dval.setValue(SILVERREFRESH_NUM);
+		GlobalInstance::getInstance()->costMySoliverCount(dval);
+		create3RandHero();
+		for (int i = 0; i < 3; i++)
+		{
+			heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
+		}
+		//记录刷新次数
+		Quest::setDailyTask(FRESH_PUBENLIST, 1);
+	}
+	else
+	{
+		DynamicValueInt dval;
+		dval.setValue(COINREFRESH_NUM);
+		GlobalInstance::getInstance()->costMyCoinCount(dval);
+		create3RandHero();
+		for (int i = 0; i < 3; i++)
+		{
+			heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
+		}
+		//记录刷新次数
+		Quest::setDailyTask(FRESH_PUBENLIST, 1);
 	}
 }
 
@@ -233,12 +260,17 @@ void RandHeroLayer::updateUI(float dt)
 
 void RandHeroLayer::create3RandHero()
 {
+	isTopPotential = false;
 	delete3RandHero();
 	for (int i = 0; i < 3; i++)
 	{
 		Hero* randhero = new Hero();
 		randhero->generate();
 		GlobalInstance::vec_rand3Heros.push_back(randhero);
+		if (randhero->getPotential() > 2)
+		{
+			isTopPotential = true;
+		}
 	}
 	GlobalInstance::getInstance()->saveRand3Heros();
 }

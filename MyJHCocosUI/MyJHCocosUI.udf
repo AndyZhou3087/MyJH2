@@ -10,10 +10,9 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="mapui.csi" />
-          <FilePathData Path="mainMapLayer.csd" />
+          <FilePathData Path="mapBlockLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="mainMapLayer.csd" />
+        <ActiveDocument Path="mapBlockLayer.csd" />
       </Value>
     </Item>
   </Properties>

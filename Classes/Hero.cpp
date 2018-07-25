@@ -8,6 +8,7 @@
 #include "Equip.h"
 #include "GongFa.h"
 #include "MyRes.h"
+#include "Quest.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/jni/JniHelper.h"
 #endif
@@ -25,6 +26,7 @@ Hero::Hero()
 	m_power.setValue(100);
 	m_powertime = 0;
 	m_changecount = 0;
+	m_level = 0;
 	for (int i = 0; i < 6; i++)
 	{
 		takeOnEquip[i] = NULL;
@@ -90,9 +92,21 @@ int Hero::getLevel()
 	for (int i = 0; i < size; i++)
 	{
 		if (m_exp.getValue() < GlobalInstance::vec_herosAttr[m_vocation].vec_exp[i])
+		{
+			setMyLevel(i);
 			return i;
+		}
 	}
 	return 0;
+}
+
+void Hero::setMyLevel(int lv)
+{
+	if (m_level == lv - 1)
+	{
+		Quest::setDailyTask(UPGRADE_HERO, 1);
+	}
+	m_level = lv;
 }
 
 float Hero::getAtk()
