@@ -305,7 +305,7 @@ void MainScene::updateTime(float dt)
 					if (MyRes::getMyResCount("r001") <= 0)
 						addcount = 0;
 					else
-						addcount = (respasttime / RES_REFRESHTIME - costFoodsT)  * rescreator->getFarmersCount().getValue();
+						addcount = (respasttime / RES_REFRESHTIME - costFoodsT) * rescreator->getFarmersCount().getValue();
 				}
 				int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
 
