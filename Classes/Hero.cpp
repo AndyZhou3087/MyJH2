@@ -24,7 +24,7 @@ Hero::Hero()
 	m_traintime = 0;
 	m_power.setValue(100);
 	m_powertime = 0;
-	m_changejob = 0;
+	m_changecount = 0;
 	for (int i = 0; i < 6; i++)
 	{
 		takeOnEquip[i] = NULL;
@@ -52,7 +52,7 @@ Hero::Hero(Hero* hero)
 	m_traintime = hero->getTrainTime();
 	m_power = hero->getPower();
 	m_powertime = hero->getPowerTime();
-	m_changejob = hero->getChangeJob();
+	m_changecount = hero->getChangeCount();
 	for (int i = 0; i < 6; i++)
 	{
 		takeOnEquip[i] = NULL;

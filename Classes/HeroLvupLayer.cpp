@@ -234,7 +234,7 @@ void HeroLvupLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			break;
 		}
 
-		if ((m_heroData->getLevel() + 1) % 10 == 0 && m_heroData->getChangeJob() == m_heroData->getLevel() / 10)
+		if ((m_heroData->getLevel() + 1) % 10 == 0 && (m_heroData->getVocation() < 4 || (m_heroData->getLevel() + 1) / 10 == m_heroData->getChangeCount() + 1))
 		{
 			HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
 			if (attlay!=NULL)
