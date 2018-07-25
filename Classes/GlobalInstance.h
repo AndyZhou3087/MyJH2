@@ -359,6 +359,10 @@ public:
 	static bool larger_callback(TaskMainData a, TaskMainData b);
 	//支线任务进行排序
 	static bool larger_branchcallback(TaskBranchData a, TaskBranchData b);
+
+	void heroSortByLv();
+
+	static bool larger_heroLvCB(Hero* a, Hero* b);
 private:
 	static GlobalInstance* _Context;//类实例
 
