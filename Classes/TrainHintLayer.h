@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __HintBox_LAYER_H__
-#define __HintBox_LAYER_H__
+#ifndef __TrainHintBox_LAYER_H__
+#define __TrainHintBox_LAYER_H__
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
