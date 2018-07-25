@@ -29,7 +29,7 @@ DynamicValueInt ResCreator::getMaxCap(int lv)
 	else
 	{
 		DynamicValueInt lastmaxcap = getMaxCap(lv - 1);
-		dvalue.setValue(lastmaxcap.getValue()*lv/5 + lastmaxcap.getValue());
+		dvalue.setValue(100*(lv+1) + lastmaxcap.getValue());
 	}
 	return dvalue;
 }
