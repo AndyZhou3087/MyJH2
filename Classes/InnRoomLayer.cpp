@@ -92,6 +92,8 @@ bool InnRoomLayer::init(Building* buidingData)
 	m_contentscroll->setScrollBarEnabled(false);
 	m_contentscroll->setBounceEnabled(true);
 
+	GlobalInstance::getInstance()->heroSortByLv();
+
 	refreshMyHerosUi();
 
 	//屏蔽下层点击

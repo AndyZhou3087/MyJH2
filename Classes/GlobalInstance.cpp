@@ -1544,3 +1544,29 @@ void GlobalInstance::parseSuitJson()
 		}
 	}
 }
+
+void GlobalInstance::heroSortByLv()
+{
+	std::sort(vec_myHeros.begin(), vec_myHeros.end(), larger_heroLvCB);
+
+	for (int m = 0; m < 6; m++)
+	{
+		for (unsigned int i = 0; i < vec_myHeros.size(); i++)
+		{
+			Hero* myhero = GlobalInstance::myCardHeros[m];
+			if (myhero != NULL && myhero->getName().compare(vec_myHeros[i]->getName()) == 0)
+			{
+				GlobalInstance::myCardHeros[m] = vec_myHeros[i];
+				break;
+			}
+		}
+	}
+}
+
+bool GlobalInstance::larger_heroLvCB(Hero* a, Hero* b)
+{
+	if (a->getLevel() > b->getLevel())
+		return true;
+	else
+		return false;
+}
