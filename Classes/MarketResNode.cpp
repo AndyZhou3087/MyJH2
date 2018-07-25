@@ -7,6 +7,9 @@
 #include "MarketLayer.h"
 MarketResNode::MarketResNode()
 {
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
+
 	buycount = 1;
 }
 
@@ -79,14 +82,12 @@ bool MarketResNode::init(std::string resid, int rescount)
 
 	//加号按钮
 	cocos2d::ui::Widget* addbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("addbtn");
-	addbtn->addTouchEventListener(CC_CALLBACK_2(MarketResNode::onBtnClick, this));
+	addbtn->addTouchEventListener(CC_CALLBACK_2(MarketResNode::onAddBtnClick, this));
 	addbtn->setTag(1001);
-
 	//减号按钮
 	cocos2d::ui::Widget* subbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("subbtn");
-	subbtn->addTouchEventListener(CC_CALLBACK_2(MarketResNode::onBtnClick, this));
+	subbtn->addTouchEventListener(CC_CALLBACK_2(MarketResNode::onSubBtnClick, this));
 	subbtn->setTag(1002);
-
 	return true;
 }
 
@@ -151,35 +152,97 @@ void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			MovingLabel::show(showstr);
 			break;
 		}
-		case 1001://增加按钮
-		{
-			if (buycount >= totalrescount)
-			{
-				MovingLabel::show(ResourceLang::map_lang["outofstock"]);
-			}
-			else
-			{
-				buycount++;
-				updateData();
-			}
-			break;
-		}
-		case 1002://减号按钮
-			if (buycount > 1)
-			{
-				buycount--;
-				updateData();
-			}
-			break;
 		default:
 			break;
 		}
 	}
 }
 
+void MarketResNode::onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	Node* clicknode = (Node*)pSender;
+	if (type == ui::Widget::TouchEventType::BEGAN)
+	{
+		m_longTouchNode = clicknode;
+		if (!isScheduled(schedule_selector(MarketResNode::longTouchUpdate)))
+			schedule(schedule_selector(MarketResNode::longTouchUpdate), 0.2f);
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		cancelLongTouch();
+		addCount();
+	}
+	else if (type == ui::Widget::TouchEventType::CANCELED)
+	{
+		cancelLongTouch();
+	}
+}
+
+void MarketResNode::onSubBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	Node* clicknode = (Node*)pSender;
+	if (type == ui::Widget::TouchEventType::BEGAN)
+	{
+		m_longTouchNode = clicknode;
+		if (!isScheduled(schedule_selector(MarketResNode::longTouchUpdate)))
+			schedule(schedule_selector(MarketResNode::longTouchUpdate), 0.2f);
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		cancelLongTouch();
+		subCount();
+	}
+	else if (type == ui::Widget::TouchEventType::CANCELED)
+	{
+		cancelLongTouch();
+	}
+}
+
+void MarketResNode::longTouchUpdate(float delay)
+{
+	m_isLongPress = true;
+	if (m_longTouchNode != NULL) {
+		if (m_longTouchNode->getTag() % 1000 == 1)
+			addCount();
+		else if (m_longTouchNode->getTag() % 1000 == 2)
+			subCount();
+	}
+}
+
+void MarketResNode::cancelLongTouch()
+{
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
+	unschedule(schedule_selector(MarketResNode::longTouchUpdate));
+}
+
+void MarketResNode::addCount()
+{
+	if (buycount >= totalrescount)
+	{
+		MovingLabel::show(ResourceLang::map_lang["outofstock"]);
+	}
+	else
+	{
+		buycount++;
+		updateData();
+	}
+}
+
+void MarketResNode::subCount()
+{
+	if (buycount > 1)
+	{
+		buycount--;
+		updateData();
+	}
+}
+
 void MarketResNode::reset(int maxcount)
 {
-	buycount = 1;
+	//buycount = 1;
 	totalrescount = maxcount;
 	updateData();
 }

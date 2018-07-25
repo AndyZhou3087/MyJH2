@@ -26,10 +26,23 @@ private:
 	cocos2d::ui::Text* farmercounttext;
 	cocos2d::ui::Text* farmercount;//工人数量
 	ResCreator* m_Data;
+
+	bool m_isLongPress;
+	Node* m_longTouchNode;
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	void onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void onSubBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
 	void updateData(float dt);
+
+	void longTouchUpdate(float delay);
+	void cancelLongTouch();
+
+	void addCount();
+	void subCount();
 };
 #endif
 

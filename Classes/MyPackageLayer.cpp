@@ -148,7 +148,7 @@ void MyPackageLayer::updateScrollviewContent()
 
 		Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 23);
 		namelbl->setColor(Color3B(34, 74, 79));
-		namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -20));
+		namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -10));
 		boxItem->addChild(namelbl);
 
 		std::string countstr = StringUtils::format("%d", vec_res[m]->getCount().getValue());

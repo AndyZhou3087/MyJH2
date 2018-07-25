@@ -283,7 +283,11 @@ void SmithyLayer::makeRes(std::string resid)
 
 	std::string qukey = StringUtils::format("potential_%d", qu);
 	std::string resstr = StringUtils::format(ResourceLang::map_lang["makeresdesc"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str());
-	std::string desc = StringUtils::format("%s%s%s%s", ResourceLang::map_lang["makesucc"].c_str(), resstr.c_str(), ResourceLang::map_lang["potentialtext"].c_str(), ResourceLang::map_lang[qukey].c_str());
+	std::string desc;
+	if (resid.compare(0, 1, "a") == 0 || resid.compare(0, 1, "e") == 0 || resid.compare(0, 1, "g") == 0 || resid.compare(0, 1, "f") == 0)
+		desc = StringUtils::format("%s%s%s%s", ResourceLang::map_lang["makesucc"].c_str(), resstr.c_str(), ResourceLang::map_lang["potentialtext"].c_str(), ResourceLang::map_lang[qukey].c_str());
+	else
+		desc = StringUtils::format("%s%s", ResourceLang::map_lang["makesucc"].c_str(), resstr.c_str());
 	MovingLabel::show(desc);
 }
 

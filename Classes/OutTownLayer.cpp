@@ -183,10 +183,14 @@ void OutTownLayer::onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		if (!isScheduled(schedule_selector(OutTownLayer::longTouchUpdate)))
 			schedule(schedule_selector(OutTownLayer::longTouchUpdate), 0.2f);
 	}
-	if (type == ui::Widget::TouchEventType::ENDED)
+	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		cancelLongTouch();
 		addRes(clicknode);
+	}
+	else if (type == ui::Widget::TouchEventType::CANCELED)
+	{
+		cancelLongTouch();
 	}
 }
 
@@ -221,10 +225,14 @@ void OutTownLayer::onSubBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		if (!isScheduled(schedule_selector(OutTownLayer::longTouchUpdate)))
 			schedule(schedule_selector(OutTownLayer::longTouchUpdate), 0.2f);
 	}
-	if (type == ui::Widget::TouchEventType::ENDED)
+	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		cancelLongTouch();
 		subRes(clicknode);
+	}
+	else if (type == ui::Widget::TouchEventType::CANCELED)
+	{
+		cancelLongTouch();
 	}
 }
 
