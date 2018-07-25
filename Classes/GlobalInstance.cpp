@@ -220,7 +220,7 @@ void GlobalInstance::saveHeroByIndex(int index)
 	std::string herokey = StringUtils::format("hero%d", index);
 	Hero* hero = GlobalInstance::vec_myHeros[index];
 	std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f-%d-%d-%d-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp(), 
-		hero->getTrainHour(), hero->getTrainTime(), hero->getPower().getValue(), hero->getPowerTime(), hero->getChangeJob());
+		hero->getTrainHour(), hero->getTrainTime(), hero->getPower().getValue(), hero->getPowerTime(), hero->getChangeCount());
 	DataSave::getInstance()->setHeroData(herokey, datastr);
 }
 

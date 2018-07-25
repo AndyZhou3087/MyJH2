@@ -38,7 +38,7 @@ public:
 	CC_SYNTHESIZE(int, m_traintime, TrainTime);//训练的时间
 	CC_SYNTHESIZE(DynamicValueInt, m_power, Power);//精力
 	CC_SYNTHESIZE(int, m_powertime, PowerTime);//精力时间
-	CC_SYNTHESIZE(int, m_changejob, ChangeJob);//转职
+	CC_SYNTHESIZE(int, m_changecount, ChangeCount);//转职
 
 	//血量
 	float getHp();

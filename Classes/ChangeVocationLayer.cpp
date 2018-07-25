@@ -94,15 +94,32 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 	
 	if (forwhere == 0)
 	{
-		str = StringUtils::format(ResourceLang::map_lang["changetext1"].c_str(), GlobalInstance::vec_herosAttr[herodata->getVocation() + 4].name.c_str());
+		int a;
+		int b;
+		S_HeroAttr aatt;
+		S_HeroAttr batt;
+		for (unsigned int i = 0; i < GlobalInstance::vec_herosAttr.size(); i++)
+		{
+			if (i == herodata->getVocation() + 4)
+			{
+				a = i;
+				aatt = GlobalInstance::vec_herosAttr[i];
+			}
+			if (i == herodata->getVocation() + 8)
+			{
+				b = i;
+				batt = GlobalInstance::vec_herosAttr[i];
+			}
+		}
+		str = StringUtils::format(ResourceLang::map_lang["changetext1"].c_str(), aatt.name.c_str());
 		accbtn1->setTitleText(str);
-		accbtn1->setTag(herodata->getVocation() + 4);
+		accbtn1->setTag(a);
 
-		str = StringUtils::format(ResourceLang::map_lang["changetext1"].c_str(), GlobalInstance::vec_herosAttr[herodata->getVocation() + 8].name.c_str());
+		str = StringUtils::format(ResourceLang::map_lang["changetext1"].c_str(), batt.name.c_str());
 		accbtn2->setTitleText(str);
-		accbtn2->setTag(herodata->getVocation() + 8);
+		accbtn2->setTag(b);
 		
-		str = StringUtils::format("%s:%s\n\n%s:%s", GlobalInstance::vec_herosAttr[herodata->getVocation() + 4].name.c_str(), GlobalInstance::map_AllResources[GlobalInstance::vec_herosAttr[herodata->getVocation() + 4].id].desc.c_str(), GlobalInstance::vec_herosAttr[herodata->getVocation() + 8].name.c_str(), GlobalInstance::map_AllResources[GlobalInstance::vec_herosAttr[herodata->getVocation() + 8].id].desc.c_str());
+		str = StringUtils::format("%s:%s\n\n%s:%s", aatt.name.c_str(), GlobalInstance::map_AllResources[aatt.id].desc.c_str(), batt.name.c_str(), GlobalInstance::map_AllResources[batt.id].desc.c_str());
 		content->setString(str);
 		rewardlabel->setString(ResourceLang::map_lang["changecondition"]);
 	}
@@ -157,7 +174,7 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 			}
 			if (tag == m_herodata->getVocation() + 4)
 			{
-				m_herodata->setChangeJob((m_herodata->getLevel() + 1) / 10);
+				m_herodata->setChangeCount(m_herodata->getChangeCount() + 1);
 				m_herodata->setVocation(tag);
 				HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
 				if (attlay != NULL)
@@ -167,7 +184,7 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 			}
 			else if (tag == m_herodata->getVocation() + 8)
 			{
-				m_herodata->setChangeJob((m_herodata->getLevel() + 1) / 10);
+				m_herodata->setChangeCount(m_herodata->getChangeCount() + 1);
 				m_herodata->setVocation(tag);
 				HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
 				if (attlay != NULL)

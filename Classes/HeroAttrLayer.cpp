@@ -231,29 +231,21 @@ bool HeroAttrLayer::init(Hero* herodata)
 			}
 			else if (herostate == HS_OWNED)
 			{
-				//前4种职业等级10可转职，
-				if (m_heroData->getVocation() <= 3)
+				//前4种职业等级10可转职，后面可突破
+				if ((m_heroData->getLevel() + 1) % 10 == 0)
 				{
 					btn->setVisible(true);
-					if ((m_heroData->getLevel() + 1) % 10 == 0)
+					if (m_heroData->getLevel() + 1 != 10)
 					{
-						btn->setEnabled(true);
-						if (m_heroData->getLevel() + 1 != 10)
-						{
-							txtimg->loadTexture(ResourcePath::makeTextImgPath("break_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-						}
-						if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
-						{
-							btn->setEnabled(false);
-						}
+						txtimg->loadTexture(ResourcePath::makeTextImgPath("break_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 					}
-					else
-						btn->setVisible(false);
+					if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
+					{
+						btn->setEnabled(false);
+					}
 				}
 				else
-				{
 					btn->setVisible(false);
-				}
 			}
 		}
 		else if (tag == ATTR_RECRUITBTN)
@@ -298,18 +290,10 @@ bool HeroAttrLayer::init(Hero* herodata)
 			else if (herostate == HS_OWNED)
 			{
 				//前4种职业等级10可转职，
-				if (m_heroData->getVocation() <= 3)
-				{
+				if ((m_heroData->getLevel() + 1) % 10 == 0)
 					btn->setVisible(false);
-					if ((m_heroData->getLevel() + 1) % 10 == 0)
-						btn->setEnabled(false);
-					else
-						btn->setVisible(true);
-				}
 				else
-				{
 					btn->setVisible(true);
-				}
 			}
 		}
 	}
