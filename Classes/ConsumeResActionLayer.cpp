@@ -101,7 +101,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 		btn1_text = "lvupbtn_text";
 		btn2_text = "drlvupbtn_text";
 		titlestr = ResourceLang::map_lang["lvrescreatortitle"];
-		int homehilllv = DataSave::getInstance()->getBuildLv("7homehill");
+		int homehilllv = DataSave::getInstance()->getBuildingLv("7homehill");
 		ResCreator* rdata = (ResCreator*)m_data;
 		std::string rdataname = rdata->getName();
 		titlestr = StringUtils::format(titlestr.c_str(), GlobalInstance::map_AllResources[rdata->getName()].name.c_str(), rdata->getMaxCap(rdata->getLv().getValue() + 1).getValue());

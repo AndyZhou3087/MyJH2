@@ -288,7 +288,7 @@ void MainScene::updateTime(float dt)
 		for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
 		{
 			ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
-			if (rescreator->getFarmersCount().getValue() >= 0)
+			if (rescreator->getFarmersCount().getValue() >= 0 && rescreator->getLv().getValue() >= 0)
 			{
 				int addcount = 0;
 				if (rescreator->getName().compare("r001") == 0)

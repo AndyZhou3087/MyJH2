@@ -439,19 +439,28 @@ void GlobalInstance::loadResCreatorData()
 	{
 		std::vector<std::string> vec_tmp;
 		CommonFuncs::split(str, vec_tmp, ";");
-		for (unsigned int i = 0; i < vec_tmp.size(); i++)
+		for (unsigned int i = 0; i < 5; i++)
 		{
-			std::vector<std::string> vec_one;
-			CommonFuncs::split(vec_tmp[i], vec_one, "-");
-			std::string cid = StringUtils::format("r%03d", i + 1);
-			ResCreator* creator = new ResCreator(cid);
-			DynamicValueInt dlv;
-			dlv.setValue(atoi(vec_one[0].c_str()));
-			creator->setLv(dlv);
-			DynamicValueInt dcount;
-			dcount.setValue(atoi(vec_one[1].c_str()));
-			creator->setFarmersCount(dcount);
-			GlobalInstance::vec_resCreators.push_back(creator);
+			if (i < vec_tmp.size())
+			{
+				std::vector<std::string> vec_one;
+				CommonFuncs::split(vec_tmp[i], vec_one, "-");
+				std::string cid = StringUtils::format("r%03d", i + 1);
+				ResCreator* creator = new ResCreator(cid);
+				DynamicValueInt dlv;
+				dlv.setValue(atoi(vec_one[0].c_str()));
+				creator->setLv(dlv);
+				DynamicValueInt dcount;
+				dcount.setValue(atoi(vec_one[1].c_str()));
+				creator->setFarmersCount(dcount);
+				GlobalInstance::vec_resCreators.push_back(creator);
+			}
+			else
+			{
+				std::string cid = StringUtils::format("r%03d", i + 1);
+				ResCreator* creator = new ResCreator(cid);
+				GlobalInstance::vec_resCreators.push_back(creator);
+			}
 		}
 	}
 }
@@ -904,8 +913,11 @@ void GlobalInstance::saveResCreatorData()
 	std::string str;
 	for (unsigned i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
 	{
-		std::string onestr = StringUtils::format("%d-%d;", GlobalInstance::vec_resCreators[i]->getLv().getValue(), GlobalInstance::vec_resCreators[i]->getFarmersCount().getValue());
-		str.append(onestr);
+		if (GlobalInstance::vec_resCreators[i]->getLv().getValue() >= 0)
+		{
+			std::string onestr = StringUtils::format("%d-%d;", GlobalInstance::vec_resCreators[i]->getLv().getValue(), GlobalInstance::vec_resCreators[i]->getFarmersCount().getValue());
+			str.append(onestr);
+		}
 	}
 	DataSave::getInstance()->setResCreatorData(str.substr(0,str.length() - 1));	
 }

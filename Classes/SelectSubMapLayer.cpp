@@ -192,7 +192,7 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 		}
 		else
 		{
-			nohpherostr = nohpherostr.substr(0, nohpherostr.length() - 3);
+			nohpherostr = nohpherostr.substr(0, nohpherostr.length());
 			nohpherostr.append(ResourceLang::map_lang["nomorehp"]);
 			MovingLabel::show(nohpherostr);
 		}

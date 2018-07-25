@@ -2,6 +2,7 @@
 #include "DataSave.h"
 #include "Equipable.h"
 #include "Const.h"
+#include "GlobalInstance.h"
 
 std::vector<ResBase* > MyRes::vec_MyResources;
 
@@ -286,7 +287,20 @@ void MyRes::putMyPackagesToStorage()
 		int type = res->getType();
 		if (res->getWhere() == MYPACKAGE)
 		{
-			Add(res, res->getCount().getValue(), MYSTORAGE);
+			int addcount = res->getCount().getValue();
+			for (unsigned int n = 0; n < GlobalInstance::vec_resCreators.size(); n++)
+			{
+				if (res->getId().compare(GlobalInstance::vec_resCreators[n]->getName()) == 0)
+				{
+					int max = GlobalInstance::vec_resCreators[n]->getMaxCap(GlobalInstance::vec_resCreators[n]->getLv().getValue()).getValue();
+					int left = max - MyRes::getMyResCount(res->getId());
+					if (left < addcount)
+						addcount = left;
+					break;
+				}
+			}
+			if (addcount != 0)
+				Add(res, res->getCount().getValue(), MYSTORAGE);
 		}
 	}
 	clearMyPackages();
@@ -294,12 +308,14 @@ void MyRes::putMyPackagesToStorage()
 
 void MyRes::clearMyPackages()
 {
-	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
+	unsigned int i = 0;
+	for (i = 0; i < vec_MyResources.size(); i++)
 	{
 		ResBase* res = vec_MyResources[i];
 		if (res->getWhere() == MYPACKAGE)
 		{
 			Use(res, res->getCount().getValue(), MYPACKAGE);
+			i = 0;
 		}
 	}
 }

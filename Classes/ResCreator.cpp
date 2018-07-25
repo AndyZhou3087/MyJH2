@@ -4,6 +4,7 @@
 ResCreator::ResCreator(std::string strid)
 {
 	m_name = strid;
+	m_lv.setValue(-1);
 }
 
 
@@ -21,7 +22,7 @@ DynamicValueInt ResCreator::getMaxFarmersCount()
 DynamicValueInt ResCreator::getMaxCap(int lv)
 {
 	DynamicValueInt dvalue;
-	if (lv == 0)
+	if (lv <= 0)
 	{
 		dvalue.setValue(500);
 		return dvalue;

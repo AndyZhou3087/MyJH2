@@ -10,7 +10,8 @@
 
 WinRewardLayer::WinRewardLayer()
 {
-
+	m_isLongPress = false;
+	m_longTouchTag = -1;
 }
 
 
@@ -152,23 +153,16 @@ void WinRewardLayer::updateScrollviewContent()
 				qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
 
-			Sprite * qubox = Sprite::createWithSpriteFrameName(qustr);
+			cocos2d::ui::ImageView* boxItem = cocos2d::ui::ImageView::create(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
+			boxItem->addTouchEventListener(CC_CALLBACK_2(WinRewardLayer::onclick, this));
+			boxItem->setTouchEnabled(true);
 
-			MenuItemSprite* boxItem = MenuItemSprite::create(
-				qubox,
-				qubox,
-				qubox,
-				CC_CALLBACK_1(WinRewardLayer::onclick, this));
+			boxItem->setPosition(Vec2(boxItem->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
+
 			boxItem->setUserData((void*)vec_res[m]);
 			boxItem->setTag(i * 10000 + m);
 
-			boxItem->setPosition(Vec2(qubox->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
-
-			MyMenu* menu = MyMenu::create();
-			menu->addChild(boxItem);
-			menu->setTouchlimit(sv);
-			menu->setPosition(Vec2(0, 0));
-			sv->addChild(menu);
+			sv->addChild(boxItem);
 
 			std::string resid = vec_res[m]->getId();
 
@@ -355,27 +349,100 @@ void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 	}
 }
 
-void WinRewardLayer::onclick(Ref* pSender)
+void WinRewardLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	//Node* clicknode = (Node*)pSender;
+	//if (type == ui::Widget::TouchEventType::BEGAN)
+	//{
+	//	m_longTouchTag = clicknode->getTag();
+	//	if (!isScheduled(schedule_selector(WinRewardLayer::longTouchUpdate)))
+	//		schedule(schedule_selector(WinRewardLayer::longTouchUpdate), 0.2f);
+	//}
+	//else if (type == ui::Widget::TouchEventType::ENDED)
+	//{
+	//	cancelLongTouch();
+	//	longTouchAction(clicknode->getTag());
+	//}
+	//else if (type == ui::Widget::TouchEventType::CANCELED)
+	//{
+	//	cancelLongTouch();
+	//}
+
+
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		Node* clicknode = (Node*)pSender;
+		int tag = clicknode->getTag();
+		if (tag / 10000 == 0)//点击的是两个scrollview的 0--掉落，1--背包
+		{
+			if (MyRes::getMyPackageCount() + 1 > GlobalInstance::getInstance()->getTotalCarry())
+			{
+				MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
+				return;
+			}
+			ResBase* res = (ResBase*)clicknode->getUserData();
+			reduceDropRes(res, 1, tag % 10000);
+		}
+		else if (tag / 10000 == 1)
+		{
+			ResBase* res = (ResBase*)clicknode->getUserData();
+			addDropRes(res);
+		}
+		updateScrollviewContent();
+	}
+}
+
+
+void WinRewardLayer::longTouchAction(int tag)
 {
 	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-	Node* node = (Node*)pSender;
-	int tag = node->getTag();
 	if (tag / 10000 == 0)//点击的是两个scrollview的 0--掉落，1--背包
 	{
 		if (MyRes::getMyPackageCount() + 1 > GlobalInstance::getInstance()->getTotalCarry())
 		{
+			cancelLongTouch();
 			MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
 			return;
 		}
-		ResBase* res = (ResBase*)node->getUserData();
-		reduceDropRes(res, 1, tag % 10000);
+		if (tag % 10000 < vec_dropdownres.size())
+		{
+			ResBase* res = vec_dropdownres[tag % 10000];//clicknode->getUserData();
+			reduceDropRes(res, 1, tag % 10000);
+		}
+		else
+		{
+			cancelLongTouch();
+		}
 	}
 	else if (tag / 10000 == 1)
 	{
-		ResBase* res = (ResBase*)node->getUserData();
-		addDropRes(res);
+		if (tag % 10000 < vec_mypackagres.size())
+		{
+			ResBase* res = vec_mypackagres[tag % 10000];//(ResBase*)clicknode->getUserData();
+			addDropRes(res);
+		}
+		else
+		{
+			cancelLongTouch();
+		}
 	}
 	updateScrollviewContent();
+}
+
+void WinRewardLayer::longTouchUpdate(float delay)
+{
+	m_isLongPress = true;
+	if (m_longTouchTag >= 0) {
+		longTouchAction(m_longTouchTag);
+	}
+}
+
+void WinRewardLayer::cancelLongTouch()
+{
+	m_isLongPress = false;
+	m_longTouchTag = -1;
+	unschedule(schedule_selector(WinRewardLayer::longTouchUpdate));
 }
 
 void WinRewardLayer::delayClose(float dt)
@@ -477,6 +544,7 @@ void WinRewardLayer::reduceDropRes(ResBase* res, int count, int iteindex)
 void WinRewardLayer::releaseDropRes(int interindex)
 {
 	delete vec_dropdownres[interindex];
+	vec_dropdownres[interindex] = NULL;
 	vec_dropdownres.erase(vec_dropdownres.begin() + interindex);
 }
 

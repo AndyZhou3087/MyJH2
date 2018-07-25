@@ -174,9 +174,12 @@ void HomeHillLayer::refreshResUi()
 	for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
 	{
 		ResCreator* data = GlobalInstance::vec_resCreators[i];
-		HillResNode* resnode = HillResNode::create(data);
-		resnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
-		m_contentscroll->addChild(resnode, 0, i);
+		if (data->getLv().getValue() >= 0)
+		{
+			HillResNode* resnode = HillResNode::create(data);
+			resnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
+			m_contentscroll->addChild(resnode, 0, i);
+		}
 	}
 }
 
@@ -186,14 +189,9 @@ void HomeHillLayer::lvup()
 	lvUIlbl->setString(str);
 
 	std::string cid = StringUtils::format("r%03d", m_buidingData->level.getValue() + 1);
-	ResCreator* creator = new ResCreator(cid);
-	DynamicValueInt dlv;
-	dlv.setValue(0);
-	creator->setLv(dlv);
-	DynamicValueInt dcount;
-	dcount.setValue(0);
-	creator->setFarmersCount(dcount);
-	GlobalInstance::vec_resCreators.push_back(creator);
+	DynamicValueInt dv;
+	dv.setValue(0);
+	GlobalInstance::vec_resCreators[m_buidingData->level.getValue()]->setLv(dv);
 	GlobalInstance::getInstance()->saveResCreatorData();
 	refreshResUi();
 }

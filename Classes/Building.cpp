@@ -40,7 +40,6 @@ void Building::parseData()
 			rapidjson::Value& value = jsonvalue["name"];
 			data->name = value.GetString();
 
-			data->level.setValue(DataSave::getInstance()->getBuildLv(data->name));
 			value = jsonvalue["maxlevel"];
 			data->maxlevel.setValue(atoi(value.GetString()));
 
@@ -49,7 +48,7 @@ void Building::parseData()
 			if (jsonvalue.HasMember("lvres"))
 			{
 				value = jsonvalue["lvres"];
-				for (unsigned int i = 0; i < value.Size()-1; i++)
+				for (unsigned int i = 0; i < value.Size(); i++)
 				{
 					std::vector<std::map<std::string, int>> res;
 					rapidjson::Value& resvalue = value[i];

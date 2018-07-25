@@ -20,7 +20,7 @@ public:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
-	void onclick(Ref* pSender);
+	void onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	std::vector<cocos2d::ui::ScrollView*> vec_scrollview;
 
@@ -39,12 +39,21 @@ private:
 	void releaseDropRes(int interindex);
 
 	static bool sortDropResByType(ResBase* a, ResBase* b);
+
+	void longTouchUpdate(float delay);
+	void cancelLongTouch();
+
+	void longTouchAction(int tag);
+
 private:
 	cocos2d::ui::Text* carrycountlbl;
 	std::vector<FOURProperty> m_rewards;
 
 	std::vector<ResBase*> vec_dropdownres;
 	std::vector<ResBase*> vec_mypackagres;
+
+	bool m_isLongPress;
+	int m_longTouchTag;
 };
 #endif
 
