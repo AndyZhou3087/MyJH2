@@ -211,6 +211,13 @@ void MarketResNode::longTouchUpdate(float delay)
 	}
 }
 
+void MarketResNode::cancelLongTouch()
+{
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
+	unschedule(schedule_selector(MarketResNode::longTouchUpdate));
+}
+
 void MarketResNode::addCount()
 {
 	if (buycount >= totalrescount)
@@ -231,13 +238,6 @@ void MarketResNode::subCount()
 		buycount--;
 		updateData();
 	}
-}
-
-void MarketResNode::cancelLongTouch()
-{
-	m_isLongPress = false;
-	m_longTouchNode = NULL;
-	unschedule(schedule_selector(MarketResNode::longTouchUpdate));
 }
 
 void MarketResNode::reset(int maxcount)

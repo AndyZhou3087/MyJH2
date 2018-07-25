@@ -10,7 +10,8 @@
 
 HillResNode::HillResNode()
 {
-
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
 }
 
 
@@ -86,12 +87,12 @@ bool HillResNode::init(ResCreator* data)
 
 	//加号按钮
 	cocos2d::ui::Widget* addbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("addbtn");
-	addbtn->addTouchEventListener(CC_CALLBACK_2(HillResNode::onBtnClick, this));
+	addbtn->addTouchEventListener(CC_CALLBACK_2(HillResNode::onAddBtnClick, this));
 	addbtn->setTag(1001);
 
 	//减号按钮
 	cocos2d::ui::Widget* subbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("subbtn");
-	subbtn->addTouchEventListener(CC_CALLBACK_2(HillResNode::onBtnClick, this));
+	subbtn->addTouchEventListener(CC_CALLBACK_2(HillResNode::onSubBtnClick, this));
 	subbtn->setTag(1002);
 
 	updateData(0);
@@ -139,7 +140,6 @@ void HillResNode::updateData(float dt)
 
 }
 
-
 void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
@@ -162,66 +162,128 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			}
 			break;
 		}
-		case 1001://增加工人
+		default:
+			break;
+		}
+	}
+}
+
+void HillResNode::onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	Node* clicknode = (Node*)pSender;
+	if (type == ui::Widget::TouchEventType::BEGAN)
+	{
+		m_longTouchNode = clicknode;
+		if (!isScheduled(schedule_selector(HillResNode::longTouchUpdate)))
+			schedule(schedule_selector(HillResNode::longTouchUpdate), 0.2f);
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		cancelLongTouch();
+		addCount();
+	}
+	else if (type == ui::Widget::TouchEventType::CANCELED)
+	{
+		cancelLongTouch();
+	}
+}
+
+void HillResNode::onSubBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	Node* clicknode = (Node*)pSender;
+	if (type == ui::Widget::TouchEventType::BEGAN)
+	{
+		m_longTouchNode = clicknode;
+		if (!isScheduled(schedule_selector(HillResNode::longTouchUpdate)))
+			schedule(schedule_selector(HillResNode::longTouchUpdate), 0.2f);
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		cancelLongTouch();
+		subCount();
+	}
+	else if (type == ui::Widget::TouchEventType::CANCELED)
+	{
+		cancelLongTouch();
+	}
+}
+
+void HillResNode::longTouchUpdate(float delay)
+{
+	m_isLongPress = true;
+	if (m_longTouchNode != NULL) {
+		if (m_longTouchNode->getTag() % 1000 == 1)
+			addCount();
+		else if (m_longTouchNode->getTag() % 1000 == 2)
+			subCount();
+	}
+}
+
+void HillResNode::cancelLongTouch()
+{
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
+	unschedule(schedule_selector(HillResNode::longTouchUpdate));
+}
+
+void HillResNode::addCount()
+{
+	if (m_Data->getFarmersCount().getValue() < m_Data->getMaxFarmersCount().getValue())
+	{
+		if (GlobalInstance::getInstance()->getTotalFarmers() - GlobalInstance::getInstance()->getWorkingFarmerCount() > 0)
 		{
-			if (m_Data->getFarmersCount().getValue() < m_Data->getMaxFarmersCount().getValue())
+			int foodcount = GlobalInstance::getInstance()->calcFoodMakeOut();
+			if (GlobalInstance::vec_resCreators.size() > 0)
 			{
-				if (GlobalInstance::getInstance()->getTotalFarmers() - GlobalInstance::getInstance()->getWorkingFarmerCount() > 0)
+				int needfood[] = { 2,3,4,10 };
+				for (unsigned int i = 1; i < GlobalInstance::vec_resCreators.size(); i++)
 				{
-					int foodcount = GlobalInstance::getInstance()->calcFoodMakeOut();
-					if (GlobalInstance::vec_resCreators.size() > 0)
+					ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
+					if (m_Data->getName().compare(rescreator->getName()) == 0)
 					{
-						int needfood[] = { 2,3,4,10 };
-						for (unsigned int i = 1; i < GlobalInstance::vec_resCreators.size(); i++)
-						{
-							ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
-							if (m_Data->getName().compare(rescreator->getName()) == 0)
-							{
-								foodcount -= needfood[i - 1];
-								break;
-							}
-						}
-					}
-
-
-					if (foodcount + MyRes::getMyResCount("r001") < 0)
-					{
-						std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources["r001"].name.c_str());
-						MovingLabel::show(str);
-					}
-					else
-					{
-						DynamicValueInt dvalue;
-						dvalue.setValue(m_Data->getFarmersCount().getValue() + 1);
-						m_Data->setFarmersCount(dvalue);
-						GlobalInstance::getInstance()->saveResCreatorData();
-						updateData(0);
+						foodcount -= needfood[i - 1];
+						break;
 					}
 				}
-				else
-				{
-					MovingLabel::show(ResourceLang::map_lang["farmerlack"]);
-				}
+			}
+
+
+			if (foodcount + MyRes::getMyResCount("r001") < 0)
+			{
+				std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources["r001"].name.c_str());
+				MovingLabel::show(str);
 			}
 			else
 			{
-				MovingLabel::show(ResourceLang::map_lang["farmermaxhint"]);
-			}
-			break;
-		}
-		case 1002://减少工人
-			if (m_Data->getFarmersCount().getValue() > 0)
-			{
 				DynamicValueInt dvalue;
-				dvalue.setValue(m_Data->getFarmersCount().getValue() - 1);
+				dvalue.setValue(m_Data->getFarmersCount().getValue() + 1);
 				m_Data->setFarmersCount(dvalue);
 				GlobalInstance::getInstance()->saveResCreatorData();
 				updateData(0);
 			}
-			break;
-		default:
-			break;
 		}
+		else
+		{
+			MovingLabel::show(ResourceLang::map_lang["farmerlack"]);
+		}
+	}
+	else
+	{
+		MovingLabel::show(ResourceLang::map_lang["farmermaxhint"]);
+	}
+}
+
+void HillResNode::subCount()
+{
+	if (m_Data->getFarmersCount().getValue() > 0)
+	{
+		DynamicValueInt dvalue;
+		dvalue.setValue(m_Data->getFarmersCount().getValue() - 1);
+		m_Data->setFarmersCount(dvalue);
+		GlobalInstance::getInstance()->saveResCreatorData();
+		updateData(0);
 	}
 }
 
