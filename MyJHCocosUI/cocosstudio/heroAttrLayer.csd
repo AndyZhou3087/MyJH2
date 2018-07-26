@@ -6,6 +6,17 @@
       <ObjectData Name="Layer" Tag="137" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
+          <AbstractNodeData Name="herobg" ActionTag="-1486741034" Tag="431" IconVisible="False" ctype="SpriteObjectData">
+            <Size X="720.0000" Y="1280.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="640.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.5000" />
+            <PreSize X="1.0000" Y="1.0000" />
+            <FileData Type="Normal" Path="images/herobg.jpg" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
           <AbstractNodeData Name="hfull" ActionTag="1913213836" Tag="164" IconVisible="False" LeftMargin="87.0000" RightMargin="27.0000" TopMargin="49.0000" BottomMargin="105.0000" LeftEage="199" RightEage="199" TopEage="371" BottomEage="371" Scale9OriginX="199" Scale9OriginY="371" Scale9Width="208" Scale9Height="384" ctype="ImageViewObjectData">
             <Size X="606.0000" Y="1126.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
