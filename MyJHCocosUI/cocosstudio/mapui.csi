@@ -263,6 +263,11 @@
       <FilePathData Path="mapui/n038.png" />
       <FilePathData Path="mapui/n039.png" />
       <FilePathData Path="mapui/n040.png" />
+      <FilePathData Path="mapui/maptask_branch.png" />
+      <FilePathData Path="mapui/maptask_btn.png" />
+      <FilePathData Path="mapui/maptask_frame.png" />
+      <FilePathData Path="mapui/maptask_icon.png" />
+      <FilePathData Path="mapui/maptask_main.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
