@@ -56,6 +56,9 @@ private:
 	cocos2d::ui::ImageView* retbox;
 	cocos2d::ui::ImageView* rettext;
 	cocos2d::ui::Text* winexplbl;
+
+	cocos2d::ui::Widget* vocationbox;
+	cocos2d::ui::ImageView* vocationicon;
 	Npc* m_Data;
 	FIGHTDATA_TYPE m_datatype;
 	FIGHTNODE_STATE m_state;

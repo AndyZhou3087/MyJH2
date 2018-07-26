@@ -55,6 +55,10 @@ bool CardHeroNode::init()
 
 	lvlbl = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
 
+	vocationbox = (cocos2d::ui::Widget*)csbnode->getChildByName("vocationbox");
+
+	vocationicon = (cocos2d::ui::ImageView*)vocationbox->getChildByName("v");
+
 	return true;
 }
 
@@ -91,6 +95,16 @@ void CardHeroNode::setData(Hero* herodata)
 		namelbl->setVisible(true);
 
 		desclbl->setVisible(false);
+
+		if (herodata->getVocation() >= 4)
+		{
+			str = StringUtils::format("ui/cardvocation%d.png", herodata->getVocation());
+			vocationicon->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+			vocationbox->setVisible(true);
+		}
+		else
+			vocationbox->setVisible(false);
+
 	}
 	else
 	{
@@ -100,6 +114,7 @@ void CardHeroNode::setData(Hero* herodata)
 		lvlbl->setVisible(false);
 		namelbl->setVisible(false);
 		desclbl->setVisible(true);
+		vocationbox->setVisible(false);
 		std::string indexstr = StringUtils::format("selheronum%d", this->getTag() + 1);
 		std::string descstr = StringUtils::format(ResourceLang::map_lang["selherohinttext"].c_str(), ResourceLang::map_lang[indexstr].c_str());
 		desclbl->setString(descstr);

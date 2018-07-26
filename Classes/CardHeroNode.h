@@ -24,6 +24,8 @@ private:
 	cocos2d::ui::Text* vocationlbl;
 	cocos2d::ui::Text* lvlbl;
 	cocos2d::ui::Text* desclbl;
+	cocos2d::ui::Widget* vocationbox;
+	cocos2d::ui::ImageView* vocationicon;
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
