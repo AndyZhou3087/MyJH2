@@ -623,6 +623,8 @@ void MapBlockScene::createMyRender()
 	_myrender->addChild(_mylight);
 	_mylight->visit();
 	_myrender->end();
+	auto renderer = Director::getInstance()->getRenderer();
+	renderer->render();
 }
 
 void MapBlockScene::createFog()
@@ -657,6 +659,8 @@ void MapBlockScene::createFog()
 		}
 	}
 	_fogrender->end();
+	auto renderer = Director::getInstance()->getRenderer();
+	renderer->render();
 }
 
 void MapBlockScene::updateFog(float dt)
@@ -666,6 +670,8 @@ void MapBlockScene::updateFog(float dt)
 		_fogrender->begin();
 		addFogBlock(mycurRow, mycurCol);
 		_fogrender->end();
+		auto renderer = Director::getInstance()->getRenderer();
+		renderer->render();
 		map_mapBlocks[mycurRow*blockColCount + mycurCol]->setIsCanSee(true);
 	}
 }
