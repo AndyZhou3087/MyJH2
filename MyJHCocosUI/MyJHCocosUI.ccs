@@ -29,6 +29,7 @@
           <Image Name="event6.jpg" />
           <Image Name="event7.jpg" />
           <Image Name="heroattrbottom.png" />
+          <Image Name="herobg.jpg" />
           <Image Name="hfull_0_0.png" />
           <Image Name="hfull_0_1.png" />
           <Image Name="hfull_1_0.png" />
@@ -360,53 +361,53 @@
           <Image Name="isrecruited_text.png" />
           <Image Name="lvupbtn_text.png" />
           <Image Name="m1-1.png" />
-          <Image Name="m1-10.png" />
+          <Image Name="m921-10.png" />
           <Image Name="m1-2.png" />
           <Image Name="m1-3.png" />
           <Image Name="m1-4.png" />
-          <Image Name="m1-5.png" />
-          <Image Name="m15-1.png" />
-          <Image Name="m15-10.png" />
-          <Image Name="m15-2.png" />
-          <Image Name="m15-3.png" />
-          <Image Name="m15-5.png" />
-          <Image Name="m15-6.png" />
-          <Image Name="m15-7.png" />
-          <Image Name="m15-8.png" />
-          <Image Name="m1-6.png" />
-          <Image Name="m1-7.png" />
-          <Image Name="m1-8.png" />
-          <Image Name="m1-9.png" />
+          <Image Name="m59-5.png" />
+          <Image Name="m55-1.png" />
+          <Image Name="m55-10.png" />
+          <Image Name="m4-1.png" />
+          <Image Name="m55-3.png" />
+          <Image Name="m55-5.png" />
+          <Image Name="m55-6.png" />
+          <Image Name="m55-7.png" />
+          <Image Name="m3-2.png" />
+          <Image Name="m91-96.png" />
+          <Image Name="m99-7.png" />
+          <Image Name="m99-8.png" />
+          <Image Name="m99-9.png" />
           <Image Name="m2-1.png" />
-          <Image Name="m2-10.png" />
+          <Image Name="m92-10.png" />
           <Image Name="m2-2.png" />
-          <Image Name="m22-1.png" />
-          <Image Name="m22-4.png" />
-          <Image Name="m22-6.png" />
-          <Image Name="m22-8.png" />
-          <Image Name="m22-9.png" />
+          <Image Name="m922-1.png" />
+          <Image Name="m922-4.png" />
+          <Image Name="m922-6.png" />
+          <Image Name="m922-8.png" />
+          <Image Name="m922-9.png" />
           <Image Name="m2-3.png" />
           <Image Name="m2-4.png" />
           <Image Name="m2-5.png" />
-          <Image Name="m2-6.png" />
-          <Image Name="m2-7.png" />
-          <Image Name="m2-8.png" />
-          <Image Name="m2-9.png" />
+          <Image Name="m92-6.png" />
+          <Image Name="m92-7.png" />
+          <Image Name="m92-8.png" />
+          <Image Name="m92-9.png" />
           <Image Name="m3-1.png" />
-          <Image Name="m3-10.png" />
-          <Image Name="m3-2.png" />
           <Image Name="m3-3.png" />
-          <Image Name="m3-4.png" />
-          <Image Name="m3-5.png" />
-          <Image Name="m3-6.png" />
-          <Image Name="m3-7.png" />
-          <Image Name="m3-8.png" />
-          <Image Name="m3-9.png" />
-          <Image Name="m4-1.png" />
+          <Image Name="m93-2.png" />
+          <Image Name="m93-3.png" />
           <Image Name="m4-2.png" />
-          <Image Name="m4-3.png" />
-          <Image Name="m4-4.png" />
-          <Image Name="m4-5.png" />
+          <Image Name="m93-5.png" />
+          <Image Name="m93-6.png" />
+          <Image Name="m93-7.png" />
+          <Image Name="m93-8.png" />
+          <Image Name="m93-9.png" />
+          <Image Name="m94-1.png" />
+          <Image Name="m94-2.png" />
+          <Image Name="m94-3.png" />
+          <Image Name="m94-4.png" />
+          <Image Name="m0-1.png" />
           <Image Name="main_01_t.png" />
           <Image Name="main_02_t.png" />
           <Image Name="main_03_t.png" />
@@ -887,13 +888,13 @@
         <Project Name="taskLayer.csd" Type="Layer" />
         <Project Name="taskMainDescLayer.csd" Type="Layer" />
         <Project Name="taskMainNode.csd" Type="Node" />
+        <Project Name="taskTipsNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <Project Name="trainCancelLayer.csd" Type="Layer" />
         <Project Name="trainLayer.csd" Type="Layer" />
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="taskTipsNode.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>
