@@ -51,9 +51,6 @@ MapBlockScene::~MapBlockScene()
 
 	g_MapBlockScene = NULL;
 
-	if (_fogrender)_fogrender->autorelease();//add, inorder to achieve delay release, use autorelease instead of release
-
-	if (_myrender)_myrender->autorelease();//add, inorder to achieve delay release, use autorelease ins
 }
 
 Scene* MapBlockScene::createScene(std::string mapname)
@@ -585,6 +582,7 @@ void MapBlockScene::updateMyRender(float dt)
 	_mylight->setPosition(myposParticle->getPosition());
 	_mylight->visit();
 	_myrender->end();
+	Director::getInstance()->getRenderer()->render();
 }
 
 void MapBlockScene::ajustMyPos()
@@ -627,6 +625,7 @@ void MapBlockScene::createMyRender()
 	_myrender->addChild(_mylight);
 	_mylight->visit();
 	_myrender->end();
+	Director::getInstance()->getRenderer()->render();
 }
 
 void MapBlockScene::createFog()
@@ -661,6 +660,7 @@ void MapBlockScene::createFog()
 		}
 	}
 	_fogrender->end();
+	Director::getInstance()->getRenderer()->render();
 }
 
 void MapBlockScene::updateFog(float dt)
@@ -670,6 +670,7 @@ void MapBlockScene::updateFog(float dt)
 		_fogrender->begin();
 		addFogBlock(mycurRow, mycurCol);
 		_fogrender->end();
+		Director::getInstance()->getRenderer()->render();
 		map_mapBlocks[mycurRow*blockColCount + mycurCol]->setIsCanSee(true);
 	}
 }
