@@ -117,6 +117,7 @@ bool MapBlock::init(int row, int col, std::string boardName)
 	{
 		setAnchorPoint(Vec2(0, 0));
 		setPosition(Vec2(col*MAPBLOCKWIDTH, row*MAPBLOCKHEIGHT));
+
 		return true;
 	}
 	return false;

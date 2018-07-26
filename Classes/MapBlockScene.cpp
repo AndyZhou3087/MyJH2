@@ -989,7 +989,7 @@ void MapBlockScene::parseMapXml(std::string mapname)
 					int zorder = r*blockColCount + c;
 					m_mapscrollcontainer->addChild(mb, zorder);
 					mb->setBuilding(buildname);
-					mb->getTexture()->setAntiAliasTexParameters();
+					mb->getTexture()->setAliasTexParameters();
 
 					mb->setPosType(postype);
 					mb->setWalkable(walkable);
