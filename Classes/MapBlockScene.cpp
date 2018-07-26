@@ -49,6 +49,10 @@ MapBlockScene::~MapBlockScene()
 	}
 
 	g_MapBlockScene = NULL;
+
+	if (_fogrender)_fogrender->autorelease();//add, inorder to achieve delay release, use autorelease instead of release
+
+	if (_myrender)_myrender->autorelease();//add, inorder to achieve delay release, use autorelease ins
 }
 
 Scene* MapBlockScene::createScene(std::string mapname)
@@ -92,10 +96,6 @@ void MapBlockScene::onExit()
 		str.append(onestr);
 	}
 	DataSave::getInstance()->setMapVisibleArea(m_mapid, str.substr(0, str.length()-1));
-
-	if (_fogrender)_fogrender->autorelease();//add, inorder to achieve delay release, use autorelease instead of release
-
-	if (_myrender)_myrender->autorelease();//add, inorder to achieve delay release, use autorelease ins
 
 	Layer::onExit();
 }
