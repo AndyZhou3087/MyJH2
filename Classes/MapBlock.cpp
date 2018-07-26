@@ -1,4 +1,4 @@
-#include "MapBlock.h"
+﻿#include "MapBlock.h"
 #include "Const.h"
 
 std::vector<FOURProperty> MapBlock::vec_randMonsters;
@@ -92,10 +92,10 @@ void MapBlock::setTextureCoords(const Rect& rectInPoints, V3F_C4B_T2F_Quad* outQ
 	}
 }
 
-MapBlock* MapBlock::create(int row, int col, std::string boradName, std::string buildname)
+MapBlock* MapBlock::create(int row, int col, std::string boradName)
 {
 	MapBlock *pRet = new(std::nothrow)MapBlock();
-	if (pRet && pRet->init(row, col, boradName, buildname))
+	if (pRet && pRet->init(row, col, boradName))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -108,7 +108,7 @@ MapBlock* MapBlock::create(int row, int col, std::string boradName, std::string 
 	}
 }
 
-bool MapBlock::init(int row, int col, std::string boardName, std::string buildname)
+bool MapBlock::init(int row, int col, std::string boardName)
 {
 	Row = row;
 	Col = col;
@@ -120,15 +120,20 @@ bool MapBlock::init(int row, int col, std::string boardName, std::string buildna
 		//设置抗锯齿
 		this->getTexture()->setAntiAliasTexParameters();
 		
-		if (buildname.length() > 0)
-		{
-			std::string filename = StringUtils::format("mapui/buildblock_%s", buildname.c_str());
-			Sprite* buildblock = Sprite::createWithSpriteFrameName(filename);
-			buildblock->setAnchorPoint(Vec2(0, 1));
-			buildblock->setPosition(Vec2(col*MAPBLOCKWIDTH, (row+1)*MAPBLOCKHEIGHT));
-			this->getParent()->addChild(buildblock);
-		}
+
 		return true;
 	}
 	return false;
+}
+
+void MapBlock::setBuilding(std::string buildname)
+{
+	if (buildname.length() > 0)
+	{
+		std::string filename = StringUtils::format("mapui/buildblock_%s", buildname.c_str());
+		Sprite* buildblock = Sprite::createWithSpriteFrameName(filename);
+		buildblock->setAnchorPoint(Vec2(0, 1));
+		buildblock->setPosition(Vec2(Col*MAPBLOCKWIDTH, (Row + 1)*MAPBLOCKHEIGHT));
+		this->getParent()->addChild(buildblock, this->getLocalZOrder() + 10000);
+	}
 }

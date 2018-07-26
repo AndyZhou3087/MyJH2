@@ -984,11 +984,12 @@ void MapBlockScene::parseMapXml(std::string mapname)
 					if (buildchar != NULL)
 						buildname = buildchar;
 
-					MapBlock* mb = MapBlock::create(blockRowCount - 1 - r, c, boardname, buildname);
-					
+					MapBlock* mb = MapBlock::create(blockRowCount - 1 - r, c, boardname);
 					int rc = (blockRowCount - 1 - r)*blockColCount + c;
 					int zorder = r*blockColCount + c;
 					m_mapscrollcontainer->addChild(mb, zorder);
+					mb->setBuilding(buildname);
+
 					mb->setPosType(postype);
 					mb->setWalkable(walkable);
 					map_mapBlocks[rc] = mb;

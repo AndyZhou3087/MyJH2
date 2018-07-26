@@ -115,21 +115,22 @@ void FightHeroNode::setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE 
 			str = StringUtils::format("cardh_%d_%d.png", data->getVocation(), sex);
 			str = ResourcePath::makeImagePath(str);
 			headimg->loadTexture(str, cocos2d::ui::Widget::TextureResType::LOCAL);
-			int v = ((Hero*)m_Data)->getVocation();
-			if (v >= 4)
-			{
-				str = StringUtils::format("ui/cardvocation%d.png", v);
-				vocationicon->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
-				vocationbox->setVisible(true);
-			}
-			else
-				vocationbox->setVisible(false);
+
 		}
 		else if (datatype == F_NPC)
 		{
 			str = StringUtils::format("mapui/%s.png", data->getId().c_str());
 			headimg->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 		}
+		int v = m_Data->getVocation();
+		if (v >= 4)
+		{
+			str = StringUtils::format("ui/cardvocation%d.png", v);
+			vocationicon->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+			vocationbox->setVisible(true);
+		}
+		else
+			vocationbox->setVisible(false);
 		//headimg->loadTexture(str, cocos2d::ui::Widget::TextureResType::LOCAL);
 		headimg->setVisible(true);
 
@@ -249,6 +250,7 @@ void FightHeroNode::updateHp()
 
 void FightHeroNode::setBlankBox()
 {
+	vocationbox->setVisible(false);
 	if (m_state == FS_READY)
 	{
 		headbox->loadTexture(ResourcePath::makeImagePath("cardherobox_.png"), cocos2d::ui::Widget::TextureResType::LOCAL);

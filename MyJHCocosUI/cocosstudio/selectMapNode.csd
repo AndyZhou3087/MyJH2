@@ -28,10 +28,10 @@
             <OutlineColor A="255" R="42" G="125" B="125" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="hpdesc" ActionTag="1191829134" Tag="169" IconVisible="False" LeftMargin="-65.5000" RightMargin="-65.5000" TopMargin="-4.4999" BottomMargin="-18.5001" FontSize="20" LabelText="（消耗体力 5）" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="hpdesc" ActionTag="1191829134" Tag="169" IconVisible="False" LeftMargin="-65.5000" RightMargin="-65.5000" TopMargin="-7.4999" BottomMargin="-15.5001" FontSize="20" LabelText="（消耗体力 5）" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="131.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="0.0000" Y="-7.0001" />
+            <Position Y="-4.0001" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="222" G="239" B="242" />
             <PrePosition />
@@ -40,10 +40,10 @@
             <OutlineColor A="255" R="42" G="125" B="125" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="awarddesc" ActionTag="-1479323059" Tag="170" IconVisible="False" LeftMargin="-55.0000" RightMargin="-55.0000" TopMargin="23.5001" BottomMargin="-46.5001" FontSize="20" LabelText="可获得物品：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="110.0000" Y="23.0000" />
+          <AbstractNodeData Name="awarddesc" ActionTag="-1479323059" Tag="170" IconVisible="False" LeftMargin="-270.0000" RightMargin="-270.0000" TopMargin="21.0001" BottomMargin="-53.0001" IsCustomSize="True" FontSize="16" LabelText="可获得物品:" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="540.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position Y="-35.0001" />
+            <Position Y="-37.0001" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="222" G="239" B="242" />
             <PrePosition />

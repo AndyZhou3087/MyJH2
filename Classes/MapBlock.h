@@ -56,8 +56,10 @@ class MapBlock : public Sprite
 public:
 	MapBlock();
 	~MapBlock();
-	static MapBlock* create(int row, int col, std::string boardName, std::string builidname);
-	bool init(int row, int col, std::string boardName, std::string builidname);
+	static MapBlock* create(int row, int col, std::string boardName);
+	bool init(int row, int col, std::string boardName);
+
+	void setBuilding(std::string buildname);
 	CC_SYNTHESIZE(bool, m_walkable, Walkable);//是否可行走
 	CC_SYNTHESIZE(int, m_postype, PosType);//每个地图块位置信息
 	CC_SYNTHESIZE(std::string, m_posnpcid, PosNpcID);//每个地图块NPCID
