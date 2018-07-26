@@ -94,6 +94,10 @@ void MapBlockScene::onExit()
 	}
 	DataSave::getInstance()->setMapVisibleArea(m_mapid, str.substr(0, str.length()-1));
 
+	if (_fogrender)_fogrender->autorelease();//add, inorder to achieve delay release, use autorelease instead of release
+
+	if (_myrender)_myrender->autorelease();//add, inorder to achieve delay release, use autorelease ins
+
 	Layer::onExit();
 }
 
@@ -623,8 +627,6 @@ void MapBlockScene::createMyRender()
 	_myrender->addChild(_mylight);
 	_mylight->visit();
 	_myrender->end();
-	auto renderer = Director::getInstance()->getRenderer();
-	renderer->render();
 }
 
 void MapBlockScene::createFog()
@@ -659,8 +661,6 @@ void MapBlockScene::createFog()
 		}
 	}
 	_fogrender->end();
-	auto renderer = Director::getInstance()->getRenderer();
-	renderer->render();
 }
 
 void MapBlockScene::updateFog(float dt)
@@ -670,8 +670,6 @@ void MapBlockScene::updateFog(float dt)
 		_fogrender->begin();
 		addFogBlock(mycurRow, mycurCol);
 		_fogrender->end();
-		auto renderer = Director::getInstance()->getRenderer();
-		renderer->render();
 		map_mapBlocks[mycurRow*blockColCount + mycurCol]->setIsCanSee(true);
 	}
 }
