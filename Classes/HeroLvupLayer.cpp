@@ -146,10 +146,10 @@ bool HeroLvupLayer::init(Hero* herodata)
 		goodimg->setTag(i);
 
 		str = StringUtils::format("s00%dtext", i); 
-		goodarr[i] = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+		goodarr[i - 1] = (cocos2d::ui::Text*)csbnode->getChildByName(str);
 		str = StringUtils::format("s00%d", i);
 		str = StringUtils::format("%d", MyRes::getMyResCount(str));
-		goodarr[i]->setString(str);
+		goodarr[i - 1]->setString(str);
 	}
 
 
@@ -260,7 +260,7 @@ void HeroLvupLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			MovingLabel::show(ResourceLang::map_lang["reslack"]);
 		}
 		str = StringUtils::format("%d", MyRes::getMyResCount(str));
-		goodarr[tag]->setString(str);
+		goodarr[tag-1]->setString(str);
 	}
 }
 
@@ -312,11 +312,11 @@ void HeroLvupLayer::updataAtrrUI(float dt)
 	float percent = (m_heroData->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
 	expbar->setPercent(percent);
 
-	for (int i = 1; i < 4; i++)
+	for (int i = 1; i < 5; i++)
 	{
 		str = StringUtils::format("s00%d", i);
 		str = StringUtils::format("%d", MyRes::getMyResCount(str));
-		goodarr[i]->setString(str);
+		goodarr[i-1]->setString(str);
 	}
 }
 
