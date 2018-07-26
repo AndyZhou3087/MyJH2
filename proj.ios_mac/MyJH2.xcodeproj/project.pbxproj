@@ -132,6 +132,7 @@
 		7256A75E2109748D000492EA /* HintBoxLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7256A75C2109748D000492EA /* HintBoxLayer.cpp */; };
 		7256A761210974A1000492EA /* hitBoxLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7256A75F210974A1000492EA /* hitBoxLayer.csb */; };
 		7256A762210974A1000492EA /* changeVocationLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7256A760210974A1000492EA /* changeVocationLayer.csb */; };
+		7256A7642109CFC0000492EA /* taskTipsNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7256A7632109CFC0000492EA /* taskTipsNode.csb */; };
 		7282706520F5B7B200B07087 /* FightingLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7282703C20F5B7A500B07087 /* FightingLayer.cpp */; };
 		7282706620F5B7B200B07087 /* SetInStoneLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7282704020F5B7A900B07087 /* SetInStoneLayer.cpp */; };
 		7282706720F5B7B200B07087 /* TaskDailyNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7282704220F5B7AA00B07087 /* TaskDailyNode.cpp */; };
@@ -410,6 +411,7 @@
 		7256A75C2109748D000492EA /* HintBoxLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HintBoxLayer.cpp; sourceTree = "<group>"; };
 		7256A75F210974A1000492EA /* hitBoxLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = hitBoxLayer.csb; sourceTree = "<group>"; };
 		7256A760210974A1000492EA /* changeVocationLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = changeVocationLayer.csb; sourceTree = "<group>"; };
+		7256A7632109CFC0000492EA /* taskTipsNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = taskTipsNode.csb; sourceTree = "<group>"; };
 		7282703C20F5B7A500B07087 /* FightingLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FightingLayer.cpp; sourceTree = "<group>"; };
 		7282703E20F5B7A900B07087 /* MaterialDescLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialDescLayer.h; sourceTree = "<group>"; };
 		7282703F20F5B7A900B07087 /* TaskMainDescLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskMainDescLayer.h; sourceTree = "<group>"; };
@@ -613,6 +615,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7256A7632109CFC0000492EA /* taskTipsNode.csb */,
 				7256A760210974A1000492EA /* changeVocationLayer.csb */,
 				7256A75F210974A1000492EA /* hitBoxLayer.csb */,
 				72C0294E2101F3AE00060021 /* heroLvupLayer.csb */,
@@ -1035,6 +1038,7 @@
 				7204533020D892640011D560 /* heroAttrLayer.csb in Resources */,
 				7204533F20D892640011D560 /* selectMapNode.csb in Resources */,
 				7282708920F5B7EE00B07087 /* fightLayer.csb in Resources */,
+				7256A7642109CFC0000492EA /* taskTipsNode.csb in Resources */,
 				7232D83220E63A0700299738 /* storeHouseLayer.csb in Resources */,
 				7256A762210974A1000492EA /* changeVocationLayer.csb in Resources */,
 				7204532720D892640011D560 /* mapdata in Resources */,
