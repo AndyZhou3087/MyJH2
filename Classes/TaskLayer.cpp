@@ -151,6 +151,7 @@ void TaskLayer::updateContent(int category)
 	else
 	{
 		ressize = GlobalInstance::map_DTdata.size();
+		mcount = ressize;
 		scrollview->setContentSize(Size(scrollview->getContentSize().width, 850));
 		pnode->setVisible(true);
 	}

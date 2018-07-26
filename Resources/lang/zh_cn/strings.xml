@@ -122,6 +122,10 @@
 	<s name="rescreatornextlvdesc">升级后采集工人数量+5</s>
 	<s name="canttrain">出战角色不可训练！</s>
 	<s name="nomorehp">体力不足！</s>
+	<s name="hintrefresh">已有高品质角色,是否重新刷新？</s>
+	<s name="tasktips">%s:到%s找%s</s>
+	<s name="nottasktext">当前无任务</s>
+	<s name="finishtasktext">当前任务已完成</s>
 	<s name="hintrefresh">是否放弃当前%s级角色重新刷新？</s>	
 	<s name="recruitsucc">招募成功！</s>
 	<s name="firecomfirmtext">是否解雇当前%s级角色？</s>	

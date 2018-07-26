@@ -267,6 +267,28 @@
             <FileData Type="Normal" Path="images/mapblockbottom.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="questbtn" ActionTag="173485613" Tag="41" IconVisible="False" LeftMargin="635.0961" RightMargin="50.9039" TopMargin="245.0381" BottomMargin="1006.9620" TouchEnable="True" LeftEage="11" RightEage="11" TopEage="9" BottomEage="9" Scale9OriginX="11" Scale9OriginY="9" Scale9Width="12" Scale9Height="10" ctype="ImageViewObjectData">
+            <Size X="34.0000" Y="28.0000" />
+            <Children>
+              <AbstractNodeData Name="questbtn2" ActionTag="-1221336991" Tag="43" IconVisible="False" LeftMargin="34.7503" RightMargin="-50.7503" TopMargin="-3.9083" BottomMargin="-12.0917" TouchEnable="True" LeftEage="11" RightEage="11" TopEage="9" BottomEage="9" Scale9OriginX="11" Scale9OriginY="9" Scale9Width="28" Scale9Height="26" ctype="ImageViewObjectData">
+                <Size X="50.0000" Y="44.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="59.7503" Y="9.9083" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="1.7574" Y="0.3539" />
+                <PreSize X="1.4706" Y="1.5714" />
+                <FileData Type="MarkedSubImage" Path="mapui/maptask_icon.png" Plist="mapui.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="652.0961" Y="1020.9620" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9057" Y="0.7976" />
+            <PreSize X="0.0472" Y="0.0219" />
+            <FileData Type="MarkedSubImage" Path="mapui/maptask_btn.png" Plist="mapui.plist" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

@@ -17,6 +17,7 @@
 #include "TaskBranchTalkLayer.h"
 #include "MyPackageLayer.h"
 #include "MainScene.h"
+#include "Quest.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -163,9 +164,86 @@ bool MapBlockScene::init(std::string mapname)
 
 	//scheduleUpdate();
 
+	loadTaskUI();
+
 	return true;
 }
 
+void MapBlockScene::loadTaskUI()
+{
+	int langtype = GlobalInstance::getInstance()->getLang();
+	//添加任务提示框
+	m_tasknode = CSLoader::createNode(ResourcePath::makePath("taskTipsNode.csb"));
+	this->addChild(m_tasknode);
+	m_tasknode->setPosition(Vec2(589, 930));
+
+	cocos2d::ui::ImageView* resitem = (cocos2d::ui::ImageView*)m_tasknode->getChildByName("resitem");
+	resitem->setSwallowTouches(false);
+
+	cocos2d::ui::ImageView* tasktitle = (cocos2d::ui::ImageView*)m_tasknode->getChildByName("title");
+	tasktitle->loadTexture(ResourcePath::makeTextImgPath("maptask_title", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	cocos2d::ui::ImageView* hidebtn = (cocos2d::ui::ImageView*)m_tasknode->getChildByName("hidebtn");
+	hidebtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onTaskAction, this));
+	hidebtn->setTag(1);
+	questbtn = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("questbtn");
+	questbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onTaskAction, this));
+	questbtn->setTag(0);
+	questbtn->setVisible(false);
+	cocos2d::ui::ImageView* questbtn2 = (cocos2d::ui::ImageView*)questbtn->getChildByName("questbtn2");
+	questbtn2->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onTaskAction, this));
+	questbtn2->setTag(0);
+
+	textmain = (cocos2d::ui::Text*)m_tasknode->getChildByName("textmain");
+	textbranch = (cocos2d::ui::Text*)m_tasknode->getChildByName("textbranch");
+	updateTaskInfo(0);
+	this->schedule(schedule_selector(MapBlockScene::updateTaskInfo), 1.0f);
+}
+
+void MapBlockScene::updateTaskInfo(float dt)
+{
+	//主线
+	if (Quest::getMainQuest())
+	{
+		std::string mainid = GlobalInstance::myCurMainData.place.substr(0, GlobalInstance::myCurMainData.place.find_last_of("-"));
+		S_SubMap submap = GlobalInstance::map_mapsdata[mainid].map_sublist[GlobalInstance::myCurMainData.place];
+		std::string str = StringUtils::format(ResourceLang::map_lang["tasktips"].c_str(), GlobalInstance::myCurMainData.name.c_str(), submap.name.c_str(), GlobalInstance::map_Npcs[GlobalInstance::myCurMainData.npcid].name.c_str());
+		textmain->setString(str);
+	}
+	else
+	{
+		if (GlobalInstance::myCurMainData.id == 1)
+		{
+			textmain->setString(ResourceLang::map_lang["nottasktext"]);
+		}
+		else
+		{
+			textmain->setTextColor(Color4B(255, 0, 0, 255));
+			textmain->setString(ResourceLang::map_lang["finishtasktext"]);
+		}
+	}
+
+	//支线
+	if (Quest::getBranchQuest())
+	{
+		std::string mainid = GlobalInstance::myCurBranchData.place.substr(0, GlobalInstance::myCurBranchData.place.find_last_of("-"));
+		S_SubMap submap = GlobalInstance::map_mapsdata[mainid].map_sublist[GlobalInstance::myCurBranchData.place];
+		std::string str = StringUtils::format(ResourceLang::map_lang["tasktips"].c_str(), GlobalInstance::myCurBranchData.name.c_str(), submap.name.c_str(), GlobalInstance::map_Npcs[GlobalInstance::myCurBranchData.npcid].name.c_str());
+		textbranch->setString(str);
+	}
+	else
+	{
+		if (GlobalInstance::myCurBranchData.id == 1)
+		{
+			textbranch->setString(ResourceLang::map_lang["nottasktext"]);
+		}
+		else
+		{
+			textbranch->setTextColor(Color4B(255, 0, 0, 255));
+			textbranch->setString(ResourceLang::map_lang["finishtasktext"]);
+		}
+	}
+}
 
 void MapBlockScene::updateLabel(float dt)
 {
@@ -204,6 +282,36 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		}
 	}
 }
+
+void MapBlockScene::onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		m_tasknode->stopAllActions();
+		Node* clicknode = (Node*)pSender;
+		int tag = clicknode->getTag();
+		switch (tag)
+		{
+		case 0:
+		{
+			questbtn->setVisible(false);
+			CCMoveTo* moveto = CCMoveTo::create(0.15f, Vec2(589, 930));
+			m_tasknode->runAction(moveto);
+		}
+			break;
+		case 1:
+		{
+			questbtn->setVisible(true);
+			CCMoveTo* moveto = CCMoveTo::create(0.15f, Vec2(860, 930));
+			m_tasknode->runAction(moveto);
+		}
+			break;
+		default:
+			break;
+		}
+	}
+}
+
 void MapBlockScene::onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);

@@ -57,6 +57,7 @@ private:
 
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	void updateLabel(float dt);
 
@@ -107,13 +108,23 @@ private:
 	void checkFood();
 
 	bool checklive();
+
+	void loadTaskUI();
+
+	void updateTaskInfo(float dt);
 private:
 	Node* m_csbnode;
+	Node* m_tasknode;
+
 	ParticleSystemQuad* myposParticle;
 	cocos2d::ui::Text* carrycountlbl;
 	cocos2d::ui::Text* foodcountlbl;
 	cocos2d::ui::Text* solivercountlbl;
 	cocos2d::ui::Text* sitelbl;
+	cocos2d::ui::ImageView* questbtn;
+	cocos2d::ui::Text* textmain;
+	cocos2d::ui::Text* textbranch;
+
 	int blockRowCount;
 	int blockColCount;
 	ScrollView* scrollView;
