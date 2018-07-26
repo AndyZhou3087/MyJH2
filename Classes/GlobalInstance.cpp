@@ -1307,8 +1307,14 @@ void GlobalInstance::fireHero(int index)
 			GlobalInstance::myCardHeros[i] = NULL;
 		}
 	}
+
+
 	//先删除掉所有本地英雄节点数据
-	DataSave::getInstance()->deleteLocalHero(index);
+
+	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+	{
+		DataSave::getInstance()->deleteLocalHero(i);
+	}
 
 	//释放内存
 	delete GlobalInstance::vec_myHeros[index];
@@ -1318,7 +1324,7 @@ void GlobalInstance::fireHero(int index)
 	GlobalInstance::vec_myHeros.erase(GlobalInstance::vec_myHeros.begin() + index);
 
 	//保存数据
-	//GlobalInstance::getInstance()->saveMyHeros();
+	GlobalInstance::getInstance()->saveMyHeros();
 }
 
 int GlobalInstance::getTotalCarry()
