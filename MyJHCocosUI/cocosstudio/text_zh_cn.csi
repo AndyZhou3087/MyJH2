@@ -169,6 +169,7 @@
       <FilePathData Path="text_zh_cn/traincoin_text.png" />
       <FilePathData Path="text_zh_cn/trainstart_text.png" />
       <FilePathData Path="text_zh_cn/cancelbtn_text.png" />
+      <FilePathData Path="text_zh_cn/maptask_title.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

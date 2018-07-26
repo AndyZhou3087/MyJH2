@@ -59,8 +59,10 @@ void Quest::saveMainData()
 			GlobalInstance::vec_TaskMain[i].isfinish = GlobalInstance::myCurMainData.isfinish;
 			GlobalInstance::vec_TaskMain[i].finishtype = GlobalInstance::myCurMainData.finishtype;
 			AddFinishQuest(GlobalInstance::myCurMainData);
-
-			GlobalInstance::myCurMainData = GlobalInstance::vec_TaskMain[i + 1];//当前任务下一个
+			if (i + 1 < GlobalInstance::vec_TaskMain.size())
+			{
+				GlobalInstance::myCurMainData = GlobalInstance::vec_TaskMain[i + 1];//当前任务下一个
+			}
 			break;
 		}
 	}
@@ -234,6 +236,15 @@ void Quest::finishFightMain(int ftype)
 	saveMainData();
 }
 
+bool Quest::getMainQuest()
+{
+	if (GlobalInstance::myCurMainData.isfinish == QUEST_ACC)
+	{
+		return true;
+	}
+	return false;
+}
+
 /*************支线任务**************/
 
 bool Quest::getBranchQuestNpc(std::string npcid)
@@ -322,11 +333,23 @@ void Quest::saveBranchData()
 		if (GlobalInstance::myCurBranchData.id == GlobalInstance::vec_TaskBranch[i].id)
 		{
 			GlobalInstance::vec_TaskBranch[i].isfinish = GlobalInstance::myCurBranchData.isfinish;
-			GlobalInstance::myCurBranchData = GlobalInstance::vec_TaskBranch[i + 1];//当前任务下一个
+			if (i + 1 < GlobalInstance::vec_TaskBranch.size())
+			{
+				GlobalInstance::myCurBranchData = GlobalInstance::vec_TaskBranch[i + 1];//当前任务下一个
+			}
 			break;
 		}
 	}
 	GlobalInstance::getInstance()->saveMyTaskBranchData();
+}
+
+bool Quest::getBranchQuest()
+{
+	if (GlobalInstance::myCurBranchData.isfinish == QUEST_ACC)
+	{
+		return true;
+	}
+	return false;
 }
 
 /*************每日数据逻辑**************/

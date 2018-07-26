@@ -16,10 +16,10 @@
 
 USING_NS_CC;
 
-#define S001EXP 100
-#define S002EXP 200
-#define S003EXP 300
-#define S004EXP 400
+#define S001EXP 1500
+#define S002EXP 5000
+#define S003EXP 15000
+#define S004EXP 50000
 
 HeroLvupLayer::HeroLvupLayer()
 {

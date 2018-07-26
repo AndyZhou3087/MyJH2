@@ -45,6 +45,9 @@ public:
 
 	static int getTypeBtn(int id, int ftype);
 
+	//判断是否接受主线任务
+	static bool getMainQuest();
+
 	/*************支线任务数据逻辑**************/
 
 	//判断是否接受此npc任务
@@ -59,6 +62,9 @@ public:
 	static void saveBranchData();
 
 	static void finishBranchQuest();
+
+	//判断是否接受支线任务
+	static bool getBranchQuest();
 
 	/*************每日数据逻辑**************/
 	//每日任务

@@ -7,14 +7,5 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="mapBlockLayer.csd" />
-          <FilePathData Path="taskTipsNode.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="taskTipsNode.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

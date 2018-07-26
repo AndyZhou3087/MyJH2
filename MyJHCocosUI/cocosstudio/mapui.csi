@@ -237,6 +237,11 @@
       <FilePathData Path="mapui/buildblock_53.png" />
       <FilePathData Path="mapui/buildblock_54.png" />
       <FilePathData Path="mapui/buildblock_55.png" />
+      <FilePathData Path="mapui/maptask_branch.png" />
+      <FilePathData Path="mapui/maptask_btn.png" />
+      <FilePathData Path="mapui/maptask_frame.png" />
+      <FilePathData Path="mapui/maptask_icon.png" />
+      <FilePathData Path="mapui/maptask_main.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

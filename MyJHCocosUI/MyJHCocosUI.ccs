@@ -29,6 +29,7 @@
           <Image Name="event6.jpg" />
           <Image Name="event7.jpg" />
           <Image Name="heroattrbottom.png" />
+          <Image Name="herobg.jpg" />
           <Image Name="hfull_0_0.png" />
           <Image Name="hfull_0_1.png" />
           <Image Name="hfull_1_0.png" />
@@ -289,6 +290,11 @@
           <Image Name="mapnamebox1.png" />
           <Image Name="mappackbtn.png" />
           <Image Name="maprightbtn.png" />
+          <Image Name="maptask_branch.png" />
+          <Image Name="maptask_btn.png" />
+          <Image Name="maptask_frame.png" />
+          <Image Name="maptask_icon.png" />
+          <Image Name="maptask_main.png" />
           <Image Name="mapupbtn.png" />
           <Image Name="morearrow.png" />
           <Image Name="mtag0.png" />
@@ -425,6 +431,7 @@
           <Image Name="makeresbtn_text.png" />
           <Image Name="mapbtn_text.png" />
           <Image Name="mappackbtn_text.png" />
+          <Image Name="maptask_title.png" />
           <Image Name="marketlvup_text.png" />
           <Image Name="markettitle.png" />
           <Image Name="mypackagetitle.png" />
@@ -878,13 +885,13 @@
         <Project Name="taskLayer.csd" Type="Layer" />
         <Project Name="taskMainDescLayer.csd" Type="Layer" />
         <Project Name="taskMainNode.csd" Type="Node" />
+        <Project Name="taskTipsNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <Project Name="trainCancelLayer.csd" Type="Layer" />
         <Project Name="trainLayer.csd" Type="Layer" />
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="taskTipsNode.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>
