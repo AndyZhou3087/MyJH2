@@ -180,7 +180,7 @@ void MapBlockScene::loadTaskUI()
 	this->addChild(m_tasknode);
 	m_tasknode->setPosition(Vec2(589, 930));
 
-	cocos2d::ui::ImageView* resitem = (cocos2d::ui::ImageView*)m_tasknode->getChildByName("resitem");
+	cocos2d::ui::Widget* resitem = (cocos2d::ui::Widget*)m_tasknode->getChildByName("resitem");
 	resitem->setSwallowTouches(false);
 
 	cocos2d::ui::ImageView* tasktitle = (cocos2d::ui::ImageView*)m_tasknode->getChildByName("title");
