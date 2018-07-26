@@ -188,7 +188,7 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 					GlobalInstance::getInstance()->saveHero(GlobalInstance::myCardHeros[i]);
 				}
 			}
-			Director::getInstance()->replaceScene(TransitionFade::create(3.0f, MapBlockScene::createScene(mapid)));
+			Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene(mapid)));
 		}
 		else
 		{

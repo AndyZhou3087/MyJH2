@@ -21,6 +21,8 @@ public:
 
 	void lvup();
 
+	void fireHero(int index);
+
 	MyHeroNode* getMyHeroNode(int index);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

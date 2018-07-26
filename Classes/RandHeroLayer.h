@@ -37,6 +37,8 @@ private:
 	//删除3个随机英雄数据
 	void delete3RandHero();
 
+	int checkIsTopPotentail(int buytype);
+
 public:
 	void refresh3Hero(int i);
 
@@ -50,7 +52,6 @@ private:
 	cocos2d::ui::LoadingBar* m_timebar;
 	cocos2d::ui::Text* m_timelbl;
 
-	bool isTopPotential;
 };
 
 #endif

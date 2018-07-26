@@ -187,6 +187,11 @@ MyHeroNode* InnRoomLayer::getMyHeroNode(int index)
 	return (MyHeroNode*)m_contentscroll->getChildByTag(index);
 }
 
+void InnRoomLayer::fireHero(int index)
+{
+	GlobalInstance::getInstance()->fireHero(index);
+	refreshMyHerosUi();
+}
 
 void InnRoomLayer::onExit()
 {

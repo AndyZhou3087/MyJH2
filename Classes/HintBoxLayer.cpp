@@ -5,6 +5,8 @@
 #include "Const.h"
 #include "MovingLabel.h"
 #include "RandHeroLayer.h"
+#include "InnRoomLayer.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -102,13 +104,19 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			this->removeFromParentAndCleanup(true);
 			break;
 		case 1:
-			if (m_forwhere < 3 && m_forwhere > 0)
+			if (m_forwhere == 1)
 			{
 				RandHeroLayer* hlayer = (RandHeroLayer*)this->getParent();
 				if (hlayer!=NULL)
 				{
-					hlayer->refresh3Hero(m_forwhere);
+					hlayer->refresh3Hero(this->getTag());
 				}
+			}
+			else if (m_forwhere == 2)
+			{
+				InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+				if (innroomLayer != NULL)
+					innroomLayer->fireHero(this->getTag());
 			}
 			this->removeFromParentAndCleanup(true);
 		default:
