@@ -395,8 +395,8 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	if (mycurCol == vec_startpos[randStartPos] % blockColCount && mycurRow == vec_startpos[randStartPos] / blockColCount)
 	{
 		cacelLongTouch();
-		//Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
-		Director::getInstance()->replaceScene(MainMapScene::createScene());
+		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+		//Director::getInstance()->replaceScene(MainMapScene::createScene());
 	}
 	else
 	{
