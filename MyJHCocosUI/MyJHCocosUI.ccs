@@ -843,7 +843,9 @@
         <Project Name="fightLayer.csd" Type="Layer" />
         <Project Name="fightResultLayer.csd" Type="Layer" />
         <Project Name="heroAttrLayer.csd" Type="Layer" />
+        <Project Name="heroLvupLayer.csd" Type="Layer" />
         <Project Name="hillResNode.csd" Type="Node" />
+        <Project Name="hitBoxLayer.csd" Type="Layer" />
         <Project Name="homeHillLayer.csd" Type="Layer" />
         <Project Name="innRoomLayer.csd" Type="Layer" />
         <Image Name="loadingbg.jpg" />
@@ -882,7 +884,7 @@
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="hitBoxLayer.csd" Type="Layer" />
+        <Project Name="taskTipsNode.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>
