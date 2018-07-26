@@ -1297,7 +1297,20 @@ int GlobalInstance::getWorkingFarmerCount()
 
 void GlobalInstance::fireHero(int index)
 {
+	//清掉出战的数据
+	for (int i = 0; i < 6; i++)
+	{
+		Hero* myhero = GlobalInstance::myCardHeros[i];
+
+		if (myhero != NULL && myhero->getName().compare(GlobalInstance::vec_myHeros[index]->getName()) == 0)
+		{
+			GlobalInstance::myCardHeros[i] = NULL;
+		}
+	}
+
+
 	//先删除掉所有本地英雄节点数据
+
 	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 	{
 		DataSave::getInstance()->deleteLocalHero(i);
@@ -1305,6 +1318,8 @@ void GlobalInstance::fireHero(int index)
 
 	//释放内存
 	delete GlobalInstance::vec_myHeros[index];
+
+	GlobalInstance::vec_myHeros[index] = NULL;
 	//删除当前英雄列表
 	GlobalInstance::vec_myHeros.erase(GlobalInstance::vec_myHeros.begin() + index);
 

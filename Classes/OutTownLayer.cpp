@@ -160,7 +160,7 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				}
 			}
 			GlobalInstance::getInstance()->parseMapJson();
-			Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MainMapScene::createScene()));
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
 			
 			break;
 		}

@@ -3,6 +3,7 @@
 #include "SelectSubMapLayer.h"
 #include "GlobalInstance.h"
 #include "Const.h"
+#include "MainScene.h"
 
 MainMapScene::MainMapScene()
 {
@@ -111,8 +112,15 @@ void MainMapScene::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 		std::string mapname = clicknode->getParent()->getName();
 		if (m_isDraging)
 			return;
-		SelectSubMapLayer* layer = SelectSubMapLayer::create(mapname);
-		addChild(layer);
+		if (mapname.compare("m0-1") == 0)
+		{
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+		}
+		else
+		{
+			Layer* layer = SelectSubMapLayer::create(mapname);
+			addChild(layer);
+		}
 		break;
 	}
 	case cocos2d::ui::Widget::TouchEventType::CANCELED:

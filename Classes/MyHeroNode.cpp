@@ -343,10 +343,26 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 void MyHeroNode::onbgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	if (type == ui::Widget::TouchEventType::ENDED)
+	Node* clicknode = (Node*)pSender;
+	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
-		Layer* layer = HeroAttrLayer::create(m_heroData);
-		g_mainScene->addChild(layer, 0, this->getTag());
+		clickflag = true;
+		beginTouchPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+	}
+	else if (type == ui::Widget::TouchEventType::MOVED)
+	{
+		int offsetPexil = 5;
+		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+		if ((movedPoint.x - beginTouchPoint.x) * (movedPoint.x - beginTouchPoint.x) >= offsetPexil * offsetPexil)
+			clickflag = false;
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		if (clickflag)
+		{
+			Layer* layer = HeroAttrLayer::create(m_heroData);
+			g_mainScene->addChild(layer, 0, this->getTag());
+		}
 	}
 }
 

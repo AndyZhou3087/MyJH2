@@ -60,6 +60,8 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	langtype = GlobalInstance::getInstance()->getLang();
+
 	m_equip = res_equip;
 
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");

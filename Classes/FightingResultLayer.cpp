@@ -115,7 +115,7 @@ void FightingResultLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 		}
 		else
 		{
-			Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MainScene::createScene()));
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 		}
 	}
 }

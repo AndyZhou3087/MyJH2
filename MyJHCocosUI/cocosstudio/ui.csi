@@ -353,6 +353,15 @@
       <FilePathData Path="ui/r009.png" />
       <FilePathData Path="ui/r010.png" />
       <FilePathData Path="ui/r011.png" />
+      <FilePathData Path="ui/cardvocation10.png" />
+      <FilePathData Path="ui/cardvocation11.png" />
+      <FilePathData Path="ui/cardvocation4.png" />
+      <FilePathData Path="ui/cardvocation5.png" />
+      <FilePathData Path="ui/cardvocation6.png" />
+      <FilePathData Path="ui/cardvocation7.png" />
+      <FilePathData Path="ui/cardvocation8.png" />
+      <FilePathData Path="ui/cardvocation9.png" />
+      <FilePathData Path="ui/cardvocationbox.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

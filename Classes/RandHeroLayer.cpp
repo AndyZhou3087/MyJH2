@@ -281,6 +281,7 @@ void RandHeroLayer::delete3RandHero()
 	for (int i = 0; i < randsize; i++)
 	{
 		delete GlobalInstance::vec_rand3Heros[i];
+		GlobalInstance::vec_rand3Heros[i] = NULL;
 	}
 	GlobalInstance::vec_rand3Heros.clear();
 }

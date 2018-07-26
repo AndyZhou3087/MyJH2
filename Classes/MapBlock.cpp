@@ -1,4 +1,4 @@
-﻿#include "MapBlock.h"
+#include "MapBlock.h"
 #include "Const.h"
 
 std::vector<FOURProperty> MapBlock::vec_randMonsters;
@@ -119,6 +119,7 @@ bool MapBlock::init(int row, int col, std::string boardName, std::string buildna
 		setPosition(Vec2(col*MAPBLOCKWIDTH, row*MAPBLOCKHEIGHT));
 		//设置抗锯齿
 		this->getTexture()->setAntiAliasTexParameters();
+		
 		if (buildname.length() > 0)
 		{
 			std::string filename = StringUtils::format("mapui/buildblock_%s", buildname.c_str());

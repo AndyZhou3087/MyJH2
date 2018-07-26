@@ -135,6 +135,29 @@
             <OutlineColor A="255" R="0" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="vocationbox" ActionTag="252936013" Tag="45" IconVisible="False" LeftMargin="-71.8743" RightMargin="37.8743" TopMargin="-100.1878" BottomMargin="66.1878" ctype="SpriteObjectData">
+            <Size X="34.0000" Y="34.0000" />
+            <Children>
+              <AbstractNodeData Name="v" ActionTag="-728836314" Tag="46" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
+                <Size X="34.0000" Y="34.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="16.0001" Y="18.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4706" Y="0.5294" />
+                <PreSize X="1.0000" Y="1.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-54.8743" Y="83.1878" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

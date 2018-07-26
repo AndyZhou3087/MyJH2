@@ -126,4 +126,5 @@
 	<s name="tasktips">%s:到%s找%s</s>
 	<s name="nottasktext">当前无任务</s>
 	<s name="finishtasktext">当前任务已完成</s>
+	<s name="recruitsucc">招募成功！</s>
 </strings>

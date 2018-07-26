@@ -72,6 +72,10 @@ bool FightHeroNode::init()
 	winexplbl = (cocos2d::ui::Text*)csbnode->getChildByName("winexp");
 	winexplbl->setVisible(false);
 
+	vocationbox = (cocos2d::ui::Widget*)csbnode->getChildByName("vocationbox");
+
+	vocationicon = (cocos2d::ui::ImageView*)vocationbox->getChildByName("v");
+
 	return true;
 }
 
@@ -111,6 +115,15 @@ void FightHeroNode::setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE 
 			str = StringUtils::format("cardh_%d_%d.png", data->getVocation(), sex);
 			str = ResourcePath::makeImagePath(str);
 			headimg->loadTexture(str, cocos2d::ui::Widget::TextureResType::LOCAL);
+			int v = ((Hero*)m_Data)->getVocation();
+			if (v >= 4)
+			{
+				str = StringUtils::format("ui/cardvocation%d.png", v);
+				vocationicon->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+				vocationbox->setVisible(true);
+			}
+			else
+				vocationbox->setVisible(false);
 		}
 		else if (datatype == F_NPC)
 		{
