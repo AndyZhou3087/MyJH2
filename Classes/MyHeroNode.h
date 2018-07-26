@@ -37,6 +37,8 @@ private:
 	Hero* m_heroData;
 	int m_showtype;
 	int langtype;
+	bool clickflag;
+	Vec2 beginTouchPoint;
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
