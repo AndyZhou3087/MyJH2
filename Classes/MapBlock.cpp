@@ -125,8 +125,8 @@ bool MapBlock::init(int row, int col, std::string boardName, std::string buildna
 			std::string filename = StringUtils::format("mapui/buildblock_%s", buildname.c_str());
 			Sprite* buildblock = Sprite::createWithSpriteFrameName(filename);
 			buildblock->setAnchorPoint(Vec2(0, 1));
-			buildblock->setPosition(Vec2(0, MAPBLOCKHEIGHT));
-			this->addChild(buildblock);
+			buildblock->setPosition(Vec2(col*MAPBLOCKWIDTH, (row+1)*MAPBLOCKHEIGHT));
+			this->getParent()->addChild(buildblock);
 		}
 		return true;
 	}
