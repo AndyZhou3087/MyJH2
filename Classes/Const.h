@@ -33,5 +33,5 @@ const static float POTENTIAL_BNS[] = {1.0f, 1.27f, 1.63f, 2.08f, 2.63f};
 const static float BREAK_BNS[] = { 1.1f, 1.12f, 1.15f, 1.19f, 1.24f, 1.24f };
 
 //区分资源类型的字符
-const static std::string RES_TYPES_CHAR[] = { "r","a","e","h","f","w","x","s","c","d","m","b","y" };
+const static std::string RES_TYPES_CHAR[] = { "r","a","e","g","f","w","x","s","c","d","m","b","y" };
 #endif // _H_CONST_H_
