@@ -1,4 +1,4 @@
-﻿#include "MapBlock.h"
+#include "MapBlock.h"
 #include "Const.h"
 
 std::vector<FOURProperty> MapBlock::vec_randMonsters;
