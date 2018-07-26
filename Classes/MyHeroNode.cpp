@@ -15,6 +15,7 @@
 #include "TrainLayer.h"
 #include "Building.h"
 #include "OutTownLayer.h"
+#include "HintBoxLayer.h"
 
 #define RSILVERCOUNT 100
 
@@ -243,10 +244,23 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 	{
 		if (m_showtype == HS_OWNED)
 		{
-			GlobalInstance::getInstance()->fireHero(this->getTag());
-			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-			if (innroomLayer != NULL)
-				innroomLayer->refreshMyHerosUi();
+			if (m_heroData->getPotential() >= 2)
+			{
+				InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+				if (innroomLayer != NULL)
+				{
+					std::string potentialstr = StringUtils::format("potential_%d", m_heroData->getVocation());
+					std::string hintstr = StringUtils::format(ResourceLang::map_lang["firecomfirmtext"].c_str(), ResourceLang::map_lang[potentialstr].c_str());
+					HintBoxLayer* hint = HintBoxLayer::create(hintstr, 2);
+					innroomLayer->addChild(hint, 0, this->getTag());
+				}
+			}
+			else
+			{
+				InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+				if (innroomLayer != NULL)
+					innroomLayer->fireHero(this->getTag());
+			}
 		}
 		else if (m_showtype == HS_TAKEON)
 		{

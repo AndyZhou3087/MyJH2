@@ -14,7 +14,7 @@ USING_NS_CC;
 #define COINREFRESH_NUM 10
 RandHeroLayer::RandHeroLayer()
 {
-	isTopPotential = false;
+
 }
 
 RandHeroLayer::~RandHeroLayer()
@@ -148,14 +148,8 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case BTN_S_REFRESH://银子刷新
 			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= SILVERREFRESH_NUM)
 			{
-				if (isTopPotential)
-				{
-					HintBoxLayer* hint = HintBoxLayer::create(ResourceLang::map_lang["hintrefresh"],1);
-					this->addChild(hint);
-					return;
-				}
-				
-				refresh3Hero(1);
+				if (checkIsTopPotentail(1) < 0)
+					refresh3Hero(1);
 			}
 			else
 			{
@@ -165,14 +159,8 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case BTN_C_REFRESH://元宝刷新
 			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= COINREFRESH_NUM)
 			{
-				if (isTopPotential)
-				{
-					HintBoxLayer* hint = HintBoxLayer::create(ResourceLang::map_lang["hintrefresh"],2);
-					this->addChild(hint);
-					return;
-				}
-
-				refresh3Hero(2);
+				if (checkIsTopPotentail(2) < 0)
+					refresh3Hero(2);
 			}
 			else
 			{
@@ -192,6 +180,28 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		}
 	}
+}
+
+int RandHeroLayer::checkIsTopPotentail(int buytype)
+{
+	int topPotential = -1;
+	for (unsigned int i = 0; i < GlobalInstance::vec_rand3Heros.size(); i++)
+	{
+		if (GlobalInstance::vec_rand3Heros[i]->getState() != HS_OWNED)
+		{
+			int p = GlobalInstance::vec_rand3Heros[i]->getPotential();
+			if (p >= 2)
+				topPotential = p;
+		}
+	}
+	if (topPotential >= 2)
+	{
+		std::string potentialstr = StringUtils::format("potential_%d", topPotential);
+		std::string hintstr = StringUtils::format(ResourceLang::map_lang["hintrefresh"].c_str(), ResourceLang::map_lang[potentialstr].c_str());
+		HintBoxLayer* hint = HintBoxLayer::create(hintstr, 1);
+		this->addChild(hint, 0, buytype);
+	}
+	return topPotential;
 }
 
 void RandHeroLayer::refresh3Hero(int i)
@@ -260,17 +270,13 @@ void RandHeroLayer::updateUI(float dt)
 
 void RandHeroLayer::create3RandHero()
 {
-	isTopPotential = false;
 	delete3RandHero();
 	for (int i = 0; i < 3; i++)
 	{
 		Hero* randhero = new Hero();
 		randhero->generate();
 		GlobalInstance::vec_rand3Heros.push_back(randhero);
-		if (randhero->getPotential() > 2)
-		{
-			isTopPotential = true;
-		}
+
 	}
 	GlobalInstance::getInstance()->saveRand3Heros();
 }
