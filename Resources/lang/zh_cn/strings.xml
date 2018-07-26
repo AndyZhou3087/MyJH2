@@ -123,4 +123,5 @@
 	<s name="canttrain">出战角色不可训练！</s>
 	<s name="nomorehp">体力不足！</s>
 	<s name="hintrefresh">已有高品质角色,是否重新刷新？</s>
+	<s name="recruitsucc">招募成功！</s>
 </strings>
