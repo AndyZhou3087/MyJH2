@@ -187,10 +187,10 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		switch (tag)
 		{
 		case BTN_GOCITY:
-			Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MainScene::createScene()));
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 			break;
 		case BTN_MAP:
-			Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MainMapScene::createScene()));
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
 			break;
 		case BTN_PACKAGE:
 		{
@@ -286,7 +286,8 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	if (mycurCol == vec_startpos[randStartPos] % blockColCount && mycurRow == vec_startpos[randStartPos] / blockColCount)
 	{
 		cacelLongTouch();
-		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+		//Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+		Director::getInstance()->replaceScene(MainMapScene::createScene());
 	}
 	else
 	{

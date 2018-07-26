@@ -46,7 +46,7 @@ void MapBlock::setTextureCoords(const Rect& rectInPoints, V3F_C4B_T2F_Quad* outQ
 	if (_rectRotated)
 		std::swap(rw, rh);
 
-#if 0//CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL
+#if 1//CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL
 	float left = (2 * rectInPixels.origin.x + 1) / (2 * atlasWidth);
 	float right = left + (rw * 2 - 2) / (2 * atlasWidth);
 	float top = (2 * rectInPixels.origin.y + 1) / (2 * atlasHeight);
@@ -119,6 +119,7 @@ bool MapBlock::init(int row, int col, std::string boardName, std::string buildna
 		setPosition(Vec2(col*MAPBLOCKWIDTH, row*MAPBLOCKHEIGHT));
 		//设置抗锯齿
 		this->getTexture()->setAntiAliasTexParameters();
+		
 		if (buildname.length() > 0)
 		{
 			std::string filename = StringUtils::format("mapui/buildblock_%s", buildname.c_str());
