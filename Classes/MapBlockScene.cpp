@@ -553,7 +553,7 @@ void MapBlockScene::setMyPos()
 	if (myposParticle == NULL)
 	{
 		myposParticle = ParticleSystemQuad::create("particle/hr.plist");
-		m_mapscrollcontainer->addChild(myposParticle, 10000);
+		m_mapscrollcontainer->addChild(myposParticle, 40000);
 		myposParticle->setPosition(Vec2(px, py));
 
 		createMyRender();
@@ -989,6 +989,7 @@ void MapBlockScene::parseMapXml(std::string mapname)
 					int zorder = r*blockColCount + c;
 					m_mapscrollcontainer->addChild(mb, zorder);
 					mb->setBuilding(buildname);
+					mb->getTexture()->setAntiAliasTexParameters();
 
 					mb->setPosType(postype);
 					mb->setWalkable(walkable);
