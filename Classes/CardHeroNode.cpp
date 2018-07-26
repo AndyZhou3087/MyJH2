@@ -99,7 +99,7 @@ void CardHeroNode::setData(Hero* herodata)
 		if (herodata->getVocation() >= 4)
 		{
 			str = StringUtils::format("ui/cardvocation%d.png", herodata->getVocation());
-			vocationicon->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+			vocationicon->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 			vocationbox->setVisible(true);
 		}
 		else

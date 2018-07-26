@@ -237,11 +237,32 @@
       <FilePathData Path="mapui/buildblock_53.png" />
       <FilePathData Path="mapui/buildblock_54.png" />
       <FilePathData Path="mapui/buildblock_55.png" />
-      <FilePathData Path="mapui/maptask_branch.png" />
-      <FilePathData Path="mapui/maptask_btn.png" />
-      <FilePathData Path="mapui/maptask_frame.png" />
-      <FilePathData Path="mapui/maptask_icon.png" />
-      <FilePathData Path="mapui/maptask_main.png" />
+      <FilePathData Path="mapui/n015.png" />
+      <FilePathData Path="mapui/n016.png" />
+      <FilePathData Path="mapui/n017.png" />
+      <FilePathData Path="mapui/n018.png" />
+      <FilePathData Path="mapui/n019.png" />
+      <FilePathData Path="mapui/n020.png" />
+      <FilePathData Path="mapui/n021.png" />
+      <FilePathData Path="mapui/n022.png" />
+      <FilePathData Path="mapui/n023.png" />
+      <FilePathData Path="mapui/n024.png" />
+      <FilePathData Path="mapui/n025.png" />
+      <FilePathData Path="mapui/n026.png" />
+      <FilePathData Path="mapui/n027.png" />
+      <FilePathData Path="mapui/n028.png" />
+      <FilePathData Path="mapui/n029.png" />
+      <FilePathData Path="mapui/n030.png" />
+      <FilePathData Path="mapui/n031.png" />
+      <FilePathData Path="mapui/n032.png" />
+      <FilePathData Path="mapui/n033.png" />
+      <FilePathData Path="mapui/n034.png" />
+      <FilePathData Path="mapui/n035.png" />
+      <FilePathData Path="mapui/n036.png" />
+      <FilePathData Path="mapui/n037.png" />
+      <FilePathData Path="mapui/n038.png" />
+      <FilePathData Path="mapui/n039.png" />
+      <FilePathData Path="mapui/n040.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

@@ -126,7 +126,7 @@ void FightHeroNode::setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE 
 		if (v >= 4)
 		{
 			str = StringUtils::format("ui/cardvocation%d.png", v);
-			vocationicon->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+			vocationicon->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 			vocationbox->setVisible(true);
 		}
 		else
