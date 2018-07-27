@@ -7,8 +7,8 @@
 
 #define FONT_NAME "fonts/simhei.ttf"
 
-#define FIRSTNAMECOUNT 10
-#define LASTNAMECOUNT 10
+#define FIRSTNAMECOUNT 40
+#define LASTNAMECOUNT 40
 #define HERO_RESETTIME 21600//英雄刷新时间
 #define RES_REFRESHTIME 60//资源刷新时间
 #define MARKET_RESETTIME 60//3600//市场刷新时间

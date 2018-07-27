@@ -292,14 +292,14 @@ void MapBlockScene::onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		case 0:
 		{
 			questbtn->setVisible(false);
-			CCMoveTo* moveto = CCMoveTo::create(0.15f, Vec2(589, 930));
+			MoveTo* moveto = MoveTo::create(0.15f, Vec2(589, 930));
 			m_tasknode->runAction(moveto);
 		}
 			break;
 		case 1:
 		{
 			questbtn->setVisible(true);
-			CCMoveTo* moveto = CCMoveTo::create(0.15f, Vec2(860, 930));
+			MoveTo* moveto = MoveTo::create(0.15f, Vec2(860, 930));
 			m_tasknode->runAction(moveto);
 		}
 			break;
