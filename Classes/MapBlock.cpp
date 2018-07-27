@@ -1,4 +1,4 @@
-﻿#include "MapBlock.h"
+#include "MapBlock.h"
 #include "Const.h"
 
 std::vector<FOURProperty> MapBlock::vec_randMonsters;
@@ -46,7 +46,7 @@ void MapBlock::setTextureCoords(const Rect& rectInPoints, V3F_C4B_T2F_Quad* outQ
 	if (_rectRotated)
 		std::swap(rw, rh);
 
-#if 1//CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL
+#if 0//CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL
 	float left = (2 * rectInPixels.origin.x + 1) / (2 * atlasWidth);
 	float right = left + (rw * 2 - 2) / (2 * atlasWidth);
 	float top = (2 * rectInPixels.origin.y + 1) / (2 * atlasHeight);
