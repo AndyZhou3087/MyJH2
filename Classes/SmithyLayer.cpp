@@ -6,6 +6,7 @@
 #include "MovingLabel.h"
 #include "DataSave.h"
 #include "MyRes.h"
+#include "Const.h"
 
 USING_NS_CC;
 
@@ -110,6 +111,7 @@ bool SmithyLayer::init(Building* buidingData)
 void SmithyLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
+
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		Node* clicknode = (Node*)pSender;
@@ -293,11 +295,24 @@ void SmithyLayer::makeRes(std::string resid)
 
 void SmithyLayer::onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	if (type == ui::Widget::TouchEventType::ENDED)
+	Node* clicknode = (Node*)pSender;
+	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
-		Node* node = (Node*)pSender;
+		clickflag = true;
+		beginTouchPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+	}
+	else if (type == ui::Widget::TouchEventType::MOVED)
+	{
+		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
 
-		ConsumeResActionLayer* layer = ConsumeResActionLayer::create(node->getUserData(), CA_MAKERES);
+		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
+			clickflag = false;
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		if (!clickflag)
+			return;
+		ConsumeResActionLayer* layer = ConsumeResActionLayer::create(clicknode->getUserData(), CA_MAKERES);
 		this->addChild(layer);
 	}
 }

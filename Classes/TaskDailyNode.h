@@ -27,9 +27,11 @@ private:
 	cocos2d::ui::LoadingBar* taskprobar;
 	cocos2d::ui::Button* getbtn;
 	cocos2d::ui::Text* taskprotext;
+
+	bool clickflag;
+	Vec2 beginTouchPoint;
 private:
 	void onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void ongetClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void updateData(float dt);
 };
 #endif
