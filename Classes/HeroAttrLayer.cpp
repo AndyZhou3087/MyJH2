@@ -212,7 +212,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("firebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			if (herostate == HS_READY || herostate == HS_TAKEON)
+			if (herostate == HS_READY || herostate == HS_TAKEON || herostate == HS_TRAINING)
 			{
 				btn->setVisible(false);
 			}
@@ -225,7 +225,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("changebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			if (herostate == HS_READY || herostate == HS_TAKEON)
+			if (herostate == HS_READY || herostate == HS_TAKEON || herostate == HS_TRAINING)
 			{
 				btn->setVisible(false);
 			}
@@ -274,7 +274,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 			{
 				btn->setPositionX(600);
 			}
-			else if (herostate == HS_TAKEON)
+			else if (herostate == HS_TAKEON || herostate == HS_TRAINING)
 			{
 				btn->setPositionX(360);
 			}
@@ -283,7 +283,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			if (herostate == HS_READY || herostate == HS_TAKEON)
+			if (herostate == HS_READY || herostate == HS_TAKEON || herostate == HS_TRAINING)
 			{
 				btn->setVisible(false);
 			}
