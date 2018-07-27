@@ -13,6 +13,7 @@
 #include "SmithyLayer.h"
 #include "StoreHouseLayer.h"
 #include "Quest.h"
+#include "ResCreator.h"
 
 TaskDailyNode::TaskDailyNode()
 {
@@ -168,15 +169,6 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 		if (tag == 1000)
 		{
-			cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
-			btn->setTouchEnabled(false);
-
-			m_Data->state = DAILY_RECEIVE;
-			GlobalInstance::getInstance()->saveMyDailyTaskData();
-			//积分
-			int m_point = DataSave::getInstance()->getMyyDailyPoint();
-			m_point += m_Data->points;
-			DataSave::getInstance()->setMyDailyPoint(m_point);
 			//物品
 			for (unsigned int i = 0; i < m_Data->goods.size(); i++)
 			{
@@ -191,8 +183,31 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					stc = GlobalInstance::getInstance()->generateStoneCount(qu);
 				}
 
+				for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
+				{
+					ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
+					if (rescreator->getName().compare(resid) == 0)
+					{
+						int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
+						if (MyRes::getMyResCount(resid)+count>maxcount)
+						{
+							MovingLabel::show(ResourceLang::map_lang["nomoreres"]);
+							return;
+						}
+					}
+				}
 				MyRes::Add(resid, count, MYSTORAGE, qu, stc);
 			}
+
+			cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
+			btn->setTouchEnabled(false);
+
+			m_Data->state = DAILY_RECEIVE;
+			GlobalInstance::getInstance()->saveMyDailyTaskData();
+			//积分
+			int m_point = DataSave::getInstance()->getMyyDailyPoint();
+			m_point += m_Data->points;
+			DataSave::getInstance()->setMyDailyPoint(m_point);
 		}
 		else
 		{

@@ -12,6 +12,7 @@
 #include "EquipDescLayer.h"
 #include "SetInStoneLayer.h"
 #include "Quest.h"
+#include "StrengthenLayer.h"
 
 static bool isChangeEquip = false;
 TakeOnLayer::TakeOnLayer()
@@ -285,6 +286,8 @@ void TakeOnLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		}
 		case 1004://强化
 		{
+			StrengthenLayer* sLayer = StrengthenLayer::create(m_equip);
+			this->addChild(sLayer);
 			break;
 		}
 		default:
