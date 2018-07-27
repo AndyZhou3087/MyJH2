@@ -288,7 +288,6 @@ public class Utils {
             //获取assets资源管理器
             AssetManager assetManager = sContext.getAssets();
             //通过管理器打开文件并读取
-
             //BufferedReader bf = new BufferedReader(new  InputStreamReader(assetManager.open(filename)));
             DataInputStream dataInputStream = new DataInputStream(assetManager.open(filename));
 			dataInputStream.skip(line*14);

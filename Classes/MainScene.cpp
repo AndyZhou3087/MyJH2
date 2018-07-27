@@ -309,12 +309,6 @@ void MainScene::updateTime(float dt)
 				}
 				int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
 
-				std::string formatstr;
-				if (addcount < 0)
-					formatstr = "%s%d";
-				else
-					formatstr = "%s+%d";
-
 				int rcount = MyRes::getMyResCount(rescreator->getName());
 
 				if (addcount + rcount >= maxcount)
@@ -324,6 +318,12 @@ void MainScene::updateTime(float dt)
 				{
 					addcount = -rcount;
 				}
+
+				std::string formatstr;
+				if (addcount < 0)
+					formatstr = "%s%d";
+				else
+					formatstr = "%s+%d";
 
 				if (addcount != 0)
 				{
