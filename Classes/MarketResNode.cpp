@@ -5,6 +5,8 @@
 #include "MyRes.h"
 #include "MovingLabel.h"
 #include "MarketLayer.h"
+#include "Const.h"
+
 MarketResNode::MarketResNode()
 {
 	m_isLongPress = false;
@@ -73,6 +75,7 @@ bool MarketResNode::init(std::string resid, int rescount)
 	cocos2d::ui::Widget* actbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actbtn->setTag(1000);
 	actbtn->addTouchEventListener(CC_CALLBACK_2(MarketResNode::onBtnClick, this));
+	actbtn->setSwallowTouches(false);
 
 	int langtype = GlobalInstance::getInstance()->getLang();
 
@@ -94,10 +97,27 @@ bool MarketResNode::init(std::string resid, int rescount)
 void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
-	Node* btnnode = (Node*)pSender;
-	int tag = btnnode->getTag();
-	if (type == ui::Widget::TouchEventType::ENDED)
+
+	Node* clicknode = (Node*)pSender;
+	int tag = clicknode->getTag();
+
+	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
+		clickflag = true;
+		beginTouchPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+	}
+	else if (type == ui::Widget::TouchEventType::MOVED)
+	{
+		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+
+		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
+			clickflag = false;
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		if (!clickflag)
+			return;
+
 		switch (tag)
 		{
 		case 1000://购买按钮

@@ -265,8 +265,8 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="MarkedSubImage" Path="ui/pointicon_0.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="50point" ActionTag="-1911511647" Tag="58" IconVisible="False" LeftMargin="-169.7047" RightMargin="120.7047" TopMargin="31.0718" BottomMargin="-48.0718" FontSize="15" LabelText="50积分" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="49.0000" Y="17.0000" />
+              <AbstractNodeData Name="50point" ActionTag="-1911511647" Tag="58" IconVisible="False" LeftMargin="-173.7047" RightMargin="116.7047" TopMargin="29.0718" BottomMargin="-50.0718" FontSize="18" LabelText="50积分" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="57.0000" Y="21.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-145.2047" Y="-39.5718" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -277,8 +277,8 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="100point" ActionTag="-1777987646" Tag="59" IconVisible="False" LeftMargin="-36.2137" RightMargin="-20.7863" TopMargin="31.0718" BottomMargin="-48.0718" FontSize="15" LabelText="100积分" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="57.0000" Y="17.0000" />
+              <AbstractNodeData Name="100point" ActionTag="-1777987646" Tag="59" IconVisible="False" LeftMargin="-40.7137" RightMargin="-25.2863" TopMargin="29.0718" BottomMargin="-50.0718" FontSize="18" LabelText="100积分" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="66.0000" Y="21.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-7.7137" Y="-39.5718" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -289,8 +289,8 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="150point" ActionTag="154071926" Tag="60" IconVisible="False" LeftMargin="105.2773" RightMargin="-162.2773" TopMargin="31.0718" BottomMargin="-48.0718" FontSize="15" LabelText="150积分" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="57.0000" Y="17.0000" />
+              <AbstractNodeData Name="150point" ActionTag="154071926" Tag="60" IconVisible="False" LeftMargin="100.7773" RightMargin="-166.7773" TopMargin="29.0718" BottomMargin="-50.0718" FontSize="18" LabelText="150积分" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="66.0000" Y="21.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="133.7773" Y="-39.5718" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -301,8 +301,8 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="200point" ActionTag="-1272862725" Tag="61" IconVisible="False" LeftMargin="246.7682" RightMargin="-303.7682" TopMargin="31.0718" BottomMargin="-48.0718" FontSize="15" LabelText="200积分" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="57.0000" Y="17.0000" />
+              <AbstractNodeData Name="200point" ActionTag="-1272862725" Tag="61" IconVisible="False" LeftMargin="242.2682" RightMargin="-308.2682" TopMargin="29.0718" BottomMargin="-50.0718" FontSize="18" LabelText="200积分" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="66.0000" Y="21.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="275.2682" Y="-39.5718" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />

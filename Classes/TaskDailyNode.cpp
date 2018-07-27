@@ -74,9 +74,12 @@ bool TaskDailyNode::init(DailyTaskData* data)
 	actionbtn = (cocos2d::ui::Button*)csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(TaskDailyNode::onbtnClick, this));
 	actionbtn->setTag(data->type);
+	actionbtn->setSwallowTouches(false);
 
 	getbtn = (cocos2d::ui::Button*)csbnode->getChildByName("getbtn");
-	getbtn->addTouchEventListener(CC_CALLBACK_2(TaskDailyNode::ongetClick, this));
+	getbtn->addTouchEventListener(CC_CALLBACK_2(TaskDailyNode::onbtnClick, this));
+	getbtn->setTag(1000);
+	getbtn->setSwallowTouches(false);
 
 	taskprobar = (cocos2d::ui::LoadingBar*)csbnode->getChildByName("taskprobar");
 	taskprotext = (cocos2d::ui::Text*)csbnode->getChildByName("taskprotext");
@@ -141,95 +144,114 @@ void TaskDailyNode::updateData(float dt)
 void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
-	if (type == ui::Widget::TouchEventType::ENDED)
+
+	Node* clicknode = (Node*)pSender;
+	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
+		clickflag = true;
+		beginTouchPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+	}
+	else if (type == ui::Widget::TouchEventType::MOVED)
+	{
+		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+
+		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
+			clickflag = false;
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		if (!clickflag)
+			return;
+
 		Node* node = (Node*)pSender;
 		int tag = node->getTag();
-		switch (tag)
+
+		if (tag == 1000)
 		{
-		case FINISH_BRANCH:
-		{
-			TaskLayer* layer = (TaskLayer*)this->getParent()->getParent()->getParent()->getParent();
-			if (layer!=NULL)
+			cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
+			btn->setTouchEnabled(false);
+
+			m_Data->state = DAILY_RECEIVE;
+			GlobalInstance::getInstance()->saveMyDailyTaskData();
+			//积分
+			int m_point = DataSave::getInstance()->getMyyDailyPoint();
+			m_point += m_Data->points;
+			DataSave::getInstance()->setMyDailyPoint(m_point);
+			//物品
+			for (unsigned int i = 0; i < m_Data->goods.size(); i++)
 			{
-				layer->skipContent();
+				std::vector<std::string> one_res = m_Data->goods[i];
+				std::string resid = one_res[0];
+				int count = atoi(one_res[1].c_str());
+				int qu = 0;
+				int stc = 0;
+				if (one_res.size()>2 && one_res[2].length()>0)
+				{
+					qu = atoi(one_res[2].c_str());
+					stc = GlobalInstance::getInstance()->generateStoneCount(qu);
+				}
+
+				MyRes::Add(resid, count, MYSTORAGE, qu, stc);
 			}
 		}
-			break;
-		case FRESH_PUBENLIST:
+		else
 		{
-			InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
-			g_mainScene->addChild(layer, 0, "6innroom");
-		}
-			break;
-		case UPGRADE_HERO:
-		{
-			InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
-			g_mainScene->addChild(layer, 0, "6innroom");
-		}
-			break;
-		case UPGRADE_BUILDING:
-		{
-			SmithyLayer* layer = SmithyLayer::create(Building::map_buildingDatas["2smithy"]);
-			g_mainScene->addChild(layer, 0, "2smithy");
-		}
-			break;
-		case STRENG_EQUIP:
-		{
-			StoreHouseLayer* layer = StoreHouseLayer::create();
-			g_mainScene->addChild(layer, 0, "3storehouse");
-		}
-			break;
-		case STRENG_WG:
-		{
-			StoreHouseLayer* layer = StoreHouseLayer::create();
-			g_mainScene->addChild(layer, 0, "3storehouse");
-		}
-			break;
-		case DECOMPOSE_EQUIP:
-		{
-			StoreHouseLayer* layer = StoreHouseLayer::create();
-			g_mainScene->addChild(layer, 0, "3storehouse");
-		}
-			break;
-		case SET_GEM:
-		{
-			InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
-			g_mainScene->addChild(layer, 0, "6innroom");
-		}
-			break;
-		default:
-			break;
-		}
-	}
-}
-
-void TaskDailyNode::ongetClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
-{
-	CommonFuncs::BtnAction(pSender, type);
-	if (type == ui::Widget::TouchEventType::ENDED)
-	{
-		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
-		btn->setTouchEnabled(false);
-
-		m_Data->state = DAILY_RECEIVE;
-		GlobalInstance::getInstance()->saveMyDailyTaskData();
-		//积分
-		int m_point = DataSave::getInstance()->getMyyDailyPoint();
-		m_point += m_Data->points;
-		DataSave::getInstance()->setMyDailyPoint(m_point);
-		//物品
-		for (unsigned int i = 0; i < m_Data->goods.size(); i++)
-		{
-			std::vector<std::string> one_res = m_Data->goods[i];
-			std::string resid = one_res[0];
-			int count = atoi(one_res[1].c_str());
-			int qu = -1;
-			if (one_res.size()>2 && one_res[2].length()>0)
+			switch (tag)
 			{
-				qu = atoi(one_res[2].c_str());
+			case FINISH_BRANCH:
+			{
+				TaskLayer* layer = (TaskLayer*)this->getParent()->getParent()->getParent()->getParent();
+				if (layer != NULL)
+				{
+					layer->skipContent();
+				}
 			}
-			MyRes::Add(resid, count, MYSTORAGE, qu);
+			break;
+			case FRESH_PUBENLIST:
+			{
+				InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
+				g_mainScene->addChild(layer, 0, "6innroom");
+			}
+			break;
+			case UPGRADE_HERO:
+			{
+				InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
+				g_mainScene->addChild(layer, 0, "6innroom");
+			}
+			break;
+			case UPGRADE_BUILDING:
+			{
+				SmithyLayer* layer = SmithyLayer::create(Building::map_buildingDatas["2smithy"]);
+				g_mainScene->addChild(layer, 0, "2smithy");
+			}
+			break;
+			case STRENG_EQUIP:
+			{
+				StoreHouseLayer* layer = StoreHouseLayer::create();
+				g_mainScene->addChild(layer, 0, "3storehouse");
+			}
+			break;
+			case STRENG_WG:
+			{
+				StoreHouseLayer* layer = StoreHouseLayer::create();
+				g_mainScene->addChild(layer, 0, "3storehouse");
+			}
+			break;
+			case DECOMPOSE_EQUIP:
+			{
+				StoreHouseLayer* layer = StoreHouseLayer::create();
+				g_mainScene->addChild(layer, 0, "3storehouse");
+			}
+			break;
+			case SET_GEM:
+			{
+				InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
+				g_mainScene->addChild(layer, 0, "6innroom");
+			}
+			break;
+			default:
+				break;
+			}
 		}
 	}
 }

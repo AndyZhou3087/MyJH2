@@ -7,7 +7,7 @@
 
 MainMapScene::MainMapScene()
 {
-
+	m_isDraging = false;
 }
 
 
@@ -82,7 +82,7 @@ bool MainMapScene::init()
 
 	listener->onTouchMoved = [=](Touch *touch, Event *event)
 	{
-		if (fabsf(m_startClickX - touch->getLocation().x) > 20 || fabsf(m_startClickY - touch->getLocation().y) > 20)
+		if (fabsf(m_startClickX - touch->getLocation().x) > CLICKOFFSETP || fabsf(m_startClickY - touch->getLocation().y) > CLICKOFFSETP)
 			m_isDraging = true;
 	};
 

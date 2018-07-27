@@ -29,6 +29,9 @@ private:
 	void onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void updateData(float dt);
 	TaskLayer* m_layer;
+
+	bool clickflag;
+	Vec2 beginTouchPoint;
 };
 #endif
 

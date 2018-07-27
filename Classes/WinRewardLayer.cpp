@@ -369,11 +369,28 @@ void WinRewardLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	//}
 
 
-	if (type == ui::Widget::TouchEventType::ENDED)
+	Node* clicknode = (Node*)pSender;
+	int tag = clicknode->getTag();
+
+	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
+		clickflag = true;
+		beginTouchPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+	}
+	else if (type == ui::Widget::TouchEventType::MOVED)
+	{
+		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+
+		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
+			clickflag = false;
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		if (!clickflag)
+			return;
+
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		Node* clicknode = (Node*)pSender;
-		int tag = clicknode->getTag();
+
 		if (tag / 10000 == 0)//点击的是两个scrollview的 0--掉落，1--背包
 		{
 			if (MyRes::getMyPackageCount() + 1 > GlobalInstance::getInstance()->getTotalCarry())

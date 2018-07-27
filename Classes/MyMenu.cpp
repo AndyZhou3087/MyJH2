@@ -195,7 +195,7 @@ void MyMenu::onTouchMoved(Touch* touch, Event* event)
 	if (_state != Menu::State::TRACKING_TOUCH)
 		return;
 
-	if (fabsf(startY - touch->getLocation().y) > 20)
+	if (fabsf(startY - touch->getLocation().y) > 8)
 		m_isdraging = true;
 
 

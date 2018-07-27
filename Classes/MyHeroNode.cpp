@@ -54,9 +54,10 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("myHeroNode.csb"));
 	this->addChild(csbnode);
 
-	cocos2d::ui::Widget* bgitem = (cocos2d::ui::Widget*)csbnode->getChildByName("itembg");
-	bgitem->addTouchEventListener(CC_CALLBACK_2(MyHeroNode::onbgClick, this));
-	bgitem->setSwallowTouches(false);
+	cocos2d::ui::Widget* clickimg = (cocos2d::ui::Widget*)csbnode->getChildByName("clickimg");
+	clickimg->addTouchEventListener(CC_CALLBACK_2(MyHeroNode::onBtnClick, this));
+	clickimg->setTag(1);
+	clickimg->setSwallowTouches(false);
 
 	//头像框
 	headbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("herobox");
@@ -82,6 +83,8 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	//按钮
 	actbtn = (cocos2d::ui::ImageView*)csbnode->getChildByName("actionbtn");
 	actbtn->addTouchEventListener(CC_CALLBACK_2(MyHeroNode::onBtnClick, this));
+	actbtn->setTag(2);
+	actbtn->setSwallowTouches(false);
 
 	silver = (cocos2d::ui::Widget*)csbnode->getChildByName("silver");
 	count = (cocos2d::ui::Text*)silver->getChildByName("count");
@@ -115,14 +118,14 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	if (m_showtype == HS_DEAD)
 	{
 		hpdesc->setVisible(false);
-		bgitem->setTouchEnabled(false);
+		clickimg->setTouchEnabled(false);
 		statetag->setVisible(false);
 		actbtntxt->loadTexture(ResourcePath::makeTextImgPath("cure_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		silver->setVisible(true);
 	}
 	else if (m_showtype == HS_TRAINING)
 	{
-		bgitem->setTouchEnabled(false);
+		clickimg->setTouchEnabled(false);
 		updateContent();
 
 	}
@@ -239,125 +242,10 @@ void MyHeroNode::updateData()
 
 void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	CommonFuncs::BtnAction(pSender, type);
-	if (type == ui::Widget::TouchEventType::ENDED)
-	{
-		if (m_showtype == HS_OWNED)
-		{
-			if (m_heroData->getPotential() >= 2)
-			{
-				InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-				if (innroomLayer != NULL)
-				{
-					std::string potentialstr = StringUtils::format("potential_%d", m_heroData->getVocation());
-					std::string hintstr = StringUtils::format(ResourceLang::map_lang["firecomfirmtext"].c_str(), ResourceLang::map_lang[potentialstr].c_str());
-					HintBoxLayer* hint = HintBoxLayer::create(hintstr, 2);
-					innroomLayer->addChild(hint, 0, this->getTag());
-				}
-			}
-			else
-			{
-				InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-				if (innroomLayer != NULL)
-					innroomLayer->fireHero(this->getTag());
-			}
-		}
-		else if (m_showtype == HS_TAKEON)
-		{
-			SelectMyHerosLayer* selectheroLayer = (SelectMyHerosLayer*)g_mainScene->getChildByName("0outtown")->getChildByName("selectmyheroslayer");
-			int selectIndex = selectheroLayer->getTag();
-			OutTownLayer* outTownLayer = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
-			CardHeroNode* cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(selectIndex);
-			if (m_heroData->getState() == HS_OWNED)
-			{
-				//清楚掉之前选择的
-				for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
-				{
-					if (GlobalInstance::vec_myHeros[i]->getPos() == selectheroLayer->getTag() + 1)
-					{
-						GlobalInstance::vec_myHeros[i]->setState(HS_OWNED);
-						GlobalInstance::vec_myHeros[i]->setPos(0);
-						//selectheroLayer->getMyHeroNode(this->getTag())->setStateTag(HS_OWNED);
-						break;
-					}
-				}
-				m_heroData->setState(HS_TAKEON);
-				m_heroData->setPos(selectIndex + 1);
-				GlobalInstance::myCardHeros[selectIndex] = m_heroData;
-				GlobalInstance::getInstance()->saveMyHeros();
-				setStateTag(HS_TAKEON);
-				
-				cardheroNode->setData(m_heroData);
-				selectheroLayer->removeFromParentAndCleanup(true);
-			}
-			else if (m_heroData->getState() == HS_TAKEON)
-			{
-				int heroinwhere = 0;
-				if (selectIndex + 1 == m_heroData->getPos())//取消框里的那个英雄
-				{
-					heroinwhere = selectIndex;
-				}
-				else//取消另外一个框的英雄
-				{
-					heroinwhere = m_heroData->getPos() - 1;
-					cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(heroinwhere);
-				}
-				GlobalInstance::myCardHeros[heroinwhere] = NULL;
 
-				m_heroData->setState(HS_OWNED);
-				m_heroData->setPos(0);
-				GlobalInstance::getInstance()->saveMyHeros();
-				setStateTag(HS_OWNED);
-				cardheroNode->setData(NULL);
-			}
-			outTownLayer->updateHeroCarry();
-		}
-		else if (m_showtype == HS_DEAD)
-		{
-			DynamicValueInt dval = GlobalInstance::getInstance()->getMySoliverCount();
-			if (dval.getValue() >= (m_heroData->getLevel() + 1) * RSILVERCOUNT)
-			{
-				DynamicValueInt dva;
-				dva.setValue((m_heroData->getLevel() + 1) * RSILVERCOUNT);
-				GlobalInstance::getInstance()->costMySoliverCount(dva);
-
-				m_heroData->setState(HS_OWNED);
-				m_heroData->setHp(m_heroData->getMaxHp());
-				GlobalInstance::getInstance()->saveMyHeros();
-				HospitalLayer* hospitalLayer = (HospitalLayer*)g_mainScene->getChildByName("1hospital");
-				if (hospitalLayer != NULL)
-				{
-					hospitalLayer->updateContent();
-				}
-			}
-			else
-			{
-				MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
-			}
-		}
-		else if (m_showtype == HS_TRAINING)
-		{
-			if (m_heroData->getState() == HS_OWNED)
-			{
-				TrainSelectLayer* layer = TrainSelectLayer::create(m_heroData,this);
-				g_mainScene->addChild(layer, 1, "TrainSelectLayer");
-			}
-			else if (m_heroData->getState() == HS_TRAINING)
-			{
-				TrainHintLayer* layer = TrainHintLayer::create(m_heroData,this);
-				g_mainScene->addChild(layer, 1, "TrainHintLayer");
-			}
-			else if (m_heroData->getState() == HS_TAKEON)
-			{
-				MovingLabel::show(ResourceLang::map_lang["canttrain"]);
-			}
-		}
-	}
-}
-
-void MyHeroNode::onbgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
-{
 	Node* clicknode = (Node*)pSender;
+	if (clicknode->getTag() == 2)
+		CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
 		clickflag = true;
@@ -365,17 +253,134 @@ void MyHeroNode::onbgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 	}
 	else if (type == ui::Widget::TouchEventType::MOVED)
 	{
-		int offsetPexil = 5;
 		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
-		if ((movedPoint.x - beginTouchPoint.x) * (movedPoint.x - beginTouchPoint.x) >= offsetPexil * offsetPexil)
+
+		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
 			clickflag = false;
 	}
+
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		if (clickflag)
+		if (!clickflag)
+			return;
+
+		if (clicknode->getTag() == 1)
 		{
 			Layer* layer = HeroAttrLayer::create(m_heroData);
 			g_mainScene->addChild(layer, 0, this->getTag());
+		}
+		else
+		{
+			if (m_showtype == HS_OWNED)
+			{
+				if (m_heroData->getPotential() >= 2)
+				{
+					InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+					if (innroomLayer != NULL)
+					{
+						std::string potentialstr = StringUtils::format("potential_%d", m_heroData->getVocation());
+						std::string hintstr = StringUtils::format(ResourceLang::map_lang["firecomfirmtext"].c_str(), ResourceLang::map_lang[potentialstr].c_str());
+						HintBoxLayer* hint = HintBoxLayer::create(hintstr, 2);
+						innroomLayer->addChild(hint, 0, this->getTag());
+					}
+				}
+				else
+				{
+					InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+					if (innroomLayer != NULL)
+						innroomLayer->fireHero(this->getTag());
+				}
+			}
+			else if (m_showtype == HS_TAKEON)
+			{
+				SelectMyHerosLayer* selectheroLayer = (SelectMyHerosLayer*)g_mainScene->getChildByName("0outtown")->getChildByName("selectmyheroslayer");
+				int selectIndex = selectheroLayer->getTag();
+				OutTownLayer* outTownLayer = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
+				CardHeroNode* cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(selectIndex);
+				if (m_heroData->getState() == HS_OWNED)
+				{
+					//清楚掉之前选择的
+					for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+					{
+						if (GlobalInstance::vec_myHeros[i]->getPos() == selectheroLayer->getTag() + 1)
+						{
+							GlobalInstance::vec_myHeros[i]->setState(HS_OWNED);
+							GlobalInstance::vec_myHeros[i]->setPos(0);
+							//selectheroLayer->getMyHeroNode(this->getTag())->setStateTag(HS_OWNED);
+							break;
+						}
+					}
+					m_heroData->setState(HS_TAKEON);
+					m_heroData->setPos(selectIndex + 1);
+					GlobalInstance::myCardHeros[selectIndex] = m_heroData;
+					GlobalInstance::getInstance()->saveMyHeros();
+					setStateTag(HS_TAKEON);
+
+					cardheroNode->setData(m_heroData);
+					selectheroLayer->removeFromParentAndCleanup(true);
+				}
+				else if (m_heroData->getState() == HS_TAKEON)
+				{
+					int heroinwhere = 0;
+					if (selectIndex + 1 == m_heroData->getPos())//取消框里的那个英雄
+					{
+						heroinwhere = selectIndex;
+					}
+					else//取消另外一个框的英雄
+					{
+						heroinwhere = m_heroData->getPos() - 1;
+						cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(heroinwhere);
+					}
+					GlobalInstance::myCardHeros[heroinwhere] = NULL;
+
+					m_heroData->setState(HS_OWNED);
+					m_heroData->setPos(0);
+					GlobalInstance::getInstance()->saveMyHeros();
+					setStateTag(HS_OWNED);
+					cardheroNode->setData(NULL);
+				}
+				outTownLayer->updateHeroCarry();
+			}
+			else if (m_showtype == HS_DEAD)
+			{
+				DynamicValueInt dval = GlobalInstance::getInstance()->getMySoliverCount();
+				if (dval.getValue() >= (m_heroData->getLevel() + 1) * RSILVERCOUNT)
+				{
+					DynamicValueInt dva;
+					dva.setValue((m_heroData->getLevel() + 1) * RSILVERCOUNT);
+					GlobalInstance::getInstance()->costMySoliverCount(dva);
+
+					m_heroData->setState(HS_OWNED);
+					m_heroData->setHp(m_heroData->getMaxHp());
+					GlobalInstance::getInstance()->saveMyHeros();
+					HospitalLayer* hospitalLayer = (HospitalLayer*)g_mainScene->getChildByName("1hospital");
+					if (hospitalLayer != NULL)
+					{
+						hospitalLayer->updateContent();
+					}
+				}
+				else
+				{
+					MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
+				}
+			}
+			else if (m_showtype == HS_TRAINING)
+			{
+				if (m_heroData->getState() == HS_OWNED)
+				{
+					TrainSelectLayer* layer = TrainSelectLayer::create(m_heroData, this);
+					g_mainScene->addChild(layer, 1, "TrainSelectLayer");
+				}
+				else if (m_heroData->getState() == HS_TRAINING)
+				{
+					TrainHintLayer* layer = TrainHintLayer::create(m_heroData, this);
+					g_mainScene->addChild(layer, 1, "TrainHintLayer");
+				}
+				else if (m_heroData->getState() == HS_TAKEON)
+				{
+					MovingLabel::show(ResourceLang::map_lang["canttrain"]);
+				}
+			}
 		}
 	}
 }

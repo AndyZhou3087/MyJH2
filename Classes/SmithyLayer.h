@@ -47,6 +47,9 @@ private:
 	int lastCategoryindex;
 	int langtype;
 	cocos2d::ui::Text* lvUIlbl;
+
+	bool clickflag;
+	Vec2 beginTouchPoint;
 };
 
 #endif

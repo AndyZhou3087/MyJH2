@@ -6,6 +6,7 @@
 #include "MovingLabel.h"
 #include "TaskBranchNode.h"
 #include "TaskBranchDescLayer.h"
+#include "Const.h"
 
 TaskBranchNode::TaskBranchNode()
 {
@@ -91,8 +92,24 @@ void TaskBranchNode::updateData(float dt)
 
 void TaskBranchNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	if (type == ui::Widget::TouchEventType::ENDED)
+	Node* clicknode = (Node*)pSender;
+	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
+		clickflag = true;
+		beginTouchPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+	}
+	else if (type == ui::Widget::TouchEventType::MOVED)
+	{
+		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+
+		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
+			clickflag = false;
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		if (!clickflag)
+			return;
+
 		Node* node = TaskBranchDescLayer::create(m_Data);
 		if (m_layer != NULL)
 		{
