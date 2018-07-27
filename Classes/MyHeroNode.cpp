@@ -95,6 +95,7 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 
 	//按钮文字
 	actbtntxt = (cocos2d::ui::ImageView*)actbtn->getChildByName("text");
+	actbtntxt->ignoreContentAdaptWithSize(true);
 
 	statetag = (cocos2d::ui::ImageView*)csbnode->getChildByName("tag");
 
@@ -123,10 +124,17 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 		actbtntxt->loadTexture(ResourcePath::makeTextImgPath("cure_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		silver->setVisible(true);
 	}
+	else if (m_showtype == HS_OWNED)
+	{
+		if (m_heroData->getState() == HS_TRAINING)
+		{
+			actbtntxt->loadTexture(ResourcePath::makeTextImgPath("traindoing_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		}
+	}
 	else if (m_showtype == HS_TRAINING)
 	{
 		clickimg->setTouchEnabled(false);
-		updateContent();
+		changeBtnContent();
 
 	}
 	if (m_heroData->getPower().getValue() >= 100)
@@ -141,7 +149,7 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	return true;
 }
 
-void MyHeroNode::updateContent()
+void MyHeroNode::changeBtnContent()
 {
 	if (m_heroData->getState() == HS_TRAINING)
 	{
@@ -242,7 +250,6 @@ void MyHeroNode::updateData()
 
 void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-
 	Node* clicknode = (Node*)pSender;
 	if (clicknode->getTag() == 2)
 		CommonFuncs::BtnAction(pSender, type);
@@ -266,6 +273,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 		if (clicknode->getTag() == 1)
 		{
+
 			Layer* layer = HeroAttrLayer::create(m_heroData);
 			g_mainScene->addChild(layer, 0, this->getTag());
 		}
@@ -273,6 +281,12 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		{
 			if (m_showtype == HS_OWNED)
 			{
+				if (m_heroData->getState() == HS_TRAINING)
+				{
+					MovingLabel::show(ResourceLang::map_lang["herotraining"]);
+					return;
+				}
+
 				if (m_heroData->getPotential() >= 2)
 				{
 					InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
@@ -407,14 +421,18 @@ void MyHeroNode::setStateTag(int state)
 	}
 	else
 	{
+		btntextstr = "firebtn_text";
+
 		if (state == HS_TAKEON)
 		{
 			statetag->setVisible(true);
 			statetag->loadTexture(ResourcePath::makePath("ui/herotag_0.png"), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 		else
+		{
 			statetag->setVisible(false);
-		btntextstr = "firebtn_text";
+		}
+
 	}
 	if (statetag->isVisible())
 	{

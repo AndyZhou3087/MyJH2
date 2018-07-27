@@ -115,7 +115,7 @@ void SelectMyHerosLayer::refreshMyHerosUi()
 	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 	{
 		Hero* herodata = GlobalInstance::vec_myHeros[i];
-		if (herodata->getState() != HS_DEAD)
+		if (herodata->getState() != HS_DEAD && herodata->getState() != HS_TRAINING)
 			count++;
 	}
 

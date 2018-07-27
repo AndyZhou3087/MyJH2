@@ -422,7 +422,8 @@ void WinRewardLayer::longTouchAction(int tag)
 			MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
 			return;
 		}
-		if (tag % 10000 < vec_dropdownres.size())
+		int ressize = vec_dropdownres.size();
+		if (tag % 10000 < ressize)
 		{
 			ResBase* res = vec_dropdownres[tag % 10000];//clicknode->getUserData();
 			reduceDropRes(res, 1, tag % 10000);
@@ -434,7 +435,8 @@ void WinRewardLayer::longTouchAction(int tag)
 	}
 	else if (tag / 10000 == 1)
 	{
-		if (tag % 10000 < vec_mypackagres.size())
+		int pacsize = vec_mypackagres.size();
+		if (tag % 10000 < pacsize)
 		{
 			ResBase* res = vec_mypackagres[tag % 10000];//(ResBase*)clicknode->getUserData();
 			addDropRes(res);

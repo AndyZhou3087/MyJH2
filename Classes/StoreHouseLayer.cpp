@@ -107,15 +107,10 @@ void StoreHouseLayer::updateContent(int category)
 	}
 
 	int itemheight = 160;
-	int ressize = MyRes::vec_MyResources.size();
 
 	map_cateRes.clear();
 	loadData();
-	if (category != 0)
-	{
-		ressize = map_cateRes[category].size();
-	}
-	else
+	if (category == 0)
 	{
 		int catasort[] = { CATA_3 , CATA_1, CATA_2 };
 		for (int i = 0; i < 3; i++)
@@ -123,6 +118,7 @@ void StoreHouseLayer::updateContent(int category)
 			map_cateRes[category].insert(map_cateRes[category].end(), map_cateRes[catasort[i]].begin(), map_cateRes[catasort[i]].end());
 		}
 	}
+	int ressize = map_cateRes[category].size();
 	int row = ressize % 4 == 0 ? ressize / 4 : (ressize / 4 + 1);
 	int innerheight = itemheight * row;
 
