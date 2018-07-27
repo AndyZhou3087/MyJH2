@@ -773,6 +773,8 @@
           <Image Name="s004.png" />
           <Image Name="setpline0.png" />
           <Image Name="smallstar.png" />
+          <Image Name="strentharrow.png" />
+          <Image Name="strenthicon.png" />
           <Image Name="taskbtn.png" />
           <Image Name="taskdailybigbar.png" />
           <Image Name="taskdailybigbg.png" />
@@ -916,6 +918,7 @@
         <Project Name="simpleLayer.csd" Type="Layer" />
         <Project Name="smithyLayer.csd" Type="Layer" />
         <Project Name="storeHouseLayer.csd" Type="Layer" />
+        <Project Name="strengthenLayer.csd" Type="Layer" />
         <Project Name="takeOnLayer.csd" Type="Layer" />
         <Project Name="taskDayNode.csd" Type="Node" />
         <Project Name="taskLayer.csd" Type="Layer" />
