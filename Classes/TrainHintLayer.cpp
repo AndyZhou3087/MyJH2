@@ -111,7 +111,7 @@ void TrainHintLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				m_herodata->setTrainHour(0);
 				m_herodata->setTrainTime(0);
 				m_herodata->setState(HS_OWNED);
-				myheroNode->updateContent();
+				myheroNode->changeBtnContent();
 			}
 			this->removeFromParentAndCleanup(true);
 		default:

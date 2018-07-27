@@ -228,7 +228,7 @@ void TrainSelectLayer::action()
 	m_data->setState(HS_TRAINING);
 	m_data->setTrainHour(timeCount[lastSelectIndex]);
 	m_data->setTrainTime(GlobalInstance::servertime);
-	myheroNode->updateContent();
+	myheroNode->changeBtnContent();
 }
 
 void TrainSelectLayer::updateUI()

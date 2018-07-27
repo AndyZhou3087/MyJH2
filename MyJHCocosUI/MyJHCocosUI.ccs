@@ -457,6 +457,7 @@
           <Image Name="makeresbtn_text.png" />
           <Image Name="mapbtn_text.png" />
           <Image Name="mappackbtn_text.png" />
+          <Image Name="maptask_title.png" />
           <Image Name="marketlvup_text.png" />
           <Image Name="markettitle.png" />
           <Image Name="mypackagetitle.png" />
@@ -506,6 +507,7 @@
           <Image Name="taskfinish.png" />
           <Image Name="train_text.png" />
           <Image Name="traincoin_text.png" />
+          <Image Name="traindoing_text.png" />
           <Image Name="training_text.png" />
           <Image Name="trainlv_text.png" />
           <Image Name="trainstart_text.png" />
