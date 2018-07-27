@@ -421,14 +421,14 @@
           <Image Name="m922-6.png" />
           <Image Name="m922-8.png" />
           <Image Name="m922-9.png" />
-          <Image Name="m92-6.png" />
+          <Image Name="m4-4.png" />
           <Image Name="m92-7.png" />
           <Image Name="m92-8.png" />
           <Image Name="m92-9.png" />
           <Image Name="m93-2.png" />
           <Image Name="m93-3.png" />
           <Image Name="m93-5.png" />
-          <Image Name="m93-6.png" />
+          <Image Name="m4-3.png" />
           <Image Name="m93-7.png" />
           <Image Name="m93-8.png" />
           <Image Name="m93-9.png" />
@@ -773,8 +773,6 @@
           <Image Name="s004.png" />
           <Image Name="setpline0.png" />
           <Image Name="smallstar.png" />
-          <Image Name="strentharrow.png" />
-          <Image Name="strenthicon.png" />
           <Image Name="taskbtn.png" />
           <Image Name="taskdailybigbar.png" />
           <Image Name="taskdailybigbg.png" />
@@ -918,7 +916,6 @@
         <Project Name="simpleLayer.csd" Type="Layer" />
         <Project Name="smithyLayer.csd" Type="Layer" />
         <Project Name="storeHouseLayer.csd" Type="Layer" />
-        <Project Name="strengthenLayer.csd" Type="Layer" />
         <Project Name="takeOnLayer.csd" Type="Layer" />
         <Project Name="taskDayNode.csd" Type="Node" />
         <Project Name="taskLayer.csd" Type="Layer" />
