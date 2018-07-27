@@ -362,6 +362,8 @@
       <FilePathData Path="ui/cardvocation8.png" />
       <FilePathData Path="ui/cardvocation9.png" />
       <FilePathData Path="ui/cardvocationbox.png" />
+      <FilePathData Path="ui/strentharrow.png" />
+      <FilePathData Path="ui/strenthicon.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

@@ -72,7 +72,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="hidebtn" ActionTag="813293269" Tag="30" IconVisible="False" LeftMargin="94.5982" RightMargin="-128.5982" TopMargin="-105.2363" BottomMargin="77.2363" TouchEnable="True" FlipX="True" LeftEage="11" RightEage="11" TopEage="9" BottomEage="9" Scale9OriginX="11" Scale9OriginY="9" Scale9Width="12" Scale9Height="10" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="hideicon" ActionTag="813293269" Tag="30" IconVisible="False" LeftMargin="94.5982" RightMargin="-128.5982" TopMargin="-105.2363" BottomMargin="77.2363" TouchEnable="True" FlipX="True" LeftEage="11" RightEage="11" TopEage="9" BottomEage="9" Scale9OriginX="11" Scale9OriginY="9" Scale9Width="12" Scale9Height="10" ctype="ImageViewObjectData">
             <Size X="34.0000" Y="28.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="111.5982" Y="91.2363" />
@@ -91,6 +91,16 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/maptask_title.png" Plist="text_zh_cn.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="hidebtn" ActionTag="1524960230" Tag="167" IconVisible="False" LeftMargin="-90.7052" RightMargin="-129.2948" TopMargin="-108.7560" BottomMargin="72.7560" TouchEnable="True" Scale9Enable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+            <Size X="220.0000" Y="36.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="19.2948" Y="90.7560" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>
