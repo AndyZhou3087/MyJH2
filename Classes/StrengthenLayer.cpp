@@ -11,6 +11,7 @@
 #include "SelectEquipLayer.h"
 #include "EquipDescLayer.h"
 #include "Quest.h"
+#include "MovingLabel.h"
 
 #define SLIVERCOUNT 100
 
@@ -22,7 +23,7 @@ StrengthenLayer::StrengthenLayer()
 
 StrengthenLayer::~StrengthenLayer()
 {
-	
+	MyRes::saveData();
 }
 
 
@@ -95,8 +96,13 @@ bool StrengthenLayer::init(Equip* res_equip)
 
 		str = StringUtils::format("rescount_%d", i);
 		cocos2d::ui::Text* rescount = (cocos2d::ui::Text*)csbnode->getChildByName(str);
-		str = StringUtils::format("%d/%d", MyRes::getMyResCount(restr), m_equip->getLv().getValue());
+		str = StringUtils::format("%d/%d", MyRes::getMyResCount(restr), m_equip->getLv().getValue());//一级需求一个
 		rescount->setString(str);
+
+		if (MyRes::getMyResCount(restr) < m_equip->getLv().getValue())
+		{
+			rescount->setColor(Color3B(255, 0, 0));
+		}
 	}
 
 	cocos2d::ui::Text* tipstext = (cocos2d::ui::Text*)csbnode->getChildByName("tipstext");
@@ -143,9 +149,56 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Node* btnnode = (Node*)pSender;
-		int tag = btnnode->getTag();
-		
+		if (m_equip->getLv().getValue() >= sizeof(COSTLV) / sizeof(COSTLV[0]))
+		{
+			MovingLabel::show(ResourceLang::map_lang["mostlv"]);
+			return;
+		}
 
+		for (int i = 0; i < 3; i++)
+		{
+			std::string restr = StringUtils::format("q00%d", i + 1);
+			if (MyRes::getMyResCount(restr) < m_equip->getLv().getValue())
+			{
+				MovingLabel::show(ResourceLang::map_lang["reslack"]);
+				return;
+			}
+		}
+		if (GlobalInstance::getInstance()->getMySoliverCount().getValue() < SLIVERCOUNT)
+		{
+			MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
+			return;
+		}
+
+		for (int i = 0; i < 3; i++)
+		{
+			std::string restr = StringUtils::format("q00%d", i + 1);
+			if (MyRes::getMyResCount(restr) >= m_equip->getLv().getValue())
+			{
+				MyRes::Use(restr);
+			}
+		}
+		DynamicValueInt dvl;
+		dvl.setValue(SLIVERCOUNT);
+		GlobalInstance::getInstance()->costMySoliverCount(dvl);
+
+		int r = GlobalInstance::getInstance()->createRandomNum(1000);
+		int odds = ODDS[m_equip->getLv().getValue() - 1] * 10;
+		if (r <= odds)
+		{
+			DynamicValueInt elv;
+			elv.setValue(m_equip->getLv().getValue() + 1);
+			m_equip->setLv(elv);
+
+			MovingLabel::show(ResourceLang::map_lang["strengthsuccess"]);
+		}
+		else
+		{
+			DynamicValueInt elv;
+			elv.setValue(m_equip->getLv().getValue() - COSTLV[m_equip->getLv().getValue() - 1]);
+			m_equip->setLv(elv);
+			MovingLabel::show(ResourceLang::map_lang["strengthfail"]);
+		}
+		this->removeFromParentAndCleanup(true);
 	}
 }
