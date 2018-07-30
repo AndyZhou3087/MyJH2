@@ -7,6 +7,7 @@
 #include "MyRes.h"
 #include "StoreHouseLayer.h"
 #include "HeroAttrLayer.h"
+#include "WgLvLayer.h"
 
 USING_NS_CC;
 
@@ -133,10 +134,16 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	prominuslb->setVisible(false);
 
 
-	//按钮
+	//按钮1
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(EquipDescLayer::onBtnClick, this));
 	cocos2d::ui::ImageView* srefreshbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
+	//按钮2
+	cocos2d::ui::Widget* lvbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("lvbtn");
+	lvbtn->setTag(1);
+	lvbtn->addTouchEventListener(CC_CALLBACK_2(EquipDescLayer::onBtnClick, this));
+	cocos2d::ui::ImageView* lvbtntxt = (cocos2d::ui::ImageView*)lvbtn->getChildByName("text");
+	lvbtntxt->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	if (fromwhere == 0)//仓库进入
 	{
 		if (GlobalInstance::map_AllResources[res->getId()].vec_needres.size() > 0)
@@ -145,8 +152,8 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 			srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("decomposebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 		else {
-			status = S_EQUIP_OTHER;
-			srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("okbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			status = S_EQUIP_WGLV;
+			srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 	}
 	else if (fromwhere == 1)//takeon界面查看套装装备信息
@@ -158,6 +165,8 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		status = S_EQUIP_TAKEOFF;
 
 		srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("takeoffbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		actionbtn->setPositionX(240);
+		lvbtn->setVisible(true);
 	}
 	else if (fromwhere == 3)//选择功法
 	{
@@ -187,6 +196,8 @@ void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		Node* node = (Node*)pSender;
+		int tag = node->getTag();
 		if (status == S_EQUIP_DECOMPOSE)
 		{
 			StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
@@ -196,9 +207,17 @@ void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		}
 		else if (status == S_EQUIP_TAKEOFF)
 		{
-			HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent();
-			heroAttrLayer->takeOff(m_res);
-			this->removeFromParentAndCleanup(true);
+			if (tag == 1)
+			{
+				WgLvLayer* wglayer = WgLvLayer::create(m_res);
+				this->addChild(wglayer);
+			}
+			else
+			{
+				HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent();
+				heroAttrLayer->takeOff(m_res);
+				this->removeFromParentAndCleanup(true);
+			}
 		}
 		else if (status == S_EQUIP_SEL)
 		{
@@ -206,7 +225,11 @@ void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			heroAttrLayer->takeOn(m_res);
 			this->getParent()->removeFromParentAndCleanup(true);
 		}
-
+		else if (status == S_EQUIP_WGLV)
+		{
+			WgLvLayer* wglayer = WgLvLayer::create(m_res);
+			this->addChild(wglayer);
+		}
 	}
 }
 

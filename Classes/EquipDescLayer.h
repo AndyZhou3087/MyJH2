@@ -12,7 +12,7 @@ typedef enum
 	S_EQUIP_SEL,
 	S_EQUIP_DECOMPOSE,
 	S_EQUIP_TAKEOFF,
-	S_EQUIP_OTHER
+	S_EQUIP_WGLV
 }S_EQUIP_STATUS;
 class EquipDescLayer : public cocos2d::Layer
 {
