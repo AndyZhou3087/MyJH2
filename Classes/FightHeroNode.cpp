@@ -367,3 +367,38 @@ void FightHeroNode::setFightState(int winexp)
 		CommonFuncs::changeGray(retbox);
 	}
 }
+
+void FightHeroNode::playSkill(int stype, Npc* data)
+{
+	std::string skillid = StringUtils::format("sk%03d", stype);
+	if (m_Data != NULL)
+	{
+		if (stype == SKILL_1)
+		{
+			float eff = GlobalInstance::map_GF[skillid].skilleff1;
+			m_Data->setHp(m_Data->getHp() + eff*data->getHp() / 100);
+			if (m_Data->getHp() + eff*data->getHp() / 100 > m_Data->getMaxHp())
+				m_Data->setHp(m_Data->getMaxHp());
+
+			float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
+			hp_bar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
+		}
+		else if (stype = SKILL_2)
+		{
+
+		}
+	}
+
+}
+void FightHeroNode::attackedSkill(int stype, Npc* data)
+{
+	std::string skillid = StringUtils::format("sk%03d", stype);
+	if (m_Data != NULL)
+	{
+		if (stype == SKILL_1)
+		{
+			float eff = GlobalInstance::map_GF[skillid].skilleff1;
+			hurt(eff*data->getHp() / 100);
+		}
+	}
+}

@@ -25,6 +25,8 @@ public:
 
 	//1--Ê¤Àû£¬0-Ê§°Ü,-1Õ½¶·ÖÐ
 	int checkFightResult();
+
+	int checkWgSkill(Npc* data, int npctype);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 

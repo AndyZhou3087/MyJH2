@@ -74,6 +74,9 @@ typedef struct
 	std::string name;
 	std::vector<float> vec_herobns;//对应英雄职业加成
 	std::vector<int> vec_skillbns;//技能加成
+	int skillrnd;
+	float skilleff1;
+	float skilleff2;
 	int skill;
 	int qu;
 	std::vector<int> vec_hp;
@@ -188,6 +191,13 @@ typedef struct
 	std::string name;
 	int vocation;
 }NPCData;
+
+typedef enum
+{
+	SKILL_1,//技能
+	SKILL_2,
+	SKILL_3,
+}SKILLTYPE;
 
 class GlobalInstance
 {

@@ -987,7 +987,8 @@ void GlobalInstance::loadGFData()
 			data.qu = atoi(v.GetString());
 
 			v = jsonvalue["skill"];
-			data.skill = atoi(v.GetString());
+			std::string skillstr = v.GetString();
+			data.skill = atoi(skillstr.substr(2).c_str());
 
 			v = jsonvalue["skillbns"];
 
@@ -995,6 +996,15 @@ void GlobalInstance::loadGFData()
 			{
 				data.vec_skillbns.push_back(v[m].GetInt());
 			}
+
+			v = jsonvalue["rnd"];
+			int skillrnd = atoi(v.GetString());
+
+			v = jsonvalue["skef"];
+			float skilleff1 = atof(v.GetString());
+
+			v = jsonvalue["skef1"];
+			float skilleff2 = atof(v.GetString());
 			
 			v = jsonvalue["maxhp"];
 			for (unsigned  int m = 0; m < v.Size(); m++)

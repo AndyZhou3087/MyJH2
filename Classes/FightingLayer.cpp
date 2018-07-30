@@ -169,7 +169,7 @@ void FightingLayer::resumeAtkSchedule()
 
 void FightingLayer::showAtk(Npc* ndata)
 {
-	if (ndata->getId().length() <= 0)
+	if (ndata->getId().length() <= 0)//×Ô¼ºÓ¢ÐÛ¹¥»÷
 	{
 		for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
 		{
@@ -178,14 +178,22 @@ void FightingLayer::showAtk(Npc* ndata)
 				FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + i);
 				if (fnode->isVisible() && ndata->getHp() > 0)
 				{
-					float atkhp = ndata->getAtk();
-					fnode->hurt(atkhp);
+					int stype = checkWgSkill(ndata, 0);
+					if (stype >= 0)
+					{
+						fnode->playSkill(stype, m_enemyHeros[i]);
+					}
+					else
+					{
+						float atkhp = ndata->getAtk();
+						fnode->hurt(atkhp);
+					}
 					break;
 				}
 			}
 		}
 	}
-	else
+	else//NPC¹¥»÷
 	{
 		for (unsigned int i = 0; i < 6; i++)
 		{
@@ -202,6 +210,31 @@ void FightingLayer::showAtk(Npc* ndata)
 			}
 		}
 	}	
+}
+
+int FightingLayer::checkWgSkill(Npc* data, int npctype)
+{
+	if (npctype == 0)//×Ô¼ºÓ¢ÐÛ
+	{
+		Hero* myhero = (Hero*)data;
+		ResBase* res = MyRes::getMyPutOnResByType(T_WG, myhero->getName());
+		if (res != NULL)
+		{
+			if (GlobalInstance::map_GF[res->getId()].vec_skillbns[myhero->getVocation()] == 1)
+			{
+				int r = GlobalInstance::getInstance()->createRandomNum(100);
+				if (r < GlobalInstance::map_GF[res->getId()].skillrnd)
+				{
+					return GlobalInstance::map_GF[res->getId()].skill;
+				}
+			}
+		}
+	}
+	else//NPC
+	{
+
+	}
+	return -1;
 }
 
 int FightingLayer::checkFightResult()
