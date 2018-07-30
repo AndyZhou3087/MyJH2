@@ -15,7 +15,25 @@ DynamicValueInt GongFa::getLv()
 {
 	DynamicValueInt dvint;
 	dvint.setValue(0);
+
+	int size = GlobalInstance::map_GF[getId()].vec_exp.size();
+	int curlvExp = 0;
+	for (int i = 0; i < size; i++)
+	{
+		curlvExp += GlobalInstance::map_GF[getId()].vec_exp[i];
+		if (m_exp.getValue() < curlvExp)
+		{
+			dvint.setValue(i);
+			return dvint;
+		}
+	}
+
 	return dvint;
+}
+
+int GongFa::getMaxLv()
+{
+	return GlobalInstance::map_GF[getId()].vec_atk.size() - 1;
 }
 
 //攻击

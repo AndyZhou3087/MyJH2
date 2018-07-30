@@ -1048,6 +1048,12 @@ void GlobalInstance::loadGFData()
 				data.vec_herobns.push_back(v[m].GetFloat());
 			}
 
+			v = jsonvalue["exp"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_exp.push_back(v[m].GetInt());
+			}
+
 			map_GF[data.id] = data;
 		}
 	}

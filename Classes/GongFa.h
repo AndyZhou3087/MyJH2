@@ -19,6 +19,9 @@ public:
 public:
 
 	//攻击
+	int getMaxLv();
+
+	//攻击
 	float getAtk();
 
 	//防御

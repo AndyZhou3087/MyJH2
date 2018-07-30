@@ -85,6 +85,7 @@ typedef struct
 	std::vector<float> vec_avoid;//闪避率
 	std::vector<float> vec_crit;//暴击率
 	std::vector<float> vec_speed;//攻击速度
+	std::vector<int> vec_exp;//等级经验
 }GFData;
 
 typedef enum

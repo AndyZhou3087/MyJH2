@@ -211,6 +211,7 @@ void HeroLvupLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	{
 		if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
 		{
+			MovingLabel::show(ResourceLang::map_lang["wgmostlv"]);
 			return;
 		}
 

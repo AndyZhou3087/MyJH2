@@ -129,12 +129,14 @@
 	<s name="hintrefresh">是否放弃当前%s级角色重新刷新？</s>	
 	<s name="recruitsucc">招募成功！</s>
 	<s name="firecomfirmtext">是否解雇当前%s级角色？</s>
-<<<<<<< HEAD
 	<s name="nomoreres">装不下更多资源了</s>	
 	<s name="strengthtitle">强化装备</s>
 	<s name="tipsstrengthtext">成功率%.2f%%（失败后降%d级）</s>
 	<s name="tipsstrengthtext1">成功率%.2f%%（失败后不降级）</s>
-=======
-	<s name="herotraining">正在训练中...</s>		
->>>>>>> 6ae92037deb4a9df0e7d03a89cef5b997ffe2ef7
+	<s name="herotraining">正在训练中...</s>
+	<s name="mostlv">已强化到最高级</s>
+	<s name="strengthsuccess">强化成功</s>
+	<s name="strengthfail">强化失败</s>
+	<s name="wglvtips">点击材料可增加经验值</s>
+	<s name="wgmostlv">等级已达到最高级</s>
 </strings>

@@ -406,6 +406,8 @@
           <Image Name="m3-3.png" />
           <Image Name="m4-1.png" />
           <Image Name="m4-2.png" />
+          <Image Name="m4-3.png" />
+          <Image Name="m4-4.png" />
           <Image Name="m55-1.png" />
           <Image Name="m55-10.png" />
           <Image Name="m55-3.png" />
@@ -421,14 +423,12 @@
           <Image Name="m922-6.png" />
           <Image Name="m922-8.png" />
           <Image Name="m922-9.png" />
-          <Image Name="m4-4.png" />
           <Image Name="m92-7.png" />
           <Image Name="m92-8.png" />
           <Image Name="m92-9.png" />
           <Image Name="m93-2.png" />
           <Image Name="m93-3.png" />
           <Image Name="m93-5.png" />
-          <Image Name="m4-3.png" />
           <Image Name="m93-7.png" />
           <Image Name="m93-8.png" />
           <Image Name="m93-9.png" />
@@ -512,9 +512,13 @@
           <Image Name="trainlv_text.png" />
           <Image Name="trainstart_text.png" />
           <Image Name="usebtn_text.png" />
+          <Image Name="wgcurtext.png" />
+          <Image Name="wglv_text.png" />
+          <Image Name="wgnexttext.png" />
           <Image Name="windeath_text.png" />
           <Image Name="winlvup_text.png" />
           <Image Name="winrewardtitle.png" />
+          <Image Name="wxquatext.png" />
         </Folder>
         <Folder Name="ui">
           <Image Name="a001.png" />
@@ -826,6 +830,7 @@
           <Image Name="w034.png" />
           <Image Name="w035.png" />
           <Image Name="w036.png" />
+          <Image Name="wglvframe.png" />
           <Image Name="x001.png" />
           <Image Name="x002.png" />
           <Image Name="x003.png" />
@@ -916,6 +921,7 @@
         <Project Name="simpleLayer.csd" Type="Layer" />
         <Project Name="smithyLayer.csd" Type="Layer" />
         <Project Name="storeHouseLayer.csd" Type="Layer" />
+        <Project Name="strengthenLayer.csd" Type="Layer" />
         <Project Name="takeOnLayer.csd" Type="Layer" />
         <Project Name="taskDayNode.csd" Type="Node" />
         <Project Name="taskLayer.csd" Type="Layer" />
@@ -928,6 +934,7 @@
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="wgLvLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

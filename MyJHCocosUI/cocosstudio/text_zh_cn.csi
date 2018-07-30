@@ -171,6 +171,10 @@
       <FilePathData Path="text_zh_cn/cancelbtn_text.png" />
       <FilePathData Path="text_zh_cn/traindoing_text.png" />
       <FilePathData Path="text_zh_cn/maptask_title.png" />
+      <FilePathData Path="text_zh_cn/wglv_text.png" />
+      <FilePathData Path="text_zh_cn/wxquatext.png" />
+      <FilePathData Path="text_zh_cn/wgcurtext.png" />
+      <FilePathData Path="text_zh_cn/wgnexttext.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

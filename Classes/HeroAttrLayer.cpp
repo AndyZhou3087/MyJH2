@@ -266,7 +266,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("backbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			if (herostate == HS_READY)
+			if (herostate == HS_READY || herostate == HS_TAKEON)
 			{
 				btn->setPositionX(500);
 			}
@@ -274,7 +274,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 			{
 				btn->setPositionX(600);
 			}
-			else if (herostate == HS_TAKEON || herostate == HS_TRAINING)
+			else if (herostate == HS_TRAINING)
 			{
 				btn->setPositionX(360);
 			}
@@ -283,9 +283,13 @@ bool HeroAttrLayer::init(Hero* herodata)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			if (herostate == HS_READY || herostate == HS_TAKEON || herostate == HS_TRAINING)
+			if (herostate == HS_READY || herostate == HS_TRAINING)
 			{
 				btn->setVisible(false);
+			}
+			else if (herostate == HS_TAKEON)
+			{
+				btn->setPositionX(220);
 			}
 			else if (herostate == HS_OWNED)
 			{
