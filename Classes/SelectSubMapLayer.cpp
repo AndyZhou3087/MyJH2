@@ -123,9 +123,10 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 		strdesc = StringUtils::format(ResourceLang::map_lang["awarddesc"].c_str(), tmp.c_str());
 		awarddesc->setString(strdesc);
 
-		cocos2d::ui::Widget* item = (cocos2d::ui::Widget*)subnode->getChildByName("item");
+		cocos2d::ui::ImageView* item = (cocos2d::ui::ImageView*)subnode->getChildByName("item");
 		item->setTag(i+1);
 		item->addTouchEventListener(CC_CALLBACK_2(SelectSubMapLayer::onNodeClick, this));
+		item->setSwallowTouches(false);
 		i++;
 	}
 
@@ -154,9 +155,24 @@ void SelectSubMapLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::T
 
 void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	if (type == ui::Widget::TouchEventType::ENDED)
+	cocos2d::ui::ImageView* clicknode = (cocos2d::ui::ImageView*)pSender;
+	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
-		Node* clicknode = (Node*)pSender;
+		clickflag = true;
+		beginTouchPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+	}
+	else if (type == ui::Widget::TouchEventType::MOVED)
+	{
+		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+
+		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
+			clickflag = false;
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		if (!clickflag)
+			return;
+
 		showCloudAnim(clicknode->getParent()->getParent(), clicknode->getParent()->getPosition());
 		std::string mapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag());
 		int needph = GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].ph;
@@ -188,6 +204,7 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 					GlobalInstance::getInstance()->saveHero(GlobalInstance::myCardHeros[i]);
 				}
 			}
+			clicknode->setTouchEnabled(false);
 			Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene(mapid)));
 		}
 		else

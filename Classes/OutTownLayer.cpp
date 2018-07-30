@@ -62,7 +62,7 @@ bool OutTownLayer::init()
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("outtowntitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//按钮
-	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
+	cocos2d::ui::Button* actionbtn = (cocos2d::ui::Button*)csbnode->getChildByName("actionbtn");
 	actionbtn->setTag(1000);
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onBtnClick, this));
 
@@ -159,6 +159,7 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 					MyRes::Use(carryResids[i], addcount);
 				}
 			}
+			((cocos2d::ui::Button*)pSender)->setEnabled(false);
 			GlobalInstance::getInstance()->parseMapJson();
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
 			

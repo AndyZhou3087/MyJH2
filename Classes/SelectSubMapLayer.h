@@ -21,6 +21,8 @@ private:
 	void showCloudAnim(Node* target, Vec2 pos);
 private:
 	std::string m_mainmapid;
+	bool clickflag;
+	Vec2 beginTouchPoint;
 };
 
 #endif
