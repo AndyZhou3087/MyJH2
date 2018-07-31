@@ -6,6 +6,7 @@
 #include "LoadingBarProgressTimer.h"
 #include "GlobalInstance.h"
 #include "MapBlockScene.h"
+#include "MovingLabel.h"
 
 FightHeroNode::FightHeroNode()
 {
@@ -281,17 +282,23 @@ void FightHeroNode::setFightState(int winexp)
 
 	if (winexp > 0 && myhero->getState() != HS_DEAD)
 	{
+		if ((myhero->getLevel() + 1) / 10 == myhero->getChangeCount() + 1)
+		{
+			MovingLabel::show(ResourceLang::map_lang["changebreak"]);
+		}
+		else
+		{
+			DynamicValueInt dv;
+			dv.setValue(myhero->getExp().getValue() + winexp);
+			myhero->setExp(dv);
 
-		DynamicValueInt dv;
-		dv.setValue(myhero->getExp().getValue() + winexp);
-		myhero->setExp(dv);
-
-		std::string str = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), winexp);
-		winexplbl->setString(str);
-		winexplbl->setVisible(true);
-		FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
-		FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(1.5f, Vec2(0, 10)), NULL);
-		winexplbl->runAction(Sequence::create(scales, moveandout, NULL));
+			std::string str = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), winexp);
+			winexplbl->setString(str);
+			winexplbl->setVisible(true);
+			FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
+			FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(1.5f, Vec2(0, 10)), NULL);
+			winexplbl->runAction(Sequence::create(scales, moveandout, NULL));
+		}
 	}
 
 	int maxlv = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp.size();

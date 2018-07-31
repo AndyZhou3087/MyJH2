@@ -106,7 +106,7 @@
 	<s name="nofoodhint">食物不足扣除所有角色20%生命值</s>
 	<s name="powermaxtext">已满</s>
 	<s name="powerdesc">体力：%d（%s）</s>
-	<s name="changebreak">请先转职或突破再进行升级</s>
+	<s name="changebreak">请先转职或突破!</s>
 	<s name="changecondition">转职条件</s>
 	<s name="changeclosetext">再考虑一下…</s>
 	<s name="changetext1">转职成为%s</s>
