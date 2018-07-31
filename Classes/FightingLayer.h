@@ -17,7 +17,7 @@ public:
 	virtual void onExit();
 	bool init(std::vector<Npc*> enemyHeros);
 
-	void showAtk(Npc* ndata);
+	void showAtk(int fightertag);
 	void pauseAtkSchedule();
 	void resumeAtkSchedule();
 
@@ -27,6 +27,11 @@ public:
 	int checkFightResult();
 
 	int checkWgSkill(Npc* data, int npctype);
+
+	void skillAction(int stype);
+
+	void clearSkill();
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
@@ -34,6 +39,8 @@ private:
 	std::vector<Npc*> m_enemyHeros;
 	cocos2d::ui::Widget* m_escapebtn;
 	int fightcount;
+
+	int whoskillindex;
 };
 
 #endif

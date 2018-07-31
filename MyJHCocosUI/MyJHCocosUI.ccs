@@ -512,13 +512,9 @@
           <Image Name="trainlv_text.png" />
           <Image Name="trainstart_text.png" />
           <Image Name="usebtn_text.png" />
-          <Image Name="wgcurtext.png" />
-          <Image Name="wglv_text.png" />
-          <Image Name="wgnexttext.png" />
           <Image Name="windeath_text.png" />
           <Image Name="winlvup_text.png" />
           <Image Name="winrewardtitle.png" />
-          <Image Name="wxquatext.png" />
         </Folder>
         <Folder Name="ui">
           <Image Name="a001.png" />
@@ -830,7 +826,6 @@
           <Image Name="w034.png" />
           <Image Name="w035.png" />
           <Image Name="w036.png" />
-          <Image Name="wglvframe.png" />
           <Image Name="x001.png" />
           <Image Name="x002.png" />
           <Image Name="x003.png" />
@@ -921,7 +916,6 @@
         <Project Name="simpleLayer.csd" Type="Layer" />
         <Project Name="smithyLayer.csd" Type="Layer" />
         <Project Name="storeHouseLayer.csd" Type="Layer" />
-        <Project Name="strengthenLayer.csd" Type="Layer" />
         <Project Name="takeOnLayer.csd" Type="Layer" />
         <Project Name="taskDayNode.csd" Type="Node" />
         <Project Name="taskLayer.csd" Type="Layer" />
@@ -934,7 +928,6 @@
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="wgLvLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

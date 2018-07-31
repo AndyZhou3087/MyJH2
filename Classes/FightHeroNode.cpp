@@ -6,6 +6,7 @@
 #include "LoadingBarProgressTimer.h"
 #include "GlobalInstance.h"
 #include "MapBlockScene.h"
+#include "MyRes.h"
 
 FightHeroNode::FightHeroNode()
 {
@@ -192,10 +193,17 @@ void FightHeroNode::hurt(float hp)
 {
 	if (m_Data != NULL && this->isVisible())
 	{
-		hurtup = hp;
-		statusimg->loadTexture("mapui/hurticon.png", cocos2d::ui::Widget::TextureResType::PLIST);
-		ActionInterval* ac1 = Spawn::create(Show::create(), FadeIn::create(0.15f), EaseSineIn::create(ScaleTo::create(0.15f, 1)), NULL);
-		statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), NULL));
+		if (hp > 0)
+		{
+			hurtup = hp;
+			statusimg->loadTexture("mapui/hurticon.png", cocos2d::ui::Widget::TextureResType::PLIST);
+			ActionInterval* ac1 = Spawn::create(Show::create(), FadeIn::create(0.15f), EaseSineIn::create(ScaleTo::create(0.15f, 1)), NULL);
+			statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), NULL));
+		}
+		else
+		{
+			hurtAnimFinish();
+		}
 	}
 } 
 
@@ -204,7 +212,7 @@ void FightHeroNode::atkAnimFinish()
 	if (this->isVisible())
 	{
 		FightingLayer* fighting = (FightingLayer*)this->getParent();
-		fighting->showAtk(m_Data);
+		fighting->showAtk(this->getTag());
 	}
 }
 
@@ -371,34 +379,79 @@ void FightHeroNode::setFightState(int winexp)
 void FightHeroNode::playSkill(int stype, Npc* data)
 {
 	std::string skillid = StringUtils::format("sk%03d", stype);
-	if (m_Data != NULL)
+	ResBase* res = MyRes::getMyPutOnResByType(T_WG, m_Data->getName());
+
+	if (m_Data != NULL && res != NULL)
 	{
-		if (stype == SKILL_1)
+		if (data->getId().length() > 0)
 		{
-			float eff = GlobalInstance::map_GF[skillid].skilleff1;
-			m_Data->setHp(m_Data->getHp() + eff*data->getHp() / 100);
-			if (m_Data->getHp() + eff*data->getHp() / 100 > m_Data->getMaxHp())
-				m_Data->setHp(m_Data->getMaxHp());
+			if (stype == SKILL_1)//释放技能后吸收对方%.2f血量。
+			{
+				float eff = GlobalInstance::map_GF[res->getId()].skilleff1;
+				m_Data->setHp(m_Data->getHp() + eff*data->getMaxHp() / 100);
+				if (m_Data->getHp() + eff*data->getHp() / 100 > m_Data->getMaxHp())
+					m_Data->setHp(m_Data->getMaxHp());
 
-			float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
-			hp_bar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
-		}
-		else if (stype = SKILL_2)
-		{
+				float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
+				hp_bar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
+			}
+			else if (stype = SKILL_2)//释放技能后造成%d倍伤害。
+			{
 
+			}
+
+			else if (stype = SKILL_3)//被攻击目标%d回合内无法进行攻击。
+			{
+				GlobalInstance::map_GF[res->getId()].roundcount = GlobalInstance::map_GF[res->getId()].skilleff1;
+			}
+			else if (stype == SKILL_4)//释放技能后所有敌人攻击你%d回合。
+			{
+				GlobalInstance::map_GF[res->getId()].roundcount = GlobalInstance::map_GF[res->getId()].skilleff1;
+			}
 		}
 	}
 
 }
 void FightHeroNode::attackedSkill(int stype, Npc* data)
 {
-	std::string skillid = StringUtils::format("sk%03d", stype);
-	if (m_Data != NULL)
+	//std::string skillid = StringUtils::format("sk%03d", stype);
+	this->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, data)), NULL));
+}
+
+void FightHeroNode::attackedSkillCB(int stype, Npc* data)
+{
+	ResBase* res = MyRes::getMyPutOnResByType(T_WG, data->getName());
+	FightingLayer* fighting = (FightingLayer*)this->getParent();
+	if (res != NULL)
 	{
-		if (stype == SKILL_1)
+		if (stype == SKILL_1)//释放技能后吸收对方%.2f血量。
 		{
-			float eff = GlobalInstance::map_GF[skillid].skilleff1;
-			hurt(eff*data->getHp() / 100);
+			float eff = GlobalInstance::map_GF[res->getId()].skilleff1;
+			hurt(eff*m_Data->getMaxHp() / 100);
+			fighting->clearSkill();
+		}
+		else if (stype == SKILL_2)//释放技能后造成%d倍伤害。
+		{
+			float eff = GlobalInstance::map_GF[res->getId()].skilleff1;
+			hurt(eff*data->getAtk());
+			fighting->clearSkill();
+		}
+		else if (stype == SKILL_3)
+		{
+			hurt(0);
+		}
+		else if (stype == SKILL_4)
+		{
+			hurt(0);
+		}
+		else if (stype == SKILL_5 || stype == SKILL_6)
+		{
+			fighting->skillAction(stype);
+			fighting->clearSkill();
+		}
+		else if (stype == SKILL_7)
+		{
+			fighting->clearSkill();
 		}
 	}
 }

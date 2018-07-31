@@ -51,6 +51,8 @@ public:
 	//遭受技能
 	void attackedSkill(int stype, Npc* data);
 
+	void attackedSkillCB(int stype, Npc* data);
+
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;

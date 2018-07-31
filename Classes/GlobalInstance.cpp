@@ -998,13 +998,15 @@ void GlobalInstance::loadGFData()
 			}
 
 			v = jsonvalue["rnd"];
-			int skillrnd = atoi(v.GetString());
+			data.skillrnd = atoi(v.GetString());
 
 			v = jsonvalue["skef"];
-			float skilleff1 = atof(v.GetString());
+			data.skilleff1 = atof(v.GetString());
 
 			v = jsonvalue["skef1"];
-			float skilleff2 = atof(v.GetString());
+			data.skilleff2 = atof(v.GetString());
+
+			data.roundcount = 0;
 			
 			v = jsonvalue["maxhp"];
 			for (unsigned  int m = 0; m < v.Size(); m++)

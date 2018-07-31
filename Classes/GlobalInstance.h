@@ -77,6 +77,7 @@ typedef struct
 	int skillrnd;
 	float skilleff1;
 	float skilleff2;
+	int roundcount;
 	int skill;
 	int qu;
 	std::vector<int> vec_hp;
@@ -195,9 +196,26 @@ typedef struct
 
 typedef enum
 {
-	SKILL_1,//技能
+	SKILL_1 = 1,//技能
 	SKILL_2,
 	SKILL_3,
+	SKILL_4,
+	SKILL_5,
+	SKILL_6,
+	SKILL_7,
+	SKILL_8,
+	SKILL_9,
+	SKILL_10,
+	SKILL_11,
+	SKILL_12,
+	SKILL_13,
+	SKILL_14,
+	SKILL_15,
+	SKILL_16,
+	SKILL_17,
+	SKILL_18,
+	SKILL_19,
+	SKILL_20
 }SKILLTYPE;
 
 class GlobalInstance
