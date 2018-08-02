@@ -77,7 +77,6 @@ typedef struct
 	int skillrnd;
 	float skilleff1;
 	float skilleff2;
-	int roundcount;
 	int skill;
 	int qu;
 	std::vector<int> vec_hp;

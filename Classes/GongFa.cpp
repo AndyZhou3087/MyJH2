@@ -4,6 +4,7 @@
 GongFa::GongFa()
 {
 	m_qu.setValue(0);
+	m_skillcount = 0;
 }
 
 

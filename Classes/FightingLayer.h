@@ -5,6 +5,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "Hero.h"
+#include "FightHeroNode.h"
 USING_NS_CC;
 
 class FightingLayer : public cocos2d::Layer
@@ -18,6 +19,7 @@ public:
 	bool init(std::vector<Npc*> enemyHeros);
 
 	void showAtk(int fightertag);
+
 	void pauseAtkSchedule();
 	void resumeAtkSchedule();
 
@@ -32,6 +34,10 @@ public:
 
 	void clearSkill();
 
+	static bool sortbyHp_lesscb(FightHeroNode* a, FightHeroNode* b);
+
+	void clearSkillsData();
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
@@ -40,7 +46,9 @@ private:
 	cocos2d::ui::Widget* m_escapebtn;
 	int fightcount;
 
-	int whoskillindex;
+	std::vector<FightHeroNode*> vec_myheronode;
+	int whoskillindex;//谁发动的技能
+	int whosufferskillindex;//谁遭受技能
 };
 
 #endif

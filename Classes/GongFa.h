@@ -15,6 +15,7 @@ public:
 	~GongFa();
 
 	CC_SYNTHESIZE(DynamicValueInt, m_exp, Exp);//经验值
+	CC_SYNTHESIZE(int, m_skillcount, SkillCount);//技能持续的回合数
 	DynamicValueInt getLv();
 public:
 

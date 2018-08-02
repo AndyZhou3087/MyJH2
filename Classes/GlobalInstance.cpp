@@ -1005,8 +1005,6 @@ void GlobalInstance::loadGFData()
 
 			v = jsonvalue["skef1"];
 			data.skilleff2 = atof(v.GetString());
-
-			data.roundcount = 0;
 			
 			v = jsonvalue["maxhp"];
 			for (unsigned  int m = 0; m < v.Size(); m++)

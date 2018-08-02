@@ -34,6 +34,7 @@ public:
 
 	void setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE state);
 
+	Npc* getData();
 
 	void pauseTimeSchedule();
 
@@ -51,7 +52,12 @@ public:
 	//遭受技能
 	void attackedSkill(int stype, Npc* data);
 
+	//遭受技能回调
 	void attackedSkillCB(int stype, Npc* data);
+
+	void recoveHp();
+
+	void nextRound();
 
 private:
 	cocos2d::ui::ImageView* headbox;
@@ -71,20 +77,27 @@ private:
 	FIGHTDATA_TYPE m_datatype;
 	FIGHTNODE_STATE m_state;
 	float atkspeed;
+
 	float timedt;
 	bool ispause;
 	float hurtup;
-	void update(float dt);
-	void hpAnim();
-	void setBlankBox();
-
-
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	void atkAnimFinish();
 	void hurtAnimFinish();
+	void update(float dt);
+	void hpAnim();
+	void setBlankBox();
 
+	float getAtkSpeed();
+
+	void reviveOnce(float dt);
+
+	bool checkReviveSkill();
+public:
+	float atkspeedbns;
+	float dfbns;
 };
 #endif
 
