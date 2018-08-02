@@ -468,12 +468,12 @@ void FightHeroNode::playSkill(int stype, Npc* data)
 			float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
 			hp_bar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
 		}
-		else if (stype = SKILL_2)//释放技能后造成%d倍伤害。
+		else if (stype == SKILL_2)//释放技能后造成%d倍伤害。
 		{
 
 		}
 
-		else if (stype = SKILL_3)//被攻击目标%d回合内无法进行攻击。
+		else if (stype == SKILL_3)//被攻击目标%d回合内无法进行攻击。
 		{
 			if (gf->getSkillCount() <= 0)
 				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff1);
@@ -654,7 +654,7 @@ void FightHeroNode::recoveHp()
 			m_Data->setHp(m_Data->getMaxHp());
 
 		float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
-		hp_bar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), CallFunc::create(CC_CALLBACK_0(FightHeroNode::nextRound, this,)),  NULL));
+		hp_bar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), CallFunc::create(CC_CALLBACK_0(FightHeroNode::nextRound, this)),  NULL));
 	}
 }
 

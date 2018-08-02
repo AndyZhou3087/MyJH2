@@ -102,7 +102,7 @@ void MovingLabel::changeTextColor()
 			if (findpos != std::string::npos)
 			{
 				findpos = lbltext.length() - 4 + findpos;
-				for (int m = findpos/3; m < (findpos + qustr.length())/3; m++)
+				for (unsigned int m = findpos/3; m < (findpos + qustr.length())/3; m++)
 				{
 					this->getLetter(m)->setColor(POTENTIALCOLOR[i]);
 				}

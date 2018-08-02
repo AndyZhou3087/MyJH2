@@ -163,7 +163,8 @@ void MarketLayer::loadData()
 	vec_Res.clear();
 	for (int v = 0; v <= m_buidingData->level.getValue(); v++)
 	{
-		if (v < m_buidingData->vec_exdata.size())
+		int vsize = m_buidingData->vec_exdata.size();
+		if (v < vsize)
 		{
 			for (unsigned int i = 0; i < m_buidingData->vec_exdata[v].size(); i++)
 			{

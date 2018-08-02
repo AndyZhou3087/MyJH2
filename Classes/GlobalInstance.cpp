@@ -992,7 +992,7 @@ void GlobalInstance::loadGFData()
 
 			v = jsonvalue["skillbns"];
 
-			for (int m = 0; m < v.Size(); m++)
+			for (unsigned int m = 0; m < v.Size(); m++)
 			{
 				data.vec_skillbns.push_back(v[m].GetInt());
 			}

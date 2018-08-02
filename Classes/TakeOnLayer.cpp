@@ -360,7 +360,7 @@ void TakeOnLayer::chageStone(ResBase* stoneres, int which)
 
 void TakeOnLayer::updateUI()
 {
-	for (int i = 0; i < vec_suitDesc.size(); i++)
+	for (unsigned int i = 0; i < vec_suitDesc.size(); i++)
 	{
 		std::string attrstr;
 		float suitval = 0;
@@ -382,7 +382,7 @@ void TakeOnLayer::updateUI()
 
 	std::string stonedescstr[] = { "addattrtext_1","addattrtext_2","addattrtext_0","addattrtext_5","addattrtext_4" };
 
-	for (int i = 0; i < 3; i++)
+	for (unsigned int i = 0; i < 3; i++)
 	{
 		std::string str = StringUtils::format("stone%d", i);
 		cocos2d::ui::ImageView* stone = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);

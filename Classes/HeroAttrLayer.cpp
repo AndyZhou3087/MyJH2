@@ -421,7 +421,8 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case ATTR_RECRUITBTN:
 		{
-			if (GlobalInstance::vec_myHeros.size() < (10 + Building::map_buildingDatas["6innroom"]->level.getValue()))
+			int herosize = GlobalInstance::vec_myHeros.size();
+			if (herosize < (10 + Building::map_buildingDatas["6innroom"]->level.getValue()))
 			{
 				m_heroData->setState(HS_OWNED);
 				//加入到我的英雄列表
