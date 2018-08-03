@@ -135,7 +135,7 @@ void SelectMyHerosLayer::refreshMyHerosUi()
 		{
 			MyHeroNode* heronode = MyHeroNode::create(herodata, m_wheretype);
 			heronode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - c * itemheight - itemheight / 2));
-			m_contentscroll->addChild(heronode, 0, c);
+			m_contentscroll->addChild(heronode, 0, i);
 			c++;
 		}
 	}

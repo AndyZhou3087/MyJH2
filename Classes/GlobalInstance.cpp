@@ -1331,6 +1331,23 @@ void GlobalInstance::fireHero(int index)
 	{
 		DataSave::getInstance()->deleteLocalHero(i);
 	}
+	//装备换回到仓库
+
+	bool equipchange = false;
+	for (int i = T_ARMOR; i <= T_NG; i++)
+	{
+		Equipable* equip = (Equipable*)MyRes::getMyPutOnResByType(i, GlobalInstance::vec_myHeros[index]->getName());
+		if (equip != NULL)
+		{
+			equipchange = true;
+			equip->setWhere(MYSTORAGE);
+			equip->setWhos("");
+		}
+	}
+	//保存装备数据
+	if (equipchange)
+		MyRes::saveData();
+	
 
 	//释放内存
 	delete GlobalInstance::vec_myHeros[index];
