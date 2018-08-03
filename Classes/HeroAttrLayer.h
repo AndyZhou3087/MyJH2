@@ -13,8 +13,7 @@ typedef enum
 	ATTR_FIREBTN = 1000,//解雇按钮
 	ATTR_CHANGEBTN,//转职按钮
 	ATTR_BACKBTN,//返回按钮
-	ATTR_RECRUITBTN,//招募按钮
-	ATTR_LVBTN//升级按钮
+	ATTR_RECRUITBTN//招募按钮
 }ATTRBTN;
 
 class HeroAttrLayer : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate
@@ -34,7 +33,6 @@ public:
 
 	void changeButton();
 
-	void changelvButton();
 private:
 
 	/************************************
@@ -46,6 +44,11 @@ private:
 	点击装备事件
 	*************************************/
 	void onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	/************************************
+	点击物品事件
+	*************************************/
+	void onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	/************************************
 	修改名字editBox控件
@@ -61,7 +64,10 @@ private:
 	void updateEquipUi(ResBase* res, int barindex);
 
 	void updataAtrrUI(float dt);
+
+	void updateAtrBtnUI();
 private:
+	Node* lvnode;
 	//
 	Node* heroattrbottom;
 	//装备栏
@@ -106,6 +112,9 @@ private:
 	int clickindex;
 
 	int langtype;
+
+	cocos2d::ui::Button* btnArr[5];
+	cocos2d::ui::Text* goodarr[4];
 };
 
 #endif

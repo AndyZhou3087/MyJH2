@@ -14,12 +14,16 @@
 #include "MyRes.h"
 #include "TakeOnLayer.h"
 #include "EquipDescLayer.h"
-#include "HeroLvupLayer.h"
 #include "ChangeVocationLayer.h"
 
 USING_NS_CC;
 
 int equiptype[] = { T_ARMOR, T_EQUIP, T_NG, T_WG, T_HANDARMOR, T_FASHION };
+
+#define S001EXP 1500
+#define S002EXP 5000
+#define S003EXP 15000
+#define S004EXP 50000
 
 HeroAttrLayer::HeroAttrLayer()
 {
@@ -74,6 +78,24 @@ bool HeroAttrLayer::init(Hero* herodata)
 	herofullimg->ignoreContentAdaptWithSize(true);
 	std::string str = StringUtils::format("hfull_%d_%d.png", herodata->getVocation(), herodata->getSex());
 	herofullimg->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
+
+	//升级栏
+	lvnode = csbnode->getChildByName("lvnode");
+	lvnode->setVisible(false);
+
+	for (int i = 1; i < 5; i++)
+	{
+		std::string str = StringUtils::format("s00%dimg", i);
+		cocos2d::ui::ImageView* goodimg = (cocos2d::ui::ImageView*)lvnode->getChildByName(str);
+		goodimg->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onGoodsClick, this));
+		goodimg->setTag(i);
+
+		str = StringUtils::format("s00%dtext", i);
+		goodarr[i - 1] = (cocos2d::ui::Text*)lvnode->getChildByName(str);
+		str = StringUtils::format("s00%d", i);
+		str = StringUtils::format("%d", MyRes::getMyResCount(str));
+		goodarr[i - 1]->setString(str);
+	}
 
 	//装备栏
 	equipnode = csbnode->getChildByName("equipnode");
@@ -200,13 +222,14 @@ bool HeroAttrLayer::init(Hero* herodata)
 	this->schedule(schedule_selector(HeroAttrLayer::updataAtrrUI), 2.0f);
 
 	//按钮
-	std::string btnname[] = { "firebtn", "changebtn", "backbtn", "recruitbtn", "lvgbtn"};//与BTNTYPE对应
+	std::string btnname[] = { "firebtn", "changebtn", "backbtn", "recruitbtn"};//与BTNTYPE对应
 	for (int i = 0; i < sizeof(btnname) / sizeof(btnname[0]); i++)
 	{
 		int tag = i + ATTR_FIREBTN;
 		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)heroattrbottom->getChildByName(btnname[i]);
 		btn->setTag(tag);
 		btn->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onBtnClick, this));
+		btnArr[i] = btn;
 
 		if (tag == ATTR_FIREBTN)
 		{
@@ -224,36 +247,33 @@ bool HeroAttrLayer::init(Hero* herodata)
 		else if (tag == ATTR_CHANGEBTN)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
-			txtimg->loadTexture(ResourcePath::makeTextImgPath("changebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			txtimg->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			if (herostate == HS_READY || herostate == HS_TRAINING)
 			{
 				btn->setVisible(false);
 			}
-			else if (herostate == HS_TAKEON)
+			else if (herostate == HS_OWNED || herostate == HS_TAKEON)
 			{
-				btn->setPositionX(220);
-				if ((m_heroData->getLevel() + 1) / 10 != m_heroData->getChangeCount() + 1)
+				if (herostate == HS_TAKEON)
 				{
-					btn->setVisible(false);
+					btn->setPositionX(220);
 				}
-			}
-			else if (herostate == HS_OWNED)
-			{
 				//前4种职业等级10可转职，后面可突破
-				if ((m_heroData->getLevel() + 1) % 10 == 0)
+				if ((m_heroData->getLevel() + 1) % 10 == 0 && (m_heroData->getVocation() < 4 || (m_heroData->getLevel() + 1) / 10 == m_heroData->getChangeCount() + 1))
 				{
-					btn->setVisible(true);
 					if (m_heroData->getLevel() + 1 != 10)
 					{
 						txtimg->loadTexture(ResourcePath::makeTextImgPath("break_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 					}
-					if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
+					else
 					{
-						btn->setEnabled(false);
+						txtimg->loadTexture(ResourcePath::makeTextImgPath("changebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 					}
 				}
-				else
-					btn->setVisible(false);
+				if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
+				{
+					btn->setEnabled(false);
+				}
 			}
 		}
 		else if (tag == ATTR_RECRUITBTN)
@@ -287,31 +307,6 @@ bool HeroAttrLayer::init(Hero* herodata)
 				btn->setPositionX(360);
 			}
 		}
-		else if (tag == ATTR_LVBTN)
-		{
-			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
-			txtimg->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			if (herostate == HS_READY || herostate == HS_TRAINING)
-			{
-				btn->setVisible(false);
-			}
-			else if (herostate == HS_TAKEON)
-			{
-				btn->setPositionX(220);
-				if ((m_heroData->getLevel() + 1) / 10 == m_heroData->getChangeCount() + 1)
-				{
-					btn->setVisible(false);
-				}
-			}
-			else if (herostate == HS_OWNED)
-			{
-				//前4种职业等级10可转职，
-				if ((m_heroData->getLevel() + 1) % 10 == 0)
-					btn->setVisible(false);
-				else
-					btn->setVisible(true);
-			}
-		}
 	}
 
 	//屏蔽下层点击
@@ -323,6 +318,25 @@ bool HeroAttrLayer::init(Hero* herodata)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void HeroAttrLayer::updateAtrBtnUI()
+{
+	if (equipnode->isVisible())
+	{
+		btnArr[0]->setVisible(false);
+		btnArr[1]->setVisible(false);
+		btnArr[2]->setPositionX(360);
+		btnArr[3]->setVisible(false);
+	}
+	else
+	{
+		btnArr[0]->setVisible(true);
+		btnArr[1]->setVisible(true);
+		btnArr[2]->setPositionX(600);
+		btnArr[3]->setVisible(false);
+	}
+	
 }
 
 void HeroAttrLayer::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)
@@ -401,22 +415,25 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			this->removeFromParentAndCleanup(true);
 			break;
 		}
-		case ATTR_LVBTN:
-		{
-			HeroLvupLayer* lvlayer = HeroLvupLayer::create(m_heroData);
-			this->addChild(lvlayer);
-		}
-			break;
 		case ATTR_CHANGEBTN:
-			if (m_heroData->getLevel() + 1 == 10)
+			if ((m_heroData->getLevel() + 1) % 10 == 0 && (m_heroData->getVocation() < 4 || (m_heroData->getLevel() + 1) / 10 == m_heroData->getChangeCount() + 1))
 			{
-				ChangeVocationLayer* clayer = ChangeVocationLayer::create(m_heroData);
-				this->addChild(clayer);
+				if (m_heroData->getLevel() + 1 == 10)
+				{
+					ChangeVocationLayer* clayer = ChangeVocationLayer::create(m_heroData);
+					this->addChild(clayer);
+				}
+				else
+				{
+					ChangeVocationLayer* clayer = ChangeVocationLayer::create(m_heroData, 1);
+					this->addChild(clayer);
+				}
 			}
 			else
 			{
-				ChangeVocationLayer* clayer = ChangeVocationLayer::create(m_heroData, 1);
-				this->addChild(clayer);
+				updateAtrBtnUI();
+				lvnode->setVisible(true);
+				equipnode->setVisible(false);
 			}
 			break;
 		case ATTR_RECRUITBTN:
@@ -448,7 +465,16 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			}
 		}
 		case ATTR_BACKBTN:
-			this->removeFromParentAndCleanup(true);
+			if (lvnode->isVisible())
+			{
+				updateAtrBtnUI();
+				lvnode->setVisible(false);
+				equipnode->setVisible(true);
+			}
+			else
+			{
+				this->removeFromParentAndCleanup(true);
+			}
 			break;
 		default:
 			break;
@@ -456,30 +482,81 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	}
 }
 
-void HeroAttrLayer::changeButton()
+void HeroAttrLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	cocos2d::ui::Button* btn = (cocos2d::ui::Button*)heroattrbottom->getChildByName("changebtn");
-	cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
-	cocos2d::ui::Button* lvbtn = (cocos2d::ui::Button*)heroattrbottom->getChildByName("lvgbtn");
-	lvbtn->setVisible(false);
-	btn->setVisible(true);
-	if (m_heroData->getLevel() + 1 == 10)
+	cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
+	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		txtimg->loadTexture(ResourcePath::makeTextImgPath("changebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-	}
-	else
-	{
-		txtimg->loadTexture(ResourcePath::makeTextImgPath("break_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
+		{
+			MovingLabel::show(ResourceLang::map_lang["wgmostlv"]);
+			return;
+		}
+
+		int tag = clicknode->getTag();
+		int count;
+		switch (tag)
+		{
+		case 1:
+			count = S001EXP;
+			break;
+		case 2:
+			count = S002EXP;
+			break;
+		case 3:
+			count = S003EXP;
+			break;
+		case 4:
+			count = S004EXP;
+			break;
+		default:
+			break;
+		}
+
+		if ((m_heroData->getLevel() + 1) % 10 == 0 && (m_heroData->getVocation() < 4 || (m_heroData->getLevel() + 1) / 10 == m_heroData->getChangeCount() + 1))
+		{
+			changeButton();
+			MovingLabel::show(ResourceLang::map_lang["changebreak"]);
+			return;
+		}
+
+		std::string str = StringUtils::format("s00%d", tag);
+		if (MyRes::getMyResCount(str) >= 1)
+		{
+			MyRes::Use(str);
+			DynamicValueInt dal;
+			dal.setValue(m_heroData->getExp().getValue() + count);
+			m_heroData->setExp(dal);
+			std::string s = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), count);
+			MovingLabel::show(s, Color4B(0, 128, 0, 255), Vec2(360, 320));
+		}
+		else
+		{
+			MovingLabel::show(ResourceLang::map_lang["reslack"]);
+		}
+		str = StringUtils::format("%d", MyRes::getMyResCount(str));
+		goodarr[tag - 1]->setString(str);
 	}
 }
 
-void HeroAttrLayer::changelvButton()
+void HeroAttrLayer::changeButton()
 {
-	cocos2d::ui::Button* btn = (cocos2d::ui::Button*)heroattrbottom->getChildByName("changebtn");
-	cocos2d::ui::Button* lvbtn = (cocos2d::ui::Button*)heroattrbottom->getChildByName("lvgbtn");
-	lvbtn->setVisible(true);
-	lvbtn->setTouchEnabled(true);
-	btn->setVisible(false);
+	cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btnArr[1]->getChildByName("text");
+	if ((m_heroData->getLevel() + 1) % 10 == 0 && (m_heroData->getVocation() < 4 || (m_heroData->getLevel() + 1) / 10 == m_heroData->getChangeCount() + 1))
+	{
+		if (m_heroData->getLevel() + 1 == 10)
+		{
+			txtimg->loadTexture(ResourcePath::makeTextImgPath("changebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		}
+		else
+		{
+			txtimg->loadTexture(ResourcePath::makeTextImgPath("break_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		}
+	}
+	else
+	{
+		txtimg->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	}
 }
 
 void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
