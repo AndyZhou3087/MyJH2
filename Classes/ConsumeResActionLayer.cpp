@@ -88,9 +88,9 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 		btn2_text = "drrecruitbtn_text";
 		titlestr = ResourceLang::map_lang["employ5farmertext"];
 
-		//int employcount = GlobalInstance::getInstance()->getTotalFarmers();
+		int employcount = GlobalInstance::getInstance()->getTotalFarmers();
 		DynamicValueInt dint;
-		dint.setValue((GlobalInstance::vec_resCreators[0]->getMaxCap(GlobalInstance::vec_resCreators[0]->getLv().getValue()).getValue()) * 8 / 10);
+		dint.setValue((GlobalInstance::vec_resCreators[0]->getMaxCap(employcount/5 - 1).getValue()) * 8 / 10);
 		std::map<std::string, int> map_res;
 		map_res["r001"] = dint.getValue();
 		vec_res.push_back(map_res);

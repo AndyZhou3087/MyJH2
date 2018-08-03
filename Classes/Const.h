@@ -11,7 +11,7 @@
 #define LASTNAMECOUNT 40
 #define HERO_RESETTIME 21600//英雄刷新时间
 #define RES_REFRESHTIME 60//资源刷新时间
-#define MARKET_RESETTIME 60//3600//市场刷新时间
+#define MARKET_RESETTIME 3600//市场刷新时间
 
 #define HEROPOWER_RESETTIME 300//体力刷新时间
 
