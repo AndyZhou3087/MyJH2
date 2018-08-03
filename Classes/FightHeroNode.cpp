@@ -87,20 +87,20 @@ void FightHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		if (m_Data != NULL)
-		{
-			FighterAttrLayer* layer = FighterAttrLayer::create(m_Data);
-			this->getParent()->addChild(layer, 0, this->getTag());
-			if (m_state == FS_READY)
-				layer->setContentPos(Vec2(360, 1000));
-			else if (m_state == FS_FIGHTING)
-			{
-				if (m_datatype == F_HERO)
-					layer->setContentPos(Vec2(360, 270));
-				else if (m_datatype == F_NPC)
-					layer->setContentPos(Vec2(360, 900));
-			}
-		}
+		//if (m_Data != NULL)
+		//{
+		//	FighterAttrLayer* layer = FighterAttrLayer::create(m_Data);
+		//	this->getParent()->addChild(layer, 0, this->getTag());
+		//	if (m_state == FS_READY)
+		//		layer->setContentPos(Vec2(360, 1000));
+		//	else if (m_state == FS_FIGHTING)
+		//	{
+		//		if (m_datatype == F_HERO)
+		//			layer->setContentPos(Vec2(360, 270));
+		//		else if (m_datatype == F_NPC)
+		//			layer->setContentPos(Vec2(360, 900));
+		//	}
+		//}
 	}
 }
 
