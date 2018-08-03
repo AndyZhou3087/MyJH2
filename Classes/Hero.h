@@ -31,14 +31,13 @@ public:
 	CC_SYNTHESIZE(DynamicValueInt, m_exp, Exp); //经验值
 	CC_SYNTHESIZE(int, m_sex, Sex);//性别
 	CC_SYNTHESIZE(int, m_state, State);//英雄状态，0--待招募；1--招募；2--出城；3--竞技
-	CC_SYNTHESIZE(int, m_breakupper, BreakUpper);//突破等级
 	CC_SYNTHESIZE(float, m_randattr, RandAttr);//随机属性
 	CC_SYNTHESIZE(int, m_pos, Pos);//出城时选择的位置，1开始，0表示不选择
 	CC_SYNTHESIZE(int, m_trainhour, TrainHour);//选择训练的时间，0--未训练，3600--一小时，18000--两小时，28800--三小时
 	CC_SYNTHESIZE(int, m_traintime, TrainTime);//训练的时间
 	CC_SYNTHESIZE(DynamicValueInt, m_power, Power);//精力
 	CC_SYNTHESIZE(int, m_powertime, PowerTime);//精力时间
-	CC_SYNTHESIZE(int, m_changecount, ChangeCount);//转职
+	CC_SYNTHESIZE(int, m_changecount, ChangeCount);//转职，突破
 
 	//血量
 	float getHp();

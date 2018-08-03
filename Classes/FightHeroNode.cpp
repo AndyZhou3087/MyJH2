@@ -350,9 +350,11 @@ void FightHeroNode::setFightState(int winexp)
 
 	if (winexp > 0 && myhero->getState() != HS_DEAD)
 	{
+		std::string str;
 		if ((myhero->getLevel() + 1) / 10 == myhero->getChangeCount() + 1)
 		{
-			MovingLabel::show(ResourceLang::map_lang["changebreak"]);
+			//MovingLabel::show(ResourceLang::map_lang["changebreak"]);
+			str = ResourceLang::map_lang["changebreak"];
 		}
 		else
 		{
@@ -360,13 +362,13 @@ void FightHeroNode::setFightState(int winexp)
 			dv.setValue(myhero->getExp().getValue() + winexp);
 			myhero->setExp(dv);
 
-			std::string str = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), winexp);
-			winexplbl->setString(str);
-			winexplbl->setVisible(true);
-			FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
-			FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(1.5f, Vec2(0, 10)), NULL);
-			winexplbl->runAction(Sequence::create(scales, moveandout, NULL));
+			str = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), winexp);
 		}
+		winexplbl->setString(str);
+		winexplbl->setVisible(true);
+		FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
+		FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(1.5f, Vec2(0, 10)), NULL);
+		winexplbl->runAction(Sequence::create(scales, moveandout, NULL));
 	}
 
 	int maxlv = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp.size();

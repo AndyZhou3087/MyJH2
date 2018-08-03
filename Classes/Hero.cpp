@@ -17,7 +17,6 @@ Hero::Hero()
 {
 	m_sex = 0;
 	m_state = 0;
-	m_breakupper = 0;
 	m_randattr = 0.0f;
 	m_pos = 0;
 	m_hp = INT32_MIN;
@@ -47,7 +46,6 @@ Hero::Hero(Hero* hero)
 	m_potential = hero->getPotential();
 	m_randattr = hero->getRandAttr();
 	m_state = hero->getState();
-	m_breakupper = 0;
 	m_pos = 0;
 	m_hp = hero->getHp();
 	m_trainhour = hero->getTrainHour();

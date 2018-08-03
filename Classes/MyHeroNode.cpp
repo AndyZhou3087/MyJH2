@@ -241,7 +241,7 @@ void MyHeroNode::updateData()
 
 	namelbl->setString(m_heroData->getName());
 
-	for (int i = 0; i < m_heroData->getBreakUpper(); i++)
+	for (int i = 0; i < m_heroData->getChangeCount() - 1; i++)
 	{
 		stars[i]->setVisible(true);
 	}
