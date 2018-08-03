@@ -550,6 +550,8 @@ void MapBlockScene::scrollViewDidScroll(ScrollView* view)
 
 void MapBlockScene::scrollViewDidZoom(ScrollView* view)
 {
+	log("zhou scrollViewDidZoom = %.2f", scrollView->getZoomScale());
+	ajustMyPos();
 	return;
 }
 
@@ -592,18 +594,18 @@ void MapBlockScene::updateMyRender(float dt)
 
 void MapBlockScene::ajustMyPos()
 {
-	float offsetx = myposParticle->getPosition().x  - scrollView->getViewSize().width / 2;
-	float offsety = myposParticle->getPosition().y - scrollView->getViewSize().height / 2;
+	float offsetx = myposParticle->getPosition().x * scrollView->getZoomScale() - scrollView->getViewSize().width / 2;
+	float offsety = myposParticle->getPosition().y * scrollView->getZoomScale() - scrollView->getViewSize().height / 2;
 
 	if (offsetx < 0)
 		offsetx = 0;
 	if (offsety < 0)
 		offsety = 0;
 
-	if (offsetx > m_mapscrollcontainer->getContentSize().width - scrollView->getViewSize().width)
-		offsetx = m_mapscrollcontainer->getContentSize().width - scrollView->getViewSize().width;
-	if (offsety > m_mapscrollcontainer->getContentSize().height - scrollView->getViewSize().height)
-		offsety = m_mapscrollcontainer->getContentSize().height - scrollView->getViewSize().height;
+	if (offsetx > m_mapscrollcontainer->getContentSize().width * scrollView->getZoomScale() - scrollView->getViewSize().width)
+		offsetx = m_mapscrollcontainer->getContentSize().width * scrollView->getZoomScale() - scrollView->getViewSize().width;
+	if (offsety > m_mapscrollcontainer->getContentSize().height * scrollView->getZoomScale() - scrollView->getViewSize().height)
+		offsety = m_mapscrollcontainer->getContentSize().height * scrollView->getZoomScale() - scrollView->getViewSize().height;
 
 
 	scrollView->setContentOffsetInDuration(Vec2(-offsetx, -offsety), 0.5f);
