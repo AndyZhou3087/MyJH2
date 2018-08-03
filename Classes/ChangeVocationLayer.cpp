@@ -179,7 +179,7 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
 				if (attlay != NULL)
 				{
-					attlay->changelvButton();
+					attlay->changeButton();
 				}
 			}
 			else if (tag == m_herodata->getVocation() + 8)
@@ -189,7 +189,7 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
 				if (attlay != NULL)
 				{
-					attlay->changelvButton();
+					attlay->changeButton();
 				}
 			}
 			this->removeFromParentAndCleanup(true);
@@ -206,6 +206,12 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				else
 				{
 					MyRes::Use("d001");
+					m_herodata->setChangeCount(m_herodata->getChangeCount() + 1);
+					HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
+					if (attlay != NULL)
+					{
+						attlay->changeButton();
+					}
 				}
 			}
 			this->removeFromParentAndCleanup(true);

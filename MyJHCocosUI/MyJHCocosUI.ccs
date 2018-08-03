@@ -884,6 +884,7 @@
           <Image Name="y015.png" />
         </Folder>
         <Project Name="cardHeroNode.csd" Type="Node" />
+        <Project Name="changeVocationLayer.csd" Type="Layer" />
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
         <Project Name="equipDescLayer.csd" Type="Layer" />
         <Project Name="fighterAttrLayer.csd" Type="Layer" />
@@ -891,7 +892,6 @@
         <Project Name="fightLayer.csd" Type="Layer" />
         <Project Name="fightResultLayer.csd" Type="Layer" />
         <Project Name="heroAttrLayer.csd" Type="Layer" />
-        <Project Name="heroLvupLayer.csd" Type="Layer" />
         <Project Name="hillResNode.csd" Type="Node" />
         <Project Name="hitBoxLayer.csd" Type="Layer" />
         <Project Name="homeHillLayer.csd" Type="Layer" />
