@@ -40,7 +40,7 @@ public:
 
 	void resumeTimeSchedule();
 
-	void hurt(float hp);
+	void hurt(float hp, int stat = 0);
 
 	void updateHp();
 
@@ -73,6 +73,8 @@ private:
 
 	cocos2d::ui::Widget* vocationbox;
 	cocos2d::ui::ImageView* vocationicon;
+	cocos2d::ui::TextBMFont* numfnt;
+	cocos2d::ui::Widget* critnumbg;
 	Npc* m_Data;
 	FIGHTDATA_TYPE m_datatype;
 	FIGHTNODE_STATE m_state;

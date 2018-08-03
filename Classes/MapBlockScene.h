@@ -41,19 +41,22 @@ public:
 	MapBlockScene();
 	~MapBlockScene();
 
-	bool init(std::string mapname);
+	bool init(std::string mapname, int bgtype);
 
 	virtual void onExit();
 
-	static cocos2d::Scene* createScene(std::string mapname);
+	static cocos2d::Scene* createScene(std::string mapname, int bgtype);
 
 	FightHeroNode* getFightHeroNode(int index);
 
 	void showFightResult(int result);
 
 	void updateHeroUI(int which);
+
+	void showFightingLayer(std::vector<Npc*> enemys);
+
 private:
-	static MapBlockScene* create(std::string mapname);
+	static MapBlockScene* create(std::string mapname, int bgtype);
 
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -112,6 +115,7 @@ private:
 	void loadTaskUI();
 
 	void updateTaskInfo(float dt);
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;
@@ -147,6 +151,8 @@ private:
 	RenderTexture* _myrender;
 	Sprite* _mylight;
 	float fogscale;
+
+	int m_fightbgtype;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

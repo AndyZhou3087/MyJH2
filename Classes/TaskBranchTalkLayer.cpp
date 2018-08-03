@@ -197,7 +197,7 @@ void TaskBranchTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 			}
 			else
 			{
-				g_MapBlockScene->addChild(FightingLayer::create(m_vec_enemys));
+				g_MapBlockScene->showFightingLayer(m_vec_enemys);
 				this->removeFromParentAndCleanup(true);
 			}
 			break;

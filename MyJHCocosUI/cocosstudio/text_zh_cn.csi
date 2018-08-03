@@ -59,7 +59,7 @@
       <FilePathData Path="text_zh_cn/m55-3.png" />
       <FilePathData Path="text_zh_cn/m2-1.png" />
       <FilePathData Path="text_zh_cn/m55-5.png" />
-      <FilePathData Path="text_zh_cn/m55-6.png" />
+      <FilePathData Path="text_zh_cn/m5-3.png" />
       <FilePathData Path="text_zh_cn/m55-7.png" />
       <FilePathData Path="text_zh_cn/m3-2.png" />
       <FilePathData Path="text_zh_cn/m1-2.png" />
@@ -75,10 +75,9 @@
       <FilePathData Path="text_zh_cn/m922-9.png" />
       <FilePathData Path="text_zh_cn/m3-1.png" />
       <FilePathData Path="text_zh_cn/m3-3.png" />
-      <FilePathData Path="text_zh_cn/m93-2.png" />
       <FilePathData Path="text_zh_cn/m2-4.png" />
       <FilePathData Path="text_zh_cn/m4-2.png" />
-      <FilePathData Path="text_zh_cn/m93-5.png" />
+      <FilePathData Path="text_zh_cn/m5-2.png" />
       <FilePathData Path="text_zh_cn/m4-3.png" />
       <FilePathData Path="text_zh_cn/m93-7.png" />
       <FilePathData Path="text_zh_cn/m93-8.png" />
@@ -127,9 +126,9 @@
       <FilePathData Path="text_zh_cn/break_text.png" />
       <FilePathData Path="text_zh_cn/halltitle.png" />
       <FilePathData Path="text_zh_cn/m921-10.png" />
-      <FilePathData Path="text_zh_cn/m59-5.png" />
+      <FilePathData Path="text_zh_cn/m5-4.png" />
       <FilePathData Path="text_zh_cn/m91-96.png" />
-      <FilePathData Path="text_zh_cn/m99-7.png" />
+      <FilePathData Path="text_zh_cn/m5-5.png" />
       <FilePathData Path="text_zh_cn/m99-8.png" />
       <FilePathData Path="text_zh_cn/m99-9.png" />
       <FilePathData Path="text_zh_cn/m92-10.png" />
@@ -175,6 +174,9 @@
       <FilePathData Path="text_zh_cn/wxquatext.png" />
       <FilePathData Path="text_zh_cn/wgcurtext.png" />
       <FilePathData Path="text_zh_cn/wgnexttext.png" />
+      <FilePathData Path="text_zh_cn/crit_text.png" />
+      <FilePathData Path="text_zh_cn/dodge_text.png" />
+      <FilePathData Path="text_zh_cn/m5-1.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

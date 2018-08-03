@@ -26,10 +26,10 @@ FightingLayer::~FightingLayer()
 }
 
 
-FightingLayer* FightingLayer::create(std::vector<Npc*> enemyHeros)
+FightingLayer* FightingLayer::create(std::vector<Npc*> enemyHeros, int bgtype)
 {
 	FightingLayer *pRet = new(std::nothrow)FightingLayer();
-	if (pRet && pRet->init(enemyHeros))
+	if (pRet && pRet->init(enemyHeros, bgtype))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -43,7 +43,7 @@ FightingLayer* FightingLayer::create(std::vector<Npc*> enemyHeros)
 }
 
 // on "init" you need to initialize your instance
-bool FightingLayer::init(std::vector<Npc*> enemyHeros)
+bool FightingLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 {
 	if (!Layer::init())
 	{
@@ -57,7 +57,8 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	Node* bg = Sprite::create(ResourcePath::makeImagePath("fightingbg.jpg"));
+	std::string fbg = StringUtils::format("fightbg%d.jpg", bgtype);
+	Node* bg = Sprite::create(ResourcePath::makeImagePath(fbg));
 	bg->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
 	this->addChild(bg);
 
@@ -213,6 +214,24 @@ void FightingLayer::showAtk(int fightertag)
 					break;
 				}
 			}
+
+			//计算闪避
+			if (enemyindex >= 0)
+			{
+				FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(6 + enemyindex);
+				float dodge = m_enemyHeros[enemyindex]->getDodge();
+
+				int r = GlobalInstance::getInstance()->createRandomNum(10000);
+
+				if (r < dodge * 100)
+				{
+					clearSkill();
+					enemyfnode->hurt(0, 2);
+					return;
+				}
+
+			}
+
 			if (whoskillindex >= 0)//触发了技能
 			{
 				FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(whoskillindex);
@@ -225,7 +244,21 @@ void FightingLayer::showAtk(int fightertag)
 			{
 				FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(6 + enemyindex);
 				float atkhp = GlobalInstance::myCardHeros[fightertag]->getAtk();
-				enemyfnode->hurt(atkhp);
+
+				//计算暴击
+				float crit = GlobalInstance::myCardHeros[fightertag]->getCrit();
+				GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_WG, GlobalInstance::myCardHeros[fightertag]->getName());
+				if (gf != NULL)
+					crit += gf->getCrit();
+
+				int r = GlobalInstance::getInstance()->createRandomNum(10000);
+				int state = 0;
+				if (r < crit * 100)
+				{
+					state = 1;
+					atkhp *= 2;
+				}
+				enemyfnode->hurt(atkhp, state);
 			}
 
 			//增加自身攻击速度%.2f，持续%d回合。
@@ -318,8 +351,10 @@ void FightingLayer::showAtk(int fightertag)
 			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
 			{
 				myfindex = i;
+				break;
 			}
 		}
+
 
 		if (whosufferskillindex >= 0)
 		{
@@ -435,7 +470,34 @@ void FightingLayer::showAtk(int fightertag)
 		{
 			FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(myfindex);
 			float atkhp = m_enemyHeros[fightertag - 6]->getAtk();
-			myfnode->hurt(atkhp);
+
+			//计算暴击
+			float crit = m_enemyHeros[fightertag - 6]->getCrit();
+
+			int r = GlobalInstance::getInstance()->createRandomNum(10000);
+			int state = 0;
+			if (r < crit * 100)
+			{
+				state = 1;
+				atkhp *= 2;
+			}
+
+			//计算闪避
+
+			float dodge = GlobalInstance::myCardHeros[myfindex]->getDodge();
+
+			GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, GlobalInstance::myCardHeros[myfindex]->getName());
+			if (gf != NULL)
+				dodge += gf->getDodge();
+
+			r = GlobalInstance::getInstance()->createRandomNum(10000);
+			if (r < dodge * 100)
+			{
+				state = 2;
+				atkhp = 0;
+			}
+
+			myfnode->hurt(atkhp, state);
 		}
 	}	
 }

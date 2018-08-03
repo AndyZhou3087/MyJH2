@@ -14,9 +14,9 @@ public:
 	FightingLayer();
 	~FightingLayer();
 
-	static FightingLayer* create(std::vector<Npc*> enemyHeros);
+	static FightingLayer* create(std::vector<Npc*> enemyHeros, int bgtype);
 	virtual void onExit();
-	bool init(std::vector<Npc*> enemyHeros);
+	bool init(std::vector<Npc*> enemyHeros, int bgtype);
 
 	void showAtk(int fightertag);
 

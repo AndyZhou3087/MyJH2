@@ -54,7 +54,11 @@ bool FightHeroNode::init()
 	headimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("head");
 
 	statusimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("statusicon");
+	statusimg->ignoreContentAdaptWithSize(true);
 	statusimg->setVisible(false);
+
+	critnumbg = (cocos2d::ui::ImageView*)csbnode->getChildByName("critnumbg");
+	critnumbg->setVisible(false);
 
 	//名字
 	namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
@@ -79,6 +83,9 @@ bool FightHeroNode::init()
 	vocationbox = (cocos2d::ui::Widget*)csbnode->getChildByName("vocationbox");
 
 	vocationicon = (cocos2d::ui::ImageView*)vocationbox->getChildByName("v");
+
+	numfnt = (cocos2d::ui::TextBMFont*)csbnode->getChildByName("numfnt");
+	numfnt->setVisible(false);
 
 	return true;
 }
@@ -205,7 +212,7 @@ void FightHeroNode::resumeTimeSchedule()
 }
 
 
-void FightHeroNode::hurt(float hp)
+void FightHeroNode::hurt(float hp, int stat)
 {
 	if (m_Data != NULL && this->isVisible())
 	{
@@ -214,12 +221,37 @@ void FightHeroNode::hurt(float hp)
 		else
 			hp -= m_Data->getDf()*(1 + dfbns/100);
 
-		if (hp > 0)
+		if (hp > 0 || stat == 2)
 		{
 			hurtup = hp;
-			statusimg->loadTexture("mapui/hurticon.png", cocos2d::ui::Widget::TextureResType::PLIST);
+
+			std::string hurtstr = StringUtils::format("-%d", (int)hurtup);
+			if (stat == 1)
+			{
+				numfnt->setFntFile("fonts/crithurtnum.fnt");
+				int langtype = GlobalInstance::getInstance()->getLang();
+				statusimg->loadTexture(ResourcePath::makeTextImgPath("crit_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+				numfnt->setVisible(true);
+				critnumbg->runAction(Sequence::create(Show::create(), DelayTime::create(0.35f), Hide::create(), NULL));
+			}
+			else if (stat == 2)
+			{
+				hurtup = 0;
+				int langtype = GlobalInstance::getInstance()->getLang();
+				statusimg->loadTexture(ResourcePath::makeTextImgPath("dodge_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			}
+			else
+			{
+				numfnt->setFntFile("fonts/normalhurtnum.fnt");
+				statusimg->loadTexture("mapui/hurticon.png", cocos2d::ui::Widget::TextureResType::PLIST);
+				numfnt->setVisible(true);
+			}
+			numfnt->setString(hurtstr);
+			numfnt->runAction(Sequence::create(DelayTime::create(0.35f), Hide::create(), NULL));
+
 			ActionInterval* ac1 = Spawn::create(Show::create(), FadeIn::create(0.15f), EaseSineIn::create(ScaleTo::create(0.15f, 1)), NULL);
 			statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), NULL));
+		
 		}
 		else
 		{
@@ -646,17 +678,22 @@ void FightHeroNode::attackedSkillCB(int stype, Npc* data)
 
 void FightHeroNode::recoveHp()
 {
-	//ResBase* res = MyRes::getMyPutOnResByType(T_WG, "w030");
+	ResBase* res = MyRes::getMyPutOnResByType(T_WG, "w030");
 
-	//if (m_Data != NULL && res != NULL)
+	if (res != NULL)
 	{
-		float eff = GlobalInstance::map_GF["w028"].skilleff1;
-		m_Data->setHp(m_Data->getHp() + eff*m_Data->getMaxHp() / 100);
-		if (m_Data->getHp() + eff*m_Data->getHp() / 100 > m_Data->getMaxHp())
+		float eff = GlobalInstance::map_GF[res->getId()].skilleff1 * m_Data->getMaxHp()/100;
+		m_Data->setHp(m_Data->getHp() + eff);
+		if (m_Data->getHp() + eff > m_Data->getMaxHp())
 			m_Data->setHp(m_Data->getMaxHp());
 
 		float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
 		hp_bar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), CallFunc::create(CC_CALLBACK_0(FightHeroNode::nextRound, this)),  NULL));
+
+		std::string hpstr = StringUtils::format("+%d", (int)eff);
+		numfnt->setString(hpstr);
+		numfnt->setFntFile("fonts/addhpnum.fnt");
+		numfnt->runAction(Sequence::create(Show::create(), DelayTime::create(0.35f), Hide::create(), NULL));
 	}
 }
 

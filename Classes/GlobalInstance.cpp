@@ -1418,6 +1418,9 @@ void GlobalInstance::parseMapJson()
 		v = jsonvalue["cname"];
 		s_submap.name = v.GetString();
 
+		v = jsonvalue["type"];
+		s_submap.bgtype = atoi(v.GetString());
+
 		if (jsonvalue.HasMember("awd"))
 		{
 			v = jsonvalue["awd"];

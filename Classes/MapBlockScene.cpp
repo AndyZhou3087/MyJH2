@@ -33,6 +33,7 @@ MapBlockScene::MapBlockScene()
 	walkcount = 0;
 	monsterComeRnd = DEFAULTRND;
 	fogscale = 4.0f;
+	m_fightbgtype = 0;
 }
 
 
@@ -53,13 +54,13 @@ MapBlockScene::~MapBlockScene()
 
 }
 
-Scene* MapBlockScene::createScene(std::string mapname)
+Scene* MapBlockScene::createScene(std::string mapname, int bgtype)
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
 
 	// 'layer' is an autorelease object
-	g_MapBlockScene = MapBlockScene::create(mapname);
+	g_MapBlockScene = MapBlockScene::create(mapname, bgtype);
 
 	// add layer as a child to scene
 	scene->addChild(g_MapBlockScene);
@@ -68,10 +69,10 @@ Scene* MapBlockScene::createScene(std::string mapname)
 	return scene;
 }
 
-MapBlockScene* MapBlockScene::create(std::string mapname)
+MapBlockScene* MapBlockScene::create(std::string mapname, int bgtype)
 {
 	MapBlockScene *pRet = new(std::nothrow)MapBlockScene();
-	if (pRet && pRet->init(mapname))
+	if (pRet && pRet->init(mapname, bgtype))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -98,9 +99,11 @@ void MapBlockScene::onExit()
 	Layer::onExit();
 }
 
-bool MapBlockScene::init(std::string mapname)
+bool MapBlockScene::init(std::string mapname, int bgtype)
 {
 	m_mapid = mapname;
+
+	m_fightbgtype = bgtype;
 
 	m_csbnode = CSLoader::createNode(ResourcePath::makePath("mapBlockLayer.csb"));
 	this->addChild(m_csbnode);
@@ -167,6 +170,11 @@ bool MapBlockScene::init(std::string mapname)
 	loadTaskUI();
 
 	return true;
+}
+
+void MapBlockScene::showFightingLayer(std::vector<Npc*> enemys)
+{
+	this->addChild(FightingLayer::create(enemys, m_fightbgtype));
 }
 
 void MapBlockScene::loadTaskUI()
@@ -757,7 +765,7 @@ void MapBlockScene::doMyStatus()
 			}
 			if (!isTask)
 			{
-				this->addChild(FightingLayer::create(vec_enemys));
+				showFightingLayer(vec_enemys);
 			}
 		}
 	}

@@ -4,6 +4,8 @@
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
         <Folder Name="fonts">
+          <Fnt Name="crithurtnum.fnt" />
+          <Fnt Name="normalhurtnum.fnt" />
           <TTF Name="simhei.ttf" />
         </Folder>
         <Folder Name="images">
@@ -275,6 +277,7 @@
           <Image Name="buildblock_7.png" />
           <Image Name="buildblock_8.png" />
           <Image Name="buildblock_9.png" />
+          <Image Name="critnumbg.png" />
           <Image Name="fog.png" />
           <Image Name="gocitybtn.png" />
           <Image Name="heroatkspeedbar.png" />
@@ -356,8 +359,10 @@
           <Image Name="continuebtn_text.png" />
           <Image Name="continuegamebtn_text.png" />
           <Image Name="crefresh_text.png" />
+          <Image Name="crit_text.png" />
           <Image Name="cure_text.png" />
           <Image Name="decomposebtn_text.png" />
+          <Image Name="dodge_text.png" />
           <Image Name="drlvupbtn_text.png" />
           <Image Name="drmakeresbtn_text.png" />
           <Image Name="drop_text.png" />
@@ -408,13 +413,15 @@
           <Image Name="m4-2.png" />
           <Image Name="m4-3.png" />
           <Image Name="m4-4.png" />
+          <Image Name="m5-1.png" />
+          <Image Name="m5-2.png" />
           <Image Name="m55-1.png" />
           <Image Name="m55-10.png" />
           <Image Name="m55-3.png" />
           <Image Name="m55-5.png" />
-          <Image Name="m55-6.png" />
+          <Image Name="m5-3.png" />
           <Image Name="m55-7.png" />
-          <Image Name="m59-5.png" />
+          <Image Name="m5-4.png" />
           <Image Name="m91-96.png" />
           <Image Name="m92-10.png" />
           <Image Name="m921-10.png" />
@@ -426,9 +433,7 @@
           <Image Name="m92-7.png" />
           <Image Name="m92-8.png" />
           <Image Name="m92-9.png" />
-          <Image Name="m93-2.png" />
           <Image Name="m93-3.png" />
-          <Image Name="m93-5.png" />
           <Image Name="m93-7.png" />
           <Image Name="m93-8.png" />
           <Image Name="m93-9.png" />
@@ -436,7 +441,7 @@
           <Image Name="m94-2.png" />
           <Image Name="m94-3.png" />
           <Image Name="m94-4.png" />
-          <Image Name="m99-7.png" />
+          <Image Name="m5-5.png" />
           <Image Name="m99-8.png" />
           <Image Name="m99-9.png" />
           <Image Name="main_01_t.png" />
@@ -884,7 +889,6 @@
           <Image Name="y015.png" />
         </Folder>
         <Project Name="cardHeroNode.csd" Type="Node" />
-        <Project Name="changeVocationLayer.csd" Type="Layer" />
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
         <Project Name="equipDescLayer.csd" Type="Layer" />
         <Project Name="fighterAttrLayer.csd" Type="Layer" />

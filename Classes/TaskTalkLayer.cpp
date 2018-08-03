@@ -220,12 +220,12 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			{
 				if (isGo == 1)
 				{
-					g_MapBlockScene->addChild(FightingLayer::create(m_vec_enemys));
+					g_MapBlockScene->showFightingLayer(m_vec_enemys);
 					isGo = 0;
 				}
 				if (isFight)
 				{
-					g_MapBlockScene->addChild(FightingLayer::create(m_vec_enemys));
+					g_MapBlockScene->showFightingLayer(m_vec_enemys);
 				}
 			}
 			this->removeFromParentAndCleanup(true);
@@ -341,7 +341,7 @@ void TaskTalkLayer::questFight(std::string bwords)
 	}
 	else
 	{
-		g_MapBlockScene->addChild(FightingLayer::create(m_vec_enemys));
+		g_MapBlockScene->showFightingLayer(m_vec_enemys);
 		this->removeFromParentAndCleanup(true);
 	}
 }
