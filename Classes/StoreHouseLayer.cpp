@@ -52,8 +52,9 @@ bool StoreHouseLayer::init()
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(StoreHouseLayer::onBtnClick, this));
 
 	//按钮文字
-	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
+	actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
 	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("fastdecompose_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	actionbtntxt->ignoreContentAdaptWithSize(true);
 
 	scrollview = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("scrollview");
 	scrollview->setScrollBarEnabled(false);
@@ -68,7 +69,6 @@ bool StoreHouseLayer::init()
 		btn->addTouchEventListener(CC_CALLBACK_2(StoreHouseLayer::onCategory, this));
 		vec_categoryBtn.push_back(btn);
 	}
-	loadData();
 	updateContent(0);
 
 	auto listener = EventListenerTouchOneByOne::create();
@@ -106,10 +106,11 @@ void StoreHouseLayer::updateContent(int category)
 		}
 	}
 
-	int itemheight = 160;
-
 	map_cateRes.clear();
 	loadData();
+
+	int itemheight = 160;
+
 	if (category == 0)
 	{
 		int catasort[] = { CATA_3 , CATA_1, CATA_2 };
@@ -196,13 +197,23 @@ void StoreHouseLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		{
 		case 1000:
 		{
-			MovingLabel::show(ResourceLang::map_lang["decomposehint"]);
 			isfastcomposing = true;
-
+			MovingLabel::show(ResourceLang::map_lang["decomposehint"]);
+			btnnode->setTag(1002);
+			actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("cancelbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			updateContent(lastCategoryindex);
 			break;
 		}
 		case 1001:
 			this->removeFromParentAndCleanup(true);
+			break;
+		case 1002:
+		{
+			isfastcomposing = false;
+			btnnode->setTag(1000);
+			actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("fastdecompose_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			updateContent(lastCategoryindex);
+		}
 			break;
 		default:
 			break;
@@ -236,11 +247,15 @@ void StoreHouseLayer::onclick(Ref* pSender)
 
 void StoreHouseLayer::loadData()
 {
-
 	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
 	{
+		bool isadd = true;
 		ResBase* res = MyRes::vec_MyResources[i];
-		if (res->getWhere() == MYSTORAGE)
+		int size = GlobalInstance::map_AllResources[res->getId()].vec_needres.size();
+		if (size <= 0 && isfastcomposing)
+			isadd = false;
+
+		if (res->getWhere() == MYSTORAGE && isadd)
 		{
 			if (res->getType() == T_WG || res->getType() == T_NG)
 				map_cateRes[CATA_1].push_back(MyRes::vec_MyResources[i]);
@@ -276,10 +291,14 @@ void StoreHouseLayer::onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		Node* node = (Node*)pSender;
+
+		if (isfastcomposing)
+			MovingLabel::show(ResourceLang::map_lang["decomposehint"]);
+
 		if (lastCategoryindex == node->getTag())
 			return;
 
-		isfastcomposing = false;
+		//isfastcomposing = false;
 		lastCategoryindex = node->getTag();
 
 		updateContent(node->getTag());
@@ -310,7 +329,6 @@ void StoreHouseLayer::decompose(ResBase* res)
 
 		std::string showstr = StringUtils::format(ResourceLang::map_lang["decomposesucc"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str(), str.c_str());
 		MovingLabel::show(showstr);
-
 
 		updateContent(lastCategoryindex);
 

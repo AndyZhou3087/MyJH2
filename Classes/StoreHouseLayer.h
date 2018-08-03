@@ -39,6 +39,7 @@ private:
 	std::map<int, std::vector<ResBase*>> map_cateRes;
 	int lastCategoryindex;
 	int langtype;
+	cocos2d::ui::ImageView* actionbtntxt;
 	bool isfastcomposing;
 };
 #endif
