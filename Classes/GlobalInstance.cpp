@@ -48,6 +48,8 @@ Hero* GlobalInstance::myCardHeros[6];
 
 std::map<std::string, S_MainMap> GlobalInstance::map_mapsdata;
 
+std::map<std::string, TBoxData> GlobalInstance::map_TBoxs;
+
 DynamicValueInt GlobalInstance::mySoliverCount;
 DynamicValueInt GlobalInstance::myCoinCount;
 
@@ -1607,6 +1609,39 @@ void GlobalInstance::parseSuitJson()
 				data.vec_bns.push_back(v[m].GetDouble());
 			}
 			map_EquipSuit[data.id] = data;
+		}
+	}
+}
+
+void GlobalInstance::parseTBoxJson()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/tbox.json"));
+	rapidjson::Value& allData = doc["b"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			TBoxData data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = v.GetString();
+
+			v = jsonvalue["awd"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_awds.push_back(v[m].GetString());
+			}
+			v = jsonvalue["rnd"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				int rnd = v[m].GetInt();
+				for (unsigned int n = 0; n < data.vec_rnd.size(); n++)
+				{
+					rnd += data.vec_rnd[n];
+				}
+				data.vec_rnd.push_back(rnd);
+			}
+			map_TBoxs[data.id] = data;
 		}
 	}
 }

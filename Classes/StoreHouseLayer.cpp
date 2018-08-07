@@ -221,6 +221,11 @@ void StoreHouseLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	}
 }
 
+void StoreHouseLayer::updateUI()
+{
+	updateContent(lastCategoryindex);
+}
+
 void StoreHouseLayer::onclick(Ref* pSender)
 {
 	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);

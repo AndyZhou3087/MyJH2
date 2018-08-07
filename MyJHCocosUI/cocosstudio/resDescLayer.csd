@@ -87,14 +87,14 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desclbl" ActionTag="-1221271729" Tag="59" IconVisible="False" LeftMargin="90.1348" RightMargin="89.8652" TopMargin="658.9811" BottomMargin="521.0189" IsCustomSize="True" FontSize="27" LabelText="数量数量数量数量数量数量数量数量数量数量" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="540.0000" Y="100.0000" />
+          <AbstractNodeData Name="desclbl" ActionTag="-1221271729" Tag="59" IconVisible="False" LeftMargin="110.1348" RightMargin="109.8652" TopMargin="658.9811" BottomMargin="521.0189" IsCustomSize="True" FontSize="27" LabelText="数量数量数量数量数量数量数量数量数量数量" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="500.0000" Y="100.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.1348" Y="571.0189" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5002" Y="0.4461" />
-            <PreSize X="0.7500" Y="0.0781" />
+            <PreSize X="0.6944" Y="0.0781" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />

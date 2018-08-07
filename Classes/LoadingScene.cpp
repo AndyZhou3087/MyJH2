@@ -103,6 +103,8 @@ void LoadingScene::delayLoadData(float dt)
 	//读取每日任务数据
 	GlobalInstance::getInstance()->getMyDailyTaskData();
 
+	GlobalInstance::getInstance()->parseTBoxJson();
+
 	//数据处理完，显示游戏场景
 	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.2f);
 }

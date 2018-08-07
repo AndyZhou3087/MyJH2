@@ -28,6 +28,7 @@ private:
 private:
 	int status;
 	ResBase* m_res;
+	int m_fromwhere;
 };
 
 #endif

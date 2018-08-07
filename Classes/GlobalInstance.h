@@ -218,6 +218,13 @@ typedef enum
 	SKILL_20
 }SKILLTYPE;
 
+typedef struct
+{
+	std::string id;
+	std::vector<std::string> vec_awds;
+	std::vector<int> vec_rnd;
+}TBoxData;
+
 class GlobalInstance
 {
 public:
@@ -351,6 +358,10 @@ public:
 	//解析套装数据
 	void parseSuitJson();
 
+	//解析宝箱数据
+
+	void parseTBoxJson();
+
 	DynamicValueInt getMySoliverCount();
 
 	void addMySoliverCount(DynamicValueInt val);
@@ -432,6 +443,8 @@ public:
 	static Hero* myCardHeros[6];//出城选择的6个英雄
 
 	static std::map<std::string, S_MainMap> map_mapsdata;//地图数据
+
+	static std::map<std::string, TBoxData> map_TBoxs;
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

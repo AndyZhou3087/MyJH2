@@ -25,6 +25,8 @@ public:
 	CREATE_FUNC(StoreHouseLayer);
 
 	void decompose(ResBase* res);
+
+	void updateUI();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
