@@ -363,6 +363,7 @@
       <FilePathData Path="ui/cardvocation9.png" />
       <FilePathData Path="ui/cardvocationbox.png" />
       <FilePathData Path="ui/wglvframe.png" />
+      <FilePathData Path="ui/v001.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

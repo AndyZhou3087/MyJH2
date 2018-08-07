@@ -93,7 +93,7 @@ void Building::parseData()
 						for (int j = 0; j < size; j++)
 						{
 							std::string onestr = resvalue[j].GetString();
-							if (onestr.length() > 1)
+							if (onestr.length() > 3)
 							{
 								vec_res.push_back(onestr);
 							}

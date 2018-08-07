@@ -185,6 +185,7 @@ void FightHeroNode::update(float dt)
 		FightingLayer* fighting = (FightingLayer*)this->getParent();
 		fighting->pauseAtkSchedule();
 		this->runAction(Sequence::create(ScaleTo::create(0.2f, 1.5f), ScaleTo::create(0.1f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
+		playSkillEffect(1);
 	}
 	
 	atkspeed_bar->setPercent(timedt * 100 / getAtkSpeed());
@@ -257,6 +258,7 @@ void FightHeroNode::hurt(float hp, int stat)
 		{
 			hurtAnimFinish();
 		}
+		attackedSkillEffect(1);
 	}
 } 
 
@@ -575,13 +577,16 @@ void FightHeroNode::playSkill(int stype, Npc* data)
 		{
 
 		}
+
+		playSkillEffect(1);
 	}
 
 }
 void FightHeroNode::attackedSkill(int stype, Npc* data)
 {
 	//std::string skillid = StringUtils::format("sk%03d", stype);
-	this->runAction(Sequence::create(DelayTime::create(0.2f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, data)), NULL));
+	this->runAction(Sequence::create(DelayTime::create(1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, data)), NULL));
+	attackedSkillEffect(1);
 }
 
 void FightHeroNode::attackedSkillCB(int stype, Npc* data)
@@ -701,4 +706,26 @@ void FightHeroNode::nextRound()
 {
 	FightingLayer* fighting = (FightingLayer*)this->getParent();
 	fighting->resumeAtkSchedule();
+}
+
+void FightHeroNode::playSkillEffect(int stype)
+{
+	//auto effectnode = CSLoader::createNode("effect/zhimingdaji_qishou.csb");
+	//effectnode->setPosition(Vec2(0, 0));
+	//this->addChild(effectnode);
+
+	//auto action = CSLoader::createTimeline("effect/zhimingdaji_qishou.csb");
+	//effectnode->runAction(action);
+	//action->gotoFrameAndPlay(0, false);
+}
+
+void FightHeroNode::attackedSkillEffect(int stype)
+{
+	//auto effectnode = CSLoader::createNode("effect/zhimingdaji_shouji.csb");
+	//effectnode->setPosition(Vec2(0, 0));
+	//this->addChild(effectnode);
+
+	//auto action = CSLoader::createTimeline("effect/zhimingdaji_shouji.csb");
+	//effectnode->runAction(action);
+	//action->gotoFrameAndPlay(0, false);
 }

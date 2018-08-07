@@ -139,11 +139,7 @@ void TrainLayer::updateContent()
 	int itemheight = 170;
 
 	int size = GlobalInstance::vec_myHeros.size();
-	int innerheight = itemheight * size;
-	int contentheight = m_contentscroll->getContentSize().height;
-	if (innerheight < contentheight)
-		innerheight = contentheight;
-	m_contentscroll->setInnerContainerSize(Size(720, innerheight));
+
 
 	std::vector<Hero*> vec_trainheros;
 	for (int i = 0; i < size; i++)
@@ -155,12 +151,22 @@ void TrainLayer::updateContent()
 		}
 	}
 
+	int innerheight = itemheight * vec_trainheros.size();
+	int contentheight = m_contentscroll->getContentSize().height;
+	if (innerheight < contentheight)
+		innerheight = contentheight;
+	m_contentscroll->setInnerContainerSize(Size(650, innerheight));
+
 	for (unsigned int i = 0; i < vec_trainheros.size(); i++)
 	{
 		Hero* hero = vec_trainheros[i];
 		MyHeroNode* node = MyHeroNode::create(hero, HS_TRAINING);
+
+		node->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
+		node->runAction(EaseSineIn::create(MoveBy::create(0.10f + i*0.05f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
+
 		m_contentscroll->addChild(node);
-		node->setPosition(Vec2(319, innerheight - i*itemheight - itemheight*0.5));
+
 	}
 }
 

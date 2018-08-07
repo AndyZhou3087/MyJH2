@@ -107,6 +107,8 @@ void HospitalLayer::updateContent()
 		Hero* hero = vec_deadheros[i];
 		MyHeroNode* node = MyHeroNode::create(hero, HS_DEAD);
 		scrollview->addChild(node);
-		node->setPosition(Vec2(319, innerheight - i*itemheight - itemheight*0.5));
+		node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
+		node->runAction(EaseSineIn::create(MoveBy::create(0.10f + i*0.05f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+		//node->setPosition(Vec2(319, innerheight - i*itemheight - itemheight*0.5));
 	}
 }

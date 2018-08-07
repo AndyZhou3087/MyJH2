@@ -193,14 +193,17 @@ void SmithyLayer::updateContent(int category)
 	int contentheight = m_contentscroll->getContentSize().height;
 	if (innerheight < contentheight)
 		innerheight = contentheight;
-	m_contentscroll->setInnerContainerSize(Size(720, innerheight));
+	m_contentscroll->setInnerContainerSize(Size(650, innerheight));
 
 	
 	for (int i = 0; i < size; i++)
 	{
 		Node* itemnode = CSLoader::createNode(ResourcePath::makePath("makeResNode.csb"));
 
-		itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
+		itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
+		itemnode->runAction(EaseSineIn::create(MoveBy::create(0.10f + i*0.05f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
+
+		//itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 		m_contentscroll->addChild(itemnode);
 
 		cocos2d::ui::Widget* itembg= (cocos2d::ui::Widget*)itemnode->getChildByName("resitem");

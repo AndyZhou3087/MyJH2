@@ -25,7 +25,7 @@ MapBlockScene* g_MapBlockScene = NULL;
 
 MapBlockScene::MapBlockScene()
 {
-	myposParticle = NULL;
+	myposHero = NULL;
 	isMoving = false;
 
 	m_isLongPress = false;
@@ -417,6 +417,10 @@ void MapBlockScene::stopMoving()
 	{
 		go((MAP_KEYTYPE)m_longTouchNode->getTag());
 	}
+	else
+	{
+		myposHero->clearTracks();
+	}
 }
 
 void MapBlockScene::checkFood()
@@ -494,6 +498,7 @@ bool MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
 			bindex = (mycurRow)*blockColCount + mycurCol - 1;
 			if (mycurCol <= 0)
 				return false;
+			myposHero->getSkeleton()->flipX = 0;
 		}
 		break;
 		case KEY_RIGHT:
@@ -501,6 +506,7 @@ bool MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
 			bindex = (mycurRow)*blockColCount + mycurCol + 1;
 			if (mycurCol >= blockColCount - 1)
 				return false;
+			myposHero->getSkeleton()->flipX = 1;
 		}
 		break;
 		default:
@@ -560,11 +566,14 @@ void MapBlockScene::setMyPos()
 {
 	int px = mycurCol * MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2;
 	int py = mycurRow * MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2;
-	if (myposParticle == NULL)
+	if (myposHero == NULL)
 	{
-		myposParticle = ParticleSystemQuad::create("particle/hr.plist");
-		m_mapscrollcontainer->addChild(myposParticle, 40000);
-		myposParticle->setPosition(Vec2(px, py));
+		myposHero = spine::SkeletonAnimation::createWithJsonFile("test/test.json", "test/test.atlas", 0.5f);//0.5是设置图片的缩放比例
+
+		myposHero->setPosition(Vec2(px, py));
+		myposHero->setTimeScale(2);
+		//myposHero->setAnimation(0, "walk_l", true);//true是指循环播放walk动作
+		m_mapscrollcontainer->addChild(myposHero, 4000);
 
 		createMyRender();
 		this->schedule(schedule_selector(MapBlockScene::updateMyRender), 0.05f);
@@ -572,7 +581,8 @@ void MapBlockScene::setMyPos()
 	else
 	{
 		isMoving = true;
-		myposParticle->runAction(Sequence::create(MoveTo::create(0.5f, Vec2(px, py)), CallFunc::create(CC_CALLBACK_0(MapBlockScene::stopMoving, this)), NULL));
+		myposHero->setAnimation(0, "walk_l", true);
+		myposHero->runAction(Sequence::create(MoveTo::create(0.5f, Vec2(px, py)), CallFunc::create(CC_CALLBACK_0(MapBlockScene::stopMoving, this)), NULL));
 	}
 
 	ajustMyPos();
@@ -586,7 +596,7 @@ void MapBlockScene::setMyPos()
 void MapBlockScene::updateMyRender(float dt)
 {
 	_myrender->beginWithClear(0, 0, 0, 0.4f, 0, 0);
-	_mylight->setPosition(myposParticle->getPosition());
+	_mylight->setPosition(myposHero->getPosition());
 	_mylight->visit();
 	_myrender->end();
 	Director::getInstance()->getRenderer()->render();
@@ -594,8 +604,8 @@ void MapBlockScene::updateMyRender(float dt)
 
 void MapBlockScene::ajustMyPos()
 {
-	float offsetx = myposParticle->getPosition().x * scrollView->getZoomScale() - scrollView->getViewSize().width / 2;
-	float offsety = myposParticle->getPosition().y * scrollView->getZoomScale() - scrollView->getViewSize().height / 2;
+	float offsetx = myposHero->getPosition().x * scrollView->getZoomScale() - scrollView->getViewSize().width / 2;
+	float offsety = myposHero->getPosition().y * scrollView->getZoomScale() - scrollView->getViewSize().height / 2;
 
 	if (offsetx < 0)
 		offsetx = 0;
@@ -627,7 +637,7 @@ void MapBlockScene::createMyRender()
 	_mylight = Sprite::createWithSpriteFrameName("mapui/fog.png");
 	_mylight->setBlendFunc({ GL_ZERO, GL_ONE_MINUS_SRC_ALPHA });
 	_mylight->setAnchorPoint(Vec2(0.5, 0.5));
-	_mylight->setPosition(myposParticle->getPosition());
+	_mylight->setPosition(myposHero->getPosition());
 	_mylight->setScale(fogscale);
 	_myrender->addChild(_mylight);
 	_mylight->visit();

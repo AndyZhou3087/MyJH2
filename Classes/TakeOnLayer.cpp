@@ -152,8 +152,16 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 						suitres->setOpacity(128);
 						suitresbox->setOpacity(128);
 
+						int m = 0;
+						for (; m < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); m++)
+						{
+							if (eid.compare(0, 1, RES_TYPES_CHAR[m]) == 0)
+								break;
+						}
+
 						nohasEquip = new Equip();
 						nohasEquip->setId(eid);
+						nohasEquip->setType(m);
 						suitres->setUserData((void*)nohasEquip);
 					}
 					else

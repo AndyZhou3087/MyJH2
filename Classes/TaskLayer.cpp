@@ -175,20 +175,28 @@ void TaskLayer::updateContent(int category)
 			{
 				if (GlobalInstance::vec_TaskMain[i].isfinish > QUEST_TASK || GlobalInstance::vec_TaskMain[i].id == GlobalInstance::myCurMainData.id)
 				{
-					m_count++;
 					node = TaskMainNode::create(&GlobalInstance::vec_TaskMain[i], this);
 					scrollview->addChild(node);
-					node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - m_count*itemheight + itemheight*0.5));
+
+					node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - m_count * itemheight - itemheight / 2));
+					node->runAction(EaseSineIn::create(MoveBy::create(0.10f + m_count*0.05f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+
+					//node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - m_count*itemheight + itemheight*0.5));
+					m_count++;
 				}
 			}
 			else if (category == 1)
 			{
 				if (GlobalInstance::vec_TaskBranch[i].isfinish > QUEST_TASK || GlobalInstance::vec_TaskBranch[i].id == GlobalInstance::myCurBranchData.id)
 				{
-					b_count++;
 					node = TaskBranchNode::create(&GlobalInstance::vec_TaskBranch[i], this);
 					scrollview->addChild(node);
-					node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - b_count*itemheight + itemheight*0.5));
+
+					node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - b_count * itemheight - itemheight / 2));
+					node->runAction(EaseSineIn::create(MoveBy::create(0.10f + b_count*0.05f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+
+					//node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - b_count*itemheight + itemheight*0.5));
+					b_count++;
 				}
 			}
 		}
@@ -198,6 +206,7 @@ void TaskLayer::updateContent(int category)
 		std::vector<DailyTaskData*> vec_fin;
 		std::vector<DailyTaskData*> vec_unfin;
 		std::vector<DailyTaskData*> vec_get;
+
 		std::map<std::string, DailyTaskData>::iterator it;
 		for (it = GlobalInstance::map_DTdata.begin(); it != GlobalInstance::map_DTdata.end(); it++)
 		{
@@ -215,23 +224,30 @@ void TaskLayer::updateContent(int category)
 				vec_unfin.push_back(&GlobalInstance::map_DTdata[it->first]);
 			}
 		}
+		std::vector<DailyTaskData*> vec_all;
 		for (unsigned int i = 0; i < vec_fin.size(); i++)
 		{
-			Node* node = TaskDailyNode::create(vec_fin[i]);
-			scrollview->addChild(node);
-			node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - i*itemheight - itemheight*0.5));
+			vec_all.push_back(vec_fin[i]);
+
 		}
 		for (unsigned int i = 0; i < vec_unfin.size(); i++)
 		{
-			Node* node = TaskDailyNode::create(vec_unfin[i]);
-			scrollview->addChild(node);
-			node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - (i + vec_fin.size())*itemheight - itemheight*0.5));
+			vec_all.push_back(vec_unfin[i]);
 		}
 		for (unsigned int i = 0; i < vec_get.size(); i++)
 		{
 			Node* node = TaskDailyNode::create(vec_get[i]);
+			vec_all.push_back(vec_get[i]);
+		}
+
+		for (unsigned int i = 0; i < vec_all.size(); i++)
+		{
+			Node* node = TaskDailyNode::create(vec_all[i]);
 			scrollview->addChild(node);
-			node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - (i + vec_fin.size() + vec_unfin.size())*itemheight - itemheight*0.5));
+
+			node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
+			node->runAction(EaseSineIn::create(MoveBy::create(0.10f + i*0.05f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+			//node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - i*itemheight - itemheight*0.5));
 		}
 	}
 	

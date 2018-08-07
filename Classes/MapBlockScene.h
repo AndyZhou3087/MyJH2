@@ -7,6 +7,8 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "cocos-ext.h"
+#include <spine/spine-cocos2dx.h>
+#include "spine/spine.h"
 #include "MapBlock.h"
 #include "FightHeroNode.h"
 
@@ -120,7 +122,7 @@ private:
 	Node* m_csbnode;
 	Node* m_tasknode;
 
-	ParticleSystemQuad* myposParticle;
+	spine::SkeletonAnimation* myposHero;
 	cocos2d::ui::Text* carrycountlbl;
 	cocos2d::ui::Text* foodcountlbl;
 	cocos2d::ui::Text* solivercountlbl;

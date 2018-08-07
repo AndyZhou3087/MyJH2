@@ -59,6 +59,9 @@ public:
 
 	void nextRound();
 
+	void playSkillEffect(int stype);
+
+	void attackedSkillEffect(int stype);
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
