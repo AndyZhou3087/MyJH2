@@ -7,8 +7,9 @@
 
 #define FONT_NAME "fonts/simhei.ttf"
 
-#define FIRSTNAMECOUNT 40
-#define LASTNAMECOUNT 40
+#define FIRSTNAMECOUNT 495
+#define LASTNAMECOUNT0 2306
+#define LASTNAMECOUNT1 4159
 #define HERO_RESETTIME 21600//英雄刷新时间
 #define RES_REFRESHTIME 60//资源刷新时间
 #define MARKET_RESETTIME 3600//市场刷新时间
@@ -40,5 +41,5 @@ const static int COSTLV[] = { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 16, 1
 const static float ODDS[] = { 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 96.5f, 92.5f, 88.0f, 83.0f, 77.5f, 71.5f, 65.0f, 58.0f, 50.5f, 42.5f, 34.0f, 25.0f, 15.5f, 5.5f };
 
 //区分资源类型的字符
-const static std::string RES_TYPES_CHAR[] = { "r","a","e","g","f","w","x","s","c","d","m","b","y" };
+const static std::string RES_TYPES_CHAR[] = { "r","a","e","g","f","w","x","s","c","d","m","b","y","v" };
 #endif // _H_CONST_H_

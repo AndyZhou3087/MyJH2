@@ -30,6 +30,7 @@ typedef enum
 	T_MIJI,//参悟秘籍，升级功法
 	T_BOX,//宝箱
 	T_STONE,//玉，宝石，镶嵌用的
+	T_VSION,//视野
 	T_OTHER
 }RESTYPE;
 class ResBase

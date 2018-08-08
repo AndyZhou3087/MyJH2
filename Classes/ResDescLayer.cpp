@@ -149,6 +149,11 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 			std::string  descstr1 = StringUtils::format(ResourceLang::map_lang["tboxdesc"].c_str(), resname.c_str());
 			descstr = StringUtils::format("%s%s", descstr.c_str(), descstr1.c_str());
 		}
+		else if (res->getType() == T_VSION)
+		{
+			std::string visonstr = StringUtils::format("%s%d", ResourceLang::map_lang["lvtexts"].c_str(), res->getCount().getValue());
+			coutlbl->setString(visonstr);
+		}
 		else
 		{
 			if (GlobalInstance::map_AllResources[res->getId()].vec_needres.size() > 0)

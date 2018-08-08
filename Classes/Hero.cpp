@@ -276,9 +276,17 @@ void Hero::generate()
 std::string Hero::generateName()
 {
 	int rfirst = GlobalInstance::getInstance()->createRandomNum(FIRSTNAMECOUNT);
-	int rlast = GlobalInstance::getInstance()->GlobalInstance::createRandomNum(LASTNAMECOUNT);
+	int lastnamecount = LASTNAMECOUNT0;
+	std::string lastnamefile = "heroname/lastname0.txt";
+	if (m_vocation == 3)//女性名字
+	{
+		lastnamecount = LASTNAMECOUNT1;
+		lastnamefile = "heroname/lastname1.txt";
+	}
+
+	int rlast = GlobalInstance::getInstance()->GlobalInstance::createRandomNum(lastnamecount);
 	std::string namestr;
-	std::string heronamefile[] = { "heroname/firstname.txt" , "heroname/lastname.txt" };
+	std::string heronamefile[] = { "heroname/firstname.txt" , lastnamefile };
 	int randindex[] = { rfirst ,rlast };
 	for (int i = 0; i < 2; i++)
 	{
