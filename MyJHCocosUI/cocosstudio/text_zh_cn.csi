@@ -177,6 +177,7 @@
       <FilePathData Path="text_zh_cn/crit_text.png" />
       <FilePathData Path="text_zh_cn/dodge_text.png" />
       <FilePathData Path="text_zh_cn/m5-1.png" />
+      <FilePathData Path="text_zh_cn/drstrenth_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

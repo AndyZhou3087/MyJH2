@@ -155,6 +155,9 @@ private:
 	float fogscale;
 
 	int m_fightbgtype;
+	
+	int m_walkDirection;
+	int m_lastWalkDirection;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

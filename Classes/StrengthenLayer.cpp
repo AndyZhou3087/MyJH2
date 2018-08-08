@@ -13,8 +13,6 @@
 #include "Quest.h"
 #include "MovingLabel.h"
 
-#define SLIVERCOUNT 100
-
 StrengthenLayer::StrengthenLayer()
 {
 
@@ -84,8 +82,11 @@ bool StrengthenLayer::init(Equip* res_equip)
 	str = StringUtils::format("LV.%d", m_equip->getLv().getValue());
 	lv->setString(str);
 
+	lv->setTextColor(Color4B(POTENTIALCOLOR[qu]));
+
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	name->setString(GlobalInstance::map_AllResources[m_equip->getId()].name);
+	name->setTextColor(Color4B(POTENTIALCOLOR[qu]));
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -96,23 +97,23 @@ bool StrengthenLayer::init(Equip* res_equip)
 
 		str = StringUtils::format("rescount_%d", i);
 		cocos2d::ui::Text* rescount = (cocos2d::ui::Text*)csbnode->getChildByName(str);
-		str = StringUtils::format("%d/%d", MyRes::getMyResCount(restr), m_equip->getLv().getValue());//一级需求一个
+		str = StringUtils::format("%d/%d", MyRes::getMyResCount(restr), m_equip->getLv().getValue() + 1);//一级需求一个
 		rescount->setString(str);
 
-		if (MyRes::getMyResCount(restr) < m_equip->getLv().getValue())
+		if (MyRes::getMyResCount(restr) < m_equip->getLv().getValue() + 1)
 		{
 			rescount->setColor(Color3B(255, 0, 0));
 		}
 	}
 
 	cocos2d::ui::Text* tipstext = (cocos2d::ui::Text*)csbnode->getChildByName("tipstext");
-	if (m_equip->getLv().getValue() > 6)
+	if (m_equip->getLv().getValue() >= 6)
 	{
-		str = StringUtils::format(ResourceLang::map_lang["tipsstrengthtext"].c_str(), ODDS[m_equip->getLv().getValue() - 1], COSTLV[m_equip->getLv().getValue() - 1]);
+		str = StringUtils::format(ResourceLang::map_lang["tipsstrengthtext"].c_str(), ODDS[m_equip->getLv().getValue()], COSTLV[m_equip->getLv().getValue()]);
 	}
 	else
 	{
-		str = StringUtils::format(ResourceLang::map_lang["tipsstrengthtext1"].c_str(), ODDS[m_equip->getLv().getValue() - 1], COSTLV[m_equip->getLv().getValue() - 1]); 
+		str = StringUtils::format(ResourceLang::map_lang["tipsstrengthtext1"].c_str(), ODDS[m_equip->getLv().getValue()], COSTLV[m_equip->getLv().getValue()]); 
 	}
 	
 	tipstext->setString(str);
@@ -120,11 +121,20 @@ bool StrengthenLayer::init(Equip* res_equip)
 	//强化按钮
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(StrengthenLayer::onBtnClick, this));
+	actionbtn->setTag(1000);
 	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
 	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("strenthbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+
+	//立即强化按钮
+	cocos2d::ui::Widget* dractionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn_0");
+	dractionbtn->addTouchEventListener(CC_CALLBACK_2(StrengthenLayer::onBtnClick, this));
+	dractionbtn->setTag(1001);
+	cocos2d::ui::ImageView* drationbtntxt = (cocos2d::ui::ImageView*)dractionbtn->getChildByName("text");
+	drationbtntxt->loadTexture(ResourcePath::makeTextImgPath("drstrenth_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
 	cocos2d::ui::Text* silvercount = (cocos2d::ui::Text*)csbnode->getChildByName("silvercount");
-	str = StringUtils::format("x%d", SLIVERCOUNT);
+	str = StringUtils::format("x%d", (m_equip->getLv().getValue() + 1) * 1000);
 	silvercount->setString(str);
 
 
@@ -149,41 +159,50 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		Node* node = (Node*)pSender;
+		int tag = node->getTag();
+
 		if (m_equip->getLv().getValue() >= sizeof(COSTLV) / sizeof(COSTLV[0]))
 		{
 			MovingLabel::show(ResourceLang::map_lang["mostlv"]);
 			return;
 		}
 
-		for (int i = 0; i < 3; i++)
+		if (tag == 1000)
 		{
-			std::string restr = StringUtils::format("q00%d", i + 1);
-			if (MyRes::getMyResCount(restr) < m_equip->getLv().getValue())
+			for (int i = 0; i < 3; i++)
 			{
-				MovingLabel::show(ResourceLang::map_lang["reslack"]);
+				std::string restr = StringUtils::format("q00%d", i + 1);
+				if (MyRes::getMyResCount(restr) < m_equip->getLv().getValue() + 1)
+				{
+					MovingLabel::show(ResourceLang::map_lang["reslack"]);
+					return;
+				}
+			}
+
+			for (int i = 0; i < 3; i++)
+			{
+				std::string restr = StringUtils::format("q00%d", i + 1);
+				if (MyRes::getMyResCount(restr) >= m_equip->getLv().getValue() + 1)
+				{
+					MyRes::Use(restr, m_equip->getLv().getValue() + 1);
+				}
+			}
+		}
+		else
+		{
+			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() < (m_equip->getLv().getValue() + 1) * 1000)
+			{
+				MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
 				return;
 			}
+			DynamicValueInt dvl;
+			dvl.setValue((m_equip->getLv().getValue() + 1) * 1000);
+			GlobalInstance::getInstance()->costMySoliverCount(dvl);
 		}
-		if (GlobalInstance::getInstance()->getMySoliverCount().getValue() < SLIVERCOUNT)
-		{
-			MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
-			return;
-		}
-
-		for (int i = 0; i < 3; i++)
-		{
-			std::string restr = StringUtils::format("q00%d", i + 1);
-			if (MyRes::getMyResCount(restr) >= m_equip->getLv().getValue())
-			{
-				MyRes::Use(restr);
-			}
-		}
-		DynamicValueInt dvl;
-		dvl.setValue(SLIVERCOUNT);
-		GlobalInstance::getInstance()->costMySoliverCount(dvl);
 
 		int r = GlobalInstance::getInstance()->createRandomNum(1000);
-		int odds = ODDS[m_equip->getLv().getValue() - 1] * 10;
+		int odds = ODDS[m_equip->getLv().getValue()] * 10;
 		if (r <= odds)
 		{
 			DynamicValueInt elv;
@@ -195,10 +214,11 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		else
 		{
 			DynamicValueInt elv;
-			elv.setValue(m_equip->getLv().getValue() - COSTLV[m_equip->getLv().getValue() - 1]);
+			elv.setValue(m_equip->getLv().getValue() - COSTLV[m_equip->getLv().getValue()]);
 			m_equip->setLv(elv);
 			MovingLabel::show(ResourceLang::map_lang["strengthfail"]);
 		}
+
 		this->removeFromParentAndCleanup(true);
 	}
 }

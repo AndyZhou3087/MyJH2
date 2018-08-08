@@ -36,7 +36,7 @@
             <PreSize X="0.1514" Y="0.0852" />
             <FileData Type="MarkedSubImage" Path="ui/a001.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="actionbtn" ActionTag="1395231581" Tag="765" IconVisible="False" LeftMargin="263.3247" RightMargin="252.6753" TopMargin="829.3164" BottomMargin="366.6836" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="actionbtn" ActionTag="1395231581" Tag="765" IconVisible="False" LeftMargin="131.3167" RightMargin="384.6833" TopMargin="838.3164" BottomMargin="357.6836" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-1119123" Tag="766" IconVisible="False" LeftMargin="63.5216" RightMargin="64.4784" TopMargin="22.7404" BottomMargin="27.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="26" Scale9Height="8" ctype="ImageViewObjectData">
@@ -51,10 +51,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="365.3247" Y="408.6836" />
+            <Position X="233.3167" Y="399.6836" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5074" Y="0.3193" />
+            <PrePosition X="0.3241" Y="0.3123" />
             <PreSize X="0.2833" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
@@ -75,14 +75,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="strenthicon_18" ActionTag="702840774" Tag="168" IconVisible="False" LeftMargin="246.6404" RightMargin="410.3596" TopMargin="358.4146" BottomMargin="857.5854" ctype="SpriteObjectData">
+          <AbstractNodeData Name="strenthicon_18" ActionTag="702840774" Tag="168" IconVisible="False" LeftMargin="255.1404" RightMargin="418.8596" TopMargin="367.4146" BottomMargin="866.5854" ctype="SpriteObjectData">
             <Size X="63.0000" Y="64.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="278.1404" Y="889.5854" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.3863" Y="0.6950" />
-            <PreSize X="0.0875" Y="0.0500" />
+            <PreSize X="0.0639" Y="0.0359" />
             <FileData Type="MarkedSubImage" Path="ui/strenthicon.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
@@ -97,14 +97,14 @@
             <FileData Type="Normal" Path="images/brownbox.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="strentharrow_2" ActionTag="-799718756" Tag="55" IconVisible="False" LeftMargin="341.0000" RightMargin="339.0000" TopMargin="580.0000" BottomMargin="658.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="strentharrow_2" ActionTag="-799718756" Tag="55" IconVisible="False" LeftMargin="338.0000" RightMargin="336.0000" TopMargin="578.0000" BottomMargin="656.0000" ctype="SpriteObjectData">
             <Size X="40.0000" Y="42.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="361.0000" Y="679.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5014" Y="0.5305" />
-            <PreSize X="0.0556" Y="0.0328" />
+            <PreSize X="0.0639" Y="0.0359" />
             <FileData Type="MarkedSubImage" Path="ui/strentharrow.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
@@ -288,26 +288,53 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="63" G="63" B="63" />
           </AbstractNodeData>
-          <AbstractNodeData Name="main_silver_9" ActionTag="-1054062338" Tag="71" IconVisible="False" LeftMargin="297.5123" RightMargin="384.4877" TopMargin="919.6028" BottomMargin="322.3972" ctype="SpriteObjectData">
+          <AbstractNodeData Name="main_silver_9" ActionTag="-1054062338" Tag="71" IconVisible="False" LeftMargin="437.9240" RightMargin="244.0760" TopMargin="927.1039" BottomMargin="314.8961" ctype="SpriteObjectData">
             <Size X="38.0000" Y="38.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="316.5123" Y="341.3972" />
+            <Position X="456.9240" Y="333.8961" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4396" Y="0.2667" />
+            <PrePosition X="0.6346" Y="0.2609" />
             <PreSize X="0.0528" Y="0.0297" />
             <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="silvercount" ActionTag="-2089861806" Tag="72" IconVisible="False" LeftMargin="348.6442" RightMargin="317.3558" TopMargin="922.2831" BottomMargin="328.7169" FontSize="25" LabelText="x100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="silvercount" ActionTag="-2089861806" Tag="72" IconVisible="False" LeftMargin="481.0554" RightMargin="184.9446" TopMargin="935.7841" BottomMargin="315.2159" FontSize="25" LabelText="x100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="54.0000" Y="29.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="348.6442" Y="343.2169" />
+            <Position X="481.0554" Y="329.7159" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4842" Y="0.2681" />
+            <PrePosition X="0.6681" Y="0.2576" />
             <PreSize X="0.0750" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="actionbtn_0" ActionTag="2024961853" Tag="362" IconVisible="False" LeftMargin="385.6578" RightMargin="130.3422" TopMargin="838.3164" BottomMargin="357.6836" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="204.0000" Y="84.0000" />
+            <Children>
+              <AbstractNodeData Name="text" ActionTag="-1125848478" Tag="363" IconVisible="False" LeftMargin="24.5216" RightMargin="25.4784" TopMargin="19.7404" BottomMargin="24.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="104" Scale9Height="14" ctype="ImageViewObjectData">
+                <Size X="154.0000" Y="40.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="101.5216" Y="44.2596" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4977" Y="0.5269" />
+                <PreSize X="0.7549" Y="0.4762" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/drstrenth_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="487.6578" Y="399.6836" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.6773" Y="0.3123" />
+            <PreSize X="0.2833" Y="0.0656" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>

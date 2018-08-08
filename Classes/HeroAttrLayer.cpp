@@ -331,9 +331,21 @@ void HeroAttrLayer::updateAtrBtnUI()
 	}
 	else
 	{
-		btnArr[0]->setVisible(true);
-		btnArr[1]->setVisible(true);
-		btnArr[2]->setPositionX(600);
+		int herostate = m_heroData->getState();
+
+		if (herostate == HS_TAKEON || herostate == HS_TRAINING)
+		{
+			btnArr[0]->setVisible(false);
+			btnArr[1]->setVisible(true);
+			btnArr[1]->setPositionX(220);
+			btnArr[2]->setPositionX(500);
+		}
+		else if (herostate == HS_OWNED)
+		{
+			btnArr[0]->setVisible(true);
+			btnArr[1]->setVisible(true);
+			btnArr[2]->setPositionX(600);;
+		}
 		btnArr[3]->setVisible(false);
 	}
 	

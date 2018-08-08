@@ -4,7 +4,7 @@
 Equip::Equip()
 {
 	m_qu.setValue(0);
-	m_lv.setValue(1);
+	m_lv.setValue(0);
 }
 
 

@@ -63,13 +63,13 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="qu" ActionTag="-1660529406" Tag="142" IconVisible="False" LeftMargin="150.8403" RightMargin="545.1597" TopMargin="299.4939" BottomMargin="954.5061" FontSize="23" LabelText="甲" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="qu" ActionTag="-1660529406" Tag="142" IconVisible="False" LeftMargin="150.8403" RightMargin="545.1597" TopMargin="298.4939" BottomMargin="955.5061" FontSize="23" LabelText="甲" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="24.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="150.8403" Y="967.5061" />
+            <Position X="150.8403" Y="968.5061" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2095" Y="0.7559" />
+            <PrePosition X="0.2095" Y="0.7566" />
             <PreSize X="0.0333" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />

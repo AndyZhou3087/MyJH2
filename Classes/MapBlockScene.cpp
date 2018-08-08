@@ -22,7 +22,9 @@
 MapBlockScene* g_MapBlockScene = NULL;
 
 #define DEFAULTRND 10
-
+#define HEROOFFSET_Y 20
+std::string walkname[] = {"walk_up", "walk_d", "walk_l", "walk_l"};
+std::string standname[] = { "stand_up", "stand_d", "stand_l", "stand_l" };
 MapBlockScene::MapBlockScene()
 {
 	myposHero = NULL;
@@ -34,6 +36,8 @@ MapBlockScene::MapBlockScene()
 	monsterComeRnd = DEFAULTRND;
 	fogscale = 4.0f;
 	m_fightbgtype = 0;
+	m_walkDirection = 0;
+	m_lastWalkDirection = 0;
 }
 
 
@@ -116,6 +120,10 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	sitelbl = (cocos2d::ui::Text*)topnode->getChildByName("site");
 
+	int vsionLv = MyRes::getMyResCount("v001", MYSTORAGE);
+
+	fogscale += vsionLv;
+
 	resetBlockData();
 
 	parseMapXml(mapname);
@@ -174,7 +182,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 void MapBlockScene::showFightingLayer(std::vector<Npc*> enemys)
 {
-	this->addChild(FightingLayer::create(enemys, m_fightbgtype));
+	//this->addChild(FightingLayer::create(enemys, m_fightbgtype));
 }
 
 void MapBlockScene::loadTaskUI()
@@ -325,7 +333,7 @@ void MapBlockScene::onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	{
 		m_longTouchNode = clicknode;
 		if (!isScheduled(schedule_selector(MapBlockScene::longTouchUpdate)))
-			schedule(schedule_selector(MapBlockScene::longTouchUpdate), 0.7f);
+			schedule(schedule_selector(MapBlockScene::longTouchUpdate), 0.45f);
 		if (!m_isLongPress)
 			go((MAP_KEYTYPE)clicknode->getTag());
 	}
@@ -391,6 +399,9 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	default:
 		break;
 	}
+
+	m_walkDirection = keyArrow - KEY_UP;
+
 	setMyPos();
 	walkcount++;
 	monsterComeRnd += (5 + walkcount);
@@ -419,7 +430,8 @@ void MapBlockScene::stopMoving()
 	}
 	else
 	{
-		myposHero->clearTracks();
+		myposHero->setAnimation(0, standname[m_walkDirection], false);
+		//myposHero->clearTracks();
 	}
 }
 
@@ -568,12 +580,12 @@ void MapBlockScene::setMyPos()
 	int py = mycurRow * MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2;
 	if (myposHero == NULL)
 	{
-		myposHero = spine::SkeletonAnimation::createWithJsonFile("test/test.json", "test/test.atlas", 0.5f);//0.5是设置图片的缩放比例
+		myposHero = spine::SkeletonAnimation::createWithJsonFile("herowalk/herowalk.json", "herowalk/herowalk.atlas", 0.5f);//0.5是设置图片的缩放比例
 
-		myposHero->setPosition(Vec2(px, py));
+		myposHero->setPosition(Vec2(px, py + HEROOFFSET_Y));
 		myposHero->setTimeScale(2);
-		//myposHero->setAnimation(0, "walk_l", true);//true是指循环播放walk动作
-		m_mapscrollcontainer->addChild(myposHero, 4000);
+		m_mapscrollcontainer->addChild(myposHero, 19999);
+		myposHero->setAnimation(0, standname[m_walkDirection], false);
 
 		createMyRender();
 		this->schedule(schedule_selector(MapBlockScene::updateMyRender), 0.05f);
@@ -581,13 +593,15 @@ void MapBlockScene::setMyPos()
 	else
 	{
 		isMoving = true;
-		myposHero->setAnimation(0, "walk_l", true);
-		myposHero->runAction(Sequence::create(MoveTo::create(0.5f, Vec2(px, py)), CallFunc::create(CC_CALLBACK_0(MapBlockScene::stopMoving, this)), NULL));
+	
+		myposHero->setAnimation(0, walkname[m_walkDirection], true);//true是指循环播放walk动作
+		myposHero->runAction(Sequence::create(MoveTo::create(0.5f, Vec2(px, py + HEROOFFSET_Y)), CallFunc::create(CC_CALLBACK_0(MapBlockScene::stopMoving, this)), NULL));
+		m_lastWalkDirection = m_walkDirection;
 	}
 
 	ajustMyPos();
 
-	this->scheduleOnce(schedule_selector(MapBlockScene::updateFog), 0.3f);
+	this->scheduleOnce(schedule_selector(MapBlockScene::updateFog), 0.25f);
 
 	std::string str = StringUtils::format("%d,%d", blockRowCount - mycurRow, blockColCount - mycurCol);
 	sitelbl->setString(str);

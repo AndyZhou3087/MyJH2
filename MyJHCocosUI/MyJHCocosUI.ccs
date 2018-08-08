@@ -367,6 +367,7 @@
           <Image Name="drmakeresbtn_text.png" />
           <Image Name="drop_text.png" />
           <Image Name="drrecruitbtn_text.png" />
+          <Image Name="drstrenth_text.png" />
           <Image Name="equipprop_text.png" />
           <Image Name="equiptext_0.png" />
           <Image Name="equiptext_1.png" />
@@ -782,6 +783,8 @@
           <Image Name="s004.png" />
           <Image Name="setpline0.png" />
           <Image Name="smallstar.png" />
+          <Image Name="strentharrow.png" />
+          <Image Name="strenthicon.png" />
           <Image Name="taskbtn.png" />
           <Image Name="taskdailybigbar.png" />
           <Image Name="taskdailybigbg.png" />

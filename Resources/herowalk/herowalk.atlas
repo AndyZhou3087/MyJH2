@@ -1,0 +1,160 @@
+
+herowalk.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+B00
+  rotate: true
+  xy: 34, 4
+  size: 17, 28
+  orig: 17, 28
+  offset: 0, 0
+  index: -1
+B01
+  rotate: false
+  xy: 854, 96
+  size: 33, 30
+  orig: 33, 30
+  offset: 0, 0
+  index: -1
+B02
+  rotate: false
+  xy: 824, 82
+  size: 28, 44
+  orig: 28, 44
+  offset: 0, 0
+  index: -1
+B03
+  rotate: true
+  xy: 263, 2
+  size: 26, 45
+  orig: 26, 45
+  offset: 0, 0
+  index: -1
+B04
+  rotate: false
+  xy: 599, 62
+  size: 59, 64
+  orig: 59, 64
+  offset: 0, 0
+  index: -1
+B05
+  rotate: true
+  xy: 134, 24
+  size: 102, 127
+  orig: 102, 127
+  offset: 0, 0
+  index: -1
+B06
+  rotate: true
+  xy: 427, 76
+  size: 50, 94
+  orig: 50, 94
+  offset: 0, 0
+  index: -1
+B07
+  rotate: false
+  xy: 720, 63
+  size: 52, 63
+  orig: 52, 63
+  offset: 0, 0
+  index: -1
+F01
+  rotate: true
+  xy: 2, 4
+  size: 17, 30
+  orig: 17, 30
+  offset: 0, 0
+  index: -1
+F02
+  rotate: true
+  xy: 924, 109
+  size: 17, 29
+  orig: 17, 29
+  offset: 0, 0
+  index: -1
+F03
+  rotate: true
+  xy: 352, 2
+  size: 29, 44
+  orig: 29, 44
+  offset: 0, 0
+  index: -1
+F04
+  rotate: true
+  xy: 427, 49
+  size: 25, 45
+  orig: 25, 45
+  offset: 0, 0
+  index: -1
+F05
+  rotate: false
+  xy: 660, 62
+  size: 58, 64
+  orig: 58, 64
+  offset: 0, 0
+  index: -1
+F06
+  rotate: true
+  xy: 2, 23
+  size: 103, 130
+  orig: 103, 130
+  offset: 0, 0
+  index: -1
+L01
+  rotate: true
+  xy: 474, 50
+  size: 24, 36
+  orig: 24, 36
+  offset: 0, 0
+  index: -1
+L02
+  rotate: true
+  xy: 889, 102
+  size: 24, 33
+  orig: 24, 33
+  offset: 0, 0
+  index: -1
+L03
+  rotate: true
+  xy: 310, 2
+  size: 26, 32
+  orig: 26, 32
+  offset: 0, 0
+  index: -1
+L04
+  rotate: false
+  xy: 774, 70
+  size: 48, 56
+  orig: 48, 56
+  offset: 0, 0
+  index: -1
+L05
+  rotate: true
+  xy: 398, 2
+  size: 29, 44
+  orig: 29, 44
+  offset: 0, 0
+  index: -1
+L06
+  rotate: false
+  xy: 263, 30
+  size: 87, 96
+  orig: 87, 96
+  offset: 0, 0
+  index: -1
+L07
+  rotate: false
+  xy: 352, 33
+  size: 73, 93
+  orig: 73, 93
+  offset: 0, 0
+  index: -1
+L08
+  rotate: true
+  xy: 523, 62
+  size: 64, 74
+  orig: 64, 74
+  offset: 0, 0
+  index: -1

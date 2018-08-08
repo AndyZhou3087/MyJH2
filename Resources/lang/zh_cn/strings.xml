@@ -139,5 +139,6 @@
 	<s name="strengthfail">强化失败</s>
 	<s name="wglvtips">点击材料可增加经验值</s>
 	<s name="wgmostlv">等级已达到最高级</s>
-	<s name="tboxdesc">有一定概率获得%s</s>	
+	<s name="tboxdesc">有一定概率获得%s</s>
+	<s name="vsionmax">视野已到最高等级，无需再购买！</s>	
 </strings>

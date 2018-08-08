@@ -150,19 +150,36 @@ void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			{
 				if (!checkResIsFull())
 				{
-					MarketLayer* parent = (MarketLayer*)this->getParent()->getParent()->getParent()->getParent();
-					parent->buyRes(this->getTag(), buycount);
+					if (totalrescount >= buycount)
+					{
+						bool isCanBuy = true;
+						if (m_resid.compare("v001") == 0)
+						{
+							int vsionLv = MyRes::getMyResCount(m_resid, MYSTORAGE);
+							if (vsionLv >= 5)
+							{
+								showstr = ResourceLang::map_lang["vsionmax"];
+								isCanBuy = false;
+							}
+						}
+						if (isCanBuy)
+						{
+							MarketLayer* parent = (MarketLayer*)this->getParent()->getParent()->getParent()->getParent();
+							parent->buyRes(this->getTag(), buycount);
 
-					std::string str = StringUtils::format("%sx%d", GlobalInstance::map_AllResources[m_resid].name.c_str(), buycount);
-					showstr = StringUtils::format(ResourceLang::map_lang["marketbuyok"].c_str(), str.c_str());
+							std::string str = StringUtils::format("%sx%d", GlobalInstance::map_AllResources[m_resid].name.c_str(), buycount);
+							showstr = StringUtils::format(ResourceLang::map_lang["marketbuyok"].c_str(), str.c_str());
 
-					totalrescount -= buycount;
+							totalrescount -= buycount;
 
-					if (totalrescount <= 0)
-						buycount = 0;
+							buycount = 1;
+							updateData();
+						}
+					}
 					else
-						buycount = 1;
-					updateData();
+					{
+						showstr = ResourceLang::map_lang["outofstock"];
+					}
 				}
 				else
 				{

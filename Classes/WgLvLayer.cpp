@@ -6,6 +6,7 @@
 #include "MovingLabel.h"
 #include "MyRes.h"
 #include "DynamicValue.h"
+#include "Const.h"
 
 USING_NS_CC;
 
@@ -68,6 +69,8 @@ bool WgLvLayer::init(ResBase* res)
 	//ÎäÆ÷Ãû³Æ
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	name->setString(GlobalInstance::map_GF[m_res->getId()].name);
+
+	name->setTextColor(Color4B(POTENTIALCOLOR[m_res->getQU().getValue()]));
 
 	//Æ·ÖÊbox
 	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox");
