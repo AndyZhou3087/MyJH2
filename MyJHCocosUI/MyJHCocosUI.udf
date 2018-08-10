@@ -10,13 +10,11 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="mapui.csi" />
-          <FilePathData Path="ui.csi" />
-          <FilePathData Path="mainMapLayer.csd" />
-          <FilePathData Path="fightHeroNode.csd" />
+          <FilePathData Path="strengthenLayer.csd" />
+          <FilePathData Path="takeOnLayer.csd" />
+          <FilePathData Path="wgLvLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="fightHeroNode.csd" />
+        <ActiveDocument Path="takeOnLayer.csd" />
       </Value>
     </Item>
   </Properties>

@@ -206,9 +206,8 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Node* node = (Node*)pSender;
-		int tag = node->getTag();
 		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
+		int tag = btn->getTag();
 
 		isGo = GlobalInstance::myCurMainData.isFight1;
 		std::string bwords = GlobalInstance::myCurMainData.bossword1;
@@ -250,9 +249,8 @@ void TaskTalkLayer::onBtn2Click(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Node* node = (Node*)pSender;
-		int tag = node->getTag();
 		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
+		int tag = btn->getTag();
 
 		isGo = GlobalInstance::myCurMainData.isFight2;
 		std::string bwords = GlobalInstance::myCurMainData.bossword2;

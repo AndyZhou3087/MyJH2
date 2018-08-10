@@ -141,6 +141,18 @@ bool Quest::getMainQuestNpc(std::string npcid)
 	}
 }
 
+bool Quest::getMainQuestMap(std::string mapid)
+{
+	if (GlobalInstance::myCurMainData.place.compare(mapid) == 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void Quest::setResQuestData(std::string resid, int count, std::string npcid)
 {
 	if (!getMainQuestNpc(npcid))
@@ -250,6 +262,18 @@ bool Quest::getMainQuest()
 bool Quest::getBranchQuestNpc(std::string npcid)
 {
 	if (GlobalInstance::myCurBranchData.isfinish == QUEST_ACC && npcid.compare(GlobalInstance::myCurBranchData.npcid) == 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Quest::getBranchQuestMap(std::string mapid)
+{
+	if (GlobalInstance::myCurBranchData.place.compare(mapid) == 0)
 	{
 		return true;
 	}

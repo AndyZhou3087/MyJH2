@@ -925,6 +925,9 @@
         <Project Name="marketRefreshLayer.csd" Type="Layer" />
         <Project Name="marketResNode.csd" Type="Node" />
         <Project Name="materialDescNode.csd" Type="Node" />
+        <Project Name="messageDescLayer.csd" Type="Layer" />
+        <Project Name="messageLayer.csd" Type="Layer" />
+        <Project Name="messageNode.csd" Type="Node" />
         <Project Name="myHeroNode.csd" Type="Node" />
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
@@ -951,9 +954,6 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="messageNode.csd" Type="Node" />
-        <Project Name="messageLayer.csd" Type="Layer" />
-        <Project Name="messageDescLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

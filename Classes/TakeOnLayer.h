@@ -23,14 +23,14 @@ public:
 	void setOutStone(std::string stoneid, int which);
 	
 	void chageStone(ResBase* stoneres, int which);
+
+	void updateAttr();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onEquipclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	void updateUI();
-
-	void updateAttr();
 private:
 	int langtype;
 	Equip* m_equip;
@@ -40,6 +40,8 @@ private:
 	std::vector<cocos2d::ui::Text*> vec_suitDesc;
 
 	Node *csbnode;
+
+	cocos2d::ui::Text* name;
 };
 #endif
 
