@@ -157,7 +157,7 @@ float Equip::getDodge()
 	dodge = ebns * GlobalInstance::map_Equip[getId()].avoid;
 	if (getType() == T_HANDARMOR)
 	{
-		dodge += (dodge + getLv()) * 0.01f;
+		dodge += (dodge + getLv().getValue())*0.01f;
 	}
 	for (unsigned int i = 0; i < vec_stones.size(); i++)
 	{
