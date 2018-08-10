@@ -6,6 +6,7 @@
 #include "MyRes.h"
 #include "HttpDataSwap.h"
 #include "MessageLayer.h"
+#include "MovingLabel.h"
 
 MessageDescLayer::MessageDescLayer()
 {
@@ -58,7 +59,7 @@ bool MessageDescLayer::init(int index)
 	int btntag = 0;
 
 	int textscrollheight = 0;
-
+	std::string contentstr = ResourceLang::map_lang["testtext"]/*data.content*/;
 	if (data.type == 0)
 	{
 		actiontextstr = "closebtn_text";
@@ -71,6 +72,65 @@ bool MessageDescLayer::init(int index)
 		actiontextstr = "msgallget_text";
 		btntag = 1001;
 		textscrollheight = 350;
+
+		contentstr = data.content;
+
+
+		int pos = data.content.find_last_of("$$");
+		if (pos >= 0)
+		{
+			contentstr = contentstr.substr(0, pos - 1);
+			std::string awdstr = data.content.substr(pos + 2);
+			std::vector<std::string> vec_str;
+			CommonFuncs::split(awdstr, vec_str, ";");
+			for (unsigned int n = 0; n < vec_str.size(); n++)
+			{
+				std::vector<std::string> one_str;
+				CommonFuncs::split(vec_str[n], one_str, "-");
+
+				MSGAWDSDATA adata;
+				adata.rid = one_str[0];
+				adata.count = atoi(one_str[1].c_str());
+				adata.qu = atoi(one_str[2].c_str());
+				awdslist.push_back(adata);
+			}
+		}
+
+		int asize = awdslist.size();
+		for (int m = 0; m < 5; m++)
+		{
+			int qu = awdslist[m].qu;
+			std::string str = StringUtils::format("resbox%d", m);
+			cocos2d::ui::ImageView*  resbox = (cocos2d::ui::ImageView*)awdnode->getChildByName(str);
+			str = StringUtils::format("ui/resbox_qu%d.png", qu);
+			resbox->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+
+			if (m < asize)
+			{
+				std::string resid = awdslist[m].rid;
+				cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
+				str = StringUtils::format("ui/%s.png", resid.c_str());
+				if (qu == 3)
+				{
+					str = StringUtils::format("ui/%s-2.png", resid.c_str());
+				}
+				else if (qu == 4)
+				{
+					str = StringUtils::format("ui/%s-3.png", resid.c_str());
+				}
+				resbox->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+				cocos2d::ui::Text* countlbl = (cocos2d::ui::Text*)resbox->getChildByName("countlbl");
+				str = StringUtils::format("%d", awdslist[m].count);
+				countlbl->setString(str);
+
+				cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)resbox->getChildByName("name");
+				namelbl->setString(GlobalInstance::map_AllResources[resid].name);
+			}
+			else
+			{
+				resbox->setVisible(false);
+			}
+		}
 	}
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)m_csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(MessageDescLayer::onBtnClick, this));
@@ -90,14 +150,14 @@ bool MessageDescLayer::init(int index)
 	contentscroll->setBounceEnabled(true);
 
 	int contentwidth = 500;
-	Label* contentlbl = Label::createWithTTF(ResourceLang::map_lang["testtext"]/*data.content*/, FONT_NAME, 25);
+	Label* contentlbl = Label::createWithTTF(contentstr, FONT_NAME, 25);
 	contentlbl->setAnchorPoint(Vec2(0, 1));
 	contentlbl->setColor(Color3B(255, 255, 255));
 	contentlbl->setHorizontalAlignment(TextHAlignment::LEFT);
 	contentlbl->setLineBreakWithoutSpace(true);
 	contentlbl->setMaxLineWidth(contentwidth);
 	contentscroll->addChild(contentlbl);
-	int innerheight = contentlbl->getStringNumLines() * 25;//contentlbl->getHeight();
+	int innerheight = contentlbl->getStringNumLines() * 25;
 	int contentheight = contentscroll->getContentSize().height;
 	if (innerheight < contentheight)
 		innerheight = contentheight;
@@ -148,7 +208,17 @@ void MessageDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 			this->removeFromParentAndCleanup(true);
 			break;
 		case 1001:
+		{
+			for (unsigned int i = 0; i < awdslist.size(); i++)
+			{
+				int qu = awdslist[i].qu;
+				int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
+				MyRes::Add(awdslist[i].rid, awdslist[i].count, MYSTORAGE, qu, stc);
+			}
+			MovingLabel::show(ResourceLang::map_lang["msgawdsucc"]);
 
+			this->removeFromParentAndCleanup(true);
+		}
 			break;
 
 		default:

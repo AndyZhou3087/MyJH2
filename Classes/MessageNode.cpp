@@ -91,13 +91,29 @@ void MessageNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 void MessageNode::updataUI()
 {
 	int status = GlobalInstance::vec_messsages[this->getTag()].status;
+	int type = GlobalInstance::vec_messsages[this->getTag()].type;
 	if (lastStatus != status)
 	{
 		lastStatus = status;
-		if (status == 1)
+		if (type == 0)
 		{
-			redpoint->setVisible(false);
-			icon->setOpacity(128);
+			if (status == 1)
+			{
+				redpoint->setVisible(false);
+				icon->setOpacity(128);
+			}
+		}
+		else
+		{
+			if (status == 3)
+			{
+				redpoint->setVisible(false);
+				icon->setOpacity(128);
+			}
+			else if (status == 1)
+			{
+				redpoint->setVisible(false);
+			}
 		}
 	}
 }
