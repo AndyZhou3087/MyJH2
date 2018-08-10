@@ -717,23 +717,23 @@ void FightHeroNode::nextRound()
 
 void FightHeroNode::playSkillEffect(int stype)
 {
-	auto effectnode = CSLoader::createNode("effect/zhimingdaji_qishou.csb");
-	effectnode->setPosition(this->getPosition());
-	this->getParent()->addChild(effectnode, 10);
+	//auto effectnode = CSLoader::createNode("effect/zhimingdaji_qishou.csb");
+	//effectnode->setPosition(this->getPosition());
+	//this->getParent()->addChild(effectnode, 10);
 
-	auto action = CSLoader::createTimeline("effect/zhimingdaji_qishou.csb");
-	effectnode->runAction(action);
-	action->gotoFrameAndPlay(0, false);
+	//auto action = CSLoader::createTimeline("effect/zhimingdaji_qishou.csb");
+	//effectnode->runAction(action);
+	//action->gotoFrameAndPlay(0, false);
 }
 
 void FightHeroNode::attackedSkillEffect(int stype)
 {
-	auto effectnode = CSLoader::createNode("effect/zhimingdaji_shouji.csb");
-	effectnode->setPosition(this->getPosition());
-	//effectnode->setScale(0.7f);
-	this->getParent()->addChild(effectnode, 10);
+	//auto effectnode = CSLoader::createNode("effect/zhimingdaji_shouji.csb");
+	//effectnode->setPosition(this->getPosition());
+	////effectnode->setScale(0.7f);
+	//this->getParent()->addChild(effectnode, 10);
 
-	auto action = CSLoader::createTimeline("effect/zhimingdaji_shouji.csb");
-	effectnode->runAction(action);
-	action->gotoFrameAndPlay(0, false);
+	//auto action = CSLoader::createTimeline("effect/zhimingdaji_shouji.csb");
+	//effectnode->runAction(action);
+	//action->gotoFrameAndPlay(0, false);
 }
