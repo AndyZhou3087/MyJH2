@@ -250,24 +250,27 @@ void HttpDataSwap::httpGetMessageListCB(std::string retdata, int code, std::stri
 			{
 				GlobalInstance::vec_messsages.clear();
 
-				rapidjson::Value& data = doc["data"];
-				if (data.IsArray())
+				if (doc.HasMember("data"))
 				{
-					for (unsigned int i = 0; i < data.Size(); i++)
+					rapidjson::Value& data = doc["data"];
+					if (data.IsArray())
 					{
-						MessageData msgdata;
-						rapidjson::Value& onedata = data[i];
-						rapidjson::Value& dataval = onedata["id"];
-						msgdata.id = dataval.GetString();
-						dataval = onedata["title"];
-						msgdata.title = dataval.GetString();
-						dataval = onedata["content"];
-						msgdata.content = dataval.GetString();
-						dataval = onedata["type"];
-						msgdata.type = atoi(dataval.GetString());
-						dataval = onedata["status"];
-						msgdata.status = atoi(dataval.GetString());
-						GlobalInstance::vec_messsages.push_back(msgdata);
+						for (unsigned int i = 0; i < data.Size(); i++)
+						{
+							MessageData msgdata;
+							rapidjson::Value& onedata = data[i];
+							rapidjson::Value& dataval = onedata["id"];
+							msgdata.id = dataval.GetString();
+							dataval = onedata["title"];
+							msgdata.title = dataval.GetString();
+							dataval = onedata["content"];
+							msgdata.content = dataval.GetString();
+							dataval = onedata["type"];
+							msgdata.type = atoi(dataval.GetString());
+							dataval = onedata["status"];
+							msgdata.status = atoi(dataval.GetString());
+							GlobalInstance::vec_messsages.push_back(msgdata);
+						}
 					}
 				}
 			}

@@ -116,16 +116,59 @@ void MessageLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		{
 		case 1000://一键已读
 		{
+			bool hasunread = false;
+			for (unsigned int i = 0; i < GlobalInstance::vec_messsages.size(); i++)
+			{
+				if (GlobalInstance::vec_messsages[i].status == 0)
+				{
+					GlobalInstance::vec_messsages[i].status = 1;
+					updateStatus(i);
+					hasunread = true;
+				}
+			}
+			if (hasunread)
+				HttpDataSwap::init(NULL)->updateMessageStatus("0", 1);
 			break;
 		}
 		case 1001://清空已读
 		{
-
+			bool ishasread = false;
+			std::vector<MessageData>::iterator it;
+			for (it = GlobalInstance::vec_messsages.begin(); it != GlobalInstance::vec_messsages.end();)
+			{
+				if ((it->type == 0 && it->status == 1) || (it->type != 0 && it->status == 3))
+				{
+					it = GlobalInstance::vec_messsages.erase(it);
+					ishasread = true;
+				}
+				else
+				{
+					it++;
+				}
+			}
+			if (ishasread)
+			{
+				HttpDataSwap::init(NULL)->updateMessageStatus("0", 2);
+				refreshScrollViewUi();
+			}
 		}
 			break;
 		case 1002://全部领取
 		{
-
+			bool hasawd = false;
+			for (unsigned int i = 0; i < GlobalInstance::vec_messsages.size(); i++)
+			{
+				if (GlobalInstance::vec_messsages[i].type != 0 && GlobalInstance::vec_messsages[i].status < 2)
+				{
+					GlobalInstance::vec_messsages[i].status = 3;
+					updateStatus(i);
+					hasawd = true;
+				}
+			}
+			if (hasawd)
+			{
+				HttpDataSwap::init(NULL)->updateMessageStatus("0", 3);
+			}
 		}
 			break;
 		case 1003://关闭

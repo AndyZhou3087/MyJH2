@@ -8,6 +8,13 @@
 
 USING_NS_CC;
 
+typedef struct
+{
+	std::string rid;
+	int count;
+	int qu;
+}MSGAWDSDATA;
+
 class MessageDescLayer :public Layer
 {
 public:
@@ -26,6 +33,7 @@ private:
 	void delay(float dt);
 
 private:
+	std::vector<MSGAWDSDATA> awdslist;
 };
 #endif
 
