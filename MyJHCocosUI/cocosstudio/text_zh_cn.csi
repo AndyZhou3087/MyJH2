@@ -178,6 +178,10 @@
       <FilePathData Path="text_zh_cn/dodge_text.png" />
       <FilePathData Path="text_zh_cn/m5-1.png" />
       <FilePathData Path="text_zh_cn/drstrenth_text.png" />
+      <FilePathData Path="text_zh_cn/messagetitle.png" />
+      <FilePathData Path="text_zh_cn/cleanread_text.png" />
+      <FilePathData Path="text_zh_cn/onkeyread_text.png" />
+      <FilePathData Path="text_zh_cn/msgallget_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

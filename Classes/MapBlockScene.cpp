@@ -182,7 +182,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 void MapBlockScene::showFightingLayer(std::vector<Npc*> enemys)
 {
-	//this->addChild(FightingLayer::create(enemys, m_fightbgtype));
+	this->addChild(FightingLayer::create(enemys, m_fightbgtype));
 }
 
 void MapBlockScene::loadTaskUI()
@@ -371,7 +371,10 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 		return;
 
 	if (!checkRoad(keyArrow))
+	{
+		myposHero->setAnimation(0, standname[m_walkDirection], false);
 		return;
+	}
 
 	switch (keyArrow)
 	{

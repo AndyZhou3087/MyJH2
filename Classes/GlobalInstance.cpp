@@ -50,6 +50,8 @@ std::map<std::string, S_MainMap> GlobalInstance::map_mapsdata;
 
 std::map<std::string, TBoxData> GlobalInstance::map_TBoxs;
 
+std::vector<MessageData> GlobalInstance::vec_messsages;
+
 DynamicValueInt GlobalInstance::mySoliverCount;
 DynamicValueInt GlobalInstance::myCoinCount;
 
@@ -141,6 +143,17 @@ std::string GlobalInstance::getChannelId()
 		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
 	}
 	return ret;
+#endif
+}
+
+std::string GlobalInstance::getPlatForm()
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	return "IOS";
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	return "WIN32";
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	return "ANDROID";
 #endif
 }
 

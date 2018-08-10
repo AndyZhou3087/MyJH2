@@ -355,6 +355,7 @@
           <Image Name="buybtn_text.png" />
           <Image Name="cancelbtn_text.png" />
           <Image Name="changebtn_text.png" />
+          <Image Name="cleanread_text.png" />
           <Image Name="closebtn_text.png" />
           <Image Name="continuebtn_text.png" />
           <Image Name="continuegamebtn_text.png" />
@@ -466,8 +467,11 @@
           <Image Name="maptask_title.png" />
           <Image Name="marketlvup_text.png" />
           <Image Name="markettitle.png" />
+          <Image Name="messagetitle.png" />
+          <Image Name="msgallget_text.png" />
           <Image Name="mypackagetitle.png" />
           <Image Name="okbtn_text.png" />
+          <Image Name="onkeyread_text.png" />
           <Image Name="outtowntitle.png" />
           <Image Name="package_text.png" />
           <Image Name="recruit_text.png" />
@@ -747,6 +751,7 @@
           <Image Name="main_setbtn.png" />
           <Image Name="main_shopbtn.png" />
           <Image Name="main_silver.png" />
+          <Image Name="messageicon.png" />
           <Image Name="ninegrid.png" />
           <Image Name="normal9bg.png" />
           <Image Name="pointicon_0.png" />
@@ -839,6 +844,8 @@
           <Image Name="w034.png" />
           <Image Name="w035.png" />
           <Image Name="w036.png" />
+          <Image Name="waitingbg.png" />
+          <Image Name="waitingprogress.png" />
           <Image Name="wglvframe.png" />
           <Image Name="x001.png" />
           <Image Name="x002.png" />
@@ -943,6 +950,9 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="messageNode.csd" Type="Node" />
+        <Project Name="messageLayer.csd" Type="Layer" />
+        <Project Name="messageDescLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

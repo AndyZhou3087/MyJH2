@@ -230,7 +230,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="achbtn" ActionTag="765360851" Tag="64" IconVisible="False" LeftMargin="95.8418" RightMargin="540.1582" TopMargin="1188.5863" BottomMargin="9.4137" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="54" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="achbtn" ActionTag="765360851" Tag="64" IconVisible="False" LeftMargin="100.3405" RightMargin="535.6595" TopMargin="1188.5863" BottomMargin="9.4137" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="54" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="84.0000" Y="82.0000" />
             <Children>
               <AbstractNodeData Name="redpoint" ActionTag="1720475054" Tag="68" IconVisible="False" LeftMargin="58.0000" RightMargin="2.0000" TopMargin="-5.0000" BottomMargin="63.0000" ctype="SpriteObjectData">
@@ -256,10 +256,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="137.8418" Y="50.4137" />
+            <Position X="142.3405" Y="50.4137" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1914" Y="0.0394" />
+            <PrePosition X="0.1977" Y="0.0394" />
             <PreSize X="0.1167" Y="0.0641" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/main_achbtn.png" Plist="ui.plist" />
@@ -268,7 +268,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rankbtn" ActionTag="58970560" Tag="65" IconVisible="False" LeftMargin="190.3415" RightMargin="447.6585" TopMargin="1187.5863" BottomMargin="8.4137" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="52" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="rankbtn" ActionTag="58970560" VisibleForFrame="False" Tag="65" IconVisible="False" LeftMargin="12.7472" RightMargin="625.2528" TopMargin="1063.4866" BottomMargin="132.5134" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="52" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="82.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="804394164" Tag="90" IconVisible="False" LeftMargin="-1.0000" RightMargin="-1.0000" TopMargin="52.0000" BottomMargin="-2.0000" LeftEage="18" RightEage="18" TopEage="10" BottomEage="10" Scale9OriginX="18" Scale9OriginY="10" Scale9Width="48" Scale9Height="14" ctype="ImageViewObjectData">
@@ -283,10 +283,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="231.3415" Y="50.4137" />
+            <Position X="53.7472" Y="174.5134" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3213" Y="0.0394" />
+            <PrePosition X="0.0746" Y="0.1363" />
             <PreSize X="0.1139" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/main_rankbtn.png" Plist="ui.plist" />
@@ -295,7 +295,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="mailbtn" ActionTag="1005091973" Tag="66" IconVisible="False" LeftMargin="282.8413" RightMargin="353.1587" TopMargin="1188.5863" BottomMargin="9.4137" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="54" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="mailbtn" ActionTag="1005091973" Tag="66" IconVisible="False" LeftMargin="198.3390" RightMargin="437.6610" TopMargin="1188.5864" BottomMargin="9.4136" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="54" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="84.0000" Y="82.0000" />
             <Children>
               <AbstractNodeData Name="redpoint" ActionTag="-1477824693" Tag="69" IconVisible="False" LeftMargin="58.0005" RightMargin="1.9995" TopMargin="-5.0001" BottomMargin="63.0001" ctype="SpriteObjectData">
@@ -321,10 +321,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="324.8413" Y="50.4137" />
+            <Position X="240.3390" Y="50.4136" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4512" Y="0.0394" />
+            <PrePosition X="0.3338" Y="0.0394" />
             <PreSize X="0.1167" Y="0.0641" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/main_mailbtn.png" Plist="ui.plist" />
@@ -333,7 +333,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="shopbtn" ActionTag="-938567427" Tag="67" IconVisible="False" LeftMargin="376.3411" RightMargin="251.6589" TopMargin="1188.5863" BottomMargin="9.4137" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="62" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="shopbtn" ActionTag="-938567427" Tag="67" IconVisible="False" LeftMargin="296.3374" RightMargin="331.6626" TopMargin="1188.5864" BottomMargin="9.4136" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="62" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="92.0000" Y="82.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-277789732" Tag="92" IconVisible="False" LeftMargin="17.0000" RightMargin="17.0000" TopMargin="48.0000" BottomMargin="-4.0000" LeftEage="18" RightEage="18" TopEage="10" BottomEage="10" Scale9OriginX="18" Scale9OriginY="10" Scale9Width="22" Scale9Height="18" ctype="ImageViewObjectData">
@@ -348,10 +348,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="422.3411" Y="50.4137" />
+            <Position X="342.3374" Y="50.4136" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5866" Y="0.0394" />
+            <PrePosition X="0.4755" Y="0.0394" />
             <PreSize X="0.1278" Y="0.0641" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/main_shopbtn.png" Plist="ui.plist" />

@@ -20,6 +20,10 @@ public:
 
 	void getAllData();
 
+	void getMessageList();
+
+	void updateMessageStatus(std::string id, int changestatus);
+
 	void setDelegate(HTTPDataDelegateProtocol *delegateProtocol);
 
 private:
@@ -37,6 +41,9 @@ private:
 
 	void httpGetAllDataCB(std::string retdata, int code, std::string extdata);
 
+	void httpGetMessageListCB(std::string retdata, int code, std::string extdata);
+
+	void httpUpdateMessageStatusCB(std::string retdata, int code, std::string extdata);
 };
 
 class HTTPDataDelegateProtocol

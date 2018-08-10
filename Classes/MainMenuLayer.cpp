@@ -7,6 +7,8 @@
 #include "TaskTalkLayer.h"
 #include "TaskBranchTalkLayer.h"
 #include "Quest.h"
+#include "MessageLayer.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -125,6 +127,10 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		case RANKBTN:
 			break;
 		case MAILBTN:
+		{
+			MessageLayer* layer = MessageLayer::create();
+			g_mainScene->addChild(layer, 0, "messagelayer");
+		}
 			break;
 		case SHOPBTN:
 			break;

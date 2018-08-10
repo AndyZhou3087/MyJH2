@@ -225,6 +225,16 @@ typedef struct
 	std::vector<int> vec_rnd;
 }TBoxData;
 
+typedef struct
+{
+	std::string id;
+	std::string title;
+	std::string content;
+	int status;
+	int type;
+}MessageData;
+
+
 class GlobalInstance
 {
 public:
@@ -254,6 +264,11 @@ public:
 	渠道号
 	*****************************/
 	std::string getChannelId();
+
+	/****************************
+	平台
+	*****************************/
+	std::string getPlatForm();
 
 	int getSysSecTime();
 
@@ -444,7 +459,9 @@ public:
 
 	static std::map<std::string, S_MainMap> map_mapsdata;//地图数据
 
-	static std::map<std::string, TBoxData> map_TBoxs;
+	static std::map<std::string, TBoxData> map_TBoxs;//宝箱数据
+
+	static std::vector<MessageData> vec_messsages;//邮箱数据
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;
