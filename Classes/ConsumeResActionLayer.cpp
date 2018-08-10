@@ -14,6 +14,7 @@
 #include "Quest.h"
 #include "TrainLayer.h"
 #include "MarketLayer.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -327,6 +328,8 @@ void ConsumeResActionLayer::action()
 		Quest::setDailyTask(UPGRADE_BUILDING, 1);
 
 		showNextLvDesc(bdata);
+
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUILDLVUP);
 	}
 	else if (m_actiontype == CA_EMPLOYFARMER)
 	{
@@ -347,6 +350,7 @@ void ConsumeResActionLayer::action()
 		std::string rid = (char*)m_data;
 		SmithyLayer* smithyLayer = (SmithyLayer*)this->getParent();
 		smithyLayer->makeRes(rid);
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_MAKERES);
 	}
 }
 

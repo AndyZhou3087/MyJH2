@@ -80,7 +80,7 @@ bool TaskBranchDescLayer::init(TaskBranchData* data)
 
 	//npcÃû×Ö
 	cocos2d::ui::Text* npcname = (cocos2d::ui::Text*)m_csbnode->getChildByName("npcname");
-	npcname->setString(GlobalInstance::map_Npcs[data->npcid].name);
+	npcname->setString(GlobalInstance::map_AllResources[data->npcid].name);
 
 	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("closebtn");
 	closebtn->setPosition(Vec2(357, 183));

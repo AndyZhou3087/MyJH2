@@ -18,6 +18,7 @@
 #include "MyPackageLayer.h"
 #include "MainScene.h"
 #include "Quest.h"
+#include "SoundManager.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -177,6 +178,9 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	loadTaskUI();
 
+	int r = GlobalInstance::getInstance()->createRandomNum(5);
+	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_SUBMAP_0 + r);
+
 	return true;
 }
 
@@ -220,7 +224,7 @@ void MapBlockScene::updateTaskInfo(float dt)
 	{
 		std::string mainid = GlobalInstance::myCurMainData.place.substr(0, GlobalInstance::myCurMainData.place.find_last_of("-"));
 		S_SubMap submap = GlobalInstance::map_mapsdata[mainid].map_sublist[GlobalInstance::myCurMainData.place];
-		std::string str = StringUtils::format(ResourceLang::map_lang["tasktips"].c_str(), GlobalInstance::myCurMainData.name.c_str(), submap.name.c_str(), GlobalInstance::map_Npcs[GlobalInstance::myCurMainData.npcid].name.c_str());
+		std::string str = StringUtils::format(ResourceLang::map_lang["tasktips"].c_str(), GlobalInstance::myCurMainData.name.c_str(), GlobalInstance::map_AllResources[submap.id].name.c_str(), GlobalInstance::map_AllResources[GlobalInstance::myCurMainData.npcid].name.c_str());
 		textmain->setString(str);
 	}
 	else
@@ -241,7 +245,7 @@ void MapBlockScene::updateTaskInfo(float dt)
 	{
 		std::string mainid = GlobalInstance::myCurBranchData.place.substr(0, GlobalInstance::myCurBranchData.place.find_last_of("-"));
 		S_SubMap submap = GlobalInstance::map_mapsdata[mainid].map_sublist[GlobalInstance::myCurBranchData.place];
-		std::string str = StringUtils::format(ResourceLang::map_lang["tasktips"].c_str(), GlobalInstance::myCurBranchData.name.c_str(), submap.name.c_str(), GlobalInstance::map_Npcs[GlobalInstance::myCurBranchData.npcid].name.c_str());
+		std::string str = StringUtils::format(ResourceLang::map_lang["tasktips"].c_str(), GlobalInstance::myCurBranchData.name.c_str(), GlobalInstance::map_AllResources[submap.id].name.c_str(), GlobalInstance::map_AllResources[GlobalInstance::myCurBranchData.npcid].name.c_str());
 		textbranch->setString(str);
 	}
 	else

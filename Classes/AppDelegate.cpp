@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "LoadingScene.h"
 #include "MainScene.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -75,6 +76,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     //}
 
     register_all_packages();
+
+	SoundManager::getInstance()->loadSounds();
 
     // create a scene. it's an autorelease object
 	auto scene = LoadingScene::createScene();

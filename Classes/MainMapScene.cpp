@@ -4,6 +4,7 @@
 #include "GlobalInstance.h"
 #include "Const.h"
 #include "MainScene.h"
+#include "SoundManager.h"
 
 MainMapScene::MainMapScene()
 {
@@ -70,6 +71,8 @@ bool MainMapScene::init()
 		}
 #endif
 	}
+
+	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_MAINMAP);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)

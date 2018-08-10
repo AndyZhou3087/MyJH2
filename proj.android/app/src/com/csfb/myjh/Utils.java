@@ -185,12 +185,14 @@ public class Utils {
     }
     
 	public static String getChannelID() {
-		String channel = "";
+		String channel = null;
 		try {
 			channel = sContext.getPackageManager().getApplicationInfo(getPkgName(), PackageManager.GET_META_DATA).metaData.getString("TH_PAYCHANNEL");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		if (channel == null)
+			channel = "NONE";
 		return channel;
 	}
 	

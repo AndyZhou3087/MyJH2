@@ -31,23 +31,31 @@ void SoundManager::loadSounds()
 {
     // TODO :插入soundid列表
 	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_BUTTON, ResourcePath::makeSoundPath("button.mp3")));
-	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_CAIJI, ResourcePath::makeSoundPath("caiji.mp3")));
-	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_KANSHU, ResourcePath::makeSoundPath("kanshu.mp3")));
-	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_WAJUE, ResourcePath::makeSoundPath("wajue.mp3")));
-	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_ATTACK, ResourcePath::makeSoundPath("attack.mp3")));
-	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_HURT0, ResourcePath::makeSoundPath("hurt0.mp3")));
-	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_HURT1, ResourcePath::makeSoundPath("hurt1.mp3")));
-	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_BUYOK, ResourcePath::makeSoundPath("buyok.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_WIN, ResourcePath::makeSoundPath("win.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_FAIL, ResourcePath::makeSoundPath("fail.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_BUILDLVUP, ResourcePath::makeSoundPath("buildlvup.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_MAKERES, ResourcePath::makeSoundPath("makeres.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_DECOMPOSE, ResourcePath::makeSoundPath("decompose.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_ATK, ResourcePath::makeSoundPath("atk.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_DODGE, ResourcePath::makeSoundPath("dodge.mp3")));
+	
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_MANDIE, ResourcePath::makeSoundPath("buyok.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_WOMANDIE, ResourcePath::makeSoundPath("wdie.mp3")));
+
 	//插入背景音乐列表
-	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_START, ResourcePath::makeSoundPath("start.mp3")));
-	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_HOME, ResourcePath::makeSoundPath("home.mp3")));
-	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_MAP, ResourcePath::makeSoundPath("map.mp3")));
-	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_ENTER_MAPADDR, ResourcePath::makeSoundPath("mapaddr.mp3")));
-	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_FIGHT_0, ResourcePath::makeSoundPath("fight0.mp3")));
-	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_FIGHT_1, ResourcePath::makeSoundPath("fight1.mp3")));
-	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_FIGHT_2, ResourcePath::makeSoundPath("fight2.mp3")));
-	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_FIGHT_3, ResourcePath::makeSoundPath("fight3.mp3")));
-	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_DEATH, ResourcePath::makeSoundPath("death.mp3")));
+	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_START, ResourcePath::makeSoundPath("startbg.mp3")));
+	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_HOME, ResourcePath::makeSoundPath("homebg.mp3")));
+	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_MAINMAP, ResourcePath::makeSoundPath("mainmapbg.mp3")));
+	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_SUBMAP_0, ResourcePath::makeSoundPath("mapbg1.mp3")));
+	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_SUBMAP_1, ResourcePath::makeSoundPath("mapbg2.mp3")));
+	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_SUBMAP_2, ResourcePath::makeSoundPath("mapbg3.mp3")));
+	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_SUBMAP_3, ResourcePath::makeSoundPath("mapbg4.mp3")));
+	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_SUBMAP_4, ResourcePath::makeSoundPath("mapbg5.mp3")));
+	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_FIGHT_0, ResourcePath::makeSoundPath("fightbg1.mp3")));
+	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_FIGHT_1, ResourcePath::makeSoundPath("fightbg2.mp3")));
+	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_FIGHT_2, ResourcePath::makeSoundPath("fightbg3.mp3")));
+	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_FIGHT_3, ResourcePath::makeSoundPath("fightbg4.mp3")));
+	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_FIGHT_4, ResourcePath::makeSoundPath("fightbg5.mp3")));
 
 
 	//预加载音效

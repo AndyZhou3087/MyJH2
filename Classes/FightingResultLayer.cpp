@@ -7,6 +7,7 @@
 #include "WinRewardLayer.h"
 #include "MyRes.h"
 #include "MainScene.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -77,6 +78,12 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp)
 		title->loadTexture(ResourcePath::makeImagePath("failtitle.png"), cocos2d::ui::Widget::TextureResType::LOCAL);
 
 		MyRes::clearMyPackages();
+
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FAIL);
+	}
+	else
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_WIN);
 	}
 
 	for (int i = 0; i < 6; i++)

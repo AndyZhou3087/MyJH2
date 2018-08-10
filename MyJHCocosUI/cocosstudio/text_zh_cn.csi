@@ -182,6 +182,7 @@
       <FilePathData Path="text_zh_cn/cleanread_text.png" />
       <FilePathData Path="text_zh_cn/onkeyread_text.png" />
       <FilePathData Path="text_zh_cn/msgallget_text.png" />
+      <FilePathData Path="text_zh_cn/m1-5.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

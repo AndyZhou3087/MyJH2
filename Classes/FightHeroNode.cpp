@@ -8,6 +8,7 @@
 #include "MapBlockScene.h"
 #include "MyRes.h"
 #include "MovingLabel.h"
+#include "SoundManager.h"
 
 FightHeroNode::FightHeroNode()
 {
@@ -130,7 +131,7 @@ void FightHeroNode::setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE 
 		}
 		else if (datatype == F_NPC)
 		{
-			str = StringUtils::format("mapui/%s.png", data->getId().c_str());
+			str = StringUtils::format("mapui/%s.png", GlobalInstance::map_Npcs[data->getId()].icon.c_str());
 			headimg->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 		int v = m_Data->getVocation();
@@ -297,6 +298,12 @@ void FightHeroNode::hurtAnimFinish()
 			((Hero*)m_Data)->setState(HS_DEAD);
 
 			((Hero*)m_Data)->setPos(0);
+
+			int v = ((Hero*)m_Data)->getVocation();
+			if (v % 4  == 3)
+				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_WOMANDIE);
+			else
+				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_MANDIE);
 		}
 		fighting->updateMapHero(this->getTag());
 	}
@@ -711,8 +718,8 @@ void FightHeroNode::nextRound()
 void FightHeroNode::playSkillEffect(int stype)
 {
 	auto effectnode = CSLoader::createNode("effect/zhimingdaji_qishou.csb");
-	effectnode->setPosition(Vec2(0, 0));
-	this->addChild(effectnode);
+	effectnode->setPosition(this->getPosition());
+	this->getParent()->addChild(effectnode, 10);
 
 	auto action = CSLoader::createTimeline("effect/zhimingdaji_qishou.csb");
 	effectnode->runAction(action);
@@ -722,9 +729,9 @@ void FightHeroNode::playSkillEffect(int stype)
 void FightHeroNode::attackedSkillEffect(int stype)
 {
 	auto effectnode = CSLoader::createNode("effect/zhimingdaji_shouji.csb");
-	effectnode->setPosition(Vec2(0, 0));
+	effectnode->setPosition(this->getPosition());
 	//effectnode->setScale(0.7f);
-	this->addChild(effectnode);
+	this->getParent()->addChild(effectnode, 10);
 
 	auto action = CSLoader::createTimeline("effect/zhimingdaji_shouji.csb");
 	effectnode->runAction(action);

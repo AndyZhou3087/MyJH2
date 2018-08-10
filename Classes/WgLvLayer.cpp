@@ -68,7 +68,7 @@ bool WgLvLayer::init(ResBase* res)
 
 	//ÎäÆ÷Ãû³Æ
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)csbnode->getChildByName("name");
-	name->setString(GlobalInstance::map_GF[m_res->getId()].name);
+	name->setString(GlobalInstance::map_AllResources[m_res->getId()].name);
 
 	name->setTextColor(Color4B(POTENTIALCOLOR[m_res->getQU().getValue()]));
 

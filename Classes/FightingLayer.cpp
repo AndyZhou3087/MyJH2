@@ -7,6 +7,7 @@
 #include "MyRes.h"
 #include "FightHeroNode.h"
 #include "MapBlockScene.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -91,6 +92,9 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 		fightHeroNode->setData(m_enemyHeros[i], F_NPC, FS_FIGHTING);
 		addChild(fightHeroNode, 0, 6+i);
 	}
+
+	int r = GlobalInstance::getInstance()->createRandomNum(5);
+	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_FIGHT_0 + r);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -227,6 +231,8 @@ void FightingLayer::showAtk(int fightertag)
 				{
 					clearSkill();
 					enemyfnode->hurt(0, 2);
+
+					SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DODGE);
 					return;
 				}
 
@@ -259,6 +265,7 @@ void FightingLayer::showAtk(int fightertag)
 					atkhp *= 2;
 				}
 				enemyfnode->hurt(atkhp, state);
+				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_ATK);
 			}
 
 			//增加自身攻击速度%.2f，持续%d回合。

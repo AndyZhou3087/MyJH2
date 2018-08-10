@@ -309,6 +309,47 @@
                     <PrePosition X="0.8725" Y="0.5813" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="m1-5" ActionTag="-503862423" Tag="643" IconVisible="True" LeftMargin="1898.1163" RightMargin="525.8837" TopMargin="182.3666" BottomMargin="1417.6334" ctype="SingleNodeObjectData">
+                    <Size X="0.0000" Y="0.0000" />
+                    <Children>
+                      <AbstractNodeData Name="select" ActionTag="1435162521" Tag="644" IconVisible="False" LeftMargin="-25.5000" RightMargin="-25.5000" TopMargin="-71.0000" BottomMargin="-71.0000" LeftEage="18" RightEage="18" TopEage="28" BottomEage="28" Scale9OriginX="18" Scale9OriginY="28" Scale9Width="15" Scale9Height="86" ctype="ImageViewObjectData">
+                        <Size X="51.0000" Y="142.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition />
+                        <PreSize X="0.0000" Y="0.0000" />
+                        <FileData Type="MarkedSubImage" Path="mapui/mapname_sel1.png" Plist="mapui.plist" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="normal" ActionTag="-1050070542" Tag="645" IconVisible="False" LeftMargin="-23.5000" RightMargin="-23.5000" TopMargin="-69.0000" BottomMargin="-69.0000" TouchEnable="True" LeftEage="18" RightEage="18" TopEage="28" BottomEage="28" Scale9OriginX="18" Scale9OriginY="28" Scale9Width="11" Scale9Height="82" ctype="ImageViewObjectData">
+                        <Size X="47.0000" Y="138.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition />
+                        <PreSize X="0.0000" Y="0.0000" />
+                        <FileData Type="MarkedSubImage" Path="mapui/mapnamebox1.png" Plist="mapui.plist" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="text" ActionTag="-352706454" Tag="646" IconVisible="False" LeftMargin="-9.9992" RightMargin="-10.0008" TopMargin="-60.9998" BottomMargin="-33.0002" LeftEage="8" RightEage="8" TopEage="28" BottomEage="28" Scale9OriginX="8" Scale9OriginY="28" Scale9Width="4" Scale9Height="38" ctype="ImageViewObjectData">
+                        <Size X="20.0000" Y="94.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="0.0008" Y="13.9998" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition />
+                        <PreSize X="0.0000" Y="0.0000" />
+                        <FileData Type="MarkedSubImage" Path="text_zh_cn/m1-5.png" Plist="text_zh_cn.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint />
+                    <Position X="1898.1163" Y="1417.6334" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.7831" Y="0.8860" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                  </AbstractNodeData>
                   <AbstractNodeData Name="m2-1" ActionTag="2123194400" Tag="386" IconVisible="True" LeftMargin="1830.0000" RightMargin="594.0000" TopMargin="1255.0000" BottomMargin="345.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <Children>

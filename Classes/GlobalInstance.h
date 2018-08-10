@@ -12,7 +12,6 @@ USING_NS_CC;
 typedef struct
 {
 	std::string id;
-	std::string name;
 	std::vector<int> vec_exp;//升级所需经验值
 	std::vector<float> vec_atk;//攻击
 	std::vector<float> vec_df;//防御
@@ -26,7 +25,6 @@ typedef struct
 typedef struct
 {
 	std::string id;
-	std::string name;
 	int ph;//小地图消耗的精力，体力
 	int bgtype;//背景图片类型
 	std::vector<std::string> vec_awd;//可能获得物品
@@ -52,7 +50,6 @@ typedef struct
 typedef struct
 {
 	std::string id;
-	std::string name;
 	std::vector<float> vec_bns;//额外加成
 	int maxhp;
 	int atk;
@@ -72,7 +69,6 @@ typedef struct
 typedef struct
 {
 	std::string id;
-	std::string name;
 	std::vector<float> vec_herobns;//对应英雄职业加成
 	std::vector<int> vec_skillbns;//技能加成
 	int skillrnd;
@@ -190,8 +186,8 @@ typedef struct
 typedef struct
 {
 	std::string id;
-	std::string name;
 	int vocation;
+	std::string icon;
 }NPCData;
 
 typedef enum

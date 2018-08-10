@@ -273,7 +273,7 @@
       <msawd3 id="s002" qu="0" rnd="10.00">1</msawd3>
       <msawd4 id="c001" qu="0" rnd="100.00">1</msawd4>
       <msawd5 id="b003" qu="0" rnd="5.00">1</msawd5>
-      <msawd6 id="w035" qu="0" rnd="1.00">1</msawd6>
+      <msawd6 id="q002" qu="0" rnd="5.00">2</msawd6>
     </Cell>
     <Cell c="6" r="8" p="-1" w="1" m="6.png" />
     <Cell c="6" r="9" p="-1" w="1" m="6.png" />

@@ -15,6 +15,7 @@
 #include "TaskLayer.h"
 #include "HospitalLayer.h"
 #include "TrainLayer.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -131,6 +132,7 @@ bool MainScene::init()
 	}
 
 	MyRes::putMyPackagesToStorage();
+	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_HOME);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)

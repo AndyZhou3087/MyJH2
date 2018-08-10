@@ -96,6 +96,16 @@ void MainMenuLayer::updateUI(float dt)
 	mycoinlbl->setString(str);
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	mysilverlbl->setString(str);
+	for (unsigned int i = 0; i < GlobalInstance::vec_messsages.size(); i++)
+	{
+		int type = GlobalInstance::vec_messsages[i].type;
+		int s = GlobalInstance::vec_messsages[i].status;
+		if ((type == 0 && s == 0) || (type != 0 && s < 2))
+		{
+			mailredpoint->setVisible(true);
+			break;
+		}
+	}
 }
 
 void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

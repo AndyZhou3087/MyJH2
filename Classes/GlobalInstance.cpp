@@ -355,9 +355,6 @@ void GlobalInstance::loadHerosAttrData()
 			rapidjson::Value& v = jsonvalue["id"];
 			data.id = v.GetString();
 
-			v = jsonvalue["name"];
-			data.name = v.GetString();
-
 			v = jsonvalue["exp"];
 			for (unsigned int m = 0; m < v.Size(); m++)
 			{
@@ -950,9 +947,6 @@ void GlobalInstance::loadEquipData()
 			rapidjson::Value& v = jsonvalue["id"];
 			data.id = v.GetString();
 
-			v = jsonvalue["name"];
-			data.name = v.GetString();
-
 			v = jsonvalue["maxhp"];
 			data.maxhp = atoi(v.GetString());
 
@@ -994,9 +988,6 @@ void GlobalInstance::loadGFData()
 			GFData data;
 			rapidjson::Value& v = jsonvalue["id"];
 			data.id = v.GetString();
-
-			v = jsonvalue["name"];
-			data.name = v.GetString();
 
 			v = jsonvalue["qu"];
 			data.qu = atoi(v.GetString());
@@ -1147,8 +1138,8 @@ void GlobalInstance::loadNpcData()
 			v = jsonvalue["id"];
 			data.id = v.GetString();
 
-			v = jsonvalue["cname"];
-			data.name = v.GetString();
+			v = jsonvalue["nicon"];
+			data.icon = v.GetString();
 
 			map_Npcs[data.id] = data;
 		}
@@ -1429,9 +1420,6 @@ void GlobalInstance::parseMapJson()
 
 		v = jsonvalue["ph"];
 		s_submap.ph = atoi(v.GetString());
-
-		v = jsonvalue["cname"];
-		s_submap.name = v.GetString();
 
 		v = jsonvalue["type"];
 		s_submap.bgtype = atoi(v.GetString());
