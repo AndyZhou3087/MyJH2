@@ -7,5 +7,15 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="strengthenLayer.csd" />
+          <FilePathData Path="takeOnLayer.csd" />
+          <FilePathData Path="wgLvLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="takeOnLayer.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>

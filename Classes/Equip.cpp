@@ -19,7 +19,10 @@ float Equip::getAtk()
 	float ebns = POTENTIAL_BNS[equ];
 	float atk = 0.0f;
 	atk = ebns * GlobalInstance::map_Equip[getId()].atk;
-
+	if (getType() == T_ARMOR)
+	{
+		atk += getLv().getValue() *(getLv().getValue() + atk * 0.1f);
+	}
 	for (unsigned int i = 0; i < vec_stones.size(); i++)
 	{
 		std::string stoneid = vec_stones[i];
@@ -40,7 +43,10 @@ float Equip::getDf()
 	float ebns = POTENTIAL_BNS[equ];
 	float df = 0.0f;
 	df = ebns *  GlobalInstance::map_Equip[getId()].df;
-
+	if (getType() == T_EQUIP)
+	{
+		df += getLv().getValue() *(getLv().getValue() + df * 0.1f);
+	}
 	for (unsigned int i = 0; i < vec_stones.size(); i++)
 	{
 		std::string stoneid = vec_stones[i];
@@ -63,7 +69,10 @@ float Equip::getHp()
 	float ebns = POTENTIAL_BNS[equ];
 	float hp = 0.0f;
 	hp = ebns * GlobalInstance::map_Equip[getId()].maxhp;
-
+	if (getType() == T_FASHION)
+	{
+		hp += getLv().getValue() *(getLv().getValue() + hp * 0.1f);
+	}
 	for (unsigned int i = 0; i < vec_stones.size(); i++)
 	{
 		std::string stoneid = vec_stones[i];
@@ -146,7 +155,10 @@ float Equip::getDodge()
 	float dodge = 0.0f;
 
 	dodge = ebns * GlobalInstance::map_Equip[getId()].avoid;
-
+	if (getType() == T_HANDARMOR)
+	{
+		dodge += dodge * 0.01f;
+	}
 	for (unsigned int i = 0; i < vec_stones.size(); i++)
 	{
 		std::string stoneid = vec_stones[i];

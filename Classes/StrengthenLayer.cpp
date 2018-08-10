@@ -12,6 +12,7 @@
 #include "EquipDescLayer.h"
 #include "Quest.h"
 #include "MovingLabel.h"
+#include "TakeOnLayer.h"
 
 StrengthenLayer::StrengthenLayer()
 {
@@ -217,6 +218,11 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			elv.setValue(m_equip->getLv().getValue() - COSTLV[m_equip->getLv().getValue()]);
 			m_equip->setLv(elv);
 			MovingLabel::show(ResourceLang::map_lang["strengthfail"]);
+		}
+		TakeOnLayer* takon = (TakeOnLayer*)this->getParent();
+		if (takon!=NULL)
+		{
+			takon->updateAttr();
 		}
 
 		this->removeFromParentAndCleanup(true);

@@ -72,7 +72,7 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 	int qu = m_equip->getQU().getValue();
 
 	std::string str;
-	cocos2d::ui::Text* name = (cocos2d::ui::Text*)csbnode->getChildByName("name");
+	name = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	str = StringUtils::format("+%d%s", m_equip->getLv().getValue(), GlobalInstance::map_AllResources[m_equip->getId()].name.c_str());
 	name->setString(str);
 	name->setTextColor(Color4B(POTENTIALCOLOR[qu]));
@@ -443,6 +443,8 @@ void TakeOnLayer::updateUI()
 
 void TakeOnLayer::updateAttr()
 {	
+	std::string sstr = StringUtils::format("+%d%s", m_equip->getLv().getValue(), GlobalInstance::map_AllResources[m_equip->getId()].name.c_str());
+	name->setString(sstr);
 	float suithp = 0;
 	float suitdf = 0;
 	if (GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit.size() >= 2)

@@ -31,6 +31,9 @@ public:
 	//判断是否接受此npc任务
 	static bool getMainQuestNpc(std::string npcid);
 
+	//判断是否接在当前地图
+	static bool getMainQuestMap(std::string mapid);
+
 	//判断条件1情况下消耗的物品id和数量
 	static void setResQuestData(std::string resid, int count, std::string npcid);
 
@@ -52,6 +55,9 @@ public:
 
 	//判断是否接受此npc任务
 	static bool getBranchQuestNpc(std::string npcid);
+
+	//判断是否接在当前地图
+	static bool getBranchQuestMap(std::string mapid);
 
 	//判断赠送物品情况下消耗的物品id和数量
 	static void setResBranchQuestData(std::string resid, int count, std::string npcid);
