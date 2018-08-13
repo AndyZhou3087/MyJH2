@@ -415,6 +415,11 @@ public:
 	void heroSortByLv();
 
 	static bool larger_heroLvCB(Hero* a, Hero* b);
+
+	std::string getMyID();
+	std::string getMyNickName();
+	void setMyID(std::string val);
+	void setMyNickName(std::string val);
 private:
 	static GlobalInstance* _Context;//类实例
 
@@ -465,6 +470,9 @@ private:
 	static int totalFarmercount;
 	static DynamicValueInt mySoliverCount;
 	static DynamicValueInt myCoinCount;
+
+	static std::string myID;
+	static std::string myNickName;
 
 };
 #endif

@@ -4,13 +4,12 @@
 #include "DataSave.h"
 #include "GlobalInstance.h"
 #include "Building.h"
-#include "HttpDataSwap.h"
 
 USING_NS_CC;
 
 LoadingScene::LoadingScene()
 {
-
+	isGetPlayerId = false;
 }
 
 LoadingScene::~LoadingScene()
@@ -47,15 +46,13 @@ bool LoadingScene::init()
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("LoadingLayer.csb"));
 	this->addChild(csbnode);
 
-	this->scheduleOnce(schedule_selector(LoadingScene::delayLoadData), 0.2f);
-
-	HttpDataSwap::init(NULL)->getAllData();
+	this->scheduleOnce(schedule_selector(LoadingScene::delayLoadLocalData), 0.1f);
 
     return true;
 }
 
 
-void LoadingScene::delayLoadData(float dt)
+void LoadingScene::delayLoadLocalData(float dt)
 {
 	GlobalInstance::getInstance()->loadInitData();
 	int langtype = DataSave::getInstance()->getLocalLang();
@@ -105,13 +102,40 @@ void LoadingScene::delayLoadData(float dt)
 
 	GlobalInstance::getInstance()->parseTBoxJson();
 
-	//数据处理完，显示游戏场景
-	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.2f);
+	//数据处理完，
+	this->scheduleOnce(schedule_selector(LoadingScene::delayLoadServerData), 0.1f);
+}
+
+
+void LoadingScene::delayLoadServerData(float dt)
+{
+	isGetPlayerId = true;
+	HttpDataSwap::init(this)->getPlayerId();
 }
 
 void LoadingScene::showNextScene(float dt)
 {
 	Director::getInstance()->replaceScene(MainScene::createScene());
+}
+
+void LoadingScene::onFinish(int errcode)
+{
+	if (errcode == 0)
+	{
+		if (isGetPlayerId)
+		{
+			isGetPlayerId = false;
+			HttpDataSwap::init(this)->getAllData();
+		}
+		else
+		{
+			this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.1f);
+		}
+	}
+	else
+	{
+
+	}
 }
 
 void LoadingScene::onExit()

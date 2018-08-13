@@ -183,6 +183,8 @@
       <FilePathData Path="text_zh_cn/onkeyread_text.png" />
       <FilePathData Path="text_zh_cn/msgallget_text.png" />
       <FilePathData Path="text_zh_cn/m1-5.png" />
+      <FilePathData Path="text_zh_cn/msggeted_text.png" />
+      <FilePathData Path="text_zh_cn/settingtitle.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

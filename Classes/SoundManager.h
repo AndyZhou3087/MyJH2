@@ -157,6 +157,12 @@ public:
 	获取背景音乐开关
 	@return  false:关，true:开
 	****************************/
+	bool getMusicIsOn();
+
+	/****************************
+	获取背景音乐是否正在播放
+	@return  false:，true:
+	****************************/
 	bool getMusicPlayed();
 private:
 	bool                _isSoundOn;//音效开关

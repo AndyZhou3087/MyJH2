@@ -160,6 +160,61 @@ void HttpDataSwap::updateMessageStatus(std::string id, int changestatus)
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpUpdateMessageStatusCB, this));
 }
 
+void HttpDataSwap::getPlayerId()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_getplayerid?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetPlayerIdCB, this));
+}
+
+void HttpDataSwap::modifyName(int type, std::string nickname)
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_updatenickname?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	url.append("&type=");
+	std::string str = StringUtils::format("%d", type);
+	url.append(str);
+
+	url.append("&nickname=");
+	url.append(nickname);
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpModifyNameCB, this));
+}
+
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
@@ -298,6 +353,78 @@ void HttpDataSwap::httpUpdateMessageStatusCB(std::string retdata, int code, std:
 		{
 			rapidjson::Value& retv = doc["ret"];
 			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpGetPlayerIdCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+
+			if (ret == 0)
+			{
+				rapidjson::Value& v = doc["id"];
+				GlobalInstance::getInstance()->setMyID(v.GetString());
+
+				v = doc["nickname"];
+				GlobalInstance::getInstance()->setMyNickName(v.GetString());
+			}
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpModifyNameCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+
+			if (ret == 0)
+			{
+				if (doc.HasMember("id"))
+				{
+					rapidjson::Value& v = doc["id"];
+					GlobalInstance::getInstance()->setMyID(v.GetString());
+				}
+
+				if (doc.HasMember("nickname"))
+				{
+					rapidjson::Value& v = doc["nickname"];
+					GlobalInstance::getInstance()->setMyNickName(v.GetString());
+				}
+			}
 		}
 		else
 		{

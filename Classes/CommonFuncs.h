@@ -54,6 +54,11 @@ public:
 	****************************/
 	static void removeGray(cocos2d::Node* node);
 
+	/****************************
+	计算中英文长度
+	****************************/
+	static void checkEnAndCnCount(std::string instr, int& encount, int& cncount);
+
 private:
 
 	/****************************

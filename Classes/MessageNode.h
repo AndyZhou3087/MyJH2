@@ -32,7 +32,7 @@ private:
 	cocos2d::ui::Widget* icon;
 private:
 	void onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-
+	void refreshStatus(int type, int status);
 };
 #endif
 

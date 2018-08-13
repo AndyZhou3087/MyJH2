@@ -369,6 +369,9 @@
       <FilePathData Path="ui/messageicon.png" />
       <FilePathData Path="ui/waitingbg.png" />
       <FilePathData Path="ui/waitingprogress.png" />
+      <FilePathData Path="ui/escapebtn.png" />
+      <FilePathData Path="ui/randnamebtn.png" />
+      <FilePathData Path="ui/settingselected.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

@@ -144,3 +144,34 @@ void CommonFuncs::removeGray(cocos2d::Node* node)
 	GLProgram * pProgram = GLProgramCache::getInstance()->getGLProgram(str);
 	node->setGLProgram(pProgram);
 }
+
+void CommonFuncs::checkEnAndCnCount(std::string instr, int& encount, int& cncount)
+{
+	if (instr.length() <= 0)
+		return;
+
+	std::u32string utf32String;
+	StringUtils::UTF8ToUTF32(instr, utf32String);
+
+	int chiniseCount = 0;
+
+	int engnishCount = 0;
+
+	int len = utf32String.length();
+	for (int i = 0; i < len; i++) 
+	{
+		// 判断是否为可显示英文字符
+		char32_t s = utf32String[i];
+		if ((s >= 32) && (s < 127))
+		{
+			engnishCount++;
+		}
+		//是否为汉字
+		else if (s > 127) 
+		{
+			chiniseCount++;
+		}
+	}
+	encount = engnishCount;
+	cncount = chiniseCount;
+}

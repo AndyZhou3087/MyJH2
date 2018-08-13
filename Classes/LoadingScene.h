@@ -4,8 +4,10 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include "HttpDataSwap.h"
+
 USING_NS_CC;
-class LoadingScene : public cocos2d::Layer
+class LoadingScene : public cocos2d::Layer, public HTTPDataDelegateProtocol
 {
 public:
 	LoadingScene();
@@ -23,10 +25,17 @@ public:
 	/*************************
 	界面出来后加载数据，进度条，
 	***************************/
-	void delayLoadData(float dt);
+	void delayLoadLocalData(float dt);
+
+	void delayLoadServerData(float dt);
+
+	void onFinish(int errcode);
 
 private:
 	CREATE_FUNC(LoadingScene);
+
+private:
+	bool isGetPlayerId;
 };
 
 #endif

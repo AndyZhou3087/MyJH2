@@ -98,6 +98,11 @@ bool SoundManager::getSoundIsOn()
 	return _isSoundOn;
 }
 
+bool SoundManager::getMusicIsOn()
+{
+	return _isMusicOn;
+}
+
 bool SoundManager::getMusicPlayed()
 {
 	return _isMusicPlayed;

@@ -24,6 +24,10 @@ public:
 
 	void updateMessageStatus(std::string id, int changestatus);
 
+	void getPlayerId();
+
+	void modifyName(int type, std::string nickname = "");
+
 	void setDelegate(HTTPDataDelegateProtocol *delegateProtocol);
 
 private:
@@ -44,6 +48,10 @@ private:
 	void httpGetMessageListCB(std::string retdata, int code, std::string extdata);
 
 	void httpUpdateMessageStatusCB(std::string retdata, int code, std::string extdata);
+
+	void httpGetPlayerIdCB(std::string retdata, int code, std::string extdata);
+
+	void httpModifyNameCB(std::string retdata, int code, std::string extdata);
 };
 
 class HTTPDataDelegateProtocol

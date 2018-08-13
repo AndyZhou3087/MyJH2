@@ -264,13 +264,13 @@
                 <PreSize X="0.0417" Y="0.0892" />
                 <FileData Type="MarkedSubImage" Path="ui/heroattrmodify.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="nameinput" ActionTag="2073104671" Tag="139" IconVisible="False" LeftMargin="267.6097" RightMargin="207.3903" TopMargin="67.5364" BottomMargin="328.4636" TouchEnable="True" FontSize="30" IsCustomSize="True" LabelText="积极健康的" PlaceHolderText="" MaxLengthText="10" ctype="TextFieldObjectData">
+              <AbstractNodeData Name="nameinput" ActionTag="2073104671" Tag="139" IconVisible="False" LeftMargin="267.5000" RightMargin="207.5000" TopMargin="68.0000" BottomMargin="328.0000" TouchEnable="True" FontSize="30" IsCustomSize="True" LabelText="ABC" PlaceHolderText="" MaxLengthText="10" ctype="TextFieldObjectData">
                 <Size X="245.0000" Y="30.0000" />
-                <AnchorPoint ScaleY="0.5000" />
-                <Position X="267.6097" Y="343.4636" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="390.0000" Y="343.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="26" G="68" B="101" />
-                <PrePosition X="0.3717" Y="0.8063" />
+                <PrePosition X="0.5417" Y="0.8052" />
                 <PreSize X="0.3403" Y="0.0704" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
               </AbstractNodeData>

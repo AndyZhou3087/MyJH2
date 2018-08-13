@@ -55,6 +55,9 @@ std::vector<MessageData> GlobalInstance::vec_messsages;
 DynamicValueInt GlobalInstance::mySoliverCount;
 DynamicValueInt GlobalInstance::myCoinCount;
 
+std::string GlobalInstance::myID;
+std::string GlobalInstance::myNickName;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -1671,4 +1674,24 @@ bool GlobalInstance::larger_heroLvCB(Hero* a, Hero* b)
 		return true;
 	else
 		return false;
+}
+
+std::string GlobalInstance::getMyID()
+{
+	return myID;
+}
+
+std::string GlobalInstance::getMyNickName()
+{
+	return myNickName;
+}
+
+void GlobalInstance::setMyID(std::string val)
+{
+	myID = val;
+}
+
+void GlobalInstance::setMyNickName(std::string val)
+{
+	myNickName = val;
 }

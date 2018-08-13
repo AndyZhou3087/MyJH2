@@ -113,6 +113,8 @@ private:
 
 	int langtype;
 
+	std::string lastchangedname;
+
 	cocos2d::ui::Button* btnArr[5];
 	cocos2d::ui::Text* goodarr[4];
 };

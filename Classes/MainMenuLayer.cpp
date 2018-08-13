@@ -9,6 +9,7 @@
 #include "Quest.h"
 #include "MessageLayer.h"
 #include "MainScene.h"
+#include "SettingLayer.h"
 
 USING_NS_CC;
 
@@ -131,6 +132,10 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		}
 			break;
 		case SETBTN:
+		{
+			SettingLayer* layer = SettingLayer::create();
+			g_mainScene->addChild(layer, 0, "settinglayer");
+		}
 			break;
 		case ACHBTN:
 			break;

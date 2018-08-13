@@ -43,17 +43,10 @@ bool MessageNode::init(int index)
 	bg->setSwallowTouches(false);
 
 	icon = (cocos2d::ui::Widget*)csbnode->getChildByName("icon");
-	if (msgdata.type == 0)
-		icon->setVisible(false);
-	else
-	{
-		if (msgdata.status != 0)
-			icon->setOpacity(128);
-	}
-	
+
 	redpoint = (cocos2d::ui::Widget*)csbnode->getChildByName("redpoint");
-	if (msgdata.status != 0)
-		redpoint->setVisible(false);
+
+	refreshStatus(msgdata.type, msgdata.status);
 
 	cocos2d::ui::Text* title = (cocos2d::ui::Text*)csbnode->getChildByName("title");
 	title->setString(msgdata.title);
@@ -95,25 +88,31 @@ void MessageNode::updataUI()
 	if (lastStatus != status)
 	{
 		lastStatus = status;
-		if (type == 0)
+		refreshStatus(type, status);
+	}
+}
+
+void MessageNode::refreshStatus(int type, int status)
+{
+	if (type == 0)
+	{
+		icon->setVisible(false);
+		if (status == 1)
 		{
-			if (status == 1)
-			{
-				redpoint->setVisible(false);
-				icon->setOpacity(128);
-			}
+			redpoint->setVisible(false);
 		}
-		else
+	}
+	else
+	{
+		if (status == 3)
 		{
-			if (status == 3)
-			{
-				redpoint->setVisible(false);
-				icon->setOpacity(128);
-			}
-			else if (status == 1)
-			{
-				redpoint->setVisible(false);
-			}
+			redpoint->setVisible(false);
+			icon->setOpacity(128);
+		}
+		else if (status == 1)
+		{
+			redpoint->setVisible(false);
+			icon->setOpacity(255);
 		}
 	}
 }

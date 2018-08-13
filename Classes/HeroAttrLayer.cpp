@@ -126,11 +126,10 @@ bool HeroAttrLayer::init(Hero* herodata)
 
 	m_editName = cocos2d::ui::EditBox::create(nameinput->getContentSize(), cocos2d::ui::Scale9Sprite::createWithSpriteFrameName(ResourcePath::makePath("ui/blank.png")));
 	m_editName->setPosition(nameinput->getPosition());
-	m_editName->setAnchorPoint(Vec2(0, 0.5));
 	m_editName->setFontColor(Color4B(26, 68, 101, 255));
 	m_editName->setInputMode(cocos2d::ui::EditBox::InputMode::SINGLE_LINE);
-	m_editName->setMaxLength(5);
-	m_editName->setFontSize(30);
+	m_editName->setMaxLength(10);
+	m_editName->setFontSize(nameinput->getFontSize());
 	m_editName->setText(herodata->getName().c_str());
 	//editName->setReturnType(EditBox::KeyboardReturnType::DONE);
 	m_editName->setDelegate(this);
@@ -353,7 +352,7 @@ void HeroAttrLayer::updateAtrBtnUI()
 
 void HeroAttrLayer::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)
 {
-
+	lastchangedname = editBox->getText();
 }
 
 void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox, EditBoxEndAction action)
@@ -393,6 +392,18 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 
 void HeroAttrLayer::editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std::string &text)
 {
+	int encount = 0;
+	int cncount = 0;
+	CommonFuncs::checkEnAndCnCount(text, encount, cncount);
+	if (encount + cncount * 2 > editBox->getMaxLength())
+	{
+		editBox->setText(lastchangedname.c_str());
+	}
+	else
+	{
+		lastchangedname = text;
+	}
+
 }
 
 void HeroAttrLayer::editBoxReturn(cocos2d::ui::EditBox *editBox)

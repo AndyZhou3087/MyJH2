@@ -59,7 +59,7 @@ bool MessageDescLayer::init(int index)
 	int btntag = 0;
 
 	int textscrollheight = 0;
-	std::string contentstr = ResourceLang::map_lang["testtext"]/*data.content*/;
+	std::string contentstr = data.content;
 	if (data.type == 0)
 	{
 		actiontextstr = "closebtn_text";
@@ -80,7 +80,7 @@ bool MessageDescLayer::init(int index)
 		if (pos >= 0)
 		{
 			contentstr = contentstr.substr(0, pos - 1);
-			std::string awdstr = data.content.substr(pos + 2);
+			std::string awdstr = data.content.substr(pos + 1);
 			std::vector<std::string> vec_str;
 			CommonFuncs::split(awdstr, vec_str, ";");
 			for (unsigned int n = 0; n < vec_str.size(); n++)
@@ -99,15 +99,29 @@ bool MessageDescLayer::init(int index)
 		int asize = awdslist.size();
 		for (int m = 0; m < 5; m++)
 		{
-			int qu = awdslist[m].qu;
+
 			std::string str = StringUtils::format("resbox%d", m);
 			cocos2d::ui::ImageView*  resbox = (cocos2d::ui::ImageView*)awdnode->getChildByName(str);
-			str = StringUtils::format("ui/resbox_qu%d.png", qu);
-			resbox->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+
 
 			if (m < asize)
 			{
 				std::string resid = awdslist[m].rid;
+				int qu = awdslist[m].qu;
+
+				std::string qustr = "ui/resbox.png";
+				int k = 0;
+				for (; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)
+				{
+					if (resid.compare(0, 1, RES_TYPES_CHAR[k]) == 0)
+						break;
+				}
+				if (k >= T_ARMOR && k <= T_FASHION)
+					qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+
+				resbox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
+
+
 				cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
 				str = StringUtils::format("ui/%s.png", resid.c_str());
 				if (qu == 3)
@@ -118,7 +132,7 @@ bool MessageDescLayer::init(int index)
 				{
 					str = StringUtils::format("ui/%s-3.png", resid.c_str());
 				}
-				resbox->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+				res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 				cocos2d::ui::Text* countlbl = (cocos2d::ui::Text*)resbox->getChildByName("countlbl");
 				str = StringUtils::format("%d", awdslist[m].count);
 				countlbl->setString(str);
@@ -167,9 +181,14 @@ bool MessageDescLayer::init(int index)
 	if (data.status == 0)
 	{
 		HttpDataSwap::init(NULL)->updateMessageStatus(data.id, 1);
+		this->scheduleOnce(schedule_selector(MessageDescLayer::delay), 0.5f);
 	}
-
-	this->scheduleOnce(schedule_selector(MessageDescLayer::delay), 0.5f);
+	else if (data.status == 3)
+	{
+		actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("msggeted_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		actionbtn->setBright(false);
+		actionbtn->setTag(1002);
+	}
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -200,7 +219,7 @@ void MessageDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Node* node = (Node*)pSender;
+		cocos2d::ui::Button* node = (cocos2d::ui::Button*)pSender;
 		int tag = node->getTag();
 		switch (tag)
 		{
@@ -209,18 +228,48 @@ void MessageDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 			break;
 		case 1001:
 		{
+			node->setEnabled(false);
 			for (unsigned int i = 0; i < awdslist.size(); i++)
 			{
 				int qu = awdslist[i].qu;
+				std::string resid = awdslist[i].rid;
 				int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
-				MyRes::Add(awdslist[i].rid, awdslist[i].count, MYSTORAGE, qu, stc);
+
+				int addcount = awdslist[i].count;
+
+				if (resid.compare(0, 1, "r") == 0)
+				{
+					for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
+					{
+						ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
+						if (rescreator->getLv().getValue() >= 0 && rescreator->getName().compare(resid) == 0)
+						{
+
+							int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
+							int rcount = MyRes::getMyResCount(rescreator->getName());
+							if (addcount + rcount >= maxcount)
+								addcount = maxcount - rcount;
+							break;
+						}
+					}
+				}
+				MyRes::Add(awdslist[i].rid, addcount, MYSTORAGE, qu, stc);
 			}
 			MovingLabel::show(ResourceLang::map_lang["msgawdsucc"]);
+
+			int tag = this->getTag();
+			GlobalInstance::vec_messsages[tag].status = 3;
+			MessageLayer* mlayer = (MessageLayer*)this->getParent();
+			mlayer->updateStatus(tag);
+
+			HttpDataSwap::init(NULL)->updateMessageStatus(GlobalInstance::vec_messsages[tag].id, 3);
 
 			this->removeFromParentAndCleanup(true);
 		}
 			break;
-
+		case 1002:
+			this->removeFromParentAndCleanup(true);
+			break;
 		default:
 			break;
 		}

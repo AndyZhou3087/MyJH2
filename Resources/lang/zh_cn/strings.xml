@@ -143,4 +143,16 @@
 	<s name="vsionmax">视野已到最高等级，无需再购买！</s>
 	<s name="datawaitingtext">数据加载中...</s>
 	<s name="msgawdsucc">领取成功！请到仓库中查看！</s>
+	<s name="acounttext">账号：</s>
+	<s name="nicknametext">昵称：</s>
+	<s name="nicknameplaceholder">请输入昵称</s>
+	<s name="musictext">音乐</s>
+	<s name="soundtext">音效</s>
+	<s name="soundontext">开</s>
+	<s name="soundofftext">关</s>
+	<s name="modifynicknamesucc">昵称修改成功！</s>
+	<s name="modifynicknamefail">抱歉！修改昵称失败！请检查网络或者联系客服！</s>
+	<s name="nicknameempty">抱歉！昵称不能为空！</s>
+	<s name="doingtext">处理中...</s>
+	<s name="modifynicknametimeslimit">抱歉！修改昵称失败！修改次数已到上限！</s>	
 </strings>
