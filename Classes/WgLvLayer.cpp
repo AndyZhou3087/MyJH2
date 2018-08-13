@@ -8,6 +8,7 @@
 #include "DynamicValue.h"
 #include "Const.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -225,6 +226,7 @@ void WgLvLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		if (m_res->getLv().getValue() + 1 == m_res->getMaxLv())
 		{
 			MovingLabel::show(ResourceLang::map_lang["wgmostlv"]);

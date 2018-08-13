@@ -4,6 +4,7 @@
 #include "Const.h"
 #include "MessageDescLayer.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 MessageNode::MessageNode()
 {
@@ -76,6 +77,7 @@ void MessageNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		if (!clickflag)
 			return;
 
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		MessageDescLayer* layer = MessageDescLayer::create(this->getTag());
 		this->getParent()->getParent()->getParent()->getParent()->addChild(layer, 0, this->getTag());
 		AnimationEffect::openAniEffect((Layer*)layer);

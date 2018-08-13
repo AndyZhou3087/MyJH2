@@ -7,6 +7,7 @@
 #include "MyRes.h"
 #include "MyMenu.h"
 #include "AnimationEffect.h"
+#include "ResDescLayer.h"
 
 MyPackageLayer::MyPackageLayer()
 {
@@ -189,5 +190,7 @@ void MyPackageLayer::onclick(Ref* pSender)
 {
 	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 	Node* node = (Node*)pSender;
-
+	ResDescLayer* layer = ResDescLayer::create((ResBase*)node->getUserData(), 2);
+	this->addChild(layer);
+	AnimationEffect::openAniEffect((Layer*)layer);
 }

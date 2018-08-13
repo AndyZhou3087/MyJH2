@@ -8,6 +8,7 @@
 #include "TaskMainDescLayer.h"
 #include "Const.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 TaskMainNode::TaskMainNode()
 {
@@ -111,6 +112,7 @@ void TaskMainNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		if (!clickflag)
 			return;
 
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		Layer* layer = TaskMainDescLayer::create(m_Data);
 		if (m_layer!=NULL)
 		{

@@ -307,6 +307,7 @@ void MapBlockScene::onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		m_tasknode->stopAllActions();
 		Node* clicknode = (Node*)pSender;
 		int tag = clicknode->getTag();

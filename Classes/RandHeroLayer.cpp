@@ -8,6 +8,7 @@
 #include "Quest.h"
 #include "HintBoxLayer.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -142,6 +143,9 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	int tag = clicknode->getTag();
 	if (tag != BTN_ADD_COINBOX && tag != BTN_ADD_SILVERBOX)
 		CommonFuncs::BtnAction(pSender, type);
+	else if (type == ui::Widget::TouchEventType::ENDED)
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		switch (tag)

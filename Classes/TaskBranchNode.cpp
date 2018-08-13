@@ -8,6 +8,7 @@
 #include "TaskBranchDescLayer.h"
 #include "Const.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 TaskBranchNode::TaskBranchNode()
 {
@@ -111,6 +112,7 @@ void TaskBranchNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		if (!clickflag)
 			return;
 
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		Layer* node = TaskBranchDescLayer::create(m_Data);
 		if (m_layer != NULL)
 		{

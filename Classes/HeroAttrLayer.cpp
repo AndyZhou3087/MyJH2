@@ -16,6 +16,7 @@
 #include "EquipDescLayer.h"
 #include "ChangeVocationLayer.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -513,6 +514,7 @@ void HeroAttrLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
 		{
 			MovingLabel::show(ResourceLang::map_lang["wgmostlv"]);
@@ -589,6 +591,7 @@ void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
 		clickindex = clicknode->getTag();
 		Layer* layer;

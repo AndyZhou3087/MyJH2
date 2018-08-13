@@ -329,6 +329,7 @@ void TakeOnLayer::onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		Node* node = (Node*)pSender;
 
 		if (m_equip->vec_stones[node->getTag()].length() > 1)

@@ -14,6 +14,7 @@
 #include "Quest.h"
 #include "TrainLayer.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -215,6 +216,7 @@ void TrainSelectLayer::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 	int tag = clicknode->getTag();
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		if (lastSelectIndex == tag)
 		{
 			return;

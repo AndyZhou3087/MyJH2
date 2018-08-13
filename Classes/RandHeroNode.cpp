@@ -4,6 +4,7 @@
 #include "HeroAttrLayer.h"
 #include "Const.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 RandHeroNode::RandHeroNode()
 {
@@ -70,6 +71,7 @@ void RandHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		Layer* layer = HeroAttrLayer::create((Hero*)this->getUserData());
 		this->getParent()->addChild(layer, 0, this->getTag());
 		AnimationEffect::openAniEffect((Layer*)layer);

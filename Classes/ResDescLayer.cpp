@@ -126,7 +126,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 		btntextstr = "closebtn_text";
 		descstr = GlobalInstance::map_AllResources[awdres].desc;
 	}
-	else
+	if (m_fromwhere == 0)
 	{
 		if (res->getType() == T_BOX)
 		{
@@ -167,6 +167,10 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 
 		}
 	}
+	else if (m_fromwhere == 2)
+	{
+		btntextstr = "closebtn_text";
+	}
 
 	desclbl->setString(descstr);
 
@@ -202,7 +206,6 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-
 		if (status == S_CAN_DECOMPOSE)
 		{
 			StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();

@@ -115,6 +115,8 @@ void MainMapScene::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 		std::string mapname = clicknode->getParent()->getName();
 		if (m_isDraging)
 			return;
+
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		if (mapname.compare("m0-1") == 0)
 		{
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));

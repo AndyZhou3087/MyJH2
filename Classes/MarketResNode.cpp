@@ -6,6 +6,7 @@
 #include "MovingLabel.h"
 #include "MarketLayer.h"
 #include "Const.h"
+#include "SoundManager.h"
 
 MarketResNode::MarketResNode()
 {
@@ -118,6 +119,7 @@ void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		if (!clickflag)
 			return;
 
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		switch (tag)
 		{
 		case 1000://购买按钮

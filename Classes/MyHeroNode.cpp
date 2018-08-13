@@ -17,6 +17,7 @@
 #include "OutTownLayer.h"
 #include "HintBoxLayer.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 #define RSILVERCOUNT 100
 
@@ -274,7 +275,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 		if (clicknode->getTag() == 1)
 		{
-
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 			Layer* layer = HeroAttrLayer::create(m_heroData);
 			g_mainScene->addChild(layer, 0, this->getTag());
 			AnimationEffect::openAniEffect((Layer*)layer);

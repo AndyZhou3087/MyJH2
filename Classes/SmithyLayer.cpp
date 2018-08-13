@@ -8,6 +8,7 @@
 #include "MyRes.h"
 #include "Const.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -318,6 +319,8 @@ void SmithyLayer::onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 	{
 		if (!clickflag)
 			return;
+
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		ConsumeResActionLayer* layer = ConsumeResActionLayer::create(clicknode->getUserData(), CA_MAKERES);
 		this->addChild(layer);
 		AnimationEffect::openAniEffect((Layer*)layer);

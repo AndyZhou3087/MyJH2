@@ -196,6 +196,8 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			if (m_isDraging)
 				return;
 
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+
 			Layer* layer = NULL;
 
 			if (buildname.compare("6innroom") == 0)

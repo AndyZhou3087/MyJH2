@@ -6,6 +6,7 @@
 #include "MapBlockScene.h"
 #include "Resource.h"
 #include "MovingLabel.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -175,6 +176,7 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 		if (!clickflag)
 			return;
 
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		showCloudAnim(clicknode->getParent()->getParent(), clicknode->getParent()->getPosition());
 		std::string mapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag());
 		int needph = GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].ph;

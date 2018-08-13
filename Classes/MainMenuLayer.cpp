@@ -11,6 +11,7 @@
 #include "MainScene.h"
 #include "AnimationEffect.h"
 #include "SettingLayer.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -116,6 +117,9 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 	int menuType = clicknode->getTag();
 	if (menuType >= SETBTN && menuType <= SHOPBTN)
 		CommonFuncs::BtnAction(pSender, type);
+	else if (type == ui::Widget::TouchEventType::ENDED)
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		switch (menuType)
@@ -137,6 +141,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		{
 			SettingLayer* layer = SettingLayer::create();
 			g_mainScene->addChild(layer, 0, "settinglayer");
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 			break;
 		case ACHBTN:

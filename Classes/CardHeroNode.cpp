@@ -3,6 +3,7 @@
 #include "Resource.h"
 #include "SelectMyHerosLayer.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 CardHeroNode::CardHeroNode()
 {
@@ -67,6 +68,7 @@ void CardHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		Layer* layer = SelectMyHerosLayer::create(HS_TAKEON);
 		layer->setTag(this->getTag());
 		this->getParent()->addChild(layer, 0, "selectmyheroslayer");

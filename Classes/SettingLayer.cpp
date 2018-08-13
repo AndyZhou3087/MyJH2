@@ -5,6 +5,7 @@
 #include "WaitingProgress.h"
 #include "Resource.h"
 #include "GlobalInstance.h"
+#include "AnimationEffect.h"
 
 SettingLayer::SettingLayer()
 {
@@ -23,8 +24,8 @@ bool SettingLayer::init()
 		return false;
 	}
 	//蒙版
-	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 150));
-	this->addChild(color);
+	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 128));
+	this->addChild(color, 0, "colorLayer");
 
 	//加载csb文件
 	Node* csbnode = CSLoader::createNode("settingLayer.csb");
@@ -169,7 +170,8 @@ void SettingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		switch (tag)
 		{
 		case 1000:
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
+			//this->removeFromParentAndCleanup(true);
 			break;
 		case 1001:
 			modifyName(1);
