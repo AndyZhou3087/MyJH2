@@ -10,6 +10,7 @@
 #include "TakeOnLayer.h"
 #include "SetInStoneLayer.h"
 #include "EquipDescLayer.h"
+#include "AnimationEffect.h"
 
 SelectEquipLayer::SelectEquipLayer()
 {
@@ -41,6 +42,11 @@ SelectEquipLayer* SelectEquipLayer::create(int restype, Hero* herodata)
 
 bool SelectEquipLayer::init(int restype, Hero* herodata)
 {
+	if (!Layer::init())
+	{
+		return false;
+	}
+
 	m_herodata = herodata;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
@@ -216,6 +222,7 @@ void SelectEquipLayer::onclick(Ref* pSender)
 		layer = SetInStoneLayer::create(res, this->getTag(), m_herodata);
 	}
 	this->addChild(layer, 0, this->getTag());
+	AnimationEffect::openAniEffect((Layer*)layer);
 }
 
 void SelectEquipLayer::loadData()

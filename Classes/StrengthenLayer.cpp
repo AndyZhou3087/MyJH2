@@ -45,6 +45,11 @@ StrengthenLayer* StrengthenLayer::create(Equip* res_equip)
 
 bool StrengthenLayer::init(Equip* res_equip)
 {
+	if (!Layer::init())
+	{
+		return false;
+	}
+
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
 

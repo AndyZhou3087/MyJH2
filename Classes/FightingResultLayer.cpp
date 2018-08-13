@@ -8,6 +8,7 @@
 #include "MyRes.h"
 #include "MainScene.h"
 #include "SoundManager.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -119,6 +120,7 @@ void FightingResultLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 			node->setVisible(false);
 			WinRewardLayer* layer = WinRewardLayer::create(m_rewards);
 			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 		else
 		{

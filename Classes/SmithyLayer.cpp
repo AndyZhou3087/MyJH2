@@ -7,6 +7,7 @@
 #include "DataSave.h"
 #include "MyRes.h"
 #include "Const.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -123,6 +124,7 @@ void SmithyLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			{
 				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_buidingData, CA_BUILDINGLVUP);
 				this->addChild(layer);
+				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			else
 			{
@@ -318,5 +320,6 @@ void SmithyLayer::onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			return;
 		ConsumeResActionLayer* layer = ConsumeResActionLayer::create(clicknode->getUserData(), CA_MAKERES);
 		this->addChild(layer);
+		AnimationEffect::openAniEffect((Layer*)layer);
 	}
 }

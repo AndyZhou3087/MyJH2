@@ -16,6 +16,7 @@
 #include "Building.h"
 #include "OutTownLayer.h"
 #include "HintBoxLayer.h"
+#include "AnimationEffect.h"
 
 #define RSILVERCOUNT 100
 
@@ -276,6 +277,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 			Layer* layer = HeroAttrLayer::create(m_heroData);
 			g_mainScene->addChild(layer, 0, this->getTag());
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 		else
 		{
@@ -296,6 +298,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 						std::string hintstr = StringUtils::format(ResourceLang::map_lang["firecomfirmtext"].c_str(), ResourceLang::map_lang[potentialstr].c_str());
 						HintBoxLayer* hint = HintBoxLayer::create(hintstr, 2);
 						innroomLayer->addChild(hint, 0, this->getTag());
+						AnimationEffect::openAniEffect((Layer*)hint);
 					}
 				}
 				else
@@ -384,11 +387,13 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				{
 					TrainSelectLayer* layer = TrainSelectLayer::create(m_heroData, this);
 					g_mainScene->addChild(layer, 1, "TrainSelectLayer");
+					AnimationEffect::openAniEffect((Layer*)layer);
 				}
 				else if (m_heroData->getState() == HS_TRAINING)
 				{
 					TrainHintLayer* layer = TrainHintLayer::create(m_heroData, this);
 					g_mainScene->addChild(layer, 1, "TrainHintLayer");
+					AnimationEffect::openAniEffect((Layer*)layer);
 				}
 				else if (m_heroData->getState() == HS_TAKEON)
 				{

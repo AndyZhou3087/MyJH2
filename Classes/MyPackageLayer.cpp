@@ -35,6 +35,10 @@ MyPackageLayer* MyPackageLayer::create()
 
 bool MyPackageLayer::init()
 {
+	if (!Layer::init())
+	{
+		return false;
+	}
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);

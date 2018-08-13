@@ -11,6 +11,7 @@
 #include "MovingLabel.h"
 #include "EquipDescLayer.h"
 #include "Quest.h"
+#include "AnimationEffect.h"
 
 StoreHouseLayer::StoreHouseLayer()
 {
@@ -26,6 +27,10 @@ StoreHouseLayer::~StoreHouseLayer()
 
 bool StoreHouseLayer::init()
 {
+	if (!Layer::init())
+	{
+		return false;
+	}
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
@@ -241,11 +246,13 @@ void StoreHouseLayer::onclick(Ref* pSender)
 		{
 			EquipDescLayer* layer = EquipDescLayer::create(res, 0);//从仓库进入
 			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 		else
 		{
 			ResDescLayer* layer = ResDescLayer::create(res, 0);
 			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 	}
 }

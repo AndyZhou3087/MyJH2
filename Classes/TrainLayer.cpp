@@ -7,6 +7,7 @@
 #include "DataSave.h"
 #include "Hero.h"
 #include "MyHeroNode.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -112,6 +113,7 @@ void TrainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			{
 				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_buidingData, CA_BUILDINGLVUP);
 				this->addChild(layer);
+				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			else
 			{

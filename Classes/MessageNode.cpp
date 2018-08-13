@@ -3,6 +3,7 @@
 #include "Resource.h"
 #include "Const.h"
 #include "MessageDescLayer.h"
+#include "AnimationEffect.h"
 
 MessageNode::MessageNode()
 {
@@ -84,6 +85,7 @@ void MessageNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 
 		MessageDescLayer* layer = MessageDescLayer::create(this->getTag());
 		this->getParent()->getParent()->getParent()->getParent()->addChild(layer, 0, this->getTag());
+		AnimationEffect::openAniEffect((Layer*)layer);
 	}
 }
 

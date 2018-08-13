@@ -8,6 +8,7 @@
 #include "StoreHouseLayer.h"
 #include "HeroAttrLayer.h"
 #include "WgLvLayer.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -211,6 +212,7 @@ void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			{
 				WgLvLayer* wglayer = WgLvLayer::create(m_res);
 				this->addChild(wglayer);
+				AnimationEffect::openAniEffect((Layer*)wglayer);
 			}
 			else
 			{
@@ -229,6 +231,7 @@ void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		{
 			WgLvLayer* wglayer = WgLvLayer::create(m_res);
 			this->addChild(wglayer);
+			AnimationEffect::openAniEffect((Layer*)wglayer);
 		}
 	}
 }

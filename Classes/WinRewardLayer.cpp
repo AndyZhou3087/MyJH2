@@ -37,6 +37,10 @@ WinRewardLayer* WinRewardLayer::create(std::vector<FOURProperty> reward_res)
 
 bool WinRewardLayer::init(std::vector<FOURProperty> reward_res)
 {
+	if (!Layer::init())
+	{
+		return false;
+	}
 
 	m_rewards = reward_res;
 

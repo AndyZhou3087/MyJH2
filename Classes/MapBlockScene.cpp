@@ -19,6 +19,7 @@
 #include "MainScene.h"
 #include "Quest.h"
 #include "SoundManager.h"
+#include "AnimationEffect.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -186,7 +187,8 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 void MapBlockScene::showFightingLayer(std::vector<Npc*> enemys)
 {
-	this->addChild(FightingLayer::create(enemys, m_fightbgtype));
+	FightingLayer* layer = FightingLayer::create(enemys, m_fightbgtype);
+	this->addChild(layer);
 }
 
 void MapBlockScene::loadTaskUI()
@@ -292,6 +294,7 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 			MyPackageLayer* layer = MyPackageLayer::create();
 			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 		break;
 		default:
@@ -915,6 +918,7 @@ void MapBlockScene::showFightResult(int result)
 		std::vector<FOURProperty> vec;
 		FightingResultLayer* FRlayer = FightingResultLayer::create(vec, 0);
 		this->addChild(FRlayer);
+		AnimationEffect::openAniEffect((Layer*)FRlayer);
 	}
 	else
 	{
@@ -940,6 +944,7 @@ void MapBlockScene::showFightResult(int result)
 		}
 		FightingResultLayer* FRlayer = FightingResultLayer::create(vec_winrewards, getWinExp()/count);
 		this->addChild(FRlayer);
+		AnimationEffect::openAniEffect((Layer*)FRlayer);
 	}
 }
 

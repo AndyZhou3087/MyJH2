@@ -13,6 +13,7 @@
 #include "SetInStoneLayer.h"
 #include "Quest.h"
 #include "StrengthenLayer.h"
+#include "AnimationEffect.h"
 
 static bool isChangeEquip = false;
 TakeOnLayer::TakeOnLayer()
@@ -51,6 +52,11 @@ TakeOnLayer* TakeOnLayer::create(Equip* res_equip, Hero* herodata)
 
 bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 {
+	if (!Layer::init())
+	{
+		return false;
+	}
+
 	m_herodata = herodata;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);
@@ -266,6 +272,7 @@ void TakeOnLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			isChangeEquip = true;
 			SelectEquipLayer* layer = SelectEquipLayer::create(m_equip->getType(), m_herodata);
 			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
 			break;
 		}
 		case 1002://选择
@@ -296,6 +303,7 @@ void TakeOnLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		{
 			StrengthenLayer* sLayer = StrengthenLayer::create(m_equip);
 			this->addChild(sLayer);
+			AnimationEffect::openAniEffect((Layer*)sLayer);
 			break;
 		}
 		default:
@@ -313,6 +321,7 @@ void TakeOnLayer::onEquipclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 		EquipDescLayer* layer = EquipDescLayer::create((ResBase*)node->getUserData(), 1);
 		this->addChild(layer);
+		AnimationEffect::openAniEffect((Layer*)layer);
 	}
 }
 
@@ -326,11 +335,13 @@ void TakeOnLayer::onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 			SetInStoneLayer* layer = SetInStoneLayer::create(m_equip, node->getTag(), m_herodata);
 			this->addChild(layer,0, node->getTag());
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 		else
 		{
 			SelectEquipLayer* layer = SelectEquipLayer::create(T_STONE, m_herodata);
 			this->addChild(layer, 0, node->getTag());
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 	}
 }

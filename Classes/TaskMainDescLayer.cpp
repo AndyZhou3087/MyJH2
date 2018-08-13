@@ -38,6 +38,11 @@ TaskMainDescLayer* TaskMainDescLayer::create(TaskMainData* data)
 
 bool TaskMainDescLayer::init(TaskMainData* data)
 {
+	if (!Layer::init())
+	{
+		return false;
+	}
+
 	m_data = data;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color);

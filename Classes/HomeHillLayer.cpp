@@ -7,6 +7,7 @@
 #include "Const.h"
 #include "ConsumeResActionLayer.h"
 #include "MovingLabel.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -134,6 +135,7 @@ void HomeHillLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 			ConsumeResActionLayer* layer = ConsumeResActionLayer::create(NULL, CA_EMPLOYFARMER);
 			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
 			break;
 		}
 		case 1001://升级
@@ -143,6 +145,7 @@ void HomeHillLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			{
 				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_buidingData, CA_BUILDINGLVUP);
 				this->addChild(layer);
+				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			else
 			{

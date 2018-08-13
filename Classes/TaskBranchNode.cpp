@@ -7,6 +7,7 @@
 #include "TaskBranchNode.h"
 #include "TaskBranchDescLayer.h"
 #include "Const.h"
+#include "AnimationEffect.h"
 
 TaskBranchNode::TaskBranchNode()
 {
@@ -110,10 +111,11 @@ void TaskBranchNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		if (!clickflag)
 			return;
 
-		Node* node = TaskBranchDescLayer::create(m_Data);
+		Layer* node = TaskBranchDescLayer::create(m_Data);
 		if (m_layer != NULL)
 		{
 			m_layer->addChild(node);
+			AnimationEffect::openAniEffect((Layer*)node);
 		}
 	}
 }

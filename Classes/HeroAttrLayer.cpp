@@ -15,6 +15,7 @@
 #include "TakeOnLayer.h"
 #include "EquipDescLayer.h"
 #include "ChangeVocationLayer.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -434,11 +435,13 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				{
 					ChangeVocationLayer* clayer = ChangeVocationLayer::create(m_heroData);
 					this->addChild(clayer);
+					AnimationEffect::openAniEffect((Layer*)clayer);
 				}
 				else
 				{
 					ChangeVocationLayer* clayer = ChangeVocationLayer::create(m_heroData, 1);
 					this->addChild(clayer);
+					AnimationEffect::openAniEffect((Layer*)clayer);
 				}
 			}
 			else
@@ -595,6 +598,7 @@ void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			}
 		}
 		this->addChild(layer);
+		AnimationEffect::openAniEffect((Layer*)layer);
 	}
 }
 

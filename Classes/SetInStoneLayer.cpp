@@ -6,6 +6,7 @@
 #include "MyRes.h"
 #include "TakeOnLayer.h"
 #include "SelectEquipLayer.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -182,6 +183,7 @@ void SetInStoneLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			isChangeStone = true;
 			SelectEquipLayer* slayer = SelectEquipLayer::create(T_STONE, m_herodata);
 			this->addChild(slayer, 0, this->getTag());
+			AnimationEffect::openAniEffect((Layer*)slayer);
 			break;
 		}
 

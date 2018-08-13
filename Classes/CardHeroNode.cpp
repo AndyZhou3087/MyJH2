@@ -2,6 +2,7 @@
 #include "CommonFuncs.h"
 #include "Resource.h"
 #include "SelectMyHerosLayer.h"
+#include "AnimationEffect.h"
 
 CardHeroNode::CardHeroNode()
 {
@@ -69,6 +70,7 @@ void CardHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 		Layer* layer = SelectMyHerosLayer::create(HS_TAKEON);
 		layer->setTag(this->getTag());
 		this->getParent()->addChild(layer, 0, "selectmyheroslayer");
+		AnimationEffect::openAniEffect((Layer*)layer);
 	}
 }
 

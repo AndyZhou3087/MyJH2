@@ -37,6 +37,11 @@ MessageDescLayer* MessageDescLayer::create(int index)
 
 bool MessageDescLayer::init(int index)
 {
+	if (!Layer::init())
+	{
+		return false;
+	}
+
 	MessageData data = GlobalInstance::vec_messsages[index];
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));

@@ -911,6 +911,7 @@
         <Project Name="hillResNode.csd" Type="Node" />
         <Project Name="hitBoxLayer.csd" Type="Layer" />
         <Project Name="homeHillLayer.csd" Type="Layer" />
+        <Project Name="hospitalLayer.csd" Type="Layer" />
         <Project Name="innRoomLayer.csd" Type="Layer" />
         <Image Name="loadingbg.jpg" />
         <Project Name="LoadingLayer.csd" Type="Layer" />

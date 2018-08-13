@@ -88,6 +88,10 @@ bool TrainHintLayer::init(Hero* herodata, MyHeroNode* myNode)
 	{
 		return true;
 	};
+	listener->onTouchEnded = [=](Touch *touch, Event *event)
+	{
+		this->removeFromParentAndCleanup(true);
+	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;

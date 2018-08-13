@@ -7,6 +7,7 @@
 #include "MyRes.h"
 #include "StoreHouseLayer.h"
 #include "MainScene.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -212,6 +213,7 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		{
 			ResDescLayer* layer = ResDescLayer::create(m_res, 1);
 			this->getParent()->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 
 		this->removeFromParentAndCleanup(true);
