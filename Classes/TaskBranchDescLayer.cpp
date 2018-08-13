@@ -8,6 +8,7 @@
 #include "MyMenu.h"
 #include "MovingLabel.h"
 #include "TaskBranchNode.h"
+#include "AnimationEffect.h"
 
 TaskBranchDescLayer::TaskBranchDescLayer()
 {
@@ -45,7 +46,7 @@ bool TaskBranchDescLayer::init(TaskBranchData* data)
 
 	m_data = data;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Node* m_csbnode = CSLoader::createNode(ResourcePath::makePath("taskMainDescLayer.csb"));
 	this->addChild(m_csbnode);
@@ -205,7 +206,7 @@ void TaskBranchDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 		switch (tag)
 		{
 		case 0:
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		case 1: //接受任务
 			accbtn->setTitleText(ResourceLang::map_lang["accmaintask"]);

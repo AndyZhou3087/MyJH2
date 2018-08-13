@@ -49,7 +49,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 
 	m_res = (Equipable*)res;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -185,7 +185,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -204,7 +204,7 @@ void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
 			if (storelayer != NULL)
 				storelayer->decompose(m_res);
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 		}
 		else if (status == S_EQUIP_TAKEOFF)
 		{
@@ -218,7 +218,7 @@ void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			{
 				HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent();
 				heroAttrLayer->takeOff(m_res);
-				this->removeFromParentAndCleanup(true);
+				AnimationEffect::closeAniEffect((Layer*)this);
 			}
 		}
 		else if (status == S_EQUIP_SEL)

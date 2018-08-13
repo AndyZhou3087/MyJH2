@@ -4,6 +4,7 @@
 #include "GlobalInstance.h"
 #include "Const.h"
 #include "MovingLabel.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -46,7 +47,7 @@ bool TrainHintLayer::init(Hero* herodata, MyHeroNode* myNode)
 	myheroNode = myNode;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -90,7 +91,7 @@ bool TrainHintLayer::init(Hero* herodata, MyHeroNode* myNode)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -107,7 +108,7 @@ void TrainHintLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		switch (tag)
 		{
 		case 0:
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		case 1:
 			if (m_herodata->getState() == HS_TRAINING)
@@ -117,7 +118,7 @@ void TrainHintLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				m_herodata->setState(HS_OWNED);
 				myheroNode->changeBtnContent();
 			}
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 		default:
 			break;
 		}

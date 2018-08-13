@@ -50,7 +50,7 @@ bool SelectEquipLayer::init(int restype, Hero* herodata)
 	m_herodata = herodata;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Node *csbnode = CSLoader::createNode(ResourcePath::makePath("selectEquipLayer.csb"));
 	this->addChild(csbnode);
@@ -79,7 +79,7 @@ bool SelectEquipLayer::init(int restype, Hero* herodata)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);

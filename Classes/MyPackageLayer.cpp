@@ -6,6 +6,7 @@
 #include "GlobalInstance.h"
 #include "MyRes.h"
 #include "MyMenu.h"
+#include "AnimationEffect.h"
 
 MyPackageLayer::MyPackageLayer()
 {
@@ -41,7 +42,7 @@ bool MyPackageLayer::init()
 	}
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("simpleLayer.csb"));
 	this->addChild(csbnode);
@@ -175,7 +176,7 @@ void MyPackageLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		{
 		case 1000://close
 		{
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		}
 		default:

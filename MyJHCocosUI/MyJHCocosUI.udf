@@ -13,8 +13,11 @@
           <FilePathData Path="hospitalLayer.csd" />
           <FilePathData Path="smithyLayer.csd" />
           <FilePathData Path="storeHouseLayer.csd" />
+          <FilePathData Path="consumeResActionLayer.csd" />
+          <FilePathData Path="hitBoxLayer.csd" />
+          <FilePathData Path="innRoomLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="smithyLayer.csd" />
+        <ActiveDocument Path="innRoomLayer.csd" />
       </Value>
     </Item>
   </Properties>

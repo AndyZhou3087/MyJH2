@@ -7,6 +7,7 @@
 #include "RandHeroLayer.h"
 #include "InnRoomLayer.h"
 #include "MainScene.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -48,7 +49,7 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 	m_forwhere = forwhere;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -86,6 +87,10 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 	{
 		return true;
 	};
+	listener->onTouchEnded = [=](Touch *touch, Event *event)
+	{
+		AnimationEffect::closeAniEffect((Layer*)this);
+	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
@@ -101,7 +106,7 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		switch (tag)
 		{
 		case 0:
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		case 1:
 			if (m_forwhere == 1)
@@ -118,7 +123,7 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				if (innroomLayer != NULL)
 					innroomLayer->fireHero(this->getTag());
 			}
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 		default:
 			break;
 		}

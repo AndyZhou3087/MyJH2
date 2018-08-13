@@ -65,7 +65,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 	m_heroData = herodata;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 250));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -425,7 +425,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
 				sellayer->refreshMyHerosUi();
 			}
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		}
 		case ATTR_CHANGEBTN:
@@ -470,7 +470,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				innroomLayer->refreshMyHerosUi();
 				clicknode->setEnabled(false);
 				MovingLabel::show(ResourceLang::map_lang["recruitsucc"]);
-				this->removeFromParentAndCleanup(true);
+				AnimationEffect::closeAniEffect((Layer*)this);
 
 				break;
 			}
@@ -488,7 +488,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			}
 			else
 			{
-				this->removeFromParentAndCleanup(true);
+				AnimationEffect::closeAniEffect((Layer*)this);
 			}
 			break;
 		default:

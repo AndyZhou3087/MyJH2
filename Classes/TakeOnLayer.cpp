@@ -59,7 +59,7 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 
 	m_herodata = herodata;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	csbnode = CSLoader::createNode(ResourcePath::makePath("takeOnLayer.csb"));
 	this->addChild(csbnode);
@@ -264,7 +264,7 @@ void TakeOnLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		{
 		case 1000:
 		{
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		}
 		case 1001://更换
@@ -296,7 +296,7 @@ void TakeOnLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		{
 			HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent();
 			heroAttrLayer->takeOff(m_equip);
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		}
 		case 1004://强化

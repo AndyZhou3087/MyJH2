@@ -48,7 +48,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 	m_fromwhere = fromwhere;
 	m_res = res;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -190,7 +190,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -216,7 +216,7 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	}
 }
 

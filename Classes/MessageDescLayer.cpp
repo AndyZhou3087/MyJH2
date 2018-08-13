@@ -7,6 +7,7 @@
 #include "HttpDataSwap.h"
 #include "MessageLayer.h"
 #include "MovingLabel.h"
+#include "AnimationEffect.h"
 
 MessageDescLayer::MessageDescLayer()
 {
@@ -45,7 +46,7 @@ bool MessageDescLayer::init(int index)
 	MessageData data = GlobalInstance::vec_messsages[index];
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Node* m_csbnode = CSLoader::createNode(ResourcePath::makePath("messageDescLayer.csb"));
 	this->addChild(m_csbnode);
@@ -183,7 +184,7 @@ bool MessageDescLayer::init(int index)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -210,7 +211,7 @@ void MessageDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 		switch (tag)
 		{
 		case 1000:
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		case 1001:
 		{
@@ -222,7 +223,7 @@ void MessageDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 			}
 			MovingLabel::show(ResourceLang::map_lang["msgawdsucc"]);
 
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 		}
 			break;
 

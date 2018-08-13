@@ -45,7 +45,7 @@ bool WinRewardLayer::init(std::vector<FOURProperty> reward_res)
 	m_rewards = reward_res;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("winRewardLayer.csb"));
 	this->addChild(csbnode);

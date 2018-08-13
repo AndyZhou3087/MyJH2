@@ -33,7 +33,7 @@ bool StoreHouseLayer::init()
 	}
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	m_csbnode = CSLoader::createNode(ResourcePath::makePath("storeHouseLayer.csb"));
 	this->addChild(m_csbnode);
@@ -210,7 +210,7 @@ void StoreHouseLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			break;
 		}
 		case 1001:
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		case 1002:
 		{

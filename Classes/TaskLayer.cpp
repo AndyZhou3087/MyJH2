@@ -12,6 +12,7 @@
 #include "TaskDailyNode.h"
 #include "DataSave.h"
 #include "Quest.h"
+#include "AnimationEffect.h"
 
 TaskLayer::TaskLayer()
 {
@@ -34,7 +35,7 @@ bool TaskLayer::init()
 	}
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	m_csbnode = CSLoader::createNode(ResourcePath::makePath("taskLayer.csb"));
 	this->addChild(m_csbnode);
@@ -262,7 +263,7 @@ void TaskLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	}
 }
 
