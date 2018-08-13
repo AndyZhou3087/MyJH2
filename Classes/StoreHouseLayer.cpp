@@ -11,6 +11,7 @@
 #include "MovingLabel.h"
 #include "EquipDescLayer.h"
 #include "Quest.h"
+#include "AnimationEffect.h"
 
 StoreHouseLayer::StoreHouseLayer()
 {
@@ -26,9 +27,13 @@ StoreHouseLayer::~StoreHouseLayer()
 
 bool StoreHouseLayer::init()
 {
+	if (!Layer::init())
+	{
+		return false;
+	}
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	m_csbnode = CSLoader::createNode(ResourcePath::makePath("storeHouseLayer.csb"));
 	this->addChild(m_csbnode);
@@ -205,7 +210,7 @@ void StoreHouseLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			break;
 		}
 		case 1001:
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		case 1002:
 		{
@@ -241,11 +246,13 @@ void StoreHouseLayer::onclick(Ref* pSender)
 		{
 			EquipDescLayer* layer = EquipDescLayer::create(res, 0);//从仓库进入
 			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 		else
 		{
 			ResDescLayer* layer = ResDescLayer::create(res, 0);
 			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 	}
 }

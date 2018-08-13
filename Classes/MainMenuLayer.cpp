@@ -9,6 +9,7 @@
 #include "Quest.h"
 #include "MessageLayer.h"
 #include "MainScene.h"
+#include "AnimationEffect.h"
 #include "SettingLayer.h"
 
 USING_NS_CC;
@@ -129,6 +130,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		{
 			Layer * malayer = MaterialDescLayer::create(clicknode->getName());
 			this->addChild(malayer, 0, "MaterialDescLayer");
+			AnimationEffect::openAniEffect((Layer*)malayer);
 		}
 			break;
 		case SETBTN:
@@ -145,6 +147,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		{
 			MessageLayer* layer = MessageLayer::create();
 			g_mainScene->addChild(layer, 0, "messagelayer");
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 			break;
 		case SHOPBTN:

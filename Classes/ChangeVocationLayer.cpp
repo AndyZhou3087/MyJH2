@@ -8,6 +8,7 @@
 #include "DataSave.h"
 #include "ResCreator.h"
 #include "HeroAttrLayer.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -50,7 +51,7 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 	m_forwhere = forwhere;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -192,7 +193,7 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 					attlay->changeButton();
 				}
 			}
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 		}
 		else
 		{
@@ -214,7 +215,7 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 					}
 				}
 			}
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 		}
 	}
 }

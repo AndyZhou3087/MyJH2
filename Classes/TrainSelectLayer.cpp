@@ -13,6 +13,7 @@
 #include "SmithyLayer.h"
 #include "Quest.h"
 #include "TrainLayer.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -58,7 +59,7 @@ bool TrainSelectLayer::init(Hero* herodata, MyHeroNode* myNode)
 	myheroNode = myNode;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -132,7 +133,7 @@ bool TrainSelectLayer::init(Hero* herodata, MyHeroNode* myNode)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -166,7 +167,7 @@ void TrainSelectLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 					}
 				}
 				action();
-				this->removeFromParentAndCleanup(true);
+				AnimationEffect::closeAniEffect((Layer*)this);
 			}
 			else
 			{
@@ -195,7 +196,7 @@ void TrainSelectLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 				dval.setValue(coincount.getValue());
 				GlobalInstance::getInstance()->costMyCoinCount(dval);
 				action();
-				this->removeFromParentAndCleanup(true);
+				AnimationEffect::closeAniEffect((Layer*)this);
 			}
 			else
 			{

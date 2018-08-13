@@ -7,6 +7,7 @@
 #include "GlobalInstance.h"
 #include "Resource.h"
 #include "MyHeroNode.h"
+#include "AnimationEffect.h"
 
 HospitalLayer::HospitalLayer()
 {
@@ -21,9 +22,13 @@ HospitalLayer::~HospitalLayer()
 
 bool HospitalLayer::init()
 {
+	if (!Layer::init())
+	{
+		return false;
+	}
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	m_csbnode = CSLoader::createNode(ResourcePath::makePath("hospitalLayer.csb"));
 	this->addChild(m_csbnode);
@@ -72,7 +77,7 @@ void HospitalLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	}
 }
 

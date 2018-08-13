@@ -6,6 +6,7 @@
 #include "ConsumeResActionLayer.h"
 #include "MovingLabel.h"
 #include "DataSave.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -46,7 +47,7 @@ bool InnRoomLayer::init(Building* buidingData)
 
 	m_buidingData = buidingData;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -120,6 +121,7 @@ void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		{
 			RandHeroLayer* layer = RandHeroLayer::create();
 			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
 			break;
 		}
 		case 1001://升级
@@ -127,6 +129,7 @@ void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			{
 				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_buidingData, CA_BUILDINGLVUP);
 				this->addChild(layer);
+				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			else
 			{
@@ -134,7 +137,7 @@ void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			}
 			break;
 		case 1002://关闭
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		default:
 			break;

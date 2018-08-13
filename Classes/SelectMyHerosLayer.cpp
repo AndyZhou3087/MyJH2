@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -43,7 +44,7 @@ bool SelectMyHerosLayer::init(int wheretype)
 	m_wheretype = wheretype;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -98,7 +99,7 @@ void SelectMyHerosLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	}
 }
 

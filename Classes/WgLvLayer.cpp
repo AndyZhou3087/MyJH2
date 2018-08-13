@@ -7,6 +7,7 @@
 #include "MyRes.h"
 #include "DynamicValue.h"
 #include "Const.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -53,7 +54,7 @@ bool WgLvLayer::init(ResBase* res)
 	m_res = (GongFa*)res;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 250));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -215,7 +216,7 @@ void WgLvLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	}
 }
 

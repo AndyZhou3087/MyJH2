@@ -15,6 +15,7 @@
 #include "TrainLayer.h"
 #include "MarketLayer.h"
 #include "SoundManager.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -56,7 +57,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 	m_data = data;
 	m_actiontype = actiontype;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -231,7 +232,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -260,7 +261,7 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 				}
 				action();
 
-				this->removeFromParentAndCleanup(true);
+				AnimationEffect::closeAniEffect((Layer*)this);
 			}
 			else
 			{
@@ -274,7 +275,7 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 				{
 					GlobalInstance::getInstance()->costMyCoinCount(costcoindv);
 					action();
-					this->removeFromParentAndCleanup(true);
+					AnimationEffect::closeAniEffect((Layer*)this);
 				}
 				else
 				{

@@ -3,6 +3,7 @@
 #include "Resource.h"
 #include "HeroAttrLayer.h"
 #include "Const.h"
+#include "AnimationEffect.h"
 
 RandHeroNode::RandHeroNode()
 {
@@ -71,6 +72,7 @@ void RandHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 	{
 		Layer* layer = HeroAttrLayer::create((Hero*)this->getUserData());
 		this->getParent()->addChild(layer, 0, this->getTag());
+		AnimationEffect::openAniEffect((Layer*)layer);
 	}
 }
 

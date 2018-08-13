@@ -7,7 +7,7 @@ bool WaitingProgress::init(std::string text)
     if (Layer::init()) 
 	{
 		LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 100));
-		this->addChild(color);
+		this->addChild(color,0,"colorLayer");
 
 		boxbg = Sprite::createWithSpriteFrameName("ui/waitingbg.png");
 		boxbg->setPosition(Vec2(360, 640));

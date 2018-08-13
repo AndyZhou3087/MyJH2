@@ -16,6 +16,7 @@
 #include "HospitalLayer.h"
 #include "TrainLayer.h"
 #include "SoundManager.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -237,6 +238,7 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			if (layer != NULL)
 			{
 				this->addChild(layer, 0, buildname);
+				AnimationEffect::openAniEffect(layer);
 			}
 
 			break;

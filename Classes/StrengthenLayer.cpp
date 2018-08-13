@@ -13,6 +13,7 @@
 #include "Quest.h"
 #include "MovingLabel.h"
 #include "TakeOnLayer.h"
+#include "AnimationEffect.h"
 
 StrengthenLayer::StrengthenLayer()
 {
@@ -45,8 +46,13 @@ StrengthenLayer* StrengthenLayer::create(Equip* res_equip)
 
 bool StrengthenLayer::init(Equip* res_equip)
 {
+	if (!Layer::init())
+	{
+		return false;
+	}
+
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	csbnode = CSLoader::createNode(ResourcePath::makePath("strengthenLayer.csb"));
 	this->addChild(csbnode);
@@ -146,7 +152,7 @@ bool StrengthenLayer::init(Equip* res_equip)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -225,6 +231,6 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			takon->updateAttr();
 		}
 
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	}
 }

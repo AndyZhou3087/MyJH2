@@ -5,6 +5,7 @@
 #include "MovingLabel.h"
 #include "MyRes.h"
 #include "MainMapScene.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -49,7 +50,7 @@ bool OutTownLayer::init()
     }
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -166,7 +167,7 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			break;
 		}
 		case 1001://关闭
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		default:
 			break;

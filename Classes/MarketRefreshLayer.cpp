@@ -6,6 +6,7 @@
 #include "MovingLabel.h"
 #include "MyRes.h"
 #include "MarketLayer.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -48,7 +49,7 @@ bool MarketRefreshLayer::init()
 	}
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -80,7 +81,7 @@ bool MarketRefreshLayer::init()
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -107,7 +108,7 @@ void MarketRefreshLayer::onreBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget
 				{
 					market->resetStockRes();
 				}
-				this->removeFromParentAndCleanup(true);
+				AnimationEffect::closeAniEffect((Layer*)this);
 			}
 			else
 			{
@@ -125,7 +126,7 @@ void MarketRefreshLayer::onreBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget
 				{
 					market->resetStockRes();
 				}
-				this->removeFromParentAndCleanup(true);
+				AnimationEffect::closeAniEffect((Layer*)this);
 			}
 			else
 			{
@@ -143,7 +144,7 @@ void MarketRefreshLayer::closebtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
 	}
 }
 

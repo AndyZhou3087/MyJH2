@@ -15,6 +15,7 @@
 #include "TakeOnLayer.h"
 #include "EquipDescLayer.h"
 #include "ChangeVocationLayer.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -64,7 +65,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 	m_heroData = herodata;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 250));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -435,7 +436,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
 				sellayer->refreshMyHerosUi();
 			}
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		}
 		case ATTR_CHANGEBTN:
@@ -445,11 +446,13 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				{
 					ChangeVocationLayer* clayer = ChangeVocationLayer::create(m_heroData);
 					this->addChild(clayer);
+					AnimationEffect::openAniEffect((Layer*)clayer);
 				}
 				else
 				{
 					ChangeVocationLayer* clayer = ChangeVocationLayer::create(m_heroData, 1);
 					this->addChild(clayer);
+					AnimationEffect::openAniEffect((Layer*)clayer);
 				}
 			}
 			else
@@ -478,7 +481,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				innroomLayer->refreshMyHerosUi();
 				clicknode->setEnabled(false);
 				MovingLabel::show(ResourceLang::map_lang["recruitsucc"]);
-				this->removeFromParentAndCleanup(true);
+				AnimationEffect::closeAniEffect((Layer*)this);
 
 				break;
 			}
@@ -496,7 +499,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			}
 			else
 			{
-				this->removeFromParentAndCleanup(true);
+				AnimationEffect::closeAniEffect((Layer*)this);
 			}
 			break;
 		default:
@@ -606,6 +609,7 @@ void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			}
 		}
 		this->addChild(layer);
+		AnimationEffect::openAniEffect((Layer*)layer);
 	}
 }
 

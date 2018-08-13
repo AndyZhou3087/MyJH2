@@ -7,6 +7,7 @@
 #include "DataSave.h"
 #include "Hero.h"
 #include "MyHeroNode.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -47,7 +48,7 @@ bool TrainLayer::init(Building* buidingData)
 
 	m_buidingData = buidingData;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -112,6 +113,7 @@ void TrainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			{
 				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_buidingData, CA_BUILDINGLVUP);
 				this->addChild(layer);
+				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			else
 			{
@@ -119,7 +121,7 @@ void TrainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			}
 			break;
 		case 1001://¹Ø±Õ
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		default:
 			break;

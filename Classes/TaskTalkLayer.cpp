@@ -49,7 +49,7 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 
 	TaskMainData* data = &GlobalInstance::myCurMainData;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Node* m_csbnode = CSLoader::createNode(ResourcePath::makePath("taskMainDescLayer.csb"));
 	this->addChild(m_csbnode);

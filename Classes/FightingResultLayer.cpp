@@ -8,6 +8,7 @@
 #include "MyRes.h"
 #include "MainScene.h"
 #include "SoundManager.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -48,7 +49,7 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp)
 	m_rewards = reward_res;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color);
+	this->addChild(color,0,"colorLayer");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -119,6 +120,7 @@ void FightingResultLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 			node->setVisible(false);
 			WinRewardLayer* layer = WinRewardLayer::create(m_rewards);
 			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 		else
 		{

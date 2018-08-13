@@ -14,6 +14,7 @@
 #include "StoreHouseLayer.h"
 #include "Quest.h"
 #include "ResCreator.h"
+#include "AnimationEffect.h"
 
 TaskDailyNode::TaskDailyNode()
 {
@@ -226,42 +227,49 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			{
 				InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
 				g_mainScene->addChild(layer, 0, "6innroom");
+				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			break;
 			case UPGRADE_HERO:
 			{
 				InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
 				g_mainScene->addChild(layer, 0, "6innroom");
+				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			break;
 			case UPGRADE_BUILDING:
 			{
 				SmithyLayer* layer = SmithyLayer::create(Building::map_buildingDatas["2smithy"]);
 				g_mainScene->addChild(layer, 0, "2smithy");
+				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			break;
 			case STRENG_EQUIP:
 			{
 				StoreHouseLayer* layer = StoreHouseLayer::create();
 				g_mainScene->addChild(layer, 0, "3storehouse");
+				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			break;
 			case STRENG_WG:
 			{
 				StoreHouseLayer* layer = StoreHouseLayer::create();
 				g_mainScene->addChild(layer, 0, "3storehouse");
+				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			break;
 			case DECOMPOSE_EQUIP:
 			{
 				StoreHouseLayer* layer = StoreHouseLayer::create();
 				g_mainScene->addChild(layer, 0, "3storehouse");
+				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			break;
 			case SET_GEM:
 			{
 				InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
 				g_mainScene->addChild(layer, 0, "6innroom");
+				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			break;
 			default:

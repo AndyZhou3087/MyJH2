@@ -7,6 +7,7 @@
 #include "ConsumeResActionLayer.h"
 #include "MainScene.h"
 #include "Const.h"
+#include "AnimationEffect.h"
 
 HillResNode::HillResNode()
 {
@@ -176,6 +177,7 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			{
 				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_Data, CA_RESCREATORLVUP);
 				g_mainScene->addChild(layer);
+				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			break;
 		}
