@@ -6,6 +6,9 @@
 #include "Resource.h"
 #include "GlobalInstance.h"
 #include "AnimationEffect.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#include "iosfunc.h"
+#endif
 
 SettingLayer::SettingLayer()
 {
@@ -196,7 +199,11 @@ void SettingLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox,
 	}
 	else
 	{
-		modifyName(0, editBox->getText());
+		std::string utf8str = editBox->getText();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+		utf8str = gbkToUTF8(editstr.c_str());
+#endif
+		modifyName(0, utf8str);
 	}
 }
 
@@ -239,6 +246,8 @@ void SettingLayer::modifyName(int type, std::string utf8name)
 	}
 	else
 	{
+		WaitingProgress* waitbox = WaitingProgress::create(ResourceLang::map_lang["doingtext"]);
+		Director::getInstance()->getRunningScene()->addChild(waitbox, 1, "waitbox");
 		HttpDataSwap::init(this)->modifyName(1);
 	}
 }
