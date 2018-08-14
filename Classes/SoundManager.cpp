@@ -39,7 +39,7 @@ void SoundManager::loadSounds()
 	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_ATK, ResourcePath::makeSoundPath("atk.mp3")));
 	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_DODGE, ResourcePath::makeSoundPath("dodge.mp3")));
 	
-	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_MANDIE, ResourcePath::makeSoundPath("buyok.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_MANDIE, ResourcePath::makeSoundPath("mdie.mp3")));
 	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_WOMANDIE, ResourcePath::makeSoundPath("wdie.mp3")));
 
 	//²åÈë±³¾°ÒôÀÖÁÐ±í
@@ -57,16 +57,13 @@ void SoundManager::loadSounds()
 	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_FIGHT_3, ResourcePath::makeSoundPath("fightbg4.mp3")));
 	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_FIGHT_4, ResourcePath::makeSoundPath("fightbg5.mp3")));
 
-
 	//Ô¤¼ÓÔØÒôÐ§
-	SimpleAudioEngine::getInstance()->preloadEffect(ResourcePath::makeSoundPath("button.mp3").c_str());
-	SimpleAudioEngine::getInstance()->preloadEffect(ResourcePath::makeSoundPath("caiji.mp3").c_str());
-	SimpleAudioEngine::getInstance()->preloadEffect(ResourcePath::makeSoundPath("kanshu.mp3").c_str());
-	SimpleAudioEngine::getInstance()->preloadEffect(ResourcePath::makeSoundPath("wajue.mp3").c_str());
-	SimpleAudioEngine::getInstance()->preloadEffect(ResourcePath::makeSoundPath("attack.mp3").c_str());
-	SimpleAudioEngine::getInstance()->preloadEffect(ResourcePath::makeSoundPath("hurt0.mp3").c_str());
-	SimpleAudioEngine::getInstance()->preloadEffect(ResourcePath::makeSoundPath("hurt1.mp3").c_str());
-	SimpleAudioEngine::getInstance()->preloadEffect(ResourcePath::makeSoundPath("buyok.mp3").c_str());
+	SoundIdMapType::iterator it;
+	for (it = _soundIds.begin(); it != _soundIds.end(); it++)
+	{
+		std::string soundName = it->second;
+		SimpleAudioEngine::getInstance()->preloadEffect(soundName.c_str());
+	}
 }
 
 void SoundManager::unloadSounds()

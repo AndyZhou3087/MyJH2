@@ -277,6 +277,12 @@ void HttpDataSwap::httpGetAllDataCB(std::string retdata, int code, std::string e
 		{
 			rapidjson::Value& retv = doc["ret"];
 			ret = retv.GetInt();
+			if (ret == 0)//解析文件
+			{
+
+			}
+			else
+				ret = SUCCESS;
 		}
 		else
 		{
