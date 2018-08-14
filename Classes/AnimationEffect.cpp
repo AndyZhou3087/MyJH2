@@ -5,6 +5,11 @@ USING_NS_CC;
 
 void AnimationEffect::openAniEffect(cocos2d::Layer* layer)
 {
+	LayerColor* color = (LayerColor*)layer->getChildByName("colorLayer");
+	if (color != NULL)
+	{
+		color->setScale(3);
+	}
 	layer->setCascadeOpacityEnabled(true);
 	layer->setOpacity(0);
 	layer->setScale(0.8f);
@@ -18,5 +23,5 @@ void AnimationEffect::closeAniEffect(cocos2d::Layer* layer)
 	{
 		color->runAction(FadeOut::create(0.21f));
 	}
-	layer->runAction(Sequence::create(ScaleTo::create(0.15f, 1.05f), ScaleTo::create(0.1f, 0.6f), RemoveSelf::create(), NULL));
+	layer->runAction(Sequence::create(ScaleTo::create(0.15f, 1.05f), ScaleTo::create(0.1f, 0.6f), Hide::create(), RemoveSelf::create(), NULL));
 }
