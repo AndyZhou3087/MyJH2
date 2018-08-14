@@ -134,7 +134,6 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		{
 			Layer * malayer = MaterialDescLayer::create(clicknode->getName());
 			this->addChild(malayer, 0, "MaterialDescLayer");
-			AnimationEffect::openAniEffect((Layer*)malayer);
 		}
 			break;
 		case SETBTN:
