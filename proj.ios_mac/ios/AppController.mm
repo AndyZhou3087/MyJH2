@@ -28,6 +28,7 @@
 #import "cocos2d.h"
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "iosfunc.h"
 
 @implementation AppController
 
@@ -50,7 +51,15 @@ static AppDelegate s_sharedApplication;
     // Override point for customization after application launch.
 
     // Add the view controller's view to the window and display.
-    window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
+    bool isX = isIphoneX();
+    if(isX)
+    {
+        CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+        CGFloat h = [[UIScreen mainScreen] bounds].size.height - 78;
+        window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 43, w, h)];
+    }
+    else
+        window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
 
     // Use RootViewController to manage CCEAGLView
     _viewController = [[RootViewController alloc]init];
@@ -71,7 +80,7 @@ static AppDelegate s_sharedApplication;
 
     [window makeKeyAndVisible];
 
-    [[UIApplication sharedApplication] setStatusBarHidden:true];
+    [[UIApplication sharedApplication] setStatusBarHidden:!isX];
     
     // IMPORTANT: Setting the GLView should be done after creating the RootViewController
     cocos2d::GLView *glview = cocos2d::GLViewImpl::createWithEAGLView((__bridge void *)_viewController.view);

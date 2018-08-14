@@ -27,6 +27,7 @@
 #import "RootViewController.h"
 #import "cocos2d.h"
 #import "platform/ios/CCEAGLView-ios.h"
+#import "iosfunc.h"
 
 
 @implementation RootViewController
@@ -43,8 +44,19 @@
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
+    UIWindow *window;
+    bool isX = isIphoneX();
+    if(isX)
+    {
+        CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+        CGFloat h = [[UIScreen mainScreen] bounds].size.height - 78;
+        window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 43, w, h)];
+    }
+    else
+        window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
+
     // Initialize the CCEAGLView
-    CCEAGLView *eaglView = [CCEAGLView viewWithFrame: [UIScreen mainScreen].bounds
+    CCEAGLView *eaglView = [CCEAGLView viewWithFrame: [window bounds]
                                          pixelFormat: (__bridge NSString *)cocos2d::GLViewImpl::_pixelFormat
                                          depthFormat: cocos2d::GLViewImpl::_depthFormat
                                   preserveBackbuffer: NO
@@ -81,7 +93,7 @@
 #endif
 
 - (BOOL) shouldAutorotate {
-    return YES;
+    return NO;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

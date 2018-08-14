@@ -1,4 +1,4 @@
-﻿#include "SettingLayer.h"
+#include "SettingLayer.h"
 #include "CommonFuncs.h"
 #include "SoundManager.h"
 #include "MovingLabel.h"
@@ -201,7 +201,7 @@ void SettingLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox,
 	{
 		std::string utf8str = editBox->getText();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-		utf8str = gbkToUTF8(editstr.c_str());
+		utf8str = gbkToUTF8(editBox->getText());
 #endif
 		modifyName(0, utf8str);
 	}
