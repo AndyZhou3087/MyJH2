@@ -769,7 +769,7 @@ void MapBlockScene::doMyStatus()
 	{
 		vec_enemys.clear();
 		vec_winrewards.clear();
-		if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS )
+		if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS)
 		{
 			creatNpcOrBoss(mapblock);
 		}
@@ -892,6 +892,9 @@ void MapBlockScene::creatNpcOrBoss(MapBlock* mbolck)
 				vec_enemys.push_back(enemyhero);
 			}
 		}
+		//boss，特殊boss只触发一次
+		if (mbolck->getPosType() == POS_BOSS || mbolck->getPosType() == POS_TBOSS)
+			mbolck->setPosNpcRnd(0);
 	}
 
 	for (unsigned int i = 0; i < mbolck->vec_RewardsRes.size(); i++)
