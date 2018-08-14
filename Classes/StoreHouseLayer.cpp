@@ -324,16 +324,40 @@ void StoreHouseLayer::decompose(ResBase* res)
 	int size = GlobalInstance::map_AllResources[resid].vec_needres.size();
 	if (size > 0)
 	{
+		std::string resstr;
 		for (int i = 0; i < size; i++)
 		{
 			std::map<std::string, int> one_res = GlobalInstance::map_AllResources[resid].vec_needres[i];
 			std::map<std::string, int>::iterator oneit = one_res.begin();
 			std::string cresid = oneit->first;
-			int count = one_res[oneit->first] / 2;
-			if (count > 0)
+			int count = one_res[oneit->first];
+			int m = 0;
+			for (; m < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); m++)
 			{
-				MyRes::Add(cresid, count);
-				std::string resstr = StringUtils::format("%sx%d ", GlobalInstance::map_AllResources[cresid].name.c_str(), count);
+				if (cresid.compare(0, 1, RES_TYPES_CHAR[m]) == 0)
+				{
+					break;
+				}
+			}
+			int addcount = 0;
+			if (m >= T_ARMOR && m <= T_FASHION)
+			{
+				addcount = 1;
+				int qu = res->getQU().getValue();
+				int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
+				MyRes::Add(cresid, addcount, MYSTORAGE, qu, stc);
+			}
+			else if (count >= 2)
+			{
+				addcount = count / 2;
+				MyRes::Add(cresid, addcount);
+			}
+			if (addcount > 0)
+			{
+				if (resstr.length() > 0)
+					resstr.append(ResourceLang::map_lang["zhdunhao"]);
+
+				resstr = StringUtils::format("%sx%d ", GlobalInstance::map_AllResources[cresid].name.c_str(), addcount);
 				str.append(resstr);
 			}
 		}
