@@ -3,6 +3,7 @@
 #include "CommonFuncs.h"
 #include "Const.h"
 #include "MyRes.h"
+#include "MapBlockScene.h"
 
 USING_NS_CC;
 
@@ -239,7 +240,7 @@ int MapEventLayer::getResCountRand(std::string id)
 {
 	int max = GlobalInstance::map_eventdata[id].max;
 	int min = GlobalInstance::map_eventdata[id].min;
-	int r = GlobalInstance::getInstance()->createRandomNum(max) + min;
+	int r = GlobalInstance::getInstance()->createRandomNum(max - min) + min;
 	return r;
 }
 
@@ -378,6 +379,7 @@ void MapEventLayer::eventHurt()
 	str = StringUtils::format("images/event%d-3.jpg", m_eventindex);
 	eventimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 
+	MapBlockScene* block = (MapBlockScene*)this->getParent();
 	for (int i = 0; i < 6; i++)
 	{
 		if (GlobalInstance::myCardHeros[i] != NULL)
@@ -391,6 +393,10 @@ void MapEventLayer::eventHurt()
 				GlobalInstance::myCardHeros[i]->setPos(0);
 			}
 			GlobalInstance::myCardHeros[i]->setHp(hp);
+			if (block!=NULL)
+			{
+				block->updateHeroUI(i);
+			}
 		}
 	}
 }
