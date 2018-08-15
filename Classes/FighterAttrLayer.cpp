@@ -3,6 +3,7 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "Const.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -76,7 +77,8 @@ bool FighterAttrLayer::init(Npc* npcdata)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		this->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect((Layer*)this);
+		//this->removeFromParentAndCleanup(true);
 	};
 	listener->setSwallowTouches(false);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);

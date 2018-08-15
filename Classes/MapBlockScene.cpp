@@ -770,6 +770,7 @@ void MapBlockScene::doMyStatus()
 
 		MapEventLayer* mlayer = MapEventLayer::create(ret);
 		this->addChild(mlayer);
+		AnimationEffect::openAniEffect((Layer*)mlayer);
 	}
 	else
 	{

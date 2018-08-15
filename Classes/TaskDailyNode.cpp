@@ -91,7 +91,7 @@ bool TaskDailyNode::init(DailyTaskData* data)
 	{
 		std::vector<std::string> vec = data->goods[i];
 		int count = atoi(vec[1].c_str());
-		std::string str = StringUtils::format("ui/%s.png", vec[0].c_str());
+		std::string str = GlobalInstance::getInstance()->getResUIFrameName(vec[0], atoi(vec[2].c_str()));
 		Sprite * res = Sprite::createWithSpriteFrameName(str);
 		res->setPosition(Vec2(0 + i * 70, 0));
 		this->addChild(res);

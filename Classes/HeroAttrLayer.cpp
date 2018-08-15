@@ -671,7 +671,7 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 			resimg->setScale(1.0f);
 		}
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
-		resstr = StringUtils::format("ui/%s.png", res->getId().c_str());
+		resstr = GlobalInstance::getInstance()->getResUIFrameName(res->getId(), qu);
 	}
 	else
 	{

@@ -72,15 +72,7 @@ bool StrengthenLayer::init(Equip* res_equip)
 	cocos2d::ui::ImageView* resbox_qu = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox_qu");
 	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
-	std::string str = StringUtils::format("ui/%s.png", m_equip->getId().c_str());
-	if (qu == 3)
-	{
-		str = StringUtils::format("ui/%s-2.png", m_equip->getId().c_str());
-	}
-	else if (qu == 4)
-	{
-		str = StringUtils::format("ui/%s-3.png", m_equip->getId().c_str());
-	}
+	std::string str = GlobalInstance::getInstance()->getResUIFrameName(m_equip->getId(), qu);
 
 	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);

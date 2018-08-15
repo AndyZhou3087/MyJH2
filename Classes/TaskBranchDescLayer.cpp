@@ -146,30 +146,30 @@ bool TaskBranchDescLayer::init(TaskBranchData* data)
 		std::vector<std::string> one_res = rewards[i];
 		std::string resid = one_res[0];
 		int count = atoi(one_res[1].c_str());
-		int qu = -1;
+		int qu = 0;
 		if (one_res.size()>2 && one_res[2].length()>0)
 		{
 			qu = atoi(one_res[2].c_str());
 		}
 
 		std::string qustr = "ui/resbox.png";
-		if (qu >= 0)
+		int t = 0;
+		for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+		{
+			if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+				break;
+		}
+		if (t >= T_ARMOR && t <= T_NG)
 		{
 			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
+
 		Sprite * box = Sprite::createWithSpriteFrameName(qustr);
 		box->setPosition(Vec2(80 + i % 3 * 170, 103 - i / 3 * 163));
 		scrollView->addChild(box);
 
-		std::string str = StringUtils::format("ui/%s.png", resid.c_str());
-		if (qu == 3)
-		{
-			str = StringUtils::format("ui/%s-2.png", resid.c_str());
-		}
-		else if (qu == 4)
-		{
-			str = StringUtils::format("ui/%s-3.png", resid.c_str());
-		}
+		std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
+
 		Sprite * res = Sprite::createWithSpriteFrameName(str);
 		res->setPosition(Vec2(box->getContentSize().width / 2, box->getContentSize().height / 2));
 		box->addChild(res);

@@ -3,6 +3,8 @@
 #include "CommonFuncs.h"
 #include "Const.h"
 #include "MyRes.h"
+#include "EventBusinessLayer.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -92,10 +94,7 @@ bool MapEventLayer::init(int eventindex)
 	{
 		return true;
 	};
-	/*listener->onTouchEnded = [=](Touch *touch, Event *event)
-	{
-		this->removeFromParentAndCleanup(true);
-	};*/
+
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
@@ -111,7 +110,8 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		switch (tag)
 		{
 		case 0:
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
+			//this->removeFromParentAndCleanup(true);
 			break;
 		case 1:
 			if (m_eventindex == MAP_JUMP || m_eventindex == POS_CAVE)
@@ -139,6 +139,20 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					eventHurt();
 				}
 			}
+			else if (m_eventindex == POS_BUSINESS)
+			{
+				EventBusinessLayer* layer = (EventBusinessLayer*)this->getChildByName("eventbusinesslayer");
+				if (layer != NULL)
+				{
+					layer->setVisible(true);
+				}
+				else
+				{
+					layer = EventBusinessLayer::create();
+					this->addChild(layer, 0, "eventbusinesslayer");
+				}
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
 			break;
 		case 2:
 		{
@@ -151,7 +165,8 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				int stonesCount = GlobalInstance::getInstance()->generateStoneCount(qu);
 				MyRes::Add(resid, count, MYPACKAGE, qu, stonesCount);
 			}
-			this->removeFromParentAndCleanup(true);
+			//this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 		}
 			break;
 		default:
@@ -233,6 +248,7 @@ int MapEventLayer::getEquipQuRand()
 	{
 		return 4;
 	}
+	return 0;
 }
 
 int MapEventLayer::getResCountRand(std::string id)
@@ -247,22 +263,28 @@ void MapEventLayer::loadBoxUI(cocos2d::ui::ImageView* box, std::string resid)
 {
 	std::vector<std::string> vec_data;
 	int qu = 0;
-	if (resid.find("a") || resid.find("e") || resid.find("f") || resid.find("g"))
+	std::string str = "ui/resbox.png";
+
+	int t = 0;
+	for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+	{
+		if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+			break;
+	}
+	if (t >= T_ARMOR && t <= T_FASHION)
 	{
 		qu = getEquipQuRand();
+		str = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
-	std::string str = StringUtils::format("ui/resbox_qu%d.png", qu);
+	else if (t >= T_WG && t <= T_NG)
+	{
+		qu = GlobalInstance::map_GF[resid].qu;
+		str = StringUtils::format("ui/resbox_qu%d.png", qu);
+	}
 	box->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)box->getChildByName("icon");
-	str = StringUtils::format("ui/%s.png", resid.c_str());
-	if (qu == 3)
-	{
-		str = StringUtils::format("ui/%s-2.png", resid.c_str());
-	}
-	else if (qu == 4)
-	{
-		str = StringUtils::format("ui/%s-3.png", resid.c_str());
-	}
+	str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
+
 	icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)box->getChildByName("name");
 	name->setString(GlobalInstance::map_AllResources[resid].name);

@@ -1606,6 +1606,30 @@ int GlobalInstance::generateHeroPotential()
 	return 0;
 }
 
+std::string GlobalInstance::getResUIFrameName(std::string resid, int qu)
+{
+	std::string str = StringUtils::format("ui/%s.png", resid.c_str());
+
+	int t = 0;
+	for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+	{
+		if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+			break;
+	}
+	if (t >= T_ARMOR && t <= T_FASHION)
+	{
+		if (qu == 3)
+		{
+			str = StringUtils::format("ui/%s-2.png", resid.c_str());
+		}
+		else if (qu == 4)
+		{
+			str = StringUtils::format("ui/%s-3.png", resid.c_str());
+		}
+	}
+	return str;
+}
+
 void GlobalInstance::saveRefreshMarketTime(int time)
 {
 	refreshMarketTime = time;

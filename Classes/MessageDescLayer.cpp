@@ -129,15 +129,8 @@ bool MessageDescLayer::init(int index)
 
 
 				cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
-				str = StringUtils::format("ui/%s.png", resid.c_str());
-				if (qu == 3)
-				{
-					str = StringUtils::format("ui/%s-2.png", resid.c_str());
-				}
-				else if (qu == 4)
-				{
-					str = StringUtils::format("ui/%s-3.png", resid.c_str());
-				}
+				str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
+
 				res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 				cocos2d::ui::Text* countlbl = (cocos2d::ui::Text*)resbox->getChildByName("countlbl");
 				str = StringUtils::format("%d", awdslist[m].count);

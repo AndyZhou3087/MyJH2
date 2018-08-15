@@ -431,6 +431,9 @@ public:
 	std::string getMyNickName();
 	void setMyID(std::string val);
 	void setMyNickName(std::string val);
+
+	//生成资源ui/%s.png，字符串
+	std::string getResUIFrameName(std::string resid, int qu);
 private:
 	static GlobalInstance* _Context;//类实例
 

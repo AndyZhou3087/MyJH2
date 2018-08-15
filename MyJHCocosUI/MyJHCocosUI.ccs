@@ -278,6 +278,7 @@
           <Image Name="buildblock_8.png" />
           <Image Name="buildblock_9.png" />
           <Image Name="critnumbg.png" />
+          <Image Name="eventshopcountbox.png" />
           <Image Name="fog.png" />
           <Image Name="gocitybtn.png" />
           <Image Name="heroatkspeedbar.png" />
@@ -341,6 +342,11 @@
           <Image Name="n038.png" />
           <Image Name="n039.png" />
           <Image Name="n040.png" />
+          <Image Name="posicon0.png" />
+          <Image Name="posicon1.png" />
+          <Image Name="posicon2.png" />
+          <Image Name="posicon3.png" />
+          <Image Name="posicon4.png" />
           <Image Name="submapanimcloud.png" />
           <Image Name="submapnodeitem.png" />
           <Image Name="submaptitlecloud.png" />
@@ -377,6 +383,7 @@
           <Image Name="equiptext_4.png" />
           <Image Name="equiptext_5.png" />
           <Image Name="escapebtn_text.png" />
+          <Image Name="eventbusinesstitle.png" />
           <Image Name="fastdecompose_text.png" />
           <Image Name="firebtn_text.png" />
           <Image Name="gocitybtn_text.png" />
@@ -967,6 +974,8 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="eventBusinessLayer.csd" Type="Layer" />
+        <Project Name="eventBuyLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

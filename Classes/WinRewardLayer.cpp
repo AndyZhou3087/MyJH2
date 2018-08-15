@@ -170,15 +170,7 @@ void WinRewardLayer::updateScrollviewContent()
 
 			std::string resid = vec_res[m]->getId();
 
-			std::string str = StringUtils::format("ui/%s.png", resid.c_str());
-			if (qu == 3)
-			{
-				str = StringUtils::format("ui/%s-2.png", resid.c_str());
-			}
-			else if (qu == 4)
-			{
-				str = StringUtils::format("ui/%s-3.png", resid.c_str());
-			}
+			std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 
 			Sprite * res = Sprite::createWithSpriteFrameName(str);
 			res->setPosition(Vec2(boxItem->getContentSize().width / 2, boxItem->getContentSize().height / 2));

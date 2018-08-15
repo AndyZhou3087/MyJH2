@@ -88,15 +88,8 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 	resbox->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
-	str = StringUtils::format("ui/%s.png", m_equip->getId().c_str());
-	if (qu == 3)
-	{
-		str = StringUtils::format("ui/%s-2.png", m_equip->getId().c_str());
-	}
-	else if (qu == 4)
-	{
-		str = StringUtils::format("ui/%s-3.png", m_equip->getId().c_str());
-	}
+	str = GlobalInstance::getInstance()->getResUIFrameName(m_equip->getId(), qu);
+
 	p_res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::Text* qutext = (cocos2d::ui::Text*)csbnode->getChildByName("qutext");

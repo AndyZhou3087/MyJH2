@@ -145,7 +145,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="winsepbox" ActionTag="-1344028758" Tag="56" IconVisible="False" LeftMargin="56.5002" RightMargin="56.4999" TopMargin="104.7020" BottomMargin="1132.2980" ctype="SpriteObjectData">
+          <AbstractNodeData Name="winsepbox" ActionTag="-1344028758" Tag="56" IconVisible="False" LeftMargin="56.5002" RightMargin="56.4998" TopMargin="104.7020" BottomMargin="1132.2980" ctype="SpriteObjectData">
             <Size X="607.0000" Y="43.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="2082876462" Tag="57" IconVisible="False" LeftMargin="268.7501" RightMargin="268.2499" TopMargin="3.1511" BottomMargin="0.8489" LeftEage="23" RightEage="23" TopEage="12" BottomEage="12" Scale9OriginX="23" Scale9OriginY="12" Scale9Width="24" Scale9Height="15" ctype="ImageViewObjectData">

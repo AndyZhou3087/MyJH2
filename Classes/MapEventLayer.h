@@ -28,6 +28,9 @@ public:
 	static MapEventLayer* create(int eventindex);
 	virtual void onExit();
     bool init(int eventindex);
+	std::string getDataIdByPr();//随机获取数据
+	int getEquipQuRand();//随机装备品质
+	int getResCountRand(std::string id);//随机数量
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void boxEventNode();
@@ -36,11 +39,10 @@ private:
 
 	void loadPrData();
 	int getAllPr();//获取总概率
-	std::string getDataIdByPr();//随机获取数据
+
 	static bool larger_callback(EventData a, EventData b);
 
-	int getEquipQuRand();//随机装备品质
-	int getResCountRand(std::string id);//随机数量
+
 	void loadBoxUI(cocos2d::ui::ImageView* box,std::string resid);
 
 private:
