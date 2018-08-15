@@ -10,6 +10,8 @@ std::map<std::string, int> Quest::map_NpcBranchQuestRes;
 std::map<int, int> Quest::map_DailyTypeCount;
 std::map<int, int> Quest::map_PointReward;
 
+std::map<int, int> Quest::map_achieveTypeCount;
+
 bool Quest::initFinishTaskData()
 {
 	for (unsigned int i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
@@ -458,5 +460,19 @@ void Quest::resetDailyTask()
 	if (str.length()>0)
 	{
 		initDailyPointReward(str);
+	}
+}
+
+/**********************³É¾Í***************************/
+
+void Quest::initAchieveTypeCount(std::string str)
+{
+	std::vector<std::string> vec_tmp;
+	CommonFuncs::split(str, vec_tmp, ";");
+	for (unsigned int i = 0; i < vec_tmp.size(); i++)
+	{
+		std::vector<std::string> vec_one;
+		CommonFuncs::split(vec_tmp[i], vec_one, "-");
+		map_achieveTypeCount[atoi(vec_one[0].c_str())] = atoi(vec_one[1].c_str());
 	}
 }

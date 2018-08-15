@@ -38,6 +38,8 @@ std::map<std::string, DailyTaskData> GlobalInstance::map_DTdata;
 
 std::map<std::string, EventData> GlobalInstance::map_eventdata;//事件宝箱概率数据
 
+std::vector<AchieveData> GlobalInstance::vec_achievedata;
+
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
 int GlobalInstance::refreshResTime = 0;
@@ -476,6 +478,90 @@ void GlobalInstance::loadEventData()
 	}
 }
 
+void GlobalInstance::loadAchieveData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/achieve.json"));
+	rapidjson::Value& allData = doc["b"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			AchieveData data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = v.GetString();
+
+			v = jsonvalue["type"];
+			data.type = atoi(v.GetString());
+
+			v = jsonvalue["achid"];
+			data.achid = v.GetString();
+
+			v = jsonvalue["count"];
+			data.count = atoi(v.GetString());
+
+			v = jsonvalue["rewards"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string rewards = v[i].GetString();
+				if (rewards.length() > 5)
+				{
+					std::vector<std::string> vecstr;
+					CommonFuncs::split(rewards, vecstr, "-");
+					data.rewards.push_back(vecstr);
+				}
+			}
+
+			data.state = 0;
+
+			vec_achievedata.push_back(data);
+		}
+	}
+}
+
+void GlobalInstance::getMyAchieveData()
+{
+	std::string str = DataSave::getInstance()->getMyAchieveData();
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_tmp;
+		CommonFuncs::split(str, vec_tmp, ";");
+		for (unsigned int i = 0; i < vec_tmp.size(); i++)
+		{
+			std::vector<std::string> vec_one;
+			CommonFuncs::split(vec_tmp[i], vec_one, "-");
+			for (unsigned int i = 0; i < vec_achievedata.size(); i++)
+			{
+				if (vec_achievedata[i].id.compare(vec_one[0]) == 0)
+				{
+					vec_achievedata[i].state = atoi(vec_one[1].c_str());
+				}
+			}
+		}
+	}
+
+	str = DataSave::getInstance()->getAchieveTypeCount();
+	if (str.length()>0)
+	{
+		Quest::initAchieveTypeCount(str);
+	}
+}
+
+void GlobalInstance::saveMyAchieveData()
+{
+	std::string str;
+	for (unsigned int i = 0; i < vec_achievedata.size(); i++)
+	{
+		AchieveData data = vec_achievedata[i];
+		if (data.state >= DAILY_FINISHED)
+		{
+			std::string onestr = StringUtils::format("%d-%d;", atoi(data.id.c_str()), data.state);
+			str.append(onestr);
+		}
+	}
+	DataSave::getInstance()->setMyAchieveData(str.substr(0, str.length() - 1));
+}
+
 void GlobalInstance::loadResCreatorData()
 {
 	std::string str = DataSave::getInstance()->getResCreatorData();
@@ -859,7 +945,7 @@ void GlobalInstance::loadDailyTaskData()
 			v = jsonvalue["count"];
 			data.count = atoi(v.GetString());
 
-			v = jsonvalue["goods"];
+			v = jsonvalue["rewards"];
 			for (unsigned int i = 0; i < v.Size(); i++)
 			{
 				std::string onestr = v[i].GetString();

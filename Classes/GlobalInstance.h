@@ -126,7 +126,11 @@ typedef enum
 	STRENG_EQUIP,//强化x次装备
 	STRENG_WG,//升级x次武功
 	DECOMPOSE_EQUIP,//分解x次装备
-	SET_GEM //镶嵌x次宝石
+	SET_GEM, //镶嵌x次宝石
+	ACHIEVE_FIGHT,//打败XXnpcX次
+	ACHIEVE_GOODS,//获得XX物品XX个
+	ACHIEVE_GOLD,//消耗XX个元宝
+	ACHIEVE_SLIVER//消耗XX个银两
 }QUESTDAYTYPE;
 
 typedef struct
@@ -238,6 +242,15 @@ typedef struct
 	int type;
 }MessageData;
 
+typedef struct
+{
+	std::string id;
+	int type;
+	std::string achid;
+	int count;
+	std::vector<std::vector<std::string>> rewards;//奖励id-count-qu
+	int state;
+}AchieveData;
 
 class GlobalInstance
 {
@@ -384,6 +397,12 @@ public:
 	//加载事件数据
 	void loadEventData();
 
+	//加载成就数据
+	void loadAchieveData();
+	//读取成就数据
+	void getMyAchieveData();
+	void saveMyAchieveData();
+
 	DynamicValueInt getMySoliverCount();
 
 	void addMySoliverCount(DynamicValueInt val);
@@ -476,6 +495,8 @@ public:
 	static std::vector<MessageData> vec_messsages;//邮箱数据
 
 	static std::map<std::string, EventData> map_eventdata;//事件宝箱概率数据
+
+	static std::vector<AchieveData> vec_achievedata;//成就
 
 private:
 	static int refreshHeroTime;

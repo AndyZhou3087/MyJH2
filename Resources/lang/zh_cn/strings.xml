@@ -90,6 +90,10 @@
 	<s name="dailytype_5">强化%d次武功</s>
 	<s name="dailytype_6">分解%d次装备</s>
 	<s name="dailytype_7">镶嵌%d次宝石</s>
+	<s name="dailytype_8">打败%s%d次</s>
+	<s name="dailytype_9">获得%s%d个</s>
+	<s name="dailytype_10">消耗%d元宝</s>
+	<s name="dailytype_11">消耗%d银两</s>
 	<s name="dailyrlabel">奖励:</s>
 	<s name="dailypoint">积分x%d</s>
 	<s name="pointtext">%d积分</s>

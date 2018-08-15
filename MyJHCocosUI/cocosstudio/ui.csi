@@ -372,6 +372,11 @@
       <FilePathData Path="ui/escapebtn.png" />
       <FilePathData Path="ui/randnamebtn.png" />
       <FilePathData Path="ui/settingselected.png" />
+      <FilePathData Path="ui/dailytask_10.png" />
+      <FilePathData Path="ui/dailytask_11.png" />
+      <FilePathData Path="ui/dailytask_8.png" />
+      <FilePathData Path="ui/dailytask_9.png" />
+      <FilePathData Path="ui/r012.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
