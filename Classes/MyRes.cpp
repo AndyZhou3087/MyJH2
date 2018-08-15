@@ -98,6 +98,7 @@ void MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescou
 		DynamicValueInt quvalue;
 		quvalue.setValue(qu);
 		res->setQU(quvalue);
+		res->setWhere(inwhere);
 
 		if (stonescount > 0)
 		{
@@ -118,6 +119,7 @@ void MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescou
 		DynamicValueInt quvalue;
 		quvalue.setValue(qu);
 		res->setQU(quvalue);
+		res->setWhere(inwhere);
 
 		vec_MyResources.push_back(res);
 	}

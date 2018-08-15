@@ -69,8 +69,6 @@ private:
 
 	void parseMapXml(std::string mapname);
 
-	void loadEventData();
-
 	void createMap();
 
 	void setMyPos();

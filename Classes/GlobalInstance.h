@@ -381,6 +381,9 @@ public:
 
 	void parseTBoxJson();
 
+	//加载事件数据
+	void loadEventData();
+
 	DynamicValueInt getMySoliverCount();
 
 	void addMySoliverCount(DynamicValueInt val);

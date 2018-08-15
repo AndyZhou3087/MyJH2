@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include "CommonFuncs.h"
 #include "Const.h"
+#include "MyRes.h"
 
 USING_NS_CC;
 
@@ -115,14 +116,14 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case 1:
 			if (m_eventindex == MAP_JUMP || m_eventindex == POS_CAVE)
 			{
-				/*int r = GlobalInstance::getInstance()->createRandomNum(10) + 1;
+				int r = GlobalInstance::getInstance()->createRandomNum(10) + 1;
 				if (r <= 1)
-				{*/
+				{
 					eventnode_1->setVisible(false);
 					eventnode_2->setVisible(true);
 					eventnode_3->setVisible(false);
 					boxEventNode();
-				/*}
+				}
 				else if (r <= 5)
 				{
 					eventnode_1->setVisible(false);
@@ -136,8 +137,22 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					eventnode_2->setVisible(false);
 					eventnode_3->setVisible(true);
 					eventHurt();
-				}*/
+				}
 			}
+			break;
+		case 2:
+		{
+			for (unsigned int i = 0; i < vec_eventrewards.size(); i++)
+			{
+				std::vector<std::string> vec_rewards = vec_eventrewards[i];
+				std::string resid = vec_rewards[0];
+				int count = atoi(vec_rewards[1].c_str());
+				int qu = atoi(vec_rewards[2].c_str());
+				int stonesCount = GlobalInstance::getInstance()->generateStoneCount(qu);
+				MyRes::Add(resid, count, MYPACKAGE, qu, stonesCount);
+			}
+			this->removeFromParentAndCleanup(true);
+		}
 			break;
 		default:
 			break;
@@ -150,7 +165,8 @@ void MapEventLayer::loadPrData()
 	std::map<std::string, EventData>::iterator it;
 	for (it = GlobalInstance::map_eventdata.begin(); it != GlobalInstance::map_eventdata.end(); it++)
 	{
-		vec_eventdata.push_back(it);
+		EventData data = it->second;
+		vec_eventdata.push_back(data);
 	}
 	sort(vec_eventdata.begin(), vec_eventdata.end(), larger_callback);
 }
@@ -170,15 +186,9 @@ int MapEventLayer::getAllPr()
 	int allpr = 0;
 	for (unsigned int i = 0; i < vec_eventdata.size(); i++)
 	{
-		pr += vec_eventdata[i].pr;
+		int pr = vec_eventdata[i].pr;
 		allpr += pr;
 	}
-	/*std::map<std::string, EventData>::iterator it;
-	for (it = GlobalInstance::map_eventdata.begin(); it != GlobalInstance::map_eventdata.end(); it++)
-	{
-		int pr = it->second.pr;
-		allpr += pr;
-	}*/
 	return allpr;
 }
 
@@ -200,6 +210,74 @@ std::string MapEventLayer::getDataIdByPr()
 	return id;
 }
 
+int MapEventLayer::getEquipQuRand()
+{
+	int r = GlobalInstance::getInstance()->createRandomNum(1000) + 1;
+	if (r <= 585)
+	{
+		return 0;
+	}
+	else if (r <= 885)
+	{
+		return 1;
+	}
+	else if (r <= 985)
+	{
+		return 2;
+	}
+	else if (r <= 995)
+	{
+		return 3;
+	}
+	else
+	{
+		return 4;
+	}
+}
+
+int MapEventLayer::getResCountRand(std::string id)
+{
+	int max = GlobalInstance::map_eventdata[id].max;
+	int min = GlobalInstance::map_eventdata[id].min;
+	int r = GlobalInstance::getInstance()->createRandomNum(max) + min;
+	return r;
+}
+
+void MapEventLayer::loadBoxUI(cocos2d::ui::ImageView* box, std::string resid)
+{
+	std::vector<std::string> vec_data;
+	int qu = 0;
+	if (resid.find("a") || resid.find("e") || resid.find("f") || resid.find("g"))
+	{
+		qu = getEquipQuRand();
+	}
+	std::string str = StringUtils::format("ui/resbox_qu%d.png", qu);
+	box->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)box->getChildByName("icon");
+	str = StringUtils::format("ui/%s.png", resid.c_str());
+	if (qu == 3)
+	{
+		str = StringUtils::format("ui/%s-2.png", resid.c_str());
+	}
+	else if (qu == 4)
+	{
+		str = StringUtils::format("ui/%s-3.png", resid.c_str());
+	}
+	icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+	cocos2d::ui::Text* name = (cocos2d::ui::Text*)box->getChildByName("name");
+	name->setString(GlobalInstance::map_AllResources[resid].name);
+	cocos2d::ui::Text* count = (cocos2d::ui::Text*)box->getChildByName("count");
+	int m_count = getResCountRand(resid);
+	str = StringUtils::format("%d", m_count);
+	count->setString(str);
+
+	vec_data.push_back(resid);
+	vec_data.push_back(str);
+	str = StringUtils::format("%d", qu);
+	vec_data.push_back(str);
+	vec_eventrewards.push_back(vec_data);
+}
+
 void MapEventLayer::boxEventNode()
 {
 	cocos2d::ui::Text* textdesc = (cocos2d::ui::Text*)eventnode_2->getChildByName("text");
@@ -217,7 +295,7 @@ void MapEventLayer::boxEventNode()
 	cocos2d::ui::ImageView* resbox_2 = (cocos2d::ui::ImageView*)eventnode_2->getChildByName("resbox_2");
 
 	int r = GlobalInstance::getInstance()->createRandomNum(3) + 1;
-	std::string arr[r];
+	std::string arr[3];
 	for (int i = 0; i < r; i++)
 	{
 		arr[i] = getDataIdByPr();
@@ -226,18 +304,21 @@ void MapEventLayer::boxEventNode()
 	{
 		resbox_0->setVisible(false);
 		resbox_2->setVisible(false);
-		cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)resbox_1->getChildByName("icon");
+		loadBoxUI(resbox_1, arr[0]);
 	}
 	else if (r == 2)
 	{
 		resbox_1->setVisible(false);
 		resbox_0->setPositionX(-134);
 		resbox_2->setPositionX(118);
-		cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)resbox_1->getChildByName("icon");
+		loadBoxUI(resbox_0, arr[0]);
+		loadBoxUI(resbox_2, arr[1]);
 	}
 	else
 	{
-		cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)resbox_1->getChildByName("icon");
+		loadBoxUI(resbox_0, arr[0]);
+		loadBoxUI(resbox_1, arr[1]);
+		loadBoxUI(resbox_2, arr[2]);
 	}
 }
 

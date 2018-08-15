@@ -133,8 +133,6 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	parseMapXml(mapname);
 
-	loadEventData();
-
 	createFog();
 
 	int count = vec_startpos.size();
@@ -194,33 +192,6 @@ void MapBlockScene::showFightingLayer(std::vector<Npc*> enemys)
 {
 	FightingLayer* layer = FightingLayer::create(enemys, m_fightbgtype);
 	this->addChild(layer);
-}
-
-void MapBlockScene::loadEventData()
-{
-	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/event.json"));
-	rapidjson::Value& allData = doc["b"];
-	for (unsigned int i = 0; i < allData.Size(); i++)
-	{
-		rapidjson::Value& jsonvalue = allData[i];
-		if (jsonvalue.IsObject())
-		{
-			EventData data;
-			rapidjson::Value& v = jsonvalue["id"];
-			data.id = v.GetString();
-
-			v = jsonvalue["pr"];
-			data.pr = v.GetInt();
-
-			v = jsonvalue["max"];
-			data.max = v.GetInt();
-
-			v = jsonvalue["min"];
-			data.min = v.GetInt();
-
-			GlobalInstance::map_eventdata[data.id] = data;
-		}
-	}
 }
 
 void MapBlockScene::loadTaskUI()
@@ -837,7 +808,7 @@ void MapBlockScene::doMyStatus()
 			}
 			if (!isTask)
 			{
-				//showFightingLayer(vec_enemys);
+				showFightingLayer(vec_enemys);
 			}
 		}
 	}

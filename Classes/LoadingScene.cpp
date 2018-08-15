@@ -102,6 +102,9 @@ void LoadingScene::delayLoadLocalData(float dt)
 
 	GlobalInstance::getInstance()->parseTBoxJson();
 
+	//加载事件数据
+	GlobalInstance::getInstance()->loadEventData();
+
 	//数据处理完，
 	this->scheduleOnce(schedule_selector(LoadingScene::delayLoadServerData), 0.1f);
 }

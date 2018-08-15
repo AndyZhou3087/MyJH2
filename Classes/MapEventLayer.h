@@ -35,9 +35,13 @@ private:
 	void eventHurt();
 
 	void loadPrData();
-	int getAllPr();
-	std::string getDataIdByPr();
-	bool larger_callback(EventData a, EventData b);
+	int getAllPr();//获取总概率
+	std::string getDataIdByPr();//随机获取数据
+	static bool larger_callback(EventData a, EventData b);
+
+	int getEquipQuRand();//随机装备品质
+	int getResCountRand(std::string id);//随机数量
+	void loadBoxUI(cocos2d::ui::ImageView* box,std::string resid);
 
 private:
 	Node* eventnode_1;
@@ -46,6 +50,7 @@ private:
 
 	cocos2d::ui::ImageView* eventimg;
 	std::vector<EventData> vec_eventdata;
+	std::vector<std::vector<std::string>> vec_eventrewards;
 
 	int langtype;
 	int m_eventindex;

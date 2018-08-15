@@ -36,7 +36,7 @@ TaskBranchData GlobalInstance::myCurBranchData;
 
 std::map<std::string, DailyTaskData> GlobalInstance::map_DTdata;
 
-std::map<std::string, EventData> map_eventdata;//事件宝箱概率数据
+std::map<std::string, EventData> GlobalInstance::map_eventdata;//事件宝箱概率数据
 
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
@@ -447,6 +447,33 @@ void GlobalInstance::saveRefreshResTime(int time)
 int GlobalInstance::getRefreshResTime()
 {
 	return refreshResTime;
+}
+
+void GlobalInstance::loadEventData()
+{
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/event.json"));
+	rapidjson::Value& allData = doc["b"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			EventData data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = v.GetString();
+
+			v = jsonvalue["pr"];
+			data.pr = atoi(v.GetString());
+
+			v = jsonvalue["max"];
+			data.max = atoi(v.GetString());
+
+			v = jsonvalue["min"];
+			data.min = atoi(v.GetString());
+
+			map_eventdata[data.id] = data;
+		}
+	}
 }
 
 void GlobalInstance::loadResCreatorData()
