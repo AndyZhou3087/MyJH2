@@ -240,7 +240,7 @@ int MapEventLayer::getResCountRand(std::string id)
 {
 	int max = GlobalInstance::map_eventdata[id].max;
 	int min = GlobalInstance::map_eventdata[id].min;
-	int r = GlobalInstance::getInstance()->createRandomNum(max - min) + min;
+	int r = GlobalInstance::getInstance()->createRandomNum(max - min) + min + 1;
 	return r;
 }
 
