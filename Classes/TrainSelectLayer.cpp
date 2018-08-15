@@ -238,7 +238,7 @@ void TrainSelectLayer::updateUI()
 {
 	for (int i = 0; i < 3; i++)
 	{
-		std::string str = StringUtils::format("%d/%d", MyRes::getMyResCount("r001"), resCount[i]);
+		std::string str = StringUtils::format("%d/%d", resCount[i], MyRes::getMyResCount("r001"));
 		countlbl[i]->setString(str);
 		if (lastSelectIndex == i)
 		{

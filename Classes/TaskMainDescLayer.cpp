@@ -251,11 +251,13 @@ void TaskMainDescLayer::getRewards()
 		std::vector<std::string> one_res = rewards[i];
 		std::string resid = one_res[0];
 		int count = atoi(one_res[1].c_str());
-		int qu = -1;
+		int qu = 0;
+		int stc = 0;
 		if (one_res.size()>2 && one_res[2].length()>0)
 		{
 			qu = atoi(one_res[2].c_str());
+			stc = GlobalInstance::getInstance()->generateStoneCount(qu);
 		}
-		MyRes::Add(resid, count, MYSTORAGE, qu);
+		MyRes::Add(resid, count, MYSTORAGE, qu, stc);
 	}
 }

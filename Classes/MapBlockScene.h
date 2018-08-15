@@ -121,6 +121,8 @@ private:
 
 	void updateTaskInfo(float dt);
 
+	void delayShowFightResult(float dt);
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;

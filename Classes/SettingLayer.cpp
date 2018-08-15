@@ -1,4 +1,4 @@
-#include "SettingLayer.h"
+﻿#include "SettingLayer.h"
 #include "CommonFuncs.h"
 #include "SoundManager.h"
 #include "MovingLabel.h"

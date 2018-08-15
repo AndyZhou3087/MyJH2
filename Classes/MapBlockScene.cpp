@@ -39,6 +39,7 @@ MapBlockScene::MapBlockScene()
 	m_fightbgtype = 0;
 	m_walkDirection = 0;
 	m_lastWalkDirection = 0;
+	_fogrender = NULL;
 }
 
 
@@ -92,14 +93,17 @@ MapBlockScene* MapBlockScene::create(std::string mapname, int bgtype)
 
 void MapBlockScene::onExit()
 {
-	std::string str;
-	std::map<int, MapBlock*>::iterator it;
-	for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+	if (DataSave::getInstance()->getMapVisibleArea(m_mapid).compare("-1") != 0)
 	{
-		std::string onestr = StringUtils::format("%d,", map_mapBlocks[it->first]->getIsCanSee() ? 1 : 0);
-		str.append(onestr);
+		std::string str;
+		std::map<int, MapBlock*>::iterator it;
+		for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+		{
+			std::string onestr = StringUtils::format("%d,", map_mapBlocks[it->first]->getIsCanSee() ? 1 : 0);
+			str.append(onestr);
+		}
+		DataSave::getInstance()->setMapVisibleArea(m_mapid, str.substr(0, str.length() - 1));
 	}
-	DataSave::getInstance()->setMapVisibleArea(m_mapid, str.substr(0, str.length()-1));
 
 	Layer::onExit();
 }
@@ -704,6 +708,9 @@ void MapBlockScene::createFog()
 
 	std::string str = DataSave::getInstance()->getMapVisibleArea(m_mapid);
 
+	if (str.compare("-1") == 0)
+		return;
+
 	if (str.length() > 0)
 	{
 		std::vector<std::string> vec_tmp;
@@ -735,7 +742,7 @@ void MapBlockScene::createFog()
 
 void MapBlockScene::updateFog(float dt)
 {
-	if (!map_mapBlocks[mycurRow*blockColCount + mycurCol]->getIsCanSee())
+	if (!map_mapBlocks[mycurRow*blockColCount + mycurCol]->getIsCanSee() && _fogrender != NULL)
 	{
 		_fogrender->begin();
 		addFogBlock(mycurRow, mycurCol);
@@ -797,7 +804,7 @@ void MapBlockScene::doMyStatus()
 	{
 		vec_enemys.clear();
 		vec_winrewards.clear();
-		if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS )
+		if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS)
 		{
 			creatNpcOrBoss(mapblock);
 		}
@@ -920,6 +927,9 @@ void MapBlockScene::creatNpcOrBoss(MapBlock* mbolck)
 				vec_enemys.push_back(enemyhero);
 			}
 		}
+		//boss，特殊boss只触发一次
+		if (mbolck->getPosType() == POS_BOSS || mbolck->getPosType() == POS_TBOSS)
+			mbolck->setPosNpcRnd(0);
 	}
 
 	for (unsigned int i = 0; i < mbolck->vec_RewardsRes.size(); i++)
@@ -942,14 +952,14 @@ void MapBlockScene::updateHeroUI(int which)
 
 void MapBlockScene::showFightResult(int result)
 {
-	if (result == 0)
+	if (result == 0)//失败
 	{
 		std::vector<FOURProperty> vec;
 		FightingResultLayer* FRlayer = FightingResultLayer::create(vec, 0);
 		this->addChild(FRlayer);
 		AnimationEffect::openAniEffect((Layer*)FRlayer);
 	}
-	else
+	else//胜利
 	{
 		for (unsigned int i = 0; i < vec_enemys.size(); i++)
 		{
@@ -965,15 +975,17 @@ void MapBlockScene::showFightResult(int result)
 				}
 			}
 		}
-		int count = 0;
-		for (int i = 0; i < 6; i++)
+
+		isMoving = true;
+		int bindex = (mycurRow)*blockColCount + mycurCol;
+		if (map_mapBlocks[bindex]->getPosType() == POS_BOSS)
 		{
-			if (GlobalInstance::myCardHeros[i] != NULL &&  GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
-				count++;
+			_fogrender->removeFromParentAndCleanup(true);
+			_fogrender = NULL;
+			DataSave::getInstance()->setMapVisibleArea(m_mapid, "-1");
 		}
-		FightingResultLayer* FRlayer = FightingResultLayer::create(vec_winrewards, getWinExp()/count);
-		this->addChild(FRlayer);
-		AnimationEffect::openAniEffect((Layer*)FRlayer);
+
+		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowFightResult), 0.3f);
 	}
 }
 
@@ -988,6 +1000,20 @@ int MapBlockScene::getWinExp()
 		}
 	}
 	return exp;
+}
+
+void MapBlockScene::delayShowFightResult(float dt)
+{
+	int count = 0;
+	for (int i = 0; i < 6; i++)
+	{
+		if (GlobalInstance::myCardHeros[i] != NULL &&  GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
+			count++;
+	}
+	FightingResultLayer* FRlayer = FightingResultLayer::create(vec_winrewards, getWinExp() / count);
+	this->addChild(FRlayer);
+	AnimationEffect::openAniEffect((Layer*)FRlayer);
+	isMoving = false;
 }
 
 
