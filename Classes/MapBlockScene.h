@@ -11,6 +11,7 @@
 #include "spine/spine.h"
 #include "MapBlock.h"
 #include "FightHeroNode.h"
+#include "GlobalInstance.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -67,6 +68,8 @@ private:
 	void updateLabel(float dt);
 
 	void parseMapXml(std::string mapname);
+
+	void loadEventData();
 
 	void createMap();
 

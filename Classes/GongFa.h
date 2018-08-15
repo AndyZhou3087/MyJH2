@@ -39,5 +39,11 @@ public:
 
 	//闪避
 	float getDodge();
+
+private:
+	int m_level;
+
+private:
+	void setMyLevel(int lv);
 };
 #endif

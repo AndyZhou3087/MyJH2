@@ -36,6 +36,8 @@ TaskBranchData GlobalInstance::myCurBranchData;
 
 std::map<std::string, DailyTaskData> GlobalInstance::map_DTdata;
 
+std::map<std::string, EventData> map_eventdata;//事件宝箱概率数据
+
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
 int GlobalInstance::refreshResTime = 0;

@@ -185,6 +185,13 @@
       <FilePathData Path="text_zh_cn/m1-5.png" />
       <FilePathData Path="text_zh_cn/msggeted_text.png" />
       <FilePathData Path="text_zh_cn/settingtitle.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_lk.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_1_0.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_1_1.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_0_0.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_0_1.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_6_0.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_6_1.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>

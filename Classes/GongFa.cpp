@@ -1,10 +1,12 @@
 ﻿#include "GongFa.h"
 #include "GlobalInstance.h"
+#include "Quest.h"
 
 GongFa::GongFa()
 {
 	m_qu.setValue(0);
 	m_skillcount = 0;
+	m_level = 0;
 }
 
 
@@ -25,11 +27,21 @@ DynamicValueInt GongFa::getLv()
 		if (m_exp.getValue() < curlvExp)
 		{
 			dvint.setValue(i);
+			setMyLevel(i);
 			return dvint;
 		}
 	}
 
 	return dvint;
+}
+
+void GongFa::setMyLevel(int lv)
+{
+	if (m_level == lv - 1)
+	{
+		Quest::setDailyTask(STRENG_WG, 1);
+	}
+	m_level = lv;
 }
 
 int GongFa::getMaxLv()

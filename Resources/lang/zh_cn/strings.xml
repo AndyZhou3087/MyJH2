@@ -155,4 +155,14 @@
 	<s name="nicknameempty">抱歉！昵称不能为空！</s>
 	<s name="doingtext">处理中...</s>
 	<s name="modifynicknametimeslimit">抱歉！修改昵称失败！修改次数已到上限！</s>	
+	<s name="juhao">。</s>
+	<s name="event0_0">山崖之下云雾缭绕，似有奇宝。是否下去查看？</s>	
+	<s name="event0_1">使用轻功跃入崖底，竟真有宝藏。</s>	
+	<s name="event0_2">崖底空空如也，一无所获。</s>
+	<s name="event0_3">使用轻功一跃而下，却不想武艺不精，不慎失足坠崖。摔成重伤。</s>
+	<s name="event1_0">密林之中偶然发现一处山洞，是否进入查探一番？</s>	
+	<s name="event1_1">山洞内别有洞天，在深处竟有一宝箱。</s>	
+	<s name="event1_2">在山洞之中细细查探一番，却一无所获。</s>
+	<s name="event1_3">原来山洞之中盘踞着一条毒蛇，一时不慎竟被这毒蛇狠狠咬了一口。生命力逐渐下降。</s>
+	<s name="event6_0">神秘商人：走过路过，不要错过！物美价廉，童叟无欺！这位客观，要不要过来瞧瞧？</s>
 </strings>

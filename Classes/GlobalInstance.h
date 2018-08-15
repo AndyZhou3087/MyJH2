@@ -85,6 +85,14 @@ typedef struct
 	std::vector<int> vec_exp;//等级经验
 }GFData;
 
+typedef struct
+{
+	std::string id;
+	int pr;
+	int max;
+	int min;
+}EventData;
+
 typedef enum
 {
 	//是否完成此任务，0已接受未完成，1未接受任务，2已完成未领取，3已领取奖励
@@ -116,7 +124,7 @@ typedef enum
 	UPGRADE_HERO,//升级x次英雄角色
 	UPGRADE_BUILDING,//升级x次建筑物
 	STRENG_EQUIP,//强化x次装备
-	STRENG_WG,//强化x次武功
+	STRENG_WG,//升级x次武功
 	DECOMPOSE_EQUIP,//分解x次装备
 	SET_GEM //镶嵌x次宝石
 }QUESTDAYTYPE;
@@ -463,6 +471,9 @@ public:
 	static std::map<std::string, TBoxData> map_TBoxs;//宝箱数据
 
 	static std::vector<MessageData> vec_messsages;//邮箱数据
+
+	static std::map<std::string, EventData> map_eventdata;//事件宝箱概率数据
+
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

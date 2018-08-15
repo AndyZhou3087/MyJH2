@@ -208,6 +208,9 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			GlobalInstance::getInstance()->costMySoliverCount(dvl);
 		}
 
+		//记录每日任务
+		Quest::setDailyTask(STRENG_EQUIP, 1);
+
 		int r = GlobalInstance::getInstance()->createRandomNum(1000);
 		int odds = ODDS[m_equip->getLv().getValue()] * 10;
 		if (r <= odds)
