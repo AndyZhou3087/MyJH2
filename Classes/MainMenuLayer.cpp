@@ -12,6 +12,7 @@
 #include "AnimationEffect.h"
 #include "SettingLayer.h"
 #include "SoundManager.h"
+#include "AchieveLayer.h"
 
 USING_NS_CC;
 
@@ -144,6 +145,11 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		}
 			break;
 		case ACHBTN:
+		{
+			AchieveLayer* layer = AchieveLayer::create();
+			g_mainScene->addChild(layer, 0, "achieveLayer");
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		case RANKBTN:
 			break;

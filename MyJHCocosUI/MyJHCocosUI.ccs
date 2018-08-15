@@ -355,6 +355,7 @@
           <Image Name="winsepbox.png" />
         </Folder>
         <Folder Name="text_zh_cn">
+          <Image Name="achieve_title.png" />
           <Image Name="allgetbtn_text.png" />
           <Image Name="backbtn_text.png" />
           <Image Name="break_text.png" />
@@ -666,12 +667,16 @@
           <Image Name="d005.png" />
           <Image Name="dailytask_0.png" />
           <Image Name="dailytask_1.png" />
+          <Image Name="dailytask_10.png" />
+          <Image Name="dailytask_11.png" />
           <Image Name="dailytask_2.png" />
           <Image Name="dailytask_3.png" />
           <Image Name="dailytask_4.png" />
           <Image Name="dailytask_5.png" />
           <Image Name="dailytask_6.png" />
           <Image Name="dailytask_7.png" />
+          <Image Name="dailytask_8.png" />
+          <Image Name="dailytask_9.png" />
           <Image Name="e001.png" />
           <Image Name="e001-2.png" />
           <Image Name="e001-3.png" />
@@ -790,6 +795,7 @@
           <Image Name="r009.png" />
           <Image Name="r010.png" />
           <Image Name="r011.png" />
+          <Image Name="r012.png" />
           <Image Name="randheadbox.png" />
           <Image Name="randnamebtn.png" />
           <Image Name="resaddbtn.png" />
@@ -974,6 +980,8 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="achieveLayer.csd" Type="Layer" />
+        <Project Name="achieveNode.csd" Type="Node" />
         <Project Name="eventBusinessLayer.csd" Type="Layer" />
         <Project Name="eventBuyLayer.csd" Type="Layer" />
       </RootFolder>

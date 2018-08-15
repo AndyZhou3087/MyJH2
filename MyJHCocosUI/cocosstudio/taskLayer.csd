@@ -225,45 +225,93 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="point_50" ActionTag="-1954860955" Tag="64" IconVisible="False" LeftMargin="-174.0515" RightMargin="114.0515" TopMargin="-32.4745" BottomMargin="-27.5255" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
-                <Size X="60.0000" Y="60.0000" />
+              <AbstractNodeData Name="point_50" ActionTag="-1954860955" Tag="64" IconVisible="False" LeftMargin="-206.5515" RightMargin="81.5515" TopMargin="-64.9745" BottomMargin="-60.0255" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+                <Size X="125.0000" Y="125.0000" />
+                <Children>
+                  <AbstractNodeData Name="Image_1" ActionTag="-741467366" Tag="187" IconVisible="False" LeftMargin="7.1703" RightMargin="8.8297" TopMargin="8.8303" BottomMargin="7.1697" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+                    <Size X="109.0000" Y="109.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="61.6703" Y="61.6697" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4934" Y="0.4934" />
+                    <PreSize X="0.8720" Y="0.8720" />
+                    <FileData Type="MarkedSubImage" Path="ui/s001.png" Plist="ui.plist" />
+                  </AbstractNodeData>
+                </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-144.0515" Y="2.4745" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <Scale ScaleX="0.5000" ScaleY="0.5000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
                 <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="ui/pointicon_0.png" Plist="ui.plist" />
+                <FileData Type="MarkedSubImage" Path="ui/resbox_qu0.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="point_100" ActionTag="1840622255" Tag="65" IconVisible="False" LeftMargin="-34.4630" RightMargin="-25.5370" TopMargin="-32.2609" BottomMargin="-27.7391" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
-                <Size X="60.0000" Y="60.0000" />
+              <AbstractNodeData Name="point_100" ActionTag="1840622255" Tag="65" IconVisible="False" LeftMargin="-66.9630" RightMargin="-58.0370" TopMargin="-64.7609" BottomMargin="-60.2391" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+                <Size X="125.0000" Y="125.0000" />
+                <Children>
+                  <AbstractNodeData Name="Image_1_0" ActionTag="-1418464114" Tag="188" IconVisible="False" LeftMargin="7.3950" RightMargin="8.6050" TopMargin="6.8860" BottomMargin="9.1140" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+                    <Size X="109.0000" Y="109.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="61.8950" Y="63.6140" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4952" Y="0.5089" />
+                    <PreSize X="0.8720" Y="0.8720" />
+                    <FileData Type="MarkedSubImage" Path="ui/s002.png" Plist="ui.plist" />
+                  </AbstractNodeData>
+                </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-4.4630" Y="2.2609" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <Scale ScaleX="0.5000" ScaleY="0.5000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
                 <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="ui/pointicon_0.png" Plist="ui.plist" />
+                <FileData Type="MarkedSubImage" Path="ui/resbox_qu1.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="point_150" ActionTag="-410996174" Tag="66" IconVisible="False" LeftMargin="105.7764" RightMargin="-165.7764" TopMargin="-33.2235" BottomMargin="-26.7765" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
-                <Size X="60.0000" Y="60.0000" />
+              <AbstractNodeData Name="point_150" ActionTag="-410996174" Tag="66" IconVisible="False" LeftMargin="73.2764" RightMargin="-198.2764" TopMargin="-65.7235" BottomMargin="-59.2765" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+                <Size X="125.0000" Y="125.0000" />
+                <Children>
+                  <AbstractNodeData Name="Image_1_0_0" ActionTag="-1852835466" Tag="189" IconVisible="False" LeftMargin="7.0361" RightMargin="8.9639" TopMargin="7.3959" BottomMargin="8.6041" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+                    <Size X="109.0000" Y="109.0000" />
+                    <AnchorPoint ScaleX="0.4732" ScaleY="0.5665" />
+                    <Position X="58.6169" Y="70.3524" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4689" Y="0.5628" />
+                    <PreSize X="0.8720" Y="0.8720" />
+                    <FileData Type="MarkedSubImage" Path="ui/s003.png" Plist="ui.plist" />
+                  </AbstractNodeData>
+                </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="135.7764" Y="3.2235" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <Scale ScaleX="0.5000" ScaleY="0.5000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
                 <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="ui/pointicon_0.png" Plist="ui.plist" />
+                <FileData Type="MarkedSubImage" Path="ui/resbox_qu4.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="point_200" ActionTag="-1098556247" Tag="67" IconVisible="False" LeftMargin="245.1905" RightMargin="-305.1905" TopMargin="-32.8361" BottomMargin="-27.1639" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
-                <Size X="60.0000" Y="60.0000" />
+              <AbstractNodeData Name="point_200" ActionTag="-1098556247" Tag="67" IconVisible="False" LeftMargin="212.6905" RightMargin="-337.6905" TopMargin="-65.3361" BottomMargin="-59.6639" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+                <Size X="125.0000" Y="125.0000" />
+                <Children>
+                  <AbstractNodeData Name="Image_1_0_0_0" ActionTag="1731601011" Tag="190" IconVisible="False" LeftMargin="7.9664" RightMargin="8.0336" TopMargin="7.3245" BottomMargin="8.6755" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+                    <Size X="109.0000" Y="109.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="62.4664" Y="63.1755" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4997" Y="0.5054" />
+                    <PreSize X="0.8720" Y="0.8720" />
+                    <FileData Type="MarkedSubImage" Path="ui/s004.png" Plist="ui.plist" />
+                  </AbstractNodeData>
+                </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="275.1905" Y="2.8361" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <Scale ScaleX="0.5000" ScaleY="0.5000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
                 <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="ui/pointicon_0.png" Plist="ui.plist" />
+                <FileData Type="MarkedSubImage" Path="ui/resbox_qu3.png" Plist="ui.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="50point" ActionTag="-1911511647" Tag="58" IconVisible="False" LeftMargin="-173.7047" RightMargin="116.7047" TopMargin="29.0718" BottomMargin="-50.0718" FontSize="18" LabelText="50积分" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="57.0000" Y="21.0000" />

@@ -271,6 +271,26 @@ public:
 	****************************/
 	std::string getMapVisibleArea(std::string mapkey);
 
+	/****************************
+	保存成就数据
+	****************************/
+	void setMyAchieveData(std::string val);
+
+	/****************************
+	获取成就数据
+	****************************/
+	std::string getMyAchieveData();
+
+	/****************************
+	保存成就类型次数
+	****************************/
+	void setAchieveTypeCount(std::string val);
+
+	/****************************
+	获取成就类型次数
+	****************************/
+	std::string getAchieveTypeCount();
+
 private:
 	static DataSave* _Context;//类实例
 

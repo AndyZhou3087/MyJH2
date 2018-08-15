@@ -142,6 +142,27 @@ std::string DataSave::getMyCurBranchNeed()
 	return loadStringDataByKey("CurBranchNeed", "");//id-count
 }
 
+void DataSave::setMyAchieveData(std::string strval)
+{
+	saveStringDataByKey("achieve", strval);
+}
+
+std::string DataSave::getMyAchieveData()
+{
+	return loadStringDataByKey("achieve", "");//id-state
+}
+
+//成就任务次数
+void DataSave::setAchieveTypeCount(std::string strval)
+{
+	saveStringDataByKey("achieveTypeCount", strval);//8个类型
+}
+
+std::string DataSave::getAchieveTypeCount()
+{
+	return loadStringDataByKey("achieveTypeCount", "0-0;1-0;2-0;3-0;4-0;5-0;6-0;7-0;8-0;9-0;10-0;11-0");//type-count
+}
+
 void DataSave::setMyDailyTaskData(std::string strval)
 {
 	saveStringDataByKey("DailyTask", strval);

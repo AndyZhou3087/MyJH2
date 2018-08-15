@@ -85,6 +85,10 @@ public:
 	//重置每日任务
 	static void resetDailyTask();
 
+	/*****************成就任务数据逻辑*****************/
+
+	static void initAchieveTypeCount(std::string str);
+
 public:
 	static std::vector<TaskMainData> myFinishMainQuest;
 
@@ -98,6 +102,9 @@ public:
 
 	//积分奖励count-state
 	static std::map<int, int> map_PointReward;
+
+	//成就任务type-count
+	static std::map<int, int> map_achieveTypeCount;
 
 };
 
