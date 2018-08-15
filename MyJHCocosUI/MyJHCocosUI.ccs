@@ -925,9 +925,13 @@
           <Image Name="y014.png" />
           <Image Name="y015.png" />
         </Folder>
+        <Project Name="achieveLayer.csd" Type="Layer" />
+        <Project Name="achieveNode.csd" Type="Node" />
         <Project Name="cardHeroNode.csd" Type="Node" />
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
         <Project Name="equipDescLayer.csd" Type="Layer" />
+        <Project Name="eventBusinessLayer.csd" Type="Layer" />
+        <Project Name="eventBuyLayer.csd" Type="Layer" />
         <Project Name="fighterAttrLayer.csd" Type="Layer" />
         <Project Name="fightHeroNode.csd" Type="Node" />
         <Project Name="fightLayer.csd" Type="Layer" />
@@ -980,10 +984,6 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="achieveLayer.csd" Type="Layer" />
-        <Project Name="achieveNode.csd" Type="Node" />
-        <Project Name="eventBusinessLayer.csd" Type="Layer" />
-        <Project Name="eventBuyLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>
