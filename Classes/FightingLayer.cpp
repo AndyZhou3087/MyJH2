@@ -232,7 +232,6 @@ void FightingLayer::showAtk(int fightertag)
 					SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DODGE);
 					return;
 				}
-
 			}
 
 			if (GlobalInstance::myCardHeros[fightertag]->getIsSkilling())//触发了技能
@@ -331,7 +330,6 @@ void FightingLayer::showAtk(int fightertag)
 				{
 					FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(fightertag);
 					gf->setSkillCount(gf->getSkillCount() - 1);
-					log("zhou skillindex = 12, leftcount = %d", gf->getSkillCount());
 					if (gf->getSkillCount() <= 0)
 					{
 						clearSkill(fightertag);

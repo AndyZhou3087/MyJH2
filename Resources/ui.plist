@@ -3865,7 +3865,7 @@
 				<key>sourceSize</key>
 				<string>{109,109}</string>
 			</dict>
-			<key>ui/cardvocation10.png</key>
+			<key>ui/cardvocation7.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{583,846},{34,34}}</string>
@@ -3898,7 +3898,7 @@
 				<key>sourceSize</key>
 				<string>{34,34}</string>
 			</dict>
-			<key>ui/cardvocation5.png</key>
+			<key>ui/cardvocation8.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{644,1055},{34,34}}</string>
@@ -3909,7 +3909,7 @@
 				<key>sourceSize</key>
 				<string>{34,34}</string>
 			</dict>
-			<key>ui/cardvocation6.png</key>
+			<key>ui/cardvocation5.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{608,1091},{34,34}}</string>
@@ -3920,7 +3920,7 @@
 				<key>sourceSize</key>
 				<string>{34,34}</string>
 			</dict>
-			<key>ui/cardvocation7.png</key>
+			<key>ui/cardvocation9.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{644,1091},{34,34}}</string>
@@ -3931,7 +3931,7 @@
 				<key>sourceSize</key>
 				<string>{34,34}</string>
 			</dict>
-			<key>ui/cardvocation8.png</key>
+			<key>ui/cardvocation6.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{564,1094},{34,34}}</string>
@@ -3942,7 +3942,7 @@
 				<key>sourceSize</key>
 				<string>{34,34}</string>
 			</dict>
-			<key>ui/cardvocation9.png</key>
+			<key>ui/cardvocation10.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{600,1127},{34,34}}</string>
