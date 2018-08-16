@@ -19,6 +19,7 @@
 #include "Quest.h"
 #include "SoundManager.h"
 #include "AnimationEffect.h"
+#include "HintBoxLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -437,13 +438,20 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	if (mycurCol == randStartPos % blockColCount && mycurRow == randStartPos / blockColCount)
 	{
 		cacelLongTouch();
-		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
-		//Director::getInstance()->replaceScene(MainMapScene::createScene());
+		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowExit), 0.45f);
 	}
 	else
 	{
 		checkFood();
 	}
+}
+
+void MapBlockScene::delayShowExit(float dt)
+{
+	std::string hintstr = StringUtils::format(ResourceLang::map_lang["leavemaptext"].c_str(), GlobalInstance::map_AllResources[m_mapid].name.c_str());
+	HintBoxLayer* hintLayer = HintBoxLayer::create(hintstr, 4);
+	this->addChild(hintLayer, 50000);
+
 }
 
 void MapBlockScene::stopMoving()

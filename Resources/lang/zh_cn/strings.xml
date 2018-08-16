@@ -172,5 +172,6 @@
 	<s name="event1_3">原来山洞之中盘踞着一条毒蛇，一时不慎竟被这毒蛇狠狠咬了一口。生命力逐渐下降。</s>
 	<s name="event6_0">神秘商人：走过路过，不要错过！物美价廉，童叟无欺！这位客观，要不要过来瞧瞧？</s>
 	<s name="buypricetext">价    格：</s>
-	<s name="buycounttext">购买数量：</s>		
+	<s name="buycounttext">购买数量：</s>
+	<s name="leavemaptext">是否确认退出%s？</s>		
 </strings>

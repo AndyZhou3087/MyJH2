@@ -16,7 +16,9 @@ public:
 
 	static MyHeroNode* create(Hero* herodata, int showtype = HS_OWNED);
 	void updateData();
+
 	void changeBtnContent();
+	void cacelTraining();
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;

@@ -647,14 +647,14 @@
           <Image Name="buildingtitlebox.png" />
           <Image Name="c001.png" />
           <Image Name="cardnamebox.png" />
-          <Image Name="cardvocation7.png" />
+          <Image Name="cardvocation10.png" />
           <Image Name="cardvocation11.png" />
           <Image Name="cardvocation4.png" />
-          <Image Name="cardvocation8.png" />
           <Image Name="cardvocation5.png" />
-          <Image Name="cardvocation9.png" />
           <Image Name="cardvocation6.png" />
-          <Image Name="cardvocation10.png" />
+          <Image Name="cardvocation7.png" />
+          <Image Name="cardvocation8.png" />
+          <Image Name="cardvocation9.png" />
           <Image Name="cardvocationbox.png" />
           <Image Name="catabtn_n.png" />
           <Image Name="catabtn_s.png" />
@@ -978,7 +978,6 @@
         <Project Name="taskMainNode.csd" Type="Node" />
         <Project Name="taskTipsNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
-        <Project Name="trainCancelLayer.csd" Type="Layer" />
         <Project Name="trainLayer.csd" Type="Layer" />
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />

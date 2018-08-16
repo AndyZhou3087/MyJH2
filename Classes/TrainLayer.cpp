@@ -167,7 +167,7 @@ void TrainLayer::updateContent()
 		node->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
 		node->runAction(EaseSineIn::create(MoveBy::create(0.10f + i*0.05f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
 
-		m_contentscroll->addChild(node);
+		m_contentscroll->addChild(node, 0, i);
 
 	}
 }

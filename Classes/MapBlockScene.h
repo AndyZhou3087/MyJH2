@@ -121,6 +121,8 @@ private:
 
 	void delayShowFightResult(float dt);
 
+	void delayShowExit(float dt);
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;
