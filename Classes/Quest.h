@@ -89,6 +89,9 @@ public:
 
 	static void initAchieveTypeCount(std::string str);
 
+	//每日任务
+	static void setAchieveTypeCount(int type, int count,std::string resid = "0");
+
 public:
 	static std::vector<TaskMainData> myFinishMainQuest;
 
@@ -104,7 +107,7 @@ public:
 	static std::map<int, int> map_PointReward;
 
 	//成就任务type-count
-	static std::map<int, int> map_achieveTypeCount;
+	static std::map<int, std::map<std::string, int>> map_achieveTypeCount;
 
 };
 

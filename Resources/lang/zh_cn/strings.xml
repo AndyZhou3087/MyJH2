@@ -97,6 +97,8 @@
 	<s name="dailyrlabel">奖励:</s>
 	<s name="dailypoint">积分x%d</s>
 	<s name="pointtext">%d积分</s>
+	<s name="nomorepoint">积分未达到！</s>
+	<s name="getpointreward">已领取积分物品</s>
 	<s name="winexp">经验值+%d</s>
 	<s name="heroempty">空空如也~~请到客栈招募侠客！</s>
 	<s name="timeselect">时间选择</s>

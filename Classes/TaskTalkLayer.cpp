@@ -288,7 +288,7 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 				break;
 			}
 		}
-		else if (cresid.compare("r007") == 0)//Ôª±¦
+		else if (cresid.compare("r012") == 0)//Ôª±¦
 		{
 			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() < oneit->second)
 			{

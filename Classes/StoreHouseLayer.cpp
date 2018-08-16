@@ -361,6 +361,7 @@ void StoreHouseLayer::decompose(ResBase* res)
 		updateContent(lastCategoryindex);
 
 		Quest::setDailyTask(DECOMPOSE_EQUIP, 1);
+		Quest::setAchieveTypeCount(DECOMPOSE_EQUIP, 1);
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DECOMPOSE);
 	}
 	else

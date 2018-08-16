@@ -60,9 +60,44 @@ bool AchieveLayer::init()
 		innerheight = contentheight;
 	scrollview->setInnerContainerSize(Size(scrollview->getContentSize().width, innerheight));
 
+
+	std::vector<AchieveData*> vec_fin;
+	std::vector<AchieveData*> vec_unfin;
+	std::vector<AchieveData*> vec_get;
+
 	for (unsigned int i = 0; i < GlobalInstance::vec_achievedata.size(); i++)
 	{
-		Node* node = AchieveNode::create(&GlobalInstance::vec_achievedata[i]);
+		AchieveData* data = &GlobalInstance::vec_achievedata[i];
+		if (data->state == DAILY_RECEIVE)
+		{
+			vec_get.push_back(data);
+		}
+		else if (data->state == DAILY_FINISHED)
+		{
+			vec_fin.push_back(data);
+		}
+		else
+		{
+			vec_unfin.push_back(data);
+		}
+	}
+	std::vector<AchieveData*> vec_all;
+	for (unsigned int i = 0; i < vec_fin.size(); i++)
+	{
+		vec_all.push_back(vec_fin[i]);
+
+	}
+	for (unsigned int i = 0; i < vec_unfin.size(); i++)
+	{
+		vec_all.push_back(vec_unfin[i]);
+	}
+	for (unsigned int i = 0; i < vec_get.size(); i++)
+	{
+		vec_all.push_back(vec_get[i]);
+	}
+	for (unsigned int i = 0; i < vec_all.size(); i++)
+	{
+		Node* node = AchieveNode::create(vec_all[i]);
 		scrollview->addChild(node);
 		node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
 		node->runAction(EaseSineIn::create(MoveBy::create(0.10f + i*0.05f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));

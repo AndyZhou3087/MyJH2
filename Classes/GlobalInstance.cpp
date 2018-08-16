@@ -1569,6 +1569,8 @@ void GlobalInstance::addMySoliverCount(DynamicValueInt val)
 
 void GlobalInstance::costMySoliverCount(DynamicValueInt val)
 {
+	Quest::setDailyTask(ACHIEVE_SLIVER, val.getValue());
+	Quest::setAchieveTypeCount(ACHIEVE_SLIVER, val.getValue());
 	GlobalInstance::mySoliverCount.setValue(GlobalInstance::mySoliverCount.getValue() - val.getValue());
 	DataSave::getInstance()->setMySoliverCount(GlobalInstance::mySoliverCount.getValue());
 }
@@ -1586,6 +1588,8 @@ void GlobalInstance::addMyCoinCount(DynamicValueInt val)
 
 void GlobalInstance::costMyCoinCount(DynamicValueInt val)
 {
+	Quest::setDailyTask(ACHIEVE_GOLD, val.getValue());
+	Quest::setAchieveTypeCount(ACHIEVE_GOLD, val.getValue());
 	GlobalInstance::myCoinCount.setValue(GlobalInstance::myCoinCount.getValue() - val.getValue());
 	DataSave::getInstance()->setMyCoinCount(GlobalInstance::myCoinCount.getValue());
 }

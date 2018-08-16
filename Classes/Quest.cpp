@@ -3,6 +3,7 @@
 #include "CommonFuncs.h"
 #include "MyRes.h"
 #include "Resource.h"
+#include "SoundManager.h"
 
 std::vector<TaskMainData> Quest::myFinishMainQuest;
 std::map<std::string, int> Quest::map_NpcQuestRes;
@@ -10,7 +11,7 @@ std::map<std::string, int> Quest::map_NpcBranchQuestRes;
 std::map<int, int> Quest::map_DailyTypeCount;
 std::map<int, int> Quest::map_PointReward;
 
-std::map<int, int> Quest::map_achieveTypeCount;
+std::map<int, std::map<std::string, int>> Quest::map_achieveTypeCount;
 
 bool Quest::initFinishTaskData()
 {
@@ -61,6 +62,7 @@ void Quest::saveMainData()
 			GlobalInstance::vec_TaskMain[i].isfinish = GlobalInstance::myCurMainData.isfinish;
 			GlobalInstance::vec_TaskMain[i].finishtype = GlobalInstance::myCurMainData.finishtype;
 			AddFinishQuest(GlobalInstance::myCurMainData);
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
 			if (i + 1 < GlobalInstance::vec_TaskMain.size())
 			{
 				GlobalInstance::myCurMainData = GlobalInstance::vec_TaskMain[i + 1];//当前任务下一个
@@ -178,7 +180,7 @@ void Quest::setResQuestData(std::string resid, int count, std::string npcid)
 					GlobalInstance::getInstance()->costMySoliverCount(dval);
 				}
 			}
-			else if (cresid.compare("r007") == 0)//元宝
+			else if (cresid.compare("r012") == 0)//元宝
 			{
 				if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= count)
 				{
@@ -358,6 +360,7 @@ void Quest::saveBranchData()
 	{
 		if (GlobalInstance::myCurBranchData.id == GlobalInstance::vec_TaskBranch[i].id)
 		{
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
 			GlobalInstance::vec_TaskBranch[i].isfinish = GlobalInstance::myCurBranchData.isfinish;
 			if (i + 1 < GlobalInstance::vec_TaskBranch.size())
 			{
@@ -428,6 +431,7 @@ void Quest::setDailyTask(int type, int count)
 		if (data->type == type && data->count == map_DailyTypeCount[type])
 		{
 			data->state = DAILY_FINISHED;
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
 			break;
 		}
 	}
@@ -445,7 +449,7 @@ void Quest::setDailyTask(int type, int count)
 
 void Quest::resetDailyTask()
 {
-	DataSave::getInstance()->setDailyTypeCount("0-0;1-0;2-0;3-0;4-0;5-0;6-0;7-0");
+	DataSave::getInstance()->setDailyTypeCount("0-0;1-0;2-0;3-0;4-0;5-0;6-0;7-0;10-0;11-0");
 	DataSave::getInstance()->setMyDailyReward("50-0;100-0;150-0;200-0");
 	DataSave::getInstance()->setMyDailyPoint(0);
 	GlobalInstance::getInstance()->loadDailyTaskData();
@@ -473,6 +477,36 @@ void Quest::initAchieveTypeCount(std::string str)
 	{
 		std::vector<std::string> vec_one;
 		CommonFuncs::split(vec_tmp[i], vec_one, "-");
-		map_achieveTypeCount[atoi(vec_one[0].c_str())] = atoi(vec_one[1].c_str());
+		std::map<std::string, int> map_one;
+		map_one[vec_one[1]] = atoi(vec_one[2].c_str());
+		map_achieveTypeCount[atoi(vec_one[0].c_str())] = map_one;
 	}
+}
+
+void Quest::setAchieveTypeCount(int type, int count, std::string resid)
+{
+	map_achieveTypeCount[type][resid] += count;
+
+	for (unsigned int i = 0; i < GlobalInstance::vec_achievedata.size(); i++)
+	{
+		AchieveData* data = &GlobalInstance::vec_achievedata[i];
+		if (data->type == type && data->count == map_achieveTypeCount[type][resid] && data->achid.compare(resid) == 0)
+		{
+			data->state = DAILY_FINISHED;
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
+			break;
+		}
+	}
+	GlobalInstance::getInstance()->saveMyAchieveData();
+
+	std::string str;
+	std::map<int, std::map<std::string, int>>::iterator mit;
+	for (mit = map_achieveTypeCount.begin(); mit != map_achieveTypeCount.end(); mit++)
+	{
+		std::map<std::string, int>::iterator map_achdata = mit->second.begin();
+		std::string key = map_achdata->first;
+		std::string onestr = StringUtils::format("%d-%s-%d;", mit->first, key.c_str(), map_achdata->second);
+		str.append(onestr);
+	}
+	DataSave::getInstance()->setAchieveTypeCount(str.substr(0, str.length() - 1));
 }

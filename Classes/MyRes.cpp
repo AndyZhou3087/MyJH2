@@ -3,6 +3,7 @@
 #include "Equipable.h"
 #include "Const.h"
 #include "GlobalInstance.h"
+#include "Quest.h"
 
 std::vector<ResBase* > MyRes::vec_MyResources;
 
@@ -139,6 +140,7 @@ void MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescou
 		dvalue.setValue(res->getCount().getValue() + count);
 		res->setCount(dvalue);
 	}
+	Quest::setAchieveTypeCount(ACHIEVE_GOODS, count, resid);
 	saveData();
 }
 
@@ -201,6 +203,7 @@ void MyRes::Add(ResBase* res, int count, int inwhere)
 		dvalue.setValue(ores->getCount().getValue() + count);
 		ores->setCount(dvalue);
 	}
+	Quest::setAchieveTypeCount(ACHIEVE_GOODS, count, res->getId());
 	saveData();
 }
 

@@ -140,7 +140,7 @@ void AchieveNode::updateData(float dt)
 		getbtn->setVisible(false);
 	}
 
-	int c = Quest::map_achieveTypeCount[m_Data->type];
+	int c = Quest::map_achieveTypeCount[m_Data->type][m_Data->achid];
 	if (c >= m_Data->count)
 	{
 		c = m_Data->count;

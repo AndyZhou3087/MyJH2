@@ -241,7 +241,6 @@ void TaskLayer::updateContent(int category)
 		}
 		for (unsigned int i = 0; i < vec_get.size(); i++)
 		{
-			Node* node = TaskDailyNode::create(vec_get[i]);
 			vec_all.push_back(vec_get[i]);
 		}
 
@@ -310,14 +309,14 @@ void TaskLayer::loadData(int category)
 			cocos2d::ui::Widget* point = (cocos2d::ui::Widget*)pnode->getChildByName(str);
 			point->addTouchEventListener(CC_CALLBACK_2(TaskLayer::onPointClick, this));
 			point->setTag(it->first);
-			if (m_point < it->first || Quest::map_PointReward[it->first] == 1)
+			/*if (m_point < it->first || Quest::map_PointReward[it->first] == 1)
 			{
 				point->setTouchEnabled(false);
 			}
 			else
 			{
 				point->setTouchEnabled(true);
-			}
+			}*/
 
 			str = StringUtils::format("%dpoint", it->first);
 			cocos2d::ui::Text* plabel = (cocos2d::ui::Text*)pnode->getChildByName(str);
@@ -335,21 +334,39 @@ void TaskLayer::onPointClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		Node* pnode = (Node*)pSender;
 		int tag = pnode->getTag();
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)pSender;
-		node->setTouchEnabled(false);
+
+		int m_point = DataSave::getInstance()->getMyyDailyPoint();
+		if (m_point < tag)
+		{
+			MovingLabel::show(ResourceLang::map_lang["nomorepoint"]);
+			return;
+		}
+		else if (Quest::map_PointReward[tag] == 1)
+		{
+			MovingLabel::show(ResourceLang::map_lang["getpointreward"]);
+			return;
+		}
+		std::string resid;
 		switch (tag)
 		{
 		case 50:
+			resid = "s001";
 			break;
 		case 100:
+			resid = "s002";
 			break;
 		case 150:
+			resid = "s003";
 			break;
 		case 200:
+			resid = "s004";
 			break;
 		default:
 			break;
 		}
-
+		MyRes::Add(resid);
+		std::string str = StringUtils::format(ResourceLang::map_lang["dailytype_9"].c_str(), GlobalInstance::map_AllResources[resid].name, 1);
+		MovingLabel::show(str);
 		Quest::saveDailyPointReward(tag);
 	}
 }
