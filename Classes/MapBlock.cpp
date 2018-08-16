@@ -59,3 +59,11 @@ void MapBlock::setBuilding(std::string buildname)
 		this->getParent()->addChild(buildblock, this->getLocalZOrder() + 10000);
 	}
 }
+
+void MapBlock::setPosIcon()
+{
+	std::string filename = StringUtils::format("mapui/posicon%d.png", m_postype);
+	Sprite* posicon = Sprite::createWithSpriteFrameName(filename);
+	posicon->setPosition(Vec2(this->getContentSize().width / 2, this->getContentSize().height / 2));
+	this->addChild(posicon);
+}

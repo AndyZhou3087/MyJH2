@@ -66,6 +66,8 @@ public:
 	CC_SYNTHESIZE(int, m_posnpcrnd, PosNpcRnd);//每个地图块NPC或者BOSS出现的概率
 	CC_SYNTHESIZE(bool, m_iscansee, IsCanSee);//视野是否可见
 
+	void setPosIcon();
+
 public:
 	std::map<int, int> map_eventrnd;//7个事件概率
 	FOURProperty npcs[6];//6个怪物数据

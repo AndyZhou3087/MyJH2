@@ -161,6 +161,8 @@ private:
 	
 	int m_walkDirection;
 	int m_lastWalkDirection;
+
+	bool mapIsAllOpen;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

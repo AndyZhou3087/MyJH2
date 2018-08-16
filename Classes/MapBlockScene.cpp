@@ -40,6 +40,8 @@ MapBlockScene::MapBlockScene()
 	m_walkDirection = 0;
 	m_lastWalkDirection = 0;
 	_fogrender = NULL;
+	mapIsAllOpen = false;
+	randStartPos = -1;
 }
 
 
@@ -93,7 +95,7 @@ MapBlockScene* MapBlockScene::create(std::string mapname, int bgtype)
 
 void MapBlockScene::onExit()
 {
-	if (DataSave::getInstance()->getMapVisibleArea(m_mapid).compare("-1") != 0)
+	if (!mapIsAllOpen)
 	{
 		std::string str;
 		std::map<int, MapBlock*>::iterator it;
@@ -102,7 +104,10 @@ void MapBlockScene::onExit()
 			std::string onestr = StringUtils::format("%d,", map_mapBlocks[it->first]->getIsCanSee() ? 1 : 0);
 			str.append(onestr);
 		}
-		DataSave::getInstance()->setMapVisibleArea(m_mapid, str.substr(0, str.length() - 1));
+		str = str.substr(0, str.length() - 1);
+		std::string startstr = StringUtils::format(";%d", randStartPos);
+		str.append(startstr);
+		DataSave::getInstance()->setMapVisibleArea(m_mapid, str);
 	}
 
 	Layer::onExit();
@@ -137,9 +142,16 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	int count = vec_startpos.size();
 
-	randStartPos = GlobalInstance::getInstance()->createRandomNum(count);
-	mycurCol = vec_startpos[randStartPos] % blockColCount;
-	mycurRow = vec_startpos[randStartPos] / blockColCount;
+	if (randStartPos < 0)
+	{
+		int startposindex = GlobalInstance::getInstance()->createRandomNum(count);
+		randStartPos = vec_startpos[startposindex];
+	}
+
+	mycurCol = randStartPos % blockColCount;
+	mycurRow = randStartPos / blockColCount;
+
+	map_mapBlocks[randStartPos]->setPosIcon();
 
 	setMyPos();
 
@@ -422,7 +434,7 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 
 	MyRes::Use("r001", 1, MYPACKAGE);
 
-	if (mycurCol == vec_startpos[randStartPos] % blockColCount && mycurRow == vec_startpos[randStartPos] / blockColCount)
+	if (mycurCol == randStartPos % blockColCount && mycurRow == randStartPos / blockColCount)
 	{
 		cacelLongTouch();
 		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
@@ -623,7 +635,7 @@ void MapBlockScene::setMyPos()
 
 void MapBlockScene::updateMyRender(float dt)
 {
-	_myrender->beginWithClear(0, 0, 0, 0.4f, 0, 0);
+	_myrender->beginWithClear(0, 0, 0, 0.3f, 0, 0);
 	_mylight->setPosition(myposHero->getPosition());
 	_mylight->visit();
 	_myrender->end();
@@ -660,7 +672,7 @@ void MapBlockScene::createMyRender()
 	_myrender->setPosition(m_mapscrollcontainer->getContentSize().width / 2, m_mapscrollcontainer->getContentSize().height / 2);
 	m_mapscrollcontainer->addChild(_myrender, 30000);
 
-	_myrender->beginWithClear(0, 0, 0, 0.5f, 0, 0);
+	_myrender->beginWithClear(0, 0, 0, 0.3f, 0, 0);
 
 	_mylight = Sprite::createWithSpriteFrameName("mapui/fog.png");
 	_mylight->setBlendFunc({ GL_ZERO, GL_ONE_MINUS_SRC_ALPHA });
@@ -679,19 +691,31 @@ void MapBlockScene::createFog()
 
 	std::string str = DataSave::getInstance()->getMapVisibleArea(m_mapid);
 
-	if (str.compare("-1") == 0)
-		return;
+	std::vector<std::string> vec_cfg;
+	CommonFuncs::split(str, vec_cfg, ";");
 
-	if (str.length() > 0)
+
+	if (vec_cfg.size() >= 2)
 	{
-		std::vector<std::string> vec_tmp;
-		CommonFuncs::split(str, vec_tmp, ",");
-		int i = 0;
-		for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+		randStartPos = atoi(vec_cfg[1].c_str());
+
+		if (vec_cfg[0].compare("-1") == 0)
 		{
-			int val = atoi(vec_tmp[i].c_str());
-			map_mapBlocks[it->first]->setIsCanSee(val==1?true:false);
-			i++;
+			mapIsAllOpen = true;
+			return;
+		}
+
+		if (vec_cfg[0].length() > 0)
+		{
+			std::vector<std::string> vec_tmp;
+			CommonFuncs::split(vec_cfg[0], vec_tmp, ",");
+			int i = 0;
+			for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+			{
+				int val = atoi(vec_tmp[i].c_str());
+				map_mapBlocks[it->first]->setIsCanSee(val == 1 ? true : false);
+				i++;
+			}
 		}
 	}
 
@@ -957,7 +981,9 @@ void MapBlockScene::showFightResult(int result)
 		{
 			_fogrender->removeFromParentAndCleanup(true);
 			_fogrender = NULL;
-			DataSave::getInstance()->setMapVisibleArea(m_mapid, "-1");
+			mapIsAllOpen = true;
+			std::string str = StringUtils::format("-1;%d", randStartPos);
+			DataSave::getInstance()->setMapVisibleArea(m_mapid, str);
 		}
 
 		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowFightResult), 0.3f);
@@ -1068,6 +1094,8 @@ void MapBlockScene::parseMapXml(std::string mapname)
 					mb->getTexture()->setAliasTexParameters();
 
 					mb->setPosType(postype);
+					if (postype > 0)//起点有多个，只会显示一个，不在这里设置
+						mb->setPosIcon();
 					mb->setWalkable(walkable);
 					map_mapBlocks[rc] = mb;
 					if (postype == 0)
