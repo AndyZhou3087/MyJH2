@@ -450,8 +450,8 @@ void MapBlockScene::delayShowExit(float dt)
 {
 	std::string hintstr = StringUtils::format(ResourceLang::map_lang["leavemaptext"].c_str(), GlobalInstance::map_AllResources[m_mapid].name.c_str());
 	HintBoxLayer* hintLayer = HintBoxLayer::create(hintstr, 4);
-	this->addChild(hintLayer, 50000);
-
+	this->addChild(hintLayer);
+	AnimationEffect::openAniEffect((Layer*)hintLayer);
 }
 
 void MapBlockScene::stopMoving()
