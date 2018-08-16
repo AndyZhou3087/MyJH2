@@ -119,7 +119,6 @@ void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		if (!clickflag)
 			return;
 
-		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		switch (tag)
 		{
 		case 1000://购买按钮
@@ -166,6 +165,7 @@ void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 						}
 						if (isCanBuy)
 						{
+							SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUYRES);
 							MarketLayer* parent = (MarketLayer*)this->getParent()->getParent()->getParent()->getParent();
 							parent->buyRes(this->getTag(), buycount);
 

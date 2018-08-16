@@ -81,7 +81,7 @@ bool WgLvLayer::init(ResBase* res)
 
 	//iconÍ¼±ê
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)csbnode->getChildByName("icon");
-	str = StringUtils::format("ui/%s.png", GlobalInstance::getInstance()->getResUIFrameName(m_res->getId(), m_res->getQU().getValue()));
+	str = GlobalInstance::getInstance()->getResUIFrameName(m_res->getId(), m_res->getQU().getValue());
 	icon->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 
 

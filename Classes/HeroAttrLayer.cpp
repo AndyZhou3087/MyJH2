@@ -468,6 +468,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			int herosize = GlobalInstance::vec_myHeros.size();
 			if (herosize < (10 + Building::map_buildingDatas["6innroom"]->level.getValue()))
 			{
+				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_RECRUITSUCC);
 				m_heroData->setState(HS_OWNED);
 				//加入到我的英雄列表
 				Hero* myhero = new Hero(m_heroData);

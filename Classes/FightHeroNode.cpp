@@ -300,10 +300,8 @@ void FightHeroNode::hurtAnimFinish()
 			((Hero*)m_Data)->setPos(0);
 
 			int v = ((Hero*)m_Data)->getVocation();
-			if (v % 4  == 3)
-				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_WOMANDIE);
-			else
-				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_MANDIE);
+
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DIE);
 		}
 		fighting->updateMapHero(this->getTag());
 	}

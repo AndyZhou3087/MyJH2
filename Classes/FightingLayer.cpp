@@ -263,9 +263,15 @@ void FightingLayer::showAtk(int fightertag)
 				{
 					state = 1;
 					atkhp *= 2;
+
+					SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_CRIT);
+				}
+				else
+				{
+					SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_ATK);
 				}
 				enemyfnode->hurt(atkhp, state);
-				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_ATK);
+
 			}
 
 			//增加自身攻击速度%.2f，持续%d回合。
@@ -502,8 +508,10 @@ void FightingLayer::showAtk(int fightertag)
 			{
 				state = 2;
 				atkhp = 0;
+				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DODGE);
 			}
-
+			else
+				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_HURT);
 			myfnode->hurt(atkhp, state);
 		}
 	}	

@@ -37,11 +37,19 @@ void SoundManager::loadSounds()
 	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_MAKERES, ResourcePath::makeSoundPath("makeres.mp3")));
 	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_DECOMPOSE, ResourcePath::makeSoundPath("decompose.mp3")));
 	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_ATK, ResourcePath::makeSoundPath("atk.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_HURT, ResourcePath::makeSoundPath("hurt.mp3")));
 	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_DODGE, ResourcePath::makeSoundPath("dodge.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_CRIT, ResourcePath::makeSoundPath("crit.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_DIE, ResourcePath::makeSoundPath("die.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_BUYRES, ResourcePath::makeSoundPath("buyres.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_TAKEMISSION, ResourcePath::makeSoundPath("takemission.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_FINISHMSSION, ResourcePath::makeSoundPath("finishmission.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_STRENTHOK, ResourcePath::makeSoundPath("strenthok.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_STRENTHFAIL, ResourcePath::makeSoundPath("strenthfail.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_BREAKUPSUCC, ResourcePath::makeSoundPath("breakupsucc.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_RECRUITSUCC, ResourcePath::makeSoundPath("recruitsucc.mp3")));
 	
-	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_MANDIE, ResourcePath::makeSoundPath("mdie.mp3")));
-	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_WOMANDIE, ResourcePath::makeSoundPath("wdie.mp3")));
-
+	
 	//≤Â»Î±≥æ∞“Ù¿÷¡–±Ì
 	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_START, ResourcePath::makeSoundPath("startbg.mp3")));
 	_musicIds.insert(SoundIdMapType::value_type((int)MUSIC_ID_HOME, ResourcePath::makeSoundPath("homebg.mp3")));

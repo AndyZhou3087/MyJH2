@@ -9,6 +9,7 @@
 #include "ResCreator.h"
 #include "HeroAttrLayer.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -173,18 +174,9 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 					MyRes::Use("d001");
 				}
 			}
-			if (tag == m_herodata->getVocation() + 4)
+			if (tag == m_herodata->getVocation() + 4 || tag == m_herodata->getVocation() + 8)
 			{
-				m_herodata->setChangeCount(m_herodata->getChangeCount() + 1);
-				m_herodata->setVocation(tag);
-				HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
-				if (attlay != NULL)
-				{
-					attlay->changeButton();
-				}
-			}
-			else if (tag == m_herodata->getVocation() + 8)
-			{
+				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BREAKUPSUCC);
 				m_herodata->setChangeCount(m_herodata->getChangeCount() + 1);
 				m_herodata->setVocation(tag);
 				HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
