@@ -8,6 +8,7 @@
 #include "MainScene.h"
 #include "Const.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 HillResNode::HillResNode()
 {
@@ -175,6 +176,7 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			}
 			else
 			{
+				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUILDLVUP);
 				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_Data, CA_RESCREATORLVUP);
 				g_mainScene->addChild(layer);
 				AnimationEffect::openAniEffect((Layer*)layer);

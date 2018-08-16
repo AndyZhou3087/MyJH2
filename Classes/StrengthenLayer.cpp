@@ -207,6 +207,7 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		int odds = ODDS[m_equip->getLv().getValue()] * 10;
 		if (r <= odds)
 		{
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_STRENTHOK);
 			DynamicValueInt elv;
 			elv.setValue(m_equip->getLv().getValue() + 1);
 			m_equip->setLv(elv);
@@ -215,6 +216,7 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		}
 		else
 		{
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_STRENTHFAIL);
 			DynamicValueInt elv;
 			elv.setValue(m_equip->getLv().getValue() - COSTLV[m_equip->getLv().getValue()]);
 			m_equip->setLv(elv);

@@ -209,6 +209,7 @@ void TaskBranchDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		case 1: //接受任务
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_TAKEMISSION);
 			accbtn->setTitleText(ResourceLang::map_lang["accmaintask"]);
 			accbtn->setTouchEnabled(false);
 			accpTask();

@@ -7,6 +7,7 @@
 #include "Const.h"
 #include "SoundManager.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
 
 EventBuyLayer::EventBuyLayer()
 {
@@ -189,7 +190,7 @@ void EventBuyLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			}
 			else
 			{
-				
+				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUYRES);
 				m_fproper.intPara1 = buycount;
 				DynamicValueInt dv;
 				dv.setValue(buycount * saleval);
