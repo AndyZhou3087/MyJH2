@@ -103,6 +103,7 @@ void Hero::setMyLevel(int lv)
 	if (m_level == lv - 1)
 	{
 		Quest::setDailyTask(UPGRADE_HERO, 1);
+		Quest::setAchieveTypeCount(UPGRADE_HERO, 1);
 	}
 	m_level = lv;
 }

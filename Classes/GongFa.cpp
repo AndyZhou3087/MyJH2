@@ -40,6 +40,7 @@ void GongFa::setMyLevel(int lv)
 	if (m_level == lv - 1)
 	{
 		Quest::setDailyTask(STRENG_WG, 1);
+		Quest::setAchieveTypeCount(STRENG_WG, 1);
 	}
 	m_level = lv;
 }

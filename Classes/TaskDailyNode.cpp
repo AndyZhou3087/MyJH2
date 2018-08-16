@@ -15,6 +15,8 @@
 #include "Quest.h"
 #include "ResCreator.h"
 #include "AnimationEffect.h"
+#include "OutTownLayer.h"
+#include "MarketLayer.h"
 
 TaskDailyNode::TaskDailyNode()
 {
@@ -91,9 +93,14 @@ bool TaskDailyNode::init(DailyTaskData* data)
 	{
 		std::vector<std::string> vec = data->goods[i];
 		int count = atoi(vec[1].c_str());
-		std::string str = GlobalInstance::getInstance()->getResUIFrameName(vec[0], atoi(vec[2].c_str()));
+		int qu = 0;
+		if (vec.size() > 2 && vec[2].length() > 0)
+		{
+			qu = atoi(vec[2].c_str());
+		}
+		std::string str = GlobalInstance::getInstance()->getResUIFrameName(vec[0], qu);
 		Sprite * res = Sprite::createWithSpriteFrameName(str);
-		res->setPosition(Vec2(0 + i * 70, 0));
+		res->setPosition(Vec2(0 + i * 80, 0));
 		this->addChild(res);
 		res->setScale(0.4f);
 
@@ -101,7 +108,7 @@ bool TaskDailyNode::init(DailyTaskData* data)
 		Label *namelbl = Label::createWithTTF(str, FONT_NAME, 16);
 		namelbl->setColor(Color3B(0, 0, 0));
 		namelbl->setAnchorPoint(Vec2(0, 0.5));
-		namelbl->setPosition(Vec2(18 + i * 70, -7));
+		namelbl->setPosition(Vec2(18 + i * 80, -7));
 		this->addChild(namelbl);
 	}
 
@@ -253,8 +260,8 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 			case STRENG_WG:
 			{
-				StoreHouseLayer* layer = StoreHouseLayer::create();
-				g_mainScene->addChild(layer, 0, "3storehouse");
+				InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
+				g_mainScene->addChild(layer, 0, "6innroom");
 				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			break;
@@ -269,6 +276,34 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			{
 				InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
 				g_mainScene->addChild(layer, 0, "6innroom");
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
+			break;
+			case ACHIEVE_FIGHT:
+			{
+				OutTownLayer* layer = OutTownLayer::create();
+				g_mainScene->addChild(layer, 0, "0outtown");
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
+			break;
+			case ACHIEVE_GOODS:
+			{
+				MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
+				g_mainScene->addChild(layer, 0, "5market");
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
+			break;
+			case ACHIEVE_GOLD:
+			{
+				MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
+				g_mainScene->addChild(layer, 0, "5market");
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
+			break;
+			case ACHIEVE_SLIVER:
+			{
+				MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
+				g_mainScene->addChild(layer, 0, "5market");
 				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			break;

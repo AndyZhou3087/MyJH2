@@ -948,6 +948,7 @@ void MapBlockScene::showFightResult(int result)
 				{
 					Quest::finishBranchQuest();
 				}
+				Quest::setAchieveTypeCount(ACHIEVE_FIGHT, 1, vec_enemys[i]->getId());
 			}
 		}
 

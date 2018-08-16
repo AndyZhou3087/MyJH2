@@ -343,6 +343,7 @@ void TakeOnLayer::onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 void TakeOnLayer::setInStone(ResBase* stoneres, int which)
 {
 	Quest::setDailyTask(SET_GEM, 1);
+	Quest::setAchieveTypeCount(SET_GEM, 1);
 	std::string stoneid = stoneres->getId();
 	MyRes::Use(stoneid);
 	MyRes::Add(stoneid, 1, MYEQUIP);

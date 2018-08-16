@@ -327,6 +327,7 @@ void ConsumeResActionLayer::action()
 
 		//记录每日任务
 		Quest::setDailyTask(UPGRADE_BUILDING, 1);
+		Quest::setAchieveTypeCount(UPGRADE_BUILDING, 1);
 
 		showNextLvDesc(bdata);
 

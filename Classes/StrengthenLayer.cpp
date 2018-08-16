@@ -202,6 +202,7 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 
 		//记录每日任务
 		Quest::setDailyTask(STRENG_EQUIP, 1);
+		Quest::setAchieveTypeCount(STRENG_EQUIP, 1);
 
 		int r = GlobalInstance::getInstance()->createRandomNum(1000);
 		int odds = ODDS[m_equip->getLv().getValue()] * 10;

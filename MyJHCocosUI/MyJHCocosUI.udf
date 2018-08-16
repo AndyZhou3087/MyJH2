@@ -19,8 +19,9 @@
           <FilePathData Path="eventBuyLayer.csd" />
           <FilePathData Path="mapui.csi" />
           <FilePathData Path="homeHillLayer.csd" />
+          <FilePathData Path="taskDayNode.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="eventBusinessLayer.csd" />
+        <ActiveDocument Path="taskDayNode.csd" />
       </Value>
     </Item>
   </Properties>

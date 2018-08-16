@@ -223,6 +223,7 @@ void RandHeroLayer::refresh3Hero(int i)
 		}
 		//记录刷新次数
 		Quest::setDailyTask(FRESH_PUBENLIST, 1);
+		Quest::setAchieveTypeCount(FRESH_PUBENLIST, 1);
 	}
 	else
 	{
@@ -236,6 +237,7 @@ void RandHeroLayer::refresh3Hero(int i)
 		}
 		//记录刷新次数
 		Quest::setDailyTask(FRESH_PUBENLIST, 1);
+		Quest::setAchieveTypeCount(FRESH_PUBENLIST, 1);
 	}
 }
 
