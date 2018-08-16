@@ -58,6 +58,16 @@ bool MainMapScene::init()
 		std::string mname = mapname->getName();
 		int c = atoi(mname.substr(1, mname.find_first_of("-") - 1).c_str());
 
+		std::string mapnameid = GlobalInstance::myCurMainData.place.substr(0, 4);
+		if (mapnameid.compare(mname) == 0 && GlobalInstance::myCurMainData.isfinish < QUEST_FINISH)
+		{
+			Sprite* taskicon = Sprite::createWithSpriteFrameName("mapui/maptask_icon.png");
+			taskicon->setAnchorPoint(Vec2(0, 1));
+			taskicon->setPosition(Vec2(35, 85));
+			taskicon->setRotation(45);
+			mapname->addChild(taskicon);
+		}
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 		mapname->setVisible(true);
 #else

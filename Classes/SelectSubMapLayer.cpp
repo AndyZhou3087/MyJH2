@@ -108,6 +108,13 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 		cocos2d::ui::Text* mapname = (cocos2d::ui::Text*)subnode->getChildByName("namelbl");
 		mapname->setString(GlobalInstance::map_AllResources[it->first].name);
 
+		if (GlobalInstance::myCurMainData.place.compare(it->first) == 0 && GlobalInstance::myCurMainData.isfinish < QUEST_FINISH)
+		{
+			cocos2d::ui::ImageView* taskicon = (cocos2d::ui::ImageView*)subnode->getChildByName("taskicon");
+			taskicon->setVisible(true);
+			taskicon->setPositionX(mapname->getPositionX() + mapname->getContentSize().width / 2 + 30);
+		}
+
 		cocos2d::ui::Text* hpdesc = (cocos2d::ui::Text*)subnode->getChildByName("hpdesc");
 		std::string strdesc = StringUtils::format(ResourceLang::map_lang["hpdesc"].c_str(), GlobalInstance::map_mapsdata[mainmapid].map_sublist[it->first].ph);
 		hpdesc->setString(strdesc);
