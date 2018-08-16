@@ -73,6 +73,7 @@ private:
 	cocos2d::ui::ImageView* retbox;
 	cocos2d::ui::ImageView* rettext;
 	cocos2d::ui::Text* winexplbl;
+	cocos2d::ui::Text* skilllbl;
 
 	cocos2d::ui::Widget* vocationbox;
 	cocos2d::ui::ImageView* vocationicon;

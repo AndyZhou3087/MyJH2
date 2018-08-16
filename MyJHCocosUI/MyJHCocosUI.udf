@@ -7,22 +7,5 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="fightResultLayer.csd" />
-          <FilePathData Path="winRewardLayer.csd" />
-          <FilePathData Path="eventBusinessLayer.csd" />
-          <FilePathData Path="marketLayer.csd" />
-          <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="marketResNode.csd" />
-          <FilePathData Path="eventBuyLayer.csd" />
-          <FilePathData Path="mapui.csi" />
-          <FilePathData Path="homeHillLayer.csd" />
-          <FilePathData Path="taskDayNode.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="taskDayNode.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

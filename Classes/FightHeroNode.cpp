@@ -88,6 +88,9 @@ bool FightHeroNode::init()
 	numfnt = (cocos2d::ui::TextBMFont*)csbnode->getChildByName("numfnt");
 	numfnt->setVisible(false);
 
+	skilllbl = (cocos2d::ui::Text*)csbnode->getChildByName("skilltext");
+	skilllbl->setVisible(false);
+
 	return true;
 }
 
@@ -499,6 +502,8 @@ void FightHeroNode::playSkill(int stype, Npc* data)
 
 	if (m_Data->getId().length() <= 0)//是否是自己的英雄
 	{
+		skilllbl->setVisible(true);
+		skilllbl->setString(skillid);
 		if (stype == SKILL_1)//释放技能后吸收对方%.2f血量。
 		{
 			float eff = GlobalInstance::map_GF[gf->getId()].skilleff1;
@@ -542,6 +547,7 @@ void FightHeroNode::playSkill(int stype, Npc* data)
 		}
 		else if (stype == SKILL_12)//触发时提升自身攻击%.2f，持续%d回合。
 		{
+			log("zhou skillindex = 12, tcount = %d", (int)GlobalInstance::map_GF[gf->getId()].skilleff2);
 			if (gf->getSkillCount() <= 0)
 				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
 		}
@@ -612,13 +618,13 @@ void FightHeroNode::attackedSkillCB(int stype, Npc* data)
 	{
 		float eff = GlobalInstance::map_GF[gf->getId()].skilleff1;
 		hurt(eff*m_Data->getMaxHp() / 100);
-		fighting->clearSkill();
+		fighting->clearSkill(this->getTag());
 	}
 	else if (stype == SKILL_2)//释放技能后造成%d倍伤害。
 	{
 		float eff = GlobalInstance::map_GF[gf->getId()].skilleff1;
 		hurt(eff*data->getAtk());
-		fighting->clearSkill();
+		fighting->clearSkill(this->getTag());
 	}
 	else if (stype == SKILL_3)//被攻击目标%d回合内无法进行攻击。
 	{
@@ -630,13 +636,13 @@ void FightHeroNode::attackedSkillCB(int stype, Npc* data)
 	}
 	else if (stype == SKILL_5 || stype == SKILL_6)//同时攻击%d个目标。
 	{
-		fighting->skillAction(stype);
-		fighting->clearSkill();
+		fighting->skillAction(stype, this->getTag());
+		fighting->clearSkill(this->getTag());
 	}
 	else if (stype == SKILL_7 || stype == SKILL_8)//恢复单个队友血量%.2f。恢复%d个队友血量%.2f。
 	{
-		fighting->skillAction(stype);
-		fighting->clearSkill();
+		fighting->skillAction(stype, this->getTag());
+		fighting->clearSkill(this->getTag());
 	}
 	else if (stype == SKILL_9 || stype == SKILL_10)//增加自身攻击速度%.2f。
 	{
@@ -676,13 +682,13 @@ void FightHeroNode::attackedSkillCB(int stype, Npc* data)
 	}
 	else if (stype == SKILL_19)
 	{
-		fighting->skillAction(stype);
-		fighting->clearSkill();
+		fighting->skillAction(stype, this->getTag());
+		fighting->clearSkill(this->getTag());
 	}
 	else if (stype == SKILL_20)
 	{
-		fighting->skillAction(stype);
-		fighting->clearSkill();
+		fighting->skillAction(stype, this->getTag());
+		fighting->clearSkill(this->getTag());
 	}
 }
 

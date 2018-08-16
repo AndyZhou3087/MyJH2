@@ -30,6 +30,8 @@ Hero::Hero()
 	{
 		takeOnEquip[i] = NULL;
 	}
+	m_isSkilling = false;
+	m_whosufferskill = -1;
 }
 
 
@@ -57,6 +59,8 @@ Hero::Hero(Hero* hero)
 	{
 		takeOnEquip[i] = NULL;
 	}
+	m_isSkilling = false;
+	m_whosufferskill = -1;
 }
 
 float Hero::getHp()

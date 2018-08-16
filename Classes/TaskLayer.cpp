@@ -365,7 +365,7 @@ void TaskLayer::onPointClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			break;
 		}
 		MyRes::Add(resid);
-		std::string str = StringUtils::format(ResourceLang::map_lang["dailytype_9"].c_str(), GlobalInstance::map_AllResources[resid].name, 1);
+		std::string str = StringUtils::format(ResourceLang::map_lang["dailytype_9"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str(), 1);
 		MovingLabel::show(str);
 		Quest::saveDailyPointReward(tag);
 	}

@@ -980,8 +980,11 @@ void MapBlockScene::showFightResult(int result)
 		int bindex = (mycurRow)*blockColCount + mycurCol;
 		if (map_mapBlocks[bindex]->getPosType() == POS_BOSS)
 		{
-			_fogrender->removeFromParentAndCleanup(true);
-			_fogrender = NULL;
+			if (_fogrender != NULL)
+			{
+				_fogrender->removeFromParentAndCleanup(true);
+				_fogrender = NULL;
+			}
 			mapIsAllOpen = true;
 			std::string str = StringUtils::format("-1;%d", randStartPos);
 			DataSave::getInstance()->setMapVisibleArea(m_mapid, str);

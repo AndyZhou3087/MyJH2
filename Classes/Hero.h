@@ -38,6 +38,8 @@ public:
 	CC_SYNTHESIZE(DynamicValueInt, m_power, Power);//精力
 	CC_SYNTHESIZE(int, m_powertime, PowerTime);//精力时间
 	CC_SYNTHESIZE(int, m_changecount, ChangeCount);//转职，突破
+	CC_SYNTHESIZE(bool, m_isSkilling, IsSkilling);//是否触发技能
+	CC_SYNTHESIZE(int, m_whosufferskill, WhoSufferskill);//施放给谁
 
 	//血量
 	float getHp();

@@ -179,6 +179,18 @@
             <PreSize X="0.0000" Y="0.0000" />
             <LabelBMFontFile_CNB Type="Normal" Path="fonts/crithurtnum.fnt" Plist="" />
           </AbstractNodeData>
+          <AbstractNodeData Name="skilltext" ActionTag="-939952670" Tag="38" IconVisible="False" LeftMargin="-1.4966" RightMargin="-61.5034" TopMargin="18.7046" BottomMargin="-39.7046" FontSize="18" LabelText="skill_1" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="63.0000" Y="21.0000" />
+            <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+            <Position X="61.5034" Y="-29.2046" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="255" B="255" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
