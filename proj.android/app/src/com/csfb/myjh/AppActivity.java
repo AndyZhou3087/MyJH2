@@ -23,14 +23,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 package com.csfb.myjh;
-
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import org.cocos2dx.lib.Cocos2dxActivity;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
 
 public class AppActivity extends Cocos2dxActivity {
 

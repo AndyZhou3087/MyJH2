@@ -46,7 +46,8 @@ bool LoadingScene::init()
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("LoadingLayer.csb"));
 	this->addChild(csbnode);
 
-	this->scheduleOnce(schedule_selector(LoadingScene::delayLoadLocalData), 0.1f);
+	//先获取服务器数据
+	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
 
     return true;
 }
@@ -110,11 +111,11 @@ void LoadingScene::delayLoadLocalData(float dt)
 	GlobalInstance::getInstance()->getMyAchieveData();
 
 	//数据处理完，
-	this->scheduleOnce(schedule_selector(LoadingScene::delayLoadServerData), 0.1f);
+	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.1f);
 }
 
 
-void LoadingScene::delayLoadServerData(float dt)
+void LoadingScene::delayGetServerData(float dt)
 {
 	isGetPlayerId = true;
 	HttpDataSwap::init(this)->getPlayerId();
@@ -136,10 +137,11 @@ void LoadingScene::onFinish(int errcode)
 		}
 		else
 		{
-			this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.1f);
+			//加载本地数据
+			this->scheduleOnce(schedule_selector(LoadingScene::delayLoadLocalData), 0.1f);
 		}
 	}
-	else
+	else//网络异常
 	{
 
 	}

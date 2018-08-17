@@ -1852,3 +1852,21 @@ void GlobalInstance::saveUnlockChapter(int val)
 	unlockchapter = val;
 	DataSave::getInstance()->setUnlockChapter(val);
 }
+
+std::string GlobalInstance::getUserDefaultXmlString()
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	return FileUtils::getInstance()->getStringFromFile(UserDefault::getInstance()->getXMLFilePath());
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	std::string ret;
+	JniMethodInfo methodInfo;
+	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getUserDefaultXmlString", "()Ljava/lang/String;"))
+	{
+		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
+	}
+	return ret;
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+
+#endif
+}
