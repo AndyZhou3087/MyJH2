@@ -55,8 +55,22 @@ bool UnlockChapterLayer::init(int unlockchapter)
 	cocos2d::ui::Widget* smallbg = (cocos2d::ui::Widget*)csbnode->getChildByName("smallbg");
 	smallbg->setSwallowTouches(true);
 
+	std::string str;
+	std::map<std::string, S_MainMap>::iterator it;
+	for (it = GlobalInstance::map_mapsdata.begin(); it != GlobalInstance::map_mapsdata.end(); it++)
+	{
+		std::string mainmapid = it->first;
+		int c = atoi(mainmapid.substr(1, mainmapid.find_first_of("-") - 1).c_str());
+		if (c == unlockchapter)
+		{
+			str.append(GlobalInstance::map_AllResources[mainmapid].name);
+			str.append(ResourceLang::map_lang["zhdunhao"]);
+		}
+	}
+	str = StringUtils::format(ResourceLang::map_lang["unlocktext"].c_str(), unlockchapter, str.c_str());
+	
 	cocos2d::ui::Text* content = (cocos2d::ui::Text*)csbnode->getChildByName("content");
-	content->setString("");
+	content->setString(str);
 
 
 	//фа╠ноб╡Ц╣Ц╩В
