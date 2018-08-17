@@ -80,9 +80,25 @@ bool TaskBranchDescLayer::init(TaskBranchData* data)
 
 	//npc头像
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
-	std::string str = "ui/h_0_0.png";//StringUtils::format("mapui/%s.png", data->npcid.c_str());
+	std::string str = StringUtils::format("mapui/%s.png", data->npcid.c_str());
 	icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 	icon->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
+
+	ClippingNode* m_clippingNode = ClippingNode::create();
+	m_clippingNode->setInverted(false);//设置底板可见
+	m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
+	this->addChild(m_clippingNode, 1);
+	m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
+	m_clippingNode->setPosition(Vec2(icon->getPositionX(), icon->getPositionY() + 45));
+	Sprite* head = Sprite::createWithSpriteFrameName(str);
+	head->setAnchorPoint(Vec2(0.5, 1));
+	head->setPositionY(20);
+	m_clippingNode->addChild(head);
+	Node* stencil = Node::create();
+	Sprite* cnode = Sprite::createWithSpriteFrameName("ui/headclip.png");
+	cnode->setAnchorPoint(Vec2(0.5, 1));
+	stencil->addChild(cnode);
+	m_clippingNode->setStencil(stencil);
 
 	//npc名字
 	cocos2d::ui::Text* npcname = (cocos2d::ui::Text*)m_csbnode->getChildByName("npcname");

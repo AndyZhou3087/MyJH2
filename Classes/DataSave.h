@@ -291,6 +291,16 @@ public:
 	****************************/
 	std::string getAchieveTypeCount();
 
+	/****************************
+	设置头像
+	****************************/
+	void setHeadId(std::string val);
+
+	/****************************
+	获取成就类型次数
+	****************************/
+	std::string getHeadId();
+
 private:
 	static DataSave* _Context;//类实例
 

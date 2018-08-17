@@ -10,10 +10,9 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="hitBoxLayer.csd" />
-          <FilePathData Path="trainLayer.csd" />
+          <FilePathData Path="changeHeadLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="trainLayer.csd" />
+        <ActiveDocument Path="changeHeadLayer.csd" />
       </Value>
     </Item>
   </Properties>

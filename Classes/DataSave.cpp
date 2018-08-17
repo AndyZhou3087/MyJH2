@@ -284,3 +284,13 @@ std::string DataSave::getMapVisibleArea(std::string mapkey)
 {
 	return loadStringDataByKey(mapkey, "");
 }
+
+void DataSave::setHeadId(std::string val)
+{
+	saveStringDataByKey("headID", val);
+}
+
+std::string DataSave::getHeadId()
+{
+	return loadStringDataByKey("headID", "images/cardh_0_0");
+}

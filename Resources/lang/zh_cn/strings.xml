@@ -173,5 +173,9 @@
 	<s name="event6_0">神秘商人：走过路过，不要错过！物美价廉，童叟无欺！这位客观，要不要过来瞧瞧？</s>
 	<s name="buypricetext">价    格：</s>
 	<s name="buycounttext">购买数量：</s>
-	<s name="leavemaptext">是否确认退出%s？</s>		
+	<s name="leavemaptext">是否确认退出%s？</s>	
+	<s name="selectheadtext">点击更换头像</s>
+	<s name="haveroles">拥有角色：%d</s>	
+	<s name="havegold">拥有元宝：%d</s>	
+	<s name="havesliver">拥有银两：%d</s>	
 </strings>

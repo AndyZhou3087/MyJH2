@@ -377,6 +377,10 @@
       <FilePathData Path="ui/dailytask_8.png" />
       <FilePathData Path="ui/dailytask_9.png" />
       <FilePathData Path="ui/r012.png" />
+      <FilePathData Path="ui/headclip.png" />
+      <FilePathData Path="ui/headbox.png" />
+      <FilePathData Path="ui/headbox2.png" />
+      <FilePathData Path="ui/selecthead.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

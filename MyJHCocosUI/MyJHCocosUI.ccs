@@ -497,6 +497,7 @@
           <Image Name="replacebtn_text.png" />
           <Image Name="resitemlv_text.png" />
           <Image Name="selectbtn_text.png" />
+          <Image Name="selheadtitle.png" />
           <Image Name="settingtitle.png" />
           <Image Name="smcatabtn0_text_n.png" />
           <Image Name="smcatabtn0_text_s.png" />
@@ -745,6 +746,9 @@
           <Image Name="h_8_1.png" />
           <Image Name="h_9_0.png" />
           <Image Name="h_9_1.png" />
+          <Image Name="headbox.png" />
+          <Image Name="headbox2.png" />
+          <Image Name="headclip.png" />
           <Image Name="heroattradd.png" />
           <Image Name="heroattrexpbar.png" />
           <Image Name="heroattrexpbarbg.png" />
@@ -811,6 +815,7 @@
           <Image Name="s002.png" />
           <Image Name="s003.png" />
           <Image Name="s004.png" />
+          <Image Name="selecthead.png" />
           <Image Name="setpline0.png" />
           <Image Name="settingselected.png" />
           <Image Name="smallstar.png" />
@@ -983,6 +988,8 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="headInfoLayer.csd" Type="Layer" />
+        <Project Name="changeHeadLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

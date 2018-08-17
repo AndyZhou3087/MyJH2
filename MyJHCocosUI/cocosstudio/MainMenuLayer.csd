@@ -6,27 +6,27 @@
       <ObjectData Name="Layer" Tag="44" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
-          <AbstractNodeData Name="headimgbox" ActionTag="-814527605" Tag="61" IconVisible="False" LeftMargin="14.2574" RightMargin="559.7426" TopMargin="20.7500" BottomMargin="1113.2500" TouchEnable="True" LeftEage="48" RightEage="48" TopEage="48" BottomEage="48" Scale9OriginX="48" Scale9OriginY="48" Scale9Width="50" Scale9Height="50" ctype="ImageViewObjectData">
-            <Size X="146.0000" Y="146.0000" />
+          <AbstractNodeData Name="headimgbox" ActionTag="-814527605" Tag="61" IconVisible="False" LeftMargin="20.0000" RightMargin="566.0000" TopMargin="27.0000" BottomMargin="1119.0000" TouchEnable="True" LeftEage="48" RightEage="48" TopEage="48" BottomEage="48" Scale9OriginX="48" Scale9OriginY="48" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+            <Size X="134.0000" Y="134.0000" />
             <Children>
-              <AbstractNodeData Name="headimg" ActionTag="-737818372" Tag="62" IconVisible="False" LeftMargin="4.4268" RightMargin="4.5732" TopMargin="-4.4840" BottomMargin="9.4840" LeftEage="45" RightEage="45" TopEage="46" BottomEage="46" Scale9OriginX="45" Scale9OriginY="46" Scale9Width="47" Scale9Height="49" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="headimg" ActionTag="-737818372" VisibleForFrame="False" Tag="62" IconVisible="False" LeftMargin="-0.7340" RightMargin="-2.2660" TopMargin="-8.0965" BottomMargin="1.0965" LeftEage="45" RightEage="45" TopEage="46" BottomEage="46" Scale9OriginX="45" Scale9OriginY="46" Scale9Width="47" Scale9Height="49" ctype="ImageViewObjectData">
                 <Size X="137.0000" Y="141.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="72.9268" Y="79.9840" />
+                <Position X="67.7660" Y="71.5965" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4995" Y="0.5478" />
-                <PreSize X="0.9384" Y="0.9658" />
+                <PrePosition X="0.5057" Y="0.5343" />
+                <PreSize X="1.0224" Y="1.0522" />
                 <FileData Type="MarkedSubImage" Path="ui/h_1_0.png" Plist="ui.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="87.2574" Y="1186.2500" />
+            <Position X="87.0000" Y="1186.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1212" Y="0.9268" />
-            <PreSize X="0.2028" Y="0.1141" />
-            <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
+            <PrePosition X="0.1208" Y="0.9266" />
+            <PreSize X="0.1861" Y="0.1047" />
+            <FileData Type="MarkedSubImage" Path="ui/headbox.png" Plist="ui.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="r001" ActionTag="-1050598203" Tag="46" IconVisible="False" LeftMargin="165.7739" RightMargin="408.2261" TopMargin="-13.2188" BottomMargin="1147.2188" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
             <Size X="146.0000" Y="146.0000" />

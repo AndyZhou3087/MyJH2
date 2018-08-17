@@ -13,6 +13,8 @@
 #include "SettingLayer.h"
 #include "SoundManager.h"
 #include "AchieveLayer.h"
+#include "DataSave.h"
+#include "HeadInfoLayer.h"
 
 USING_NS_CC;
 
@@ -80,6 +82,25 @@ bool MainMenuLayer::init()
 			textimg->loadTexture(ResourcePath::makeTextImgPath(textname, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 	}
+
+	cocos2d::ui::Widget* headimgbox = (cocos2d::ui::Widget*)csbnode->getChildByName("headimgbox");
+	ClippingNode* m_clippingNode = ClippingNode::create();
+	m_clippingNode->setInverted(false);//设置底板可见
+	m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
+	csbnode->addChild(m_clippingNode, 1);
+	m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
+	m_clippingNode->setPosition(Vec2(headimgbox->getPositionX(), headimgbox->getPositionY() + 45));
+	std::string str = StringUtils::format("%s.png", DataSave::getInstance()->getHeadId().c_str());
+	cocos2d::ui::ImageView* head = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::LOCAL);
+	head->setAnchorPoint(Vec2(0.5, 1));
+	head->setPositionY(20);
+	m_clippingNode->addChild(head);
+	Node* stencil = Node::create();
+	Sprite* cnode = Sprite::createWithSpriteFrameName("ui/headclip.png");
+	cnode->setAnchorPoint(Vec2(0.5, 1));
+	stencil->addChild(cnode);
+	m_clippingNode->setStencil(stencil);
+
 	updateUI(0);
 	this->schedule(schedule_selector(MainMenuLayer::updateUI), 1.0f);
     return true;
@@ -126,6 +147,11 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		switch (menuType)
 		{
 		case HEADBOX:
+		{
+			HeadInfoLayer* layer = HeadInfoLayer::create();
+			this->addChild(layer, 0, "HeadInfoLayer");
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		case R001BTN:
 		case R002BTN:
