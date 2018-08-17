@@ -27,7 +27,7 @@ public:
 	***************************/
 	void delayLoadLocalData(float dt);
 
-	void delayLoadServerData(float dt);
+	void delayGetServerData(float dt);
 
 	void onFinish(int errcode);
 

@@ -20,6 +20,7 @@
 #include "SoundManager.h"
 #include "AnimationEffect.h"
 #include "HintBoxLayer.h"
+#include "UnlockChapterLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -975,6 +976,8 @@ void MapBlockScene::showFightResult(int result)
 				if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(vec_enemys[i]->getId()))
 				{
 					Quest::finishFightMain(QUEST_FIGHT);
+					showUnlockChapter();
+
 				}
 				else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
 				{
@@ -999,6 +1002,24 @@ void MapBlockScene::showFightResult(int result)
 		}
 
 		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowFightResult), 0.3f);
+	}
+}
+
+void MapBlockScene::showUnlockChapter()
+{
+	//设置解锁章节
+	std::string mapid = GlobalInstance::myCurMainData.place;
+	int c = GlobalInstance::getInstance()->getUnlockChapter();
+	int s = atoi(mapid.substr(1, mapid.find_first_of("-") - 1).c_str());
+	if (s > c)
+	{
+		GlobalInstance::getInstance()->saveUnlockChapter(s);
+		UnlockChapterLayer* layer = UnlockChapterLayer::create(s);
+		if (g_MapBlockScene != NULL)
+		{
+			g_MapBlockScene->addChild(layer, 1);
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 	}
 }
 

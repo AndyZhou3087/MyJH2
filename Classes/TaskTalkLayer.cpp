@@ -10,6 +10,7 @@
 #include "MapBlockScene.h"
 #include "FightingLayer.h"
 #include "MovingLabel.h"
+#include "UnlockChapterLayer.h"
 
 TaskTalkLayer::TaskTalkLayer()
 {
@@ -325,13 +326,23 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 	}
 	if (isEnough)
 	{
+		bool isnewchapter = false;
 		for (unsigned int i = 0; i < need.size(); i++)
 		{
 			std::map<std::string, int> one_res = need[i];
 			std::map<std::string, int>::iterator oneit = one_res.begin();
 			std::string cresid = oneit->first;
-			Quest::checkResQuestData(cresid, oneit->second, m_npcid);
+			if (Quest::checkResQuestData(cresid, oneit->second, m_npcid))
+			{
+				isnewchapter = true;
+			}
 		}
+		if (isnewchapter)
+		{
+			g_MapBlockScene->showUnlockChapter();
+		}
+
+
 		if (bwords.length()>1)
 		{
 			checkWordLblColor(bwords);

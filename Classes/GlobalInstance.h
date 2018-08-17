@@ -453,6 +453,13 @@ public:
 
 	//生成资源ui/%s.png，字符串
 	std::string getResUIFrameName(std::string resid, int qu);
+
+	//设置章节
+	int getUnlockChapter();
+	void saveUnlockChapter(int val);
+
+	//获取本地userdefault中保存的数据
+	std::string getUserDefaultXmlString();
 private:
 	static GlobalInstance* _Context;//类实例
 
@@ -511,6 +518,7 @@ private:
 
 	static std::string myID;
 	static std::string myNickName;
+	static int unlockchapter;
 
 };
 #endif

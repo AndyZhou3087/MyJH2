@@ -292,6 +292,16 @@ public:
 	std::string getAchieveTypeCount();
 
 	/****************************
+	获取解锁章节
+	****************************/
+	int getUnlockChapter();
+
+	/****************************
+	设置解锁章节
+	****************************/
+	void setUnlockChapter(int val);
+
+	/****************************
 	设置头像
 	****************************/
 	void setHeadId(std::string val);

@@ -54,30 +54,33 @@ void HttpDataSwap::postAllData()
 	url.append("playerid=");
 	url.append(GlobalInstance::getInstance()->UUID());
 
-	std::string postdata;
+	std::string postdata = GlobalInstance::getInstance()->getUserDefaultXmlString();
 
-	rapidjson::Document writedoc;
-	writedoc.SetObject();
-	rapidjson::Document::AllocatorType& allocator = writedoc.GetAllocator();
-
-	writedoc.AddMember("playerid", rapidjson::Value(GlobalInstance::getInstance()->UUID().c_str(), allocator), allocator);
-
-	std::string myherosdata;
-	rapidjson::Value dataArray(rapidjson::kArrayType);
-
-	for (int i = 0; i < 50; i++)
+	if (postdata.length() > 0)
 	{
-		std::string herokey = StringUtils::format("hero%d", i);
-		std::string herodatastr = DataSave::getInstance()->getHeroData(herokey);
-		if (herodatastr.length() > 0)
-		{
-			dataArray.PushBack(rapidjson::Value(herodatastr.c_str(), allocator), allocator);
-		}
+		log("zhou postdata = %s", postdata.c_str());
+		//rapidjson::Document writedoc;
+		//writedoc.SetObject();
+		//rapidjson::Document::AllocatorType& allocator = writedoc.GetAllocator();
+
+		//writedoc.AddMember("playerid", rapidjson::Value(GlobalInstance::getInstance()->UUID().c_str(), allocator), allocator);
+
+		//std::string myherosdata;
+		//rapidjson::Value dataArray(rapidjson::kArrayType);
+
+		//for (int i = 0; i < 50; i++)
+		//{
+		//	std::string herokey = StringUtils::format("hero%d", i);
+		//	std::string herodatastr = DataSave::getInstance()->getHeroData(herokey);
+		//	if (herodatastr.length() > 0)
+		//	{
+		//		dataArray.PushBack(rapidjson::Value(herodatastr.c_str(), allocator), allocator);
+		//	}
+		//}
+		//writedoc.AddMember("myheros", dataArray, allocator);
+		//postdata = JsonWriter(writedoc);
+		HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpPostAllDataCB, this), postdata);
 	}
-	writedoc.AddMember("myheros", dataArray, allocator);
-	postdata = JsonWriter(writedoc);
-	//postdata
-	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpPostAllDataCB, this), postdata);
 }
 
 void HttpDataSwap::getAllData()
@@ -245,6 +248,7 @@ void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::strin
 
 void HttpDataSwap::httpPostAllDataCB(std::string retdata, int code, std::string extdata)
 {
+	log("httpPostAllDataCB retdata =%s", retdata.c_str());
 	int ret = code;
 	if (code == 0)
 	{
@@ -272,6 +276,7 @@ void HttpDataSwap::httpGetAllDataCB(std::string retdata, int code, std::string e
 	int ret = code;
 	if (code == 0)
 	{
+		log("zhou httpGetAllDataCB = %s", retdata.c_str());
 		rapidjson::Document doc;
 		if (JsonReader(retdata, doc))
 		{

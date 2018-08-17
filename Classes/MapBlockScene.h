@@ -58,6 +58,8 @@ public:
 
 	void showFightingLayer(std::vector<Npc*> enemys);
 
+	void showUnlockChapter();
+
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
 
