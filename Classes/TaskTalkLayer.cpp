@@ -314,7 +314,7 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 			std::map<std::string, int> one_res = need[i];
 			std::map<std::string, int>::iterator oneit = one_res.begin();
 			std::string cresid = oneit->first;
-			Quest::setResQuestData(cresid, oneit->second, m_npcid);
+			Quest::checkResQuestData(cresid, oneit->second, m_npcid);
 		}
 		if (bwords.length()>1)
 		{
