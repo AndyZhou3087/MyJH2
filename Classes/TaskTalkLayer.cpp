@@ -314,7 +314,7 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 			std::map<std::string, int> one_res = need[i];
 			std::map<std::string, int>::iterator oneit = one_res.begin();
 			std::string cresid = oneit->first;
-			Quest::setResQuestData(cresid, oneit->second, m_npcid);
+			Quest::checkResQuestData(cresid, oneit->second, m_npcid);
 		}
 		if (bwords.length()>1)
 		{
@@ -394,10 +394,11 @@ void TaskTalkLayer::showTypeText(float dt)
 	lasttalklbl = m_wordlbl;
 	m_wordlbl->schedule([&](float dt) {
 		isShowWord = true;
-		m_wordcount += 3;
-		int letterindex = m_wordcount / 3 - 1;
-		m_wordlbl->getLetter(letterindex)->setScale(1.0f);
-		int len = m_wordlbl->getString().length();
+		m_wordlbl->getLetter(m_wordcount)->setScale(1.0f);
+		m_wordcount += 1;
+		std::u32string utf32String;
+		StringUtils::UTF8ToUTF32(m_wordlbl->getString(), utf32String);
+		int len = utf32String.length();
 		if (m_wordcount >= len)
 		{
 			m_wordcount = 0;

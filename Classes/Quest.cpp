@@ -163,11 +163,11 @@ bool Quest::getMainQuestMap(std::string mapid)
 	}
 }
 
-void Quest::setResQuestData(std::string resid, int count, std::string npcid)
+bool Quest::checkResQuestData(std::string resid, int count, std::string npcid)
 {
 	if (!getMainQuestNpc(npcid))
 	{
-		return;
+		return false;
 	}
 	for (unsigned int i = 0; i < GlobalInstance::myCurMainData.need1.size(); i++)
 	{
@@ -216,6 +216,12 @@ void Quest::setResQuestData(std::string resid, int count, std::string npcid)
 			curstr.append(onestr);
 		}
 		DataSave::getInstance()->setMyCurTaskNeed(curstr.substr(0, curstr.length() - 1));
+
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 
@@ -293,11 +299,11 @@ bool Quest::getBranchQuestMap(std::string mapid)
 	}
 }
 
-void Quest::setResBranchQuestData(std::string resid, int count, std::string npcid)
+bool Quest::checkResBranchQuestData(std::string resid, int count, std::string npcid)
 {
 	if (!getBranchQuestNpc(npcid))
 	{
-		return;
+		return false;
 	}
 	for (unsigned int i = 0; i < GlobalInstance::myCurBranchData.need.size(); i++)
 	{
@@ -324,6 +330,11 @@ void Quest::setResBranchQuestData(std::string resid, int count, std::string npci
 			curstr.append(onestr);
 		}
 		DataSave::getInstance()->setMyCurBranchNeed(curstr.substr(0, curstr.length() - 1));
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 

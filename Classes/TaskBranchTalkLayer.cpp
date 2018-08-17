@@ -190,7 +190,7 @@ void TaskBranchTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 						MovingLabel::show(ResourceLang::map_lang["reslack"]);
 						break;
 					}
-					Quest::setResQuestData(cresid, count, m_npcid);
+					Quest::checkResBranchQuestData(cresid, count, m_npcid);
 					this->removeFromParentAndCleanup(true);
 				}
 			}
