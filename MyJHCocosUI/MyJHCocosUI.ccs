@@ -983,6 +983,7 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="unlockChapterLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -62,6 +62,8 @@ DynamicValueInt GlobalInstance::myCoinCount;
 std::string GlobalInstance::myID;
 std::string GlobalInstance::myNickName;
 
+int GlobalInstance::unlockchapter = 1;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -207,6 +209,8 @@ void GlobalInstance::loadInitData()
 	totalFarmercount = DataSave::getInstance()->getTotalFarmers();
 
 	refreshMarketTime = DataSave::getInstance()->getRefreshMarketTime();
+
+	unlockchapter = DataSave::getInstance()->getUnlockChapter();
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -1837,4 +1841,14 @@ void GlobalInstance::setMyID(std::string val)
 void GlobalInstance::setMyNickName(std::string val)
 {
 	myNickName = val;
+}
+
+int GlobalInstance::getUnlockChapter()
+{
+	return unlockchapter;
+}
+void GlobalInstance::saveUnlockChapter(int val)
+{
+	unlockchapter = val;
+	DataSave::getInstance()->setUnlockChapter(val);
 }

@@ -66,6 +66,12 @@ void Quest::saveMainData()
 			if (i + 1 < GlobalInstance::vec_TaskMain.size())
 			{
 				GlobalInstance::myCurMainData = GlobalInstance::vec_TaskMain[i + 1];//当前任务下一个
+				//设置解锁章节
+				std::string mapid = GlobalInstance::myCurMainData.place;
+				int c = GlobalInstance::getInstance()->getUnlockChapter();
+				int s = atoi(mapid.substr(1, mapid.find_first_of("-") - 1).c_str());
+				if (s > c)
+					GlobalInstance::getInstance()->saveUnlockChapter(s);
 			}
 			break;
 		}

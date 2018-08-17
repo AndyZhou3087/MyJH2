@@ -71,7 +71,7 @@ bool MainMapScene::init()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 		mapname->setVisible(true);
 #else
-		if (c <= 5)
+		if (c <= 5 && c <= GlobalInstance::getInstance()->getUnlockChapter())
 		{
 			mapname->setVisible(true);
 		}

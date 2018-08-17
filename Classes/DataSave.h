@@ -291,6 +291,16 @@ public:
 	****************************/
 	std::string getAchieveTypeCount();
 
+	/****************************
+	获取解锁章节
+	****************************/
+	int getUnlockChapter();
+
+	/****************************
+	设置解锁章节
+	****************************/
+	void setUnlockChapter(int val);
+
 private:
 	static DataSave* _Context;//类实例
 
