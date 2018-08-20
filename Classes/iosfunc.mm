@@ -93,7 +93,6 @@ const char* getUserDefaultXml()
         }
     }
     content = [content stringByAppendingFormat:@"%s", "</userDefaultRoot>"];
-    NSLog(@"content: %@", content);
     return [content UTF8String];
 }
 
