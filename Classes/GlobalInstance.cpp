@@ -563,7 +563,10 @@ void GlobalInstance::saveMyAchieveData()
 			str.append(onestr);
 		}
 	}
-	DataSave::getInstance()->setMyAchieveData(str.substr(0, str.length() - 1));
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setMyAchieveData(str.substr(0, str.length() - 1));
+	}
 }
 
 void GlobalInstance::loadResCreatorData()
@@ -797,7 +800,10 @@ void GlobalInstance::saveMyTaskMainData()
 		}
 	}
 	str.append(mystr);
-	DataSave::getInstance()->setMyMainTask(str.substr(0, str.length() - 1));
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setMyMainTask(str.substr(0, str.length() - 1));
+	}
 }
 
 void GlobalInstance::loadTaskBranchData()
@@ -927,7 +933,10 @@ void GlobalInstance::saveMyTaskBranchData()
 		}
 	}
 	str.append(mystr);
-	DataSave::getInstance()->setMyBranchTask(str.substr(0, str.length() - 1));
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setMyBranchTask(str.substr(0, str.length() - 1));
+	}
 }
 
 void GlobalInstance::loadDailyTaskData()
@@ -1019,7 +1028,10 @@ void GlobalInstance::saveMyDailyTaskData()
 			str.append(onestr);
 		}
 	}
-	DataSave::getInstance()->setMyDailyTaskData(str.substr(0, str.length() - 1));
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setMyDailyTaskData(str.substr(0, str.length() - 1));
+	}
 }
 
 bool GlobalInstance::larger_callback(TaskMainData a, TaskMainData b)
