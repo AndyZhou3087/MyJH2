@@ -1,4 +1,4 @@
-﻿
+
 #ifndef _H_UTILITY_H_
 #define _H_UTILITY_H_
 
@@ -63,7 +63,7 @@ inline char* Encrypt(char* pMsg, bool bEncrypt)
 
 inline std::string loadStringDataByKey(string key, std::string defaultValue = ""){
 	char buffer[32];
-	sprintf(buffer, "%s", key.c_str());
+	sprintf(buffer, "jh%s", key.c_str());
 
 	string s = UserDefault::getInstance()->getStringForKey(buffer);
 	if (s == "") {
@@ -83,7 +83,7 @@ inline std::string loadStringDataByKey(string key, std::string defaultValue = ""
 
 inline void saveStringDataByKey(string key, string sValue = ""){ 
 	char keybuffer[32];
-	sprintf(keybuffer, "%s", key.c_str());
+	sprintf(keybuffer, "jh%s", key.c_str());
 #if encrypt_data
 	string encryptvalue = encryptData(reinterpret_cast<const unsigned char*>(sValue.c_str()), sValue.length());
 	char valuebuffer[4096];
@@ -134,7 +134,7 @@ inline float loadFloatDataByKey(string key, float defaultValue = 0.0f){
 inline void removeEleByKey(string key)
 {
 	char keybuffer[32];
-	sprintf(keybuffer, "%s", key.c_str());
+	sprintf(keybuffer, "jh%s", key.c_str());
 	UserDefault::getInstance()->deleteValueForKey(keybuffer);
 	UserDefault::getInstance()->flush();
 }
