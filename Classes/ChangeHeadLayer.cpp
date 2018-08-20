@@ -75,8 +75,8 @@ bool ChangeHeadLayer::init()
 		cocos2d::ui::ImageView* headbox = cocos2d::ui::ImageView::create("ui/headbox2.png", cocos2d::ui::Widget::TextureResType::LOCAL);
 		//headbox->addTouchEventListener(CC_CALLBACK_2(ChangeHeadLayer::onBtnClick, this));
 		//headbox->setTag(i);
-		this->addChild(headbox);
-		headbox->setPosition(Vec2(76 + (i % 3) * 224, innerheight - (i / 3) * itemheight));
+		scrollView->addChild(headbox);
+		headbox->setPosition(Vec2(76 + (i % 3) * 224, innerheight - i / 3 * itemheight - itemheight / 2));
 
 		//str = StringUtils::format("images/cardh_%d_0.png", i + 4);
 		//ClippingNode* m_clippingNode = ClippingNode::create();
