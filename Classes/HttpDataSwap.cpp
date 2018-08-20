@@ -296,7 +296,7 @@ void HttpDataSwap::httpGetAllDataCB(std::string retdata, int code, std::string e
 					{
 						tinyxml2::XMLElement *rootEle = pDoc->RootElement();
 						tinyxml2::XMLElement *element = rootEle->FirstChildElement();
-						while (element != NULL)
+						while (element != NULL && element->GetText() != NULL)
 						{
 							UserDefault::getInstance()->setStringForKey(element->Name(), element->GetText());
 							element = element->NextSiblingElement();
