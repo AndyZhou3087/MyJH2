@@ -295,12 +295,12 @@ void DataSave::setUnlockChapter(int val)
 	saveIntDataByKey("unlockc", val);
 }
 
-void DataSave::setHeadId(std::string val)
+void DataSave::setHeadId(int val)
 {
-	saveStringDataByKey("headID", val);
+	saveIntDataByKey("headID", val);
 }
 
-std::string DataSave::getHeadId()
+int DataSave::getHeadId()
 {
-	return loadStringDataByKey("headID", "images/cardh_0_0");
+	return loadIntDataByKey("headID", 4);
 }

@@ -87,8 +87,8 @@ bool HeadInfoLayer::init()
 	csbnode->addChild(m_clippingNode, 1);
 	m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
 	m_clippingNode->setPosition(Vec2(headimgbox->getPositionX(), headimgbox->getPositionY() + 45));
-	str = StringUtils::format("%s.png", DataSave::getInstance()->getHeadId().c_str());
-	cocos2d::ui::ImageView* head = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::LOCAL);
+	str = StringUtils::format("images/cardh_%d_0.png", DataSave::getInstance()->getHeadId());
+	head = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::LOCAL);
 	head->addTouchEventListener(CC_CALLBACK_2(HeadInfoLayer::onBtnClick, this));
 	head->setTouchEnabled(true);
 	head->setTag(1);
@@ -143,6 +143,12 @@ void HeadInfoLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		}
 	}
+}
+
+void HeadInfoLayer::changeHead()
+{
+	std::string str = StringUtils::format("images/cardh_%d_0.png", DataSave::getInstance()->getHeadId());
+	head->loadTexture(str, cocos2d::ui::Widget::TextureResType::LOCAL);
 }
 
 void HeadInfoLayer::onExit()

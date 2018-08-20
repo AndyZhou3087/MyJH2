@@ -40,12 +40,18 @@ private:
 
 	//更新UI,数值
 	void updateUI(float dt);
+
+public:
+	void changeHead();
+
 private:
 	cocos2d::ui::Text* reslbl[5];//5个资源数量LABEL
 	cocos2d::ui::Text* mysilverlbl;//银子数量LABEL
 	cocos2d::ui::Text* mycoinlbl;//金币数量LABEL
 	cocos2d::ui::Widget* achredpoint;//成就小红点
 	cocos2d::ui::Widget* mailredpoint;//邮件小红点
+
+	cocos2d::ui::ImageView* head;//头像
 };
 
 #endif
