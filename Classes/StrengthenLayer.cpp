@@ -14,6 +14,7 @@
 #include "MovingLabel.h"
 #include "TakeOnLayer.h"
 #include "AnimationEffect.h"
+#include "EquipDescLayer.h"
 
 StrengthenLayer::StrengthenLayer()
 {
@@ -27,11 +28,11 @@ StrengthenLayer::~StrengthenLayer()
 }
 
 
-StrengthenLayer* StrengthenLayer::create(Equip* res_equip)
+StrengthenLayer* StrengthenLayer::create(Equip* res_equip, int forwhere)
 {
 	StrengthenLayer *pRet = new(std::nothrow)StrengthenLayer();
 
-	if (pRet && pRet->init(res_equip))
+	if (pRet && pRet->init(res_equip,forwhere))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -44,13 +45,14 @@ StrengthenLayer* StrengthenLayer::create(Equip* res_equip)
 	}
 }
 
-bool StrengthenLayer::init(Equip* res_equip)
+bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 {
 	if (!Layer::init())
 	{
 		return false;
 	}
 
+	m_forwhere = forwhere;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color,0,"colorLayer");
 
@@ -190,14 +192,14 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		}
 		else
 		{
-			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() < (m_equip->getLv().getValue() + 1) * 1000)
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() < (m_equip->getLv().getValue() + 1) * 1000)
 			{
 				MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
 				return;
 			}
 			DynamicValueInt dvl;
 			dvl.setValue((m_equip->getLv().getValue() + 1) * 1000);
-			GlobalInstance::getInstance()->costMySoliverCount(dvl);
+			GlobalInstance::getInstance()->costMyCoinCount(dvl);
 		}
 
 		//记录每日任务
@@ -223,10 +225,21 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			m_equip->setLv(elv);
 			MovingLabel::show(ResourceLang::map_lang["strengthfail"]);
 		}
-		TakeOnLayer* takon = (TakeOnLayer*)this->getParent();
-		if (takon!=NULL)
+		if (m_forwhere == 0)
 		{
-			takon->updateAttr();
+			TakeOnLayer* takon = (TakeOnLayer*)this->getParent();
+			if (takon != NULL)
+			{
+				takon->updateAttr();
+			}
+		}
+		else if (m_forwhere == 1)
+		{
+			EquipDescLayer* takon = (EquipDescLayer*)this->getParent();
+			if (takon != NULL)
+			{
+				takon->updateAttr();
+			}
 		}
 
 		AnimationEffect::closeAniEffect((Layer*)this);

@@ -112,6 +112,8 @@ bool HeroAttrLayer::init(Hero* herodata)
 			updateEquipUi(eres, i);
 			m_heroData->setEquipable((Equipable*)eres, eres->getType());
 		}
+		cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
+		qubox->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
 	}
 	//属性信息
 	heroattrbottom = csbnode->getChildByName("heroattrbottom");

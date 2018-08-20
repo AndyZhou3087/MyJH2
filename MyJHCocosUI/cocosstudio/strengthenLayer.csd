@@ -75,14 +75,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="strenthicon_18" ActionTag="702840774" Tag="168" IconVisible="False" LeftMargin="255.1404" RightMargin="418.8596" TopMargin="367.4146" BottomMargin="866.5854" ctype="SpriteObjectData">
+          <AbstractNodeData Name="strenthicon_18" ActionTag="702840774" Tag="168" IconVisible="False" LeftMargin="246.6404" RightMargin="410.3596" TopMargin="358.4146" BottomMargin="857.5854" ctype="SpriteObjectData">
             <Size X="63.0000" Y="64.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="278.1404" Y="889.5854" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.3863" Y="0.6950" />
-            <PreSize X="0.0639" Y="0.0359" />
+            <PreSize X="0.0875" Y="0.0500" />
             <FileData Type="MarkedSubImage" Path="ui/strenthicon.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
@@ -97,14 +97,14 @@
             <FileData Type="Normal" Path="images/brownbox.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="strentharrow_2" ActionTag="-799718756" Tag="55" IconVisible="False" LeftMargin="338.0000" RightMargin="336.0000" TopMargin="578.0000" BottomMargin="656.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="strentharrow_2" ActionTag="-799718756" Tag="55" IconVisible="False" LeftMargin="341.0000" RightMargin="339.0000" TopMargin="580.0000" BottomMargin="658.0000" ctype="SpriteObjectData">
             <Size X="40.0000" Y="42.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="361.0000" Y="679.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5014" Y="0.5305" />
-            <PreSize X="0.0639" Y="0.0359" />
+            <PreSize X="0.0556" Y="0.0328" />
             <FileData Type="MarkedSubImage" Path="ui/strentharrow.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
@@ -289,23 +289,23 @@
             <ShadowColor A="255" R="63" G="63" B="63" />
           </AbstractNodeData>
           <AbstractNodeData Name="main_silver_9" ActionTag="-1054062338" Tag="71" IconVisible="False" LeftMargin="437.9240" RightMargin="244.0760" TopMargin="927.1039" BottomMargin="314.8961" ctype="SpriteObjectData">
-            <Size X="38.0000" Y="38.0000" />
+            <Size X="42.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="456.9240" Y="333.8961" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.6346" Y="0.2609" />
             <PreSize X="0.0528" Y="0.0297" />
-            <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
+            <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="silvercount" ActionTag="-2089861806" Tag="72" IconVisible="False" LeftMargin="481.0554" RightMargin="184.9446" TopMargin="935.7841" BottomMargin="315.2159" FontSize="25" LabelText="x100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="silvercount" ActionTag="-2089861806" Tag="72" IconVisible="False" LeftMargin="481.0554" RightMargin="184.9446" TopMargin="933.7841" BottomMargin="317.2160" FontSize="25" LabelText="x100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="54.0000" Y="29.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="481.0554" Y="329.7159" />
+            <Position X="481.0554" Y="331.7160" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6681" Y="0.2576" />
+            <PrePosition X="0.6681" Y="0.2592" />
             <PreSize X="0.0750" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />

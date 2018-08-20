@@ -9,7 +9,10 @@
     </Item>
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
-        <ActiveDocument />
+        <OpenedDocuments>
+          <FilePathData Path="equipDescLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="equipDescLayer.csd" />
       </Value>
     </Item>
   </Properties>

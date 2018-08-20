@@ -9,6 +9,8 @@
 #include "HeroAttrLayer.h"
 #include "WgLvLayer.h"
 #include "AnimationEffect.h"
+#include "StrengthenLayer.h"
+#include "Equip.h"
 
 USING_NS_CC;
 
@@ -115,6 +117,30 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		str = StringUtils::format("addattrtext_%d", i);
 		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), vec_attrval[i]);
 		attrlbl->setString(str);
+		attrlblArr[i] = attrlbl;
+	}
+
+	cocos2d::ui::Text* jobtext = (cocos2d::ui::Text*)csbnode->getChildByName("attrtext_6");
+	if (m_res->getType() >= T_WG && m_res->getType() <= T_NG)
+	{
+		GongFa* gf = (GongFa*)m_res;
+		jobtext->setVisible(true);
+		std::string jobstr;
+		for (unsigned int i = 0; i < GlobalInstance::map_GF[gf->getId()].vec_skillbns.size(); i++)
+		{
+			int m = GlobalInstance::map_GF[gf->getId()].vec_skillbns[i];
+			if (m == 1)
+			{
+				jobstr.append(GlobalInstance::vec_herosAttr[i].name);
+				jobstr.append(",");
+			}
+		}
+		str = StringUtils::format(ResourceLang::map_lang["fitjob"].c_str(), jobstr.substr(0, jobstr.length() - 1).c_str());
+		jobtext->setString(str);
+	}
+	else
+	{
+		jobtext->setVisible(false);
 	}
 
 	//增加了多少攻击力
@@ -140,6 +166,13 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	lvbtntxt->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	if (fromwhere == 0)//仓库进入
 	{
+		if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
+		{
+			actionbtn->setPositionX(240);
+			lvbtn->setVisible(true);
+			lvbtn->setTag(100);
+			lvbtntxt->loadTexture(ResourcePath::makeTextImgPath("strenthbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		}
 		if (GlobalInstance::map_AllResources[res->getId()].vec_needres.size() > 0)
 		{
 			status = S_EQUIP_DECOMPOSE;
@@ -169,7 +202,6 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("selectbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	}
 
-
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -185,6 +217,40 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	return true;
 }
 
+void EquipDescLayer::updateAttr()
+{
+	std::vector<float> vec_attrval;
+
+	int s = m_res->getQU().getValue();
+	if (m_res->getType() >= T_ARMOR && m_res->getType() <= T_FASHION)
+	{
+		float bns = POTENTIAL_BNS[s];
+		vec_attrval.push_back(GlobalInstance::map_Equip[m_res->getId()].maxhp * bns);
+		vec_attrval.push_back(GlobalInstance::map_Equip[m_res->getId()].atk * bns);
+		vec_attrval.push_back(GlobalInstance::map_Equip[m_res->getId()].df * bns);
+		vec_attrval.push_back(GlobalInstance::map_Equip[m_res->getId()].speed * bns);
+		vec_attrval.push_back(GlobalInstance::map_Equip[m_res->getId()].crit * bns);
+		vec_attrval.push_back(GlobalInstance::map_Equip[m_res->getId()].avoid * bns);
+	}
+	else if (m_res->getType() >= T_WG && m_res->getType() <= T_NG)
+	{
+		GongFa* gf = (GongFa*)m_res;
+		vec_attrval.push_back(gf->getHp());
+		vec_attrval.push_back(gf->getAtk());
+		vec_attrval.push_back(gf->getDf());
+		vec_attrval.push_back(gf->getAtkSpeed());
+		vec_attrval.push_back(gf->getCrit());
+		vec_attrval.push_back(gf->getDodge());
+	}
+
+	for (int i = 0; i <= 5; i++)
+	{
+		std::string str = StringUtils::format("addattrtext_%d", i);
+		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), vec_attrval[i]);
+		attrlblArr[i]->setString(str);
+	}
+}
+
 void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
@@ -192,39 +258,48 @@ void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 	{
 		Node* node = (Node*)pSender;
 		int tag = node->getTag();
-		if (status == S_EQUIP_DECOMPOSE)
+		if (tag == 100)
 		{
-			StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
-			if (storelayer != NULL)
-				storelayer->decompose(m_res);
-			AnimationEffect::closeAniEffect((Layer*)this);
+			StrengthenLayer* sLayer = StrengthenLayer::create((Equip*)m_res,1);
+			this->addChild(sLayer);
+			AnimationEffect::openAniEffect((Layer*)sLayer);
 		}
-		else if (status == S_EQUIP_TAKEOFF)
+		else
 		{
-			if (tag == 1)
+			if (status == S_EQUIP_DECOMPOSE)
+			{
+				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+				if (storelayer != NULL)
+					storelayer->decompose(m_res);
+				AnimationEffect::closeAniEffect((Layer*)this);
+			}
+			else if (status == S_EQUIP_TAKEOFF)
+			{
+				if (tag == 1)
+				{
+					WgLvLayer* wglayer = WgLvLayer::create(m_res);
+					this->addChild(wglayer);
+					AnimationEffect::openAniEffect((Layer*)wglayer);
+				}
+				else
+				{
+					HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent();
+					heroAttrLayer->takeOff(m_res);
+					AnimationEffect::closeAniEffect((Layer*)this);
+				}
+			}
+			else if (status == S_EQUIP_SEL)
+			{
+				HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent()->getParent();
+				heroAttrLayer->takeOn(m_res);
+				this->getParent()->removeFromParentAndCleanup(true);
+			}
+			else if (status == S_EQUIP_WGLV)
 			{
 				WgLvLayer* wglayer = WgLvLayer::create(m_res);
 				this->addChild(wglayer);
 				AnimationEffect::openAniEffect((Layer*)wglayer);
 			}
-			else
-			{
-				HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent();
-				heroAttrLayer->takeOff(m_res);
-				AnimationEffect::closeAniEffect((Layer*)this);
-			}
-		}
-		else if (status == S_EQUIP_SEL)
-		{
-			HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent()->getParent();
-			heroAttrLayer->takeOn(m_res);
-			this->getParent()->removeFromParentAndCleanup(true);
-		}
-		else if (status == S_EQUIP_WGLV)
-		{
-			WgLvLayer* wglayer = WgLvLayer::create(m_res);
-			this->addChild(wglayer);
-			AnimationEffect::openAniEffect((Layer*)wglayer);
 		}
 	}
 }

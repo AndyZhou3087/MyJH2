@@ -366,6 +366,9 @@ void GlobalInstance::loadHerosAttrData()
 			rapidjson::Value& v = jsonvalue["id"];
 			data.id = v.GetString();
 
+			v = jsonvalue["name"];
+			data.name = v.GetString();
+
 			v = jsonvalue["exp"];
 			for (unsigned int m = 0; m < v.Size(); m++)
 			{

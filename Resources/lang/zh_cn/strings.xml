@@ -180,4 +180,5 @@
 	<s name="haveroles">拥有角色：%d</s>	
 	<s name="havegold">拥有元宝：%d</s>	
 	<s name="havesliver">拥有银两：%d</s>	
+	<s name="fitjob">适合职业：%s</s>	
 </strings>

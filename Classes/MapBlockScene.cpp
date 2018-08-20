@@ -272,6 +272,9 @@ void MapBlockScene::updateTaskInfo(float dt)
 		if (GlobalInstance::myCurBranchData.id == 1)
 		{
 			textbranch->setString(ResourceLang::map_lang["nottasktext"]);
+			textbranch->setVisible(false);
+			cocos2d::ui::Widget* maptask_branch = (cocos2d::ui::Widget*)m_tasknode->getChildByName("maptask_branch_4");
+			maptask_branch->setVisible(false);
 		}
 		else
 		{
