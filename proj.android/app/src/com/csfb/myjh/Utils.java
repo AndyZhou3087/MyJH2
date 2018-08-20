@@ -321,7 +321,7 @@ public class Utils {
 			for(Map.Entry<String, ?>  entry : allContent.entrySet()){
 				String key = entry.getKey();
 				String vaulestr = entry.getValue().toString();
-				if (vaulestr != null && vaulestr.trim().length() > 0) {
+				if (vaulestr != null && vaulestr.trim().length() > 0 && !(key.startsWith("jhm") && (key.contains("-")))) {
                     serializer.startTag(null, key);
                     serializer.text(entry.getValue().toString());
                     serializer.endTag(null, key);
