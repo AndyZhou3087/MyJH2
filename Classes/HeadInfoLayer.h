@@ -18,6 +18,12 @@ public:
 	bool init();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+public:
+	void changeHead();
+
+private:
+	cocos2d::ui::ImageView* head;
 };
 
 #endif

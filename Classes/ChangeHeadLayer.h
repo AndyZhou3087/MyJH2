@@ -18,6 +18,10 @@ public:
 	bool init();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+private:
+	Sprite* selectArr[8];
+	int lastSelectIndex;
 };
 
 #endif

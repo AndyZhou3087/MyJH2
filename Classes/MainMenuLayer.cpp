@@ -90,8 +90,8 @@ bool MainMenuLayer::init()
 	csbnode->addChild(m_clippingNode, 1);
 	m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
 	m_clippingNode->setPosition(Vec2(headimgbox->getPositionX(), headimgbox->getPositionY() + 45));
-	std::string str = StringUtils::format("%s.png", DataSave::getInstance()->getHeadId().c_str());
-	cocos2d::ui::ImageView* head = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::LOCAL);
+	std::string str = StringUtils::format("images/cardh_%d_0.png", DataSave::getInstance()->getHeadId());
+	head = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::LOCAL);
 	head->setAnchorPoint(Vec2(0.5, 1));
 	head->setPositionY(20);
 	m_clippingNode->addChild(head);
@@ -198,6 +198,12 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			break;
 		}
 	}
+}
+
+void MainMenuLayer::changeHead()
+{
+	std::string str = StringUtils::format("images/cardh_%d_0.png", DataSave::getInstance()->getHeadId());
+	head->loadTexture(str, cocos2d::ui::Widget::TextureResType::LOCAL);
 }
 
 void MainMenuLayer::onExit()
