@@ -128,6 +128,7 @@ void LoadingScene::showNextScene(float dt)
 
 void LoadingScene::onFinish(int errcode)
 {
+	bool isLoadLocal = false;
 	if (errcode == 0)
 	{
 		if (isGetPlayerId)
@@ -136,12 +137,20 @@ void LoadingScene::onFinish(int errcode)
 			HttpDataSwap::init(this)->getAllData();
 		}
 		else
-		{
-			//加载本地数据
-			this->scheduleOnce(schedule_selector(LoadingScene::delayLoadLocalData), 0.1f);
-		}
+			isLoadLocal = true;
 	}
 	else//网络异常
+	{
+		if (!isGetPlayerId && (errcode == 3 || errcode == 4))
+			isLoadLocal = true;
+	}
+
+	if (isLoadLocal)
+	{
+		//加载本地数据
+		this->scheduleOnce(schedule_selector(LoadingScene::delayLoadLocalData), 0.1f);
+	}
+	else//数据错误
 	{
 
 	}

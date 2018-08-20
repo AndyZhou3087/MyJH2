@@ -2,6 +2,7 @@
 #include "json.h"
 #include "GlobalInstance.h"
 #include "DataSave.h"
+#include "tinyxml2/tinyxml2.h"
 
 #define HTTPURL "https://www.stormnet.cn/jhapi/"
 
@@ -284,10 +285,31 @@ void HttpDataSwap::httpGetAllDataCB(std::string retdata, int code, std::string e
 			ret = retv.GetInt();
 			if (ret == 0)//解析文件
 			{
+				if (doc.HasMember("content"))
+				{
+					tinyxml2::XMLDocument *pDoc = new tinyxml2::XMLDocument();
+					rapidjson::Value& vc = doc["content"];
+					int err = pDoc->Parse(vc.GetString());
+					if (err != 0)
+						ret = DATA_ERR;
+					else
+					{
+						tinyxml2::XMLElement *rootEle = pDoc->RootElement();
+						tinyxml2::XMLElement *element = rootEle->FirstChildElement();
+						while (element != NULL)
+						{
+							UserDefault::getInstance()->setStringForKey(element->Name(), element->GetText());
+							element = element->NextSiblingElement();
+						}
+					}
+					delete pDoc;
+				}
+				else
+					ret = DATA_ERR;
 
 			}
 			else
-				ret = SUCCESS;
+				ret = DATA_ERR;
 		}
 		else
 		{
