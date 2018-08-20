@@ -75,35 +75,35 @@ bool ChangeHeadLayer::init()
 		cocos2d::ui::ImageView* headbox = cocos2d::ui::ImageView::create("ui/headbox2.png", cocos2d::ui::Widget::TextureResType::LOCAL);
 		//headbox->addTouchEventListener(CC_CALLBACK_2(ChangeHeadLayer::onBtnClick, this));
 		//headbox->setTag(i);
-		scrollView->addChild(headbox);
-		headbox->setPosition(Vec2(76 + (i % 3) * 224, innerheight - i / 3 * itemheight - itemheight / 2));
+		this->addChild(headbox);
+		headbox->setPosition(Vec2(76 + (i % 3) * 224, innerheight - (i / 3) * itemheight));
 
-		str = StringUtils::format("images/cardh_%d_0.png", i + 4);
-		ClippingNode* m_clippingNode = ClippingNode::create();
-		m_clippingNode->setInverted(false);//设置底板可见
-		m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
-		scrollView->addChild(m_clippingNode, 1);
-		m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
-		m_clippingNode->setPosition(Vec2(headbox->getPositionX(), headbox->getPositionY() + 50));
-		cocos2d::ui::ImageView* head = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::LOCAL);
-		head->addTouchEventListener(CC_CALLBACK_2(ChangeHeadLayer::onBtnClick, this));
-		head->setTouchEnabled(true);
-		head->setTag(i);
-		head->setAnchorPoint(Vec2(0.5, 1));
-		head->setPositionY(20);
-		m_clippingNode->addChild(head);
-		Node* stencil = Node::create();
-		Sprite* cnode = Sprite::createWithSpriteFrameName("ui/headclip.png");
-		cnode->setAnchorPoint(Vec2(0.5, 1));
-		stencil->addChild(cnode);
-		m_clippingNode->setStencil(stencil);
+		//str = StringUtils::format("images/cardh_%d_0.png", i + 4);
+		//ClippingNode* m_clippingNode = ClippingNode::create();
+		//m_clippingNode->setInverted(false);//设置底板可见
+		//m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
+		//scrollView->addChild(m_clippingNode, 1);
+		//m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
+		//m_clippingNode->setPosition(Vec2(headbox->getPositionX(), headbox->getPositionY() + 50));
+		//cocos2d::ui::ImageView* head = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::LOCAL);
+		//head->addTouchEventListener(CC_CALLBACK_2(ChangeHeadLayer::onBtnClick, this));
+		//head->setTouchEnabled(true);
+		//head->setTag(i);
+		//head->setAnchorPoint(Vec2(0.5, 1));
+		//head->setPositionY(20);
+		//m_clippingNode->addChild(head);
+		//Node* stencil = Node::create();
+		//Sprite* cnode = Sprite::createWithSpriteFrameName("ui/headclip.png");
+		//cnode->setAnchorPoint(Vec2(0.5, 1));
+		//stencil->addChild(cnode);
+		//m_clippingNode->setStencil(stencil);
 
-		std::string s = StringUtils::format("vocation_%d", i + 4);
-		str = ResourceLang::map_lang[s];
-		Label *namelbl = Label::createWithTTF(str, FONT_NAME, 22);
-		namelbl->setColor(Color3B(255, 255, 255));
-		namelbl->setPosition(Vec2(headbox->getContentSize().width / 2, -60));
-		headbox->addChild(namelbl);
+		//std::string s = StringUtils::format("vocation_%d", i + 4);
+		//str = ResourceLang::map_lang[s];
+		//Label *namelbl = Label::createWithTTF(str, FONT_NAME, 22);
+		//namelbl->setColor(Color3B(255, 255, 255));
+		//namelbl->setPosition(Vec2(headbox->getContentSize().width / 2, -60));
+		//headbox->addChild(namelbl);
 	}
 
 	//屏蔽下层点击

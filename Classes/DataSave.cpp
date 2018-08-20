@@ -295,7 +295,6 @@ void DataSave::setUnlockChapter(int val)
 	saveIntDataByKey("unlockc", val);
 
 }
-}
 
 void DataSave::setHeadId(std::string val)
 {
