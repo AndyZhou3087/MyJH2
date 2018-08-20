@@ -1,4 +1,4 @@
-﻿#include "GlobalInstance.h"
+#include "GlobalInstance.h"
 #include "DataSave.h"
 #include "Hero.h"
 #include "CommonFuncs.h"
@@ -1867,6 +1867,6 @@ std::string GlobalInstance::getUserDefaultXmlString()
 	}
 	return ret;
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-
+    return getUserDefaultXml();
 #endif
 }
