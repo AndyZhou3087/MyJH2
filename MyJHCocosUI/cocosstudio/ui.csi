@@ -381,6 +381,15 @@
       <FilePathData Path="ui/headbox.png" />
       <FilePathData Path="ui/headbox2.png" />
       <FilePathData Path="ui/selecthead.png" />
+      <FilePathData Path="ui/bet_0.png" />
+      <FilePathData Path="ui/bet_1.png" />
+      <FilePathData Path="ui/bet_select.png" />
+      <FilePathData Path="ui/dice1.png" />
+      <FilePathData Path="ui/dice2.png" />
+      <FilePathData Path="ui/dice3.png" />
+      <FilePathData Path="ui/dice4.png" />
+      <FilePathData Path="ui/dice5.png" />
+      <FilePathData Path="ui/dice6.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

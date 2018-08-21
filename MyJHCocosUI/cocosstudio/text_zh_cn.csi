@@ -195,6 +195,10 @@
       <FilePathData Path="text_zh_cn/eventbusinesstitle.png" />
       <FilePathData Path="text_zh_cn/achieve_title.png" />
       <FilePathData Path="text_zh_cn/selheadtitle.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_3_0.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_3_1.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_5_0.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_5_1.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>
