@@ -242,6 +242,16 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			}
 		}
 
+		//ÌØÐ§
+		auto effectnode = CSLoader::createNode("effect/qianghuachenggong.csb");
+		effectnode->setPosition(Vec2(360, 640));
+		//effectnode->setScale(0.7f);
+		this->getParent()->addChild(effectnode, 10);
+
+		auto action = CSLoader::createTimeline("effect/qianghuachenggong.csb");
+		effectnode->runAction(action);
+		action->gotoFrameAndPlay(0, false);
+
 		AnimationEffect::closeAniEffect((Layer*)this);
 	}
 }

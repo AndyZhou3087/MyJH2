@@ -172,6 +172,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 			lvbtn->setVisible(true);
 			lvbtn->setTag(100);
 			lvbtntxt->loadTexture(ResourcePath::makeTextImgPath("strenthbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			lvbtntxt->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("strenthbtn_text", langtype))->getContentSize());
 		}
 		if (GlobalInstance::map_AllResources[res->getId()].vec_needres.size() > 0)
 		{
