@@ -12,7 +12,8 @@ typedef enum
 	S_EQUIP_SEL,
 	S_EQUIP_DECOMPOSE,
 	S_EQUIP_TAKEOFF,
-	S_EQUIP_WGLV
+	S_EQUIP_WGLV,
+	S_EQUIP_STENGTH
 }S_EQUIP_STATUS;
 class EquipDescLayer : public cocos2d::Layer
 {
@@ -23,12 +24,15 @@ public:
 	static EquipDescLayer* create(ResBase* res, int fromwhere);
 	virtual void onExit();
 	bool init(ResBase* res, int fromwhere);
+	void updateAttr();
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 private:
 	int status;
 	Equipable* m_res;
+	cocos2d::ui::Text* attrlblArr[6];
 };
 
 #endif

@@ -79,9 +79,10 @@ bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 
 	//npc头像
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
-	std::string str = StringUtils::format("mapui/%s.png", data->npcid.c_str());
-	icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
-	icon->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
+	std::string str = StringUtils::format("mapui/%s.png", GlobalInstance::map_Npcs[data->npcid].icon.c_str());
+	/*icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+	icon->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());*/
+	icon->setVisible(false);
 
 	ClippingNode* m_clippingNode = ClippingNode::create();
 	m_clippingNode->setInverted(false);//设置底板可见

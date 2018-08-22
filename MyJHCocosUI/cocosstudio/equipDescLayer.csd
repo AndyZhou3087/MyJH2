@@ -72,98 +72,110 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="prominuslb" ActionTag="-433079049" Tag="767" IconVisible="False" LeftMargin="443.1865" RightMargin="218.8135" TopMargin="597.7286" BottomMargin="656.2714" FontSize="23" LabelText="(-15)" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="prominuslb" ActionTag="-433079049" Tag="767" IconVisible="False" LeftMargin="443.1866" RightMargin="218.8134" TopMargin="610.7280" BottomMargin="643.2720" FontSize="23" LabelText="(-15)" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="58.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="443.1865" Y="669.2714" />
+            <Position X="443.1866" Y="656.2720" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="0" B="0" />
-            <PrePosition X="0.6155" Y="0.5229" />
+            <PrePosition X="0.6155" Y="0.5127" />
             <PreSize X="0.0806" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attaddlb" ActionTag="1874819517" Tag="768" IconVisible="False" LeftMargin="441.8553" RightMargin="220.1447" TopMargin="558.4729" BottomMargin="695.5271" FontSize="23" LabelText="(+15)" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="attaddlb" ActionTag="1874819517" Tag="768" IconVisible="False" LeftMargin="441.8553" RightMargin="220.1447" TopMargin="571.4718" BottomMargin="682.5282" FontSize="23" LabelText="(+15)" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="58.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="441.8553" Y="708.5271" />
+            <Position X="441.8553" Y="695.5282" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="87" G="251" B="87" />
-            <PrePosition X="0.6137" Y="0.5535" />
+            <PrePosition X="0.6137" Y="0.5434" />
             <PreSize X="0.0806" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_5" ActionTag="-1386700586" Tag="769" IconVisible="False" LeftMargin="295.3257" RightMargin="293.6743" TopMargin="754.5884" BottomMargin="499.4116" FontSize="23" LabelText="闪避率 +100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_5" ActionTag="-1386700586" Tag="769" IconVisible="False" LeftMargin="295.3267" RightMargin="293.6733" TopMargin="767.5878" BottomMargin="486.4122" FontSize="23" LabelText="闪避率 +100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="131.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.8257" Y="512.4116" />
+            <Position X="360.8267" Y="499.4122" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5011" Y="0.4003" />
+            <PrePosition X="0.5011" Y="0.3902" />
             <PreSize X="0.1819" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_4" ActionTag="-1008350580" Tag="770" IconVisible="False" LeftMargin="295.3257" RightMargin="293.6743" TopMargin="715.3325" BottomMargin="538.6675" FontSize="23" LabelText="暴击率 +100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_4" ActionTag="-1008350580" Tag="770" IconVisible="False" LeftMargin="295.3267" RightMargin="293.6733" TopMargin="728.3319" BottomMargin="525.6681" FontSize="23" LabelText="暴击率 +100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="131.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.8257" Y="551.6675" />
+            <Position X="360.8267" Y="538.6681" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5011" Y="0.4310" />
+            <PrePosition X="0.5011" Y="0.4208" />
             <PreSize X="0.1819" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_3" ActionTag="-192869850" Tag="771" IconVisible="False" LeftMargin="283.8255" RightMargin="282.1745" TopMargin="676.0763" BottomMargin="577.9237" FontSize="23" LabelText="攻击速度 +100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_3" ActionTag="-192869850" Tag="771" IconVisible="False" LeftMargin="283.8256" RightMargin="282.1744" TopMargin="689.0756" BottomMargin="564.9244" FontSize="23" LabelText="攻击速度 +100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="154.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.8255" Y="590.9237" />
+            <Position X="360.8256" Y="577.9244" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5011" Y="0.4617" />
+            <PrePosition X="0.5011" Y="0.4515" />
             <PreSize X="0.2139" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_2" ActionTag="1443084503" Tag="772" IconVisible="False" LeftMargin="295.3257" RightMargin="293.6743" TopMargin="636.8206" BottomMargin="617.1794" FontSize="23" LabelText="生命值 +100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_2" ActionTag="1443084503" Tag="772" IconVisible="False" LeftMargin="295.3267" RightMargin="293.6733" TopMargin="649.8198" BottomMargin="604.1802" FontSize="23" LabelText="生命值 +100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="131.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.8257" Y="630.1794" />
+            <Position X="360.8267" Y="617.1802" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5011" Y="0.4923" />
+            <PrePosition X="0.5011" Y="0.4822" />
             <PreSize X="0.1819" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_1" ActionTag="468102793" Tag="773" IconVisible="False" LeftMargin="295.3257" RightMargin="293.6743" TopMargin="597.5643" BottomMargin="656.4357" FontSize="23" LabelText="攻击力 +100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_1" ActionTag="468102793" Tag="773" IconVisible="False" LeftMargin="295.3267" RightMargin="293.6733" TopMargin="610.5634" BottomMargin="643.4366" FontSize="23" LabelText="攻击力 +100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="131.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.8257" Y="669.4357" />
+            <Position X="360.8267" Y="656.4366" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5011" Y="0.5230" />
+            <PrePosition X="0.5011" Y="0.5128" />
             <PreSize X="0.1819" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_0" ActionTag="651699260" Tag="774" IconVisible="False" LeftMargin="295.3257" RightMargin="293.6743" TopMargin="558.3085" BottomMargin="695.6915" FontSize="23" LabelText="攻击力 +100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_0" ActionTag="651699260" Tag="774" IconVisible="False" LeftMargin="295.3267" RightMargin="293.6733" TopMargin="571.3074" BottomMargin="682.6926" FontSize="23" LabelText="攻击力 +100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="131.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.8257" Y="708.6915" />
+            <Position X="360.8267" Y="695.6926" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5011" Y="0.5537" />
+            <PrePosition X="0.5011" Y="0.5435" />
             <PreSize X="0.1819" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="attrtext_6" ActionTag="59002021" Tag="166" IconVisible="False" LeftMargin="281.3447" RightMargin="274.6553" TopMargin="536.7864" BottomMargin="717.2136" FontSize="23" LabelText="适合职业：侠客" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="164.0000" Y="26.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="363.3447" Y="730.2136" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5046" Y="0.5705" />
+            <PreSize X="0.2278" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />

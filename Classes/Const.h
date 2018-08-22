@@ -36,7 +36,7 @@ const static float POTENTIAL_BNS[] = {1.0f, 1.27f, 1.63f, 2.08f, 2.63f};
 const static float BREAK_BNS[] = { 1.1f, 1.12f, 1.15f, 1.19f, 1.24f, 1.24f };
 
 //装备强化失败降级数
-const static int COSTLV[] = { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 16, 17, 18, 19, 20 };
+const static int COSTLV[] = { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 15, 16, 17, 18, 19 };
 //装备强化成功概率
 const static float ODDS[] = { 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 96.5f, 92.5f, 88.0f, 83.0f, 77.5f, 71.5f, 65.0f, 58.0f, 50.5f, 42.5f, 34.0f, 25.0f, 15.5f, 5.5f };
 

@@ -366,6 +366,9 @@ void GlobalInstance::loadHerosAttrData()
 			rapidjson::Value& v = jsonvalue["id"];
 			data.id = v.GetString();
 
+			v = jsonvalue["name"];
+			data.name = v.GetString();
+
 			v = jsonvalue["exp"];
 			for (unsigned int m = 0; m < v.Size(); m++)
 			{
@@ -563,7 +566,10 @@ void GlobalInstance::saveMyAchieveData()
 			str.append(onestr);
 		}
 	}
-	DataSave::getInstance()->setMyAchieveData(str.substr(0, str.length() - 1));
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setMyAchieveData(str.substr(0, str.length() - 1));
+	}
 }
 
 void GlobalInstance::loadResCreatorData()
@@ -693,7 +699,7 @@ void GlobalInstance::loadTaskMainData()
 			for (unsigned int i = 0; i < v.Size(); i++)
 			{
 				std::string onestr = v[i].GetString();
-				if (onestr.length() > 3)
+				if (onestr.length() > 5)
 				{
 					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
@@ -710,7 +716,7 @@ void GlobalInstance::loadTaskMainData()
 			for (unsigned int i = 0; i < v.Size(); i++)
 			{
 				std::string onestr = v[i].GetString();
-				if (onestr.length() > 3)
+				if (onestr.length() > 5)
 				{
 					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
@@ -797,7 +803,10 @@ void GlobalInstance::saveMyTaskMainData()
 		}
 	}
 	str.append(mystr);
-	DataSave::getInstance()->setMyMainTask(str.substr(0, str.length() - 1));
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setMyMainTask(str.substr(0, str.length() - 1));
+	}
 }
 
 void GlobalInstance::loadTaskBranchData()
@@ -927,7 +936,10 @@ void GlobalInstance::saveMyTaskBranchData()
 		}
 	}
 	str.append(mystr);
-	DataSave::getInstance()->setMyBranchTask(str.substr(0, str.length() - 1));
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setMyBranchTask(str.substr(0, str.length() - 1));
+	}
 }
 
 void GlobalInstance::loadDailyTaskData()
@@ -1019,7 +1031,10 @@ void GlobalInstance::saveMyDailyTaskData()
 			str.append(onestr);
 		}
 	}
-	DataSave::getInstance()->setMyDailyTaskData(str.substr(0, str.length() - 1));
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setMyDailyTaskData(str.substr(0, str.length() - 1));
+	}
 }
 
 bool GlobalInstance::larger_callback(TaskMainData a, TaskMainData b)

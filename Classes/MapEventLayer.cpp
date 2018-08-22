@@ -6,12 +6,18 @@
 #include "EventBusinessLayer.h"
 #include "AnimationEffect.h"
 #include "MapBlockScene.h"
+#include "DynamicValue.h"
+#include "GambleBoxLayer.h"
+
+#define BETCOSTCOIN 50
 
 USING_NS_CC;
 
 MapEventLayer::MapEventLayer()
 {
-
+	lastBetIndex = -1;
+	winbs = -1;
+	isWin = -1;
 }
 
 MapEventLayer::~MapEventLayer()
@@ -63,9 +69,11 @@ bool MapEventLayer::init(int eventindex)
 	eventnode_1 = csbnode->getChildByName("eventnode_1");
 	eventnode_2 = csbnode->getChildByName("eventnode_2");
 	eventnode_3 = csbnode->getChildByName("eventnode_3");
+	eventnode_4 = csbnode->getChildByName("eventnode_4");
 	eventnode_1->setVisible(true);
 	eventnode_2->setVisible(false);
 	eventnode_3->setVisible(false);
+	eventnode_4->setVisible(false);
 
 	cocos2d::ui::Text* textdesc = (cocos2d::ui::Text*)eventnode_1->getChildByName("text");
 	str = StringUtils::format("event%d_0", eventindex);
@@ -103,11 +111,14 @@ bool MapEventLayer::init(int eventindex)
 
 void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	CommonFuncs::BtnAction(pSender, type);
+	Node* node = (Node*)pSender;
+	int tag = node->getTag();
+	if (tag!=100 && tag!=101)
+	{
+		CommonFuncs::BtnAction(pSender, type);
+	}
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Node* node = (Node*)pSender;
-		int tag = node->getTag();
 		switch (tag)
 		{
 		case 0:
@@ -154,6 +165,32 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				}
 				AnimationEffect::openAniEffect((Layer*)layer);
 			}
+			else if (m_eventindex == POS_ELDER)
+			{
+				int r = GlobalInstance::getInstance()->createRandomNum(10) + 1;
+				if (r <= 5)
+				{
+					eventnode_1->setVisible(false);
+					eventnode_2->setVisible(true);
+					eventnode_3->setVisible(false);
+					boxEventNode();
+				}
+				else
+				{
+					eventnode_1->setVisible(false);
+					eventnode_2->setVisible(false);
+					eventnode_3->setVisible(true);
+					eventElderExtort();
+				}
+			}
+			else if (m_eventindex == POS_BET)
+			{
+				eventnode_1->setVisible(false);
+				eventnode_2->setVisible(false);
+				eventnode_3->setVisible(false);
+				eventnode_4->setVisible(true);
+				doGambling();
+			}
 			break;
 		case 2:
 		{
@@ -170,9 +207,177 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			AnimationEffect::closeAniEffect((Layer*)this);
 		}
 			break;
+		case 3:
+		{
+			for (int i = 0; i < 2; i++)
+			{
+				betArr[i]->setTouchEnabled(false);
+			}
+			betActionbtn->setTouchEnabled(false);
+			animnode->getChildByName("node")->getChildByName("cover")->setVisible(true);
+			anim_action = CSLoader::createTimeline("rollDiceAnim.csb");
+			animnode->runAction(anim_action);
+			anim_action->gotoFrameAndPlay(0, true);
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= BETCOSTCOIN)
+			{
+				DynamicValueInt dvl;
+				dvl.setValue(BETCOSTCOIN);
+				GlobalInstance::getInstance()->costMyCoinCount(dvl);
+			}
+			int r = GlobalInstance::getInstance()->createRandomNum(3);
+			this->scheduleOnce(schedule_selector(MapEventLayer::showResult), r + 1.0f);
+		}
+			break;
+		case 100:
+		{
+			betselectArr[0]->setVisible(true);
+			betselectArr[1]->setVisible(false);
+			lastBetIndex = 0;
+		}
+			break;
+		case 101:
+		{
+			betselectArr[1]->setVisible(true);
+			betselectArr[0]->setVisible(false);
+			lastBetIndex = 1;
+		}
+			break;
 		default:
 			break;
 		}
+	}
+}
+
+void MapEventLayer::showResult(float dt)
+{
+	anim_action = CSLoader::createTimeline("rollDiceAnim.csb");
+	animnode->runAction(anim_action);
+	anim_action->gotoFrameAndPlay(0, 0, false);
+	animnode->stopAllActions();
+
+	this->scheduleOnce(schedule_selector(MapEventLayer::openDice), 1.0f);
+}
+
+void MapEventLayer::openDice(float dt)
+{
+	int r = GlobalInstance::getInstance()->createRandomNum(10) + 1;
+	if (r < 4)
+	{
+		if (lastBetIndex == 0)
+		{
+			winbs = GlobalInstance::getInstance()->createRandomNum(3) + 1;
+		}
+		else
+		{
+			winbs = GlobalInstance::getInstance()->createRandomNum(3) + 4;
+		}
+		isWin = 1;
+	}
+	else
+	{
+		if (lastBetIndex == 0)
+		{
+			winbs = GlobalInstance::getInstance()->createRandomNum(3) + 4;
+		}
+		else
+		{
+			winbs = GlobalInstance::getInstance()->createRandomNum(3) + 1;
+		}
+		isWin = 0;
+	}
+
+	animnode->getChildByName("node")->getChildByName("cover")->setVisible(false);
+	std::string dicestr = StringUtils::format("ui/dice%d.png", winbs);
+
+	Sprite* dicesprite = Sprite::createWithSpriteFrameName(dicestr);
+	dicesprite->setPosition(animnode->getPosition());
+	eventnode_4->addChild(dicesprite, 1, "dice");
+
+	this->scheduleOnce(schedule_selector(MapEventLayer::playGamblebox), 1.0f);
+}
+
+void MapEventLayer::playGamblebox(float dt)
+{
+	GambleBoxLayer* gamble = GambleBoxLayer::create(isWin, winbs, BETCOSTCOIN);
+	this->addChild(gamble);
+	AnimationEffect::openAniEffect((Layer*)gamble);
+}
+
+void MapEventLayer::continueGamble()
+{
+	eventnode_4->removeChildByName("dice");
+	animnode->getChildByName("node")->getChildByName("cover")->setVisible(true);
+	for (int i = 0; i < 2; i++)
+	{
+		betArr[i]->setTouchEnabled(true);
+	}
+	betActionbtn->setTouchEnabled(true);
+}
+
+void MapEventLayer::doGambling()
+{
+	std::string str;
+	for (int i = 0; i < 2; i++)
+	{
+		str = StringUtils::format("bet_%d", i);
+		cocos2d::ui::ImageView* bet = (cocos2d::ui::ImageView*)eventnode_4->getChildByName(str);
+		bet->addTouchEventListener(CC_CALLBACK_2(MapEventLayer::onBtnClick, this));
+		bet->setTag(100 + i);
+		betArr[i] = bet;
+		str = StringUtils::format("betselect%d", i);
+		cocos2d::ui::Widget* betselect = (cocos2d::ui::Widget*)eventnode_4->getChildByName(str);
+		betselect->setVisible(false);
+		betselectArr[i] = betselect;
+		if (i == 0)
+		{
+			betselect->setVisible(true);
+			lastBetIndex = i;
+		}
+	}
+	cocos2d::ui::Text* selecttext = (cocos2d::ui::Text*)eventnode_4->getChildByName("selecttext");
+	selecttext->setString(ResourceLang::map_lang["event5_1"]);
+	cocos2d::ui::Text* betdesc = (cocos2d::ui::Text*)eventnode_4->getChildByName("betdesc");
+	betdesc->setString(ResourceLang::map_lang["event5_2"]);
+	betActionbtn = (cocos2d::ui::Button*)eventnode_4->getChildByName("actionbtn");
+	betActionbtn->addTouchEventListener(CC_CALLBACK_2(MapEventLayer::onBtnClick, this));
+	betActionbtn->setTag(3);
+	cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)betActionbtn->getChildByName("text");
+	text->loadTexture(ResourcePath::makeTextImgPath("okbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	animnode = CSLoader::createNode("rollDiceAnim.csb");
+	animnode->setPosition(Vec2(0, 150));
+	eventnode_4->addChild(animnode);
+}
+
+void MapEventLayer::eventElderExtort()
+{
+	cocos2d::ui::Widget* costsliver = (cocos2d::ui::Widget*)eventnode_3->getChildByName("costsliver");
+	costsliver->setVisible(true);
+	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)costsliver->getChildByName("desc");
+	desc->setString(ResourceLang::map_lang["elderextort"]);
+
+	cocos2d::ui::Text* textdesc = (cocos2d::ui::Text*)eventnode_3->getChildByName("text");
+	std::string str = StringUtils::format("event%d_2", m_eventindex);
+	textdesc->setString(ResourceLang::map_lang[str]);
+
+	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)eventnode_3->getChildByName("closebtn");
+	closebtn->addTouchEventListener(CC_CALLBACK_2(MapEventLayer::onBtnClick, this));
+	closebtn->setTag(0);
+	cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)closebtn->getChildByName("text");
+	text->loadTexture(ResourcePath::makeTextImgPath("mapeventtext_lk", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	str = StringUtils::format("images/event%d-2.jpg", m_eventindex);
+	eventimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
+
+	if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= 5000)
+	{
+		DynamicValueInt val;
+		val.setValue(5000);
+		GlobalInstance::getInstance()->costMySoliverCount(val);
+	}
+	else
+	{
+		GlobalInstance::getInstance()->costMySoliverCount(GlobalInstance::getInstance()->getMySoliverCount());
 	}
 }
 
@@ -256,7 +461,7 @@ int MapEventLayer::getResCountRand(std::string id)
 {
 	int max = GlobalInstance::map_eventdata[id].max;
 	int min = GlobalInstance::map_eventdata[id].min;
-	int r = GlobalInstance::getInstance()->createRandomNum(max - min) + min + 1;
+	int r = GlobalInstance::getInstance()->createRandomNum(max - min + 1) + min;
 	return r;
 }
 
@@ -306,6 +511,9 @@ void MapEventLayer::boxEventNode()
 	cocos2d::ui::Text* textdesc = (cocos2d::ui::Text*)eventnode_2->getChildByName("text");
 	std::string str = StringUtils::format("event%d_1", m_eventindex);
 	textdesc->setString(ResourceLang::map_lang[str]);
+
+	str = StringUtils::format("images/event%d-1.jpg", m_eventindex);
+	eventimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 
 	cocos2d::ui::Button* actionbtn = (cocos2d::ui::Button*)eventnode_2->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(MapEventLayer::onBtnClick, this));

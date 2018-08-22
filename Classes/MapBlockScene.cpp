@@ -272,6 +272,9 @@ void MapBlockScene::updateTaskInfo(float dt)
 		if (GlobalInstance::myCurBranchData.id == 1)
 		{
 			textbranch->setString(ResourceLang::map_lang["nottasktext"]);
+			textbranch->setVisible(false);
+			cocos2d::ui::Widget* maptask_branch = (cocos2d::ui::Widget*)m_tasknode->getChildByName("maptask_branch_4");
+			maptask_branch->setVisible(false);
 		}
 		else
 		{
@@ -801,7 +804,7 @@ void MapBlockScene::doMyStatus()
 			mapblock->map_eventrnd[rnd_it->first] = 0;
 		}
 
-		if (ret == 0 || ret == 1 || ret == 6)//其它事件美术没有准备好，会崩溃，有图后打开这里
+		if (ret == 0 || ret == 1 || ret == 3 || ret == 5 || ret == 6)//其它事件美术没有准备好，会崩溃，有图后打开这里
 		{
 			MapEventLayer* mlayer = MapEventLayer::create(ret);
 			this->addChild(mlayer);

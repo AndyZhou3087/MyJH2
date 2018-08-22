@@ -294,7 +294,7 @@ void TakeOnLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		}
 		case 1004://强化
 		{
-			StrengthenLayer* sLayer = StrengthenLayer::create(m_equip);
+			StrengthenLayer* sLayer = StrengthenLayer::create(m_equip,0);
 			this->addChild(sLayer);
 			AnimationEffect::openAniEffect((Layer*)sLayer);
 			break;

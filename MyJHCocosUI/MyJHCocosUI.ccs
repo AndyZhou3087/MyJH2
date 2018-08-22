@@ -476,6 +476,10 @@
           <Image Name="mapeventtext_0_1.png" />
           <Image Name="mapeventtext_1_0.png" />
           <Image Name="mapeventtext_1_1.png" />
+          <Image Name="mapeventtext_3_0.png" />
+          <Image Name="mapeventtext_3_1.png" />
+          <Image Name="mapeventtext_5_0.png" />
+          <Image Name="mapeventtext_5_1.png" />
           <Image Name="mapeventtext_6_0.png" />
           <Image Name="mapeventtext_6_1.png" />
           <Image Name="mapeventtext_lk.png" />
@@ -640,6 +644,9 @@
           <Image Name="b002.png" />
           <Image Name="b003.png" />
           <Image Name="b004.png" />
+          <Image Name="bet_0.png" />
+          <Image Name="bet_1.png" />
+          <Image Name="bet_select.png" />
           <Image Name="bigstar.png" />
           <Image Name="blank.png" />
           <Image Name="buildingactbtn_d.png" />
@@ -678,6 +685,12 @@
           <Image Name="dailytask_7.png" />
           <Image Name="dailytask_8.png" />
           <Image Name="dailytask_9.png" />
+          <Image Name="dice1.png" />
+          <Image Name="dice2.png" />
+          <Image Name="dice3.png" />
+          <Image Name="dice4.png" />
+          <Image Name="dice5.png" />
+          <Image Name="dice6.png" />
           <Image Name="e001.png" />
           <Image Name="e001-2.png" />
           <Image Name="e001-3.png" />
@@ -934,6 +947,7 @@
         <Project Name="achieveNode.csd" Type="Node" />
         <Project Name="cardHeroNode.csd" Type="Node" />
         <Project Name="changeHeadLayer.csd" Type="Layer" />
+        <Project Name="changeVocationLayer.csd" Type="Layer" />
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
         <Project Name="equipDescLayer.csd" Type="Layer" />
         <Project Name="eventBusinessLayer.csd" Type="Layer" />
@@ -942,6 +956,7 @@
         <Project Name="fightHeroNode.csd" Type="Node" />
         <Project Name="fightLayer.csd" Type="Layer" />
         <Project Name="fightResultLayer.csd" Type="Layer" />
+        <Project Name="gambleBoxLayer.csd" Type="Layer" />
         <Project Name="headInfoLayer.csd" Type="Layer" />
         <Project Name="heroAttrLayer.csd" Type="Layer" />
         <Project Name="hillResNode.csd" Type="Node" />
