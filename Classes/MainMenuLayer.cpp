@@ -84,22 +84,27 @@ bool MainMenuLayer::init()
 	}
 
 	cocos2d::ui::Widget* headimgbox = (cocos2d::ui::Widget*)csbnode->getChildByName("headimgbox");
-	ClippingNode* m_clippingNode = ClippingNode::create();
-	m_clippingNode->setInverted(false);//设置底板可见
-	m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
-	csbnode->addChild(m_clippingNode, 1);
-	m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
-	m_clippingNode->setPosition(Vec2(headimgbox->getPositionX(), headimgbox->getPositionY() + 45));
-	std::string str = StringUtils::format("images/cardh_%d_0.png", DataSave::getInstance()->getHeadId());
-	head = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::LOCAL);
-	head->setAnchorPoint(Vec2(0.5, 1));
-	head->setPositionY(20);
-	m_clippingNode->addChild(head);
-	Node* stencil = Node::create();
-	Sprite* cnode = Sprite::createWithSpriteFrameName("ui/headclip.png");
-	cnode->setAnchorPoint(Vec2(0.5, 1));
-	stencil->addChild(cnode);
-	m_clippingNode->setStencil(stencil);
+	head = (cocos2d::ui::ImageView*)headimgbox->getChildByName("headimg");
+	std::string str = StringUtils::format("ui/h_%d_0.png", DataSave::getInstance()->getHeadId());
+	head->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+	head->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
+
+	//ClippingNode* m_clippingNode = ClippingNode::create();
+	//m_clippingNode->setInverted(false);//设置底板可见
+	//m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
+	//csbnode->addChild(m_clippingNode, 1);
+	//m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
+	//m_clippingNode->setPosition(Vec2(headimgbox->getPositionX(), headimgbox->getPositionY() + 80));
+	//std::string str = StringUtils::format("images/cardh_%d_0.png", DataSave::getInstance()->getHeadId());
+	//head = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::LOCAL);
+	//head->setAnchorPoint(Vec2(0.5, 1));
+	//head->setPositionY(0);
+	//m_clippingNode->addChild(head);
+	//Node* stencil = Node::create();
+	//Sprite* cnode = Sprite::createWithSpriteFrameName("ui/headclip.png");
+	//cnode->setAnchorPoint(Vec2(0.5, 1));
+	//stencil->addChild(cnode);
+	//m_clippingNode->setStencil(stencil);
 
 	updateUI(0);
 	this->schedule(schedule_selector(MainMenuLayer::updateUI), 1.0f);
@@ -202,8 +207,9 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 void MainMenuLayer::changeHead()
 {
-	std::string str = StringUtils::format("images/cardh_%d_0.png", DataSave::getInstance()->getHeadId());
-	head->loadTexture(str, cocos2d::ui::Widget::TextureResType::LOCAL);
+	std::string str = StringUtils::format("ui/h_%d_0.png", DataSave::getInstance()->getHeadId());
+	head->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+	head->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
 }
 
 void MainMenuLayer::onExit()

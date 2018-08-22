@@ -80,26 +80,33 @@ bool HeadInfoLayer::init()
 	text->loadTexture(ResourcePath::makeTextImgPath("closebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ImageView* headimgbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("headbox");
-
-	ClippingNode* m_clippingNode = ClippingNode::create();
-	m_clippingNode->setInverted(false);//设置底板可见
-	m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
-	csbnode->addChild(m_clippingNode, 1);
-	m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
-	m_clippingNode->setPosition(Vec2(headimgbox->getPositionX(), headimgbox->getPositionY() + 45));
-	str = StringUtils::format("images/cardh_%d_0.png", DataSave::getInstance()->getHeadId());
-	head = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::LOCAL);
-	head->addTouchEventListener(CC_CALLBACK_2(HeadInfoLayer::onBtnClick, this));
-	head->setTouchEnabled(true);
+	head = (cocos2d::ui::ImageView*)csbnode->getChildByName("headicon");
 	head->setTag(1);
-	head->setAnchorPoint(Vec2(0.5, 1));
-	head->setPositionY(20);
-	m_clippingNode->addChild(head);
-	Node* stencil = Node::create();
-	Sprite* cnode = Sprite::createWithSpriteFrameName("ui/headclip.png");
-	cnode->setAnchorPoint(Vec2(0.5, 1));
-	stencil->addChild(cnode);
-	m_clippingNode->setStencil(stencil);
+	head->setTouchEnabled(true);
+	head->addTouchEventListener(CC_CALLBACK_2(HeadInfoLayer::onBtnClick, this));
+	str = StringUtils::format("ui/h_%d_0.png", DataSave::getInstance()->getHeadId());
+	head->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+	head->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
+
+	//ClippingNode* m_clippingNode = ClippingNode::create();
+	//m_clippingNode->setInverted(false);//设置底板可见
+	//m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
+	//csbnode->addChild(m_clippingNode, 1);
+	//m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
+	//m_clippingNode->setPosition(Vec2(headimgbox->getPositionX(), headimgbox->getPositionY() + 45));
+	//str = StringUtils::format("images/cardh_%d_0.png", DataSave::getInstance()->getHeadId());
+	//head = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::LOCAL);
+	//head->addTouchEventListener(CC_CALLBACK_2(HeadInfoLayer::onBtnClick, this));
+	//head->setTouchEnabled(true);
+	//head->setTag(1);
+	//head->setAnchorPoint(Vec2(0.5, 1));
+	//head->setPositionY(20);
+	//m_clippingNode->addChild(head);
+	//Node* stencil = Node::create();
+	//Sprite* cnode = Sprite::createWithSpriteFrameName("ui/headclip.png");
+	//cnode->setAnchorPoint(Vec2(0.5, 1));
+	//stencil->addChild(cnode);
+	//m_clippingNode->setStencil(stencil);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -147,8 +154,9 @@ void HeadInfoLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 void HeadInfoLayer::changeHead()
 {
-	std::string str = StringUtils::format("images/cardh_%d_0.png", DataSave::getInstance()->getHeadId());
-	head->loadTexture(str, cocos2d::ui::Widget::TextureResType::LOCAL);
+	std::string str = StringUtils::format("ui/h_%d_0.png", DataSave::getInstance()->getHeadId());
+	head->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+	head->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
 }
 
 void HeadInfoLayer::onExit()

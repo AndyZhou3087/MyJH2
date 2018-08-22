@@ -80,7 +80,7 @@ bool TaskBranchDescLayer::init(TaskBranchData* data)
 
 	//npcÍ·Ïñ
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
-	std::string str = StringUtils::format("mapui/%s.png", GlobalInstance::map_Npcs[data->npcid].icon.c_str());
+	std::string str = "mapui/n002.png";//StringUtils::format("mapui/%s.png", GlobalInstance::map_Npcs[data->npcid].icon.c_str());
 	/*icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 	icon->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());*/
 	icon->setVisible(false);

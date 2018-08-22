@@ -16,7 +16,7 @@
             <PreSize X="0.8333" Y="0.5172" />
             <FileData Type="Normal" Path="images/smallbg.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="actionbtn" ActionTag="-1138230504" Tag="164" IconVisible="False" LeftMargin="261.0000" RightMargin="255.0000" TopMargin="851.0001" BottomMargin="344.9998" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="actionbtn" ActionTag="-1138230504" Tag="164" IconVisible="False" LeftMargin="261.0000" RightMargin="255.0000" TopMargin="851.0002" BottomMargin="344.9998" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-904874607" Tag="165" IconVisible="False" LeftMargin="64.5216" RightMargin="65.4784" TopMargin="21.2404" BottomMargin="25.7596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="24" Scale9Height="11" ctype="ImageViewObjectData">
@@ -91,25 +91,25 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="headicon" ActionTag="-368101855" VisibleForFrame="False" Tag="170" IconVisible="False" LeftMargin="308.6671" RightMargin="302.3329" TopMargin="381.2421" BottomMargin="789.7579" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="71" Scale9Height="75" ctype="ImageViewObjectData">
-            <Size X="109.0000" Y="109.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="363.1671" Y="844.2579" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5044" Y="0.6596" />
-            <PreSize X="0.1514" Y="0.0852" />
-            <FileData Type="MarkedSubImage" Path="ui/a001.png" Plist="ui.plist" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="headbox" ActionTag="710113040" Tag="171" IconVisible="False" LeftMargin="296.1671" RightMargin="289.8329" TopMargin="368.7435" BottomMargin="777.2565" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="52" Scale9Height="52" ctype="ImageViewObjectData">
-            <Size X="134.0000" Y="134.0000" />
+          <AbstractNodeData Name="headbox" ActionTag="710113040" Tag="171" IconVisible="False" LeftMargin="290.1671" RightMargin="283.8329" TopMargin="362.7435" BottomMargin="771.2565" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="64" Scale9Height="64" ctype="ImageViewObjectData">
+            <Size X="146.0000" Y="146.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="363.1671" Y="844.2565" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5044" Y="0.6596" />
-            <PreSize X="0.1861" Y="0.1047" />
-            <FileData Type="MarkedSubImage" Path="ui/headbox.png" Plist="ui.plist" />
+            <PreSize X="0.2028" Y="0.1141" />
+            <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="headicon" ActionTag="-368101855" Tag="170" IconVisible="False" LeftMargin="295.6671" RightMargin="287.3329" TopMargin="358.2423" BottomMargin="780.7577" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="99" Scale9Height="107" ctype="ImageViewObjectData">
+            <Size X="137.0000" Y="141.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="364.1671" Y="851.2577" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5058" Y="0.6650" />
+            <PreSize X="0.1903" Y="0.1102" />
+            <FileData Type="MarkedSubImage" Path="ui/h_0_0.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>
