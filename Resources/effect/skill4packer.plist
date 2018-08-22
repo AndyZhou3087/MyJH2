@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>effect/yifudangguan/bd1_0000.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,186},{173,195}}</string>
+				<key>offset</key>
+				<string>{0,-2}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/juqi1_0000.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{139,381},{126,124}}</string>
+				<key>offset</key>
+				<string>{1,2}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/juqi2_0000.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{855,337},{154,154}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/k1_0000.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{263,369},{134,135}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/k2_0000.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{397,366},{116,119}}</string>
+				<key>offset</key>
+				<string>{5,1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/k3_0000.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,381},{125,139}}</string>
+				<key>offset</key>
+				<string>{2,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/k4_0000.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{173,186},{174,183}}</string>
+				<key>offset</key>
+				<string>{1,1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/k4_0001.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{347,181},{169,185}}</string>
+				<key>offset</key>
+				<string>{2,1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/k4_0002.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{516,176},{167,184}}</string>
+				<key>offset</key>
+				<string>{0,2}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/k4_0003.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{532,0},{166,184}}</string>
+				<key>offset</key>
+				<string>{-1,3}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/k4_0004.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{716,0},{166,175}}</string>
+				<key>offset</key>
+				<string>{-4,8}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/k4_0005.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{683,337},{172,173}}</string>
+				<key>offset</key>
+				<string>{-4,8}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/k4_0006.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{683,166},{171,175}}</string>
+				<key>offset</key>
+				<string>{-2,6}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/k4_0007.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{357,0},{176,175}}</string>
+				<key>offset</key>
+				<string>{-1,4}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/k4_0008.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{183,0},{181,174}}</string>
+				<key>offset</key>
+				<string>{0,-2}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/yifudangguan/k4_0009.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{186,183}}</string>
+				<key>offset</key>
+				<string>{2,-1}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>skill4packer.png</string>
+			<key>realTextureFileName</key>
+			<string>skill4packer.png</string>
+			<key>size</key>
+			<string>{1009,510}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>1009</integer>
+			<key>height</key>
+			<integer>510</integer>
+		</dict>
+	</dict>
+</plist>

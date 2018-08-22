@@ -18,6 +18,7 @@ FightHeroNode::FightHeroNode()
 	hurtup = 0.0f;
 	atkspeedbns = 0.0f;
 	dfbns = 0.0f;
+	skillIndex = -1;
 }
 
 
@@ -188,8 +189,13 @@ void FightHeroNode::update(float dt)
 		timedt = 0.0f;
 		FightingLayer* fighting = (FightingLayer*)this->getParent();
 		fighting->pauseAtkSchedule();
-		this->runAction(Sequence::create(ScaleTo::create(0.2f, 1.5f), ScaleTo::create(0.1f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
-		playSkillEffect(1);
+		if (skillIndex != 3)
+		{
+			showAtkOrHurtAnim(0);
+			this->runAction(Sequence::create(ScaleTo::create(0.2f, 1.5f), ScaleTo::create(0.1f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
+		}
+		else
+			this->runAction(Sequence::create(DelayTime::create(0.1f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
 	}
 	
 	atkspeed_bar->setPercent(timedt * 100 / getAtkSpeed());
@@ -248,7 +254,9 @@ void FightHeroNode::hurt(float hp, int stat)
 			else
 			{
 				numfnt->setFntFile("fonts/normalhurtnum.fnt");
-				statusimg->loadTexture("mapui/hurticon.png", cocos2d::ui::Widget::TextureResType::PLIST);
+				statusimg->loadTexture("ui/blank.png", cocos2d::ui::Widget::TextureResType::PLIST);
+				if (skillIndex < 0)
+					showAtkOrHurtAnim(1);
 				numfnt->setVisible(true);
 			}
 			numfnt->setString(hurtstr);
@@ -262,7 +270,6 @@ void FightHeroNode::hurt(float hp, int stat)
 		{
 			hurtAnimFinish();
 		}
-		attackedSkillEffect(1);
 	}
 } 
 
@@ -294,29 +301,54 @@ void FightHeroNode::hurtAnimFinish()
 	{
 		if (m_Data->getHp() <= 0)
 		{
+			removePlaySkillAnim(0);
+			fighting->clearSkill(this->getTag());
+
 			if (checkReviveSkill())
+			{
+				playSkill(SKILL_13, NULL);
+				attackedSkill(SKILL_13, this->getTag());
+
 				return;
+			}
+			else
+			{
+				this->unscheduleUpdate();
+				((Hero*)m_Data)->setState(HS_DEAD);
 
-			this->unscheduleUpdate();
-			((Hero*)m_Data)->setState(HS_DEAD);
+				((Hero*)m_Data)->setPos(0);
 
-			((Hero*)m_Data)->setPos(0);
+				int v = ((Hero*)m_Data)->getVocation();
 
-			int v = ((Hero*)m_Data)->getVocation();
-
-			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DIE);
+				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DIE);
+			}
 		}
+
 		fighting->updateMapHero(this->getTag());
 	}
+	else
+	{
+		if (m_Data->getHp() <= 0)
+		{
+			for (int i = 0; i < 6; i++)
+			{
+				if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getWhoSufferskill() == (this->getTag() - 6))
+				{
+					fighting->clearSkill(i);
+					break;
+				}
+			}
+		}
 
-	fighting->resumeAtkSchedule();
+	}
+	if (skillIndex != SKILL_15 && skillIndex != SKILL_20)
+		fighting->resumeAtkSchedule();
 }
 
 bool FightHeroNode::checkReviveSkill()
 {
 	GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_WG, m_Data->getName());
-	if (gf != NULL)
-		gf->setSkillCount(0);
+
 	gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, m_Data->getName());
 	if (gf != NULL)
 	{
@@ -325,7 +357,6 @@ bool FightHeroNode::checkReviveSkill()
 			if (gf->getSkillCount() <= 0)
 			{
 				gf->setSkillCount(1);
-				this->scheduleOnce(schedule_selector(FightHeroNode::reviveOnce), 0.2f);
 				return true;
 			}
 		}
@@ -337,10 +368,9 @@ bool FightHeroNode::checkReviveSkill()
 	return false;
 }
 
-void FightHeroNode::reviveOnce(float dt)
+void FightHeroNode::reviveOnce(float hp)
 {
-	GongFa* res = (GongFa*)MyRes::getMyPutOnResByType(T_NG, m_Data->getName());
-	m_Data->setHp(m_Data->getMaxHp()*100 / 100);
+	m_Data->setHp(hp);
 	this->setVisible(true);
 	updateHp();
 
@@ -489,6 +519,7 @@ void FightHeroNode::setFightState(int winexp)
 
 void FightHeroNode::playSkill(int stype, Npc* data)
 {
+	bool isPlayAnim = false;
 	std::string skillid = StringUtils::format("sk%03d", stype);
 	int gftype = T_WG;
 
@@ -500,6 +531,7 @@ void FightHeroNode::playSkill(int stype, Npc* data)
 	if (gf == NULL)
 		return;
 
+	skillIndex = stype;
 	if (m_Data->getId().length() <= 0)//是否是自己的英雄
 	{
 		skilllbl->setVisible(true);
@@ -513,94 +545,234 @@ void FightHeroNode::playSkill(int stype, Npc* data)
 
 			float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
 			hp_bar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
+			isPlayAnim = true;
 		}
 		else if (stype == SKILL_2)//释放技能后造成%d倍伤害。
 		{
-
+			isPlayAnim = true;
 		}
 
 		else if (stype == SKILL_3)//被攻击目标%d回合内无法进行攻击。
 		{
 			if (gf->getSkillCount() <= 0)
-				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff1);
+			{
+				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+				isPlayAnim = true;
+			}
 		}
 		else if (stype == SKILL_4)//释放技能后所有敌人攻击你%d回合。
 		{
 			if (gf->getSkillCount() <= 0)
-				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff1);
+			{
+				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+				isPlayAnim = true;
+			}
 		}
 		else if (stype == SKILL_9)//增加自身攻击速度%.2f。持续%d回合
 		{
-			atkspeedbns = GlobalInstance::map_GF[gf->getId()].skilleff1;
 			if (gf->getSkillCount() <= 0)
+			{
+				atkspeedbns = GlobalInstance::map_GF[gf->getId()].skilleff1;
 				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+				isPlayAnim = true;
+			}
 		}
 		else if (stype == SKILL_10)//降低对方攻击速度%.2f。持续%d回合
 		{
 			if (gf->getSkillCount() <= 0)
+			{
 				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+				isPlayAnim = true;
+			}
 		}
 		else if (stype == SKILL_11)// 降低对方防御%.2f，持续%d回合。
 		{
 			if (gf->getSkillCount() <= 0)
+			{
 				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+				isPlayAnim = true;
+			}
 		}
 		else if (stype == SKILL_12)//触发时提升自身攻击%.2f，持续%d回合。
 		{
-			log("zhou skillindex = 12, tcount = %d", (int)GlobalInstance::map_GF[gf->getId()].skilleff2);
 			if (gf->getSkillCount() <= 0)
+			{
 				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+				isPlayAnim = true;
+			}
 		}
 		else if (stype == SKILL_13)//死亡后复活一次。复活后生命值为%.2f。
 		{
+			isPlayAnim = true;
 		}
 		else if (stype == SKILL_14)//触发时减少%.2f伤害，持续%d回合。
 		{
 			if (gf->getSkillCount() <= 0)
+			{
 				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+				isPlayAnim = true;
+			}
 		}
 		else if (stype == SKILL_15)
 		{
-
+			isPlayAnim = true;
 		}
 		else if (stype == SKILL_16)
 		{
 			dfbns = GlobalInstance::map_GF[gf->getId()].skilleff1;
 			if (gf->getSkillCount() <= 0)
+			{
 				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+				isPlayAnim = true;
+			}
 		}
 		else if (stype == SKILL_17)
 		{
-			dfbns = GlobalInstance::map_GF[gf->getId()].skilleff1;
+			dfbns = -GlobalInstance::map_GF[gf->getId()].skilleff1;
 			if (gf->getSkillCount() <= 0)
+			{
 				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+				isPlayAnim = true;
+			}
 		}
 		else if (stype == SKILL_18)//
 		{
 			if (gf->getSkillCount() <= 0)
+			{
 				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+				isPlayAnim = true;
+			}
 		}
 		else if (stype == SKILL_19)//
 		{
-
+			isPlayAnim = true;
 		}
 		else if (stype == SKILL_20)//
 		{
-
+			isPlayAnim = true;
 		}
+		else
+		{
+			isPlayAnim = true;
+		}
+		float delay = 0.0f;
+		if (stype == 1)
+			delay = 1.0f;
 
-		playSkillEffect(1);
+		if (stype != 7 && stype != 8)
+		{
+			if (isPlayAnim)
+			{
+				headbox->scheduleOnce(schedule_selector(FightHeroNode::removeAtkOrHurtAnim), 0.05f);
+				headbox->runAction(Sequence::create(DelayTime::create(delay), CallFunc::create(CC_CALLBACK_0(FightHeroNode::playSkillEffect, this, stype)), NULL));
+			}
+		}
+	}
+}
+
+void FightHeroNode::attackedSkill(int stype, int myHeroPos)
+{
+	float dt1 = 1.0f;
+	float dt2 = 1.0f;
+	if (stype == 1)
+	{
+		dt1 = 0;
+		dt2 = 0.8f;
+	}
+	else if (stype == 2)
+	{
+		dt1 = 0.3f;
+		dt2 = 1.0f;
+	}
+	else if (stype == 3)
+	{
+		dt1 = 0.6f;
+		dt2 = 1.0f;
+	}
+	else if (stype == 4)
+	{
+		dt1 = 1.5f;
+		dt2 = 0.5f;
+	}
+	else if (stype == 6)
+	{
+		dt1 = 0.8f;
+		dt2 = 0.5f;
+	}
+	else if (stype == 7 || stype == 8)
+	{
+		dt1 = 0.2f;
+		dt2 = 1.5f;
+	}
+	else if (stype == 9)
+	{
+		dt1 = 1.0f;
+		dt2 = 1.3f;
+	}
+	else if (stype == 10)
+	{
+		dt1 = 1.0f;
+		dt2 = 1.5f;
+	}
+	else if (stype == 12)
+	{
+		dt1 = 1.0f;
+		dt2 = 1.2f;
+	}
+	else if (stype == 13)
+	{
+		dt1 = 1.0f;
+		dt2 = 1.75f;
+	}
+	else if (stype == 15)
+	{
+		dt1 = 0.8f;
+		dt2 = 1.2f;
+	}
+	else if (stype == 17)
+	{
+		dt1 = 0.0f;
+		dt2 = 0.5f;
+	}
+	else if (stype == 18)
+	{
+		dt1 = 0.0f;
+		dt2 = 1.5f;
+	}
+	else if (stype == 20)
+	{
+		dt1 = 0.3f;
+		dt2 = 1.5f;
 	}
 
-}
-void FightHeroNode::attackedSkill(int stype, Npc* data)
-{
-	//std::string skillid = StringUtils::format("sk%03d", stype);
-	this->runAction(Sequence::create(DelayTime::create(1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, data)), NULL));
-	attackedSkillEffect(1);
+	skillIndex = stype;
+	if (stype != 4 && stype != 9 && stype != 12 && stype != 13 && stype != 17 && stype != 18)
+	{
+		int gftype = T_WG;
+
+		if (stype > SKILL_8)
+			gftype = T_NG;
+		GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(gftype, GlobalInstance::myCardHeros[myHeroPos]->getName());
+
+		if (gf == NULL)
+			return;
+		int roundcount = (int)GlobalInstance::map_GF[gf->getId()].skilleff2;
+		if ((roundcount > 0 && gf->getSkillCount() == roundcount) || roundcount == 0 || stype == 8)
+			headimg->runAction(Sequence::create(DelayTime::create(dt1), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillEffect, this, stype, myHeroPos)), NULL));
+		else
+		{
+			if (stype != 3)
+				showAtkOrHurtAnim(1);
+			else
+				hurt(GlobalInstance::myCardHeros[myHeroPos]->getAtk());
+			dt2 = 0;
+		}
+	}
+
+	namelbl->runAction(Sequence::create(DelayTime::create(dt2), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, myHeroPos)), NULL));
 }
 
-void FightHeroNode::attackedSkillCB(int stype, Npc* data)
+void FightHeroNode::attackedSkillCB(int stype, int myHeroPos)
 {
 	FightingLayer* fighting = (FightingLayer*)this->getParent();
 
@@ -609,6 +781,7 @@ void FightHeroNode::attackedSkillCB(int stype, Npc* data)
 	if (stype > SKILL_8)
 		gftype = T_NG;
 
+	Hero *data = GlobalInstance::myCardHeros[myHeroPos];
 	ResBase* gf = MyRes::getMyPutOnResByType(gftype, data->getName());
 
 	if (gf == NULL)
@@ -618,13 +791,13 @@ void FightHeroNode::attackedSkillCB(int stype, Npc* data)
 	{
 		float eff = GlobalInstance::map_GF[gf->getId()].skilleff1;
 		hurt(eff*m_Data->getMaxHp() / 100);
-		fighting->clearSkill(this->getTag());
+		fighting->clearSkill(myHeroPos);
 	}
 	else if (stype == SKILL_2)//释放技能后造成%d倍伤害。
 	{
 		float eff = GlobalInstance::map_GF[gf->getId()].skilleff1;
 		hurt(eff*data->getAtk());
-		fighting->clearSkill(this->getTag());
+		fighting->clearSkill(myHeroPos);
 	}
 	else if (stype == SKILL_3)//被攻击目标%d回合内无法进行攻击。
 	{
@@ -636,13 +809,14 @@ void FightHeroNode::attackedSkillCB(int stype, Npc* data)
 	}
 	else if (stype == SKILL_5 || stype == SKILL_6)//同时攻击%d个目标。
 	{
-		fighting->skillAction(stype, this->getTag());
-		fighting->clearSkill(this->getTag());
+		fighting->skillAction(stype, myHeroPos);
+		fighting->clearSkill(myHeroPos);
 	}
 	else if (stype == SKILL_7 || stype == SKILL_8)//恢复单个队友血量%.2f。恢复%d个队友血量%.2f。
 	{
-		fighting->skillAction(stype, this->getTag());
-		fighting->clearSkill(this->getTag());
+		fighting->skillAction(stype, myHeroPos);
+		fighting->clearSkill(myHeroPos);
+		nextRound();
 	}
 	else if (stype == SKILL_9 || stype == SKILL_10)//增加自身攻击速度%.2f。
 	{
@@ -656,9 +830,10 @@ void FightHeroNode::attackedSkillCB(int stype, Npc* data)
 	{
 		hurt((1 + GlobalInstance::map_GF[gf->getId()].skilleff1)*data->getAtk());
 	}
-	else if (stype == SKILL_13)//死亡后复活，不做处理
+	else if (stype == SKILL_13)//死亡后复活
 	{
-
+		reviveOnce(m_Data->getMaxHp()*GlobalInstance::map_GF[gf->getId()].skilleff1 / 100);
+		fighting->clearSkill(myHeroPos);
 	}
 	else if (stype == SKILL_14)
 	{
@@ -666,11 +841,18 @@ void FightHeroNode::attackedSkillCB(int stype, Npc* data)
 	}
 	else if (stype == SKILL_15)
 	{
-		nextRound();
+
+		//FightHeroNode* fnode = (FightHeroNode*)this->getParent()->getChildByTag(myHeroPos);
+		//fnode->hurt(m_Data->getAtk());
+
+		hurt(m_Data->getAtk()*GlobalInstance::map_GF[gf->getId()].skilleff1 / 100);
+		fighting->clearSkill(myHeroPos);
+
 	}
 	else if (stype == SKILL_16)
 	{
 		nextRound();
+
 	}
 	else if (stype == SKILL_17)
 	{
@@ -682,35 +864,30 @@ void FightHeroNode::attackedSkillCB(int stype, Npc* data)
 	}
 	else if (stype == SKILL_19)
 	{
-		fighting->skillAction(stype, this->getTag());
-		fighting->clearSkill(this->getTag());
+		fighting->skillAction(stype, myHeroPos);
+		fighting->clearSkill(myHeroPos);
 	}
 	else if (stype == SKILL_20)
 	{
-		fighting->skillAction(stype, this->getTag());
-		fighting->clearSkill(this->getTag());
+		fighting->skillAction(stype, myHeroPos);
+		fighting->clearSkill(myHeroPos);
 	}
 }
 
-void FightHeroNode::recoveHp()
+void FightHeroNode::recoveHp(float hp)
 {
-	ResBase* res = MyRes::getMyPutOnResByType(T_WG, "w030");
+	float eff = hp;
+	m_Data->setHp(m_Data->getHp() + eff);
+	if (m_Data->getHp() + eff > m_Data->getMaxHp())
+		m_Data->setHp(m_Data->getMaxHp());
 
-	if (res != NULL)
-	{
-		float eff = GlobalInstance::map_GF[res->getId()].skilleff1 * m_Data->getMaxHp()/100;
-		m_Data->setHp(m_Data->getHp() + eff);
-		if (m_Data->getHp() + eff > m_Data->getMaxHp())
-			m_Data->setHp(m_Data->getMaxHp());
+	float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
+	hp_bar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), CallFunc::create(CC_CALLBACK_0(FightHeroNode::nextRound, this)),  NULL));
 
-		float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
-		hp_bar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), CallFunc::create(CC_CALLBACK_0(FightHeroNode::nextRound, this)),  NULL));
-
-		std::string hpstr = StringUtils::format("+%d", (int)eff);
-		numfnt->setString(hpstr);
-		numfnt->setFntFile("fonts/addhpnum.fnt");
-		numfnt->runAction(Sequence::create(Show::create(), DelayTime::create(0.35f), Hide::create(), NULL));
-	}
+	std::string hpstr = StringUtils::format("+%d", (int)eff);
+	numfnt->setString(hpstr);
+	numfnt->setFntFile("fonts/addhpnum.fnt");
+	numfnt->runAction(Sequence::create(Show::create(), DelayTime::create(0.35f), Hide::create(), NULL));
 }
 
 void FightHeroNode::nextRound()
@@ -721,23 +898,94 @@ void FightHeroNode::nextRound()
 
 void FightHeroNode::playSkillEffect(int stype)
 {
-	//auto effectnode = CSLoader::createNode("effect/zhimingdaji_qishou.csb");
-	//effectnode->setPosition(this->getPosition());
-	//this->getParent()->addChild(effectnode, 10);
+	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
+	auto effectnode = CSLoader::createNode(effectname);
+	effectnode->setPosition(this->getContentSize().width/2, this->getContentSize().height/2);
+	this->addChild(effectnode, 10, "playskillani");
 
-	//auto action = CSLoader::createTimeline("effect/zhimingdaji_qishou.csb");
-	//effectnode->runAction(action);
-	//action->gotoFrameAndPlay(0, false);
+	auto action = CSLoader::createTimeline(effectname);
+	effectnode->runAction(action);
+	action->gotoFrameAndPlay(0, false);
+
+	effectnode->scheduleOnce(schedule_selector(FightHeroNode::removePlaySkillAnim), action->getDuration()/60.0f);
 }
 
-void FightHeroNode::attackedSkillEffect(int stype)
+void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 {
-	//auto effectnode = CSLoader::createNode("effect/zhimingdaji_shouji.csb");
-	//effectnode->setPosition(this->getPosition());
-	////effectnode->setScale(0.7f);
-	//this->getParent()->addChild(effectnode, 10);
+	std::string effectname = StringUtils::format("effect/skill_%d_1.csb", stype);
+	auto effectnode = CSLoader::createNode(effectname);
+	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
+	this->addChild(effectnode, 10, "sufferskillani");
 
-	//auto action = CSLoader::createTimeline("effect/zhimingdaji_shouji.csb");
-	//effectnode->runAction(action);
-	//action->gotoFrameAndPlay(0, false);
+	auto action = CSLoader::createTimeline(effectname);
+	effectnode->runAction(action);
+	action->gotoFrameAndPlay(0, stype==3);
+
+	if (stype != 3)
+		effectnode->scheduleOnce(schedule_selector(FightHeroNode::removeSufferSkillAnim), action->getDuration()/60.0f);
+
+	if (stype == 1)
+	{
+		float offsety = 450;
+		float angle = 0;
+		Vec2 pos = this->getPosition();
+		Vec2 mypos = this->getParent()->getChildByTag(myHeroPos)->getPosition();
+		float tanx = pos.x - mypos.x;
+		float tany = pos.y - mypos.y;
+		float tanz = sqrt(tanx*tanx + tany*tany);
+		float tan_yx = std::fabs(tany) / std::fabs(tanx);
+		angle = 90 - atan(tan_yx) * 180 / M_PI;
+		
+		float movex = 0;
+		if (tanx > 0)
+		{
+			effectnode->setRotation(angle);
+			movex = mypos.x + offsety * sin(angle * M_PI / 180);
+		}
+		else
+		{
+			effectnode->setRotation(-angle);
+			movex = mypos.x - offsety * sin(angle * M_PI / 180);
+		}
+		float movey = mypos.y + offsety * cos(angle * M_PI / 180);
+
+
+		if (tanz > 420)
+			effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
+	}
+}
+
+void FightHeroNode::showAtkOrHurtAnim(int type)
+{
+	std::string effectname;
+	if (type == 0)
+	{
+		effectname ="effect/atkanim.csb";
+	}
+	else
+	{
+		effectname = "effect/hurtanim.csb";
+	}
+	auto effectnode = CSLoader::createNode(effectname);
+	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
+	this->addChild(effectnode, 10, "atkhurt");
+	auto action = CSLoader::createTimeline(effectname);
+	effectnode->runAction(action);
+	action->gotoFrameAndPlay(0, false);
+	effectnode->scheduleOnce(schedule_selector(FightHeroNode::removeAtkOrHurtAnim), 0.33f);
+}
+
+void FightHeroNode::removeAtkOrHurtAnim(float dt)
+{
+	this->removeChildByName("atkhurt");
+}
+
+void FightHeroNode::removePlaySkillAnim(float dt)
+{
+	this->removeChildByName("playskillani");
+}
+
+void FightHeroNode::removeSufferSkillAnim(float dt)
+{
+	this->removeChildByName("sufferskillani");
 }

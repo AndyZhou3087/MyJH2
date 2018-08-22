@@ -199,7 +199,7 @@ void FightingLayer::showAtk(int fightertag)
 		if (GlobalInstance::myCardHeros[fightertag]->getState() != HS_DEAD)//没有死亡可继续战斗
 		{
 			int stype = checkWgSkill(GlobalInstance::myCardHeros[fightertag], 0);
-			if (stype >= 0)
+			if (stype >= 0 && stype != SKILL_13 && stype != SKILL_15 && stype != SKILL_18 && stype != SKILL_20)
 			{
 				if (!GlobalInstance::myCardHeros[fightertag]->getIsSkilling())//谁发出的技能
 					GlobalInstance::myCardHeros[fightertag]->setIsSkilling(true);
@@ -237,10 +237,74 @@ void FightingLayer::showAtk(int fightertag)
 			if (GlobalInstance::myCardHeros[fightertag]->getIsSkilling())//触发了技能
 			{
 				FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(fightertag);
+
 				myfnode->playSkill(stype, m_enemyHeros[GlobalInstance::myCardHeros[fightertag]->getWhoSufferskill()]);//施展技能
 
-				FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(6 + GlobalInstance::myCardHeros[fightertag]->getWhoSufferskill());
-				enemyfnode->attackedSkill(stype, GlobalInstance::myCardHeros[fightertag]);//遭受技能
+				if (stype == SKILL_5 || stype == SKILL_6)//攻击多个
+				{
+					ResBase* res = MyRes::getMyPutOnResByType(T_WG, GlobalInstance::myCardHeros[fightertag]->getName());
+					if (res != NULL)
+					{
+						int scount = GlobalInstance::map_GF[res->getId()].skilleff1;
+						int ssize = m_enemyHeros.size();
+						int fcount = scount > ssize ? ssize : scount;
+
+						for (int m = 0; m < fcount; m++)
+						{
+							if (m_enemyHeros[m] != NULL && m_enemyHeros[m]->getHp() > 0)
+							{
+								FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + m);
+								fnode->attackedSkill(stype, fightertag);//遭受技能
+							}
+						}
+					}
+				}
+				else if (stype == SKILL_7 || stype == SKILL_8)//加血
+				{
+					GlobalInstance::myCardHeros[fightertag]->setWhoSufferskill(-1);
+					vec_myheronode.clear();
+					for (unsigned int i = 0; i < 6; i++)
+					{
+						if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getHp() > 0)
+						{
+							FightHeroNode* mynode = (FightHeroNode*)this->getChildByTag(i);
+							vec_myheronode.push_back(mynode);
+						}
+					}
+					std::sort(vec_myheronode.begin(), vec_myheronode.end(), sortbyHp_lesscb);
+
+					if (stype == SKILL_7)
+					{
+						if (vec_myheronode.size() >= 1)
+							vec_myheronode[0]->attackedSkill(stype, fightertag);
+					}
+					else
+					{
+						int ssize = vec_myheronode.size();
+						ResBase* res = MyRes::getMyPutOnResByType(T_WG, GlobalInstance::myCardHeros[fightertag]->getName());
+						if (res != NULL)
+						{
+							int scount = GlobalInstance::map_GF[res->getId()].skilleff2;
+							int c = ssize < scount ? ssize : scount;
+
+							for (int i = 0; i < c; i++)
+							{
+								vec_myheronode[i]->attackedSkill(stype, fightertag);
+							}
+						}
+					}
+				}
+				else if (stype == SKILL_15 || stype == SKILL_18)
+				{
+					FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(6 + enemyindex);
+					float atkhp = GlobalInstance::myCardHeros[fightertag]->getAtk();
+					enemyfnode->hurt(atkhp, 0);
+				}
+				else
+				{
+					FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(6 + GlobalInstance::myCardHeros[fightertag]->getWhoSufferskill());
+					enemyfnode->attackedSkill(stype, fightertag);//遭受技能
+				}
 			}
 			else//正常攻击
 			{
@@ -273,6 +337,7 @@ void FightingLayer::showAtk(int fightertag)
 			//增加自身攻击速度%.2f，持续%d回合。
 			if (stype == SKILL_9 && GlobalInstance::myCardHeros[fightertag]->getIsSkilling())
 			{
+				GlobalInstance::myCardHeros[fightertag]->setWhoSufferskill(-1);
 				GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, GlobalInstance::myCardHeros[fightertag]->getName());
 				if (gf != NULL)
 				{
@@ -292,15 +357,14 @@ void FightingLayer::showAtk(int fightertag)
 				GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, GlobalInstance::myCardHeros[fightertag]->getName());
 				if (gf != NULL)
 				{
+					if (gf->getSkillCount() == (int)GlobalInstance::map_GF[gf->getId()].skilleff2)
+						enemyfnode->atkspeedbns = -GlobalInstance::map_GF[gf->getId()].skilleff1;
+
 					gf->setSkillCount(gf->getSkillCount() - 1);
 					if (gf->getSkillCount() <= 0)
 					{
 						enemyfnode->atkspeedbns = 0.0f;
 						clearSkill(fightertag);
-					}
-					else
-					{
-						enemyfnode->atkspeedbns = -GlobalInstance::map_GF[gf->getId()].skilleff1;
 					}
 				}
 			}
@@ -311,20 +375,20 @@ void FightingLayer::showAtk(int fightertag)
 				GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, GlobalInstance::myCardHeros[fightertag]->getName());
 				if (gf != NULL)
 				{
+					if (gf->getSkillCount() == (int)GlobalInstance::map_GF[gf->getId()].skilleff2)
+						enemyfnode->dfbns = -GlobalInstance::map_GF[gf->getId()].skilleff1;
+
 					gf->setSkillCount(gf->getSkillCount() - 1);
 					if (gf->getSkillCount() <= 0)
 					{
 						enemyfnode->dfbns = 0.0f;
 						clearSkill(fightertag);
 					}
-					else
-					{
-						enemyfnode->dfbns = -GlobalInstance::map_GF[gf->getId()].skilleff1;
-					}
 				}
 			}
 			else if (stype == SKILL_12 && GlobalInstance::myCardHeros[fightertag]->getIsSkilling())
 			{
+				GlobalInstance::myCardHeros[fightertag]->setWhoSufferskill(-1);
 				GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, GlobalInstance::myCardHeros[fightertag]->getName());
 				if (gf != NULL)
 				{
@@ -427,25 +491,6 @@ void FightingLayer::showAtk(int fightertag)
 					fnode->hurt(atkhp*(1-GlobalInstance::map_GF[gf->getId()].skilleff1));
 				}
 			}
-			else if (checkWgSkill(GlobalInstance::myCardHeros[whoskillindex], 0) == SKILL_15)
-			{
-				FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(whoskillindex);
-				if (fnode->isVisible() && m_enemyHeros[fightertag - 6]->getHp() > 0)
-				{
-					float atkhp = m_enemyHeros[fightertag - 6]->getAtk();
-
-					GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, GlobalInstance::myCardHeros[whoskillindex]->getName());
-					if (gf != NULL)
-					{
-						fnode->hurt(atkhp);
-
-						FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(fightertag);
-						enemyfnode->getData()->setHp(enemyfnode->getData()->getHp() - atkhp*GlobalInstance::map_GF[gf->getId()].skilleff1 / 100);
-						enemyfnode->updateHp();
-						clearSkill(whoskillindex);
-					}
-				}
-			}
 			else if (checkWgSkill(GlobalInstance::myCardHeros[whoskillindex], 0) == SKILL_16)
 			{
 				FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(whoskillindex);
@@ -466,28 +511,77 @@ void FightingLayer::showAtk(int fightertag)
 					fnode->hurt(atkhp);
 				}
 			}
-			else if (checkWgSkill(GlobalInstance::myCardHeros[whoskillindex], 0) == SKILL_18)
-			{
-				FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(whoskillindex);
-				if (fnode->isVisible() && m_enemyHeros[fightertag - 6]->getHp() > 0)
-				{
-					float atkhp = m_enemyHeros[fightertag - 6]->getAtk();
-
-					GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, GlobalInstance::myCardHeros[whoskillindex]->getName());
-					if (gf != NULL)
-					{
-						gf->setSkillCount(gf->getSkillCount() - 1);
-						if (gf->getSkillCount() <= 0)
-							clearSkill(whoskillindex);
-					}
-					fnode->hurt(atkhp*(1 - GlobalInstance::map_GF[gf->getId()].skilleff1));
-				}
-			}
 		}
 		else
 		{
+
 			FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(myfindex);
+
 			float atkhp = m_enemyHeros[fightertag - 6]->getAtk();
+
+			int stype = checkWgSkill(GlobalInstance::myCardHeros[myfindex], 0);
+			if (stype == SKILL_15)
+			{
+				if (!GlobalInstance::myCardHeros[myfindex]->getIsSkilling())//谁发出的技能
+					GlobalInstance::myCardHeros[myfindex]->setIsSkilling(true);
+
+				if (myfnode->isVisible() && m_enemyHeros[fightertag - 6]->getHp() > 0)
+				{
+					GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, GlobalInstance::myCardHeros[myfindex]->getName());
+					if (gf != NULL)
+					{
+						GlobalInstance::myCardHeros[myfindex]->setWhoSufferskill(fightertag - 6);
+						FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(fightertag);
+						myfnode->playSkill(SKILL_15, m_enemyHeros[fightertag - 6]);
+						myfnode->hurt(enemyfnode->getData()->getAtk());
+						enemyfnode->attackedSkill(SKILL_15, myfindex);
+
+						return;
+					}
+				}
+			}
+			else if (stype == SKILL_18)
+			{
+				if (!GlobalInstance::myCardHeros[myfindex]->getIsSkilling())//谁发出的技能
+					GlobalInstance::myCardHeros[myfindex]->setIsSkilling(true);
+
+				if (myfnode->isVisible() && m_enemyHeros[fightertag - 6]->getHp() > 0)
+				{
+					GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, GlobalInstance::myCardHeros[myfindex]->getName());
+					if (gf != NULL)
+					{
+						FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(fightertag);
+						myfnode->playSkill(SKILL_18, m_enemyHeros[fightertag - 6]);
+						enemyfnode->attackedSkill(SKILL_18, myfindex);
+						gf->setSkillCount(gf->getSkillCount() - 1);
+						if (gf->getSkillCount() <= 0)
+							clearSkill(myfindex);
+					}
+					myfnode->hurt(atkhp*(1 - GlobalInstance::map_GF[gf->getId()].skilleff1));
+					return;
+				}
+			}
+			else if (stype == SKILL_20)
+			{
+				if (!GlobalInstance::myCardHeros[myfindex]->getIsSkilling())//谁发出的技能
+				{
+					GlobalInstance::myCardHeros[myfindex]->setIsSkilling(true);
+					GlobalInstance::myCardHeros[myfindex]->setWhoSufferskill(fightertag - 6);
+				}
+
+				if (myfnode->isVisible() && m_enemyHeros[fightertag - 6]->getHp() > 0)
+				{
+					GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, GlobalInstance::myCardHeros[myfindex]->getName());
+					if (gf != NULL)
+					{
+						FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(fightertag);
+						myfnode->playSkill(SKILL_20, m_enemyHeros[fightertag - 6]);
+						enemyfnode->attackedSkill(SKILL_20, myfindex);
+					}
+					myfnode->hurt(atkhp);
+					return;
+				}
+			}
 
 			//计算暴击
 			float crit = m_enemyHeros[fightertag - 6]->getCrit();
@@ -555,25 +649,28 @@ void FightingLayer::skillAction(int stype, int heroindex)
 			}
 		}
 		std::sort(vec_myheronode.begin(), vec_myheronode.end(), sortbyHp_lesscb);
-
-		if (stype == SKILL_7)
+		ResBase* res = MyRes::getMyPutOnResByType(T_WG, GlobalInstance::myCardHeros[heroindex]->getName());
+		if (res != NULL)
 		{
-			if (vec_myheronode.size() >= 1)
-				vec_myheronode[0]->recoveHp();
-		}
-		else
-		{
-			int ssize = vec_myheronode.size();
-			ResBase* res = MyRes::getMyPutOnResByType(T_WG, GlobalInstance::myCardHeros[heroindex]->getName());
-			if (res != NULL)
+			if (stype == SKILL_7)
 			{
-				int scount = GlobalInstance::map_GF[res->getId()].skilleff1;
+				if (vec_myheronode.size() >= 1)
+				{
+					vec_myheronode[0]->recoveHp(GlobalInstance::map_GF[res->getId()].skilleff1 * vec_myheronode[0]->getData()->getMaxHp()/100);
+				}
+			}
+			else
+			{
+				int ssize = vec_myheronode.size();
+
+				int scount = GlobalInstance::map_GF[res->getId()].skilleff2;
 				int c = ssize < scount ? ssize : scount;
 
 				for (int i = 0; i < c; i++)
 				{
-					vec_myheronode[i]->recoveHp();
+					vec_myheronode[i]->recoveHp(GlobalInstance::map_GF[res->getId()].skilleff1 * vec_myheronode[i]->getData()->getMaxHp() / 100);
 				}
+
 			}
 		}
 	}
@@ -592,18 +689,16 @@ void FightingLayer::skillAction(int stype, int heroindex)
 	}
 	else if (stype == SKILL_20)
 	{
-		for (unsigned int m = 0; m < m_enemyHeros.size(); m++)
+		int enemyindex = GlobalInstance::myCardHeros[heroindex]->getWhoSufferskill();
+
+		if (enemyindex >= 0 && m_enemyHeros[enemyindex] != NULL && m_enemyHeros[enemyindex]->getHp() > 0)
 		{
-			if (m_enemyHeros[m] != NULL && m_enemyHeros[m]->getHp() > 0)
+			ResBase* res = MyRes::getMyPutOnResByType(T_NG, GlobalInstance::myCardHeros[heroindex]->getName());
+			if (res != NULL)
 			{
-				ResBase* res = MyRes::getMyPutOnResByType(T_NG, GlobalInstance::myCardHeros[heroindex]->getName());
-				if (res != NULL)
-				{
-					FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + m);
-					for (int n = 0; n < 3; n++)
-						fnode->hurt(GlobalInstance::myCardHeros[heroindex]->getAtk() * GlobalInstance::map_GF[res->getId()].skilleff1);
-				}
-				break;
+				FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + enemyindex);
+				fnode->hurt(GlobalInstance::myCardHeros[heroindex]->getAtk() * GlobalInstance::map_GF[res->getId()].skilleff1);
+				resumeAtkSchedule();
 			}
 		}
 	}
@@ -643,6 +738,7 @@ int FightingLayer::checkWgSkill(Npc* data, int npctype)
 				}
 			}
 		}
+		return 15;
 	}
 	else//NPC触发的技能
 	{
@@ -653,13 +749,25 @@ int FightingLayer::checkWgSkill(Npc* data, int npctype)
 
 void FightingLayer::clearSkill(int heroindex)
 {
-	if (GlobalInstance::myCardHeros[heroindex] != NULL && GlobalInstance::myCardHeros[heroindex]->getState() != HS_DEAD)
+	if (GlobalInstance::myCardHeros[heroindex] != NULL)
 	{
+		int sufferNpcIndex = GlobalInstance::myCardHeros[heroindex]->getWhoSufferskill();
+		FightHeroNode* npcnode = (FightHeroNode*)this->getChildByTag(6 + sufferNpcIndex);
+		if (npcnode != NULL)
+		{
+			npcnode->skillIndex = -1;
+			npcnode->removeChildByName("sufferskillani");
+		}
+
+		FightHeroNode* myheronode = (FightHeroNode*)this->getChildByTag(heroindex);
+		if (myheronode != NULL)
+			myheronode->skillIndex = -1;
 		GlobalInstance::myCardHeros[heroindex]->setIsSkilling(false);
 		GlobalInstance::myCardHeros[heroindex]->setWhoSufferskill(-1);
 		//whoskillindex = -1;
 		//whosufferskillindex = -1;
 	}
+
 }
 
 

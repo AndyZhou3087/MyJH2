@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>effect/daoguang.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{144,200}}</string>
+				<key>offset</key>
+				<string>{28,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/shouji_0000.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{271,0},{109,121}}</string>
+				<key>offset</key>
+				<string>{3,-3}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/shouji_0001.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,200},{128,128}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/shouji_0002.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,328},{128,128}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/shouji_0003.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{128,200},{128,128}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/shouji_0004.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{128,328},{128,128}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/shouji_0005.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{144,0},{127,128}}</string>
+				<key>offset</key>
+				<string>{-1,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+			<key>effect/shouji_0006.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{256,128},{125,128}}</string>
+				<key>offset</key>
+				<string>{-2,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{200,200}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>atkhrutpacker.png</string>
+			<key>realTextureFileName</key>
+			<string>atkhrutpacker.png</string>
+			<key>size</key>
+			<string>{384,456}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>384</integer>
+			<key>height</key>
+			<integer>456</integer>
+		</dict>
+	</dict>
+</plist>

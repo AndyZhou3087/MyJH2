@@ -50,18 +50,18 @@ public:
 	void playSkill(int stype, Npc* data);
 
 	//遭受技能
-	void attackedSkill(int stype, Npc* data);
+	void attackedSkill(int stype, int myHeroPos);
 
 	//遭受技能回调
-	void attackedSkillCB(int stype, Npc* data);
+	void attackedSkillCB(int stype, int myHeroPos);
 
-	void recoveHp();
+	void recoveHp(float hp);
 
 	void nextRound();
 
 	void playSkillEffect(int stype);
 
-	void attackedSkillEffect(int stype);
+	void attackedSkillEffect(int stype, int myHeroPos);
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
@@ -98,12 +98,21 @@ private:
 
 	float getAtkSpeed();
 
-	void reviveOnce(float dt);
+	void reviveOnce(float hp);
 
 	bool checkReviveSkill();
+
+	void showAtkOrHurtAnim(int type);
+
+	void removeAtkOrHurtAnim(float dt);
+
+	void removePlaySkillAnim(float dt);
+
+	void removeSufferSkillAnim(float dt);
 public:
 	float atkspeedbns;
 	float dfbns;
+	int skillIndex;
 };
 #endif
 
