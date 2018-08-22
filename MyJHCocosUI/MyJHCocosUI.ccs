@@ -947,6 +947,7 @@
         <Project Name="achieveNode.csd" Type="Node" />
         <Project Name="cardHeroNode.csd" Type="Node" />
         <Project Name="changeHeadLayer.csd" Type="Layer" />
+        <Project Name="changeVocationLayer.csd" Type="Layer" />
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
         <Project Name="equipDescLayer.csd" Type="Layer" />
         <Project Name="eventBusinessLayer.csd" Type="Layer" />

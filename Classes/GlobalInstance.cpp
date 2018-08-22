@@ -699,7 +699,7 @@ void GlobalInstance::loadTaskMainData()
 			for (unsigned int i = 0; i < v.Size(); i++)
 			{
 				std::string onestr = v[i].GetString();
-				if (onestr.length() > 3)
+				if (onestr.length() > 5)
 				{
 					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
@@ -716,7 +716,7 @@ void GlobalInstance::loadTaskMainData()
 			for (unsigned int i = 0; i < v.Size(); i++)
 			{
 				std::string onestr = v[i].GetString();
-				if (onestr.length() > 3)
+				if (onestr.length() > 5)
 				{
 					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;

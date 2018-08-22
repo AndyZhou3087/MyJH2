@@ -117,11 +117,11 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 		accbtn1->setTitleText(str);
 		accbtn1->setTag(a);
 
-		str = StringUtils::format(ResourceLang::map_lang["changetext1"].c_str(), GlobalInstance::map_AllResources[aatt.id].name.c_str());
+		str = StringUtils::format(ResourceLang::map_lang["changetext1"].c_str(), GlobalInstance::map_AllResources[batt.id].name.c_str());
 		accbtn2->setTitleText(str);
 		accbtn2->setTag(b);
 		
-		str = StringUtils::format("%s:%s\n\n%s:%s", GlobalInstance::map_AllResources[aatt.id].name.c_str(), GlobalInstance::map_AllResources[aatt.id].desc.c_str(), GlobalInstance::map_AllResources[aatt.id].name.c_str(), GlobalInstance::map_AllResources[batt.id].desc.c_str());
+		str = StringUtils::format("%s:%s\n\n%s:%s", GlobalInstance::map_AllResources[aatt.id].name.c_str(), GlobalInstance::map_AllResources[aatt.id].desc.c_str(), GlobalInstance::map_AllResources[batt.id].name.c_str(), GlobalInstance::map_AllResources[batt.id].desc.c_str());
 		content->setString(str);
 		rewardlabel->setString(ResourceLang::map_lang["changecondition"]);
 	}
