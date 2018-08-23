@@ -104,7 +104,7 @@ void CutScenesLayer::loadingOver(cocos2d::Texture2D* texture)
 
 void CutScenesLayer::delayShowResult(float dt)
 {
-	effectnode->runAction(Sequence::create(FadeOut::create(1), CallFunc::create(CC_CALLBACK_0(CutScenesLayer::updateFadeOut, this)), NULL));
+	effectnode->runAction(Sequence::create(FadeOut::create(0.2f), CallFunc::create(CC_CALLBACK_0(CutScenesLayer::updateFadeOut, this)), NULL));
 }
 
 void CutScenesLayer::updateFadeOut()
