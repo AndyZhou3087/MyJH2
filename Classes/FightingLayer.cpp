@@ -324,7 +324,7 @@ void FightingLayer::showAtk(int fightertag)
 				if (gf != NULL)
 					crit += gf->getCrit();
 
-				int r = 0;// GlobalInstance::getInstance()->createRandomNum(10000);
+				int r = GlobalInstance::getInstance()->createRandomNum(10000);
 				int state = 0;
 				if (r < crit * 100)
 				{
