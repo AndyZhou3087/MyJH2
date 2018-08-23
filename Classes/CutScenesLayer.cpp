@@ -76,8 +76,6 @@ bool CutScenesLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 		}
 	}
 
-	this->scheduleOnce(schedule_selector(CutScenesLayer::delayShowResult), 1.0f);
-
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -98,6 +96,10 @@ void CutScenesLayer::loadingOver(cocos2d::Texture2D* texture)
 	//传入的obj即是异步生成的纹理
 	std::string str = StringUtils::format("effect/skill%dpacker.plist", curReloadPlistNum);
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(str, texture);
+	if (curReloadPlistNum == 20)
+	{
+		this->scheduleOnce(schedule_selector(CutScenesLayer::delayShowResult), 0.24f);
+	}
 }
 
 void CutScenesLayer::delayShowResult(float dt)
