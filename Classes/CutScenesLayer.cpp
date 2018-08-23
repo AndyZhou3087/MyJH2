@@ -98,7 +98,7 @@ void CutScenesLayer::loadingOver(cocos2d::Texture2D* texture)
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(str, texture);
 	if (curReloadPlistNum == 20)
 	{
-		this->scheduleOnce(schedule_selector(CutScenesLayer::delayShowResult), 0.24f);
+		this->scheduleOnce(schedule_selector(CutScenesLayer::delayShowResult), 0.65f);
 	}
 }
 
