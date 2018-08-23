@@ -10,6 +10,8 @@
 
 USING_NS_CC;
 
+int reloadArr[16] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 17, 19, 20 };
+
 CutScenesLayer::CutScenesLayer()
 {
 	curReloadPlistNum = 0;
@@ -64,17 +66,9 @@ bool CutScenesLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, false);
 
-	std::string str;
 	curReloadPlistNum = 0;
-	for (int i = 0; i < 20; i++)
-	{
-		str = StringUtils::format("effect/skill%dpacker.png", i + 1);
-		curReloadPlistNum++;
-		if (i + 1 != 11 && i + 1 != 14 && i + 1 != 16 && i + 1 != 19)
-		{
-			Director::getInstance()->getTextureCache()->addImageAsync(str, CC_CALLBACK_1(CutScenesLayer::loadingOver, this));
-		}
-	}
+	std::string str = StringUtils::format("effect/skill%dpacker.png", reloadArr[curReloadPlistNum]);
+	Director::getInstance()->getTextureCache()->addImageAsync(str, CC_CALLBACK_1(CutScenesLayer::loadingOver, this));
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -94,12 +88,19 @@ bool CutScenesLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 void CutScenesLayer::loadingOver(cocos2d::Texture2D* texture)
 {
 	//传入的obj即是异步生成的纹理
-	std::string str = StringUtils::format("effect/skill%dpacker.plist", curReloadPlistNum);
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(str, texture);
-	if (curReloadPlistNum == 20)
+	std::string str = StringUtils::format("effect/skill%dpacker.plist", reloadArr[curReloadPlistNum]);
+	if (!SpriteFrameCache::getInstance()->isSpriteFramesWithFileLoaded(str))
+	{
+		SpriteFrameCache::getInstance()->addSpriteFramesWithFile(str, texture);
+	}
+	if (curReloadPlistNum == sizeof(reloadArr) / sizeof(reloadArr[0]))
 	{
 		this->scheduleOnce(schedule_selector(CutScenesLayer::delayShowResult), 0.65f);
+		return;
 	}
+	curReloadPlistNum++;
+	str = StringUtils::format("effect/skill%dpacker.png", reloadArr[curReloadPlistNum]);
+	Director::getInstance()->getTextureCache()->addImageAsync(str, CC_CALLBACK_1(CutScenesLayer::loadingOver, this));
 }
 
 void CutScenesLayer::delayShowResult(float dt)
