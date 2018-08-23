@@ -10,9 +10,7 @@
 
 USING_NS_CC;
 
-std::string reloadArr[16] = { "effect/skill1packer", "effect/skill2packer", "effect/skill3packer", "effect/skill4packer", "effect/skill5packer",
-"effect/skill6packer", "effect/skill7packer", "effect/skill8packer", "effect/skill9packer", "effect/skill10packer", "effect/skill12packer",
-"effect/skill13packer", "effect/skill15packer", "effect/skill17packer", "effect/skill19packer", "effect/skill20packer" };
+int reloadArr[16] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 17, 19, 20 };
 
 CutScenesLayer::CutScenesLayer()
 {
@@ -69,7 +67,7 @@ bool CutScenesLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 	action->gotoFrameAndPlay(0, false);
 
 	curReloadPlistNum = 0;
-	std::string str = StringUtils::format("%s.png", reloadArr[curReloadPlistNum]);
+	std::string str = StringUtils::format("effect/skill%dpacker.png", reloadArr[curReloadPlistNum]);
 	Director::getInstance()->getTextureCache()->addImageAsync(str, CC_CALLBACK_1(CutScenesLayer::loadingOver, this));
 
 	//屏蔽下层点击
@@ -90,7 +88,7 @@ bool CutScenesLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 void CutScenesLayer::loadingOver(cocos2d::Texture2D* texture)
 {
 	//传入的obj即是异步生成的纹理
-	std::string str = StringUtils::format("%s.plist", reloadArr[curReloadPlistNum].c_str());
+	std::string str = StringUtils::format("effect/skill%dpacker.plist", reloadArr[curReloadPlistNum]);
 	if (!SpriteFrameCache::getInstance()->isSpriteFramesWithFileLoaded(str))
 	{
 		SpriteFrameCache::getInstance()->addSpriteFramesWithFile(str, texture);
@@ -101,7 +99,7 @@ void CutScenesLayer::loadingOver(cocos2d::Texture2D* texture)
 		return;
 	}
 	curReloadPlistNum++;
-	str = StringUtils::format("%s.png", reloadArr[curReloadPlistNum].c_str());
+	str = StringUtils::format("effect/skill%dpacker.png", reloadArr[curReloadPlistNum]);
 	Director::getInstance()->getTextureCache()->addImageAsync(str, CC_CALLBACK_1(CutScenesLayer::loadingOver, this));
 }
 
