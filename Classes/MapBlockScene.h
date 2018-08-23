@@ -125,6 +125,8 @@ private:
 
 	void delayShowExit(float dt);
 
+	void openAllMap();
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;

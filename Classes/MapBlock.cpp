@@ -65,5 +65,10 @@ void MapBlock::setPosIcon()
 	std::string filename = StringUtils::format("mapui/posicon%d.png", m_postype);
 	Sprite* posicon = Sprite::createWithSpriteFrameName(filename);
 	posicon->setPosition(Vec2(this->getContentSize().width / 2, this->getContentSize().height / 2));
-	this->addChild(posicon);
+	this->addChild(posicon, 0, "posicon");
+}
+
+void MapBlock::removePosIcon()
+{
+	this->removeChildByName("posicon");
 }
