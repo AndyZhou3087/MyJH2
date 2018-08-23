@@ -45,6 +45,9 @@ FightHeroNode* FightHeroNode::create()
 
 bool FightHeroNode::init()
 {
+	if (!Node::init())
+		return false;
+
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("fightHeroNode.csb"));
 	this->addChild(csbnode);
 
@@ -694,13 +697,13 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 	}
 	else if (stype == 4)
 	{
-		dt1 = 1.5f;
-		dt2 = 0.5f;
+		dt1 = 1.2f;
+		dt2 = 1.7f;
 	}
 	else if (stype == 6)
 	{
 		dt1 = 0.8f;
-		dt2 = 0.5f;
+		dt2 = 1.2f;
 	}
 	else if (stype == 7 || stype == 8)
 	{
@@ -760,7 +763,7 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 		if (gf == NULL)
 			return;
 		int roundcount = (int)GlobalInstance::map_GF[gf->getId()].skilleff2;
-		if ((roundcount > 0 && gf->getSkillCount() == roundcount) || roundcount == 0 || stype == 8)
+		if ((roundcount > 0 && gf->getSkillCount() == roundcount) || roundcount == 0 || stype == 6|| stype == 8)
 		{
 			headimg->runAction(Sequence::create(DelayTime::create(dt1), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillEffect, this, stype, myHeroPos)), NULL));
 			FightingLayer* fighting = (FightingLayer*)this->getParent();
@@ -862,7 +865,14 @@ void FightHeroNode::attackedSkillCB(int stype, int myHeroPos)
 	}
 	else if (stype == SKILL_17)
 	{
-		hurt((1 + GlobalInstance::map_GF[gf->getId()].skilleff1)*data->getAtk());
+		if (GlobalInstance::map_GF[gf->getId()].skilleff2 > 1 && gf->getSkillCount() < GlobalInstance::map_GF[gf->getId()].skilleff2 - 1)
+		{
+			hurt((1 + GlobalInstance::map_GF[gf->getId()].skilleff1)*data->getAtk());
+		}
+		else
+		{
+			nextRound();
+		}
 	}
 	else if (stype == SKILL_18)
 	{
@@ -930,6 +940,7 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 
 	if (stype != 3)
 		effectnode->scheduleOnce(schedule_selector(FightHeroNode::removeSufferSkillAnim), action->getDuration()/60.0f);
+	
 
 	if (stype == 1)
 	{

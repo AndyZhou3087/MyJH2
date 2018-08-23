@@ -158,10 +158,10 @@
             <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="critnumbg" ActionTag="96821312" Tag="17" IconVisible="False" LeftMargin="-122.0000" RightMargin="-120.0000" TopMargin="-123.5000" BottomMargin="94.5000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="critnumbg" ActionTag="96821312" Tag="17" IconVisible="False" LeftMargin="-121.0000" RightMargin="-121.0000" TopMargin="-123.5000" BottomMargin="94.5000" ctype="SpriteObjectData">
             <Size X="242.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-1.0000" Y="109.0000" />
+            <Position Y="109.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
@@ -169,8 +169,8 @@
             <FileData Type="MarkedSubImage" Path="mapui/critnumbg.png" Plist="mapui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="numfnt" ActionTag="-1850755731" Tag="70" IconVisible="False" LeftMargin="-93.5000" RightMargin="-93.5000" TopMargin="-131.0000" BottomMargin="99.0000" LabelText="-12345" ctype="TextBMFontObjectData">
-            <Size X="187.0000" Y="32.0000" />
+          <AbstractNodeData Name="numfnt" ActionTag="-1850755731" Tag="70" IconVisible="False" LeftMargin="-59.0000" RightMargin="-59.0000" TopMargin="-131.0000" BottomMargin="99.0000" LabelText="-123" ctype="TextBMFontObjectData">
+            <Size X="118.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position Y="115.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
