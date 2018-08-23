@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>effect/slsb/zhandoushibai/shibai1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{548,411},{496,134}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{496,134}</string>
+			</dict>
+			<key>effect/slsb/zhandoushibai/shibai2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{864,545},{360,132}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{360,132}</string>
+			</dict>
+			<key>effect/slsb/zhandoushibai/shibai3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{453,0},{411,204}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{411,204}</string>
+			</dict>
+			<key>effect/slsb/zhandoushibai/shibai4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{258,0},{462,195}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{462,195}</string>
+			</dict>
+			<key>effect/slsb/zhandoushibai/shibaiglow.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{548,545},{316,167}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{316,167}</string>
+			</dict>
+			<key>effect/slsb/zhandoushibai/shibaiziti.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1032,677},{247,140}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{247,140}</string>
+			</dict>
+			<key>effect/slsb/zhandoushengli/sl.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1172,677},{241,134}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{241,134}</string>
+			</dict>
+			<key>effect/slsb/zhandoushengli/sl1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,761},{522,237}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{522,237}</string>
+			</dict>
+			<key>effect/slsb/zhandoushengli/sl2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,530},{548,231}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{548,231}</string>
+			</dict>
+			<key>effect/slsb/zhandoushengli/sl3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{530,258}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{530,258}</string>
+			</dict>
+			<key>effect/slsb/zhandoushengli/sl4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{522,761},{510,209}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{510,209}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>shenglishibai.png</string>
+			<key>realTextureFileName</key>
+			<string>shenglishibai.png</string>
+			<key>size</key>
+			<string>{1306,998}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>1306</integer>
+			<key>height</key>
+			<integer>998</integer>
+		</dict>
+	</dict>
+</plist>

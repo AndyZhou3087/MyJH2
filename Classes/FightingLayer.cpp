@@ -747,7 +747,7 @@ int FightingLayer::checkWgSkill(Npc* data, int npctype)
 				}
 			}
 		}
-		return 5;
+		//return 5;
 	}
 	else//NPC触发的技能
 	{
