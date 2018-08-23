@@ -79,11 +79,15 @@ bool OutTownLayer::init()
 	cocos2d::ui::Text* foodname = (cocos2d::ui::Text*)csbnode->getChildByName("r001box")->getChildByName("namelbl");
 	foodname->setString(GlobalInstance::map_AllResources["r001"].name);
 
+	cocos2d::ui::Text* versionname = (cocos2d::ui::Text*)csbnode->getChildByName("v001box")->getChildByName("namelbl");
+
+	std::string vstr = StringUtils::format(ResourceLang::map_lang["vision"].c_str(), MyRes::getMyResCount("v001") + 2);
+	versionname->setString(vstr);
+
 	cocos2d::ui::Text* carrytextlbl = (cocos2d::ui::Text*)csbnode->getChildByName("carrytextlbl");
 	carrytextlbl->setString(ResourceLang::map_lang["carrytext"]);
 
 	carrylbl = (cocos2d::ui::Text*)csbnode->getChildByName("carrylbl");
-
 
 	for (int i = 0; i < 6; i++)
 	{

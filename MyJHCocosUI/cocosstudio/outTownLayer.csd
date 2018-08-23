@@ -100,7 +100,7 @@
             <PreSize X="0.6250" Y="0.2891" />
             <FileData Type="MarkedSubImage" Path="ui/ninegrid.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="r001box" ActionTag="-558264668" Tag="89" IconVisible="False" LeftMargin="142.0000" RightMargin="432.0000" TopMargin="697.0000" BottomMargin="437.0000" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="v001box" ActionTag="-558264668" Tag="89" IconVisible="False" LeftMargin="139.9999" RightMargin="434.0001" TopMargin="808.8840" BottomMargin="325.1160" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
             <Size X="146.0000" Y="146.0000" />
             <Children>
               <AbstractNodeData Name="r" ActionTag="-602867631" Tag="90" IconVisible="False" LeftMargin="13.5006" RightMargin="23.4994" TopMargin="14.5000" BottomMargin="22.5000" ctype="SpriteObjectData">
@@ -111,41 +111,78 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4658" Y="0.5274" />
                 <PreSize X="0.7466" Y="0.7466" />
-                <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
+                <FileData Type="MarkedSubImage" Path="ui/v001.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="namelbl" ActionTag="-1721156686" Tag="91" IconVisible="False" LeftMargin="162.3138" RightMargin="-96.3138" TopMargin="59.8769" BottomMargin="46.1231" FontSize="40" LabelText="食物" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="80.0000" Y="40.0000" />
+              <AbstractNodeData Name="namelbl" ActionTag="-1721156686" Tag="91" IconVisible="False" LeftMargin="162.3138" RightMargin="-97.3138" TopMargin="56.8769" BottomMargin="43.1231" FontSize="40" LabelText="食物" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="81.0000" Y="46.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="162.3138" Y="66.1231" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="121" G="78" B="46" />
                 <PrePosition X="1.1117" Y="0.4529" />
-                <PreSize X="0.5479" Y="0.2740" />
+                <PreSize X="0.5548" Y="0.3151" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="215.0000" Y="510.0000" />
+            <Position X="212.9999" Y="398.1160" />
             <Scale ScaleX="0.6000" ScaleY="0.6000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2986" Y="0.3984" />
+            <PrePosition X="0.2958" Y="0.3110" />
             <PreSize X="0.2028" Y="0.1141" />
             <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="carrytextlbl" ActionTag="659770477" Tag="102" IconVisible="False" LeftMargin="275.3021" RightMargin="369.6979" TopMargin="1045.4957" BottomMargin="209.5043" FontSize="25" LabelText="负重：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="75.0000" Y="25.0000" />
+          <AbstractNodeData Name="r001box" ActionTag="1590948448" Tag="42" IconVisible="False" LeftMargin="139.9999" RightMargin="434.0001" TopMargin="696.0004" BottomMargin="437.9996" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
+            <Size X="146.0000" Y="146.0000" />
+            <Children>
+              <AbstractNodeData Name="r" ActionTag="1958715279" Tag="43" IconVisible="False" LeftMargin="13.5006" RightMargin="23.4994" TopMargin="14.5000" BottomMargin="22.5000" ctype="SpriteObjectData">
+                <Size X="109.0000" Y="109.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="68.0006" Y="77.0000" />
+                <Scale ScaleX="1.3000" ScaleY="1.3000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4658" Y="0.5274" />
+                <PreSize X="0.7466" Y="0.7466" />
+                <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="namelbl" ActionTag="231054819" Tag="44" IconVisible="False" LeftMargin="162.3138" RightMargin="-97.3138" TopMargin="56.8769" BottomMargin="43.1231" FontSize="40" LabelText="食物" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="81.0000" Y="46.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="162.3138" Y="66.1231" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="121" G="78" B="46" />
+                <PrePosition X="1.1117" Y="0.4529" />
+                <PreSize X="0.5548" Y="0.3151" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="212.9999" Y="510.9996" />
+            <Scale ScaleX="0.6000" ScaleY="0.6000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.2958" Y="0.3992" />
+            <PreSize X="0.2028" Y="0.1141" />
+            <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="carrytextlbl" ActionTag="659770477" Tag="102" IconVisible="False" LeftMargin="275.3021" RightMargin="383.6979" TopMargin="1043.4957" BottomMargin="207.5043" FontSize="25" LabelText="负重：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="61.0000" Y="29.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="275.3021" Y="222.0043" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="121" G="78" B="46" />
             <PrePosition X="0.3824" Y="0.1734" />
-            <PreSize X="0.1042" Y="0.0195" />
+            <PreSize X="0.0847" Y="0.0227" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="carrylbl" ActionTag="-1427088676" Tag="103" IconVisible="False" LeftMargin="349.7235" RightMargin="277.2765" TopMargin="1045.4497" BottomMargin="205.5502" FontSize="25" LabelText="300/300" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="carrylbl" ActionTag="-1427088676" Tag="103" IconVisible="False" LeftMargin="349.7235" RightMargin="277.2765" TopMargin="1045.4498" BottomMargin="205.5502" FontSize="25" LabelText="300/300" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="93.0000" Y="29.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="349.7235" Y="220.0502" />
