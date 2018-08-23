@@ -21,6 +21,7 @@
 #include "AnimationEffect.h"
 #include "HintBoxLayer.h"
 #include "UnlockChapterLayer.h"
+#include "CutScenesLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -204,8 +205,10 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 void MapBlockScene::showFightingLayer(std::vector<Npc*> enemys)
 {
-	FightingLayer* layer = FightingLayer::create(enemys, m_fightbgtype);
-	this->addChild(layer);
+	/*FightingLayer* layer = FightingLayer::create(enemys, m_fightbgtype);
+	this->addChild(layer);*/
+	CutScenesLayer* cutlayer = CutScenesLayer::create(enemys, m_fightbgtype);
+	this->addChild(cutlayer, 0, "CutScenesLayer");
 }
 
 void MapBlockScene::loadTaskUI()
