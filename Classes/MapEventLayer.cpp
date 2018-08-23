@@ -153,16 +153,8 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			}
 			else if (m_eventindex == POS_BUSINESS)
 			{
-				EventBusinessLayer* layer = (EventBusinessLayer*)this->getChildByName("eventbusinesslayer");
-				if (layer != NULL)
-				{
-					layer->setVisible(true);
-				}
-				else
-				{
-					layer = EventBusinessLayer::create();
-					this->addChild(layer, 0, "eventbusinesslayer");
-				}
+				Layer* layer = EventBusinessLayer::create();
+				this->addChild(layer);
 				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			else if (m_eventindex == POS_ELDER)
