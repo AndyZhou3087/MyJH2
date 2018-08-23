@@ -245,8 +245,9 @@ void FightHeroNode::hurt(float hp, int stat)
 				numfnt->setFntFile("fonts/crithurtnum.fnt");
 				int langtype = GlobalInstance::getInstance()->getLang();
 				statusimg->loadTexture(ResourcePath::makeTextImgPath("crit_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-				numfnt->setVisible(true);
-				critnumbg->runAction(Sequence::create(Show::create(), DelayTime::create(0.35f), Hide::create(), NULL));
+				numfnt->setScale(5);
+				numfnt->runAction(Sequence::create(Show::create(), EaseRateAction::create(ScaleTo::create(0.15f, 0.6f), 5), EaseRateAction::create(ScaleTo::create(0.1f, 1),5), DelayTime::create(0.15f), Hide::create(), NULL));
+				critnumbg->runAction(Sequence::create(Show::create(), EaseRateAction::create(ScaleTo::create(0.15f, 0.6f), 5), EaseRateAction::create(ScaleTo::create(0.1f, 1),5), DelayTime::create(0.15f), Hide::create(), NULL));
 			}
 			else if (stat == 2)
 			{
@@ -260,10 +261,9 @@ void FightHeroNode::hurt(float hp, int stat)
 				statusimg->loadTexture("ui/blank.png", cocos2d::ui::Widget::TextureResType::PLIST);
 				if (skillIndex < 0)
 					showAtkOrHurtAnim(1);
-				numfnt->setVisible(true);
+				numfnt->runAction(Sequence::create(Show::create(), MoveBy::create(0.3f, Vec2(0, 10)), DelayTime::create(0.1f), Hide::create(), MoveBy::create(0.02f, Vec2(0, -10)), NULL));
 			}
 			numfnt->setString(hurtstr);
-			numfnt->runAction(Sequence::create(DelayTime::create(0.35f), Hide::create(), NULL));
 
 			ActionInterval* ac1 = Spawn::create(Show::create(), FadeIn::create(0.15f), EaseSineIn::create(ScaleTo::create(0.15f, 1)), NULL);
 			statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), NULL));
