@@ -327,7 +327,7 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 	}
 	if (isEnough)
 	{
-		bool isnewchapter = false;
+		bool isfinish = false;
 		for (unsigned int i = 0; i < need.size(); i++)
 		{
 			std::map<std::string, int> one_res = need[i];
@@ -335,10 +335,10 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 			std::string cresid = oneit->first;
 			if (Quest::checkResQuestData(cresid, oneit->second, m_npcid))
 			{
-				isnewchapter = true;
+				isfinish = true;
 			}
 		}
-		if (isnewchapter)
+		if (isfinish)
 		{
 			g_MapBlockScene->showUnlockChapter();
 		}

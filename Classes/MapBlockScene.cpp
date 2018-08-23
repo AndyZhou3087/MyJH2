@@ -997,14 +997,9 @@ void MapBlockScene::showFightResult(int result)
 		int bindex = (mycurRow)*blockColCount + mycurCol;
 		if (map_mapBlocks[bindex]->getPosType() == POS_BOSS)
 		{
-			if (_fogrender != NULL)
-			{
-				_fogrender->removeFromParentAndCleanup(true);
-				_fogrender = NULL;
-			}
-			mapIsAllOpen = true;
-			std::string str = StringUtils::format("-1;%d", randStartPos);
-			DataSave::getInstance()->setMapVisibleArea(m_mapid, str);
+			map_mapBlocks[bindex]->removePosIcon();
+			openAllMap();
+
 		}
 
 		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowFightResult), 0.3f);
@@ -1027,6 +1022,20 @@ void MapBlockScene::showUnlockChapter()
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 	}
+	//地图全开
+	openAllMap();
+}
+
+void MapBlockScene::openAllMap()
+{
+	if (_fogrender != NULL)
+	{
+		_fogrender->removeFromParentAndCleanup(true);
+		_fogrender = NULL;
+	}
+	mapIsAllOpen = true;
+	std::string str = StringUtils::format("-1;%d", randStartPos);
+	DataSave::getInstance()->setMapVisibleArea(m_mapid, str);
 }
 
 int MapBlockScene::getWinExp()
