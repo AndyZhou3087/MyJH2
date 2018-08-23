@@ -532,9 +532,6 @@ void FightHeroNode::playSkill(int stype, Npc* data)
 
 	GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(gftype, m_Data->getName());
 
-	if (gf == NULL)
-		return;
-
 	skillIndex = stype;
 	if (m_Data->getId().length() <= 0)//是否是自己的英雄
 	{
@@ -699,6 +696,11 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 	{
 		dt1 = 1.2f;
 		dt2 = 1.7f;
+	}
+	else if (stype == 5)
+	{
+		dt1 = 1.0f;
+		dt2 = 1.8f;
 	}
 	else if (stype == 6)
 	{
@@ -915,16 +917,61 @@ void FightHeroNode::nextRound()
 
 void FightHeroNode::playSkillEffect(int stype)
 {
+	if (stype != 5)
+	{
+		std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
+		auto effectnode = CSLoader::createNode(effectname);
+		effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
+		this->addChild(effectnode, 10, "playskillani");
+
+		auto action = CSLoader::createTimeline(effectname);
+		effectnode->runAction(action);
+		action->gotoFrameAndPlay(0, false);
+
+		effectnode->scheduleOnce(schedule_selector(FightHeroNode::removePlaySkillAnim), action->getDuration() / 60.0f);
+	}
+}
+
+void FightHeroNode::playMoreSkillEffect(int stype, int enemyindex)
+{
 	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
-	effectnode->setPosition(this->getContentSize().width/2, this->getContentSize().height/2);
+	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
 	this->addChild(effectnode, 10, "playskillani");
+
+
+	float offsety = 100;
+	float angle = 0;
+	Vec2 mypos = this->getPosition();
+	Vec2 enemypos = this->getParent()->getChildByTag(enemyindex + 6)->getPosition();
+	float tanx = enemypos.x - mypos.x;
+	float tany = enemypos.y - mypos.y;
+	float tanz = sqrt(tanx*tanx + tany*tany);
+	float tan_yx = std::fabs(tany) / std::fabs(tanx);
+	angle = atan(tan_yx) * 180 / M_PI;
+
+	float movex = 0;
+	if (tanx > 0)
+	{
+		effectnode->setRotation(angle);
+		movex = mypos.x + offsety * sin(angle * M_PI / 180);
+	}
+	else
+	{
+		effectnode->setRotation(-angle);
+		movex = mypos.x - offsety * sin(angle * M_PI / 180);
+	}
+	float movey = mypos.y + offsety * cos(angle * M_PI / 180);
+
+
+	if (tanz > 420)
+		effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
 
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, false);
 
-	effectnode->scheduleOnce(schedule_selector(FightHeroNode::removePlaySkillAnim), action->getDuration()/60.0f);
+	effectnode->scheduleOnce(schedule_selector(FightHeroNode::removePlaySkillAnim), action->getDuration() / 60.0f);
 }
 
 void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)

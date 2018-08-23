@@ -61,6 +61,9 @@ public:
 
 	void playSkillEffect(int stype);
 
+	//同时播放多个
+	void playMoreSkillEffect(int stype, int enemyindex);
+
 	void attackedSkillEffect(int stype, int myHeroPos);
 private:
 	cocos2d::ui::ImageView* headbox;

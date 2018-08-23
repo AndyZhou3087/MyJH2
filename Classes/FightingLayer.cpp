@@ -252,7 +252,7 @@ void FightingLayer::showAtk(int fightertag)
 					ResBase* res = MyRes::getMyPutOnResByType(T_WG, GlobalInstance::myCardHeros[fightertag]->getName());
 					if (res != NULL)
 					{
-						int scount = GlobalInstance::map_GF[res->getId()].skilleff1;
+						int scount = GlobalInstance::map_GF[res->getId()].skilleff2;
 						int ssize = m_enemyHeros.size();
 						int fcount = scount > ssize ? ssize : scount;
 
@@ -747,7 +747,7 @@ int FightingLayer::checkWgSkill(Npc* data, int npctype)
 				}
 			}
 		}
-		return 18;
+		return 5;
 	}
 	else//NPC触发的技能
 	{
