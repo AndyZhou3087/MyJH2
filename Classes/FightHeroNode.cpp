@@ -341,8 +341,9 @@ void FightHeroNode::hurtAnimFinish()
 		}
 
 	}
-	if (skillIndex != SKILL_15 && skillIndex != SKILL_20)
-		fighting->resumeAtkSchedule();
+	skillIndex = -1;
+	fighting->resumeAtkSchedule();
+
 }
 
 bool FightHeroNode::checkReviveSkill()
@@ -663,6 +664,8 @@ void FightHeroNode::playSkill(int stype, Npc* data)
 		{
 			if (isPlayAnim)
 			{
+				FightingLayer* fighting = (FightingLayer*)this->getParent();
+				fighting->pauseAtkSchedule();
 				headbox->scheduleOnce(schedule_selector(FightHeroNode::removeAtkOrHurtAnim), 0.05f);
 				headbox->runAction(Sequence::create(DelayTime::create(delay), CallFunc::create(CC_CALLBACK_0(FightHeroNode::playSkillEffect, this, stype)), NULL));
 			}
@@ -758,7 +761,11 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 			return;
 		int roundcount = (int)GlobalInstance::map_GF[gf->getId()].skilleff2;
 		if ((roundcount > 0 && gf->getSkillCount() == roundcount) || roundcount == 0 || stype == 8)
+		{
 			headimg->runAction(Sequence::create(DelayTime::create(dt1), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillEffect, this, stype, myHeroPos)), NULL));
+			FightingLayer* fighting = (FightingLayer*)this->getParent();
+			fighting->pauseAtkSchedule();
+		}
 		else
 		{
 			if (stype != 3)
@@ -782,10 +789,7 @@ void FightHeroNode::attackedSkillCB(int stype, int myHeroPos)
 		gftype = T_NG;
 
 	Hero *data = GlobalInstance::myCardHeros[myHeroPos];
-	ResBase* gf = MyRes::getMyPutOnResByType(gftype, data->getName());
-
-	if (gf == NULL)
-		return;
+	GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(gftype, data->getName());
 
 	if (stype == SKILL_1)//释放技能后吸收对方%.2f血量。
 	{
@@ -828,7 +832,14 @@ void FightHeroNode::attackedSkillCB(int stype, int myHeroPos)
 	}
 	else if (stype == SKILL_12)
 	{
-		hurt((1 + GlobalInstance::map_GF[gf->getId()].skilleff1)*data->getAtk());
+		if (GlobalInstance::map_GF[gf->getId()].skilleff2 > 1 && gf->getSkillCount() < GlobalInstance::map_GF[gf->getId()].skilleff2 - 1)
+		{
+			hurt((1 + GlobalInstance::map_GF[gf->getId()].skilleff1)*data->getAtk());
+		}
+		else
+		{
+			nextRound();
+		}
 	}
 	else if (stype == SKILL_13)//死亡后复活
 	{
@@ -841,10 +852,6 @@ void FightHeroNode::attackedSkillCB(int stype, int myHeroPos)
 	}
 	else if (stype == SKILL_15)
 	{
-
-		//FightHeroNode* fnode = (FightHeroNode*)this->getParent()->getChildByTag(myHeroPos);
-		//fnode->hurt(m_Data->getAtk());
-
 		hurt(m_Data->getAtk()*GlobalInstance::map_GF[gf->getId()].skilleff1 / 100);
 		fighting->clearSkill(myHeroPos);
 
@@ -852,7 +859,6 @@ void FightHeroNode::attackedSkillCB(int stype, int myHeroPos)
 	else if (stype == SKILL_16)
 	{
 		nextRound();
-
 	}
 	else if (stype == SKILL_17)
 	{
@@ -892,6 +898,7 @@ void FightHeroNode::recoveHp(float hp)
 
 void FightHeroNode::nextRound()
 {
+	skillIndex = -1;
 	FightingLayer* fighting = (FightingLayer*)this->getParent();
 	fighting->resumeAtkSchedule();
 }

@@ -502,7 +502,7 @@ void FightingLayer::showAtk(int fightertag)
 					if (gf != NULL)
 					{
 						gf->setSkillCount(gf->getSkillCount() - 1);
-						if (gf->getSkillCount() <= 0)
+						if (gf->getSkillCount() <= -1)
 						{
 							fnode->dfbns = 0.0f;
 							clearSkill(whoskillindex);
@@ -738,7 +738,7 @@ int FightingLayer::checkWgSkill(Npc* data, int npctype)
 				}
 			}
 		}
-		return 15;
+		return 12;
 	}
 	else//NPC触发的技能
 	{
