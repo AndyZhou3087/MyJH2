@@ -15,6 +15,7 @@
 #include "AchieveLayer.h"
 #include "DataSave.h"
 #include "HeadInfoLayer.h"
+#include "UnlockChapterLayer.h"
 
 USING_NS_CC;
 
@@ -108,7 +109,27 @@ bool MainMenuLayer::init()
 
 	updateUI(0);
 	this->schedule(schedule_selector(MainMenuLayer::updateUI), 1.0f);
+
+	HttpDataSwap::init(this)->getMessageList(0);
+
     return true;
+}
+
+void MainMenuLayer::onFinish(int code)
+{
+	if (code == SUCCESS)
+	{
+		if (GlobalInstance::vec_notice.size() <= 0)
+		{
+			return;
+		}
+		if (GlobalInstance::noticeID.compare(GlobalInstance::vec_notice[0].id) != 0)
+		{
+			UnlockChapterLayer* unlock = UnlockChapterLayer::create();
+			this->addChild(unlock);
+			AnimationEffect::openAniEffect((Layer*)unlock);
+		}
+	}
 }
 
 void MainMenuLayer::updateUI(float dt)

@@ -20,7 +20,7 @@ public:
 
 	void getAllData();
 
-	void getMessageList();
+	void getMessageList(int type = -1);
 
 	void updateMessageStatus(std::string id, int changestatus);
 

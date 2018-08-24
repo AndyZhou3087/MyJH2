@@ -505,6 +505,9 @@ public:
 
 	static std::vector<MessageData> vec_messsages;//邮箱数据
 
+	static std::vector<MessageData> vec_notice;//消息数据
+	static std::string noticeID;//公告id
+
 	static std::map<std::string, EventData> map_eventdata;//事件宝箱概率数据
 
 	static std::vector<AchieveData> vec_achievedata;//成就

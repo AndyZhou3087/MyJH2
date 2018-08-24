@@ -555,9 +555,9 @@ void HeroAttrLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		if (MyRes::getMyResCount(str) >= 1)
 		{
 			MyRes::Use(str);
-			DynamicValueInt dal;
-			dal.setValue(m_heroData->getExp().getValue() + count);
-			m_heroData->setExp(dal);
+			/*DynamicValueInt dal;
+			dal.setValue(count);*/
+			m_heroData->setExpLimit(count);
 			std::string s = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), count);
 			MovingLabel::show(s, Color4B(0, 128, 0, 255), Vec2(360, 320));
 		}

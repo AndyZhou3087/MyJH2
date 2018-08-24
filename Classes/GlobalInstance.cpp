@@ -55,6 +55,7 @@ std::map<std::string, S_MainMap> GlobalInstance::map_mapsdata;
 std::map<std::string, TBoxData> GlobalInstance::map_TBoxs;
 
 std::vector<MessageData> GlobalInstance::vec_messsages;
+std::vector<MessageData> GlobalInstance::vec_notice;
 
 DynamicValueInt GlobalInstance::mySoliverCount;
 DynamicValueInt GlobalInstance::myCoinCount;
@@ -63,6 +64,8 @@ std::string GlobalInstance::myID;
 std::string GlobalInstance::myNickName;
 
 int GlobalInstance::unlockchapter = 1;
+
+std::string GlobalInstance::noticeID = "";
 
 GlobalInstance::GlobalInstance()
 {

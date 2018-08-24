@@ -238,6 +238,8 @@
       <FilePathData Path="text_zh_cn/startskill8text_1.png" />
       <FilePathData Path="text_zh_cn/startskill8text_2.png" />
       <FilePathData Path="text_zh_cn/startskill8text_3.png" />
+      <FilePathData Path="text_zh_cn/text_notice.png" />
+      <FilePathData Path="text_zh_cn/text_unlock.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>
