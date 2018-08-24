@@ -46,8 +46,11 @@ bool LoadingScene::init()
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("LoadingLayer.csb"));
 	this->addChild(csbnode);
 
+	Node *loadingbar = csbnode->getChildByName("loadingbar");
+	loadingbar->runAction(RepeatForever::create(RotateTo::create(720, 7)));
+
 	//先获取服务器数据
-	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
+	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 10.f);
 
     return true;
 }

@@ -161,13 +161,19 @@ void FightingLayer::resumeAtkSchedule()
 		{
 			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(i);
 			if (fnode != NULL)
+			{
 				fnode->resumeTimeSchedule();
+				fnode->resumeAction();
+			}
 		}
 		for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
 		{
 			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + i);
 			if (fnode != NULL)
+			{
+				fnode->resumeAction();
 				fnode->resumeTimeSchedule();
+			}
 		}
 	}
 	else
@@ -461,7 +467,10 @@ void FightingLayer::showAtk(int fightertag)
 				{
 					gf->setSkillCount(gf->getSkillCount() - 1);
 					if (gf->getSkillCount() <= 0)
+					{
 						clearSkill(whoskillindex);
+						//npcnode->removeChildByName("sufferskillani");
+					}
 					FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(myfindex);
 					myfnode->hurt(0);
 				}
@@ -747,7 +756,7 @@ int FightingLayer::checkWgSkill(Npc* data, int npctype)
 				}
 			}
 		}
-		//return 5;
+		return 7;
 	}
 	else//NPC触发的技能
 	{
@@ -765,7 +774,6 @@ void FightingLayer::clearSkill(int heroindex)
 		if (npcnode != NULL)
 		{
 			npcnode->skillIndex = -1;
-			npcnode->removeChildByName("sufferskillani");
 		}
 
 		FightHeroNode* myheronode = (FightHeroNode*)this->getChildByTag(heroindex);

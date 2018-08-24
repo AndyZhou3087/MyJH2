@@ -65,6 +65,8 @@ public:
 	void playMoreSkillEffect(int stype, int enemyindex);
 
 	void attackedSkillEffect(int stype, int myHeroPos);
+
+	void resumeAction();
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
@@ -76,7 +78,8 @@ private:
 	cocos2d::ui::ImageView* retbox;
 	cocos2d::ui::ImageView* rettext;
 	cocos2d::ui::Text* winexplbl;
-	cocos2d::ui::Text* skilllbl;
+	cocos2d::ui::ImageView* skilltext;
+	cocos2d::ui::ImageView* skilltextbox;
 
 	cocos2d::ui::Widget* vocationbox;
 	cocos2d::ui::ImageView* vocationicon;
@@ -112,6 +115,8 @@ private:
 	void removePlaySkillAnim(float dt);
 
 	void removeSufferSkillAnim(float dt);
+
+	void pauseAction();
 public:
 	float atkspeedbns;
 	float dfbns;

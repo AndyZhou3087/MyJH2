@@ -9,6 +9,7 @@
 #include "MyRes.h"
 #include "MovingLabel.h"
 #include "SoundManager.h"
+#include "SkillStartLayer.h"
 
 FightHeroNode::FightHeroNode()
 {
@@ -92,8 +93,10 @@ bool FightHeroNode::init()
 	numfnt = (cocos2d::ui::TextBMFont*)csbnode->getChildByName("numfnt");
 	numfnt->setVisible(false);
 
-	skilllbl = (cocos2d::ui::Text*)csbnode->getChildByName("skilltext");
-	skilllbl->setVisible(false);
+	skilltextbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("skilltextbox");
+	skilltextbox->setVisible(false);
+
+	skilltext = (cocos2d::ui::ImageView*)skilltextbox->getChildByName("skilltext");
 
 	return true;
 }
@@ -524,7 +527,6 @@ void FightHeroNode::setFightState(int winexp)
 void FightHeroNode::playSkill(int stype, Npc* data)
 {
 	bool isPlayAnim = false;
-	std::string skillid = StringUtils::format("sk%03d", stype);
 	int gftype = T_WG;
 
 	if (stype > SKILL_8)
@@ -535,8 +537,6 @@ void FightHeroNode::playSkill(int stype, Npc* data)
 	skillIndex = stype;
 	if (m_Data->getId().length() <= 0)//是否是自己的英雄
 	{
-		skilllbl->setVisible(true);
-		skilllbl->setString(skillid);
 		if (stype == SKILL_1)//释放技能后吸收对方%.2f血量。
 		{
 			float eff = GlobalInstance::map_GF[gf->getId()].skilleff1;
@@ -667,7 +667,29 @@ void FightHeroNode::playSkill(int stype, Npc* data)
 				FightingLayer* fighting = (FightingLayer*)this->getParent();
 				fighting->pauseAtkSchedule();
 				headbox->scheduleOnce(schedule_selector(FightHeroNode::removeAtkOrHurtAnim), 0.05f);
-				headbox->runAction(Sequence::create(DelayTime::create(delay), CallFunc::create(CC_CALLBACK_0(FightHeroNode::playSkillEffect, this, stype)), NULL));
+				headbox->runAction(Sequence::create(DelayTime::create(delay + 0.8f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::playSkillEffect, this, stype)), NULL));
+				if (stype >= 9)
+				{
+					std::string textstr = StringUtils::format("bufpreskill%dtext", stype);
+					skilltext->loadTexture(ResourcePath::makeTextImgPath(textstr, GlobalInstance::getInstance()->getLang()), cocos2d::ui::Widget::TextureResType::PLIST);
+					skilltextbox->setScale(0);
+					skilltextbox->setVisible(true);
+					skilltextbox->runAction(Sequence::create(Spawn::create(EaseRateAction::create(ScaleTo::create(0.2f, 1), 10), FadeIn::create(0.2f), NULL), DelayTime::create(0.4f), Hide::create(), NULL));
+				}
+				else
+				{
+					SkillStartLayer* layer = SkillStartLayer::create(m_Data->getVocation(), stype);
+					this->getParent()->addChild(layer);
+				}
+				//暂停其它英雄的动作
+				for (int i = 0; i < 6; i++)
+				{
+					if (i != this->getTag())
+					{
+						FightHeroNode* fnode = (FightHeroNode*)this->getParent()->getChildByTag(i);
+						fnode->pauseAction();
+					}
+				}
 			}
 		}
 	}
@@ -767,7 +789,7 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 		int roundcount = (int)GlobalInstance::map_GF[gf->getId()].skilleff2;
 		if ((roundcount > 0 && gf->getSkillCount() == roundcount) || roundcount == 0 || stype == 6|| stype == 8)
 		{
-			headimg->runAction(Sequence::create(DelayTime::create(dt1), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillEffect, this, stype, myHeroPos)), NULL));
+			headimg->runAction(Sequence::create(DelayTime::create(dt1 + 0.8f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillEffect, this, stype, myHeroPos)), NULL));
 			FightingLayer* fighting = (FightingLayer*)this->getParent();
 			fighting->pauseAtkSchedule();
 		}
@@ -779,9 +801,15 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 				hurt(GlobalInstance::myCardHeros[myHeroPos]->getAtk());
 			dt2 = 0;
 		}
+
+		if (stype == 7 || stype == 8)
+		{
+			SkillStartLayer* layer = SkillStartLayer::create(m_Data->getVocation(), stype);
+			this->getParent()->addChild(layer);
+		}
 	}
 
-	namelbl->runAction(Sequence::create(DelayTime::create(dt2), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, myHeroPos)), NULL));
+	namelbl->runAction(Sequence::create(DelayTime::create(dt2 + 0.8f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, myHeroPos)), NULL));
 }
 
 void FightHeroNode::attackedSkillCB(int stype, int myHeroPos)
@@ -1005,14 +1033,14 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 		if (tanx > 0)
 		{
 			effectnode->setRotation(angle);
-			movex = mypos.x + offsety * sin(angle * M_PI / 180);
+			movex = -tanx + offsety * sin(angle * M_PI / 180);
 		}
 		else
 		{
 			effectnode->setRotation(-angle);
-			movex = mypos.x - offsety * sin(angle * M_PI / 180);
+			movex = -tanx - offsety * sin(angle * M_PI / 180);
 		}
-		float movey = mypos.y + offsety * cos(angle * M_PI / 180);
+		float movey = -tany + offsety * cos(angle * M_PI / 180);
 
 
 		if (tanz > 420)
@@ -1053,4 +1081,16 @@ void FightHeroNode::removePlaySkillAnim(float dt)
 void FightHeroNode::removeSufferSkillAnim(float dt)
 {
 	this->removeChildByName("sufferskillani");
+}
+
+void FightHeroNode::pauseAction()
+{
+	headbox->pause();
+	namelbl->pause();
+}
+
+void FightHeroNode::resumeAction()
+{
+	headbox->resume();
+	namelbl->resume();
 }

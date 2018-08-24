@@ -179,17 +179,27 @@
             <PreSize X="0.0000" Y="0.0000" />
             <LabelBMFontFile_CNB Type="Normal" Path="fonts/normalhurtnum.fnt" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="skilltext" ActionTag="-939952670" Tag="38" IconVisible="False" LeftMargin="-1.4966" RightMargin="-61.5034" TopMargin="18.7046" BottomMargin="-39.7046" FontSize="18" LabelText="skill_1" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="63.0000" Y="21.0000" />
-            <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
-            <Position X="61.5034" Y="-29.2046" />
+          <AbstractNodeData Name="skilltextbox" ActionTag="-964230167" Tag="70" IconVisible="False" LeftMargin="-101.5000" RightMargin="-101.5000" TopMargin="-28.0000" BottomMargin="-28.0000" LeftEage="66" RightEage="66" TopEage="18" BottomEage="18" Scale9OriginX="66" Scale9OriginY="18" Scale9Width="71" Scale9Height="20" ctype="ImageViewObjectData">
+            <Size X="203.0000" Y="56.0000" />
+            <Children>
+              <AbstractNodeData Name="skilltext" ActionTag="1586291618" Tag="68" IconVisible="False" LeftMargin="24.5001" RightMargin="25.4999" TopMargin="6.0000" BottomMargin="6.0000" LeftEage="50" RightEage="50" TopEage="14" BottomEage="14" Scale9OriginX="50" Scale9OriginY="14" Scale9Width="53" Scale9Height="16" ctype="ImageViewObjectData">
+                <Size X="153.0000" Y="44.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="101.0001" Y="28.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4975" Y="0.5000" />
+                <PreSize X="0.7537" Y="0.7857" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/bufpreskill9text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="255" G="255" B="255" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <FileData Type="MarkedSubImage" Path="mapui/bufskilltextbox.png" Plist="mapui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

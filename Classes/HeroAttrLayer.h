@@ -66,6 +66,7 @@ private:
 	void updataAtrrUI(float dt);
 
 	void updateAtrBtnUI();
+
 private:
 	Node* lvnode;
 	//

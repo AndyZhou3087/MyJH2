@@ -275,6 +275,7 @@
       <FilePathData Path="mapui/posicon2.png" />
       <FilePathData Path="mapui/posicon3.png" />
       <FilePathData Path="mapui/posicon4.png" />
+      <FilePathData Path="mapui/bufskilltextbox.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
