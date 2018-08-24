@@ -919,7 +919,11 @@
     <Cell c="29" r="18" p="-1" w="0" m="6.png" d="18.png" />
     <Cell c="29" r="19" p="-1" w="0" m="6.png" />
     <Cell c="29" r="20" p="-1" w="0" m="6.png" />
-    <Cell c="29" r="21" p="-1" w="1" m="6.png" />
+    <Cell c="29" r="21" p="4" w="1" m="6.png">
+      <npcid>n002</npcid>
+      <npcrnd>100</npcrnd>
+      <msatt2 id="n002" qu="2">35</msatt2>
+    </Cell>
     <Cell c="29" r="22" p="-1" w="1" m="6.png" />
     <Cell c="29" r="23" p="-1" w="1" m="6.png" />
     <Cell c="29" r="24" p="-1" w="1" m="6.png" />

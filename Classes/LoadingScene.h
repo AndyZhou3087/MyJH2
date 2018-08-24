@@ -36,6 +36,9 @@ private:
 
 private:
 	bool isGetPlayerId;
+	Node* point0;
+	Node* point1;
+	Node* point2;
 };
 
 #endif

@@ -1619,6 +1619,8 @@
     <Cell c="32" r="2" p="-1" w="0" m="94.png" />
     <Cell c="32" r="3" p="-1" w="0" m="94.png" />
     <Cell c="32" r="4" p="3" w="1" m="94.png">
+      <npcid>n046</npcid>
+      <npcrnd>100</npcrnd>
       <msatt1 id="n044" qu="2">65</msatt1>
       <msatt2 id="n045" qu="3">65</msatt2>
       <msatt3 id="n044" qu="2">65</msatt3>

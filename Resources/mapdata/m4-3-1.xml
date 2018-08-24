@@ -48,7 +48,11 @@
     <Cell c="0" r="33" p="-1" w="0" m="4.png" />
     <Cell c="0" r="34" p="-1" w="0" m="45.png" />
     <Cell c="1" r="0" p="-1" w="0" m="46.png" />
-    <Cell c="1" r="1" p="-1" w="1" m="65.png" />
+    <Cell c="1" r="1" p="4" w="1" m="65.png">
+      <npcid>n012</npcid>
+      <npcrnd>100</npcrnd>
+      <msatt2 id="n012" qu="2">40</msatt2>
+    </Cell>
     <Cell c="1" r="2" p="-1" w="1" m="65.png" />
     <Cell c="1" r="3" p="-1" w="1" m="65.png" />
     <Cell c="1" r="4" p="-1" w="1" m="65.png" />

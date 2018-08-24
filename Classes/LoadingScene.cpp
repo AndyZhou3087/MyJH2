@@ -47,10 +47,10 @@ bool LoadingScene::init()
 	this->addChild(csbnode);
 
 	Node *loadingbar = csbnode->getChildByName("loadingbar");
-	loadingbar->runAction(RepeatForever::create(RotateTo::create(720, 7)));
+	loadingbar->runAction(RepeatForever::create(RotateTo::create(3, 720)));
 
 	//先获取服务器数据
-	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 10.f);
+	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
 
     return true;
 }

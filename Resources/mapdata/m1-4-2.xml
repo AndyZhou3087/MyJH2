@@ -439,7 +439,11 @@
     <Cell c="13" r="29" p="-1" w="1" m="6.png" />
     <Cell c="14" r="0" p="-1" w="0" m="55.png" />
     <Cell c="14" r="1" p="-1" w="1" m="48.png" />
-    <Cell c="14" r="2" p="-1" w="1" m="6.png" />
+    <Cell c="14" r="2" p="4" w="1" m="6.png">
+      <npcid>n012</npcid>
+      <npcrnd>100</npcrnd>
+      <msatt5 id="n012" qu="2">20</msatt5>
+    </Cell>
     <Cell c="14" r="3" p="-1" w="0" m="46.png" />
     <Cell c="14" r="4" p="-1" w="0" m="11.png" />
     <Cell c="14" r="5" p="-1" w="0" m="43.png" />
