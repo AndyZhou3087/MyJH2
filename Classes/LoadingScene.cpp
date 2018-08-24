@@ -47,14 +47,30 @@ bool LoadingScene::init()
 	this->addChild(csbnode);
 
 	Node *loadingbar = csbnode->getChildByName("loadingbar");
-	loadingbar->runAction(RepeatForever::create(RotateTo::create(3, 720)));
+	loadingbar->runAction(RepeatForever::create(RotateTo::create(0.8f, 720)));
 
+
+	for (int i = 0; i < 3; i++)
+	{
+		std::string pointstr = StringUtils::format("loadingpoint%d", i);
+		point[i] = csbnode->getChildByName(pointstr);
+		point[i]->setVisible(false);
+	}
+	showPointAnim(0);
+	this->schedule(schedule_selector(LoadingScene::showPointAnim), 1.5f);
 	//先获取服务器数据
 	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
 
     return true;
 }
 
+void LoadingScene::showPointAnim(float dt)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		point[i]->runAction(Sequence::create(DelayTime::create(0.4f*i), Show::create(), DelayTime::create(1.2f - 0.4f*i), Hide::create(), NULL));
+	}
+}
 
 void LoadingScene::delayLoadLocalData(float dt)
 {

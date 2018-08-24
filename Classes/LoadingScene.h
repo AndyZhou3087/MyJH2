@@ -34,11 +34,11 @@ public:
 private:
 	CREATE_FUNC(LoadingScene);
 
+	void showPointAnim(float dt);
+
 private:
 	bool isGetPlayerId;
-	Node* point0;
-	Node* point1;
-	Node* point2;
+	Node* point[3];
 };
 
 #endif
