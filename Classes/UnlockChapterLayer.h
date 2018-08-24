@@ -15,10 +15,10 @@ public:
 	UnlockChapterLayer();
 	~UnlockChapterLayer();
 
-	static UnlockChapterLayer* create(int unlockchapter);
-	bool init(int unlockchapter);
+	static UnlockChapterLayer* create(int unlockchapter = -1);
+	bool init(int unlockchapter = -1);
 private:
-
+	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:
 
 };

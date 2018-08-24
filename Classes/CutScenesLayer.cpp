@@ -66,8 +66,18 @@ bool CutScenesLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, false);
 
+	std::string str = StringUtils::format("effect/skill%dpacker.plist", reloadArr[sizeof(reloadArr) / sizeof(reloadArr[0]) - 1]);
+	if (SpriteFrameCache::getInstance()->isSpriteFramesWithFileLoaded(str))
+	{
+		fdt = 1.3f;
+	}
+	else
+	{
+		fdt = 0.01f;
+	}
+
 	curReloadPlistNum = 0;
-	std::string str = StringUtils::format("effect/skill%dpacker.png", reloadArr[curReloadPlistNum]);
+	str = StringUtils::format("effect/skill%dpacker.png", reloadArr[curReloadPlistNum]);
 	Director::getInstance()->getTextureCache()->addImageAsync(str, CC_CALLBACK_1(CutScenesLayer::loadingOver, this));
 
 	//ÆÁ±ÎÏÂ²ãµã»÷
@@ -95,7 +105,7 @@ void CutScenesLayer::loadingOver(cocos2d::Texture2D* texture)
 	}
 	if (curReloadPlistNum == sizeof(reloadArr) / sizeof(reloadArr[0]))
 	{
-		this->scheduleOnce(schedule_selector(CutScenesLayer::delayShowResult), 0.65f);
+		this->scheduleOnce(schedule_selector(CutScenesLayer::delayShowResult), fdt);
 		return;
 	}
 	curReloadPlistNum++;

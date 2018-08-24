@@ -112,6 +112,36 @@ void Hero::setMyLevel(int lv)
 	m_level = lv;
 }
 
+void Hero::setExpLimit(int vexp)
+{
+	bool isChangeLevel = false;
+	int size = GlobalInstance::vec_herosAttr[m_vocation].vec_exp.size();
+	int allexp = m_exp.getValue() + vexp;
+	for (int i = 0; i < size; i++)
+	{
+		if (allexp < GlobalInstance::vec_herosAttr[m_vocation].vec_exp[i])
+		{
+			if (getVocation() < 4 || (i + 1) / 10 != m_changecount + 1)
+			{
+				isChangeLevel = true;
+				break;
+			}
+		}
+	}
+	if (isChangeLevel)
+	{
+		DynamicValueInt dal;
+		dal.setValue(GlobalInstance::vec_herosAttr[m_vocation].vec_exp[(m_level / 10 + 1) * 10 - 2]);
+		setExp(dal);
+	}
+	else
+	{
+		DynamicValueInt dal;
+		dal.setValue(allexp);
+		setExp(dal);
+	}
+}
+
 float Hero::getAtk()
 {
 	float heroatk = GlobalInstance::vec_herosAttr[m_vocation].vec_atk[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[getLevel() / 10];

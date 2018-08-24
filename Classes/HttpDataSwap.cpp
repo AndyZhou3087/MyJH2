@@ -109,7 +109,7 @@ void HttpDataSwap::getAllData()
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetAllDataCB, this));
 }
 
-void HttpDataSwap::getMessageList()
+void HttpDataSwap::getMessageList(int type)
 {
 	std::string url;
 	url.append(HTTPURL);
@@ -130,7 +130,16 @@ void HttpDataSwap::getMessageList()
 	url.append("&plat=");
 	url.append(GlobalInstance::getInstance()->getPlatForm());
 
-	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMessageListCB, this));
+	std::string noticestr = "";
+	if (type >= 0)
+	{
+		url.append("&type=");
+		std::string typestr = StringUtils::format("%d", type);
+		url.append(typestr);
+		noticestr = "notice";
+	}
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMessageListCB, this), "", GET, "", noticestr);
 }
 
 void HttpDataSwap::updateMessageStatus(std::string id, int changestatus)
@@ -358,6 +367,10 @@ void HttpDataSwap::httpGetMessageListCB(std::string retdata, int code, std::stri
 							dataval = onedata["status"];
 							msgdata.status = atoi(dataval.GetString());
 							GlobalInstance::vec_messsages.push_back(msgdata);
+							if (extdata.length() > 0)
+							{
+								GlobalInstance::vec_notice.push_back(msgdata);
+							}
 						}
 					}
 				}

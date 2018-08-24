@@ -48,6 +48,8 @@
           <Image Name="smallbg.png" />
           <Image Name="t001.jpg" />
           <Image Name="t002.jpg" />
+          <Image Name="unlockbg.png" />
+          <Image Name="unlocktitlebg.png" />
           <Image Name="wintitle.png" />
         </Folder>
         <Folder Name="mainimg">
@@ -538,6 +540,8 @@
           <Image Name="taskdayget.png" />
           <Image Name="taskdaygo.png" />
           <Image Name="taskfinish.png" />
+          <Image Name="text_notice.png" />
+          <Image Name="text_unlock.png" />
           <Image Name="train_text.png" />
           <Image Name="traincoin_text.png" />
           <Image Name="traindoing_text.png" />

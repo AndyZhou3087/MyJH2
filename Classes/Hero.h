@@ -72,6 +72,9 @@ public:
 
 	//随机生成一个英雄
 	void generate();
+
+	//升级上限
+	void setExpLimit(int vexp);
 private:
 	//随机生成一个名字
 	std::string generateName();

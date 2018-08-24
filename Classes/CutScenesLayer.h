@@ -25,6 +25,7 @@ private:
 	std::vector<Npc*> enemys;
 	int m_fightbgtype;
 	Node* effectnode;
+	float fdt;
 };
 
 #endif

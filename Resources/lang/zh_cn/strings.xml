@@ -191,5 +191,12 @@
 	<s name="havegold">拥有元宝：%d</s>	
 	<s name="havesliver">拥有银两：%d</s>	
 	<s name="fitjob">适合职业：%s</s>
-	<s name="vision">视野：%d</s>	
+	<s name="vision">视野：%d</s>
+	<s name="unlocktitletext">解锁以下内容</s>
+	<s name="unlockscenetitle">新场景</s>
+	<s name="unlockchapter1">111111111111111111</s>
+	<s name="unlockchapter2">222222222222222</s>
+	<s name="unlockchapter3">3333333333333</s>
+	<s name="unlockchapter4">444444444444444</s>
+	<s name="unlockchapter5">55555555555555</s>
 </strings>

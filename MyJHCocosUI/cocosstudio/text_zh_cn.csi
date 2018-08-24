@@ -199,6 +199,8 @@
       <FilePathData Path="text_zh_cn/mapeventtext_3_1.png" />
       <FilePathData Path="text_zh_cn/mapeventtext_5_0.png" />
       <FilePathData Path="text_zh_cn/mapeventtext_5_1.png" />
+      <FilePathData Path="text_zh_cn/text_notice.png" />
+      <FilePathData Path="text_zh_cn/text_unlock.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="1024" />
   </Content>
