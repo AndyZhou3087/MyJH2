@@ -346,7 +346,7 @@ void HttpDataSwap::httpGetMessageListCB(std::string retdata, int code, std::stri
 			if (ret == SUCCESS)
 			{
 				GlobalInstance::vec_messsages.clear();
-
+				GlobalInstance::vec_notice.clear();
 				if (doc.HasMember("data"))
 				{
 					rapidjson::Value& data = doc["data"];

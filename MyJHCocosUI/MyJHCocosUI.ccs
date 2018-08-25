@@ -47,6 +47,7 @@
           <Image Name="mapblockbottom.png" />
           <Image Name="mapblocktop.png" />
           <Image Name="materialbox.png" />
+          <Image Name="newpopbg.png" />
           <Image Name="selectequipbg.png" />
           <Image Name="smallbg.png" />
           <Image Name="t001.jpg" />
@@ -1048,6 +1049,7 @@
         <Project Name="trainLayer.csd" Type="Layer" />
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
+        <Project Name="newPopLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
       </RootFolder>

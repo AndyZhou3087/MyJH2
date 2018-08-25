@@ -4,138 +4,6 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>effect/eft_00006.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{0,308},{250,248}}</string>
-				<key>offset</key>
-				<string>{-3,132}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{360,640}</string>
-			</dict>
-			<key>effect/eft_00007.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{404,0},{228,227}}</string>
-				<key>offset</key>
-				<string>{-3,131}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{360,640}</string>
-			</dict>
-			<key>effect/eft_00008.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{330,504},{204,204}}</string>
-				<key>offset</key>
-				<string>{-4,130}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{360,640}</string>
-			</dict>
-			<key>effect/eft_00009.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{515,228},{182,181}}</string>
-				<key>offset</key>
-				<string>{-4,129}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{360,640}</string>
-			</dict>
-			<key>effect/eft_00010.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{496,861},{158,157}}</string>
-				<key>offset</key>
-				<string>{-4,128}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{360,640}</string>
-			</dict>
-			<key>effect/eft_00011.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{653,821},{134,134}}</string>
-				<key>offset</key>
-				<string>{-5,126}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{360,640}</string>
-			</dict>
-			<key>effect/eft_00012.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{580,1160},{110,110}}</string>
-				<key>offset</key>
-				<string>{-5,125}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{360,640}</string>
-			</dict>
-			<key>effect/eft_00013.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{580,1270},{107,106}}</string>
-				<key>offset</key>
-				<string>{-6,125}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{360,640}</string>
-			</dict>
-			<key>effect/eft_00014.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{686,1270},{103,103}}</string>
-				<key>offset</key>
-				<string>{-6,125}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{360,640}</string>
-			</dict>
-			<key>effect/eft_00015.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{690,1160},{100,99}}</string>
-				<key>offset</key>
-				<string>{-5,125}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{360,640}</string>
-			</dict>
-			<key>effect/eft_00016.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{710,955},{96,95}}</string>
-				<key>offset</key>
-				<string>{-5,125}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{360,640}</string>
-			</dict>
-			<key>effect/eft_00017.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{686,1373},{93,92}}</string>
-				<key>offset</key>
-				<string>{-6,124}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{360,640}</string>
-			</dict>
 			<key>effect/eft_00018.png</key>
 			<dict>
 				<key>frame</key>
@@ -562,6 +430,138 @@
 				<string>{-4,49}</string>
 				<key>rotated</key>
 				<false />
+				<key>sourceSize</key>
+				<string>{360,640}</string>
+			</dict>
+			<key>effect/eft_00006.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,308},{250,248}}</string>
+				<key>offset</key>
+				<string>{-3,132}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{360,640}</string>
+			</dict>
+			<key>effect/eft_00007.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{404,0},{228,227}}</string>
+				<key>offset</key>
+				<string>{-3,131}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{360,640}</string>
+			</dict>
+			<key>effect/eft_00008.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{330,504},{204,204}}</string>
+				<key>offset</key>
+				<string>{-4,130}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{360,640}</string>
+			</dict>
+			<key>effect/eft_00009.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{515,228},{182,181}}</string>
+				<key>offset</key>
+				<string>{-4,129}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{360,640}</string>
+			</dict>
+			<key>effect/eft_00010.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{496,861},{158,157}}</string>
+				<key>offset</key>
+				<string>{-4,128}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{360,640}</string>
+			</dict>
+			<key>effect/eft_00011.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{653,821},{134,134}}</string>
+				<key>offset</key>
+				<string>{-5,126}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{360,640}</string>
+			</dict>
+			<key>effect/eft_00012.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{580,1160},{110,110}}</string>
+				<key>offset</key>
+				<string>{-5,125}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{360,640}</string>
+			</dict>
+			<key>effect/eft_00013.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{580,1270},{107,106}}</string>
+				<key>offset</key>
+				<string>{-6,125}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{360,640}</string>
+			</dict>
+			<key>effect/eft_00014.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{686,1270},{103,103}}</string>
+				<key>offset</key>
+				<string>{-6,125}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{360,640}</string>
+			</dict>
+			<key>effect/eft_00015.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{690,1160},{100,99}}</string>
+				<key>offset</key>
+				<string>{-5,125}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{360,640}</string>
+			</dict>
+			<key>effect/eft_00016.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{710,955},{96,95}}</string>
+				<key>offset</key>
+				<string>{-5,125}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{360,640}</string>
+			</dict>
+			<key>effect/eft_00017.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{686,1373},{93,92}}</string>
+				<key>offset</key>
+				<string>{-6,124}</string>
+				<key>rotated</key>
+				<true />
 				<key>sourceSize</key>
 				<string>{360,640}</string>
 			</dict>

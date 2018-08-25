@@ -15,7 +15,7 @@
 #include "AchieveLayer.h"
 #include "DataSave.h"
 #include "HeadInfoLayer.h"
-#include "UnlockChapterLayer.h"
+#include "NewPopLayer.h"
 
 USING_NS_CC;
 
@@ -125,7 +125,7 @@ void MainMenuLayer::onFinish(int code)
 		}
 		if (GlobalInstance::noticeID.compare(GlobalInstance::vec_notice[0].id) != 0)
 		{
-			UnlockChapterLayer* unlock = UnlockChapterLayer::create();
+			NewPopLayer* unlock = NewPopLayer::create();
 			this->addChild(unlock);
 			AnimationEffect::openAniEffect((Layer*)unlock);
 		}

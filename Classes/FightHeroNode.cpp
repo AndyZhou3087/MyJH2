@@ -378,7 +378,7 @@ bool FightHeroNode::checkReviveSkill()
 void FightHeroNode::reviveOnce(float hp)
 {
 	m_Data->setHp(hp);
-	this->setVisible(true);
+	this->runAction(Sequence::create(Show::create(), FadeIn::create(0.3f), NULL));
 	updateHp();
 
 	FightingLayer* fighting = (FightingLayer*)this->getParent();
@@ -389,7 +389,8 @@ void FightHeroNode::reviveOnce(float hp)
 void FightHeroNode::updateHp()
 {
 	float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
-	hp_bar->setPercent(percent);
+	//hp_bar->setPercent(percent);
+	hp_bar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
 	if (m_Data->getHp() <= 0)
 	{
 		setBlankBox();
@@ -410,7 +411,7 @@ void FightHeroNode::setBlankBox()
 	}
 	else if (m_state == FS_FIGHTING)
 	{
-		this->setVisible(false);
+		showDeathAnim();
 	}
 	else if (m_state == FS_SUCC || m_state == FS_FAIL)
 	{
@@ -544,6 +545,7 @@ void FightHeroNode::playSkill(int stype, Npc* data)
 			if (m_Data->getHp() + eff*data->getHp() / 100 > m_Data->getMaxHp())
 				m_Data->setHp(m_Data->getMaxHp());
 
+			this->setLocalZOrder(0);
 			float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
 			hp_bar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
 			isPlayAnim = true;
@@ -667,7 +669,9 @@ void FightHeroNode::playSkill(int stype, Npc* data)
 				FightingLayer* fighting = (FightingLayer*)this->getParent();
 				fighting->pauseAtkSchedule();
 				headbox->scheduleOnce(schedule_selector(FightHeroNode::removeAtkOrHurtAnim), 0.05f);
-				headbox->runAction(Sequence::create(DelayTime::create(delay + 0.8f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::playSkillEffect, this, stype)), NULL));
+				if (stype != 5)
+					headbox->runAction(Sequence::create(DelayTime::create(delay + 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::playSkillEffect, this, stype)), NULL));
+
 				if (stype >= 9)
 				{
 					std::string textstr = StringUtils::format("bufpreskill%dtext", stype);
@@ -678,13 +682,16 @@ void FightHeroNode::playSkill(int stype, Npc* data)
 				}
 				else
 				{
-					SkillStartLayer* layer = SkillStartLayer::create(m_Data->getVocation(), stype);
-					this->getParent()->addChild(layer);
+					if (this->getParent()->getChildByName("skillstart") == NULL)
+					{
+						SkillStartLayer* layer = SkillStartLayer::create(m_Data->getVocation(), stype);
+						this->getParent()->addChild(layer, 10, "skillstart");
+					}
 				}
 				//暂停其它英雄的动作
 				for (int i = 0; i < 6; i++)
 				{
-					if (i != this->getTag())
+					if (GlobalInstance::myCardHeros[i] != NULL && i != this->getTag())
 					{
 						FightHeroNode* fnode = (FightHeroNode*)this->getParent()->getChildByTag(i);
 						fnode->pauseAction();
@@ -721,8 +728,8 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 	}
 	else if (stype == 5)
 	{
-		dt1 = 1.0f;
-		dt2 = 1.8f;
+		dt1 = 0.2f;
+		dt2 = 1.0f;
 	}
 	else if (stype == 6)
 	{
@@ -787,9 +794,9 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 		if (gf == NULL)
 			return;
 		int roundcount = (int)GlobalInstance::map_GF[gf->getId()].skilleff2;
-		if ((roundcount > 0 && gf->getSkillCount() == roundcount) || roundcount == 0 || stype == 6|| stype == 8)
+		if ((roundcount > 0 && gf->getSkillCount() == roundcount) || roundcount == 0 || stype == 5 || stype == 6 || stype == 8)
 		{
-			headimg->runAction(Sequence::create(DelayTime::create(dt1 + 0.8f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillEffect, this, stype, myHeroPos)), NULL));
+			headimg->runAction(Sequence::create(DelayTime::create(dt1 + 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillEffect, this, stype, myHeroPos)), NULL));
 			FightingLayer* fighting = (FightingLayer*)this->getParent();
 			fighting->pauseAtkSchedule();
 		}
@@ -805,11 +812,11 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 		if (stype == 7 || stype == 8)
 		{
 			SkillStartLayer* layer = SkillStartLayer::create(m_Data->getVocation(), stype);
-			this->getParent()->addChild(layer);
+			this->getParent()->addChild(layer, 10);
 		}
 	}
 
-	namelbl->runAction(Sequence::create(DelayTime::create(dt2 + 0.8f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, myHeroPos)), NULL));
+	namelbl->runAction(Sequence::create(DelayTime::create(dt2 + 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, myHeroPos)), NULL));
 }
 
 void FightHeroNode::attackedSkillCB(int stype, int myHeroPos)
@@ -945,22 +952,24 @@ void FightHeroNode::nextRound()
 
 void FightHeroNode::playSkillEffect(int stype)
 {
-	if (stype != 5)
-	{
-		std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
-		auto effectnode = CSLoader::createNode(effectname);
-		effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
-		this->addChild(effectnode, 10, "playskillani");
+	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
+	auto effectnode = CSLoader::createNode(effectname);
+	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
+	this->addChild(effectnode, 10, "playskillani");
 
-		auto action = CSLoader::createTimeline(effectname);
-		effectnode->runAction(action);
-		action->gotoFrameAndPlay(0, false);
+	auto action = CSLoader::createTimeline(effectname);
+	effectnode->runAction(action);
+	action->gotoFrameAndPlay(0, false);
 
-		effectnode->scheduleOnce(schedule_selector(FightHeroNode::removePlaySkillAnim), action->getDuration() / 60.0f);
-	}
+	this->scheduleOnce(schedule_selector(FightHeroNode::removePlaySkillAnim), action->getDuration() / 60.0f);
 }
 
 void FightHeroNode::playMoreSkillEffect(int stype, int enemyindex)
+{
+	headbox->runAction(Sequence::create(DelayTime::create(1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::playMoreSkillEffectCB, this, stype, enemyindex)), NULL));
+}
+
+void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 {
 	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
@@ -968,7 +977,7 @@ void FightHeroNode::playMoreSkillEffect(int stype, int enemyindex)
 	this->addChild(effectnode, 10, "playskillani");
 
 
-	float offsety = 100;
+	float offsety = 450;
 	float angle = 0;
 	Vec2 mypos = this->getPosition();
 	Vec2 enemypos = this->getParent()->getChildByTag(enemyindex + 6)->getPosition();
@@ -976,20 +985,20 @@ void FightHeroNode::playMoreSkillEffect(int stype, int enemyindex)
 	float tany = enemypos.y - mypos.y;
 	float tanz = sqrt(tanx*tanx + tany*tany);
 	float tan_yx = std::fabs(tany) / std::fabs(tanx);
-	angle = atan(tan_yx) * 180 / M_PI;
+	angle = 90 - atan(tan_yx) * 180 / M_PI;
 
 	float movex = 0;
 	if (tanx > 0)
 	{
 		effectnode->setRotation(angle);
-		movex = mypos.x + offsety * sin(angle * M_PI / 180);
+		movex = tanx - offsety * sin(angle * M_PI / 180);
 	}
 	else
 	{
 		effectnode->setRotation(-angle);
-		movex = mypos.x - offsety * sin(angle * M_PI / 180);
+		movex = -tanx + offsety * sin(angle * M_PI / 180);
 	}
-	float movey = mypos.y + offsety * cos(angle * M_PI / 180);
+	float movey = tany - offsety * cos(angle * M_PI / 180);
 
 
 	if (tanz > 420)
@@ -999,7 +1008,7 @@ void FightHeroNode::playMoreSkillEffect(int stype, int enemyindex)
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, false);
 
-	effectnode->scheduleOnce(schedule_selector(FightHeroNode::removePlaySkillAnim), action->getDuration() / 60.0f);
+	this->scheduleOnce(schedule_selector(FightHeroNode::removePlaySkillAnim), action->getDuration() / 60.0f);
 }
 
 void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
@@ -1014,7 +1023,7 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 	action->gotoFrameAndPlay(0, stype==3);
 
 	if (stype != 3)
-		effectnode->scheduleOnce(schedule_selector(FightHeroNode::removeSufferSkillAnim), action->getDuration()/60.0f);
+		this->scheduleOnce(schedule_selector(FightHeroNode::removeSufferSkillAnim), action->getDuration()/60.0f);
 	
 
 	if (stype == 1)
@@ -1045,6 +1054,19 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 
 		if (tanz > 420)
 			effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
+		this->scheduleOnce(schedule_selector(FightHeroNode::resetZorder), action->getDuration() / 60.0f);
+	}
+}
+
+void FightHeroNode::resetZorder(float dt)
+{
+	for (int i = 0; i < 6; i++)
+	{
+		if (GlobalInstance::myCardHeros[i] != NULL)
+		{
+			FightHeroNode* myheronode = (FightHeroNode*)this->getParent()->getChildByTag(i);
+			myheronode->setLocalZOrder(2);
+		}
 	}
 }
 
@@ -1065,7 +1087,31 @@ void FightHeroNode::showAtkOrHurtAnim(int type)
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, false);
-	effectnode->scheduleOnce(schedule_selector(FightHeroNode::removeAtkOrHurtAnim), 0.33f);
+	this->scheduleOnce(schedule_selector(FightHeroNode::removeAtkOrHurtAnim), 0.33f);
+}
+
+void FightHeroNode::showDeathAnim()
+{
+	std::string effectname = "effect/carddeath.csb";
+	auto effectnode = CSLoader::createNode(effectname);
+	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
+	this->addChild(effectnode, 10, "death");
+	auto action = CSLoader::createTimeline(effectname);
+	effectnode->runAction(action);
+	action->gotoFrameAndPlay(0, false);
+	this->runAction(FadeOut::create(0.6f));
+	this->scheduleOnce(schedule_selector(FightHeroNode::HideMe), action->getDuration() / 60.0f - 0.5f);
+	this->scheduleOnce(schedule_selector(FightHeroNode::removeDeathAnim), action->getDuration()/60.0f);
+}
+
+void FightHeroNode::removeDeathAnim(float dt)
+{
+	this->removeChildByName("death");
+}
+
+void FightHeroNode::HideMe(float dt)
+{
+	this->setVisible(false);
 }
 
 void FightHeroNode::removeAtkOrHurtAnim(float dt)

@@ -20,7 +20,7 @@
 #include "SoundManager.h"
 #include "AnimationEffect.h"
 #include "HintBoxLayer.h"
-#include "UnlockChapterLayer.h"
+#include "NewPopLayer.h"
 #include "CutScenesLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
@@ -1015,7 +1015,7 @@ void MapBlockScene::showUnlockChapter()
 	if (s > c)
 	{
 		GlobalInstance::getInstance()->saveUnlockChapter(s);
-		UnlockChapterLayer* layer = UnlockChapterLayer::create(s);
+		NewPopLayer* layer = NewPopLayer::create(s);
 		if (g_MapBlockScene != NULL)
 		{
 			g_MapBlockScene->addChild(layer, 1);

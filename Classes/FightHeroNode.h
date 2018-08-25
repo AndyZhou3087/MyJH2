@@ -64,6 +64,8 @@ public:
 	//同时播放多个
 	void playMoreSkillEffect(int stype, int enemyindex);
 
+	void playMoreSkillEffectCB(int stype, int enemyindex);
+
 	void attackedSkillEffect(int stype, int myHeroPos);
 
 	void resumeAction();
@@ -117,6 +119,13 @@ private:
 	void removeSufferSkillAnim(float dt);
 
 	void pauseAction();
+
+	void resetZorder(float dt);
+
+	void showDeathAnim();
+
+	void removeDeathAnim(float dt);
+	void HideMe(float dt);
 public:
 	float atkspeedbns;
 	float dfbns;

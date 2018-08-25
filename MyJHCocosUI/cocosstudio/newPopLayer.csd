@@ -14,7 +14,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5000" />
             <PreSize X="0.9750" Y="0.6313" />
-            <FileData Type="Normal" Path="images/unlockbg.png" Plist="" />
+            <FileData Type="Normal" Path="images/newpopbg.png" Plist="" />
           </AbstractNodeData>
           <AbstractNodeData Name="titlebg" ActionTag="1614276704" Alpha="178" Tag="4" IconVisible="False" LeftMargin="260.7798" RightMargin="216.2202" TopMargin="324.4731" BottomMargin="901.5269" ctype="SpriteObjectData">
             <Size X="243.0000" Y="54.0000" />
@@ -72,7 +72,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scenetext" ActionTag="1419858545" Tag="8" IconVisible="False" LeftMargin="102.9593" RightMargin="117.0406" TopMargin="534.8850" BottomMargin="645.1150" IsCustomSize="True" FontSize="25" LabelText="新场景" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="scenetext" ActionTag="1419858545" Tag="8" IconVisible="False" LeftMargin="102.9593" RightMargin="117.0407" TopMargin="534.8850" BottomMargin="645.1150" IsCustomSize="True" FontSize="25" LabelText="新场景" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="500.0000" Y="100.0000" />
             <AnchorPoint ScaleY="1.0000" />
             <Position X="102.9593" Y="745.1150" />

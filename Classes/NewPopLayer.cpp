@@ -1,4 +1,4 @@
-#include "UnlockChapterLayer.h"
+#include "NewPopLayer.h"
 #include "Resource.h"
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
@@ -7,21 +7,21 @@
 
 USING_NS_CC;
 
-UnlockChapterLayer::UnlockChapterLayer()
+NewPopLayer::NewPopLayer()
 {
 
 }
 
-UnlockChapterLayer::~UnlockChapterLayer()
+NewPopLayer::~NewPopLayer()
 {
 
 }
 
 
-UnlockChapterLayer* UnlockChapterLayer::create(int unlockchapter)
+NewPopLayer* NewPopLayer::create(int para)
 {
-	UnlockChapterLayer *pRet = new(std::nothrow)UnlockChapterLayer();
-	if (pRet && pRet->init(unlockchapter))
+	NewPopLayer *pRet = new(std::nothrow)NewPopLayer();
+	if (pRet && pRet->init(para))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -35,7 +35,7 @@ UnlockChapterLayer* UnlockChapterLayer::create(int unlockchapter)
 }
 
 // on "init" you need to initialize your instance
-bool UnlockChapterLayer::init(int unlockchapter)
+bool NewPopLayer::init(int unlockchapter)
 {
 	if (!Layer::init())
 	{
@@ -63,7 +63,7 @@ bool UnlockChapterLayer::init(int unlockchapter)
 	cocos2d::ui::Text* content = (cocos2d::ui::Text*)csbnode->getChildByName("content");
 
 	cocos2d::ui::Button* okbtn = (cocos2d::ui::Button*)csbnode->getChildByName("okbtn");
-	okbtn->addTouchEventListener(CC_CALLBACK_2(UnlockChapterLayer::onBtnClick, this));
+	okbtn->addTouchEventListener(CC_CALLBACK_2(NewPopLayer::onBtnClick, this));
 	cocos2d::ui::ImageView* btntext = (cocos2d::ui::ImageView*)okbtn->getChildByName("btntext");
 	btntext->loadTexture(ResourcePath::makeTextImgPath("okbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
@@ -113,16 +113,12 @@ bool UnlockChapterLayer::init(int unlockchapter)
 	{
 		return true;
 	};
-	listener->onTouchEnded = [=](Touch *touch, Event *event)
-	{
-		AnimationEffect::closeAniEffect((Layer*)this);
-	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
 }
 
-void UnlockChapterLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+void NewPopLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)

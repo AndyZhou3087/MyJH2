@@ -10,7 +10,7 @@
 
 USING_NS_CC;
 
-int reloadArr[16] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 17, 19, 20 };
+int reloadArr[16] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 17, 18, 20 };
 
 CutScenesLayer::CutScenesLayer()
 {
@@ -66,18 +66,8 @@ bool CutScenesLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, false);
 
-	std::string str = StringUtils::format("effect/skill%dpacker.plist", reloadArr[sizeof(reloadArr) / sizeof(reloadArr[0]) - 1]);
-	if (SpriteFrameCache::getInstance()->isSpriteFramesWithFileLoaded(str))
-	{
-		fdt = 1.3f;
-	}
-	else
-	{
-		fdt = 0.01f;
-	}
-
 	curReloadPlistNum = 0;
-	str = StringUtils::format("effect/skill%dpacker.png", reloadArr[curReloadPlistNum]);
+	std::string str = StringUtils::format("effect/skill%dpacker.png", reloadArr[curReloadPlistNum]);
 	Director::getInstance()->getTextureCache()->addImageAsync(str, CC_CALLBACK_1(CutScenesLayer::loadingOver, this));
 
 	//屏蔽下层点击
@@ -97,11 +87,17 @@ bool CutScenesLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 
 void CutScenesLayer::loadingOver(cocos2d::Texture2D* texture)
 {
+	float fdt;
 	//传入的obj即是异步生成的纹理
 	std::string str = StringUtils::format("effect/skill%dpacker.plist", reloadArr[curReloadPlistNum]);
 	if (!SpriteFrameCache::getInstance()->isSpriteFramesWithFileLoaded(str))
 	{
 		SpriteFrameCache::getInstance()->addSpriteFramesWithFile(str, texture);
+		fdt = 0.01f;
+	}
+	else
+	{
+		fdt = 1.5f;
 	}
 	if (curReloadPlistNum == sizeof(reloadArr) / sizeof(reloadArr[0]))
 	{

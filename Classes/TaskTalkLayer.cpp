@@ -10,7 +10,6 @@
 #include "MapBlockScene.h"
 #include "FightingLayer.h"
 #include "MovingLabel.h"
-#include "UnlockChapterLayer.h"
 
 TaskTalkLayer::TaskTalkLayer()
 {
