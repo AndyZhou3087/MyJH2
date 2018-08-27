@@ -13,7 +13,6 @@
 #include "FightingResultLayer.h"
 #include "Quest.h"
 #include "TaskTalkLayer.h"
-#include "TaskBranchTalkLayer.h"
 #include "MyPackageLayer.h"
 #include "MainScene.h"
 #include "Quest.h"
@@ -844,7 +843,7 @@ void MapBlockScene::doMyStatus()
 					else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
 					{
 						isTask = true;
-						this->addChild(TaskBranchTalkLayer::create(vec_enemys[i]->getId(), vec_enemys));
+						this->addChild(TaskTalkLayer::create(vec_enemys[i]->getId(), vec_enemys, 1));
 						break;
 					}
 				}
@@ -987,7 +986,7 @@ void MapBlockScene::showFightResult(int result)
 				}
 				else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
 				{
-					Quest::finishBranchQuest();
+					Quest::finishFightBranch(QUEST_FIGHT);
 				}
 				Quest::setAchieveTypeCount(ACHIEVE_FIGHT, 1, vec_enemys[i]->getId());
 			}

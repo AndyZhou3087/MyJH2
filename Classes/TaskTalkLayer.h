@@ -17,9 +17,9 @@ public:
 	TaskTalkLayer();
 	~TaskTalkLayer();
 
-	virtual bool init(std::string npcid, std::vector<Npc*> vec_enemys);
+	virtual bool init(std::string npcid, std::vector<Npc*> vec_enemys, int type = 0);//默认0主线，1支线;
 
-	static TaskTalkLayer* create(std::string npcid, std::vector<Npc*> vec_enemys);
+	static TaskTalkLayer* create(std::string npcid, std::vector<Npc*> vec_enemys, int type = 0);
 
 private:
 	cocos2d::ui::Button* givebtn;
@@ -36,6 +36,8 @@ private:
 	int m_wordcount;
 	int isGo;
 	bool isFight;
+	int m_type;
+	TaskData* data;
 	cocos2d::ui::ScrollView* descscoll;
 
 private:

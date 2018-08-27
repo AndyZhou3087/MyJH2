@@ -4,27 +4,27 @@
 #include "GlobalInstance.h"
 #include "MyRes.h"
 #include "MovingLabel.h"
-#include "TaskMainNode.h"
-#include "TaskMainDescLayer.h"
+#include "TaskNode.h"
+#include "TaskDescLayer.h"
 #include "Const.h"
 #include "AnimationEffect.h"
 #include "SoundManager.h"
 
-TaskMainNode::TaskMainNode()
+TaskNode::TaskNode()
 {
 
 }
 
 
-TaskMainNode::~TaskMainNode()
+TaskNode::~TaskNode()
 {
 
 }
 
-TaskMainNode* TaskMainNode::create(TaskMainData* data, TaskLayer* layer)
+TaskNode* TaskNode::create(TaskData* data, int type)
 {
-	TaskMainNode *pRet = new(std::nothrow)TaskMainNode();
-	if (pRet && pRet->init(data,layer))
+	TaskNode *pRet = new(std::nothrow)TaskNode();
+	if (pRet && pRet->init(data, type))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -37,9 +37,9 @@ TaskMainNode* TaskMainNode::create(TaskMainData* data, TaskLayer* layer)
 	}
 }
 
-bool TaskMainNode::init(TaskMainData* data, TaskLayer* layer)
+bool TaskNode::init(TaskData* data, int type)
 {
-	m_layer = layer;
+	m_type = type;
 	m_Data = data;
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("taskMainNode.csb"));
@@ -48,7 +48,7 @@ bool TaskMainNode::init(TaskMainData* data, TaskLayer* layer)
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	cocos2d::ui::ImageView* resitem = (cocos2d::ui::ImageView*)csbnode->getChildByName("resitem");
-	resitem->addTouchEventListener(CC_CALLBACK_2(TaskMainNode::onImgClick, this));
+	resitem->addTouchEventListener(CC_CALLBACK_2(TaskNode::onImgClick, this));
 	resitem->setSwallowTouches(false);
 
 	//Ãû×Ö
@@ -65,11 +65,11 @@ bool TaskMainNode::init(TaskMainData* data, TaskLayer* layer)
 
 	updateData(0);
 
-	this->schedule(schedule_selector(TaskMainNode::updateData), 1.0f);
+	this->schedule(schedule_selector(TaskNode::updateData), 1.0f);
 	return true;
 }
 
-void TaskMainNode::updateData(float dt)
+void TaskNode::updateData(float dt)
 {
 	if (m_Data->isfinish == QUEST_FINISH)
 	{
@@ -84,7 +84,16 @@ void TaskMainNode::updateData(float dt)
 	{
 		finish->setVisible(false);
 		redpoint->setVisible(false);
-		if (m_Data->id == GlobalInstance::myCurMainData.id)
+		int id;
+		if (m_type == 0)
+		{
+			id = GlobalInstance::myCurMainData.id;
+		}
+		else
+		{
+			id = GlobalInstance::myCurBranchData.id;
+		}
+		if (m_Data->id == id)
 		{
 			redpoint->setVisible(true);
 		}
@@ -92,7 +101,7 @@ void TaskMainNode::updateData(float dt)
 
 }
 
-void TaskMainNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+void TaskNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	Node* clicknode = (Node*)pSender;
 	if (type == ui::Widget::TouchEventType::BEGAN)
@@ -113,7 +122,8 @@ void TaskMainNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			return;
 
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		Layer* layer = TaskMainDescLayer::create(m_Data);
+		Layer* layer = TaskDescLayer::create(m_Data, m_type);
+		TaskLayer* m_layer = (TaskLayer*)this->getParent()->getParent()->getParent();
 		if (m_layer!=NULL)
 		{
 			m_layer->addChild(layer);

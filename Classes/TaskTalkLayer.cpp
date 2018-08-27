@@ -26,10 +26,10 @@ TaskTalkLayer::~TaskTalkLayer()
 
 }
 
-TaskTalkLayer* TaskTalkLayer::create(std::string npcid, std::vector<Npc*> vec_enemys)
+TaskTalkLayer* TaskTalkLayer::create(std::string npcid, std::vector<Npc*> vec_enemys, int type)
 {
 	TaskTalkLayer *pRet = new(std::nothrow)TaskTalkLayer();
-	if (pRet && pRet->init(npcid, vec_enemys))
+	if (pRet && pRet->init(npcid, vec_enemys, type))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -42,12 +42,21 @@ TaskTalkLayer* TaskTalkLayer::create(std::string npcid, std::vector<Npc*> vec_en
 	}
 }
 
-bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
+bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int type)
 {
 	m_npcid = npcid;
 	m_vec_enemys = vec_enemys;
+	m_type = type;
 
-	TaskMainData* data = &GlobalInstance::myCurMainData;
+	if (type == 0)
+	{
+		data = &GlobalInstance::myCurMainData;
+	}
+	else
+	{
+		data = &GlobalInstance::myCurBranchData;
+	}
+
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color,0,"colorLayer");
 
@@ -136,13 +145,27 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	else
 	{
 		//ÅÐ¶ÏÊÇ·ñ»¥³â
-		if (Quest::getMutexMainQuestType(data->id, data->type[0]))
+		if (m_type == 0)
 		{
-			givebtn->setTouchEnabled(false);
+			if (Quest::getMutexMainQuestType(data->id, data->type[0]))
+			{
+				givebtn->setTouchEnabled(false);
+			}
+			if (Quest::getMutexMainQuestType(data->id, data->type[1]))
+			{
+				fightbtn->setTouchEnabled(false);
+			}
 		}
-		if (Quest::getMutexMainQuestType(data->id, data->type[1]))
+		else
 		{
-			fightbtn->setTouchEnabled(false);
+			if (Quest::getMutexBranchQuestType(data->id, data->type[0]))
+			{
+				givebtn->setTouchEnabled(false);
+			}
+			if (Quest::getMutexBranchQuestType(data->id, data->type[1]))
+			{
+				fightbtn->setTouchEnabled(false);
+			}
 		}
 	}
 
@@ -225,8 +248,8 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
 		int tag = btn->getTag();
 
-		isGo = GlobalInstance::myCurMainData.isFight1;
-		std::string bwords = GlobalInstance::myCurMainData.bossword1;
+		isGo = data->isFight1;
+		std::string bwords = data->bossword1;
 
 		switch (tag)
 		{
@@ -246,7 +269,7 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			this->removeFromParentAndCleanup(true);
 			break;
 		case QUEST_GIVE: //
-			questGive(bwords, GlobalInstance::myCurMainData.need1);
+			questGive(bwords, data->need1);
 			break;
 		case QUEST_FIGHT: //
 			questFight(bwords);
@@ -268,13 +291,13 @@ void TaskTalkLayer::onBtn2Click(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
 		int tag = btn->getTag();
 
-		isGo = GlobalInstance::myCurMainData.isFight2;
-		std::string bwords = GlobalInstance::myCurMainData.bossword2;
+		isGo = data->isFight2;
+		std::string bwords = data->bossword2;
 
 		switch (tag)
 		{
 		case QUEST_GIVE: //
-			questGive(bwords, GlobalInstance::myCurMainData.need2);
+			questGive(bwords, data->need2);
 			break;
 		case QUEST_FIGHT: //
 			questFight(bwords);
@@ -332,9 +355,19 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 			std::map<std::string, int> one_res = need[i];
 			std::map<std::string, int>::iterator oneit = one_res.begin();
 			std::string cresid = oneit->first;
-			if (Quest::checkResQuestData(cresid, oneit->second, m_npcid))
+			if (m_type == 0)
 			{
-				isfinish = true;
+				if (Quest::checkResQuestData(cresid, oneit->second, m_npcid))
+				{
+					isfinish = true;
+				}
+			}
+			else
+			{
+				if (Quest::checkResBranchQuestData(cresid, oneit->second, m_npcid))
+				{
+					isfinish = true;
+				}
 			}
 		}
 		if (isfinish)
@@ -379,7 +412,14 @@ void TaskTalkLayer::questNotFight(std::string bwords)
 	closebtn->setTitleText(ResourceLang::map_lang["okbtntext"]);
 	fightbtn->setVisible(false);
 	givebtn->setVisible(false);
-	Quest::finishFightMain(QUEST_NOTFIGHT);
+	if (m_type == 0)
+	{
+		Quest::finishFightMain(QUEST_NOTFIGHT);
+	}
+	else
+	{
+		Quest::finishFightBranch(QUEST_NOTFIGHT);
+	}
 }
 
 void TaskTalkLayer::checkWordLblColor(std::string wordstr)

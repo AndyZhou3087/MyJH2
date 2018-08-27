@@ -1,4 +1,4 @@
-#include "TaskBranchTalkLayer.h"
+#include "TaskDescLayer.h"
 #include <algorithm>
 #include "CommonFuncs.h"
 #include "Const.h"
@@ -7,25 +7,24 @@
 #include "MyRes.h"
 #include "MyMenu.h"
 #include "MovingLabel.h"
-#include "Quest.h"
-#include "MapBlockScene.h"
-#include "FightingLayer.h"
+#include "TaskNode.h"
+#include "AnimationEffect.h"
 
-TaskBranchTalkLayer::TaskBranchTalkLayer()
+TaskDescLayer::TaskDescLayer()
 {
 
 }
 
 
-TaskBranchTalkLayer::~TaskBranchTalkLayer()
+TaskDescLayer::~TaskDescLayer()
 {
 
 }
 
-TaskBranchTalkLayer* TaskBranchTalkLayer::create(std::string npcid, std::vector<Npc*> vec_enemys)
+TaskDescLayer* TaskDescLayer::create(TaskData* data, int type)
 {
-	TaskBranchTalkLayer *pRet = new(std::nothrow)TaskBranchTalkLayer();
-	if (pRet && pRet->init(npcid, vec_enemys))
+	TaskDescLayer *pRet = new(std::nothrow)TaskDescLayer();
+	if (pRet && pRet->init(data, type))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -38,12 +37,15 @@ TaskBranchTalkLayer* TaskBranchTalkLayer::create(std::string npcid, std::vector<
 	}
 }
 
-bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
+bool TaskDescLayer::init(TaskData* data, int type)
 {
-	m_npcid = npcid;
-	m_vec_enemys = vec_enemys;
+	if (!Layer::init())
+	{
+		return false;
+	}
 
-	TaskBranchData* data = &GlobalInstance::myCurBranchData;
+	m_type = type;
+	m_data = data;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color,0,"colorLayer");
 
@@ -63,7 +65,7 @@ bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	name->setString(data->name);
 
 	cocos2d::ui::ScrollView* descscoll = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("descscoll");
-	Label* contentlbl = Label::createWithTTF(data->bossword, FONT_NAME, 25);
+	Label* contentlbl = Label::createWithTTF(data->desc, FONT_NAME, 25);
 	contentlbl->setAnchorPoint(Vec2(0, 1));
 	contentlbl->setColor(Color3B(255, 255, 255));
 	//contentlbl->setHorizontalAlignment(TextHAlignment::LEFT);
@@ -79,7 +81,7 @@ bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 
 	//npc头像
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
-	std::string str = StringUtils::format("mapui/%s.png", GlobalInstance::map_Npcs[data->npcid].icon.c_str());
+	std::string str = "mapui/n001.png";// StringUtils::format("mapui/%s.png", GlobalInstance::map_Npcs[data->npcid].icon.c_str());
 	/*icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 	icon->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());*/
 	icon->setVisible(false);
@@ -104,29 +106,81 @@ bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	cocos2d::ui::Text* npcname = (cocos2d::ui::Text*)m_csbnode->getChildByName("npcname");
 	npcname->setString(GlobalInstance::map_AllResources[data->npcid].name);
 
-	closebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("closebtn");
+	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("closebtn");
 	closebtn->setPosition(Vec2(357, 183));
 	closebtn->setTag(0);
-	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskBranchTalkLayer::onBtnClick, this));
+	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskDescLayer::onBtnClick, this));
 	closebtn->setTitleText(ResourceLang::map_lang["closetext"]);
 
-	givebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("accbtn");
-	givebtn->setPosition(Vec2(357, 376));
-	givebtn->setTag(1);
-	givebtn->addTouchEventListener(CC_CALLBACK_2(TaskBranchTalkLayer::onBtnClick, this));
-	givebtn->setTitleText(data->needdesc);
+	accbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("accbtn");
+	accbtn->setPosition(Vec2(357, 376));
+	accbtn->setTag(1);
+	accbtn->addTouchEventListener(CC_CALLBACK_2(TaskDescLayer::onBtnClick, this));
+	accbtn->setTitleText(ResourceLang::map_lang["acctasktext"]);
+
+	cocos2d::ui::Button* getbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("getbtn");
+	getbtn->setPosition(Vec2(357, 376));
+	getbtn->setTag(2);
+	getbtn->addTouchEventListener(CC_CALLBACK_2(TaskDescLayer::onBtnClick, this));
+	getbtn->setTitleText(ResourceLang::map_lang["getrewardtext"]);
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("ScrollView");
 	scrollView->setScrollBarEnabled(false);
 	scrollView->setBounceEnabled(true);
 
-	if (data->type != QUEST_GIVE)
+	if (data->isfinish == QUEST_FINISH)
 	{
-		scrollView->setVisible(false);
-		rewardlabel->setVisible(false);
+		getbtn->setVisible(true);
+		accbtn->setVisible(false);
+	}
+	else if (data->isfinish == QUEST_GET)
+	{
+		getbtn->setVisible(false);
+		accbtn->setVisible(false);
+	}
+	else if (data->isfinish == QUEST_ACC)
+	{
+		getbtn->setVisible(false);
+		accbtn->setVisible(true);
+		accbtn->setTitleText(ResourceLang::map_lang["accmaintask"]);
+		accbtn->setTouchEnabled(false);
+	}
+	else
+	{
+		getbtn->setVisible(false);
+		accbtn->setVisible(true);
+	}
+	
+	int id;
+	if (m_type == 0)
+	{
+		id = GlobalInstance::myCurMainData.id;
+	}
+	else
+	{
+		id = GlobalInstance::myCurBranchData.id;
+	}
+	if (data->id != id && data->isfinish == QUEST_TASK)
+	{
+		getbtn->setVisible(false);
+		accbtn->setVisible(false);
 	}
 
-	std::vector<std::vector<std::string>> rewards = data->need;
+	if (data->type.size() == 1)
+	{
+		rewards = data->reward1;
+	}
+	else 
+	{
+		for (unsigned int m = 0; m < data->reward1.size(); m++)
+		{
+			rewards.push_back(data->reward1[m]);
+		}
+		for (unsigned int n = 0; n < data->reward2.size(); n++)
+		{
+			rewards.push_back(data->reward2[n]);
+		}
+	}
 
 	for (unsigned int i = 0; i < rewards.size(); i++)
 	{
@@ -167,7 +221,7 @@ bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 		box->addChild(namelbl);
 
 	}
-	
+
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -182,7 +236,7 @@ bool TaskBranchTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	return true;
 }
 
-void TaskBranchTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+void TaskDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
@@ -192,33 +246,52 @@ void TaskBranchTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 		switch (tag)
 		{
 		case 0:
-			this->removeFromParentAndCleanup(true);
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
-		case 1: //条件1
-			if (GlobalInstance::myCurBranchData.type == QUEST_GIVE)
-			{
-				for (unsigned int i = 0; i < GlobalInstance::myCurBranchData.need.size(); i++)
-				{
-					std::vector<std::string> one_res = GlobalInstance::myCurBranchData.need[i];
-					std::string cresid = one_res[0];
-					int count = atoi(one_res[1].c_str());
-					if (MyRes::getMyResCount(cresid, MYPACKAGE) < count)
-					{
-						MovingLabel::show(ResourceLang::map_lang["reslack"]);
-						break;
-					}
-					Quest::checkResBranchQuestData(cresid, count, m_npcid);
-					this->removeFromParentAndCleanup(true);
-				}
-			}
-			else
-			{
-				g_MapBlockScene->showFightingLayer(m_vec_enemys);
-				this->removeFromParentAndCleanup(true);
-			}
+		case 1: //接受任务
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_TAKEMISSION);
+			accbtn->setTitleText(ResourceLang::map_lang["accmaintask"]);
+			accbtn->setTouchEnabled(false);
+			accpTask();
+			break;
+		case 2: //完成后领取奖励
+			node->setVisible(false);
+			getRewards();
 			break;
 		default:
 			break;
 		}
+	}
+}
+
+void TaskDescLayer::accpTask()
+{
+	m_data->isfinish = QUEST_ACC;
+	if (m_type == 0)
+	{
+		GlobalInstance::myCurMainData.isfinish = QUEST_ACC;
+	}
+	else
+	{
+		GlobalInstance::myCurBranchData.isfinish = QUEST_ACC;
+	}
+}
+
+void TaskDescLayer::getRewards()
+{
+	m_data->isfinish = QUEST_GET;
+	for (unsigned int i = 0; i < rewards.size(); i++)
+	{
+		std::vector<std::string> one_res = rewards[i];
+		std::string resid = one_res[0];
+		int count = atoi(one_res[1].c_str());
+		int qu = 0;
+		int stc = 0;
+		if (one_res.size()>2 && one_res[2].length()>0)
+		{
+			qu = atoi(one_res[2].c_str());
+			stc = GlobalInstance::getInstance()->generateStoneCount(qu);
+		}
+		MyRes::Add(resid, count, MYSTORAGE, qu, stc);
 	}
 }

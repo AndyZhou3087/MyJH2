@@ -9,7 +9,7 @@ typedef enum
 {
 	BTN_1 = 0,
 	BTN_2,
-}MAINBTNTYPE;
+}TASKBTNTYPE;
 
 class Quest
 {
@@ -23,7 +23,7 @@ public:
 	static void initCurNeedData();
 
 	//添加已完成任务
-	static void AddFinishQuest(TaskMainData data);
+	static void AddFinishQuest(TaskData data);
 
 	//判断二选一条件下是否有互斥,若有返回true
 	static bool getMutexMainQuestType(int id, int type);
@@ -53,6 +53,18 @@ public:
 
 	/*************支线任务数据逻辑**************/
 
+	//初始化已完成的任务
+	static bool initFinishTaskBranchData();
+
+	//初始化当前任务已完成的物品
+	static void initCurBranchNeedData();
+
+	//添加已完成任务
+	static void AddFinishBranchQuest(TaskData data);
+
+	//判断二选一条件下是否有互斥,若有返回true
+	static bool getMutexBranchQuestType(int id, int type);
+
 	//判断是否接受此npc任务
 	static bool getBranchQuestNpc(std::string npcid);
 
@@ -68,6 +80,10 @@ public:
 	static void saveBranchData();
 
 	static void finishBranchQuest();
+
+	static void finishFightBranch(int ftype);
+
+	static int getTypeBranchBtn(int id, int ftype);
 
 	//判断是否接受支线任务
 	static bool getBranchQuest();
@@ -93,9 +109,11 @@ public:
 	static void setAchieveTypeCount(int type, int count,std::string resid = "0");
 
 public:
-	static std::vector<TaskMainData> myFinishMainQuest;
+	static std::vector<TaskData> myFinishMainQuest;
 
 	static std::map<std::string, int> map_NpcQuestRes;
+
+	static std::vector<TaskData> myFinishBranchQuest;
 
 	//支线任务npc物品
 	static std::map<std::string, int> map_NpcBranchQuestRes;

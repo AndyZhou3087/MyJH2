@@ -9,15 +9,15 @@
 
 USING_NS_CC;
 
-class TaskMainDescLayer :public Layer
+class TaskDescLayer :public Layer
 {
 public:
-	TaskMainDescLayer();
-	~TaskMainDescLayer();
+	TaskDescLayer();
+	~TaskDescLayer();
 
-	virtual bool init(TaskMainData* data);
+	virtual bool init(TaskData* data, int type = 0);//默认0主线，1支线
 
-	static TaskMainDescLayer* create(TaskMainData* data);
+	static TaskDescLayer* create(TaskData* data, int type = 0);
 
 private:
 	cocos2d::ui::Button* accbtn;
@@ -29,7 +29,8 @@ private:
 	void getRewards();
 
 private:
-	TaskMainData* m_data;
+	TaskData* m_data;
+	int m_type;
 	std::vector<std::vector<std::string>> rewards;
 };
 #endif

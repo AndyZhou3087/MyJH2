@@ -9,25 +9,25 @@
 
 USING_NS_CC;
 
-class TaskMainNode :public Node
+class TaskNode :public Node
 {
 public:
-	TaskMainNode();
-	~TaskMainNode();
+	TaskNode();
+	~TaskNode();
 
-	bool init(TaskMainData* data, TaskLayer* layer);
+	bool init(TaskData* data, int type = 0);//默认0主线，1支线
 
-	static TaskMainNode* create(TaskMainData* data, TaskLayer* layer);
+	static TaskNode* create(TaskData* data, int type = 0);
 
 private:
 	cocos2d::ui::ImageView* redpoint;//提示红点
 	cocos2d::ui::Text* namelbl;//名字
 	cocos2d::ui::Widget* finish;//完成
-	TaskMainData* m_Data;
+	TaskData* m_Data;
 private:
 	void onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void updateData(float dt);
-	TaskLayer* m_layer;
+	int m_type;
 	bool clickflag;
 	Vec2 beginTouchPoint;
 };

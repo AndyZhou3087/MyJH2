@@ -157,22 +157,7 @@ typedef struct
 	int isFight2;
 	int isfinish;//是否完成此任务，0已接受未完成，1未接受任务，2已完成未领取，3已领取奖励
 	int finishtype;//完成任务类型，1表示条件1完成，2表示条件2完成
-}TaskMainData;
-
-typedef struct
-{
-	int id;
-	std::string name;
-	std::string desc;
-	std::string place;
-	std::string npcid;
-	std::string bossword;
-	int type;//条件,1表示给东西，2表示战斗
-	std::vector<std::vector<std::string>> need;//物品，r001-10(id-count)
-	std::string needdesc;
-	std::vector<std::vector<std::string>> reward;//条件1的奖励
-	int isfinish;//是否完成此任务，0已接受未完成，1未接受任务，2已完成未领取，3已领取奖励
-}TaskBranchData;
+}TaskData;
 
 typedef struct
 {
@@ -439,9 +424,9 @@ public:
 	void saveMyDailyTaskData();
 
 	//主线任务进行排序
-	static bool larger_callback(TaskMainData a, TaskMainData b);
+	static bool larger_callback(TaskData a, TaskData b);
 	//支线任务进行排序
-	static bool larger_branchcallback(TaskBranchData a, TaskBranchData b);
+	static bool larger_branchcallback(TaskData a, TaskData b);
 
 	void heroSortByLv();
 
@@ -485,13 +470,13 @@ public:
 
 	static std::map<std::string, NPCData> map_Npcs;
 
-	static std::vector<TaskMainData> vec_TaskMain;//主线任务
+	static std::vector<TaskData> vec_TaskMain;//主线任务
 
-	static TaskMainData myCurMainData;//当前主线任务
+	static TaskData myCurMainData;//当前主线任务
 
-	static std::vector<TaskBranchData> vec_TaskBranch;//支线任务
+	static std::vector<TaskData> vec_TaskBranch;//支线任务
 
-	static TaskBranchData myCurBranchData;//当前支线任务
+	static TaskData myCurBranchData;//当前支线任务
 
 	static std::map<std::string, DailyTaskData> map_DTdata;//每日任务
 

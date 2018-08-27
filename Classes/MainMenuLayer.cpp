@@ -5,7 +5,6 @@
 #include "MyRes.h"
 #include "MaterialDescLayer.h"
 #include "TaskTalkLayer.h"
-#include "TaskBranchTalkLayer.h"
 #include "Quest.h"
 #include "MessageLayer.h"
 #include "MainScene.h"
