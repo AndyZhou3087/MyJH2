@@ -30,7 +30,6 @@ private:
 	std::vector<Npc*> m_vec_enemys;
 	cocos2d::ui::Text* desc;
 	Label* m_wordlbl;
-	Node* lasttalklbl;
 	bool isShowWord;
 	int m_wordindex;
 	int m_wordcount;
@@ -45,7 +44,6 @@ private:
 	void onBtn2Click(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void checkWordLblColor(std::string wordstr);
 	void showTypeText(float dt);
-
 	void questGive(std::string bwords, std::vector<std::map<std::string, int>> need);
 	void questFight(std::string bwords);
 	void questNotFight(std::string bwords);

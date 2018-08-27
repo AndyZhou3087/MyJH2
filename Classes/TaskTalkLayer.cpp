@@ -17,7 +17,7 @@ TaskTalkLayer::TaskTalkLayer()
 	m_wordindex = 0;
 	m_wordcount = 0;
 	isFight = false;
-	lasttalklbl = NULL;
+	m_wordlbl = NULL;
 }
 
 
@@ -424,13 +424,21 @@ void TaskTalkLayer::questNotFight(std::string bwords)
 
 void TaskTalkLayer::checkWordLblColor(std::string wordstr)
 {
-	m_wordlbl = Label::createWithTTF(wordstr, FONT_NAME, 25);
-	m_wordlbl->setLineBreakWithoutSpace(true);
-	m_wordlbl->setAnchorPoint(Vec2(0, 1));
-	/*m_wordlbl->setHorizontalAlignment(CCTextAlignment::LEFT);
-	m_wordlbl->setVerticalAlignment(CCVerticalTextAlignment::TOP);*/
-	m_wordlbl->setMaxLineWidth(descscoll->getContentSize().width);
-	descscoll->addChild(m_wordlbl, 0, "talklbl");
+	if (m_wordlbl == NULL)
+	{
+		m_wordlbl = Label::createWithTTF(wordstr, FONT_NAME, 25);
+		m_wordlbl->setLineBreakWithoutSpace(true);
+		m_wordlbl->setAnchorPoint(Vec2(0, 1));
+		m_wordlbl->setMaxLineWidth(descscoll->getContentSize().width);
+		descscoll->addChild(m_wordlbl, 0, "talklbl");
+	}
+	else
+	{
+		m_wordcount = 0;
+		isShowWord = false;
+		m_wordlbl->unschedule("schedule_typecallback");
+		m_wordlbl->setString(wordstr);
+	}
 	int innerheight = m_wordlbl->getStringNumLines() * 25;//contentlbl->getHeight();
 	int contentheight = descscoll->getContentSize().height;
 	if (innerheight < contentheight)
@@ -451,14 +459,6 @@ void TaskTalkLayer::checkWordLblColor(std::string wordstr)
 
 void TaskTalkLayer::showTypeText(float dt)
 {
-	if (lasttalklbl != NULL)
-	{
-		lasttalklbl->setVisible(false);
-		lasttalklbl->removeFromParentAndCleanup(true);
-		lasttalklbl = NULL;
-	}
-
-	lasttalklbl = m_wordlbl;
 	m_wordlbl->schedule([&](float dt) {
 		isShowWord = true;
 		m_wordlbl->getLetter(m_wordcount)->setScale(1.0f);

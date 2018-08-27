@@ -999,12 +999,12 @@ void GlobalInstance::saveMyTaskBranchData()
 		TaskData data = GlobalInstance::vec_TaskBranch[i];
 		if (data.isfinish >= QUEST_FINISH)
 		{
-			std::string onestr = StringUtils::format("%d-%d;", data.id, data.isfinish, data.finishtype);
+			std::string onestr = StringUtils::format("%d-%d-%d;", data.id, data.isfinish, data.finishtype);
 			str.append(onestr);
 		}
 		if (data.isfinish == QUEST_ACC)
 		{
-			mystr = StringUtils::format("%d-%d;", data.id, data.isfinish, data.finishtype);
+			mystr = StringUtils::format("%d-%d-%d;", data.id, data.isfinish, data.finishtype);
 		}
 	}
 	str.append(mystr);
