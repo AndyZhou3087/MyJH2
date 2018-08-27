@@ -21,6 +21,7 @@
 #include "HintBoxLayer.h"
 #include "NewPopLayer.h"
 #include "CutScenesLayer.h"
+#include "GoBackLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -307,10 +308,18 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		switch (tag)
 		{
 		case BTN_GOCITY:
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+		{
+			GoBackLayer* layer = GoBackLayer::create();
+			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		case BTN_MAP:
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+		{
+			GoBackLayer* layer = GoBackLayer::create(1);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		case BTN_PACKAGE:
 		{

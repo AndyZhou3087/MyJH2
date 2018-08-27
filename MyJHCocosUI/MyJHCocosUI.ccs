@@ -840,6 +840,7 @@
           <Image Name="messageicon.png" />
           <Image Name="ninegrid.png" />
           <Image Name="normal9bg.png" />
+          <Image Name="p001.png" />
           <Image Name="pointicon_0.png" />
           <Image Name="pointicon_1.png" />
           <Image Name="pointicon_2.png" />
@@ -880,6 +881,7 @@
           <Image Name="smallstar.png" />
           <Image Name="strentharrow.png" />
           <Image Name="strenthicon.png" />
+          <Image Name="t001.png" />
           <Image Name="taskbtn.png" />
           <Image Name="taskdailybigbar.png" />
           <Image Name="taskdailybigbg.png" />
@@ -1026,6 +1028,7 @@
         <Project Name="messageLayer.csd" Type="Layer" />
         <Project Name="messageNode.csd" Type="Node" />
         <Project Name="myHeroNode.csd" Type="Node" />
+        <Project Name="newPopLayer.csd" Type="Layer" />
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
@@ -1049,9 +1052,9 @@
         <Project Name="trainLayer.csd" Type="Layer" />
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
-        <Project Name="newPopLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="goBackLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

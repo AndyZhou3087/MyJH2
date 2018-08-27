@@ -150,6 +150,11 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 			std::string  descstr1 = StringUtils::format(ResourceLang::map_lang["tboxdesc"].c_str(), resname.c_str());
 			descstr = StringUtils::format("%s%s", descstr.c_str(), descstr1.c_str());
 		}
+		else if (res->getType() == T_TLMED)
+		{
+			btntextstr = "usebtn_text";
+			status = S_CAN_USE;
+		}
 		else if (res->getType() == T_VSION)
 		{
 			std::string visonstr = StringUtils::format("%s%d", ResourceLang::map_lang["lvtexts"].c_str(), res->getCount().getValue());
@@ -214,9 +219,40 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		}
 		else if (status == S_CAN_USE)
 		{
-			ResDescLayer* layer = ResDescLayer::create(m_res, 1);
-			this->getParent()->addChild(layer);
-			AnimationEffect::openAniEffect((Layer*)layer);
+			if (m_res->getType() == T_TLMED)
+			{
+				int count = 0;
+				for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+				{
+					Hero* hero = GlobalInstance::vec_myHeros[i];
+					if (hero->getPower().getValue() >= 100)
+					{
+						count++;
+					}
+					else if (hero->getPower().getValue() > 50)
+					{
+						DynamicValueInt dal;
+						dal.setValue(100);
+						hero->setPower(dal);
+					}
+					else
+					{
+						DynamicValueInt dal;
+						dal.setValue(hero->getPower().getValue() + 50);
+						hero->setPower(dal);
+					}
+				}
+				if (count == GlobalInstance::vec_myHeros.size())
+				{
+					MovingLabel::show(ResourceLang::map_lang["powerlimit"]);
+					return;
+				}
+				MyRes::Use("p001");
+
+				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+				if (storelayer != NULL)
+					storelayer->updateUI();
+			}
 		}
 
 		AnimationEffect::closeAniEffect((Layer*)this);

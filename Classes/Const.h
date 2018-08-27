@@ -41,5 +41,6 @@ const static int COSTLV[] = { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 15, 1
 const static float ODDS[] = { 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 96.5f, 92.5f, 88.0f, 83.0f, 77.5f, 71.5f, 65.0f, 58.0f, 50.5f, 42.5f, 34.0f, 25.0f, 15.5f, 5.5f };
 
 //区分资源类型的字符
-const static std::string RES_TYPES_CHAR[] = { "r","a","e","g","f","w","x","s","c","d","m","b","y","v" };
+const static std::string RES_TYPES_CHAR[] = { "r","a","e","g","f","w","x","s","c","d","m","b","y","v","t","p" };
+
 #endif // _H_CONST_H_
