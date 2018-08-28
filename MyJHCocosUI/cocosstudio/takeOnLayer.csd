@@ -131,15 +131,15 @@
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="res_0" ActionTag="-1615877609" Tag="146" IconVisible="False" LeftMargin="101.1400" RightMargin="509.8600" TopMargin="452.4370" BottomMargin="718.5630" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="71" Scale9Height="75" ctype="ImageViewObjectData">
-            <Size X="109.0000" Y="109.0000" />
+          <AbstractNodeData Name="res_0" ActionTag="-1615877609" Tag="146" IconVisible="False" LeftMargin="93.1400" RightMargin="501.8600" TopMargin="444.4370" BottomMargin="710.5630" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="87" Scale9Height="91" ctype="ImageViewObjectData">
+            <Size X="125.0000" Y="125.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="155.6400" Y="773.0630" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.2162" Y="0.6040" />
-            <PreSize X="0.1514" Y="0.0852" />
-            <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
+            <PreSize X="0.1736" Y="0.0977" />
+            <FileData Type="MarkedSubImage" Path="ui/equipsuitbox_0.png" Plist="ui.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="resbox_1" ActionTag="-1708816516" Tag="147" IconVisible="False" LeftMargin="295.5994" RightMargin="299.4006" TopMargin="444.4369" BottomMargin="710.5631" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
@@ -165,15 +165,15 @@
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="res_1" ActionTag="-429487492" Tag="148" IconVisible="False" LeftMargin="303.5991" RightMargin="307.4009" TopMargin="452.4370" BottomMargin="718.5630" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="71" Scale9Height="75" ctype="ImageViewObjectData">
-            <Size X="109.0000" Y="109.0000" />
+          <AbstractNodeData Name="res_1" ActionTag="-429487492" Tag="148" IconVisible="False" LeftMargin="295.5991" RightMargin="299.4009" TopMargin="444.4370" BottomMargin="710.5630" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="87" Scale9Height="91" ctype="ImageViewObjectData">
+            <Size X="125.0000" Y="125.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="358.0991" Y="773.0630" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4974" Y="0.6040" />
-            <PreSize X="0.1514" Y="0.0852" />
-            <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
+            <PreSize X="0.1736" Y="0.0977" />
+            <FileData Type="MarkedSubImage" Path="ui/equipsuitbox_1.png" Plist="ui.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="desc_1" ActionTag="1689163540" Tag="152" IconVisible="False" LeftMargin="98.1675" RightMargin="621.8325" TopMargin="621.5468" BottomMargin="658.4532" FontSize="23" LabelText="" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="0.0000" Y="0.0000" />
@@ -211,15 +211,15 @@
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="res_2" ActionTag="134940008" Tag="150" IconVisible="False" LeftMargin="506.0597" RightMargin="104.9403" TopMargin="452.4370" BottomMargin="718.5630" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="71" Scale9Height="75" ctype="ImageViewObjectData">
-            <Size X="109.0000" Y="109.0000" />
+          <AbstractNodeData Name="res_2" ActionTag="134940008" Tag="150" IconVisible="False" LeftMargin="498.0597" RightMargin="96.9403" TopMargin="444.4370" BottomMargin="710.5630" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="87" Scale9Height="91" ctype="ImageViewObjectData">
+            <Size X="125.0000" Y="125.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="560.5597" Y="773.0630" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.7786" Y="0.6040" />
-            <PreSize X="0.1514" Y="0.0852" />
-            <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
+            <PreSize X="0.1736" Y="0.0977" />
+            <FileData Type="MarkedSubImage" Path="ui/equipsuitbox_2.png" Plist="ui.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="desc_2" ActionTag="1638151702" Tag="153" IconVisible="False" LeftMargin="98.1674" RightMargin="621.8326" TopMargin="668.2810" BottomMargin="611.7190" FontSize="23" LabelText="" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="0.0000" Y="0.0000" />
@@ -513,6 +513,42 @@
             <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="nothing0" ActionTag="121158969" Tag="59" IconVisible="False" LeftMargin="130.8789" RightMargin="539.1211" TopMargin="539.1128" BottomMargin="717.8872" FontSize="20" LabelText="品质：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="50.0000" Y="23.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="155.8789" Y="729.3872" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.2165" Y="0.5698" />
+            <PreSize X="0.0694" Y="0.0180" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="nothing1" ActionTag="512857342" Tag="60" IconVisible="False" LeftMargin="335.0852" RightMargin="334.9148" TopMargin="539.1140" BottomMargin="717.8860" FontSize="20" LabelText="品质：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="50.0000" Y="23.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0852" Y="729.3860" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5001" Y="0.5698" />
+            <PreSize X="0.0694" Y="0.0180" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="nothing2" ActionTag="-1524715295" Tag="61" IconVisible="False" LeftMargin="536.8876" RightMargin="133.1124" TopMargin="539.1139" BottomMargin="717.8861" FontSize="20" LabelText="品质：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="50.0000" Y="23.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="561.8876" Y="729.3861" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.7804" Y="0.5698" />
+            <PreSize X="0.0694" Y="0.0180" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

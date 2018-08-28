@@ -202,4 +202,6 @@
 	<s name="powerlimit">体力已达上限，无需使用！</s>
 	<s name="gobacktext">回城</s>
 	<s name="hcjznomore">回城卷轴数量不足！</s>
+	<s name="nothing">无套装</s>
+	<s name="nothingeffect">套装效果%d:无效果</s>
 </strings>

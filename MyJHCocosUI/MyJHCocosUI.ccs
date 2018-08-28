@@ -756,6 +756,9 @@
           <Image Name="equipbox_4.png" />
           <Image Name="equipbox_5.png" />
           <Image Name="equipstonebox.png" />
+          <Image Name="equipsuitbox_0.png" />
+          <Image Name="equipsuitbox_1.png" />
+          <Image Name="equipsuitbox_2.png" />
           <Image Name="escapebtn.png" />
           <Image Name="f001.png" />
           <Image Name="f001-2.png" />
@@ -1005,6 +1008,7 @@
         <Project Name="fightLayer.csd" Type="Layer" />
         <Project Name="fightResultLayer.csd" Type="Layer" />
         <Project Name="gambleBoxLayer.csd" Type="Layer" />
+        <Project Name="goBackLayer.csd" Type="Layer" />
         <Project Name="headInfoLayer.csd" Type="Layer" />
         <Project Name="heroAttrLayer.csd" Type="Layer" />
         <Project Name="hillResNode.csd" Type="Node" />
@@ -1054,7 +1058,6 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="goBackLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>
