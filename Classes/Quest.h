@@ -44,7 +44,7 @@ public:
 
 	static void finishQuest();
 
-	static void finishFightMain(int ftype);
+	static void finishTaskMain(int ftype);
 
 	static int getTypeBtn(int id, int ftype);
 
@@ -81,7 +81,7 @@ public:
 
 	static void finishBranchQuest();
 
-	static void finishFightBranch(int ftype);
+	static void finishTaskBranch(int ftype);
 
 	static int getTypeBranchBtn(int id, int ftype);
 

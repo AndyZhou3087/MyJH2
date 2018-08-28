@@ -252,7 +252,7 @@ void Quest::finishQuest()
 	saveMainData();
 }
 
-void Quest::finishFightMain(int ftype)
+void Quest::finishTaskMain(int ftype)
 {
 	GlobalInstance::myCurMainData.isfinish = QUEST_FINISH;
 	GlobalInstance::myCurMainData.finishtype = ftype;
@@ -479,7 +479,7 @@ void Quest::AddFinishBranchQuest(TaskData data)
 	DataSave::getInstance()->setMyCurBranchNeed("");
 }
 
-void Quest::finishFightBranch(int ftype)
+void Quest::finishTaskBranch(int ftype)
 {
 	GlobalInstance::myCurBranchData.isfinish = QUEST_FINISH;
 	GlobalInstance::myCurBranchData.finishtype = ftype;

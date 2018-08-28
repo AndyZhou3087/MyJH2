@@ -47,7 +47,7 @@ bool LoadingScene::init()
 	this->addChild(csbnode);
 
 	Node *loadingbar = csbnode->getChildByName("loadingbar");
-	loadingbar->runAction(RepeatForever::create(RotateTo::create(0.8f, 720)));
+	loadingbar->runAction(RepeatForever::create(RotateTo::create(0.8f, -720)));
 
 
 	for (int i = 0; i < 3; i++)

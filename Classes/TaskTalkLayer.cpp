@@ -277,6 +277,9 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case QUEST_NOTFIGHT:
 			questNotFight(bwords);
 			break;
+		case QUEST_TAKEMY:
+			questTakeGoods(bwords, data->need1);
+			break;
 		default:
 			break;
 		}
@@ -304,6 +307,8 @@ void TaskTalkLayer::onBtn2Click(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			break;
 		case QUEST_NOTFIGHT:
 			questNotFight(bwords);
+		case QUEST_TAKEMY:
+			questTakeGoods(bwords, data->need2);
 			break;
 		default:
 			break;
@@ -403,6 +408,51 @@ void TaskTalkLayer::questFight(std::string bwords)
 	}
 }
 
+void TaskTalkLayer::questTakeGoods(std::string bwords, std::vector<std::map<std::string, int>> need)
+{
+	if (bwords.length()>1)
+	{
+		checkWordLblColor(bwords);
+	}
+	closebtn->setTitleText(ResourceLang::map_lang["okbtntext"]);
+	fightbtn->setVisible(false);
+	givebtn->setVisible(false);
+
+	for (unsigned int i = 0; i < need.size(); i++)
+	{
+		std::map<std::string, int> one_res = need[i];
+		std::map<std::string, int>::iterator oneit = one_res.begin();
+		std::string cresid = oneit->first;
+		if (cresid.compare("r006") == 0)//ÒøÁ½
+		{
+			DynamicValueInt dal;
+			dal.setValue(oneit->second);
+			GlobalInstance::getInstance()->addMySoliverCount(dal);
+		}
+		else if (cresid.compare("r012") == 0)//Ôª±¦
+		{
+			DynamicValueInt dal;
+			dal.setValue(oneit->second);
+			GlobalInstance::getInstance()->addMyCoinCount(dal);
+		}
+		else
+		{
+			MyRes::Add(cresid, oneit->second);
+		}
+		std::string str = StringUtils::format(ResourceLang::map_lang["getgoodstext"].c_str(), GlobalInstance::map_AllResources[cresid].name, oneit->second);
+		MovingLabel::show(str);
+	}
+
+	if (m_type == 0)
+	{
+		Quest::finishTaskMain(QUEST_TAKEMY);
+	}
+	else
+	{
+		Quest::finishTaskBranch(QUEST_TAKEMY);
+	}
+}
+
 void TaskTalkLayer::questNotFight(std::string bwords)
 {
 	if (bwords.length()>1)
@@ -414,11 +464,11 @@ void TaskTalkLayer::questNotFight(std::string bwords)
 	givebtn->setVisible(false);
 	if (m_type == 0)
 	{
-		Quest::finishFightMain(QUEST_NOTFIGHT);
+		Quest::finishTaskMain(QUEST_NOTFIGHT);
 	}
 	else
 	{
-		Quest::finishFightBranch(QUEST_NOTFIGHT);
+		Quest::finishTaskBranch(QUEST_NOTFIGHT);
 	}
 }
 

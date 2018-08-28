@@ -204,4 +204,5 @@
 	<s name="hcjznomore">回城卷轴数量不足！</s>
 	<s name="nothing">无套装</s>
 	<s name="nothingeffect">套装效果%d:无效果</s>
+	<s name="getgoodstext">获得%sx%d</s>
 </strings>

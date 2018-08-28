@@ -47,6 +47,7 @@ private:
 	void questGive(std::string bwords, std::vector<std::map<std::string, int>> need);
 	void questFight(std::string bwords);
 	void questNotFight(std::string bwords);
+	void questTakeGoods(std::string bwords, std::vector<std::map<std::string, int>> need);
 };
 #endif
 

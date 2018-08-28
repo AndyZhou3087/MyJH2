@@ -989,13 +989,13 @@ void MapBlockScene::showFightResult(int result)
 			{
 				if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(vec_enemys[i]->getId()))
 				{
-					Quest::finishFightMain(QUEST_FIGHT);
+					Quest::finishTaskMain(QUEST_FIGHT);
 					showUnlockChapter();
 
 				}
 				else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
 				{
-					Quest::finishFightBranch(QUEST_FIGHT);
+					Quest::finishTaskBranch(QUEST_FIGHT);
 				}
 				Quest::setAchieveTypeCount(ACHIEVE_FIGHT, 1, vec_enemys[i]->getId());
 			}

@@ -107,7 +107,9 @@ typedef enum
 {
 	QUEST_GIVE = 1,//1表示给东西
 	QUEST_FIGHT,//战斗
-	QUEST_NOTFIGHT//不战斗
+	QUEST_NOTFIGHT,//不战斗
+	QUEST_TAKEMY,//拿东西走人
+	QUEST_OTHER
 }QUESTTYPE;
 
 typedef enum
