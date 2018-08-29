@@ -5,7 +5,7 @@
 #define _NPC_H_
 #include "cocos2d.h"
 #include "json.h"
-#include "Gongfa.h"
+#include "GongFa.h"
 USING_NS_CC;
 
 class Npc
