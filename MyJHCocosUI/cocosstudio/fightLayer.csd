@@ -6,30 +6,30 @@
       <ObjectData Name="Layer" Tag="32" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
-          <AbstractNodeData Name="escapebtn" ActionTag="-773478041" Tag="275" IconVisible="False" LeftMargin="258.0001" RightMargin="257.9999" TopMargin="1202.0804" BottomMargin="-6.0804" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-            <Size X="204.0000" Y="84.0000" />
+          <AbstractNodeData Name="escapebtn" ActionTag="-773478041" Tag="275" IconVisible="False" RightMargin="622.0000" TopMargin="1189.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="68" Scale9Height="69" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="98.0000" Y="91.0000" />
             <Children>
-              <AbstractNodeData Name="text" ActionTag="2131810050" Tag="276" IconVisible="False" LeftMargin="75.0000" RightMargin="75.0000" TopMargin="28.0000" BottomMargin="28.0000" LeftEage="24" RightEage="24" TopEage="13" BottomEage="13" Scale9OriginX="24" Scale9OriginY="13" Scale9Width="6" Scale9Height="2" ctype="ImageViewObjectData">
-                <Size X="54.0000" Y="28.0000" />
+              <AbstractNodeData Name="text" ActionTag="2131810050" Tag="276" IconVisible="False" LeftMargin="7.7431" RightMargin="28.2569" TopMargin="33.0152" BottomMargin="6.9848" LeftEage="24" RightEage="24" TopEage="13" BottomEage="13" Scale9OriginX="24" Scale9OriginY="13" Scale9Width="14" Scale9Height="25" ctype="ImageViewObjectData">
+                <Size X="62.0000" Y="51.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="102.0000" Y="42.0000" />
+                <Position X="38.7431" Y="32.4848" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.5000" />
-                <PreSize X="0.2647" Y="0.3333" />
-                <FileData Type="MarkedSubImage" Path="text_zh_cn/escapebtn_text.png" Plist="text_zh_cn.plist" />
+                <PrePosition X="0.3953" Y="0.3570" />
+                <PreSize X="0.6327" Y="0.5604" />
+                <FileData Type="MarkedSubImage" Path="mapui/escapeicon.png" Plist="mapui.plist" />
               </AbstractNodeData>
             </Children>
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0001" Y="35.9196" />
+            <AnchorPoint />
+            <Position />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.0281" />
-            <PreSize X="0.2833" Y="0.0656" />
+            <PrePosition />
+            <PreSize X="0.1361" Y="0.0711" />
             <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="MarkedSubImage" Path="ui/escapebtn.png" Plist="ui.plist" />
-            <PressedFileData Type="MarkedSubImage" Path="ui/escapebtn.png" Plist="ui.plist" />
-            <NormalFileData Type="MarkedSubImage" Path="ui/escapebtn.png" Plist="ui.plist" />
+            <DisabledFileData Type="MarkedSubImage" Path="mapui/fightingedge.png" Plist="mapui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="mapui/fightingedge.png" Plist="mapui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="mapui/fightingedge.png" Plist="mapui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>

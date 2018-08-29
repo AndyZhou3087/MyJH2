@@ -276,6 +276,16 @@
       <FilePathData Path="mapui/posicon3.png" />
       <FilePathData Path="mapui/posicon4.png" />
       <FilePathData Path="mapui/bufskilltextbox.png" />
+      <FilePathData Path="mapui/attricon0down.png" />
+      <FilePathData Path="mapui/attricon0up.png" />
+      <FilePathData Path="mapui/attricon1dwon.png" />
+      <FilePathData Path="mapui/attricon1up.png" />
+      <FilePathData Path="mapui/attricon2down.png" />
+      <FilePathData Path="mapui/attricon2up.png" />
+      <FilePathData Path="mapui/escapeicon.png" />
+      <FilePathData Path="mapui/fightingedge.png" />
+      <FilePathData Path="mapui/fightspeedx1.png" />
+      <FilePathData Path="mapui/fightspeedx2.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

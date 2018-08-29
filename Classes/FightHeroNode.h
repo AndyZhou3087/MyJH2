@@ -47,7 +47,9 @@ public:
 	void setFightState(int winexp);
 
 	//发动技能
-	void playSkill(int stype, Npc* data);
+	void playSkill(int stype, FightHeroNode* whosufferNode);
+
+	void changeSkillValue(int stype, FightHeroNode* whosufferNode);
 
 	//遭受技能
 	void attackedSkill(int stype, int myHeroPos);
@@ -57,18 +59,14 @@ public:
 
 	void recoveHp(float hp);
 
-	void nextRound();
+	void nextRound(float dt);
 
 	void playSkillEffect(int stype);
-
-	//同时播放多个
-	void playMoreSkillEffect(int stype, int enemyindex);
 
 	void playMoreSkillEffectCB(int stype, int enemyindex);
 
 	void attackedSkillEffect(int stype, int myHeroPos);
 
-	void resumeAction();
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
@@ -95,6 +93,7 @@ private:
 	float timedt;
 	bool ispause;
 	float hurtup;
+
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
@@ -118,18 +117,18 @@ private:
 
 	void removeSufferSkillAnim(float dt);
 
-	void pauseAction();
-
 	void resetZorder(float dt);
 
 	void showDeathAnim();
 
 	void removeDeathAnim(float dt);
 	void HideMe(float dt);
+
+	void delayShowReviveAnim(float dt);
 public:
 	float atkspeedbns;
 	float dfbns;
-	int skillIndex;
+	bool isPlaySkillAnim;
 };
 #endif
 

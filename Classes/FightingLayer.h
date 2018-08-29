@@ -28,12 +28,6 @@ public:
 	//1--Ê¤Àû£¬0-Ê§°Ü,-1Õ½¶·ÖÐ
 	int checkFightResult();
 
-	int checkWgSkill(Npc* data, int npctype);
-
-	void skillAction(int stype, int heroindex);
-
-	void clearSkill(int heroindex);
-
 	static bool sortbyHp_lesscb(FightHeroNode* a, FightHeroNode* b);
 
 	void clearSkillsData();

@@ -5,7 +5,7 @@
 
 Npc::Npc()
 {
-
+	m_isdodge = false;
 }
 
 
@@ -50,4 +50,16 @@ float Npc::getDodge()
 	float npcdodge = GlobalInstance::map_NpcAttrData[m_vocation].vec_avoid[m_lv] * POTENTIAL_BNS[m_potential];
 
 	return npcdodge;
+}
+
+GongFa* Npc::checkSkillWg()
+{
+	return NULL;
+}
+
+void Npc::clearSkill(GongFa* gf)
+{
+	setIsDodge(false);
+	if (gf != NULL)
+		gf->setSkillCount(0);
 }

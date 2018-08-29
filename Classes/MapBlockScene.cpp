@@ -966,14 +966,7 @@ void MapBlockScene::updateHeroUI(int which)
 
 void MapBlockScene::showFightResult(int result)
 {
-	if (result == 0)//失败
-	{
-		std::vector<FOURProperty> vec;
-		FightingResultLayer* FRlayer = FightingResultLayer::create(vec, 0);
-		this->addChild(FRlayer);
-		AnimationEffect::openAniEffect((Layer*)FRlayer);
-	}
-	else//胜利
+	if (result == 1)//胜利
 	{
 		for (unsigned int i = 0; i < vec_enemys.size(); i++)
 		{
@@ -999,11 +992,14 @@ void MapBlockScene::showFightResult(int result)
 		{
 			map_mapBlocks[bindex]->removePosIcon();
 			openAllMap();
-
 		}
-
-		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowFightResult), 0.3f);
+		else if (map_mapBlocks[bindex]->getPosType() == POS_TBOSS)
+		{
+			map_mapBlocks[bindex]->removePosIcon();
+		}
 	}
+
+	this->scheduleOnce(schedule_selector(MapBlockScene::delayShowFightResult), 1.0f);
 }
 
 void MapBlockScene::showUnlockChapter()
@@ -1059,9 +1055,21 @@ void MapBlockScene::delayShowFightResult(float dt)
 		if (GlobalInstance::myCardHeros[i] != NULL &&  GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
 			count++;
 	}
-	FightingResultLayer* FRlayer = FightingResultLayer::create(vec_winrewards, getWinExp() / count);
+	int winexp = 0;
+	if (count > 0)
+		winexp = getWinExp() / count;
+	FightingResultLayer* FRlayer = FightingResultLayer::create(vec_winrewards, winexp);
 	this->addChild(FRlayer);
 	AnimationEffect::openAniEffect((Layer*)FRlayer);
+
+	for (unsigned int i = 0; i < vec_enemys.size(); i++)
+	{
+		if (vec_enemys[i] != NULL)
+		{
+			delete vec_enemys[i];
+			vec_enemys[i] = NULL;
+		}
+	}
 	isMoving = false;
 }
 

@@ -240,6 +240,7 @@
       <FilePathData Path="text_zh_cn/startskill8text_3.png" />
       <FilePathData Path="text_zh_cn/text_notice.png" />
       <FilePathData Path="text_zh_cn/text_unlock.png" />
+      <FilePathData Path="text_zh_cn/bufpreskill20text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

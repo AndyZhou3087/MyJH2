@@ -9,7 +9,11 @@
     </Item>
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
-        <ActiveDocument />
+        <OpenedDocuments>
+          <FilePathData Path="mapui.csi" />
+          <FilePathData Path="fightLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="fightLayer.csd" />
       </Value>
     </Item>
   </Properties>

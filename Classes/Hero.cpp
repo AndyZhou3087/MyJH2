@@ -30,8 +30,8 @@ Hero::Hero()
 	{
 		takeOnEquip[i] = NULL;
 	}
-	m_isSkilling = false;
-	m_whosufferskill = -1;
+	m_skillingtype = -1;
+	m_isdodge = false;
 }
 
 
@@ -59,8 +59,8 @@ Hero::Hero(Hero* hero)
 	{
 		takeOnEquip[i] = NULL;
 	}
-	m_isSkilling = false;
-	m_whosufferskill = -1;
+	m_skillingtype = -1;
+	m_isdodge = false;
 }
 
 float Hero::getHp()
@@ -372,6 +372,44 @@ Equipable* Hero::getEquipable(int etype)
 }
 void Hero::setEquipable(Equipable* edata, int etype)
 {
-	//因为类型是按顺序排的，第一个被基础资源占了，所有按类型-1
+	//因为类型是按顺序排的，第一个被基础资源占了，所以类型需要-1
 	takeOnEquip[etype - 1] = edata;
+}
+
+GongFa* Hero::checkSkillWg()
+{
+	int t[] = { T_WG ,T_NG };
+	for (int i = 0; i < 2; i++)
+	{
+		GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(t[i], getName());
+
+		if (gf != NULL && gf->getSkillCount() > 0)
+		{
+			return gf;
+		}
+	}
+
+	for (int i = 0; i < 2; i++)
+	{
+		GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(t[i], getName());
+
+		if (gf != NULL && GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1)
+		{
+			int r = GlobalInstance::getInstance()->createRandomNum(100);
+			if (r < GlobalInstance::map_GF[gf->getId()].skillrnd)
+			{
+				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+				return gf;
+			}
+		}
+	}
+	return NULL;
+}
+
+void Hero::clearSkill(GongFa* gf)
+{
+	gf->setSkillCount(0);
+	setIsDodge(false);
+	vec_whosufferskill.clear();
+	setSkillingType(-1);
 }

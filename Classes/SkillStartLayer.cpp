@@ -42,7 +42,7 @@ bool SkillStartLayer::init(int herovacation, int skilltype)
 
 	mstype = skilltype;
 
-	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
+	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 128));
 	this->addChild(color,0,"colorLayer");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();

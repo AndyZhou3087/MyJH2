@@ -84,6 +84,12 @@
           <Image Name="q.jpg" />
         </Folder>
         <Folder Name="mapui">
+          <Image Name="attricon0down.png" />
+          <Image Name="attricon0up.png" />
+          <Image Name="attricon1dwon.png" />
+          <Image Name="attricon1up.png" />
+          <Image Name="attricon2down.png" />
+          <Image Name="attricon2up.png" />
           <Image Name="boardblock_0.png" />
           <Image Name="boardblock_1.png" />
           <Image Name="boardblock_10.png" />
@@ -283,7 +289,11 @@
           <Image Name="buildblock_8.png" />
           <Image Name="buildblock_9.png" />
           <Image Name="critnumbg.png" />
+          <Image Name="escapeicon.png" />
           <Image Name="eventshopcountbox.png" />
+          <Image Name="fightingedge.png" />
+          <Image Name="fightspeedx1.png" />
+          <Image Name="fightspeedx2.png" />
           <Image Name="fog.png" />
           <Image Name="gocitybtn.png" />
           <Image Name="heroatkspeedbar.png" />
@@ -370,6 +380,7 @@
           <Image Name="bufpreskill15text.png" />
           <Image Name="bufpreskill17text.png" />
           <Image Name="bufpreskill18text.png" />
+          <Image Name="bufpreskill20text.png" />
           <Image Name="bufpreskill9text.png" />
           <Image Name="buybtn_text.png" />
           <Image Name="cancelbtn_text.png" />
@@ -1026,6 +1037,7 @@
         <Project Name="messageLayer.csd" Type="Layer" />
         <Project Name="messageNode.csd" Type="Node" />
         <Project Name="myHeroNode.csd" Type="Node" />
+        <Project Name="newPopLayer.csd" Type="Layer" />
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
@@ -1049,7 +1061,6 @@
         <Project Name="trainLayer.csd" Type="Layer" />
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
-        <Project Name="newPopLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
       </RootFolder>
