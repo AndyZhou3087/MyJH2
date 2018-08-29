@@ -7,6 +7,7 @@
 #include "DataSave.h"
 #include "HeadInfoLayer.h"
 #include "MainMenuLayer.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -153,6 +154,10 @@ void ChangeHeadLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			}
 		}
 		CommonFuncs::BtnAction(pSender, type);
+	}
+	else
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 	}
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{

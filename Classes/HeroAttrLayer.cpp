@@ -106,14 +106,14 @@ bool HeroAttrLayer::init(Hero* herodata)
 		cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
 		node->setTag(i);
 		node->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onEquipClick, this));
+		cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
+		qubox->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
 		ResBase* eres = MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
 		if (eres != NULL)
 		{
 			updateEquipUi(eres, i);
 			m_heroData->setEquipable((Equipable*)eres, eres->getType());
 		}
-		cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
-		qubox->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
 	}
 	//属性信息
 	heroattrbottom = csbnode->getChildByName("heroattrbottom");
@@ -651,6 +651,8 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 	cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(barindex);
 	cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
 	qubox->ignoreContentAdaptWithSize(true);
+	qubox->stopAllActions();
+	qubox->setOpacity(255);
 	cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)node->getChildByName("img");
 	resimg->ignoreContentAdaptWithSize(true);
 	std::string qustr;
@@ -691,6 +693,16 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 	qubox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 	resimg->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
 	MyRes::saveData();
+
+	for (int i = 0; i < equipnode->getChildrenCount(); i++)
+	{
+		cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
+		cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
+		if (qubox->getRenderFile().file.compare("ui/heroattradd.png") == 0)
+		{
+			qubox->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
+		}
+	}
 }
 
 void HeroAttrLayer::updataAtrrUI(float dt)

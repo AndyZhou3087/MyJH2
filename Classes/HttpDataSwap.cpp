@@ -317,8 +317,6 @@ void HttpDataSwap::httpGetAllDataCB(std::string retdata, int code, std::string e
 					ret = DATA_ERR;
 
 			}
-			else
-				ret = DATA_ERR;
 		}
 		else
 		{

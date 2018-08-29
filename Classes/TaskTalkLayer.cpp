@@ -439,7 +439,7 @@ void TaskTalkLayer::questTakeGoods(std::string bwords, std::vector<std::map<std:
 		{
 			MyRes::Add(cresid, oneit->second);
 		}
-		std::string str = StringUtils::format(ResourceLang::map_lang["getgoodstext"].c_str(), GlobalInstance::map_AllResources[cresid].name, oneit->second);
+		std::string str = StringUtils::format(ResourceLang::map_lang["getgoodstext"].c_str(), GlobalInstance::map_AllResources[cresid].name.c_str(), oneit->second);
 		MovingLabel::show(str);
 	}
 

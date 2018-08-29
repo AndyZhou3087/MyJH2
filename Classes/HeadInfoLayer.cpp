@@ -131,7 +131,10 @@ void HeadInfoLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	{
 		CommonFuncs::BtnAction(pSender, type);
 	}
-	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+	else
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+	}
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		switch (tag)
