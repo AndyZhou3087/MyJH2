@@ -17,9 +17,9 @@ public:
 	TaskTalkLayer();
 	~TaskTalkLayer();
 
-	virtual bool init(std::string npcid, std::vector<Npc*> vec_enemys);
+	virtual bool init(std::string npcid, std::vector<Npc*> vec_enemys, int type = 0);//默认0主线，1支线;
 
-	static TaskTalkLayer* create(std::string npcid, std::vector<Npc*> vec_enemys);
+	static TaskTalkLayer* create(std::string npcid, std::vector<Npc*> vec_enemys, int type = 0);
 
 private:
 	cocos2d::ui::Button* givebtn;
@@ -30,12 +30,13 @@ private:
 	std::vector<Npc*> m_vec_enemys;
 	cocos2d::ui::Text* desc;
 	Label* m_wordlbl;
-	Node* lasttalklbl;
 	bool isShowWord;
 	int m_wordindex;
 	int m_wordcount;
 	int isGo;
 	bool isFight;
+	int m_type;
+	TaskData* data;
 	cocos2d::ui::ScrollView* descscoll;
 
 private:
@@ -43,10 +44,10 @@ private:
 	void onBtn2Click(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void checkWordLblColor(std::string wordstr);
 	void showTypeText(float dt);
-
 	void questGive(std::string bwords, std::vector<std::map<std::string, int>> need);
 	void questFight(std::string bwords);
 	void questNotFight(std::string bwords);
+	void questTakeGoods(std::string bwords, std::vector<std::map<std::string, int>> need);
 };
 #endif
 

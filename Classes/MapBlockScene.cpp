@@ -13,7 +13,6 @@
 #include "FightingResultLayer.h"
 #include "Quest.h"
 #include "TaskTalkLayer.h"
-#include "TaskBranchTalkLayer.h"
 #include "MyPackageLayer.h"
 #include "MainScene.h"
 #include "Quest.h"
@@ -22,6 +21,7 @@
 #include "HintBoxLayer.h"
 #include "NewPopLayer.h"
 #include "CutScenesLayer.h"
+#include "GoBackLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -308,10 +308,18 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		switch (tag)
 		{
 		case BTN_GOCITY:
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+		{
+			GoBackLayer* layer = GoBackLayer::create();
+			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		case BTN_MAP:
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+		{
+			GoBackLayer* layer = GoBackLayer::create(1);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		case BTN_PACKAGE:
 		{
@@ -844,7 +852,7 @@ void MapBlockScene::doMyStatus()
 					else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
 					{
 						isTask = true;
-						this->addChild(TaskBranchTalkLayer::create(vec_enemys[i]->getId(), vec_enemys));
+						this->addChild(TaskTalkLayer::create(vec_enemys[i]->getId(), vec_enemys, 1));
 						break;
 					}
 				}
@@ -974,13 +982,13 @@ void MapBlockScene::showFightResult(int result)
 			{
 				if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(vec_enemys[i]->getId()))
 				{
-					Quest::finishFightMain(QUEST_FIGHT);
+					Quest::finishTaskMain(QUEST_FIGHT);
 					showUnlockChapter();
 
 				}
 				else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
 				{
-					Quest::finishBranchQuest();
+					Quest::finishTaskBranch(QUEST_FIGHT);
 				}
 				Quest::setAchieveTypeCount(ACHIEVE_FIGHT, 1, vec_enemys[i]->getId());
 			}

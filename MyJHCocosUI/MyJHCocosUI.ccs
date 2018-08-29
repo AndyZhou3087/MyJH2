@@ -767,6 +767,9 @@
           <Image Name="equipbox_4.png" />
           <Image Name="equipbox_5.png" />
           <Image Name="equipstonebox.png" />
+          <Image Name="equipsuitbox_0.png" />
+          <Image Name="equipsuitbox_1.png" />
+          <Image Name="equipsuitbox_2.png" />
           <Image Name="escapebtn.png" />
           <Image Name="f001.png" />
           <Image Name="f001-2.png" />
@@ -851,6 +854,7 @@
           <Image Name="messageicon.png" />
           <Image Name="ninegrid.png" />
           <Image Name="normal9bg.png" />
+          <Image Name="p001.png" />
           <Image Name="pointicon_0.png" />
           <Image Name="pointicon_1.png" />
           <Image Name="pointicon_2.png" />
@@ -891,6 +895,7 @@
           <Image Name="smallstar.png" />
           <Image Name="strentharrow.png" />
           <Image Name="strenthicon.png" />
+          <Image Name="t001.png" />
           <Image Name="taskbtn.png" />
           <Image Name="taskdailybigbar.png" />
           <Image Name="taskdailybigbg.png" />
@@ -1014,6 +1019,7 @@
         <Project Name="fightLayer.csd" Type="Layer" />
         <Project Name="fightResultLayer.csd" Type="Layer" />
         <Project Name="gambleBoxLayer.csd" Type="Layer" />
+        <Project Name="goBackLayer.csd" Type="Layer" />
         <Project Name="headInfoLayer.csd" Type="Layer" />
         <Project Name="heroAttrLayer.csd" Type="Layer" />
         <Project Name="hillResNode.csd" Type="Node" />

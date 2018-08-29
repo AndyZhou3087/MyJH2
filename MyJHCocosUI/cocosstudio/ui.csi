@@ -390,6 +390,11 @@
       <FilePathData Path="ui/dice4.png" />
       <FilePathData Path="ui/dice5.png" />
       <FilePathData Path="ui/dice6.png" />
+      <FilePathData Path="ui/p001.png" />
+      <FilePathData Path="ui/t001.png" />
+      <FilePathData Path="ui/equipsuitbox_0.png" />
+      <FilePathData Path="ui/equipsuitbox_1.png" />
+      <FilePathData Path="ui/equipsuitbox_2.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

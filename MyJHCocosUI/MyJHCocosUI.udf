@@ -10,10 +10,10 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="mapui.csi" />
-          <FilePathData Path="fightLayer.csd" />
+          <FilePathData Path="takeOnLayer.csd" />
+          <FilePathData Path="ui.csi" />
         </OpenedDocuments>
-        <ActiveDocument Path="fightLayer.csd" />
+        <ActiveDocument Path="takeOnLayer.csd" />
       </Value>
     </Item>
   </Properties>
