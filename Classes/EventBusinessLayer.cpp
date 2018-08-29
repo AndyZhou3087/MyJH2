@@ -83,6 +83,13 @@ bool EventBusinessLayer::init()
 	updateRichLabel();
 
 	this->scheduleOnce(schedule_selector(EventBusinessLayer::delayShowUI), 0.1f);
+	//屏蔽下层点击
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = [=](Touch *touch, Event *event)
+	{
+		return true;
+	};
+	listener->setSwallowTouches(true);
 
 	return true;
 }
@@ -231,7 +238,7 @@ void EventBusinessLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		this->setVisible(false);
+		this->getParent()->removeFromParentAndCleanup(true);
 	}
 }
 
@@ -295,7 +302,7 @@ void EventBusinessLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		{
 			EventBuyLayer* layer = EventBuyLayer::create(vec_buyres[tag]);
 			this->addChild(layer);
-			AnimationEffect::openAniEffect((Layer*)this);
+			AnimationEffect::openAniEffect(layer);
 		}
 	}
 }

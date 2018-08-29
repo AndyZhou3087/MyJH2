@@ -609,7 +609,11 @@
     <Cell c="22" r="22" p="-1" w="0" m="87.png" />
     <Cell c="22" r="23" p="-1" w="1" m="94.png" />
     <Cell c="22" r="24" p="-1" w="0" m="84.png" />
-    <Cell c="23" r="0" p="-1" w="1" m="83.png" />
+    <Cell c="23" r="0" p="4" w="1" m="83.png">
+      <npcid>n004</npcid>
+      <npcrnd>100</npcrnd>
+      <msatt2 id="n004" qu="2">35</msatt2>
+    </Cell>
     <Cell c="23" r="1" p="-1" w="1" m="94.png" />
     <Cell c="23" r="2" p="-1" w="1" m="94.png" />
     <Cell c="23" r="3" p="-1" w="1" m="94.png" />

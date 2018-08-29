@@ -33,16 +33,6 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="titleimg" ActionTag="1440070234" Tag="69" IconVisible="False" LeftMargin="30.0000" RightMargin="30.0000" TopMargin="113.0000" BottomMargin="853.0000" LeftEage="217" RightEage="217" TopEage="103" BottomEage="103" Scale9OriginX="217" Scale9OriginY="103" Scale9Width="226" Scale9Height="108" ctype="ImageViewObjectData">
-            <Size X="660.0000" Y="314.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="1010.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.7891" />
-            <PreSize X="0.9167" Y="0.2453" />
-            <FileData Type="Normal" Path="images/wintitle.png" Plist="" />
-          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

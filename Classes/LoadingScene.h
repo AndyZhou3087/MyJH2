@@ -27,15 +27,18 @@ public:
 	***************************/
 	void delayLoadLocalData(float dt);
 
-	void delayLoadServerData(float dt);
+	void delayGetServerData(float dt);
 
 	void onFinish(int errcode);
 
 private:
 	CREATE_FUNC(LoadingScene);
 
+	void showPointAnim(float dt);
+
 private:
 	bool isGetPlayerId;
+	Node* point[3];
 };
 
 #endif

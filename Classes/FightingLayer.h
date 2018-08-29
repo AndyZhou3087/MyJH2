@@ -28,12 +28,6 @@ public:
 	//1--胜利，0-失败,-1战斗中
 	int checkFightResult();
 
-	int checkWgSkill(Npc* data, int npctype);
-
-	void skillAction(int stype);
-
-	void clearSkill();
-
 	static bool sortbyHp_lesscb(FightHeroNode* a, FightHeroNode* b);
 
 	void clearSkillsData();
@@ -47,8 +41,6 @@ private:
 	int fightcount;
 
 	std::vector<FightHeroNode*> vec_myheronode;
-	int whoskillindex;//谁发动的技能
-	int whosufferskillindex;//谁遭受技能
 };
 
 #endif

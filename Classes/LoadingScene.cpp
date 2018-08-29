@@ -46,11 +46,31 @@ bool LoadingScene::init()
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("LoadingLayer.csb"));
 	this->addChild(csbnode);
 
-	this->scheduleOnce(schedule_selector(LoadingScene::delayLoadLocalData), 0.1f);
+	Node *loadingbar = csbnode->getChildByName("loadingbar");
+	loadingbar->runAction(RepeatForever::create(RotateTo::create(0.8f, 720)));
+
+
+	for (int i = 0; i < 3; i++)
+	{
+		std::string pointstr = StringUtils::format("loadingpoint%d", i);
+		point[i] = csbnode->getChildByName(pointstr);
+		point[i]->setVisible(false);
+	}
+	showPointAnim(0);
+	this->schedule(schedule_selector(LoadingScene::showPointAnim), 1.5f);
+	//先获取服务器数据
+	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
 
     return true;
 }
 
+void LoadingScene::showPointAnim(float dt)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		point[i]->runAction(Sequence::create(DelayTime::create(0.4f*i), Show::create(), DelayTime::create(1.2f - 0.4f*i), Hide::create(), NULL));
+	}
+}
 
 void LoadingScene::delayLoadLocalData(float dt)
 {
@@ -110,11 +130,11 @@ void LoadingScene::delayLoadLocalData(float dt)
 	GlobalInstance::getInstance()->getMyAchieveData();
 
 	//数据处理完，
-	this->scheduleOnce(schedule_selector(LoadingScene::delayLoadServerData), 0.1f);
+	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.1f);
 }
 
 
-void LoadingScene::delayLoadServerData(float dt)
+void LoadingScene::delayGetServerData(float dt)
 {
 	isGetPlayerId = true;
 	HttpDataSwap::init(this)->getPlayerId();
@@ -127,6 +147,7 @@ void LoadingScene::showNextScene(float dt)
 
 void LoadingScene::onFinish(int errcode)
 {
+	bool isLoadLocal = false;
 	if (errcode == 0)
 	{
 		if (isGetPlayerId)
@@ -135,11 +156,20 @@ void LoadingScene::onFinish(int errcode)
 			HttpDataSwap::init(this)->getAllData();
 		}
 		else
-		{
-			this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.1f);
-		}
+			isLoadLocal = true;
 	}
-	else
+	else//网络异常
+	{
+		if (!isGetPlayerId && (errcode == 3 || errcode == 4))
+			isLoadLocal = true;
+	}
+
+	if (isLoadLocal)
+	{
+		//加载本地数据
+		this->scheduleOnce(schedule_selector(LoadingScene::delayLoadLocalData), 0.1f);
+	}
+	else//数据错误
 	{
 
 	}

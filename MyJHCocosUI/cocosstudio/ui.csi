@@ -353,14 +353,14 @@
       <FilePathData Path="ui/r009.png" />
       <FilePathData Path="ui/r010.png" />
       <FilePathData Path="ui/r011.png" />
-      <FilePathData Path="ui/cardvocation10.png" />
+      <FilePathData Path="ui/cardvocation7.png" />
       <FilePathData Path="ui/cardvocation11.png" />
       <FilePathData Path="ui/cardvocation4.png" />
-      <FilePathData Path="ui/cardvocation5.png" />
-      <FilePathData Path="ui/cardvocation6.png" />
-      <FilePathData Path="ui/cardvocation7.png" />
       <FilePathData Path="ui/cardvocation8.png" />
+      <FilePathData Path="ui/cardvocation5.png" />
       <FilePathData Path="ui/cardvocation9.png" />
+      <FilePathData Path="ui/cardvocation6.png" />
+      <FilePathData Path="ui/cardvocation10.png" />
       <FilePathData Path="ui/cardvocationbox.png" />
       <FilePathData Path="ui/wglvframe.png" />
       <FilePathData Path="ui/v001.png" />
@@ -377,6 +377,24 @@
       <FilePathData Path="ui/dailytask_8.png" />
       <FilePathData Path="ui/dailytask_9.png" />
       <FilePathData Path="ui/r012.png" />
+      <FilePathData Path="ui/headclip.png" />
+      <FilePathData Path="ui/headbox.png" />
+      <FilePathData Path="ui/headbox2.png" />
+      <FilePathData Path="ui/selecthead.png" />
+      <FilePathData Path="ui/bet_0.png" />
+      <FilePathData Path="ui/bet_1.png" />
+      <FilePathData Path="ui/bet_select.png" />
+      <FilePathData Path="ui/dice1.png" />
+      <FilePathData Path="ui/dice2.png" />
+      <FilePathData Path="ui/dice3.png" />
+      <FilePathData Path="ui/dice4.png" />
+      <FilePathData Path="ui/dice5.png" />
+      <FilePathData Path="ui/dice6.png" />
+      <FilePathData Path="ui/p001.png" />
+      <FilePathData Path="ui/t001.png" />
+      <FilePathData Path="ui/equipsuitbox_0.png" />
+      <FilePathData Path="ui/equipsuitbox_1.png" />
+      <FilePathData Path="ui/equipsuitbox_2.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

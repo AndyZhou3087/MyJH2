@@ -7,8 +7,8 @@
 #include "MyRes.h"
 #include "MyMenu.h"
 #include "MovingLabel.h"
-#include "TaskMainNode.h"
-#include "TaskBranchNode.h"
+#include "TaskNode.h"
+#include "TaskNode.h"
 #include "TaskDailyNode.h"
 #include "DataSave.h"
 #include "Quest.h"
@@ -180,13 +180,12 @@ void TaskLayer::updateContent(int category)
 			{
 				if (GlobalInstance::vec_TaskMain[i].isfinish > QUEST_TASK || GlobalInstance::vec_TaskMain[i].id == GlobalInstance::myCurMainData.id)
 				{
-					node = TaskMainNode::create(&GlobalInstance::vec_TaskMain[i], this);
+					node = TaskNode::create(&GlobalInstance::vec_TaskMain[i]);
 					scrollview->addChild(node);
 
 					node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - m_count * itemheight - itemheight / 2));
 					node->runAction(EaseSineIn::create(MoveBy::create(0.10f + m_count*0.05f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
 
-					//node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - m_count*itemheight + itemheight*0.5));
 					m_count++;
 				}
 			}
@@ -194,13 +193,11 @@ void TaskLayer::updateContent(int category)
 			{
 				if (GlobalInstance::vec_TaskBranch[i].isfinish > QUEST_TASK || GlobalInstance::vec_TaskBranch[i].id == GlobalInstance::myCurBranchData.id)
 				{
-					node = TaskBranchNode::create(&GlobalInstance::vec_TaskBranch[i], this);
+					node = TaskNode::create(&GlobalInstance::vec_TaskBranch[i], 1);
 					scrollview->addChild(node);
 
 					node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - b_count * itemheight - itemheight / 2));
 					node->runAction(EaseSineIn::create(MoveBy::create(0.10f + b_count*0.05f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
-
-					//node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - b_count*itemheight + itemheight*0.5));
 					b_count++;
 				}
 			}
@@ -266,7 +263,7 @@ void TaskLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 	}
 }
 
-bool TaskLayer::larger_callback(TaskMainData a, TaskMainData b)
+bool TaskLayer::larger_callback(TaskData a, TaskData b)
 {
 	int needcountA = a.isfinish;
 	int needcountB = b.isfinish;
@@ -276,7 +273,7 @@ bool TaskLayer::larger_callback(TaskMainData a, TaskMainData b)
 		return false;
 }
 
-bool TaskLayer::larger_branchcallback(TaskBranchData a, TaskBranchData b)
+bool TaskLayer::larger_branchcallback(TaskData a, TaskData b)
 {
 	int needcountA = a.isfinish;
 	int needcountB = b.isfinish;
@@ -365,7 +362,7 @@ void TaskLayer::onPointClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			break;
 		}
 		MyRes::Add(resid);
-		std::string str = StringUtils::format(ResourceLang::map_lang["dailytype_9"].c_str(), GlobalInstance::map_AllResources[resid].name, 1);
+		std::string str = StringUtils::format(ResourceLang::map_lang["dailytype_9"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str(), 1);
 		MovingLabel::show(str);
 		Quest::saveDailyPointReward(tag);
 	}

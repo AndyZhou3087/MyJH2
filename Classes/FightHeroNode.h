@@ -47,21 +47,26 @@ public:
 	void setFightState(int winexp);
 
 	//发动技能
-	void playSkill(int stype, Npc* data);
+	void playSkill(int stype, FightHeroNode* whosufferNode);
+
+	void changeSkillValue(int stype, FightHeroNode* whosufferNode);
 
 	//遭受技能
-	void attackedSkill(int stype, Npc* data);
+	void attackedSkill(int stype, int myHeroPos);
 
 	//遭受技能回调
-	void attackedSkillCB(int stype, Npc* data);
+	void attackedSkillCB(int stype, int myHeroPos);
 
-	void recoveHp();
+	void recoveHp(float hp);
 
-	void nextRound();
+	void nextRound(float dt);
 
 	void playSkillEffect(int stype);
 
-	void attackedSkillEffect(int stype);
+	void playMoreSkillEffectCB(int stype, int enemyindex);
+
+	void attackedSkillEffect(int stype, int myHeroPos);
+
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
@@ -73,6 +78,8 @@ private:
 	cocos2d::ui::ImageView* retbox;
 	cocos2d::ui::ImageView* rettext;
 	cocos2d::ui::Text* winexplbl;
+	cocos2d::ui::ImageView* skilltext;
+	cocos2d::ui::ImageView* skilltextbox;
 
 	cocos2d::ui::Widget* vocationbox;
 	cocos2d::ui::ImageView* vocationicon;
@@ -86,6 +93,7 @@ private:
 	float timedt;
 	bool ispause;
 	float hurtup;
+
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
@@ -97,12 +105,30 @@ private:
 
 	float getAtkSpeed();
 
-	void reviveOnce(float dt);
+	void reviveOnce(float hp);
 
 	bool checkReviveSkill();
+
+	void showAtkOrHurtAnim(int type);
+
+	void removeAtkOrHurtAnim(float dt);
+
+	void removePlaySkillAnim(float dt);
+
+	void removeSufferSkillAnim(float dt);
+
+	void resetZorder(float dt);
+
+	void showDeathAnim();
+
+	void removeDeathAnim(float dt);
+	void HideMe(float dt);
+
+	void delayShowReviveAnim(float dt);
 public:
 	float atkspeedbns;
 	float dfbns;
+	bool isPlaySkillAnim;
 };
 #endif
 

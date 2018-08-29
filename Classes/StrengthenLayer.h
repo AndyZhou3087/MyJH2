@@ -14,9 +14,9 @@ public:
 
 	~StrengthenLayer();
 
-	virtual bool init(Equip* res_equip);
+	virtual bool init(Equip* res_equip, int forwhere);
 
-	static StrengthenLayer* create(Equip* res_equip);
+	static StrengthenLayer* create(Equip* res_equip, int forwhere);
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -24,6 +24,7 @@ private:
 	int langtype;
 	Equip* m_equip;
 	Node *csbnode;
+	int m_forwhere;
 };
 #endif
 

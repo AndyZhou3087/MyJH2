@@ -38,6 +38,7 @@ public:
 	CC_SYNTHESIZE(DynamicValueInt, m_power, Power);//精力
 	CC_SYNTHESIZE(int, m_powertime, PowerTime);//精力时间
 	CC_SYNTHESIZE(int, m_changecount, ChangeCount);//转职，突破
+	CC_SYNTHESIZE(int, m_skillingtype, SkillingType);//触发的技能
 
 	//血量
 	float getHp();
@@ -70,6 +71,13 @@ public:
 
 	//随机生成一个英雄
 	void generate();
+
+	//升级上限
+	void setExpLimit(int vexp);
+
+	GongFa* checkSkillWg();
+
+	void clearSkill(GongFa* gf);
 private:
 	//随机生成一个名字
 	std::string generateName();

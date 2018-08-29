@@ -58,9 +58,6 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp)
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
-	cocos2d::ui::ImageView* title = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
-	title->ignoreContentAdaptWithSize(true);
-
 	//°´Å¥
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(FightingResultLayer::onBtnClick, this));
@@ -71,20 +68,35 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp)
 	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("continuebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	FIGHTNODE_STATE fs = FS_SUCC;
+	Node* effectnode;
 	if (winexp <= 0)
 	{
 		fs = FS_FAIL;
 		actionbtn->setTag(1001);
 		actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("closebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-		title->loadTexture(ResourcePath::makeImagePath("failtitle.png"), cocos2d::ui::Widget::TextureResType::LOCAL);
 
 		MyRes::clearMyPackages();
 
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FAIL);
+
+		//ÌØÐ§
+		effectnode = CSLoader::createNode("effect/slsb/zhandoushibai.csb");
+		effectnode->setPosition(Vec2(360, 1010));
+		this->addChild(effectnode);
+		auto action = CSLoader::createTimeline("effect/slsb/zhandoushibai.csb");
+		effectnode->runAction(action);
+		action->gotoFrameAndPlay(0, false);
 	}
 	else
 	{
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_WIN);
+
+		effectnode = CSLoader::createNode("effect/slsb/zhandoushengli.csb");
+		effectnode->setPosition(Vec2(360, 1010));
+		this->addChild(effectnode);
+		auto action = CSLoader::createTimeline("effect/slsb/zhandoushengli.csb");
+		effectnode->runAction(action);
+		action->gotoFrameAndPlay(0, false);
 	}
 
 	for (int i = 0; i < 6; i++)

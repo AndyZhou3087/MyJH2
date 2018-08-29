@@ -28,11 +28,11 @@ std::map<std::string, EquipSuit> GlobalInstance::map_EquipSuit;
 std::map<int, NPCAttrData> GlobalInstance::map_NpcAttrData;
 std::map<std::string, NPCData> GlobalInstance::map_Npcs;
 
-std::vector<TaskMainData> GlobalInstance::vec_TaskMain;
-TaskMainData GlobalInstance::myCurMainData;
+std::vector<TaskData> GlobalInstance::vec_TaskMain;
+TaskData GlobalInstance::myCurMainData;
 
-std::vector<TaskBranchData> GlobalInstance::vec_TaskBranch;
-TaskBranchData GlobalInstance::myCurBranchData;
+std::vector<TaskData> GlobalInstance::vec_TaskBranch;
+TaskData GlobalInstance::myCurBranchData;
 
 std::map<std::string, DailyTaskData> GlobalInstance::map_DTdata;
 
@@ -55,12 +55,17 @@ std::map<std::string, S_MainMap> GlobalInstance::map_mapsdata;
 std::map<std::string, TBoxData> GlobalInstance::map_TBoxs;
 
 std::vector<MessageData> GlobalInstance::vec_messsages;
+std::vector<MessageData> GlobalInstance::vec_notice;
 
 DynamicValueInt GlobalInstance::mySoliverCount;
 DynamicValueInt GlobalInstance::myCoinCount;
 
 std::string GlobalInstance::myID;
 std::string GlobalInstance::myNickName;
+
+int GlobalInstance::unlockchapter = 1;
+
+std::string GlobalInstance::noticeID = "";
 
 GlobalInstance::GlobalInstance()
 {
@@ -207,6 +212,8 @@ void GlobalInstance::loadInitData()
 	totalFarmercount = DataSave::getInstance()->getTotalFarmers();
 
 	refreshMarketTime = DataSave::getInstance()->getRefreshMarketTime();
+
+	unlockchapter = DataSave::getInstance()->getUnlockChapter();
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -361,6 +368,9 @@ void GlobalInstance::loadHerosAttrData()
 			S_HeroAttr data;
 			rapidjson::Value& v = jsonvalue["id"];
 			data.id = v.GetString();
+
+			v = jsonvalue["name"];
+			data.name = v.GetString();
 
 			v = jsonvalue["exp"];
 			for (unsigned int m = 0; m < v.Size(); m++)
@@ -559,7 +569,10 @@ void GlobalInstance::saveMyAchieveData()
 			str.append(onestr);
 		}
 	}
-	DataSave::getInstance()->setMyAchieveData(str.substr(0, str.length() - 1));
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setMyAchieveData(str.substr(0, str.length() - 1));
+	}
 }
 
 void GlobalInstance::loadResCreatorData()
@@ -604,7 +617,7 @@ void GlobalInstance::loadTaskMainData()
 		rapidjson::Value& jsonvalue = allData[i];
 		if (jsonvalue.IsObject())
 		{
-			TaskMainData data;
+			TaskData data;
 			rapidjson::Value& v = jsonvalue["id"];
 			data.id = atoi(v.GetString());
 
@@ -689,7 +702,7 @@ void GlobalInstance::loadTaskMainData()
 			for (unsigned int i = 0; i < v.Size(); i++)
 			{
 				std::string onestr = v[i].GetString();
-				if (onestr.length() > 3)
+				if (onestr.length() > 5)
 				{
 					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
@@ -706,7 +719,7 @@ void GlobalInstance::loadTaskMainData()
 			for (unsigned int i = 0; i < v.Size(); i++)
 			{
 				std::string onestr = v[i].GetString();
-				if (onestr.length() > 3)
+				if (onestr.length() > 5)
 				{
 					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
@@ -760,7 +773,7 @@ void GlobalInstance::loadMyTaskMainData()
 		if (vec_TaskMain[vec_tmp.size()-1].isfinish == QUEST_ACC)
 		{
 			myCurMainData = vec_TaskMain[vec_tmp.size()-1];
-			Quest::initCurNeedData();
+			Quest::initCurBranchNeedData();
 		}
 		else
 		{
@@ -781,7 +794,7 @@ void GlobalInstance::saveMyTaskMainData()
 	sort(vec_TaskMain.begin(), vec_TaskMain.end(), larger_callback);
 	for (unsigned i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
 	{
-		TaskMainData data = GlobalInstance::vec_TaskMain[i];
+		TaskData data = GlobalInstance::vec_TaskMain[i];
 		if (data.isfinish >= QUEST_FINISH)
 		{
 			std::string onestr = StringUtils::format("%d-%d-%d;", data.id, data.isfinish, data.finishtype);
@@ -793,7 +806,10 @@ void GlobalInstance::saveMyTaskMainData()
 		}
 	}
 	str.append(mystr);
-	DataSave::getInstance()->setMyMainTask(str.substr(0, str.length() - 1));
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setMyMainTask(str.substr(0, str.length() - 1));
+	}
 }
 
 void GlobalInstance::loadTaskBranchData()
@@ -805,7 +821,7 @@ void GlobalInstance::loadTaskBranchData()
 		rapidjson::Value& jsonvalue = allData[i];
 		if (jsonvalue.IsObject())
 		{
-			TaskBranchData data;
+			TaskData data;
 			rapidjson::Value& v = jsonvalue["id"];
 			data.id = atoi(v.GetString());
 
@@ -813,7 +829,10 @@ void GlobalInstance::loadTaskBranchData()
 			data.name = v.GetString();
 
 			v = jsonvalue["type"];
-			data.type = atoi(v.GetString());
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.type.push_back(v[m].GetInt());
+			}
 
 			v = jsonvalue["desc"];
 			data.desc = v.GetString();
@@ -827,11 +846,67 @@ void GlobalInstance::loadTaskBranchData()
 			v = jsonvalue["bossword"];
 			data.bossword = v.GetString();
 
-			v = jsonvalue["need"];
+			v = jsonvalue["need1"];
 			for (unsigned int i = 0; i < v.Size(); i++)
 			{
 				std::string onestr = v[i].GetString();
 				if (onestr.length() > 3)
+				{
+					std::map<std::string, int> map_tmp;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					map_tmp[vec_tmp[0]] = atoi(vec_tmp[1].c_str());
+					data.need1.push_back(map_tmp);
+				}
+			}
+
+			v = jsonvalue["need1desc"];
+			data.need1desc = v.GetString();
+
+			v = jsonvalue["need2"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 3)
+				{
+					std::map<std::string, int> map_tmp;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					map_tmp[vec_tmp[0]] = atoi(vec_tmp[1].c_str());
+					data.need2.push_back(map_tmp);
+				}
+			}
+
+			v = jsonvalue["need2desc"];
+			data.need2desc = v.GetString();
+
+			v = jsonvalue["mutex1"];
+			std::string str = v.GetString();
+			if (str.length() > 1)
+			{
+				std::string onestr = v.GetString();
+				std::vector<std::string> vec_tmp;
+				CommonFuncs::split(onestr, vec_tmp, "-");
+				data.mutex1.push_back(atoi(vec_tmp[0].c_str()));
+				data.mutex1.push_back(atoi(vec_tmp[1].c_str()));
+			}
+
+			v = jsonvalue["mutex2"];
+			str = v.GetString();
+			if (str.length() > 1)
+			{
+				std::string onestr = v.GetString();
+				std::vector<std::string> vec_tmp;
+				CommonFuncs::split(onestr, vec_tmp, "-");
+				data.mutex2.push_back(atoi(vec_tmp[0].c_str()));
+				data.mutex2.push_back(atoi(vec_tmp[1].c_str()));
+			}
+
+			v = jsonvalue["reward1"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 5)
 				{
 					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
@@ -840,18 +915,15 @@ void GlobalInstance::loadTaskBranchData()
 					{
 						vec.push_back(vec_tmp[j]);
 					}
-					data.need.push_back(vec);
+					data.reward1.push_back(vec);
 				}
 			}
 
-			v = jsonvalue["needdesc"];
-			data.needdesc = v.GetString();
-
-			v = jsonvalue["reward"];
+			v = jsonvalue["reward2"];
 			for (unsigned int i = 0; i < v.Size(); i++)
 			{
 				std::string onestr = v[i].GetString();
-				if (onestr.length() > 3)
+				if (onestr.length() > 5)
 				{
 					std::vector<std::string> vec;
 					std::vector<std::string> vec_tmp;
@@ -860,11 +932,22 @@ void GlobalInstance::loadTaskBranchData()
 					{
 						vec.push_back(vec_tmp[j]);
 					}
-					data.reward.push_back(vec);
+					data.reward2.push_back(vec);
 				}
 			}
+
+			v = jsonvalue["bossword1"];
+			data.bossword1 = v.GetString();
+			v = jsonvalue["bossword2"];
+			data.bossword2 = v.GetString();
+
+			v = jsonvalue["fight1"];
+			data.isFight1 = atoi(v.GetString());
+			v = jsonvalue["fight2"];
+			data.isFight2 = atoi(v.GetString());
 
 			data.isfinish = 1;//默认未接受任务
+			data.finishtype = 0;
 
 			vec_TaskBranch.push_back(data);
 		}
@@ -885,9 +968,11 @@ void GlobalInstance::loadMyTaskBranchData()
 			if (vec_TaskBranch[i].id == atoi(vec_one[0].c_str()))
 			{
 				vec_TaskBranch[i].isfinish = atoi(vec_one[1].c_str());
+				vec_TaskBranch[i].finishtype = atoi(vec_one[2].c_str());
 			}
 		}
 
+		Quest::initFinishTaskBranchData();
 		if (vec_TaskBranch[vec_tmp.size() - 1].isfinish == QUEST_ACC)
 		{
 			myCurBranchData = vec_TaskBranch[vec_tmp.size() - 1];
@@ -911,19 +996,22 @@ void GlobalInstance::saveMyTaskBranchData()
 	sort(vec_TaskBranch.begin(), vec_TaskBranch.end(), larger_branchcallback);
 	for (unsigned i = 0; i < GlobalInstance::vec_TaskBranch.size(); i++)
 	{
-		TaskBranchData data = GlobalInstance::vec_TaskBranch[i];
+		TaskData data = GlobalInstance::vec_TaskBranch[i];
 		if (data.isfinish >= QUEST_FINISH)
 		{
-			std::string onestr = StringUtils::format("%d-%d;", data.id, data.isfinish);
+			std::string onestr = StringUtils::format("%d-%d-%d;", data.id, data.isfinish, data.finishtype);
 			str.append(onestr);
 		}
 		if (data.isfinish == QUEST_ACC)
 		{
-			mystr = StringUtils::format("%d-%d;", data.id, data.isfinish);
+			mystr = StringUtils::format("%d-%d-%d;", data.id, data.isfinish, data.finishtype);
 		}
 	}
 	str.append(mystr);
-	DataSave::getInstance()->setMyBranchTask(str.substr(0, str.length() - 1));
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setMyBranchTask(str.substr(0, str.length() - 1));
+	}
 }
 
 void GlobalInstance::loadDailyTaskData()
@@ -1015,10 +1103,13 @@ void GlobalInstance::saveMyDailyTaskData()
 			str.append(onestr);
 		}
 	}
-	DataSave::getInstance()->setMyDailyTaskData(str.substr(0, str.length() - 1));
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setMyDailyTaskData(str.substr(0, str.length() - 1));
+	}
 }
 
-bool GlobalInstance::larger_callback(TaskMainData a, TaskMainData b)
+bool GlobalInstance::larger_callback(TaskData a, TaskData b)
 {
 	int idA = a.id;
 	int idB = b.id;
@@ -1028,7 +1119,7 @@ bool GlobalInstance::larger_callback(TaskMainData a, TaskMainData b)
 		return false;
 }
 
-bool GlobalInstance::larger_branchcallback(TaskBranchData a, TaskBranchData b)
+bool GlobalInstance::larger_branchcallback(TaskData a, TaskData b)
 {
 	int idA = a.id;
 	int idB = b.id;
@@ -1837,4 +1928,32 @@ void GlobalInstance::setMyID(std::string val)
 void GlobalInstance::setMyNickName(std::string val)
 {
 	myNickName = val;
+}
+
+int GlobalInstance::getUnlockChapter()
+{
+	return unlockchapter;
+}
+void GlobalInstance::saveUnlockChapter(int val)
+{
+	unlockchapter = val;
+	DataSave::getInstance()->setUnlockChapter(val);
+}
+
+std::string GlobalInstance::getUserDefaultXmlString()
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	return FileUtils::getInstance()->getStringFromFile(UserDefault::getInstance()->getXMLFilePath());
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	std::string ret;
+	JniMethodInfo methodInfo;
+	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getUserDefaultXmlString", "()Ljava/lang/String;"))
+	{
+		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
+	}
+	return ret;
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    return getUserDefaultXml();
+#endif
 }

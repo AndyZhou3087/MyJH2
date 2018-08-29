@@ -36,8 +36,8 @@ private:
 	void updateContent(int category);
 	void updateDaily(float dt);
 
-	static bool larger_callback(TaskMainData a, TaskMainData b);
-	static bool larger_branchcallback(TaskBranchData a, TaskBranchData b);
+	static bool larger_callback(TaskData a, TaskData b);
+	static bool larger_branchcallback(TaskData a, TaskData b);
 private:
 	std::vector<cocos2d::ui::Button*> vec_categoryBtn;
 	int lastCategoryindex;

@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include "HttpDataSwap.h"
 
 USING_NS_CC;
 //主界面按钮
@@ -25,7 +26,7 @@ typedef enum
 	ADDSILVERBTN,//银子“+”按钮
 	ADDCOINBTN//金币“+”按钮
 }MENUTYPE;
-class MainMenuLayer : public cocos2d::Layer
+class MainMenuLayer : public cocos2d::Layer, public HTTPDataDelegateProtocol
 {
 public:
 	MainMenuLayer();
@@ -40,12 +41,20 @@ private:
 
 	//更新UI,数值
 	void updateUI(float dt);
+
+	void onFinish(int code);
+
+public:
+	void changeHead();
+
 private:
 	cocos2d::ui::Text* reslbl[5];//5个资源数量LABEL
 	cocos2d::ui::Text* mysilverlbl;//银子数量LABEL
 	cocos2d::ui::Text* mycoinlbl;//金币数量LABEL
 	cocos2d::ui::Widget* achredpoint;//成就小红点
 	cocos2d::ui::Widget* mailredpoint;//邮件小红点
+
+	cocos2d::ui::ImageView* head;//头像
 };
 
 #endif

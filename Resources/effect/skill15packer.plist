@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>effect/bao1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{596,1842},{198,198}}</string>
+				<key>offset</key>
+				<string>{-7,7}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{331,323}</string>
+			</dict>
+			<key>effect/bao2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{390,1572},{270,268}}</string>
+				<key>offset</key>
+				<string>{-10,-7}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{331,323}</string>
+			</dict>
+			<key>effect/bao3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1035,0},{282,290}}</string>
+				<key>offset</key>
+				<string>{-1,5}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{331,323}</string>
+			</dict>
+			<key>effect/bao4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{747,0},{288,302}}</string>
+				<key>offset</key>
+				<string>{2,2}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{331,323}</string>
+			</dict>
+			<key>effect/bao5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{773,692},{273,290}}</string>
+				<key>offset</key>
+				<string>{0,4}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{331,323}</string>
+			</dict>
+			<key>effect/d.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{773,982},{207,207}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{207,207}</string>
+			</dict>
+			<key>effect/gu1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{769,399},{280,293}}</string>
+				<key>offset</key>
+				<string>{-1,3}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{407,437}</string>
+			</dict>
+			<key>effect/gu10.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{397,0},{378,350}}</string>
+				<key>offset</key>
+				<string>{-1,-2}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{407,437}</string>
+			</dict>
+			<key>effect/gu2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,399},{393,393}}</string>
+				<key>offset</key>
+				<string>{-1,18}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{407,437}</string>
+			</dict>
+			<key>effect/gu3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{399,397}}</string>
+				<key>offset</key>
+				<string>{-1,14}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{407,437}</string>
+			</dict>
+			<key>effect/gu4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,1190},{397,385}}</string>
+				<key>offset</key>
+				<string>{-1,3}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{407,437}</string>
+			</dict>
+			<key>effect/gu5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{386,792},{393,387}}</string>
+				<key>offset</key>
+				<string>{-1,1}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{407,437}</string>
+			</dict>
+			<key>effect/gu6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,1587},{390,391}}</string>
+				<key>offset</key>
+				<string>{-1,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{407,437}</string>
+			</dict>
+			<key>effect/gu7.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,792},{386,398}}</string>
+				<key>offset</key>
+				<string>{-1,-1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{407,437}</string>
+			</dict>
+			<key>effect/gu8.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{385,1190},{382,399}}</string>
+				<key>offset</key>
+				<string>{-1,-1}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{407,437}</string>
+			</dict>
+			<key>effect/gu9.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{393,399},{381,376}}</string>
+				<key>offset</key>
+				<string>{-1,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{407,437}</string>
+			</dict>
+			<key>effect/xuan0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{794,1815},{216,216}}</string>
+				<key>offset</key>
+				<string>{-4,4}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{224,224}</string>
+			</dict>
+			<key>effect/yua.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{747,302},{108,97}}</string>
+				<key>offset</key>
+				<string>{-2,2}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{174,138}</string>
+			</dict>
+			<key>effect/yuan2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{390,1842},{206,206}}</string>
+				<key>offset</key>
+				<string>{-3,1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{222,222}</string>
+			</dict>
+			<key>effect/yuan3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{658,1572},{243,241}}</string>
+				<key>offset</key>
+				<string>{-7,5}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{264,264}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>skill15packer.png</string>
+			<key>realTextureFileName</key>
+			<string>skill15packer.png</string>
+			<key>size</key>
+			<string>{1317,2048}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>1317</integer>
+			<key>height</key>
+			<integer>2048</integer>
+		</dict>
+	</dict>
+</plist>

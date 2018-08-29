@@ -1,24 +1,22 @@
 package com.csfb.myjh;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.Reader;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
+import java.util.Map;
 import java.util.UUID;
-
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
@@ -29,9 +27,10 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Environment;
-import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.util.Xml;
 
+import org.xmlpull.v1.XmlSerializer;
 
 public class Utils {
 
@@ -304,4 +303,36 @@ public class Utils {
         }
         return result;
     }
+
+    public static String getUserDefaultXmlString()
+	{
+        final  String xmlRoot = "userDefaultRoot";
+		XmlSerializer serializer = Xml.newSerializer();
+        StringWriter sw = new StringWriter();
+		try {
+            serializer.setOutput(sw);
+			serializer.startDocument("utf-8", true);
+			serializer.startTag(null, xmlRoot);
+
+			//Cocos2dxPrefsFile 是cocos自定义的userDefultXml 文件名，在org.cocos2dx.lib.Cocos2dxHelper中定义，如有修改请随改之
+			SharedPreferences userDefultXml = sContext.getSharedPreferences("Cocos2dxPrefsFile", 0);
+			Map<String, ?> allContent = userDefultXml.getAll();
+			//遍历map的方法
+			for(Map.Entry<String, ?>  entry : allContent.entrySet()){
+				String key = entry.getKey();
+				String vaulestr = entry.getValue().toString();
+				if (vaulestr != null && vaulestr.trim().length() > 0 && !(key.startsWith("jhm") && (key.contains("-")))) {
+                    serializer.startTag(null, key);
+                    serializer.text(entry.getValue().toString());
+                    serializer.endTag(null, key);
+                }
+			}
+			serializer.endTag(null, xmlRoot);
+			serializer.endDocument();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
+		return sw.toString();
+	}
 }

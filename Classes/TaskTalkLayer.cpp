@@ -17,7 +17,7 @@ TaskTalkLayer::TaskTalkLayer()
 	m_wordindex = 0;
 	m_wordcount = 0;
 	isFight = false;
-	lasttalklbl = NULL;
+	m_wordlbl = NULL;
 }
 
 
@@ -26,10 +26,10 @@ TaskTalkLayer::~TaskTalkLayer()
 
 }
 
-TaskTalkLayer* TaskTalkLayer::create(std::string npcid, std::vector<Npc*> vec_enemys)
+TaskTalkLayer* TaskTalkLayer::create(std::string npcid, std::vector<Npc*> vec_enemys, int type)
 {
 	TaskTalkLayer *pRet = new(std::nothrow)TaskTalkLayer();
-	if (pRet && pRet->init(npcid, vec_enemys))
+	if (pRet && pRet->init(npcid, vec_enemys, type))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -42,12 +42,21 @@ TaskTalkLayer* TaskTalkLayer::create(std::string npcid, std::vector<Npc*> vec_en
 	}
 }
 
-bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
+bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int type)
 {
 	m_npcid = npcid;
 	m_vec_enemys = vec_enemys;
+	m_type = type;
 
-	TaskMainData* data = &GlobalInstance::myCurMainData;
+	if (type == 0)
+	{
+		data = &GlobalInstance::myCurMainData;
+	}
+	else
+	{
+		data = &GlobalInstance::myCurBranchData;
+	}
+
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color,0,"colorLayer");
 
@@ -75,9 +84,26 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 
 	//npc头像
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
-	std::string str = "ui/h_0_0.png"; //StringUtils::format("mapui/%s.png", data->npcid.c_str());
-	icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
-	icon->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
+	std::string str = StringUtils::format("mapui/%s.png", GlobalInstance::map_Npcs[data->npcid].icon.c_str());
+	/*icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+	icon->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());*/
+	icon->setVisible(false);
+
+	ClippingNode* m_clippingNode = ClippingNode::create();
+	m_clippingNode->setInverted(false);//设置底板可见
+	m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
+	this->addChild(m_clippingNode, 1);
+	m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
+	m_clippingNode->setPosition(Vec2(icon->getPositionX(), icon->getPositionY() + 45));
+	Sprite* head = Sprite::createWithSpriteFrameName(str);
+	head->setAnchorPoint(Vec2(0.5, 1));
+	head->setPositionY(20);
+	m_clippingNode->addChild(head);
+	Node* stencil = Node::create();
+	Sprite* cnode = Sprite::createWithSpriteFrameName("ui/headclip.png");
+	cnode->setAnchorPoint(Vec2(0.5, 1));
+	stencil->addChild(cnode);
+	m_clippingNode->setStencil(stencil);
 
 	//npc名字
 	cocos2d::ui::Text* npcname = (cocos2d::ui::Text*)m_csbnode->getChildByName("npcname");
@@ -119,13 +145,27 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	else
 	{
 		//判断是否互斥
-		if (Quest::getMutexMainQuestType(data->id, data->type[0]))
+		if (m_type == 0)
 		{
-			givebtn->setTouchEnabled(false);
+			if (Quest::getMutexMainQuestType(data->id, data->type[0]))
+			{
+				givebtn->setTouchEnabled(false);
+			}
+			if (Quest::getMutexMainQuestType(data->id, data->type[1]))
+			{
+				fightbtn->setTouchEnabled(false);
+			}
 		}
-		if (Quest::getMutexMainQuestType(data->id, data->type[1]))
+		else
 		{
-			fightbtn->setTouchEnabled(false);
+			if (Quest::getMutexBranchQuestType(data->id, data->type[0]))
+			{
+				givebtn->setTouchEnabled(false);
+			}
+			if (Quest::getMutexBranchQuestType(data->id, data->type[1]))
+			{
+				fightbtn->setTouchEnabled(false);
+			}
 		}
 	}
 
@@ -208,8 +248,8 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
 		int tag = btn->getTag();
 
-		isGo = GlobalInstance::myCurMainData.isFight1;
-		std::string bwords = GlobalInstance::myCurMainData.bossword1;
+		isGo = data->isFight1;
+		std::string bwords = data->bossword1;
 
 		switch (tag)
 		{
@@ -229,13 +269,16 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			this->removeFromParentAndCleanup(true);
 			break;
 		case QUEST_GIVE: //
-			questGive(bwords, GlobalInstance::myCurMainData.need1);
+			questGive(bwords, data->need1);
 			break;
 		case QUEST_FIGHT: //
 			questFight(bwords);
 			break;
 		case QUEST_NOTFIGHT:
 			questNotFight(bwords);
+			break;
+		case QUEST_TAKEMY:
+			questTakeGoods(bwords, data->need1);
 			break;
 		default:
 			break;
@@ -251,19 +294,21 @@ void TaskTalkLayer::onBtn2Click(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
 		int tag = btn->getTag();
 
-		isGo = GlobalInstance::myCurMainData.isFight2;
-		std::string bwords = GlobalInstance::myCurMainData.bossword2;
+		isGo = data->isFight2;
+		std::string bwords = data->bossword2;
 
 		switch (tag)
 		{
 		case QUEST_GIVE: //
-			questGive(bwords, GlobalInstance::myCurMainData.need2);
+			questGive(bwords, data->need2);
 			break;
 		case QUEST_FIGHT: //
 			questFight(bwords);
 			break;
 		case QUEST_NOTFIGHT:
 			questNotFight(bwords);
+		case QUEST_TAKEMY:
+			questTakeGoods(bwords, data->need2);
 			break;
 		default:
 			break;
@@ -309,13 +354,33 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 	}
 	if (isEnough)
 	{
+		bool isfinish = false;
 		for (unsigned int i = 0; i < need.size(); i++)
 		{
 			std::map<std::string, int> one_res = need[i];
 			std::map<std::string, int>::iterator oneit = one_res.begin();
 			std::string cresid = oneit->first;
-			Quest::setResQuestData(cresid, oneit->second, m_npcid);
+			if (m_type == 0)
+			{
+				if (Quest::checkResQuestData(cresid, oneit->second, m_npcid))
+				{
+					isfinish = true;
+				}
+			}
+			else
+			{
+				if (Quest::checkResBranchQuestData(cresid, oneit->second, m_npcid))
+				{
+					isfinish = true;
+				}
+			}
 		}
+		if (isfinish)
+		{
+			g_MapBlockScene->showUnlockChapter();
+		}
+
+
 		if (bwords.length()>1)
 		{
 			checkWordLblColor(bwords);
@@ -343,6 +408,51 @@ void TaskTalkLayer::questFight(std::string bwords)
 	}
 }
 
+void TaskTalkLayer::questTakeGoods(std::string bwords, std::vector<std::map<std::string, int>> need)
+{
+	if (bwords.length()>1)
+	{
+		checkWordLblColor(bwords);
+	}
+	closebtn->setTitleText(ResourceLang::map_lang["okbtntext"]);
+	fightbtn->setVisible(false);
+	givebtn->setVisible(false);
+
+	for (unsigned int i = 0; i < need.size(); i++)
+	{
+		std::map<std::string, int> one_res = need[i];
+		std::map<std::string, int>::iterator oneit = one_res.begin();
+		std::string cresid = oneit->first;
+		if (cresid.compare("r006") == 0)//银两
+		{
+			DynamicValueInt dal;
+			dal.setValue(oneit->second);
+			GlobalInstance::getInstance()->addMySoliverCount(dal);
+		}
+		else if (cresid.compare("r012") == 0)//元宝
+		{
+			DynamicValueInt dal;
+			dal.setValue(oneit->second);
+			GlobalInstance::getInstance()->addMyCoinCount(dal);
+		}
+		else
+		{
+			MyRes::Add(cresid, oneit->second);
+		}
+		std::string str = StringUtils::format(ResourceLang::map_lang["getgoodstext"].c_str(), GlobalInstance::map_AllResources[cresid].name.c_str(), oneit->second);
+		MovingLabel::show(str);
+	}
+
+	if (m_type == 0)
+	{
+		Quest::finishTaskMain(QUEST_TAKEMY);
+	}
+	else
+	{
+		Quest::finishTaskBranch(QUEST_TAKEMY);
+	}
+}
+
 void TaskTalkLayer::questNotFight(std::string bwords)
 {
 	if (bwords.length()>1)
@@ -352,18 +462,33 @@ void TaskTalkLayer::questNotFight(std::string bwords)
 	closebtn->setTitleText(ResourceLang::map_lang["okbtntext"]);
 	fightbtn->setVisible(false);
 	givebtn->setVisible(false);
-	Quest::finishFightMain(QUEST_NOTFIGHT);
+	if (m_type == 0)
+	{
+		Quest::finishTaskMain(QUEST_NOTFIGHT);
+	}
+	else
+	{
+		Quest::finishTaskBranch(QUEST_NOTFIGHT);
+	}
 }
 
 void TaskTalkLayer::checkWordLblColor(std::string wordstr)
 {
-	m_wordlbl = Label::createWithTTF(wordstr, FONT_NAME, 25);
-	m_wordlbl->setLineBreakWithoutSpace(true);
-	m_wordlbl->setAnchorPoint(Vec2(0, 1));
-	/*m_wordlbl->setHorizontalAlignment(CCTextAlignment::LEFT);
-	m_wordlbl->setVerticalAlignment(CCVerticalTextAlignment::TOP);*/
-	m_wordlbl->setMaxLineWidth(descscoll->getContentSize().width);
-	descscoll->addChild(m_wordlbl, 0, "talklbl");
+	if (m_wordlbl == NULL)
+	{
+		m_wordlbl = Label::createWithTTF(wordstr, FONT_NAME, 25);
+		m_wordlbl->setLineBreakWithoutSpace(true);
+		m_wordlbl->setAnchorPoint(Vec2(0, 1));
+		m_wordlbl->setMaxLineWidth(descscoll->getContentSize().width);
+		descscoll->addChild(m_wordlbl, 0, "talklbl");
+	}
+	else
+	{
+		m_wordcount = 0;
+		isShowWord = false;
+		m_wordlbl->unschedule("schedule_typecallback");
+		m_wordlbl->setString(wordstr);
+	}
 	int innerheight = m_wordlbl->getStringNumLines() * 25;//contentlbl->getHeight();
 	int contentheight = descscoll->getContentSize().height;
 	if (innerheight < contentheight)
@@ -384,20 +509,13 @@ void TaskTalkLayer::checkWordLblColor(std::string wordstr)
 
 void TaskTalkLayer::showTypeText(float dt)
 {
-	if (lasttalklbl != NULL)
-	{
-		lasttalklbl->setVisible(false);
-		lasttalklbl->removeFromParentAndCleanup(true);
-		lasttalklbl = NULL;
-	}
-
-	lasttalklbl = m_wordlbl;
 	m_wordlbl->schedule([&](float dt) {
 		isShowWord = true;
-		m_wordcount += 3;
-		int letterindex = m_wordcount / 3 - 1;
-		m_wordlbl->getLetter(letterindex)->setScale(1.0f);
-		int len = m_wordlbl->getString().length();
+		m_wordlbl->getLetter(m_wordcount)->setScale(1.0f);
+		m_wordcount += 1;
+		std::u32string utf32String;
+		StringUtils::UTF8ToUTF32(m_wordlbl->getString(), utf32String);
+		int len = utf32String.length();
 		if (m_wordcount >= len)
 		{
 			m_wordcount = 0;

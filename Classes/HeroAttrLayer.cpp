@@ -106,6 +106,8 @@ bool HeroAttrLayer::init(Hero* herodata)
 		cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
 		node->setTag(i);
 		node->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onEquipClick, this));
+		cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
+		qubox->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
 		ResBase* eres = MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
 		if (eres != NULL)
 		{
@@ -553,9 +555,9 @@ void HeroAttrLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		if (MyRes::getMyResCount(str) >= 1)
 		{
 			MyRes::Use(str);
-			DynamicValueInt dal;
-			dal.setValue(m_heroData->getExp().getValue() + count);
-			m_heroData->setExp(dal);
+			/*DynamicValueInt dal;
+			dal.setValue(count);*/
+			m_heroData->setExpLimit(count);
 			std::string s = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), count);
 			MovingLabel::show(s, Color4B(0, 128, 0, 255), Vec2(360, 320));
 		}
@@ -649,6 +651,8 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 	cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(barindex);
 	cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
 	qubox->ignoreContentAdaptWithSize(true);
+	qubox->stopAllActions();
+	qubox->setOpacity(255);
 	cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)node->getChildByName("img");
 	resimg->ignoreContentAdaptWithSize(true);
 	std::string qustr;
@@ -689,6 +693,16 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 	qubox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 	resimg->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
 	MyRes::saveData();
+
+	for (int i = 0; i < equipnode->getChildrenCount(); i++)
+	{
+		cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
+		cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
+		if (qubox->getRenderFile().file.compare("ui/heroattradd.png") == 0)
+		{
+			qubox->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
+		}
+	}
 }
 
 void HeroAttrLayer::updataAtrrUI(float dt)

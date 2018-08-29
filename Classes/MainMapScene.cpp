@@ -58,10 +58,28 @@ bool MainMapScene::init()
 		std::string mname = mapname->getName();
 		int c = atoi(mname.substr(1, mname.find_first_of("-") - 1).c_str());
 
+		std::string mapnameid = GlobalInstance::myCurMainData.place.substr(0, 4);
+		if (mapnameid.compare(mname) == 0 && GlobalInstance::myCurMainData.isfinish == QUEST_ACC)
+		{
+			Sprite* taskicon = Sprite::createWithSpriteFrameName("mapui/maptask_icon.png");
+			taskicon->setAnchorPoint(Vec2(0, 1));
+			taskicon->setRotation(45);
+			taskicon->setPosition(Vec2(35, 85));
+			mapname->addChild(taskicon);
+		}
+		else if (GlobalInstance::myCurMainData.isfinish != QUEST_ACC && mname.compare("m0-1") == 0)
+		{
+			Sprite* taskicon = Sprite::createWithSpriteFrameName("mapui/maptask_icon.png");
+			taskicon->setAnchorPoint(Vec2(0, 1));
+			taskicon->setRotation(45);
+			taskicon->setPosition(Vec2(38, 85));
+			mapname->addChild(taskicon);
+		}
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 		mapname->setVisible(true);
 #else
-		if (c <= 5)
+		if (c <= 5 && c <= GlobalInstance::getInstance()->getUnlockChapter())
 		{
 			mapname->setVisible(true);
 		}

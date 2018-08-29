@@ -93,19 +93,21 @@ bool AchieveNode::init(AchieveData* data)
 		s = StringUtils::format("reward_%d", i);
 		cocos2d::ui::ImageView* reward = (cocos2d::ui::ImageView*)csbnode->getChildByName(s);
 		reward->setVisible(true);
-		s = StringUtils::format("ui/%s.png", resid.c_str());
-		if (qu == 3)
-		{
-			s = StringUtils::format("ui/%s-2.png", resid.c_str());
-		}
-		else if (qu == 4)
-		{
-			s = StringUtils::format("ui/%s-3.png", resid.c_str());
-		}
+		s = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 		reward->loadTexture(s, cocos2d::ui::Widget::TextureResType::PLIST);
 		if (i == 0)
 		{
-			std::string boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+			std::string boxstr = "ui/resbox.png";
+			int t = 0;
+			for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+			{
+				if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+					break;
+			}
+			if (t >= T_ARMOR && t <= T_NG)
+			{
+				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
 			resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 			res->loadTexture(s, cocos2d::ui::Widget::TextureResType::PLIST);
 		}

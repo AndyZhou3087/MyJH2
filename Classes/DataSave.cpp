@@ -284,3 +284,23 @@ std::string DataSave::getMapVisibleArea(std::string mapkey)
 {
 	return loadStringDataByKey(mapkey, "");
 }
+
+int DataSave::getUnlockChapter()
+{
+	return loadIntDataByKey("unlockc", 1);
+}
+
+void DataSave::setUnlockChapter(int val)
+{
+	saveIntDataByKey("unlockc", val);
+}
+
+void DataSave::setHeadId(int val)
+{
+	saveIntDataByKey("headID", val);
+}
+
+int DataSave::getHeadId()
+{
+	return loadIntDataByKey("headID", 4);
+}

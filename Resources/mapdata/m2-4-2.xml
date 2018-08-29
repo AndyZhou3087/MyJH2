@@ -871,7 +871,11 @@
     <Cell c="28" r="0" p="-1" w="0" m="72.png" />
     <Cell c="28" r="1" p="-1" w="0" m="65.png" />
     <Cell c="28" r="2" p="-1" w="0" m="65.png" />
-    <Cell c="28" r="3" p="-1" w="1" m="65.png" />
+    <Cell c="28" r="3" p="4" w="1" m="65.png">
+      <npcid>n007</npcid>
+      <npcrnd>100</npcrnd>
+      <msatt5 id="n007" qu="2">35</msatt5>
+    </Cell>
     <Cell c="28" r="4" p="-1" w="0" m="65.png" />
     <Cell c="28" r="5" p="-1" w="0" m="65.png" />
     <Cell c="28" r="6" p="-1" w="1" m="65.png" />

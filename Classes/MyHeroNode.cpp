@@ -11,7 +11,6 @@
 #include "MovingLabel.h"
 #include "Const.h"
 #include "TrainSelectLayer.h"
-#include "TrainHintLayer.h"
 #include "TrainLayer.h"
 #include "Building.h"
 #include "OutTownLayer.h"
@@ -164,6 +163,17 @@ void MyHeroNode::changeBtnContent()
 		actbtntxt->loadTexture(ResourcePath::makeTextImgPath("training_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		actbtn->loadTexture("ui/actionbtn_blue.png", cocos2d::ui::Widget::TextureResType::PLIST);
 		countdown->setVisible(false);
+	}
+}
+
+void MyHeroNode::cacelTraining()
+{
+	if (m_heroData->getState() == HS_TRAINING)
+	{
+		m_heroData->setTrainHour(0);
+		m_heroData->setTrainTime(0);
+		m_heroData->setState(HS_OWNED);
+		changeBtnContent();
 	}
 }
 
@@ -392,8 +402,14 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				}
 				else if (m_heroData->getState() == HS_TRAINING)
 				{
-					TrainHintLayer* layer = TrainHintLayer::create(m_heroData, this);
-					g_mainScene->addChild(layer, 1, "TrainHintLayer");
+					int refreshtime = m_heroData->getTrainTime();
+					int pasttime = GlobalInstance::servertime - refreshtime;
+					int lefttime = m_heroData->getTrainHour() - pasttime;
+					std::string str = StringUtils::format(ResourceLang::map_lang["traintipstext"].c_str(), lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
+
+					HintBoxLayer* layer = HintBoxLayer::create(str, 3);
+					layer->setUserData((void*)this);
+					g_mainScene->addChild(layer);
 					AnimationEffect::openAniEffect((Layer*)layer);
 				}
 				else if (m_heroData->getState() == HS_TAKEON)

@@ -76,6 +76,26 @@ const char* gbkToUTF8(const char * p) {
     return [utf8str UTF8String];
 }
 
+const char* getUserDefaultXml()
+{
+    NSString *content = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+    content = [content stringByAppendingFormat:@"%s", "<userDefaultRoot>"];
+    
+    NSDictionary * dict = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+    for (NSString *key in dict) {
+        //[defs removeObjectForKey:key];
+        NSString *kvalue = [[NSUserDefaults standardUserDefaults] stringForKey:key];
+        
+        if (kvalue && kvalue.length > 0 && [key hasPrefix:@"jh"] && !([key hasPrefix:@"jhm"] && [key rangeOfString:@"-"].location != NSNotFound))
+        {
+            NSString * xmlele = [NSString stringWithFormat:@"<%@>%@</%@>",key, kvalue,key];
+            content = [content stringByAppendingFormat:@"%@", xmlele];
+        }
+    }
+    content = [content stringByAppendingFormat:@"%s", "</userDefaultRoot>"];
+    return [content UTF8String];
+}
+
 bool isIphoneX()
 {
     struct utsname systemInfo;

@@ -5,7 +5,6 @@
 #include "MyRes.h"
 #include "MaterialDescLayer.h"
 #include "TaskTalkLayer.h"
-#include "TaskBranchTalkLayer.h"
 #include "Quest.h"
 #include "MessageLayer.h"
 #include "MainScene.h"
@@ -13,6 +12,9 @@
 #include "SettingLayer.h"
 #include "SoundManager.h"
 #include "AchieveLayer.h"
+#include "DataSave.h"
+#include "HeadInfoLayer.h"
+#include "NewPopLayer.h"
 
 USING_NS_CC;
 
@@ -80,9 +82,53 @@ bool MainMenuLayer::init()
 			textimg->loadTexture(ResourcePath::makeTextImgPath(textname, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 	}
+
+	cocos2d::ui::Widget* headimgbox = (cocos2d::ui::Widget*)csbnode->getChildByName("headimgbox");
+	head = (cocos2d::ui::ImageView*)headimgbox->getChildByName("headimg");
+	std::string str = StringUtils::format("ui/h_%d_0.png", DataSave::getInstance()->getHeadId());
+	head->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+	head->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
+
+	//ClippingNode* m_clippingNode = ClippingNode::create();
+	//m_clippingNode->setInverted(false);//设置底板可见
+	//m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
+	//csbnode->addChild(m_clippingNode, 1);
+	//m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
+	//m_clippingNode->setPosition(Vec2(headimgbox->getPositionX(), headimgbox->getPositionY() + 80));
+	//std::string str = StringUtils::format("images/cardh_%d_0.png", DataSave::getInstance()->getHeadId());
+	//head = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::LOCAL);
+	//head->setAnchorPoint(Vec2(0.5, 1));
+	//head->setPositionY(0);
+	//m_clippingNode->addChild(head);
+	//Node* stencil = Node::create();
+	//Sprite* cnode = Sprite::createWithSpriteFrameName("ui/headclip.png");
+	//cnode->setAnchorPoint(Vec2(0.5, 1));
+	//stencil->addChild(cnode);
+	//m_clippingNode->setStencil(stencil);
+
 	updateUI(0);
 	this->schedule(schedule_selector(MainMenuLayer::updateUI), 1.0f);
+
+	HttpDataSwap::init(this)->getMessageList(0);
+
     return true;
+}
+
+void MainMenuLayer::onFinish(int code)
+{
+	if (code == SUCCESS)
+	{
+		if (GlobalInstance::vec_notice.size() <= 0)
+		{
+			return;
+		}
+		if (GlobalInstance::noticeID.compare(GlobalInstance::vec_notice[0].id) != 0)
+		{
+			NewPopLayer* unlock = NewPopLayer::create();
+			this->addChild(unlock);
+			AnimationEffect::openAniEffect((Layer*)unlock);
+		}
+	}
 }
 
 void MainMenuLayer::updateUI(float dt)
@@ -126,6 +172,11 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		switch (menuType)
 		{
 		case HEADBOX:
+		{
+			HeadInfoLayer* layer = HeadInfoLayer::create();
+			this->addChild(layer, 0, "HeadInfoLayer");
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		case R001BTN:
 		case R002BTN:
@@ -172,6 +223,13 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			break;
 		}
 	}
+}
+
+void MainMenuLayer::changeHead()
+{
+	std::string str = StringUtils::format("ui/h_%d_0.png", DataSave::getInstance()->getHeadId());
+	head->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+	head->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
 }
 
 void MainMenuLayer::onExit()

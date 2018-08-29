@@ -40,10 +40,14 @@
           <Image Name="hfull_2_1.png" />
           <Image Name="hfull_3_0.png" />
           <Image Name="hfull_3_1.png" />
+          <Image Name="loadingbar.png" />
+          <Image Name="loadingpoint.png" />
+          <Image Name="loadingtext.png" />
           <Image Name="mapbg.jpg" />
           <Image Name="mapblockbottom.png" />
           <Image Name="mapblocktop.png" />
           <Image Name="materialbox.png" />
+          <Image Name="newpopbg.png" />
           <Image Name="selectequipbg.png" />
           <Image Name="smallbg.png" />
           <Image Name="t001.jpg" />
@@ -80,6 +84,12 @@
           <Image Name="q.jpg" />
         </Folder>
         <Folder Name="mapui">
+          <Image Name="attricon0down.png" />
+          <Image Name="attricon0up.png" />
+          <Image Name="attricon1dwon.png" />
+          <Image Name="attricon1up.png" />
+          <Image Name="attricon2down.png" />
+          <Image Name="attricon2up.png" />
           <Image Name="boardblock_0.png" />
           <Image Name="boardblock_1.png" />
           <Image Name="boardblock_10.png" />
@@ -222,6 +232,7 @@
           <Image Name="boardblock_97.png" />
           <Image Name="boardblock_98.png" />
           <Image Name="boardblock_99.png" />
+          <Image Name="bufskilltextbox.png" />
           <Image Name="buildblock_0.png" />
           <Image Name="buildblock_1.png" />
           <Image Name="buildblock_10.png" />
@@ -278,7 +289,11 @@
           <Image Name="buildblock_8.png" />
           <Image Name="buildblock_9.png" />
           <Image Name="critnumbg.png" />
+          <Image Name="escapeicon.png" />
           <Image Name="eventshopcountbox.png" />
+          <Image Name="fightingedge.png" />
+          <Image Name="fightspeedx1.png" />
+          <Image Name="fightspeedx2.png" />
           <Image Name="fog.png" />
           <Image Name="gocitybtn.png" />
           <Image Name="heroatkspeedbar.png" />
@@ -359,6 +374,14 @@
           <Image Name="allgetbtn_text.png" />
           <Image Name="backbtn_text.png" />
           <Image Name="break_text.png" />
+          <Image Name="bufpreskill10text.png" />
+          <Image Name="bufpreskill12text.png" />
+          <Image Name="bufpreskill13text.png" />
+          <Image Name="bufpreskill15text.png" />
+          <Image Name="bufpreskill17text.png" />
+          <Image Name="bufpreskill18text.png" />
+          <Image Name="bufpreskill20text.png" />
+          <Image Name="bufpreskill9text.png" />
           <Image Name="buybtn_text.png" />
           <Image Name="cancelbtn_text.png" />
           <Image Name="changebtn_text.png" />
@@ -476,6 +499,10 @@
           <Image Name="mapeventtext_0_1.png" />
           <Image Name="mapeventtext_1_0.png" />
           <Image Name="mapeventtext_1_1.png" />
+          <Image Name="mapeventtext_3_0.png" />
+          <Image Name="mapeventtext_3_1.png" />
+          <Image Name="mapeventtext_5_0.png" />
+          <Image Name="mapeventtext_5_1.png" />
           <Image Name="mapeventtext_6_0.png" />
           <Image Name="mapeventtext_6_1.png" />
           <Image Name="mapeventtext_lk.png" />
@@ -497,6 +524,7 @@
           <Image Name="replacebtn_text.png" />
           <Image Name="resitemlv_text.png" />
           <Image Name="selectbtn_text.png" />
+          <Image Name="selheadtitle.png" />
           <Image Name="settingtitle.png" />
           <Image Name="smcatabtn0_text_n.png" />
           <Image Name="smcatabtn0_text_s.png" />
@@ -511,6 +539,38 @@
           <Image Name="smithylv_text.png" />
           <Image Name="smithytilte.png" />
           <Image Name="srefresh_text.png" />
+          <Image Name="startskill1text_0.png" />
+          <Image Name="startskill1text_1.png" />
+          <Image Name="startskill1text_2.png" />
+          <Image Name="startskill1text_3.png" />
+          <Image Name="startskill2text_0.png" />
+          <Image Name="startskill2text_1.png" />
+          <Image Name="startskill2text_2.png" />
+          <Image Name="startskill2text_3.png" />
+          <Image Name="startskill3text_0.png" />
+          <Image Name="startskill3text_1.png" />
+          <Image Name="startskill3text_2.png" />
+          <Image Name="startskill3text_3.png" />
+          <Image Name="startskill4text_0.png" />
+          <Image Name="startskill4text_1.png" />
+          <Image Name="startskill4text_2.png" />
+          <Image Name="startskill4text_3.png" />
+          <Image Name="startskill5text_0.png" />
+          <Image Name="startskill5text_1.png" />
+          <Image Name="startskill5text_2.png" />
+          <Image Name="startskill5text_3.png" />
+          <Image Name="startskill6text_0.png" />
+          <Image Name="startskill6text_1.png" />
+          <Image Name="startskill6text_2.png" />
+          <Image Name="startskill6text_3.png" />
+          <Image Name="startskill7text_0.png" />
+          <Image Name="startskill7text_1.png" />
+          <Image Name="startskill7text_2.png" />
+          <Image Name="startskill7text_3.png" />
+          <Image Name="startskill8text_0.png" />
+          <Image Name="startskill8text_1.png" />
+          <Image Name="startskill8text_2.png" />
+          <Image Name="startskill8text_3.png" />
           <Image Name="stcatabtn0_text_n.png" />
           <Image Name="stcatabtn0_text_s.png" />
           <Image Name="stcatabtn1_text_n.png" />
@@ -533,6 +593,8 @@
           <Image Name="taskdayget.png" />
           <Image Name="taskdaygo.png" />
           <Image Name="taskfinish.png" />
+          <Image Name="text_notice.png" />
+          <Image Name="text_unlock.png" />
           <Image Name="train_text.png" />
           <Image Name="traincoin_text.png" />
           <Image Name="traindoing_text.png" />
@@ -639,6 +701,9 @@
           <Image Name="b002.png" />
           <Image Name="b003.png" />
           <Image Name="b004.png" />
+          <Image Name="bet_0.png" />
+          <Image Name="bet_1.png" />
+          <Image Name="bet_select.png" />
           <Image Name="bigstar.png" />
           <Image Name="blank.png" />
           <Image Name="buildingactbtn_d.png" />
@@ -677,6 +742,12 @@
           <Image Name="dailytask_7.png" />
           <Image Name="dailytask_8.png" />
           <Image Name="dailytask_9.png" />
+          <Image Name="dice1.png" />
+          <Image Name="dice2.png" />
+          <Image Name="dice3.png" />
+          <Image Name="dice4.png" />
+          <Image Name="dice5.png" />
+          <Image Name="dice6.png" />
           <Image Name="e001.png" />
           <Image Name="e001-2.png" />
           <Image Name="e001-3.png" />
@@ -696,6 +767,9 @@
           <Image Name="equipbox_4.png" />
           <Image Name="equipbox_5.png" />
           <Image Name="equipstonebox.png" />
+          <Image Name="equipsuitbox_0.png" />
+          <Image Name="equipsuitbox_1.png" />
+          <Image Name="equipsuitbox_2.png" />
           <Image Name="escapebtn.png" />
           <Image Name="f001.png" />
           <Image Name="f001-2.png" />
@@ -745,6 +819,9 @@
           <Image Name="h_8_1.png" />
           <Image Name="h_9_0.png" />
           <Image Name="h_9_1.png" />
+          <Image Name="headbox.png" />
+          <Image Name="headbox2.png" />
+          <Image Name="headclip.png" />
           <Image Name="heroattradd.png" />
           <Image Name="heroattrexpbar.png" />
           <Image Name="heroattrexpbarbg.png" />
@@ -777,6 +854,7 @@
           <Image Name="messageicon.png" />
           <Image Name="ninegrid.png" />
           <Image Name="normal9bg.png" />
+          <Image Name="p001.png" />
           <Image Name="pointicon_0.png" />
           <Image Name="pointicon_1.png" />
           <Image Name="pointicon_2.png" />
@@ -811,11 +889,13 @@
           <Image Name="s002.png" />
           <Image Name="s003.png" />
           <Image Name="s004.png" />
+          <Image Name="selecthead.png" />
           <Image Name="setpline0.png" />
           <Image Name="settingselected.png" />
           <Image Name="smallstar.png" />
           <Image Name="strentharrow.png" />
           <Image Name="strenthicon.png" />
+          <Image Name="t001.png" />
           <Image Name="taskbtn.png" />
           <Image Name="taskdailybigbar.png" />
           <Image Name="taskdailybigbg.png" />
@@ -928,6 +1008,8 @@
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />
         <Project Name="cardHeroNode.csd" Type="Node" />
+        <Project Name="changeHeadLayer.csd" Type="Layer" />
+        <Project Name="changeVocationLayer.csd" Type="Layer" />
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
         <Project Name="equipDescLayer.csd" Type="Layer" />
         <Project Name="eventBusinessLayer.csd" Type="Layer" />
@@ -936,6 +1018,9 @@
         <Project Name="fightHeroNode.csd" Type="Node" />
         <Project Name="fightLayer.csd" Type="Layer" />
         <Project Name="fightResultLayer.csd" Type="Layer" />
+        <Project Name="gambleBoxLayer.csd" Type="Layer" />
+        <Project Name="goBackLayer.csd" Type="Layer" />
+        <Project Name="headInfoLayer.csd" Type="Layer" />
         <Project Name="heroAttrLayer.csd" Type="Layer" />
         <Project Name="hillResNode.csd" Type="Node" />
         <Project Name="hitBoxLayer.csd" Type="Layer" />
@@ -958,6 +1043,7 @@
         <Project Name="messageLayer.csd" Type="Layer" />
         <Project Name="messageNode.csd" Type="Node" />
         <Project Name="myHeroNode.csd" Type="Node" />
+        <Project Name="newPopLayer.csd" Type="Layer" />
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
@@ -978,7 +1064,6 @@
         <Project Name="taskMainNode.csd" Type="Node" />
         <Project Name="taskTipsNode.csd" Type="Node" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
-        <Project Name="trainCancelLayer.csd" Type="Layer" />
         <Project Name="trainLayer.csd" Type="Layer" />
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />

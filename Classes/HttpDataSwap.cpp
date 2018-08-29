@@ -2,6 +2,7 @@
 #include "json.h"
 #include "GlobalInstance.h"
 #include "DataSave.h"
+#include "tinyxml2/tinyxml2.h"
 
 #define HTTPURL "https://www.stormnet.cn/jhapi/"
 
@@ -54,30 +55,33 @@ void HttpDataSwap::postAllData()
 	url.append("playerid=");
 	url.append(GlobalInstance::getInstance()->UUID());
 
-	std::string postdata;
+	std::string postdata = GlobalInstance::getInstance()->getUserDefaultXmlString();
 
-	rapidjson::Document writedoc;
-	writedoc.SetObject();
-	rapidjson::Document::AllocatorType& allocator = writedoc.GetAllocator();
-
-	writedoc.AddMember("playerid", rapidjson::Value(GlobalInstance::getInstance()->UUID().c_str(), allocator), allocator);
-
-	std::string myherosdata;
-	rapidjson::Value dataArray(rapidjson::kArrayType);
-
-	for (int i = 0; i < 50; i++)
+	if (postdata.length() > 0)
 	{
-		std::string herokey = StringUtils::format("hero%d", i);
-		std::string herodatastr = DataSave::getInstance()->getHeroData(herokey);
-		if (herodatastr.length() > 0)
-		{
-			dataArray.PushBack(rapidjson::Value(herodatastr.c_str(), allocator), allocator);
-		}
+		log("zhou postdata = %s", postdata.c_str());
+		//rapidjson::Document writedoc;
+		//writedoc.SetObject();
+		//rapidjson::Document::AllocatorType& allocator = writedoc.GetAllocator();
+
+		//writedoc.AddMember("playerid", rapidjson::Value(GlobalInstance::getInstance()->UUID().c_str(), allocator), allocator);
+
+		//std::string myherosdata;
+		//rapidjson::Value dataArray(rapidjson::kArrayType);
+
+		//for (int i = 0; i < 50; i++)
+		//{
+		//	std::string herokey = StringUtils::format("hero%d", i);
+		//	std::string herodatastr = DataSave::getInstance()->getHeroData(herokey);
+		//	if (herodatastr.length() > 0)
+		//	{
+		//		dataArray.PushBack(rapidjson::Value(herodatastr.c_str(), allocator), allocator);
+		//	}
+		//}
+		//writedoc.AddMember("myheros", dataArray, allocator);
+		//postdata = JsonWriter(writedoc);
+		HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpPostAllDataCB, this), postdata);
 	}
-	writedoc.AddMember("myheros", dataArray, allocator);
-	postdata = JsonWriter(writedoc);
-	//postdata
-	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpPostAllDataCB, this), postdata);
 }
 
 void HttpDataSwap::getAllData()
@@ -105,7 +109,7 @@ void HttpDataSwap::getAllData()
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetAllDataCB, this));
 }
 
-void HttpDataSwap::getMessageList()
+void HttpDataSwap::getMessageList(int type)
 {
 	std::string url;
 	url.append(HTTPURL);
@@ -126,7 +130,16 @@ void HttpDataSwap::getMessageList()
 	url.append("&plat=");
 	url.append(GlobalInstance::getInstance()->getPlatForm());
 
-	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMessageListCB, this));
+	std::string noticestr = "";
+	if (type >= 0)
+	{
+		url.append("&type=");
+		std::string typestr = StringUtils::format("%d", type);
+		url.append(typestr);
+		noticestr = "notice";
+	}
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMessageListCB, this), "", GET, "", noticestr);
 }
 
 void HttpDataSwap::updateMessageStatus(std::string id, int changestatus)
@@ -245,6 +258,7 @@ void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::strin
 
 void HttpDataSwap::httpPostAllDataCB(std::string retdata, int code, std::string extdata)
 {
+	log("httpPostAllDataCB retdata =%s", retdata.c_str());
 	int ret = code;
 	if (code == 0)
 	{
@@ -272,6 +286,7 @@ void HttpDataSwap::httpGetAllDataCB(std::string retdata, int code, std::string e
 	int ret = code;
 	if (code == 0)
 	{
+
 		rapidjson::Document doc;
 		if (JsonReader(retdata, doc))
 		{
@@ -279,10 +294,29 @@ void HttpDataSwap::httpGetAllDataCB(std::string retdata, int code, std::string e
 			ret = retv.GetInt();
 			if (ret == 0)//解析文件
 			{
+				if (doc.HasMember("content"))
+				{
+					tinyxml2::XMLDocument *pDoc = new tinyxml2::XMLDocument();
+					rapidjson::Value& vc = doc["content"];
+					int err = pDoc->Parse(vc.GetString());
+					if (err != 0)
+						ret = DATA_ERR;
+					else
+					{
+						tinyxml2::XMLElement *rootEle = pDoc->RootElement();
+						tinyxml2::XMLElement *element = rootEle->FirstChildElement();
+	/*					while (element != NULL && element->GetText() != NULL)
+						{
+							UserDefault::getInstance()->setStringForKey(element->Name(), element->GetText());
+							element = element->NextSiblingElement();
+						}*/
+					}
+					delete pDoc;
+				}
+				else
+					ret = DATA_ERR;
 
 			}
-			else
-				ret = SUCCESS;
 		}
 		else
 		{
@@ -310,7 +344,7 @@ void HttpDataSwap::httpGetMessageListCB(std::string retdata, int code, std::stri
 			if (ret == SUCCESS)
 			{
 				GlobalInstance::vec_messsages.clear();
-
+				GlobalInstance::vec_notice.clear();
 				if (doc.HasMember("data"))
 				{
 					rapidjson::Value& data = doc["data"];
@@ -331,6 +365,10 @@ void HttpDataSwap::httpGetMessageListCB(std::string retdata, int code, std::stri
 							dataval = onedata["status"];
 							msgdata.status = atoi(dataval.GetString());
 							GlobalInstance::vec_messsages.push_back(msgdata);
+							if (extdata.length() > 0)
+							{
+								GlobalInstance::vec_notice.push_back(msgdata);
+							}
 						}
 					}
 				}

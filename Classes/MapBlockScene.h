@@ -58,6 +58,8 @@ public:
 
 	void showFightingLayer(std::vector<Npc*> enemys);
 
+	void showUnlockChapter();
+
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
 
@@ -120,6 +122,10 @@ private:
 	void updateTaskInfo(float dt);
 
 	void delayShowFightResult(float dt);
+
+	void delayShowExit(float dt);
+
+	void openAllMap();
 
 private:
 	Node* m_csbnode;

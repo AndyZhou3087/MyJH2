@@ -13,12 +13,15 @@
 #include "FightingResultLayer.h"
 #include "Quest.h"
 #include "TaskTalkLayer.h"
-#include "TaskBranchTalkLayer.h"
 #include "MyPackageLayer.h"
 #include "MainScene.h"
 #include "Quest.h"
 #include "SoundManager.h"
 #include "AnimationEffect.h"
+#include "HintBoxLayer.h"
+#include "NewPopLayer.h"
+#include "CutScenesLayer.h"
+#include "GoBackLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -202,8 +205,10 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 void MapBlockScene::showFightingLayer(std::vector<Npc*> enemys)
 {
-	FightingLayer* layer = FightingLayer::create(enemys, m_fightbgtype);
-	this->addChild(layer);
+	/*FightingLayer* layer = FightingLayer::create(enemys, m_fightbgtype);
+	this->addChild(layer);*/
+	CutScenesLayer* cutlayer = CutScenesLayer::create(enemys, m_fightbgtype);
+	this->addChild(cutlayer, 0, "CutScenesLayer");
 }
 
 void MapBlockScene::loadTaskUI()
@@ -270,6 +275,9 @@ void MapBlockScene::updateTaskInfo(float dt)
 		if (GlobalInstance::myCurBranchData.id == 1)
 		{
 			textbranch->setString(ResourceLang::map_lang["nottasktext"]);
+			textbranch->setVisible(false);
+			cocos2d::ui::Widget* maptask_branch = (cocos2d::ui::Widget*)m_tasknode->getChildByName("maptask_branch_4");
+			maptask_branch->setVisible(false);
 		}
 		else
 		{
@@ -300,10 +308,18 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		switch (tag)
 		{
 		case BTN_GOCITY:
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+		{
+			GoBackLayer* layer = GoBackLayer::create();
+			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		case BTN_MAP:
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+		{
+			GoBackLayer* layer = GoBackLayer::create(1);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		case BTN_PACKAGE:
 		{
@@ -437,13 +453,20 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	if (mycurCol == randStartPos % blockColCount && mycurRow == randStartPos / blockColCount)
 	{
 		cacelLongTouch();
-		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
-		//Director::getInstance()->replaceScene(MainMapScene::createScene());
+		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowExit), 0.45f);
 	}
 	else
 	{
 		checkFood();
 	}
+}
+
+void MapBlockScene::delayShowExit(float dt)
+{
+	std::string hintstr = StringUtils::format(ResourceLang::map_lang["leavemaptext"].c_str(), GlobalInstance::map_AllResources[m_mapid].name.c_str());
+	HintBoxLayer* hintLayer = HintBoxLayer::create(hintstr, 4);
+	this->addChild(hintLayer);
+	AnimationEffect::openAniEffect((Layer*)hintLayer);
 }
 
 void MapBlockScene::stopMoving()
@@ -792,7 +815,7 @@ void MapBlockScene::doMyStatus()
 			mapblock->map_eventrnd[rnd_it->first] = 0;
 		}
 
-		if (ret == 0 || ret == 1 || ret == 6)//其它事件美术没有准备好，会崩溃，有图后打开这里
+		if (ret == 0 || ret == 1 || ret == 3 || ret == 5 || ret == 6)//其它事件美术没有准备好，会崩溃，有图后打开这里
 		{
 			MapEventLayer* mlayer = MapEventLayer::create(ret);
 			this->addChild(mlayer);
@@ -829,7 +852,7 @@ void MapBlockScene::doMyStatus()
 					else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
 					{
 						isTask = true;
-						this->addChild(TaskBranchTalkLayer::create(vec_enemys[i]->getId(), vec_enemys));
+						this->addChild(TaskTalkLayer::create(vec_enemys[i]->getId(), vec_enemys, 1));
 						break;
 					}
 				}
@@ -951,14 +974,7 @@ void MapBlockScene::updateHeroUI(int which)
 
 void MapBlockScene::showFightResult(int result)
 {
-	if (result == 0)//失败
-	{
-		std::vector<FOURProperty> vec;
-		FightingResultLayer* FRlayer = FightingResultLayer::create(vec, 0);
-		this->addChild(FRlayer);
-		AnimationEffect::openAniEffect((Layer*)FRlayer);
-	}
-	else//胜利
+	if (result == 1)//胜利
 	{
 		for (unsigned int i = 0; i < vec_enemys.size(); i++)
 		{
@@ -966,11 +982,13 @@ void MapBlockScene::showFightResult(int result)
 			{
 				if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(vec_enemys[i]->getId()))
 				{
-					Quest::finishFightMain(QUEST_FIGHT);
+					Quest::finishTaskMain(QUEST_FIGHT);
+					showUnlockChapter();
+
 				}
 				else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(vec_enemys[i]->getId()))
 				{
-					Quest::finishBranchQuest();
+					Quest::finishTaskBranch(QUEST_FIGHT);
 				}
 				Quest::setAchieveTypeCount(ACHIEVE_FIGHT, 1, vec_enemys[i]->getId());
 			}
@@ -980,15 +998,48 @@ void MapBlockScene::showFightResult(int result)
 		int bindex = (mycurRow)*blockColCount + mycurCol;
 		if (map_mapBlocks[bindex]->getPosType() == POS_BOSS)
 		{
-			_fogrender->removeFromParentAndCleanup(true);
-			_fogrender = NULL;
-			mapIsAllOpen = true;
-			std::string str = StringUtils::format("-1;%d", randStartPos);
-			DataSave::getInstance()->setMapVisibleArea(m_mapid, str);
+			map_mapBlocks[bindex]->removePosIcon();
+			openAllMap();
 		}
-
-		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowFightResult), 0.3f);
+		else if (map_mapBlocks[bindex]->getPosType() == POS_TBOSS)
+		{
+			map_mapBlocks[bindex]->removePosIcon();
+		}
 	}
+
+	this->scheduleOnce(schedule_selector(MapBlockScene::delayShowFightResult), 1.0f);
+}
+
+void MapBlockScene::showUnlockChapter()
+{
+	//设置解锁章节
+	std::string mapid = GlobalInstance::myCurMainData.place;
+	int c = GlobalInstance::getInstance()->getUnlockChapter();
+	int s = atoi(mapid.substr(1, mapid.find_first_of("-") - 1).c_str());
+	if (s > c)
+	{
+		GlobalInstance::getInstance()->saveUnlockChapter(s);
+		NewPopLayer* layer = NewPopLayer::create(s);
+		if (g_MapBlockScene != NULL)
+		{
+			g_MapBlockScene->addChild(layer, 1);
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
+	}
+	//地图全开
+	openAllMap();
+}
+
+void MapBlockScene::openAllMap()
+{
+	if (_fogrender != NULL)
+	{
+		_fogrender->removeFromParentAndCleanup(true);
+		_fogrender = NULL;
+	}
+	mapIsAllOpen = true;
+	std::string str = StringUtils::format("-1;%d", randStartPos);
+	DataSave::getInstance()->setMapVisibleArea(m_mapid, str);
 }
 
 int MapBlockScene::getWinExp()
@@ -1012,9 +1063,21 @@ void MapBlockScene::delayShowFightResult(float dt)
 		if (GlobalInstance::myCardHeros[i] != NULL &&  GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
 			count++;
 	}
-	FightingResultLayer* FRlayer = FightingResultLayer::create(vec_winrewards, getWinExp() / count);
+	int winexp = 0;
+	if (count > 0)
+		winexp = getWinExp() / count;
+	FightingResultLayer* FRlayer = FightingResultLayer::create(vec_winrewards, winexp);
 	this->addChild(FRlayer);
 	AnimationEffect::openAniEffect((Layer*)FRlayer);
+
+	for (unsigned int i = 0; i < vec_enemys.size(); i++)
+	{
+		if (vec_enemys[i] != NULL)
+		{
+			delete vec_enemys[i];
+			vec_enemys[i] = NULL;
+		}
+	}
 	isMoving = false;
 }
 

@@ -15,7 +15,7 @@ public:
 	HintBoxLayer();
 	~HintBoxLayer();
 
-	static HintBoxLayer* create(std::string str,int forwhere = 0);//0ÒøÁ½£¬1½ð±Ò
+	static HintBoxLayer* create(std::string str,int forwhere = 0);
 	bool init(std::string str, int forwhere = 0);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

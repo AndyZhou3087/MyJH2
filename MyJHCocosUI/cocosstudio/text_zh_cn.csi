@@ -194,7 +194,54 @@
       <FilePathData Path="text_zh_cn/mapeventtext_6_1.png" />
       <FilePathData Path="text_zh_cn/eventbusinesstitle.png" />
       <FilePathData Path="text_zh_cn/achieve_title.png" />
+      <FilePathData Path="text_zh_cn/selheadtitle.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_3_0.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_3_1.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_5_0.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_5_1.png" />
+      <FilePathData Path="text_zh_cn/bufpreskill10text.png" />
+      <FilePathData Path="text_zh_cn/bufpreskill12text.png" />
+      <FilePathData Path="text_zh_cn/bufpreskill13text.png" />
+      <FilePathData Path="text_zh_cn/bufpreskill15text.png" />
+      <FilePathData Path="text_zh_cn/bufpreskill17text.png" />
+      <FilePathData Path="text_zh_cn/bufpreskill18text.png" />
+      <FilePathData Path="text_zh_cn/bufpreskill9text.png" />
+      <FilePathData Path="text_zh_cn/startskill1text_0.png" />
+      <FilePathData Path="text_zh_cn/startskill1text_1.png" />
+      <FilePathData Path="text_zh_cn/startskill1text_2.png" />
+      <FilePathData Path="text_zh_cn/startskill1text_3.png" />
+      <FilePathData Path="text_zh_cn/startskill2text_0.png" />
+      <FilePathData Path="text_zh_cn/startskill2text_1.png" />
+      <FilePathData Path="text_zh_cn/startskill2text_2.png" />
+      <FilePathData Path="text_zh_cn/startskill2text_3.png" />
+      <FilePathData Path="text_zh_cn/startskill3text_0.png" />
+      <FilePathData Path="text_zh_cn/startskill3text_1.png" />
+      <FilePathData Path="text_zh_cn/startskill3text_2.png" />
+      <FilePathData Path="text_zh_cn/startskill3text_3.png" />
+      <FilePathData Path="text_zh_cn/startskill4text_0.png" />
+      <FilePathData Path="text_zh_cn/startskill4text_1.png" />
+      <FilePathData Path="text_zh_cn/startskill4text_2.png" />
+      <FilePathData Path="text_zh_cn/startskill4text_3.png" />
+      <FilePathData Path="text_zh_cn/startskill5text_0.png" />
+      <FilePathData Path="text_zh_cn/startskill5text_1.png" />
+      <FilePathData Path="text_zh_cn/startskill5text_2.png" />
+      <FilePathData Path="text_zh_cn/startskill5text_3.png" />
+      <FilePathData Path="text_zh_cn/startskill6text_0.png" />
+      <FilePathData Path="text_zh_cn/startskill6text_1.png" />
+      <FilePathData Path="text_zh_cn/startskill6text_2.png" />
+      <FilePathData Path="text_zh_cn/startskill6text_3.png" />
+      <FilePathData Path="text_zh_cn/startskill7text_0.png" />
+      <FilePathData Path="text_zh_cn/startskill7text_1.png" />
+      <FilePathData Path="text_zh_cn/startskill7text_2.png" />
+      <FilePathData Path="text_zh_cn/startskill7text_3.png" />
+      <FilePathData Path="text_zh_cn/startskill8text_0.png" />
+      <FilePathData Path="text_zh_cn/startskill8text_1.png" />
+      <FilePathData Path="text_zh_cn/startskill8text_2.png" />
+      <FilePathData Path="text_zh_cn/startskill8text_3.png" />
+      <FilePathData Path="text_zh_cn/text_notice.png" />
+      <FilePathData Path="text_zh_cn/text_unlock.png" />
+      <FilePathData Path="text_zh_cn/bufpreskill20text.png" />
     </ImageFiles>
-    <MaxSize Width="1024" Height="1024" />
+    <MaxSize Width="1024" Height="2048" />
   </Content>
 </PlistInfoProjectFile>

@@ -123,6 +123,12 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 			str = StringUtils::format("res_%d", i);
 			cocos2d::ui::ImageView* suitres = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
 
+			str = StringUtils::format("nothing%d", i);
+			cocos2d::ui::Text* statlbl = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+			statlbl->setString(ResourceLang::map_lang["nothing"]);
+			statlbl->setOpacity(168);
+			statlbl->setVisible(false);
+
 			if (i < GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit.size())
 			{
 				std::string eid = GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit[i];
@@ -180,8 +186,15 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 			}
 			else
 			{
-				suitres->setOpacity(128);
+				//suitres->setOpacity(128);
 				suitresbox->setOpacity(128);
+				statlbl->setVisible(true);
+				if (i!=0)
+				{
+					str = StringUtils::format(ResourceLang::map_lang["nothingeffect"].c_str(), i);
+					suitresdesc->setString(str);
+					suitresdesc->setOpacity(128);
+				}
 			}
 		}
 	}
@@ -191,10 +204,23 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 		{
 			str = StringUtils::format("resbox_%d", i);
 			cocos2d::ui::ImageView* suitresbox = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
-			suitresbox->setOpacity(128);
+			//suitresbox->setOpacity(128);
 			str = StringUtils::format("res_%d", i);
 			cocos2d::ui::ImageView* suitres = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
-			suitres->setVisible(false);
+			//suitres->setVisible(false);
+			str = StringUtils::format("nothing%d", i);
+			cocos2d::ui::Text* statlbl = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+			statlbl->setString(ResourceLang::map_lang["nothing"]);
+			statlbl->setOpacity(168);
+
+			if (i != 0)
+			{
+				str = StringUtils::format("desc_%d", i);
+				cocos2d::ui::Text* suitresdesc = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+				str = StringUtils::format(ResourceLang::map_lang["nothingeffect"].c_str(), i);
+				suitresdesc->setString(str);
+				suitresdesc->setOpacity(128);
+			}
 		}
 	}
 	updateUI();
@@ -294,7 +320,7 @@ void TakeOnLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		}
 		case 1004://强化
 		{
-			StrengthenLayer* sLayer = StrengthenLayer::create(m_equip);
+			StrengthenLayer* sLayer = StrengthenLayer::create(m_equip,0);
 			this->addChild(sLayer);
 			AnimationEffect::openAniEffect((Layer*)sLayer);
 			break;

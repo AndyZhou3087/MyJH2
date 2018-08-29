@@ -8,6 +8,8 @@
 #include "InnRoomLayer.h"
 #include "MainScene.h"
 #include "AnimationEffect.h"
+#include "MyHeroNode.h"
+#include "MainMapScene.h"
 
 USING_NS_CC;
 
@@ -122,6 +124,15 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
 				if (innroomLayer != NULL)
 					innroomLayer->fireHero(this->getTag());
+			}
+			else if (m_forwhere == 3)
+			{
+				MyHeroNode* myheronode = (MyHeroNode*)this->getUserData();
+				myheronode->cacelTraining();
+			}
+			else if (m_forwhere == 4)
+			{
+				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
 			}
 			AnimationEffect::closeAniEffect((Layer*)this);
 		default:

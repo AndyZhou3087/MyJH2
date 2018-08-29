@@ -31,6 +31,8 @@ typedef enum
 	T_BOX,//宝箱
 	T_STONE,//玉，宝石，镶嵌用的
 	T_VSION,//视野
+	T_GOBACK,//回城卷轴
+	T_TLMED,//体力药水
 	T_OTHER
 }RESTYPE;
 class ResBase

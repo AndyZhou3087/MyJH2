@@ -60,34 +60,34 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="43" G="30" B="20" />
           </AbstractNodeData>
-          <AbstractNodeData Name="box" ActionTag="1312407168" Tag="116" IconVisible="False" LeftMargin="434.2054" RightMargin="139.7946" TopMargin="135.1322" BottomMargin="998.8678" ctype="SpriteObjectData">
-            <Size X="146.0000" Y="146.0000" />
+          <AbstractNodeData Name="box" ActionTag="1312407168" Tag="116" IconVisible="False" LeftMargin="434.0000" RightMargin="140.0000" TopMargin="135.0000" BottomMargin="999.0000" ctype="SpriteObjectData">
+            <Size X="134.0000" Y="134.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="507.2054" Y="1071.8678" />
+            <Position X="507.0000" Y="1072.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7045" Y="0.8374" />
+            <PrePosition X="0.7042" Y="0.8375" />
             <PreSize X="0.2028" Y="0.1141" />
-            <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
+            <FileData Type="MarkedSubImage" Path="ui/headbox.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="icon" ActionTag="-405337763" Tag="42" IconVisible="False" LeftMargin="442.4030" RightMargin="145.5970" TopMargin="124.5529" BottomMargin="994.4471" LeftEage="43" RightEage="43" TopEage="53" BottomEage="53" Scale9OriginX="43" Scale9OriginY="53" Scale9Width="46" Scale9Height="55" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="icon" ActionTag="-405337763" VisibleForFrame="False" Tag="42" IconVisible="False" LeftMargin="441.0000" RightMargin="147.0000" TopMargin="127.5000" BottomMargin="991.5000" LeftEage="43" RightEage="43" TopEage="53" BottomEage="53" Scale9OriginX="43" Scale9OriginY="53" Scale9Width="46" Scale9Height="55" ctype="ImageViewObjectData">
             <Size X="132.0000" Y="161.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="508.4030" Y="1074.9471" />
+            <Position X="507.0000" Y="1072.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7061" Y="0.8398" />
+            <PrePosition X="0.7042" Y="0.8375" />
             <PreSize X="0.1833" Y="0.1258" />
             <FileData Type="MarkedSubImage" Path="mapui/n012.png" Plist="mapui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="npcname" ActionTag="-1546222213" Tag="118" IconVisible="False" LeftMargin="514.6318" RightMargin="102.3682" TopMargin="252.5828" BottomMargin="1004.4173" FontSize="20" LabelText="魔教的威胁" ShadowOffsetX="1.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="npcname" ActionTag="-1546222213" Tag="118" IconVisible="False" LeftMargin="519.6324" RightMargin="97.3676" TopMargin="264.5823" BottomMargin="992.4177" FontSize="20" LabelText="魔教的威胁" ShadowOffsetX="1.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="103.0000" Y="23.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="514.6318" Y="1015.9173" />
+            <Position X="519.6324" Y="1003.9177" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7148" Y="0.7937" />
+            <PrePosition X="0.7217" Y="0.7843" />
             <PreSize X="0.1431" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
@@ -135,13 +135,13 @@
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="500" Height="170" />
           </AbstractNodeData>
-          <AbstractNodeData Name="descscoll" ActionTag="776063844" Tag="13" IconVisible="False" LeftMargin="131.2171" RightMargin="118.7830" TopMargin="289.3926" BottomMargin="810.6074" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="descscoll" ActionTag="776063844" Tag="13" IconVisible="False" LeftMargin="128.2172" RightMargin="121.7828" TopMargin="299.3926" BottomMargin="800.6074" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="470.0000" Y="180.0000" />
             <AnchorPoint />
-            <Position X="131.2171" Y="810.6074" />
+            <Position X="128.2172" Y="800.6074" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1822" Y="0.6333" />
+            <PrePosition X="0.1781" Y="0.6255" />
             <PreSize X="0.6528" Y="0.1406" />
             <SingleColor A="255" R="255" G="255" B="255" />
             <FirstColor A="255" R="255" G="150" B="100" />

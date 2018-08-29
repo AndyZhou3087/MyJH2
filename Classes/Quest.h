@@ -9,7 +9,7 @@ typedef enum
 {
 	BTN_1 = 0,
 	BTN_2,
-}MAINBTNTYPE;
+}TASKBTNTYPE;
 
 class Quest
 {
@@ -23,7 +23,7 @@ public:
 	static void initCurNeedData();
 
 	//添加已完成任务
-	static void AddFinishQuest(TaskMainData data);
+	static void AddFinishQuest(TaskData data);
 
 	//判断二选一条件下是否有互斥,若有返回true
 	static bool getMutexMainQuestType(int id, int type);
@@ -35,7 +35,7 @@ public:
 	static bool getMainQuestMap(std::string mapid);
 
 	//判断条件1情况下消耗的物品id和数量
-	static void setResQuestData(std::string resid, int count, std::string npcid);
+	static bool checkResQuestData(std::string resid, int count, std::string npcid);
 
 	//判断消耗的物品数量是否达标
 	static bool getResCountFinish();
@@ -44,7 +44,7 @@ public:
 
 	static void finishQuest();
 
-	static void finishFightMain(int ftype);
+	static void finishTaskMain(int ftype);
 
 	static int getTypeBtn(int id, int ftype);
 
@@ -53,6 +53,18 @@ public:
 
 	/*************支线任务数据逻辑**************/
 
+	//初始化已完成的任务
+	static bool initFinishTaskBranchData();
+
+	//初始化当前任务已完成的物品
+	static void initCurBranchNeedData();
+
+	//添加已完成任务
+	static void AddFinishBranchQuest(TaskData data);
+
+	//判断二选一条件下是否有互斥,若有返回true
+	static bool getMutexBranchQuestType(int id, int type);
+
 	//判断是否接受此npc任务
 	static bool getBranchQuestNpc(std::string npcid);
 
@@ -60,7 +72,7 @@ public:
 	static bool getBranchQuestMap(std::string mapid);
 
 	//判断赠送物品情况下消耗的物品id和数量
-	static void setResBranchQuestData(std::string resid, int count, std::string npcid);
+	static bool checkResBranchQuestData(std::string resid, int count, std::string npcid);
 
 	//判断消耗的物品数量是否达标
 	static bool getResBranchFinish();
@@ -68,6 +80,10 @@ public:
 	static void saveBranchData();
 
 	static void finishBranchQuest();
+
+	static void finishTaskBranch(int ftype);
+
+	static int getTypeBranchBtn(int id, int ftype);
 
 	//判断是否接受支线任务
 	static bool getBranchQuest();
@@ -93,9 +109,11 @@ public:
 	static void setAchieveTypeCount(int type, int count,std::string resid = "0");
 
 public:
-	static std::vector<TaskMainData> myFinishMainQuest;
+	static std::vector<TaskData> myFinishMainQuest;
 
 	static std::map<std::string, int> map_NpcQuestRes;
+
+	static std::vector<TaskData> myFinishBranchQuest;
 
 	//支线任务npc物品
 	static std::map<std::string, int> map_NpcBranchQuestRes;

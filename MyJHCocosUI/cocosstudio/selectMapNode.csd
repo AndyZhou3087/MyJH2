@@ -52,6 +52,16 @@
             <OutlineColor A="255" R="42" G="125" B="125" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="taskicon" ActionTag="1063109662" VisibleForFrame="False" Tag="273" RotationSkewX="45.0000" RotationSkewY="45.0000" IconVisible="False" LeftMargin="37.4350" RightMargin="-87.4350" TopMargin="-53.0356" BottomMargin="9.0356" LeftEage="16" RightEage="16" TopEage="14" BottomEage="14" Scale9OriginX="16" Scale9OriginY="14" Scale9Width="18" Scale9Height="16" ctype="ImageViewObjectData">
+            <Size X="50.0000" Y="44.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="62.4350" Y="31.0356" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="mapui/maptask_icon.png" Plist="mapui.plist" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
