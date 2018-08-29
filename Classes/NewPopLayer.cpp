@@ -48,7 +48,7 @@ bool NewPopLayer::init(int unlockchapter)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("unlockChapterLayer.csb"));
+	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("newPopLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
