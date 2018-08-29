@@ -131,10 +131,6 @@ void HeadInfoLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	{
 		CommonFuncs::BtnAction(pSender, type);
 	}
-	else
-	{
-		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-	}
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		switch (tag)
@@ -144,6 +140,7 @@ void HeadInfoLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case 1:
 		{
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 			ChangeHeadLayer* layer = ChangeHeadLayer::create();
 			this->addChild(layer);
 			AnimationEffect::openAniEffect((Layer*)layer);

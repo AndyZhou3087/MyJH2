@@ -142,31 +142,28 @@ void ChangeHeadLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	int tag = node->getTag();
 	if (tag == 100)
 	{
-		DataSave::getInstance()->setHeadId(lastSelectIndex + 4);
-		HeadInfoLayer * infolayer = (HeadInfoLayer*)this->getParent();
-		if (infolayer!=NULL)
-		{
-			infolayer->changeHead();
-			MainMenuLayer * menulayer = (MainMenuLayer*)infolayer->getParent();
-			if (menulayer != NULL)
-			{
-				menulayer->changeHead();
-			}
-		}
 		CommonFuncs::BtnAction(pSender, type);
-	}
-	else
-	{
-		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 	}
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		if (tag == 100)
 		{
+			DataSave::getInstance()->setHeadId(lastSelectIndex + 4);
+			HeadInfoLayer * infolayer = (HeadInfoLayer*)this->getParent();
+			if (infolayer != NULL)
+			{
+				infolayer->changeHead();
+				MainMenuLayer * menulayer = (MainMenuLayer*)infolayer->getParent();
+				if (menulayer != NULL)
+				{
+					menulayer->changeHead();
+				}
+			}
 			AnimationEffect::closeAniEffect((Layer*)this);
 		}
 		else
 		{
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 			if (lastSelectIndex == tag)
 			{
 				return;
