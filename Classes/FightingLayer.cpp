@@ -481,7 +481,7 @@ void FightingLayer::showAtk(int fightertag)
 		{
 			Hero* myhero = GlobalInstance::myCardHeros[myfindex];
 			GongFa* gf = myhero->checkSkillWg();
-			if (gf != NULL)//
+			if (gf != NULL)
 			{
 				if (GlobalInstance::map_GF[gf->getId()].skill == SKILL_15)
 				{
@@ -517,9 +517,7 @@ void FightingLayer::showAtk(int fightertag)
 					return;
 				}
 			}
-
 		}
-
 		FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(myfindex);
 
 
