@@ -36,8 +36,8 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/h_1_0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="2067373338" Tag="18" IconVisible="False" LeftMargin="-103.0003" RightMargin="-3.9997" TopMargin="-53.2964" BottomMargin="13.2964" FontSize="35" LabelText="小虾米" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="107.0000" Y="40.0000" />
+          <AbstractNodeData Name="name" ActionTag="2067373338" Tag="18" IconVisible="False" LeftMargin="-103.0003" RightMargin="-3.9997" TopMargin="-53.2964" BottomMargin="13.2964" FontSize="35" LabelText="小虾米" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="108.0000" Y="42.0000" />
             <AnchorPoint ScaleY="0.6176" />
             <Position X="-103.0003" Y="38.0004" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -45,10 +45,10 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="80" G="38" B="12" />
+            <OutlineColor A="255" R="42" G="125" B="125" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lvtext" ActionTag="2050312199" Tag="19" IconVisible="False" LeftMargin="-103.0003" RightMargin="46.0003" TopMargin="-3.4021" BottomMargin="-22.5979" FontSize="23" LabelText="等级：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="lvtext" ActionTag="2050312199" Tag="19" IconVisible="False" LeftMargin="-103.0003" RightMargin="46.0003" TopMargin="-3.4021" BottomMargin="-22.5979" FontSize="23" LabelText="等级：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="57.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.6176" />
             <Position X="-103.0003" Y="-6.5403" />
@@ -60,7 +60,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lv" ActionTag="-460401099" Tag="20" IconVisible="False" LeftMargin="-34.9151" RightMargin="6.9151" TopMargin="-4.3423" BottomMargin="-25.6577" FontSize="26" LabelText="30" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="lv" ActionTag="-460401099" Tag="20" IconVisible="False" LeftMargin="-34.9151" RightMargin="6.9151" TopMargin="-4.3423" BottomMargin="-25.6577" FontSize="26" LabelText="30" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="28.0000" Y="30.0000" />
             <AnchorPoint ScaleY="0.6176" />
             <Position X="-34.9151" Y="-7.1297" />
@@ -72,7 +72,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="vocationtext" ActionTag="-839154687" Tag="21" IconVisible="False" LeftMargin="-103.0003" RightMargin="46.0003" TopMargin="31.3777" BottomMargin="-57.3777" FontSize="23" LabelText="职业：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="vocationtext" ActionTag="-839154687" Tag="21" IconVisible="False" LeftMargin="-103.0003" RightMargin="46.0003" TopMargin="31.3777" BottomMargin="-57.3777" FontSize="23" LabelText="职业：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="57.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.6176" />
             <Position X="-103.0003" Y="-41.3201" />
@@ -84,7 +84,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="vocation" ActionTag="-937984841" Tag="22" IconVisible="False" LeftMargin="-34.9151" RightMargin="-13.0849" TopMargin="31.1869" BottomMargin="-57.1869" FontSize="23" LabelText="武士" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="vocation" ActionTag="-937984841" Tag="22" IconVisible="False" LeftMargin="-34.9151" RightMargin="-13.0849" TopMargin="31.1869" BottomMargin="-57.1869" FontSize="23" LabelText="武士" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="48.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.6176" />
             <Position X="-34.9151" Y="-41.1293" />
@@ -171,7 +171,7 @@
           <AbstractNodeData Name="tag" ActionTag="1285520522" Tag="31" IconVisible="False" LeftMargin="-308.0014" RightMargin="262.0014" TopMargin="19.0000" BottomMargin="-65.0000" LeftEage="15" RightEage="15" TopEage="15" BottomEage="15" Scale9OriginX="15" Scale9OriginY="15" Scale9Width="16" Scale9Height="16" ctype="ImageViewObjectData">
             <Size X="46.0000" Y="46.0000" />
             <Children>
-              <AbstractNodeData Name="text" ActionTag="-2073929665" Tag="26" IconVisible="False" LeftMargin="14.5000" RightMargin="16.5000" TopMargin="9.5000" BottomMargin="7.5000" FontSize="25" LabelText="2" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="text" ActionTag="-2073929665" Tag="26" IconVisible="False" LeftMargin="14.5000" RightMargin="16.5000" TopMargin="9.5000" BottomMargin="7.5000" FontSize="25" LabelText="2" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
                 <Size X="15.0000" Y="29.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="22.0000" Y="22.0000" />
@@ -229,7 +229,7 @@
             <OutlineColor A="255" R="143" G="84" B="49" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="hpdesc" ActionTag="-864076973" Tag="41" IconVisible="False" LeftMargin="103.0800" RightMargin="-246.0800" TopMargin="36.0989" BottomMargin="-57.0989" FontSize="18" LabelText="体力：100(00:59)" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="hpdesc" ActionTag="-864076973" Tag="41" IconVisible="False" LeftMargin="103.0800" RightMargin="-246.0800" TopMargin="36.0989" BottomMargin="-57.0989" FontSize="18" LabelText="体力：100(00:59)" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="143.0000" Y="21.0000" />
             <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
             <Position X="246.0800" Y="-46.5989" />
@@ -241,7 +241,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="clickimg" ActionTag="-1002071700" Tag="55" IconVisible="False" LeftMargin="-266.0763" RightMargin="-133.9237" TopMargin="-70.0000" BottomMargin="-70.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="clickimg" Visible="False" ActionTag="-1002071700" Tag="55" IconVisible="False" LeftMargin="-266.0763" RightMargin="-133.9237" TopMargin="-70.0000" BottomMargin="-70.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
             <Size X="400.0000" Y="140.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-66.0763" />

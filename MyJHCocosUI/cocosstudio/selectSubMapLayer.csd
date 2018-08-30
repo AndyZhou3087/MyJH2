@@ -82,7 +82,7 @@
             <Position X="0.0001" Y="280.0006" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition Y="0.2188" />
+            <PrePosition X="0.0000" Y="0.2188" />
             <PreSize X="1.0000" Y="0.6641" />
             <SingleColor A="255" R="255" G="150" B="100" />
             <FirstColor A="255" R="255" G="150" B="100" />
@@ -101,14 +101,14 @@
             <FileData Type="MarkedSubImage" Path="mapui/morearrow.png" Plist="mapui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="-1928493411" Tag="210" IconVisible="False" LeftMargin="60.0000" RightMargin="60.0000" TopMargin="1188.5000" BottomMargin="16.4999" IsCustomSize="True" FontSize="22" LabelText="" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="600.0000" Y="75.0000" />
+          <AbstractNodeData Name="desc" ActionTag="-1928493411" Tag="210" IconVisible="False" LeftMargin="149.9993" RightMargin="50.0007" TopMargin="1188.5001" BottomMargin="16.4999" IsCustomSize="True" FontSize="22" LabelText="" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="520.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="53.9999" />
+            <Position X="409.9993" Y="53.9999" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="157" G="208" B="213" />
-            <PrePosition X="0.5000" Y="0.0422" />
-            <PreSize X="0.8333" Y="0.0586" />
+            <PrePosition X="0.5694" Y="0.0422" />
+            <PreSize X="0.7222" Y="0.0586" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="42" G="125" B="125" />
             <ShadowColor A="255" R="110" G="110" B="110" />

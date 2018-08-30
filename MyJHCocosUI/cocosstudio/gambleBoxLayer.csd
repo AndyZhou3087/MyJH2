@@ -6,7 +6,7 @@
       <ObjectData Name="Layer" Tag="94" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
-          <AbstractNodeData Name="smallbg" ActionTag="-567090314" Tag="59" IconVisible="False" LeftMargin="59.9999" RightMargin="60.0001" TopMargin="250.0048" BottomMargin="367.9952" TouchEnable="True" LeftEage="198" RightEage="198" TopEage="218" BottomEage="218" Scale9OriginX="198" Scale9OriginY="218" Scale9Width="204" Scale9Height="226" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="smallbg" ActionTag="-567090314" Tag="59" IconVisible="False" LeftMargin="59.9999" RightMargin="60.0001" TopMargin="250.0049" BottomMargin="367.9952" TouchEnable="True" LeftEage="198" RightEage="198" TopEage="218" BottomEage="218" Scale9OriginX="198" Scale9OriginY="218" Scale9Width="204" Scale9Height="226" ctype="ImageViewObjectData">
             <Size X="600.0000" Y="662.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="359.9999" Y="698.9952" />
@@ -70,7 +70,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="gettext" ActionTag="-947176759" Tag="88" IconVisible="False" LeftMargin="267.4857" RightMargin="391.5143" TopMargin="570.1344" BottomMargin="680.8656" FontSize="25" LabelText="获得：" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="gettext" ActionTag="-947176759" Tag="88" IconVisible="False" LeftMargin="274.4861" RightMargin="384.5139" TopMargin="570.1344" BottomMargin="680.8656" FontSize="25" LabelText="获得：" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="61.0000" Y="29.0000" />
             <Children>
               <AbstractNodeData Name="main_coin_1" ActionTag="276890842" Tag="89" IconVisible="False" LeftMargin="75.1163" RightMargin="-56.1163" TopMargin="-0.3409" BottomMargin="3.3409" ctype="SpriteObjectData">
@@ -84,7 +84,7 @@
                 <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="count" ActionTag="-2088968519" Tag="90" IconVisible="False" LeftMargin="127.0594" RightMargin="-107.0594" TopMargin="-1.0576" BottomMargin="1.0576" FontSize="25" LabelText="100" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+              <AbstractNodeData Name="count" ActionTag="-2088968519" Tag="90" IconVisible="False" LeftMargin="127.0594" RightMargin="-107.0594" TopMargin="-1.0576" BottomMargin="1.0576" FontSize="25" LabelText="100" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                 <Size X="41.0000" Y="29.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="127.0594" Y="15.5576" />
@@ -94,38 +94,38 @@
                 <PreSize X="0.6721" Y="1.0000" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
+                <ShadowColor A="255" R="0" G="0" B="0" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="297.9857" Y="695.3656" />
+            <Position X="304.9861" Y="695.3656" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4139" Y="0.5433" />
+            <PrePosition X="0.4236" Y="0.5433" />
             <PreSize X="0.0847" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="win" ActionTag="-120042112" Tag="162" IconVisible="False" LeftMargin="231.2611" RightMargin="225.7389" TopMargin="518.9349" BottomMargin="732.0651" FontSize="25" LabelText="恭喜您，今天手气不错！" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="win" ActionTag="-120042112" Tag="162" IconVisible="False" LeftMargin="228.5000" RightMargin="228.5000" TopMargin="518.9349" BottomMargin="732.0651" FontSize="25" LabelText="恭喜您，今天手气不错！" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="263.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="362.7611" Y="746.5651" />
+            <Position X="360.0000" Y="746.5651" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5038" Y="0.5833" />
+            <PrePosition X="0.5000" Y="0.5833" />
             <PreSize X="0.3653" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="dice" ActionTag="-1357090943" Tag="91" IconVisible="False" LeftMargin="320.2400" RightMargin="309.7600" TopMargin="324.9678" BottomMargin="857.0322" LeftEage="29" RightEage="29" TopEage="32" BottomEage="32" Scale9OriginX="29" Scale9OriginY="32" Scale9Width="32" Scale9Height="34" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="dice" ActionTag="-1357090943" Tag="91" IconVisible="False" LeftMargin="315.0000" RightMargin="315.0000" TopMargin="324.9678" BottomMargin="857.0322" LeftEage="29" RightEage="29" TopEage="32" BottomEage="32" Scale9OriginX="29" Scale9OriginY="32" Scale9Width="32" Scale9Height="34" ctype="ImageViewObjectData">
             <Size X="90.0000" Y="98.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="365.2400" Y="906.0322" />
+            <Position X="360.0000" Y="906.0322" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5073" Y="0.7078" />
+            <PrePosition X="0.5000" Y="0.7078" />
             <PreSize X="0.1250" Y="0.0766" />
             <FileData Type="MarkedSubImage" Path="ui/dice1.png" Plist="ui.plist" />
           </AbstractNodeData>

@@ -43,7 +43,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="-47379185" Tag="47" IconVisible="False" LeftMargin="324.0000" RightMargin="324.0000" TopMargin="369.6849" BottomMargin="870.3151" FontSize="35" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="name" ActionTag="-47379185" Tag="47" IconVisible="False" LeftMargin="324.0000" RightMargin="324.0000" TopMargin="369.6849" BottomMargin="870.3151" FontSize="35" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="72.0000" Y="40.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="890.3151" />
@@ -53,7 +53,7 @@
             <PreSize X="0.1000" Y="0.0313" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="resbox" ActionTag="-1970667145" Tag="57" IconVisible="False" LeftMargin="297.5000" RightMargin="297.5000" TopMargin="441.3500" BottomMargin="713.6500" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
@@ -75,7 +75,7 @@
             <PreSize X="0.1514" Y="0.0852" />
             <FileData Type="MarkedSubImage" Path="ui/a001.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="coutlbl" ActionTag="1767554532" Tag="58" IconVisible="False" LeftMargin="313.0000" RightMargin="313.0000" TopMargin="589.2396" BottomMargin="664.7604" FontSize="23" LabelText="数量：%s" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="coutlbl" ActionTag="1767554532" Tag="58" IconVisible="False" LeftMargin="313.0000" RightMargin="313.0000" TopMargin="589.2396" BottomMargin="664.7604" FontSize="23" LabelText="数量：%s" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="94.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="677.7604" />
@@ -85,9 +85,9 @@
             <PreSize X="0.1306" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desclbl" ActionTag="-1221271729" Tag="59" IconVisible="False" LeftMargin="110.1348" RightMargin="109.8652" TopMargin="658.9811" BottomMargin="521.0189" IsCustomSize="True" FontSize="27" LabelText="数量数量数量数量数量数量数量数量数量数量" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="desclbl" ActionTag="-1221271729" Tag="59" IconVisible="False" LeftMargin="110.1348" RightMargin="109.8652" TopMargin="658.9811" BottomMargin="521.0189" IsCustomSize="True" FontSize="27" LabelText="数量数量数量数量数量数量数量数量数量数量" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="500.0000" Y="100.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.1348" Y="571.0189" />
@@ -97,7 +97,7 @@
             <PreSize X="0.6944" Y="0.0781" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

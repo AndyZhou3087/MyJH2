@@ -36,7 +36,7 @@
             <PreSize X="0.1514" Y="0.0852" />
             <FileData Type="MarkedSubImage" Path="ui/a001.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="-1271521659" Tag="216" IconVisible="False" LeftMargin="331.0001" RightMargin="326.9999" TopMargin="533.6829" BottomMargin="712.3171" FontSize="30" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="name" ActionTag="-1271521659" Tag="216" IconVisible="False" LeftMargin="331.0001" RightMargin="326.9999" TopMargin="533.6829" BottomMargin="712.3171" FontSize="30" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="62.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="362.0001" Y="729.3171" />
@@ -46,9 +46,9 @@
             <PreSize X="0.0861" Y="0.0266" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_0" ActionTag="231157986" Tag="215" IconVisible="False" LeftMargin="295.3257" RightMargin="293.6743" TopMargin="628.3078" BottomMargin="625.6922" FontSize="23" LabelText="攻击力 +100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_0" ActionTag="231157986" Tag="215" IconVisible="False" LeftMargin="295.3257" RightMargin="293.6743" TopMargin="628.3078" BottomMargin="625.6922" FontSize="23" LabelText="攻击力 +100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="131.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.8257" Y="638.6922" />
@@ -58,7 +58,7 @@
             <PreSize X="0.1819" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="actionbtn" ActionTag="1782226865" Tag="213" IconVisible="False" LeftMargin="261.0000" RightMargin="255.0000" TopMargin="811.9988" BottomMargin="384.0012" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />

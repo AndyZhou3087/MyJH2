@@ -215,8 +215,6 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			elv.setValue(m_equip->getLv().getValue() + 1);
 			m_equip->setLv(elv);
 
-			MovingLabel::show(ResourceLang::map_lang["strengthsuccess"]);
-
 			if (this->getParent()->getChildByName("qianghuachenggong")!=NULL)
 			{
 				this->getParent()->removeChildByName("qianghuachenggong");

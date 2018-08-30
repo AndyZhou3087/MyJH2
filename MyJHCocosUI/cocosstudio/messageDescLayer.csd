@@ -16,7 +16,7 @@
             <PreSize X="0.8333" Y="0.5172" />
             <FileData Type="Normal" Path="images/smallbg.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="title" ActionTag="759126621" Tag="463" IconVisible="False" LeftMargin="328.9998" RightMargin="329.0002" TopMargin="360.6251" BottomMargin="885.3749" FontSize="30" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="title" ActionTag="759126621" Tag="463" IconVisible="False" LeftMargin="328.9998" RightMargin="329.0002" TopMargin="360.6251" BottomMargin="885.3749" FontSize="30" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="62.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="359.9998" Y="902.3749" />
@@ -26,7 +26,7 @@
             <PreSize X="0.0861" Y="0.0266" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="contentscroll" ActionTag="965485091" Tag="464" IconVisible="False" LeftMargin="70.0000" RightMargin="70.0000" TopMargin="420.0000" BottomMargin="510.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="580.0000" Y="350.0000" />
@@ -45,7 +45,7 @@
           <AbstractNodeData Name="awdnode" ActionTag="1441646543" Tag="467" IconVisible="True" LeftMargin="361.2495" RightMargin="358.7505" TopMargin="900.0000" BottomMargin="380.0000" ctype="SingleNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
             <Children>
-              <AbstractNodeData Name="text" ActionTag="-697216872" Tag="468" IconVisible="False" LeftMargin="-255.7612" RightMargin="204.7612" TopMargin="-93.8969" BottomMargin="64.8969" FontSize="25" LabelText="奖励" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="text" ActionTag="-697216872" Tag="468" IconVisible="False" LeftMargin="-255.7629" RightMargin="204.7629" TopMargin="-93.8966" BottomMargin="64.8966" FontSize="25" LabelText="奖励" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="51.0000" Y="29.0000" />
                 <AnchorPoint ScaleX="0.4785" ScaleY="0.4711" />
                 <Position X="-231.3594" Y="78.5585" />
@@ -80,7 +80,7 @@
                     <PreSize X="0.8720" Y="0.8720" />
                     <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="countlbl" ActionTag="1945402067" Tag="473" IconVisible="False" LeftMargin="79.3257" RightMargin="10.6743" TopMargin="95.7456" BottomMargin="4.2544" FontSize="22" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="countlbl" ActionTag="1945402067" Tag="473" IconVisible="False" LeftMargin="79.3257" RightMargin="10.6743" TopMargin="95.7456" BottomMargin="4.2544" FontSize="22" LabelText="100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                     <Size X="35.0000" Y="25.0000" />
                     <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
                     <Position X="114.3257" Y="16.7544" />
@@ -90,9 +90,9 @@
                     <PreSize X="0.2800" Y="0.2000" />
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="80" G="38" B="12" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="name" ActionTag="617792261" Tag="476" IconVisible="False" LeftMargin="36.4998" RightMargin="36.5002" TopMargin="122.5000" BottomMargin="-26.5000" FontSize="25" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="name" ActionTag="617792261" Tag="476" IconVisible="False" LeftMargin="36.4998" RightMargin="36.5002" TopMargin="122.5000" BottomMargin="-26.5000" FontSize="25" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                     <Size X="52.0000" Y="29.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="62.4998" Y="-12.0000" />
@@ -102,7 +102,7 @@
                     <PreSize X="0.4160" Y="0.2320" />
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="80" G="38" B="12" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -126,7 +126,7 @@
                     <PreSize X="0.8720" Y="0.8720" />
                     <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="countlbl" ActionTag="941473735" Tag="485" IconVisible="False" LeftMargin="79.3257" RightMargin="10.6743" TopMargin="95.7456" BottomMargin="4.2544" FontSize="22" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="countlbl" ActionTag="941473735" Tag="485" IconVisible="False" LeftMargin="79.3257" RightMargin="10.6743" TopMargin="95.7456" BottomMargin="4.2544" FontSize="22" LabelText="100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                     <Size X="35.0000" Y="25.0000" />
                     <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
                     <Position X="114.3257" Y="16.7544" />
@@ -136,9 +136,9 @@
                     <PreSize X="0.2800" Y="0.2000" />
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="80" G="38" B="12" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="name" ActionTag="-1401815725" Tag="486" IconVisible="False" LeftMargin="36.4998" RightMargin="36.5002" TopMargin="122.5000" BottomMargin="-26.5000" FontSize="25" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="name" ActionTag="-1401815725" Tag="486" IconVisible="False" LeftMargin="36.4998" RightMargin="36.5002" TopMargin="122.5000" BottomMargin="-26.5000" FontSize="25" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                     <Size X="52.0000" Y="29.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="62.4998" Y="-12.0000" />
@@ -148,7 +148,7 @@
                     <PreSize X="0.4160" Y="0.2320" />
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="80" G="38" B="12" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -172,7 +172,7 @@
                     <PreSize X="0.8720" Y="0.8720" />
                     <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="countlbl" ActionTag="-328765485" Tag="489" IconVisible="False" LeftMargin="79.3257" RightMargin="10.6743" TopMargin="95.7456" BottomMargin="4.2544" FontSize="22" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="countlbl" ActionTag="-328765485" Tag="489" IconVisible="False" LeftMargin="79.3257" RightMargin="10.6743" TopMargin="95.7456" BottomMargin="4.2544" FontSize="22" LabelText="100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                     <Size X="35.0000" Y="25.0000" />
                     <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
                     <Position X="114.3257" Y="16.7544" />
@@ -182,9 +182,9 @@
                     <PreSize X="0.2800" Y="0.2000" />
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="80" G="38" B="12" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="name" ActionTag="-438383516" Tag="490" IconVisible="False" LeftMargin="36.4998" RightMargin="36.5002" TopMargin="122.5000" BottomMargin="-26.5000" FontSize="25" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="name" ActionTag="-438383516" Tag="490" IconVisible="False" LeftMargin="36.4998" RightMargin="36.5002" TopMargin="122.5000" BottomMargin="-26.5000" FontSize="25" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                     <Size X="52.0000" Y="29.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="62.4998" Y="-12.0000" />
@@ -194,7 +194,7 @@
                     <PreSize X="0.4160" Y="0.2320" />
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="80" G="38" B="12" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -218,7 +218,7 @@
                     <PreSize X="0.8720" Y="0.8720" />
                     <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="countlbl" ActionTag="1016377177" Tag="493" IconVisible="False" LeftMargin="79.3257" RightMargin="10.6743" TopMargin="95.7456" BottomMargin="4.2544" FontSize="22" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="countlbl" ActionTag="1016377177" Tag="493" IconVisible="False" LeftMargin="79.3257" RightMargin="10.6743" TopMargin="95.7456" BottomMargin="4.2544" FontSize="22" LabelText="100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                     <Size X="35.0000" Y="25.0000" />
                     <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
                     <Position X="114.3257" Y="16.7544" />
@@ -228,9 +228,9 @@
                     <PreSize X="0.2800" Y="0.2000" />
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="80" G="38" B="12" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="name" ActionTag="480236481" Tag="494" IconVisible="False" LeftMargin="36.4998" RightMargin="36.5002" TopMargin="122.5000" BottomMargin="-26.5000" FontSize="25" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="name" ActionTag="480236481" Tag="494" IconVisible="False" LeftMargin="36.4998" RightMargin="36.5002" TopMargin="122.5000" BottomMargin="-26.5000" FontSize="25" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                     <Size X="52.0000" Y="29.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="62.4998" Y="-12.0000" />
@@ -240,7 +240,7 @@
                     <PreSize X="0.4160" Y="0.2320" />
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="80" G="38" B="12" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -264,7 +264,7 @@
                     <PreSize X="0.8720" Y="0.8720" />
                     <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="countlbl" ActionTag="-885637673" Tag="497" IconVisible="False" LeftMargin="79.3257" RightMargin="10.6743" TopMargin="95.7456" BottomMargin="4.2544" FontSize="22" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="countlbl" ActionTag="-885637673" Tag="497" IconVisible="False" LeftMargin="79.3257" RightMargin="10.6743" TopMargin="95.7456" BottomMargin="4.2544" FontSize="22" LabelText="100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                     <Size X="35.0000" Y="25.0000" />
                     <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
                     <Position X="114.3257" Y="16.7544" />
@@ -274,9 +274,9 @@
                     <PreSize X="0.2800" Y="0.2000" />
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="80" G="38" B="12" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="name" ActionTag="-341720866" Tag="498" IconVisible="False" LeftMargin="36.4998" RightMargin="36.5002" TopMargin="122.5000" BottomMargin="-26.5000" FontSize="25" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="name" ActionTag="-341720866" Tag="498" IconVisible="False" LeftMargin="36.4998" RightMargin="36.5002" TopMargin="122.5000" BottomMargin="-26.5000" FontSize="25" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                     <Size X="52.0000" Y="29.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="62.4998" Y="-12.0000" />
@@ -286,7 +286,7 @@
                     <PreSize X="0.4160" Y="0.2320" />
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="80" G="38" B="12" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -305,7 +305,7 @@
             <PrePosition X="0.5017" Y="0.2969" />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="actionbtn" ActionTag="2024812220" Tag="465" IconVisible="False" LeftMargin="258.0000" RightMargin="258.0000" TopMargin="1019.5677" BottomMargin="176.4322" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="actionbtn" ActionTag="2024812220" Tag="465" IconVisible="False" LeftMargin="258.0000" RightMargin="258.0000" TopMargin="1019.5678" BottomMargin="176.4322" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="1618354019" Tag="466" IconVisible="False" LeftMargin="69.0216" RightMargin="69.9784" TopMargin="22.7404" BottomMargin="27.2596" LeftEage="23" RightEage="23" TopEage="13" BottomEage="13" Scale9OriginX="23" Scale9OriginY="13" Scale9Width="19" Scale9Height="8" ctype="ImageViewObjectData">

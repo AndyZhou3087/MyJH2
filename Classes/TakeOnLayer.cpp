@@ -448,12 +448,15 @@ void TakeOnLayer::updateUI()
 				str = StringUtils::format(ss.c_str(), STONE_BNS[intv][intid % 3]);
 
 				stonedesc->setString(str);
-				stonedesc->setVisible(false);
+
+				equipstonebox->loadTexture("ui/resbox.png", cocos2d::ui::TextureResType::PLIST);
 			}
 			else
 			{
 				stone->setVisible(false);
-				stonedesc->setVisible(false);
+				stonedesc->setVisible(true);
+				stonedesc->setString(ResourceLang::map_lang["nosetin"]);
+				equipstonebox->loadTexture("ui/equipstonebox.png", cocos2d::ui::TextureResType::PLIST);
 			}
 			stone->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onStoneclick, this));
 			stone->setTag(i);
@@ -464,8 +467,8 @@ void TakeOnLayer::updateUI()
 		else
 		{
 			stone->setVisible(false);
-			stonedesc->setVisible(false);
-			equipstonebox->setVisible(false);
+			stonedesc->setString(ResourceLang::map_lang["cannotsetin"]);
+			//equipstonebox->setVisible(false);
 		}
 	}
 

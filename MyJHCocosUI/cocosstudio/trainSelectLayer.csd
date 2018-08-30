@@ -16,7 +16,7 @@
             <PreSize X="0.8333" Y="0.5172" />
             <FileData Type="Normal" Path="images/smallbg.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="titlename" ActionTag="1624667208" Tag="112" IconVisible="False" LeftMargin="294.0001" RightMargin="291.9999" TopMargin="486.9832" BottomMargin="755.0168" FontSize="33" LabelText="时间选择" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="titlename" ActionTag="1624667208" Tag="112" IconVisible="False" LeftMargin="294.0001" RightMargin="291.9999" TopMargin="486.9832" BottomMargin="755.0168" FontSize="33" LabelText="时间选择" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="134.0000" Y="38.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="361.0001" Y="774.0168" />
@@ -26,7 +26,7 @@
             <PreSize X="0.1861" Y="0.0297" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="resbox0" ActionTag="-269882927" Tag="99" IconVisible="False" LeftMargin="113.4996" RightMargin="481.5004" TopMargin="578.4946" BottomMargin="576.5054" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
@@ -88,7 +88,7 @@
             <PreSize X="0.1514" Y="0.0852" />
             <FileData Type="MarkedSubImage" Path="ui/trainning_3.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name0" ActionTag="-311585240" Tag="106" IconVisible="False" LeftMargin="136.9996" RightMargin="505.0004" TopMargin="712.4891" BottomMargin="538.5109" FontSize="25" LabelText="一小时" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="name0" ActionTag="-311585240" Tag="106" IconVisible="False" LeftMargin="136.9996" RightMargin="505.0004" TopMargin="712.4891" BottomMargin="538.5109" FontSize="25" LabelText="一小时" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="78.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="175.9996" Y="553.0109" />
@@ -98,9 +98,9 @@
             <PreSize X="0.1083" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name1" ActionTag="-2051727833" Tag="107" IconVisible="False" LeftMargin="317.0004" RightMargin="324.9996" TopMargin="711.4904" BottomMargin="539.5096" FontSize="25" LabelText="五小时" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="name1" ActionTag="-2051727833" Tag="107" IconVisible="False" LeftMargin="317.0004" RightMargin="324.9996" TopMargin="711.4904" BottomMargin="539.5096" FontSize="25" LabelText="五小时" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="78.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="356.0004" Y="554.0096" />
@@ -110,9 +110,9 @@
             <PreSize X="0.1083" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name2" ActionTag="-954402692" Tag="108" IconVisible="False" LeftMargin="502.0009" RightMargin="139.9991" TopMargin="711.4904" BottomMargin="539.5096" FontSize="25" LabelText="八小时" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="name2" ActionTag="-954402692" Tag="108" IconVisible="False" LeftMargin="502.0009" RightMargin="139.9991" TopMargin="711.4904" BottomMargin="539.5096" FontSize="25" LabelText="八小时" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="78.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="541.0009" Y="554.0096" />
@@ -122,9 +122,9 @@
             <PreSize X="0.1083" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="countlbl0" ActionTag="555493635" Tag="109" IconVisible="False" LeftMargin="155.9760" RightMargin="485.0240" TopMargin="751.4339" BottomMargin="503.5661" FontSize="22" LabelText="300/100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="countlbl0" ActionTag="555493635" Tag="109" IconVisible="False" LeftMargin="155.9760" RightMargin="485.0240" TopMargin="751.4339" BottomMargin="503.5661" FontSize="22" LabelText="300/100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="79.0000" Y="25.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="155.9760" Y="516.0661" />
@@ -134,9 +134,9 @@
             <PreSize X="0.1097" Y="0.0195" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="countlbl1" ActionTag="880109911" Tag="110" IconVisible="False" LeftMargin="333.4993" RightMargin="307.5007" TopMargin="753.4936" BottomMargin="501.5064" FontSize="22" LabelText="300/500" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="countlbl1" ActionTag="880109911" Tag="110" IconVisible="False" LeftMargin="333.4993" RightMargin="307.5007" TopMargin="753.4936" BottomMargin="501.5064" FontSize="22" LabelText="300/500" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="79.0000" Y="25.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="333.4993" Y="514.0064" />
@@ -146,9 +146,9 @@
             <PreSize X="0.1097" Y="0.0195" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="countlbl2" ActionTag="-757915651" Tag="111" IconVisible="False" LeftMargin="514.5011" RightMargin="126.4989" TopMargin="753.4936" BottomMargin="501.5064" FontSize="22" LabelText="300/800" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="countlbl2" ActionTag="-757915651" Tag="111" IconVisible="False" LeftMargin="514.5011" RightMargin="126.4989" TopMargin="753.4936" BottomMargin="501.5064" FontSize="22" LabelText="300/800" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="79.0000" Y="25.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="514.5011" Y="514.0064" />
@@ -158,7 +158,7 @@
             <PreSize X="0.1097" Y="0.0195" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="drlvupbtn" ActionTag="-252362454" Tag="113" IconVisible="False" LeftMargin="389.0004" RightMargin="126.9996" TopMargin="897.9988" BottomMargin="298.0012" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
@@ -225,7 +225,7 @@
             <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="countlbl" ActionTag="1058945096" Tag="198" IconVisible="False" LeftMargin="478.0005" RightMargin="183.9995" TopMargin="990.2698" BottomMargin="257.7303" FontSize="28" LabelText="x100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="countlbl" ActionTag="1058945096" Tag="198" IconVisible="False" LeftMargin="478.0005" RightMargin="183.9995" TopMargin="990.2697" BottomMargin="257.7303" FontSize="28" LabelText="x100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="58.0000" Y="32.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="478.0005" Y="273.7303" />
@@ -235,7 +235,7 @@
             <PreSize X="0.0806" Y="0.0250" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="train_select_0" ActionTag="1419635553" Tag="304" IconVisible="False" LeftMargin="113.4365" RightMargin="481.5635" TopMargin="578.6010" BottomMargin="576.3990" ctype="SpriteObjectData">
             <Size X="125.0000" Y="125.0000" />
@@ -314,7 +314,7 @@
             <FileData Type="MarkedSubImage" Path="ui/c001.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="countlbl_0" ActionTag="52095432" Tag="311" IconVisible="False" LeftMargin="229.8307" RightMargin="464.1693" TopMargin="993.1643" BottomMargin="254.8357" FontSize="28" LabelText="x1" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="countlbl_0" ActionTag="52095432" Tag="311" IconVisible="False" LeftMargin="229.8307" RightMargin="464.1693" TopMargin="993.1643" BottomMargin="254.8357" FontSize="28" LabelText="x1" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="26.0000" Y="32.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="229.8307" Y="270.8357" />
@@ -324,7 +324,7 @@
             <PreSize X="0.0361" Y="0.0250" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

@@ -367,7 +367,7 @@ void FightHeroNode::hurtAnimFinish()
 
 			fighting->pauseAtkSchedule();
 			GongFa* gf = m_Data->checkSkillWg();
-			if (GlobalInstance::map_GF[gf->getId()].skill != SKILL_13)
+			if (gf != NULL && GlobalInstance::map_GF[gf->getId()].skill != SKILL_13)
 				m_Data->clearSkill(gf);
 
 			if (checkReviveSkill())
@@ -486,7 +486,8 @@ void FightHeroNode::setBlankBox()
 	}
 	else if (m_state == FS_FIGHTING)
 	{
-		showDeathAnim();
+		if (m_Data->getHp() <= 0.000001)
+			showDeathAnim();
 	}
 	else if (m_state == FS_SUCC || m_state == FS_FAIL)
 	{
@@ -522,7 +523,7 @@ void FightHeroNode::setFightState(int winexp)
 		winexplbl->setVisible(true);
 		FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
 		FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(1.5f, Vec2(0, 10)), NULL);
-		winexplbl->runAction(Sequence::create(scales, moveandout, NULL));
+		winexplbl->runAction(Sequence::create(DelayTime::create(0.5f), scales, moveandout, DelayTime::create(1.0f), FadeOut::create(1.0f), NULL));
 	}
 
 	int maxlv = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp.size();
@@ -560,7 +561,8 @@ void FightHeroNode::setFightState(int winexp)
 	}
 
 	float percent = moreexp * 100 / needexp;
-	hp_bar->setPercent(percent);
+	if (myhero->getState() == HS_DEAD)
+		hp_bar->setPercent(percent);	
 
 	if (myhero->getState() != HS_DEAD)
 	{
@@ -572,15 +574,17 @@ void FightHeroNode::setFightState(int winexp)
 
 			FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
 			FiniteTimeAction* moveandout = Spawn::create(EaseSineOut::create(MoveBy::create(1.2f, Vec2(0, 40))), NULL);
-			retbox->runAction(Sequence::create(scales, moveandout, NULL));
+			retbox->runAction(Sequence::create(DelayTime::create(0.5f), scales, moveandout, DelayTime::create(1.0f), FadeOut::create(1.0f), NULL));
 			myhero->setHp(myhero->getMaxHp());
 			if (g_MapBlockScene != NULL)
 				g_MapBlockScene->updateHeroUI(this->getTag());
 
+			hp_bar->runAction(Sequence::create(DelayTime::create(0.5f), LoadingBarProgressTo::create(0.2f, 100), DelayTime::create(0.1f), LoadingBarProgressTo::create(0.1f, percent), NULL));
 		}
 		else
 		{
 			GlobalInstance::getInstance()->saveHero(myhero);
+			hp_bar->runAction(Sequence::create(DelayTime::create(0.5f), LoadingBarProgressTo::create(0.2f, percent), NULL));
 		}
 	}
 	else

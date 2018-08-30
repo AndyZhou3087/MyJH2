@@ -76,6 +76,8 @@
 	<s name="suit2">套装效果2：</s>
 	<s name="nohas">未拥有</s>
 	<s name="noputon">未装备</s>
+	<s name="cannotsetin">不能镶嵌</s>
+	<s name="nosetin">未镶嵌</s>	
 	<s name="accmaintask">已接受任务</s>
 	<s name="closetext">离开</s>
 	<s name="acctasktext">接受任务</s>
@@ -141,7 +143,6 @@
 	<s name="tipsstrengthtext1">成功率%.2f%%（失败后不降级）</s>
 	<s name="herotraining">正在训练中...</s>
 	<s name="mostlv">已强化到最高级</s>
-	<s name="strengthsuccess">强化成功</s>
 	<s name="strengthfail">强化失败</s>
 	<s name="wglvtips">点击材料可增加经验值</s>
 	<s name="wgmostlv">等级已达到最高级</s>

@@ -99,7 +99,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="-1447158413" Tag="327" IconVisible="False" LeftMargin="120.0001" RightMargin="119.9999" TopMargin="560.7490" BottomMargin="669.2510" IsCustomSize="True" FontSize="25" LabelText="木材木材木材木材木材木材木材木材木材木材木材木材木材木材木材" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="desc" ActionTag="-1447158413" Tag="327" IconVisible="False" LeftMargin="120.0001" RightMargin="119.9999" TopMargin="560.7490" BottomMargin="669.2510" IsCustomSize="True" FontSize="25" LabelText="木材木材木材木材木材木材木材木材木材木材木材木材木材木材木材" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="480.0000" Y="50.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0001" Y="694.2510" />
@@ -109,9 +109,9 @@
             <PreSize X="0.6667" Y="0.0391" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="-1176989597" Tag="328" IconVisible="False" LeftMargin="329.0196" RightMargin="328.9804" TopMargin="479.5188" BottomMargin="766.4812" FontSize="30" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="name" ActionTag="-1176989597" Tag="328" IconVisible="False" LeftMargin="329.0196" RightMargin="328.9804" TopMargin="479.5188" BottomMargin="766.4812" FontSize="30" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="62.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0196" Y="783.4812" />
@@ -121,9 +121,9 @@
             <PreSize X="0.0861" Y="0.0266" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="pricetext" ActionTag="1627090487" Tag="329" IconVisible="False" LeftMargin="160.9238" RightMargin="435.0762" TopMargin="688.6484" BottomMargin="559.3516" FontSize="28" LabelText="价    格：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="pricetext" ActionTag="1627090487" Tag="329" IconVisible="False" LeftMargin="160.9238" RightMargin="435.0762" TopMargin="688.6484" BottomMargin="559.3516" FontSize="28" LabelText="价    格：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="124.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="222.9238" Y="575.3516" />
@@ -133,9 +133,9 @@
             <PreSize X="0.1722" Y="0.0250" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="counttext" ActionTag="640434767" Tag="330" IconVisible="False" LeftMargin="161.9180" RightMargin="434.0820" TopMargin="745.6763" BottomMargin="502.3237" FontSize="28" LabelText="购买数量：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="counttext" ActionTag="640434767" Tag="330" IconVisible="False" LeftMargin="161.9180" RightMargin="434.0820" TopMargin="745.6763" BottomMargin="502.3237" FontSize="28" LabelText="购买数量：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="124.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="223.9180" Y="518.3237" />
@@ -145,9 +145,9 @@
             <PreSize X="0.1722" Y="0.0250" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rescount" ActionTag="-612897272" Tag="301" IconVisible="False" LeftMargin="389.3674" RightMargin="263.6326" TopMargin="748.9117" BottomMargin="502.0883" FontSize="25" LabelText="1/100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="rescount" ActionTag="-612897272" Tag="301" IconVisible="False" LeftMargin="389.3674" RightMargin="263.6326" TopMargin="748.9117" BottomMargin="502.0883" FontSize="25" LabelText="1/100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="67.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="422.8674" Y="516.5883" />
@@ -157,7 +157,7 @@
             <PreSize X="0.0931" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="buybtn" ActionTag="-1118621764" Tag="352" IconVisible="False" LeftMargin="398.2900" RightMargin="117.7100" TopMargin="874.5293" BottomMargin="321.4707" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />

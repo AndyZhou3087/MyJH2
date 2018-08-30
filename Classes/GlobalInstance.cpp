@@ -1745,7 +1745,7 @@ int GlobalInstance::generateStoneCount(int qu)
 		else
 			count = 3;
 	}
-	return 3;//count;
+	return count;
 }
 
 int GlobalInstance::generateHeroPotential()

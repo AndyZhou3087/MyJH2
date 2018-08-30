@@ -16,7 +16,7 @@
             <PreSize X="0.8333" Y="0.5172" />
             <FileData Type="Normal" Path="images/smallbg.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attactlb" ActionTag="651699260" Tag="774" IconVisible="False" LeftMargin="114.8260" RightMargin="105.1740" TopMargin="411.8915" BottomMargin="568.1085" IsCustomSize="True" FontSize="30" LabelText="立即更换一批货物" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="attactlb" ActionTag="651699260" Tag="774" IconVisible="False" LeftMargin="114.8260" RightMargin="105.1740" TopMargin="411.8915" BottomMargin="568.1085" IsCustomSize="True" FontSize="30" LabelText="立即更换一批货物" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="500.0000" Y="300.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="364.8260" Y="718.1085" />
@@ -26,7 +26,7 @@
             <PreSize X="0.6944" Y="0.2344" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="coinbtn" ActionTag="1395231581" Tag="765" IconVisible="False" LeftMargin="125.5160" RightMargin="390.4840" TopMargin="748.2632" BottomMargin="447.7368" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
@@ -93,7 +93,7 @@
             <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="cointext" ActionTag="-1295305006" Tag="316" IconVisible="False" LeftMargin="227.6894" RightMargin="445.3106" TopMargin="840.3062" BottomMargin="405.6938" FontSize="30" LabelText="x10" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="cointext" ActionTag="-1295305006" Tag="316" IconVisible="False" LeftMargin="227.6894" RightMargin="445.3106" TopMargin="840.3062" BottomMargin="405.6938" FontSize="30" LabelText="x10" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="47.0000" Y="34.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="227.6894" Y="422.6938" />
@@ -103,7 +103,7 @@
             <PreSize X="0.0653" Y="0.0266" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="main_silver" ActionTag="2011147353" Tag="317" IconVisible="False" LeftMargin="442.2405" RightMargin="239.7595" TopMargin="837.0636" BottomMargin="404.9364" ctype="SpriteObjectData">
             <Size X="38.0000" Y="38.0000" />
@@ -116,7 +116,7 @@
             <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="slivertext" ActionTag="-487549080" Tag="318" IconVisible="False" LeftMargin="493.6436" RightMargin="164.3564" TopMargin="840.3062" BottomMargin="405.6938" FontSize="30" LabelText="x100" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="slivertext" ActionTag="-487549080" Tag="318" IconVisible="False" LeftMargin="493.6436" RightMargin="164.3564" TopMargin="840.3062" BottomMargin="405.6938" FontSize="30" LabelText="x100" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="62.0000" Y="34.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="493.6436" Y="422.6938" />
@@ -126,7 +126,7 @@
             <PreSize X="0.0861" Y="0.0266" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="closebtn" ActionTag="-575747972" Tag="319" IconVisible="False" LeftMargin="579.9399" RightMargin="74.0601" TopMargin="298.5508" BottomMargin="915.4492" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="36" Scale9Height="44" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="66.0000" Y="66.0000" />
