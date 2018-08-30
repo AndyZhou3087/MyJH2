@@ -20,7 +20,12 @@ FightingLayer::~FightingLayer()
 {
 	for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
 	{
-		m_enemyHeros[i] = NULL;
+		if (m_enemyHeros[i] != NULL)
+		{
+			m_enemyHeros[i] = NULL;
+			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + i);
+			fnode->map_skillattricon.clear();
+		}
 	}
 	clearSkillsData();
 }
@@ -81,7 +86,7 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 		if (enemyHeros[i] != NULL)
 		{
 			FightHeroNode * fightHeroNode = FightHeroNode::create();
-			fightHeroNode->setPosition(145 + i % 3 * 215, 835 + i / 3 * 240);
+			fightHeroNode->setPosition(145 + i % 3 * 215, 860 + i / 3 * 260);
 			fightHeroNode->setData(m_enemyHeros[i], F_NPC, FS_FIGHTING);
 			addChild(fightHeroNode, 1, 6 + i);
 		}
@@ -92,7 +97,7 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 		if (GlobalInstance::myCardHeros[i] != NULL)
 		{
 			FightHeroNode * fightHeroNode = FightHeroNode::create();
-			fightHeroNode->setPosition(145 + i % 3 * 215, 435 - i / 3 * 240);
+			fightHeroNode->setPosition(145 + i % 3 * 215, 460 - i / 3 * 260);
 
 			fightHeroNode->setData(GlobalInstance::myCardHeros[i], F_HERO, FS_FIGHTING);
 			addChild(fightHeroNode, 2, i);
