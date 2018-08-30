@@ -40,6 +40,10 @@ std::map<std::string, EventData> GlobalInstance::map_eventdata;//事件宝箱概
 
 std::vector<AchieveData> GlobalInstance::vec_achievedata;
 
+std::vector<ShopData> GlobalInstance::vec_shopdata;
+std::map<int, std::vector<int>> GlobalInstance::map_shopprice;
+std::map<std::string, int> GlobalInstance::map_buyVipDays;
+
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
 int GlobalInstance::refreshResTime = 0;
@@ -1501,6 +1505,57 @@ void GlobalInstance::loadMyResData()
 				res->setWhere(atoi(vec_one[2].c_str()));
 				MyRes::vec_MyResources.push_back(res);
 			}
+		}
+	}
+}
+
+void GlobalInstance::loadShopData()
+{
+	rapidjson::Document rsdoc = ReadJsonFile(ResourcePath::makePath("json/shop.json"));
+	rapidjson::Value& rsallData = rsdoc["gs"];
+	for (unsigned int i = 0; i < rsallData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = rsallData[i];
+		if (jsonvalue.IsObject())
+		{
+			ShopData data;
+			rapidjson::Value& v = jsonvalue["icon"];
+			data.icon = v.GetString();
+
+			v = jsonvalue["type"];
+			data.type = atoi(v.GetString());
+
+			v = jsonvalue["name"];
+			data.name = v.GetString();
+
+			v = jsonvalue["price"];
+			data.price = atoi(v.GetString());
+
+			v = jsonvalue["desc"];
+			data.desc = v.GetString();
+
+			v = jsonvalue["count"];
+			data.count = atoi(v.GetString());
+
+			v = jsonvalue["res"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 5)
+				{
+					std::vector<std::string> vec;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					for (unsigned int j = 0; j < vec_tmp.size(); j++)
+					{
+						vec.push_back(vec_tmp[j]);
+					}
+					data.res.push_back(vec);
+				}
+			}
+
+			map_shopprice[data.type].push_back(data.price);
+			vec_shopdata.push_back(data);
 		}
 	}
 }

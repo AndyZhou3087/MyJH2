@@ -395,6 +395,19 @@
       <FilePathData Path="ui/equipsuitbox_0.png" />
       <FilePathData Path="ui/equipsuitbox_1.png" />
       <FilePathData Path="ui/equipsuitbox_2.png" />
+      <FilePathData Path="ui/buildingactbtn1_n.png" />
+      <FilePathData Path="ui/gd0.png" />
+      <FilePathData Path="ui/gd1.png" />
+      <FilePathData Path="ui/gd2.png" />
+      <FilePathData Path="ui/gd3.png" />
+      <FilePathData Path="ui/gf0.png" />
+      <FilePathData Path="ui/gf1.png" />
+      <FilePathData Path="ui/gf2.png" />
+      <FilePathData Path="ui/gf3.png" />
+      <FilePathData Path="ui/shopitem.png" />
+      <FilePathData Path="ui/shopitembg.png" />
+      <FilePathData Path="ui/vip0.png" />
+      <FilePathData Path="ui/vip1.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

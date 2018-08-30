@@ -49,9 +49,11 @@
           <Image Name="materialbox.png" />
           <Image Name="newpopbg.png" />
           <Image Name="selectequipbg.png" />
+          <Image Name="shopbg.jpg" />
           <Image Name="smallbg.png" />
           <Image Name="t001.jpg" />
           <Image Name="t002.jpg" />
+          <Image Name="unlocktitlebg.png" />
           <Image Name="wintitle.png" />
         </Folder>
         <Folder Name="mainimg">
@@ -593,8 +595,14 @@
           <Image Name="taskdayget.png" />
           <Image Name="taskdaygo.png" />
           <Image Name="taskfinish.png" />
+          <Image Name="text_gf0.png" />
+          <Image Name="text_gf1.png" />
+          <Image Name="text_gf2.png" />
+          <Image Name="text_gf3.png" />
           <Image Name="text_notice.png" />
           <Image Name="text_unlock.png" />
+          <Image Name="text_vip0.png" />
+          <Image Name="text_vip1.png" />
           <Image Name="train_text.png" />
           <Image Name="traincoin_text.png" />
           <Image Name="traindoing_text.png" />
@@ -708,6 +716,7 @@
           <Image Name="blank.png" />
           <Image Name="buildingactbtn_d.png" />
           <Image Name="buildingactbtn_n.png" />
+          <Image Name="buildingactbtn1_n.png" />
           <Image Name="buildinglvbox.png" />
           <Image Name="buildingtitlebox.png" />
           <Image Name="c001.png" />
@@ -795,6 +804,14 @@
           <Image Name="g004.png" />
           <Image Name="g004-2.png" />
           <Image Name="g004-3.png" />
+          <Image Name="gd0.png" />
+          <Image Name="gd1.png" />
+          <Image Name="gd2.png" />
+          <Image Name="gd3.png" />
+          <Image Name="gf0.png" />
+          <Image Name="gf1.png" />
+          <Image Name="gf2.png" />
+          <Image Name="gf3.png" />
           <Image Name="h_0_0.png" />
           <Image Name="h_0_1.png" />
           <Image Name="h_1_0.png" />
@@ -892,6 +909,8 @@
           <Image Name="selecthead.png" />
           <Image Name="setpline0.png" />
           <Image Name="settingselected.png" />
+          <Image Name="shopitem.png" />
+          <Image Name="shopitembg.png" />
           <Image Name="smallstar.png" />
           <Image Name="strentharrow.png" />
           <Image Name="strenthicon.png" />
@@ -914,6 +933,8 @@
           <Image Name="trainning_2.png" />
           <Image Name="trainning_3.png" />
           <Image Name="v001.png" />
+          <Image Name="vip0.png" />
+          <Image Name="vip1.png" />
           <Image Name="w001.png" />
           <Image Name="w002.png" />
           <Image Name="w003.png" />
@@ -1069,6 +1090,9 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="shopLayer.csd" Type="Layer" />
+        <Project Name="shopNode.csd" Type="Node" />
+        <Project Name="giftDescLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

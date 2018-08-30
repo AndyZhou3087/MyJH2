@@ -15,6 +15,8 @@
 #include "DataSave.h"
 #include "HeadInfoLayer.h"
 #include "NewPopLayer.h"
+#include "ShopLayer.h"
+#include "GiftContentLayer.h"
 
 USING_NS_CC;
 
@@ -118,6 +120,24 @@ void MainMenuLayer::onFinish(int code)
 {
 	if (code == SUCCESS)
 	{
+		if (GlobalInstance::map_buyVipDays.size()>0)
+		{
+			std::map<std::string, int>::iterator it;
+			for (it = GlobalInstance::map_buyVipDays.begin(); it != GlobalInstance::map_buyVipDays.end(); ++it)
+			{
+				for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+				{
+					if (GlobalInstance::vec_shopdata[i].icon.compare(it->first) == 0)
+					{
+						GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
+						this->addChild(layer);
+						AnimationEffect::openAniEffect((Layer*)layer);
+						break;
+					}
+				}
+			}
+		}
+
 		if (GlobalInstance::vec_notice.size() <= 0)
 		{
 			return;
@@ -212,6 +232,11 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		}
 			break;
 		case SHOPBTN:
+		{
+			ShopLayer* layer = ShopLayer::create();
+			g_mainScene->addChild(layer, 0, "ShopLayer");
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		case SILVERBOX:
 		case ADDSILVERBTN:

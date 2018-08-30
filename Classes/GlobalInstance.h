@@ -240,6 +240,25 @@ typedef struct
 	int state;
 }AchieveData;
 
+typedef enum
+{
+	COIN = 0,//元宝
+	GIFT,
+	VIP,
+	OTHER
+}SHOPTYPE;
+
+typedef struct
+{
+	std::string icon;
+	int type;
+	std::string name;
+	int price;
+	std::vector<std::vector<std::string>> res;//奖励id-count-qu
+	std::string desc;
+	int count;
+}ShopData;
+
 class GlobalInstance
 {
 public:
@@ -425,6 +444,8 @@ public:
 	//保存已完成的每日任务数据
 	void saveMyDailyTaskData();
 
+	void loadShopData();
+
 	//主线任务进行排序
 	static bool larger_callback(TaskData a, TaskData b);
 	//支线任务进行排序
@@ -498,6 +519,10 @@ public:
 	static std::map<std::string, EventData> map_eventdata;//事件宝箱概率数据
 
 	static std::vector<AchieveData> vec_achievedata;//成就
+
+	static std::vector<ShopData> vec_shopdata;//商城
+	static std::map<int, std::vector<int>> map_shopprice;//元宝
+	static std::map<std::string, int> map_buyVipDays;//购买的月卡时间
 
 private:
 	static int refreshHeroTime;
