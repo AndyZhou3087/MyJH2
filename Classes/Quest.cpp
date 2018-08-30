@@ -192,7 +192,7 @@ bool Quest::checkResQuestData(std::string resid, int count, std::string npcid)
 			}
 			else
 			{
-				MyRes::Use(resid, count, MYPACKAGE);
+				MyRes::Use(resid, count, MYSTORAGE);
 			}
 		}
 	}
@@ -420,7 +420,7 @@ bool Quest::checkResBranchQuestData(std::string resid, int count, std::string np
 			}
 			else
 			{
-				MyRes::Use(resid, count, MYPACKAGE);
+				MyRes::Use(resid, count, MYSTORAGE);
 			}
 		}
 	}

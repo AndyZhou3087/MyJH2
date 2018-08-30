@@ -344,7 +344,7 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 		}
 		else
 		{
-			if (MyRes::getMyResCount(cresid, MYPACKAGE) < oneit->second)
+			if (MyRes::getMyResCount(cresid, MYSTORAGE) < oneit->second)
 			{
 				isEnough = false;
 				MovingLabel::show(ResourceLang::map_lang["reslack"]);

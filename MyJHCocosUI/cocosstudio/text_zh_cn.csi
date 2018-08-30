@@ -241,6 +241,12 @@
       <FilePathData Path="text_zh_cn/text_notice.png" />
       <FilePathData Path="text_zh_cn/text_unlock.png" />
       <FilePathData Path="text_zh_cn/bufpreskill20text.png" />
+      <FilePathData Path="text_zh_cn/text_gf0.png" />
+      <FilePathData Path="text_zh_cn/text_gf1.png" />
+      <FilePathData Path="text_zh_cn/text_gf2.png" />
+      <FilePathData Path="text_zh_cn/text_gf3.png" />
+      <FilePathData Path="text_zh_cn/text_vip0.png" />
+      <FilePathData Path="text_zh_cn/text_vip1.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

@@ -206,4 +206,11 @@
 	<s name="nothing">无套装</s>
 	<s name="nothingeffect">套装效果%d:无效果</s>
 	<s name="getgoodstext">获得%sx%d</s>
+	<s name="officalQQ">ios官方qq群：1234567</s>
+	<s name="shoppricetext">￥%d</s>
+	<s name="shoptext_1">购买后立即获得以下物品</s>
+	<s name="shoptext_2">购买后会获得30天的%s权利，每天登录游戏能获得以下物品。</s>
+	<s name="buy_0">购买成功！</s>
+	<s name="buy_1">购买失败！</s>
+	<s name="lefttimetext">剩余%d天</s>
 </strings>

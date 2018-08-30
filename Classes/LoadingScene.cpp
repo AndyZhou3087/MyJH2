@@ -129,6 +129,9 @@ void LoadingScene::delayLoadLocalData(float dt)
 	GlobalInstance::getInstance()->loadAchieveData();
 	GlobalInstance::getInstance()->getMyAchieveData();
 
+	//加载商城
+	GlobalInstance::getInstance()->loadShopData();
+
 	//数据处理完，
 	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.1f);
 }
