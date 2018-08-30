@@ -248,12 +248,12 @@ void FightHeroNode::update(float dt)
 			if (gf == NULL || (gf != NULL && (GlobalInstance::map_GF[gf->getId()].skill == SKILL_13 || GlobalInstance::map_GF[gf->getId()].skill == SKILL_15 || GlobalInstance::map_GF[gf->getId()].skill == SKILL_18 || GlobalInstance::map_GF[gf->getId()].skill == SKILL_20)))
 			{
 				showAtkOrHurtAnim(0);
-				this->runAction(Sequence::create(ScaleTo::create(0.2f, 1.5f), ScaleTo::create(0.1f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), DelayTime::create(0.6f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::nextRound, this, 0)), NULL));
+				this->runAction(Sequence::create(ScaleTo::create(0.22f, 1.2f), ScaleTo::create(0.08f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), DelayTime::create(0.6f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::nextRound, this, 0)), NULL));
 			
 			}
 			else
 			{
-				this->runAction(Sequence::create(ScaleTo::create(0.2f, 1.5f), ScaleTo::create(0.1f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
+				this->runAction(Sequence::create(ScaleTo::create(0.22f, 1.2f), ScaleTo::create(0.08f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
 			}
 		}
 	}
@@ -656,11 +656,69 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 					headbox->runAction(Sequence::create(DelayTime::create(delay), CallFunc::create(CC_CALLBACK_0(FightHeroNode::playSkillEffect, this, stype)), NULL));
 				}
 			}
+			if (stype == SKILL_9)
+			{
+				Sprite* s = Sprite::createWithSpriteFrameName("mapui/attricon2up.png");
+				this->setVisible(false);
+				this->addChild(s);
+				map_skillattricon[stype].push_back(s);
+			}
+			else if (stype == SKILL_12)
+			{
+				Sprite* s = Sprite::createWithSpriteFrameName("mapui/attricon1up.png");
+				this->addChild(s);
+				s->setVisible(false);
+				map_skillattricon[stype].push_back(s);
+			}
+			else if (stype == SKILL_17)
+			{
+				Sprite* s = Sprite::createWithSpriteFrameName("mapui/attricon1up.png");
+				this->addChild(s);
+				s->setVisible(false);
+				map_skillattricon[stype].push_back(s);
+				Sprite* s1 = Sprite::createWithSpriteFrameName("mapui/attricon0down.png");
+				this->addChild(s1);
+				s1->setVisible(false);
+				map_skillattricon[stype].push_back(s1);
+			}
+			else if (stype == SKILL_18)
+			{
+				Sprite* s = Sprite::createWithSpriteFrameName("mapui/attricon0up.png");
+				this->addChild(s);
+				s->setVisible(false);
+				map_skillattricon[stype].push_back(s);
+			}
+			if (map_skillattricon.size() > 0)
+			{
+				this->scheduleOnce(schedule_selector(FightHeroNode::showSkillAttrIcon), 0.55f);
+			}
+
 			for (unsigned int i = 0; i < m_Data->vec_whosufferskill.size(); i++)
 			{
 				FightHeroNode* fnode = (FightHeroNode*)this->getParent()->getChildByTag(m_Data->vec_whosufferskill[i]);
 				fnode->attackedSkill(stype, this->getTag());
+
+				if (stype == SKILL_10)
+				{
+					Sprite* s = Sprite::createWithSpriteFrameName("mapui/attricon2down.png");
+					this->addChild(s);
+					s->setVisible(false);
+					fnode->map_skillattricon[stype].push_back(s);
+				}
+				else if (stype == SKILL_11)
+				{
+					Sprite* s = Sprite::createWithSpriteFrameName("mapui/attricon0down.png");
+					this->addChild(s);
+					s->setVisible(false);
+					fnode->map_skillattricon[stype].push_back(s);
+				}
+				if (fnode->map_skillattricon[stype].size() > 0)
+				{
+					fnode->scheduleOnce(schedule_selector(FightHeroNode::showSkillAttrIcon), 0.55f);
+				}
 			}
+
+
 		}
 		else
 		{
@@ -818,6 +876,16 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 			{
 				whosufferNode->dfbns = 0.0f;
 			}
+			//清除技能属性图标
+			if (stype == SKILL_9 || stype == SKILL_12 || stype == SKILL_17 || stype == SKILL_18)
+			{
+				this->refreshSkillAttrIcon(stype);
+			}
+			else if (stype == SKILL_10 || stype == SKILL_11)
+			{
+				whosufferNode->refreshSkillAttrIcon(stype);
+			}
+
 		}
 	}
 
@@ -1321,4 +1389,29 @@ void FightHeroNode::removePlaySkillAnim(float dt)
 void FightHeroNode::removeSufferSkillAnim(float dt)
 {
 	this->removeChildByName("sufferskillani");
+}
+
+void FightHeroNode::showSkillAttrIcon(float dt)
+{
+	int i = 0;
+	std::map<int, std::vector<Sprite*>>::iterator it;
+	for (it = map_skillattricon.begin(); it != map_skillattricon.end(); it++)
+	{
+		for (unsigned int m = 0; m < map_skillattricon[it->first].size(); m++)
+		{
+			map_skillattricon[it->first][m]->setPosition(-50 + 40 * i, -120);
+			map_skillattricon[it->first][m]->setVisible(true);
+			i++;
+		}
+	}
+}
+
+void FightHeroNode::refreshSkillAttrIcon(int stype)
+{
+	for (unsigned int m = 0; m < map_skillattricon[stype].size(); m++)
+	{
+		map_skillattricon[stype][m]->runAction(Sequence::create(FadeOut::create(0.2f), FadeIn::create(0.2f), FadeOut::create(0.1f), RemoveSelf::create(), NULL));
+	}
+	map_skillattricon.erase(stype);
+	this->scheduleOnce(schedule_selector(FightHeroNode::showSkillAttrIcon), 0.5f);
 }

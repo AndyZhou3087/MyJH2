@@ -125,10 +125,15 @@ private:
 	void HideMe(float dt);
 
 	void delayShowReviveAnim(float dt);
+
+	void showSkillAttrIcon(float dt);
+
+	void refreshSkillAttrIcon(int stype);
 public:
 	float atkspeedbns;
 	float dfbns;
 	bool isPlaySkillAnim;
+	std::map<int, std::vector<Sprite*>> map_skillattricon;
 };
 #endif
 
