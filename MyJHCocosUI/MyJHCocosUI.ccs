@@ -595,6 +595,12 @@
           <Image Name="taskdayget.png" />
           <Image Name="taskdaygo.png" />
           <Image Name="taskfinish.png" />
+          <Image Name="texiao_rwwc.png" />
+          <Image Name="texiao_sjcg.png" />
+          <Image Name="texiao_tpcg.png" />
+          <Image Name="texiao_ziti.png" />
+          <Image Name="texiao_zmcg.png" />
+          <Image Name="texiao_zzcg.png" />
           <Image Name="text_gf0.png" />
           <Image Name="text_gf1.png" />
           <Image Name="text_gf2.png" />

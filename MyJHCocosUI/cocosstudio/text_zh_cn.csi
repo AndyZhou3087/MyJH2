@@ -247,6 +247,12 @@
       <FilePathData Path="text_zh_cn/text_gf3.png" />
       <FilePathData Path="text_zh_cn/text_vip0.png" />
       <FilePathData Path="text_zh_cn/text_vip1.png" />
+      <FilePathData Path="text_zh_cn/texiao_rwwc.png" />
+      <FilePathData Path="text_zh_cn/texiao_sjcg.png" />
+      <FilePathData Path="text_zh_cn/texiao_zmcg.png" />
+      <FilePathData Path="text_zh_cn/texiao_ziti.png" />
+      <FilePathData Path="text_zh_cn/texiao_zzcg.png" />
+      <FilePathData Path="text_zh_cn/texiao_tpcg.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

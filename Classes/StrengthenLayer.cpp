@@ -18,7 +18,7 @@
 
 StrengthenLayer::StrengthenLayer()
 {
-
+	coincount = 0;
 }
 
 
@@ -101,6 +101,7 @@ bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 		str = StringUtils::format("%d/%d", MyRes::getMyResCount(restr), m_equip->getLv().getValue() + 1);//一级需求一个
 		rescount->setString(str);
 
+		coincount += GlobalInstance::map_AllResources[restr].coinval * (m_equip->getLv().getValue() + 1);
 		if (MyRes::getMyResCount(restr) < m_equip->getLv().getValue() + 1)
 		{
 			rescount->setColor(Color3B(255, 0, 0));
@@ -135,7 +136,7 @@ bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 	drationbtntxt->loadTexture(ResourcePath::makeTextImgPath("drstrenth_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::Text* silvercount = (cocos2d::ui::Text*)csbnode->getChildByName("silvercount");
-	str = StringUtils::format("x%d", (m_equip->getLv().getValue() + 1) * 1000);
+	str = StringUtils::format("x%d", coincount);
 	silvercount->setString(str);
 
 
@@ -192,13 +193,13 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		}
 		else
 		{
-			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() < (m_equip->getLv().getValue() + 1) * 1000)
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() < coincount)
 			{
 				MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
 				return;
 			}
 			DynamicValueInt dvl;
-			dvl.setValue((m_equip->getLv().getValue() + 1) * 1000);
+			dvl.setValue(coincount);
 			GlobalInstance::getInstance()->costMyCoinCount(dvl);
 		}
 
@@ -222,9 +223,9 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			//特效
 			auto effectnode = CSLoader::createNode("effect/qianghuachenggong.csb");
 			effectnode->setPosition(Vec2(360, 640));
-			//effectnode->setScale(0.7f);
 			this->getParent()->addChild(effectnode, 10, "qianghuachenggong");
-
+			cocos2d::ui::ImageView* ziti = (cocos2d::ui::ImageView*)effectnode->getChildByName("ziti");
+			ziti->loadTexture(ResourcePath::makeTextImgPath("texiao_ziti", GlobalInstance::getInstance()->getLang()), cocos2d::ui::Widget::TextureResType::PLIST);
 			auto action = CSLoader::createTimeline("effect/qianghuachenggong.csb");
 			effectnode->runAction(action);
 			action->gotoFrameAndPlay(0, false);

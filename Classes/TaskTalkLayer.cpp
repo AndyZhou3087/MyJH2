@@ -478,6 +478,7 @@ void TaskTalkLayer::checkWordLblColor(std::string wordstr)
 	{
 		m_wordlbl = Label::createWithTTF(wordstr, FONT_NAME, 25);
 		m_wordlbl->setLineBreakWithoutSpace(true);
+		m_wordlbl->enableShadow(Color4B::BLACK, Size(1, -1));
 		m_wordlbl->setAnchorPoint(Vec2(0, 1));
 		m_wordlbl->setMaxLineWidth(descscoll->getContentSize().width);
 		descscoll->addChild(m_wordlbl, 0, "talklbl");

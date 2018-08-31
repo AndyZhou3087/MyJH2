@@ -97,6 +97,10 @@ void TaskNode::updateData(float dt)
 		{
 			redpoint->setVisible(true);
 		}
+		if (m_Data->isfinish == QUEST_ACC)
+		{
+			redpoint->setVisible(false);
+		}
 	}
 
 }

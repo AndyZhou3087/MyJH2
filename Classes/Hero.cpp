@@ -9,6 +9,8 @@
 #include "GongFa.h"
 #include "MyRes.h"
 #include "Quest.h"
+#include "MainScene.h"
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/jni/JniHelper.h"
 #endif
@@ -55,6 +57,7 @@ Hero::Hero(Hero* hero)
 	m_power = hero->getPower();
 	m_powertime = hero->getPowerTime();
 	m_changecount = hero->getChangeCount();
+	m_level = hero->getLevel();
 	for (int i = 0; i < 6; i++)
 	{
 		takeOnEquip[i] = NULL;
@@ -95,19 +98,33 @@ int Hero::getLevel()
 	{
 		if (m_exp.getValue() < GlobalInstance::vec_herosAttr[m_vocation].vec_exp[i])
 		{
-			setMyLevel(i);
 			return i;
 		}
+	}
+	if (m_exp.getValue() >= GlobalInstance::vec_herosAttr[m_vocation].vec_exp[size - 1])
+	{
+		return size - 1;
 	}
 	return 0;
 }
 
 void Hero::setMyLevel(int lv)
 {
-	if (m_level == lv - 1)
+	if (m_level <= lv - 1)
 	{
-		Quest::setDailyTask(UPGRADE_HERO, 1);
-		Quest::setAchieveTypeCount(UPGRADE_HERO, 1);
+		Quest::setDailyTask(UPGRADE_HERO, lv - 1 - m_level);
+		Quest::setAchieveTypeCount(UPGRADE_HERO, lv - 1 - m_level);
+		float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[lv] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(lv + 1) / 10];
+		m_hp = herohp;
+
+		auto effectnode = CSLoader::createNode("effect/qianghuachenggong.csb");
+		effectnode->setPosition(Vec2(360, 640));
+		g_mainScene->addChild(effectnode, 10, "qianghuachenggong");
+		cocos2d::ui::ImageView* ziti = (cocos2d::ui::ImageView*)effectnode->getChildByName("ziti");
+		ziti->loadTexture(ResourcePath::makeTextImgPath("texiao_sjcg", GlobalInstance::getInstance()->getLang()), cocos2d::ui::Widget::TextureResType::PLIST);
+		auto action = CSLoader::createTimeline("effect/qianghuachenggong.csb");
+		effectnode->runAction(action);
+		action->gotoFrameAndPlay(0, false);
 	}
 	m_level = lv;
 }
@@ -139,6 +156,18 @@ void Hero::setExpLimit(int vexp)
 		DynamicValueInt dal;
 		dal.setValue(allexp);
 		setExp(dal);
+	}
+	for (int i = 0; i < size; i++)
+	{
+		if (m_exp.getValue() < GlobalInstance::vec_herosAttr[m_vocation].vec_exp[i])
+		{
+			setMyLevel(i);
+			break;
+		}
+	}
+	if (m_exp.getValue() >= GlobalInstance::vec_herosAttr[m_vocation].vec_exp[size - 1])
+	{
+		setMyLevel(size - 1);
 	}
 }
 

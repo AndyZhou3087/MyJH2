@@ -299,6 +299,7 @@ void GlobalInstance::loadMyHeros()
 					pdv.setValue(atoi(vec_tmp[11].c_str()));
 					hero->setPower(pdv);
 					hero->setPowerTime(atoi(vec_tmp[12].c_str()));
+					hero->setChangeCount(atoi(vec_tmp[13].c_str()));
 				}
 			}
 			if (vec_retstr.size() > 1)//装备属性
