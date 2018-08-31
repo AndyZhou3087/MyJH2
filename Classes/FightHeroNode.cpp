@@ -755,159 +755,163 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 	GongFa* gf = m_Data->checkSkillWg();
 
 	float dt = 0.0f;
-	float eff = GlobalInstance::map_GF[gf->getId()].skilleff1;
 
-	if (!whosufferNode->getData()->getIsDodge())
+	if (gf != NULL)
 	{
-		if (stype == SKILL_1)//释放技能后吸收对方%.2f血量。
-		{
-			m_Data->setHp(m_Data->getHp() + eff*whosufferNode->getData()->getMaxHp() / 100);
+		float eff = GlobalInstance::map_GF[gf->getId()].skilleff1;
 
-			float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
-			this->updateHp();
+		if (!whosufferNode->getData()->getIsDodge())
+		{
+			if (stype == SKILL_1)//释放技能后吸收对方%.2f血量。
+			{
+				m_Data->setHp(m_Data->getHp() + eff*whosufferNode->getData()->getMaxHp() / 100);
 
-			//whosufferNode->getData()->setHp(whosufferNode->getData()->getHp() - eff*whosufferNode->getData()->getMaxHp() / 100);
-			//whosufferNode->updateHp();
-			whosufferNode->hurt(eff*whosufferNode->getData()->getMaxHp() / 100, -1);
-		}
-		else if (stype == SKILL_2)//释放技能后造成%d倍伤害。
-		{
-			//whosufferNode->getData()->setHp(whosufferNode->getData()->getHp() - eff*whosufferNode->getData()->getMaxHp() / 100);
-			//whosufferNode->updateHp();
-			whosufferNode->hurt(eff*whosufferNode->getData()->getMaxHp() / 100, -1);
-		}
-		else if (stype == SKILL_3)//被攻击目标%d回合内无法进行攻击。
-		{
-			if (gf->getSkillCount() <= GlobalInstance::map_GF[gf->getId()].skilleff2 - 1)
-			{
-				dt = 0.45f;
-				whosufferNode->hurt(m_Data->getAtk(), 0);
-			}
-		}
-		else if (stype == SKILL_4)//释放技能后所有敌人攻击你%d回合。
-		{
-			if (gf->getSkillCount() <= GlobalInstance::map_GF[gf->getId()].skilleff2 - 1)
-			{
-				dt = 0.45f;
-				whosufferNode->hurt(m_Data->getAtk());
-			}
-		}
-		else if (stype == SKILL_5 || stype == SKILL_6)//目标造成%.2f伤害，%d个目标。
-		{
-			//whosufferNode->getData()->setHp(whosufferNode->getData()->getHp() - );
-			//whosufferNode->updateHp();
-			whosufferNode->hurt(eff*whosufferNode->getData()->getMaxHp() / 100, -1);
-		}
-		else if (stype == SKILL_7 || stype == SKILL_8)//回血
-		{
-			whosufferNode->getData()->setHp(whosufferNode->getData()->getHp() + eff*whosufferNode->getData()->getMaxHp() / 100);
-			whosufferNode->updateHp();
-		}
-		else if (stype == SKILL_9)
-		{
-			if (gf->getSkillCount() >= GlobalInstance::map_GF[gf->getId()].skilleff2)
-			{
-				whosufferNode->atkspeedbns = GlobalInstance::map_GF[gf->getId()].skilleff1;
-			}
-			else
-			{
-				dt = 0.45f;
-			}
-		}
-		else if (stype == SKILL_10)
-		{
-			if (gf->getSkillCount() >= GlobalInstance::map_GF[gf->getId()].skilleff2)
-			{
-				whosufferNode->atkspeedbns = -GlobalInstance::map_GF[gf->getId()].skilleff1;
-			}
-			else
-			{
-				whosufferNode->hurt(m_Data->getAtk());
-				dt = 0.45f;
-			}
-		}
-		else if (stype == SKILL_12)
-		{
-			if (gf->getSkillCount() >= GlobalInstance::map_GF[gf->getId()].skilleff2)
-			{
-			}
-			else
-			{
-				dt = 0.45f;
-			}
-		}
-		else if (stype == SKILL_17)
-		{
-			if (gf->getSkillCount() >= GlobalInstance::map_GF[gf->getId()].skilleff2)
-			{
+				float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
+				this->updateHp();
 
+				//whosufferNode->getData()->setHp(whosufferNode->getData()->getHp() - eff*whosufferNode->getData()->getMaxHp() / 100);
+				//whosufferNode->updateHp();
+				whosufferNode->hurt(eff*whosufferNode->getData()->getMaxHp() / 100, -1);
 			}
-			else
+			else if (stype == SKILL_2)//释放技能后造成%d倍伤害。
 			{
-				whosufferNode->dfbns = GlobalInstance::map_GF[gf->getId()].skilleff1;
-				dt = 0.45f;
+				//whosufferNode->getData()->setHp(whosufferNode->getData()->getHp() - eff*whosufferNode->getData()->getMaxHp() / 100);
+				//whosufferNode->updateHp();
+				whosufferNode->hurt(eff*whosufferNode->getData()->getMaxHp() / 100, -1);
 			}
-		}
-
-		else if (stype == SKILL_13)
-		{
-			dt = 0.2f;
-			reviveOnce(m_Data->getMaxHp()*GlobalInstance::map_GF[gf->getId()].skilleff1 / 100);
-		}
-		else if (stype == SKILL_15)
-		{
-			whosufferNode->hurt(m_Data->getAtk() * eff / 100, -1);
-		}
-
-		else if (stype == SKILL_20)
-		{
-			for (int i = 0; i < 3; i++)
+			else if (stype == SKILL_3)//被攻击目标%d回合内无法进行攻击。
 			{
-				whosufferNode->runAction(Sequence::create(DelayTime::create(i*0.45f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::hurt, whosufferNode, m_Data->getAtk() * eff / 100, -1)), NULL));
+				if (gf->getSkillCount() <= GlobalInstance::map_GF[gf->getId()].skilleff2 - 1)
+				{
+					dt = 0.45f;
+					whosufferNode->hurt(m_Data->getAtk(), 0);
+				}
 			}
-			dt = 1.0f;
+			else if (stype == SKILL_4)//释放技能后所有敌人攻击你%d回合。
+			{
+				if (gf->getSkillCount() <= GlobalInstance::map_GF[gf->getId()].skilleff2 - 1)
+				{
+					dt = 0.45f;
+					whosufferNode->hurt(m_Data->getAtk());
+				}
+			}
+			else if (stype == SKILL_5 || stype == SKILL_6)//目标造成%.2f伤害，%d个目标。
+			{
+				//whosufferNode->getData()->setHp(whosufferNode->getData()->getHp() - );
+				//whosufferNode->updateHp();
+				whosufferNode->hurt(eff*whosufferNode->getData()->getMaxHp() / 100, -1);
+			}
+			else if (stype == SKILL_7 || stype == SKILL_8)//回血
+			{
+				whosufferNode->getData()->setHp(whosufferNode->getData()->getHp() + eff*whosufferNode->getData()->getMaxHp() / 100);
+				whosufferNode->updateHp();
+			}
+			else if (stype == SKILL_9)
+			{
+				if (gf->getSkillCount() >= GlobalInstance::map_GF[gf->getId()].skilleff2)
+				{
+					whosufferNode->atkspeedbns = GlobalInstance::map_GF[gf->getId()].skilleff1;
+				}
+				else
+				{
+					dt = 0.45f;
+				}
+			}
+			else if (stype == SKILL_10)
+			{
+				if (gf->getSkillCount() >= GlobalInstance::map_GF[gf->getId()].skilleff2)
+				{
+					whosufferNode->atkspeedbns = -GlobalInstance::map_GF[gf->getId()].skilleff1;
+				}
+				else
+				{
+					whosufferNode->hurt(m_Data->getAtk());
+					dt = 0.45f;
+				}
+			}
+			else if (stype == SKILL_12)
+			{
+				if (gf->getSkillCount() >= GlobalInstance::map_GF[gf->getId()].skilleff2)
+				{
+				}
+				else
+				{
+					dt = 0.45f;
+				}
+			}
+			else if (stype == SKILL_17)
+			{
+				if (gf->getSkillCount() >= GlobalInstance::map_GF[gf->getId()].skilleff2)
+				{
+
+				}
+				else
+				{
+					whosufferNode->dfbns = GlobalInstance::map_GF[gf->getId()].skilleff1;
+					dt = 0.45f;
+				}
+			}
+
+			else if (stype == SKILL_13)
+			{
+				dt = 0.2f;
+				reviveOnce(m_Data->getMaxHp()*GlobalInstance::map_GF[gf->getId()].skilleff1 / 100);
+			}
+			else if (stype == SKILL_15)
+			{
+				whosufferNode->hurt(m_Data->getAtk() * eff / 100, -1);
+			}
+
+			else if (stype == SKILL_20)
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					whosufferNode->runAction(Sequence::create(DelayTime::create(i*0.45f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::hurt, whosufferNode, m_Data->getAtk() * eff / 100, -1)), NULL));
+				}
+				dt = 1.0f;
+			}
 		}
-	}
 
-	if (stype == 3 || stype == 4)
-	{
-		if (gf->getSkillCount() == GlobalInstance::map_GF[gf->getId()].skilleff2)
-			gf->setSkillCount(gf->getSkillCount() - 1);
-	}
-	else if (stype == 5 || stype == 6 || stype == 8)
-	{
-		m_Data->clearSkill(gf);
-		whosufferNode->getData()->setIsDodge(false);
-	}
-	else if (stype == 13)
-	{
-
-	}
-	else
-	{
-		gf->setSkillCount(gf->getSkillCount() - 1);
-		if (gf->getSkillCount() <= 0)
+		if (stype == 3 || stype == 4)
+		{
+			if (gf->getSkillCount() == GlobalInstance::map_GF[gf->getId()].skilleff2)
+				gf->setSkillCount(gf->getSkillCount() - 1);
+		}
+		else if (stype == 5 || stype == 6 || stype == 8)
 		{
 			m_Data->clearSkill(gf);
 			whosufferNode->getData()->setIsDodge(false);
-			if (stype == 9)
-			{
-				whosufferNode->atkspeedbns = 0;
-			}
-			else if (stype == 17)
-			{
-				whosufferNode->dfbns = 0.0f;
-			}
-			//清除技能属性图标
-			if (stype == SKILL_9 || stype == SKILL_12 || stype == SKILL_17 || stype == SKILL_18)
-			{
-				this->refreshSkillAttrIcon(stype);
-			}
-			else if (stype == SKILL_10 || stype == SKILL_11)
-			{
-				whosufferNode->refreshSkillAttrIcon(stype);
-			}
+		}
+		else if (stype == 13)
+		{
 
+		}
+		else
+		{
+			gf->setSkillCount(gf->getSkillCount() - 1);
+			if (gf->getSkillCount() <= 0)
+			{
+				m_Data->clearSkill(gf);
+				whosufferNode->getData()->setIsDodge(false);
+				if (stype == 9)
+				{
+					whosufferNode->atkspeedbns = 0;
+				}
+				else if (stype == 17)
+				{
+					whosufferNode->dfbns = 0.0f;
+				}
+				//清除技能属性图标
+				if (stype == SKILL_9 || stype == SKILL_12 || stype == SKILL_17 || stype == SKILL_18)
+				{
+					this->refreshSkillAttrIcon(stype);
+				}
+				else if (stype == SKILL_10 || stype == SKILL_11)
+				{
+					whosufferNode->refreshSkillAttrIcon(stype);
+				}
+
+			}
 		}
 	}
 
