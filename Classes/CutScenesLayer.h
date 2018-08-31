@@ -17,11 +17,11 @@ public:
 
 private:
 	void updateFadeOut();
-	void loadingOver(cocos2d::Texture2D* texture);
+	//void loadingOver(cocos2d::Texture2D* texture);
 	void delayShowResult(float dt);
 	
 private:
-	int curReloadPlistNum;
+	//int curReloadPlistNum;
 	std::vector<Npc*> enemys;
 	int m_fightbgtype;
 	Node* effectnode;

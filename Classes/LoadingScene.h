@@ -36,9 +36,11 @@ private:
 
 	void showPointAnim(float dt);
 
+	void loadingSkillEffectOver(cocos2d::Texture2D* texture);
 private:
 	bool isGetPlayerId;
 	Node* point[3];
+	int curEffectPlistNum;
 };
 
 #endif

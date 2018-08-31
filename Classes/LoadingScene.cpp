@@ -7,6 +7,8 @@
 
 USING_NS_CC;
 
+int skillEffectArr[16] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 17, 18, 20 };
+
 LoadingScene::LoadingScene()
 {
 	isGetPlayerId = false;
@@ -133,7 +135,11 @@ void LoadingScene::delayLoadLocalData(float dt)
 	GlobalInstance::getInstance()->loadShopData();
 
 	//数据处理完，
-	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.1f);
+	//加载技能特效
+	curEffectPlistNum = 0;
+	std::string str = StringUtils::format("effect/skill%dpacker.png", skillEffectArr[curEffectPlistNum]);
+	Director::getInstance()->getTextureCache()->addImageAsync(str, CC_CALLBACK_1(LoadingScene::loadingSkillEffectOver, this));
+	//this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.1f);
 }
 
 
@@ -146,6 +152,26 @@ void LoadingScene::delayGetServerData(float dt)
 void LoadingScene::showNextScene(float dt)
 {
 	Director::getInstance()->replaceScene(MainScene::createScene());
+}
+
+void LoadingScene::loadingSkillEffectOver(cocos2d::Texture2D* texture)
+{
+	//传入的obj即是异步生成的纹理
+	std::string str = StringUtils::format("effect/skill%dpacker.plist", skillEffectArr[curEffectPlistNum]);
+	if (!SpriteFrameCache::getInstance()->isSpriteFramesWithFileLoaded(str))
+	{
+		SpriteFrameCache::getInstance()->addSpriteFramesWithFile(str, texture);
+	}
+	curEffectPlistNum++;
+
+	if (curEffectPlistNum == sizeof(skillEffectArr) / sizeof(skillEffectArr[0]))
+	{
+		this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.1f);
+		return;
+	}
+
+	str = StringUtils::format("effect/skill%dpacker.png", skillEffectArr[curEffectPlistNum]);
+	Director::getInstance()->getTextureCache()->addImageAsync(str, CC_CALLBACK_1(LoadingScene::loadingSkillEffectOver, this));
 }
 
 void LoadingScene::onFinish(int errcode)
