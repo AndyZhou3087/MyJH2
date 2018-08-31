@@ -14,7 +14,7 @@ USING_NS_CC;
 
 SmithyLayer::SmithyLayer()
 {
-
+	lastCategoryindex = 0;
 }
 
 SmithyLayer::~SmithyLayer()

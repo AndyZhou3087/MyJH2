@@ -290,7 +290,7 @@ void FightHeroNode::hurt(float hp, int stat)//stat -1:不显示普攻动画
 	if (m_Data != NULL && this->isVisible())
 	{
 		if (hp < m_Data->getDf())
-			hp = 0.1 * hp;
+			hp -= 0.1 * hp;
 		else
 			hp -= m_Data->getDf()*(1 + dfbns/100);
 
@@ -307,6 +307,7 @@ void FightHeroNode::hurt(float hp, int stat)//stat -1:不显示普攻动画
 				numfnt->setScale(5);
 				numfnt->runAction(Sequence::create(Show::create(), EaseRateAction::create(ScaleTo::create(0.15f, 0.6f), 5), EaseRateAction::create(ScaleTo::create(0.1f, 1),5), DelayTime::create(0.15f), Hide::create(), NULL));
 				critnumbg->runAction(Sequence::create(Show::create(), EaseRateAction::create(ScaleTo::create(0.15f, 0.6f), 5), EaseRateAction::create(ScaleTo::create(0.1f, 1),5), DelayTime::create(0.15f), Hide::create(), NULL));
+				showAtkOrHurtAnim(1);
 			}
 			else if (stat == 2)//闪避
 			{
@@ -318,9 +319,9 @@ void FightHeroNode::hurt(float hp, int stat)//stat -1:不显示普攻动画
 			{
 				numfnt->setFntFile("fonts/normalhurtnum.fnt");
 				statusimg->loadTexture("ui/blank.png", cocos2d::ui::Widget::TextureResType::PLIST);
+				numfnt->runAction(Sequence::create(Show::create(), MoveBy::create(0.3f, Vec2(0, 10)), DelayTime::create(0.1f), Hide::create(), MoveBy::create(0.02f, Vec2(0, -10)), NULL));
 				if (stat == 0)
 					showAtkOrHurtAnim(1);
-				numfnt->runAction(Sequence::create(Show::create(), MoveBy::create(0.3f, Vec2(0, 10)), DelayTime::create(0.1f), Hide::create(), MoveBy::create(0.02f, Vec2(0, -10)), NULL));
 			}
 			numfnt->setString(hurtstr);
 
@@ -486,8 +487,7 @@ void FightHeroNode::setBlankBox()
 	}
 	else if (m_state == FS_FIGHTING)
 	{
-		if (m_Data->getHp() <= 0.000001)
-			showDeathAnim();
+		showDeathAnim();
 	}
 	else if (m_state == FS_SUCC || m_state == FS_FAIL)
 	{
@@ -501,32 +501,30 @@ void FightHeroNode::setFightState(int winexp)
 	int langtype = GlobalInstance::getInstance()->getLang();
 	Hero* myhero = (Hero*)m_Data;
 
+	int maxlv = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp.size();
 	int mylv = myhero->getLevel();
+	int curpercent = 0;
+	if (mylv <= 0)
+		curpercent = myhero->getExp().getValue() / GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[0];
+	else
+	{
+		if (mylv >= maxlv - 1)
+			curpercent = 100;
+		else
+			curpercent = (myhero->getExp().getValue() - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[mylv])*100 / (GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[mylv+1] - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[mylv]);
+	}
+	
 	hp_bar->loadTexture("mapui/winexpbar.png", cocos2d::ui::Widget::TextureResType::PLIST);
+	
+	hp_bar->setPercent(curpercent);
 
 	if (winexp > 0 && myhero->getState() != HS_DEAD)
 	{
-		std::string str;
-		if ((myhero->getLevel() + 1) / 10 == myhero->getChangeCount() + 1)
-		{
-			str = ResourceLang::map_lang["changebreak"];
-		}
-		else
-		{
-			DynamicValueInt dv;
-			dv.setValue(myhero->getExp().getValue() + winexp);
-			myhero->setExp(dv);
-
-			str = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), winexp);
-		}
-		winexplbl->setString(str);
-		winexplbl->setVisible(true);
-		FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
-		FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(1.5f, Vec2(0, 10)), NULL);
-		winexplbl->runAction(Sequence::create(DelayTime::create(0.5f), scales, moveandout, DelayTime::create(1.0f), FadeOut::create(1.0f), NULL));
+		DynamicValueInt dv;
+		dv.setValue(myhero->getExp().getValue() + winexp);
+		myhero->setExp(dv);
 	}
 
-	int maxlv = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp.size();
 	int curlv = -1;
 	for (int i = 0; i < maxlv; i++)
 	{
@@ -534,6 +532,26 @@ void FightHeroNode::setFightState(int winexp)
 			curlv = i;
 		else
 			break;
+	}
+
+	if (winexp > 0 && myhero->getState() != HS_DEAD)
+	{
+		std::string str;
+		if ((myhero->getLevel() + 1) / 10 == myhero->getChangeCount() + 1)
+		{
+			str = ResourceLang::map_lang["changebreak"];
+			DynamicValueInt dv;
+			dv.setValue(GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[myhero->getLevel()]);
+		}
+		else
+		{
+			str = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), winexp);
+		}
+		winexplbl->setString(str);
+		winexplbl->setVisible(true);
+		FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
+		FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(1.5f, Vec2(0, 10)), NULL);
+		winexplbl->runAction(Sequence::create(DelayTime::create(0.5f), scales, moveandout, DelayTime::create(1.0f), FadeOut::create(1.0f), NULL));
 	}
 
 	int moreexp = 0;
@@ -561,9 +579,7 @@ void FightHeroNode::setFightState(int winexp)
 	}
 
 	float percent = moreexp * 100 / needexp;
-	if (myhero->getState() == HS_DEAD)
-		hp_bar->setPercent(percent);	
-
+			
 	if (myhero->getState() != HS_DEAD)
 	{
 		if (curlv+1 > mylv)//升级
@@ -589,6 +605,7 @@ void FightHeroNode::setFightState(int winexp)
 	}
 	else
 	{
+		hp_bar->setPercent(percent);
 		rettext->loadTexture(ResourcePath::makeTextImgPath("windeath_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		retbox->setVisible(true);
 		retbox->setPositionY(retbox->getPositionY() + 40);
@@ -600,6 +617,7 @@ void FightHeroNode::setFightState(int winexp)
 		CommonFuncs::changeGray(headimg);
 		CommonFuncs::changeGray(hp_bar->getVirtualRenderer());
 		CommonFuncs::changeGray(retbox);
+		GlobalInstance::myCardHeros[this->getTag()] = NULL;
 	}
 }
 

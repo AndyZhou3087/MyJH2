@@ -29,7 +29,7 @@ int equiptype[] = { T_ARMOR, T_EQUIP, T_NG, T_WG, T_HANDARMOR, T_FASHION };
 
 HeroAttrLayer::HeroAttrLayer()
 {
-
+	isMovingAction = false;
 }
 
 HeroAttrLayer::~HeroAttrLayer()
@@ -75,11 +75,15 @@ bool HeroAttrLayer::init(Hero* herodata)
 	this->addChild(csbnode);
 	langtype = GlobalInstance::getInstance()->getLang();
 
+	blankclick = (cocos2d::ui::ImageView*)csbnode->getChildByName("blankclick");
+	blankclick->setSwallowTouches(true);
+
 	//英雄全身图
 	cocos2d::ui::ImageView* herofullimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("hfull");
 	herofullimg->ignoreContentAdaptWithSize(true);
 	std::string str = StringUtils::format("hfull_%d_%d.png", herodata->getVocation(), herodata->getSex());
 	herofullimg->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
+	herofullimg->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onHeroFullClick, this));
 
 	//升级栏
 	lvnode = csbnode->getChildByName("lvnode");
@@ -428,6 +432,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case ATTR_FIREBTN:
 		{
 			GlobalInstance::getInstance()->fireHero(this->getTag());
+			m_heroData = NULL;
 			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
 			if (innroomLayer != NULL)
 			{
@@ -707,58 +712,93 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 
 void HeroAttrLayer::updataAtrrUI(float dt)
 {
-	int hp = m_heroData->getHp();
-	std::string attrstr = StringUtils::format("%d/%d", hp, (int)m_heroData->getMaxHp());
-	hplbl->setString(attrstr);
+	if (m_heroData != NULL)
+	{
+		int hp = m_heroData->getHp();
+		std::string attrstr = StringUtils::format("%d/%d", hp, (int)m_heroData->getMaxHp());
+		hplbl->setString(attrstr);
 
-	//攻击值
-	attrstr = StringUtils::format("%d", (int)m_heroData->getAtk());
-	atkbl->setString(attrstr);
+		//攻击值
+		attrstr = StringUtils::format("%d", (int)m_heroData->getAtk());
+		atkbl->setString(attrstr);
 
-	//防御值
-	attrstr = StringUtils::format("%d", (int)m_heroData->getDf());
-	dflbl->setString(attrstr);
+		//防御值
+		attrstr = StringUtils::format("%d", (int)m_heroData->getDf());
+		dflbl->setString(attrstr);
 
-	//攻击速度值
-	attrstr = StringUtils::format("%.3f", m_heroData->getAtkSpeed());
-	atkspeedlbl->setString(attrstr);
+		//攻击速度值
+		attrstr = StringUtils::format("%.3f", m_heroData->getAtkSpeed());
+		atkspeedlbl->setString(attrstr);
 
-	//暴击值
-	attrstr = StringUtils::format("%.3f%%", m_heroData->getCrit());
-	critlbl->setString(attrstr);
+		//暴击值
+		attrstr = StringUtils::format("%.3f%%", m_heroData->getCrit());
+		critlbl->setString(attrstr);
 
-	//闪避值
-	attrstr = StringUtils::format("%.3f%%", m_heroData->getDodge());
-	dodgelbl->setString(attrstr);
+		//闪避值
+		attrstr = StringUtils::format("%.3f%%", m_heroData->getDodge());
+		dodgelbl->setString(attrstr);
 
-	//等级
-	attrstr = StringUtils::format("Lv.%d", m_heroData->getLevel() + 1);
-	lvUIText->setString(attrstr);
+		//等级
+		attrstr = StringUtils::format("Lv.%d", m_heroData->getLevel() + 1);
+		lvUIText->setString(attrstr);
 
-	int curlvexp = 0;
-	int nextlvexp = 0;
-	int expsize = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp.size();
+		int curlvexp = 0;
+		int nextlvexp = 0;
+		int expsize = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp.size();
 
-	if (m_heroData->getLevel() >= expsize)
-		nextlvexp = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[expsize - 1];
-	else
-		nextlvexp = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getLevel()];
+		if (m_heroData->getLevel() >= expsize)
+			nextlvexp = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[expsize - 1];
+		else
+			nextlvexp = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getLevel()];
 
-	if (m_heroData->getLevel() > 0)
-		curlvexp = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getLevel() - 1];
+		if (m_heroData->getLevel() > 0)
+			curlvexp = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getLevel() - 1];
 
-	//经验值
-	attrstr = StringUtils::format("%d/%d", m_heroData->getExp().getValue() - curlvexp, nextlvexp - curlvexp);
-	explbl->setString(attrstr);
+		//经验值
+		attrstr = StringUtils::format("%d/%d", m_heroData->getExp().getValue() - curlvexp, nextlvexp - curlvexp);
+		explbl->setString(attrstr);
 
-	float percent = (m_heroData->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
-	expbar->setPercent(percent);
+		float percent = (m_heroData->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
+		expbar->setPercent(percent);
 
-	attrstr = StringUtils::format("vocation_%d", m_heroData->getVocation());
-	vocation->setString(ResourceLang::map_lang[attrstr]);
+		attrstr = StringUtils::format("vocation_%d", m_heroData->getVocation());
+		vocation->setString(ResourceLang::map_lang[attrstr]);
+	}
 }
+
+void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		if (lvnode->isVisible() || isMovingAction)
+			return;
+		else
+		{
+			isMovingAction = true;
+			if (heroattrbottom->getPositionY() >= 0)
+			{
+				heroattrbottom->runAction(Sequence::create(MoveTo::create(0.6f, Vec2(0, -430)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+				equipnode->runAction(Sequence::create(MoveTo::create(0.8f, Vec2(360, -560)), NULL));
+				blankclick->setVisible(false);
+			}
+			else
+			{
+				heroattrbottom->runAction(Sequence::create(MoveTo::create(0.6f, Vec2(0, 0)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+				equipnode->runAction(MoveTo::create(0.6f, Vec2(360, 490)));
+				blankclick->setVisible(true);
+			}
+		}
+	}
+}
+
+void HeroAttrLayer::finishMovingAction()
+{
+	isMovingAction = false;
+}
+
 
 void HeroAttrLayer::onExit()
 {
 	Layer::onExit();
 }
+

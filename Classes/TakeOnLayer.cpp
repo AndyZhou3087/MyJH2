@@ -252,6 +252,11 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 		actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("selectbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		takeoffbtn->setVisible(false);
 	}
+	else
+	{
+		actionbtn->setVisible(false);
+		takeoffbtn->setPositionX(150);
+	}
 
 	if (isChangeEquip)
 	{
@@ -449,14 +454,14 @@ void TakeOnLayer::updateUI()
 
 				stonedesc->setString(str);
 
-				equipstonebox->loadTexture("ui/resbox.png", cocos2d::ui::TextureResType::PLIST);
+				equipstonebox->loadTexture("ui/resbox.png", cocos2d::ui::Widget::TextureResType::PLIST);
 			}
 			else
 			{
 				stone->setVisible(false);
 				stonedesc->setVisible(true);
 				stonedesc->setString(ResourceLang::map_lang["nosetin"]);
-				equipstonebox->loadTexture("ui/equipstonebox.png", cocos2d::ui::TextureResType::PLIST);
+				equipstonebox->loadTexture("ui/equipstonebox.png", cocos2d::ui::Widget::TextureResType::PLIST);
 			}
 			stone->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onStoneclick, this));
 			stone->setTag(i);

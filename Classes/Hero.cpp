@@ -393,6 +393,7 @@ GongFa* Hero::checkSkillWg()
 	{
 		GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(t[i], getName());
 
+		return gf;
 		if (gf != NULL && GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1)
 		{
 			int r = GlobalInstance::getInstance()->createRandomNum(100);

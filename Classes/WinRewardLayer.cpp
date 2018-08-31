@@ -7,6 +7,7 @@
 #include "MyRes.h"
 #include "MyMenu.h"
 #include "MovingLabel.h"
+#include "AnimationEffect.h"
 
 WinRewardLayer::WinRewardLayer()
 {
@@ -332,12 +333,12 @@ void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			break;
 		}
 		case 1001://continue
-		{
-			this->getParent()->removeFromParentAndCleanup(true);
-		}
-			break;
 		case 1002://close
-			this->getParent()->removeFromParentAndCleanup(true);
+		{
+			AnimationEffect::closeAniEffect((Layer*)this->getParent());
+			int r = GlobalInstance::getInstance()->createRandomNum(5);
+			SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_SUBMAP_0 + r);
+		}
 			break;
 		default:
 			break;

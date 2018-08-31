@@ -51,6 +51,11 @@ private:
 	void onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	/************************************
+	全身像点击
+	*************************************/
+	void onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	/************************************
 	修改名字editBox控件
 	*************************************/
 	void editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox);
@@ -66,6 +71,8 @@ private:
 	void updataAtrrUI(float dt);
 
 	void updateAtrBtnUI();
+
+	void finishMovingAction();
 
 private:
 	Node* lvnode;
@@ -118,6 +125,9 @@ private:
 
 	cocos2d::ui::Button* btnArr[5];
 	cocos2d::ui::Text* goodarr[4];
+	bool isMovingAction;
+
+	cocos2d::ui::ImageView* blankclick;
 };
 
 #endif

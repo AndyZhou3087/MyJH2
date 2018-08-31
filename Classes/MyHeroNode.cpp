@@ -144,6 +144,8 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 		hpdesc->setString(hpstr);
 	}
 
+	lastVocation = m_heroData->getVocation();
+
 	updateTime(0);
 	this->schedule(schedule_selector(MyHeroNode::updateTime), 1.0f);
 
@@ -234,6 +236,13 @@ void MyHeroNode::updateTime(float dt)
 			hpdesc->setString(hpstr);
 			GlobalInstance::getInstance()->saveHero(m_heroData);
 		}
+
+		if (lastVocation != m_heroData->getVocation())
+		{
+			lastVocation = m_heroData->getVocation();
+			updateData();
+		}
+
 	}
 }
 
@@ -305,7 +314,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
 					if (innroomLayer != NULL)
 					{
-						std::string potentialstr = StringUtils::format("potential_%d", m_heroData->getVocation());
+						std::string potentialstr = StringUtils::format("potential_%d", m_heroData->getPotential());
 						std::string hintstr = StringUtils::format(ResourceLang::map_lang["firecomfirmtext"].c_str(), ResourceLang::map_lang[potentialstr].c_str());
 						HintBoxLayer* hint = HintBoxLayer::create(hintstr, 2);
 						innroomLayer->addChild(hint, 0, this->getTag());

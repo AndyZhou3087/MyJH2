@@ -67,6 +67,8 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp)
 
 	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("continuebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+	SoundManager::getInstance()->stopBackMusic();
+
 	FIGHTNODE_STATE fs = FS_SUCC;
 	Node* effectnode;
 	if (winexp <= 0)
