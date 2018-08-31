@@ -137,8 +137,8 @@ bool MainScene::init()
 
 
 	ParticleSystemQuad *leafsParticle = ParticleSystemQuad::create(ResourcePath::makePath("floatleafs.plist"));
-	leafsParticle->setPosition(Vec2(0, 900));
-	addChild(leafsParticle, 1);
+	leafsParticle->setPosition(Vec2(360, 1280));
+	scroll_3->addChild(leafsParticle, 1);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
