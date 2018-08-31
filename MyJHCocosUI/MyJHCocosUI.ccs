@@ -595,6 +595,12 @@
           <Image Name="taskdayget.png" />
           <Image Name="taskdaygo.png" />
           <Image Name="taskfinish.png" />
+          <Image Name="texiao_rwwc.png" />
+          <Image Name="texiao_sjcg.png" />
+          <Image Name="texiao_tpcg.png" />
+          <Image Name="texiao_ziti.png" />
+          <Image Name="texiao_zmcg.png" />
+          <Image Name="texiao_zzcg.png" />
           <Image Name="text_gf0.png" />
           <Image Name="text_gf1.png" />
           <Image Name="text_gf2.png" />
@@ -1040,6 +1046,7 @@
         <Project Name="fightLayer.csd" Type="Layer" />
         <Project Name="fightResultLayer.csd" Type="Layer" />
         <Project Name="gambleBoxLayer.csd" Type="Layer" />
+        <Project Name="giftDescLayer.csd" Type="Layer" />
         <Project Name="goBackLayer.csd" Type="Layer" />
         <Project Name="headInfoLayer.csd" Type="Layer" />
         <Project Name="heroAttrLayer.csd" Type="Layer" />
@@ -1074,6 +1081,8 @@
         <Project Name="selectSubMapLayer.csd" Type="Layer" />
         <Project Name="setinStoneLayer.csd" Type="Layer" />
         <Project Name="settingLayer.csd" Type="Layer" />
+        <Project Name="shopLayer.csd" Type="Layer" />
+        <Project Name="shopNode.csd" Type="Node" />
         <Project Name="simpleLayer.csd" Type="Layer" />
         <Project Name="smithyLayer.csd" Type="Layer" />
         <Project Name="storeHouseLayer.csd" Type="Layer" />
@@ -1090,9 +1099,6 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="shopLayer.csd" Type="Layer" />
-        <Project Name="shopNode.csd" Type="Node" />
-        <Project Name="giftDescLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

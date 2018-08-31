@@ -69,6 +69,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 	contentlbl->setAnchorPoint(Vec2(0, 1));
 	contentlbl->setColor(Color3B(255, 255, 255));
 	//contentlbl->setHorizontalAlignment(TextHAlignment::LEFT);
+	contentlbl->enableShadow(Color4B::BLACK, Size(1, -1));
 	contentlbl->setLineBreakWithoutSpace(true);
 	contentlbl->setMaxLineWidth(descscoll->getContentSize().width);
 	descscoll->addChild(contentlbl);

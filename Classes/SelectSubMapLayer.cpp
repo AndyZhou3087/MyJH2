@@ -108,7 +108,7 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 		cocos2d::ui::Text* mapname = (cocos2d::ui::Text*)subnode->getChildByName("namelbl");
 		mapname->setString(GlobalInstance::map_AllResources[it->first].name);
 
-		if (GlobalInstance::myCurMainData.place.compare(it->first) == 0 && GlobalInstance::myCurMainData.isfinish < QUEST_FINISH)
+		if (GlobalInstance::myCurMainData.place.compare(it->first) == 0 && GlobalInstance::myCurMainData.isfinish == QUEST_ACC)
 		{
 			cocos2d::ui::ImageView* taskicon = (cocos2d::ui::ImageView*)subnode->getChildByName("taskicon");
 			taskicon->setVisible(true);

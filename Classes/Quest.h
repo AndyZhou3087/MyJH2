@@ -4,6 +4,10 @@
 
 #include "cocos2d.h"
 #include "GlobalInstance.h"
+#include "ui/CocosGUI.h"
+#include "cocostudio/CocoStudio.h"
+
+USING_NS_CC;
 
 typedef enum
 {

@@ -25,6 +25,7 @@ private:
 	Equip* m_equip;
 	Node *csbnode;
 	int m_forwhere;
+	int coincount;
 };
 #endif
 

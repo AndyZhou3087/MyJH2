@@ -188,14 +188,17 @@ void MyHeroNode::updateTime(float dt)
 		{
 			int lv = Building::map_buildingDatas["4trainigroom"]->level.getValue();
 			int bexp = Building::map_buildingDatas["4trainigroom"]->vec_exdatatrain[lv];
-			DynamicValueInt dexp;
+			/*DynamicValueInt dexp;
 			dexp.setValue(m_heroData->getExp().getValue() + m_heroData->getTrainHour() / 3600 * bexp);
-			m_heroData->setExp(dexp);
+			m_heroData->setExp(dexp);*/
+
+			m_heroData->setExpLimit(m_heroData->getTrainHour() / 3600 * bexp);
 
 			m_heroData->setTrainHour(0);
 			m_heroData->setTrainTime(0);
 			m_heroData->setState(HS_OWNED);
 			countdown->setVisible(false);
+			changeBtnContent();
 		}
 		else
 		{

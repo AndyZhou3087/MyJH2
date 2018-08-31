@@ -35,6 +35,8 @@ public:
 
 	//扔掉背包中的所有数据
 	static void clearMyPackages();
+
+	static ResBase* getMyRes(std::string resid, int inwhere = MYSTORAGE);
 public:
 
 	static std::vector<ResBase* > vec_MyResources;//我的资源，包括背包，仓库，装备上的
@@ -43,7 +45,7 @@ private:
 	//根据索引，做删除操作简单
 	//1--成功，0--失败，不够时失败
 	static int Use(int iterindex, int count = 1);
-	static ResBase* getMyRes(std::string resid, int inwhere = MYSTORAGE);
+
 };
 
 #endif
