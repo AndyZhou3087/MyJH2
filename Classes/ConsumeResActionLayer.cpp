@@ -428,7 +428,7 @@ void ConsumeResActionLayer::showNextLvDesc(Building* building)
 				std::string resid = building->vec_exdata[nextlv][i];
 				str.append(GlobalInstance::map_AllResources[resid].name);
 				if (i < building->vec_exdata[nextlv].size() - 1)
-					str.append(ResourceLang::map_lang["zhdunhao"]);
+					str.append(ResourceLang::map_lang["dunhao"]);
 			}
 			descstr = StringUtils::format(descstr.c_str(), str.c_str());
 		}
@@ -445,7 +445,7 @@ void ConsumeResActionLayer::showNextLvDesc(Building* building)
 				std::string resid = vec_res[0];
 				str.append(GlobalInstance::map_AllResources[resid].name);
 				if (i < building->vec_exdata[nextlv].size() - 1)
-					str.append(ResourceLang::map_lang["zhdunhao"]);
+					str.append(ResourceLang::map_lang["dunhao"]);
 			}
 			descstr = StringUtils::format(descstr.c_str(), str.c_str());
 

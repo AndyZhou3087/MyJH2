@@ -79,8 +79,9 @@ bool NewPopLayer::init(int unlockchapter)
 			int c = atoi(mainmapid.substr(1, mainmapid.find_first_of("-") - 1).c_str());
 			if (c == unlockchapter)
 			{
+				if (str.length() > 0)
+					str.append(ResourceLang::map_lang["dunhao"]);
 				str.append(GlobalInstance::map_AllResources[mainmapid].name);
-				str.append(ResourceLang::map_lang["zhdunhao"]);
 			}
 		}
 		str = StringUtils::format("%s", str.c_str());

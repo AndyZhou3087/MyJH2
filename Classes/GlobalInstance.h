@@ -12,7 +12,6 @@ USING_NS_CC;
 typedef struct
 {
 	std::string id;
-	std::string name;
 	std::vector<int> vec_exp;//升级所需经验值
 	std::vector<float> vec_atk;//攻击
 	std::vector<float> vec_df;//防御

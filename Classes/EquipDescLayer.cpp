@@ -131,12 +131,36 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 			int m = GlobalInstance::map_GF[gf->getId()].vec_skillbns[i];
 			if (m == 1)
 			{
-				jobstr.append(GlobalInstance::vec_herosAttr[i].name);
-				jobstr.append(",");
+				if (jobstr.length() > 0)
+					jobstr.append(ResourceLang::map_lang["comma"]); 
+				jobstr.append(GlobalInstance::map_AllResources[GlobalInstance::vec_herosAttr[i].id].name);
 			}
 		}
-		str = StringUtils::format(ResourceLang::map_lang["fitjob"].c_str(), jobstr.substr(0, jobstr.length() - 1).c_str());
+		str = StringUtils::format(ResourceLang::map_lang["fitjob"].c_str(), jobstr.c_str());
 		jobtext->setString(str);
+	}
+	else if (m_res->getType() == T_ARMOR)
+	{
+		Equipable* eres = (Equipable*)m_res;
+		jobtext->setVisible(true);
+		std::string jobstr;
+		for (unsigned int i = 0; i < GlobalInstance::map_Equip[eres->getId()].vec_bns.size(); i++)
+		{
+			float m = GlobalInstance::map_Equip[eres->getId()].vec_bns[i];
+			if (m >= 1)
+			{
+				if (jobstr.length() > 0)
+					jobstr.append(ResourceLang::map_lang["comma"]);
+				jobstr.append(GlobalInstance::map_AllResources[GlobalInstance::vec_herosAttr[i].id].name);
+
+			}
+		}
+		str = StringUtils::format(ResourceLang::map_lang["fitjob"].c_str(), jobstr.c_str());
+		jobtext->setString(str);
+	}
+	else if (m_res->getType() >= T_EQUIP && m_res->getType() <= T_FASHION)
+	{
+		jobtext->setString(ResourceLang::map_lang["fitalljob"]);
 	}
 	else
 	{
