@@ -54,12 +54,12 @@
           <Image Name="mapblocktop.png" />
           <Image Name="materialbox.png" />
           <Image Name="newpopbg.png" />
+          <Image Name="poptitletie.png" />
           <Image Name="selectequipbg.png" />
           <Image Name="shopbg.jpg" />
           <Image Name="smallbg.png" />
           <Image Name="t001.jpg" />
           <Image Name="t002.jpg" />
-          <Image Name="poptitletie.png" />
           <Image Name="wintitle.png" />
         </Folder>
         <Folder Name="mainimg">
