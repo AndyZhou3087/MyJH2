@@ -36,7 +36,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/a001.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="763399710" Tag="160" IconVisible="False" LeftMargin="-186.1654" RightMargin="128.1654" TopMargin="-48.1456" BottomMargin="16.1456" FontSize="28" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="name" ActionTag="763399710" Tag="160" IconVisible="False" LeftMargin="-186.1654" RightMargin="128.1654" TopMargin="-48.1456" BottomMargin="16.1456" FontSize="28" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="58.0000" Y="32.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="-186.1654" Y="32.1456" />
@@ -46,9 +46,9 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="1327613067" Tag="165" IconVisible="False" LeftMargin="-185.0724" RightMargin="135.0724" TopMargin="-10.8018" BottomMargin="-12.1982" FontSize="20" LabelText="奖励：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="desc" ActionTag="1327613067" Tag="165" IconVisible="False" LeftMargin="-185.0724" RightMargin="135.0724" TopMargin="-10.8018" BottomMargin="-12.1982" FontSize="20" LabelText="奖励：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="50.0000" Y="23.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="-185.0724" Y="-0.6982" />
@@ -58,9 +58,9 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="integral" ActionTag="-1839477979" Tag="265" IconVisible="False" LeftMargin="-129.4666" RightMargin="26.4666" TopMargin="-10.7789" BottomMargin="-12.2211" FontSize="20" LabelText="积分x10000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="integral" ActionTag="-1839477979" Tag="265" IconVisible="False" LeftMargin="-129.4666" RightMargin="26.4666" TopMargin="-10.7789" BottomMargin="-12.2211" FontSize="20" LabelText="积分x10000" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="103.0000" Y="23.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="-129.4666" Y="-0.7211" />
@@ -70,7 +70,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="actionbtn" ActionTag="1682057673" Tag="268" IconVisible="False" LeftMargin="134.5510" RightMargin="-278.5510" TopMargin="-25.5090" BottomMargin="-54.4910" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="114" Scale9Height="58" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="144.0000" Y="80.0000" />
@@ -171,7 +171,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <ImageFileData Type="MarkedSubImage" Path="ui/taskprobar.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="taskprotext" ActionTag="164145490" Tag="45" IconVisible="False" LeftMargin="-80.6892" RightMargin="50.6892" TopMargin="23.4800" BottomMargin="-44.4800" FontSize="18" LabelText="1/3" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="taskprotext" ActionTag="164145490" Tag="45" IconVisible="False" LeftMargin="-80.6892" RightMargin="50.6892" TopMargin="23.4800" BottomMargin="-44.4800" FontSize="18" LabelText="1/3" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="30.0000" Y="21.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-65.6892" Y="-33.9800" />
@@ -181,7 +181,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

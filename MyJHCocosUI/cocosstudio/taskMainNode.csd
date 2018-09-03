@@ -16,7 +16,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/resitem.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="763399710" Tag="160" IconVisible="False" LeftMargin="-29.0000" RightMargin="-29.0000" TopMargin="-16.0000" BottomMargin="-16.0000" FontSize="28" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="name" ActionTag="763399710" Tag="160" IconVisible="False" LeftMargin="-29.0000" RightMargin="-29.0000" TopMargin="-16.0000" BottomMargin="-16.0000" FontSize="28" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="58.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />
@@ -26,7 +26,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="redpoint" ActionTag="-1795562086" Tag="256" IconVisible="False" LeftMargin="-116.3014" RightMargin="92.3014" TopMargin="-14.7211" BottomMargin="-9.2789" ctype="SpriteObjectData">
             <Size X="24.0000" Y="24.0000" />

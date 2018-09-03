@@ -17,6 +17,7 @@
 #include "ChangeVocationLayer.h"
 #include "AnimationEffect.h"
 #include "SoundManager.h"
+#include "HeroIntroLayer.h"
 
 USING_NS_CC;
 
@@ -84,6 +85,10 @@ bool HeroAttrLayer::init(Hero* herodata)
 	std::string str = StringUtils::format("hfull_%d_%d.png", herodata->getVocation(), herodata->getSex());
 	herofullimg->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 	herofullimg->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onHeroFullClick, this));
+
+	cocos2d::ui::Button* hintbtn = (cocos2d::ui::Button*)csbnode->getChildByName("hintbtn");
+	hintbtn->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onHeroHintClick, this));
+	hintbtn->setSwallowTouches(true);
 
 	//升级栏
 	lvnode = csbnode->getChildByName("lvnode");
@@ -793,17 +798,28 @@ void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 			isMovingAction = true;
 			if (heroattrbottom->getPositionY() >= 0)
 			{
-				heroattrbottom->runAction(Sequence::create(MoveTo::create(0.6f, Vec2(0, -430)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
-				equipnode->runAction(Sequence::create(MoveTo::create(0.8f, Vec2(360, -560)), NULL));
+				heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, -heroattrbottom->getContentSize().height)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+				equipnode->runAction(Sequence::create(MoveTo::create(0.4f, Vec2(360, -560)), NULL));
 				blankclick->setVisible(false);
 			}
 			else
 			{
-				heroattrbottom->runAction(Sequence::create(MoveTo::create(0.6f, Vec2(0, 0)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
-				equipnode->runAction(MoveTo::create(0.6f, Vec2(360, 490)));
+				heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, 0)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+				equipnode->runAction(MoveTo::create(0.3f, Vec2(360, 490)));
 				blankclick->setVisible(true);
 			}
 		}
+	}
+}
+
+void HeroAttrLayer::onHeroHintClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		std::string hidstr = StringUtils::format("h%03d", m_heroData->getVocation() + 1);
+		HeroIntroLayer* layer = HeroIntroLayer::create(hidstr);
+		this->addChild(layer, 10);
+		AnimationEffect::openAniEffect(layer);
 	}
 }
 

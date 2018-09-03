@@ -537,6 +537,7 @@
           <Image Name="refreshbtn_text.png" />
           <Image Name="replacebtn_text.png" />
           <Image Name="resitemlv_text.png" />
+          <Image Name="reward_text.png" />
           <Image Name="selectbtn_text.png" />
           <Image Name="selheadtitle.png" />
           <Image Name="settingtitle.png" />
@@ -867,6 +868,7 @@
           <Image Name="herobox_2.png" />
           <Image Name="herobox_3.png" />
           <Image Name="herobox_4.png" />
+          <Image Name="herohinticon.png" />
           <Image Name="herohpbar.png" />
           <Image Name="herohpbarbg.png" />
           <Image Name="heroitem.png" />
@@ -1107,6 +1109,7 @@
         <Project Name="taskMainDescLayer.csd" Type="Layer" />
         <Project Name="taskMainNode.csd" Type="Node" />
         <Project Name="taskTipsNode.csd" Type="Node" />
+        <Project Name="tboxRewardLayer.csd" Type="Layer" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <Project Name="trainLayer.csd" Type="Layer" />
         <Project Name="trainSelectLayer.csd" Type="Layer" />

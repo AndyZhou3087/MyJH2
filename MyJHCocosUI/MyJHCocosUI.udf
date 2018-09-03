@@ -11,10 +11,9 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="newGuideLayer.csd" />
-          <FilePathData Path="shopNode.csd" />
-          <FilePathData Path="giftDescLayer.csd" />
+          <FilePathData Path="ui.csi" />
         </OpenedDocuments>
-        <ActiveDocument Path="giftDescLayer.csd" />
+        <ActiveDocument Path="ui.csi" />
       </Value>
     </Item>
   </Properties>
