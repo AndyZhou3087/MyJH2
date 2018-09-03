@@ -347,8 +347,7 @@ void StoreHouseLayer::decompose(ResBase* res)
 			if (addcount > 0)
 			{
 				if (resstr.length() > 0)
-					resstr.append(ResourceLang::map_lang["zhdunhao"]);
-
+					resstr.append(ResourceLang::map_lang["dunhao"]);
 				resstr = StringUtils::format("%sx%d ", GlobalInstance::map_AllResources[cresid].name.c_str(), addcount);
 				str.append(resstr);
 			}

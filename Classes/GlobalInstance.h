@@ -12,7 +12,6 @@ USING_NS_CC;
 typedef struct
 {
 	std::string id;
-	std::string name;
 	std::vector<int> vec_exp;//升级所需经验值
 	std::vector<float> vec_atk;//攻击
 	std::vector<float> vec_df;//防御
@@ -523,6 +522,7 @@ public:
 	static std::vector<ShopData> vec_shopdata;//商城
 	static std::map<int, std::vector<int>> map_shopprice;//元宝
 	static std::map<std::string, int> map_buyVipDays;//购买的月卡时间
+	static std::vector<std::string> vec_buyVipIds;//月卡id
 
 private:
 	static int refreshHeroTime;

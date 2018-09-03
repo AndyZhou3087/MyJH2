@@ -321,6 +321,7 @@ void MarketLayer::resetStockRes()
 		}
 	}
 	DataSave::getInstance()->setMarketStock("");
+	//updateContent();
 }
 
 void MarketLayer::onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

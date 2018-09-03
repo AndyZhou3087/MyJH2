@@ -321,17 +321,29 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 			rapidjson::Value& retv = doc["ret"];
 			ret = retv.GetInt();
 			GlobalInstance::map_buyVipDays.clear();
+			GlobalInstance::vec_buyVipIds.clear();
 			for (rapidjson::Value::ConstMemberIterator iter = doc.MemberBegin(); iter != doc.MemberEnd(); ++iter)
 			{
 				std::string strid = iter->name.GetString();
 
-				std::size_t pos = strid.find("vip");
-				if (pos != std::string::npos && pos > 0)
+				if (strid.compare(0, 3, "vip") == 0)
 				{
-					int v = atoi(strid.substr(strid.length() - 1, 1).c_str());
-					std::string vipid = StringUtils::format("vip%d", v - 2);
 					int val = iter->value.GetInt();
-					GlobalInstance::map_buyVipDays[vipid] = val;
+					if (val > 0)
+					{
+						GlobalInstance::vec_buyVipIds.push_back(strid);
+					}
+				}
+				else
+				{
+					std::size_t pos = strid.find("vip");
+					if (pos != std::string::npos && pos > 0)
+					{
+						int v = atoi(strid.substr(strid.length() - 1, 1).c_str());
+						std::string vipid = StringUtils::format("vip%d", v - 2);
+						int val = iter->value.GetInt();
+						GlobalInstance::map_buyVipDays[vipid] = val;
+					}
 				}
 			}
 		}

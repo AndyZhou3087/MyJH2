@@ -17,15 +17,25 @@
             <FileData Type="Normal" Path="images/herobg.jpg" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="hfull" ActionTag="1913213836" Tag="164" IconVisible="False" LeftMargin="87.0000" RightMargin="27.0000" TopMargin="49.0000" BottomMargin="105.0000" LeftEage="199" RightEage="199" TopEage="371" BottomEage="371" Scale9OriginX="199" Scale9OriginY="371" Scale9Width="208" Scale9Height="384" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="hfull" ActionTag="1913213836" Tag="164" IconVisible="False" LeftMargin="57.0000" RightMargin="57.0000" TopMargin="49.0000" BottomMargin="105.0000" TouchEnable="True" LeftEage="199" RightEage="199" TopEage="371" BottomEage="371" Scale9OriginX="199" Scale9OriginY="371" Scale9Width="208" Scale9Height="384" ctype="ImageViewObjectData">
             <Size X="606.0000" Y="1126.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="390.0000" Y="668.0000" />
+            <Position X="360.0000" Y="668.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5417" Y="0.5219" />
+            <PrePosition X="0.5000" Y="0.5219" />
             <PreSize X="0.8417" Y="0.8797" />
             <FileData Type="Normal" Path="images/hfull_0_0.png" Plist="" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="blankclick" ActionTag="-82975918" Tag="134" IconVisible="False" TopMargin="720.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+            <Size X="720.0000" Y="560.0000" />
+            <AnchorPoint />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="1.0000" Y="0.4375" />
+            <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="equipnode" ActionTag="-1770716320" Tag="139" IconVisible="True" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="790.0000" BottomMargin="490.0000" ctype="SingleNodeObjectData">
             <Size X="0.0000" Y="0.0000" />

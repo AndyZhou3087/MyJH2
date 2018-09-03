@@ -128,7 +128,7 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 
 			tmp.append(GlobalInstance::map_AllResources[resid].name);
 			if (i < awdsize - 1)
-				tmp.append(ResourceLang::map_lang["zhdunhao"]);
+				tmp.append(ResourceLang::map_lang["dunhao"]);
 		}
 		strdesc = StringUtils::format(ResourceLang::map_lang["awarddesc"].c_str(), tmp.c_str());
 		awarddesc->setString(strdesc);
@@ -194,8 +194,9 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 		{
 			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getPower().getValue() < needph)
 			{
+				if (nohpherostr.length() > 0)
+					nohpherostr.append(ResourceLang::map_lang["dunhao"]);
 				nohpherostr.append(GlobalInstance::myCardHeros[i]->getName());
-				nohpherostr.append(ResourceLang::map_lang["zhdunhao"]);
 				isphok = false;
 			}
 		}

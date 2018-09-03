@@ -227,6 +227,12 @@ void FightingLayer::clearSkillsData()
 
 void FightingLayer::showAtk(int fightertag)
 {
+	if (checkFightResult() >= 0)
+	{
+		resumeAtkSchedule();
+		return;
+	}
+	
 	if (fightertag < 6)//自己英雄攻击
 	{
 		int enemyindex = -1;//打哪个敌人

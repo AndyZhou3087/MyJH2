@@ -176,7 +176,7 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			}
 			else
 			{
-				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUILDLVUP);
+				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(m_Data, CA_RESCREATORLVUP);
 				g_mainScene->addChild(layer);
 				AnimationEffect::openAniEffect((Layer*)layer);

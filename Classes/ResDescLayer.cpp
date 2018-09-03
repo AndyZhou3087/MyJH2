@@ -144,7 +144,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 
 				resname.append(GlobalInstance::map_AllResources[vec_tmp[0]].name);
 				if (i < awdszie - 1)
-					resname.append(ResourceLang::map_lang["zhdunhao"]);
+					resname.append(ResourceLang::map_lang["dunhao"]);
 
 			}
 			std::string  descstr1 = StringUtils::format(ResourceLang::map_lang["tboxdesc"].c_str(), resname.c_str());

@@ -135,6 +135,11 @@ bool MainScene::init()
 	MyRes::putMyPackagesToStorage();
 	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_HOME);
 
+
+	ParticleSystemQuad *leafsParticle = ParticleSystemQuad::create(ResourcePath::makePath("floatleafs.plist"));
+	leafsParticle->setPosition(Vec2(360, 1280));
+	scroll_3->addChild(leafsParticle, 1);
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{

@@ -74,6 +74,8 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 	title->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	lefttime = (cocos2d::ui::Text*)csbnode->getChildByName("lefttime");
+	lefttime->setAnchorPoint(Vec2(0, 0.5));
+	lefttime->setPosition(Vec2(443, 436));
 
 	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 	price = (cocos2d::ui::Text*)csbnode->getChildByName("price");
@@ -184,7 +186,7 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		if (m_type != 0)
+		if (m_type == 0)
 		{
 			AnimationEffect::closeAniEffect((Layer*)this);
 		}
@@ -212,7 +214,11 @@ void GiftContentLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 				std::vector<std::string> vec_res = m_data->res[i];
 				std::string resid = vec_res[0];
 				int count = atoi(vec_res[1].c_str());
-				int qu = atoi(vec_res[2].c_str());
+				int qu = 0;
+				if (vec_res.size() > 2)
+				{
+					qu = atoi(vec_res[2].c_str());
+				}
 				int stonescount = GlobalInstance::getInstance()->generateStoneCount(qu);
 				MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
 			}
@@ -233,7 +239,7 @@ void GiftContentLayer::onFinish(int code)
 			buybtntext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("msgallget_text", langtype))->getContentSize());
 			buybtntext->setScale(0.7);
 		}
-		price->setVisible(false);
+		//price->setVisible(false);
 		std::map<std::string, int>::iterator it;
 		for (it = GlobalInstance::map_buyVipDays.begin(); it != GlobalInstance::map_buyVipDays.end(); ++it)
 		{

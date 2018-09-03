@@ -43,6 +43,7 @@ std::vector<AchieveData> GlobalInstance::vec_achievedata;
 std::vector<ShopData> GlobalInstance::vec_shopdata;
 std::map<int, std::vector<int>> GlobalInstance::map_shopprice;
 std::map<std::string, int> GlobalInstance::map_buyVipDays;
+std::vector<std::string> GlobalInstance::vec_buyVipIds;
 
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
@@ -373,9 +374,6 @@ void GlobalInstance::loadHerosAttrData()
 			S_HeroAttr data;
 			rapidjson::Value& v = jsonvalue["id"];
 			data.id = v.GetString();
-
-			v = jsonvalue["name"];
-			data.name = v.GetString();
 
 			v = jsonvalue["exp"];
 			for (unsigned int m = 0; m < v.Size(); m++)
