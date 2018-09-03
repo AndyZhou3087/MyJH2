@@ -7,5 +7,18 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="newGuideLayer.csd" />
+          <FilePathData Path="ui.csi" />
+          <FilePathData Path="marketResNode.csd" />
+          <FilePathData Path="marketRefreshLayer.csd" />
+          <FilePathData Path="tboxRewardLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="tboxRewardLayer.csd" />
+        <ActiveDocument Path="ui.csi" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>

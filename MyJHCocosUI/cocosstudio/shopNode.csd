@@ -6,7 +6,7 @@
       <ObjectData Name="Node" Tag="154" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="shopitembg" ActionTag="-173093256" Tag="155" IconVisible="False" LeftMargin="-316.5000" RightMargin="-316.5000" TopMargin="-76.0000" BottomMargin="-76.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="shopitembg" ActionTag="2128162064" Tag="76" IconVisible="False" LeftMargin="-316.5000" RightMargin="-316.5000" TopMargin="-76.0000" BottomMargin="-76.0000" TouchEnable="True" LeftEage="208" RightEage="208" TopEage="50" BottomEage="50" Scale9OriginX="208" Scale9OriginY="50" Scale9Width="217" Scale9Height="52" ctype="ImageViewObjectData">
             <Size X="633.0000" Y="152.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />
@@ -15,7 +15,6 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/shopitembg.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="shopitem" ActionTag="-1385536671" Tag="156" IconVisible="False" LeftMargin="-166.9946" RightMargin="-132.0054" TopMargin="-17.8452" BottomMargin="-52.1548" ctype="SpriteObjectData">
             <Size X="299.0000" Y="70.0000" />
@@ -108,7 +107,7 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn1_n.png" Plist="ui.plist" />
             <PressedFileData Type="MarkedSubImage" Path="ui/buildingactbtn1_n.png" Plist="ui.plist" />
             <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn1_n.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />

@@ -11,7 +11,7 @@
 
 ShopNode::ShopNode()
 {
-	clickflag = false;
+
 }
 
 
@@ -62,6 +62,7 @@ bool ShopNode::init(ShopData* shopdata)
 
 	cocos2d::ui::Button* buybtn = (cocos2d::ui::Button*)csbnode->getChildByName("buybtn");
 	buybtn->addTouchEventListener(CC_CALLBACK_2(ShopNode::onBtnClick, this));
+	buybtn->setSwallowTouches(false);
 	cocos2d::ui::ImageView* buybtntext = (cocos2d::ui::ImageView*)buybtn->getChildByName("text");
 	buybtntext->loadTexture(ResourcePath::makeTextImgPath("mapeventtext_6_1", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
