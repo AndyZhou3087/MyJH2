@@ -9,7 +9,10 @@
     </Item>
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
-        <ActiveDocument />
+        <OpenedDocuments>
+          <FilePathData Path="ui.csi" />
+        </OpenedDocuments>
+        <ActiveDocument Path="ui.csi" />
       </Value>
     </Item>
   </Properties>
