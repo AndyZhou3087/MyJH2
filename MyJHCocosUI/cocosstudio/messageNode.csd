@@ -27,7 +27,7 @@
             <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="title" ActionTag="-1199557682" Tag="86" IconVisible="False" LeftMargin="-247.0000" RightMargin="189.0000" TopMargin="-16.0000" BottomMargin="-16.0000" FontSize="28" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="title" ActionTag="-1199557682" Tag="86" IconVisible="False" LeftMargin="-247.0000" RightMargin="189.0000" TopMargin="-16.0000" BottomMargin="-16.0000" FontSize="28" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="58.0000" Y="32.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="-247.0000" />
@@ -37,7 +37,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="icon" ActionTag="51922429" Tag="88" IconVisible="False" LeftMargin="175.0000" RightMargin="-265.0000" TopMargin="-46.0000" BottomMargin="-46.0000" LeftEage="29" RightEage="29" TopEage="30" BottomEage="30" Scale9OriginX="29" Scale9OriginY="30" Scale9Width="32" Scale9Height="32" ctype="ImageViewObjectData">
             <Size X="90.0000" Y="92.0000" />

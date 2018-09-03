@@ -525,6 +525,7 @@
           <Image Name="refreshbtn_text.png" />
           <Image Name="replacebtn_text.png" />
           <Image Name="resitemlv_text.png" />
+          <Image Name="reward_text.png" />
           <Image Name="selectbtn_text.png" />
           <Image Name="selheadtitle.png" />
           <Image Name="settingtitle.png" />
@@ -1099,6 +1100,7 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="tboxRewardLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

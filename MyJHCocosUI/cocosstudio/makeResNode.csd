@@ -36,7 +36,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/a001.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="763399710" Tag="160" IconVisible="False" LeftMargin="-185.1654" RightMargin="127.1654" TopMargin="-44.1456" BottomMargin="12.1456" FontSize="28" LabelText="木材" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="name" ActionTag="763399710" Tag="160" IconVisible="False" LeftMargin="-185.1654" RightMargin="127.1654" TopMargin="-44.1456" BottomMargin="12.1456" FontSize="28" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="58.0000" Y="32.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="-185.1654" Y="28.1456" />
@@ -46,9 +46,9 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="1327613067" Tag="165" IconVisible="False" LeftMargin="-181.1651" RightMargin="-268.8349" TopMargin="0.6522" BottomMargin="-48.6522" IsCustomSize="True" FontSize="23" LabelText="木材" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="desc" ActionTag="1327613067" Tag="165" IconVisible="False" LeftMargin="-181.1651" RightMargin="-268.8349" TopMargin="0.6522" BottomMargin="-48.6522" IsCustomSize="True" FontSize="23" LabelText="木材" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="450.0000" Y="48.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="-181.1651" Y="-24.6522" />
@@ -58,7 +58,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

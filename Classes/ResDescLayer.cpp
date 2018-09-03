@@ -8,6 +8,7 @@
 #include "StoreHouseLayer.h"
 #include "MainScene.h"
 #include "AnimationEffect.h"
+#include "TBoxRewardLayer.h"
 
 USING_NS_CC;
 
@@ -147,8 +148,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 					resname.append(ResourceLang::map_lang["dunhao"]);
 
 			}
-			std::string  descstr1 = StringUtils::format(ResourceLang::map_lang["tboxdesc"].c_str(), resname.c_str());
-			descstr = StringUtils::format("%s%s", descstr.c_str(), descstr1.c_str());
+			descstr = StringUtils::format(ResourceLang::map_lang["tboxdesc"].c_str(), resname.c_str());
 		}
 		else if (res->getType() == T_TLMED)
 		{
@@ -250,6 +250,16 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				MyRes::Use("p001");
 
 				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+				if (storelayer != NULL)
+					storelayer->updateUI();
+			}
+			else if (m_res->getType() == T_BOX)
+			{
+				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+				TBoxRewardLayer* layer = TBoxRewardLayer::create(m_res->getId());
+				storelayer->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
+
 				if (storelayer != NULL)
 					storelayer->updateUI();
 			}

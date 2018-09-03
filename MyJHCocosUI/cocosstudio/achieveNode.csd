@@ -132,7 +132,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <ImageFileData Type="MarkedSubImage" Path="ui/taskprobar.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="taskprotext" ActionTag="164145490" Tag="45" IconVisible="False" LeftMargin="-80.6892" RightMargin="50.6892" TopMargin="23.4800" BottomMargin="-44.4800" FontSize="18" LabelText="1/3" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="taskprotext" ActionTag="164145490" Tag="45" IconVisible="False" LeftMargin="-80.6892" RightMargin="50.6892" TopMargin="23.4800" BottomMargin="-44.4800" FontSize="18" LabelText="1/3" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="30.0000" Y="21.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-65.6892" Y="-33.9800" />
@@ -142,7 +142,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
           <AbstractNodeData Name="reward_0" ActionTag="-1458255606" VisibleForFrame="False" Tag="148" IconVisible="False" LeftMargin="-173.9952" RightMargin="64.9952" TopMargin="-54.8531" BottomMargin="-54.1469" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
             <Size X="109.0000" Y="109.0000" />
