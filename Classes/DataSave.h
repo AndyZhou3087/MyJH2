@@ -311,6 +311,16 @@ public:
 	****************************/
 	int getHeadId();
 
+	/****************************
+	获取是否有新手引导
+	****************************/
+	bool getIsNewerGuide(int index);
+
+	/****************************
+	设置是否有新手引导
+	****************************/
+	void setIsNewerGuide(int index, bool val);
+
 private:
 	static DataSave* _Context;//类实例
 

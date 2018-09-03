@@ -60,26 +60,25 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="43" G="30" B="20" />
           </AbstractNodeData>
-          <AbstractNodeData Name="box" ActionTag="1312407168" Tag="116" IconVisible="False" LeftMargin="434.0000" RightMargin="140.0000" TopMargin="135.0000" BottomMargin="999.0000" ctype="SpriteObjectData">
-            <Size X="134.0000" Y="134.0000" />
+          <AbstractNodeData Name="box" ActionTag="1199877752" Tag="42" IconVisible="False" LeftMargin="434.1168" RightMargin="139.8832" TopMargin="136.0024" BottomMargin="997.9976" LeftEage="43" RightEage="43" TopEage="53" BottomEage="53" Scale9OriginX="43" Scale9OriginY="53" Scale9Width="60" Scale9Height="40" ctype="ImageViewObjectData">
+            <Size X="146.0000" Y="146.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="507.0000" Y="1072.0000" />
+            <Position X="507.1168" Y="1070.9976" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7042" Y="0.8375" />
+            <PrePosition X="0.7043" Y="0.8367" />
             <PreSize X="0.2028" Y="0.1141" />
-            <FileData Type="MarkedSubImage" Path="ui/headbox.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
+            <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="icon" ActionTag="-405337763" VisibleForFrame="False" Tag="42" IconVisible="False" LeftMargin="441.0000" RightMargin="147.0000" TopMargin="127.5000" BottomMargin="991.5000" LeftEage="43" RightEage="43" TopEage="53" BottomEage="53" Scale9OriginX="43" Scale9OriginY="53" Scale9Width="46" Scale9Height="55" ctype="ImageViewObjectData">
-            <Size X="132.0000" Y="161.0000" />
+          <AbstractNodeData Name="icon" ActionTag="-405337763" Tag="42" IconVisible="False" LeftMargin="438.4996" RightMargin="144.5004" TopMargin="130.5024" BottomMargin="1008.4976" LeftEage="43" RightEage="43" TopEage="53" BottomEage="53" Scale9OriginX="43" Scale9OriginY="53" Scale9Width="51" Scale9Height="35" ctype="ImageViewObjectData">
+            <Size X="137.0000" Y="141.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="507.0000" Y="1072.0000" />
+            <Position X="506.9996" Y="1078.9976" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7042" Y="0.8375" />
-            <PreSize X="0.1833" Y="0.1258" />
-            <FileData Type="MarkedSubImage" Path="mapui/n012.png" Plist="mapui.plist" />
+            <PrePosition X="0.7042" Y="0.8430" />
+            <PreSize X="0.1903" Y="0.1102" />
+            <FileData Type="MarkedSubImage" Path="ui/task_head.png" Plist="ui.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="npcname" ActionTag="-1546222213" Tag="118" IconVisible="False" LeftMargin="519.6324" RightMargin="97.3676" TopMargin="264.5823" BottomMargin="992.4177" FontSize="20" LabelText="魔教的威胁" ShadowOffsetX="1.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="103.0000" Y="23.0000" />

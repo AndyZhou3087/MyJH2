@@ -82,6 +82,10 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 	cocos2d::ui::Text* rewardlabel = (cocos2d::ui::Text*)m_csbnode->getChildByName("rewardlabel");
 	rewardlabel->setString(ResourceLang::map_lang["taskrewardtip"]);
 
+	cocos2d::ui::ImageView* headbox = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("box");
+	headbox->loadTexture("ui/headbox.png", cocos2d::ui::Widget::TextureResType::PLIST);
+	headbox->setContentSize(Sprite::createWithSpriteFrameName("ui/headbox.png")->getContentSize());
+
 	//npc头像
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
 	std::string str = StringUtils::format("mapui/%s.png", GlobalInstance::map_Npcs[data->npcid].icon.c_str());
@@ -94,7 +98,7 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 	m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
 	this->addChild(m_clippingNode, 1);
 	m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
-	m_clippingNode->setPosition(Vec2(icon->getPositionX(), icon->getPositionY() + 45));
+	m_clippingNode->setPosition(Vec2(icon->getPositionX() - 0.5, icon->getPositionY() + 37.5));
 	Sprite* head = Sprite::createWithSpriteFrameName(str);
 	head->setAnchorPoint(Vec2(0.5, 1));
 	head->setPositionY(20);
