@@ -50,10 +50,10 @@
             <OutlineColor A="255" R="236" G="132" B="78" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="1990169370" Tag="159" IconVisible="False" LeftMargin="-156.7626" RightMargin="-123.2374" TopMargin="-5.4655" BottomMargin="-44.5345" IsCustomSize="True" FontSize="20" LabelText="内含金元宝" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="280.0000" Y="50.0000" />
+          <AbstractNodeData Name="desc" ActionTag="1990169370" Tag="159" IconVisible="False" LeftMargin="-159.7626" RightMargin="-120.2374" TopMargin="-11.4655" BottomMargin="-48.5345" IsCustomSize="True" FontSize="20" LabelText="内含金元宝" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="280.0000" Y="60.0000" />
             <AnchorPoint ScaleY="1.0000" />
-            <Position X="-156.7626" Y="5.4655" />
+            <Position X="-159.7626" Y="11.4655" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="115" G="88" B="70" />
             <PrePosition />
@@ -62,7 +62,7 @@
             <OutlineColor A="255" R="236" G="132" B="78" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="coin" ActionTag="1649534891" Tag="160" IconVisible="False" LeftMargin="-34.0324" RightMargin="-7.9676" TopMargin="-7.1082" BottomMargin="-18.8918" ctype="SpriteObjectData">
+          <AbstractNodeData Name="coin" ActionTag="1649534891" Tag="160" IconVisible="False" LeftMargin="-34.0324" RightMargin="-7.9676" TopMargin="-12.1082" BottomMargin="-13.8918" ctype="SpriteObjectData">
             <Size X="42.0000" Y="26.0000" />
             <Children>
               <AbstractNodeData Name="count" ActionTag="-634122211" Tag="161" IconVisible="False" LeftMargin="47.1066" RightMargin="-58.1066" TopMargin="2.8108" BottomMargin="0.1892" FontSize="20" LabelText="x1880" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
@@ -79,7 +79,7 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-13.0324" Y="-5.8918" />
+            <Position X="-13.0324" Y="-0.8918" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />

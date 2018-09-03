@@ -9,6 +9,7 @@
 #include "ShopNode.h"
 #include "DynamicValue.h"
 #include "MyRes.h"
+#include "GiftContentLayer.h"
 
 USING_NS_CC;
 
@@ -177,14 +178,7 @@ void ShopLayer::setMessage(PYARET ret)
 		}
 		else if (payindex < coincount + giftcount + vipcount)//ÂòVIP
 		{
-			/*std::string vipid = GlobalData::vec_goods[payindex - herocount].icon;
-			GlobalData::vec_buyVipIds.push_back(vipid);
-
-			ServerDataSwap::init()->vipSuccNotice(vipid);
-			if (g_gameLayer != NULL)
-			{
-				g_gameLayer->scheduleOnce(schedule_selector(ShopLayer::showVipReward), 0.1f);
-			}*/
+			showVipReward(&GlobalInstance::vec_shopdata[payindex], payindex);
 #ifdef ANALYTICS
 			/*std::string name[] = { "byk6", "byk30", "byk68" };
 			AnalyticUtil::onEvent(name[payindex - herocount - golditemcount].c_str());*/
@@ -195,4 +189,13 @@ void ShopLayer::setMessage(PYARET ret)
 	MovingLabel::show(ResourceLang::map_lang[str]);
 	payindex = -1;
 	isPaying = false;
+}
+
+void ShopLayer::showVipReward(ShopData* data, int tag)
+{
+	GiftContentLayer* layer = GiftContentLayer::create(data, tag, 1);
+	if (g_mainScene != NULL)
+	{
+		g_mainScene->addChild(layer, 10, "viprewardlayer");
+	}
 }

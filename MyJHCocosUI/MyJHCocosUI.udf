@@ -7,5 +7,15 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="shopNode.csd" />
+          <FilePathData Path="giftDescLayer.csd" />
+          <FilePathData Path="heroAttrLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="giftDescLayer.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>
