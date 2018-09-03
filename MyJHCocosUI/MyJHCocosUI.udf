@@ -7,21 +7,5 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="giftDescLayer.csd" />
-          <FilePathData Path="taskMainNode.csd" />
-          <FilePathData Path="fightLayer.csd" />
-          <FilePathData Path="heroAttrLayer.csd" />
-          <FilePathData Path="MainMenuLayer.csd" />
-          <FilePathData Path="ui.csi" />
-          <FilePathData Path="marketResNode.csd" />
-          <FilePathData Path="marketRefreshLayer.csd" />
-          <FilePathData Path="tboxRewardLayer.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="ui.csi" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>
