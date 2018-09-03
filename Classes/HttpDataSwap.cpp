@@ -109,6 +109,30 @@ void HttpDataSwap::getAllData()
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetAllDataCB, this));
 }
 
+void HttpDataSwap::vipIsOn()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_takemonthlycard?");
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpVipIsOnCB, this));
+}
+
+void HttpDataSwap::vipSuccNotice(std::string vipid)
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_buynotify?");
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+	url.append("&goodsid=");
+	url.append(vipid);
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpBlankCB, this));
+}
+
 void HttpDataSwap::getMessageList(int type)
 {
 	std::string url;
@@ -278,6 +302,62 @@ void HttpDataSwap::httpPostAllDataCB(std::string retdata, int code, std::string 
 	{
 		m_pDelegateProtocol->onFinish(ret);
 	}
+	release();
+}
+
+void HttpDataSwap::httpBlankCB(std::string retdata, int code, std::string extdata)
+{
+	release();
+}
+
+void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+			GlobalInstance::map_buyVipDays.clear();
+			GlobalInstance::vec_buyVipIds.clear();
+			for (rapidjson::Value::ConstMemberIterator iter = doc.MemberBegin(); iter != doc.MemberEnd(); ++iter)
+			{
+				std::string strid = iter->name.GetString();
+
+				if (strid.compare(0, 3, "vip") == 0)
+				{
+					int val = iter->value.GetInt();
+					if (val > 0)
+					{
+						GlobalInstance::vec_buyVipIds.push_back(strid);
+					}
+				}
+				else
+				{
+					std::size_t pos = strid.find("vip");
+					if (pos != std::string::npos && pos > 0)
+					{
+						int v = atoi(strid.substr(strid.length() - 1, 1).c_str());
+						std::string vipid = StringUtils::format("vip%d", v - 2);
+						int val = iter->value.GetInt();
+						GlobalInstance::map_buyVipDays[vipid] = val;
+					}
+				}
+			}
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+
 	release();
 }
 

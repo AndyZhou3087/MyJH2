@@ -111,6 +111,7 @@ bool MainMenuLayer::init()
 	updateUI(0);
 	this->schedule(schedule_selector(MainMenuLayer::updateUI), 1.0f);
 
+	HttpDataSwap::init(this)->vipIsOn();
 	HttpDataSwap::init(this)->getMessageList(0);
 
     return true;
@@ -120,7 +121,7 @@ void MainMenuLayer::onFinish(int code)
 {
 	if (code == SUCCESS)
 	{
-		if (GlobalInstance::map_buyVipDays.size()>0)
+		if (GlobalInstance::vec_buyVipIds.size()>0)
 		{
 			std::map<std::string, int>::iterator it;
 			for (it = GlobalInstance::map_buyVipDays.begin(); it != GlobalInstance::map_buyVipDays.end(); ++it)
@@ -129,7 +130,7 @@ void MainMenuLayer::onFinish(int code)
 				{
 					if (GlobalInstance::vec_shopdata[i].icon.compare(it->first) == 0)
 					{
-						GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
+						GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i, 1);
 						this->addChild(layer);
 						AnimationEffect::openAniEffect((Layer*)layer);
 						break;

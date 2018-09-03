@@ -4,6 +4,8 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include "GlobalInstance.h"
+#include "HttpDataSwap.h"
 
 USING_NS_CC;
 
@@ -13,7 +15,7 @@ typedef enum
 	PAY_FAIL
 }PYARET;
 
-class ShopLayer : public cocos2d::Layer
+class ShopLayer : public cocos2d::Layer, public HTTPDataDelegateProtocol
 {
 public:
 	ShopLayer();
@@ -26,6 +28,7 @@ public:
 	bool init();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	static void showVipReward(ShopData* data, int tag);
 
 private:
 	cocos2d::ui::ScrollView* scrollView;

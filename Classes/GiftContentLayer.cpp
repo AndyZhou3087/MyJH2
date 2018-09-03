@@ -9,6 +9,7 @@
 #include "ShopNode.h"
 #include "DynamicValue.h"
 #include "ShopLayer.h"
+#include "MyRes.h"
 
 USING_NS_CC;
 
@@ -23,10 +24,10 @@ GiftContentLayer::~GiftContentLayer()
 }
 
 
-GiftContentLayer* GiftContentLayer::create(ShopData* data, int tag)
+GiftContentLayer* GiftContentLayer::create(ShopData* data, int tag, int type)
 {
 	GiftContentLayer *pRet = new(std::nothrow)GiftContentLayer();
-	if (pRet && pRet->init(data, tag))
+	if (pRet && pRet->init(data, tag, type))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -40,13 +41,14 @@ GiftContentLayer* GiftContentLayer::create(ShopData* data, int tag)
 }
 
 // on "init" you need to initialize your instance
-bool GiftContentLayer::init(ShopData* data, int tag)
+bool GiftContentLayer::init(ShopData* data, int tag, int type)
 {
 	if (!Layer::init())
 	{
 		return false;
 	}
 
+	m_type = type;
 	m_data = data;
 	m_tag = tag;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
@@ -57,42 +59,50 @@ bool GiftContentLayer::init(ShopData* data, int tag)
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("giftDescLayer.csb"));
 	this->addChild(csbnode);
-	int langtype = GlobalInstance::getInstance()->getLang();
+	langtype = GlobalInstance::getInstance()->getLang();
 
 	//°´Å¥
-	cocos2d::ui::Button* buybtn = (cocos2d::ui::Button*)csbnode->getChildByName("buybtn");
+	buybtn = (cocos2d::ui::Button*)csbnode->getChildByName("buybtn");
 	buybtn->addTouchEventListener(CC_CALLBACK_2(GiftContentLayer::onBtnClick, this));
+	buybtn->setTag(0);
+	buybtntext = (cocos2d::ui::ImageView*)buybtn->getChildByName("text");
+	buybtntext->loadTexture(ResourcePath::makeTextImgPath("mapeventtext_6_1", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	buybtntext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("mapeventtext_6_1", langtype))->getContentSize());
 
 	cocos2d::ui::ImageView* title = (cocos2d::ui::ImageView*)csbnode->getChildByName("title");
 	std::string str = StringUtils::format("text_%s", data->icon.c_str());
 	title->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::Text* lefttime = (cocos2d::ui::Text*)csbnode->getChildByName("lefttime");
+	lefttime = (cocos2d::ui::Text*)csbnode->getChildByName("lefttime");
+	lefttime->setAnchorPoint(Vec2(0, 0.5));
+	lefttime->setPosition(Vec2(443, 436));
 
 	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
-	cocos2d::ui::Text* price = (cocos2d::ui::Text*)csbnode->getChildByName("price");
+	price = (cocos2d::ui::Text*)csbnode->getChildByName("price");
 	str = StringUtils::format(ResourceLang::map_lang["shoppricetext"].c_str(), data->price);
 	price->setString(str);
+
+	if (m_type != 0)
+	{
+		int id = atoi(data->icon.substr(3, 1).c_str());
+		std::string vipid = StringUtils::format("vip%d", id + 2);
+		HttpDataSwap::init(this)->vipSuccNotice(vipid);
+		buybtn->setVisible(false);
+		price->setVisible(false);
+	}
+
 	if (data->type == GIFT)
 	{
 		str = StringUtils::format("shoptext_%d", data->type);
-		desc->setString(str);
+		desc->setString(ResourceLang::map_lang[str]);
 	}
 	else if (data->type == VIP)
 	{
-		str = StringUtils::format("shoptext_%d", data->type);
-		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), data->name.c_str());
+		str = StringUtils::format("shoptext_%d", m_data->type);
+		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), m_data->name.c_str());
 		desc->setString(str);
-		std::map<std::string, int>::iterator it;
-		for (it = GlobalInstance::map_buyVipDays.begin(); it != GlobalInstance::map_buyVipDays.end(); ++it)
-		{
-			if (data->icon.compare(it->first) == 0)
-			{
-				lefttime->setVisible(true);
-				str = StringUtils::format(ResourceLang::map_lang["lefttimetext"].c_str(), it->second);
-				lefttime->setString(str);
-			}
-		}
+
+		HttpDataSwap::init(this)->vipIsOn();
 	}
 
 	std::vector<int> startx;
@@ -133,7 +143,11 @@ bool GiftContentLayer::init(ShopData* data, int tag)
 		std::vector<std::string> vec_res = data->res[i];
 		std::string resid = vec_res[0];
 		int count = atoi(vec_res[1].c_str());
-		int qu = atoi(vec_res[2].c_str());
+		int qu = 0;
+		if (vec_res.size() > 2)
+		{
+			qu = atoi(vec_res[2].c_str());
+		}
 		std::string str = StringUtils::format("ui/resbox_qu%d.png", qu);
 		Sprite* box = Sprite::createWithSpriteFrameName(str);
 		this->addChild(box);
@@ -172,7 +186,10 @@ bool GiftContentLayer::init(ShopData* data, int tag)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		AnimationEffect::closeAniEffect((Layer*)this);
+		if (m_type == 0)
+		{
+			AnimationEffect::closeAniEffect((Layer*)this);
+		}
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -184,7 +201,54 @@ void GiftContentLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		ShopLayer::beginPay(m_tag);
+		Node* node = (Node*)pSender;
+		int tag = node->getTag();
+		if (tag == 0)
+		{
+			ShopLayer::beginPay(m_tag);
+		}
+		else
+		{
+			for (unsigned int i = 0; i < m_data->res.size(); i++)
+			{
+				std::vector<std::string> vec_res = m_data->res[i];
+				std::string resid = vec_res[0];
+				int count = atoi(vec_res[1].c_str());
+				int qu = 0;
+				if (vec_res.size() > 2)
+				{
+					qu = atoi(vec_res[2].c_str());
+				}
+				int stonescount = GlobalInstance::getInstance()->generateStoneCount(qu);
+				MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
+			}
+		}
 		AnimationEffect::closeAniEffect((Layer*)this);
+	}
+}
+
+void GiftContentLayer::onFinish(int code)
+{
+	if (GlobalInstance::map_buyVipDays.size() > 0)
+	{
+		if (m_type != 0)
+		{
+			buybtn->setVisible(true);
+			buybtn->setTag(1);
+			buybtntext->loadTexture(ResourcePath::makeTextImgPath("msgallget_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			buybtntext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("msgallget_text", langtype))->getContentSize());
+			buybtntext->setScale(0.7);
+		}
+		//price->setVisible(false);
+		std::map<std::string, int>::iterator it;
+		for (it = GlobalInstance::map_buyVipDays.begin(); it != GlobalInstance::map_buyVipDays.end(); ++it)
+		{
+			if (m_data->icon.compare(it->first) == 0)
+			{
+				lefttime->setVisible(true);
+				std::string str = StringUtils::format(ResourceLang::map_lang["lefttimetext"].c_str(), it->second);
+				lefttime->setString(str);
+			}
+		}
 	}
 }

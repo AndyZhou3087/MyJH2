@@ -522,6 +522,7 @@ public:
 	static std::vector<ShopData> vec_shopdata;//商城
 	static std::map<int, std::vector<int>> map_shopprice;//元宝
 	static std::map<std::string, int> map_buyVipDays;//购买的月卡时间
+	static std::vector<std::string> vec_buyVipIds;//月卡id
 
 private:
 	static int refreshHeroTime;

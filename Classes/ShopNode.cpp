@@ -58,6 +58,7 @@ bool ShopNode::init(ShopData* shopdata)
 
 	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 	desc->setString(shopdata->desc);
+	desc->setFontSize(19);
 
 	cocos2d::ui::Button* buybtn = (cocos2d::ui::Button*)csbnode->getChildByName("buybtn");
 	buybtn->addTouchEventListener(CC_CALLBACK_2(ShopNode::onBtnClick, this));
