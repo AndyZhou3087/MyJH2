@@ -39,15 +39,15 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="title" ActionTag="-955670230" Tag="16" IconVisible="False" LeftMargin="279.5000" RightMargin="279.5000" TopMargin="388.8864" BottomMargin="833.1136" LeftEage="53" RightEage="53" TopEage="19" BottomEage="19" Scale9OriginX="53" Scale9OriginY="19" Scale9Width="55" Scale9Height="20" ctype="ImageViewObjectData">
-            <Size X="161.0000" Y="58.0000" />
+          <AbstractNodeData Name="title" ActionTag="-955670230" Tag="16" IconVisible="False" LeftMargin="256.0000" RightMargin="256.0000" TopMargin="370.5000" BottomMargin="836.5000" LeftEage="53" RightEage="53" TopEage="19" BottomEage="19" Scale9OriginX="53" Scale9OriginY="19" Scale9Width="102" Scale9Height="35" ctype="ImageViewObjectData">
+            <Size X="208.0000" Y="73.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="862.1136" />
+            <Position X="360.0000" Y="873.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.6735" />
-            <PreSize X="0.2236" Y="0.0453" />
-            <FileData Type="MarkedSubImage" Path="text_zh_cn/text_gf0.png" Plist="text_zh_cn.plist" />
+            <PrePosition X="0.5000" Y="0.6820" />
+            <PreSize X="0.2889" Y="0.0570" />
+            <FileData Type="MarkedSubImage" Path="text_zh_cn/reward_text.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="okbtn" ActionTag="-2121071930" Tag="155" IconVisible="False" LeftMargin="278.4998" RightMargin="278.5002" TopMargin="750.7371" BottomMargin="462.2629" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="163.0000" Y="67.0000" />
