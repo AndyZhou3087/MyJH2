@@ -237,7 +237,7 @@ void GiftContentLayer::onFinish(int code)
 			buybtn->setTag(1);
 			buybtntext->loadTexture(ResourcePath::makeTextImgPath("msgallget_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			buybtntext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("msgallget_text", langtype))->getContentSize());
-			buybtntext->setScale(0.7);
+			buybtntext->setScale(0.7f);
 		}
 		//price->setVisible(false);
 		std::map<std::string, int>::iterator it;

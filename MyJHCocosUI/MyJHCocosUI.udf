@@ -11,8 +11,15 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="giftDescLayer.csd" />
+          <FilePathData Path="taskMainNode.csd" />
+          <FilePathData Path="fightLayer.csd" />
+          <FilePathData Path="heroAttrLayer.csd" />
+          <FilePathData Path="MainMenuLayer.csd" />
+          <FilePathData Path="ui.csi" />
+          <FilePathData Path="marketResNode.csd" />
+          <FilePathData Path="marketRefreshLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="giftDescLayer.csd" />
+        <ActiveDocument Path="marketRefreshLayer.csd" />
       </Value>
     </Item>
   </Properties>

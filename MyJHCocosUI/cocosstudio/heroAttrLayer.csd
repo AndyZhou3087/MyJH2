@@ -746,6 +746,31 @@
             <PrePosition X="0.5028" Y="0.3813" />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
+          <AbstractNodeData Name="hintbtn" ActionTag="-1082048688" Tag="151" IconVisible="False" LeftMargin="720.0000" RightMargin="-98.0000" TopMargin="-91.0000" BottomMargin="1280.0000" TouchEnable="True" FlipX="True" FlipY="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="68" Scale9Height="69" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="98.0000" Y="91.0000" />
+            <AnchorPoint />
+            <Position X="720.0000" Y="1280.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="1.0000" Y="1.0000" />
+            <PreSize X="0.1361" Y="0.0711" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="mapui/fightingedge.png" Plist="mapui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="mapui/fightingedge.png" Plist="mapui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="mapui/fightingedge.png" Plist="mapui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="hinticon" ActionTag="-369231607" Tag="152" IconVisible="False" LeftMargin="671.8296" RightMargin="17.1704" TopMargin="7.1338" BottomMargin="1220.8662" LeftEage="10" RightEage="10" TopEage="13" BottomEage="13" Scale9OriginX="10" Scale9OriginY="13" Scale9Width="11" Scale9Height="26" ctype="ImageViewObjectData">
+            <Size X="31.0000" Y="52.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="687.3296" Y="1246.8662" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9546" Y="0.9741" />
+            <PreSize X="0.0431" Y="0.0406" />
+            <FileData Type="MarkedSubImage" Path="ui/herohinticon.png" Plist="ui.plist" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

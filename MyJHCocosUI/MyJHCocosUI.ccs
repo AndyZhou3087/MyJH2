@@ -856,6 +856,7 @@
           <Image Name="herobox_2.png" />
           <Image Name="herobox_3.png" />
           <Image Name="herobox_4.png" />
+          <Image Name="herohinticon.png" />
           <Image Name="herohpbar.png" />
           <Image Name="herohpbarbg.png" />
           <Image Name="heroitem.png" />
@@ -1094,13 +1095,13 @@
         <Project Name="taskMainDescLayer.csd" Type="Layer" />
         <Project Name="taskMainNode.csd" Type="Node" />
         <Project Name="taskTipsNode.csd" Type="Node" />
+        <Project Name="tboxRewardLayer.csd" Type="Layer" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <Project Name="trainLayer.csd" Type="Layer" />
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="tboxRewardLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

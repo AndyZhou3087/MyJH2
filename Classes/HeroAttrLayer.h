@@ -56,6 +56,11 @@ private:
 	void onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	/************************************
+	人物信息说明点击
+	*************************************/
+	void onHeroHintClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	/************************************
 	修改名字editBox控件
 	*************************************/
 	void editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox);

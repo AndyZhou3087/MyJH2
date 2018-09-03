@@ -408,6 +408,7 @@
       <FilePathData Path="ui/shopitembg.png" />
       <FilePathData Path="ui/vip0.png" />
       <FilePathData Path="ui/vip1.png" />
+      <FilePathData Path="ui/herohinticon.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
