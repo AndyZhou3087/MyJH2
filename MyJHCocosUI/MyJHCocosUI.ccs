@@ -9,12 +9,6 @@
           <TTF Name="simhei.ttf" />
         </Folder>
         <Folder Name="images">
-          <Folder Name="newerguide">
-            <Image Name="guide_finger_0.png" />
-            <Image Name="guide_finger_1.png" />
-            <Image Name="guide_frame.png" />
-            <Image Name="guide_people.png" />
-          </Folder>
           <Image Name="brownbox.png" />
           <Image Name="cardh_0_0.png" />
           <Image Name="cardh_0_1.png" />
@@ -54,12 +48,12 @@
           <Image Name="mapblocktop.png" />
           <Image Name="materialbox.png" />
           <Image Name="newpopbg.png" />
+          <Image Name="poptitletie.png" />
           <Image Name="selectequipbg.png" />
           <Image Name="shopbg.jpg" />
           <Image Name="smallbg.png" />
           <Image Name="t001.jpg" />
           <Image Name="t002.jpg" />
-          <Image Name="poptitletie.png" />
           <Image Name="wintitle.png" />
         </Folder>
         <Folder Name="mainimg">
@@ -376,12 +370,6 @@
           <Image Name="winexpbar.png" />
           <Image Name="winretbox.png" />
           <Image Name="winsepbox.png" />
-        </Folder>
-        <Folder Name="newerguide">
-          <Image Name="guide_finger_0.png" />
-          <Image Name="guide_finger_1.png" />
-          <Image Name="guide_frame.png" />
-          <Image Name="guide_people.png" />
         </Folder>
         <Folder Name="text_zh_cn">
           <Image Name="achieve_title.png" />
@@ -1086,7 +1074,6 @@
         <Project Name="messageLayer.csd" Type="Layer" />
         <Project Name="messageNode.csd" Type="Node" />
         <Project Name="myHeroNode.csd" Type="Node" />
-        <Project Name="newGuideLayer.csd" Type="Layer" />
         <Project Name="newPopLayer.csd" Type="Layer" />
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
