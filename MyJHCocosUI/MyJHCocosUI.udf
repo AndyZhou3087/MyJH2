@@ -18,8 +18,9 @@
           <FilePathData Path="ui.csi" />
           <FilePathData Path="marketResNode.csd" />
           <FilePathData Path="marketRefreshLayer.csd" />
+          <FilePathData Path="tboxRewardLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="marketRefreshLayer.csd" />
+        <ActiveDocument Path="tboxRewardLayer.csd" />
       </Value>
     </Item>
   </Properties>

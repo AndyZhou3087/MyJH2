@@ -53,7 +53,7 @@
           <Image Name="smallbg.png" />
           <Image Name="t001.jpg" />
           <Image Name="t002.jpg" />
-          <Image Name="unlocktitlebg.png" />
+          <Image Name="poptitletie.png" />
           <Image Name="wintitle.png" />
         </Folder>
         <Folder Name="mainimg">

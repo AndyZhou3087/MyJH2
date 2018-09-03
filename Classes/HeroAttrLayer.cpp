@@ -816,6 +816,7 @@ void HeroAttrLayer::onHeroHintClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		std::string hidstr = StringUtils::format("h%03d", m_heroData->getVocation() + 1);
 		HeroIntroLayer* layer = HeroIntroLayer::create(hidstr);
 		this->addChild(layer, 10);

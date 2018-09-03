@@ -24,7 +24,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.6660" />
             <PreSize X="0.4250" Y="0.0688" />
-            <FileData Type="Normal" Path="images/unlocktitlebg.png" Plist="" />
+            <FileData Type="Normal" Path="images/poptitletie.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="desc" ActionTag="1251733462" Tag="15" IconVisible="False" LeftMargin="170.0000" RightMargin="170.0000" TopMargin="450.2592" BottomMargin="749.7408" IsCustomSize="True" FontSize="24" LabelText="获得以下物品" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">

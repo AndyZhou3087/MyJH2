@@ -24,7 +24,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5171" Y="0.7254" />
             <PreSize X="0.4250" Y="0.0688" />
-            <FileData Type="Normal" Path="images/unlocktitlebg.png" Plist="" />
+            <FileData Type="Normal" Path="images/poptitletie.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="title" ActionTag="-998839819" Tag="181" IconVisible="False" LeftMargin="292.6102" RightMargin="266.3898" TopMargin="312.8894" BottomMargin="909.1106" LeftEage="53" RightEage="53" TopEage="19" BottomEage="19" Scale9OriginX="53" Scale9OriginY="19" Scale9Width="55" Scale9Height="20" ctype="ImageViewObjectData">
