@@ -7,5 +7,13 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="newGuideLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="newGuideLayer.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>

@@ -3,31 +3,32 @@
 #include "DataSave.h"
 #include "CommonFuncs.h"
 #include "Const.h"
-#include "Resource.h"
 
-std::string descText[] = { "点击这里可查看建造所需要的资源", "点击材料即可查看材料的详细信息", "点击角色头像即可查看角色属性及更换装备等操作", "点击武功即可选择武功进行使用",
-"", "点击内功即可选择内功进行使用", "", "点击武器即可选择武器进行装备，武器越好，造成的伤害越多",
-"", "点击装备即可选择防具进行装备，防具越好，受到的伤害越少", "", "",
-"","点击角色属性图标即可查看属性状态，每个属性都会对角色造成不同的影响，要注意不让各种状态过低", "", "",
-"","", "为了保证充足的精力闯荡江湖，首先需要建造睡觉的床！现在出门找点造床的材料", "",
-"移动地点时根据距离不同消耗的时间也有不同", "去的地方越远，消耗的饥饿与精神越多，要注意好状态", "", "做床需要铁块，先采两块铁矿",
-"获得一块铁矿，点击放到背包中", "每次只能采一块，再采一块", "可以全部拾取哦~~", "",
-"还需要点木材，砍两根松树", "获得一根木材，点击放到背包中", "每次只能采一根，再采一根", "可以全部拾取哦~~",
-"", "还需要两块兽皮，打猎狼可以获取狼皮。战斗时不但能获得物品，还可获得经验值，当经验值满足条件后角色即可升级，武学也会自动升级，等级越高越厉害", "获得一块狼皮点击放到背包中", "",
-"还需要一块狼皮，继续打猎狼", "可以全部拾取哦~~","", "",
-"材料收集齐了，可以回家造一张舒适的床了^^","","", "",
-"在床上休息可恢复已消耗的生命值", "仓库里存放了所有采集的资源、锻造的工具，获得的武学，还有一些珍贵的药材。可以在这里使用食物恢复生生命值，使用药材恢复外伤、内伤！", "可以在仓库里选择食物，吃烤肉填饱肚子", "可以在仓库里选择药材，使用三七可以治疗内伤，酒可以恢复精神值，需要在酒桌上使用。",
-"感叹号提示着在这个地点的角色有任务找你，快去看一下是什么事情吧，以你现在的实力还打不过这里的任何人，千万不要轻易进行挑战，切记！！！", "", "", "掉落没有拾取的物品会放在临时存放点，每个地点都有一个，来了记得带回去~~", "", "", "", /*后面建筑物引导*/"", "", "", "", "", "", "", "", "", ""
+std::map<int, std::vector<std::string>> map_words;
+
+std::string descText[][6] = { "小师妹：掌门师兄，六大派掌门和魔教应该就在前面了，咱们快去看看。","","","小师妹说话：掌门师兄，传言果然是真的，十四天书现世，六大派和魔教为了争夺天书才打起来。",
+"魔教人物：小子！现在帮我们对付他们，老子给你黄金万两！","昆仑派：少侠！魔教为非作歹，祸害江湖，我辈武林人士岂能与他们为伍，少侠快来助我们除掉这些武林败类！","小师妹：掌门师兄，你可以选择一方进行帮助，都是为了十四天书，出手吧师兄！",
+"小师妹：掌门师兄，战斗过程为全自动，掌门只要根据角色的属性去分配好位置就可以了。","小师妹：前排的武僧，防御力比较高，适合在前面抗伤害","小师妹：后面的刺客攻击力很高，但是很容易受伤，适合在后面进行攻击。",
+"小师妹：剑客的属性比较平衡，什么位置都可以站。","小师妹：道士会用道术进行多重攻击，还可以治疗队友。","小师妹：师兄，战斗结束了，天书我们也拿到了，他们一会恢复过来，咱们就走不脱了，还是快撤吧！",
+"", "张三：天书现世，世道已经乱了，这些东西不是你该拿的，交出来吧！", "小师妹：师兄，咱们还是先回去吧，连赏善罚恶二使都来了，回去好好想想对策！","",
+"小师妹：这里虽然不比师傅以前传给师兄的地方，但是好在这里人烟稀少，咱们可以好好经营一下，师兄先给门派起个响亮的名字吧！", "小师妹：经营门派最重要的还是要先把基础设施完善起来，我们先去后山看看有什么资源吧!",
+"小师妹：这里后山还真是什么都没有啊，师兄，先升级一下后山，解锁更多的资源吧!","小师妹：资源有了，我们该招点工人来干活了。","小师妹：工人有了，但是师兄你要分配给他们任务，每个工人采集资源都会消耗一定的食材，记得要保证平衡哦!",
+
 };
 
 NewGuideLayer* g_NewGuideLayer = NULL;
+
+std::vector<std::string> NewGuideLayer::vec_userdata;
+bool NewGuideLayer::isShowing = false;
 NewGuideLayer::NewGuideLayer()
 {
-
+	wordindex = 0;
+	iscannext = false;
+	isShowing = false;
 }
+
 NewGuideLayer::~NewGuideLayer()
 {
-	g_NewGuideLayer = NULL;
 }
 
 NewGuideLayer* NewGuideLayer::create(int type, std::vector<Node*> stencilNodes)
@@ -51,19 +52,63 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 	{
 		return false;
 	}
-	//layer 点击事件，屏蔽下层事件
-	auto listener = EventListenerTouchOneByOne::create();
-	listener->setSwallowTouches(true);
+	m_colorlayer = NULL;
 
+	initDialog();
 	m_step = step;
+	Node* csbnode = CSLoader::createNode("newGuideLayer.csb");
+	this->addChild(csbnode);
+
+	cocos2d::ui::Text* wordtext = (cocos2d::ui::Text*)csbnode->getChildByName("guidetext");
+	wordtext->setVisible(false);
+
+	m_wordlbl = Label::createWithTTF("", "fonts/STXINGKA.TTF", 25);
+	m_wordlbl->setColor(Color3B(255, 255, 255));
+	m_wordlbl->setLineBreakWithoutSpace(true);
+	m_wordlbl->enableShadow(Color4B(255, 255, 255, 255), Size(1, -1));
+	m_wordlbl->setMaxLineWidth(330);
+	m_wordlbl->setAnchorPoint(Vec2(0, 1));
+	m_wordlbl->setPosition(Vec2(34, 250));
+	csbnode->addChild(m_wordlbl);
+
+	if (m_step == 4 || m_step == 19 || m_step == 45 || m_step == 65)
+	{
+		
+	}
+	else
+	{
+		
+	}
+	if (m_step == 69)
+	{
+		
+	}
+	else if (m_step == 12)
+	{
+		
+	}
+
+	if (map_words[step].size() > 0)
+	{
+		std::string wordstr = map_words[step][0];
+		showWord(wordstr);
+	}
+	else
+	{
+		
+	}
+
 	if (stencilNodes.size() > 0)
 	{
 		m_clippingNode = ClippingNode::create();
 		m_clippingNode->setInverted(true);//设置底板可见
 		m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
-		this->addChild(m_clippingNode, 1);
+		this->addChild(m_clippingNode, -1);
 
-		m_colorlayer = LayerColor::create(Color4B(0, 0, 0, 160));
+		int al = 200;
+		if (map_words[step].size() <= 0)
+			al = 0;
+		m_colorlayer = LayerColor::create(Color4B(0, 0, 0, al));
 		m_clippingNode->addChild(m_colorlayer);
 
 		Node* stencil = Node::create();
@@ -73,102 +118,217 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 			cnode->setPosition(stencilNodes[i]->getParent()->convertToWorldSpace(stencilNodes[i]->getPosition()));
 			float scalex = stencilNodes[i]->getContentSize().width / cnode->getContentSize().width;
 			float scaley = stencilNodes[i]->getContentSize().height / cnode->getContentSize().height;
-			float scle;
-			if (scalex > scaley)
-			{
-				scle = scalex;
-			}
-			else
-			{
-				scle = scaley;
-			}
-			cnode->setScale(scle);
-
+			cnode->setScale(scalex + 0.1f, scaley + 0.1f);
+			cnode->runAction(RepeatForever::create(Blink::create(4.0f, 5)));
 			stencil->addChild(cnode);
 		}
 		m_clippingNode->setStencil(stencil);
 
 		showAnim(stencilNodes[stencilNodes.size() - 1]->getParent()->convertToWorldSpace(stencilNodes[stencilNodes.size() - 1]->getPosition()));
 	}
-
-	if (step == 18)
+	else
 	{
-		m_colorlayer->setOpacity(125);
+		m_colorlayer = LayerColor::create(Color4B(0, 0, 0, 200));
+		this->addChild(m_colorlayer, -1);
 	}
-	if (descText[step].length() > 0)
+	isallclick = false;
+	if (m_step == 0 || m_step == 2 || m_step == 4 || m_step == 9 || m_step == 15 || m_step == 19 || m_step == 41 || m_step == 45 || m_step == 47 || m_step == 58 || m_step == 59 || m_step == 65)
+		isallclick = true;
+
+	if (isallclick)
 	{
-		Node* m_csbnode = CSLoader::createNode(ResourcePath::makePath("taskMainDescLayer.csb"));
-
-		//if (step == 2 || step == 13 || step == 18 || step == 21 || step == 25 || step == 26 || step == 28 || step == 30 || step == 31 || step == 34 || step == 35 || step == 37 || step == 38 || step == 45 || step == 51)
-		//	textbox->setPosition(Vec2(360, 650));
-		//else
-		//	textbox->setPosition(Vec2(360, 170));
-		this->addChild(m_csbnode, 2);
-
-		cocos2d::ui::Text* wordlbl = (cocos2d::ui::Text*)m_csbnode->getChildByName("guidetext");
-		wordlbl->setString(CommonFuncs::gbk2utf(descText[step].c_str()));
+		iscannext = true;
 	}
 
-	listener->onTouchBegan = [=](Touch *touch, Event *event)
+	//layer 点击事件，屏蔽下层事件
+	m_listener = EventListenerTouchOneByOne::create();
+	m_listener->setSwallowTouches(true);
+
+	m_listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
 		Vec2 point = Director::getInstance()->convertToGL(touch->getLocationInView());//获得当前触摸的坐标 
 		starPos = touch->getLocation();
-		if (stencilNodes.size() > 0)
+		if (!isallclick && stencilNodes.size() > 0)
 		{
 			Vec2 vec = stencilNodes[stencilNodes.size() - 1]->getParent()->convertToWorldSpace(stencilNodes[stencilNodes.size() - 1]->getPosition());
 
 			auto rect = Rect(vec.x - stencilNodes[stencilNodes.size() - 1]->getBoundingBox().size.width / 2, vec.y - stencilNodes[stencilNodes.size() - 1]->getBoundingBox().size.height / 2, stencilNodes[stencilNodes.size() - 1]->getBoundingBox().size.width, stencilNodes[stencilNodes.size() - 1]->getBoundingBox().size.height);
 			if (rect.containsPoint(point))//如果触点处于rect中  
 			{
-				DataSave::getInstance()->setIsNewerGuide(step, 0);
+				iscannext = true;
+				m_listener->setSwallowTouches(false);
+			}
+		}
+		return true;
+	};
+	m_listener->onTouchEnded = [=](Touch *touch, Event *event)
+	{
+		if (iscannext)
+		{
+			wordindex++;
 
-				listener->setSwallowTouches(false);
-
-				if (!(step >= 2 && step <= 10 || (step >= 13 && step <= 17)))
+			int size = map_words[m_step].size();
+			if (wordindex >= size)
+			{
+				if (m_step == 0)
 				{
-					this->removeFromParentAndCleanup(true);
+					removeSelf();
+					/*HomeLayer* homelayer = (HomeLayer*)g_gameLayer->getChildByName("homelayer");
+					if (homelayer != NULL)
+						homelayer->checkNewerGuide();*/
+				}
+				else if (m_step == 2)
+				{
+					removeSelf();
+					/*BuildingUILayer* buildlayer = (BuildingUILayer*)g_gameLayer->getChildByName("builduilayer");
+					if (buildlayer != NULL)
+						buildlayer->checkNewerGuide();*/
+				}
+				else if (m_step == 4)
+				{
+					removeSelf();
+					/*BuildingUILayer* buildlayer = (BuildingUILayer*)g_gameLayer->getChildByName("builduilayer");
+					if (buildlayer != NULL)
+						buildlayer->checkNewerGuide();*/
+				}
+				else if (m_step == 15)
+				{
+					removeSelf();
+					/*GoWhereLayer* golayer = (GoWhereLayer*)g_gameLayer->getChildByName("gowherelayer");
+					if (golayer != NULL)
+						golayer->showNewerGuide(16);*/
+				}
+				else if (m_step == 19)
+				{
+					removeSelf();
+					/*ActionGetLayer* alayer = (ActionGetLayer*)g_gameLayer->getChildByName("ActionGetLayer");
+					if (alayer != NULL)
+						alayer->showNewerGuide(20);*/
+				}
+				else if (m_step == 41)
+				{
+					removeSelf();
+					/*HomeLayer* homelayer = (HomeLayer*)g_gameLayer->getChildByName("homelayer");
+					if (homelayer != NULL)
+						homelayer->showNewerGuide(45);*/
+				}
+				else if (m_step == 45)
+				{
+					removeSelf();
+					/*HomeLayer* homelayer = (HomeLayer*)g_gameLayer->getChildByName("homelayer");
+					if (homelayer != NULL)
+						homelayer->showNewerGuide(46);*/
+				}
+				else if (m_step == 47)
+				{
+					removeSelf();
+					/*HeroProperNode* heroProperNode = (HeroProperNode*)g_gameLayer->getChildByName("OutDoor")->getChildByName("csbnode")->getChildByName("HeroProperNode");
+					if (heroProperNode != NULL)
+						heroProperNode->showNewerGuide(48);*/
+				}
+				else if (m_step == 58)
+				{
+					removeSelf();
+					/*MapLayer* maplayer = (MapLayer*)g_gameLayer->getChildByName("maplayer");
+					if (maplayer != NULL)
+						maplayer->showNewerGuide(5);*/
+				}
+				else if (m_step == 59)
+				{
+					removeSelf();
+					/*TopBar* topbar = (TopBar*)g_gameLayer->getChildByName("topbar");
+					if (topbar != NULL)
+						topbar->showNewerGuide(60);*/
+				}
+				else if (m_step == 65)
+				{
+					removeSelf();
+					/*HomeLayer* homelayer = (HomeLayer*)g_gameLayer->getChildByName("homelayer");
+					if (homelayer != NULL)
+						homelayer->checkNewerGuide();*/
+				}
+				else
+				{
+					removeSelf();
 				}
 			}
 			else
 			{
-				listener->setSwallowTouches(true);
+				if (m_step == 4 || m_step == 19 || m_step == 65)
+				{
+					if (wordindex % 2 == 0)
+					{
+						
+					}
+					else
+					{
+						
+					}
+				}
+				else
+				{
+					if (wordindex % 2 == 0)
+					{
+						
+					}
+					else
+					{
+						
+					}
+				}
+
+				showWord(map_words[m_step][wordindex]);
 			}
 		}
-		else
-		{
-			listener->setSwallowTouches(true);
-		}
-
-		return true;
+		return;
 	};
 
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(m_listener, this);
+	DataSave::getInstance()->setIsNewerGuide(step, 0);
 
 //#ifdef ANALYTICS
 //	if (step == 0)
 //		AnalyticUtil::onEvent("newerstart");
-//	else if (step == 44)
+//	else if (step == 12)
+//		AnalyticUtil::onEvent("firstout");
+//	else if (step == 46)
+//		AnalyticUtil::onEvent("secondout");
+//	else if (step == 58)
 //		AnalyticUtil::onEvent("newerend");
 //#endif
 
 	return true;
 }
 
+void NewGuideLayer::onEnterTransitionDidFinish()
+{
+	Layer::onEnterTransitionDidFinish();
+}
+
 bool NewGuideLayer::checkifNewerGuide(int index)
 {
-	return DataSave::getInstance()->getIsNewerGuide(index);
+	bool ret = false;
+	ret = DataSave::getInstance()->getIsNewerGuide(index);
+	if (!ret)
+	{
+		vec_userdata.clear();
+	}
+	return ret;
 }
 
 void NewGuideLayer::showAnim(Vec2 pos)
 {
+	if (m_step == 58)
+		return;
+
 	auto sj = Sprite::create("images/newerguide/guide_finger_0.png");
 	sj->setAnchorPoint(Vec2(0, 1));
-	sj->setPosition(pos.x + 20, pos.y - 20);
+	sj->setPosition(pos.x, pos.y);
 	this->addChild(sj, 1);
 
 	//创建帧动画序列，名词形式
 	auto animation = Animation::create();
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i< 2; i++)
 	{
 		char szName[100] = { 0 };
 		sprintf(szName, "images/newerguide/guide_finger_%d.png", i);
@@ -180,4 +340,65 @@ void NewGuideLayer::showAnim(Vec2 pos)
 	auto animate = Animate::create(animation);
 	sj->runAction(RepeatForever::create(animate));
 
+}
+
+void NewGuideLayer::pushUserData(std::string strdata)
+{
+	vec_userdata.push_back(strdata);
+}
+
+void NewGuideLayer::showWord(std::string wordstr)
+{
+	std::string utf8word = CommonFuncs::gbk2utf(wordstr.c_str());
+	m_wordlbl->setString(utf8word);
+
+	std::vector<std::string> vec_resname;
+	vec_resname.push_back(CommonFuncs::gbk2utf("木材"));
+	vec_resname.push_back(CommonFuncs::gbk2utf("石矿"));
+	vec_resname.push_back(CommonFuncs::gbk2utf("铁矿"));
+	vec_resname.push_back(CommonFuncs::gbk2utf("切记喝酒必须在酒桌上才能喝！"));
+	vec_resname.push_back(CommonFuncs::gbk2utf("仓库（锻造台下方）"));
+	vec_resname.push_back(CommonFuncs::gbk2utf("狼"));
+	vec_resname.push_back(CommonFuncs::gbk2utf("兔子"));
+	std::vector<std::string>::iterator it;
+	for (unsigned int i = 0; i < vec_resname.size(); i++)
+	{
+		std::string resname = vec_resname[i];
+		std::size_t findpos = utf8word.find(resname);
+		if (findpos != std::string::npos)
+		{
+			int sindex = findpos / 3;
+			int len = resname.size() / 3;
+			for (int i = sindex; i < sindex + len; i++)
+			{
+				m_wordlbl->getLetter(i)->setColor(Color3B(204, 4, 4));
+			}
+		}
+	}
+}
+
+void NewGuideLayer::initDialog()
+{
+	if (map_words.size() <= 0)
+	{
+		int total = sizeof(descText) / sizeof(descText[0]);
+		for (int i = 0; i < total; i++)
+		{
+			for (int m = 0; m < 6; m++)
+			{
+				if (descText[i][m].length() > 0)
+				{
+					map_words[i].push_back(descText[i][m]);
+				}
+			}
+		}
+	}
+}
+
+void NewGuideLayer::removeSelf()
+{
+	vec_userdata.clear();
+	isShowing = false;
+	this->removeFromParentAndCleanup(true);
+	g_NewGuideLayer = NULL;
 }
