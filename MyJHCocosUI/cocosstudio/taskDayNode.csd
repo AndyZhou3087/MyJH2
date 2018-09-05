@@ -6,7 +6,7 @@
       <ObjectData Name="Node" Tag="128" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="resitem" ActionTag="1496506694" Tag="166" IconVisible="False" LeftMargin="-314.0000" RightMargin="-314.0000" TopMargin="-61.0000" BottomMargin="-61.0000" TouchEnable="True" LeftEage="207" RightEage="207" TopEage="40" BottomEage="40" Scale9OriginX="207" Scale9OriginY="40" Scale9Width="214" Scale9Height="42" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resitem" ActionTag="1496506694" Tag="166" IconVisible="False" LeftMargin="-314.0000" RightMargin="-314.0000" TopMargin="-61.0000" BottomMargin="-61.0000" LeftEage="207" RightEage="207" TopEage="40" BottomEage="40" Scale9OriginX="207" Scale9OriginY="40" Scale9Width="214" Scale9Height="42" ctype="ImageViewObjectData">
             <Size X="628.0000" Y="122.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />
@@ -182,6 +182,16 @@
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="clickimg" ActionTag="401292773" Tag="324" IconVisible="False" LeftMargin="-320.0754" RightMargin="-129.9246" TopMargin="-61.0000" BottomMargin="-61.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+            <Size X="450.0000" Y="122.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-95.0754" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

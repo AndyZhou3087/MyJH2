@@ -108,25 +108,13 @@
             <FileData Type="MarkedSubImage" Path="ui/strentharrow.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lv" ActionTag="-840563319" Tag="56" IconVisible="False" LeftMargin="295.1977" RightMargin="385.8023" TopMargin="555.1376" BottomMargin="701.8624" FontSize="20" LabelText="LV.1" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="39.0000" Y="23.0000" />
-            <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
-            <Position X="334.1977" Y="713.3624" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="251" G="205" B="2" />
-            <PrePosition X="0.4642" Y="0.5573" />
-            <PreSize X="0.0542" Y="0.0180" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="0" G="0" B="0" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="991563564" Tag="57" IconVisible="False" LeftMargin="343.1977" RightMargin="294.8023" TopMargin="555.1376" BottomMargin="701.8624" FontSize="20" LabelText="玄铁重剑" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="name" ActionTag="991563564" Tag="57" IconVisible="False" LeftMargin="319.0000" RightMargin="319.0000" TopMargin="555.1376" BottomMargin="701.8624" FontSize="20" LabelText="玄铁重剑" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="82.0000" Y="23.0000" />
-            <AnchorPoint ScaleY="0.5000" />
-            <Position X="343.1977" Y="713.3624" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="713.3624" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="251" G="205" B="2" />
-            <PrePosition X="0.4767" Y="0.5573" />
+            <PrePosition X="0.5000" Y="0.5573" />
             <PreSize X="0.1139" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
@@ -204,7 +192,7 @@
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resname_0" ActionTag="791591506" Tag="64" IconVisible="False" LeftMargin="331.5333" RightMargin="326.4667" TopMargin="712.1376" BottomMargin="544.8624" FontSize="20" LabelText="混沌石" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="resname_0" ActionTag="791591506" Tag="64" IconVisible="False" LeftMargin="331.5354" RightMargin="326.4646" TopMargin="712.1371" BottomMargin="544.8629" FontSize="20" LabelText="混沌石" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="62.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.6114" ScaleY="0.4349" />
             <Position X="369.4422" Y="554.8656" />

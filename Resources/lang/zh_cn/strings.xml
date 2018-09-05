@@ -2,6 +2,7 @@
 <strings>
 	<s name="lvtext">级</s>
 	<s name="lvtexts">等级：</s>
+	<s name="lvdetails">等级 Lv.%d</s>	
 	<s name="lvuptext">升级</s>
 	<s name="vocationtext">职业：</s>
 	<s name="potentialtext">品质：</s>
@@ -215,5 +216,8 @@
 	<s name="buy_0">购买成功！</s>
 	<s name="buy_1">购买失败！</s>
 	<s name="lefttimetext">剩余%d天</s>
-	<s name="tboxdesctext">获得以下物品</s>	
+	<s name="tboxdesctext">获得以下物品</s>
+	<s name="littlesistext">小师妹</s>
+	<s name="rescreatordesc">消耗：食材-%d\n产出：%s+1</s>
+	<s name="foodcreatordesc">产出：%s+1</s>		
 </strings>

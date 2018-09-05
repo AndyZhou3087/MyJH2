@@ -120,7 +120,6 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	if (m_showtype == HS_DEAD)
 	{
 		hpdesc->setVisible(false);
-		clickimg->setTouchEnabled(false);
 		statetag->setVisible(false);
 		actbtntxt->loadTexture(ResourcePath::makeTextImgPath("cure_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		silver->setVisible(true);
@@ -131,12 +130,14 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 		{
 			actbtntxt->loadTexture(ResourcePath::makeTextImgPath("traindoing_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
+		else if (m_heroData->getState() == HS_OWNED)
+		{
+			actbtn->loadTexture("ui/actionbtn_yellow.png", cocos2d::ui::Widget::TextureResType::PLIST);
+		}
 	}
 	else if (m_showtype == HS_TRAINING)
 	{
-		clickimg->setTouchEnabled(false);
 		changeBtnContent();
-
 	}
 	if (m_heroData->getPower().getValue() >= 100)
 	{
@@ -239,13 +240,12 @@ void MyHeroNode::updateTime(float dt)
 			hpdesc->setString(hpstr);
 			GlobalInstance::getInstance()->saveHero(m_heroData);
 		}
+	}
 
-		if (lastVocation != m_heroData->getVocation())
-		{
-			lastVocation = m_heroData->getVocation();
-			updateData();
-		}
-
+	if (lastVocation != m_heroData->getVocation())
+	{
+		lastVocation = m_heroData->getVocation();
+		updateData();
 	}
 }
 
@@ -298,7 +298,13 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		if (clicknode->getTag() == 1)
 		{
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-			Layer* layer = HeroAttrLayer::create(m_heroData);
+
+			int fromwhere = 0;
+			if (m_showtype == HS_TRAINING)
+				fromwhere = 1;
+			else if (m_showtype == HS_DEAD)
+				fromwhere = 2;
+			Layer* layer = HeroAttrLayer::create(m_heroData, fromwhere);
 			g_mainScene->addChild(layer, 0, this->getTag());
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}

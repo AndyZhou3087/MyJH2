@@ -14,6 +14,17 @@ Npc::~Npc()
 
 }
 
+
+int Npc::getLevel()
+{
+	return m_lv;
+}
+
+void Npc::setLevel(int val)
+{
+	m_lv = val;
+}
+
 float Npc::getAtk()
 {
 	float npcatk = GlobalInstance::map_NpcAttrData[m_vocation].vec_atk[m_lv] * POTENTIAL_BNS[m_potential];

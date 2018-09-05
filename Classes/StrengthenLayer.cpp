@@ -15,6 +15,7 @@
 #include "TakeOnLayer.h"
 #include "AnimationEffect.h"
 #include "EquipDescLayer.h"
+#include "StoreHouseLayer.h"
 
 StrengthenLayer::StrengthenLayer()
 {
@@ -79,15 +80,12 @@ bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::Text* lv = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
-	str = StringUtils::format("LV.%d", m_equip->getLv().getValue());
-	lv->setString(str);
-
-	lv->setTextColor(Color4B(POTENTIALCOLOR[qu]));
-
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)csbnode->getChildByName("name");
-	name->setString(GlobalInstance::map_AllResources[m_equip->getId()].name);
-	name->setTextColor(Color4B(POTENTIALCOLOR[qu]));
+
+	std::string namestr = GlobalInstance::map_AllResources[m_equip->getId()].name;
+	if (m_equip->getLv().getValue() > 0)
+		namestr = StringUtils::format("+%d%s", m_equip->getLv().getValue(), namestr.c_str());
+	name->setString(namestr);
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -252,6 +250,9 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			if (takon != NULL)
 			{
 				takon->updateAttr();
+				StoreHouseLayer* storeHouseLayer = (StoreHouseLayer*)takon->getParent();
+				if (storeHouseLayer != NULL)
+					storeHouseLayer->updateUI();
 			}
 		}
 

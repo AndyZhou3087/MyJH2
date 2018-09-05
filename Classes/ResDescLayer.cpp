@@ -72,6 +72,9 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desclbl");
 	std::string descstr = GlobalInstance::map_AllResources[res->getId()].desc;
 
+	Label* descRenderLable = (Label*)desclbl->getVirtualRenderer();
+	descRenderLable->setLineSpacing(10);
+
 	str = StringUtils::format(ResourceLang::map_lang["rescount"].c_str(), res->getCount().getValue());
 
 	cocos2d::ui::Text* coutlbl = (cocos2d::ui::Text*)csbnode->getChildByName("coutlbl");

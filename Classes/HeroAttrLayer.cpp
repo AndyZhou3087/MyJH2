@@ -17,7 +17,7 @@
 #include "ChangeVocationLayer.h"
 #include "AnimationEffect.h"
 #include "SoundManager.h"
-#include "HeroIntroLayer.h"
+#include "SimplePopLayer.h"
 
 USING_NS_CC;
 
@@ -40,10 +40,10 @@ HeroAttrLayer::~HeroAttrLayer()
 }
 
 
-HeroAttrLayer* HeroAttrLayer::create(Hero* herodata)
+HeroAttrLayer* HeroAttrLayer::create(Hero* herodata, int fromwhere)
 {
 	HeroAttrLayer *pRet = new(std::nothrow)HeroAttrLayer();
-	if (pRet && pRet->init(herodata))
+	if (pRet && pRet->init(herodata, fromwhere))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -57,7 +57,7 @@ HeroAttrLayer* HeroAttrLayer::create(Hero* herodata)
 }
 
 // on "init" you need to initialize your instance
-bool HeroAttrLayer::init(Hero* herodata)
+bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 {
     if ( !Layer::init() )
     {
@@ -66,6 +66,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 
 	m_heroData = herodata;
 
+	lastVaction = herodata->getVocation();
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 250));
 	this->addChild(color,0,"colorLayer");
     
@@ -80,10 +81,10 @@ bool HeroAttrLayer::init(Hero* herodata)
 	blankclick->setSwallowTouches(true);
 
 	//英雄全身图
-	cocos2d::ui::ImageView* herofullimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("hfull");
+	herofullimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("hfull");
 	herofullimg->ignoreContentAdaptWithSize(true);
-	std::string str = StringUtils::format("hfull_%d_%d.png", herodata->getVocation(), herodata->getSex());
-	herofullimg->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
+	std::string fullimgstr = StringUtils::format("hfull_%d_%d.png", herodata->getVocation(), herodata->getSex());
+	herofullimg->loadTexture(ResourcePath::makeImagePath(fullimgstr), cocos2d::ui::Widget::TextureResType::LOCAL);
 	herofullimg->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onHeroFullClick, this));
 
 	cocos2d::ui::Button* hintbtn = (cocos2d::ui::Button*)csbnode->getChildByName("hintbtn");
@@ -130,7 +131,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 
 	//品质
 	cocos2d::ui::ImageView* heroattrqu = (cocos2d::ui::ImageView*)heroattrbottom->getChildByName("heroattrqu");
-	str = StringUtils::format("heroattrqu_%d", herodata->getPotential());
+	std::string str = StringUtils::format("heroattrqu_%d", herodata->getPotential());
 	heroattrqu->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//名字TextField控件效果不好，改用EditBox
@@ -231,7 +232,7 @@ bool HeroAttrLayer::init(Hero* herodata)
 	expbar->setPercent(percent);
 
 	updataAtrrUI(0);
-	this->schedule(schedule_selector(HeroAttrLayer::updataAtrrUI), 2.0f);
+	this->schedule(schedule_selector(HeroAttrLayer::updataAtrrUI), 1.0f);
 
 	//按钮
 	std::string btnname[] = { "firebtn", "changebtn", "backbtn", "recruitbtn"};//与BTNTYPE对应
@@ -318,6 +319,13 @@ bool HeroAttrLayer::init(Hero* herodata)
 			{
 				btn->setPositionX(360);
 			}
+		}
+		if (fromwhere != 0)
+		{
+			if (tag == ATTR_BACKBTN)
+				btn->setPositionX(360);
+			else
+				btn->setVisible(false);
 		}
 	}
 
@@ -782,9 +790,21 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 		float percent = (m_heroData->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
 		expbar->setPercent(percent);
 
-		attrstr = StringUtils::format("vocation_%d", m_heroData->getVocation());
-		vocation->setString(ResourceLang::map_lang[attrstr]);
+		if (lastVaction != m_heroData->getVocation())
+		{
+			lastVaction = m_heroData->getVocation();
+			updateVocationUI();
+		}
+
 	}
+}
+
+void HeroAttrLayer::updateVocationUI()
+{
+	std::string attrstr = StringUtils::format("vocation_%d", m_heroData->getVocation());
+	vocation->setString(ResourceLang::map_lang[attrstr]);
+	attrstr = StringUtils::format("hfull_%d_%d.png", m_heroData->getVocation(), m_heroData->getSex());
+	herofullimg->loadTexture(ResourcePath::makeImagePath(attrstr), cocos2d::ui::Widget::TextureResType::LOCAL);
 }
 
 void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -818,7 +838,7 @@ void HeroAttrLayer::onHeroHintClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 	{
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		std::string hidstr = StringUtils::format("h%03d", m_heroData->getVocation() + 1);
-		HeroIntroLayer* layer = HeroIntroLayer::create(hidstr);
+		SimplePopLayer* layer = SimplePopLayer::create(GlobalInstance::map_AllResources[hidstr].desc);
 		this->addChild(layer, 10);
 		AnimationEffect::openAniEffect(layer);
 	}

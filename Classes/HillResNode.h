@@ -34,7 +34,6 @@ private:
 	Vec2 beginTouchPoint;
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	void onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onSubBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

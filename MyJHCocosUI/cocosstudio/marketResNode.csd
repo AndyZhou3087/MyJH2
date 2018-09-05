@@ -6,16 +6,15 @@
       <ObjectData Name="Node" Tag="144" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="resitem" ActionTag="810664684" Tag="166" IconVisible="False" LeftMargin="-314.0001" RightMargin="-313.9999" TopMargin="-82.0000" BottomMargin="-40.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="resitem" ActionTag="-616511875" Tag="216" IconVisible="False" LeftMargin="-314.0000" RightMargin="-314.0000" TopMargin="-82.0000" BottomMargin="-40.0000" LeftEage="207" RightEage="207" TopEage="40" BottomEage="40" Scale9OriginX="207" Scale9OriginY="40" Scale9Width="214" Scale9Height="42" ctype="ImageViewObjectData">
             <Size X="628.0000" Y="122.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-0.0001" Y="21.0000" />
+            <Position Y="21.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/resitem.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="resbox" ActionTag="-1646304722" Tag="165" IconVisible="False" LeftMargin="-322.5001" RightMargin="197.5001" TopMargin="-83.4998" BottomMargin="-41.5002" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
@@ -151,6 +150,16 @@
             <NormalFileData Type="MarkedSubImage" Path="ui/actionbtn_blue.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="clickimg" ActionTag="1766656291" Tag="379" IconVisible="False" LeftMargin="-320.0754" RightMargin="-129.9246" TopMargin="-82.0000" BottomMargin="-40.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+            <Size X="450.0000" Y="122.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-95.0754" Y="21.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

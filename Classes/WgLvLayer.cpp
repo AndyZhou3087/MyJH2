@@ -9,6 +9,9 @@
 #include "Const.h"
 #include "AnimationEffect.h"
 #include "SoundManager.h"
+#include "EquipDescLayer.h"
+#include "StoreHouseLayer.h"
+#include "LoadingBarProgressTimer.h"
 
 USING_NS_CC;
 
@@ -54,6 +57,8 @@ bool WgLvLayer::init(ResBase* res)
 
 	m_res = (GongFa*)res;
 
+	myprelv = m_res->getLv().getValue();
+
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 250));
 	this->addChild(color,0,"colorLayer");
 
@@ -69,9 +74,8 @@ bool WgLvLayer::init(ResBase* res)
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("wglv_text", langtype), cocos2d::ui::Widget::TextureResType::LOCAL);
 
 	//武器名称
-	cocos2d::ui::Text* name = (cocos2d::ui::Text*)csbnode->getChildByName("name");
+	name = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	name->setString(GlobalInstance::map_AllResources[m_res->getId()].name);
-
 	name->setTextColor(Color4B(POTENTIALCOLOR[m_res->getQU().getValue()]));
 
 	//品质box
@@ -198,8 +202,7 @@ bool WgLvLayer::init(ResBase* res)
 	cocos2d::ui::ImageView* nexttext = (cocos2d::ui::ImageView*)csbnode->getChildByName("nexttext");
 	nexttext->loadTexture(ResourcePath::makeTextImgPath("wgnexttext", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	updataAtrrUI(0);
-	this->schedule(schedule_selector(WgLvLayer::updataAtrrUI), 1.0f);
+	updataAtrrUI();
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -262,17 +265,27 @@ void WgLvLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			m_res->setExp(dal);
 			std::string s = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), count);
 			MovingLabel::show(s);
+			str = StringUtils::format("%d", MyRes::getMyResCount(str));
+			goodarr[tag - 1]->setString(str);
+			updataAtrrUI();
+
+			EquipDescLayer* layer = (EquipDescLayer*)this->getParent();
+			if (layer != NULL)
+			{
+				layer->updateAttr();
+				StoreHouseLayer* storeHouseLayer = (StoreHouseLayer*)layer->getParent();
+				if (storeHouseLayer != NULL)
+					storeHouseLayer->updateUI();
+			}
 		}
 		else
 		{
 			MovingLabel::show(ResourceLang::map_lang["reslack"]);
 		}
-		str = StringUtils::format("%d", MyRes::getMyResCount(str));
-		goodarr[tag - 1]->setString(str);
 	}
 }
 
-void WgLvLayer::updataAtrrUI(float dt)
+void WgLvLayer::updataAtrrUI()
 {
 	int hp = m_res->getHp();
 	std::string attrstr = StringUtils::format("%d", hp);
@@ -302,6 +315,10 @@ void WgLvLayer::updataAtrrUI(float dt)
 	std::string str = StringUtils::format("%d", m_res->getLv().getValue() + 1);
 	lvtext->setString(str);
 
+	std::string namestr = GlobalInstance::map_AllResources[m_res->getId()].name;
+	if (m_res->getLv().getValue() > 0)
+		namestr = StringUtils::format("+%d%s", m_res->getLv().getValue(), namestr.c_str());
+	name->setString(namestr);
 
 	int curlvexp = 0;
 	int nextlvexp = 0;
@@ -317,9 +334,14 @@ void WgLvLayer::updataAtrrUI(float dt)
 		curlvexp += GlobalInstance::map_GF[m_res->getId()].vec_exp[i];
 	}
 
+	int mycurlv = m_res->getLv().getValue();
 	//进度条
 	float percent = (m_res->getExp().getValue() - curlvexp)*100.0f / nextlvexp;
-	expbar->setPercent(percent);
+	
+	if (mycurlv > myprelv)
+		expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, 100), LoadingBarProgressFromTo::create(0.2f, 0, percent), NULL));
+	else
+		expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
 
 	str = StringUtils::format("%d/%d", m_res->getExp().getValue() - curlvexp, nextlvexp);
 	explbl->setString(str);

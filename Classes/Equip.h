@@ -14,7 +14,6 @@ public:
 	Equip();
 	~Equip();
 
-	CC_SYNTHESIZE(DynamicValueInt, m_lv, Lv);//强化等级
 public:
 	std::vector<std::string> vec_stones;//佩戴的宝石
 

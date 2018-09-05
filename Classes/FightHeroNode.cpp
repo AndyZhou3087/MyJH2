@@ -10,6 +10,7 @@
 #include "MovingLabel.h"
 #include "SoundManager.h"
 #include "SkillStartLayer.h"
+#include "AnimationEffect.h"
 
 FightHeroNode::FightHeroNode()
 {
@@ -98,6 +99,9 @@ bool FightHeroNode::init()
 
 	skilltext = (cocos2d::ui::ImageView*)skilltextbox->getChildByName("skilltext");
 
+	lvtext = (cocos2d::ui::Text*)csbnode->getChildByName("lvtext");
+	lvtext->setVisible(false);
+
 	return true;
 }
 
@@ -105,20 +109,21 @@ void FightHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		//if (m_Data != NULL)
-		//{
-		//	FighterAttrLayer* layer = FighterAttrLayer::create(m_Data);
-		//	this->getParent()->addChild(layer, 0, this->getTag());
-		//	if (m_state == FS_READY)
-		//		layer->setContentPos(Vec2(360, 1000));
-		//	else if (m_state == FS_FIGHTING)
-		//	{
-		//		if (m_datatype == F_HERO)
-		//			layer->setContentPos(Vec2(360, 270));
-		//		else if (m_datatype == F_NPC)
-		//			layer->setContentPos(Vec2(360, 900));
-		//	}
-		//}
+		if (m_Data != NULL)
+		{
+			FighterAttrLayer* layer = FighterAttrLayer::create(m_Data);
+			this->getParent()->addChild(layer, 0);
+			AnimationEffect::openAniEffect(layer);
+			if (m_state == FS_READY)
+				layer->setContentPos(Vec2(360, 1000));
+			//else if (m_state == FS_FIGHTING)
+			//{
+			//	if (m_datatype == F_HERO)
+			//		layer->setContentPos(Vec2(360, 270));
+			//	else if (m_datatype == F_NPC)
+			//		layer->setContentPos(Vec2(360, 900));
+			//}
+		}
 	}
 }
 
@@ -595,7 +600,7 @@ void FightHeroNode::setFightState(int winexp)
 			if (g_MapBlockScene != NULL)
 				g_MapBlockScene->updateHeroUI(this->getTag());
 
-			hp_bar->runAction(Sequence::create(DelayTime::create(0.5f), LoadingBarProgressTo::create(0.2f, 100), DelayTime::create(0.1f), LoadingBarProgressTo::create(0.1f, percent), NULL));
+			hp_bar->runAction(Sequence::create(DelayTime::create(0.5f), LoadingBarProgressTo::create(0.2f, 100), DelayTime::create(0.1f), LoadingBarProgressFromTo::create(0.2f, 0, percent), NULL));
 		}
 		else
 		{
@@ -619,6 +624,10 @@ void FightHeroNode::setFightState(int winexp)
 		CommonFuncs::changeGray(retbox);
 		GlobalInstance::myCardHeros[this->getTag()] = NULL;
 	}
+	std::string lvstr = StringUtils::format("Lv.%d", myhero->getLevel()+1);
+	lvtext->setString(lvstr);
+
+	lvtext->runAction(Sequence::create(DelayTime::create(4.5f), Show::create(), FadeIn::create(0.5f), NULL));
 }
 
 void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)

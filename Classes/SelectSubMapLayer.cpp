@@ -100,7 +100,7 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 		Node* subnode = CSLoader::createNode(ResourcePath::makePath("selectMapNode.csb"));
 
 		subnode->setPosition(Vec2(scrollView->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
-		subnode->runAction(EaseSineIn::create(MoveBy::create(0.10f + i*0.05f, Vec2(-scrollView->getContentSize().width / 2 - 600, 0))));
+		subnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-scrollView->getContentSize().width / 2 - 600, 0))));
 
 		//subnode->setPosition(Vec2(scrollView->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 		scrollView->addChild(subnode);

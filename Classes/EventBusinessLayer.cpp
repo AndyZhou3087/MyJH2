@@ -8,6 +8,7 @@
 #include "MapEventLayer.h"
 #include "EventBuyLayer.h"
 #include "AnimationEffect.h"
+#include "SimpleResPopLayer.h"
 
 EventBusinessLayer::EventBusinessLayer()
 {
@@ -301,6 +302,12 @@ void EventBusinessLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		if (tag / 10000 == 0)
 		{
 			EventBuyLayer* layer = EventBuyLayer::create(vec_buyres[tag]);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
+		else
+		{
+			SimpleResPopLayer* layer = SimpleResPopLayer::create(vec_mypackagres[tag% 10000].sid);
 			this->addChild(layer);
 			AnimationEffect::openAniEffect(layer);
 		}

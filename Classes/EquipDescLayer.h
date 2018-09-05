@@ -33,6 +33,7 @@ private:
 	int status;
 	Equipable* m_res;
 	cocos2d::ui::Text* attrlblArr[6];
+	cocos2d::ui::Text* namelbl;
 };
 
 #endif

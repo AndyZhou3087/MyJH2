@@ -17,6 +17,7 @@
 #include "AnimationEffect.h"
 #include "OutTownLayer.h"
 #include "MarketLayer.h"
+#include "SimplePopLayer.h"
 
 TaskDailyNode::TaskDailyNode()
 {
@@ -54,8 +55,10 @@ bool TaskDailyNode::init(DailyTaskData* data)
 
 	int langtype = GlobalInstance::getInstance()->getLang();
 
-	cocos2d::ui::ImageView* resitem = (cocos2d::ui::ImageView*)csbnode->getChildByName("resitem");
-	resitem->setSwallowTouches(false);
+	cocos2d::ui::ImageView* clickimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("clickimg");
+	clickimg->addTouchEventListener(CC_CALLBACK_2(TaskDailyNode::onbtnClick, this));
+	clickimg->setTag(2000);
+	clickimg->setSwallowTouches(false);
 
 	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	std::string str = StringUtils::format("ui/dailytask_%d.png", data->type);
@@ -152,9 +155,12 @@ void TaskDailyNode::updateData(float dt)
 
 void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	CommonFuncs::BtnAction(pSender, type);
-
 	Node* clicknode = (Node*)pSender;
+	int tag = clicknode->getTag();
+
+	if (tag != 2000)
+		CommonFuncs::BtnAction(pSender, type);
+
 	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
 		clickflag = true;
@@ -172,10 +178,16 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		if (!clickflag)
 			return;
 
-		Node* node = (Node*)pSender;
-		int tag = node->getTag();
 
-		if (tag == 1000)
+		if (tag == 2000)
+		{
+			std::string str = StringUtils::format("dailytype_%d", m_Data->type);
+			std::string s = StringUtils::format(ResourceLang::map_lang[str].c_str(), m_Data->count);
+			SimplePopLayer* simplelayer = SimplePopLayer::create(s);
+			g_mainScene->addChild(simplelayer);
+			AnimationEffect::openAniEffect(simplelayer);
+		}
+		else if (tag == 1000)
 		{
 			//ŒÔ∆∑
 			for (unsigned int i = 0; i < m_Data->goods.size(); i++)

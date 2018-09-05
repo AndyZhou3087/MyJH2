@@ -13,6 +13,7 @@
 #include "DataSave.h"
 #include "Quest.h"
 #include "AnimationEffect.h"
+#include "SimpleResPopLayer.h"
 
 TaskLayer::TaskLayer()
 {
@@ -184,7 +185,7 @@ void TaskLayer::updateContent(int category)
 					scrollview->addChild(node);
 
 					node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - m_count * itemheight - itemheight / 2));
-					node->runAction(EaseSineIn::create(MoveBy::create(0.10f + m_count*0.05f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+					node->runAction(EaseSineIn::create(MoveBy::create(0.15f + m_count*0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
 
 					m_count++;
 				}
@@ -197,7 +198,7 @@ void TaskLayer::updateContent(int category)
 					scrollview->addChild(node);
 
 					node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - b_count * itemheight - itemheight / 2));
-					node->runAction(EaseSineIn::create(MoveBy::create(0.10f + b_count*0.05f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+					node->runAction(EaseSineIn::create(MoveBy::create(0.15f + b_count*0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
 					b_count++;
 				}
 			}
@@ -247,7 +248,7 @@ void TaskLayer::updateContent(int category)
 			scrollview->addChild(node);
 
 			node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
-			node->runAction(EaseSineIn::create(MoveBy::create(0.10f + i*0.05f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+			node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
 			//node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - i*itemheight - itemheight*0.5));
 		}
 	}
@@ -332,17 +333,6 @@ void TaskLayer::onPointClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		int tag = pnode->getTag();
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)pSender;
 
-		int m_point = DataSave::getInstance()->getMyyDailyPoint();
-		if (m_point < tag)
-		{
-			MovingLabel::show(ResourceLang::map_lang["nomorepoint"]);
-			return;
-		}
-		else if (Quest::map_PointReward[tag] == 1)
-		{
-			MovingLabel::show(ResourceLang::map_lang["getpointreward"]);
-			return;
-		}
 		std::string resid;
 		switch (tag)
 		{
@@ -361,6 +351,23 @@ void TaskLayer::onPointClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		default:
 			break;
 		}
+
+		int m_point = DataSave::getInstance()->getMyyDailyPoint();
+		if (m_point < tag)
+		{
+			SimpleResPopLayer* layer = SimpleResPopLayer::create(resid);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+
+			MovingLabel::show(ResourceLang::map_lang["nomorepoint"]);
+			return;
+		}
+		else if (Quest::map_PointReward[tag] == 1)
+		{
+			MovingLabel::show(ResourceLang::map_lang["getpointreward"]);
+			return;
+		}
+
 		MyRes::Add(resid);
 		std::string str = StringUtils::format(ResourceLang::map_lang["dailytype_9"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str(), 1);
 		MovingLabel::show(str);
