@@ -169,7 +169,15 @@ void StoreHouseLayer::updateContent(int category)
 		res->setPosition(Vec2(boxItem->getContentSize().width / 2, boxItem->getContentSize().height / 2));
 		boxItem->addChild(res);
 
-		Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 23);
+		std::string namestr = GlobalInstance::map_AllResources[resid].name;
+		if (map_cateRes[category][m]->getType() >= T_ARMOR && map_cateRes[category][m]->getType() <= T_NG)
+		{
+			Equipable* eres = (Equipable*)map_cateRes[category][m];
+			if (eres->getLv().getValue() > 0)
+				namestr = StringUtils::format("+%d%s", eres->getLv().getValue(), namestr.c_str());
+		}
+
+		Label *namelbl = Label::createWithTTF(namestr, FONT_NAME, 23);
 		namelbl->setColor(Color3B(34, 74,79));
 		namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -10));
 		boxItem->addChild(namelbl);
@@ -262,27 +270,35 @@ void StoreHouseLayer::loadData()
 		if (res->getWhere() == MYSTORAGE && isadd)
 		{
 			if (res->getType() == T_WG || res->getType() == T_NG)
+			{
 				map_cateRes[CATA_1].push_back(MyRes::vec_MyResources[i]);
+				sort(map_cateRes[CATA_1].begin(), map_cateRes[CATA_1].end(), lvsort_callback);
+			}
 			else if (res->getType() == T_ARMOR || res->getType() == T_EQUIP || res->getType() == T_HANDARMOR || res->getType() == T_FASHION)
+			{
 				map_cateRes[CATA_2].push_back(MyRes::vec_MyResources[i]);
+				sort(map_cateRes[CATA_2].begin(), map_cateRes[CATA_2].end(), lvsort_callback);
+			}
 			else
 			{
 				map_cateRes[CATA_3].push_back(MyRes::vec_MyResources[i]);
+				sort(map_cateRes[CATA_3].begin(), map_cateRes[CATA_3].end(), countsort_callback);
 			}
 		}
 	}
-
-	std::map<int, std::vector<ResBase*>>::iterator bit;
-	for (bit = map_cateRes.begin(); bit != map_cateRes.end(); ++bit)
-	{
-		sort(map_cateRes[bit->first].begin(), map_cateRes[bit->first].end(), less_callback);
-	}
-
 }
 
-bool StoreHouseLayer::less_callback(ResBase* a, ResBase* b)
+bool StoreHouseLayer::countsort_callback(ResBase* a, ResBase* b)
 {
-	if (a->getId() < b->getId())
+	if (a->getCount().getValue() > b->getCount().getValue())
+		return true;
+	else
+		return false;
+}
+
+bool StoreHouseLayer::lvsort_callback(ResBase* a, ResBase* b)
+{
+	if (((Equipable*)a)->getLv().getValue() > ((Equipable*)b)->getLv().getValue())
 		return true;
 	else
 		return false;

@@ -73,8 +73,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 
 	p_res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
-	namelbl->setString(GlobalInstance::map_AllResources[res->getId()].name);
+	namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	namelbl->setTextColor(Color4B(POTENTIALCOLOR[s]));
 
 	cocos2d::ui::Text* qua = (cocos2d::ui::Text*)csbnode->getChildByName("qua");
@@ -87,38 +86,13 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	quatext->setString(str);
 	quatext->setTextColor(Color4B(POTENTIALCOLOR[s]));
 
-	std::vector<float> vec_attrval;
-	
-	if (m_res->getType() >= T_ARMOR && m_res->getType() <= T_FASHION)
-	{
-		float bns = POTENTIAL_BNS[s];
-		vec_attrval.push_back(GlobalInstance::map_Equip[res->getId()].maxhp * bns);
-		vec_attrval.push_back(GlobalInstance::map_Equip[res->getId()].atk * bns);
-		vec_attrval.push_back(GlobalInstance::map_Equip[res->getId()].df * bns);
-		vec_attrval.push_back(GlobalInstance::map_Equip[res->getId()].speed * bns);
-		vec_attrval.push_back(GlobalInstance::map_Equip[res->getId()].crit * bns);
-		vec_attrval.push_back(GlobalInstance::map_Equip[res->getId()].avoid * bns);
-	}
-	else if (m_res->getType() >= T_WG && m_res->getType() <= T_NG)
-	{
-		GongFa* gf = (GongFa*)m_res;
-		vec_attrval.push_back(gf->getHp());
-		vec_attrval.push_back(gf->getAtk());
-		vec_attrval.push_back(gf->getDf());
-		vec_attrval.push_back(gf->getAtkSpeed());
-		vec_attrval.push_back(gf->getCrit());
-		vec_attrval.push_back(gf->getDodge());
-	}
-
 	for (int i = 0; i <= 5; i++)
 	{
 		str = StringUtils::format("attrtext_%d",i);
-		cocos2d::ui::Text* attrlbl = (cocos2d::ui::Text*)csbnode->getChildByName(str);
-		str = StringUtils::format("addattrtext_%d", i);
-		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), vec_attrval[i]);
-		attrlbl->setString(str);
-		attrlblArr[i] = attrlbl;
+		attrlblArr[i] = (cocos2d::ui::Text*)csbnode->getChildByName(str);
 	}
+
+	updateAttr();
 
 	cocos2d::ui::Text* jobtext = (cocos2d::ui::Text*)csbnode->getChildByName("attrtext_6");
 	if (m_res->getType() >= T_WG && m_res->getType() <= T_NG)
@@ -246,27 +220,12 @@ void EquipDescLayer::updateAttr()
 {
 	std::vector<float> vec_attrval;
 
-	int s = m_res->getQU().getValue();
-	if (m_res->getType() >= T_ARMOR && m_res->getType() <= T_FASHION)
-	{
-		float bns = POTENTIAL_BNS[s];
-		vec_attrval.push_back(GlobalInstance::map_Equip[m_res->getId()].maxhp * bns);
-		vec_attrval.push_back(GlobalInstance::map_Equip[m_res->getId()].atk * bns);
-		vec_attrval.push_back(GlobalInstance::map_Equip[m_res->getId()].df * bns);
-		vec_attrval.push_back(GlobalInstance::map_Equip[m_res->getId()].speed * bns);
-		vec_attrval.push_back(GlobalInstance::map_Equip[m_res->getId()].crit * bns);
-		vec_attrval.push_back(GlobalInstance::map_Equip[m_res->getId()].avoid * bns);
-	}
-	else if (m_res->getType() >= T_WG && m_res->getType() <= T_NG)
-	{
-		GongFa* gf = (GongFa*)m_res;
-		vec_attrval.push_back(gf->getHp());
-		vec_attrval.push_back(gf->getAtk());
-		vec_attrval.push_back(gf->getDf());
-		vec_attrval.push_back(gf->getAtkSpeed());
-		vec_attrval.push_back(gf->getCrit());
-		vec_attrval.push_back(gf->getDodge());
-	}
+	vec_attrval.push_back(m_res->getHp());
+	vec_attrval.push_back(m_res->getAtk());
+	vec_attrval.push_back(m_res->getDf());
+	vec_attrval.push_back(m_res->getAtkSpeed());
+	vec_attrval.push_back(m_res->getCrit());
+	vec_attrval.push_back(m_res->getDodge());
 
 	for (int i = 0; i <= 5; i++)
 	{
@@ -274,6 +233,11 @@ void EquipDescLayer::updateAttr()
 		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), vec_attrval[i]);
 		attrlblArr[i]->setString(str);
 	}
+	std::string namestr = GlobalInstance::map_AllResources[m_res->getId()].name;
+
+	if (m_res->getLv().getValue() > 0)
+		namestr = StringUtils::format("+%d%s", m_res->getLv().getValue(), namestr.c_str());
+	namelbl->setString(namestr);
 }
 
 void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

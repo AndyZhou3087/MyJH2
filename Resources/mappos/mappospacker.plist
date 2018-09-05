@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>mappos/posboss/pboss1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mappos/posboss/pboss2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,72},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mappos/posnpc/posth1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,144},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mappos/posnpc/posth2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,216},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mappos/posnpc/posth3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,288},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mappos/posstart/posqd1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,360},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mappos/posstart/posqd2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,432},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>mappos/postboss/tsboss.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,504},{72,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>mappospacker.png</string>
+			<key>realTextureFileName</key>
+			<string>mappospacker.png</string>
+			<key>size</key>
+			<string>{128,1024}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>128</integer>
+			<key>height</key>
+			<integer>1024</integer>
+		</dict>
+	</dict>
+</plist>

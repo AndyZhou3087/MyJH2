@@ -21,9 +21,9 @@ class HeroAttrLayer : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate
 public:
 	HeroAttrLayer();
 	~HeroAttrLayer();
-	static HeroAttrLayer* create(Hero* herodata);
+	static HeroAttrLayer* create(Hero* herodata, int fromwhere = 0);//0-客栈点击；1-训练场点击；2--医馆点击
 	virtual void onExit();
-    bool init(Hero* herodata);
+    bool init(Hero* herodata, int fromwhere = 0);
 
 	void changeEquip(ResBase* res);
 
@@ -79,6 +79,8 @@ private:
 
 	void finishMovingAction();
 
+	void updateVocationUI();
+
 private:
 	Node* lvnode;
 	//
@@ -121,6 +123,9 @@ private:
 	//职业
 	cocos2d::ui::Text* vocation;
 
+	//全身像
+	cocos2d::ui::ImageView* herofullimg;
+
 	//点击的装备栏位置
 	int clickindex;
 
@@ -131,6 +136,8 @@ private:
 	cocos2d::ui::Button* btnArr[5];
 	cocos2d::ui::Text* goodarr[4];
 	bool isMovingAction;
+	
+	int lastVaction;
 
 	cocos2d::ui::ImageView* blankclick;
 };

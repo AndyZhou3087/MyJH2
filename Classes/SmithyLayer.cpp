@@ -204,7 +204,7 @@ void SmithyLayer::updateContent(int category)
 		Node* itemnode = CSLoader::createNode(ResourcePath::makePath("makeResNode.csb"));
 
 		itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
-		itemnode->runAction(EaseSineIn::create(MoveBy::create(0.10f + i*0.05f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
+		itemnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
 
 		//itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 		m_contentscroll->addChild(itemnode);

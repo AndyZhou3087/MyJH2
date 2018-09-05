@@ -62,7 +62,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 
 	//±êÌâ
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)m_csbnode->getChildByName("name");
-	name->setString(ResourceLang::map_lang["tasktitletext"]);
+	name->setString(data->name);
 
 	cocos2d::ui::ScrollView* descscoll = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("descscoll");
 	Label* contentlbl = Label::createWithTTF(data->desc, FONT_NAME, 25);
@@ -105,7 +105,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 
 	//npcÃû×Ö
 	cocos2d::ui::Text* npcname = (cocos2d::ui::Text*)m_csbnode->getChildByName("npcname");
-	npcname->setString(GlobalInstance::map_AllResources[data->npcid].name);
+	npcname->setString(ResourceLang::map_lang["littlesistext"]);
 
 	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("closebtn");
 	closebtn->setPosition(Vec2(357, 183));
@@ -220,9 +220,18 @@ bool TaskDescLayer::init(TaskData* data, int type)
 		namelbl->setColor(Color3B(255, 255, 255));
 		namelbl->setPosition(Vec2(box->getContentSize().width / 2, -10));
 		box->addChild(namelbl);
-
 	}
 
+	std::vector<Node*> vec_btnnode;
+	if (accbtn->isVisible())
+		vec_btnnode.push_back(accbtn);
+	if (getbtn->isVisible())
+		vec_btnnode.push_back(getbtn);
+	vec_btnnode.push_back(closebtn);
+	for (unsigned int i = 0; i < vec_btnnode.size(); i++)
+	{
+		vec_btnnode[i]->setPosition(Vec2(360, 430 - 145 * i));
+	}
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)

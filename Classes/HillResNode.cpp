@@ -9,13 +9,15 @@
 #include "Const.h"
 #include "AnimationEffect.h"
 #include "SoundManager.h"
+#include "SimplePopLayer.h"
+
+int needfood[] = { 2,3,4,10 };
 
 HillResNode::HillResNode()
 {
 	m_isLongPress = false;
 	m_longTouchNode = NULL;
 }
-
 
 HillResNode::~HillResNode()
 {
@@ -46,9 +48,10 @@ bool HillResNode::init(ResCreator* data)
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("hillResNode.csb"));
 	this->addChild(csbnode);
 
-	cocos2d::ui::Widget* resbox = (cocos2d::ui::Widget*)csbnode->getChildByName("resbox");
-	resbox->addTouchEventListener(CC_CALLBACK_2(HillResNode::onImgClick, this));
-	resbox->setSwallowTouches(false);
+	cocos2d::ui::Widget* clickimg = (cocos2d::ui::Widget*)csbnode->getChildByName("clickimg");
+	clickimg->addTouchEventListener(CC_CALLBACK_2(HillResNode::onBtnClick, this));
+	clickimg->setTag(2000);
+	clickimg->setSwallowTouches(false);
 
 	cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	std::string str = StringUtils::format("ui/%s.png", data->getName().c_str());
@@ -145,9 +148,12 @@ void HillResNode::updateData(float dt)
 
 void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	CommonFuncs::BtnAction(pSender, type);
+
 	Node* clicknode = (Node*)pSender;
 	int tag = clicknode->getTag();
+
+	if (tag != 2000)
+		CommonFuncs::BtnAction(pSender, type);
 
 	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
@@ -181,6 +187,18 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 				g_mainScene->addChild(layer);
 				AnimationEffect::openAniEffect((Layer*)layer);
 			}
+			break;
+		}
+		case 2000:
+		{
+			std::string str;
+			if (this->getTag() != 0)
+				str = StringUtils::format(ResourceLang::map_lang["rescreatordesc"].c_str(), needfood[this->getTag() - 1], GlobalInstance::map_AllResources[m_Data->getName()].name.c_str());
+			else
+				str = StringUtils::format(ResourceLang::map_lang["foodcreatordesc"].c_str(), GlobalInstance::map_AllResources[m_Data->getName()].name.c_str());
+			SimplePopLayer* layer = SimplePopLayer::create(str);
+			g_mainScene->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
 			break;
 		}
 		default:
@@ -258,7 +276,6 @@ void HillResNode::addCount()
 			int foodcount = GlobalInstance::getInstance()->calcFoodMakeOut();
 			if (GlobalInstance::vec_resCreators.size() > 0)
 			{
-				int needfood[] = { 2,3,4,10 };
 				for (unsigned int i = 1; i < GlobalInstance::vec_resCreators.size(); i++)
 				{
 					ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
@@ -305,13 +322,5 @@ void HillResNode::subCount()
 		m_Data->setFarmersCount(dvalue);
 		GlobalInstance::getInstance()->saveResCreatorData();
 		updateData(0);
-	}
-}
-
-void HillResNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
-{
-	if (type == ui::Widget::TouchEventType::ENDED)
-	{
-
 	}
 }

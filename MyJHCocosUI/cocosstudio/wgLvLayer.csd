@@ -68,7 +68,7 @@
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="354.7813" Y="1122.6066" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="112" G="67" B="34" />
+            <CColor A="255" R="117" G="74" B="42" />
             <PrePosition X="0.4928" Y="0.8770" />
             <PreSize X="0.2792" Y="0.0359" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
@@ -150,14 +150,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="exptext" ActionTag="220282824" Tag="212" IconVisible="False" LeftMargin="310.8599" RightMargin="303.1401" TopMargin="373.3440" BottomMargin="877.6560" FontSize="25" LabelText="100/1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="106.0000" Y="29.0000" />
+          <AbstractNodeData Name="exptext" ActionTag="220282824" Tag="212" IconVisible="False" LeftMargin="314.8599" RightMargin="307.1401" TopMargin="373.0000" BottomMargin="881.0000" FontSize="23" LabelText="100/1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="98.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="363.8599" Y="892.1560" />
+            <Position X="363.8599" Y="894.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5054" Y="0.6970" />
-            <PreSize X="0.1472" Y="0.0227" />
+            <PrePosition X="0.5054" Y="0.6984" />
+            <PreSize X="0.1361" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
@@ -342,8 +342,8 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="tipstext" ActionTag="-166295186" Tag="267" IconVisible="False" LeftMargin="226.1671" RightMargin="230.8329" TopMargin="670.5476" BottomMargin="577.4524" FontSize="26" LabelText="点击材料可增加经验值" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="263.0000" Y="32.0000" />
+          <AbstractNodeData Name="tipstext" ActionTag="-166295186" Tag="267" IconVisible="False" LeftMargin="226.1671" RightMargin="230.8329" TopMargin="670.5476" BottomMargin="577.4524" FontSize="26" LabelText="点击材料可增加经验值" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="264.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="357.6671" Y="593.4524" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -351,7 +351,7 @@
             <PrePosition X="0.4968" Y="0.4636" />
             <PreSize X="0.3653" Y="0.0250" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="215" G="201" B="174" />
+            <OutlineColor A="255" R="173" G="152" B="96" />
             <ShadowColor A="255" R="176" G="176" B="176" />
           </AbstractNodeData>
           <AbstractNodeData Name="heroattrnamebox_18" ActionTag="862488899" Tag="269" IconVisible="False" LeftMargin="256.7796" RightMargin="220.2204" TopMargin="753.9192" BottomMargin="472.0808" ctype="SpriteObjectData">
@@ -417,13 +417,13 @@
             <FileData Type="MarkedSubImage" Path="ui/taskframe.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="curtext" ActionTag="2097116326" Tag="276" IconVisible="False" LeftMargin="146.7331" RightMargin="505.2669" TopMargin="835.0959" BottomMargin="394.9040" LeftEage="22" RightEage="22" TopEage="16" BottomEage="16" Scale9OriginX="22" Scale9OriginY="16" Scale9Width="24" Scale9Height="18" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="curtext" ActionTag="2097116326" Tag="276" IconVisible="False" LeftMargin="146.7331" RightMargin="505.2669" TopMargin="835.0960" BottomMargin="394.9040" LeftEage="22" RightEage="22" TopEage="16" BottomEage="16" Scale9OriginX="22" Scale9OriginY="16" Scale9Width="24" Scale9Height="18" ctype="ImageViewObjectData">
             <Size X="68.0000" Y="50.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="180.7331" Y="419.9040" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2510" Y="0.3281" />
+            <PrePosition X="0.2510" Y="0.3280" />
             <PreSize X="0.0944" Y="0.0391" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/wgcurtext.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>

@@ -5,8 +5,11 @@
 #include "MyRes.h"
 #include "MovingLabel.h"
 #include "MarketLayer.h"
+#include "MainScene.h"
 #include "Const.h"
 #include "SoundManager.h"
+#include "SimpleResPopLayer.h"
+#include "AnimationEffect.h"
 
 MarketResNode::MarketResNode()
 {
@@ -45,9 +48,10 @@ bool MarketResNode::init(std::string resid, int rescount)
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("marketResNode.csb"));
 	this->addChild(csbnode);
 
-	cocos2d::ui::Widget* resbox = (cocos2d::ui::Widget*)csbnode->getChildByName("resbox");
-	//resbox->addTouchEventListener(CC_CALLBACK_2(MarketResNode::onImgClick, this));
-	//resbox->setSwallowTouches(false);
+	cocos2d::ui::Widget* clickimg = (cocos2d::ui::Widget*)csbnode->getChildByName("clickimg");
+	clickimg->addTouchEventListener(CC_CALLBACK_2(MarketResNode::onBtnClick, this));
+	clickimg->setTag(2000);
+	clickimg->setSwallowTouches(false);
 
 	cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	std::string str = StringUtils::format("ui/%s.png", resid.c_str());
@@ -97,10 +101,12 @@ bool MarketResNode::init(std::string resid, int rescount)
 
 void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	CommonFuncs::BtnAction(pSender, type);
+
 
 	Node* clicknode = (Node*)pSender;
 	int tag = clicknode->getTag();
+	if (tag != 2000)
+		CommonFuncs::BtnAction(pSender, type);
 
 	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
@@ -189,6 +195,13 @@ void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				}
 			}
 			MovingLabel::show(showstr);
+			break;
+		}
+		case 2000:
+		{
+			SimpleResPopLayer* layer = SimpleResPopLayer::create(m_resid);
+			g_mainScene->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
 			break;
 		}
 		default:
@@ -333,12 +346,4 @@ bool MarketResNode::checkResIsFull()
 		}
 	}
 	return false;
-}
-
-void MarketResNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
-{
-	if (type == ui::Widget::TouchEventType::ENDED)
-	{
-
-	}
 }

@@ -20,6 +20,7 @@ public:
 	void setContentPos(Vec2 pos);
 private:
 	cocos2d::ui::Widget* smallbg;
+	Node* csbnode;
 };
 
 #endif

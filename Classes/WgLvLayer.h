@@ -31,7 +31,7 @@ private:
 	*************************************/
 	void onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
-	void updataAtrrUI(float dt);
+	void updataAtrrUI();
 private:
 
 	GongFa* m_res;
@@ -79,6 +79,8 @@ private:
 	cocos2d::ui::LoadingBar* expbar;
 	cocos2d::ui::Text* explbl;
 	cocos2d::ui::Text* lvtext;
+	cocos2d::ui::Text* name;
+	int myprelv;
 };
 
 #endif

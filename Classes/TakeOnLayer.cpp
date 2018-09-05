@@ -79,9 +79,16 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 
 	std::string str;
 	name = (cocos2d::ui::Text*)csbnode->getChildByName("name");
-	str = StringUtils::format("+%d%s", m_equip->getLv().getValue(), GlobalInstance::map_AllResources[m_equip->getId()].name.c_str());
-	name->setString(str);
 	name->setTextColor(Color4B(POTENTIALCOLOR[qu]));
+
+	std::string namestr = GlobalInstance::map_AllResources[m_equip->getId()].name;
+	if (m_equip->getType() >= T_ARMOR && m_equip->getType() <= T_FASHION)
+	{
+		if (m_equip->getLv().getValue() > 0)
+			namestr = StringUtils::format("+%d%s", m_equip->getLv().getValue(), GlobalInstance::map_AllResources[m_equip->getId()].name.c_str());
+	}
+
+	name->setString(namestr);
 
 	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox");
 	str = StringUtils::format("ui/resbox_qu%d.png", qu);

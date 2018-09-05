@@ -230,6 +230,16 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 
 	}
 	
+	std::vector<Node*> vec_btnnode;
+	if (givebtn->isVisible())
+		vec_btnnode.push_back(givebtn);
+	if (fightbtn->isVisible())
+		vec_btnnode.push_back(fightbtn);
+	vec_btnnode.push_back(closebtn);
+	for (unsigned int i = 0; i < vec_btnnode.size(); i++)
+	{
+		vec_btnnode[i]->setPosition(Vec2(360, 430 - 145 * i));
+	}
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)

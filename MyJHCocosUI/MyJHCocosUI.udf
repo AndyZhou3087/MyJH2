@@ -12,8 +12,9 @@
         <OpenedDocuments>
           <FilePathData Path="newGuideLayer.csd" />
           <FilePathData Path="mapBlockLayer.csd" />
+          <FilePathData Path="taskMainDescLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="newGuideLayer.csd" />
+        <ActiveDocument Path="taskMainDescLayer.csd" />
       </Value>
     </Item>
   </Properties>

@@ -35,7 +35,8 @@ private:
 	cocos2d::ui::ScrollView* scrollview;
 	void loadData();
 	void updateContent(int category);
-	static bool less_callback(ResBase* a, ResBase* b);
+	static bool countsort_callback(ResBase* a, ResBase* b);
+	static bool lvsort_callback(ResBase* a, ResBase* b);
 private:
 	std::vector<cocos2d::ui::Button*> vec_categoryBtn;
 	std::map<int, std::vector<ResBase*>> map_cateRes;

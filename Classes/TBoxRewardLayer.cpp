@@ -96,7 +96,7 @@ bool TBoxRewardLayer::init(std::string resid)
 	int t = 0;
 	for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
 	{
-		if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+		if (vec_tmp[0].compare(0, 1, RES_TYPES_CHAR[t]) == 0)
 			break;
 	}
 	if (t >= T_ARMOR && t <= T_NG)

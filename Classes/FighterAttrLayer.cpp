@@ -45,7 +45,7 @@ bool FighterAttrLayer::init(Npc* npcdata)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("fighterAttrLayer.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("fighterAttrLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
@@ -60,6 +60,10 @@ bool FighterAttrLayer::init(Npc* npcdata)
 	vec_attrval.push_back(npcdata->getAtkSpeed());
 	vec_attrval.push_back(npcdata->getCrit());
 	vec_attrval.push_back(npcdata->getDodge());
+
+	cocos2d::ui::Text* lvlbl = (cocos2d::ui::Text*)smallbg->getChildByName("lvtext");
+	std::string lvstr = StringUtils::format(ResourceLang::map_lang["lvdetails"].c_str(), npcdata->getLevel() + 1);
+	lvlbl->setString(lvstr);
 
 	for (int i = 0; i <= 5; i++)
 	{
@@ -77,8 +81,7 @@ bool FighterAttrLayer::init(Npc* npcdata)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		AnimationEffect::closeAniEffect((Layer*)this);
-		//this->removeFromParentAndCleanup(true);
+		this->removeFromParentAndCleanup(true);
 	};
 	listener->setSwallowTouches(false);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);

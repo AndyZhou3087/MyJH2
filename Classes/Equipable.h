@@ -16,6 +16,7 @@ public:
 
 	CC_SYNTHESIZE(std::string, m_whos, Whos);//谁装配上了
 	virtual DynamicValueInt getLv();
+	virtual void setLv(DynamicValueInt val);
 public:
 	//攻击
 	virtual float getAtk();
@@ -34,5 +35,7 @@ public:
 
 	//闪避
 	virtual float getDodge();
+public:
+	DynamicValueInt m_lv;
 };
 #endif

@@ -12,8 +12,12 @@ Equipable::~Equipable()
 
 DynamicValueInt Equipable::getLv()
 {
-	DynamicValueInt dv;
-	return dv;
+	return m_lv;
+}
+
+void Equipable::setLv(DynamicValueInt val)
+{
+	m_lv.setValue(val.getValue());
 }
 
 //攻击

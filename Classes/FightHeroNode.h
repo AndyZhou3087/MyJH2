@@ -85,6 +85,7 @@ private:
 	cocos2d::ui::ImageView* vocationicon;
 	cocos2d::ui::TextBMFont* numfnt;
 	cocos2d::ui::Widget* critnumbg;
+	cocos2d::ui::Text* lvtext;
 	Npc* m_Data;
 	FIGHTDATA_TYPE m_datatype;
 	FIGHTNODE_STATE m_state;
