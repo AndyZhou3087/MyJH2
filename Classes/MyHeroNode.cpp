@@ -194,7 +194,20 @@ void MyHeroNode::updateTime(float dt)
 			dexp.setValue(m_heroData->getExp().getValue() + m_heroData->getTrainHour() / 3600 * bexp);
 			m_heroData->setExp(dexp);*/
 
+			int lastLevel = m_heroData->getLevel();
 			m_heroData->setExpLimit(m_heroData->getTrainHour() / 3600 * bexp);
+			int curLevel = m_heroData->getLevel();
+			if (lastLevel <= curLevel - 1)
+			{
+				auto effectnode = CSLoader::createNode("effect/qianghuachenggong.csb");
+				effectnode->setPosition(Vec2(360, 640));
+				g_mainScene->addChild(effectnode, 10, "qianghuachenggong");
+				cocos2d::ui::ImageView* ziti = (cocos2d::ui::ImageView*)effectnode->getChildByName("ziti");
+				ziti->loadTexture(ResourcePath::makeTextImgPath("texiao_sjcg", GlobalInstance::getInstance()->getLang()), cocos2d::ui::Widget::TextureResType::PLIST);
+				auto action = CSLoader::createTimeline("effect/qianghuachenggong.csb");
+				effectnode->runAction(action);
+				action->gotoFrameAndPlay(0, false);
+			}
 
 			m_heroData->setTrainHour(0);
 			m_heroData->setTrainTime(0);

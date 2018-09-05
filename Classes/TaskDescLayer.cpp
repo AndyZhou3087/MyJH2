@@ -62,7 +62,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 
 	//БъЬт
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)m_csbnode->getChildByName("name");
-	name->setString(data->name);
+	name->setString(ResourceLang::map_lang["tasktitletext"]);
 
 	cocos2d::ui::ScrollView* descscoll = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("descscoll");
 	Label* contentlbl = Label::createWithTTF(data->desc, FONT_NAME, 25);

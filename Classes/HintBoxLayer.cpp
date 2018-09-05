@@ -10,6 +10,8 @@
 #include "AnimationEffect.h"
 #include "MyHeroNode.h"
 #include "MainMapScene.h"
+#include "MapBlockScene.h"
+#include "NewGuideLayer.h"
 
 USING_NS_CC;
 
@@ -82,6 +84,19 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 	cocos2d::ui::Text* content = (cocos2d::ui::Text*)csbnode->getChildByName("content");
 	content->setString(str);
 
+	if (forwhere == 4)
+	{
+		if (NewGuideLayer::checkifNewerGuide(FIGHTGUIDESTEP))
+		{
+			if (g_MapBlockScene != NULL)
+			{
+				std::vector<Node*> nodes;
+				okbtn->setTag(-1);
+				nodes.push_back(okbtn);
+				g_MapBlockScene->showNewerGuideNode(FIGHTGUIDESTEP, nodes);
+			}
+		}
+	}
 
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
@@ -135,6 +150,9 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
 			}
 			AnimationEffect::closeAniEffect((Layer*)this);
+		case -1:
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+			break;
 		default:
 			break;
 		}

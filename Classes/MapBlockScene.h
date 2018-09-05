@@ -29,7 +29,7 @@ typedef enum
 	BTN_MAP = 2000,
 	BTN_GOCITY,
 	BTN_PACKAGE
-}BTNTYPE;
+}MAPBTNTYPE;
 
 typedef enum
 {
@@ -59,6 +59,15 @@ public:
 	void showFightingLayer(std::vector<Npc*> enemys);
 
 	void showUnlockChapter();
+
+	void delayShowExit(float dt);
+
+	//延迟新手引导
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+	void showNewerGuideNode(int step, std::vector<Node*> nodes);
+	void showNewerGuideFight();
+	void showNewerGuideGoBack();
 
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
@@ -123,8 +132,6 @@ private:
 
 	void delayShowFightResult(float dt);
 
-	void delayShowExit(float dt);
-
 	void openAllMap();
 
 private:
@@ -169,6 +176,8 @@ private:
 	int m_lastWalkDirection;
 
 	bool mapIsAllOpen;
+
+	cocos2d::ui::Widget* keybtnArr[4];
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

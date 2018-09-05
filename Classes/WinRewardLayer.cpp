@@ -8,6 +8,8 @@
 #include "MyMenu.h"
 #include "MovingLabel.h"
 #include "AnimationEffect.h"
+#include "MapBlockScene.h"
+#include "NewGuideLayer.h"
 
 WinRewardLayer::WinRewardLayer()
 {
@@ -335,6 +337,10 @@ void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		case 1001://continue
 		case 1002://close
 		{
+			if (NewGuideLayer::checkifNewerGuide(FIGHTGUIDESTEP))
+			{
+				g_MapBlockScene->delayShowNewerGuide(0);
+			}
 			AnimationEffect::closeAniEffect((Layer*)this->getParent());
 			int r = GlobalInstance::getInstance()->createRandomNum(5);
 			SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_SUBMAP_0 + r);

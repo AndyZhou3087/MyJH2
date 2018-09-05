@@ -11,6 +11,7 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="newGuideLayer.csd" />
+          <FilePathData Path="mapBlockLayer.csd" />
         </OpenedDocuments>
         <ActiveDocument Path="newGuideLayer.csd" />
       </Value>

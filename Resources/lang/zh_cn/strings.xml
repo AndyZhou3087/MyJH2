@@ -186,8 +186,7 @@
 	<s name="buypricetext">价    格：</s>
 	<s name="buycounttext">购买数量：</s>
 	<s name="leavemaptext">是否确认退出%s？</s>
-	<s name="unlocktext">解锁第%d章地图：%s</s>
-	<s name="leavemaptext">是否确认退出%s？</s>	
+	<s name="unlocktext">解锁第%d章地图：%s</s>	
 	<s name="selectheadtext">点击更换头像</s>
 	<s name="haveroles">拥有角色：%d</s>	
 	<s name="havegold">拥有元宝：%d</s>	
@@ -215,5 +214,8 @@
 	<s name="buy_0">购买成功！</s>
 	<s name="buy_1">购买失败！</s>
 	<s name="lefttimetext">剩余%d天</s>
-	<s name="tboxdesctext">获得以下物品</s>	
+	<s name="tboxdesctext">获得以下物品</s>
+	<s name="guidebtn0">帮助六大派</s>
+	<s name="guidebtn1">帮助魔教</s>
+	<s name="tasktitletext">小师妹</s>
 </strings>
