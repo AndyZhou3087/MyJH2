@@ -82,10 +82,10 @@ private:
 	//随机生成一个名字
 	std::string generateName();
 	Equipable* takeOnEquip[6];//6个装备，包括武功和内功
-	void setMyLevel(int lv);
+	void checkLevelQuest(int lv);
 
 private:
-	int m_level;//等级
+	int m_lastlevel;//上一等级
 public:
 	/********************************************************************
 	* 根据类型获取对应的装备

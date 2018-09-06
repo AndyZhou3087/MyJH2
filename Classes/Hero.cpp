@@ -27,7 +27,7 @@ Hero::Hero()
 	m_power.setValue(100);
 	m_powertime = 0;
 	m_changecount = 0;
-	m_level = 0;
+	m_lastlevel = 0;
 	for (int i = 0; i < 6; i++)
 	{
 		takeOnEquip[i] = NULL;
@@ -57,7 +57,7 @@ Hero::Hero(Hero* hero)
 	m_power = hero->getPower();
 	m_powertime = hero->getPowerTime();
 	m_changecount = hero->getChangeCount();
-	m_level = hero->getLevel();
+	m_lastlevel = hero->getLevel();
 	for (int i = 0; i < 6; i++)
 	{
 		takeOnEquip[i] = NULL;
@@ -108,16 +108,16 @@ int Hero::getLevel()
 	return 0;
 }
 
-void Hero::setMyLevel(int lv)
+void Hero::checkLevelQuest(int lv)
 {
-	if (m_level <= lv - 1)
+	if (m_lastlevel <= lv - 1)
 	{
-		Quest::setDailyTask(UPGRADE_HERO, lv - 1 - m_level);
-		Quest::setAchieveTypeCount(UPGRADE_HERO, lv - 1 - m_level);
+		Quest::setDailyTask(UPGRADE_HERO, lv - 1 - m_lastlevel);
+		Quest::setAchieveTypeCount(UPGRADE_HERO, lv - 1 - m_lastlevel);
 		float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[lv] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(lv + 1) / 10];
 		m_hp = herohp;
 	}
-	m_level = lv;
+	m_lastlevel = lv;
 }
 
 void Hero::setExpLimit(int vexp)
@@ -139,7 +139,7 @@ void Hero::setExpLimit(int vexp)
 	if (isChangeLevel)
 	{
 		DynamicValueInt dal;
-		dal.setValue(GlobalInstance::vec_herosAttr[m_vocation].vec_exp[((m_level + 1) / 10 + 1) * 10 - 2]);
+		dal.setValue(GlobalInstance::vec_herosAttr[m_vocation].vec_exp[((m_lastlevel + 1) / 10 + 1) * 10 - 2]);
 		setExp(dal);
 	}
 	else
@@ -152,13 +152,13 @@ void Hero::setExpLimit(int vexp)
 	{
 		if (m_exp.getValue() < GlobalInstance::vec_herosAttr[m_vocation].vec_exp[i])
 		{
-			setMyLevel(i);
+			checkLevelQuest(i);
 			break;
 		}
 	}
 	if (m_exp.getValue() >= GlobalInstance::vec_herosAttr[m_vocation].vec_exp[size - 1])
 	{
-		setMyLevel(size - 1);
+		checkLevelQuest(size - 1);
 	}
 }
 

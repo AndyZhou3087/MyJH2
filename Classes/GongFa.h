@@ -41,9 +41,9 @@ public:
 	float getDodge();
 
 private:
-	int m_level;
+	int m_lastlevel;//上一等级
 
 private:
-	void setMyLevel(int lv);
+	void checkLevelQuest(int lv);
 };
 #endif

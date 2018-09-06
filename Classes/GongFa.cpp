@@ -6,7 +6,7 @@ GongFa::GongFa()
 {
 	m_qu.setValue(0);
 	m_skillcount = 0;
-	m_level = 0;
+	m_lastlevel = 0;
 }
 
 
@@ -27,7 +27,7 @@ DynamicValueInt GongFa::getLv()
 		if (m_exp.getValue() < curlvExp)
 		{
 			dvint.setValue(i);
-			setMyLevel(i);
+			checkLevelQuest(i);
 			return dvint;
 		}
 	}
@@ -35,14 +35,14 @@ DynamicValueInt GongFa::getLv()
 	return dvint;
 }
 
-void GongFa::setMyLevel(int lv)
+void GongFa::checkLevelQuest(int lv)
 {
-	if (m_level == lv - 1)
+	if (m_lastlevel <= lv - 1)
 	{
 		Quest::setDailyTask(STRENG_WG, 1);
 		Quest::setAchieveTypeCount(STRENG_WG, 1);
 	}
-	m_level = lv;
+	m_lastlevel = lv;
 }
 
 int GongFa::getMaxLv()
