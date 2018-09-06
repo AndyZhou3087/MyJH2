@@ -56,7 +56,7 @@
 	<s name="noroad">此路不通</s>
 	<s name="hpdesc">（消耗体力 %d）</s>
 	<s name="awarddesc">可获得物品：%s</s>	
-	<s name="dunhao">、</s>
+	<s name="dundunhao">、</s>
 	<s name="comma">，</s>
 	<s name="noherosout">请选择出城侠客！</s>
 	<s name="rescount">数量：%d</s>
@@ -219,5 +219,7 @@
 	<s name="tboxdesctext">获得以下物品</s>
 	<s name="littlesistext">小师妹</s>
 	<s name="rescreatordesc">消耗：食材-%d\n产出：%s+1</s>
-	<s name="foodcreatordesc">产出：%s+1</s>		
+	<s name="foodcreatordesc">产出：%s+1</s>
+	<s name="smithylvdesc">升级铁匠铺可制造更多物品</s>
+	<s name="needresdesc">所需%s</s>	
 </strings>

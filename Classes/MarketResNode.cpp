@@ -199,6 +199,7 @@ void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		}
 		case 2000:
 		{
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 			SimpleResPopLayer* layer = SimpleResPopLayer::create(m_resid);
 			g_mainScene->addChild(layer);
 			AnimationEffect::openAniEffect(layer);

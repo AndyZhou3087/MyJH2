@@ -328,7 +328,8 @@ void FightHeroNode::hurt(float hp, int stat)//stat -1:不显示普攻动画
 				if (stat == 0)
 					showAtkOrHurtAnim(1);
 			}
-			numfnt->setString(hurtstr);
+			if (hurtup > 0)
+				numfnt->setString(hurtstr);
 
 			ActionInterval* ac1 = Spawn::create(Show::create(), FadeIn::create(0.1f), EaseSineIn::create(ScaleTo::create(0.15f, 1)), NULL);
 			statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), NULL));
@@ -732,14 +733,14 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 				if (stype == SKILL_10)
 				{
 					Sprite* s = Sprite::createWithSpriteFrameName("mapui/attricon2down.png");
-					this->addChild(s);
+					fnode->addChild(s);
 					s->setVisible(false);
 					fnode->map_skillattricon[stype].push_back(s);
 				}
 				else if (stype == SKILL_11)
 				{
 					Sprite* s = Sprite::createWithSpriteFrameName("mapui/attricon0down.png");
-					this->addChild(s);
+					fnode->addChild(s);
 					s->setVisible(false);
 					fnode->map_skillattricon[stype].push_back(s);
 				}
@@ -808,7 +809,7 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 			{
 				//whosufferNode->getData()->setHp(whosufferNode->getData()->getHp() - );
 				//whosufferNode->updateHp();
-				whosufferNode->hurt(eff*whosufferNode->getData()->getMaxHp() / 100, -1);
+				whosufferNode->hurt(eff*m_Data->getAtk()/100, -1);
 			}
 			else if (stype == SKILL_7 || stype == SKILL_8)//回血
 			{
@@ -880,6 +881,10 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 				dt = 1.0f;
 			}
 		}
+		else
+		{
+			whosufferNode->hurt(0, 2);
+		}
 
 		if (stype == 3 || stype == 4)
 		{
@@ -888,7 +893,6 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 		}
 		else if (stype == 5 || stype == 6 || stype == 8)
 		{
-			m_Data->clearSkill(gf);
 			whosufferNode->getData()->setIsDodge(false);
 		}
 		else if (stype == 13)
@@ -1110,7 +1114,6 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 		dt1 = 0.0f;
 		dt2 = 0.1f;
 	}
-	FightingLayer* fighting = (FightingLayer*)this->getParent();
 
 	if (stype != 4)
 	{

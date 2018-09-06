@@ -18,6 +18,7 @@
 #include "OutTownLayer.h"
 #include "MarketLayer.h"
 #include "SimplePopLayer.h"
+#include "SoundManager.h"
 
 TaskDailyNode::TaskDailyNode()
 {
@@ -181,6 +182,7 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 		if (tag == 2000)
 		{
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 			std::string str = StringUtils::format("dailytype_%d", m_Data->type);
 			std::string s = StringUtils::format(ResourceLang::map_lang[str].c_str(), m_Data->count);
 			SimplePopLayer* simplelayer = SimplePopLayer::create(s);

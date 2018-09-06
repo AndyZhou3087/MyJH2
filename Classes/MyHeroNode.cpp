@@ -130,7 +130,7 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 		{
 			actbtntxt->loadTexture(ResourcePath::makeTextImgPath("traindoing_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
-		else if (m_heroData->getState() == HS_OWNED)
+		else if (m_heroData->getState() == HS_OWNED || m_heroData->getState() == HS_TAKEON)
 		{
 			actbtn->loadTexture("ui/actionbtn_yellow.png", cocos2d::ui::Widget::TextureResType::PLIST);
 		}

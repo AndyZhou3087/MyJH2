@@ -191,6 +191,7 @@ void HillResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		}
 		case 2000:
 		{
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 			std::string str;
 			if (this->getTag() != 0)
 				str = StringUtils::format(ResourceLang::map_lang["rescreatordesc"].c_str(), needfood[this->getTag() - 1], GlobalInstance::map_AllResources[m_Data->getName()].name.c_str());

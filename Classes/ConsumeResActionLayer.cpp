@@ -70,6 +70,8 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 	smallbg->setSwallowTouches(true);
 
 	nextlvdesc = (cocos2d::ui::Text*)csbnode->getChildByName("nextlvdesc");
+	Label* nextlvlbl = (Label*)nextlvdesc->getVirtualRenderer();
+	nextlvlbl->setLineSpacing(10);
 
 	std::string titlestr;		//标题
 	std::string btn1_text;//按钮1中的文字图片
@@ -138,6 +140,11 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 	cocos2d::ui::Text* title = (cocos2d::ui::Text*)csbnode->getChildByName("titlename");
 	title->setString(titlestr);
 
+	//需要的资源说明
+
+	std::string needresstr;
+
+
 	//3个资源的展示
 	for (unsigned int i = 0; i < 3; i++)
 	{
@@ -179,6 +186,11 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 			res->setPositionX(resbox->getPositionX());
 			namelbl[i]->setPositionX(resbox->getPositionX());
 			countlbl[i]->setPositionX(resbox->getPositionX());
+
+			std::string onestr = StringUtils::format("%s%d", GlobalInstance::map_AllResources[resid].name.c_str(), map_res[resid]);
+			if (needresstr.length() > 0)
+				needresstr.append(ResourceLang::map_lang["dundunhao"]);
+			needresstr.append(onestr);
 		}
 		else
 		{
@@ -199,8 +211,12 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 			widget->setVisible(false);
 			
 		}
-
 	}
+
+	cocos2d::ui::Text* resdesc = (cocos2d::ui::Text*)csbnode->getChildByName("resdesc");
+	needresstr = StringUtils::format(ResourceLang::map_lang["needresdesc"].c_str(), needresstr.c_str());
+	resdesc->setString(needresstr);
+
 	//按钮1
 	cocos2d::ui::Widget* lvupbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("lvupbtn");
 	lvupbtn->setTag(1000);

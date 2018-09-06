@@ -259,19 +259,31 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="contentscroll" ActionTag="1506340264" Tag="58" IconVisible="False" LeftMargin="35.0000" RightMargin="35.0000" TopMargin="200.0000" BottomMargin="170.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
-            <Size X="650.0000" Y="910.0000" />
-            <AnchorPoint />
-            <Position X="35.0000" Y="170.0000" />
+          <AbstractNodeData Name="contentscroll" ActionTag="1506340264" Tag="58" IconVisible="False" LeftMargin="35.0000" RightMargin="35.0000" TopMargin="200.0000" BottomMargin="180.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+            <Size X="650.0000" Y="900.0000" />
+            <AnchorPoint ScaleY="1.0000" />
+            <Position X="35.0000" Y="1080.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0486" Y="0.1328" />
-            <PreSize X="0.9028" Y="0.7109" />
+            <PrePosition X="0.0486" Y="0.8438" />
+            <PreSize X="0.9028" Y="0.7031" />
             <SingleColor A="255" R="255" G="150" B="100" />
             <FirstColor A="255" R="255" G="150" B="100" />
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="650" Height="910" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="hintdesc" ActionTag="704225001" Tag="47" IconVisible="False" LeftMargin="320.0000" RightMargin="320.0000" TopMargin="1110.5000" BottomMargin="140.5000" FontSize="25" LabelText="999999" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="80.0000" Y="29.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="155.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="125" G="80" B="47" />
+            <PrePosition X="0.5000" Y="0.1211" />
+            <PreSize X="0.1111" Y="0.0227" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

@@ -14,7 +14,7 @@ USING_NS_CC;
 
 SmithyLayer::SmithyLayer()
 {
-	lastCategoryindex = 0;
+	lastCategoryindex = 1;
 }
 
 SmithyLayer::~SmithyLayer()
@@ -87,6 +87,12 @@ bool SmithyLayer::init(Building* buidingData)
 	m_contentscroll->setScrollBarEnabled(false);
 	m_contentscroll->setBounceEnabled(true);
 
+	hintlbl = (cocos2d::ui::Text*)csbnode->getChildByName("hintdesc");
+	if (buidingData->level.getValue() >= buidingData->maxlevel.getValue() - 1)
+		hintlbl->setString("");
+	else
+		hintlbl->setString(ResourceLang::map_lang["smithylvdesc"]);
+
 	Node* categoryBtnNode = csbnode->getChildByName("catanode");
 	for (int i = 0; i < categoryBtnNode->getChildrenCount(); i++)
 	{
@@ -97,7 +103,7 @@ bool SmithyLayer::init(Building* buidingData)
 		vec_categoryBtn.push_back(btn);
 	}
 	loadData();
-	updateContent(0);
+	updateContent(lastCategoryindex);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -198,6 +204,10 @@ void SmithyLayer::updateContent(int category)
 		innerheight = contentheight;
 	m_contentscroll->setInnerContainerSize(Size(650, innerheight));
 
+	if (size > 0)
+		hintlbl->setPositionY(155);
+	else
+		hintlbl->setPositionY(720);
 	
 	for (int i = 0; i < size; i++)
 	{
