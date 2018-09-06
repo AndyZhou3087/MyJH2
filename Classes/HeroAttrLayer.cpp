@@ -586,7 +586,20 @@ void HeroAttrLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			MyRes::Use(str);
 			/*DynamicValueInt dal;
 			dal.setValue(count);*/
+			int lastLevel = m_heroData->getLevel();
 			m_heroData->setExpLimit(count);
+			int curLevel = m_heroData->getLevel();
+			if (lastLevel <= curLevel - 1)
+			{
+				auto effectnode = CSLoader::createNode("effect/qianghuachenggong.csb");
+				effectnode->setPosition(Vec2(360, 640));
+				this->addChild(effectnode, 10, "qianghuachenggong");
+				cocos2d::ui::ImageView* ziti = (cocos2d::ui::ImageView*)effectnode->getChildByName("ziti");
+				ziti->loadTexture(ResourcePath::makeTextImgPath("texiao_sjcg", GlobalInstance::getInstance()->getLang()), cocos2d::ui::Widget::TextureResType::PLIST);
+				auto action = CSLoader::createTimeline("effect/qianghuachenggong.csb");
+				effectnode->runAction(action);
+				action->gotoFrameAndPlay(0, false);
+			}
 			std::string s = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), count);
 			MovingLabel::show(s, Color4B(0, 128, 0, 255), Vec2(360, 320));
 		}

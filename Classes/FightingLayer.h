@@ -32,6 +32,9 @@ public:
 
 	void clearSkillsData();
 
+	void checkNewGuide();
+	void showNewerGuide(int step);
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 

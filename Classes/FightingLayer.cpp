@@ -8,6 +8,7 @@
 #include "FightHeroNode.h"
 #include "MapBlockScene.h"
 #include "SoundManager.h"
+#include "NewGuideLayer.h"
 
 USING_NS_CC;
 
@@ -107,6 +108,8 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 	int r = GlobalInstance::getInstance()->createRandomNum(5);
 	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_FIGHT_0 + r);
 
+	checkNewGuide();
+
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -117,6 +120,65 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
+}
+
+void FightingLayer::checkNewGuide()
+{
+	if (NewGuideLayer::checkifNewerGuide(FIGHTGUIDESTEP))
+	{
+		if (NewGuideLayer::checkifNewerGuide(6))
+			showNewerGuide(6);
+		else if (NewGuideLayer::checkifNewerGuide(7))
+		{
+			showNewerGuide(7);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(8))
+		{
+			showNewerGuide(8);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(9))
+		{
+			showNewerGuide(9);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(10))
+		{
+			showNewerGuide(10);
+		}
+	}
+}
+
+void FightingLayer::showNewerGuide(int step)
+{
+	pauseAtkSchedule();
+	std::vector<Node*> nodes;
+	if (step == 6)
+	{
+		
+	}
+	else if (step == 7)
+	{
+		FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(0);
+		nodes.push_back(fnode);
+	}
+	else if (step == 8)
+	{
+		FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(3);
+		nodes.push_back(fnode);
+	}
+	else if (step == 9)
+	{
+		FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(1);
+		nodes.push_back(fnode);
+	}
+	else if (step == 10)
+	{
+		FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(5);
+		nodes.push_back(fnode);
+	}
+	if (g_MapBlockScene != NULL)
+	{
+		g_MapBlockScene->showNewerGuideNode(step, nodes);
+	}
 }
 
 void FightingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

@@ -22,6 +22,7 @@
 #include "NewPopLayer.h"
 #include "CutScenesLayer.h"
 #include "GoBackLayer.h"
+#include "NewGuideLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -179,9 +180,10 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	for (int i = 0; i < 4; i++)
 	{
-	cocos2d::ui::Widget* keybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName(keyname[i]);
-	keybtn->setTag(i + KEY_UP);
-	keybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onArrowKey, this));
+		cocos2d::ui::Widget* keybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName(keyname[i]);
+		keybtn->setTag(i + KEY_UP);
+		keybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onArrowKey, this));
+		keybtnArr[i] = keybtn;
 	}
 
 	for (int i = 0; i < 6; i++)
@@ -200,7 +202,100 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	int r = GlobalInstance::getInstance()->createRandomNum(5);
 	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_SUBMAP_0 + r);
 
+	this->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.2f);
+
 	return true;
+}
+
+void MapBlockScene::showNewerGuideFight()
+{
+	showFightingLayer(vec_enemys);
+}
+
+void MapBlockScene::delayShowNewerGuide(float dt)
+{
+	if (NewGuideLayer::checkifNewerGuide(FIGHTGUIDESTEP))
+	{
+		if (NewGuideLayer::checkifNewerGuide(0))
+		{
+			showNewerGuide(0);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(1))
+		{
+			showNewerGuide(1);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(2))
+		{
+			showNewerGuide(2);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(3))
+		{
+			showNewerGuide(3);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(4))
+		{
+			showNewerGuide(4);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(5))
+		{
+			showNewerGuide(5);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(11))
+		{
+			showNewerGuide(11);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(12))
+		{
+			showNewerGuide(12);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(13))
+		{
+			showNewerGuide(13);
+		}
+	}
+}
+
+void MapBlockScene::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 0 || step == 1)
+	{
+		nodes.push_back(keybtnArr[0]);
+	}
+	else if ((step >= 2 && step <= 5) || step == 12)
+	{
+
+	}
+	else if (step == 11 || step == 13)
+	{
+		nodes.push_back(keybtnArr[2]); 
+	}
+	showNewerGuideNode(step, nodes);
+}
+
+void MapBlockScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
+{
+	if (NewGuideLayer::checkifNewerGuide(step))
+	{
+		if (step == 1)
+		{
+			if (g_NewGuideLayer != NULL)
+			{
+				g_NewGuideLayer->removeFromParentAndCleanup(true);
+				g_NewGuideLayer = NULL;
+			}
+		}
+		if (g_NewGuideLayer == NULL)
+		{
+			g_NewGuideLayer = NewGuideLayer::create(step, nodes);
+			this->addChild(g_NewGuideLayer, 10);
+		}
+	}
+}
+
+void MapBlockScene::showNewerGuideGoBack()
+{
+	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 }
 
 void MapBlockScene::showFightingLayer(std::vector<Npc*> enemys)
@@ -859,7 +954,14 @@ void MapBlockScene::doMyStatus()
 			}
 			if (!isTask)
 			{
-				showFightingLayer(vec_enemys);
+				if (m_mapid.compare("m0-0-0") == 0)
+				{
+					delayShowNewerGuide(0);
+				}
+				else
+				{
+					showFightingLayer(vec_enemys);
+				}
 			}
 		}
 	}

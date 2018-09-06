@@ -4,6 +4,9 @@
 #include "DataSave.h"
 #include "GlobalInstance.h"
 #include "Building.h"
+#include "DataSave.h"
+#include "MapBlockScene.h"
+#include "NewGuideLayer.h"
 
 USING_NS_CC;
 
@@ -151,7 +154,15 @@ void LoadingScene::delayGetServerData(float dt)
 
 void LoadingScene::showNextScene(float dt)
 {
-	Director::getInstance()->replaceScene(MainScene::createScene());
+	if (DataSave::getInstance()->getIsNewerGuide(FIGHTGUIDESTEP))
+	{
+		NewGuideLayer::setNewGuideInfo();
+		Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
+	}
+	else
+	{
+		Director::getInstance()->replaceScene(MainScene::createScene());
+	}
 }
 
 void LoadingScene::loadingSkillEffectOver(cocos2d::Texture2D* texture)

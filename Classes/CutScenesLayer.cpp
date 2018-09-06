@@ -116,7 +116,7 @@ void CutScenesLayer::updateFadeOut()
 	if (mapblock!=NULL)
 	{
 		FightingLayer* layer = FightingLayer::create(enemys, m_fightbgtype);
-		mapblock->addChild(layer);
+		mapblock->addChild(layer, 0, "FightingLayer");
 	}
 	this->removeFromParentAndCleanup(true);
 }
