@@ -7,6 +7,8 @@
 #include "MovingLabel.h"
 #include "DataSave.h"
 #include "AnimationEffect.h"
+#include "MainScene.h"
+#include "NewGuideLayer.h"
 
 USING_NS_CC;
 
@@ -52,7 +54,7 @@ bool InnRoomLayer::init(Building* buidingData)
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("innRoomLayer.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("innRoomLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 	//标题
@@ -97,6 +99,8 @@ bool InnRoomLayer::init(Building* buidingData)
 
 	refreshMyHerosUi();
 
+	this->scheduleOnce(schedule_selector(InnRoomLayer::delayShowNewerGuide), 0.1f);
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -106,6 +110,30 @@ bool InnRoomLayer::init(Building* buidingData)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void InnRoomLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(14))
+	{
+		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(23))
+			{
+				showNewerGuide(23);
+			}
+		}
+	}
+}
+
+void InnRoomLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 23)
+	{
+		nodes.push_back(csbnode->getChildByName("actionbtn"));
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -120,7 +148,7 @@ void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		case 1000://招募
 		{
 			RandHeroLayer* layer = RandHeroLayer::create();
-			this->addChild(layer);
+			this->addChild(layer, 0, "RandHeroLayer");
 			AnimationEffect::openAniEffect((Layer*)layer);
 			break;
 		}

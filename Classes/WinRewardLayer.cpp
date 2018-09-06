@@ -337,7 +337,7 @@ void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		case 1001://continue
 		case 1002://close
 		{
-			if (NewGuideLayer::checkifNewerGuide(FIGHTGUIDESTEP))
+			if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
 			{
 				g_MapBlockScene->delayShowNewerGuide(0);
 			}

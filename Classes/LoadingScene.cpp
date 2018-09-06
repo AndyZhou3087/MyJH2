@@ -154,13 +154,21 @@ void LoadingScene::delayGetServerData(float dt)
 
 void LoadingScene::showNextScene(float dt)
 {
-	if (DataSave::getInstance()->getIsNewerGuide(FIGHTGUIDESTEP))
+	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
 	{
-		NewGuideLayer::setNewGuideInfo();
+		NewGuideLayer::setNewGuideInfo(FIRSTGUIDESTEP);
 		Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
 	}
 	else
 	{
+		/*if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
+		{
+			NewGuideLayer::setNewGuideInfo(SECONDGUIDESTEP);
+		}
+		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
+		{
+			NewGuideLayer::setNewGuideInfo(THRIDGUIDESTEP);
+		}*/
 		Director::getInstance()->replaceScene(MainScene::createScene());
 	}
 }

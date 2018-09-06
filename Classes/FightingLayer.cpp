@@ -124,7 +124,7 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 
 void FightingLayer::checkNewGuide()
 {
-	if (NewGuideLayer::checkifNewerGuide(FIGHTGUIDESTEP))
+	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
 	{
 		if (NewGuideLayer::checkifNewerGuide(6))
 			showNewerGuide(6);

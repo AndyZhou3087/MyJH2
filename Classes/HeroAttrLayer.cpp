@@ -18,6 +18,7 @@
 #include "AnimationEffect.h"
 #include "SoundManager.h"
 #include "SimplePopLayer.h"
+#include "NewGuideLayer.h"
 
 USING_NS_CC;
 
@@ -329,6 +330,8 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 		}
 	}
 
+	this->scheduleOnce(schedule_selector(HeroAttrLayer::delayShowNewerGuide), 0.1f);
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -338,6 +341,38 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void HeroAttrLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(24))
+	{
+		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(25))
+			{
+				showNewerGuide(25);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(27))
+			{
+				showNewerGuide(27);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(29))
+			{
+				showNewerGuide(29);
+			}
+		}
+	}
+}
+
+void HeroAttrLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 25 || step == 27 || step == 29)
+	{
+		nodes.push_back(heroattrbottom->getChildByName("recruitbtn"));
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void HeroAttrLayer::updateAtrBtnUI()

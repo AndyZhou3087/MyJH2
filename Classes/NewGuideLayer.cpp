@@ -9,6 +9,10 @@
 #include "MyRes.h"
 #include "Equipable.h"
 #include "FightingLayer.h"
+#include "MainScene.h"
+#include "HomeHillLayer.h"
+#include "InnRoomLayer.h"
+#include "RandHeroLayer.h"
 
 std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教应该就在前面了，咱们快去看看。", //0
 "小师妹：掌门师兄，六大派掌门和魔教应该就在前面了，咱们快去看看。", //1
@@ -25,7 +29,7 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 "小师妹：师兄，战斗结束了，天书我们也拿到了，他们一会恢复过来，咱们就走不脱了，还是快撤吧！", //11
 "赏善罚恶使张三：天书现世，世道已经乱了，这些东西不是你该拿的，交出来吧！",//12
 "小师妹：师兄，咱们还是先回去吧，连赏善罚恶二使都来了，回去好好想想对策！",//跳回主场景//13
-"",//14
+//"",//14
 "小师妹：这里虽然不比师傅以前传给师兄的地方，但是好在这里人烟稀少，咱们可以好好经营一下，师兄先给门派起个响亮的名字吧！",//设置
 //这里是否需要滑动引导
 "小师妹：经营门派最重要的还是要先把基础设施完善起来，我们先去后山看看有什么资源吧!",
@@ -47,6 +51,8 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 "小师妹：英雄已经招募好了，掌门快去看看三位英雄的属性吧!",//第一次招募必须有侠客
 "小师妹：点击英雄头像就可以查看详细属性了，掌门快看看属性吧！",//点击第一个侠客英雄
 "小师妹：每个英雄都有不同的武功，搭配合理的武功才可以触发技能，快去给英雄们装备武功吧！",//装备内功
+"",
+"",
 "",
 "",
 "",
@@ -181,7 +187,8 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 					g_MapBlockScene->delayShowNewerGuide(0);
 				}
 			}
-			else if (m_step == 1)
+			else if (m_step == 1 || m_step == 14 || m_step == 15 || m_step == 16 || m_step == 18 || m_step == 22 || m_step == 23 
+				|| m_step == 24 || m_step == 26 || m_step == 28)
 			{
 				this->removeFromParentAndCleanup(true);
 			}
@@ -215,7 +222,56 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 				this->removeFromParentAndCleanup(true);
 				if (g_MapBlockScene != NULL)
 				{
-					g_MapBlockScene->delayShowExit(0);
+					//g_MapBlockScene->delayShowExit(0);
+					g_MapBlockScene->showNewerGuideGoBack();
+				}
+			}
+			else if (m_step == 17 || m_step == 19 || m_step == 20)
+			{
+				this->removeFromParentAndCleanup(true);
+				if (g_mainScene != NULL)
+				{
+					HomeHillLayer* hill = (HomeHillLayer*)g_mainScene->getChildByName("7homehill");
+					if (hill != NULL)
+					{
+						hill->delayShowNewerGuide(0);
+					}
+				}
+			}
+			else if (m_step == 21)
+			{
+				this->removeFromParentAndCleanup(true);
+				if (g_mainScene != NULL)
+				{
+					g_mainScene->delayShowNewerGuide(0);
+				}
+			}
+			else if (m_step == 25 || m_step == 27 || m_step == 29)
+			{
+				this->removeFromParentAndCleanup(true);
+				if (g_mainScene != NULL)
+				{
+					InnRoomLayer* hill = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+					if (hill != NULL)
+					{
+						RandHeroLayer* randlayer = (RandHeroLayer*)hill->getChildByName("RandHeroLayer");
+						if (randlayer != NULL)
+						{
+							randlayer->delayShowNewerGuide(0);
+						}
+					}
+				}
+			}
+			else if (m_step == 30)
+			{
+				this->removeFromParentAndCleanup(true);
+				if (g_mainScene != NULL)
+				{
+					InnRoomLayer* hill = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+					if (hill != NULL)
+					{
+						hill->delayShowNewerGuide(0);
+					}
 				}
 			}
 		}
@@ -258,37 +314,35 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 		m_clippingNode = RenderTexture::create(m_colorlayer->getContentSize().width, m_colorlayer->getContentSize().height);
 		m_clippingNode->setPosition(m_colorlayer->getContentSize().width / 2, m_colorlayer->getContentSize().height / 2);
 		m_colorlayer->addChild(m_clippingNode, 1);
-		m_clippingNode->beginWithClear(0, 0, 0, 0.7f, 0, 0);
+		m_clippingNode->beginWithClear(0, 0, 0, 0.5f, 0, 0);
 
+		Vec2 m_pos;
 		for (unsigned int i = 0; i < stencilNodes.size(); i++)
 		{
-			Sprite* cnode = Sprite::createWithSpriteFrameName("mapui/fog.png");
+			Sprite* cnode = Sprite::create("images/fog.png");
 			cnode->setBlendFunc({ GL_ZERO, GL_ONE_MINUS_SRC_ALPHA });
 			cnode->setAnchorPoint(Vec2(0.5, 0.5));
-			cnode->setPosition(stencilNodes[i]->getParent()->convertToWorldSpace(stencilNodes[i]->getPosition()));
+			m_pos = stencilNodes[i]->getParent()->convertToWorldSpace(stencilNodes[i]->getPosition());
 			float scalex = stencilNodes[i]->getContentSize().width / cnode->getContentSize().width;
 			float scaley = stencilNodes[i]->getContentSize().height / cnode->getContentSize().height;
-			float scale;
-			if (scalex > scaley)
-			{
-				scale = scalex;
-			}
-			else
-			{
-				scale = scaley;
-			}
+			float scale = scalex;
 			if (m_step >= 7 && m_step <= 10)
 			{
-				scale = 2.0f;
+				scale = 3.0f;
 			}
-			cnode->setScale(scale * 2);
+			else if (m_step == 21 || m_step == 30)
+			{
+				m_pos.y = m_pos.y + 20;
+			}
+			cnode->setPosition(m_pos);
+			cnode->setScale(scale*1.2f);
 			m_clippingNode->addChild(cnode);
 			cnode->visit();
 			m_clippingNode->end();
 			Director::getInstance()->getRenderer()->render();
 		}
 
-		showAnim(stencilNodes[stencilNodes.size() - 1]->getParent()->convertToWorldSpace(stencilNodes[stencilNodes.size() - 1]->getPosition()));
+		showAnim(m_pos);
 	}
 }
 
@@ -326,7 +380,8 @@ void NewGuideLayer::showWord(std::string wordstr)
 			}
 		}
 
-		if (m_step == 0 || m_step == 1 || m_step == 8 || m_step == 10 || m_step == 11 || m_step == 13)
+		if (m_step == 0 || m_step == 1 || m_step == 8 || m_step == 10 || m_step == 11 || m_step == 13 || m_step == 14 || m_step == 16 || m_step == 18 || m_step == 23
+			|| m_step == 25 || m_step == 27 || m_step == 29)
 			textbox->setPosition(Vec2(360, 430));
 		else
 			textbox->setPosition(Vec2(360, 160));
@@ -373,7 +428,7 @@ void NewGuideLayer::showAnim(Vec2 pos)
 {
 	auto sj = Sprite::create("images/newerguide/guide_finger_0.png");
 	sj->setAnchorPoint(Vec2(0, 1));
-	sj->setPosition(pos.x + 20, pos.y - 20);
+	sj->setPosition(pos.x + 20, pos.y + 10);
 	this->addChild(sj, 1);
 
 	//创建帧动画序列，名词形式
@@ -416,51 +471,78 @@ void NewGuideLayer::clearNewGuideData()
 	}
 }
 
-void NewGuideLayer::setNewGuideInfo()
+void NewGuideLayer::setNewGuideInfo(int step)
 {
-	MyRes::Add("r001", 10, MYPACKAGE);
-	for (int i = 0; i < 6; i++)
+	if (step == FIRSTGUIDESTEP)
 	{
-		Hero* hero = new Hero();
-		hero->generate();
-		hero->setPotential(4);
-		hero->setVocation(voc[i]);
-		hero->setState(HS_TAKEON);
-		hero->setPos(i + 1);
-		DynamicValueInt dal;
-		dal.setValue(100000);
-		hero->setExp(dal);
-		hero->setHp(hero->getMaxHp());
-		GlobalInstance::myCardHeros[i] = hero;
-		for (int j = 0; j < 2; j++)
+		if (checkifNewerGuide(step))
 		{
-			GongFa* equ = new GongFa();
-			equ->setId(gf[i][j]);
-			int k = 0;
-			for (; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)
+			MyRes::Add("r001", 10, MYPACKAGE);
+			for (int i = 0; i < 6; i++)
 			{
-				if (gf[i][j].compare(0, 1, RES_TYPES_CHAR[k]) == 0)
+				Hero* hero = new Hero();
+				hero->generate();
+				hero->setPotential(4);
+				hero->setVocation(voc[i]);
+				hero->setState(HS_TAKEON);
+				hero->setPos(i + 1);
+				DynamicValueInt dal;
+				dal.setValue(100000);
+				hero->setExp(dal);
+				hero->setHp(hero->getMaxHp());
+				GlobalInstance::myCardHeros[i] = hero;
+				for (int j = 0; j < 2; j++)
 				{
-					equ->setType(k);
-					break;
+					GongFa* equ = new GongFa();
+					equ->setId(gf[i][j]);
+					int k = 0;
+					for (; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)
+					{
+						if (gf[i][j].compare(0, 1, RES_TYPES_CHAR[k]) == 0)
+						{
+							equ->setType(k);
+							break;
+						}
+					}
+					DynamicValueInt dvalue;
+					dvalue.setValue(1);
+					equ->setCount(dvalue);
+
+					equ->setWhere(MYEQUIP);
+					equ->setWhos(hero->getName());
+					DynamicValueInt qul;
+					qul.setValue(4);
+					equ->setQU(qul);
 				}
 			}
-			DynamicValueInt dvalue;
-			dvalue.setValue(1);
-			equ->setCount(dvalue);
 
-			equ->setWhere(MYEQUIP);
-			equ->setWhos(hero->getName());
-			DynamicValueInt qul;
-			qul.setValue(4);
-			equ->setQU(qul);
+			for (int i = 0; i < step; i++)
+			{
+				DataSave::getInstance()->setIsNewerGuide(i, 1);
+			}
 		}
 	}
-
-	for (int i = 0; i < FIGHTGUIDESTEP; i++)
+	else if (step == SECONDGUIDESTEP)
 	{
-		DataSave::getInstance()->setIsNewerGuide(i, 1);
+		if (checkifNewerGuide(step))
+		{
+			for (int i = FIRSTGUIDESTEP + 1; i < step; i++)
+			{
+				DataSave::getInstance()->setIsNewerGuide(i, 1);
+			}
+		}
 	}
+	else if (step == THRIDGUIDESTEP)
+	{
+		if (checkifNewerGuide(step))
+		{
+			for (int i = SECONDGUIDESTEP + 1; i < step; i++)
+			{
+				DataSave::getInstance()->setIsNewerGuide(i, 1);
+			}
+		}
+	}
+	
 }
 
 void NewGuideLayer::onExit()

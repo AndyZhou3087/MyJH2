@@ -8,12 +8,14 @@
 #include "ConsumeResActionLayer.h"
 #include "MovingLabel.h"
 #include "AnimationEffect.h"
+#include "NewGuideLayer.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
 HomeHillLayer::HomeHillLayer()
 {
-
+	m_hillResNode = NULL;
 }
 
 HomeHillLayer::~HomeHillLayer()
@@ -53,7 +55,7 @@ bool HomeHillLayer::init(Building* buidingData)
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("homeHillLayer.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("homeHillLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
@@ -111,6 +113,9 @@ bool HomeHillLayer::init(Building* buidingData)
 
 	updateTime(0);
 	this->schedule(schedule_selector(HomeHillLayer::updateTime), 1.0f);
+
+	this->scheduleOnce(schedule_selector(HomeHillLayer::delayShowNewerGuide), 0.1f);
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -120,6 +125,57 @@ bool HomeHillLayer::init(Building* buidingData)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void HomeHillLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(14))
+	{
+		if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(16))
+			{
+				showNewerGuide(16);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(18))
+			{
+				showNewerGuide(18);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(20))
+			{
+				showNewerGuide(20);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(21))
+			{
+				showNewerGuide(21);
+			}
+		}
+	}
+}
+
+void HomeHillLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 16)
+	{
+		nodes.push_back(csbnode->getChildByName("lvupbtn"));
+	}
+	else if (step == 18)
+	{
+		nodes.push_back(csbnode->getChildByName("actionbtn"));
+	}
+	else if (step == 20)
+	{
+		if (m_hillResNode != NULL)
+		{
+			nodes.push_back(m_hillResNode->getChildByName("csbnode")->getChildByName("addbtn"));
+		}
+	}
+	else if (step == 21)
+	{
+		nodes.push_back(csbnode->getChildByName("closebtn"));
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void HomeHillLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -184,6 +240,12 @@ void HomeHillLayer::refreshResUi()
 			resnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
 			//resnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 			m_contentscroll->addChild(resnode, 0, i);
+
+			//做引导处理
+			if (i == 0)
+			{
+				m_hillResNode = resnode;
+			}
 		}
 	}
 }

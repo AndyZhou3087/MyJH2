@@ -9,6 +9,8 @@
 #include "HintBoxLayer.h"
 #include "AnimationEffect.h"
 #include "SoundManager.h"
+#include "NewGuideLayer.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -55,7 +57,7 @@ bool RandHeroLayer::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("randHeroLayer.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("randHeroLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
@@ -126,6 +128,8 @@ bool RandHeroLayer::init()
 	updateUI(0);
 	this->schedule(schedule_selector(RandHeroLayer::updateUI), 1.0f);
 
+	this->scheduleOnce(schedule_selector(RandHeroLayer::delayShowNewerGuide), 0.1f);
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -135,6 +139,54 @@ bool RandHeroLayer::init()
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void RandHeroLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(23))
+	{
+		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(24))
+			{
+				showNewerGuide(24);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(26))
+			{
+				showNewerGuide(26);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(28))
+			{
+				showNewerGuide(28);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(30))
+			{
+				showNewerGuide(30);
+			}
+		}
+	}
+}
+
+void RandHeroLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 24)
+	{
+		nodes.push_back(heronode[0]->getChildByName("csbnode")->getChildByName("randheadbox"));
+	}
+	else if (step == 26)
+	{
+		nodes.push_back(heronode[1]->getChildByName("csbnode")->getChildByName("randheadbox"));
+	}
+	else if (step == 28)
+	{
+		nodes.push_back(heronode[2]->getChildByName("csbnode")->getChildByName("randheadbox"));
+	}
+	else if (step == 30)
+	{
+		nodes.push_back(csbnode->getChildByName("closebtn"));
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -282,8 +334,15 @@ void RandHeroLayer::create3RandHero()
 	{
 		Hero* randhero = new Hero();
 		randhero->generate();
+		//新手
+		if (NewGuideLayer::checkifNewerGuide(24))
+		{
+			if (i == 0)
+			{
+				randhero->setVocation(0);
+			}
+		}
 		GlobalInstance::vec_rand3Heros.push_back(randhero);
-
 	}
 	GlobalInstance::getInstance()->saveRand3Heros();
 }

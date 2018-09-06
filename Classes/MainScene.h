@@ -29,6 +29,11 @@ public:
 	**********************************/
 	void onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
+	//新手引导
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+	void showNewerGuideNode(int step, std::vector<Node*> nodes);
+
 private:
 	cocos2d::ui::ScrollView* scroll_3;//最外层滑动层，包括训练场-仓库-铁匠铺-医馆-出城
 	cocos2d::ui::ScrollView* scroll_2;//中间层滑动层，包括后山-客栈-市场

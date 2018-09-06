@@ -46,7 +46,7 @@ bool HillResNode::init(ResCreator* data)
 	m_Data = data;
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("hillResNode.csb"));
-	this->addChild(csbnode);
+	this->addChild(csbnode, 0, "csbnode");
 
 	cocos2d::ui::Widget* clickimg = (cocos2d::ui::Widget*)csbnode->getChildByName("clickimg");
 	clickimg->addTouchEventListener(CC_CALLBACK_2(HillResNode::onBtnClick, this));

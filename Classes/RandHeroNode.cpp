@@ -36,7 +36,7 @@ RandHeroNode* RandHeroNode::create()
 bool RandHeroNode::init()
 {
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("randHeroNode.csb"));
-	this->addChild(csbnode);
+	this->addChild(csbnode, 0, "csbnode");
 	cocos2d::ui::Widget* bg = (cocos2d::ui::Widget*)csbnode->getChildByName("randheadbox");
 	bg->addTouchEventListener(CC_CALLBACK_2(RandHeroNode::onClick, this));
 

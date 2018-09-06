@@ -202,7 +202,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	int r = GlobalInstance::getInstance()->createRandomNum(5);
 	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_SUBMAP_0 + r);
 
-	this->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.2f);
+	this->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.1f);
 
 	return true;
 }
@@ -214,7 +214,7 @@ void MapBlockScene::showNewerGuideFight()
 
 void MapBlockScene::delayShowNewerGuide(float dt)
 {
-	if (NewGuideLayer::checkifNewerGuide(FIGHTGUIDESTEP))
+	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
 	{
 		if (NewGuideLayer::checkifNewerGuide(0))
 		{

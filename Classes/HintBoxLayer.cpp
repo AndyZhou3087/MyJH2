@@ -84,19 +84,19 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 	cocos2d::ui::Text* content = (cocos2d::ui::Text*)csbnode->getChildByName("content");
 	content->setString(str);
 
-	if (forwhere == 4)
+	/*if (forwhere == 4)
 	{
-		if (NewGuideLayer::checkifNewerGuide(FIGHTGUIDESTEP))
+		if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
 		{
 			if (g_MapBlockScene != NULL)
 			{
 				std::vector<Node*> nodes;
 				okbtn->setTag(-1);
 				nodes.push_back(okbtn);
-				g_MapBlockScene->showNewerGuideNode(FIGHTGUIDESTEP, nodes);
+				g_MapBlockScene->showNewerGuideNode(FIRSTGUIDESTEP, nodes);
 			}
 		}
-	}
+	}*/
 
 	//фа╠ноб╡Ц╣Ц╩В
 	auto listener = EventListenerTouchOneByOne::create();
