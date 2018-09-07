@@ -52,8 +52,8 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 
 	m_heroData = herodata;
 	m_showtype = showtype;
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("myHeroNode.csb"));
-	this->addChild(csbnode);
+	csbnode = CSLoader::createNode(ResourcePath::makePath("myHeroNode.csb"));
+	this->addChild(csbnode, 0, "csbnode");
 
 	cocos2d::ui::Widget* clickimg = (cocos2d::ui::Widget*)csbnode->getChildByName("clickimg");
 	clickimg->addTouchEventListener(CC_CALLBACK_2(MyHeroNode::onBtnClick, this));

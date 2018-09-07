@@ -180,6 +180,17 @@ void MainScene::delayShowNewerGuide(float dt)
 				showNewerGuide(22);
 			}
 		}
+		else if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(40))
+			{
+				showNewerGuide(40);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(45))
+			{
+				showNewerGuide(45);
+			}
+		}
 	}
 }
 
@@ -191,6 +202,7 @@ void MainScene::showNewerGuide(int step)
 	{
 		scroll_1->jumpToPercentHorizontal(95);
 		scroll_2->jumpToPercentHorizontal(95);
+		scroll_3->jumpToPercentHorizontal(95);
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_08_n");
 		nodes.push_back(node);
 	}
@@ -200,6 +212,22 @@ void MainScene::showNewerGuide(int step)
 		scroll_2->jumpToPercentHorizontal(50);
 		scroll_3->jumpToPercentHorizontal(50);
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_07_n");
+		nodes.push_back(node);
+	}
+	else if (step == 40)
+	{
+		scroll_1->jumpToPercentHorizontal(32);
+		scroll_2->jumpToPercentHorizontal(32);
+		scroll_3->jumpToPercentHorizontal(32);
+		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_1->getChildByName("main_10_n");
+		nodes.push_back(node);
+	}
+	else if (step == 45)
+	{
+		scroll_1->jumpToPercentHorizontal(80);
+		scroll_2->jumpToPercentHorizontal(80);
+		scroll_3->jumpToPercentHorizontal(80);
+		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_01_n");
 		nodes.push_back(node);
 	}
 	showNewerGuideNode(step, nodes);

@@ -9,6 +9,7 @@
 #include "SoundManager.h"
 #include "MarketLayer.h"
 #include "MainScene.h"
+#include "NewGuideLayer.h"
 
 USING_NS_CC;
 
@@ -66,7 +67,7 @@ bool OutTownLayer::init()
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("outtowntitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//按钮
-	cocos2d::ui::Button* actionbtn = (cocos2d::ui::Button*)csbnode->getChildByName("actionbtn");
+	actionbtn = (cocos2d::ui::Button*)csbnode->getChildByName("actionbtn");
 	actionbtn->setTag(1000);
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onBtnClick, this));
 
@@ -140,6 +141,8 @@ bool OutTownLayer::init()
 		tobuytext->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onGoBuyText, this));
 	}
 
+	this->scheduleOnce(schedule_selector(OutTownLayer::delayShowNewerGuide), 0.1f);
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -149,6 +152,54 @@ bool OutTownLayer::init()
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void OutTownLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(14))
+	{
+		if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(46))
+			{
+				showNewerGuide(46);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(48))
+			{
+				showNewerGuide(48);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(50))
+			{
+				showNewerGuide(50);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(52))
+			{
+				showNewerGuide(52);
+			}
+		}
+	}
+}
+
+void OutTownLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 46)
+	{
+		nodes.push_back(m_myCardHerosNode[0]->getChildByName("csbnode")->getChildByName("hbox"));
+	}
+	else if (step == 48)
+	{
+		nodes.push_back(m_myCardHerosNode[1]->getChildByName("csbnode")->getChildByName("hbox"));
+	}
+	else if (step == 50)
+	{
+		nodes.push_back(m_myCardHerosNode[2]->getChildByName("csbnode")->getChildByName("hbox"));
+	}
+	else if (step == 52)
+	{
+		nodes.push_back(actionbtn);
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

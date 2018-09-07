@@ -14,6 +14,8 @@
 #include "Quest.h"
 #include "AnimationEffect.h"
 #include "SimpleResPopLayer.h"
+#include "MainScene.h"
+#include "NewGuideLayer.h"
 
 TaskLayer::TaskLayer()
 {
@@ -90,6 +92,8 @@ bool TaskLayer::init()
 		Quest::resetDailyTask();
 	}
 
+	this->scheduleOnce(schedule_selector(TaskLayer::delayShowNewerGuide), 0.1f);
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -101,6 +105,38 @@ bool TaskLayer::init()
 
 
 	return true;
+}
+
+void TaskLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(14))
+	{
+		if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(41))
+			{
+				showNewerGuide(41);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(44))
+			{
+				showNewerGuide(44);
+			}
+		}
+	}
+}
+
+void TaskLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 41)
+	{
+		nodes.push_back(scrollview->getChildren().at(0)->getChildByName("csbnode")->getChildByName("resitem"));
+	}
+	else if (step == 44)
+	{
+		nodes.push_back(m_csbnode->getChildByName("closebtn"));
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void TaskLayer::updateContent(int category)

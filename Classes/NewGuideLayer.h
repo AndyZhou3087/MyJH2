@@ -9,6 +9,7 @@ USING_NS_CC;
 #define FIRSTGUIDESTEP 13
 #define SECONDGUIDESTEP 21
 #define THRIDGUIDESTEP 39
+#define FOURTHGUIDESTEP 52
 
 #define NEWERLAYERZOER 1999
 class NewGuideLayer : public Layer

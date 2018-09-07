@@ -41,6 +41,7 @@ private:
 	int langtype;
 	bool clickflag;
 	Vec2 beginTouchPoint;
+	Node* csbnode;
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

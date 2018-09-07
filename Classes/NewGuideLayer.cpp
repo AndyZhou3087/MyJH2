@@ -13,6 +13,10 @@
 #include "HomeHillLayer.h"
 #include "InnRoomLayer.h"
 #include "RandHeroLayer.h"
+#include "HeroAttrLayer.h"
+#include "TaskDescLayer.h"
+#include "TaskLayer.h"
+#include "OutTownLayer.h"
 
 std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教应该就在前面了，咱们快去看看。", //0
 "小师妹：掌门师兄，六大派掌门和魔教应该就在前面了，咱们快去看看。", //1
@@ -188,7 +192,8 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 				}
 			}
 			else if (m_step == 1 || m_step == 14 || m_step == 15 || m_step == 16 || m_step == 18 || m_step == 22 || m_step == 23 
-				|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31)
+				|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31 || m_step == 32 || m_step == 33 || m_step == 35 
+				|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46 || m_step == 48 || m_step == 50)
 			{
 				this->removeFromParentAndCleanup(true);
 			}
@@ -238,7 +243,7 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 					}
 				}
 			}
-			else if (m_step == 21)
+			else if (m_step == 21 || m_step == 39 || m_step == 44)
 			{
 				this->removeFromParentAndCleanup(true);
 				if (g_mainScene != NULL)
@@ -262,7 +267,7 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 					}
 				}
 			}
-			else if (m_step == 30)
+			else if (m_step == 30 || m_step == 38)
 			{
 				this->removeFromParentAndCleanup(true);
 				if (g_mainScene != NULL)
@@ -271,6 +276,54 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 					if (hill != NULL)
 					{
 						hill->delayShowNewerGuide(0);
+					}
+				}
+			}
+			else if (m_step == 34 || m_step == 37)
+			{
+				this->removeFromParentAndCleanup(true);
+				if (g_mainScene != NULL)
+				{
+					HeroAttrLayer* randlayer = (HeroAttrLayer*)g_mainScene->getChildByTag(0);
+					if (randlayer != NULL)
+					{
+						randlayer->delayShowNewerGuide(0);
+					}
+				}
+			}
+			else if (m_step == 42)
+			{
+				this->removeFromParentAndCleanup(true);
+				if (g_mainScene != NULL)
+				{
+					TaskDescLayer* layer = (TaskDescLayer*)g_mainScene->getChildByName("TaskDescLayer");
+					if (layer != NULL)
+					{
+						layer->delayShowNewerGuide(0);
+					}
+				}
+			}
+			else if (m_step == 43)
+			{
+				this->removeFromParentAndCleanup(true);
+				if (g_mainScene != NULL)
+				{
+					TaskLayer* layer = (TaskLayer*)g_mainScene->getChildByName("9assemblyhall");
+					if (layer != NULL)
+					{
+						layer->delayShowNewerGuide(0);
+					}
+				}
+			}
+			else if (m_step == 47 || m_step == 49 || m_step == 51)
+			{
+				this->removeFromParentAndCleanup(true);
+				if (g_mainScene != NULL)
+				{
+					OutTownLayer* layer = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
+					if (layer != NULL)
+					{
+						layer->delayShowNewerGuide(0);
 					}
 				}
 			}
@@ -334,6 +387,10 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 			{
 				m_pos.y = m_pos.y + 20;
 			}
+			else if (m_step == 41)
+			{
+				m_pos.x = 360;
+			}
 			cnode->setPosition(m_pos);
 			cnode->setScale(scalex*1.5f, scaley*1.5f);
 			m_clippingNode->addChild(cnode);
@@ -381,7 +438,7 @@ void NewGuideLayer::showWord(std::string wordstr)
 		}
 
 		if (m_step == 0 || m_step == 1 || m_step == 8 || m_step == 10 || m_step == 11 || m_step == 13 || m_step == 14 || m_step == 16 || m_step == 18 || m_step == 23
-			|| m_step == 25 || m_step == 27 || m_step == 29)
+			|| m_step == 25 || m_step == 27 || m_step == 29 || m_step == 45 || m_step == 52)
 			textbox->setPosition(Vec2(360, 430));
 		else
 			textbox->setPosition(Vec2(360, 160));

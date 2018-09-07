@@ -18,6 +18,9 @@ public:
 	//更新scrollview
 	void refreshMyHerosUi();
 	MyHeroNode* getMyHeroNode(int index);
+
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 

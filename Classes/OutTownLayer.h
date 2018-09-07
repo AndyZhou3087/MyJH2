@@ -18,6 +18,9 @@ public:
 	CardHeroNode* getMyCardHeroNode(int index);
 
 	void updateHeroCarry();
+
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -39,6 +42,7 @@ private:
 
 	bool m_isLongPress;
 	Node* m_longTouchNode;
+	cocos2d::ui::Button* actionbtn;
 };
 
 #endif

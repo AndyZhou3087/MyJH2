@@ -9,6 +9,7 @@
 #include "Const.h"
 #include "AnimationEffect.h"
 #include "SoundManager.h"
+#include "MainScene.h"
 
 TaskNode::TaskNode()
 {
@@ -43,7 +44,7 @@ bool TaskNode::init(TaskData* data, int type)
 	m_Data = data;
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("taskMainNode.csb"));
-	this->addChild(csbnode);
+	this->addChild(csbnode, 0, "csbnode");
 
 	int langtype = GlobalInstance::getInstance()->getLang();
 
@@ -127,10 +128,9 @@ void TaskNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		Layer* layer = TaskDescLayer::create(m_Data, m_type);
-		TaskLayer* m_layer = (TaskLayer*)this->getParent()->getParent()->getParent();
-		if (m_layer!=NULL)
+		if (g_mainScene != NULL)
 		{
-			m_layer->addChild(layer);
+			g_mainScene->addChild(layer, 0, "TaskDescLayer");
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 	}

@@ -11,6 +11,7 @@
 #include "AnimationEffect.h"
 #include "MainScene.h"
 #include "RewardLayer.h"
+#include "NewGuideLayer.h"
 
 TaskDescLayer::TaskDescLayer()
 {
@@ -109,7 +110,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 	cocos2d::ui::Text* npcname = (cocos2d::ui::Text*)m_csbnode->getChildByName("npcname");
 	npcname->setString(ResourceLang::map_lang["littlesistext"]);
 
-	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("closebtn");
+	closebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("closebtn");
 	closebtn->setPosition(Vec2(357, 183));
 	closebtn->setTag(0);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskDescLayer::onBtnClick, this));
@@ -235,6 +236,9 @@ bool TaskDescLayer::init(TaskData* data, int type)
 		vec_btnnode[i]->setPosition(Vec2(360, 430 - 145 * i));
 	}
 
+
+	this->scheduleOnce(schedule_selector(TaskDescLayer::delayShowNewerGuide), 0.1f);
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -246,6 +250,38 @@ bool TaskDescLayer::init(TaskData* data, int type)
 
 
 	return true;
+}
+
+void TaskDescLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(41))
+	{
+		if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(42))
+			{
+				showNewerGuide(42);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(43))
+			{
+				showNewerGuide(43);
+			}
+		}
+	}
+}
+
+void TaskDescLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 42)
+	{
+		nodes.push_back(accbtn);
+	}
+	else if (step == 43)
+	{
+		nodes.push_back(closebtn);
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void TaskDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
