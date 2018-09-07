@@ -325,7 +325,6 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 			m_pos = stencilNodes[i]->getParent()->convertToWorldSpace(stencilNodes[i]->getPosition());
 			float scalex = stencilNodes[i]->getContentSize().width / cnode->getContentSize().width;
 			float scaley = stencilNodes[i]->getContentSize().height / cnode->getContentSize().height;
-			float scale = scalex;
 			if (m_step >= 7 && m_step <= 10)
 			{
 				scalex = 3.0f;

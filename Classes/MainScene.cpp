@@ -185,6 +185,7 @@ void MainScene::delayShowNewerGuide(float dt)
 
 void MainScene::showNewerGuide(int step)
 {
+	scroll_3->setEnabled(false);
 	std::vector<Node*> nodes;
 	if (step == 15)
 	{
