@@ -19,8 +19,12 @@ public:
 
 	static TaskDescLayer* create(TaskData* data, int type = 0);
 
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+
 private:
 	cocos2d::ui::Button* accbtn;
+	cocos2d::ui::Button* closebtn;
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

@@ -11,6 +11,8 @@
 #include "AnimationEffect.h"
 #include "StrengthenLayer.h"
 #include "Equip.h"
+#include "NewGuideLayer.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -56,7 +58,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("equipDescLayer.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("equipDescLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
@@ -201,6 +203,8 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("selectbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	}
 
+	this->scheduleOnce(schedule_selector(EquipDescLayer::delayShowNewerGuide), 0.1f);
+
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -214,6 +218,34 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
+}
+
+void EquipDescLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(33))
+	{
+		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(34))
+			{
+				showNewerGuide(34);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(37))
+			{
+				showNewerGuide(37);
+			}
+		}
+	}
+}
+
+void EquipDescLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 34 || step == 37)
+	{
+		nodes.push_back(csbnode->getChildByName("actionbtn"));
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void EquipDescLayer::updateAttr()

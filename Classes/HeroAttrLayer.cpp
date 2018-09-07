@@ -361,6 +361,18 @@ void HeroAttrLayer::delayShowNewerGuide(float dt)
 			{
 				showNewerGuide(29);
 			}
+			else if (NewGuideLayer::checkifNewerGuide(32))
+			{
+				showNewerGuide(32);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(35))
+			{
+				showNewerGuide(35);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(38))
+			{
+				showNewerGuide(38);
+			}
 		}
 	}
 }
@@ -371,6 +383,18 @@ void HeroAttrLayer::showNewerGuide(int step)
 	if (step == 25 || step == 27 || step == 29)
 	{
 		nodes.push_back(heroattrbottom->getChildByName("recruitbtn"));
+	}
+	else if (step == 32)
+	{
+		nodes.push_back(equipnode->getChildren().at(2));
+	}
+	else if (step == 35)
+	{
+		nodes.push_back(equipnode->getChildren().at(3));
+	}
+	else if (step == 38)
+	{
+		nodes.push_back(heroattrbottom->getChildByName("backbtn"));
 	}
 	g_mainScene->showNewerGuideNode(step, nodes);
 }

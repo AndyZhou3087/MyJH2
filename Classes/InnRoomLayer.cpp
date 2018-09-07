@@ -125,6 +125,14 @@ void InnRoomLayer::delayShowNewerGuide(float dt)
 			{
 				showNewerGuide(23);
 			}
+			else if (NewGuideLayer::checkifNewerGuide(31))
+			{
+				showNewerGuide(31);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(39))
+			{
+				showNewerGuide(39);
+			}
 		}
 	}
 }
@@ -135,6 +143,14 @@ void InnRoomLayer::showNewerGuide(int step)
 	if (step == 23)
 	{
 		nodes.push_back(csbnode->getChildByName("actionbtn"));
+	}
+	else if (step == 31)
+	{
+		nodes.push_back(m_contentscroll->getChildByTag(0)->getChildByName("csbnode")->getChildByName("clickimg"));
+	}
+	else if (step == 39)
+	{
+		nodes.push_back(csbnode->getChildByName("closebtn"));
 	}
 	g_mainScene->showNewerGuideNode(step, nodes);
 }

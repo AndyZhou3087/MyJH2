@@ -11,6 +11,8 @@
 #include "SetInStoneLayer.h"
 #include "EquipDescLayer.h"
 #include "AnimationEffect.h"
+#include "NewGuideLayer.h"
+#include "MainScene.h"
 
 SelectEquipLayer::SelectEquipLayer()
 {
@@ -72,6 +74,8 @@ bool SelectEquipLayer::init(int restype, Hero* herodata)
 	loadData();
 	updateContent();
 
+	this->scheduleOnce(schedule_selector(SelectEquipLayer::delayShowNewerGuide), 0.1f);
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -86,6 +90,34 @@ bool SelectEquipLayer::init(int restype, Hero* herodata)
 
 
 	return true;
+}
+
+void SelectEquipLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(31))
+	{
+		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(33))
+			{
+				showNewerGuide(33);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(36))
+			{
+				showNewerGuide(36);
+			}
+		}
+	}
+}
+
+void SelectEquipLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 33 || step == 36)
+	{
+		nodes.push_back(scrollview->getChildren().at(0)->getChildren().at(0));
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void SelectEquipLayer::updateContent()

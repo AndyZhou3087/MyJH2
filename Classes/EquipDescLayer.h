@@ -26,6 +26,9 @@ public:
 	bool init(ResBase* res, int fromwhere);
 	void updateAttr();
 
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
@@ -34,6 +37,7 @@ private:
 	Equipable* m_res;
 	cocos2d::ui::Text* attrlblArr[6];
 	cocos2d::ui::Text* namelbl;
+	Node* csbnode;
 };
 
 #endif

@@ -36,7 +36,7 @@ CardHeroNode* CardHeroNode::create()
 bool CardHeroNode::init()
 {
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("cardHeroNode.csb"));
-	this->addChild(csbnode);
+	this->addChild(csbnode, 0, "csbnode");
 
 	desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 

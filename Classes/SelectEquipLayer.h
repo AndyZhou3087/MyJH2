@@ -18,6 +18,9 @@ public:
 
 	static SelectEquipLayer* create(int restype, Hero* herodata);
 
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onclick(Ref* pSender);

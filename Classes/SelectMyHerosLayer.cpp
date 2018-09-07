@@ -3,6 +3,8 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "AnimationEffect.h"
+#include "NewGuideLayer.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -83,6 +85,8 @@ bool SelectMyHerosLayer::init(int wheretype)
 
 	refreshMyHerosUi();
 
+	this->scheduleOnce(schedule_selector(SelectMyHerosLayer::delayShowNewerGuide), 0.1f);
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -92,6 +96,46 @@ bool SelectMyHerosLayer::init(int wheretype)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void SelectMyHerosLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(45))
+	{
+		if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(47))
+			{
+				showNewerGuide(47);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(49))
+			{
+				showNewerGuide(49);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(51))
+			{
+				showNewerGuide(51);
+			}
+		}
+	}
+}
+
+void SelectMyHerosLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 47)
+	{
+		nodes.push_back(m_contentscroll->getChildByTag(0)->getChildByName("csbnode")->getChildByName("actionbtn"));
+	}
+	else if (step == 49)
+	{
+		nodes.push_back(m_contentscroll->getChildByTag(1)->getChildByName("csbnode")->getChildByName("actionbtn"));
+	}
+	else if (step == 51)
+	{
+		nodes.push_back(m_contentscroll->getChildByTag(2)->getChildByName("csbnode")->getChildByName("actionbtn"));
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void SelectMyHerosLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

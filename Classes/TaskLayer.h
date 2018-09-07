@@ -25,6 +25,9 @@ public:
 
 	CREATE_FUNC(TaskLayer);
 
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
