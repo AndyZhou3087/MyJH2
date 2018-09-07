@@ -8,7 +8,7 @@
 #include "StoreHouseLayer.h"
 #include "MainScene.h"
 #include "AnimationEffect.h"
-#include "TBoxRewardLayer.h"
+#include "RewardLayer.h"
 
 USING_NS_CC;
 
@@ -193,16 +193,11 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 		actionbtn->setVisible(false);
 	}
 
-
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
 		return true;
-	};
-	listener->onTouchEnded = [=](Touch *touch, Event *event)
-	{
-		AnimationEffect::closeAniEffect((Layer*)this);
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -259,9 +254,29 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			else if (m_res->getType() == T_BOX)
 			{
 				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
-				TBoxRewardLayer* layer = TBoxRewardLayer::create(m_res->getId());
+
+				std::vector<MSGAWDSDATA> vec_rewards;
+
+				int awdszie = GlobalInstance::map_TBoxs[m_res->getId()].vec_awds.size();
+
+				int r = GlobalInstance::getInstance()->createRandomNum(awdszie);
+
+				std::string awd = GlobalInstance::map_TBoxs[m_res->getId()].vec_awds[r];
+				std::vector<std::string> vec_tmp;
+				CommonFuncs::split(awd, vec_tmp, "-");
+
+				int qu = atoi(vec_tmp[2].c_str());
+
+				MSGAWDSDATA wdata;
+				wdata.rid = vec_tmp[0];
+				wdata.count = atoi(vec_tmp[1].c_str());
+				wdata.qu = qu;
+				vec_rewards.push_back(wdata);
+				RewardLayer* layer = RewardLayer::create(vec_rewards);
 				storelayer->addChild(layer);
 				AnimationEffect::openAniEffect(layer);
+
+				MyRes::Use(m_res->getId());
 
 				if (storelayer != NULL)
 					storelayer->updateUI();

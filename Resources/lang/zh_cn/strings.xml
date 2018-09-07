@@ -139,7 +139,7 @@
 	<s name="hintrefresh">是否放弃当前%s级角色重新刷新？</s>	
 	<s name="recruitsucc">招募成功！</s>
 	<s name="firecomfirmtext">是否解雇当前%s级角色？</s>
-	<s name="nomoreres">装不下更多资源了</s>	
+	<s name="nomoreres">装不下更多的%s</s>	
 	<s name="strengthtitle">强化装备</s>
 	<s name="tipsstrengthtext">成功率%.2f%%（失败后降%d级）</s>
 	<s name="tipsstrengthtext1">成功率%.2f%%（失败后不降级）</s>

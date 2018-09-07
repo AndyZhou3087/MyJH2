@@ -10,6 +10,7 @@
 #include "TaskNode.h"
 #include "AnimationEffect.h"
 #include "MainScene.h"
+#include "RewardLayer.h"
 
 TaskDescLayer::TaskDescLayer()
 {
@@ -292,6 +293,7 @@ void TaskDescLayer::accpTask()
 void TaskDescLayer::getRewards()
 {
 	m_data->isfinish = QUEST_GET;
+	std::vector<MSGAWDSDATA> vec_rewards;
 	for (unsigned int i = 0; i < rewards.size(); i++)
 	{
 		std::vector<std::string> one_res = rewards[i];
@@ -302,22 +304,18 @@ void TaskDescLayer::getRewards()
 		if (one_res.size()>2 && one_res[2].length()>0)
 		{
 			qu = atoi(one_res[2].c_str());
-			stc = GlobalInstance::getInstance()->generateStoneCount(qu);
 		}
 
-		if (resid.compare("r006") == 0)
-		{
-			DynamicValueInt dvint;
-			dvint.setValue(count);
-			GlobalInstance::getInstance()->addMySoliverCount(dvint);
-		}
-		else if (resid.compare("r012") == 0)
-		{
-			DynamicValueInt dvint;
-			dvint.setValue(count);
-			GlobalInstance::getInstance()->addMyCoinCount(dvint);
-		}
-		else
-			MyRes::Add(resid, count, MYSTORAGE, qu, stc);
+		MSGAWDSDATA wdata;
+		wdata.rid = resid;
+		wdata.count = count;
+		wdata.qu = qu;
+		vec_rewards.push_back(wdata);
+	}
+	if (vec_rewards.size() > 0)
+	{
+		RewardLayer* layer = RewardLayer::create(vec_rewards);
+		g_mainScene->addChild(layer);
+		AnimationEffect::openAniEffect(layer);
 	}
 }
