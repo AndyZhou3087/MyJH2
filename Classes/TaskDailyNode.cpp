@@ -19,6 +19,7 @@
 #include "MarketLayer.h"
 #include "SimplePopLayer.h"
 #include "SoundManager.h"
+#include "RewardLayer.h"
 
 TaskDailyNode::TaskDailyNode()
 {
@@ -191,6 +192,7 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		}
 		else if (tag == 1000)
 		{
+			std::vector<MSGAWDSDATA> vec_rewards;
 			//ŒÔ∆∑
 			for (unsigned int i = 0; i < m_Data->goods.size(); i++)
 			{
@@ -202,7 +204,6 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				if (one_res.size()>2 && one_res[2].length()>0)
 				{
 					qu = atoi(one_res[2].c_str());
-					stc = GlobalInstance::getInstance()->generateStoneCount(qu);
 				}
 
 				for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
@@ -213,26 +214,24 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 						int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
 						if (MyRes::getMyResCount(resid)+count>maxcount)
 						{
-							MovingLabel::show(ResourceLang::map_lang["nomoreres"]);
+							std::string hintstr = StringUtils::format(ResourceLang::map_lang["nomoreres"].c_str(), GlobalInstance::map_AllResources[rescreator->getName()].name.c_str());
+							MovingLabel::show(hintstr);
 							return;
 						}
 					}
 				}
+				MSGAWDSDATA wdata;
+				wdata.rid = resid;
+				wdata.count = count;
+				wdata.qu = qu;
+				vec_rewards.push_back(wdata);
+			}
 
-				if (resid.compare("r006") == 0)
-				{
-					DynamicValueInt dvint;
-					dvint.setValue(count);
-					GlobalInstance::getInstance()->addMySoliverCount(dvint);
-				}
-				else if (resid.compare("r012") == 0)
-				{
-					DynamicValueInt dvint;
-					dvint.setValue(count);
-					GlobalInstance::getInstance()->addMyCoinCount(dvint);
-				}
-				else
-					MyRes::Add(resid, count, MYSTORAGE, qu, stc);
+			if (vec_rewards.size() > 0)
+			{
+				RewardLayer* layer = RewardLayer::create(vec_rewards);
+				g_mainScene->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
 			}
 
 			cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;

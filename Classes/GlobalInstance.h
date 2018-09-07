@@ -265,7 +265,6 @@ typedef struct
 	int qu;
 }MSGAWDSDATA;
 
-
 class GlobalInstance
 {
 public:
