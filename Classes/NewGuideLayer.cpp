@@ -328,14 +328,15 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 			float scale = scalex;
 			if (m_step >= 7 && m_step <= 10)
 			{
-				scale = 3.0f;
+				scalex = 3.0f;
+				scaley = 3.0f;
 			}
 			else if (m_step == 21 || m_step == 30)
 			{
 				m_pos.y = m_pos.y + 20;
 			}
 			cnode->setPosition(m_pos);
-			cnode->setScale(scale*1.2f);
+			cnode->setScale(scalex*1.5f, scaley*1.5f);
 			m_clippingNode->addChild(cnode);
 			cnode->visit();
 			m_clippingNode->end();
