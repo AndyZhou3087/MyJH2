@@ -6,6 +6,8 @@
 #include "Resource.h"
 #include "GlobalInstance.h"
 #include "AnimationEffect.h"
+#include "MainScene.h"
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -173,8 +175,10 @@ void SettingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		switch (tag)
 		{
 		case 1000:
+		{
 			AnimationEffect::closeAniEffect((Layer*)this);
-			//this->removeFromParentAndCleanup(true);
+			g_mainScene->delayShowNewerGuide(0);
+		}
 			break;
 		case 1001:
 			modifyName(1);

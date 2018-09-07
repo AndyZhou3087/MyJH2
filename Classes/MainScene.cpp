@@ -17,6 +17,7 @@
 #include "TrainLayer.h"
 #include "SoundManager.h"
 #include "AnimationEffect.h"
+#include "NewGuideLayer.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -140,6 +141,8 @@ bool MainScene::init()
 	MyRes::putMyPackagesToStorage();
 	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_HOME);
 
+	this->scheduleOnce(schedule_selector(MainScene::delayShowNewerGuide), 0.1f);
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -159,6 +162,59 @@ bool MainScene::init()
     return true;
 }
 
+void MainScene::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(14))
+	{
+		if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(15))
+			{
+				showNewerGuide(15);
+			}
+		}
+		else if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(22))
+			{
+				showNewerGuide(22);
+			}
+		}
+	}
+}
+
+void MainScene::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 15)
+	{
+		scroll_1->jumpToPercentHorizontal(95);
+		scroll_2->jumpToPercentHorizontal(95);
+		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_08_n");
+		nodes.push_back(node);
+	}
+	else if (step == 22)
+	{
+		scroll_1->jumpToPercentHorizontal(32);
+		scroll_2->jumpToPercentHorizontal(32);
+		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_07_n");
+		nodes.push_back(node);
+	}
+	showNewerGuideNode(step, nodes);
+}
+
+void MainScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
+{
+	if (NewGuideLayer::checkifNewerGuide(step))
+	{
+		if (g_NewGuideLayer == NULL)
+		{
+			g_NewGuideLayer = NewGuideLayer::create(step, nodes);
+			this->addChild(g_NewGuideLayer, 10);
+		}
+	}
+}
+
 void MainScene::onEnterTransitionDidFinish()
 {
 	Layer::onEnterTransitionDidFinish();
@@ -168,6 +224,7 @@ void MainScene::onEnterTransitionDidFinish()
 void MainScene::srollviewlistenEvent(Ref* ref, ui::ScrollView::EventType eventType)
 {
 	Vec2 pos = scroll_3->getInnerContainerPosition();
+	log("scoll posx:%f, posy:%f", pos.x, pos.y);
 	switch (eventType) 
 	{
 		//最外层滑动时，带动后两层滑动，可修改时间调整效果

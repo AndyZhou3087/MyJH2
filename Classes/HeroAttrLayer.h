@@ -33,6 +33,9 @@ public:
 
 	void changeButton();
 
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+
 private:
 
 	/************************************

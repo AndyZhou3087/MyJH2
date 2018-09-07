@@ -24,6 +24,9 @@ public:
 	void fireHero(int index);
 
 	MyHeroNode* getMyHeroNode(int index);
+
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
@@ -31,6 +34,7 @@ private:
 	Building* m_buidingData;//建筑物数据
 	cocos2d::ui::ScrollView* m_contentscroll;
 	cocos2d::ui::Text* lvUIlbl;
+	Node* csbnode;
 };
 
 #endif

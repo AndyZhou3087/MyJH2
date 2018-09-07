@@ -26,6 +26,9 @@ public:
 	static ConsumeResActionLayer* create(void* data, int actiontype);
 	virtual void onExit();
     bool init(void* building, int actiontype);
+
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	//更新UI,数值
@@ -48,6 +51,7 @@ private:
 	std::vector<std::map<std::string, int>> vec_res;//需要的资源的数据
 	DynamicValueInt costcoindv;//立即动作需要的元宝数
 	cocos2d::ui::Text* nextlvdesc;
+	Node* csbnode;
 };
 
 #endif

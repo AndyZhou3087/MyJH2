@@ -26,6 +26,9 @@ public:
 	virtual void onExit();
     bool init();
 
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	//更新UI,数值
@@ -51,6 +54,7 @@ private:
 	RandHeroNode* heronode[3];//3个随机的英雄UI
 	cocos2d::ui::LoadingBar* m_timebar;
 	cocos2d::ui::Text* m_timelbl;
+	Node* csbnode;
 
 };
 

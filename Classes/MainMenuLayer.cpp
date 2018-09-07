@@ -17,6 +17,7 @@
 #include "NewPopLayer.h"
 #include "ShopLayer.h"
 #include "GiftContentLayer.h"
+#include "NewGuideLayer.h"
 
 USING_NS_CC;
 
@@ -44,7 +45,7 @@ bool MainMenuLayer::init()
 
 	int langtype = GlobalInstance::getInstance()->getLang();
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("MainMenuLayer.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("MainMenuLayer.csb"));
 	this->addChild(csbnode);
 
 	for (int i = 0; i < csbnode->getChildrenCount(); i++)
@@ -114,26 +115,52 @@ bool MainMenuLayer::init()
 	HttpDataSwap::init(this)->vipIsOn();
 	HttpDataSwap::init(this)->getMessageList(0);
 
+	this->scheduleOnce(schedule_selector(MainMenuLayer::delayShowNewerGuide), 0.1f);
     return true;
+}
+
+void MainMenuLayer::delayShowNewerGuide(float dt)
+{
+	if (NewGuideLayer::checkifNewerGuide(14))
+	{
+		showNewerGuide(14);
+	}
+}
+
+void MainMenuLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 14)
+	{
+		nodes.push_back(csbnode->getChildByName("setbtn"));
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void MainMenuLayer::onFinish(int code)
 {
 	if (code == SUCCESS)
 	{
-		if (GlobalInstance::vec_buyVipIds.size()>0)
+		if (NewGuideLayer::checkifNewerGuide(14) || NewGuideLayer::checkifNewerGuide(15) || NewGuideLayer::checkifNewerGuide(22))
 		{
-			std::map<std::string, int>::iterator it;
-			for (it = GlobalInstance::map_buyVipDays.begin(); it != GlobalInstance::map_buyVipDays.end(); ++it)
+			return;
+		}
+		if (this->getChildByName("GiftContentLayer") == NULL)
+		{
+			if (GlobalInstance::vec_buyVipIds.size()>0)
 			{
-				for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+				std::map<std::string, int>::iterator it;
+				for (it = GlobalInstance::map_buyVipDays.begin(); it != GlobalInstance::map_buyVipDays.end(); ++it)
 				{
-					if (GlobalInstance::vec_shopdata[i].icon.compare(it->first) == 0)
+					for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
 					{
-						GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i, 1);
-						this->addChild(layer);
-						AnimationEffect::openAniEffect((Layer*)layer);
-						break;
+						if (GlobalInstance::vec_shopdata[i].icon.compare(it->first) == 0)
+						{
+							GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i, 1);
+							this->addChild(layer, 0, "GiftContentLayer");
+							AnimationEffect::openAniEffect((Layer*)layer);
+							break;
+						}
 					}
 				}
 			}

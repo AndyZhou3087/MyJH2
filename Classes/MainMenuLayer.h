@@ -35,6 +35,9 @@ public:
 	virtual void onExit();
     virtual bool init();
 
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+
 private:
 	//点击按钮
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -55,6 +58,7 @@ private:
 	cocos2d::ui::Widget* mailredpoint;//邮件小红点
 
 	cocos2d::ui::ImageView* head;//头像
+	Node* csbnode;
 };
 
 #endif

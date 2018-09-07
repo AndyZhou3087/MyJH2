@@ -88,16 +88,6 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 	{
 		okbtn->setPositionX(490);
 		cancelbtn->setPositionX(225);
-		if (NewGuideLayer::checkifNewerGuide(FIGHTGUIDESTEP))
-		{
-			if (g_MapBlockScene != NULL)
-			{
-				std::vector<Node*> nodes;
-				okbtn->setTag(-1);
-				nodes.push_back(okbtn);
-				g_MapBlockScene->showNewerGuideNode(FIGHTGUIDESTEP, nodes);
-			}
-		}
 	}
 
 	//фа╠ноб╡Ц╣Ц╩В

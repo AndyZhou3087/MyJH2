@@ -6,7 +6,10 @@
 #include "ui/CocosGUI.h"
 USING_NS_CC;
 
-#define FIGHTGUIDESTEP 14
+#define FIRSTGUIDESTEP 13
+#define SECONDGUIDESTEP 21
+#define THRIDGUIDESTEP 39
+
 #define NEWERLAYERZOER 1999
 class NewGuideLayer : public Layer
 {
@@ -17,7 +20,7 @@ public:
 	virtual void onExit();
 	static NewGuideLayer* create(int step, std::vector<Node*> stencilNodes);
 	static bool checkifNewerGuide(int index);
-	static void setNewGuideInfo();//新手加成
+	static void setNewGuideInfo(int step);//新手加成
 
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:

@@ -16,6 +16,8 @@
 #include "MarketLayer.h"
 #include "SoundManager.h"
 #include "AnimationEffect.h"
+#include "NewGuideLayer.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -62,7 +64,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("consumeResActionLayer.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("consumeResActionLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
@@ -240,6 +242,8 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 	updateUI(0);
 	this->schedule(schedule_selector(ConsumeResActionLayer::updateUI), 1);
 
+	this->scheduleOnce(schedule_selector(ConsumeResActionLayer::delayShowNewerGuide), 0.1f);
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -253,6 +257,34 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void ConsumeResActionLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(14))
+	{
+		if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(17))
+			{
+				showNewerGuide(17);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(19))
+			{
+				showNewerGuide(19);
+			}
+		}
+	}
+}
+
+void ConsumeResActionLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 17 || step == 19)
+	{
+		nodes.push_back(csbnode->getChildByName("lvupbtn"));
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
