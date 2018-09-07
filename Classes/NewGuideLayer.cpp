@@ -135,7 +135,7 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 	showNode(stencilNodes);
 	showWord(descText[m_step]);
 
-	if (m_step >= 2 && m_step <= 10 || m_step == 12)
+	if ((m_step >= 2 && m_step <= 10) || m_step == 12)
 	{
 		iscannext = true;
 	}
@@ -179,7 +179,7 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 					g_MapBlockScene->delayShowNewerGuide(0);
 				}
 			}
-			else if ((m_step > 1 && m_step < 5) || m_step >= 11 && m_step < 13)
+			else if ((m_step > 1 && m_step < 5) || (m_step >= 11 && m_step < 13))
 			{
 				this->removeFromParentAndCleanup(true);
 				if (g_MapBlockScene != NULL)
@@ -188,7 +188,7 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 				}
 			}
 			else if (m_step == 1 || m_step == 14 || m_step == 15 || m_step == 16 || m_step == 18 || m_step == 22 || m_step == 23 
-				|| m_step == 24 || m_step == 26 || m_step == 28)
+				|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31)
 			{
 				this->removeFromParentAndCleanup(true);
 			}
