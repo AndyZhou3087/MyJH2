@@ -338,6 +338,9 @@ void ConsumeResActionLayer::action()
 			TrainLayer* trainLayer = (TrainLayer*)this->getParent();
 			trainLayer->lvup();
 		}
+
+		CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_sjcg");
+
 		std::string desc = StringUtils::format(ResourceLang::map_lang["lvupsucc"].c_str(), GlobalInstance::map_AllResources[bdata->name].name.c_str(), bdata->level.getValue() + 1);
 		MovingLabel::show(desc);
 
@@ -362,6 +365,7 @@ void ConsumeResActionLayer::action()
 		dlv.setValue(rdata->getLv().getValue() + 1);
 		rdata->setLv(dlv);
 		GlobalInstance::getInstance()->saveResCreatorData();
+		CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_sjcg");
 	}
 	else if (m_actiontype == CA_MAKERES)
 	{

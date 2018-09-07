@@ -278,7 +278,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="1.7574" Y="0.3539" />
                 <PreSize X="1.4706" Y="1.5714" />
-                <FileData Type="MarkedSubImage" Path="mapui/maptask_icon.png" Plist="mapui.plist" />
+                <FileData Type="Default" Path="Default/ImageFile.png" Plist="" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

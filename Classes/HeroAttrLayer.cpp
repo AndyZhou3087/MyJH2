@@ -116,12 +116,12 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 		cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
 		node->setTag(i);
 		node->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onEquipClick, this));
-		cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
-		qubox->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
+		//cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
+		//qubox->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
 		ResBase* eres = MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
+		updateEquipUi(eres, i);
 		if (eres != NULL)
 		{
-			updateEquipUi(eres, i);
 			m_heroData->setEquipable((Equipable*)eres, eres->getType());
 		}
 	}
@@ -378,6 +378,14 @@ void HeroAttrLayer::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)
 
 void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox, EditBoxEndAction action)
 {
+	std::string editstr = editBox->getText();
+	if (editstr.length() == 0)
+	{
+		editBox->setText(m_heroData->getName().c_str());
+		MovingLabel::show(ResourceLang::map_lang["nicknameempty"]);
+		return;
+	}
+
 	if (GlobalInstance::getInstance()->checkifSameName(editBox->getText()))
 	{
 		editBox->setText(m_heroData->getName().c_str());
@@ -504,14 +512,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				clicknode->setEnabled(false);
 				//MovingLabel::show(ResourceLang::map_lang["recruitsucc"]);
 
-				auto effectnode = CSLoader::createNode("effect/qianghuachenggong.csb");
-				effectnode->setPosition(Vec2(360, 640));
-				this->getParent()->addChild(effectnode, 10, "qianghuachenggong");
-				cocos2d::ui::ImageView* ziti = (cocos2d::ui::ImageView*)effectnode->getChildByName("ziti");
-				ziti->loadTexture(ResourcePath::makeTextImgPath("texiao_zmcg", GlobalInstance::getInstance()->getLang()), cocos2d::ui::Widget::TextureResType::PLIST);
-				auto action = CSLoader::createTimeline("effect/qianghuachenggong.csb");
-				effectnode->runAction(action);
-				action->gotoFrameAndPlay(0, false);
+				CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_zmcg");
 
 				AnimationEffect::closeAniEffect((Layer*)this);
 
@@ -591,14 +592,7 @@ void HeroAttrLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			int curLevel = m_heroData->getLevel();
 			if (lastLevel <= curLevel - 1)
 			{
-				auto effectnode = CSLoader::createNode("effect/qianghuachenggong.csb");
-				effectnode->setPosition(Vec2(360, 640));
-				this->addChild(effectnode, 10, "qianghuachenggong");
-				cocos2d::ui::ImageView* ziti = (cocos2d::ui::ImageView*)effectnode->getChildByName("ziti");
-				ziti->loadTexture(ResourcePath::makeTextImgPath("texiao_sjcg", GlobalInstance::getInstance()->getLang()), cocos2d::ui::Widget::TextureResType::PLIST);
-				auto action = CSLoader::createTimeline("effect/qianghuachenggong.csb");
-				effectnode->runAction(action);
-				action->gotoFrameAndPlay(0, false);
+				CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_sjcg");
 			}
 			std::string s = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), count);
 			MovingLabel::show(s, Color4B(0, 128, 0, 255), Vec2(360, 320));
@@ -699,6 +693,7 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 	cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
 	qubox->ignoreContentAdaptWithSize(true);
 	qubox->stopAllActions();
+	qubox->setVisible(true);
 	qubox->setOpacity(255);
 	cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)node->getChildByName("img");
 	resimg->ignoreContentAdaptWithSize(true);
@@ -728,7 +723,7 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 	else
 	{
 		qubox->setAnchorPoint(Vec2(0, 1));
-		if (clickindex == 2 || clickindex == 3)//武功，内功
+		if (barindex == 2 || barindex == 3)//武功，内功
 			qubox->setPosition(Vec2(8, 117));
 		else
 			qubox->setPosition(Vec2(8, 98));
@@ -747,7 +742,10 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 		cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
 		if (qubox->getRenderFile().file.compare("ui/heroattradd.png") == 0)
 		{
-			qubox->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
+			if (MyRes::hasResByType(equiptype[i]))
+				qubox->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
+			else
+				qubox->setVisible(false);
 		}
 	}
 }

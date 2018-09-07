@@ -46,6 +46,8 @@ bool MainMapScene::init()
 	mapbg->setScale(0.8f);
 	int mapnamecount = mapbg->getChildrenCount();
 
+	std::map<std::string, std::vector<Node*>> map_taskicon;
+
 	for (int i = 0; i < mapnamecount; i++)
 	{
 		cocos2d::ui::Widget* mapname = (cocos2d::ui::Widget*)mapbg->getChildren().at(i);
@@ -59,21 +61,21 @@ bool MainMapScene::init()
 		int c = atoi(mname.substr(1, mname.find_first_of("-") - 1).c_str());
 
 		std::string mapnameid = GlobalInstance::myCurMainData.place.substr(0, 4);
-		if (mapnameid.compare(mname) == 0 && GlobalInstance::myCurMainData.isfinish == QUEST_ACC)
+		if ((mapnameid.compare(mname) == 0 && GlobalInstance::myCurMainData.isfinish == QUEST_ACC) || (GlobalInstance::myCurMainData.isfinish != QUEST_ACC && mname.compare("m0-1") == 0))
 		{
-			Sprite* taskicon = Sprite::createWithSpriteFrameName("mapui/maptask_icon.png");
-			taskicon->setAnchorPoint(Vec2(0, 1));
-			taskicon->setRotation(45);
-			taskicon->setPosition(Vec2(35, 85));
+			Sprite* taskicon = Sprite::createWithSpriteFrameName("ui/maintask_icon.png");
+			taskicon->setPosition(Vec2(55, 15));
+			taskicon->setScale(0.8f);
 			mapname->addChild(taskicon);
+			map_taskicon[mname].push_back(taskicon);
 		}
-		else if (GlobalInstance::myCurMainData.isfinish != QUEST_ACC && mname.compare("m0-1") == 0)
+		if ((mapnameid.compare(mname) == 0 && GlobalInstance::myCurBranchData.isfinish == QUEST_ACC) || (GlobalInstance::myCurBranchData.isfinish != QUEST_ACC && mname.compare("m0-1") == 0))
 		{
-			Sprite* taskicon = Sprite::createWithSpriteFrameName("mapui/maptask_icon.png");
-			taskicon->setAnchorPoint(Vec2(0, 1));
-			taskicon->setRotation(45);
-			taskicon->setPosition(Vec2(38, 85));
+			Sprite* taskicon = Sprite::createWithSpriteFrameName("ui/branchtask_icon.png");
+			taskicon->setPosition(Vec2(55, 15));
+			taskicon->setScale(0.8f);
 			mapname->addChild(taskicon);
+			map_taskicon[mname].push_back(taskicon);
 		}
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
@@ -88,6 +90,28 @@ bool MainMapScene::init()
 			mapname->setVisible(false);
 		}
 #endif
+	}
+	std::map<std::string, std::vector<Node*>>::iterator it;
+	for (it = map_taskicon.begin(); it != map_taskicon.end(); it++)
+	{
+		int iconsize = map_taskicon[it->first].size();
+		if (iconsize == 2)
+		{
+			for (int i = 0; i < iconsize; i++)
+			{
+				map_taskicon[it->first][i]->setPositionY(38 - 45 * i);
+			}
+		}
+	}
+
+	for (it = map_taskicon.begin(); it != map_taskicon.end(); it++)
+	{
+		int iconsize = map_taskicon[it->first].size();
+
+		for (int i = 0; i < iconsize; i++)
+		{
+			map_taskicon[it->first][i]->runAction(RepeatForever::create(Sequence::create(MoveBy::create(0.8f, Vec2(-5, 0)), MoveBy::create(0.8f, Vec2(5, 0)), NULL)));
+		}
 	}
 
 	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_MAINMAP);

@@ -21,14 +21,18 @@ private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
 	cocos2d::ui::Text* namelbl;
-	cocos2d::ui::Text* vocationlbl;
+	cocos2d::ui::Text* powertext;
 	cocos2d::ui::Text* lvlbl;
 	cocos2d::ui::Text* desclbl;
 	cocos2d::ui::Widget* vocationbox;
 	cocos2d::ui::ImageView* vocationicon;
+	cocos2d::ui::ImageView* powericon;
+	cocos2d::Node* stars[5];
+	cocos2d::Node* cardnamebox;
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-
+	void updatePowerCount(float dt);
+	Hero* m_herodata;
 };
 #endif
 

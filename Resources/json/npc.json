@@ -29,7 +29,7 @@
 {"id":"n028","cname":"长洪子","vocation":"5","nicon":"n017"},
 {"id":"n029","cname":"长青子","vocation":"5","nicon":"n017"},
 {"id":"n030","cname":"吴真人","vocation":"9","nicon":"n017"},
-{"id":"n031","cname":"逍遥剑客","vocation":"4","nicon":"n009"},
+{"id":"n031","cname":"逍遥剑客","vocation":"4","nicon":"n028"},
 {"id":"n032","cname":"逍遥刀客","vocation":"8","nicon":"n005"},
 {"id":"n033","cname":"逍遥刺客","vocation":"3","nicon":"n006"},
 {"id":"n034","cname":"逍遥道士","vocation":"1","nicon":"n016"},
@@ -69,9 +69,9 @@
 {"id":"n068","cname":"少林弟子","vocation":"2","nicon":"n014"},
 {"id":"n069","cname":"子远大师","vocation":"2","nicon":"n004"},
 {"id":"n070","cname":"子明大师","vocation":"2","nicon":"n004"},
-{"id":"n071","cname":"智净大师","vocation":"6","nicon":"n004"},
-{"id":"n072","cname":"智能大师","vocation":"6","nicon":"n004"},
-{"id":"n073","cname":"智空方丈","vocation":"10","nicon":"n004"},
+{"id":"n071","cname":"智净大师","vocation":"6","nicon":"n027"},
+{"id":"n072","cname":"智能大师","vocation":"6","nicon":"n027"},
+{"id":"n073","cname":"智空方丈","vocation":"10","nicon":"n027"},
 {"id":"n074","cname":"崆峒弟子","vocation":"1","nicon":"n016"},
 {"id":"n075","cname":"玉真人","vocation":"5","nicon":"n017"},
 {"id":"n076","cname":"绝情子","vocation":"5","nicon":"n018"},
@@ -95,7 +95,7 @@
 {"id":"n094","cname":"解莲花","vocation":"6","nicon":"n019"},
 {"id":"n095","cname":"毕道仁","vocation":"6","nicon":"n019"},
 {"id":"n096","cname":"武铁石","vocation":"6","nicon":"n019"},
-{"id":"n097","cname":"庄不二","vocation":"6","nicon":"n019"},
+{"id":"n097","cname":"庄不二","vocation":"6","nicon":"n020"},
 {"id":"n098","cname":"洪大海","vocation":"6","nicon":"n018"},
 {"id":"n099","cname":"解有龙","vocation":"8","nicon":"n005"},
 {"id":"n100","cname":"全真道士","vocation":"1","nicon":"n016"},
@@ -104,5 +104,5 @@
 {"id":"n103","cname":"阳春真人","vocation":"5","nicon":"n018"},
 {"id":"n104","cname":"九龙先生","vocation":"9","nicon":"n018"},
 {"id":"n105","cname":"青城弟子","vocation":"1","nicon":"n009"},
-{"id":"n106","cname":"丐帮弟子","vocation":"6","nicon":"n019"}
+{"id":"n106","cname":"丐帮弟子","vocation":"6","nicon":"n021"}
 ]}

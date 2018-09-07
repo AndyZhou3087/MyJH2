@@ -25,7 +25,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="MarkedSubImage" Path="mapui/maptask_icon.png" Plist="mapui.plist" />
+            <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="maptask_main_2" ActionTag="-478883928" Tag="25" IconVisible="False" LeftMargin="-119.7446" RightMargin="97.7446" TopMargin="-41.4224" BottomMargin="17.4224" ctype="SpriteObjectData">

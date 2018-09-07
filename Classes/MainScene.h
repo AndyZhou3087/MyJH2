@@ -29,6 +29,11 @@ public:
 	**********************************/
 	void onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
+	/*********************************
+	更新任务图标
+	**********************************/
+	void updateTaskIcon();
+
 private:
 	cocos2d::ui::ScrollView* scroll_3;//最外层滑动层，包括训练场-仓库-铁匠铺-医馆-出城
 	cocos2d::ui::ScrollView* scroll_2;//中间层滑动层，包括后山-客栈-市场
@@ -47,6 +52,7 @@ private:
 	int m_startClickY;
 	bool m_isDraging;
 	int costFoodsT;
+	std::vector<Node*> vec_taskicon;
 };
 extern MainScene* g_mainScene;
 #endif

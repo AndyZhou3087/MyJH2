@@ -1,10 +1,9 @@
 ﻿#ifndef _COMMONFUNCS_H_
 #define _COMMONFUNCS_H_
-#include <iostream>
 #include "cocos2d.h"
-#include <algorithm>
-#include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
+#include "cocostudio/CocoStudio.h"
+
 class CommonFuncs
 {
 public:
@@ -36,6 +35,8 @@ public:
 	字符串转换UTF8
 	@param inbuf 字符串
 	@return 转换后的字符串
+	win32平台写在代码里的中文需要调用转换函数
+	android，ios平台只需要将文件保存为utf-8即可
 	****************************/
 	static std::string gbk2utf(const char *inbuf);
 
@@ -58,6 +59,11 @@ public:
 	计算中英文长度
 	****************************/
 	static void checkEnAndCnCount(std::string instr, int& encount, int& cncount);
+
+	/****************************
+	通用升级动画，强化，招募，转职，任务完成，突破
+	****************************/
+	static void playCommonLvUpAnim(cocos2d::Node* target, std::string textstr);
 
 private:
 

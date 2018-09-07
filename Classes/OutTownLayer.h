@@ -30,6 +30,7 @@ private:
 
 	void addRes(Node* clicknode);
 	void subRes(Node* clicknode);
+	void onGoBuyText(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:
 	CardHeroNode* m_myCardHerosNode[6];
 	cocos2d::ui::Text* carrylbl;

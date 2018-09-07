@@ -9,6 +9,7 @@
 #include "MovingLabel.h"
 #include "TaskNode.h"
 #include "AnimationEffect.h"
+#include "MainScene.h"
 
 TaskDescLayer::TaskDescLayer()
 {
@@ -263,6 +264,7 @@ void TaskDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			accbtn->setTitleText(ResourceLang::map_lang["accmaintask"]);
 			accbtn->setTouchEnabled(false);
 			accpTask();
+			g_mainScene->updateTaskIcon();
 			break;
 		case 2: //完成后领取奖励
 			node->setVisible(false);
@@ -302,6 +304,20 @@ void TaskDescLayer::getRewards()
 			qu = atoi(one_res[2].c_str());
 			stc = GlobalInstance::getInstance()->generateStoneCount(qu);
 		}
-		MyRes::Add(resid, count, MYSTORAGE, qu, stc);
+
+		if (resid.compare("r006") == 0)
+		{
+			DynamicValueInt dvint;
+			dvint.setValue(count);
+			GlobalInstance::getInstance()->addMySoliverCount(dvint);
+		}
+		else if (resid.compare("r012") == 0)
+		{
+			DynamicValueInt dvint;
+			dvint.setValue(count);
+			GlobalInstance::getInstance()->addMyCoinCount(dvint);
+		}
+		else
+			MyRes::Add(resid, count, MYSTORAGE, qu, stc);
 	}
 }

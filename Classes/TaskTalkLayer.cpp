@@ -76,6 +76,7 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 	desc->setVisible(false);
 	desc->setString(data->bossword);*/
 	descscoll = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("descscoll");
+	descscoll->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onWordScroll, this));
 
 	checkWordLblColor(data->bossword);
 
@@ -326,6 +327,23 @@ void TaskTalkLayer::onBtn2Click(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			break;
 		default:
 			break;
+		}
+	}
+}
+
+void TaskTalkLayer::onWordScroll(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		if (m_wordlbl != NULL)
+		{
+			m_wordlbl->unschedule("schedule_typecallback");
+			int index = 0;
+			while (m_wordlbl->getLetter(index) != NULL)
+			{
+				m_wordlbl->getLetter(index)->setScale(1);
+				index++;
+			}
 		}
 	}
 }

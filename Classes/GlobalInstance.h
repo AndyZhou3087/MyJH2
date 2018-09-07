@@ -258,6 +258,14 @@ typedef struct
 	int count;
 }ShopData;
 
+typedef struct
+{
+	std::string rid;
+	int count;
+	int qu;
+}MSGAWDSDATA;
+
+
 class GlobalInstance
 {
 public:

@@ -66,6 +66,9 @@ bool TaskLayer::init()
 	scrollview->setScrollBarEnabled(false);
 	scrollview->setBounceEnabled(true);
 
+	cocos2d::ui::Text* hintdesc = (cocos2d::ui::Text*)m_csbnode->getChildByName("hintdesc");
+	hintdesc->setString(ResourceLang::map_lang["taskhintdesc"]);
+
 	Node* categoryBtnNode = m_csbnode->getChildByName("catanode");
 	for (int i = 0; i < categoryBtnNode->getChildrenCount(); i++)
 	{
@@ -128,7 +131,7 @@ void TaskLayer::updateContent(int category)
 	{
 		ressize = GlobalInstance::vec_TaskMain.size();
 		sort(GlobalInstance::vec_TaskMain.begin(), GlobalInstance::vec_TaskMain.end(), larger_callback);
-		scrollview->setContentSize(Size(scrollview->getContentSize().width, 1010));
+		scrollview->setContentSize(Size(scrollview->getContentSize().width, 990));
 		pnode->setVisible(false);
 
 		for (int i = 0; i < ressize; i++)
@@ -143,7 +146,7 @@ void TaskLayer::updateContent(int category)
 	{
 		ressize = GlobalInstance::vec_TaskBranch.size();
 		sort(GlobalInstance::vec_TaskBranch.begin(), GlobalInstance::vec_TaskBranch.end(), larger_branchcallback);
-		scrollview->setContentSize(Size(scrollview->getContentSize().width, 1010));
+		scrollview->setContentSize(Size(scrollview->getContentSize().width, 990));
 		pnode->setVisible(false);
 
 		for (int i = 0; i < ressize; i++)
@@ -158,7 +161,7 @@ void TaskLayer::updateContent(int category)
 	{
 		ressize = GlobalInstance::map_DTdata.size();
 		mcount = ressize;
-		scrollview->setContentSize(Size(scrollview->getContentSize().width, 850));
+		scrollview->setContentSize(Size(scrollview->getContentSize().width, 830));
 		pnode->setVisible(true);
 	}
 

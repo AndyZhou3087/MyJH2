@@ -20,6 +20,18 @@ ResBase* MyRes::getMyRes(std::string resid, int inwhere)
 	return NULL;
 }
 
+bool MyRes::hasResByType(int type, int inwhere)
+{
+	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
+	{
+		if (vec_MyResources[i]->getType() == type && vec_MyResources[i]->getWhere() == inwhere)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 int MyRes::getMyResCount(std::string resid, int inwhere)
 {
 	ResBase* ResBase = getMyRes(resid, inwhere);

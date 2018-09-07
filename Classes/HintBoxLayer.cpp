@@ -86,6 +86,8 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 
 	if (forwhere == 4)
 	{
+		okbtn->setPositionX(490);
+		cancelbtn->setPositionX(225);
 		if (NewGuideLayer::checkifNewerGuide(FIGHTGUIDESTEP))
 		{
 			if (g_MapBlockScene != NULL)
@@ -150,6 +152,7 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
 			}
 			AnimationEffect::closeAniEffect((Layer*)this);
+			break;
 		case -1:
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 			break;

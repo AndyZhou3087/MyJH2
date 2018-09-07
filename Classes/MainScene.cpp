@@ -127,6 +127,11 @@ bool MainScene::init()
 			buildingNomal_1->setUserData((void*)buildingSelect);
 			buildingNomal_1->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
 		}
+		else if (i == 10)
+		{
+			updateTaskIcon();	
+		}
+
 		buildingSelect->setVisible(false);
 		buildingSelect->setUserData((void*)it->first.c_str());
 		i++;
@@ -346,4 +351,43 @@ void MainScene::updateTime(float dt)
 void MainScene::checkHint(float dt)
 {
 
+}
+
+void MainScene::updateTaskIcon()
+{
+	cocos2d::ui::ImageView* buildnametext = (cocos2d::ui::ImageView*)scroll_1->getChildByName("main_10_t");
+
+	for (unsigned int i = 0; i < vec_taskicon.size(); i++)
+	{
+		vec_taskicon[i]->removeFromParentAndCleanup(true);
+	}
+	vec_taskicon.clear();
+
+	if (GlobalInstance::myCurMainData.isfinish != QUEST_ACC)
+	{
+		Sprite* taskicon = Sprite::createWithSpriteFrameName("ui/maintask_icon.png");
+		taskicon->setPosition(Vec2(75, 90));
+		buildnametext->addChild(taskicon);
+		vec_taskicon.push_back(taskicon);
+	}
+	if (GlobalInstance::myCurBranchData.isfinish != QUEST_ACC)
+	{
+		Sprite* taskicon = Sprite::createWithSpriteFrameName("ui/branchtask_icon.png");
+		taskicon->setPosition(Vec2(75, 90));
+		buildnametext->addChild(taskicon);
+		vec_taskicon.push_back(taskicon);
+	}
+
+	int iconsize = vec_taskicon.size();
+	if (iconsize == 2)
+	{
+		for (int i = 0; i < iconsize; i++)
+		{
+			vec_taskicon[i]->setPositionY(115 - 55 * i);
+		}
+	}
+	for (int i = 0; i < iconsize; i++)
+	{
+		vec_taskicon[i]->runAction(RepeatForever::create(Sequence::create(MoveBy::create(0.8f, Vec2(-5, 0)), MoveBy::create(0.8f, Vec2(5, 0)), NULL)));
+	}
 }

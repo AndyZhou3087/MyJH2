@@ -266,15 +266,9 @@
       <FilePathData Path="mapui/maptask_branch.png" />
       <FilePathData Path="mapui/maptask_btn.png" />
       <FilePathData Path="mapui/maptask_frame.png" />
-      <FilePathData Path="mapui/maptask_icon.png" />
       <FilePathData Path="mapui/maptask_main.png" />
       <FilePathData Path="mapui/critnumbg.png" />
       <FilePathData Path="mapui/eventshopcountbox.png" />
-      <FilePathData Path="mapui/posicon0.png" />
-      <FilePathData Path="mapui/posicon1.png" />
-      <FilePathData Path="mapui/posicon2.png" />
-      <FilePathData Path="mapui/posicon3.png" />
-      <FilePathData Path="mapui/posicon4.png" />
       <FilePathData Path="mapui/bufskilltextbox.png" />
       <FilePathData Path="mapui/attricon0down.png" />
       <FilePathData Path="mapui/attricon0up.png" />
@@ -286,6 +280,7 @@
       <FilePathData Path="mapui/fightingedge.png" />
       <FilePathData Path="mapui/fightspeedx1.png" />
       <FilePathData Path="mapui/fightspeedx2.png" />
+      <FilePathData Path="mapui/maptask_icon.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

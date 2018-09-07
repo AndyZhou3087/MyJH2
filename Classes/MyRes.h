@@ -37,6 +37,9 @@ public:
 	static void clearMyPackages();
 
 	static ResBase* getMyRes(std::string resid, int inwhere = MYSTORAGE);
+
+	//是否有某种类型的物品
+	static bool hasResByType(int type, int inwhere = MYSTORAGE);
 public:
 
 	static std::vector<ResBase* > vec_MyResources;//我的资源，包括背包，仓库，装备上的

@@ -8,13 +8,6 @@
 
 USING_NS_CC;
 
-typedef struct
-{
-	std::string rid;
-	int count;
-	int qu;
-}MSGAWDSDATA;
-
 class MessageDescLayer :public Layer
 {
 public:

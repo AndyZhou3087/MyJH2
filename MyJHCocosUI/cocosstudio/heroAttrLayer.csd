@@ -264,14 +264,14 @@
                 <FileData Type="MarkedSubImage" Path="ui/heroattrnamebox.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="moditybtn" ActionTag="187053735" Tag="138" IconVisible="False" LeftMargin="484.3668" RightMargin="205.6332" TopMargin="68.5839" BottomMargin="319.4161" LeftEage="9" RightEage="9" TopEage="12" BottomEage="12" Scale9OriginX="9" Scale9OriginY="12" Scale9Width="12" Scale9Height="14" ctype="ImageViewObjectData">
-                <Size X="30.0000" Y="38.0000" />
+              <AbstractNodeData Name="moditybtn" ActionTag="187053735" Tag="138" IconVisible="False" LeftMargin="485.3668" RightMargin="206.6332" TopMargin="67.0839" BottomMargin="317.9161" LeftEage="9" RightEage="9" TopEage="12" BottomEage="12" Scale9OriginX="9" Scale9OriginY="12" Scale9Width="10" Scale9Height="17" ctype="ImageViewObjectData">
+                <Size X="28.0000" Y="41.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="499.3668" Y="338.4161" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.6936" Y="0.7944" />
-                <PreSize X="0.0417" Y="0.0892" />
+                <PreSize X="0.0389" Y="0.0962" />
                 <FileData Type="MarkedSubImage" Path="ui/heroattrmodify.png" Plist="ui.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="nameinput" ActionTag="2073104671" Tag="139" IconVisible="False" LeftMargin="267.5000" RightMargin="207.5000" TopMargin="68.0000" BottomMargin="328.0000" TouchEnable="True" FontSize="30" IsCustomSize="True" LabelText="ABC" PlaceHolderText="" MaxLengthText="10" ctype="TextFieldObjectData">

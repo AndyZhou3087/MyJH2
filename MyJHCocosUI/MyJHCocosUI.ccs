@@ -23,6 +23,7 @@
           <Image Name="cardherobox_2.png" />
           <Image Name="cardherobox_3.png" />
           <Image Name="cardherobox_4.png" />
+          <Image Name="carryoutbox.png" />
           <Image Name="event0.jpg" />
           <Image Name="event1.jpg" />
           <Image Name="event2.jpg" />
@@ -359,11 +360,6 @@
           <Image Name="n038.png" />
           <Image Name="n039.png" />
           <Image Name="n040.png" />
-          <Image Name="posicon0.png" />
-          <Image Name="posicon1.png" />
-          <Image Name="posicon2.png" />
-          <Image Name="posicon3.png" />
-          <Image Name="posicon4.png" />
           <Image Name="submapanimcloud.png" />
           <Image Name="submapnodeitem.png" />
           <Image Name="submaptitlecloud.png" />
@@ -386,6 +382,7 @@
           <Image Name="bufpreskill9text.png" />
           <Image Name="buybtn_text.png" />
           <Image Name="cancelbtn_text.png" />
+          <Image Name="carryout_text.png" />
           <Image Name="changebtn_text.png" />
           <Image Name="cleanread_text.png" />
           <Image Name="closebtn_text.png" />
@@ -520,6 +517,7 @@
           <Image Name="onkeyread_text.png" />
           <Image Name="outtowntitle.png" />
           <Image Name="package_text.png" />
+          <Image Name="powericon_text.png" />
           <Image Name="recruit_text.png" />
           <Image Name="recruitbtn_text.png" />
           <Image Name="refreshbtn_text.png" />
@@ -721,6 +719,7 @@
           <Image Name="bet_select.png" />
           <Image Name="bigstar.png" />
           <Image Name="blank.png" />
+          <Image Name="branchtask_icon.png" />
           <Image Name="buildingactbtn_d.png" />
           <Image Name="buildingactbtn_n.png" />
           <Image Name="buildingactbtn1_n.png" />
@@ -737,6 +736,8 @@
           <Image Name="cardvocation8.png" />
           <Image Name="cardvocation9.png" />
           <Image Name="cardvocationbox.png" />
+          <Image Name="carryoutbag.png" />
+          <Image Name="carryoutboxtop.png" />
           <Image Name="catabtn_n.png" />
           <Image Name="catabtn_s.png" />
           <Image Name="closebtn.png" />
@@ -876,6 +877,7 @@
           <Image Name="main_setbtn.png" />
           <Image Name="main_shopbtn.png" />
           <Image Name="main_silver.png" />
+          <Image Name="maintask_icon.png" />
           <Image Name="messageicon.png" />
           <Image Name="ninegrid.png" />
           <Image Name="normal9bg.png" />

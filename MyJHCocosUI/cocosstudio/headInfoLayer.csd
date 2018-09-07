@@ -79,13 +79,13 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="-356376196" Tag="169" IconVisible="False" LeftMargin="299.0000" RightMargin="299.0000" TopMargin="520.1874" BottomMargin="736.8126" FontSize="20" LabelText="点击更换头像" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="name" ActionTag="-356376196" Tag="169" IconVisible="False" LeftMargin="299.0000" RightMargin="299.0000" TopMargin="508.5000" BottomMargin="748.5000" FontSize="20" LabelText="点击更换头像" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="122.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="748.3126" />
+            <Position X="360.0000" Y="760.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="28" G="208" B="255" />
-            <PrePosition X="0.5000" Y="0.5846" />
+            <PrePosition X="0.5000" Y="0.5938" />
             <PreSize X="0.1694" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />

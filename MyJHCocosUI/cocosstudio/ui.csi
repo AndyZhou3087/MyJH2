@@ -410,6 +410,10 @@
       <FilePathData Path="ui/vip1.png" />
       <FilePathData Path="ui/herohinticon.png" />
       <FilePathData Path="ui/task_head.png" />
+      <FilePathData Path="ui/branchtask_icon.png" />
+      <FilePathData Path="ui/maintask_icon.png" />
+      <FilePathData Path="ui/carryoutbag.png" />
+      <FilePathData Path="ui/carryoutboxtop.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

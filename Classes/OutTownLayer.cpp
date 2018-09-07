@@ -6,6 +6,9 @@
 #include "MyRes.h"
 #include "MainMapScene.h"
 #include "AnimationEffect.h"
+#include "SoundManager.h"
+#include "MarketLayer.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -84,18 +87,30 @@ bool OutTownLayer::init()
 	std::string vstr = StringUtils::format(ResourceLang::map_lang["vision"].c_str(), MyRes::getMyResCount("v001") + 2);
 	versionname->setString(vstr);
 
+	cocos2d::ui::Text* gocityname = (cocos2d::ui::Text*)csbnode->getChildByName("t001box")->getChildByName("namelbl");
+
+	std::string gstr = StringUtils::format(ResourceLang::map_lang["gocitycard"].c_str(), MyRes::getMyResCount("t001"));
+	gocityname->setString(gstr);
+
 	cocos2d::ui::Text* carrytextlbl = (cocos2d::ui::Text*)csbnode->getChildByName("carrytextlbl");
 	carrytextlbl->setString(ResourceLang::map_lang["carrytext"]);
 
 	carrylbl = (cocos2d::ui::Text*)csbnode->getChildByName("carrylbl");
 
+	cocos2d::ui::Text* changehint = (cocos2d::ui::Text*)csbnode->getChildByName("changehint");
+	changehint->setString(ResourceLang::map_lang["changelineuphint"]);
+
+	cocos2d::ui::Text* hintdesc = (cocos2d::ui::Text*)csbnode->getChildByName("hintdesc");
+	hintdesc->setString(ResourceLang::map_lang["outtownhintdesc"]);
+
 	for (int i = 0; i < 6; i++)
 	{
 		m_myCardHerosNode[i] = CardHeroNode::create();
-		m_myCardHerosNode[i]->setPosition(Vec2(140 + i % 3 * 215, /*745 + */1030 - i / 3 * 250));
+		m_myCardHerosNode[i]->setPosition(Vec2(140 + i % 3 * 215, /*745 + */1060 - i / 3 * 250));
 		this->addChild(m_myCardHerosNode[i], 0, i);
 		m_myCardHerosNode[i]->setData(GlobalInstance::myCardHeros[i]);
 	}
+
 	std::string str;
 	for (int i = 0; i < 1; i++)
 	{
@@ -116,6 +131,14 @@ bool OutTownLayer::init()
 	}
 
 	updateHeroCarry();
+
+	for (int i = 1; i <= 2; i++)
+	{
+		str = StringUtils::format("tomartketbuy%d", i);
+		cocos2d::ui::Text* tobuytext = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+		tobuytext->setString(ResourceLang::map_lang[str]);
+		tobuytext->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onGoBuyText, this));
+	}
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -310,4 +333,19 @@ void OutTownLayer::onExit()
 CardHeroNode* OutTownLayer::getMyCardHeroNode(int index)
 {
 	return m_myCardHerosNode[index];
+}
+
+void OutTownLayer::onGoBuyText(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	Node* clicknode = (Node*)pSender;
+
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		this->removeFromParentAndCleanup(true);
+		MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
+		g_mainScene->addChild(layer, 0, "5market");
+		AnimationEffect::openAniEffect(layer);
+	}
+
 }

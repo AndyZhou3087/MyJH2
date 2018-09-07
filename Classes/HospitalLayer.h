@@ -26,7 +26,7 @@ private:
 	std::vector<Hero*> vec_deadheros;
 	cocos2d::ui::Text* cointext;
 	cocos2d::ui::Text* silvertext;
-
+	cocos2d::ui::Text* hintdesc;
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 

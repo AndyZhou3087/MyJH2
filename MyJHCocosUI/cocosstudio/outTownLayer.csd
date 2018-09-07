@@ -90,17 +90,17 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="ninegrid" ActionTag="104021722" Tag="182" IconVisible="False" LeftMargin="134.9995" RightMargin="135.0005" TopMargin="709.2945" BottomMargin="200.7055" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="16" Scale9Height="16" ctype="ImageViewObjectData">
-            <Size X="450.0000" Y="370.0000" />
+          <AbstractNodeData Name="carryoutbox" ActionTag="104021722" Tag="182" IconVisible="False" LeftMargin="104.4995" RightMargin="104.5005" TopMargin="716.7945" BottomMargin="208.2055" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="485" Scale9Height="329" ctype="ImageViewObjectData">
+            <Size X="511.0000" Y="355.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="359.9995" Y="385.7055" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.3013" />
-            <PreSize X="0.6250" Y="0.2891" />
-            <FileData Type="MarkedSubImage" Path="ui/ninegrid.png" Plist="ui.plist" />
+            <PreSize X="0.7097" Y="0.2773" />
+            <FileData Type="Normal" Path="images/carryoutbox.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="v001box" ActionTag="-558264668" Tag="89" IconVisible="False" LeftMargin="139.9999" RightMargin="434.0001" TopMargin="808.8840" BottomMargin="325.1160" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="v001box" ActionTag="-558264668" Tag="89" IconVisible="False" LeftMargin="140.0005" RightMargin="433.9995" TopMargin="819.8840" BottomMargin="314.1160" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
             <Size X="146.0000" Y="146.0000" />
             <Children>
               <AbstractNodeData Name="r" ActionTag="-602867631" Tag="90" IconVisible="False" LeftMargin="13.5006" RightMargin="23.4994" TopMargin="14.5000" BottomMargin="22.5000" ctype="SpriteObjectData">
@@ -128,14 +128,14 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="212.9999" Y="398.1160" />
+            <Position X="213.0005" Y="387.1160" />
             <Scale ScaleX="0.6000" ScaleY="0.6000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2958" Y="0.3110" />
+            <PrePosition X="0.2958" Y="0.3024" />
             <PreSize X="0.2028" Y="0.1141" />
             <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="r001box" ActionTag="1590948448" Tag="42" IconVisible="False" LeftMargin="139.9999" RightMargin="434.0001" TopMargin="696.0004" BottomMargin="437.9996" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="r001box" ActionTag="1590948448" Tag="42" IconVisible="False" LeftMargin="139.9999" RightMargin="434.0001" TopMargin="718.0009" BottomMargin="415.9991" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
             <Size X="146.0000" Y="146.0000" />
             <Children>
               <AbstractNodeData Name="r" ActionTag="1958715279" Tag="43" IconVisible="False" LeftMargin="13.5006" RightMargin="23.4994" TopMargin="14.5000" BottomMargin="22.5000" ctype="SpriteObjectData">
@@ -163,56 +163,67 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="212.9999" Y="510.9996" />
+            <Position X="212.9999" Y="488.9991" />
             <Scale ScaleX="0.6000" ScaleY="0.6000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2958" Y="0.3992" />
+            <PrePosition X="0.2958" Y="0.3820" />
             <PreSize X="0.2028" Y="0.1141" />
             <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="carrytextlbl" ActionTag="659770477" Tag="102" IconVisible="False" LeftMargin="275.3021" RightMargin="383.6979" TopMargin="1043.4957" BottomMargin="207.5043" FontSize="25" LabelText="负重：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="61.0000" Y="29.0000" />
-            <AnchorPoint ScaleY="0.5000" />
-            <Position X="275.3021" Y="222.0043" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="121" G="78" B="46" />
-            <PrePosition X="0.3824" Y="0.1734" />
-            <PreSize X="0.0847" Y="0.0227" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+          <AbstractNodeData Name="t001box" ActionTag="-1433559947" Tag="633" IconVisible="False" LeftMargin="140.0001" RightMargin="433.9999" TopMargin="920.8839" BottomMargin="213.1161" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
+            <Size X="146.0000" Y="146.0000" />
+            <Children>
+              <AbstractNodeData Name="r" ActionTag="-895205389" Tag="634" IconVisible="False" LeftMargin="13.5006" RightMargin="23.4994" TopMargin="14.5000" BottomMargin="22.5000" ctype="SpriteObjectData">
+                <Size X="109.0000" Y="109.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="68.0006" Y="77.0000" />
+                <Scale ScaleX="1.3000" ScaleY="1.3000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4658" Y="0.5274" />
+                <PreSize X="0.7466" Y="0.7466" />
+                <FileData Type="MarkedSubImage" Path="ui/t001.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="namelbl" ActionTag="1024097004" Tag="635" IconVisible="False" LeftMargin="162.3138" RightMargin="-238.3138" TopMargin="56.8769" BottomMargin="43.1231" FontSize="40" LabelText="回城卷轴：0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="222.0000" Y="46.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="162.3138" Y="66.1231" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="121" G="78" B="46" />
+                <PrePosition X="1.1117" Y="0.4529" />
+                <PreSize X="1.5205" Y="0.3151" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="213.0001" Y="286.1161" />
+            <Scale ScaleX="0.6000" ScaleY="0.6000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.2958" Y="0.2235" />
+            <PreSize X="0.2028" Y="0.1141" />
+            <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="carrylbl" ActionTag="-1427088676" Tag="103" IconVisible="False" LeftMargin="349.7235" RightMargin="277.2765" TopMargin="1045.4498" BottomMargin="205.5502" FontSize="25" LabelText="300/300" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="93.0000" Y="29.0000" />
-            <AnchorPoint ScaleY="0.5000" />
-            <Position X="349.7235" Y="220.0502" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="121" G="78" B="46" />
-            <PrePosition X="0.4857" Y="0.1719" />
-            <PreSize X="0.1292" Y="0.0227" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="carrycount0" ActionTag="956928858" Tag="171" IconVisible="False" LeftMargin="409.3965" RightMargin="248.6035" TopMargin="760.4076" BottomMargin="493.5924" FontSize="23" LabelText="20/50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="carrycount0" ActionTag="956928858" Tag="171" IconVisible="False" LeftMargin="409.3965" RightMargin="248.6035" TopMargin="782.4075" BottomMargin="471.5925" FontSize="23" LabelText="20/50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="62.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="440.3965" Y="506.5924" />
+            <Position X="440.3965" Y="484.5925" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="121" G="78" B="46" />
-            <PrePosition X="0.6117" Y="0.3958" />
+            <PrePosition X="0.6117" Y="0.3786" />
             <PreSize X="0.0861" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="addbtn0" ActionTag="-1938468508" Tag="172" IconVisible="False" LeftMargin="502.3964" RightMargin="175.6036" TopMargin="749.4074" BottomMargin="488.5926" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="12" Scale9Height="20" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="addbtn0" ActionTag="-1938468508" Tag="172" IconVisible="False" LeftMargin="502.3964" RightMargin="175.6036" TopMargin="771.4081" BottomMargin="466.5919" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="12" Scale9Height="20" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="42.0000" Y="42.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="523.3964" Y="509.5926" />
+            <Position X="523.3964" Y="487.5919" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7269" Y="0.3981" />
+            <PrePosition X="0.7269" Y="0.3809" />
             <PreSize X="0.0583" Y="0.0328" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/resaddbtn.png" Plist="ui.plist" />
@@ -221,19 +232,124 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="subbtn0" ActionTag="-193867809" Tag="173" IconVisible="False" LeftMargin="335.6222" RightMargin="342.3778" TopMargin="749.4074" BottomMargin="488.5926" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="12" Scale9Height="20" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="subbtn0" ActionTag="-193867809" Tag="173" IconVisible="False" LeftMargin="335.6222" RightMargin="342.3778" TopMargin="771.4081" BottomMargin="466.5919" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="12" Scale9Height="20" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="42.0000" Y="42.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="356.6222" Y="509.5926" />
+            <Position X="356.6222" Y="487.5919" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4953" Y="0.3981" />
+            <PrePosition X="0.4953" Y="0.3809" />
             <PreSize X="0.0583" Y="0.0328" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/ressunbtn.png" Plist="ui.plist" />
             <PressedFileData Type="MarkedSubImage" Path="ui/ressunbtn.png" Plist="ui.plist" />
             <NormalFileData Type="MarkedSubImage" Path="ui/ressunbtn.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="changehint" ActionTag="-1141618564" Tag="94" IconVisible="False" LeftMargin="299.0000" RightMargin="299.0000" TopMargin="621.5002" BottomMargin="635.4998" FontSize="20" LabelText="点击更换头像" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="122.0000" Y="23.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="646.9998" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="28" G="208" B="255" />
+            <PrePosition X="0.5000" Y="0.5055" />
+            <PreSize X="0.1694" Y="0.0180" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="hintdesc" ActionTag="-279195839" Tag="95" IconVisible="False" LeftMargin="329.5000" RightMargin="329.5000" TopMargin="1209.8781" BottomMargin="41.1219" FontSize="25" LabelText="负重：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="61.0000" Y="29.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="55.6219" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.5000" Y="0.0435" />
+            <PreSize X="0.0847" Y="0.0227" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="carryoutboxtop" ActionTag="608740584" Tag="630" IconVisible="False" LeftMargin="144.0002" RightMargin="143.9999" TopMargin="658.7336" BottomMargin="560.2664" ctype="SpriteObjectData">
+            <Size X="432.0000" Y="61.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0002" Y="590.7664" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.4615" />
+            <PreSize X="0.6000" Y="0.0477" />
+            <FileData Type="MarkedSubImage" Path="ui/carryoutboxtop.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="carryout_text" ActionTag="1786596774" Tag="632" IconVisible="False" LeftMargin="147.0000" RightMargin="387.0000" TopMargin="684.5000" BottomMargin="556.5000" ctype="SpriteObjectData">
+            <Size X="186.0000" Y="39.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="240.0000" Y="576.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3333" Y="0.4500" />
+            <PreSize X="0.2583" Y="0.0305" />
+            <FileData Type="MarkedSubImage" Path="text_zh_cn/carryout_text.png" Plist="text_zh_cn.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="carryoutbag" ActionTag="-2029339516" Tag="631" IconVisible="False" LeftMargin="59.4999" RightMargin="543.5001" TopMargin="662.5002" BottomMargin="502.4998" ctype="SpriteObjectData">
+            <Size X="117.0000" Y="115.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="117.9999" Y="559.9998" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1639" Y="0.4375" />
+            <PreSize X="0.1625" Y="0.0898" />
+            <FileData Type="MarkedSubImage" Path="ui/carryoutbag.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="carrytextlbl" ActionTag="659770477" Tag="102" IconVisible="False" LeftMargin="423.1338" RightMargin="239.8662" TopMargin="695.4358" BottomMargin="558.5642" FontSize="23" LabelText="负重：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="57.0000" Y="26.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="423.1338" Y="571.5642" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.5877" Y="0.4465" />
+            <PreSize X="0.0792" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="carrylbl" ActionTag="-1427088676" Tag="103" IconVisible="False" LeftMargin="497.5543" RightMargin="136.4457" TopMargin="697.3898" BottomMargin="556.6102" FontSize="23" LabelText="300/300" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="86.0000" Y="26.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="497.5543" Y="569.6102" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.6910" Y="0.4450" />
+            <PreSize X="0.1194" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="tomartketbuy1" ActionTag="902151739" Tag="636" IconVisible="False" LeftMargin="430.1559" RightMargin="169.8441" TopMargin="881.0306" BottomMargin="368.9694" TouchEnable="True" FontSize="23" LabelText="去市场升级" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="120.0000" Y="30.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="490.1559" Y="383.9694" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="241" B="121" />
+            <PrePosition X="0.6808" Y="0.3000" />
+            <PreSize X="0.1667" Y="0.0234" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="198" G="138" B="38" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="tomartketbuy2" ActionTag="-684638268" Tag="637" IconVisible="False" LeftMargin="430.1559" RightMargin="169.8441" TopMargin="980.0306" BottomMargin="269.9694" TouchEnable="True" FontSize="23" LabelText="去市场升级" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="120.0000" Y="30.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="490.1559" Y="284.9694" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="241" B="121" />
+            <PrePosition X="0.6808" Y="0.2226" />
+            <PreSize X="0.1667" Y="0.0234" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="198" G="136" B="38" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>

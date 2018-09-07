@@ -223,7 +223,7 @@ void FightHeroNode::update(float dt)
 			{
 				for (unsigned int i = 0; i < GlobalInstance::myCardHeros[whoSkill]->vec_whosufferskill.size(); i++)
 				{
-					if (i == this->getTag())
+					if (GlobalInstance::myCardHeros[whoSkill]->vec_whosufferskill[i] == this->getTag())
 					{
 						isSufferSkill = true;
 						break;

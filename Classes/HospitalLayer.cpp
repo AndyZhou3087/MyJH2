@@ -57,6 +57,9 @@ bool HospitalLayer::init()
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	silvertext->setString(str);
 
+	hintdesc = (cocos2d::ui::Text*)m_csbnode->getChildByName("hintdesc");
+	hintdesc->setString("");
+
 	updateContent();
 
 	auto listener = EventListenerTouchOneByOne::create();
@@ -100,6 +103,11 @@ void HospitalLayer::updateContent()
 	}
 
 	int size = vec_deadheros.size();
+
+
+	if (vec_deadheros.size() <= 0)
+		hintdesc->setString(ResourceLang::map_lang["hospitalhintdesc"]);
+
 	int itemheight = 170;
 	int innerheight = itemheight * size;
 	int contentheight = scrollview->getContentSize().height;

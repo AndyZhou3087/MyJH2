@@ -1,6 +1,7 @@
 ﻿#include "CommonFuncs.h"
 #include "SoundManager.h"
 #include "Resource.h"
+#include "GlobalInstance.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "../cocos2d//external//win32-specific/icon/include/iconv.h"
 #endif
@@ -65,8 +66,6 @@ std::string CommonFuncs::trim(std::string &s)
 
 int CommonFuncs::code_convert(const char *from_charset, const char *to_charset, const char *inbuf, size_t inlen, char *outbuf, size_t outlen)
 {
-
-
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	iconv_t cd;
 	const char *temp = inbuf;
@@ -174,4 +173,16 @@ void CommonFuncs::checkEnAndCnCount(std::string instr, int& encount, int& cncoun
 	}
 	encount = engnishCount;
 	cncount = chiniseCount;
+}
+
+void CommonFuncs::playCommonLvUpAnim(Node* target, std::string textstr)
+{
+	auto effectnode = CSLoader::createNode("effect/qianghuachenggong.csb");
+	effectnode->setPosition(Vec2(360, 640));
+	target->addChild(effectnode, 10, "qianghuachenggong");
+	cocos2d::ui::ImageView* ziti = (cocos2d::ui::ImageView*)effectnode->getChildByName("ziti");
+	ziti->loadTexture(ResourcePath::makeTextImgPath(textstr, GlobalInstance::getInstance()->getLang()), cocos2d::ui::Widget::TextureResType::PLIST);
+	auto action = CSLoader::createTimeline("effect/qianghuachenggong.csb");
+	effectnode->runAction(action);
+	action->gotoFrameAndPlay(0, false);
 }

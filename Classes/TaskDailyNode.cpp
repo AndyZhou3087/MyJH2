@@ -218,7 +218,21 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 						}
 					}
 				}
-				MyRes::Add(resid, count, MYSTORAGE, qu, stc);
+
+				if (resid.compare("r006") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(count);
+					GlobalInstance::getInstance()->addMySoliverCount(dvint);
+				}
+				else if (resid.compare("r012") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(count);
+					GlobalInstance::getInstance()->addMyCoinCount(dvint);
+				}
+				else
+					MyRes::Add(resid, count, MYSTORAGE, qu, stc);
 			}
 
 			cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
