@@ -45,6 +45,8 @@ private:
 	//更新UI,数值
 	void updateUI(float dt);
 
+	void delayGetServerData(float dt);
+
 	void onFinish(int code);
 
 public:

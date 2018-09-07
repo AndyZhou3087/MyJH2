@@ -236,7 +236,12 @@ void EquipDescLayer::updateAttr()
 	std::string namestr = GlobalInstance::map_AllResources[m_res->getId()].name;
 
 	if (m_res->getLv().getValue() > 0)
-		namestr = StringUtils::format("+%d%s", m_res->getLv().getValue(), namestr.c_str());
+	{
+		if (m_res->getType() >= T_WG && m_res->getType() <= T_NG)
+			namestr = StringUtils::format("+%d%s", m_res->getLv().getValue() + 1, namestr.c_str());
+		else
+			namestr = StringUtils::format("+%d%s", m_res->getLv().getValue(), namestr.c_str());
+	}
 	namelbl->setString(namestr);
 }
 

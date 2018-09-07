@@ -1082,6 +1082,7 @@
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
         <Project Name="resDescLayer.csd" Type="Scene" />
+        <Project Name="rewardLayer.csd" Type="Layer" />
         <Project Name="selectEquipLayer.csd" Type="Scene" />
         <Project Name="selectMapNode.csd" Type="Node" />
         <Project Name="selectSubMapLayer.csd" Type="Layer" />
@@ -1100,7 +1101,6 @@
         <Project Name="taskMainDescLayer.csd" Type="Layer" />
         <Project Name="taskMainNode.csd" Type="Node" />
         <Project Name="taskTipsNode.csd" Type="Node" />
-        <Project Name="rewardLayer.csd" Type="Layer" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <Project Name="trainLayer.csd" Type="Layer" />
         <Project Name="trainSelectLayer.csd" Type="Layer" />

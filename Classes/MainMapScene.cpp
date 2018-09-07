@@ -69,6 +69,7 @@ bool MainMapScene::init()
 			mapname->addChild(taskicon);
 			map_taskicon[mname].push_back(taskicon);
 		}
+		mapnameid = GlobalInstance::myCurBranchData.place.substr(0, 4);
 		if ((mapnameid.compare(mname) == 0 && GlobalInstance::myCurBranchData.isfinish == QUEST_ACC) || (GlobalInstance::myCurBranchData.isfinish != QUEST_ACC && mname.compare("m0-1") == 0))
 		{
 			Sprite* taskicon = Sprite::createWithSpriteFrameName("ui/branchtask_icon.png");

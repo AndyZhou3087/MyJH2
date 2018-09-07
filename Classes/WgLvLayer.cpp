@@ -12,6 +12,7 @@
 #include "EquipDescLayer.h"
 #include "StoreHouseLayer.h"
 #include "LoadingBarProgressTimer.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -272,7 +273,7 @@ void WgLvLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			if (layer != NULL)
 			{
 				layer->updateAttr();
-				StoreHouseLayer* storeHouseLayer = (StoreHouseLayer*)layer->getParent();
+				StoreHouseLayer* storeHouseLayer = (StoreHouseLayer*)g_mainScene->getChildByName("3storehouse");
 				if (storeHouseLayer != NULL)
 					storeHouseLayer->updateUI();
 			}
@@ -316,32 +317,28 @@ void WgLvLayer::updataAtrrUI()
 
 	std::string namestr = GlobalInstance::map_AllResources[m_res->getId()].name;
 	if (m_res->getLv().getValue() > 0)
-		namestr = StringUtils::format("+%d%s", m_res->getLv().getValue(), namestr.c_str());
+		namestr = StringUtils::format("+%d%s", m_res->getLv().getValue() + 1, namestr.c_str());
 	name->setString(namestr);
 
-	int curlvexp = 0;
+	int curlvexp = GlobalInstance::map_GF[m_res->getId()].vec_exp[m_res->getLv().getValue()];
 	int nextlvexp = 0;
 	int expsize = GlobalInstance::map_GF[m_res->getId()].vec_exp.size();
 
-	if (m_res->getLv().getValue() >= expsize)
+	if (m_res->getLv().getValue() >= expsize - 1)
 		nextlvexp = GlobalInstance::map_GF[m_res->getId()].vec_exp[expsize - 1];
 	else
 		nextlvexp = GlobalInstance::map_GF[m_res->getId()].vec_exp[m_res->getLv().getValue()];
 
-	for (int i = 0; i < m_res->getLv().getValue(); i++)
-	{
-		curlvexp += GlobalInstance::map_GF[m_res->getId()].vec_exp[i];
-	}
-
 	int mycurlv = m_res->getLv().getValue();
 	//½ø¶ÈÌõ
-	float percent = (m_res->getExp().getValue() - curlvexp)*100.0f / nextlvexp;
+	float percent = (m_res->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
 	
 	if (mycurlv > myprelv)
 		expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, 100), LoadingBarProgressFromTo::create(0.2f, 0, percent), NULL));
 	else
 		expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
 
+	myprelv = mycurlv;
 	str = StringUtils::format("%d/%d", m_res->getExp().getValue() - curlvexp, nextlvexp);
 	explbl->setString(str);
 

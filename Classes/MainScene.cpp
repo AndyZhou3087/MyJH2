@@ -220,7 +220,7 @@ void MainScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
 void MainScene::onEnterTransitionDidFinish()
 {
 	Layer::onEnterTransitionDidFinish();
-	HttpDataSwap::init(this)->getServerTime();
+	this->scheduleOnce(schedule_selector(MainScene::delayGetServerTime), 0.1f);
 }
 
 void MainScene::srollviewlistenEvent(Ref* ref, ui::ScrollView::EventType eventType)
@@ -411,9 +411,9 @@ void MainScene::updateTime(float dt)
 	}
 }
 
-void MainScene::checkHint(float dt)
+void MainScene::delayGetServerTime(float dt)
 {
-
+	HttpDataSwap::init(this)->getServerTime();
 }
 
 void MainScene::updateTaskIcon()
@@ -429,14 +429,14 @@ void MainScene::updateTaskIcon()
 	if (GlobalInstance::myCurMainData.isfinish != QUEST_ACC)
 	{
 		Sprite* taskicon = Sprite::createWithSpriteFrameName("ui/maintask_icon.png");
-		taskicon->setPosition(Vec2(75, 90));
+		taskicon->setPosition(Vec2(80, 90));
 		buildnametext->addChild(taskicon);
 		vec_taskicon.push_back(taskicon);
 	}
 	if (GlobalInstance::myCurBranchData.isfinish != QUEST_ACC)
 	{
 		Sprite* taskicon = Sprite::createWithSpriteFrameName("ui/branchtask_icon.png");
-		taskicon->setPosition(Vec2(75, 90));
+		taskicon->setPosition(Vec2(80, 90));
 		buildnametext->addChild(taskicon);
 		vec_taskicon.push_back(taskicon);
 	}
@@ -451,6 +451,6 @@ void MainScene::updateTaskIcon()
 	}
 	for (int i = 0; i < iconsize; i++)
 	{
-		vec_taskicon[i]->runAction(RepeatForever::create(Sequence::create(MoveBy::create(0.8f, Vec2(-5, 0)), MoveBy::create(0.8f, Vec2(5, 0)), NULL)));
+		vec_taskicon[i]->runAction(RepeatForever::create(Sequence::create(MoveBy::create(1.0f, Vec2(-10, 0)), MoveBy::create(1.0f, Vec2(10, 0)), NULL)));
 	}
 }

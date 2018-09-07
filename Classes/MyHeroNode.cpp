@@ -405,10 +405,13 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					m_heroData->setState(HS_OWNED);
 					m_heroData->setHp(m_heroData->getMaxHp());
 					GlobalInstance::getInstance()->saveMyHeros();
-					HospitalLayer* hospitalLayer = (HospitalLayer*)g_mainScene->getChildByName("1hospital");
-					if (hospitalLayer != NULL)
+					if (g_mainScene != NULL)
 					{
-						hospitalLayer->updateContent();
+						HospitalLayer* hospitalLayer = (HospitalLayer*)g_mainScene->getChildByName("1hospital");
+						if (hospitalLayer != NULL)
+						{
+							hospitalLayer->updateContent();
+						}
 					}
 				}
 				else

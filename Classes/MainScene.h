@@ -51,7 +51,7 @@ private:
 	
 	void updateTime(float dt);
 
-	void checkHint(float dt);
+	void delayGetServerTime(float dt);
 
 	int m_startClickX;
 	int m_startClickY;

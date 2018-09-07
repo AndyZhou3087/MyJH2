@@ -23,7 +23,7 @@ DynamicValueInt GongFa::getLv()
 	int curlvExp = 0;
 	for (int i = 0; i < size; i++)
 	{
-		curlvExp += GlobalInstance::map_GF[getId()].vec_exp[i];
+		curlvExp = GlobalInstance::map_GF[getId()].vec_exp[i];
 		if (m_exp.getValue() < curlvExp)
 		{
 			dvint.setValue(i);

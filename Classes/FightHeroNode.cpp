@@ -132,7 +132,8 @@ void FightHeroNode::setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE 
 	m_Data = data;
 	m_datatype = datatype;
 	m_state = state;
-	if (data != NULL && (data->getHp() > 0 || state == FS_SUCC || state == FS_FAIL))
+
+	if (data != NULL && ((datatype == F_NPC && data->getHp() > 0) || (datatype == F_HERO && ((Hero*)data)->getState() != HS_DEAD) || state == FS_SUCC || state == FS_FAIL))
 	{
 		std::string str;
 		
@@ -691,7 +692,7 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 			if (stype == SKILL_9)
 			{
 				Sprite* s = Sprite::createWithSpriteFrameName("mapui/attricon2up.png");
-				this->setVisible(false);
+				s->setVisible(false);
 				this->addChild(s);
 				map_skillattricon[stype].push_back(s);
 			}

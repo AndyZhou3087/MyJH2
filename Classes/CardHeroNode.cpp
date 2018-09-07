@@ -125,13 +125,10 @@ void CardHeroNode::setData(Hero* herodata)
 
 		int startx[] = {0, -7, -15, -22, -30};
 
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < herodata->getChangeCount() - 1; i++)
 		{
-			if (i <= herodata->getChangeCount() - 1)
-			{
-				stars[i]->setVisible(true);
-				stars[i]->setPositionX(startx[(herodata->getChangeCount() - 1)] + 15 * i);
-			}
+			stars[i]->setVisible(true);
+			stars[i]->setPositionX(startx[(herodata->getChangeCount() - 2)] + 15 * i);
 		}
 		updatePowerCount(0);
 		this->schedule(schedule_selector(CardHeroNode::updatePowerCount), 1);

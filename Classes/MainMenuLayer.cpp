@@ -112,11 +112,16 @@ bool MainMenuLayer::init()
 	updateUI(0);
 	this->schedule(schedule_selector(MainMenuLayer::updateUI), 1.0f);
 
-	HttpDataSwap::init(this)->vipIsOn();
-	HttpDataSwap::init(this)->getMessageList(0);
+	this->scheduleOnce(schedule_selector(MainMenuLayer::delayGetServerData), 1.2f);
 
 	this->scheduleOnce(schedule_selector(MainMenuLayer::delayShowNewerGuide), 0.1f);
     return true;
+}
+
+void MainMenuLayer::delayGetServerData(float dt)
+{
+	HttpDataSwap::init(this)->vipIsOn();
+	HttpDataSwap::init(this)->getMessageList(0);
 }
 
 void MainMenuLayer::delayShowNewerGuide(float dt)
