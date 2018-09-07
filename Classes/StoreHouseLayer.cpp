@@ -12,6 +12,7 @@
 #include "EquipDescLayer.h"
 #include "Quest.h"
 #include "AnimationEffect.h"
+#include "HintBoxLayer.h"
 
 StoreHouseLayer::StoreHouseLayer()
 {
@@ -238,6 +239,20 @@ void StoreHouseLayer::onclick(Ref* pSender)
 	ResBase* res = (ResBase*)node->getUserData();
 	if (isfastcomposing)
 	{
+		if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
+		{
+			Equip* eres = (Equip*)res;
+			if (eres->getQU().getValue() >= 2)
+			{
+				std::string potentialstr = StringUtils::format("potential_%d", eres->getQU().getValue());
+				std::string hintstr = StringUtils::format(ResourceLang::map_lang["confirmdecompose"].c_str(), ResourceLang::map_lang[potentialstr].c_str(), GlobalInstance::map_AllResources[eres->getId()].name.c_str());
+				HintBoxLayer* hint = HintBoxLayer::create(hintstr, 5);
+				hint->setUserData((void*)eres);
+				this->addChild(hint);
+				AnimationEffect::openAniEffect((Layer*)hint);
+				return;
+			}
+		}
 		decompose(res);
 	}
 	else

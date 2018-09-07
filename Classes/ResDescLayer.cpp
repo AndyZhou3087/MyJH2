@@ -213,7 +213,9 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		{
 			StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
 			if (storelayer != NULL)
+			{
 				storelayer->decompose(m_res);
+			}
 		}
 		else if (status == S_CAN_USE)
 		{

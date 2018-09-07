@@ -53,6 +53,22 @@ bool MarketResNode::init(std::string resid, int rescount)
 	clickimg->setTag(2000);
 	clickimg->setSwallowTouches(false);
 
+	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox");
+
+	std::string boxstr = "ui/resbox.png";
+	int t = 0;
+	for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+	{
+		if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+			break;
+	}
+	if (t == T_RENS || t == T_DAN || t == T_MIJI || t== T_BOX)
+	{
+		int qu = atoi(resid.substr(1).c_str()) - 1;
+		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+	}
+	resbox->loadTexture(ResourcePath::makePath(boxstr), cocos2d::ui::Widget::TextureResType::PLIST);
+
 	cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	std::string str = StringUtils::format("ui/%s.png", resid.c_str());
 	resimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);

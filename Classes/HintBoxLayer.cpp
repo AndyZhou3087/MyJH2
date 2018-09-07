@@ -12,6 +12,7 @@
 #include "MainMapScene.h"
 #include "MapBlockScene.h"
 #include "NewGuideLayer.h"
+#include "StoreHouseLayer.h"
 
 USING_NS_CC;
 
@@ -140,6 +141,17 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			else if (m_forwhere == 4)
 			{
 				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+			}
+			else if (m_forwhere == 5)
+			{
+				StoreHouseLayer* storelayer = (StoreHouseLayer*)g_mainScene->getChildByName("3storehouse");
+				if (storelayer != NULL)
+					storelayer->decompose((ResBase*)this->getUserData());
+				if (this->getTag() == 100)
+				{
+					AnimationEffect::closeAniEffect((Layer*)this->getParent());
+					return;
+				}
 			}
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;

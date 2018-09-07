@@ -697,12 +697,26 @@ void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
 		clickindex = clicknode->getTag();
+
 		Layer* layer;
 		ResBase* res = MyRes::getMyPutOnResByType(equiptype[clickindex], m_heroData->getName());
 
-	
 		if (res == NULL)
-			layer = SelectEquipLayer::create(equiptype[clickindex], m_heroData);
+		{
+			if (!MyRes::hasResByType(equiptype[clickindex]))
+			{
+				std::string hinstr;
+
+				if (equiptype[clickindex] == T_WG || equiptype[clickindex] == T_NG)
+					hinstr = ResourceLang::map_lang["nogfputon"];
+				else
+					hinstr = ResourceLang::map_lang["noequipputon"];
+				MovingLabel::show(hinstr);
+				return;
+			}
+			else
+				layer = SelectEquipLayer::create(equiptype[clickindex], m_heroData);
+		}
 		else
 		{
 			if (equiptype[clickindex] == T_WG || equiptype[clickindex] == T_NG)

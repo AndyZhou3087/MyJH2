@@ -189,10 +189,13 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 			namelbl[i]->setPositionX(resbox->getPositionX());
 			countlbl[i]->setPositionX(resbox->getPositionX());
 
-			std::string onestr = StringUtils::format("%s%d", GlobalInstance::map_AllResources[resid].name.c_str(), map_res[resid]);
-			if (needresstr.length() > 0)
-				needresstr.append(ResourceLang::map_lang["dundunhao"]);
-			needresstr.append(onestr);
+			if (map_res[resid] > 0)
+			{
+				std::string onestr = StringUtils::format("%s%d", GlobalInstance::map_AllResources[resid].name.c_str(), map_res[resid]);
+				if (needresstr.length() > 0)
+					needresstr.append(ResourceLang::map_lang["dunhao"]);
+				needresstr.append(onestr);
+			}
 		}
 		else
 		{

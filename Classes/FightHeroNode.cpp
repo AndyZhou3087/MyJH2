@@ -111,11 +111,13 @@ void FightHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 	{
 		if (m_Data != NULL)
 		{
-			FighterAttrLayer* layer = FighterAttrLayer::create(m_Data);
-			this->getParent()->addChild(layer, 0);
-			AnimationEffect::openAniEffect(layer);
 			if (m_state == FS_READY)
+			{
+				FighterAttrLayer* layer = FighterAttrLayer::create(m_Data);
+				this->getParent()->addChild(layer, 0);
+				AnimationEffect::openAniEffect(layer);
 				layer->setContentPos(Vec2(360, 1000));
+			}
 			//else if (m_state == FS_FIGHTING)
 			//{
 			//	if (m_datatype == F_HERO)
