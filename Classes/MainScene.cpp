@@ -195,8 +195,9 @@ void MainScene::showNewerGuide(int step)
 	}
 	else if (step == 22)
 	{
-		scroll_1->jumpToPercentHorizontal(32);
-		scroll_2->jumpToPercentHorizontal(32);
+		scroll_1->jumpToPercentHorizontal(50);
+		scroll_2->jumpToPercentHorizontal(50);
+		scroll_3->jumpToPercentHorizontal(50);
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_07_n");
 		nodes.push_back(node);
 	}
@@ -223,6 +224,10 @@ void MainScene::onEnterTransitionDidFinish()
 
 void MainScene::srollviewlistenEvent(Ref* ref, ui::ScrollView::EventType eventType)
 {
+	if (g_NewGuideLayer != NULL)
+	{
+		return;
+	}
 	Vec2 pos = scroll_3->getInnerContainerPosition();
 	log("scoll posx:%f, posy:%f", pos.x, pos.y);
 	switch (eventType) 
