@@ -131,7 +131,7 @@ void HomeHillLayer::delayShowNewerGuide(float dt)
 {
 	if (!NewGuideLayer::checkifNewerGuide(14))
 	{
-		if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
+		/*if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(16))
 			{
@@ -149,7 +149,7 @@ void HomeHillLayer::delayShowNewerGuide(float dt)
 			{
 				showNewerGuide(21);
 			}
-		}
+		}*/
 	}
 }
 

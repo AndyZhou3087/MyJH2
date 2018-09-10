@@ -10,6 +10,7 @@ USING_NS_CC;
 #define SECONDGUIDESTEP 21
 #define THRIDGUIDESTEP 39
 #define FOURTHGUIDESTEP 52
+#define FIFTHGUIDESTEP 62
 
 #define NEWERLAYERZOER 1999
 class NewGuideLayer : public Layer
@@ -26,7 +27,6 @@ public:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:
 	Layer* m_colorlayer;
-	RenderTexture* m_clippingNode;
 	int m_step;
 	Label* m_wordlbl;
 	Vec2 starPos;
@@ -38,7 +38,8 @@ private:
 	void showAnim(Vec2 pos);
 	void showWord(std::string wordstr);
 	void showNode(std::vector<Node*> stencilNodes);
-	void clearNewGuideData();
+	static void clearNewGuideData();
+	void removeSelf(float dt);
 
 };
 extern NewGuideLayer* g_NewGuideLayer;

@@ -134,11 +134,14 @@ void MainMenuLayer::delayShowNewerGuide(float dt)
 
 void MainMenuLayer::showNewerGuide(int step)
 {
+	SettingLayer* layer = SettingLayer::create();
+	g_mainScene->addChild(layer, 0, "settinglayer");
+	AnimationEffect::openAniEffect((Layer*)layer);
 	std::vector<Node*> nodes;
-	if (step == 14)
+	/*if (step == 14)
 	{
 		nodes.push_back(csbnode->getChildByName("setbtn"));
-	}
+	}*/
 	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
@@ -146,7 +149,8 @@ void MainMenuLayer::onFinish(int code)
 {
 	if (code == SUCCESS)
 	{
-		if (NewGuideLayer::checkifNewerGuide(14) || NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP+2) || NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(45))
+		if (NewGuideLayer::checkifNewerGuide(14) || NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(45)
+			|| (NewGuideLayer::checkifNewerGuide(55) && Quest::isMainQuestFinish(1)))
 		{
 			return;
 		}

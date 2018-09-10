@@ -5,6 +5,8 @@
 #include "MovingLabel.h"
 #include "AnimationEffect.h"
 #include "MyRes.h"
+#include "MainScene.h"
+#include "TaskDescLayer.h"
 
 USING_NS_CC;
 
@@ -140,7 +142,7 @@ bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		AnimationEffect::closeAniEffect((Layer*)this);
+		removeSelf();
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -154,6 +156,19 @@ void RewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	{
 		Node* node = (Node*)pSender;
 		int tag = node->getTag();
-		AnimationEffect::closeAniEffect((Layer*)this);
+		removeSelf();
+	}
+}
+
+void RewardLayer::removeSelf()
+{
+	AnimationEffect::closeAniEffect((Layer*)this);
+	if (g_mainScene != NULL)
+	{
+		TaskDescLayer* layer = (TaskDescLayer*)g_mainScene->getChildByName("TaskDescLayer");
+		if (layer != NULL)
+		{
+			layer->delayShowNewerGuide(0);
+		}
 	}
 }

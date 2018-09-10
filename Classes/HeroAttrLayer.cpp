@@ -330,7 +330,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 		}
 	}
 
-	this->scheduleOnce(schedule_selector(HeroAttrLayer::delayShowNewerGuide), 0.1f);
+	this->scheduleOnce(schedule_selector(HeroAttrLayer::delayShowNewerGuide), 0.3f);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -382,7 +382,7 @@ void HeroAttrLayer::showNewerGuide(int step)
 	std::vector<Node*> nodes;
 	if (step == 25 || step == 27 || step == 29)
 	{
-		nodes.push_back(heroattrbottom->getChildByName("recruitbtn"));
+		nodes.push_back(btnArr[3]);
 	}
 	else if (step == 32)
 	{

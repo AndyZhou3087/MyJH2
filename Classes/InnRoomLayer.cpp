@@ -102,7 +102,7 @@ bool InnRoomLayer::init(Building* buidingData)
 
 	refreshMyHerosUi();
 
-	this->scheduleOnce(schedule_selector(InnRoomLayer::delayShowNewerGuide), 0.1f);
+	this->scheduleOnce(schedule_selector(InnRoomLayer::delayShowNewerGuide), 0.3f);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();

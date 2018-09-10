@@ -122,19 +122,43 @@ void TaskLayer::delayShowNewerGuide(float dt)
 				showNewerGuide(44);
 			}
 		}
+		else if (NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(56))
+			{
+				showNewerGuide(56);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(59))
+			{
+				showNewerGuide(59);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(62))
+			{
+				showNewerGuide(62);
+			}
+		}
 	}
 }
 
 void TaskLayer::showNewerGuide(int step)
 {
 	std::vector<Node*> nodes;
-	if (step == 41)
+	if (step == 41 || step == 59)
 	{
 		nodes.push_back(scrollview->getChildren().at(0)->getChildByName("csbnode")->getChildByName("resitem"));
 	}
 	else if (step == 44)
 	{
 		nodes.push_back(m_csbnode->getChildByName("closebtn"));
+	}
+	else if (step == 56)
+	{
+		nodes.push_back(scrollview->getChildren().at(1)->getChildByName("csbnode")->getChildByName("resitem"));
+	}
+	else if (step == 62)
+	{
+		nodes.push_back(vec_categoryBtn[1]);
+		nodes.push_back(vec_categoryBtn[2]);
 	}
 	g_mainScene->showNewerGuideNode(step, nodes);
 }

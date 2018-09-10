@@ -55,6 +55,8 @@ public:
 	//判断是否接受主线任务
 	static bool getMainQuest();
 
+	static bool isMainQuestFinish(int questid);
+
 	/*************支线任务数据逻辑**************/
 
 	//初始化已完成的任务

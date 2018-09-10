@@ -277,6 +277,22 @@ bool Quest::getMainQuest()
 	return false;
 }
 
+bool Quest::isMainQuestFinish(int questid)
+{
+	for (unsigned int i = 0; i < myFinishMainQuest.size(); i++)
+	{
+		TaskData data = myFinishMainQuest[i];
+		if (data.id == questid)
+		{
+			if (data.isfinish >= QUEST_FINISH)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 /*************支线任务**************/
 
 bool Quest::initFinishTaskBranchData()

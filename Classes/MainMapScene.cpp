@@ -5,6 +5,7 @@
 #include "Const.h"
 #include "MainScene.h"
 #include "SoundManager.h"
+#include "NewGuideLayer.h"
 
 MainMapScene::MainMapScene()
 {
@@ -68,6 +69,14 @@ bool MainMapScene::init()
 			taskicon->setScale(0.8f);
 			mapname->addChild(taskicon);
 			map_taskicon[mname].push_back(taskicon);
+
+			if (!NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
+			{
+				if (NewGuideLayer::checkifNewerGuide(53))
+				{
+					showNewerGuide(53, normal);
+				}
+			}
 		}
 		mapnameid = GlobalInstance::myCurBranchData.place.substr(0, 4);
 		if ((mapnameid.compare(mname) == 0 && GlobalInstance::myCurBranchData.isfinish == QUEST_ACC) || (GlobalInstance::myCurBranchData.isfinish != QUEST_ACC && mname.compare("m0-1") == 0))
@@ -138,6 +147,28 @@ bool MainMapScene::init()
 	HttpDataSwap::init(this)->getServerTime();
 
 	return true;
+}
+
+void MainMapScene::showNewerGuide(int step, Node* node)
+{
+	std::vector<Node*> nodes;
+	if (step == 53)
+	{
+		nodes.push_back(node);
+	}
+	showNewerGuideNode(step, nodes);
+}
+
+void MainMapScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
+{
+	if (NewGuideLayer::checkifNewerGuide(step))
+	{
+		if (g_NewGuideLayer == NULL)
+		{
+			g_NewGuideLayer = NewGuideLayer::create(step, nodes);
+			this->addChild(g_NewGuideLayer, 10);
+		}
+	}
 }
 
 void MainMapScene::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

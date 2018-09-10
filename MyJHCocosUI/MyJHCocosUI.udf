@@ -9,7 +9,15 @@
     </Item>
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
-        <ActiveDocument />
+        <OpenedDocuments>
+          <FilePathData Path="MainLayer.csd" />
+          <FilePathData Path="taskMainDescLayer.csd" />
+          <FilePathData Path="taskLayer.csd" />
+          <FilePathData Path="heroAttrLayer.csd" />
+          <FilePathData Path="mapBlockLayer.csd" />
+          <FilePathData Path="taskTipsNode.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="taskTipsNode.csd" />
       </Value>
     </Item>
   </Properties>

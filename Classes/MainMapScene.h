@@ -20,6 +20,9 @@ public:
 
 	static cocos2d::Scene* createScene();
 
+	void showNewerGuide(int step, Node* node);
+	void showNewerGuideNode(int step, std::vector<Node*> nodes);
+
 private:
 	CREATE_FUNC(MainMapScene);
 	/****************************

@@ -18,6 +18,7 @@
 #include "SoundManager.h"
 #include "AnimationEffect.h"
 #include "NewGuideLayer.h"
+#include "Quest.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -166,14 +167,14 @@ void MainScene::delayShowNewerGuide(float dt)
 {
 	if (!NewGuideLayer::checkifNewerGuide(14))
 	{
-		if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
+		/*if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(15))
 			{
 				showNewerGuide(15);
 			}
 		}
-		else if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
+		else */if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(22))
 			{
@@ -189,6 +190,13 @@ void MainScene::delayShowNewerGuide(float dt)
 			else if (NewGuideLayer::checkifNewerGuide(45))
 			{
 				showNewerGuide(45);
+			}
+		}
+		else if (NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(55) && Quest::isMainQuestFinish(1))
+			{
+				showNewerGuide(55);
 			}
 		}
 	}
@@ -214,7 +222,7 @@ void MainScene::showNewerGuide(int step)
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_07_n");
 		nodes.push_back(node);
 	}
-	else if (step == 40)
+	else if (step == 40 || step == 55)
 	{
 		scroll_1->jumpToPercentHorizontal(32);
 		scroll_2->jumpToPercentHorizontal(32);
@@ -224,6 +232,7 @@ void MainScene::showNewerGuide(int step)
 	}
 	else if (step == 45)
 	{
+		scroll_3->setEnabled(true);
 		scroll_1->jumpToPercentHorizontal(80);
 		scroll_2->jumpToPercentHorizontal(80);
 		scroll_3->jumpToPercentHorizontal(80);

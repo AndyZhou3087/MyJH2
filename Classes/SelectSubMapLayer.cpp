@@ -7,6 +7,8 @@
 #include "Resource.h"
 #include "MovingLabel.h"
 #include "SoundManager.h"
+#include "NewGuideLayer.h"
+#include "MainMapScene.h"
 
 USING_NS_CC;
 
@@ -108,13 +110,6 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 		cocos2d::ui::Text* mapname = (cocos2d::ui::Text*)subnode->getChildByName("namelbl");
 		mapname->setString(GlobalInstance::map_AllResources[it->first].name);
 
-		if ((GlobalInstance::myCurMainData.place.compare(it->first) == 0 && GlobalInstance::myCurMainData.isfinish == QUEST_ACC) || (GlobalInstance::myCurBranchData.place.compare(it->first) == 0 && GlobalInstance::myCurBranchData.isfinish == QUEST_ACC))
-		{
-			cocos2d::ui::ImageView* taskicon = (cocos2d::ui::ImageView*)subnode->getChildByName("taskicon");
-			taskicon->setVisible(true);
-			taskicon->setPositionX(mapname->getPositionX() + mapname->getContentSize().width / 2 + 30);
-		}
-
 		cocos2d::ui::Text* hpdesc = (cocos2d::ui::Text*)subnode->getChildByName("hpdesc");
 		std::string strdesc = StringUtils::format(ResourceLang::map_lang["hpdesc"].c_str(), GlobalInstance::map_mapsdata[mainmapid].map_sublist[it->first].ph);
 		hpdesc->setString(strdesc);
@@ -137,6 +132,22 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 		item->setTag(i+1);
 		item->addTouchEventListener(CC_CALLBACK_2(SelectSubMapLayer::onNodeClick, this));
 		item->setSwallowTouches(false);
+
+		if ((GlobalInstance::myCurMainData.place.compare(it->first) == 0 && GlobalInstance::myCurMainData.isfinish == QUEST_ACC) || (GlobalInstance::myCurBranchData.place.compare(it->first) == 0 && GlobalInstance::myCurBranchData.isfinish == QUEST_ACC))
+		{
+			cocos2d::ui::ImageView* taskicon = (cocos2d::ui::ImageView*)subnode->getChildByName("taskicon");
+			taskicon->setVisible(true);
+			taskicon->setPositionX(mapname->getPositionX() + mapname->getContentSize().width / 2 + 30);
+
+			if (!NewGuideLayer::checkifNewerGuide(53))
+			{
+				if (NewGuideLayer::checkifNewerGuide(54))
+				{
+					showNewerGuide(54, item);
+				}
+			}
+		}
+
 		i++;
 	}
 
@@ -152,6 +163,26 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void SelectSubMapLayer::showNewerGuide(int step, Node* node)
+{
+	m_step = step;
+	nodes.clear();
+	if (step == 54)
+	{
+		nodes.push_back(node);
+	}
+	this->scheduleOnce(schedule_selector(SelectSubMapLayer::delayShowNewerGuide), 0.1f);
+}
+
+void SelectSubMapLayer::delayShowNewerGuide(float dt)
+{
+	MainMapScene* mapscene = (MainMapScene*)this->getParent();
+	if (mapscene != NULL)
+	{
+		mapscene->showNewerGuideNode(m_step, nodes);
+	}
 }
 
 void SelectSubMapLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

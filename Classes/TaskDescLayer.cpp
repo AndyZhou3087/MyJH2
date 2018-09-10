@@ -122,7 +122,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 	accbtn->addTouchEventListener(CC_CALLBACK_2(TaskDescLayer::onBtnClick, this));
 	accbtn->setTitleText(ResourceLang::map_lang["acctasktext"]);
 
-	cocos2d::ui::Button* getbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("getbtn");
+	getbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("getbtn");
 	getbtn->setPosition(Vec2(357, 376));
 	getbtn->setTag(2);
 	getbtn->addTouchEventListener(CC_CALLBACK_2(TaskDescLayer::onBtnClick, this));
@@ -267,19 +267,42 @@ void TaskDescLayer::delayShowNewerGuide(float dt)
 				showNewerGuide(43);
 			}
 		}
+		else if (NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(57))
+			{
+				showNewerGuide(57);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(58))
+			{
+				showNewerGuide(58);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(60))
+			{
+				showNewerGuide(60);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(61))
+			{
+				showNewerGuide(61);
+			}
+		}
 	}
 }
 
 void TaskDescLayer::showNewerGuide(int step)
 {
 	std::vector<Node*> nodes;
-	if (step == 42)
+	if (step == 42 || step == 60)
 	{
 		nodes.push_back(accbtn);
 	}
-	else if (step == 43)
+	else if (step == 43 || step == 58 || step == 61)
 	{
 		nodes.push_back(closebtn);
+	}
+	else if (step == 57)
+	{
+		nodes.push_back(getbtn);
 	}
 	g_mainScene->showNewerGuideNode(step, nodes);
 }

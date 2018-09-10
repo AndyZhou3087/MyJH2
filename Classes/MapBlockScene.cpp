@@ -15,7 +15,6 @@
 #include "TaskTalkLayer.h"
 #include "MyPackageLayer.h"
 #include "MainScene.h"
-#include "Quest.h"
 #include "SoundManager.h"
 #include "AnimationEffect.h"
 #include "HintBoxLayer.h"

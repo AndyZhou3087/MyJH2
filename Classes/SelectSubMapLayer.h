@@ -14,6 +14,8 @@ public:
 	static SelectSubMapLayer* create(std::string mainmapid);
     bool init(std::string mapid);
 	
+	void showNewerGuide(int step, Node* node);
+	void delayShowNewerGuide(float dt);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -23,6 +25,8 @@ private:
 	std::string m_mainmapid;
 	bool clickflag;
 	Vec2 beginTouchPoint;
+	std::vector<Node*> nodes;
+	int m_step;
 };
 
 #endif

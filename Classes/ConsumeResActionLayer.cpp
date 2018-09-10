@@ -266,7 +266,7 @@ void ConsumeResActionLayer::delayShowNewerGuide(float dt)
 {
 	if (!NewGuideLayer::checkifNewerGuide(14))
 	{
-		if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
+		/*if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(17))
 			{
@@ -276,7 +276,7 @@ void ConsumeResActionLayer::delayShowNewerGuide(float dt)
 			{
 				showNewerGuide(19);
 			}
-		}
+		}*/
 	}
 }
 

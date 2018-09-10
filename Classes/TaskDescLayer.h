@@ -25,6 +25,7 @@ public:
 private:
 	cocos2d::ui::Button* accbtn;
 	cocos2d::ui::Button* closebtn;
+	cocos2d::ui::Button* getbtn;
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
