@@ -50,6 +50,7 @@ private:
 
 private:
 	int lastVocation;
+	int lastbreakcount;
 };
 #endif
 

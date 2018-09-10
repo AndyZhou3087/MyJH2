@@ -156,8 +156,12 @@ void Hero::setExpLimit(int vexp)
 			break;
 		}
 	}
+
 	if (m_exp.getValue() >= GlobalInstance::vec_herosAttr[m_vocation].vec_exp[size - 1])
 	{
+		DynamicValueInt dal;
+		dal.setValue(GlobalInstance::vec_herosAttr[m_vocation].vec_exp[size - 1]);
+		setExp(dal);
 		checkLevelQuest(size - 1);
 	}
 }

@@ -141,6 +141,9 @@ private:
 	bool isMovingAction;
 	
 	int lastVaction;
+	int lastLv;
+	int lastexp;
+	int breakcount;
 
 	cocos2d::ui::ImageView* blankclick;
 };

@@ -85,13 +85,13 @@
                 <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="countlbl" ActionTag="511901189" Tag="135" IconVisible="False" LeftMargin="95.0001" RightMargin="60.9999" TopMargin="29.0000" BottomMargin="25.0000" FontSize="30" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="countlbl" ActionTag="511901189" Tag="135" IconVisible="False" LeftMargin="95.0001" RightMargin="60.9999" TopMargin="30.0000" BottomMargin="24.0000" FontSize="25" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="0.0000" Y="0.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="95.0001" Y="25.0000" />
+                <Position X="95.0001" Y="24.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.6090" Y="0.4630" />
+                <PrePosition X="0.6090" Y="0.4444" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
@@ -135,13 +135,13 @@
                 <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="countlbl" ActionTag="-1973892585" Tag="132" IconVisible="False" LeftMargin="95.0000" RightMargin="61.0000" TopMargin="29.0001" BottomMargin="24.9999" FontSize="30" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="countlbl" ActionTag="-1973892585" Tag="132" IconVisible="False" LeftMargin="95.0000" RightMargin="61.0000" TopMargin="30.0001" BottomMargin="23.9999" FontSize="25" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="0.0000" Y="0.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="95.0000" Y="24.9999" />
+                <Position X="95.0000" Y="23.9999" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.6090" Y="0.4630" />
+                <PrePosition X="0.6090" Y="0.4444" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />

@@ -175,7 +175,7 @@ void StoreHouseLayer::updateContent(int category)
 		{
 			Equipable* eres = (Equipable*)map_cateRes[category][m];
 			if (eres->getLv().getValue() > 0)
-				namestr = StringUtils::format("+%d%s", eres->getLv().getValue(), namestr.c_str());
+				namestr = StringUtils::format("+%d%s", eres->getLv().getValue() + 1, namestr.c_str());
 		}
 
 		Label *namelbl = Label::createWithTTF(namestr, FONT_NAME, 23);

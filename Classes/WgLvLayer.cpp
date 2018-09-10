@@ -88,34 +88,13 @@ bool WgLvLayer::init(ResBase* res)
 	str = GlobalInstance::getInstance()->getResUIFrameName(m_res->getId(), m_res->getQU().getValue());
 	icon->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 
-
-	int curlvexp = 0;
-	int nextlvexp = 0;
-	int expsize = GlobalInstance::map_GF[m_res->getId()].vec_exp.size();
-
-	if (m_res->getLv().getValue() >= expsize)
-		nextlvexp = GlobalInstance::map_GF[m_res->getId()].vec_exp[expsize - 1];
-	else
-		nextlvexp = GlobalInstance::map_GF[m_res->getId()].vec_exp[m_res->getLv().getValue()];
-
-	for (int i = 0; i < m_res->getLv().getValue(); i++)
-	{
-		curlvexp += GlobalInstance::map_GF[m_res->getId()].vec_exp[i];
-	}
-
 	//进度条
 	expbar = (cocos2d::ui::LoadingBar*)csbnode->getChildByName("wgbar");
-	float percent = (m_res->getExp().getValue() - curlvexp)*100.0f / nextlvexp;
-	expbar->setPercent(percent);
+	expbar->setPercent(0);
 
 	explbl = (cocos2d::ui::Text*)csbnode->getChildByName("exptext");
-	str = StringUtils::format("%d/%d", m_res->getExp().getValue() - curlvexp, nextlvexp);
-	explbl->setString(str);
-
 	//当前等级
 	lvtext = (cocos2d::ui::Text*)csbnode->getChildByName("lvtext");
-	str = StringUtils::format("%d", m_res->getLv().getValue());
-	lvtext->setString(str);
 
 	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(WgLvLayer::onBtnClick, this));
@@ -230,7 +209,11 @@ void WgLvLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		if (m_res->getLv().getValue() + 1 == m_res->getMaxLv())
+
+		int maxlv = GlobalInstance::map_GF[m_res->getId()].vec_exp.size();
+
+		//if (m_res->getLv().getValue() + 1 == m_res->getMaxLv())
+		if (m_res->getExp().getValue() >= GlobalInstance::map_GF[m_res->getId()].vec_exp[maxlv - 1])
 		{
 			MovingLabel::show(ResourceLang::map_lang["wgmostlv"]);
 			return;
@@ -263,11 +246,19 @@ void WgLvLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			DynamicValueInt dal;
 			dal.setValue(m_res->getExp().getValue() + count);
 			m_res->setExp(dal);
+			if (m_res->getExp().getValue() >= GlobalInstance::map_GF[m_res->getId()].vec_exp[maxlv - 1])
+			{
+				DynamicValueInt dvint;
+				dvint.setValue(GlobalInstance::map_GF[m_res->getId()].vec_exp[maxlv - 1]);
+				m_res->setExp(dvint);
+			}
+
 			std::string s = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), count);
 			MovingLabel::show(s);
 			str = StringUtils::format("%d", MyRes::getMyResCount(str));
 			goodarr[tag - 1]->setString(str);
 			updataAtrrUI();
+			MyRes::saveData();
 
 			EquipDescLayer* layer = (EquipDescLayer*)this->getParent();
 			if (layer != NULL)
@@ -320,27 +311,29 @@ void WgLvLayer::updataAtrrUI()
 		namestr = StringUtils::format("+%d%s", m_res->getLv().getValue() + 1, namestr.c_str());
 	name->setString(namestr);
 
-	int curlvexp = GlobalInstance::map_GF[m_res->getId()].vec_exp[m_res->getLv().getValue()];
-	int nextlvexp = 0;
-	int expsize = GlobalInstance::map_GF[m_res->getId()].vec_exp.size();
+	int curlvexp = 0;
+	int nextlvexp = GlobalInstance::map_GF[m_res->getId()].vec_exp[m_res->getLv().getValue()];
 
-	if (m_res->getLv().getValue() >= expsize - 1)
-		nextlvexp = GlobalInstance::map_GF[m_res->getId()].vec_exp[expsize - 1];
-	else
-		nextlvexp = GlobalInstance::map_GF[m_res->getId()].vec_exp[m_res->getLv().getValue()];
+	if (m_res->getLv().getValue() > 0)
+		curlvexp = GlobalInstance::map_GF[m_res->getId()].vec_exp[m_res->getLv().getValue() - 1];
 
 	int mycurlv = m_res->getLv().getValue();
+
+	//if (mycurlv >= m_res->getMaxLv() - 1)
+
+
 	//进度条
 	float percent = (m_res->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
-	
+
 	if (mycurlv > myprelv)
 		expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, 100), LoadingBarProgressFromTo::create(0.2f, 0, percent), NULL));
 	else
 		expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
 
-	myprelv = mycurlv;
-	str = StringUtils::format("%d/%d", m_res->getExp().getValue() - curlvexp, nextlvexp);
+	str = StringUtils::format("%d/%d", m_res->getExp().getValue() - curlvexp, nextlvexp - curlvexp);
 	explbl->setString(str);
+
+	myprelv = mycurlv;
 
 	for (int i = 1; i < 5; i++)
 	{
@@ -349,31 +342,39 @@ void WgLvLayer::updataAtrrUI()
 		goodarr[i - 1]->setString(str);
 	}
 
-	if (m_res->getLv().getValue() < m_res->getMaxLv())
+	int nextlv = 0;
+
+	if (m_res->getLv().getValue() < m_res->getMaxLv() - 1)
 	{
-		attrstr = StringUtils::format("%d", GlobalInstance::map_GF[m_res->getId()].vec_hp[m_res->getLv().getValue() + 1]);
-		hplbl2->setString(attrstr);
-
-		//攻击值
-		attrstr = StringUtils::format("%d", GlobalInstance::map_GF[m_res->getId()].vec_atk[m_res->getLv().getValue() + 1]);
-		atkbl2->setString(attrstr);
-
-		//防御值
-		attrstr = StringUtils::format("%d", GlobalInstance::map_GF[m_res->getId()].vec_df[m_res->getLv().getValue() + 1]);
-		dflbl2->setString(attrstr);
-
-		//攻击速度值
-		attrstr = StringUtils::format("%.3f", GlobalInstance::map_GF[m_res->getId()].vec_speed[m_res->getLv().getValue() + 1]);
-		atkspeedlbl2->setString(attrstr);
-
-		//暴击值
-		attrstr = StringUtils::format("%.3f%%", GlobalInstance::map_GF[m_res->getId()].vec_crit[m_res->getLv().getValue() + 1]);
-		critlbl2->setString(attrstr);
-
-		//闪避值
-		attrstr = StringUtils::format("%.3f%%", GlobalInstance::map_GF[m_res->getId()].vec_avoid[m_res->getLv().getValue() + 1]);
-		dodgelbl2->setString(attrstr);
+		nextlv = m_res->getLv().getValue() + 1;
 	}
+	else
+	{
+		nextlv = m_res->getMaxLv() - 1;
+	}
+		
+	attrstr = StringUtils::format("%d", GlobalInstance::map_GF[m_res->getId()].vec_hp[nextlv]);
+	hplbl2->setString(attrstr);
+
+	//攻击值
+	attrstr = StringUtils::format("%d", GlobalInstance::map_GF[m_res->getId()].vec_atk[nextlv]);
+	atkbl2->setString(attrstr);
+
+	//防御值
+	attrstr = StringUtils::format("%d", GlobalInstance::map_GF[m_res->getId()].vec_df[nextlv]);
+	dflbl2->setString(attrstr);
+
+	//攻击速度值
+	attrstr = StringUtils::format("%.3f", GlobalInstance::map_GF[m_res->getId()].vec_speed[nextlv]);
+	atkspeedlbl2->setString(attrstr);
+
+	//暴击值
+	attrstr = StringUtils::format("%.3f%%", GlobalInstance::map_GF[m_res->getId()].vec_crit[nextlv]);
+	critlbl2->setString(attrstr);
+
+	//闪避值
+	attrstr = StringUtils::format("%.3f%%", GlobalInstance::map_GF[m_res->getId()].vec_avoid[nextlv]);
+	dodgelbl2->setString(attrstr);
 
 }
 

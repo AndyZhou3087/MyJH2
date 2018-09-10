@@ -45,10 +45,10 @@
                 <OutlineColor A="255" R="80" G="38" B="12" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="carrycount" ActionTag="-171828207" Tag="274" IconVisible="False" LeftMargin="256.5935" RightMargin="370.4065" TopMargin="187.0222" BottomMargin="37.9778" FontSize="25" LabelText="100/200" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="carrycount" ActionTag="-171828207" Tag="274" IconVisible="False" LeftMargin="256.5935" RightMargin="370.4065" TopMargin="187.0223" BottomMargin="37.9777" FontSize="25" LabelText="100/200" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="93.0000" Y="29.0000" />
                 <AnchorPoint ScaleY="0.6176" />
-                <Position X="256.5935" Y="55.8882" />
+                <Position X="256.5935" Y="55.8881" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.3564" Y="0.2200" />
@@ -80,25 +80,25 @@
                 <OutlineColor A="255" R="80" G="38" B="12" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="solivercountlbl" ActionTag="-149161726" Tag="315" IconVisible="False" LeftMargin="625.1866" RightMargin="79.8134" TopMargin="187.0223" BottomMargin="37.9777" FontSize="25" LabelText="0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="15.0000" Y="29.0000" />
+              <AbstractNodeData Name="solivercountlbl" ActionTag="-149161726" Tag="315" IconVisible="False" LeftMargin="606.1865" RightMargin="7.8135" TopMargin="187.0223" BottomMargin="37.9777" FontSize="25" LabelText="10000000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="106.0000" Y="29.0000" />
                 <AnchorPoint ScaleY="0.5000" />
-                <Position X="625.1866" Y="52.4777" />
+                <Position X="606.1865" Y="52.4777" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.8683" Y="0.2066" />
-                <PreSize X="0.0208" Y="0.1142" />
+                <PrePosition X="0.8419" Y="0.2066" />
+                <PreSize X="0.1472" Y="0.1142" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="silver" ActionTag="-2049525553" Tag="316" IconVisible="False" LeftMargin="572.2301" RightMargin="109.7699" TopMargin="182.8426" BottomMargin="33.1574" ctype="SpriteObjectData">
+              <AbstractNodeData Name="silver" ActionTag="-2049525553" Tag="316" IconVisible="False" LeftMargin="565.2302" RightMargin="116.7698" TopMargin="182.8427" BottomMargin="33.1573" ctype="SpriteObjectData">
                 <Size X="38.0000" Y="38.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="591.2301" Y="52.1574" />
+                <Position X="584.2302" Y="52.1573" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.8212" Y="0.2053" />
+                <PrePosition X="0.8114" Y="0.2053" />
                 <PreSize X="0.0528" Y="0.1496" />
                 <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
@@ -270,15 +270,15 @@
           <AbstractNodeData Name="questbtn" ActionTag="173485613" Tag="41" IconVisible="False" LeftMargin="635.0961" RightMargin="50.9039" TopMargin="245.0381" BottomMargin="1006.9620" TouchEnable="True" LeftEage="11" RightEage="11" TopEage="9" BottomEage="9" Scale9OriginX="11" Scale9OriginY="9" Scale9Width="12" Scale9Height="10" ctype="ImageViewObjectData">
             <Size X="34.0000" Y="28.0000" />
             <Children>
-              <AbstractNodeData Name="questbtn2" ActionTag="-1221336991" Tag="43" IconVisible="False" LeftMargin="34.7503" RightMargin="-50.7503" TopMargin="-3.9083" BottomMargin="-12.0917" TouchEnable="True" LeftEage="11" RightEage="11" TopEage="9" BottomEage="9" Scale9OriginX="11" Scale9OriginY="9" Scale9Width="28" Scale9Height="26" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="questbtn2" ActionTag="-1221336991" Tag="43" IconVisible="False" LeftMargin="34.7503" RightMargin="-50.7503" TopMargin="-7.0000" BottomMargin="-9.0000" TouchEnable="True" LeftEage="11" RightEage="11" TopEage="9" BottomEage="9" Scale9OriginX="11" Scale9OriginY="9" Scale9Width="28" Scale9Height="26" ctype="ImageViewObjectData">
                 <Size X="50.0000" Y="44.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="59.7503" Y="9.9083" />
+                <Position X="59.7503" Y="13.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="1.7574" Y="0.3539" />
+                <PrePosition X="1.7574" Y="0.4643" />
                 <PreSize X="1.4706" Y="1.5714" />
-                <FileData Type="Default" Path="Default/ImageFile.png" Plist="" />
+                <FileData Type="MarkedSubImage" Path="mapui/maptask_icon.png" Plist="mapui.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

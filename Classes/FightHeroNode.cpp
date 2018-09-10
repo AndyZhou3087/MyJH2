@@ -510,38 +510,19 @@ void FightHeroNode::setFightState(int winexp)
 	int langtype = GlobalInstance::getInstance()->getLang();
 	Hero* myhero = (Hero*)m_Data;
 
-	int maxlv = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp.size();
-	int mylv = myhero->getLevel();
-	int curpercent = 0;
-	if (mylv <= 0)
-		curpercent = myhero->getExp().getValue() / GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[0];
-	else
-	{
-		if (mylv >= maxlv - 1)
-			curpercent = 100;
-		else
-			curpercent = (myhero->getExp().getValue() - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[mylv])*100 / (GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[mylv+1] - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[mylv]);
-	}
-	
+	int mylastlv = myhero->getLevel();
+
+	int curlvexp = 0;
+	int nextlvexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[myhero->getLevel()];
+
+	if (myhero->getLevel() > 0)
+		curlvexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[myhero->getLevel() - 1];
+
+	int curpercent = (myhero->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
+
 	hp_bar->loadTexture("mapui/winexpbar.png", cocos2d::ui::Widget::TextureResType::PLIST);
 	
 	hp_bar->setPercent(curpercent);
-
-	if (winexp > 0 && myhero->getState() != HS_DEAD)
-	{
-		DynamicValueInt dv;
-		dv.setValue(myhero->getExp().getValue() + winexp);
-		myhero->setExp(dv);
-	}
-
-	int curlv = -1;
-	for (int i = 0; i < maxlv; i++)
-	{
-		if (myhero->getExp().getValue() >= GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[i])
-			curlv = i;
-		else
-			break;
-	}
 
 	if (winexp > 0 && myhero->getState() != HS_DEAD)
 	{
@@ -549,11 +530,19 @@ void FightHeroNode::setFightState(int winexp)
 		if ((myhero->getLevel() + 1) / 10 == myhero->getChangeCount() + 1)
 		{
 			str = ResourceLang::map_lang["changebreak"];
-			DynamicValueInt dv;
-			dv.setValue(GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[myhero->getLevel()]);
 		}
 		else
 		{
+			int maxlv = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp.size();
+			DynamicValueInt dv;
+			dv.setValue(myhero->getExp().getValue() + winexp);
+
+			if (myhero->getExp().getValue() >= GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[maxlv - 1])
+			{
+				dv.setValue(GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[maxlv - 1]);
+			}
+			myhero->setExp(dv);
+
 			str = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), winexp);
 		}
 		winexplbl->setString(str);
@@ -563,35 +552,17 @@ void FightHeroNode::setFightState(int winexp)
 		winexplbl->runAction(Sequence::create(DelayTime::create(0.5f), scales, moveandout, DelayTime::create(1.0f), FadeOut::create(1.0f), NULL));
 	}
 
-	int moreexp = 0;
-	int needexp = 0;
+	curlvexp = 0;
+	nextlvexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[myhero->getLevel()];
 
-	int nextlv = curlv + 1;
+	if (myhero->getLevel() > 0)
+		curlvexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[myhero->getLevel() - 1];
 
-	if (nextlv >= maxlv)
-	{
-		nextlv = maxlv - 1;
-		DynamicValueInt vl;
-		vl.setValue(GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv]);
-		myhero->setExp(vl);
-	}
-
-	if (curlv < 0)
-	{
-		moreexp = myhero->getExp().getValue() - 0;
-		needexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[0];
-	}
-	else
-	{
-		moreexp = myhero->getExp().getValue() - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[curlv];
-		needexp = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv] - GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp[nextlv - 1];
-	}
-
-	float percent = moreexp * 100 / needexp;
+	float percent = (myhero->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
 			
 	if (myhero->getState() != HS_DEAD)
 	{
-		if (curlv+1 > mylv)//升级
+		if (myhero->getLevel() > mylastlv)//升级
 		{
 			retbox->setVisible(true);
 
@@ -608,7 +579,6 @@ void FightHeroNode::setFightState(int winexp)
 		}
 		else
 		{
-			GlobalInstance::getInstance()->saveHero(myhero);
 			hp_bar->runAction(Sequence::create(DelayTime::create(0.5f), LoadingBarProgressTo::create(0.2f, percent), NULL));
 		}
 	}
@@ -628,7 +598,10 @@ void FightHeroNode::setFightState(int winexp)
 		CommonFuncs::changeGray(retbox);
 		GlobalInstance::myCardHeros[this->getTag()] = NULL;
 	}
-	std::string lvstr = StringUtils::format("Lv.%d", myhero->getLevel()+1);
+
+	GlobalInstance::getInstance()->saveHero(myhero);
+
+	std::string lvstr = StringUtils::format("Lv.%d", myhero->getLevel() + 1);
 	lvtext->setString(lvstr);
 
 	lvtext->runAction(Sequence::create(DelayTime::create(4.5f), Show::create(), FadeIn::create(0.5f), NULL));

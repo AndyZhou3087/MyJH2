@@ -179,6 +179,7 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BREAKUPSUCC);
 				m_herodata->setChangeCount(m_herodata->getChangeCount() + 1);
 				m_herodata->setVocation(tag);
+				GlobalInstance::getInstance()->saveHero(m_herodata);
 				HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
 				if (attlay != NULL)
 				{
@@ -201,6 +202,7 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				{
 					MyRes::Use("d001");
 					m_herodata->setChangeCount(m_herodata->getChangeCount() + 1);
+					GlobalInstance::getInstance()->saveHero(m_herodata);
 					HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
 					if (attlay != NULL)
 					{

@@ -605,6 +605,8 @@ void MapBlockScene::checkFood()
 				}
 				GlobalInstance::myCardHeros[i]->setHp(hp);
 				updateHeroUI(i);
+				if (GlobalInstance::myCardHeros[i]->getState() == HS_DEAD)
+					GlobalInstance::myCardHeros[i] = NULL;
 			}
 		}
 		if (!checklive())
@@ -914,6 +916,10 @@ void MapBlockScene::doMyStatus()
 			MapEventLayer* mlayer = MapEventLayer::create(ret);
 			this->addChild(mlayer);
 			AnimationEffect::openAniEffect((Layer*)mlayer);
+		}
+		else
+		{
+			status = MAP_S_NOTING;
 		}
 	}
 	else

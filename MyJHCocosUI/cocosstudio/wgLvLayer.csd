@@ -150,14 +150,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="exptext" ActionTag="220282824" Tag="212" IconVisible="False" LeftMargin="314.8599" RightMargin="307.1401" TopMargin="373.0000" BottomMargin="881.0000" FontSize="23" LabelText="100/1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="98.0000" Y="26.0000" />
+          <AbstractNodeData Name="exptext" ActionTag="220282824" Tag="212" IconVisible="False" LeftMargin="322.3599" RightMargin="314.6401" TopMargin="375.5000" BottomMargin="881.5000" FontSize="20" LabelText="100/1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="83.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="363.8599" Y="894.0000" />
+            <Position X="363.8599" Y="893.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5054" Y="0.6984" />
-            <PreSize X="0.1361" Y="0.0203" />
+            <PrePosition X="0.5054" Y="0.6977" />
+            <PreSize X="0.1153" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
@@ -342,14 +342,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="tipstext" ActionTag="-166295186" Tag="267" IconVisible="False" LeftMargin="226.1671" RightMargin="230.8329" TopMargin="670.5476" BottomMargin="577.4524" FontSize="26" LabelText="点击材料可增加经验值" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="tipstext" ActionTag="-166295186" Tag="267" IconVisible="False" LeftMargin="225.6671" RightMargin="230.3329" TopMargin="669.5476" BottomMargin="576.4524" FontSize="26" LabelText="点击材料可增加经验值" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="264.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="357.6671" Y="593.4524" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4968" Y="0.4636" />
-            <PreSize X="0.3653" Y="0.0250" />
+            <PreSize X="0.3667" Y="0.0266" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="173" G="152" B="96" />
             <ShadowColor A="255" R="176" G="176" B="176" />

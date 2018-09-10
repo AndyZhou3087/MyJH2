@@ -199,6 +199,12 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 	{
 		return true;
 	};
+
+	listener->onTouchEnded = [=](Touch *touch, Event *event)
+	{
+		AnimationEffect::closeAniEffect((Layer*)this);
+	};
+
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;

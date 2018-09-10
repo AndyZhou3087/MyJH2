@@ -146,6 +146,7 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	}
 
 	lastVocation = m_heroData->getVocation();
+	lastbreakcount = m_heroData->getChangeCount();
 
 	updateTime(0);
 	this->schedule(schedule_selector(MyHeroNode::updateTime), 1.0f);
@@ -246,6 +247,7 @@ void MyHeroNode::updateTime(float dt)
 			hpdesc->setString(hpstr);
 			GlobalInstance::getInstance()->saveHero(m_heroData);
 		}
+
 	}
 
 	if (lastVocation != m_heroData->getVocation())
@@ -253,6 +255,17 @@ void MyHeroNode::updateTime(float dt)
 		lastVocation = m_heroData->getVocation();
 		updateData();
 	}
+
+	if (lastbreakcount != m_heroData->getChangeCount())
+	{
+		for (int i = 0; i < m_heroData->getChangeCount() - 1; i++)
+		{
+			stars[i]->setVisible(true);
+		}
+	}
+
+	std::string  lvstr = StringUtils::format("Lv.%d", m_heroData->getLevel() + 1);
+	lvlbl->setString(lvstr);
 }
 
 void MyHeroNode::updateData()
@@ -265,9 +278,6 @@ void MyHeroNode::updateData()
 
 	str = StringUtils::format("vocation_%d", m_heroData->getVocation());
 	vocationlbl->setString(ResourceLang::map_lang[str]);
-
-	str = StringUtils::format("Lv.%d", m_heroData->getLevel() + 1);
-	lvlbl->setString(str);
 
 	namelbl->setString(m_heroData->getName());
 
