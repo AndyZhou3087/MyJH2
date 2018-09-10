@@ -19,6 +19,7 @@
 #include "SoundManager.h"
 #include "SimplePopLayer.h"
 #include "NewGuideLayer.h"
+#include "LoadingBarProgressTimer.h"
 
 USING_NS_CC;
 
@@ -68,6 +69,13 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 	m_heroData = herodata;
 
 	lastVaction = herodata->getVocation();
+
+	lastLv = herodata->getLevel();
+
+	lastexp = herodata->getExp().getValue();
+
+	breakcount = herodata->getChangeCount();
+
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 250));
 	this->addChild(color,0,"colorLayer");
     
@@ -211,26 +219,10 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 	str = StringUtils::format("Lv.%d", herodata->getLevel() + 1);
 	lvUIText->setString(str);
 
-	int curlvexp = 0;
-	int nextlvexp = 0;
-	int expsize = GlobalInstance::vec_herosAttr[herodata->getVocation()].vec_exp.size();
-	
-	if (herodata->getLevel() >= expsize)
-		nextlvexp = GlobalInstance::vec_herosAttr[herodata->getVocation()].vec_exp[expsize - 1];
-	else 
-		nextlvexp = GlobalInstance::vec_herosAttr[herodata->getVocation()].vec_exp[herodata->getLevel()];
-
-	if (herodata->getLevel() > 0)
-		curlvexp = GlobalInstance::vec_herosAttr[herodata->getVocation()].vec_exp[herodata->getLevel()-1];
-
 	//经验值
 	explbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("exp");
-	str = StringUtils::format("%d/%d", herodata->getExp().getValue() - curlvexp, nextlvexp - curlvexp);
-	explbl->setString(str);
 
 	expbar = (cocos2d::ui::LoadingBar*)heroattrbottom->getChildByName("heroattrexpbar");
-	float percent = (herodata->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
-	expbar->setPercent(percent);
 
 	updataAtrrUI(0);
 	this->schedule(schedule_selector(HeroAttrLayer::updataAtrrUI), 1.0f);
@@ -284,7 +276,8 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 						txtimg->loadTexture(ResourcePath::makeTextImgPath("changebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 					}
 				}
-				if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
+				//if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
+				if (m_heroData->getExp().getValue() >= GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getMaxLevel() - 1])
 				{
 					btn->setEnabled(false);
 				}
@@ -606,7 +599,8 @@ void HeroAttrLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
+		//if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
+		if (m_heroData->getExp().getValue() >= GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getMaxLevel() - 1])
 		{
 			MovingLabel::show(ResourceLang::map_lang["wgmostlv"]);
 			changeButton();
@@ -644,6 +638,9 @@ void HeroAttrLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		if (MyRes::getMyResCount(str) >= 1)
 		{
 			MyRes::Use(str);
+			str = StringUtils::format("%d", MyRes::getMyResCount(str));
+			goodarr[tag - 1]->setString(str);
+
 			/*DynamicValueInt dal;
 			dal.setValue(count);*/
 			int lastLevel = m_heroData->getLevel();
@@ -652,16 +649,17 @@ void HeroAttrLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			if (lastLevel <= curLevel - 1)
 			{
 				CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_sjcg");
+				changeButton();
 			}
 			std::string s = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), count);
 			MovingLabel::show(s, Color4B(0, 128, 0, 255), Vec2(360, 320));
+			GlobalInstance::getInstance()->saveHero(m_heroData);
 		}
 		else
 		{
 			MovingLabel::show(ResourceLang::map_lang["reslack"]);
 		}
-		str = StringUtils::format("%d", MyRes::getMyResCount(str));
-		goodarr[tag - 1]->setString(str);
+
 	}
 }
 
@@ -683,7 +681,8 @@ void HeroAttrLayer::changeButton()
 	{
 		txtimg->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	}
-	if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
+	//if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
+	if (m_heroData->getExp().getValue() >= GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getMaxLevel() - 1])
 	{
 		txtimg->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		btnArr[1]->setEnabled(false);
@@ -856,13 +855,7 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 		lvUIText->setString(attrstr);
 
 		int curlvexp = 0;
-		int nextlvexp = 0;
-		int expsize = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp.size();
-
-		if (m_heroData->getLevel() >= expsize)
-			nextlvexp = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[expsize - 1];
-		else
-			nextlvexp = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getLevel()];
+		int nextlvexp = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getLevel()];
 
 		if (m_heroData->getLevel() > 0)
 			curlvexp = GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getLevel() - 1];
@@ -872,14 +865,26 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 		explbl->setString(attrstr);
 
 		float percent = (m_heroData->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
-		expbar->setPercent(percent);
+
+		if (lastLv != m_heroData->getLevel())
+		{
+			lastLv = m_heroData->getLevel();
+			expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, 100), DelayTime::create(0.1f), LoadingBarProgressFromTo::create(0.2f, 0, percent), NULL));
+		}
+		else
+		{
+			if (lastexp != m_heroData->getExp().getValue())
+			{
+				lastexp = m_heroData->getExp().getValue();
+				expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
+			}
+		}
 
 		if (lastVaction != m_heroData->getVocation())
 		{
 			lastVaction = m_heroData->getVocation();
 			updateVocationUI();
 		}
-
 	}
 }
 

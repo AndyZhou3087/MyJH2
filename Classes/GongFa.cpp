@@ -21,7 +21,8 @@ DynamicValueInt GongFa::getLv()
 
 	int size = GlobalInstance::map_GF[getId()].vec_exp.size();
 	int curlvExp = 0;
-	for (int i = 0; i < size; i++)
+	int i = 0;
+	for (i = 0; i < size; i++)
 	{
 		curlvExp = GlobalInstance::map_GF[getId()].vec_exp[i];
 		if (m_exp.getValue() < curlvExp)
@@ -31,7 +32,8 @@ DynamicValueInt GongFa::getLv()
 			return dvint;
 		}
 	}
-
+	if (i >= size)
+		dvint.setValue(size - 1);
 	return dvint;
 }
 
@@ -47,7 +49,7 @@ void GongFa::checkLevelQuest(int lv)
 
 int GongFa::getMaxLv()
 {
-	return GlobalInstance::map_GF[getId()].vec_atk.size() - 1;
+	return GlobalInstance::map_GF[getId()].vec_atk.size();
 }
 
 //攻击
