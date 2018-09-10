@@ -223,6 +223,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 	explbl = (cocos2d::ui::Text*)heroattrbottom->getChildByName("exp");
 
 	expbar = (cocos2d::ui::LoadingBar*)heroattrbottom->getChildByName("heroattrexpbar");
+	expbar->setPercent(0);
 
 	updataAtrrUI(0);
 	this->schedule(schedule_selector(HeroAttrLayer::updataAtrrUI), 1.0f);
