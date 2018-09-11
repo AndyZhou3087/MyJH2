@@ -318,3 +318,23 @@ void DataSave::setIsNewerGuide(int index, bool val)
 	std::string key = StringUtils::format("guide%d", index);
 	saveIntDataByKey(key, (int)val);
 }
+
+void DataSave::setSilverRefHeroCount(int val)
+{
+	saveIntDataByKey("silverrefhero", val);
+}
+
+int DataSave::getSilverRefHeroCount()
+{
+	return loadIntDataByKey("silverrefhero", 0);
+}
+
+void DataSave::setResetSilverRefHeroCountTime(int val)
+{
+	saveIntDataByKey("silverrefherotime", val);
+}
+
+int DataSave::getResetSilverRefHeroCountTime()
+{
+	return loadIntDataByKey("silverrefherotime", 0);
+}

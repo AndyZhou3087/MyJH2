@@ -415,6 +415,8 @@
       <FilePathData Path="ui/carryoutbag.png" />
       <FilePathData Path="ui/carryoutboxtop.png" />
       <FilePathData Path="ui/taskhinticon.png" />
+      <FilePathData Path="ui/r013.png" />
+      <FilePathData Path="ui/maincityhintbox.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

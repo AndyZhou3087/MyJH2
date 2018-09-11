@@ -42,6 +42,8 @@ public:
 	//放开滑动功能
 	void setScrollGliding();
 
+	void showInnRoomNewHeroAnim();
+
 private:
 	cocos2d::ui::ScrollView* scroll_3;//最外层滑动层，包括训练场-仓库-铁匠铺-医馆-出城
 	cocos2d::ui::ScrollView* scroll_2;//中间层滑动层，包括后山-客栈-市场
@@ -61,6 +63,8 @@ private:
 	bool m_isDraging;
 	int costFoodsT;
 	std::vector<Node*> vec_taskicon;
+	bool isPlayNewHeroAnim;
+	Node* maincityhintbox;
 };
 extern MainScene* g_mainScene;
 #endif

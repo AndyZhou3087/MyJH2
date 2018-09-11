@@ -27,6 +27,7 @@ MainScene::MainScene()
 	m_isDraging = false;
 	costFoodsT = 0;
 	GlobalInstance::myOutMapCarry = 0;
+	isPlayNewHeroAnim = false;
 }
 
 MainScene::~MainScene()
@@ -144,6 +145,12 @@ bool MainScene::init()
 	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_HOME);
 
 	this->scheduleOnce(schedule_selector(MainScene::delayShowNewerGuide), 0.1f);
+
+	maincityhintbox = scroll_2->getChildByName("maincityhintbox");
+	maincityhintbox->setScale(0);
+	maincityhintbox->setVisible(false);
+	cocos2d::ui::Text* hinttext = (cocos2d::ui::Text*)maincityhintbox->getChildByName("text");
+	hinttext->setString(ResourceLang::map_lang["newherohint"]);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -404,6 +411,12 @@ void MainScene::onFinish(int code)
 		{
 			GlobalInstance::getInstance()->saveRefreshMarketTime(GlobalInstance::servertime);
 		}
+
+		if (GlobalInstance::getInstance()->getResetSilverRefHeroCountTime() == 0)
+		{
+			GlobalInstance::getInstance()->setResetSilverRefHeroCountTime(GlobalInstance::servertime - GlobalInstance::servertime % (24 * 60 * 60));
+		}
+
 		costFoodsT = 0;
 
 		updateTime(0);
@@ -468,6 +481,33 @@ void MainScene::updateTime(float dt)
 			}
 		}
 	}
+
+
+	bool isHasNewHero = false;
+	for (unsigned int i = 0; i < GlobalInstance::vec_rand3Heros.size(); i++)
+	{
+		if (GlobalInstance::vec_rand3Heros[i]->getState() == HS_READY)
+		{
+			isHasNewHero = true;
+			if (!isPlayNewHeroAnim)
+			{
+				isPlayNewHeroAnim = true;
+				showInnRoomNewHeroAnim();
+			}
+			break;
+		}
+	}
+	if (isPlayNewHeroAnim && !isHasNewHero)
+	{
+		isPlayNewHeroAnim = false;
+		maincityhintbox->stopAllActions();
+		maincityhintbox->setVisible(false);
+	}
+}
+
+void MainScene::showInnRoomNewHeroAnim()
+{
+	maincityhintbox->runAction(RepeatForever::create(Sequence::create(Show::create(), ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), ScaleTo::create(0.1f, 1.2f), ScaleTo::create(0.1f, 1.0f), DelayTime::create(1.0f), Hide::create(), ScaleTo::create(0.0f, 0.0f), DelayTime::create(0.2f), NULL)));
 }
 
 void MainScene::delayGetServerTime(float dt)

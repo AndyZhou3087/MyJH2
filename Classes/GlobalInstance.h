@@ -478,6 +478,27 @@ public:
 
 	//判断是否有死亡角色
 	int getMyHerosDeadCount();
+
+	/****************************
+	银两刷新英雄次数
+	****************************/
+	void setSilverRefHeroCount(int val);
+
+	/****************************
+	获取银两刷新英雄次数
+	****************************/
+	int getSilverRefHeroCount();
+
+	/****************************
+	重置银两刷新英雄次数时间
+	****************************/
+	void setResetSilverRefHeroCountTime(int val);
+
+	/****************************
+	获取重置银两刷新英雄次数时间
+	****************************/
+	int getResetSilverRefHeroCountTime();
+
 private:
 	static GlobalInstance* _Context;//类实例
 
@@ -547,6 +568,9 @@ private:
 	static std::string myID;
 	static std::string myNickName;
 	static int unlockchapter;
+
+	static int silverRefHeroCount;
+	static int resetSilverRefHeroCountTime;
 
 };
 #endif
