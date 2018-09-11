@@ -451,7 +451,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 
 void NewGuideLayer::showWord(std::string wordstr)
 {
-	if (descText[m_step] && descText[m_step].length() > 0)
+	if (descText[m_step].length() > 0)
 	{
 		Node* m_csbnode = CSLoader::createNode(ResourcePath::makePath("newGuideLayer.csb"));
 		this->addChild(m_csbnode, 1);

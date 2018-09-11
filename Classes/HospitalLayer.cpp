@@ -81,7 +81,7 @@ bool HospitalLayer::init()
 
 void HospitalLayer::delayShowNewerGuide(float dt)
 {
-	if (!NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
+	if (!NewGuideLayer::checkifNewerGuide(63) && vec_deadheros.size() > 0)
 	{
 		showNewerGuide(-1);
 	}
@@ -92,9 +92,9 @@ void HospitalLayer::showNewerGuide(int step)
 	std::vector<Node*> nodes;
 	if (step == -1)
 	{
-		nodes.push_back(node);
+		//nodes.push_back(node);
 	}
-	g_mainScene->showNewerGuideNode(step, nodes);
+	//g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void HospitalLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
