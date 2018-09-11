@@ -197,11 +197,33 @@ bool Quest::checkResQuestData(std::string resid, int count, std::string npcid)
 			}
 			else
 			{
-				ResBase* res = MyRes::getMyRes(resid);
-				if (res != NULL)
+				//先判断背包里的数量是否足够，再判断仓库数量
+				int pcount = MyRes::getMyResCount(cresid, MYPACKAGE);
+				int scount = MyRes::getMyResCount(cresid, MYSTORAGE);
+				if (pcount >= count)
 				{
-					MyRes::Use(res, count, MYSTORAGE);
+					ResBase* res = MyRes::getMyRes(resid, MYPACKAGE);
+					if (res != NULL)
+					{
+						MyRes::Use(res, count, MYPACKAGE);
+					}
 				}
+				else
+				{
+					ResBase* res = MyRes::getMyRes(resid, MYPACKAGE);
+					if (res != NULL)
+					{
+						MyRes::Use(res, pcount, MYPACKAGE);
+					}
+					if (scount >= count - pcount)
+					{
+						ResBase* res = MyRes::getMyRes(resid, MYSTORAGE);
+						if (res != NULL)
+						{
+							MyRes::Use(res, count - pcount, MYSTORAGE);
+						}
+					}
+				}	
 			}
 		}
 	}
