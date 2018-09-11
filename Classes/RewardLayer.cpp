@@ -104,6 +104,14 @@ bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards)
 			{
 				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
+			else if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
+			{
+				qu = atoi(resid.substr(1).c_str()) - 1;
+				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
+
+			CommonFuncs::playResBoxEffect(resbox, qu);
+
 			resbox->setPositionX(startx[rewardsize-1] + offsetx[rewardsize-1]*i);
 			resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 			std::string resstr = StringUtils::format("ui/%s.png", vec_rewards[i].rid.c_str());

@@ -17,15 +17,15 @@
             <FileData Type="MarkedSubImage" Path="mapui/maptask_frame.png" Plist="mapui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="maptask_icon_1" ActionTag="813004247" Tag="24" IconVisible="False" LeftMargin="-136.7118" RightMargin="86.7118" TopMargin="-108.0444" BottomMargin="64.0444" ctype="SpriteObjectData">
+          <AbstractNodeData Name="maptask_icon_1" ActionTag="813004247" Tag="24" IconVisible="False" LeftMargin="-136.7117" RightMargin="86.7117" TopMargin="-110.0445" BottomMargin="66.0445" ctype="SpriteObjectData">
             <Size X="50.0000" Y="44.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-111.7118" Y="86.0444" />
+            <Position X="-111.7117" Y="88.0445" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
+            <FileData Type="MarkedSubImage" Path="mapui/maptask_icon.png" Plist="mapui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="maptask_main_2" ActionTag="-478883928" Tag="25" IconVisible="False" LeftMargin="-119.7446" RightMargin="97.7446" TopMargin="-41.4224" BottomMargin="17.4224" ctype="SpriteObjectData">

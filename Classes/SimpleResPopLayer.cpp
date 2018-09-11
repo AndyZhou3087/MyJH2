@@ -71,6 +71,13 @@ bool SimpleResPopLayer::init(std::string resid)
 		qu = GlobalInstance::map_GF[resid].qu;
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
+	else if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
+	{
+		qu = atoi(resid.substr(1).c_str()) - 1;
+		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+	}
+	CommonFuncs::playResBoxEffect(resbox, qu);
+
 	resbox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	std::string resstr = StringUtils::format("ui/%s.png", resid.c_str());

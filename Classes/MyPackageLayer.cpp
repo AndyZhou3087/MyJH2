@@ -118,6 +118,11 @@ void MyPackageLayer::updateScrollviewContent()
 			qu = ((Equipable*)vec_res[m])->getQU().getValue();
 			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
+		else if (vec_res[m]->getType() == T_RENS || vec_res[m]->getType() == T_DAN || vec_res[m]->getType() == T_MIJI || vec_res[m]->getType() == T_BOX)
+		{
+			qu = atoi(vec_res[m]->getId().substr(1).c_str()) - 1;
+			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
 
 		Sprite * qubox = Sprite::createWithSpriteFrameName(qustr);
 

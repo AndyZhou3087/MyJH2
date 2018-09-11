@@ -16,6 +16,7 @@ public:
 	~ChangeVocationLayer();
 	/****************************************
 	@para:data 需要传递的数据
+	@para: forwhere 0--转职，1--突破
 	*************************************/
 	static ChangeVocationLayer* create(Hero* herodata,int forwhere = 0);
 	virtual void onExit();
@@ -27,6 +28,7 @@ private:
 private:
 	Hero* m_herodata;
 	int m_forwhere;
+	std::string needresid;
 
 };
 

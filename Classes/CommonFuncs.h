@@ -65,6 +65,11 @@ public:
 	****************************/
 	static void playCommonLvUpAnim(cocos2d::Node* target, std::string textstr);
 
+	/****************************
+	资源边框特效，紫色以上
+	****************************/
+	static void playResBoxEffect(cocos2d::Node* target, int qu);
+
 private:
 
 	/****************************

@@ -531,6 +531,8 @@ public:
 	static std::map<std::string, int> map_buyVipDays;//购买的月卡时间
 	static std::vector<std::string> vec_buyVipIds;//月卡id
 
+	static int myOutMapCarry;
+
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

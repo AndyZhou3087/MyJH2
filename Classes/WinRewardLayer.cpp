@@ -159,6 +159,11 @@ void WinRewardLayer::updateScrollviewContent()
 				qu = ((Equipable*)vec_res[m])->getQU().getValue();
 				qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
+			else if (vec_res[m]->getType() == T_RENS || vec_res[m]->getType() == T_DAN || vec_res[m]->getType() == T_MIJI || vec_res[m]->getType() == T_BOX)
+			{
+				qu = atoi(vec_res[m]->getId().substr(1).c_str()) - 1;
+				qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
 
 			cocos2d::ui::ImageView* boxItem = cocos2d::ui::ImageView::create(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 			boxItem->addTouchEventListener(CC_CALLBACK_2(WinRewardLayer::onclick, this));
@@ -192,7 +197,7 @@ void WinRewardLayer::updateScrollviewContent()
 			boxItem->addChild(countlbl);
 		}
 	}
-	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::getInstance()->getTotalCarry());
+	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/);
 	carrycountlbl->setString(str);
 }
 
@@ -269,11 +274,11 @@ void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				packagecount += vec_dropdownres[i]->getCount().getValue();
 			}
 
-			if (MyRes::getMyPackageCount() + packagecount > GlobalInstance::getInstance()->getTotalCarry())
+			if (MyRes::getMyPackageCount() + packagecount > GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/)
 			{
 				MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
 
-				int cancarry = GlobalInstance::getInstance()->getTotalCarry() - MyRes::getMyPackageCount();
+				int cancarry = GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/ - MyRes::getMyPackageCount();
 				for (unsigned int i = 0; i < vec_dropdownres.size(); i++)
 				{
 					if (cancarry <= 0)
@@ -396,7 +401,7 @@ void WinRewardLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 
 		if (tag / 10000 == 0)//点击的是两个scrollview的 0--掉落，1--背包
 		{
-			if (MyRes::getMyPackageCount() + 1 > GlobalInstance::getInstance()->getTotalCarry())
+			if (MyRes::getMyPackageCount() + 1 > GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/)
 			{
 				MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
 				return;
@@ -419,7 +424,7 @@ void WinRewardLayer::longTouchAction(int tag)
 	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 	if (tag / 10000 == 0)//点击的是两个scrollview的 0--掉落，1--背包
 	{
-		if (MyRes::getMyPackageCount() + 1 > GlobalInstance::getInstance()->getTotalCarry())
+		if (MyRes::getMyPackageCount() + 1 > GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/)
 		{
 			cancelLongTouch();
 			MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
