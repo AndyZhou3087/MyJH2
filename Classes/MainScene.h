@@ -66,8 +66,7 @@ private:
 	bool isPlayNewHeroAnim;
 	Node* maincityhintbox;
 
-	int lastArrow;
-	float lastx;
+	int lastsrollEventType;
 };
 extern MainScene* g_mainScene;
 #endif
