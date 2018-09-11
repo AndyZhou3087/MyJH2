@@ -152,7 +152,7 @@ void MainMenuLayer::onFinish(int code)
 	if (code == SUCCESS)
 	{
 		if (NewGuideLayer::checkifNewerGuide(14) || NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(45)
-			|| (NewGuideLayer::checkifNewerGuide(55) && Quest::isMainQuestFinish(1)))
+			|| (NewGuideLayer::checkifNewerGuide(55) && Quest::isMainQuestFinish(1)) || (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0))
 		{
 			return;
 		}
