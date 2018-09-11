@@ -60,6 +60,18 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
+          <AbstractNodeData Name="hascount" ActionTag="1598158870" Tag="7" IconVisible="False" LeftMargin="131.0000" RightMargin="-270.0000" TopMargin="-31.5000" BottomMargin="8.5000" FontSize="20" LabelText="[拥有数量：%d]" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="139.0000" Y="23.0000" />
+            <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+            <Position X="270.0000" Y="20.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

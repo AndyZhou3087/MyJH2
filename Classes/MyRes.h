@@ -40,6 +40,9 @@ public:
 
 	//是否有某种类型的物品
 	static bool hasResByType(int type, int inwhere = MYSTORAGE);
+
+	//获取同一种装备和功法的个数
+	static int getEquipableCount(std::string resid, int inwhere = MYSTORAGE);
 public:
 
 	static std::vector<ResBase* > vec_MyResources;//我的资源，包括背包，仓库，装备上的

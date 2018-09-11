@@ -167,6 +167,9 @@ bool MainScene::init()
 	cocos2d::ui::Text* hinttext = (cocos2d::ui::Text*)maincityhintbox->getChildByName("text");
 	hinttext->setString(ResourceLang::map_lang["newherohint"]);
 
+	lastx = scroll_3->getInnerContainerPosition().x;
+	lastArrow = 0;
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -316,14 +319,43 @@ void MainScene::srollviewlistenEvent(Ref* ref, ui::ScrollView::EventType eventTy
 		return;
 	}
 	Vec2 pos = scroll_3->getInnerContainerPosition();
-	log("scoll posx:%f, posy:%f", pos.x, pos.y);
+	//log("scoll posx:%f, posy:%f", pos.x, pos.y);
+	log("scoll eventType = %d", eventType);
+	bool isAnim = true;
+	if (pos.x - lastx < 0)
+	{
+		if (lastArrow != 0)
+		{
+			isAnim = false;
+			lastArrow = 0;//左
+		}
+	}
+	else
+	{
+		if (lastArrow != 1)
+		{
+			lastArrow = 1;//左
+			isAnim = false;
+		}
+	}
+	lastx = pos.x;
 	switch (eventType) 
 	{
 		//最外层滑动时，带动后两层滑动，可修改时间调整效果
 		case ui::ScrollView::EventType::CONTAINER_MOVED:
+		{
 			//将引擎中的startAutoScrollToDestination 修改为pulic
-			scroll_2->startAutoScrollToDestination(pos, 0.1f, true);
-			scroll_1->startAutoScrollToDestination(pos, 0.2f, true);
+			if (isAnim)
+			{
+				scroll_2->startAutoScrollToDestination(pos, 0.1f, true);
+				scroll_1->startAutoScrollToDestination(pos, 0.2f, true);
+			}
+			else
+			{
+				scroll_2->startAutoScrollToDestination(pos, 0.0f, true);
+				scroll_1->startAutoScrollToDestination(pos, 0.0f, true);
+			}
+		}
 			break;
 		default:
 			break;
