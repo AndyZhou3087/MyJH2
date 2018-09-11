@@ -89,14 +89,17 @@ bool MainScene::init()
 		std::string buidingNomalName;
 		std::string buidingSelectName;
 		std::string bulidingname;
+		std::string bulidclipname;
 		cocos2d::ui::ImageView* buildingNomal;
 		cocos2d::ui::ImageView* buildingSelect;
 		cocos2d::ui::ImageView* buildnametext;
+		cocos2d::ui::Widget* bulidinclipnode;
 
 		buidingNomalName = StringUtils::format("main_%02d_n", i);//可点击
 		buidingSelectName = StringUtils::format("main_%02d_s", i);//选中
 
 		bulidingname = StringUtils::format("main_%02d_t", i);//文字
+		bulidclipname = StringUtils::format("main_%02d_c", i);//遮罩
 
 		Node* buildParent;
 		if (i <= 5)
@@ -117,11 +120,23 @@ bool MainScene::init()
 
 		buildnametext = (cocos2d::ui::ImageView*)buildParent->getChildByName(bulidingname);
 
+		bulidinclipnode = (cocos2d::ui::Widget*)buildParent->getChildByName(bulidclipname);
+
 		buildnametext->loadTexture(ResourcePath::makeTextImgPath(bulidingname, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 		buildingNomal->setSwallowTouches(false);
 		buildingNomal->setUserData((void*)buildingSelect);
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
+		if (NewGuideLayer::checkifNewerGuide(63) && i == 2)//医馆不可点
+		{
+			buildingNomal->setTouchEnabled(false);
+			bulidinclipnode->setVisible(true);
+			buildnametext->setVisible(false);
+		}
+		/*else if (i == 6 && )
+		{
+
+		}*/
 
 		if (i == 4)
 		{
@@ -264,6 +279,11 @@ void MainScene::showNewerGuide(int step)
 		scroll_2->jumpToPercentHorizontal(100);
 		scroll_3->jumpToPercentHorizontal(100);
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_02_n");
+		node->setTouchEnabled(true);
+		cocos2d::ui::Widget* cnode = (cocos2d::ui::Widget*)scroll_3->getChildByName("main_02_c");
+		cnode->setVisible(false);
+		cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_02_t");
+		text->setVisible(true);
 		nodes.push_back(node);
 	}
 	showNewerGuideNode(step, nodes);

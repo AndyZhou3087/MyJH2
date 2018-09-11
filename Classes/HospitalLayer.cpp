@@ -85,11 +85,18 @@ void HospitalLayer::delayShowNewerGuide(float dt)
 	{
 		NewGuideLayer::setNewerGuide(64);
 	}
-	if (!NewGuideLayer::checkifNewerGuide(63) && vec_deadheros.size() > 0)
+	if (!NewGuideLayer::checkifNewerGuide(63))
 	{
-		if (NewGuideLayer::checkifNewerGuide(64))
+		if (vec_deadheros.size() > 0)
 		{
-			showNewerGuide(64);
+			if (NewGuideLayer::checkifNewerGuide(64))
+			{
+				showNewerGuide(64);
+			}
+		}
+		else if (NewGuideLayer::checkifNewerGuide(65))
+		{
+			showNewerGuide(65);
 		}
 	}
 }
