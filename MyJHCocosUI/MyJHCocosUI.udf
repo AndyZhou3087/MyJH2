@@ -11,8 +11,9 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="ui.csi" />
+          <FilePathData Path="makeResNode.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="ui.csi" />
+        <ActiveDocument Path="makeResNode.csd" />
       </Value>
     </Item>
   </Properties>

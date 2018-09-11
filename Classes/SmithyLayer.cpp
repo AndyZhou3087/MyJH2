@@ -233,6 +233,17 @@ void SmithyLayer::updateContent(int category)
 
 		cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)itemnode->getChildByName("desc");
 		desclbl->setString(GlobalInstance::map_AllResources[map_cateRes[category][i]].desc);
+
+		cocos2d::ui::Text* hascount = (cocos2d::ui::Text*)itemnode->getChildByName("hascount");
+
+		int count = MyRes::getEquipableCount(map_cateRes[category][i]);
+		if (count > 0)
+		{
+			std::string countstr = StringUtils::format(ResourceLang::map_lang["hasequipcount"].c_str(), count);
+			hascount->setString(countstr);
+		}
+		else
+			hascount->setVisible(false);
 	}
 }
 
