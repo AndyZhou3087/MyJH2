@@ -1701,6 +1701,20 @@ void GlobalInstance::parseMapJson()
 	}
 }
 
+int GlobalInstance::getMyHerosDeadCount()
+{
+	int count = 0;
+	for (unsigned int i = 0; i < vec_myHeros.size(); i++)
+	{
+		Hero* hero = vec_myHeros[i];
+		if (hero->getState() == HS_DEAD)
+		{
+			count++;
+		}
+	}
+	return count;
+}
+
 DynamicValueInt GlobalInstance::getMySoliverCount()
 {
 	return GlobalInstance::mySoliverCount;

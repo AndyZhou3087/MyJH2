@@ -475,6 +475,9 @@ public:
 
 	//获取本地userdefault中保存的数据
 	std::string getUserDefaultXmlString();
+
+	//判断是否有死亡角色
+	int getMyHerosDeadCount();
 private:
 	static GlobalInstance* _Context;//类实例
 

@@ -11,13 +11,8 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="MainLayer.csd" />
-          <FilePathData Path="taskMainDescLayer.csd" />
-          <FilePathData Path="taskLayer.csd" />
-          <FilePathData Path="heroAttrLayer.csd" />
-          <FilePathData Path="mapBlockLayer.csd" />
-          <FilePathData Path="taskTipsNode.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="taskTipsNode.csd" />
+        <ActiveDocument Path="MainLayer.csd" />
       </Value>
     </Item>
   </Properties>

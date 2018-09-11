@@ -199,6 +199,10 @@ void MainScene::delayShowNewerGuide(float dt)
 				showNewerGuide(55);
 			}
 		}
+		else if (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
+		{
+			showNewerGuide(63);
+		}
 	}
 }
 
@@ -239,6 +243,15 @@ void MainScene::showNewerGuide(int step)
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_01_n");
 		nodes.push_back(node);
 	}
+	else if (step == 63)
+	{
+		scroll_3->setEnabled(true);
+		scroll_1->jumpToPercentHorizontal(85);
+		scroll_2->jumpToPercentHorizontal(85);
+		scroll_3->jumpToPercentHorizontal(85);
+		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_02_n");
+		nodes.push_back(node);
+	}
 	showNewerGuideNode(step, nodes);
 }
 
@@ -252,6 +265,11 @@ void MainScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
 			this->addChild(g_NewGuideLayer, 10);
 		}
 	}
+}
+
+void MainScene::setScrollGliding()
+{
+	scroll_3->setEnabled(true);
 }
 
 void MainScene::onEnterTransitionDidFinish()
