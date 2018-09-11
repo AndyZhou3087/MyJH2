@@ -161,14 +161,18 @@ void LoadingScene::showNextScene(float dt)
 	}
 	else
 	{
-		/*if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
-		{
-			NewGuideLayer::setNewGuideInfo(SECONDGUIDESTEP);
-		}
 		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
 		{
 			NewGuideLayer::setNewGuideInfo(THRIDGUIDESTEP);
-		}*/
+		}
+		else if (NewGuideLayer::checkifNewerGuide(MIDELEGUIDESTEP))
+		{
+			NewGuideLayer::setNewGuideInfo(MIDELEGUIDESTEP);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
+		{
+			NewGuideLayer::setNewGuideInfo(FOURTHGUIDESTEP);
+		}
 		Director::getInstance()->replaceScene(MainScene::createScene());
 	}
 }

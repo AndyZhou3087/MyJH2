@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="unlockChapterLayer" Type="Layer" ID="618ebd6a-ea20-4305-8671-d8235213d43e" Version="3.10.0.0" />
+  <PropertyGroup Name="newPopLayer" Type="Layer" ID="618ebd6a-ea20-4305-8671-d8235213d43e" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />

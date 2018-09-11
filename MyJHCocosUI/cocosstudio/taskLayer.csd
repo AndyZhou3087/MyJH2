@@ -79,6 +79,17 @@
                     <PreSize X="0.3816" Y="0.4853" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/task_text_0_n.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="questtip0" ActionTag="1404107283" Tag="34" IconVisible="False" LeftMargin="117.0611" RightMargin="20.9389" TopMargin="13.6785" BottomMargin="20.3215" ctype="SpriteObjectData">
+                    <Size X="14.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="124.0611" Y="37.3215" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8162" Y="0.5488" />
+                    <PreSize X="0.0921" Y="0.5000" />
+                    <FileData Type="MarkedSubImage" Path="ui/taskhinticon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-194.2696" Y="2.2487" />
@@ -105,6 +116,17 @@
                     <PrePosition X="0.5000" Y="0.5294" />
                     <PreSize X="0.3816" Y="0.5000" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/task_text_1_n.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="questtip1" ActionTag="1681787005" Tag="35" IconVisible="False" LeftMargin="118.5839" RightMargin="19.4161" TopMargin="12.6600" BottomMargin="21.3400" ctype="SpriteObjectData">
+                    <Size X="14.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="125.5839" Y="38.3400" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8262" Y="0.5638" />
+                    <PreSize X="0.0921" Y="0.5000" />
+                    <FileData Type="MarkedSubImage" Path="ui/taskhinticon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

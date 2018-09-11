@@ -12,6 +12,7 @@
 #include "MainScene.h"
 #include "RewardLayer.h"
 #include "NewGuideLayer.h"
+#include "Quest.h"
 
 TaskDescLayer::TaskDescLayer()
 {
@@ -265,7 +266,7 @@ void TaskDescLayer::delayShowNewerGuide(float dt)
 {
 	if (!NewGuideLayer::checkifNewerGuide(41))
 	{
-		if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
+		if (NewGuideLayer::checkifNewerGuide(MIDELEGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(42))
 			{
@@ -276,7 +277,7 @@ void TaskDescLayer::delayShowNewerGuide(float dt)
 				showNewerGuide(43);
 			}
 		}
-		else if (NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP))
+		else if (NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP) && Quest::isMainQuestFinish(1))
 		{
 			if (NewGuideLayer::checkifNewerGuide(57))
 			{

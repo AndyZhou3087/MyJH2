@@ -18,6 +18,7 @@
 #include "TaskLayer.h"
 #include "OutTownLayer.h"
 #include "Quest.h"
+#include "HospitalLayer.h"
 
 std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教应该就在前面了，咱们快去看看。", //0
 "", //1
@@ -92,6 +93,7 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 //条件引导
 //医馆
 "小师妹：有角色在战斗中死亡了，不过没关系，我们去医馆找医生给他治疗就可以复活了。",
+"",
 
 //铁匠铺
 "小师妹：掌门师兄回来啦！我们现在有了一定的资源，掌门可以去铁匠铺看看能造些什么东西。",
@@ -342,6 +344,18 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 					}
 				}
 			}
+			else if (m_step == 64)
+			{
+				this->removeFromParentAndCleanup(true);
+				if (g_mainScene != NULL)
+				{
+					HospitalLayer* layer = (HospitalLayer*)g_mainScene->getChildByName("1hospital");
+					if (layer != NULL)
+					{
+						layer->delayShowNewerGuide(0);
+					}
+				}
+			}
 		}
 		return;
 	};
@@ -361,6 +375,11 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 bool NewGuideLayer::checkifNewerGuide(int index)
 {
 	return DataSave::getInstance()->getIsNewerGuide(index);
+}
+
+void NewGuideLayer::setNewerGuide(int index)
+{
+	DataSave::getInstance()->setIsNewerGuide(index, false);
 }
 
 void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
@@ -631,27 +650,107 @@ void NewGuideLayer::setNewGuideInfo(int step)
 			}
 		}
 	}
-	//else if (step == SECONDGUIDESTEP)
-	//{
-	//	if (checkifNewerGuide(step))
-	//	{
-	//		for (int i = FIRSTGUIDESTEP + 1; i < step; i++)
-	//		{
-	//			DataSave::getInstance()->setIsNewerGuide(i, 1);
-	//		}
-	//	}
-	//}
-	//else if (step == THRIDGUIDESTEP)
-	//{
-	//	if (checkifNewerGuide(step))
-	//	{
-	//		for (int i = SECONDGUIDESTEP + 1; i < step; i++)
-	//		{
-	//			DataSave::getInstance()->setIsNewerGuide(i, 1);
-	//		}
-	//	}
-	//}
-	
+	else if (step == THRIDGUIDESTEP)
+	{
+		for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+		{
+			Hero* hero = GlobalInstance::vec_myHeros[i];
+			delete hero;
+		}
+		for (unsigned int i = 0; i < GlobalInstance::vec_rand3Heros.size(); i++)
+		{
+			Hero* hero = GlobalInstance::vec_rand3Heros[i];
+			delete hero;
+		}
+		GlobalInstance::vec_myHeros.clear();
+		GlobalInstance::vec_rand3Heros.clear();
+		for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
+		{
+			ResBase* res = MyRes::vec_MyResources[i];
+			if (res->getType() >= T_WG && res->getType() <= T_NG)
+			{
+				GongFa* gongfa = (GongFa*)res;
+				gongfa->setWhos("");
+				gongfa->setWhere(MYSTORAGE);
+			}
+		}
+
+		/*DataSave::getInstance()->setRand3HeroData("");
+		for (int i = 0; i < 3; i++)
+		{
+			std::string herokey = StringUtils::format("hero%d", i);
+			DataSave::getInstance()->setHeroData(herokey, "");
+		}
+		DataSave::getInstance()->setMyRes(defaultres);*/
+
+		if (checkifNewerGuide(step))
+		{
+			for (int i = SECONDGUIDESTEP + 1; i < step; i++)
+			{
+				DataSave::getInstance()->setIsNewerGuide(i, 1);
+			}
+		}
+	}
+	else if (step == MIDELEGUIDESTEP)
+	{
+		GlobalInstance::myCurMainData.isfinish = QUEST_TASK;
+		for (unsigned int i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
+		{
+			TaskData* data = &GlobalInstance::vec_TaskMain[i];
+			if (data->id == 1)
+			{
+				data->isfinish = QUEST_TASK;
+				break;
+			}
+		}
+
+		if (checkifNewerGuide(step))
+		{
+			for (int i = THRIDGUIDESTEP + 1; i < step; i++)
+			{
+				DataSave::getInstance()->setIsNewerGuide(i, 1);
+			}
+		}
+	}
+	else if (step == FOURTHGUIDESTEP)
+	{
+		for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+		{
+			Hero* hero = GlobalInstance::vec_myHeros[i];
+			hero->setState(HS_OWNED);
+		}
+		for (int i = 0; i < 6; i++)
+		{
+			GlobalInstance::myCardHeros[i] = NULL;
+		}
+
+		if (checkifNewerGuide(step))
+		{
+			for (int i = MIDELEGUIDESTEP + 1; i < step; i++)
+			{
+				DataSave::getInstance()->setIsNewerGuide(i, 1);
+			}
+		}
+	}
+	/*else if (step == FIFTHGUIDESTEP)
+	{
+		for (unsigned int i = 0; i < Quest::myFinishMainQuest.size(); i++)
+		{
+			TaskData* data = &Quest::myFinishMainQuest[i];
+			if (data->id == 1)
+			{
+				data->isfinish = QUEST_FINISH;
+			}
+		}
+
+		if (checkifNewerGuide(step))
+		{
+			for (int i = FOURTHGUIDESTEP + 1; i < step; i++)
+			{
+				DataSave::getInstance()->setIsNewerGuide(i, 1);
+			}
+		}
+	}*/
 }
 
 void NewGuideLayer::onExit()

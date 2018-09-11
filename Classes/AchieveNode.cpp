@@ -58,6 +58,11 @@ bool AchieveNode::init(AchieveData* data)
 
 	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox");
 	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
+	if (m_Data->type != ACHIEVE_GOODS)
+	{
+		std::string s = StringUtils::format("ui/dailytask_%d.png", m_Data->type);
+		res->loadTexture(s, cocos2d::ui::Widget::TextureResType::PLIST);
+	}
 
 	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 	desc->setString(ResourceLang::map_lang["dailyrlabel"]);
@@ -110,7 +115,10 @@ bool AchieveNode::init(AchieveData* data)
 				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
 			resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
-			res->loadTexture(s, cocos2d::ui::Widget::TextureResType::PLIST);
+			if (m_Data->type == ACHIEVE_GOODS)
+			{
+				res->loadTexture(s, cocos2d::ui::Widget::TextureResType::PLIST);
+			}
 		}
 		s = StringUtils::format("text_%d", i); 
 		cocos2d::ui::Text* text = (cocos2d::ui::Text*)csbnode->getChildByName(s);

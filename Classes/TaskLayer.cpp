@@ -109,7 +109,7 @@ bool TaskLayer::init()
 		Quest::resetDailyTask();
 	}
 
-	this->scheduleOnce(schedule_selector(TaskLayer::delayShowNewerGuide), 0.1f);
+	this->scheduleOnce(schedule_selector(TaskLayer::delayShowNewerGuide), 0.3f);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -128,7 +128,7 @@ void TaskLayer::delayShowNewerGuide(float dt)
 {
 	if (!NewGuideLayer::checkifNewerGuide(14))
 	{
-		if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
+		if (NewGuideLayer::checkifNewerGuide(MIDELEGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(41))
 			{
@@ -139,7 +139,7 @@ void TaskLayer::delayShowNewerGuide(float dt)
 				showNewerGuide(44);
 			}
 		}
-		else if (NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP))
+		else if (NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP) && Quest::isMainQuestFinish(1))
 		{
 			if (NewGuideLayer::checkifNewerGuide(56))
 			{

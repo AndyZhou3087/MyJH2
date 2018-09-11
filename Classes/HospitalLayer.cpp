@@ -13,7 +13,7 @@
 
 HospitalLayer::HospitalLayer()
 {
-
+	dcount = -1;
 }
 
 
@@ -81,20 +81,27 @@ bool HospitalLayer::init()
 
 void HospitalLayer::delayShowNewerGuide(float dt)
 {
+	if (vec_deadheros.size() <= 0)
+	{
+		NewGuideLayer::setNewerGuide(64);
+	}
 	if (!NewGuideLayer::checkifNewerGuide(63) && vec_deadheros.size() > 0)
 	{
-		showNewerGuide(-1);
+		if (NewGuideLayer::checkifNewerGuide(64))
+		{
+			showNewerGuide(64);
+		}
 	}
 }
 
 void HospitalLayer::showNewerGuide(int step)
 {
 	std::vector<Node*> nodes;
-	if (step == -1)
+	if (step == 64)
 	{
-		//nodes.push_back(node);
+		nodes.push_back(vec_deadNodes[0]->getChildByName("csbnode")->getChildByName("actionbtn"));
 	}
-	//g_mainScene->showNewerGuideNode(step, nodes);
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void HospitalLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -115,6 +122,7 @@ void HospitalLayer::updateContent()
 
 	scrollview->removeAllChildrenWithCleanup(true);
 	vec_deadheros.clear();
+	vec_deadNodes.clear();
 	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 	{
 		Hero* hero = GlobalInstance::vec_myHeros[i];
@@ -145,5 +153,6 @@ void HospitalLayer::updateContent()
 		node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
 		node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
 		//node->setPosition(Vec2(319, innerheight - i*itemheight - itemheight*0.5));
+		vec_deadNodes.push_back(node);
 	}
 }
