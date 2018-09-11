@@ -217,7 +217,7 @@ void SmithyLayer::updateContent(int category)
 		itemnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
 
 		//itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
-		m_contentscroll->addChild(itemnode);
+		m_contentscroll->addChild(itemnode, 0, map_cateRes[category][i]);
 
 		cocos2d::ui::Widget* itembg= (cocos2d::ui::Widget*)itemnode->getChildByName("resitem");
 		itembg->addTouchEventListener(CC_CALLBACK_2(SmithyLayer::onItemClick, this));
@@ -239,6 +239,7 @@ void SmithyLayer::updateContent(int category)
 		int count = MyRes::getEquipableCount(map_cateRes[category][i]);
 		if (count > 0)
 		{
+			hascount->setVisible(true);
 			std::string countstr = StringUtils::format(ResourceLang::map_lang["hasequipcount"].c_str(), count);
 			hascount->setString(countstr);
 		}
@@ -319,6 +320,11 @@ void SmithyLayer::makeRes(std::string resid)
 	else
 		desc = StringUtils::format("%s%s", ResourceLang::map_lang["makesucc"].c_str(), resstr.c_str());
 	MovingLabel::show(desc);
+
+	cocos2d::ui::Text* hascount = (cocos2d::ui::Text*)m_contentscroll->getChildByName(resid)->getChildByName("hascount");
+	hascount->setVisible(true);
+	std::string countstr = StringUtils::format(ResourceLang::map_lang["hasequipcount"].c_str(), MyRes::getEquipableCount(resid));
+	hascount->setString(countstr);
 }
 
 void SmithyLayer::onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
