@@ -65,6 +65,9 @@ private:
 	std::vector<Node*> vec_taskicon;
 	bool isPlayNewHeroAnim;
 	Node* maincityhintbox;
+
+	int lastArrow;
+	float lastx;
 };
 extern MainScene* g_mainScene;
 #endif
