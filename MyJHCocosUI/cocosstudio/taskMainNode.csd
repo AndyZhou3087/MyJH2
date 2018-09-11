@@ -16,8 +16,8 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/resitem.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="763399710" Tag="160" IconVisible="False" LeftMargin="-29.0000" RightMargin="-29.0000" TopMargin="-16.0000" BottomMargin="-16.0000" FontSize="28" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="58.0000" Y="32.0000" />
+          <AbstractNodeData Name="name" ActionTag="763399710" Tag="160" IconVisible="False" LeftMargin="-56.5000" RightMargin="-56.5000" TopMargin="-16.0000" BottomMargin="-16.0000" FontSize="28" LabelText="十四天书" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="113.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -28,15 +28,15 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="redpoint" ActionTag="-1795562086" Tag="256" IconVisible="False" LeftMargin="-116.3014" RightMargin="92.3014" TopMargin="-14.7211" BottomMargin="-9.2789" ctype="SpriteObjectData">
-            <Size X="24.0000" Y="24.0000" />
+          <AbstractNodeData Name="redpoint" ActionTag="-1795562086" Tag="256" IconVisible="False" LeftMargin="93.0000" RightMargin="-107.0000" TopMargin="-20.0000" BottomMargin="-14.0000" ctype="SpriteObjectData">
+            <Size X="14.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-104.3014" Y="2.7211" />
+            <Position X="100.0000" Y="3.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+            <FileData Type="MarkedSubImage" Path="ui/taskhinticon.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="finish" ActionTag="1392050042" Tag="257" IconVisible="False" LeftMargin="-281.7020" RightMargin="51.7020" TopMargin="-53.8613" BottomMargin="-10.1387" ctype="SpriteObjectData">
