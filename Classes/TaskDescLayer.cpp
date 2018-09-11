@@ -208,9 +208,18 @@ bool TaskDescLayer::init(TaskData* data, int type)
 		{
 			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
+		else if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
+		{
+			qu = atoi(resid.substr(1).c_str()) - 1;
+			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
+
+
 		Sprite * box = Sprite::createWithSpriteFrameName(qustr);
 		box->setPosition(Vec2(80 + i % 3 * 170, 103 - i / 3 * 163));
 		scrollView->addChild(box);
+
+		CommonFuncs::playResBoxEffect(box, qu);
 
 		std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 

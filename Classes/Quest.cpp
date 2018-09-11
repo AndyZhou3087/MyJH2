@@ -211,7 +211,7 @@ bool Quest::checkResQuestData(std::string resid, int count, std::string npcid)
 				else
 				{
 					ResBase* res = MyRes::getMyRes(resid, MYPACKAGE);
-					if (res != NULL)
+					if (res != NULL && pcount > 0)
 					{
 						MyRes::Use(res, pcount, MYPACKAGE);
 					}
