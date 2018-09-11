@@ -82,7 +82,7 @@
             <Position X="0.0001" Y="280.0006" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0000" Y="0.2188" />
+            <PrePosition Y="0.2188" />
             <PreSize X="1.0000" Y="0.6641" />
             <SingleColor A="255" R="255" G="150" B="100" />
             <FirstColor A="255" R="255" G="150" B="100" />

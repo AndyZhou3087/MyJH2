@@ -178,41 +178,44 @@ void MainScene::delayShowNewerGuide(float dt)
 {
 	if (!NewGuideLayer::checkifNewerGuide(14))
 	{
-		/*if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
+		if (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
+		{
+			showNewerGuide(63);
+		}
+		/*else if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(15))
 			{
 				showNewerGuide(15);
 			}
-		}
-		else */if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
+		}*/
+		else if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(22))
 			{
 				showNewerGuide(22);
 			}
 		}
-		else if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
+		else if (NewGuideLayer::checkifNewerGuide(MIDELEGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(40))
 			{
 				showNewerGuide(40);
 			}
-			else if (NewGuideLayer::checkifNewerGuide(45))
+		}
+		else if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(45))
 			{
 				showNewerGuide(45);
 			}
 		}
-		else if (NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP))
+		else if (NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP) && Quest::isMainQuestFinish(1))
 		{
-			if (NewGuideLayer::checkifNewerGuide(55) && Quest::isMainQuestFinish(1))
+			if (NewGuideLayer::checkifNewerGuide(55))
 			{
 				showNewerGuide(55);
 			}
-		}
-		else if (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
-		{
-			showNewerGuide(63);
 		}
 	}
 }
@@ -257,9 +260,9 @@ void MainScene::showNewerGuide(int step)
 	else if (step == 63)
 	{
 		scroll_3->setEnabled(true);
-		scroll_1->jumpToPercentHorizontal(85);
-		scroll_2->jumpToPercentHorizontal(85);
-		scroll_3->jumpToPercentHorizontal(85);
+		scroll_1->jumpToPercentHorizontal(100);
+		scroll_2->jumpToPercentHorizontal(100);
+		scroll_3->jumpToPercentHorizontal(100);
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_02_n");
 		nodes.push_back(node);
 	}

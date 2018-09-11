@@ -6,6 +6,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "Hero.h"
+#include "MyHeroNode.h"
 
 USING_NS_CC;
 
@@ -30,6 +31,9 @@ private:
 	cocos2d::ui::Text* cointext;
 	cocos2d::ui::Text* silvertext;
 	cocos2d::ui::Text* hintdesc;
+	std::vector<MyHeroNode*> vec_deadNodes;
+	int dcount;
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 

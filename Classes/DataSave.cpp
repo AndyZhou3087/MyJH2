@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include "MD5.h"
 #include "Utility.h"
+#include "Const.h"
 
 DataSave* DataSave::_Context = NULL;
 
@@ -99,7 +100,7 @@ void DataSave::setMyRes(std::string strval)
 
 std::string DataSave::getMyRes()
 {
-	return loadStringDataByKey("myres", "r001-500-1;r002-500-1;r003-500-1;r004-500-1;r005-500-1;w001-1-1-0-0-;x001-1-1-0-0-");
+	return loadStringDataByKey("myres", defaultres);
 }
 
 void DataSave::setMyBranchTask(std::string strval)
