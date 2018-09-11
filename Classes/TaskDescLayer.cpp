@@ -353,9 +353,24 @@ void TaskDescLayer::getRewards()
 {
 	m_data->isfinish = QUEST_GET;
 	std::vector<MSGAWDSDATA> vec_rewards;
-	for (unsigned int i = 0; i < rewards.size(); i++)
+	std::vector<std::vector<std::string>> m_rewards;
+	for (unsigned int i = 0; i < m_data->type.size(); i++)
 	{
-		std::vector<std::string> one_res = rewards[i];
+		if (m_data->finishtype == m_data->type[i])
+		{
+			if (i == 0)
+			{
+				m_rewards = m_data->reward1;
+			}
+			else
+			{
+				m_rewards = m_data->reward2;
+			}
+		}
+	}
+	for (unsigned int i = 0; i < m_rewards.size(); i++)
+	{
+		std::vector<std::string> one_res = m_rewards[i];
 		std::string resid = one_res[0];
 		int count = atoi(one_res[1].c_str());
 		int qu = 0;
