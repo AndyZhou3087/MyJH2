@@ -99,7 +99,8 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		AnimationEffect::closeAniEffect((Layer*)this);
+		if (forwhere != 4)
+			AnimationEffect::closeAniEffect((Layer*)this);
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);

@@ -84,7 +84,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="43" G="30" B="20" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Image_1" ActionTag="-523489285" Tag="86" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="359.2086" RightMargin="354.7914" TopMargin="372.8469" BottomMargin="447.1531" Scale9Enable="True" LeftEage="1" RightEage="1" TopEage="60" BottomEage="60" Scale9OriginX="1" Scale9OriginY="60" Scale9Width="4" Scale9Height="62" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="sepline" ActionTag="-523489285" Tag="86" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="359.2086" RightMargin="354.7914" TopMargin="372.8469" BottomMargin="447.1531" Scale9Enable="True" LeftEage="1" RightEage="1" TopEage="60" BottomEage="60" Scale9OriginX="1" Scale9OriginY="60" Scale9Width="4" Scale9Height="62" ctype="ImageViewObjectData">
             <Size X="6.0000" Y="460.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="362.2086" Y="677.1531" />
@@ -94,19 +94,18 @@
             <PreSize X="0.0083" Y="0.3594" />
             <FileData Type="MarkedSubImage" Path="ui/setpline0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox_0" ActionTag="1214179370" Tag="87" IconVisible="False" LeftMargin="121.0100" RightMargin="473.9900" TopMargin="605.8041" BottomMargin="549.1959" ctype="SpriteObjectData">
+          <AbstractNodeData Name="resbox" ActionTag="1214179370" Tag="87" IconVisible="False" LeftMargin="121.0100" RightMargin="473.9900" TopMargin="605.8041" BottomMargin="549.1959" ctype="SpriteObjectData">
             <Size X="125.0000" Y="125.0000" />
             <Children>
-              <AbstractNodeData Name="d001" ActionTag="541006699" Tag="88" IconVisible="False" LeftMargin="8.9125" RightMargin="7.0875" TopMargin="6.8599" BottomMargin="9.1401" ctype="SpriteObjectData">
+              <AbstractNodeData Name="res" ActionTag="-1431564977" Tag="73" IconVisible="False" LeftMargin="8.0000" RightMargin="8.0000" TopMargin="8.0000" BottomMargin="8.0000" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
                 <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="63.4125" Y="63.6401" />
+                <Position X="62.5000" Y="62.5000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5073" Y="0.5091" />
+                <PrePosition X="0.5000" Y="0.5000" />
                 <PreSize X="0.8720" Y="0.8720" />
                 <FileData Type="MarkedSubImage" Path="ui/d001.png" Plist="ui.plist" />
-                <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

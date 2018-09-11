@@ -61,6 +61,9 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
+	int c = (herodata->getLevel() + 1) / 10;
+	needresid = StringUtils::format("d%03d", c);
+
 	//name
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	name->setString(herodata->getName());
@@ -78,14 +81,19 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 	accbtn3->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onBtnClick, this));
 	accbtn3->setTitleText(ResourceLang::map_lang["changeclosetext"]);
 
+	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox")->getChildByName("res");
+	std::string respath = StringUtils::format("ui/%s.png", needresid.c_str());
+	res->loadTexture(respath, cocos2d::ui::Widget::TextureResType::PLIST);
+
 	cocos2d::ui::Text* rewardlabel = (cocos2d::ui::Text*)csbnode->getChildByName("rewardlabel");
 
 	cocos2d::ui::Text* content = (cocos2d::ui::Text*)csbnode->getChildByName("content");
 
 	cocos2d::ui::Text* count_0 = (cocos2d::ui::Text*)csbnode->getChildByName("count_0");
-	std::string str = StringUtils::format("%d/1", MyRes::getMyResCount("d001"));
+	std::string str = StringUtils::format("%d/1", MyRes::getMyResCount(needresid));
 	count_0->setString(str);
-	if (MyRes::getMyResCount("d001") >= 1)
+
+	if (MyRes::getMyResCount(needresid) >= 1)
 	{
 		count_0->setColor(Color3B(255, 255, 255));
 	}
@@ -164,14 +172,14 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 		{
 			if (tag != 0)
 			{
-				if (MyRes::getMyResCount("d001") < 1)
+				if (MyRes::getMyResCount(needresid) < 1)
 				{
 					MovingLabel::show(ResourceLang::map_lang["reslack"]);
 					return;
 				}
 				else
 				{
-					MyRes::Use("d001");
+					MyRes::Use(needresid);
 				}
 			}
 			if (tag == m_herodata->getVocation() + 4 || tag == m_herodata->getVocation() + 8)
@@ -193,14 +201,14 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 		{
 			if (tag != 0)
 			{
-				if (MyRes::getMyResCount("d001") < 1)
+				if (MyRes::getMyResCount(needresid) < 1)
 				{
 					MovingLabel::show(ResourceLang::map_lang["reslack"]);
 					return;
 				}
 				else
 				{
-					MyRes::Use("d001");
+					MyRes::Use(needresid);
 					m_herodata->setChangeCount(m_herodata->getChangeCount() + 1);
 					GlobalInstance::getInstance()->saveHero(m_herodata);
 					HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();

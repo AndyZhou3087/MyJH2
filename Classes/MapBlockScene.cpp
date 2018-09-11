@@ -384,7 +384,7 @@ void MapBlockScene::updateTaskInfo(float dt)
 void MapBlockScene::updateLabel(float dt)
 {
 	int foodcount = MyRes::getMyResCount("r001", MYPACKAGE);
-	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::getInstance()->getTotalCarry());
+	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/);
 	carrycountlbl->setString(str);
 	str = StringUtils::format("%d", foodcount);
 	foodcountlbl->setString(str);

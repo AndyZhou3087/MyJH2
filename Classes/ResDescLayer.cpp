@@ -61,6 +61,22 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 	cocos2d::ui::Widget* smallbg = (cocos2d::ui::Widget*)csbnode->getChildByName("smallbg");
 	smallbg->setSwallowTouches(true);
 
+	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox");
+
+	std::string boxstr = "ui/resbox.png";
+	int t = 0;
+	for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+	{
+		if (m_res->getId().compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+			break;
+	}
+	if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
+	{
+		int qu = atoi(m_res->getId().substr(1).c_str()) - 1;
+		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		CommonFuncs::playResBoxEffect(resbox, qu);
+	}
+
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	std::string str = StringUtils::format("ui/%s.png", res->getId().c_str());
 	p_res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);

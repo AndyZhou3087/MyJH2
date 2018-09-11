@@ -656,7 +656,7 @@ int FightingLayer::checkFightResult()
 
 bool FightingLayer::sortbyHp_lesscb(FightHeroNode* a, FightHeroNode* b)
 {
-	if (a->getData()->getHp() < b->getData()->getHp())
+	if (a->getData()->getHp() / a->getData()->getMaxHp() < b->getData()->getHp() / b->getData()->getMaxHp())
 		return true;
 	else
 		return false;

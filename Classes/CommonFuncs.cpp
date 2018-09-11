@@ -186,3 +186,17 @@ void CommonFuncs::playCommonLvUpAnim(Node* target, std::string textstr)
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, false);
 }
+
+void CommonFuncs::playResBoxEffect(cocos2d::Node* target, int qu)
+{
+	if (qu >= 2)
+	{
+		std::string effectstr = StringUtils::format("effect/resbox%deffect.csb", qu);
+		auto effectnode = CSLoader::createNode(effectstr);
+		effectnode->setPosition(Vec2(target->getContentSize().width/2, target->getContentSize().height/2));
+		target->addChild(effectnode, 1, "qianghuachenggong");
+		auto action = CSLoader::createTimeline(effectstr);
+		effectnode->runAction(action);
+		action->gotoFrameAndPlay(0, true);
+	}
+}

@@ -180,7 +180,7 @@ void EventBusinessLayer::updateScrollviewContent()
 			boxItem->addChild(countlbl);
 		}
 	}
-	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::getInstance()->getTotalCarry());
+	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/);
 	carrycountlbl->setString(str);
 }
 

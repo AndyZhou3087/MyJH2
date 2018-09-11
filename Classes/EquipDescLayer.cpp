@@ -71,6 +71,8 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	std::string qustr = StringUtils::format("ui/resbox_qu%d.png", s);
 	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
+	CommonFuncs::playResBoxEffect(resbox_qu, s);
+
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	std::string str = GlobalInstance::getInstance()->getResUIFrameName(res->getId(), s);
 
