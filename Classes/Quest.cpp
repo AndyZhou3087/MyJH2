@@ -315,6 +315,23 @@ bool Quest::isMainQuestFinish(int questid)
 	return false;
 }
 
+bool Quest::isShowQuestTip()
+{
+	if (GlobalInstance::myCurMainData.isfinish != QUEST_ACC)
+	{
+		return true;
+	}
+	for (unsigned int i = 0; i < myFinishMainQuest.size(); i++)
+	{
+		TaskData data = myFinishMainQuest[i];
+		if (data.isfinish != QUEST_GET)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 /*************支线任务**************/
 
 bool Quest::initFinishTaskBranchData()
@@ -564,6 +581,23 @@ bool Quest::getBranchQuest()
 	if (GlobalInstance::myCurBranchData.isfinish == QUEST_ACC)
 	{
 		return true;
+	}
+	return false;
+}
+
+bool Quest::isShowBranchQuestTip()
+{
+	if (GlobalInstance::myCurBranchData.isfinish != QUEST_ACC)
+	{
+		return true;
+	}
+	for (unsigned int i = 0; i < myFinishBranchQuest.size(); i++)
+	{
+		TaskData data = myFinishBranchQuest[i];
+		if (data.isfinish != QUEST_GET)
+		{
+			return true;
+		}
 	}
 	return false;
 }

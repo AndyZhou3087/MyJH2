@@ -57,6 +57,9 @@ public:
 
 	static bool isMainQuestFinish(int questid);
 
+	//主线是否领取奖励和接受当前任务
+	static bool isShowQuestTip();
+
 	/*************支线任务数据逻辑**************/
 
 	//初始化已完成的任务
@@ -93,6 +96,9 @@ public:
 
 	//判断是否接受支线任务
 	static bool getBranchQuest();
+
+	//支线是否领取奖励和接受当前任务
+	static bool isShowBranchQuestTip();
 
 	/*************每日数据逻辑**************/
 	//每日任务

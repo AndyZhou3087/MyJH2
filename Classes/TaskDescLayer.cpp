@@ -342,6 +342,13 @@ void TaskDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		default:
 			break;
 		}
+
+		//ºìµãÌáÊ¾
+		TaskLayer* layer = (TaskLayer*)g_mainScene->getChildByName("9assemblyhall");
+		if (layer != NULL)
+		{
+			layer->updateQuestTip();
+		}
 	}
 }
 

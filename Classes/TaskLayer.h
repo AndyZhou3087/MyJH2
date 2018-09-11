@@ -28,6 +28,7 @@ public:
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
 
+	void updateQuestTip();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -48,6 +49,7 @@ private:
 	cocos2d::ui::Widget* pnode;
 	cocos2d::ui::Text* mypoint;
 	cocos2d::ui::LoadingBar* probar;
+	cocos2d::ui::Widget* questtipArr[2];
 
 public:
 	void skipContent();

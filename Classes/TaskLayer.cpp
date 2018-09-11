@@ -20,6 +20,10 @@
 TaskLayer::TaskLayer()
 {
 	lastCategoryindex = 0;
+	for (int i = 0; i < 2; i++)
+	{
+		questtipArr[i] = NULL;
+	}
 }
 
 
@@ -83,7 +87,16 @@ bool TaskLayer::init()
 		btn->setTag(i);
 		btn->addTouchEventListener(CC_CALLBACK_2(TaskLayer::onCategory, this));
 		vec_categoryBtn.push_back(btn);
+
+		if (i < 2)
+		{
+			btnstr = StringUtils::format("questtip%d", i);
+			cocos2d::ui::Widget* questtip = (cocos2d::ui::Widget*)btn->getChildByName(btnstr);
+			questtipArr[i] = questtip;
+		}
 	}
+
+	updateQuestTip();
 	updateContent(0);
 
 	updateDaily(0);
@@ -461,4 +474,22 @@ void TaskLayer::skipContent()
 {
 	lastCategoryindex = 1;
 	updateContent(1);
+}
+
+void TaskLayer::updateQuestTip()
+{
+	if (!Quest::isShowQuestTip())
+	{
+		if (questtipArr[0] != NULL)
+		{
+			questtipArr[0]->setVisible(false);
+		}
+	}
+	if (!Quest::isShowBranchQuestTip())
+	{
+		if (questtipArr[1] != NULL)
+		{
+			questtipArr[1]->setVisible(false);
+		}
+	}
 }
