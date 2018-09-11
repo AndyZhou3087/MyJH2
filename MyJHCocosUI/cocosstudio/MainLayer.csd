@@ -265,6 +265,31 @@
                 <PreSize X="0.0177" Y="0.1187" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/main_06_t.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
+              <AbstractNodeData Name="maincityhintbox" ActionTag="510589308" Tag="130" IconVisible="False" LeftMargin="1211.9998" RightMargin="1072.0002" TopMargin="517.0000" BottomMargin="677.0000" ctype="SpriteObjectData">
+                <Size X="196.0000" Y="86.0000" />
+                <Children>
+                  <AbstractNodeData Name="text" ActionTag="-1181347981" Tag="131" IconVisible="False" LeftMargin="19.5000" RightMargin="19.5000" TopMargin="26.1537" BottomMargin="34.8463" FontSize="22" LabelText="可招募新的英雄" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+                    <Size X="157.0000" Y="25.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="98.0000" Y="47.3463" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="225" B="83" />
+                    <PrePosition X="0.5000" Y="0.5505" />
+                    <PreSize X="0.8010" Y="0.2907" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="80" G="38" B="12" />
+                    <ShadowColor A="255" R="36" G="48" B="58" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.3000" />
+                <Position X="1270.7998" Y="677.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5124" Y="0.5289" />
+                <PreSize X="0.0790" Y="0.0672" />
+                <FileData Type="MarkedSubImage" Path="ui/maincityhintbox.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint />
             <Position />

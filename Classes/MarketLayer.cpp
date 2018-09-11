@@ -241,7 +241,14 @@ void MarketLayer::buyRes(int iterindex, int count)
 {
 	std::string resid = vec_Res[iterindex].resid;
 
-	MyRes::Add(resid, count);
+	if (resid.compare("r013") == 0)
+	{
+		DynamicValueInt dvint;
+		dvint.setValue(1000);
+		GlobalInstance::getInstance()->addMySoliverCount(dvint);
+	}
+	else
+		MyRes::Add(resid, count);
 
 	vec_Res[iterindex].stockcount -= count;
 

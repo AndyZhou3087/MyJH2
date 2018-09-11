@@ -321,6 +321,26 @@ public:
 	****************************/
 	void setIsNewerGuide(int index, bool val);
 
+	/****************************
+	银两刷新英雄次数
+	****************************/
+	void setSilverRefHeroCount(int val);
+
+	/****************************
+	获取银两刷新英雄次数
+	****************************/
+	int getSilverRefHeroCount();
+
+	/****************************
+	重置银两刷新英雄次数时间
+	****************************/
+	void setResetSilverRefHeroCountTime(int val);
+
+	/****************************
+	获取重置银两刷新英雄次数时间
+	****************************/
+	int getResetSilverRefHeroCountTime();
+
 private:
 	static DataSave* _Context;//类实例
 

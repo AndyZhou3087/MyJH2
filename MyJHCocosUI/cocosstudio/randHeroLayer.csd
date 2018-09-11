@@ -189,14 +189,14 @@
           <AbstractNodeData Name="srefreshbtn" ActionTag="-741711115" Tag="80" IconVisible="False" LeftMargin="258.0000" RightMargin="258.0000" TopMargin="858.0000" BottomMargin="338.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
-              <AbstractNodeData Name="text" ActionTag="1470175321" Tag="81" IconVisible="False" LeftMargin="23.5216" RightMargin="24.4784" TopMargin="20.2404" BottomMargin="24.7596" LeftEage="51" RightEage="51" TopEage="13" BottomEage="13" Scale9OriginX="51" Scale9OriginY="13" Scale9Width="54" Scale9Height="13" ctype="ImageViewObjectData">
-                <Size X="156.0000" Y="39.0000" />
+              <AbstractNodeData Name="text" ActionTag="1470175321" Tag="81" IconVisible="False" LeftMargin="28.5216" RightMargin="29.4784" TopMargin="20.2404" BottomMargin="24.7596" LeftEage="51" RightEage="51" TopEage="13" BottomEage="13" Scale9OriginX="51" Scale9OriginY="13" Scale9Width="44" Scale9Height="13" ctype="ImageViewObjectData">
+                <Size X="146.0000" Y="39.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="101.5216" Y="44.2596" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4977" Y="0.5269" />
-                <PreSize X="0.7647" Y="0.4643" />
+                <PreSize X="0.7157" Y="0.4643" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/srefresh_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
             </Children>

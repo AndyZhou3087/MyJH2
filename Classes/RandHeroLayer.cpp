@@ -11,11 +11,14 @@
 #include "SoundManager.h"
 #include "NewGuideLayer.h"
 #include "MainScene.h"
+#include "MarketLayer.h"
+#include "ShopLayer.h"
+#include "DataSave.h"
 
 USING_NS_CC;
 
 #define SILVERREFRESH_NUM 100
-#define COINREFRESH_NUM 10
+#define COINREFRESH_NUM 50
 RandHeroLayer::RandHeroLayer()
 {
 
@@ -103,7 +106,7 @@ bool RandHeroLayer::init()
 
 
 	refreshsilverlbl = (cocos2d::ui::Text*)csbnode->getChildByName("snumbl");
-	std::string lblstr = StringUtils::format("%d", SILVERREFRESH_NUM);
+	std::string lblstr = StringUtils::format("%d", SILVERREFRESH_NUM + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
 	refreshsilverlbl->setString(lblstr);
 	refreshcoinlbl = (cocos2d::ui::Text*)csbnode->getChildByName("cnumbl");
 	lblstr = StringUtils::format("%d", COINREFRESH_NUM);
@@ -203,7 +206,7 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		switch (tag)
 		{
 		case BTN_S_REFRESH://银子刷新
-			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= SILVERREFRESH_NUM)
+			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= SILVERREFRESH_NUM + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100)
 			{
 				if (checkIsTopPotentail(1) < 0)
 					refresh3Hero(1);
@@ -226,9 +229,19 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case BTN_ADD_SILVERBOX://增加银子
 		case BTN_ADD_SILVER://增加银子
+		{
+			MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
+			g_mainScene->addChild(layer, 0, "5market");
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		case BTN_ADD_COINBOX://增加元宝
 		case BTN_ADD_COIN://增加元宝
+		{
+			ShopLayer* layer = ShopLayer::create();
+			g_mainScene->addChild(layer, 0, "ShopLayer");
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		case BTN_CLOSE://关闭
 			AnimationEffect::closeAniEffect((Layer*)this);
@@ -266,8 +279,14 @@ void RandHeroLayer::refresh3Hero(int i)
 	if (i == 1)
 	{
 		DynamicValueInt dval;
-		dval.setValue(SILVERREFRESH_NUM);
+		dval.setValue(SILVERREFRESH_NUM + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
 		GlobalInstance::getInstance()->costMySoliverCount(dval);
+
+		GlobalInstance::getInstance()->setSilverRefHeroCount(GlobalInstance::getInstance()->getSilverRefHeroCount() + 1);
+
+		std::string str = StringUtils::format("%d", SILVERREFRESH_NUM + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
+		refreshsilverlbl->setString(str);
+
 		create3RandHero();
 		for (int i = 0; i < 3; i++)
 		{
@@ -301,6 +320,9 @@ void RandHeroLayer::updateUI(float dt)
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
 	mycoinlbl->setString(str);
 
+	str = StringUtils::format("%d", SILVERREFRESH_NUM + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
+	refreshsilverlbl->setString(str);
+
 	int lefttime = 0;
 	int refreshtime = GlobalInstance::getInstance()->getRefreshHeroTime();
 	int pasttime = GlobalInstance::servertime - refreshtime;
@@ -325,6 +347,13 @@ void RandHeroLayer::updateUI(float dt)
 	std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
 	m_timelbl->setString(timestr);
 	m_timebar->setPercent(lefttime*100/ HERO_RESETTIME);
+
+	if (GlobalInstance::servertime - GlobalInstance::getInstance()->getResetSilverRefHeroCountTime() >= 24 * 60 * 60)
+	{
+		GlobalInstance::getInstance()->setResetSilverRefHeroCountTime(GlobalInstance::servertime - GlobalInstance::servertime % (24 * 60 * 60));
+		GlobalInstance::getInstance()->setSilverRefHeroCount(0);
+	}
+
 }
 
 void RandHeroLayer::create3RandHero()

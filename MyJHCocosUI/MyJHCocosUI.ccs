@@ -877,6 +877,7 @@
           <Image Name="main_setbtn.png" />
           <Image Name="main_shopbtn.png" />
           <Image Name="main_silver.png" />
+          <Image Name="maincityhintbox.png" />
           <Image Name="maintask_icon.png" />
           <Image Name="messageicon.png" />
           <Image Name="ninegrid.png" />
@@ -901,6 +902,7 @@
           <Image Name="r010.png" />
           <Image Name="r011.png" />
           <Image Name="r012.png" />
+          <Image Name="r013.png" />
           <Image Name="randheadbox.png" />
           <Image Name="randnamebtn.png" />
           <Image Name="resaddbtn.png" />

@@ -74,6 +74,10 @@ std::string GlobalInstance::noticeID = "";
 
 int GlobalInstance::myOutMapCarry = 0;
 
+int GlobalInstance::silverRefHeroCount = 0;
+
+int GlobalInstance::resetSilverRefHeroCountTime = 0;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -229,6 +233,8 @@ void GlobalInstance::loadInitData()
 
 	GlobalInstance::mySoliverCount.setValue(DataSave::getInstance()->getMySoliverCount());
 	GlobalInstance::myCoinCount.setValue(DataSave::getInstance()->getMyCoinCount());
+
+	silverRefHeroCount = DataSave::getInstance()->getSilverRefHeroCount();
 }
 
 void GlobalInstance::saveMyHeros()
@@ -2008,6 +2014,31 @@ void GlobalInstance::saveUnlockChapter(int val)
 {
 	unlockchapter = val;
 	DataSave::getInstance()->setUnlockChapter(val);
+}
+
+void GlobalInstance::setSilverRefHeroCount(int val)
+{
+	if (val > 19)//最大上限
+		val = 19;
+	silverRefHeroCount = val;
+	DataSave::getInstance()->setSilverRefHeroCount(val);
+}
+
+
+int GlobalInstance::getSilverRefHeroCount()
+{
+	return silverRefHeroCount;
+}
+
+void GlobalInstance::setResetSilverRefHeroCountTime(int val)
+{
+	resetSilverRefHeroCountTime = val;
+	DataSave::getInstance()->setResetSilverRefHeroCountTime(val);
+}
+
+int GlobalInstance::getResetSilverRefHeroCountTime()
+{
+	return resetSilverRefHeroCountTime;
 }
 
 std::string GlobalInstance::getUserDefaultXmlString()
