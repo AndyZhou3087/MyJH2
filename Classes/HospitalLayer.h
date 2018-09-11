@@ -20,6 +20,9 @@ public:
 	CREATE_FUNC(HospitalLayer);
 	void updateContent();
 
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+
 private:
 	Node* m_csbnode;
 	cocos2d::ui::ScrollView* scrollview;

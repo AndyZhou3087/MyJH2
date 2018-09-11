@@ -8,6 +8,8 @@
 #include "Resource.h"
 #include "MyHeroNode.h"
 #include "AnimationEffect.h"
+#include "NewGuideLayer.h"
+#include "MainScene.h"
 
 HospitalLayer::HospitalLayer()
 {
@@ -62,6 +64,8 @@ bool HospitalLayer::init()
 
 	updateContent();
 
+	this->scheduleOnce(schedule_selector(HospitalLayer::delayShowNewerGuide), 0.3f);
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -73,6 +77,24 @@ bool HospitalLayer::init()
 
 
 	return true;
+}
+
+void HospitalLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(63) && vec_deadheros.size() > 0)
+	{
+		showNewerGuide(-1);
+	}
+}
+
+void HospitalLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == -1)
+	{
+		//nodes.push_back(node);
+	}
+	//g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void HospitalLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

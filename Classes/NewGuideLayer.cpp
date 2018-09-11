@@ -88,6 +88,11 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 "",
 "",
 "小师妹：除了主线任务以外，还有支线和每日任务可以做，根据任务不同获得的奖励也有不同，记得每日都完成任务哦！",
+
+//条件引导
+//医馆
+"小师妹：有角色在战斗中死亡了，不过没关系，我们去医馆找医生给他治疗就可以复活了。",
+
 //铁匠铺
 "小师妹：掌门师兄回来啦！我们现在有了一定的资源，掌门可以去铁匠铺看看能造些什么东西。",
 "",
@@ -203,7 +208,7 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 			else if (m_step == 1 || m_step == 14 || m_step == 15 || m_step == 16 || m_step == 18 || m_step == 22 || m_step == 23 
 				|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31 || m_step == 32 || m_step == 33 || m_step == 35 
 				|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46 || m_step == 48 || m_step == 50
-				|| m_step == 52 || m_step == 53 || m_step == 54 || m_step == 55 || m_step == 56 || m_step == 57 || m_step == 59)
+				|| m_step == 52 || m_step == 53 || m_step == 54 || m_step == 55 || m_step == 56 || m_step == 57 || m_step == 59 || m_step == 63)
 			{
 				this->removeFromParentAndCleanup(true);
 			}
