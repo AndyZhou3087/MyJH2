@@ -133,7 +133,7 @@ bool MainScene::init()
 		buildingNomal->setUserData((void*)buildingSelect);
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
 		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && NewGuideLayer::checkifNewerGuide(66)) || i == 9
-			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 5) || (NewGuideLayer::checkifNewerGuide(73) && i == 3))//医馆,市场,训练场，竞技场不可点
+			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 5) || (NewGuideLayer::checkifNewerGuide(73) && i == 3))//医馆,市场,训练场，竞技场,后山默认不开放
 		{
 			buildingNomal->setTouchEnabled(false);
 			buildnametext->setVisible(false);
@@ -264,9 +264,13 @@ void MainScene::showNewerGuide(int step)
 	scroll_3->setEnabled(false);
 	scroll_2->setEnabled(false);
 	scroll_1->setEnabled(false);
+	scroll_3->setDirection(cocos2d::ui::ScrollView::Direction::NONE);
+	scroll_2->setDirection(cocos2d::ui::ScrollView::Direction::NONE);
+	scroll_1->setDirection(cocos2d::ui::ScrollView::Direction::NONE);
 	std::vector<Node*> nodes;
 	if (step == 15)
 	{
+		scroll_2->setEnabled(true);
 		scroll_3->jumpToPercentHorizontal(95);
 		//scroll_2->jumpToPercentHorizontal(95);
 		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
@@ -277,7 +281,7 @@ void MainScene::showNewerGuide(int step)
 	}
 	else if (step == 22 || step == 69 || step == 77)
 	{
-
+		scroll_2->setEnabled(true);
 		//scroll_1->jumpToPercentHorizontal(50);
 		//scroll_2->jumpToPercentHorizontal(50);
 		scroll_3->jumpToPercentHorizontal(50);
@@ -288,6 +292,7 @@ void MainScene::showNewerGuide(int step)
 	}
 	else if (step == 40 || step == 55)
 	{
+		scroll_1->setEnabled(true);
 		//scroll_1->jumpToPercentHorizontal(32);
 		//scroll_2->jumpToPercentHorizontal(32);
 		scroll_3->jumpToPercentHorizontal(32);
@@ -299,8 +304,7 @@ void MainScene::showNewerGuide(int step)
 	else if (step == 45)
 	{
 		scroll_3->setEnabled(true);
-		scroll_2->setEnabled(true);
-		scroll_1->setEnabled(true);
+
 		//scroll_1->jumpToPercentHorizontal(80);
 		//scroll_2->jumpToPercentHorizontal(80);
 		scroll_3->jumpToPercentHorizontal(80);
@@ -312,8 +316,6 @@ void MainScene::showNewerGuide(int step)
 	else if (step == 63)
 	{
 		scroll_3->setEnabled(true);
-		scroll_2->setEnabled(true);
-		scroll_1->setEnabled(true);
 
 		scroll_3->jumpToPercentHorizontal(100);
 
@@ -330,6 +332,8 @@ void MainScene::showNewerGuide(int step)
 	}
 	else if (step == 66)
 	{
+		scroll_2->setEnabled(true);
+
 		scroll_3->jumpToPercentHorizontal(82);
 		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
@@ -344,10 +348,6 @@ void MainScene::showNewerGuide(int step)
 	}
 	else if (step == 73)
 	{
-		scroll_3->setEnabled(true);
-		scroll_2->setEnabled(true);
-		scroll_1->setEnabled(true);
-
 		scroll_3->jumpToPercentHorizontal(20);
 
 		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
@@ -381,6 +381,9 @@ void MainScene::setScrollGliding()
 	scroll_3->setEnabled(true);
 	scroll_2->setEnabled(true);
 	scroll_1->setEnabled(true);
+	scroll_3->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
+	scroll_2->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
+	scroll_1->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
 }
 
 void MainScene::onEnterTransitionDidFinish()

@@ -1751,6 +1751,23 @@ int GlobalInstance::getHerosLevelCount(int lv)
 	return count;
 }
 
+bool GlobalInstance::getResCreatorLessMore()
+{
+	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
+	{
+		ResBase* res = MyRes::vec_MyResources[i];
+		int id = atoi(res->getId().substr(2, 1).c_str());
+		if (id >= 1 && id <= 5)
+		{
+			if (res->getCount().getValue() < 200)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 DynamicValueInt GlobalInstance::getMySoliverCount()
 {
 	return GlobalInstance::mySoliverCount;

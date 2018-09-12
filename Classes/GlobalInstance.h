@@ -485,6 +485,9 @@ public:
 	//判断是否有达到某级的角色
 	int getHerosLevelCount(int lv);
 
+	//判断基础资源是否少于200，
+	bool getResCreatorLessMore();
+
 	/****************************
 	银两刷新英雄次数
 	****************************/
