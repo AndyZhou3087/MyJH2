@@ -479,6 +479,9 @@ public:
 	//判断是否有死亡角色
 	int getMyHerosDeadCount();
 
+	//判断是否有达到10级角色
+	int getHerosChangeLevelCount();
+
 	/****************************
 	银两刷新英雄次数
 	****************************/
