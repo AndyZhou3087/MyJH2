@@ -22,6 +22,9 @@ public:
 	virtual void onExit();
 	bool init(Hero* herodata, int forwhere = 0);
 
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
@@ -29,6 +32,7 @@ private:
 	Hero* m_herodata;
 	int m_forwhere;
 	std::string needresid;
+	Node* csbnode;
 
 };
 

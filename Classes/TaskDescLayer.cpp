@@ -181,10 +181,10 @@ bool TaskDescLayer::init(TaskData* data, int type)
 		{
 			rewards.push_back(data->reward1[m]);
 		}
-		for (unsigned int n = 0; n < data->reward2.size(); n++)
+		/*for (unsigned int n = 0; n < data->reward2.size(); n++)
 		{
 			rewards.push_back(data->reward2[n]);
-		}
+		}*/
 	}
 
 	for (unsigned int i = 0; i < rewards.size(); i++)

@@ -9,6 +9,8 @@
 #include "Const.h"
 #include "AnimationEffect.h"
 #include "SoundManager.h"
+#include "NewGuideLayer.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -77,7 +79,7 @@ bool SmithyLayer::init(Building* buidingData)
 	lvUpbtntxt->loadTexture(ResourcePath::makeTextImgPath("smithylv_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//关闭按钮
-	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
+	closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
 	closebtn->setTag(1001);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(SmithyLayer::onBtnClick, this));
 
@@ -105,6 +107,8 @@ bool SmithyLayer::init(Building* buidingData)
 	loadData();
 	updateContent(lastCategoryindex);
 
+	this->scheduleOnce(schedule_selector(SmithyLayer::delayShowNewerGuide), 0.3f);
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -114,6 +118,35 @@ bool SmithyLayer::init(Building* buidingData)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void SmithyLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(73))
+	{
+		if (NewGuideLayer::checkifNewerGuide(74))
+		{
+			showNewerGuide(74);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(76))
+		{
+			showNewerGuide(76);
+		}
+	}
+}
+
+void SmithyLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 74)
+	{
+		nodes.push_back(m_contentscroll->getChildByName(map_cateRes[lastCategoryindex][0])->getChildByName("resitem"));
+	}
+	else if (step == 76)
+	{
+		nodes.push_back(closebtn);
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void SmithyLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

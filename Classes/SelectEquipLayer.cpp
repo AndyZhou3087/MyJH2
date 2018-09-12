@@ -74,7 +74,7 @@ bool SelectEquipLayer::init(int restype, Hero* herodata)
 	loadData();
 	updateContent();
 
-	this->scheduleOnce(schedule_selector(SelectEquipLayer::delayShowNewerGuide), 0.1f);
+	this->scheduleOnce(schedule_selector(SelectEquipLayer::delayShowNewerGuide), 0.3f);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -107,13 +107,20 @@ void SelectEquipLayer::delayShowNewerGuide(float dt)
 				showNewerGuide(36);
 			}
 		}
+		else if (!NewGuideLayer::checkifNewerGuide(79))
+		{
+			if (NewGuideLayer::checkifNewerGuide(80))
+			{
+				showNewerGuide(80);
+			}
+		}
 	}
 }
 
 void SelectEquipLayer::showNewerGuide(int step)
 {
 	std::vector<Node*> nodes;
-	if (step == 33 || step == 36)
+	if (step == 33 || step == 36 || step == 80)
 	{
 		nodes.push_back(scrollview->getChildren().at(0)->getChildren().at(0));
 	}

@@ -31,6 +31,9 @@ public:
 
 	void makeRes(std::string resid);
 
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -48,6 +51,7 @@ private:
 	int langtype;
 	cocos2d::ui::Text* lvUIlbl;
 	cocos2d::ui::Text* hintlbl;
+	cocos2d::ui::Widget* closebtn;
 
 	bool clickflag;
 	Vec2 beginTouchPoint;

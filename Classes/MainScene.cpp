@@ -132,11 +132,15 @@ bool MainScene::init()
 		buildingNomal->setSwallowTouches(false);
 		buildingNomal->setUserData((void*)buildingSelect);
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
-		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && NewGuideLayer::checkifNewerGuide(66)))//医馆不可点,市场不可点
+		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && NewGuideLayer::checkifNewerGuide(66)) || i == 9
+			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 5) || (NewGuideLayer::checkifNewerGuide(73) && i == 3))//医馆,市场,训练场，竞技场不可点
 		{
 			buildingNomal->setTouchEnabled(false);
-			bulidinclipnode->setVisible(true);
 			buildnametext->setVisible(false);
+			if (bulidinclipnode != NULL)
+			{
+				bulidinclipnode->setVisible(true);
+			}
 		}
 
 		if (i == 4)
@@ -195,9 +199,27 @@ void MainScene::delayShowNewerGuide(float dt)
 		{
 			showNewerGuide(63);
 		}
-		else if (NewGuideLayer::checkifNewerGuide(66) && GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0)
+		else if (GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0)
 		{
-			showNewerGuide(66);
+			if (NewGuideLayer::checkifNewerGuide(66))
+			{
+				showNewerGuide(66);
+			}
+			if (NewGuideLayer::checkifNewerGuide(69))
+			{
+				showNewerGuide(69);
+			}
+		}
+		else if (GlobalInstance::getInstance()->getHerosLevelCount(15) > 0)
+		{
+			if (NewGuideLayer::checkifNewerGuide(73))
+			{
+				showNewerGuide(73);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(77))
+			{
+				showNewerGuide(77);
+			}
 		}
 		/*else if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
 		{
@@ -253,7 +275,7 @@ void MainScene::showNewerGuide(int step)
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_08_n");
 		nodes.push_back(node);
 	}
-	else if (step == 22)
+	else if (step == 22 || step == 69 || step == 77)
 	{
 
 		//scroll_1->jumpToPercentHorizontal(50);
@@ -317,6 +339,20 @@ void MainScene::showNewerGuide(int step)
 		cocos2d::ui::Widget* cnode = (cocos2d::ui::Widget*)scroll_2->getChildByName("main_06_c");
 		cnode->setVisible(false);
 		cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_06_t");
+		text->setVisible(true);
+		nodes.push_back(node);
+	}
+	else if (step == 73)
+	{
+		scroll_3->setEnabled(true);
+		scroll_1->jumpToPercentHorizontal(20);
+		scroll_2->jumpToPercentHorizontal(20);
+		scroll_3->jumpToPercentHorizontal(20);
+		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_03_n");
+		node->setTouchEnabled(true);
+		cocos2d::ui::Widget* cnode = (cocos2d::ui::Widget*)scroll_3->getChildByName("main_03_c");
+		cnode->setVisible(false);
+		cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_03_t");
 		text->setVisible(true);
 		nodes.push_back(node);
 	}

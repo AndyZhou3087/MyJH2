@@ -134,6 +134,20 @@ void InnRoomLayer::delayShowNewerGuide(float dt)
 				showNewerGuide(39);
 			}
 		}
+		else if (GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0 && !NewGuideLayer::checkifNewerGuide(67))
+		{
+			if (NewGuideLayer::checkifNewerGuide(70))
+			{
+				showNewerGuide(70);
+			}
+		}
+		else if (!NewGuideLayer::checkifNewerGuide(77))
+		{
+			if (NewGuideLayer::checkifNewerGuide(78))
+			{
+				showNewerGuide(78);
+			}
+		}
 	}
 }
 
@@ -144,13 +158,26 @@ void InnRoomLayer::showNewerGuide(int step)
 	{
 		nodes.push_back(csbnode->getChildByName("actionbtn"));
 	}
-	else if (step == 31)
+	else if (step == 31 || step == 78)
 	{
 		nodes.push_back(m_contentscroll->getChildByTag(0)->getChildByName("csbnode")->getChildByName("clickimg"));
 	}
 	else if (step == 39)
 	{
 		nodes.push_back(csbnode->getChildByName("closebtn"));
+	}
+	else if (step == 70)
+	{
+		for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+		{
+			Hero* herodata = GlobalInstance::vec_myHeros[i];
+			if (herodata->getLevel() + 1 == 10)
+			{
+				Node* node = m_contentscroll->getChildByTag(i)->getChildByName("csbnode")->getChildByName("clickimg");
+				nodes.push_back(node);
+				break;
+			}
+		}
 	}
 	g_mainScene->showNewerGuideNode(step, nodes);
 }
@@ -186,7 +213,7 @@ void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		case 1002://关闭
 		{
 			AnimationEffect::closeAniEffect((Layer*)this);
-			if (GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0)
+			if (GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0 || GlobalInstance::getInstance()->getHerosLevelCount(15) > 0)
 			{
 				g_mainScene->delayShowNewerGuide(0);
 			}

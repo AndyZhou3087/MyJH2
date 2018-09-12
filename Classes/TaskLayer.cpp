@@ -32,10 +32,10 @@ TaskLayer::~TaskLayer()
 	GlobalInstance::getInstance()->saveMyTaskMainData();
 	GlobalInstance::getInstance()->saveMyTaskBranchData();
 	GlobalInstance::getInstance()->saveMyDailyTaskData();
-	if (!NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP))
-	{
-		g_mainScene->setScrollGliding();
-	}
+	//if (!NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP))
+	//{
+	//	g_mainScene->setScrollGliding();
+	//}
 }
 
 bool TaskLayer::init()

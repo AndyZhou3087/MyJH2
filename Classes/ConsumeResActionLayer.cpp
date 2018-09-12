@@ -18,6 +18,7 @@
 #include "AnimationEffect.h"
 #include "NewGuideLayer.h"
 #include "MainScene.h"
+#include "SmithyLayer.h"
 
 USING_NS_CC;
 
@@ -28,7 +29,14 @@ ConsumeResActionLayer::ConsumeResActionLayer()
 
 ConsumeResActionLayer::~ConsumeResActionLayer()
 {
-	
+	if (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(76))
+	{
+		SmithyLayer* layer = (SmithyLayer*)g_mainScene->getChildByName("2smithy");
+		if (layer != NULL)
+		{
+			layer->delayShowNewerGuide(0);
+		}
+	}
 }
 
 
@@ -264,8 +272,12 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 
 void ConsumeResActionLayer::delayShowNewerGuide(float dt)
 {
-	if (!NewGuideLayer::checkifNewerGuide(14))
+	if (!NewGuideLayer::checkifNewerGuide(74))
 	{
+		if (NewGuideLayer::checkifNewerGuide(75))
+		{
+			showNewerGuide(75);
+		}
 		/*if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(17))
@@ -283,7 +295,7 @@ void ConsumeResActionLayer::delayShowNewerGuide(float dt)
 void ConsumeResActionLayer::showNewerGuide(int step)
 {
 	std::vector<Node*> nodes;
-	if (step == 17 || step == 19)
+	if (step == 17 || step == 19 || step == 75)
 	{
 		nodes.push_back(csbnode->getChildByName("lvupbtn"));
 	}
