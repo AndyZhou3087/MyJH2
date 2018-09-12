@@ -308,7 +308,7 @@ void MainScene::showNewerGuide(int step)
 	}
 	else if (step == 66)
 	{
-		scroll_3->jumpToPercentHorizontal(100);
+		scroll_3->jumpToPercentHorizontal(82);
 		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 
