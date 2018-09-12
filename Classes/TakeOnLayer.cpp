@@ -14,6 +14,8 @@
 #include "Quest.h"
 #include "StrengthenLayer.h"
 #include "AnimationEffect.h"
+#include "NewGuideLayer.h"
+#include "MainScene.h"
 
 static bool isChangeEquip = false;
 TakeOnLayer::TakeOnLayer()
@@ -233,7 +235,7 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 	updateUI();
 
 	//选择，更换按钮
-	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
+	actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actionbtn->setTag(1001);
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onBtnClick, this));
 	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
@@ -271,6 +273,8 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 		strenthbtn->setVisible(false);
 	}
 
+	this->scheduleOnce(schedule_selector(TakeOnLayer::delayShowNewerGuide), 0.1f);
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -281,6 +285,27 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 
 
 	return true;
+}
+
+void TakeOnLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(80))
+	{
+		if (NewGuideLayer::checkifNewerGuide(81))
+		{
+			showNewerGuide(81);
+		}
+	}
+}
+
+void TakeOnLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 81)
+	{
+		nodes.push_back(actionbtn);
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void TakeOnLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

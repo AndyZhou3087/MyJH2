@@ -116,7 +116,7 @@ bool MainMenuLayer::init()
 
 	this->scheduleOnce(schedule_selector(MainMenuLayer::delayGetServerData), 1.2f);
 
-	this->scheduleOnce(schedule_selector(MainMenuLayer::delayShowNewerGuide), 0.1f);
+	this->scheduleOnce(schedule_selector(MainMenuLayer::delayShowNewerGuide), 1.2f);
     return true;
 }
 
@@ -153,7 +153,8 @@ void MainMenuLayer::onFinish(int code)
 	{
 		if (NewGuideLayer::checkifNewerGuide(14) || NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(45)
 			|| (NewGuideLayer::checkifNewerGuide(55) && Quest::isMainQuestFinish(1)) || (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
-			|| (NewGuideLayer::checkifNewerGuide(66) && GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0))
+			|| ((NewGuideLayer::checkifNewerGuide(66) || (NewGuideLayer::checkifNewerGuide(69) && !NewGuideLayer::checkifNewerGuide(67))) && GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0)
+			|| (NewGuideLayer::checkifNewerGuide(73) && GlobalInstance::getInstance()->getHerosLevelCount(15) > 0) || (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(77)))
 		{
 			return;
 		}

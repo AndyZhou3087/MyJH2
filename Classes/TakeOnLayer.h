@@ -25,6 +25,9 @@ public:
 	void chageStone(ResBase* stoneres, int which);
 
 	void updateAttr();
+
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onEquipclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -36,6 +39,7 @@ private:
 	Equip* m_equip;
 	Hero* m_herodata;
 	Equip* nohasEquip;
+	cocos2d::ui::Widget* actionbtn;
 
 	std::vector<cocos2d::ui::Text*> vec_suitDesc;
 

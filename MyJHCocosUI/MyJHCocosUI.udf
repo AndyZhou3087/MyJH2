@@ -11,10 +11,11 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="MainLayer.csd" />
-          <FilePathData Path="marketLayer.csd" />
-          <FilePathData Path="marketResNode.csd" />
+          <FilePathData Path="makeResNode.csd" />
+          <FilePathData Path="consumeResActionLayer.csd" />
+          <FilePathData Path="takeOnLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="marketResNode.csd" />
+        <ActiveDocument Path="takeOnLayer.csd" />
       </Value>
     </Item>
   </Properties>

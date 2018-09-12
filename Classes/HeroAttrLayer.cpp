@@ -368,6 +368,20 @@ void HeroAttrLayer::delayShowNewerGuide(float dt)
 				showNewerGuide(38);
 			}
 		}
+		else if (GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0 && !NewGuideLayer::checkifNewerGuide(67))
+		{
+			if (NewGuideLayer::checkifNewerGuide(71))
+			{
+				showNewerGuide(71);
+			}
+		}
+		else if (!NewGuideLayer::checkifNewerGuide(78))
+		{
+			if (NewGuideLayer::checkifNewerGuide(79))
+			{
+				showNewerGuide(79);
+			}
+		}
 	}
 }
 
@@ -389,6 +403,14 @@ void HeroAttrLayer::showNewerGuide(int step)
 	else if (step == 38)
 	{
 		nodes.push_back(heroattrbottom->getChildByName("backbtn"));
+	}
+	else if (step == 71)
+	{
+		nodes.push_back(heroattrbottom->getChildByName("changebtn"));
+	}
+	else if (step == 79)
+	{
+		nodes.push_back(equipnode->getChildren().at(0));
 	}
 	g_mainScene->showNewerGuideNode(step, nodes);
 }

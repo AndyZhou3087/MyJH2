@@ -101,10 +101,13 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 "小师妹：角色到了十级要进行转职了，转职需要九转金丹，掌门师兄去市场看看吧！",//66
 "小师妹：市场每隔一段时间都会刷新物品数量，一次买空后只能等下次刷新了哦，看到九转金丹了，快买来试一试吧！",
 "",
-
-//铁匠铺
-"小师妹：掌门师兄回来啦！我们现在有了一定的资源，掌门可以去铁匠铺看看能造些什么东西。",
+"小师妹：现在有九转金丹了，每个职业都可以转成不同的职业，快去客栈给角色进行转职吧!",
 "",
+"",
+"小师妹：掌门师兄快看，这位侠客可以转职成这两个角色，掌门师兄快选一个吧！",
+
+//铁匠铺//73
+"小师妹：掌门师兄回来啦！我们现在有了一定的资源，掌门可以去铁匠铺看看能造些什么东西。",
 "小师妹：我们打造一把青铜刀试一下，铁匠铺的等级越高，就会有更高的几率造出更好品质的武器哦。",
 "",//制造
 "",
@@ -202,6 +205,11 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 				DataSave::getInstance()->setIsNewerGuide(m_step, 0);
 			}
 
+			if (g_mainScene != NULL)
+			{
+				g_mainScene->setScrollGliding();
+			}
+
 			if (m_step == 0)
 			{
 				if (g_MapBlockScene != NULL)
@@ -221,7 +229,8 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 				|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31 || m_step == 32 || m_step == 33 || m_step == 35 
 				|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46 || m_step == 48 || m_step == 50
 				|| m_step == 52 || m_step == 53 || m_step == 54 || m_step == 55 || m_step == 56 || m_step == 57 || m_step == 59 || m_step == 63
-				|| m_step == 65 || m_step == 66)
+				|| m_step == 65 || m_step == 66 || m_step == 69 || m_step == 70 || m_step == 71 || m_step == 72 || m_step == 73 || m_step == 74
+				|| m_step == 75 || m_step == 77 || m_step == 78 || m_step == 79 || m_step == 80 || m_step == 81)
 			{
 				this->removeFromParentAndCleanup(true);
 			}
@@ -271,7 +280,7 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 					}
 				}
 			}
-			else if (m_step == 21 || m_step == 39 || m_step == 44 || m_step == 68)
+			else if (m_step == 21 || m_step == 39 || m_step == 44 || m_step == 68 || m_step == 76)
 			{
 				this->removeFromParentAndCleanup(true);
 				if (g_mainScene != NULL)
@@ -414,7 +423,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 		m_colorlayer = NULL;
 	}
 
-	if (m_step != FIFTHGUIDESTEP)
+	if (m_step != FIFTHGUIDESTEP && m_step != 72)
 	{
 		if (stencilNodes.size() <= 0)
 		{
@@ -454,7 +463,8 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 				}
 				cnode->setPosition(m_pos);
 				cnode->setScale(scalex*1.5f, scaley*1.5f);
-				if (m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52)
+				if (m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52 || 
+					m_step == 71 || m_step == 75 || m_step == 81)
 				{
 					cnode->setScale(scalex*1.5f);
 				}
@@ -481,7 +491,12 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 		for (unsigned int i = 0; i < stencilNodes.size(); i++)
 		{
 			//stencilNodes[i]->setTouchEnabled(false);
-			Sprite* cnode = Sprite::createWithSpriteFrameName("ui/catabtn_n.png");
+			std::string str = "ui/catabtn_n.png";
+			if (m_step == 72)
+			{
+				str = "ui/taskbtn.png";
+			}
+			Sprite* cnode = Sprite::createWithSpriteFrameName(str);
 			cnode->setPosition(stencilNodes[i]->getParent()->convertToWorldSpace(stencilNodes[i]->getPosition()));
 			cnode->runAction(Blink::create(3.0f, 3));
 			stencil->addChild(cnode);
@@ -527,11 +542,15 @@ void NewGuideLayer::showWord(std::string wordstr)
 		}
 
 		if (m_step == 0 || m_step == 1 || m_step == 8 || m_step == 10 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 18 || m_step == 23
-			|| m_step == 25 || m_step == 27 || m_step == 29 || m_step == 45 || m_step == 52)
+			|| m_step == 25 || m_step == 27 || m_step == 29 || m_step == 45 || m_step == 52 || m_step == 71)
 			textbox->setPosition(Vec2(360, 430));
-		else if (m_step == 67)
+		else if (m_step == 67 || m_step == 73)
 		{
 			textbox->setPosition(Vec2(360, 530));
+		}
+		else if (m_step == 72)
+		{
+			textbox->setPosition(Vec2(360, 650));
 		}
 		else
 			textbox->setPosition(Vec2(360, 160));
@@ -615,7 +634,12 @@ void NewGuideLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 void NewGuideLayer::removeSelf(float dt)
 {
+	DataSave::getInstance()->setIsNewerGuide(m_step, 0);
 	this->removeFromParentAndCleanup(true);
+	if (g_mainScene != NULL)
+	{
+		g_mainScene->setScrollGliding();
+	}
 }
 
 void NewGuideLayer::clearNewGuideData()

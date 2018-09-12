@@ -1737,6 +1737,20 @@ int GlobalInstance::getHerosChangeLevelCount()
 	return count;
 }
 
+int GlobalInstance::getHerosLevelCount(int lv)
+{
+	int count = 0;
+	for (unsigned int i = 0; i < vec_myHeros.size(); i++)
+	{
+		Hero* hero = vec_myHeros[i];
+		if (hero->getLevel() + 1 >= lv)
+		{
+			count++;
+		}
+	}
+	return count;
+}
+
 DynamicValueInt GlobalInstance::getMySoliverCount()
 {
 	return GlobalInstance::mySoliverCount;

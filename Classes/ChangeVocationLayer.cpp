@@ -10,6 +10,8 @@
 #include "HeroAttrLayer.h"
 #include "AnimationEffect.h"
 #include "SoundManager.h"
+#include "NewGuideLayer.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -57,7 +59,7 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("changeVocationLayer.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("changeVocationLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
@@ -146,6 +148,8 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 		accbtn3->setVisible(false);
 	}
 
+	this->scheduleOnce(schedule_selector(ChangeVocationLayer::delayShowNewerGuide), 0.35f);
+
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -159,6 +163,31 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
+}
+
+void ChangeVocationLayer::delayShowNewerGuide(float dt)
+{
+	if (GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0 && !NewGuideLayer::checkifNewerGuide(67))
+	{
+		if (NewGuideLayer::checkifNewerGuide(72))
+		{
+			showNewerGuide(72);
+		}
+	}
+}
+
+void ChangeVocationLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 72)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			std::string str = StringUtils::format("accbtn%d", i + 1);
+			nodes.push_back(csbnode->getChildByName(str));
+		}
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
