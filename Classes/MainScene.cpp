@@ -127,16 +127,12 @@ bool MainScene::init()
 		buildingNomal->setSwallowTouches(false);
 		buildingNomal->setUserData((void*)buildingSelect);
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
-		if (NewGuideLayer::checkifNewerGuide(63) && i == 2)//医馆不可点
+		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && NewGuideLayer::checkifNewerGuide(66)))//医馆不可点,市场不可点
 		{
 			buildingNomal->setTouchEnabled(false);
 			bulidinclipnode->setVisible(true);
 			buildnametext->setVisible(false);
 		}
-		/*else if (i == 6 && )
-		{
-
-		}*/
 
 		if (i == 4)
 		{
@@ -196,6 +192,10 @@ void MainScene::delayShowNewerGuide(float dt)
 		if (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
 		{
 			showNewerGuide(63);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(66) && GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0)
+		{
+			showNewerGuide(66);
 		}
 		/*else if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
 		{
