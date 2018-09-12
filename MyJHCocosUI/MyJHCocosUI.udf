@@ -12,8 +12,9 @@
         <OpenedDocuments>
           <FilePathData Path="MainLayer.csd" />
           <FilePathData Path="marketLayer.csd" />
+          <FilePathData Path="marketResNode.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="marketLayer.csd" />
+        <ActiveDocument Path="marketResNode.csd" />
       </Value>
     </Item>
   </Properties>

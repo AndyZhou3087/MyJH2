@@ -113,7 +113,7 @@ bool MarketLayer::init(Building* buidingData)
 	updateUI(0);
 	this->schedule(schedule_selector(MarketLayer::updateUI), 1.0f);
 
-	this->schedule(schedule_selector(MarketLayer::delayShowNewerGuide), 0.3f);
+	this->schedule(schedule_selector(MarketLayer::delayShowNewerGuide), 0.6f);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -146,9 +146,17 @@ void MarketLayer::showNewerGuide(int step)
 	std::vector<Node*> nodes;
 	if (step == 67)
 	{
-		Node* node = m_contentscroll->getChildByTag(vec_Res.size() - 1)->getChildByName("csbnode")->getChildByName("actionbtn");
+		m_contentscroll->setTouchEnabled(false);
 		m_contentscroll->jumpToBottom();
-		nodes.push_back(node);
+		for (unsigned int i = 0; i < vec_Res.size(); i++)
+		{
+			if (vec_Res[i].resid.compare("d001") == 0)
+			{
+				Node* node = m_contentscroll->getChildByTag(i)->getChildByName("csbnode")->getChildByName("actionbtn");
+				nodes.push_back(node);
+				break;
+			}
+		}
 	}
 	else if (step == 68)
 	{
