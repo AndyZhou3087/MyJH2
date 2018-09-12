@@ -31,6 +31,9 @@ public:
 
 	void resetStockRes();
 
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -52,6 +55,7 @@ private:
 
 	cocos2d::ui::Text* mysilverlbl;
 	cocos2d::ui::Text* mycoinlbl;
+	cocos2d::ui::Widget* closebtn;
 };
 
 #endif

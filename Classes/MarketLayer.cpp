@@ -10,6 +10,8 @@
 #include "Const.h"
 #include "MarketRefreshLayer.h"
 #include "AnimationEffect.h"
+#include "NewGuideLayer.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -86,7 +88,7 @@ bool MarketLayer::init(Building* buidingData)
 	refreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("refreshbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//关闭按钮
-	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
+	closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
 	closebtn->setTag(1002);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(MarketLayer::onBtnClick, this));
 
@@ -111,6 +113,8 @@ bool MarketLayer::init(Building* buidingData)
 	updateUI(0);
 	this->schedule(schedule_selector(MarketLayer::updateUI), 1.0f);
 
+	this->schedule(schedule_selector(MarketLayer::delayShowNewerGuide), 0.3f);
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -120,6 +124,37 @@ bool MarketLayer::init(Building* buidingData)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void MarketLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(66))
+	{
+		if (NewGuideLayer::checkifNewerGuide(67))
+		{
+			showNewerGuide(67);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(68))
+		{
+			showNewerGuide(68);
+		}
+	}
+}
+
+void MarketLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 67)
+	{
+		Node* node = m_contentscroll->getChildByTag(vec_Res.size() - 1)->getChildByName("csbnode")->getChildByName("actionbtn");
+		m_contentscroll->jumpToBottom();
+		nodes.push_back(node);
+	}
+	else if (step == 68)
+	{
+		nodes.push_back(closebtn);
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void MarketLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

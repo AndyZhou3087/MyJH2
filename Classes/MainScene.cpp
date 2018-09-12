@@ -284,6 +284,19 @@ void MainScene::showNewerGuide(int step)
 		text->setVisible(true);
 		nodes.push_back(node);
 	}
+	else if (step == 66)
+	{
+		scroll_1->jumpToPercentHorizontal(100);
+		scroll_2->jumpToPercentHorizontal(100);
+		scroll_3->jumpToPercentHorizontal(100);
+		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_06_n");
+		node->setTouchEnabled(true);
+		cocos2d::ui::Widget* cnode = (cocos2d::ui::Widget*)scroll_2->getChildByName("main_06_c");
+		cnode->setVisible(false);
+		cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_06_t");
+		text->setVisible(true);
+		nodes.push_back(node);
+	}
 	showNewerGuideNode(step, nodes);
 }
 

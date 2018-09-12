@@ -19,6 +19,7 @@
 #include "OutTownLayer.h"
 #include "Quest.h"
 #include "HospitalLayer.h"
+#include "MarketLayer.h"
 
 std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教应该就在前面了，咱们快去看看。", //0
 "", //1
@@ -95,6 +96,12 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 "小师妹：有角色在战斗中死亡了，不过没关系，我们去医馆找医生给他治疗就可以复活了。",
 "",
 "小师妹：角色都已经恢复了，可以重新参加战斗了。",
+
+//市场
+"小师妹：角色到了十级要进行转职了，转职需要九转金丹，掌门师兄去市场看看吧！",//66
+"小师妹：市场每隔一段时间都会刷新物品数量，一次买空后只能等下次刷新了哦，看到九转金丹了，快买来试一试吧！",
+"",
+
 //铁匠铺
 "小师妹：掌门师兄回来啦！我们现在有了一定的资源，掌门可以去铁匠铺看看能造些什么东西。",
 "",
@@ -214,7 +221,7 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 				|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31 || m_step == 32 || m_step == 33 || m_step == 35 
 				|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46 || m_step == 48 || m_step == 50
 				|| m_step == 52 || m_step == 53 || m_step == 54 || m_step == 55 || m_step == 56 || m_step == 57 || m_step == 59 || m_step == 63
-				|| m_step == 65)
+				|| m_step == 65 || m_step == 66)
 			{
 				this->removeFromParentAndCleanup(true);
 			}
@@ -264,7 +271,7 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 					}
 				}
 			}
-			else if (m_step == 21 || m_step == 39 || m_step == 44)
+			else if (m_step == 21 || m_step == 39 || m_step == 44 || m_step == 68)
 			{
 				this->removeFromParentAndCleanup(true);
 				if (g_mainScene != NULL)
@@ -358,6 +365,18 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 					{
 						layer->scheduleOnce(schedule_selector(HospitalLayer::delayShowNewerGuide), 0.3f);
 						//layer->delayShowNewerGuide(0);
+					}
+				}
+			}
+			else if (m_step == 67)
+			{
+				this->removeFromParentAndCleanup(true);
+				if (g_mainScene != NULL)
+				{
+					MarketLayer* layer = (MarketLayer*)g_mainScene->getChildByName("5market");
+					if (layer != NULL)
+					{
+						layer->delayShowNewerGuide(0);
 					}
 				}
 			}

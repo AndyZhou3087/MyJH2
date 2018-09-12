@@ -184,7 +184,13 @@ void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			}
 			break;
 		case 1002://关闭
+		{
 			AnimationEffect::closeAniEffect((Layer*)this);
+			if (GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0)
+			{
+				g_mainScene->delayShowNewerGuide(0);
+			}
+		}
 			break;
 		default:
 			break;

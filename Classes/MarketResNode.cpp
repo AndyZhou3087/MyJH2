@@ -46,7 +46,7 @@ bool MarketResNode::init(std::string resid, int rescount)
 	m_resid = resid;
 	totalrescount = rescount; 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("marketResNode.csb"));
-	this->addChild(csbnode);
+	this->addChild(csbnode, 0, "csbnode");
 
 	cocos2d::ui::Widget* clickimg = (cocos2d::ui::Widget*)csbnode->getChildByName("clickimg");
 	clickimg->addTouchEventListener(CC_CALLBACK_2(MarketResNode::onBtnClick, this));

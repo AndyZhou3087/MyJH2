@@ -11,8 +11,9 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="MainLayer.csd" />
+          <FilePathData Path="marketLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="MainLayer.csd" />
+        <ActiveDocument Path="marketLayer.csd" />
       </Value>
     </Item>
   </Properties>
