@@ -103,7 +103,7 @@ bool TaskLayer::init()
 	this->schedule(schedule_selector(TaskLayer::updateDaily), 1.0f);
 
 
-	int t = GlobalInstance::servertime / 60 / 60 / 24;
+	int t = (GlobalInstance::servertime+8*60*60) / 60 / 60 / 24;
 	if (t > DataSave::getInstance()->getMyFreshDate())
 	{
 		Quest::resetDailyTask();
