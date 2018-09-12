@@ -28,7 +28,6 @@ MainScene::MainScene()
 	costFoodsT = 0;
 	GlobalInstance::myOutMapCarry = 0;
 	isPlayNewHeroAnim = false;
-	lastsrollEventType = 0;
 }
 
 MainScene::~MainScene()
@@ -78,11 +77,16 @@ bool MainScene::init()
 
 	scroll_2 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_2");
 	scroll_2->setScrollBarEnabled(false);
-	scroll_2->jumpToPercentHorizontal(32);
+	scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+	scroll_2->setSwallowTouches(false);
+	//scroll_2->addEventListener(CC_CALLBACK_2(MainScene::srollviewlistenEvent, this));
 
 	scroll_1 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_1");
 	scroll_1->setScrollBarEnabled(false);
-	scroll_1->jumpToPercentHorizontal(32);
+	scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+	scroll_1->setSwallowTouches(false);
+	//scroll_1->addEventListener(CC_CALLBACK_2(MainScene::srollviewlistenEvent, this));
+
 	std::map<std::string, Building*>::iterator it;
 	int i = 1;
 	for (it = Building::map_buildingDatas.begin(); it != Building::map_buildingDatas.end(); it++)
@@ -236,46 +240,64 @@ void MainScene::delayShowNewerGuide(float dt)
 void MainScene::showNewerGuide(int step)
 {
 	scroll_3->setEnabled(false);
+	scroll_2->setEnabled(false);
+	scroll_1->setEnabled(false);
 	std::vector<Node*> nodes;
 	if (step == 15)
 	{
-		scroll_1->jumpToPercentHorizontal(95);
-		scroll_2->jumpToPercentHorizontal(95);
 		scroll_3->jumpToPercentHorizontal(95);
+		//scroll_2->jumpToPercentHorizontal(95);
+		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+		//scroll_3->jumpToPercentHorizontal(95);
+		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_08_n");
 		nodes.push_back(node);
 	}
 	else if (step == 22)
 	{
-		scroll_1->jumpToPercentHorizontal(50);
-		scroll_2->jumpToPercentHorizontal(50);
+
+		//scroll_1->jumpToPercentHorizontal(50);
+		//scroll_2->jumpToPercentHorizontal(50);
 		scroll_3->jumpToPercentHorizontal(50);
+		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_07_n");
 		nodes.push_back(node);
 	}
 	else if (step == 40 || step == 55)
 	{
-		scroll_1->jumpToPercentHorizontal(32);
-		scroll_2->jumpToPercentHorizontal(32);
+		//scroll_1->jumpToPercentHorizontal(32);
+		//scroll_2->jumpToPercentHorizontal(32);
 		scroll_3->jumpToPercentHorizontal(32);
+		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_1->getChildByName("main_10_n");
 		nodes.push_back(node);
 	}
 	else if (step == 45)
 	{
 		scroll_3->setEnabled(true);
-		scroll_1->jumpToPercentHorizontal(80);
-		scroll_2->jumpToPercentHorizontal(80);
+		scroll_2->setEnabled(true);
+		scroll_1->setEnabled(true);
+		//scroll_1->jumpToPercentHorizontal(80);
+		//scroll_2->jumpToPercentHorizontal(80);
 		scroll_3->jumpToPercentHorizontal(80);
+		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_01_n");
 		nodes.push_back(node);
 	}
 	else if (step == 63)
 	{
 		scroll_3->setEnabled(true);
-		scroll_1->jumpToPercentHorizontal(100);
-		scroll_2->jumpToPercentHorizontal(100);
+		scroll_2->setEnabled(true);
+		scroll_1->setEnabled(true);
+
 		scroll_3->jumpToPercentHorizontal(100);
+
+		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_02_n");
 		node->setTouchEnabled(true);
 		cocos2d::ui::Widget* cnode = (cocos2d::ui::Widget*)scroll_3->getChildByName("main_02_c");
@@ -286,9 +308,10 @@ void MainScene::showNewerGuide(int step)
 	}
 	else if (step == 66)
 	{
-		scroll_1->jumpToPercentHorizontal(100);
-		scroll_2->jumpToPercentHorizontal(100);
 		scroll_3->jumpToPercentHorizontal(100);
+		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_06_n");
 		node->setTouchEnabled(true);
 		cocos2d::ui::Widget* cnode = (cocos2d::ui::Widget*)scroll_2->getChildByName("main_06_c");
@@ -315,6 +338,8 @@ void MainScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
 void MainScene::setScrollGliding()
 {
 	scroll_3->setEnabled(true);
+	scroll_2->setEnabled(true);
+	scroll_1->setEnabled(true);
 }
 
 void MainScene::onEnterTransitionDidFinish()
@@ -325,47 +350,27 @@ void MainScene::onEnterTransitionDidFinish()
 
 void MainScene::srollviewlistenEvent(Ref* ref, ui::ScrollView::EventType eventType)
 {
-	if (g_NewGuideLayer != NULL)
-	{
-		return;
-	}
-	Vec2 pos = scroll_3->getInnerContainerPosition();
-	//log("scoll posx:%f, posy:%f", pos.x, pos.y);
-	log("scoll eventType = %d", eventType);
+	//if (g_NewGuideLayer != NULL)
+	//{
+	//	return;
+	//}
+	//Vec2 pos = scroll_3->getInnerContainerPosition();
+	////log("scoll posx:%f, posy:%f", pos.x, pos.y);
+	////log("scoll eventType = %d", eventType);
 
-	switch (eventType) 
-	{
-		//最外层滑动时，带动后两层滑动，可修改时间调整效果
-		case ui::ScrollView::EventType::CONTAINER_MOVED:
-		{
-			//将引擎中的startAutoScrollToDestination 修改为pulic
-
-			//if (lastsrollEventType == (int)eventType)
-			{
-				scroll_2->startAutoScrollToDestination(pos, 0.1f, true);
-				scroll_1->startAutoScrollToDestination(pos, 0.2f, true);
-			}
-			//else
-			//{
-			//	lastsrollEventType = (int)eventType;
-			//	scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
-			//	scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
-			//}
-
-		}
-		case ui::ScrollView::EventType::SCROLLING_BEGAN:
-		{
-			scroll_2->startAutoScrollToDestination(pos, 0.0f, false);
-			scroll_1->startAutoScrollToDestination(pos, 0.0f, false);
-		}
-			break;
-		default:
-		{
-			//scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
-			//scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
-		}
-			break;
-	}
+	//switch (eventType) 
+	//{
+	//	//最外层滑动时，带动后两层滑动，可修改时间调整效果
+	//	case ui::ScrollView::EventType::CONTAINER_MOVED:
+	//	{
+	//		//将引擎中的startAutoScrollToDestination 修改为pulic
+	//		scroll_2->startAutoScrollToDestination(pos, 0.016f, true);
+	//		scroll_1->startAutoScrollToDestination(pos, 0.03f, true);
+	//		break;
+	//	}
+	//	default:
+	//		break;
+	//}
 }
 
 void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

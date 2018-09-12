@@ -6,7 +6,7 @@
       <ObjectData Name="Layer" Tag="2" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
-          <AbstractNodeData Name="scroll_1" ActionTag="-1260603270" Tag="5" IconVisible="False" ClipAble="True" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="scroll_1" ActionTag="-1260603270" Tag="5" IconVisible="False" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
             <Size X="720.0000" Y="1280.0000" />
             <Children>
               <AbstractNodeData Name="sky" ActionTag="1273293467" Tag="4" IconVisible="False" LeftMargin="1.1973" RightMargin="-1.1973" TopMargin="0.0061" BottomMargin="367.9939" LeftEage="818" RightEage="818" TopEage="300" BottomEage="300" Scale9OriginX="818" Scale9OriginY="300" Scale9Width="844" Scale9Height="312" ctype="ImageViewObjectData">
@@ -112,7 +112,7 @@
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="2480" Height="1280" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scroll_2" ActionTag="-821746676" Tag="12" IconVisible="False" ClipAble="True" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="scroll_2" ActionTag="-821746676" Tag="12" IconVisible="False" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
             <Size X="720.0000" Y="1280.0000" />
             <Children>
               <AbstractNodeData Name="main_back_b" ActionTag="-1678309981" Tag="13" IconVisible="False" LeftMargin="-0.0562" RightMargin="0.0562" TopMargin="913.0034" BottomMargin="264.9966" LeftEage="818" RightEage="818" TopEage="33" BottomEage="33" Scale9OriginX="818" Scale9OriginY="33" Scale9Width="844" Scale9Height="36" ctype="ImageViewObjectData">
