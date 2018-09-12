@@ -472,7 +472,8 @@ void MainScene::onFinish(int code)
 
 		if (GlobalInstance::getInstance()->getResetSilverRefHeroCountTime() == 0)
 		{
-			GlobalInstance::getInstance()->setResetSilverRefHeroCountTime(GlobalInstance::servertime - GlobalInstance::servertime % (24 * 60 * 60));
+			int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
+			GlobalInstance::getInstance()->setResetSilverRefHeroCountTime(zerotime - zerotime % (24 * 60 * 60));
 		}
 
 		costFoodsT = 0;
