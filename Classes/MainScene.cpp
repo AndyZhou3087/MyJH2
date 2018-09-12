@@ -345,9 +345,14 @@ void MainScene::showNewerGuide(int step)
 	else if (step == 73)
 	{
 		scroll_3->setEnabled(true);
-		scroll_1->jumpToPercentHorizontal(20);
-		scroll_2->jumpToPercentHorizontal(20);
+		scroll_2->setEnabled(true);
+		scroll_1->setEnabled(true);
+
 		scroll_3->jumpToPercentHorizontal(20);
+
+		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_03_n");
 		node->setTouchEnabled(true);
 		cocos2d::ui::Widget* cnode = (cocos2d::ui::Widget*)scroll_3->getChildByName("main_03_c");

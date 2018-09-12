@@ -116,7 +116,7 @@ bool MainMenuLayer::init()
 
 	this->scheduleOnce(schedule_selector(MainMenuLayer::delayGetServerData), 1.2f);
 
-	this->scheduleOnce(schedule_selector(MainMenuLayer::delayShowNewerGuide), 1.2f);
+	this->scheduleOnce(schedule_selector(MainMenuLayer::delayShowNewerGuide), 1.1f);
     return true;
 }
 
