@@ -65,8 +65,6 @@ private:
 	std::vector<Node*> vec_taskicon;
 	bool isPlayNewHeroAnim;
 	Node* maincityhintbox;
-
-	int lastsrollEventType;
 };
 extern MainScene* g_mainScene;
 #endif
