@@ -149,6 +149,12 @@ bool OutTownLayer::init()
 	{
 		return true;
 	};
+
+	listener->onTouchMoved = [](Touch *touch, Event *event)
+	{
+		auto touchPos = touch->getLocation();
+
+	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
