@@ -33,6 +33,8 @@ int equiptype[] = { T_ARMOR, T_EQUIP, T_NG, T_WG, T_HANDARMOR, T_FASHION };
 HeroAttrLayer::HeroAttrLayer()
 {
 	isMovingAction = false;
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
 }
 
 HeroAttrLayer::~HeroAttrLayer()
@@ -619,70 +621,84 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 void HeroAttrLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
-	if (type == ui::Widget::TouchEventType::ENDED)
+	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		//if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
-		if (m_heroData->getExp().getValue() >= GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getMaxLevel() - 1])
+		m_longTouchNode = clicknode;
+		if (!isScheduled(schedule_selector(HeroAttrLayer::longTouchUpdate)))
+			schedule(schedule_selector(HeroAttrLayer::longTouchUpdate), 0.3f);
+	}
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		cancelLongTouch();
+		addHeroExp(clicknode->getTag());
+	}
+	else if (type == ui::Widget::TouchEventType::CANCELED)
+	{
+		cancelLongTouch();
+	}
+}
+
+void HeroAttrLayer::addHeroExp(int tag)
+{
+	//if (m_heroData->getLevel() + 1 == m_heroData->getMaxLevel())
+	if (m_heroData->getExp().getValue() >= GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getMaxLevel() - 1])
+	{
+		MovingLabel::show(ResourceLang::map_lang["wgmostlv"]);
+		changeButton();
+		return;
+	}
+
+	int count = 0;
+	switch (tag)
+	{
+	case 1:
+		count = S001EXP;
+		break;
+	case 2:
+		count = S002EXP;
+		break;
+	case 3:
+		count = S003EXP;
+		break;
+	case 4:
+		count = S004EXP;
+		break;
+	default:
+		break;
+	}
+
+	if ((m_heroData->getLevel() + 1) % 10 == 0 && (m_heroData->getVocation() < 4 || (m_heroData->getLevel() + 1) / 10 == m_heroData->getChangeCount() + 1))
+	{
+		changeButton();
+		MovingLabel::show(ResourceLang::map_lang["changebreak"]);
+		return;
+	}
+
+	std::string str = StringUtils::format("s00%d", tag);
+	if (MyRes::getMyResCount(str) >= 1)
+	{
+		MyRes::Use(str);
+		str = StringUtils::format("%d", MyRes::getMyResCount(str));
+		goodarr[tag - 1]->setString(str);
+
+		/*DynamicValueInt dal;
+		dal.setValue(count);*/
+		int lastLevel = m_heroData->getLevel();
+		m_heroData->setExpLimit(count);
+		int curLevel = m_heroData->getLevel();
+		if (lastLevel <= curLevel - 1)
 		{
-			MovingLabel::show(ResourceLang::map_lang["wgmostlv"]);
+			CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_sjcg");
 			changeButton();
-			return;
 		}
-
-		int tag = clicknode->getTag();
-		int count;
-		switch (tag)
-		{
-		case 1:
-			count = S001EXP;
-			break;
-		case 2:
-			count = S002EXP;
-			break;
-		case 3:
-			count = S003EXP;
-			break;
-		case 4:
-			count = S004EXP;
-			break;
-		default:
-			break;
-		}
-
-		if ((m_heroData->getLevel() + 1) % 10 == 0 && (m_heroData->getVocation() < 4 || (m_heroData->getLevel() + 1) / 10 == m_heroData->getChangeCount() + 1))
-		{
-			changeButton();
-			MovingLabel::show(ResourceLang::map_lang["changebreak"]);
-			return;
-		}
-
-		std::string str = StringUtils::format("s00%d", tag);
-		if (MyRes::getMyResCount(str) >= 1)
-		{
-			MyRes::Use(str);
-			str = StringUtils::format("%d", MyRes::getMyResCount(str));
-			goodarr[tag - 1]->setString(str);
-
-			/*DynamicValueInt dal;
-			dal.setValue(count);*/
-			int lastLevel = m_heroData->getLevel();
-			m_heroData->setExpLimit(count);
-			int curLevel = m_heroData->getLevel();
-			if (lastLevel <= curLevel - 1)
-			{
-				CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_sjcg");
-				changeButton();
-			}
-			std::string s = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), count);
-			MovingLabel::show(s, Color4B(0, 128, 0, 255), Vec2(360, 320));
-			GlobalInstance::getInstance()->saveHero(m_heroData);
-		}
-		else
-		{
-			MovingLabel::show(ResourceLang::map_lang["reslack"]);
-		}
-
+		std::string s = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), count);
+		MovingLabel::show(s, Color4B(0, 128, 0, 255), Vec2(360, 320));
+		GlobalInstance::getInstance()->saveHero(m_heroData);
+	}
+	else
+	{
+		MovingLabel::show(ResourceLang::map_lang["reslack"]);
 	}
 }
 
@@ -964,6 +980,20 @@ void HeroAttrLayer::finishMovingAction()
 	isMovingAction = false;
 }
 
+void HeroAttrLayer::longTouchUpdate(float delay)
+{
+	m_isLongPress = true;
+	if (m_longTouchNode != NULL) {
+		addHeroExp(m_longTouchNode->getTag());
+	}
+}
+
+void HeroAttrLayer::cancelLongTouch()
+{
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
+	unschedule(schedule_selector(HeroAttrLayer::longTouchUpdate));
+}
 
 void HeroAttrLayer::onExit()
 {

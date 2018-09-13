@@ -84,6 +84,11 @@ private:
 
 	void updateVocationUI();
 
+	void addHeroExp(int tag);
+
+	void longTouchUpdate(float delay);
+	void cancelLongTouch();
+
 private:
 	Node* lvnode;
 	//
@@ -146,6 +151,9 @@ private:
 	int breakcount;
 
 	cocos2d::ui::ImageView* blankclick;
+
+	bool m_isLongPress;
+	Node* m_longTouchNode;
 };
 
 #endif

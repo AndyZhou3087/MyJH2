@@ -492,7 +492,7 @@ void WinRewardLayer::addDropRes(ResBase* res)
 		eres->setType(ores->getType());
 		eres->setWhere(ores->getWhere());
 		eres->setWhos(ores->getWhos());
-		vec_dropdownres.push_back(res);
+		vec_dropdownres.push_back(eres);
 	}
 	else if (type >= T_WG && type <= T_NG)
 	{
@@ -505,7 +505,7 @@ void WinRewardLayer::addDropRes(ResBase* res)
 		eres->setType(ores->getType());
 		eres->setWhere(ores->getWhere());
 		eres->setWhos(ores->getWhos());
-		vec_dropdownres.push_back(res);
+		vec_dropdownres.push_back(eres);
 	}
 	else
 	{
