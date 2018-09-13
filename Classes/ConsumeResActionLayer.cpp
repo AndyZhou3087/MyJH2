@@ -29,7 +29,15 @@ ConsumeResActionLayer::ConsumeResActionLayer()
 
 ConsumeResActionLayer::~ConsumeResActionLayer()
 {
-	if (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(76))
+	if ((!NewGuideLayer::checkifNewerGuide(17) && NewGuideLayer::checkifNewerGuide(18)) || (!NewGuideLayer::checkifNewerGuide(19) && NewGuideLayer::checkifNewerGuide(20)))
+	{
+		HomeHillLayer* layer = (HomeHillLayer*)g_mainScene->getChildByName("7homehill");
+		if (layer != NULL)
+		{
+			layer->delayShowNewerGuide(0);
+		}
+	}
+	else if (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(76))
 	{
 		SmithyLayer* layer = (SmithyLayer*)g_mainScene->getChildByName("2smithy");
 		if (layer != NULL)
@@ -253,7 +261,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 	updateUI(0);
 	this->schedule(schedule_selector(ConsumeResActionLayer::updateUI), 1);
 
-	this->scheduleOnce(schedule_selector(ConsumeResActionLayer::delayShowNewerGuide), 0.1f);
+	this->scheduleOnce(schedule_selector(ConsumeResActionLayer::delayShowNewerGuide), 0.3f);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -272,23 +280,23 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 
 void ConsumeResActionLayer::delayShowNewerGuide(float dt)
 {
-	if (!NewGuideLayer::checkifNewerGuide(74))
+	if (GlobalInstance::getInstance()->getResCreatorLessMore() && !NewGuideLayer::checkifNewerGuide(15))
+	{
+		if (NewGuideLayer::checkifNewerGuide(17))
+		{
+			showNewerGuide(17);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(19))
+		{
+			showNewerGuide(19);
+		}
+	}
+	else if (!NewGuideLayer::checkifNewerGuide(74))
 	{
 		if (NewGuideLayer::checkifNewerGuide(75))
 		{
 			showNewerGuide(75);
 		}
-		/*if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
-		{
-			if (NewGuideLayer::checkifNewerGuide(17))
-			{
-				showNewerGuide(17);
-			}
-			else if (NewGuideLayer::checkifNewerGuide(19))
-			{
-				showNewerGuide(19);
-			}
-		}*/
 	}
 }
 

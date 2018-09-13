@@ -31,7 +31,6 @@ private:
 	Layer* m_colorlayer;
 	int m_step;
 	Label* m_wordlbl;
-	Vec2 starPos;
 	bool iscannext;
 	int wordindex;
 	int opacity;
@@ -42,6 +41,7 @@ private:
 	void showNode(std::vector<Node*> stencilNodes);
 	static void clearNewGuideData();
 	void removeSelf(float dt);
+	void showNextGuide();
 
 };
 extern NewGuideLayer* g_NewGuideLayer;

@@ -133,7 +133,8 @@ bool MainScene::init()
 		buildingNomal->setUserData((void*)buildingSelect);
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
 		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && NewGuideLayer::checkifNewerGuide(66)) || i == 9
-			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 5) || (NewGuideLayer::checkifNewerGuide(73) && i == 3))//医馆,市场,训练场，竞技场,后山默认不开放
+			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 5) || (NewGuideLayer::checkifNewerGuide(73) && i == 3)
+			|| (i == 8 && GlobalInstance::getInstance()->getResCreatorLessMore() && NewGuideLayer::checkifNewerGuide(15)))//医馆,市场,训练场，竞技场,后山默认不开放
 		{
 			buildingNomal->setTouchEnabled(false);
 			buildnametext->setVisible(false);
@@ -226,13 +227,10 @@ void MainScene::delayShowNewerGuide(float dt)
 				showNewerGuide(77);
 			}
 		}
-		/*else if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
+		else if (GlobalInstance::getInstance()->getResCreatorLessMore() && NewGuideLayer::checkifNewerGuide(15))
 		{
-			if (NewGuideLayer::checkifNewerGuide(15))
-			{
-				showNewerGuide(15);
-			}
-		}*/
+			showNewerGuide(15);
+		}
 		else if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(22))
@@ -277,18 +275,19 @@ void MainScene::showNewerGuide(int step)
 	{
 		scroll_2->setEnabled(true);
 		scroll_3->jumpToPercentHorizontal(95);
-		//scroll_2->jumpToPercentHorizontal(95);
 		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
-		//scroll_3->jumpToPercentHorizontal(95);
 		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_08_n");
+		node->setTouchEnabled(true);
+		/*cocos2d::ui::Widget* cnode = (cocos2d::ui::Widget*)scroll_2->getChildByName("main_08_c");
+		cnode->setVisible(false);*/
+		cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)scroll_2->getChildByName("main_08_t");
+		text->setVisible(true);
 		nodes.push_back(node);
 	}
 	else if (step == 22 || step == 69 || step == 77)
 	{
 		scroll_2->setEnabled(true);
-		//scroll_1->jumpToPercentHorizontal(50);
-		//scroll_2->jumpToPercentHorizontal(50);
 		scroll_3->jumpToPercentHorizontal(50);
 		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
