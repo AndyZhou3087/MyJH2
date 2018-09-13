@@ -1753,6 +1753,7 @@ int GlobalInstance::getHerosLevelCount(int lv)
 
 bool GlobalInstance::getResCreatorLessMore()
 {
+	int count = 0;
 	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
 	{
 		ResBase* res = MyRes::vec_MyResources[i];
@@ -1763,6 +1764,11 @@ bool GlobalInstance::getResCreatorLessMore()
 			{
 				return true;
 			}
+			count++;
+		}
+		if (count == 5)
+		{
+			break;
 		}
 	}
 	return false;

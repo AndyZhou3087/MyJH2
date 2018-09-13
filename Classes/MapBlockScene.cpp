@@ -266,14 +266,6 @@ void MapBlockScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
 {
 	if (NewGuideLayer::checkifNewerGuide(step))
 	{
-		if (step == 1)
-		{
-			if (g_NewGuideLayer != NULL)
-			{
-				g_NewGuideLayer->removeFromParentAndCleanup(true);
-				g_NewGuideLayer = NULL;
-			}
-		}
 		if (g_NewGuideLayer == NULL)
 		{
 			g_NewGuideLayer = NewGuideLayer::create(step, nodes);
@@ -951,6 +943,17 @@ void MapBlockScene::doMyStatus()
 			{
 				if (m_mapid.compare("m0-0-0") == 0)
 				{
+					for (int i = 0; i < 2; i++)
+					{
+						if (NewGuideLayer::checkifNewerGuide(i))
+						{
+							DataSave::getInstance()->setIsNewerGuide(i, 0);
+							if (g_NewGuideLayer != NULL)
+							{
+								g_NewGuideLayer->removeFromParentAndCleanup(true);
+							}
+						}
+					}
 					delayShowNewerGuide(0);
 				}
 				else

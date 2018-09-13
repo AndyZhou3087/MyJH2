@@ -134,7 +134,7 @@ bool MainScene::init()
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
 		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && NewGuideLayer::checkifNewerGuide(66)) || i == 9
 			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 5) || (NewGuideLayer::checkifNewerGuide(73) && i == 3)
-			|| (i == 8 && GlobalInstance::getInstance()->getResCreatorLessMore() && NewGuideLayer::checkifNewerGuide(15)))//医馆,市场,训练场，竞技场,后山默认不开放
+			|| (i == 8 && !GlobalInstance::getInstance()->getResCreatorLessMore() && NewGuideLayer::checkifNewerGuide(15)))//医馆,市场,训练场，竞技场,后山默认不开放
 		{
 			buildingNomal->setTouchEnabled(false);
 			buildnametext->setVisible(false);
@@ -211,7 +211,7 @@ void MainScene::delayShowNewerGuide(float dt)
 			{
 				showNewerGuide(66);
 			}
-			if (NewGuideLayer::checkifNewerGuide(69))
+			else if (NewGuideLayer::checkifNewerGuide(69))
 			{
 				showNewerGuide(69);
 			}
@@ -339,6 +339,8 @@ void MainScene::showNewerGuide(int step)
 		scroll_2->setEnabled(true);
 
 		scroll_3->jumpToPercentHorizontal(82);
+		/*scroll_2->jumpToPercentHorizontal(82);
+		scroll_1->jumpToPercentHorizontal(82);*/
 		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 
