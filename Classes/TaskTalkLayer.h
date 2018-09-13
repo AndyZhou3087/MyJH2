@@ -48,7 +48,7 @@ private:
 	void questFight(std::string bwords);
 	void questNotFight(std::string bwords);
 	void questTakeGoods(std::string bwords, std::vector<std::map<std::string, int>> need);
-	void onWordScroll(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void showFastWords();
 };
 #endif
 
