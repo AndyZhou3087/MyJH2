@@ -184,7 +184,12 @@ bool MainScene::init()
 	listener->onTouchMoved = [=](Touch *touch, Event *event)
 	{
 		if (fabsf(m_startClickX - touch->getLocation().x) > CLICKOFFSETP || fabsf(m_startClickY - touch->getLocation().y) > CLICKOFFSETP)
-			m_isDraging = true;
+		{
+			if (g_NewGuideLayer == NULL)
+			{
+				m_isDraging = true;
+			}
+		}
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
