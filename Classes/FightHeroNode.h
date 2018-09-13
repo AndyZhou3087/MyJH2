@@ -68,6 +68,7 @@ public:
 	void attackedSkillEffect(int stype, int myHeroPos);
 
 private:
+	Node* csbnode;
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
 	cocos2d::ui::Text* namelbl;

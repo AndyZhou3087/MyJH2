@@ -50,7 +50,7 @@ bool FightHeroNode::init()
 	if (!Node::init())
 		return false;
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("fightHeroNode.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("fightHeroNode.csb"));
 	this->addChild(csbnode);
 
 	//头像框
@@ -63,6 +63,7 @@ bool FightHeroNode::init()
 	statusimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("statusicon");
 	statusimg->ignoreContentAdaptWithSize(true);
 	statusimg->setVisible(false);
+	statusimg->setLocalZOrder(2);
 
 	critnumbg = (cocos2d::ui::ImageView*)csbnode->getChildByName("critnumbg");
 	critnumbg->setVisible(false);
@@ -1237,7 +1238,7 @@ void FightHeroNode::playSkillEffect(int stype)
 	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
 	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
-	this->addChild(effectnode, 10, "playskillani");
+	csbnode->addChild(effectnode, 1, "playskillani");
 
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
@@ -1251,7 +1252,7 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
 	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
-	this->addChild(effectnode, 10, "playskillani");
+	csbnode->addChild(effectnode, 1, "playskillani");
 
 
 	float offsety = 450;
@@ -1293,7 +1294,7 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 	std::string effectname = StringUtils::format("effect/skill_%d_1.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
 	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
-	this->addChild(effectnode, 10, "sufferskillani");
+	csbnode->addChild(effectnode, 1, "sufferskillani");
 
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
@@ -1360,7 +1361,7 @@ void FightHeroNode::showAtkOrHurtAnim(int type)
 	}
 	auto effectnode = CSLoader::createNode(effectname);
 	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
-	this->addChild(effectnode, 10, "atkhurt");
+	csbnode->addChild(effectnode, 1, "atkhurt");
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, false);
