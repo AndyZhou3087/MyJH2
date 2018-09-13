@@ -738,6 +738,18 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
+              <AbstractNodeData Name="addexpdesc" ActionTag="670872382" Tag="125" IconVisible="False" LeftMargin="-124.1834" RightMargin="-99.8166" TopMargin="-96.2901" BottomMargin="71.2901" FontSize="20" LabelText="点击使用人参增加经验值" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                <Size X="225.0000" Y="27.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="-12.1834" Y="83.7901" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="36" G="255" B="82" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="67" G="105" B="44" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint />
             <Position X="362.0283" Y="488.0139" />

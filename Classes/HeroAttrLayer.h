@@ -137,6 +137,8 @@ private:
 	//点击的装备栏位置
 	int clickindex;
 
+	cocos2d::ui::Text* addexplbl;
+
 	int langtype;
 
 	std::string lastchangedname;

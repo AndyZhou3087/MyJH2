@@ -23,7 +23,7 @@
 
 USING_NS_CC;
 
-int equiptype[] = { T_ARMOR, T_EQUIP, T_NG, T_WG, T_HANDARMOR, T_FASHION };
+int equiptype[] = { T_ARMOR, T_EQUIP, T_WG, T_NG, T_HANDARMOR, T_FASHION };
 
 #define S001EXP 1500
 #define S002EXP 5000
@@ -105,6 +105,8 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 	//升级栏
 	lvnode = csbnode->getChildByName("lvnode");
 	lvnode->setVisible(false);
+
+	addexplbl = (cocos2d::ui::Text*)lvnode->getChildByName("addexpdesc");
 
 	for (int i = 1; i < 5; i++)
 	{
@@ -451,6 +453,12 @@ void HeroAttrLayer::updateAtrBtnUI()
 void HeroAttrLayer::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)
 {
 	lastchangedname = editBox->getText();
+
+	if (equipnode->isVisible())
+	{
+		equipnode->setPositionY(equipnode->getPosition().y + 200);
+		heroattrbottom->setPositionY(heroattrbottom->getPosition().y + 200);
+	}
 }
 
 void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox, EditBoxEndAction action)
@@ -493,6 +501,12 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 			moditybtn->setVisible(false);
 			m_editName->setEnabled(false);
 		}
+	}
+
+	if (equipnode->isVisible())
+	{
+		equipnode->setPositionY(equipnode->getPosition().y - 200);
+		heroattrbottom->setPositionY(heroattrbottom->getPosition().y - 200);
 	}
 }
 
@@ -565,6 +579,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			{
 				updateAtrBtnUI();
 				lvnode->setVisible(true);
+				addexplbl->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
 				equipnode->setVisible(false);
 			}
 			break;
@@ -605,6 +620,8 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			{
 				updateAtrBtnUI();
 				lvnode->setVisible(false);
+				addexplbl->stopAllActions();
+				addexplbl->setOpacity(255);
 				equipnode->setVisible(true);
 			}
 			else
