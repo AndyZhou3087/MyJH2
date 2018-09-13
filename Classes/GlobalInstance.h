@@ -508,6 +508,11 @@ public:
 	****************************/
 	int getResetSilverRefHeroCountTime();
 
+	/****************************
+	恢复卡牌最大血量
+	****************************/
+	void recoveCardHeroMaxHp();
+
 private:
 	static GlobalInstance* _Context;//类实例
 

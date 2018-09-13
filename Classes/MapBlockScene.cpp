@@ -50,17 +50,7 @@ MapBlockScene::MapBlockScene()
 
 MapBlockScene::~MapBlockScene()
 {
-	for (int i = 0; i < 6; i++)
-	{
-		if (GlobalInstance::myCardHeros[i] != NULL)
-		{
-			if (GlobalInstance::myCardHeros[i]->getState() == HS_DEAD)
-				GlobalInstance::myCardHeros[i] = NULL;
-			else
-				GlobalInstance::myCardHeros[i]->setHp(GlobalInstance::myCardHeros[i]->getMaxHp());
-		}
-	}
-
+	GlobalInstance::getInstance()->recoveCardHeroMaxHp();
 	g_MapBlockScene = NULL;
 
 }

@@ -762,13 +762,15 @@ void HeroAttrLayer::takeOn(ResBase* res)
 	equipable->setWhos(m_heroData->getName());
 	m_heroData->setEquipable((Equipable*)res, res->getType());
 	updateEquipUi(res, clickindex);
+	m_heroData->setHp(m_heroData->getMaxHp());
 }
 
 void HeroAttrLayer::takeOff(ResBase* res)
 {
 	res->setWhere(MYSTORAGE);
-	updateEquipUi(NULL, clickindex);
 	m_heroData->setEquipable(NULL, res->getType());
+	updateEquipUi(NULL, clickindex);
+	m_heroData->setHp(m_heroData->getMaxHp());
 }
 
 void HeroAttrLayer::changeEquip(ResBase* res)
@@ -843,6 +845,7 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 				qubox->setVisible(false);
 		}
 	}
+
 }
 
 void HeroAttrLayer::updataAtrrUI(float dt)
