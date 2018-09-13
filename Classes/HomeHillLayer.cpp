@@ -114,7 +114,7 @@ bool HomeHillLayer::init(Building* buidingData)
 	updateTime(0);
 	this->schedule(schedule_selector(HomeHillLayer::updateTime), 1.0f);
 
-	this->scheduleOnce(schedule_selector(HomeHillLayer::delayShowNewerGuide), 0.1f);
+	this->scheduleOnce(schedule_selector(HomeHillLayer::delayShowNewerGuide), 0.3f);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -131,7 +131,7 @@ void HomeHillLayer::delayShowNewerGuide(float dt)
 {
 	if (!NewGuideLayer::checkifNewerGuide(14))
 	{
-		/*if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
+		if (GlobalInstance::getInstance()->getResCreatorLessMore() && !NewGuideLayer::checkifNewerGuide(15))
 		{
 			if (NewGuideLayer::checkifNewerGuide(16))
 			{
@@ -149,7 +149,23 @@ void HomeHillLayer::delayShowNewerGuide(float dt)
 			{
 				showNewerGuide(21);
 			}
-		}*/
+			else if (NewGuideLayer::checkifNewerGuide(82))
+			{
+				showNewerGuide(82);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(83))
+			{
+				showNewerGuide(83);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(84))
+			{
+				showNewerGuide(84);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(85))
+			{
+				showNewerGuide(85);
+			}
+		}
 	}
 }
 
@@ -164,14 +180,14 @@ void HomeHillLayer::showNewerGuide(int step)
 	{
 		nodes.push_back(csbnode->getChildByName("actionbtn"));
 	}
-	else if (step == 20)
+	else if (step == 20 || step == 21 || step == 82 || step == 83 || step == 84)
 	{
 		if (m_hillResNode != NULL)
 		{
 			nodes.push_back(m_hillResNode->getChildByName("csbnode")->getChildByName("addbtn"));
 		}
 	}
-	else if (step == 21)
+	else if (step == 85)
 	{
 		nodes.push_back(csbnode->getChildByName("closebtn"));
 	}

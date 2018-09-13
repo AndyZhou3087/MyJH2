@@ -129,6 +129,8 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 
 int voc[6] = { 6,4,10,3,9,1 };
 std::string gf[6][2] = { { "x014","w014" },{ "x004","w004" },{ "x031","w031" },{ "x016","w016" },{ "x027","w027" },{ "x006","w006" } };
+int stenNodesArr[74] = { 72,17,19,75,34,37,7,8,9,10,25,27,29,32,35,38,71,79,16,18,20,21,64,23,31,78,39,70,53,15,22,69,77,40,55,45,63,66,73,
+0,1,11,13,67,68,46,48,50,52,24,26,28,30,33,36,80,47,49,51,54,74,76,81,42,60,43,58,61,57,41,59,44,56,62 };
 
 NewGuideLayer* g_NewGuideLayer = NULL;
 NewGuideLayer::NewGuideLayer()
@@ -178,10 +180,19 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 		iscannext = true;
 	}
 
+	bool clickRect = false;
+	for (int i = 0; i < sizeof(stenNodesArr) / sizeof(stenNodesArr[0]); i++)
+	{
+		if (stenNodesArr[i] == m_step)
+		{
+			clickRect = true;
+			break;
+		}
+	}
+
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
 		Vec2 point = Director::getInstance()->convertToGL(touch->getLocationInView());//获得当前触摸的坐标 
-		starPos = touch->getLocation();
 		if (stencilNodes.size() > 0)
 		{
 			Vec2 vec = stencilNodes[stencilNodes.size() - 1]->getParent()->convertToWorldSpace(stencilNodes[stencilNodes.size() - 1]->getPosition());
@@ -208,194 +219,23 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 	{
 		if (iscannext)
 		{
-			if (m_step != 64)
+			if (clickRect)
 			{
-				DataSave::getInstance()->setIsNewerGuide(m_step, 0);
-			}
+				Vec2 point = Director::getInstance()->convertToGL(touch->getLocationInView());//获得当前触摸的坐标 
+				if (stencilNodes.size() > 0)
+				{
+					Vec2 vec = stencilNodes[stencilNodes.size() - 1]->getParent()->convertToWorldSpace(stencilNodes[stencilNodes.size() - 1]->getPosition());
 
-			if (g_mainScene != NULL)
-			{
-				g_mainScene->setScrollGliding();
-			}
-
-			if (m_step == 0)
-			{
-				if (g_MapBlockScene != NULL)
-				{
-					g_MapBlockScene->delayShowNewerGuide(0);
-				}
-			}
-			else if ((m_step > 1 && m_step < 5) || (m_step >= 11 && m_step < 13))
-			{
-				this->removeFromParentAndCleanup(true);
-				if (g_MapBlockScene != NULL)
-				{
-					g_MapBlockScene->delayShowNewerGuide(0);
-				}
-			}
-			else if (m_step == 1 || m_step == 14 || m_step == 15 || m_step == 16 || m_step == 18 || m_step == 22 || m_step == 23 
-				|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31 || m_step == 32 || m_step == 33 || m_step == 35 
-				|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46 || m_step == 48 || m_step == 50
-				|| m_step == 52 || m_step == 53 || m_step == 54 || m_step == 55 || m_step == 56 || m_step == 57 || m_step == 59 || m_step == 63
-				|| m_step == 65 || m_step == 66 || m_step == 69 || m_step == 70 || m_step == 71 || m_step == 72 || m_step == 73 || m_step == 74
-				|| m_step == 75 || m_step == 77 || m_step == 78 || m_step == 79 || m_step == 80 || m_step == 81)
-			{
-				this->removeFromParentAndCleanup(true);
-			}
-			else if (m_step > 5 && m_step <= 9)
-			{
-				this->removeFromParentAndCleanup(true);
-				if (g_MapBlockScene != NULL)
-				{
-					FightingLayer* fightlayer = (FightingLayer*)g_MapBlockScene->getChildByName("FightingLayer");
-					if (fightlayer != NULL)
+					auto rect = Rect(vec.x - stencilNodes[stencilNodes.size() - 1]->getBoundingBox().size.width / 2, vec.y - stencilNodes[stencilNodes.size() - 1]->getBoundingBox().size.height / 2, stencilNodes[stencilNodes.size() - 1]->getBoundingBox().size.width, stencilNodes[stencilNodes.size() - 1]->getBoundingBox().size.height);
+					if (rect.containsPoint(point))//如果触点处于rect中  
 					{
-						fightlayer->checkNewGuide();
+						showNextGuide();
 					}
 				}
 			}
-			else if (m_step == 10)
+			else
 			{
-				this->removeFromParentAndCleanup(true);
-				if (g_MapBlockScene != NULL)
-				{
-					FightingLayer* fightlayer = (FightingLayer*)g_MapBlockScene->getChildByName("FightingLayer");
-					if (fightlayer != NULL)
-					{
-						fightlayer->resumeAtkSchedule();
-					}
-				}
-			}
-			else if (m_step == 13)
-			{
-				clearNewGuideData();
-				this->removeFromParentAndCleanup(true);
-				if (g_MapBlockScene != NULL)
-				{
-					//g_MapBlockScene->delayShowExit(0);
-					g_MapBlockScene->showNewerGuideGoBack();
-				}
-			}
-			else if (m_step == 17 || m_step == 19 || m_step == 20)
-			{
-				this->removeFromParentAndCleanup(true);
-				if (g_mainScene != NULL)
-				{
-					HomeHillLayer* hill = (HomeHillLayer*)g_mainScene->getChildByName("7homehill");
-					if (hill != NULL)
-					{
-						hill->delayShowNewerGuide(0);
-					}
-				}
-			}
-			else if (m_step == 21 || m_step == 39 || m_step == 44 || m_step == 68 || m_step == 76)
-			{
-				this->removeFromParentAndCleanup(true);
-				if (g_mainScene != NULL)
-				{
-					g_mainScene->delayShowNewerGuide(0);
-				}
-			}
-			else if (m_step == 25 || m_step == 27 || m_step == 29)
-			{
-				this->removeFromParentAndCleanup(true);
-				if (g_mainScene != NULL)
-				{
-					InnRoomLayer* hill = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-					if (hill != NULL)
-					{
-						RandHeroLayer* randlayer = (RandHeroLayer*)hill->getChildByName("RandHeroLayer");
-						if (randlayer != NULL)
-						{
-							randlayer->delayShowNewerGuide(0);
-						}
-					}
-				}
-			}
-			else if (m_step == 30 || m_step == 38)
-			{
-				this->removeFromParentAndCleanup(true);
-				if (g_mainScene != NULL)
-				{
-					InnRoomLayer* hill = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-					if (hill != NULL)
-					{
-						hill->delayShowNewerGuide(0);
-					}
-				}
-			}
-			else if (m_step == 34 || m_step == 37)
-			{
-				this->removeFromParentAndCleanup(true);
-				if (g_mainScene != NULL)
-				{
-					HeroAttrLayer* randlayer = (HeroAttrLayer*)g_mainScene->getChildByTag(0);
-					if (randlayer != NULL)
-					{
-						randlayer->delayShowNewerGuide(0);
-					}
-				}
-			}
-			else if (m_step == 42 || step == 60)
-			{
-				this->removeFromParentAndCleanup(true);
-				if (g_mainScene != NULL)
-				{
-					TaskDescLayer* layer = (TaskDescLayer*)g_mainScene->getChildByName("TaskDescLayer");
-					if (layer != NULL)
-					{
-						layer->delayShowNewerGuide(0);
-					}
-				}
-			}
-			else if (m_step == 43 || m_step == 58 || m_step == 61)
-			{
-				this->removeFromParentAndCleanup(true);
-				if (g_mainScene != NULL)
-				{
-					TaskLayer* layer = (TaskLayer*)g_mainScene->getChildByName("9assemblyhall");
-					if (layer != NULL)
-					{
-						layer->delayShowNewerGuide(0);
-					}
-				}
-			}
-			else if (m_step == 47 || m_step == 49 || m_step == 51)
-			{
-				this->removeFromParentAndCleanup(true);
-				if (g_mainScene != NULL)
-				{
-					OutTownLayer* layer = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
-					if (layer != NULL)
-					{
-						layer->delayShowNewerGuide(0);
-					}
-				}
-			}
-			else if (m_step == 64)
-			{
-				this->removeFromParentAndCleanup(true);
-				if (g_mainScene != NULL)
-				{
-					HospitalLayer* layer = (HospitalLayer*)g_mainScene->getChildByName("1hospital");
-					if (layer != NULL)
-					{
-						layer->scheduleOnce(schedule_selector(HospitalLayer::delayShowNewerGuide), 0.3f);
-						//layer->delayShowNewerGuide(0);
-					}
-				}
-			}
-			else if (m_step == 67)
-			{
-				this->removeFromParentAndCleanup(true);
-				if (g_mainScene != NULL)
-				{
-					MarketLayer* layer = (MarketLayer*)g_mainScene->getChildByName("5market");
-					if (layer != NULL)
-					{
-						layer->delayShowNewerGuide(0);
-					}
-				}
+				showNextGuide();
 			}
 		}
 		return;
@@ -411,6 +251,200 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 //#endif
 
 	return true;
+}
+
+void NewGuideLayer::showNextGuide()
+{
+	if (m_step != 64)
+	{
+		DataSave::getInstance()->setIsNewerGuide(m_step, 0);
+	}
+
+	if (g_mainScene != NULL)
+	{
+		g_mainScene->setScrollGliding();
+	}
+
+	if (m_step == 0)
+	{
+		if (g_MapBlockScene != NULL)
+		{
+			g_MapBlockScene->delayShowNewerGuide(0);
+		}
+	}
+	else if ((m_step > 1 && m_step < 5) || (m_step >= 11 && m_step < 13))
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_MapBlockScene != NULL)
+		{
+			g_MapBlockScene->delayShowNewerGuide(0);
+		}
+	}
+	else if (m_step == 1 || m_step == 14 || m_step == 15 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 22 || m_step == 23
+		|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31 || m_step == 32 || m_step == 33 || m_step == 35 || m_step == 19
+		|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46 || m_step == 48 || m_step == 50
+		|| m_step == 52 || m_step == 53 || m_step == 54 || m_step == 55 || m_step == 56 || m_step == 57 || m_step == 59 || m_step == 63
+		|| m_step == 65 || m_step == 66 || m_step == 69 || m_step == 70 || m_step == 71 || m_step == 72 || m_step == 73 || m_step == 74
+		|| m_step == 75 || m_step == 77 || m_step == 78 || m_step == 79 || m_step == 80 || m_step == 81 || m_step == 85)
+	{
+		this->removeFromParentAndCleanup(true);
+	}
+	else if (m_step > 5 && m_step <= 9)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_MapBlockScene != NULL)
+		{
+			FightingLayer* fightlayer = (FightingLayer*)g_MapBlockScene->getChildByName("FightingLayer");
+			if (fightlayer != NULL)
+			{
+				fightlayer->checkNewGuide();
+			}
+		}
+	}
+	else if (m_step == 10)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_MapBlockScene != NULL)
+		{
+			FightingLayer* fightlayer = (FightingLayer*)g_MapBlockScene->getChildByName("FightingLayer");
+			if (fightlayer != NULL)
+			{
+				fightlayer->resumeAtkSchedule();
+			}
+		}
+	}
+	else if (m_step == 13)
+	{
+		clearNewGuideData();
+		this->removeFromParentAndCleanup(true);
+		if (g_MapBlockScene != NULL)
+		{
+			//g_MapBlockScene->delayShowExit(0);
+			g_MapBlockScene->showNewerGuideGoBack();
+		}
+	}
+	else if (m_step == 20 || m_step == 21 || m_step == 82 || m_step == 83 || m_step == 84)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_mainScene != NULL)
+		{
+			HomeHillLayer* hill = (HomeHillLayer*)g_mainScene->getChildByName("7homehill");
+			if (hill != NULL)
+			{
+				hill->scheduleOnce(schedule_selector(HomeHillLayer::delayShowNewerGuide), 0.1f);
+				//hill->delayShowNewerGuide(0);
+			}
+		}
+	}
+	else if (m_step == 39 || m_step == 44 || m_step == 68 || m_step == 76)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_mainScene != NULL)
+		{
+			g_mainScene->delayShowNewerGuide(0);
+		}
+	}
+	else if (m_step == 25 || m_step == 27 || m_step == 29)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_mainScene != NULL)
+		{
+			InnRoomLayer* hill = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+			if (hill != NULL)
+			{
+				RandHeroLayer* randlayer = (RandHeroLayer*)hill->getChildByName("RandHeroLayer");
+				if (randlayer != NULL)
+				{
+					randlayer->delayShowNewerGuide(0);
+				}
+			}
+		}
+	}
+	else if (m_step == 30 || m_step == 38)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_mainScene != NULL)
+		{
+			InnRoomLayer* hill = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+			if (hill != NULL)
+			{
+				hill->delayShowNewerGuide(0);
+			}
+		}
+	}
+	else if (m_step == 34 || m_step == 37)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_mainScene != NULL)
+		{
+			HeroAttrLayer* randlayer = (HeroAttrLayer*)g_mainScene->getChildByTag(0);
+			if (randlayer != NULL)
+			{
+				randlayer->delayShowNewerGuide(0);
+			}
+		}
+	}
+	else if (m_step == 42 || m_step == 60)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_mainScene != NULL)
+		{
+			TaskDescLayer* layer = (TaskDescLayer*)g_mainScene->getChildByName("TaskDescLayer");
+			if (layer != NULL)
+			{
+				layer->delayShowNewerGuide(0);
+			}
+		}
+	}
+	else if (m_step == 43 || m_step == 58 || m_step == 61)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_mainScene != NULL)
+		{
+			TaskLayer* layer = (TaskLayer*)g_mainScene->getChildByName("9assemblyhall");
+			if (layer != NULL)
+			{
+				layer->delayShowNewerGuide(0);
+			}
+		}
+	}
+	else if (m_step == 47 || m_step == 49 || m_step == 51)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_mainScene != NULL)
+		{
+			OutTownLayer* layer = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
+			if (layer != NULL)
+			{
+				layer->delayShowNewerGuide(0);
+			}
+		}
+	}
+	else if (m_step == 64)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_mainScene != NULL)
+		{
+			HospitalLayer* layer = (HospitalLayer*)g_mainScene->getChildByName("1hospital");
+			if (layer != NULL)
+			{
+				layer->scheduleOnce(schedule_selector(HospitalLayer::delayShowNewerGuide), 0.3f);
+				//layer->delayShowNewerGuide(0);
+			}
+		}
+	}
+	else if (m_step == 67)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_mainScene != NULL)
+		{
+			MarketLayer* layer = (MarketLayer*)g_mainScene->getChildByName("5market");
+			if (layer != NULL)
+			{
+				layer->delayShowNewerGuide(0);
+			}
+		}
+	}
 }
 
 bool NewGuideLayer::checkifNewerGuide(int index)
@@ -461,7 +495,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 					scalex = 3.0f;
 					scaley = 3.0f;
 				}
-				else if (m_step == 21 || m_step == 30)
+				else if (m_step == 30)
 				{
 					m_pos.y = m_pos.y + 20;
 				}
@@ -471,7 +505,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 				}
 				cnode->setPosition(m_pos);
 				cnode->setScale(scalex*1.5f, scaley*1.5f);
-				if (m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52 || 
+				if (m_step == 16 || m_step == 17 || m_step == 18 || m_step == 19 || m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52 ||
 					m_step == 38 || m_step == 71 || m_step == 75 || m_step == 81)
 				{
 					cnode->setScale(scalex*1.5f);
