@@ -1187,9 +1187,9 @@
     <Cell c="32" r="34" p="-1" w="0" m="47.png" />
     <Cell c="33" r="0" p="-1" w="0" m="46.png" />
     <Cell c="33" r="1" p="4" w="1" m="65.png">
-      <npcid>n001</npcid>
+      <npcid>n010</npcid>
       <npcrnd>100</npcrnd>
-      <msatt2 id="n001" qu="2">40</msatt2>
+      <msatt2 id="n010" qu="2">40</msatt2>
     </Cell>
     <Cell c="33" r="2" p="-1" w="1" m="65.png" />
     <Cell c="33" r="3" p="-1" w="1" m="65.png" />

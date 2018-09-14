@@ -884,10 +884,10 @@
     <Cell c="28" r="1" p="-1" w="0" m="65.png" />
     <Cell c="28" r="2" p="-1" w="0" m="65.png" />
     <Cell c="28" r="3" p="4" w="1" m="65.png">
-      <npcid>n082</npcid>
+      <npcid>n007</npcid>
       <npcrnd>100</npcrnd>
-      <msatt2 id="n082" qu="2">35</msatt2>
-      <msatt5 id="n082" qu="0">30</msatt5>
+      <msatt2 id="n007" qu="2">35</msatt2>
+      <msatt5 id="n007" qu="2">30</msatt5>
     </Cell>
     <Cell c="28" r="4" p="-1" w="1" m="65.png" />
     <Cell c="28" r="5" p="-1" w="1" m="44.png" />

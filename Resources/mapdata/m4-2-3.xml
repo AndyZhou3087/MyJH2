@@ -13,9 +13,9 @@
   </Monstors>
   <Cells rs="40" cs="40">
     <Cell c="0" r="0" p="4" w="1" m="88.png">
-      <npcid>n028</npcid>
+      <npcid>n027</npcid>
       <npcrnd>100</npcrnd>
-      <msatt2 id="n028" qu="2">40</msatt2>
+      <msatt2 id="n027" qu="2">40</msatt2>
     </Cell>
     <Cell c="0" r="1" p="-1" w="1" m="88.png" />
     <Cell c="0" r="2" p="-1" w="1" m="88.png" />

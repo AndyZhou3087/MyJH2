@@ -53,9 +53,9 @@
     <Cell c="1" r="5" p="-1" w="0" m="6.png" d="1.png" />
     <Cell c="1" r="6" p="-1" w="0" m="6.png" />
     <Cell c="1" r="7" p="4" w="1" m="6.png">
-      <npcid>n002</npcid>
+      <npcid>n084</npcid>
       <npcrnd>100</npcrnd>
-      <msatt2 id="n002" qu="2">35</msatt2>
+      <msatt2 id="n084" qu="2">35</msatt2>
     </Cell>
     <Cell c="1" r="8" p="-1" w="1" m="6.png" />
     <Cell c="1" r="9" p="-1" w="1" m="6.png" />
