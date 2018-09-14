@@ -62,7 +62,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	cocos2d::ui::Text* rewardlabel = (cocos2d::ui::Text*)m_csbnode->getChildByName("rewardlabel");
-	rewardlabel->setString(ResourceLang::map_lang["taskrewardtip"]);
+	rewardlabel->setString(ResourceLang::map_lang["taskrewardtip2"]);
 
 	//标题
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)m_csbnode->getChildByName("name");
@@ -272,10 +272,10 @@ void TaskDescLayer::delayShowNewerGuide(float dt)
 			{
 				showNewerGuide(42);
 			}
-			else if (NewGuideLayer::checkifNewerGuide(43))
+			/*else if (NewGuideLayer::checkifNewerGuide(43))
 			{
 				showNewerGuide(43);
-			}
+			}*/
 		}
 		else if (NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP) && Quest::isMainQuestFinish(1))
 		{
@@ -283,18 +283,18 @@ void TaskDescLayer::delayShowNewerGuide(float dt)
 			{
 				showNewerGuide(57);
 			}
-			else if (NewGuideLayer::checkifNewerGuide(58))
+			/*else if (NewGuideLayer::checkifNewerGuide(58))
 			{
 				showNewerGuide(58);
-			}
+			}*/
 			else if (NewGuideLayer::checkifNewerGuide(60))
 			{
 				showNewerGuide(60);
 			}
-			else if (NewGuideLayer::checkifNewerGuide(61))
+			/*else if (NewGuideLayer::checkifNewerGuide(61))
 			{
 				showNewerGuide(61);
-			}
+			}*/
 		}
 	}
 }
@@ -335,10 +335,12 @@ void TaskDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			accbtn->setTouchEnabled(false);
 			accpTask();
 			g_mainScene->updateTaskIcon();
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		case 2: //完成后领取奖励
 			node->setVisible(false);
 			getRewards();
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		default:
 			break;
