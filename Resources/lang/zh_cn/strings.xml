@@ -237,4 +237,5 @@
 	<s name="nogfputon">当前没有对应武功，可通过完成副本获得</s>
 	<s name="newherohint">有新的角色招募</s>
 	<s name="hasequipcount">[拥有数量：%d]</s>
+	<s name="bettipstext">请选择大小</s>
 </strings>

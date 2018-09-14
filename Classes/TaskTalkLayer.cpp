@@ -414,7 +414,6 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 			g_MapBlockScene->showUnlockChapter();
 		}
 
-
 		if (bwords.length()>1)
 		{
 			checkWordLblColor(bwords);

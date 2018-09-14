@@ -32,6 +32,7 @@ public:
 	int getEquipQuRand();//随机装备品质
 	int getResCountRand(std::string id);//随机数量
 	void continueGamble();
+	void updateCoin(float dt);
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -66,6 +67,9 @@ private:
 	cocos2d::ui::ImageView* betArr[2];
 	cocos2d::ui::Button* betActionbtn;
 	cocostudio::timeline::ActionTimeline* anim_action;
+	cocos2d::ui::Widget* coin;
+	cocos2d::ui::Text* coincount;
+	cocos2d::ui::Button* m_closebtn;
 
 	int langtype;
 	int m_eventindex;

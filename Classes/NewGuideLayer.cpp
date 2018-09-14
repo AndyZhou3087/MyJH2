@@ -591,7 +591,7 @@ void NewGuideLayer::showWord(std::string wordstr)
 		{
 			textbox->setPosition(Vec2(360, 530));
 		}
-		else if (m_step == 72)
+		else if (m_step == 63 || m_step == 72)
 		{
 			textbox->setPosition(Vec2(360, 650));
 		}

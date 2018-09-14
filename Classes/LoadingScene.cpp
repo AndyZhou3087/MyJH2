@@ -173,7 +173,7 @@ void LoadingScene::showNextScene(float dt)
 		{
 			NewGuideLayer::setNewGuideInfo(FOURTHGUIDESTEP);
 		}
-		Director::getInstance()->replaceScene(MainScene::createScene());
+		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 	}
 }
 
