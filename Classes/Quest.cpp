@@ -231,8 +231,6 @@ bool Quest::checkResQuestData(std::string resid, int count, std::string npcid)
 	//判断是否给予完成
 	if (getResCountFinish())
 	{
-		finishQuest();
-
 		std::string curstr;
 		std::map<std::string, int>::iterator it;
 		for (it = map_NpcQuestRes.begin(); it != map_NpcQuestRes.end(); it++)
@@ -242,6 +240,8 @@ bool Quest::checkResQuestData(std::string resid, int count, std::string npcid)
 			curstr.append(onestr);
 		}
 		DataSave::getInstance()->setMyCurTaskNeed(curstr.substr(0, curstr.length() - 1));
+
+		finishQuest();
 
 		return true;
 	}
@@ -492,8 +492,6 @@ bool Quest::checkResBranchQuestData(std::string resid, int count, std::string np
 	//判断是否给予完成
 	if (getResBranchFinish())
 	{
-		finishBranchQuest();
-
 		std::string curstr;
 		std::map<std::string, int>::iterator it;
 		for (it = map_NpcBranchQuestRes.begin(); it != map_NpcBranchQuestRes.end(); it++)
@@ -503,6 +501,8 @@ bool Quest::checkResBranchQuestData(std::string resid, int count, std::string np
 			curstr.append(onestr);
 		}
 		DataSave::getInstance()->setMyCurBranchNeed(curstr.substr(0, curstr.length() - 1));
+
+		finishBranchQuest();
 		return true;
 	}
 	else
@@ -541,6 +541,9 @@ void Quest::AddFinishBranchQuest(TaskData data)
 	myFinishBranchQuest.push_back(data);
 	map_NpcBranchQuestRes.clear();
 	DataSave::getInstance()->setMyCurBranchNeed("");
+
+	//特效
+	CommonFuncs::playCommonLvUpAnim(g_MapBlockScene, "texiao_rwwc");
 }
 
 void Quest::finishTaskBranch(int ftype)
@@ -565,8 +568,10 @@ void Quest::saveBranchData()
 	{
 		if (GlobalInstance::myCurBranchData.id == GlobalInstance::vec_TaskBranch[i].id)
 		{
-			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
 			GlobalInstance::vec_TaskBranch[i].isfinish = GlobalInstance::myCurBranchData.isfinish;
+			GlobalInstance::vec_TaskBranch[i].finishtype = GlobalInstance::myCurBranchData.finishtype;
+			AddFinishBranchQuest(GlobalInstance::myCurBranchData);
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
 			if (i + 1 < GlobalInstance::vec_TaskBranch.size())
 			{
 				GlobalInstance::myCurBranchData = GlobalInstance::vec_TaskBranch[i + 1];//当前任务下一个
