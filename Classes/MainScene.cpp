@@ -79,13 +79,11 @@ bool MainScene::init()
 	scroll_2->setScrollBarEnabled(false);
 	scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 	scroll_2->setSwallowTouches(false);
-	//scroll_2->addEventListener(CC_CALLBACK_2(MainScene::srollviewlistenEvent, this));
 
 	scroll_1 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_1");
 	scroll_1->setScrollBarEnabled(false);
 	scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 	scroll_1->setSwallowTouches(false);
-	//scroll_1->addEventListener(CC_CALLBACK_2(MainScene::srollviewlistenEvent, this));
 
 	std::map<std::string, Building*>::iterator it;
 	int i = 1;
@@ -265,15 +263,12 @@ void MainScene::delayShowNewerGuide(float dt)
 void MainScene::showNewerGuide(int step)
 {
 	scroll_3->setEnabled(false);
-	scroll_2->setEnabled(false);
-	scroll_1->setEnabled(false);
+
 	scroll_3->setDirection(cocos2d::ui::ScrollView::Direction::NONE);
-	scroll_2->setDirection(cocos2d::ui::ScrollView::Direction::NONE);
-	scroll_1->setDirection(cocos2d::ui::ScrollView::Direction::NONE);
+
 	std::vector<Node*> nodes;
 	if (step == 15)
 	{
-		scroll_2->setEnabled(true);
 		scroll_3->jumpToPercentHorizontal(95);
 		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
@@ -287,7 +282,6 @@ void MainScene::showNewerGuide(int step)
 	}
 	else if (step == 22 || step == 69 || step == 77)
 	{
-		scroll_2->setEnabled(true);
 		scroll_3->jumpToPercentHorizontal(50);
 		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
@@ -296,9 +290,6 @@ void MainScene::showNewerGuide(int step)
 	}
 	else if (step == 40 || step == 55)
 	{
-		scroll_1->setEnabled(true);
-		//scroll_1->jumpToPercentHorizontal(32);
-		//scroll_2->jumpToPercentHorizontal(32);
 		scroll_3->jumpToPercentHorizontal(32);
 		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
@@ -309,8 +300,6 @@ void MainScene::showNewerGuide(int step)
 	{
 		scroll_3->setEnabled(true);
 
-		//scroll_1->jumpToPercentHorizontal(80);
-		//scroll_2->jumpToPercentHorizontal(80);
 		scroll_3->jumpToPercentHorizontal(80);
 		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
@@ -336,11 +325,7 @@ void MainScene::showNewerGuide(int step)
 	}
 	else if (step == 66)
 	{
-		scroll_2->setEnabled(true);
-
 		scroll_3->jumpToPercentHorizontal(82);
-		/*scroll_2->jumpToPercentHorizontal(82);
-		scroll_1->jumpToPercentHorizontal(82);*/
 		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 
@@ -386,11 +371,7 @@ void MainScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
 void MainScene::setScrollGliding()
 {
 	scroll_3->setEnabled(true);
-	scroll_2->setEnabled(true);
-	scroll_1->setEnabled(true);
 	scroll_3->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
-	scroll_2->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
-	scroll_1->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
 }
 
 void MainScene::onEnterTransitionDidFinish()
@@ -401,14 +382,16 @@ void MainScene::onEnterTransitionDidFinish()
 
 void MainScene::srollviewlistenEvent(Ref* ref, ui::ScrollView::EventType eventType)
 {
-	//if (g_NewGuideLayer != NULL)
-	//{
-	//	return;
-	//}
-	//Vec2 pos = scroll_3->getInnerContainerPosition();
-	////log("scoll posx:%f, posy:%f", pos.x, pos.y);
-	////log("scoll eventType = %d", eventType);
+	if (g_NewGuideLayer != NULL)
+	{
+		return;
+	}
+	Vec2 pos = scroll_3->getInnerContainerPosition();
+	//log("scoll posx:%f, posy:%f", pos.x, pos.y);
+	//log("scoll eventType = %d", eventType);
 
+	scroll_2->setInnerContainerPosition(pos);
+	scroll_1->setInnerContainerPosition(pos);
 	//switch (eventType) 
 	//{
 	//	//最外层滑动时，带动后两层滑动，可修改时间调整效果

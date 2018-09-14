@@ -156,6 +156,8 @@ private:
 
 	bool m_isLongPress;
 	Node* m_longTouchNode;
+
+	bool isCanClickFullHero;
 };
 
 #endif
