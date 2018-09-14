@@ -68,6 +68,8 @@ bool ShopLayer::init()
 	cocos2d::ui::Text* text = (cocos2d::ui::Text*)csbnode->getChildByName("text");
 	text->setString(ResourceLang::map_lang["officalQQ"]);
 
+	coinlbl = (cocos2d::ui::Text*)csbnode->getChildByName("coinbox")->getChildByName("countlbl");
+
 	scrollView = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scrollView");
 
 	int size = GlobalInstance::vec_shopdata.size();
@@ -88,6 +90,8 @@ bool ShopLayer::init()
 		node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-scrollView->getContentSize().width / 2 - 600, 0))));
 	}
 
+	updateCoinLable(0);
+	this->scheduleOnce(schedule_selector(ShopLayer::updateCoinLable), 0.1f);
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -110,6 +114,12 @@ void ShopLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 	{
 		AnimationEffect::closeAniEffect((Layer*)this);
 	}
+}
+
+void ShopLayer::updateCoinLable(float dt)
+{
+	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
+	coinlbl->setString(str);
 }
 
 void ShopLayer::onExit()

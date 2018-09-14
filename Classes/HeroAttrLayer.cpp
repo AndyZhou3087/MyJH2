@@ -35,6 +35,7 @@ HeroAttrLayer::HeroAttrLayer()
 	isMovingAction = false;
 	m_isLongPress = false;
 	m_longTouchNode = NULL;
+	isCanClickFullHero = true;
 }
 
 HeroAttrLayer::~HeroAttrLayer()
@@ -454,11 +455,13 @@ void HeroAttrLayer::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)
 {
 	lastchangedname = editBox->getText();
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	if (equipnode->isVisible())
 	{
-		equipnode->setPositionY(equipnode->getPosition().y + 200);
-		heroattrbottom->setPositionY(heroattrbottom->getPosition().y + 200);
+		equipnode->setPositionY(690);
+		heroattrbottom->setPositionY(200);
 	}
+#endif
 }
 
 void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox, EditBoxEndAction action)
@@ -505,8 +508,8 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 
 	if (equipnode->isVisible())
 	{
-		equipnode->setPositionY(equipnode->getPosition().y - 200);
-		heroattrbottom->setPositionY(heroattrbottom->getPosition().y - 200);
+		equipnode->setPositionY(490);
+		heroattrbottom->setPositionY(0);
 	}
 }
 
@@ -528,7 +531,12 @@ void HeroAttrLayer::editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std:
 
 void HeroAttrLayer::editBoxReturn(cocos2d::ui::EditBox *editBox)
 {
-
+	if (equipnode->isVisible())
+	{
+		equipnode->setPositionY(490);
+		heroattrbottom->setPositionY(0);
+		isCanClickFullHero = false;
+	}
 }
 
 void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -959,20 +967,25 @@ void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		if (lvnode->isVisible() || isMovingAction)
+		if (!isCanClickFullHero)
+		{
+			isCanClickFullHero = true;
+			return;
+		}
+		if (lvnode->isVisible() || isMovingAction || !isCanClickFullHero)
 			return;
 		else
 		{
 			isMovingAction = true;
 			if (heroattrbottom->getPositionY() >= 0)
 			{
-				heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, -heroattrbottom->getContentSize().height)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+				heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, -heroattrbottom->getContentSize().height)), DelayTime::create(0.12f), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
 				equipnode->runAction(Sequence::create(MoveTo::create(0.4f, Vec2(360, -560)), NULL));
 				blankclick->setVisible(false);
 			}
 			else
 			{
-				heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, 0)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+				heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, 0)), DelayTime::create(0.02f), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
 				equipnode->runAction(MoveTo::create(0.3f, Vec2(360, 490)));
 				blankclick->setVisible(true);
 			}
