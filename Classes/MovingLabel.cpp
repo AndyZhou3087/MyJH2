@@ -44,7 +44,7 @@ MovingLabel* MovingLabel::create(std::string text, Color4B color, Vec2 pos)
 
 bool MovingLabel::init(std::string text, Color4B color, Vec2 pos)
 {
-	Label::initWithTTF(text, FONT_NAME, 25);
+	Label::initWithTTF(text, FONT_NAME, 27);
 	setPosition(pos);
 	this->setTextColor(color);
 	this->enableOutline(Color4B(0,0,0, 200), 1);
