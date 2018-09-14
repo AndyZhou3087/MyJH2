@@ -370,6 +370,7 @@ void RandHeroLayer::create3RandHero()
 			if (i == 0)
 			{
 				randhero->setVocation(0);
+				randhero->setPotential(2);
 			}
 		}
 		GlobalInstance::vec_rand3Heros.push_back(randhero);

@@ -38,7 +38,7 @@ MapBlockScene::MapBlockScene()
 	m_longTouchNode = NULL;
 	walkcount = 0;
 	monsterComeRnd = DEFAULTRND;
-	fogscale = 4.0f;
+	fogscale = 5.0f;
 	m_fightbgtype = 0;
 	m_walkDirection = 0;
 	m_lastWalkDirection = 0;
