@@ -1051,9 +1051,6 @@ void MapBlockScene::creatNpcOrBoss(MapBlock* mbolck)
 				vec_enemys.push_back(enemyhero);
 			}
 		}
-		//boss，特殊boss只触发一次
-		if (mbolck->getPosType() == POS_BOSS || mbolck->getPosType() == POS_TBOSS)
-			mbolck->setPosNpcRnd(0);
 	}
 
 	for (unsigned int i = 0; i < mbolck->vec_RewardsRes.size(); i++)
@@ -1103,11 +1100,13 @@ void MapBlockScene::showFightResult(int result)
 		if (map_mapBlocks[bindex]->getPosType() == POS_BOSS)
 		{
 			map_mapBlocks[bindex]->removePosIcon();
+			map_mapBlocks[bindex]->setPosNpcRnd(0);
 			openAllMap();
 		}
 		else if (map_mapBlocks[bindex]->getPosType() == POS_TBOSS)
 		{
 			map_mapBlocks[bindex]->removePosIcon();
+			map_mapBlocks[bindex]->setPosNpcRnd(0);
 		}
 	}
 

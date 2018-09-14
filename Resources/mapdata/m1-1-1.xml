@@ -95,9 +95,7 @@
     <Cell c="5" r="11" p="-1" w="1" m="6.png" />
     <Cell c="5" r="12" p="-1" w="1" m="6.png" />
     <Cell c="5" r="13" p="-1" w="1" m="6.png" />
-    <Cell c="6" r="0" p="-1" w="1" m="11.png">
-      <event>0;0;100;0;0;0;0</event>
-    </Cell>
+    <Cell c="6" r="0" p="-1" w="1" m="11.png" />
     <Cell c="6" r="1" p="-1" w="1" m="6.png" />
     <Cell c="6" r="2" p="-1" w="1" m="6.png" />
     <Cell c="6" r="3" p="-1" w="1" m="6.png" />
@@ -109,7 +107,9 @@
     <Cell c="6" r="9" p="-1" w="1" m="6.png" />
     <Cell c="6" r="10" p="-1" w="1" m="6.png" />
     <Cell c="6" r="11" p="-1" w="1" m="6.png" />
-    <Cell c="6" r="12" p="-1" w="1" m="6.png" />
+    <Cell c="6" r="12" p="-1" w="1" m="6.png">
+      <event>0;0;0;100;0;0;0</event>
+    </Cell>
     <Cell c="6" r="13" p="0" w="1" m="6.png" />
     <Cell c="7" r="0" p="3" w="1" m="11.png">
       <npcid>n014</npcid>
@@ -124,22 +124,20 @@
       <msawd5 id="x001" qu="0" rnd="50.00">1</msawd5>
       <msawd6 id="m001" qu="0" rnd="50.00">2</msawd6>
     </Cell>
-    <Cell c="7" r="1" p="-1" w="1" m="6.png">
-      <event>0;0;100;0;0;0;0</event>
-    </Cell>
+    <Cell c="7" r="1" p="-1" w="1" m="6.png" />
     <Cell c="7" r="2" p="-1" w="1" m="6.png" />
     <Cell c="7" r="3" p="-1" w="1" m="6.png" />
     <Cell c="7" r="4" p="-1" w="1" m="6.png" />
     <Cell c="7" r="5" p="-1" w="1" m="6.png" />
     <Cell c="7" r="6" p="-1" w="1" m="6.png" />
-    <Cell c="7" r="7" p="-1" w="1" m="6.png">
-      <event>0;0;100;0;0;0;0</event>
-    </Cell>
+    <Cell c="7" r="7" p="-1" w="1" m="6.png" />
     <Cell c="7" r="8" p="-1" w="1" m="6.png" />
     <Cell c="7" r="9" p="-1" w="1" m="6.png" />
     <Cell c="7" r="10" p="-1" w="1" m="6.png" />
     <Cell c="7" r="11" p="-1" w="1" m="6.png" />
-    <Cell c="7" r="12" p="-1" w="1" m="6.png" />
+    <Cell c="7" r="12" p="-1" w="1" m="6.png">
+      <event>0;0;0;0;0;100;0</event>
+    </Cell>
     <Cell c="7" r="13" p="0" w="1" m="6.png" />
     <Cell c="8" r="0" p="-1" w="0" m="11.png" d="13.png" />
     <Cell c="8" r="1" p="-1" w="1" m="6.png" />

@@ -311,7 +311,11 @@
     <Cell c="5" r="43" p="-1" w="1" m="107.png" />
     <Cell c="5" r="44" p="-1" w="1" m="107.png" />
     <Cell c="5" r="45" p="-1" w="1" m="107.png" />
-    <Cell c="5" r="46" p="-1" w="1" m="107.png" />
+    <Cell c="5" r="46" p="4" w="1" m="107.png">
+      <npcid>n056</npcid>
+      <npcrnd>100</npcrnd>
+      <msatt5 id="n056" qu="2">47</msatt5>
+    </Cell>
     <Cell c="5" r="47" p="-1" w="1" m="107.png" />
     <Cell c="5" r="48" p="-1" w="0" m="107.png" d="19.png" />
     <Cell c="5" r="49" p="-1" w="0" m="107.png" />
