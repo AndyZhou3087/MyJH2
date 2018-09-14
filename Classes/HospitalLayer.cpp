@@ -108,7 +108,10 @@ void HospitalLayer::showNewerGuide(int step)
 	{
 		nodes.push_back(vec_deadNodes[0]->getChildByName("csbnode")->getChildByName("actionbtn"));
 	}
-	g_mainScene->showNewerGuideNode(step, nodes);
+	if (g_mainScene != NULL)
+	{
+		g_mainScene->showNewerGuideNode(step, nodes);
+	}
 }
 
 void HospitalLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

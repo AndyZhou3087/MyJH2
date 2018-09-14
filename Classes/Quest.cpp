@@ -321,14 +321,14 @@ bool Quest::isShowQuestTip()
 	{
 		return true;
 	}
-	for (unsigned int i = 0; i < myFinishMainQuest.size(); i++)
+	/*for (unsigned int i = 0; i < myFinishMainQuest.size(); i++)
 	{
 		TaskData data = myFinishMainQuest[i];
 		if (data.isfinish != QUEST_GET)
 		{
 			return true;
 		}
-	}
+	}*/
 	return false;
 }
 
@@ -548,6 +548,7 @@ void Quest::finishTaskBranch(int ftype)
 	GlobalInstance::myCurBranchData.isfinish = QUEST_FINISH;
 	GlobalInstance::myCurBranchData.finishtype = ftype;
 	saveBranchData();
+	setDailyTask(FINISH_BRANCH, 1);
 }
 
 void Quest::finishBranchQuest()
@@ -591,14 +592,14 @@ bool Quest::isShowBranchQuestTip()
 	{
 		return true;
 	}
-	for (unsigned int i = 0; i < myFinishBranchQuest.size(); i++)
+	/*for (unsigned int i = 0; i < myFinishBranchQuest.size(); i++)
 	{
 		TaskData data = myFinishBranchQuest[i];
 		if (data.isfinish != QUEST_GET)
 		{
 			return true;
 		}
-	}
+	}*/
 	return false;
 }
 
