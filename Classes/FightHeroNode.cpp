@@ -764,7 +764,7 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 			{
 				//whosufferNode->getData()->setHp(whosufferNode->getData()->getHp() - eff*whosufferNode->getData()->getMaxHp() / 100);
 				//whosufferNode->updateHp();
-				whosufferNode->hurt(eff*whosufferNode->getData()->getMaxHp() / 100, -1);
+				whosufferNode->hurt(eff*m_Data->getAtk() / 100, -1);
 			}
 			else if (stype == SKILL_3)//被攻击目标%d回合内无法进行攻击。
 			{
