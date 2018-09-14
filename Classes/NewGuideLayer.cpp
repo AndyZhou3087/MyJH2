@@ -201,7 +201,10 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 			if (rect.containsPoint(point))//如果触点处于rect中  
 			{
 				iscannext = true;
-				listener->setSwallowTouches(false);
+				if (m_step != 13)
+				{
+					listener->setSwallowTouches(false);
+				}
 			}
 			else
 			{
@@ -385,7 +388,7 @@ void NewGuideLayer::showNextGuide()
 			}
 		}
 	}
-	else if (m_step == 42 || m_step == 60)
+	/*else if (m_step == 42 || m_step == 60)
 	{
 		this->removeFromParentAndCleanup(true);
 		if (g_mainScene != NULL)
@@ -396,8 +399,8 @@ void NewGuideLayer::showNextGuide()
 				layer->delayShowNewerGuide(0);
 			}
 		}
-	}
-	else if (m_step == 43 || m_step == 58 || m_step == 61)
+	}*/
+	else if (m_step == 42 || m_step == 58 || m_step == 60)
 	{
 		this->removeFromParentAndCleanup(true);
 		if (g_mainScene != NULL)
@@ -480,7 +483,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 			RenderTexture* m_clippingNode = RenderTexture::create(m_colorlayer->getContentSize().width, m_colorlayer->getContentSize().height);
 			m_clippingNode->setPosition(m_colorlayer->getContentSize().width / 2, m_colorlayer->getContentSize().height / 2);
 			m_colorlayer->addChild(m_clippingNode, 1);
-			m_clippingNode->beginWithClear(0, 0, 0, 0.5f, 0, 0);
+			m_clippingNode->beginWithClear(0, 0, 0, 0.7f, 0, 0);
 
 			Vec2 m_pos;
 			for (unsigned int i = 0; i < stencilNodes.size(); i++)
@@ -491,7 +494,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 				m_pos = stencilNodes[i]->getParent()->convertToWorldSpace(stencilNodes[i]->getPosition());
 				float scalex = stencilNodes[i]->getContentSize().width / cnode->getContentSize().width;
 				float scaley = stencilNodes[i]->getContentSize().height / cnode->getContentSize().height;
-				if (m_step >= 7 && m_step <= 10)
+				if ((m_step >= 7 && m_step <= 10))
 				{
 					scalex = 3.0f;
 					scaley = 3.0f;
@@ -506,7 +509,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 				}
 				cnode->setPosition(m_pos);
 				cnode->setScale(scalex*1.5f, scaley*1.5f);
-				if (m_step == 16 || m_step == 17 || m_step == 18 || m_step == 19 || m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52 ||
+				if (m_step == 0 || m_step == 1 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 19 || m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52 ||
 					m_step == 38 || m_step == 71 || m_step == 75 || m_step == 81)
 				{
 					cnode->setScale(scalex*1.5f);

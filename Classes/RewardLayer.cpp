@@ -6,7 +6,7 @@
 #include "AnimationEffect.h"
 #include "MyRes.h"
 #include "MainScene.h"
-#include "TaskDescLayer.h"
+#include "TaskLayer.h"
 
 USING_NS_CC;
 
@@ -173,7 +173,7 @@ void RewardLayer::removeSelf()
 	AnimationEffect::closeAniEffect((Layer*)this);
 	if (g_mainScene != NULL)
 	{
-		TaskDescLayer* layer = (TaskDescLayer*)g_mainScene->getChildByName("TaskDescLayer");
+		TaskLayer* layer = (TaskLayer*)g_mainScene->getChildByName("9assemblyhall");
 		if (layer != NULL)
 		{
 			layer->delayShowNewerGuide(0);

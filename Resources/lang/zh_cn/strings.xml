@@ -86,6 +86,7 @@
 	<s name="getrewardtext">领取奖励</s>
 	<s name="okbtntext">确定</s>
 	<s name="taskrewardtip">任务完成可获得奖励：（你的选择会影响你的奖励，谨慎选择）</s>
+	<s name="taskrewardtip2">任务完成可获得奖励：</s>
 	<s name="dailytype_0">完成%d个支线任务</s>
 	<s name="dailytype_1">刷新%d次酒馆招募</s>
 	<s name="dailytype_2">升级%d次英雄角色</s>
