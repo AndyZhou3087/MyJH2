@@ -86,6 +86,28 @@ bool MainMenuLayer::init()
 			std::string textname = StringUtils::format("main_%s_text", name.c_str());
 			textimg->loadTexture(ResourcePath::makeTextImgPath(textname, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
+
+		if (i >= VIP1BTN && i <= VIP2BTN)
+		{
+			cocos2d::ui::Text* text = (cocos2d::ui::Text*)clickwidget->getChildByName("text");
+			int days = 0;
+			if (i == VIP1BTN)
+			{
+				days = GlobalInstance::map_buyVipDays["vip1"];
+				vipstrArr[0] = text;
+			}
+			else
+			{
+				days = GlobalInstance::map_buyVipDays["vip0"];
+				vipstrArr[1] = text;
+			}
+			std::string textstr = StringUtils::format(ResourceLang::map_lang["daytext"].c_str(), days);
+			text->setString(textstr);
+			if (days == 0)
+			{
+				text->setVisible(false);
+			}
+		}
 	}
 
 	cocos2d::ui::Widget* headimgbox = (cocos2d::ui::Widget*)csbnode->getChildByName("headimgbox");
@@ -155,7 +177,7 @@ void MainMenuLayer::onFinish(int code)
 			|| (NewGuideLayer::checkifNewerGuide(55) && Quest::isMainQuestFinish(1)) || (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
 			|| ((NewGuideLayer::checkifNewerGuide(66) || (NewGuideLayer::checkifNewerGuide(69) && !NewGuideLayer::checkifNewerGuide(67))) && GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0)
 			|| (NewGuideLayer::checkifNewerGuide(73) && GlobalInstance::getInstance()->getHerosLevelCount(15) > 0) || (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(77))
-			|| (GlobalInstance::getInstance()->getResCreatorLessMore() && NewGuideLayer::checkifNewerGuide(15)))
+			|| (GlobalInstance::getInstance()->getMapUnlockGuide() && NewGuideLayer::checkifNewerGuide(15)))
 		{
 			return;
 		}
@@ -218,6 +240,22 @@ void MainMenuLayer::updateUI(float dt)
 			break;
 		}
 	}
+
+	//月卡更新
+	if (GlobalInstance::map_buyVipDays["vip1"] > 0)
+	{
+		vipstrArr[0]->setVisible(true);
+	}
+	std::string textstr = StringUtils::format(ResourceLang::map_lang["daytext"].c_str(), GlobalInstance::map_buyVipDays["vip1"]);
+	vipstrArr[0]->setString(textstr);
+	
+	if (GlobalInstance::map_buyVipDays["vip0"] > 0)
+	{
+		vipstrArr[1]->setVisible(true);
+	}
+	textstr = StringUtils::format(ResourceLang::map_lang["daytext"].c_str(), GlobalInstance::map_buyVipDays["vip0"]);
+	vipstrArr[1]->setString(textstr);
+	
 }
 
 void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -295,6 +333,28 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			g_mainScene->addChild(layer, 0, "ShopLayer");
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
+			break;
+		case VIP1BTN:
+			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+			{
+				if (GlobalInstance::vec_shopdata[i].icon.compare("vip1") == 0)
+				{
+					GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
+					this->addChild(layer);
+					AnimationEffect::openAniEffect((Layer*)layer);
+				}
+			}
+			break;
+		case VIP2BTN:
+			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+			{
+				if (GlobalInstance::vec_shopdata[i].icon.compare("vip0") == 0)
+				{
+					GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
+					this->addChild(layer);
+					AnimationEffect::openAniEffect((Layer*)layer);
+				}
+			}
 			break;
 		default:
 			break;

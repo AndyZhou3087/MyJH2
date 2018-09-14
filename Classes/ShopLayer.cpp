@@ -91,7 +91,7 @@ bool ShopLayer::init()
 	}
 
 	updateCoinLable(0);
-	this->scheduleOnce(schedule_selector(ShopLayer::updateCoinLable), 0.1f);
+	this->schedule(schedule_selector(ShopLayer::updateCoinLable), 0.1f);
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -157,42 +157,38 @@ void ShopLayer::setMessage(PYARET ret)
 {
 	if (ret == PAY_SUCC && payindex >= 0)
 	{
-		int coincount = GlobalInstance::map_shopprice[COIN].size();
-		int giftcount = GlobalInstance::map_shopprice[GIFT].size();
-		int vipcount = GlobalInstance::map_shopprice[VIP].size();
-		if (payindex < coincount) // Ôª±¦
-		{
-			DynamicValueInt dal;
-			dal.setValue(GlobalInstance::vec_shopdata[payindex].count);
-			GlobalInstance::getInstance()->addMyCoinCount(dal);
-#ifdef ANALYTICS
-			/*std::string heroname[] = { "bxym", "bssy", "bjxb", "baq" };
-			AnalyticUtil::onEvent(heroname[payindex].c_str());*/
-#endif
-		}
-		else if (payindex < coincount + giftcount)//ÂòÀñ°ü
+		int type = GlobalInstance::vec_shopdata[payindex].type;
+		if (type == COIN)//Ôª±¦
 		{
 			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata[payindex].res.size(); i++)
 			{
 				std::vector<std::string> vec_res = GlobalInstance::vec_shopdata[payindex].res[i];
 				std::string resid = vec_res[0];
 				int count = atoi(vec_res[1].c_str());
-				int qu = atoi(vec_res[2].c_str());
+				DynamicValueInt dal;
+				dal.setValue(count);
+				GlobalInstance::getInstance()->addMyCoinCount(dal);
+			}
+		}
+		else if (type == GIFT)//Àñ°ü
+		{
+			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata[payindex].res.size(); i++)
+			{
+				std::vector<std::string> vec_res = GlobalInstance::vec_shopdata[payindex].res[i];
+				std::string resid = vec_res[0];
+				int count = atoi(vec_res[1].c_str());
+				int qu = 0;
+				if (vec_res.size() > 2)
+				{
+					qu = atoi(vec_res[2].c_str());
+				}
 				int stonescount = GlobalInstance::getInstance()->generateStoneCount(qu);
 				MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
 			}
-#ifdef ANALYTICS
-			/*std::string name[] = { "b6", "b12", "b30", "b68", "b128" };
-			AnalyticUtil::onEvent(name[payindex - herocount].c_str());*/
-#endif
 		}
-		else if (payindex < coincount + giftcount + vipcount)//ÂòVIP
+		else if (type == VIP)//ÔÂ¿¨
 		{
 			showVipReward(&GlobalInstance::vec_shopdata[payindex], payindex);
-#ifdef ANALYTICS
-			/*std::string name[] = { "byk6", "byk30", "byk68" };
-			AnalyticUtil::onEvent(name[payindex - herocount - golditemcount].c_str());*/
-#endif
 		}
 	}
 	std::string str = StringUtils::format("buy_%d", (int)ret);

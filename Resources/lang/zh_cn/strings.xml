@@ -238,4 +238,5 @@
 	<s name="newherohint">有新的角色招募</s>
 	<s name="hasequipcount">[拥有数量：%d]</s>
 	<s name="bettipstext">请选择大小</s>
+	<s name="daytext">%d天</s>
 </strings>

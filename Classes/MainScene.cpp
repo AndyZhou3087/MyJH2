@@ -134,7 +134,7 @@ bool MainScene::init()
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
 		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && NewGuideLayer::checkifNewerGuide(66)) || i == 9
 			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 5) || (NewGuideLayer::checkifNewerGuide(73) && i == 3)
-			|| (i == 8 && !GlobalInstance::getInstance()->getResCreatorLessMore() && NewGuideLayer::checkifNewerGuide(15)))//医馆,市场,训练场，竞技场,后山默认不开放
+			|| (i == 8 && !GlobalInstance::getInstance()->getMapUnlockGuide() && NewGuideLayer::checkifNewerGuide(15)))//医馆,市场,训练场，竞技场,后山默认不开放
 		{
 			buildingNomal->setTouchEnabled(false);
 			buildnametext->setVisible(false);
@@ -227,7 +227,7 @@ void MainScene::delayShowNewerGuide(float dt)
 				showNewerGuide(77);
 			}
 		}
-		else if (GlobalInstance::getInstance()->getResCreatorLessMore() && NewGuideLayer::checkifNewerGuide(15))
+		else if (GlobalInstance::getInstance()->getMapUnlockGuide() && NewGuideLayer::checkifNewerGuide(15))
 		{
 			showNewerGuide(15);
 		}

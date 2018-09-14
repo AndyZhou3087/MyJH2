@@ -485,8 +485,8 @@ public:
 	//判断是否有达到某级的角色
 	int getHerosLevelCount(int lv);
 
-	//判断基础资源是否少于200，
-	bool getResCreatorLessMore();
+	//判断是否通关神龙教m1-4-2
+	bool getMapUnlockGuide();
 
 	/****************************
 	银两刷新英雄次数
@@ -565,7 +565,6 @@ public:
 	static std::vector<AchieveData> vec_achievedata;//成就
 
 	static std::vector<ShopData> vec_shopdata;//商城
-	static std::map<int, std::vector<int>> map_shopprice;//元宝
 	static std::map<std::string, int> map_buyVipDays;//购买的月卡时间
 	static std::vector<std::string> vec_buyVipIds;//月卡id
 

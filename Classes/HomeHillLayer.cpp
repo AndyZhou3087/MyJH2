@@ -131,7 +131,7 @@ void HomeHillLayer::delayShowNewerGuide(float dt)
 {
 	if (!NewGuideLayer::checkifNewerGuide(14))
 	{
-		if (GlobalInstance::getInstance()->getResCreatorLessMore() && !NewGuideLayer::checkifNewerGuide(15))
+		if (GlobalInstance::getInstance()->getMapUnlockGuide() && !NewGuideLayer::checkifNewerGuide(15))
 		{
 			if (NewGuideLayer::checkifNewerGuide(16))
 			{

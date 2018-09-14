@@ -153,6 +153,12 @@ void TaskDailyNode::updateData(float dt)
 	taskprobar->setPercent(h);
 	std::string str = StringUtils::format("%d/%d", c, m_Data->count);
 	taskprotext->setString(str);
+
+	TaskLayer* layer = (TaskLayer*)g_mainScene->getChildByName("9assemblyhall");
+	if (layer != NULL)
+	{
+		layer->updateDailyTip();
+	}
 }
 
 void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -179,7 +185,6 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	{
 		if (!clickflag)
 			return;
-
 
 		if (tag == 2000)
 		{

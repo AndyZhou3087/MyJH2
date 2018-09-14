@@ -24,7 +24,9 @@ typedef enum
 	SILVERBOX,//银子框按钮
 	COINBOX,//金币狂按钮
 	ADDSILVERBTN,//银子“+”按钮
-	ADDCOINBTN//金币“+”按钮
+	ADDCOINBTN,//金币“+”按钮
+	VIP1BTN,//月卡
+	VIP2BTN
 }MENUTYPE;
 class MainMenuLayer : public cocos2d::Layer, public HTTPDataDelegateProtocol
 {
@@ -61,6 +63,7 @@ private:
 
 	cocos2d::ui::ImageView* head;//头像
 	Node* csbnode;
+	cocos2d::ui::Text* vipstrArr[2];
 };
 
 #endif

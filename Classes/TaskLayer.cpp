@@ -88,12 +88,9 @@ bool TaskLayer::init()
 		btn->addTouchEventListener(CC_CALLBACK_2(TaskLayer::onCategory, this));
 		vec_categoryBtn.push_back(btn);
 
-		if (i < 2)
-		{
-			btnstr = StringUtils::format("questtip%d", i);
-			cocos2d::ui::Widget* questtip = (cocos2d::ui::Widget*)btn->getChildByName(btnstr);
-			questtipArr[i] = questtip;
-		}
+		btnstr = StringUtils::format("questtip%d", i);
+		cocos2d::ui::Widget* questtip = (cocos2d::ui::Widget*)btn->getChildByName(btnstr);
+		questtipArr[i] = questtip;
 	}
 
 	updateQuestTip();
@@ -108,6 +105,8 @@ bool TaskLayer::init()
 	{
 		Quest::resetDailyTask();
 	}
+
+	updateDailyTip();
 
 	this->scheduleOnce(schedule_selector(TaskLayer::delayShowNewerGuide), 0.3f);
 
@@ -490,6 +489,21 @@ void TaskLayer::updateQuestTip()
 		if (questtipArr[1] != NULL)
 		{
 			questtipArr[1]->setVisible(false);
+		}
+	}
+}
+
+void TaskLayer::updateDailyTip()
+{
+	if (questtipArr[2] != NULL)
+	{
+		if (!Quest::getDailyTaskGetRewards())
+		{
+			questtipArr[2]->setVisible(false);
+		}
+		else
+		{
+			questtipArr[2]->setVisible(true);
 		}
 	}
 }

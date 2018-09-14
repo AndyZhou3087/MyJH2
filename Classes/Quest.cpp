@@ -650,11 +650,10 @@ void Quest::setDailyTask(int type, int count)
 	for (it = GlobalInstance::map_DTdata.begin(); it != GlobalInstance::map_DTdata.end(); it++)
 	{
 		DailyTaskData* data = &GlobalInstance::map_DTdata[it->first];
-		if (data->type == type && data->count == map_DailyTypeCount[type])
+		if (data->type == type && map_DailyTypeCount[type] >= data->count)
 		{
 			data->state = DAILY_FINISHED;
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
-			break;
 		}
 	}
 	GlobalInstance::getInstance()->saveMyDailyTaskData();
@@ -687,6 +686,20 @@ void Quest::resetDailyTask()
 	{
 		initDailyPointReward(str);
 	}
+}
+
+bool Quest::getDailyTaskGetRewards()
+{
+	std::map<std::string, DailyTaskData>::iterator it;
+	for (it = GlobalInstance::map_DTdata.begin(); it != GlobalInstance::map_DTdata.end(); it++)
+	{
+		DailyTaskData data = GlobalInstance::map_DTdata[it->first];
+		if (data.state == DAILY_FINISHED)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 /**********************³É¾Í***************************/
