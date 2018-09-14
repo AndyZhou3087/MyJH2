@@ -17,6 +17,8 @@
 #include "HintBoxLayer.h"
 #include "AnimationEffect.h"
 #include "SoundManager.h"
+#include "NewGuideLayer.h"
+#include "DataSave.h"
 
 #define RSILVERCOUNT 100
 
@@ -427,6 +429,10 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				else
 				{
 					MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
+					if (NewGuideLayer::checkifNewerGuide(64) && !NewGuideLayer::checkifNewerGuide(63))
+					{
+						DataSave::getInstance()->setIsNewerGuide(64, 0);
+					}
 				}
 			}
 			else if (m_showtype == HS_TRAINING)

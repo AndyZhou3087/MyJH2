@@ -372,7 +372,6 @@ void MainScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
 		if (g_NewGuideLayer == NULL)
 		{
 			g_NewGuideLayer = NewGuideLayer::create(step, nodes);
-			log("g_mainScene showNewerGuideNode this= %d", this);
 			this->addChild(g_NewGuideLayer, 10);
 		}
 	}
@@ -480,9 +479,7 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 
 			if (layer != NULL)
 			{
-				log("g_mainScene onBuildingClick this= %d", this);
 				this->addChild(layer, 0, buildname);
-				log("g_mainScene onBuildingClick1111 this= %d", this);
 				AnimationEffect::openAniEffect(layer);
 			}
 
