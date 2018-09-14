@@ -460,6 +460,64 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="vip1btn" ActionTag="-778581858" Tag="97" IconVisible="False" LeftMargin="15.7207" RightMargin="595.2793" TopMargin="178.6631" BottomMargin="992.3369" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="79" Scale9Height="87" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="109.0000" Y="109.0000" />
+            <Children>
+              <AbstractNodeData Name="text" ActionTag="1674110561" Tag="98" IconVisible="False" LeftMargin="63.8565" RightMargin="-15.8565" TopMargin="76.6498" BottomMargin="-3.6498" FontSize="28" LabelText="20天" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="61.0000" Y="36.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="63.8565" Y="14.3502" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5858" Y="0.1317" />
+                <PreSize X="0.5596" Y="0.3303" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="159" G="101" B="44" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="70.2207" Y="1046.8369" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0975" Y="0.8178" />
+            <PreSize X="0.1514" Y="0.0852" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/vip1.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/vip1.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/vip1.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="vip2btn" ActionTag="-1902563530" Tag="99" IconVisible="False" LeftMargin="12.4415" RightMargin="598.5585" TopMargin="285.5999" BottomMargin="885.4001" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="79" Scale9Height="87" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="109.0000" Y="109.0000" />
+            <Children>
+              <AbstractNodeData Name="text" ActionTag="1984423007" Tag="100" IconVisible="False" LeftMargin="63.8565" RightMargin="-15.8565" TopMargin="76.6498" BottomMargin="-3.6498" FontSize="28" LabelText="20天" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="61.0000" Y="36.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="63.8565" Y="14.3502" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5858" Y="0.1317" />
+                <PreSize X="0.5596" Y="0.3303" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="72" G="105" B="132" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="66.9415" Y="939.9001" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0930" Y="0.7343" />
+            <PreSize X="0.1514" Y="0.0852" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/vip0.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/vip0.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/vip0.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

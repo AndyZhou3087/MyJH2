@@ -113,6 +113,9 @@ public:
 	//重置每日任务
 	static void resetDailyTask();
 
+	//判断每日任务是否有可领取
+	static bool getDailyTaskGetRewards();
+
 	/*****************成就任务数据逻辑*****************/
 
 	static void initAchieveTypeCount(std::string str);

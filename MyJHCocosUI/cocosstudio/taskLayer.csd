@@ -155,6 +155,17 @@
                     <PreSize X="0.3816" Y="0.5000" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/task_text_2_n.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="questtip2" ActionTag="-1173985892" Tag="136" IconVisible="False" LeftMargin="117.0972" RightMargin="20.9028" TopMargin="13.0571" BottomMargin="20.9429" ctype="SpriteObjectData">
+                    <Size X="14.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="124.0972" Y="37.9429" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8164" Y="0.5580" />
+                    <PreSize X="0.0921" Y="0.5000" />
+                    <FileData Type="MarkedSubImage" Path="ui/taskhinticon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="198.4496" Y="2.2487" />

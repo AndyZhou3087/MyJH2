@@ -41,7 +41,6 @@ std::map<std::string, EventData> GlobalInstance::map_eventdata;//事件宝箱概
 std::vector<AchieveData> GlobalInstance::vec_achievedata;
 
 std::vector<ShopData> GlobalInstance::vec_shopdata;
-std::map<int, std::vector<int>> GlobalInstance::map_shopprice;
 std::map<std::string, int> GlobalInstance::map_buyVipDays;
 std::vector<std::string> GlobalInstance::vec_buyVipIds;
 
@@ -1561,7 +1560,6 @@ void GlobalInstance::loadShopData()
 				}
 			}
 
-			map_shopprice[data.type].push_back(data.price);
 			vec_shopdata.push_back(data);
 		}
 	}
@@ -1751,24 +1749,14 @@ int GlobalInstance::getHerosLevelCount(int lv)
 	return count;
 }
 
-bool GlobalInstance::getResCreatorLessMore()
+bool GlobalInstance::getMapUnlockGuide()
 {
-	int count = 0;
-	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
+	for (unsigned int i = 0; i < Quest::myFinishMainQuest.size(); i++)
 	{
-		ResBase* res = MyRes::vec_MyResources[i];
-		int id = atoi(res->getId().substr(3, 1).c_str());
-		if (id >= 1 && id <= 5)
+		TaskData data = Quest::myFinishMainQuest[i];
+		if (data.id == 7)//通关神龙教地图m1-4-2
 		{
-			if (res->getCount().getValue() < 200)
-			{
-				return true;
-			}
-			count++;
-		}
-		if (count == 5)
-		{
-			break;
+			return true;
 		}
 	}
 	return false;
