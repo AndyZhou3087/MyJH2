@@ -28,7 +28,7 @@
             <FileData Type="Normal" Path="images/loadingbar.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="loadingtext" ActionTag="310601076" Tag="27" IconVisible="False" LeftMargin="285.9619" RightMargin="344.0381" TopMargin="1070.6848" BottomMargin="173.3151" ctype="SpriteObjectData">
+          <AbstractNodeData Name="loadingtext" ActionTag="310601076" Tag="27" IconVisible="False" LeftMargin="285.9619" RightMargin="344.0381" TopMargin="1070.6849" BottomMargin="173.3151" ctype="SpriteObjectData">
             <Size X="90.0000" Y="36.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="330.9619" Y="191.3151" />
@@ -70,6 +70,17 @@
             <PrePosition X="0.5913" Y="0.1471" />
             <PreSize X="0.0181" Y="0.0102" />
             <FileData Type="Normal" Path="images/loadingpoint.png" Plist="" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="logo" ActionTag="-944981589" Tag="44" IconVisible="False" LeftMargin="82.0001" RightMargin="81.9999" TopMargin="125.0000" BottomMargin="915.0000" ctype="SpriteObjectData">
+            <Size X="556.0000" Y="240.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0001" Y="1035.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.8086" />
+            <PreSize X="0.7722" Y="0.1875" />
+            <FileData Type="Normal" Path="logo.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
         </Children>

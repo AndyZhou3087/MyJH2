@@ -1069,6 +1069,7 @@
         <Project Name="innRoomLayer.csd" Type="Layer" />
         <Image Name="loadingbg.jpg" />
         <Project Name="LoadingLayer.csd" Type="Layer" />
+        <Image Name="logo.png" />
         <Project Name="MainLayer.csd" Type="Layer" />
         <Project Name="mainMapLayer.csd" Type="Layer" />
         <Project Name="MainMenuLayer.csd" Type="Layer" />
