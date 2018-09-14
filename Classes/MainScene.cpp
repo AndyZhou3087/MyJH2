@@ -74,20 +74,20 @@ bool MainScene::init()
 	scroll_3 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_3");
 	scroll_3->setScrollBarEnabled(false);
 	scroll_3->jumpToPercentHorizontal(32);
-	//scroll_3->addEventListener(CC_CALLBACK_2(MainScene::srollviewlistenEvent, this));
+	scroll_3->addEventListener(CC_CALLBACK_2(MainScene::srollviewlistenEvent, this));
 	scroll_3->setSwallowTouches(false);
 
 	scroll_2 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_2");
 	scroll_2->setScrollBarEnabled(false);
 	scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 	scroll_2->setSwallowTouches(false);
-	scroll_2->addEventListener(CC_CALLBACK_2(MainScene::srollviewlistenEvent, this));
+	//scroll_2->addEventListener(CC_CALLBACK_2(MainScene::srollviewlistenEvent, this));
 
 	scroll_1 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_1");
 	scroll_1->setScrollBarEnabled(false);
 	scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 	scroll_1->setSwallowTouches(false);
-	scroll_1->addEventListener(CC_CALLBACK_2(MainScene::srollviewlistenEvent, this));
+	//scroll_1->addEventListener(CC_CALLBACK_2(MainScene::srollviewlistenEvent, this));
 
 	std::map<std::string, Building*>::iterator it;
 	int i = 1;
@@ -412,8 +412,8 @@ void MainScene::srollviewlistenEvent(Ref* ref, ui::ScrollView::EventType eventTy
 	//{
 	//	return;
 	//}
-	Vec2 pos = scroll_3->getInnerContainerPosition();
-	log("scoll posx:%f, posy:%f", pos.x, pos.y);
+	//Vec2 pos = scroll_3->getInnerContainerPosition();
+	//log("scoll posx:%f, posy:%f", pos.x, pos.y);
 	////log("scoll eventType = %d", eventType);
 
 	//switch (eventType) 
