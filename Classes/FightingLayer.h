@@ -38,12 +38,20 @@ public:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
+	int calcAttackNodeIndex(int fighterindex, int type);
+
 private:
 	std::vector<Npc*> m_enemyHeros;
 	cocos2d::ui::Widget* m_escapebtn;
 	int fightcount;
 
 	std::vector<FightHeroNode*> vec_myheronode;
+
+	std::vector<FightHeroNode*> vec_myfront3node;
+	std::vector<FightHeroNode*> vec_myback3node;
+
+	std::vector<FightHeroNode*> vec_enemyfront3node;
+	std::vector<FightHeroNode*> vec_enemyback3node;
 };
 
 #endif

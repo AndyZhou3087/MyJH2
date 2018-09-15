@@ -661,3 +661,31 @@ bool FightingLayer::sortbyHp_lesscb(FightHeroNode* a, FightHeroNode* b)
 	else
 		return false;
 }
+
+int FightingLayer::calcAttackNodeIndex(int fighterindex, int type)
+{
+	if (type == 0)
+	{
+		int enemycount = m_enemyHeros.size();
+		for (int i = 0; i < enemycount; i++)
+		{
+			if (m_enemyHeros[i] != NULL)
+			{
+				if (i < 3)
+					vec_enemyfront3node.push_back((FightHeroNode*)this->getChildByTag(6 + i));
+				else
+					vec_enemyback3node.push_back((FightHeroNode*)this->getChildByTag(6 + i));
+			}
+		}
+		FightHeroNode* enemynode = (FightHeroNode*)this->getChildByTag(6 + fighterindex);
+		if (enemynode != NULL && fighterindex < enemycount && m_enemyHeros[fighterindex] != NULL)//自身位置正前方
+			return fighterindex;
+		enemynode = (FightHeroNode*)this->getChildByTag(6 + 3 + fighterindex);
+		if (enemynode != NULL && fighterindex + 3 < enemycount && m_enemyHeros[fighterindex + 3] != NULL)//正前方后排位置
+			return fighterindex + 3;
+
+		std::sort(vec_enemyfront3node.begin(), vec_enemyfront3node.end(), sortbyHp_lesscb);
+
+
+	}
+}
