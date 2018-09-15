@@ -68,6 +68,8 @@ public:
 	void showNewerGuideNode(int step, std::vector<Node*> nodes);
 	void showNewerGuideFight();
 	void showNewerGuideGoBack();
+	//引导第一次打败boss
+	bool getFirstFightBoss();
 
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
@@ -178,6 +180,7 @@ private:
 	bool mapIsAllOpen;
 
 	cocos2d::ui::Widget* keybtnArr[4];
+	cocos2d::ui::Widget* gocitybtn;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

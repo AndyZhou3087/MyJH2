@@ -1560,6 +1560,9 @@ void GlobalInstance::loadShopData()
 				}
 			}
 
+			v = jsonvalue["paycode"];
+			data.paycode = v.GetString();
+
 			vec_shopdata.push_back(data);
 		}
 	}

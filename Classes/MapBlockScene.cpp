@@ -153,7 +153,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	Node* bottomnode = m_csbnode->getChildByName("mapblockbottom");
 
-	cocos2d::ui::Widget* gocitybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("gocitybtn");
+	gocitybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("gocitybtn");
 	gocitybtn->setTag(BTN_GOCITY);
 	gocitybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
 
@@ -242,6 +242,10 @@ void MapBlockScene::delayShowNewerGuide(float dt)
 			showNewerGuide(13);
 		}
 	}
+	else if (getFirstFightBoss() && NewGuideLayer::checkifNewerGuide(86))
+	{
+		showNewerGuide(86);
+	}
 }
 
 void MapBlockScene::showNewerGuide(int step)
@@ -258,6 +262,10 @@ void MapBlockScene::showNewerGuide(int step)
 	else if (step == 11 || step == 13)
 	{
 		nodes.push_back(keybtnArr[2]); 
+	}
+	else if (step == 86)
+	{
+		nodes.push_back(gocitybtn);
 	}
 	showNewerGuideNode(step, nodes);
 }
@@ -867,6 +875,20 @@ void MapBlockScene::resetBlockData()
 	MapBlock::randMonstersMaxCount = 0;
 }
 
+bool MapBlockScene::getFirstFightBoss()
+{
+	int mycr = mycurRow*blockColCount + mycurCol;
+	MapBlock* mapblock = map_mapBlocks[mycr];
+	if (mapblock->getPosType() == POS_BOSS)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void MapBlockScene::doMyStatus()
 {
 	int ret = -1;
@@ -921,25 +943,17 @@ void MapBlockScene::doMyStatus()
 			cacelLongTouch();
 			//先判断任务
 			bool isTask = false;
-			for (unsigned int i = 0; i < vec_enemys.size(); i++)
+			int mycr = mycurRow*blockColCount + mycurCol;
+			MapBlock* mapblock = map_mapBlocks[mycr];
+			if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(mapblock->getPosNpcID()))
 			{
-				if (vec_enemys[i] != NULL)
-				{
-					int mycr = mycurRow*blockColCount + mycurCol;
-					MapBlock* mapblock = map_mapBlocks[mycr];
-					if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(mapblock->getPosNpcID()))
-					{
-						isTask = true;
-						this->addChild(TaskTalkLayer::create(vec_enemys[i]->getId(), vec_enemys));
-						break;
-					}
-					else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(mapblock->getPosNpcID()))
-					{
-						isTask = true;
-						this->addChild(TaskTalkLayer::create(vec_enemys[i]->getId(), vec_enemys, 1));
-						break;
-					}
-				}
+				isTask = true;
+				this->addChild(TaskTalkLayer::create(mapblock->getPosNpcID(), vec_enemys));
+			}
+			else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(mapblock->getPosNpcID()))
+			{
+				isTask = true;
+				this->addChild(TaskTalkLayer::create(mapblock->getPosNpcID(), vec_enemys, 1));
 			}
 			if (!isTask)
 			{
@@ -1075,25 +1089,19 @@ void MapBlockScene::showFightResult(int result)
 {
 	if (result == 1)//胜利
 	{
-		for (unsigned int i = 0; i < vec_enemys.size(); i++)
+		int mycr = mycurRow*blockColCount + mycurCol;
+		MapBlock* mapblock = map_mapBlocks[mycr];
+		if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(mapblock->getPosNpcID()))
 		{
-			if (vec_enemys[i] != NULL)
-			{
-				int mycr = mycurRow*blockColCount + mycurCol;
-				MapBlock* mapblock = map_mapBlocks[mycr];
-				if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(mapblock->getPosNpcID()))
-				{
-					Quest::finishTaskMain(QUEST_FIGHT);
-					showUnlockChapter();
+			Quest::finishTaskMain(QUEST_FIGHT);
+			showUnlockChapter();
 
-				}
-				else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(mapblock->getPosNpcID()))
-				{
-					Quest::finishTaskBranch(QUEST_FIGHT);
-				}
-				Quest::setAchieveTypeCount(ACHIEVE_FIGHT, 1, vec_enemys[i]->getId());
-			}
 		}
+		else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(mapblock->getPosNpcID()))
+		{
+			Quest::finishTaskBranch(QUEST_FIGHT);
+		}
+		Quest::setAchieveTypeCount(ACHIEVE_FIGHT, 1, mapblock->getPosNpcID());
 
 		isMoving = true;
 		int bindex = (mycurRow)*blockColCount + mycurCol;

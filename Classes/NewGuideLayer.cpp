@@ -125,6 +125,10 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 "",
 "",
 "小师妹：每个角色转职后都会有不同的职业特性，转职后也会有属性的提升，记得一定要帮助侠客们转职哦！",
+
+//回城卷轴
+"小师妹：师兄，我们要赶快回到帮派里，刚好这里有茅山派的回城卷轴，师兄快用一下吧！",//86
+"",
 };
 
 int voc[6] = { 6,4,10,3,9,1 };
@@ -289,7 +293,8 @@ void NewGuideLayer::showNextGuide()
 		|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46 || m_step == 48 || m_step == 50
 		|| m_step == 52 || m_step == 53 || m_step == 54 || m_step == 55 || m_step == 56 || m_step == 57 || m_step == 59 || m_step == 63
 		|| m_step == 65 || m_step == 66 || m_step == 69 || m_step == 70 || m_step == 71 || m_step == 72 || m_step == 73 || m_step == 74
-		|| m_step == 75 || m_step == 77 || m_step == 78 || m_step == 79 || m_step == 80 || m_step == 81 || m_step == 85)
+		|| m_step == 75 || m_step == 77 || m_step == 78 || m_step == 79 || m_step == 80 || m_step == 81 || m_step == 85 || m_step == 86
+		|| m_step == 87)
 	{
 		this->removeFromParentAndCleanup(true);
 	}
@@ -510,7 +515,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 				cnode->setPosition(m_pos);
 				cnode->setScale(scalex*1.5f, scaley*1.5f);
 				if (m_step == 0 || m_step == 1 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 19 || m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52 ||
-					m_step == 38 || m_step == 71 || m_step == 75 || m_step == 81)
+					m_step == 38 || m_step == 71 || m_step == 75 || m_step == 81 || m_step == 87)
 				{
 					cnode->setScale(scalex*1.5f);
 				}
@@ -588,7 +593,7 @@ void NewGuideLayer::showWord(std::string wordstr)
 		}
 
 		if (m_step == 0 || m_step == 1 || m_step == 8 || m_step == 10 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 18 || m_step == 23
-			|| m_step == 25 || m_step == 27 || m_step == 29 || m_step == 45 || m_step == 52 || m_step == 71)
+			|| m_step == 25 || m_step == 27 || m_step == 29 || m_step == 45 || m_step == 52 || m_step == 71 || m_step == 86)
 			textbox->setPosition(Vec2(360, 430));
 		else if (m_step == 67 || m_step == 73)
 		{
