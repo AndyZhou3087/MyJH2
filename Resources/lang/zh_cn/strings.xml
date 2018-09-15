@@ -240,4 +240,5 @@
 	<s name="hasequipcount">[拥有数量：%d]</s>
 	<s name="bettipstext">请选择大小</s>
 	<s name="daytext">%d天</s>
+	<s name="poweraddtext">%02d:%02d后恢复1点体力</s>	
 </strings>

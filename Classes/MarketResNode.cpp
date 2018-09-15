@@ -236,7 +236,7 @@ void MarketResNode::onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 	{
 		m_longTouchNode = clicknode;
 		if (!isScheduled(schedule_selector(MarketResNode::longTouchUpdate)))
-			schedule(schedule_selector(MarketResNode::longTouchUpdate), 0.2f);
+			schedule(schedule_selector(MarketResNode::longTouchUpdate), 0.1f);
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
@@ -257,7 +257,7 @@ void MarketResNode::onSubBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 	{
 		m_longTouchNode = clicknode;
 		if (!isScheduled(schedule_selector(MarketResNode::longTouchUpdate)))
-			schedule(schedule_selector(MarketResNode::longTouchUpdate), 0.2f);
+			schedule(schedule_selector(MarketResNode::longTouchUpdate), 0.1f);
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{

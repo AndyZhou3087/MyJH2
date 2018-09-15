@@ -611,6 +611,11 @@ void MapBlockScene::checkFood()
 		}
 		if (!checklive())
 		{
+			cacelLongTouch();
+			for (int i = 0; i < 4; i++)
+			{
+				keybtnArr[i]->setEnabled(false);
+			}
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 		}
 	}
