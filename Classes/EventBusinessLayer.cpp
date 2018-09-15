@@ -182,6 +182,15 @@ void EventBusinessLayer::updateScrollviewContent()
 	}
 	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/);
 	carrycountlbl->setString(str);
+
+	if (MyRes::getMyPackageCount() >= GlobalInstance::myOutMapCarry)
+	{
+		carrycountlbl->setTextColor(Color4B(255, 61, 61, 255));
+	}
+	else
+	{
+		carrycountlbl->setTextColor(Color4B(255, 255, 255, 255));
+	}
 }
 
 void EventBusinessLayer::loadScrollviewData()

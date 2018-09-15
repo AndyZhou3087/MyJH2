@@ -44,7 +44,7 @@
 	<s name="myheromax">无法容纳更多的侠客，请升级客栈</s>
 	<s name="lvrescreatortitle">升级%s最大储备到%d</s>
 	<s name="carrytext">负重：</s>
-	<s name="carryovertext">背不动更多东西了</s>
+	<s name="carryovertext">背不动更多东西了，请先丢弃部分物品</s>
 	<s name="lacktext">缺少%s</s>
 	<s name="selherohinttext">点击选择&#xA;%s</s>
 	<s name="selheronum1">①</s>

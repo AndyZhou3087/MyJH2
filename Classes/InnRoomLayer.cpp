@@ -71,6 +71,9 @@ bool InnRoomLayer::init(Building* buidingData)
 	actionbtn->setTag(1000);
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(InnRoomLayer::onBtnClick, this));
 
+	newHeroPoint = (cocos2d::ui::Widget*)actionbtn->getChildByName("redpoint");
+	newHeroPoint->setVisible(false);
+
 	//招募按钮文字
 	cocos2d::ui::ImageView* recruitbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
 	recruitbtntxt->loadTexture(ResourcePath::makeTextImgPath("recruit_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -103,6 +106,9 @@ bool InnRoomLayer::init(Building* buidingData)
 	refreshMyHerosUi();
 
 	this->scheduleOnce(schedule_selector(InnRoomLayer::delayShowNewerGuide), 0.3f);
+
+	updateRedPoint(0);
+	this->schedule(schedule_selector(InnRoomLayer::updateRedPoint), 1.0f);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -265,6 +271,26 @@ void InnRoomLayer::lvup()
 	lvUIlbl->setString(str);
 }
 
+void InnRoomLayer::updateRedPoint(float dt)
+{
+	int hascount = 0;
+	int randsize = GlobalInstance::vec_rand3Heros.size();
+	for (int i = 0; i < randsize; i++)
+	{
+		if (GlobalInstance::vec_rand3Heros[i]->getState() == HS_OWNED)
+		{
+			hascount++;
+		}
+	}
+	if (hascount >= randsize)
+	{
+		newHeroPoint->setVisible(false);
+	}
+	else
+	{
+		newHeroPoint->setVisible(true);
+	}
+}
 
 MyHeroNode* InnRoomLayer::getMyHeroNode(int index)
 {

@@ -20,6 +20,7 @@
 #include "SimplePopLayer.h"
 #include "NewGuideLayer.h"
 #include "LoadingBarProgressTimer.h"
+#include "HintBoxLayer.h"
 
 USING_NS_CC;
 
@@ -551,20 +552,19 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 		case ATTR_FIREBTN:
 		{
-			GlobalInstance::getInstance()->fireHero(this->getTag());
-			m_heroData = NULL;
-			InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-			if (innroomLayer != NULL)
+			if (m_heroData->getPotential() >= 2)
 			{
-				innroomLayer->refreshMyHerosUi();
+				std::string potentialstr = StringUtils::format("potential_%d", m_heroData->getPotential());
+				std::string hintstr = StringUtils::format(ResourceLang::map_lang["firecomfirmtext"].c_str(), ResourceLang::map_lang[potentialstr].c_str());
+				HintBoxLayer* hint = HintBoxLayer::create(hintstr, 2);
+				this->addChild(hint, 0, this->getTag());
+				AnimationEffect::openAniEffect(hint);
 			}
 			else
 			{
-				OutTownLayer* outTown = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
-				SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
-				sellayer->refreshMyHerosUi();
+				fireHero();
 			}
-			AnimationEffect::closeAniEffect((Layer*)this);
+
 			break;
 		}
 		case ATTR_CHANGEBTN:
@@ -641,6 +641,24 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		}
 	}
+}
+
+void HeroAttrLayer::fireHero()
+{
+	GlobalInstance::getInstance()->fireHero(this->getTag());
+	m_heroData = NULL;
+	InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+	if (innroomLayer != NULL)
+	{
+		innroomLayer->refreshMyHerosUi();
+	}
+	else
+	{
+		OutTownLayer* outTown = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
+		SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
+		sellayer->refreshMyHerosUi();
+	}
+	AnimationEffect::closeAniEffect((Layer*)this);
 }
 
 void HeroAttrLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

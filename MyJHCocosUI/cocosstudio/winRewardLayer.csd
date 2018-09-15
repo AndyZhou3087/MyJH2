@@ -191,7 +191,7 @@
             <FileData Type="MarkedSubImage" Path="mapui/winsepbox.png" Plist="mapui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="carrytext" ActionTag="1693918737" Tag="83" IconVisible="False" LeftMargin="472.1248" RightMargin="190.8752" TopMargin="529.2476" BottomMargin="724.7524" FontSize="23" LabelText="负重：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="carrytext" ActionTag="1693918737" Tag="83" IconVisible="False" LeftMargin="472.1248" RightMargin="190.8752" TopMargin="529.2476" BottomMargin="724.7524" FontSize="23" LabelText="负重：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="57.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="472.1248" Y="737.7524" />
@@ -203,7 +203,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="carrycount" ActionTag="1515958356" Tag="84" IconVisible="False" LeftMargin="536.4265" RightMargin="85.5735" TopMargin="529.2476" BottomMargin="724.7524" FontSize="23" LabelText="100/1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="carrycount" ActionTag="1515958356" Tag="84" IconVisible="False" LeftMargin="536.4265" RightMargin="85.5735" TopMargin="529.2476" BottomMargin="724.7524" FontSize="23" LabelText="100/1000" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="98.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="536.4265" Y="737.7524" />

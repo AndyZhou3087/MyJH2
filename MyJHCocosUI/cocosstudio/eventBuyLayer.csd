@@ -99,14 +99,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="-1447158413" Tag="327" IconVisible="False" LeftMargin="120.0001" RightMargin="119.9999" TopMargin="560.7490" BottomMargin="669.2510" IsCustomSize="True" FontSize="25" LabelText="木材木材木材木材木材木材木材木材木材木材木材木材木材木材木材" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="480.0000" Y="50.0000" />
+          <AbstractNodeData Name="desc" ActionTag="-1447158413" Tag="327" IconVisible="False" LeftMargin="120.0001" RightMargin="119.9999" TopMargin="540.7490" BottomMargin="649.2510" IsCustomSize="True" FontSize="25" LabelText="木材木材木材木材木材木材木材木材木材木材木材木材木材木材木材木材木材木材木材木材木材" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="480.0000" Y="90.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0001" Y="694.2510" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5424" />
-            <PreSize X="0.6667" Y="0.0391" />
+            <PreSize X="0.6667" Y="0.0703" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />

@@ -13,6 +13,7 @@
 #include "MapBlockScene.h"
 #include "NewGuideLayer.h"
 #include "StoreHouseLayer.h"
+#include "HeroAttrLayer.h"
 
 USING_NS_CC;
 
@@ -130,9 +131,19 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			}
 			else if (m_forwhere == 2)
 			{
-				InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-				if (innroomLayer != NULL)
-					innroomLayer->fireHero(this->getTag());
+				HeroAttrLayer* heroattrlayer = (HeroAttrLayer*)g_mainScene->getChildByName("heroattrlayer");
+				if (heroattrlayer == NULL)
+				{
+					InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+					if (innroomLayer != NULL)
+						innroomLayer->fireHero(this->getTag());
+				}
+				else
+				{
+					heroattrlayer->fireHero();
+					return;
+				}
+
 			}
 			else if (m_forwhere == 3)
 			{

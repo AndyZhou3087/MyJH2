@@ -77,6 +77,8 @@ int GlobalInstance::silverRefHeroCount = 0;
 
 int GlobalInstance::resetSilverRefHeroCountTime = 0;
 
+bool GlobalInstance::isNewHeroRefresh = false;
+
 GlobalInstance::GlobalInstance()
 {
 
