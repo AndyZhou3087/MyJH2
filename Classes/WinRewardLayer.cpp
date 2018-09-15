@@ -357,6 +357,14 @@ void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				g_MapBlockScene->delayShowNewerGuide(0);
 			}
 			AnimationEffect::closeAniEffect((Layer*)this->getParent());
+			//引导回城卷轴
+			if (g_MapBlockScene != NULL)
+			{
+				if (g_MapBlockScene->getFirstFightBoss())
+				{
+					g_MapBlockScene->delayShowNewerGuide(0);
+				}
+			}
 			int r = GlobalInstance::getInstance()->createRandomNum(5);
 			SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_SUBMAP_0 + r);
 		}

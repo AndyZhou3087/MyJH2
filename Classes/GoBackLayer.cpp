@@ -9,6 +9,8 @@
 #include "MyRes.h"
 #include "MainScene.h"
 #include "MainMapScene.h"
+#include "NewGuideLayer.h"
+#include "MapBlockScene.h"
 
 USING_NS_CC;
 
@@ -80,7 +82,7 @@ bool GoBackLayer::init(int forwhere)
 	}
 
 	//°´Å¥
-	cocos2d::ui::Button* actionbtn = (cocos2d::ui::Button*)csbnode->getChildByName("actionbtn");
+	actionbtn = (cocos2d::ui::Button*)csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(GoBackLayer::onBtnClick, this));
 	actionbtn->setTag(1);
 	cocos2d::ui::ImageView* actionbtntext = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
@@ -92,6 +94,7 @@ bool GoBackLayer::init(int forwhere)
 	cocos2d::ui::ImageView* cancelbtntext = (cocos2d::ui::ImageView*)cancelbtn->getChildByName("text");
 	cancelbtntext->loadTexture(ResourcePath::makeTextImgPath("cancelbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+	this->scheduleOnce(schedule_selector(GoBackLayer::delayShowNewerGuide), 0.3f);
 
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
@@ -106,6 +109,24 @@ bool GoBackLayer::init(int forwhere)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
+}
+
+void GoBackLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(86) && NewGuideLayer::checkifNewerGuide(87))
+	{
+		showNewerGuide(87);
+	}
+}
+
+void GoBackLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 87)
+	{
+		nodes.push_back(actionbtn);
+	}
+	g_MapBlockScene->showNewerGuideNode(step, nodes);
 }
 
 void GoBackLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

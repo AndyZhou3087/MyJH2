@@ -16,11 +16,17 @@ public:
 	static GoBackLayer* create(int forwhere = 0);//默认0为回城
 	virtual void onExit();
 	bool init(int forwhere = 0);
+
+	//引导
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 private:
 	int m_forwhere;
+	cocos2d::ui::Button* actionbtn;
 };
 
 #endif
