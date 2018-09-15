@@ -382,7 +382,7 @@ void WinRewardLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	//{
 	//	m_longTouchTag = clicknode->getTag();
 	//	if (!isScheduled(schedule_selector(WinRewardLayer::longTouchUpdate)))
-	//		schedule(schedule_selector(WinRewardLayer::longTouchUpdate), 0.2f);
+	//		schedule(schedule_selector(WinRewardLayer::longTouchUpdate), 0.1f);
 	//}
 	//else if (type == ui::Widget::TouchEventType::ENDED)
 	//{

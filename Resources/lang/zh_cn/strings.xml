@@ -246,4 +246,5 @@
 	<s name="unlockmain_6">任意角色10级后可解锁...</s>
 	<s name="unlockmain_8">通关神龙教地图后可解锁</s>
 	<s name="unlockmain_9">敬请期待...</s>
+	<s name="poweraddtext">%02d:%02d后恢复1点体力</s>	
 </strings>

@@ -168,6 +168,16 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/powericon_text.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
+          <AbstractNodeData Name="powerclick" ActionTag="-815996102" Tag="100" IconVisible="False" LeftMargin="-53.0000" RightMargin="-53.0000" TopMargin="103.5000" BottomMargin="-128.5000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+            <Size X="106.0000" Y="25.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position Y="-116.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

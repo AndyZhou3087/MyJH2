@@ -224,7 +224,7 @@ void EventBuyLayer::onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 	{
 		m_longTouchNode = clicknode;
 		if (!isScheduled(schedule_selector(EventBuyLayer::longTouchUpdate)))
-			schedule(schedule_selector(EventBuyLayer::longTouchUpdate), 0.2f);
+			schedule(schedule_selector(EventBuyLayer::longTouchUpdate), 0.1f);
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
@@ -245,7 +245,7 @@ void EventBuyLayer::onSubBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 	{
 		m_longTouchNode = clicknode;
 		if (!isScheduled(schedule_selector(EventBuyLayer::longTouchUpdate)))
-			schedule(schedule_selector(EventBuyLayer::longTouchUpdate), 0.2f);
+			schedule(schedule_selector(EventBuyLayer::longTouchUpdate), 0.1f);
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{

@@ -5,6 +5,8 @@
 #include "AnimationEffect.h"
 #include "SoundManager.h"
 #include "GlobalInstance.h"
+#include "Const.h"
+#include "MovingLabel.h"
 
 CardHeroNode::CardHeroNode()
 {
@@ -57,6 +59,9 @@ bool CardHeroNode::init()
 	//体力
 	powertext = (cocos2d::ui::Text*)csbnode->getChildByName("powertext");
 
+	cocos2d::ui::ImageView* powerclick = (cocos2d::ui::ImageView*)csbnode->getChildByName("powerclick");
+	powerclick->addTouchEventListener(CC_CALLBACK_2(CardHeroNode::onPowerClick, this));
+
 	//等级
 
 	lvlbl = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
@@ -84,6 +89,23 @@ void CardHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 		layer->setTag(this->getTag());
 		this->getParent()->addChild(layer, 0, "selectmyheroslayer");
 		AnimationEffect::openAniEffect((Layer*)layer);
+	}
+}
+
+void CardHeroNode::onPowerClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		std::string str;
+		int powercount = m_herodata->getPower().getValue();
+		if (m_herodata->getPower().getValue() < 100)
+		{
+			int pasttime = GlobalInstance::servertime - m_herodata->getPowerTime();
+			int lefttime = HEROPOWER_RESETTIME - pasttime % HEROPOWER_RESETTIME;
+			std::string str = StringUtils::format(ResourceLang::map_lang["poweraddtext"].c_str(), lefttime / 60, lefttime % 60);
+			MovingLabel::show(str);
+		}
 	}
 }
 

@@ -181,9 +181,6 @@ private:
 
 	cocos2d::ui::Widget* keybtnArr[4];
 	cocos2d::ui::Widget* gocitybtn;
-
-	//检测一次食物
-	bool checkFoodDead;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

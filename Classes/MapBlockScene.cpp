@@ -45,7 +45,6 @@ MapBlockScene::MapBlockScene()
 	_fogrender = NULL;
 	mapIsAllOpen = false;
 	randStartPos = -1;
-	checkFoodDead = false;
 }
 
 
@@ -612,11 +611,12 @@ void MapBlockScene::checkFood()
 		}
 		if (!checklive())
 		{
-			if (!checkFoodDead)
+			cacelLongTouch();
+			for (int i = 0; i < 4; i++)
 			{
-				checkFoodDead = true;
-				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+				keybtnArr[i]->setEnabled(false);
 			}
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 		}
 	}
 }
