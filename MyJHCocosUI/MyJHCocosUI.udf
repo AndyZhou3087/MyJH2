@@ -11,8 +11,9 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="MainMenuLayer.csd" />
+          <FilePathData Path="giftDescLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="MainMenuLayer.csd" />
+        <ActiveDocument Path="giftDescLayer.csd" />
       </Value>
     </Item>
   </Properties>

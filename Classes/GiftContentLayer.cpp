@@ -140,27 +140,43 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 	}
 	for (unsigned int i = 0; i < data->res.size(); i++)
 	{
+		std::string str = "ui/resbox.png";
+
 		std::vector<std::string> vec_res = data->res[i];
 		std::string resid = vec_res[0];
 		int count = atoi(vec_res[1].c_str());
 		int qu = 0;
+
+		int t = 0;
+		for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+		{
+			if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+				break;
+		}
+		if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
+		{
+			qu = atoi(resid.substr(1).c_str()) - 1;
+			str = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
+		else if (t >= T_WG && t <= T_NG)
+		{
+			qu = GlobalInstance::map_GF[resid].qu;
+			str = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
+
+		Sprite* box = Sprite::createWithSpriteFrameName(str);
+		if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
+		{
+			CommonFuncs::playResBoxEffect(box, qu);
+		}
+		this->addChild(box);
+		box->setPosition(Vec2(startx[i], starty[i]));
+
 		if (vec_res.size() > 2)
 		{
 			qu = atoi(vec_res[2].c_str());
 		}
-		std::string str = StringUtils::format("ui/resbox_qu%d.png", qu);
-		Sprite* box = Sprite::createWithSpriteFrameName(str);
-		this->addChild(box);
-		box->setPosition(Vec2(startx[i], starty[i]));
-		str = StringUtils::format("ui/%s.png", resid.c_str());
-		if (qu == 3)
-		{
-			str = StringUtils::format("ui/%s-2.png", resid.c_str());
-		}
-		else if (qu == 4)
-		{
-			str = StringUtils::format("ui/%s-3.png", resid.c_str());
-		}
+		str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 		Sprite* res = Sprite::createWithSpriteFrameName(str);
 		box->addChild(res);
 		res->setPosition(Vec2(box->getContentSize().width / 2, box->getContentSize().height / 2));
