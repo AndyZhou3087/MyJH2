@@ -20,6 +20,7 @@
 #include "NewGuideLayer.h"
 #include "MarketLayer.h"
 #include "ShopLayer.h"
+#include "MovingLabel.h"
 
 USING_NS_CC;
 
@@ -321,9 +322,16 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		case SILVERBOX:
 		case ADDSILVERBTN:
 		{
-			MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
-			g_mainScene->addChild(layer, 0, "5market");
-			AnimationEffect::openAniEffect((Layer*)layer);
+			if (g_mainScene != NULL && g_mainScene->buildingIsClickOn(6))
+			{
+				MovingLabel::show(ResourceLang::map_lang["unlockmain_6"]);
+			}
+			else
+			{
+				MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
+				g_mainScene->addChild(layer, 0, "5market");
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
 		}
 			break;
 		case COINBOX:

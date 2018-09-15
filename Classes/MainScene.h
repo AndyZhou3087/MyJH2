@@ -44,6 +44,9 @@ public:
 
 	void showInnRoomNewHeroAnim();
 
+	//判断是否可点击
+	bool buildingIsClickOn(int tag);
+
 private:
 	cocos2d::ui::ScrollView* scroll_3;//最外层滑动层，包括训练场-仓库-铁匠铺-医馆-出城
 	cocos2d::ui::ScrollView* scroll_2;//中间层滑动层，包括后山-客栈-市场

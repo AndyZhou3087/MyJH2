@@ -10,6 +10,7 @@
 #include "MyRes.h"
 #include "Quest.h"
 #include "MainScene.h"
+#include "NewGuideLayer.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/jni/JniHelper.h"
@@ -420,6 +421,11 @@ GongFa* Hero::checkSkillWg()
 		if (gf != NULL && GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1)
 		{
 			int r = GlobalInstance::getInstance()->createRandomNum(100);
+			//新手引导100%放技能
+			if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
+			{
+				r = -1;
+			}
 			if (r < GlobalInstance::map_GF[gf->getId()].skillrnd)
 			{
 				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);

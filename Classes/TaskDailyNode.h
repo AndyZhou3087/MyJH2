@@ -33,6 +33,7 @@ private:
 private:
 	void onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void updateData(float dt);
+	void doMainMarket();
 };
 #endif
 

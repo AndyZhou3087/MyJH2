@@ -320,28 +320,36 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 			case ACHIEVE_GOODS:
 			{
-				MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
-				g_mainScene->addChild(layer, 0, "5market");
-				AnimationEffect::openAniEffect((Layer*)layer);
+				doMainMarket();
 			}
 			break;
 			case ACHIEVE_GOLD:
 			{
-				MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
-				g_mainScene->addChild(layer, 0, "5market");
-				AnimationEffect::openAniEffect((Layer*)layer);
+				doMainMarket();
 			}
 			break;
 			case ACHIEVE_SLIVER:
 			{
-				MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
-				g_mainScene->addChild(layer, 0, "5market");
-				AnimationEffect::openAniEffect((Layer*)layer);
+				doMainMarket();
 			}
 			break;
 			default:
 				break;
 			}
 		}
+	}
+}
+
+void TaskDailyNode::doMainMarket()
+{
+	if (g_mainScene != NULL && g_mainScene->buildingIsClickOn(6))
+	{
+		MovingLabel::show(ResourceLang::map_lang["unlockmain_6"]);
+	}
+	else
+	{
+		MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
+		g_mainScene->addChild(layer, 0, "5market");
+		AnimationEffect::openAniEffect((Layer*)layer);
 	}
 }

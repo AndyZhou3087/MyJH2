@@ -240,4 +240,10 @@
 	<s name="hasequipcount">[拥有数量：%d]</s>
 	<s name="bettipstext">请选择大小</s>
 	<s name="daytext">%d天</s>
+	<s name="unlockmain_2">稍后可开放...</s>
+	<s name="unlockmain_3">角色15级后可解锁...</s>
+	<s name="unlockmain_5">角色20级后可解锁...</s>
+	<s name="unlockmain_6">任意角色10级后可解锁...</s>
+	<s name="unlockmain_8">通关神龙教地图后可解锁</s>
+	<s name="unlockmain_9">敬请期待...</s>
 </strings>
