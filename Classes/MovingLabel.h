@@ -13,6 +13,7 @@ public:
 
 
 	static void show(std::string text, Color4B color = Color4B(Color3B::WHITE), Vec2 pos = Vec2(360, 640));
+	static void showbyNode(Node* node, std::string text, Color4B color = Color4B(Color3B::WHITE), Vec2 pos = Vec2(0, 0));
 private:
 	bool init(std::string text, Color4B color, Vec2 pos);
 

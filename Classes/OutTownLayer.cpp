@@ -402,10 +402,17 @@ void OutTownLayer::onGoBuyText(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		this->removeFromParentAndCleanup(true);
-		MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
-		g_mainScene->addChild(layer, 0, "5market");
-		AnimationEffect::openAniEffect(layer);
+		if (g_mainScene != NULL && g_mainScene->buildingIsClickOn(6))
+		{
+			MovingLabel::show(ResourceLang::map_lang["unlockmain_6"]);
+		}
+		else
+		{
+			this->removeFromParentAndCleanup(true);
+			MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
+			g_mainScene->addChild(layer, 0, "5market");
+			AnimationEffect::openAniEffect(layer);
+		}
 	}
 
 }

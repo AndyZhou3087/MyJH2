@@ -26,6 +26,20 @@ void MovingLabel::show(std::string text, Color4B color, Vec2 pos)
 	}
 }
 
+void MovingLabel::showbyNode(Node* node, std::string text, Color4B color, Vec2 pos)
+{
+	MovingLabel* label = MovingLabel::create(text, color, pos);
+	queue_labels.push(label);
+	if (node != NULL)
+	{
+		node->addChild(label, 10);
+		if (queue_labels.size() == 1)
+		{
+			queue_labels.front()->showAction();
+		}
+	}
+}
+
 MovingLabel* MovingLabel::create(std::string text, Color4B color, Vec2 pos)
 {
 	MovingLabel *pRet = new(std::nothrow)MovingLabel();

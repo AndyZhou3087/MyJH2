@@ -131,12 +131,13 @@ bool MainScene::init()
 
 		buildingNomal->setSwallowTouches(false);
 		buildingNomal->setUserData((void*)buildingSelect);
+		buildingNomal->setTag(i);
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
 		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && NewGuideLayer::checkifNewerGuide(66)) || i == 9
 			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 5) || (NewGuideLayer::checkifNewerGuide(73) && i == 3)
-			|| (i == 8 && !GlobalInstance::getInstance()->getMapUnlockGuide() && NewGuideLayer::checkifNewerGuide(15)))//医馆,市场,训练场，竞技场,后山默认不开放
+			|| (i == 8 && !GlobalInstance::getInstance()->getMapUnlockGuide() && NewGuideLayer::checkifNewerGuide(15)))//医馆,市场,训练场，竞技场,后山,铁匠铺默认不开放
 		{
-			buildingNomal->setTouchEnabled(false);
+			//buildingNomal->setTouchEnabled(false);
 			buildnametext->setVisible(false);
 			if (bulidinclipnode != NULL)
 			{
@@ -416,10 +417,56 @@ void MainScene::srollviewlistenEvent(Ref* ref, ui::ScrollView::EventType eventTy
 	//}
 }
 
+bool MainScene::buildingIsClickOn(int tag)
+{
+	if (tag == 2)
+	{
+		if (NewGuideLayer::checkifNewerGuide(63))
+		{
+			return true;
+		}
+	}
+	else if (tag == 3)
+	{
+		if (NewGuideLayer::checkifNewerGuide(73))
+		{
+			return true;
+		}
+	}
+	else if (tag == 5)
+	{
+		if (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0)
+		{
+			return true;
+		}
+	}
+	else if (tag == 6)
+	{
+		if (NewGuideLayer::checkifNewerGuide(66))
+		{
+			return true;
+		}
+	}
+	else if (tag == 8)
+	{
+		if (!GlobalInstance::getInstance()->getMapUnlockGuide() && NewGuideLayer::checkifNewerGuide(15))
+		{
+			return true;
+		}
+	}
+	else if (tag == 9)
+	{
+		return true;
+	}
+
+	return false;
+}
+
 void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	cocos2d::ui::ImageView* clicknode = (cocos2d::ui::ImageView*)pSender;
 	Node* snode = (Node*)clicknode->getUserData();
+	int tag = clicknode->getTag();
 	std::string buildname = (char*)snode->getUserData();
 	switch (type)
 	{
@@ -438,52 +485,75 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 
-			Layer* layer = NULL;
+			if ((NewGuideLayer::checkifNewerGuide(63) && tag == 2) || (tag == 6 && NewGuideLayer::checkifNewerGuide(66)) || tag == 9
+				|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && tag == 5) || (NewGuideLayer::checkifNewerGuide(73) && tag == 3)
+				|| (tag == 8 && !GlobalInstance::getInstance()->getMapUnlockGuide() && NewGuideLayer::checkifNewerGuide(15)))
+			{
+				Node* buildParent;
+				if (tag <= 5)
+				{
+					buildParent = scroll_3;
+				}
+				else if (tag <= 8)
+				{
+					buildParent = scroll_2;
+				}
+				else
+				{
+					buildParent = scroll_1;
+				}
+				std::string str = StringUtils::format("unlockmain_%d", tag);
+				MovingLabel::showbyNode(buildParent, ResourceLang::map_lang[str], (Color4B)Color3B::WHITE, clicknode->getPosition());
+			}
+			else
+			{
+				Layer* layer = NULL;
 
-			if (buildname.compare("6innroom") == 0)
-			{
-				layer = InnRoomLayer::create(Building::map_buildingDatas[buildname]);
-			}
-			else if (buildname.compare("7homehill") == 0)
-			{
-				layer = HomeHillLayer::create(Building::map_buildingDatas[buildname]);
-			}
-			else if (buildname.compare("0outtown") == 0)
-			{
-				layer = OutTownLayer::create();
-			}
-			else if (buildname.compare("3storehouse") == 0)
-			{
-				layer = StoreHouseLayer::create();
-			}
-			else if (buildname.compare("2smithy") == 0)
-			{
-				layer = SmithyLayer::create(Building::map_buildingDatas[buildname]);
-			}
-			else if (buildname.compare("5market") == 0)
-			{
-				layer = MarketLayer::create(Building::map_buildingDatas[buildname]);
-			}
-			else if (buildname.compare("9assemblyhall") == 0)
-			{
-				layer = TaskLayer::create();
-			}
-			else if (buildname.compare("1hospital") == 0)
-			{
-				layer = HospitalLayer::create();
-			}
-			else if (buildname.compare("4trainigroom") == 0)
-			{
-				layer = TrainLayer::create(Building::map_buildingDatas[buildname]);
-			}
+				if (buildname.compare("6innroom") == 0)
+				{
+					layer = InnRoomLayer::create(Building::map_buildingDatas[buildname]);
+				}
+				else if (buildname.compare("7homehill") == 0)
+				{
+					layer = HomeHillLayer::create(Building::map_buildingDatas[buildname]);
+				}
+				else if (buildname.compare("0outtown") == 0)
+				{
+					layer = OutTownLayer::create();
+				}
+				else if (buildname.compare("3storehouse") == 0)
+				{
+					layer = StoreHouseLayer::create();
+				}
+				else if (buildname.compare("2smithy") == 0)
+				{
+					layer = SmithyLayer::create(Building::map_buildingDatas[buildname]);
+				}
+				else if (buildname.compare("5market") == 0)
+				{
+					layer = MarketLayer::create(Building::map_buildingDatas[buildname]);
+				}
+				else if (buildname.compare("9assemblyhall") == 0)
+				{
+					layer = TaskLayer::create();
+				}
+				else if (buildname.compare("1hospital") == 0)
+				{
+					layer = HospitalLayer::create();
+				}
+				else if (buildname.compare("4trainigroom") == 0)
+				{
+					layer = TrainLayer::create(Building::map_buildingDatas[buildname]);
+				}
 
-			if (layer != NULL)
-			{
-				this->addChild(layer, 0, buildname);
-				AnimationEffect::openAniEffect(layer);
-			}
+				if (layer != NULL)
+				{
+					this->addChild(layer, 0, buildname);
+					AnimationEffect::openAniEffect(layer);
+				}
 
-			break;
+				break;
+			}
 		}
 		case cocos2d::ui::Widget::TouchEventType::CANCELED:
 		{
