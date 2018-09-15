@@ -45,6 +45,7 @@ MapBlockScene::MapBlockScene()
 	_fogrender = NULL;
 	mapIsAllOpen = false;
 	randStartPos = -1;
+	checkFoodDead = false;
 }
 
 
@@ -611,7 +612,11 @@ void MapBlockScene::checkFood()
 		}
 		if (!checklive())
 		{
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+			if (!checkFoodDead)
+			{
+				checkFoodDead = true;
+				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+			}
 		}
 	}
 }
