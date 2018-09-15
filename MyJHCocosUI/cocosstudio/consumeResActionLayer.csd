@@ -225,7 +225,7 @@
             <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="countlbl" ActionTag="1058945096" Tag="198" IconVisible="False" LeftMargin="477.0004" RightMargin="184.9996" TopMargin="885.2719" BottomMargin="362.7282" FontSize="28" LabelText="x100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="countlbl" ActionTag="1058945096" Tag="198" IconVisible="False" LeftMargin="477.0004" RightMargin="184.9996" TopMargin="885.2718" BottomMargin="362.7282" FontSize="28" LabelText="x100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="58.0000" Y="32.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="477.0004" Y="378.7282" />

@@ -590,26 +590,29 @@ void MainScene::updateTime(float dt)
 	}
 
 
-	bool isHasNewHero = false;
-	for (unsigned int i = 0; i < GlobalInstance::vec_rand3Heros.size(); i++)
+	int refreshtime = GlobalInstance::getInstance()->getRefreshHeroTime();
+	int pasttime = GlobalInstance::servertime - refreshtime;
+	if (pasttime >= HERO_RESETTIME)
 	{
-		if (GlobalInstance::vec_rand3Heros[i]->getState() == HS_READY)
+		GlobalInstance::isNewHeroRefresh = true;
+	}
+
+	if (GlobalInstance::isNewHeroRefresh)
+	{
+		if (!isPlayNewHeroAnim)
 		{
-			isHasNewHero = true;
-			if (!isPlayNewHeroAnim)
-			{
-				isPlayNewHeroAnim = true;
-				showInnRoomNewHeroAnim();
-			}
-			break;
+			isPlayNewHeroAnim = true;
+
+			showInnRoomNewHeroAnim();
 		}
 	}
-	if (isPlayNewHeroAnim && !isHasNewHero)
+	else
 	{
 		isPlayNewHeroAnim = false;
 		maincityhintbox->stopAllActions();
 		maincityhintbox->setVisible(false);
 	}
+
 }
 
 void MainScene::showInnRoomNewHeroAnim()

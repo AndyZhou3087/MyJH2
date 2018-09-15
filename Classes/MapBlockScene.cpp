@@ -372,6 +372,16 @@ void MapBlockScene::updateLabel(float dt)
 	foodcountlbl->setString(str);
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	solivercountlbl->setString(str);
+
+	if (MyRes::getMyPackageCount() >= GlobalInstance::myOutMapCarry)
+	{
+		carrycountlbl->setTextColor(Color4B(255, 61, 61, 255));
+	}
+	else
+	{
+		carrycountlbl->setTextColor(Color4B(255, 255, 255, 255));
+	}
+
 }
 
 void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

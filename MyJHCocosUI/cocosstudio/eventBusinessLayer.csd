@@ -114,7 +114,7 @@
             <FileData Type="MarkedSubImage" Path="mapui/winsepbox.png" Plist="mapui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="carrytext" ActionTag="850446388" Tag="27" IconVisible="False" LeftMargin="472.1257" RightMargin="190.8743" TopMargin="678.2400" BottomMargin="575.7600" FontSize="23" LabelText="负重：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="carrytext" ActionTag="850446388" Tag="27" IconVisible="False" LeftMargin="472.1257" RightMargin="190.8743" TopMargin="678.2400" BottomMargin="575.7600" FontSize="23" LabelText="负重：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="57.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="472.1257" Y="588.7600" />
@@ -126,7 +126,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="carrycount" ActionTag="330910709" Tag="26" IconVisible="False" LeftMargin="536.4281" RightMargin="85.5719" TopMargin="678.2400" BottomMargin="575.7600" FontSize="23" LabelText="100/1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="carrycount" ActionTag="330910709" Tag="26" IconVisible="False" LeftMargin="536.4281" RightMargin="85.5719" TopMargin="678.2400" BottomMargin="575.7600" FontSize="23" LabelText="100/1000" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="98.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="536.4281" Y="588.7600" />
@@ -150,7 +150,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="coin" ActionTag="368843176" Tag="99" IconVisible="False" LeftMargin="67.4208" RightMargin="610.5792" TopMargin="104.0131" BottomMargin="1149.9869" ctype="SpriteObjectData">
+          <AbstractNodeData Name="coin" ActionTag="368843176" Tag="99" IconVisible="False" LeftMargin="67.4202" RightMargin="610.5798" TopMargin="104.0142" BottomMargin="1149.9858" ctype="SpriteObjectData">
             <Size X="42.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.6268" ScaleY="0.5239" />
             <Position X="93.7458" Y="1163.6072" />

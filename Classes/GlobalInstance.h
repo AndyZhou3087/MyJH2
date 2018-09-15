@@ -570,6 +570,8 @@ public:
 
 	static int myOutMapCarry;
 
+	static bool isNewHeroRefresh;
+
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

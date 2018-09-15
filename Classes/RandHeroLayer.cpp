@@ -21,7 +21,7 @@ USING_NS_CC;
 #define COINREFRESH_NUM 50
 RandHeroLayer::RandHeroLayer()
 {
-
+	GlobalInstance::isNewHeroRefresh = false;
 }
 
 RandHeroLayer::~RandHeroLayer()
@@ -353,6 +353,7 @@ void RandHeroLayer::updateUI(float dt)
 	{
 		GlobalInstance::getInstance()->setResetSilverRefHeroCountTime(zerotime - zerotime % (24 * 60 * 60));
 		GlobalInstance::getInstance()->setSilverRefHeroCount(0);
+		GlobalInstance::isNewHeroRefresh = true;
 	}
 
 }

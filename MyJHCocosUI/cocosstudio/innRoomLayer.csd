@@ -84,6 +84,17 @@
                 <PreSize X="0.7647" Y="0.5000" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/recruit_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
+              <AbstractNodeData Name="redpoint" ActionTag="-529172371" Tag="488" IconVisible="False" LeftMargin="173.0000" RightMargin="7.0000" TopMargin="2.0000" BottomMargin="58.0000" ctype="SpriteObjectData">
+                <Size X="24.0000" Y="24.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="185.0000" Y="70.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.9069" Y="0.8333" />
+                <PreSize X="0.1176" Y="0.2857" />
+                <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="192.0593" Y="56.8545" />
@@ -154,7 +165,7 @@
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="650" Height="950" />
           </AbstractNodeData>
-          <AbstractNodeData Name="hintdesc" ActionTag="-672840368" Tag="220" IconVisible="False" LeftMargin="320.0000" RightMargin="320.0000" TopMargin="1108.5000" BottomMargin="142.4999" FontSize="25" LabelText="999999" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="hintdesc" ActionTag="-672840368" Tag="220" IconVisible="False" LeftMargin="320.0000" RightMargin="320.0000" TopMargin="1108.5001" BottomMargin="142.4999" FontSize="25" LabelText="999999" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="80.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="156.9999" />

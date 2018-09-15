@@ -36,6 +36,8 @@ public:
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
 
+	void fireHero();
+
 private:
 
 	/************************************

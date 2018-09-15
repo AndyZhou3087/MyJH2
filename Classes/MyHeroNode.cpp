@@ -323,6 +323,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			else if (m_showtype == HS_DEAD)
 				fromwhere = 2;
 			Layer* layer = HeroAttrLayer::create(m_heroData, fromwhere);
+			layer->setName("heroattrlayer");
 			g_mainScene->addChild(layer, 0, this->getTag());
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
