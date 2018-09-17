@@ -134,7 +134,7 @@ void ShopLayer::beginPay(int index)
 
 	isPaying = true;
 	payindex = index;
-
+	
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	setMessage(PAY_SUCC);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -150,8 +150,7 @@ void ShopLayer::beginPay(int index)
 		methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1, str2, 0);
 	}
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	//payCode
-	//buy((char*)payCode[payindex].c_str());
+	buy(GlobalInstance::vec_shopdata[payindex].paycode.c_str());
 #endif
 }
 
