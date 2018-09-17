@@ -32,7 +32,6 @@ MainScene::MainScene()
 
 MainScene::~MainScene()
 {
-	log("~MainScene");
 	g_mainScene = NULL;
 }
 
@@ -44,7 +43,6 @@ Scene* MainScene::createScene()
     // 'layer' is an autorelease object
 	g_mainScene = MainScene::create();
 
-	log("g_mainScene = %d", g_mainScene);
     // add layer as a child to scene
 	scene->addChild(g_mainScene);
 
