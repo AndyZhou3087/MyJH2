@@ -131,7 +131,6 @@ void SelectEquipLayer::updateContent()
 {
 	scrollview->removeAllChildrenWithCleanup(true);
 
-
 	int itemheight = 160;
 	int ressize = MyRes::vec_MyResources.size();
 
@@ -200,12 +199,20 @@ void SelectEquipLayer::updateContent()
 		res->setPosition(Vec2(boxItem->getContentSize().width / 2, boxItem->getContentSize().height / 2));
 		boxItem->addChild(res);
 
-		Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 23);
+		std::string namestr = GlobalInstance::map_AllResources[resid].name;
+		if (vec_res[m]->getType() >= T_ARMOR && vec_res[m]->getType() <= T_NG)
+		{
+			Equipable* eres = (Equipable*)vec_res[m];
+			if (eres->getLv().getValue() > 0)
+				namestr = StringUtils::format("+%d%s", eres->getLv().getValue() + 1, namestr.c_str());
+		}
+
+		Label *namelbl = Label::createWithTTF(namestr, FONT_NAME, 23);
 		namelbl->setColor(Color3B(26, 68, 101));
 		namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -10));
 		boxItem->addChild(namelbl);
 
-		std::string countstr = StringUtils::format("%d", lv);
+		std::string countstr = StringUtils::format("%d", vec_res[m]->getCount().getValue());
 		Label *countlbl = Label::createWithTTF(countstr, FONT_NAME, 23);
 		countlbl->setAnchorPoint(Vec2(1, 0));
 		countlbl->setColor(Color3B::WHITE);

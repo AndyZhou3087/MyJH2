@@ -282,9 +282,19 @@ void MapBlockScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
 	}
 }
 
+void MapBlockScene::goBackMainHomeScene()
+{
+	cacelLongTouch();
+	for (int i = 0; i < 4; i++)
+	{
+		keybtnArr[i]->setEnabled(false);
+	}
+	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+}
+
 void MapBlockScene::showNewerGuideGoBack()
 {
-	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+	goBackMainHomeScene();
 }
 
 void MapBlockScene::showFightingLayer(std::vector<Npc*> enemys)
@@ -611,12 +621,7 @@ void MapBlockScene::checkFood()
 		}
 		if (!checklive())
 		{
-			cacelLongTouch();
-			for (int i = 0; i < 4; i++)
-			{
-				keybtnArr[i]->setEnabled(false);
-			}
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+			goBackMainHomeScene();
 		}
 	}
 }

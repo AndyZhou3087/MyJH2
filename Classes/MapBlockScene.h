@@ -62,6 +62,8 @@ public:
 
 	void delayShowExit(float dt);
 
+	void goBackMainHomeScene();
+
 	//延迟新手引导
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
