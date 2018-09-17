@@ -371,15 +371,10 @@ void FightingLayer::showAtk(int fightertag)
 						float myatk = myhero->getAtk();
 						if (stype == SKILL_12)
 							myatk *= (1 + GlobalInstance::map_GF[gf->getId()].skilleff1/100);
-						for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
-						{
-							if (m_enemyHeros[i] != NULL && m_enemyHeros[i]->getHp() > 0)
-							{
-								FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + i);
-								fnode->hurt(myatk, 0);
-								break;
-							}
-						}
+
+						int attackindex = calcAttackNodeIndex(fightertag, 0);
+						FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + attackindex);
+						fnode->hurt(myatk, 0);
 					}
 				}
 				else if (stype == SKILL_17)
@@ -391,39 +386,21 @@ void FightingLayer::showAtk(int fightertag)
 					{
 						float myatk = myhero->getAtk();
 						myatk *= (1 + GlobalInstance::map_GF[gf->getId()].skilleff1 / 100);
-						for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
-						{
-							if (m_enemyHeros[i] != NULL && m_enemyHeros[i]->getHp() > 0)
-							{
-								FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + i);
-								fnode->hurt(myatk, 0);
-								break;
-							}
-						}
+						int attackindex = calcAttackNodeIndex(fightertag, 0);
+						FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + attackindex);
+						fnode->hurt(myatk, 0);
+
 					}
 				}
-				else//攻击单个目标
+				else//技能攻击单个目标
 				{
-					for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
-					{
-						if (m_enemyHeros[i] != NULL && m_enemyHeros[i]->getHp() > 0)
-						{
-							myhero->vec_whosufferskill.push_back(6 + i);
-							break;
-						}
-					}
+					int attackindex = calcAttackNodeIndex(fightertag, 0);
+					myhero->vec_whosufferskill.push_back(6 + attackindex);
 				}
 			}
 			else//没有触发技能
 			{
-				for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
-				{
-					if (m_enemyHeros[i] != NULL && m_enemyHeros[i]->getHp() > 0)
-					{
-						enemyindex = i;//敌人node索引
-						break;
-					}
-				}
+				enemyindex = calcAttackNodeIndex(fightertag, 0);
 			}
 			//计算闪避
 			if (enemyindex >= 0)//没有触发技能
@@ -540,14 +517,7 @@ void FightingLayer::showAtk(int fightertag)
 
 		if (myfindex < 0)
 		{
-			for (unsigned int i = 0; i < 6; i++)
-			{
-				if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
-				{
-					myfindex = i;
-					break;
-				}
-			}
+			myfindex = calcAttackNodeIndex(fightertag, 1);
 		}
 
 		if (stype < 0)
@@ -669,7 +639,7 @@ int FightingLayer::calcAttackNodeIndex(int fighterindex, int type)
 		int enemycount = m_enemyHeros.size();
 		for (int i = 0; i < enemycount; i++)
 		{
-			if (m_enemyHeros[i] != NULL)
+			if (m_enemyHeros[i] != NULL && m_enemyHeros[i]->getHp() > 0)
 			{
 				if (i < 3)
 					vec_enemyfront3node.push_back((FightHeroNode*)this->getChildByTag(6 + i));
@@ -678,14 +648,58 @@ int FightingLayer::calcAttackNodeIndex(int fighterindex, int type)
 			}
 		}
 		FightHeroNode* enemynode = (FightHeroNode*)this->getChildByTag(6 + fighterindex);
-		if (enemynode != NULL && fighterindex < enemycount && m_enemyHeros[fighterindex] != NULL)//自身位置正前方
+		if (enemynode != NULL && fighterindex < enemycount && m_enemyHeros[fighterindex] != NULL && m_enemyHeros[fighterindex]->getHp() > 0)//自身位置正前方
 			return fighterindex;
 		enemynode = (FightHeroNode*)this->getChildByTag(6 + 3 + fighterindex);
-		if (enemynode != NULL && fighterindex + 3 < enemycount && m_enemyHeros[fighterindex + 3] != NULL)//正前方后排位置
+		if (enemynode != NULL && fighterindex + 3 < enemycount && m_enemyHeros[fighterindex + 3] != NULL && m_enemyHeros[fighterindex + 3]->getHp() > 0)//正前方后排位置
 			return fighterindex + 3;
 
-		std::sort(vec_enemyfront3node.begin(), vec_enemyfront3node.end(), sortbyHp_lesscb);
-
-
+		if (vec_enemyfront3node.size() > 0)
+		{
+			std::sort(vec_enemyfront3node.begin(), vec_enemyfront3node.end(), sortbyHp_lesscb);
+			return vec_enemyfront3node[0]->getTag() - 6;
+		}
+		else
+		{
+			if (vec_enemyback3node.size() > 0)
+			{
+				std::sort(vec_enemyback3node.begin(), vec_enemyback3node.end(), sortbyHp_lesscb);
+				return vec_enemyback3node[0]->getTag() - 6;
+			}
+		}
 	}
+	else
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
+			{
+				if (i < 3)
+					vec_myfront3node.push_back((FightHeroNode*)this->getChildByTag(i));
+				else
+					vec_myback3node.push_back((FightHeroNode*)this->getChildByTag(i));
+			}
+		}
+		FightHeroNode* mynode = (FightHeroNode*)this->getChildByTag(fighterindex - 6);
+		if (mynode != NULL && GlobalInstance::myCardHeros[fighterindex - 6] != NULL && GlobalInstance::myCardHeros[fighterindex - 6]->getState() != HS_DEAD)//自身位置正前方
+			return fighterindex - 6;
+		mynode = (FightHeroNode*)this->getChildByTag(fighterindex - 6 + 3);
+		if (mynode != NULL && GlobalInstance::myCardHeros[fighterindex - 6 + 3] != NULL && GlobalInstance::myCardHeros[fighterindex - 6]->getState() != HS_DEAD)//正前方后排位置
+			return fighterindex - 6 + 3;
+
+		if (vec_myfront3node.size() > 0)
+		{
+			std::sort(vec_myfront3node.begin(), vec_myfront3node.end(), sortbyHp_lesscb);
+			return vec_myfront3node[0]->getTag();
+		}
+		else
+		{
+			if (vec_myback3node.size() > 0)
+			{
+				std::sort(vec_myback3node.begin(), vec_myback3node.end(), sortbyHp_lesscb);
+				return vec_myback3node[0]->getTag();
+			}
+		}
+	}
+	return -1;
 }
