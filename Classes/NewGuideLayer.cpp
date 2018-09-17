@@ -33,7 +33,7 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 "小师妹：武当的属性比较平衡，什么位置都可以站。", //9
 "小师妹：道士会用道术进行多重攻击，还可以治疗队友。",//10
 //开始战斗--结束
-"小师妹：师兄，战斗结束了，天书我们也拿到了，他们一会恢复过来，咱们就走不脱了，还是快撤吧！", //11
+"小师妹：师兄，战斗结束了，天书现世，世道已经乱了，他们一会恢复过来，咱们就走不掉了，还是快撤吧！", //11
 "赏善罚恶使张三：天书现世，世道已经乱了，这些东西不是你该拿的，交出来吧！",//12
 "小师妹：师兄，咱们还是先回去吧，连赏善罚恶二使都来了，回去好好想想对策！",//跳回主场景//13
 //"",//14
@@ -205,7 +205,7 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 			if (rect.containsPoint(point))//如果触点处于rect中  
 			{
 				iscannext = true;
-				if (m_step != 13)
+				if (m_step != 11)
 				{
 					listener->setSwallowTouches(false);
 				}
@@ -280,7 +280,7 @@ void NewGuideLayer::showNextGuide()
 			g_MapBlockScene->delayShowNewerGuide(0);
 		}
 	}
-	else if ((m_step > 1 && m_step < 5) || (m_step >= 11 && m_step < 13))
+	else if (m_step > 1 && m_step < 5)// || (m_step >= 11 && m_step < 13))
 	{
 		this->removeFromParentAndCleanup(true);
 		if (g_MapBlockScene != NULL)
@@ -322,7 +322,7 @@ void NewGuideLayer::showNextGuide()
 			}
 		}
 	}
-	else if (m_step == 13)
+	else if (m_step == 11)
 	{
 		clearNewGuideData();
 		this->removeFromParentAndCleanup(true);
@@ -504,9 +504,13 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 					scalex = 3.0f;
 					scaley = 3.0f;
 				}
-				else if (m_step == 30)
+				else if (m_step == 30 || m_step == 47)
 				{
 					m_pos.y = m_pos.y + 20;
+				}
+				else if (m_step == 49 || m_step == 51)
+				{
+					m_pos.y = m_pos.y + 5;
 				}
 				else if (m_step == 41 || m_step == 54 || m_step == 56)
 				{
@@ -515,7 +519,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 				cnode->setPosition(m_pos);
 				cnode->setScale(scalex*1.5f, scaley*1.5f);
 				if (m_step == 0 || m_step == 1 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 19 || m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52 ||
-					m_step == 38 || m_step == 71 || m_step == 75 || m_step == 81 || m_step == 87)
+					m_step == 38 || m_step == 47 || m_step == 49 || m_step == 51 || m_step == 71 || m_step == 75 || m_step == 81 || m_step == 87)
 				{
 					cnode->setScale(scalex*1.5f);
 				}

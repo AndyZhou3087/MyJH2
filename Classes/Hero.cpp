@@ -113,8 +113,8 @@ void Hero::checkLevelQuest(int lv)
 {
 	if (m_lastlevel <= lv - 1)
 	{
-		Quest::setDailyTask(UPGRADE_HERO, lv - 1 - m_lastlevel);
-		Quest::setAchieveTypeCount(UPGRADE_HERO, lv - 1 - m_lastlevel);
+		Quest::setDailyTask(UPGRADE_HERO, lv - m_lastlevel);
+		Quest::setAchieveTypeCount(UPGRADE_HERO, lv - m_lastlevel);
 		float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[lv] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(lv + 1) / 10];
 		m_hp = herohp;
 	}
