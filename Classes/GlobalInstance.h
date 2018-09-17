@@ -91,6 +91,7 @@ typedef struct
 	int pr;
 	int max;
 	int min;
+	int maxqu;
 }EventData;
 
 typedef enum
@@ -485,6 +486,9 @@ public:
 
 	//判断是否有达到某级的角色
 	int getHerosLevelCount(int lv);
+
+	//判断平均出战角色等级
+	int getFightHerosLevel();
 
 	//判断是否通关神龙教m1-4-2
 	bool getMapUnlockGuide();

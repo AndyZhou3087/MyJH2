@@ -214,7 +214,7 @@ void EventBusinessLayer::loadScrollviewData()
 		}
 		if (t >= T_ARMOR && t <= T_FASHION)
 		{
-			qu = parentlayer->getEquipQuRand();
+			qu = parentlayer->getEquipQuRand(resid);
 		}
 		else if (t >= T_WG && t <= T_NG)
 		{
