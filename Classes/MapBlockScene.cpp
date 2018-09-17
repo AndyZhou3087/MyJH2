@@ -749,7 +749,11 @@ void MapBlockScene::setMyPos()
 	{
 		isMoving = true;
 	
-		myposHero->setAnimation(0, walkname[m_walkDirection], true);//true是指循环播放walk动作
+		myposHero->setToSetupPose();
+		spTrackEntry* spentry = myposHero->setAnimation(0, walkname[m_walkDirection], true);//true是指循环播放walk动作
+		if (spentry) {//如果指定的name 找不到，setAnimation失败，就会导致 spAnimationState_apply 崩溃，所以加个判断
+			spAnimationState_apply(myposHero->getState(), myposHero->getSkeleton());
+		}
 		myposHero->runAction(Sequence::create(MoveTo::create(0.5f, Vec2(px, py + HEROOFFSET_Y)), CallFunc::create(CC_CALLBACK_0(MapBlockScene::stopMoving, this)), NULL));
 		m_lastWalkDirection = m_walkDirection;
 	}
