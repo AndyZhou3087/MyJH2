@@ -504,9 +504,13 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 					scalex = 3.0f;
 					scaley = 3.0f;
 				}
-				else if (m_step == 30)
+				else if (m_step == 30 || m_step == 47)
 				{
 					m_pos.y = m_pos.y + 20;
+				}
+				else if (m_step == 49 || m_step == 51)
+				{
+					m_pos.y = m_pos.y + 5;
 				}
 				else if (m_step == 41 || m_step == 54 || m_step == 56)
 				{
@@ -515,7 +519,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 				cnode->setPosition(m_pos);
 				cnode->setScale(scalex*1.5f, scaley*1.5f);
 				if (m_step == 0 || m_step == 1 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 19 || m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52 ||
-					m_step == 38 || m_step == 71 || m_step == 75 || m_step == 81 || m_step == 87)
+					m_step == 38 || m_step == 47 || m_step == 49 || m_step == 51 || m_step == 71 || m_step == 75 || m_step == 81 || m_step == 87)
 				{
 					cnode->setScale(scalex*1.5f);
 				}
