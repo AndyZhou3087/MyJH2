@@ -655,7 +655,7 @@ void Quest::setDailyTask(int type, int count)
 	for (it = GlobalInstance::map_DTdata.begin(); it != GlobalInstance::map_DTdata.end(); it++)
 	{
 		DailyTaskData* data = &GlobalInstance::map_DTdata[it->first];
-		if (data->type == type && map_DailyTypeCount[type] >= data->count)
+		if (data->type == type && map_DailyTypeCount[type] >= data->count && data->state == DAILY_UNFINISHED)
 		{
 			data->state = DAILY_FINISHED;
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
@@ -730,7 +730,7 @@ void Quest::setAchieveTypeCount(int type, int count, std::string resid)
 	for (unsigned int i = 0; i < GlobalInstance::vec_achievedata.size(); i++)
 	{
 		AchieveData* data = &GlobalInstance::vec_achievedata[i];
-		if (data->type == type && data->count == map_achieveTypeCount[type][resid] && data->achid.compare(resid) == 0)
+		if (data->type == type && data->count <= map_achieveTypeCount[type][resid] && data->achid.compare(resid) == 0 && data->state == DAILY_UNFINISHED)
 		{
 			data->state = DAILY_FINISHED;
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);

@@ -233,14 +233,14 @@ void MapBlockScene::delayShowNewerGuide(float dt)
 		{
 			showNewerGuide(11);
 		}
-		else if (NewGuideLayer::checkifNewerGuide(12))
+		/*else if (NewGuideLayer::checkifNewerGuide(12))
 		{
 			showNewerGuide(12);
 		}
 		else if (NewGuideLayer::checkifNewerGuide(13))
 		{
 			showNewerGuide(13);
-		}
+		}*/
 	}
 	else if (getFirstFightBoss() && NewGuideLayer::checkifNewerGuide(86))
 	{
