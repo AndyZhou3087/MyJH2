@@ -475,7 +475,7 @@ int GlobalInstance::getRefreshResTime()
 
 void GlobalInstance::loadEventData()
 {
-	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/event.json"));
+	/*rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath("json/event.json"));
 	rapidjson::Value& allData = doc["b"];
 	for (unsigned int i = 0; i < allData.Size(); i++)
 	{
@@ -497,7 +497,7 @@ void GlobalInstance::loadEventData()
 
 			map_eventdata[data.id] = data;
 		}
-	}
+	}*/
 }
 
 void GlobalInstance::loadAchieveData()
@@ -1752,6 +1752,27 @@ int GlobalInstance::getHerosLevelCount(int lv)
 		}
 	}
 	return count;
+}
+
+int GlobalInstance::getFightHerosLevel()
+{
+	int lv = 0;
+	int count = 0;
+	for (unsigned int i = 0; i < vec_myHeros.size(); i++)
+	{
+		Hero* hero = vec_myHeros[i];
+		if (hero->getState() == HS_TAKEON)
+		{
+			count++;
+			lv += hero->getLevel();
+		}
+	}
+	int avlv = 0;
+	if (count > 0)
+	{
+		avlv = lv / count;
+	}
+	return avlv;
 }
 
 bool GlobalInstance::getMapUnlockGuide()

@@ -12,6 +12,8 @@
 
 #define BETCOSTCOIN 50
 
+int maxqupr[5] = { 585,885,985,995,1000 };
+
 USING_NS_CC;
 
 MapEventLayer::MapEventLayer()
@@ -19,6 +21,7 @@ MapEventLayer::MapEventLayer()
 	lastBetIndex = -1;
 	winbs = -1;
 	isWin = -1;
+	hdcount = 0;
 }
 
 MapEventLayer::~MapEventLayer()
@@ -58,6 +61,9 @@ bool MapEventLayer::init(int eventindex)
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+	//读取event数据
+	loadEventData();
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("mapEventLayer.csb"));
 	this->addChild(csbnode);
@@ -128,6 +134,40 @@ bool MapEventLayer::init(int eventindex)
     return true;
 }
 
+void MapEventLayer::loadEventData()
+{
+	int avelv = GlobalInstance::getInstance()->getFightHerosLevel();
+	int i = avelv / 10 + 1;
+	std::string str = StringUtils::format("json/event%d.json", i);
+
+	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath(str));
+	rapidjson::Value& allData = doc["b"];
+	for (unsigned int i = 0; i < allData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = allData[i];
+		if (jsonvalue.IsObject())
+		{
+			EventData data;
+			rapidjson::Value& v = jsonvalue["id"];
+			data.id = v.GetString();
+
+			v = jsonvalue["pr"];
+			data.pr = atoi(v.GetString());
+
+			v = jsonvalue["max"];
+			data.max = atoi(v.GetString());
+
+			v = jsonvalue["min"];
+			data.min = atoi(v.GetString());
+
+			v = jsonvalue["mqu"];
+			data.maxqu = atoi(v.GetString());
+
+			map_eventdata[data.id] = data;
+		}
+	}
+}
+
 void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	Node* node = (Node*)pSender;
@@ -138,6 +178,26 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	}
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		//摔伤下死亡回城
+		int hcount = 0;
+		for (int i = 0; i < 6; i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL)
+			{
+				hcount++;
+			}
+		}
+		if (hdcount == hcount)
+		{
+			AnimationEffect::closeAniEffect((Layer*)this);
+			MapBlockScene* block = (MapBlockScene*)this->getParent();
+			if (block != NULL)
+			{
+				block->showNewerGuideGoBack();
+			}
+			return;
+		}
+
 		switch (tag)
 		{
 		case 0:
@@ -414,7 +474,7 @@ void MapEventLayer::eventElderExtort()
 void MapEventLayer::loadPrData()
 {
 	std::map<std::string, EventData>::iterator it;
-	for (it = GlobalInstance::map_eventdata.begin(); it != GlobalInstance::map_eventdata.end(); it++)
+	for (it = map_eventdata.begin(); it != map_eventdata.end(); it++)
 	{
 		EventData data = it->second;
 		vec_eventdata.push_back(data);
@@ -461,36 +521,40 @@ std::string MapEventLayer::getDataIdByPr()
 	return id;
 }
 
-int MapEventLayer::getEquipQuRand()
+int MapEventLayer::getEquipQuRand(std::string resid)
 {
-	int r = GlobalInstance::getInstance()->createRandomNum(1000) + 1;
-	if (r <= 585)
+	EventData data;
+	for (unsigned int i = 0; i < vec_eventdata.size(); i++)
 	{
-		return 0;
+		data = vec_eventdata[i];
+		if (data.id.compare(resid) == 0)
+		{
+			break;
+		}
 	}
-	else if (r <= 885)
+	int rnd = getEventMaxQu(data.maxqu);
+	int r = GlobalInstance::getInstance()->createRandomNum(rnd) + 1;
+	for (int i = 0; i < sizeof(maxqupr) / sizeof(maxqupr[0]); i++)
 	{
-		return 1;
+		if (r <= maxqupr[i])
+		{
+			return i;
+		}
 	}
-	else if (r <= 985)
-	{
-		return 2;
-	}
-	else if (r <= 995)
-	{
-		return 3;
-	}
-	else
-	{
-		return 4;
-	}
+
 	return 0;
+}
+
+int MapEventLayer::getEventMaxQu(int maxqu)
+{
+	int rnd = maxqupr[maxqu];
+	return rnd;
 }
 
 int MapEventLayer::getResCountRand(std::string id)
 {
-	int max = GlobalInstance::map_eventdata[id].max;
-	int min = GlobalInstance::map_eventdata[id].min;
+	int max = map_eventdata[id].max;
+	int min = map_eventdata[id].min;
 	int r = GlobalInstance::getInstance()->createRandomNum(max - min + 1) + min;
 	return r;
 }
@@ -509,7 +573,7 @@ void MapEventLayer::loadBoxUI(cocos2d::ui::ImageView* box, std::string resid)
 	}
 	if (t >= T_ARMOR && t <= T_FASHION)
 	{
-		qu = getEquipQuRand();
+		qu = getEquipQuRand(resid);
 		str = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
 	else if (t >= T_WG && t <= T_NG)
@@ -519,8 +583,8 @@ void MapEventLayer::loadBoxUI(cocos2d::ui::ImageView* box, std::string resid)
 	}
 	box->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)box->getChildByName("icon");
-	str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 
+	str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 	icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)box->getChildByName("name");
 	name->setString(GlobalInstance::map_AllResources[resid].name);
@@ -640,6 +704,7 @@ void MapEventLayer::eventHurt()
 	eventimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 
 	MapBlockScene* block = (MapBlockScene*)this->getParent();
+
 	for (int i = 0; i < 6; i++)
 	{
 		if (GlobalInstance::myCardHeros[i] != NULL)
@@ -651,6 +716,7 @@ void MapEventLayer::eventHurt()
 				hp = 0;
 				GlobalInstance::myCardHeros[i]->setState(HS_DEAD);
 				GlobalInstance::myCardHeros[i]->setPos(0);
+				hdcount++;
 			}
 			GlobalInstance::myCardHeros[i]->setHp(hp);
 			if (block!=NULL)

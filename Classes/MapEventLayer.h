@@ -29,7 +29,7 @@ public:
 	virtual void onExit();
     bool init(int eventindex);
 	std::string getDataIdByPr();//随机获取数据
-	int getEquipQuRand();//随机装备品质
+	int getEquipQuRand(std::string resid);//随机装备品质
 	int getResCountRand(std::string id);//随机数量
 	void continueGamble();
 	void updateCoin(float dt);
@@ -42,6 +42,7 @@ private:
 
 	void loadPrData();
 	int getAllPr();//获取总概率
+	int getEventMaxQu(int maxqu);
 
 	static bool larger_callback(EventData a, EventData b);
 
@@ -52,6 +53,8 @@ private:
 	void showResult(float dt);
 	void openDice(float dt);
 	void playGamblebox(float dt);
+
+	void loadEventData();
 
 private:
 	Node* eventnode_1;
@@ -76,6 +79,9 @@ private:
 	int lastBetIndex;
 	int winbs;
 	int isWin;
+	int hdcount;//事件死亡数
+
+	std::map<std::string, EventData> map_eventdata;
 };
 
 #endif
