@@ -313,20 +313,24 @@ void FightingLayer::showAtk(int fightertag)
 
 			if (myhero->getSkillingType() >= 0)//触发了技能
 			{
-				if (stype == SKILL_5 || stype == SKILL_6)//攻击多个目标
+				if (stype == SKILL_5)//攻击多个目标
 				{
-					int scount = GlobalInstance::map_GF[gf->getId()].skilleff2;//攻击的几个目标
-					int ssize = m_enemyHeros.size();
-					int count = 0;
-					for (int m = 0; m < ssize; m++)
+					int scount = GlobalInstance::map_GF[gf->getId()].skilleff2;
+
+					std::vector<int> vec(calcSkill5AttackNodeIndex(fightertag, 0, scount));
+					for (unsigned int i = 0; i < vec.size(); i++)
 					{
-						if (m_enemyHeros[m] != NULL && m_enemyHeros[m]->getHp() > 0)
-						{
-							myhero->vec_whosufferskill.push_back(6 + m);
-							count++;
-							if (count == scount)
-								break;
-						}
+						myhero->vec_whosufferskill.push_back(6 + vec[i]);
+					}
+					
+				}
+				else if (stype == SKILL_6)
+				{
+					int scount = GlobalInstance::map_GF[gf->getId()].skilleff2;
+					std::vector<int> vec(calcSkill6AttackNodeIndex(fightertag, 0, scount));
+					for (unsigned int i = 0; i < vec.size(); i++)
+					{
+						myhero->vec_whosufferskill.push_back(6 + vec[i]);
 					}
 				}
 				else if (stype == SKILL_7 || stype == SKILL_8)
@@ -391,6 +395,11 @@ void FightingLayer::showAtk(int fightertag)
 						fnode->hurt(myatk, 0);
 
 					}
+				}
+				else if (stype == SKILL_2)
+				{
+					int attackindex = calcSkill2AttackNodeIndex(fightertag, 0);
+					myhero->vec_whosufferskill.push_back(6 + attackindex);
 				}
 				else//技能攻击单个目标
 				{
@@ -636,6 +645,8 @@ int FightingLayer::calcAttackNodeIndex(int fighterindex, int type)
 {
 	if (type == 0)
 	{
+		vec_enemyfront3node.clear();
+		vec_enemyback3node.clear();
 		int enemycount = m_enemyHeros.size();
 		for (int i = 0; i < enemycount; i++)
 		{
@@ -650,9 +661,17 @@ int FightingLayer::calcAttackNodeIndex(int fighterindex, int type)
 		FightHeroNode* enemynode = (FightHeroNode*)this->getChildByTag(6 + fighterindex);
 		if (enemynode != NULL && fighterindex < enemycount && m_enemyHeros[fighterindex] != NULL && m_enemyHeros[fighterindex]->getHp() > 0)//自身位置正前方
 			return fighterindex;
-		enemynode = (FightHeroNode*)this->getChildByTag(6 + 3 + fighterindex);
-		if (enemynode != NULL && fighterindex + 3 < enemycount && m_enemyHeros[fighterindex + 3] != NULL && m_enemyHeros[fighterindex + 3]->getHp() > 0)//正前方后排位置
-			return fighterindex + 3;
+
+		int findex = -1;
+
+		if (fighterindex < 3)
+			findex = fighterindex + 3;
+		else
+			findex = fighterindex - 3;
+
+		enemynode = (FightHeroNode*)this->getChildByTag(6 + findex);
+		if (enemynode != NULL && findex < enemycount && m_enemyHeros[findex] != NULL && m_enemyHeros[findex]->getHp() > 0)//正前方后排位置
+			return findex;
 
 		if (vec_enemyfront3node.size() > 0)
 		{
@@ -670,6 +689,9 @@ int FightingLayer::calcAttackNodeIndex(int fighterindex, int type)
 	}
 	else
 	{
+		vec_myfront3node.clear();
+		vec_myback3node.clear();
+
 		for (int i = 0; i < 6; i++)
 		{
 			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
@@ -683,9 +705,18 @@ int FightingLayer::calcAttackNodeIndex(int fighterindex, int type)
 		FightHeroNode* mynode = (FightHeroNode*)this->getChildByTag(fighterindex - 6);
 		if (mynode != NULL && GlobalInstance::myCardHeros[fighterindex - 6] != NULL && GlobalInstance::myCardHeros[fighterindex - 6]->getState() != HS_DEAD)//自身位置正前方
 			return fighterindex - 6;
-		mynode = (FightHeroNode*)this->getChildByTag(fighterindex - 6 + 3);
-		if (mynode != NULL && GlobalInstance::myCardHeros[fighterindex - 6 + 3] != NULL && GlobalInstance::myCardHeros[fighterindex - 6]->getState() != HS_DEAD)//正前方后排位置
-			return fighterindex - 6 + 3;
+
+
+		int findex = -1;
+
+		if (fighterindex - 6 < 3)
+			findex = fighterindex - 6 + 3;
+		else
+			findex = fighterindex - 6 - 3;
+
+		mynode = (FightHeroNode*)this->getChildByTag(findex);
+		if (mynode != NULL && GlobalInstance::myCardHeros[findex] != NULL && GlobalInstance::myCardHeros[findex]->getState() != HS_DEAD)//正前方后排位置
+			return findex;
 
 		if (vec_myfront3node.size() > 0)
 		{
@@ -702,4 +733,306 @@ int FightingLayer::calcAttackNodeIndex(int fighterindex, int type)
 		}
 	}
 	return -1;
+}
+
+int FightingLayer::calcSkill2AttackNodeIndex(int fighterindex, int type)
+{
+	if (type == 0)
+	{
+		int enemycount = m_enemyHeros.size();
+
+		int findex = fighterindex;
+
+		if (findex < 3)
+			findex += 3;
+
+		FightHeroNode *enemynode = (FightHeroNode*)this->getChildByTag(6 + findex);
+		if (enemynode != NULL && findex < enemycount && m_enemyHeros[findex] != NULL && m_enemyHeros[findex]->getHp() > 0)//正前方后排位置
+			return findex;
+
+		enemynode = (FightHeroNode*)this->getChildByTag(6 + findex - 3);
+		if (enemynode != NULL && findex - 3 < enemycount && m_enemyHeros[findex - 3] != NULL && m_enemyHeros[findex - 3]->getHp() > 0)//自身位置正前方
+			return findex - 3;
+
+		std::vector<FightHeroNode*> vec_tmp;
+		for (int i = 0; i < enemycount; i++)
+		{
+			if (m_enemyHeros[i] != NULL && m_enemyHeros[i]->getHp() > 0)
+			{
+				vec_tmp.push_back((FightHeroNode*)this->getChildByTag(6 + i));
+			}
+		}
+		if (vec_tmp.size() > 0)
+		{
+			int r = GlobalInstance::getInstance()->createRandomNum(vec_tmp.size());
+			return vec_tmp[r]->getTag() - 6;
+		}
+
+	}
+	else
+	{
+		int findex = fighterindex - 6;
+
+		if (findex < 3)
+		{
+			findex += 3;
+		}
+
+		FightHeroNode* mynode = (FightHeroNode*)this->getChildByTag(findex);
+		if (mynode != NULL && GlobalInstance::myCardHeros[findex] != NULL && GlobalInstance::myCardHeros[findex]->getState() != HS_DEAD)//自身位置正前方
+			return findex;
+		mynode = (FightHeroNode*)this->getChildByTag(findex - 3);
+		if (mynode != NULL && GlobalInstance::myCardHeros[findex - 3] != NULL && GlobalInstance::myCardHeros[findex - 3]->getState() != HS_DEAD)//正前方后排位置
+			return findex - 3;
+
+		std::vector<FightHeroNode*> vec_tmp;
+		for (int i = 0; i < 6; i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
+			{
+				vec_tmp.push_back((FightHeroNode*)this->getChildByTag(i));
+			}
+		}
+
+		if (vec_tmp.size() > 0)
+		{
+			int r = GlobalInstance::getInstance()->createRandomNum(vec_tmp.size());
+			return vec_tmp[r]->getTag();
+		}
+	}
+	return -1;
+}
+
+std::vector<int> FightingLayer::calcSkill5AttackNodeIndex(int fighterindex, int type, int count)
+{
+	std::vector<int> vec_indexs;
+	if (type == 0)
+	{
+		vec_enemyfront3node.clear();
+		vec_enemyback3node.clear();
+		int enemycount = m_enemyHeros.size();
+
+		int findex = fighterindex;
+
+		if (findex < 3)
+			findex += 3;
+
+		FightHeroNode *enemynode = (FightHeroNode*)this->getChildByTag(6 + findex);
+		if (enemynode != NULL && findex < enemycount && m_enemyHeros[findex] != NULL && m_enemyHeros[findex]->getHp() > 0)//正前方后排位置
+		{
+			vec_indexs.push_back(findex);
+		}
+
+		for (int i = 3; i < enemycount; i++)
+		{
+			if (m_enemyHeros[i] != NULL && m_enemyHeros[i]->getHp() > 0 && i != findex)
+			{
+				vec_enemyback3node.push_back((FightHeroNode*)this->getChildByTag(6 + i));
+			}
+		}
+
+		if (vec_enemyback3node.size() > 0)
+		{
+			std::random_shuffle(vec_enemyback3node.begin(), vec_enemyback3node.end());
+		}
+		std::vector<FightHeroNode*> vec_tmp(vec_enemyback3node);
+
+		enemynode = (FightHeroNode*)this->getChildByTag(6 + findex - 3);
+		if (enemynode != NULL && findex - 3 < enemycount && m_enemyHeros[findex - 3] != NULL && m_enemyHeros[findex - 3]->getHp() > 0)//自身位置正前方
+		{
+			vec_tmp.push_back(enemynode);
+		}
+
+		for (int i = 0; i < enemycount; i++)
+		{
+			if (m_enemyHeros[i] != NULL && m_enemyHeros[i]->getHp() > 0)
+			{
+				if (i < 3 && i != findex - 3)
+					vec_enemyfront3node.push_back((FightHeroNode*)this->getChildByTag(6 + i));
+			}
+		}
+		if (vec_enemyfront3node.size() > 0)
+		{
+			std::random_shuffle(vec_enemyfront3node.begin(), vec_enemyfront3node.end());
+		}
+
+		vec_tmp.insert(vec_tmp.end(), vec_enemyfront3node.begin(), vec_enemyfront3node.end());
+
+		int tmpsize = vec_tmp.size();
+		int leftcount = tmpsize > count ? count : tmpsize;
+
+		for (int i = 0; i < leftcount - 1; i++)
+		{
+			vec_indexs.push_back(vec_tmp[i]->getTag() - 6);
+		}
+	}
+	else
+	{
+		vec_myfront3node.clear();
+		vec_myback3node.clear();
+		int findex = fighterindex - 6;
+
+		if (findex < 3)
+		{
+			findex += 3;
+		}
+
+		FightHeroNode* mynode = (FightHeroNode*)this->getChildByTag(findex);
+		if (mynode != NULL && GlobalInstance::myCardHeros[findex] != NULL && GlobalInstance::myCardHeros[findex]->getState() != HS_DEAD)//正前方后排位置
+			vec_indexs.push_back(findex);
+
+		for (int i = 3; i < 6; i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD && i != findex)
+				vec_myback3node.push_back((FightHeroNode*)this->getChildByTag(i));
+		}
+
+		if (vec_myback3node.size() > 0)
+		{
+			std::random_shuffle(vec_myback3node.begin(), vec_myback3node.end());
+		}
+		std::vector<FightHeroNode*> vec_tmp(vec_myback3node);
+
+		mynode = (FightHeroNode*)this->getChildByTag(findex - 3);
+		if (mynode != NULL && GlobalInstance::myCardHeros[findex - 3] != NULL && GlobalInstance::myCardHeros[findex - 3]->getHp() > 0)//自身位置正前方
+		{
+			vec_tmp.push_back(mynode);
+		}
+
+		for (int i = 0; i < 3; i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getHp() > 0 && i != findex - 3)
+			{
+				vec_myfront3node.push_back((FightHeroNode*)this->getChildByTag(i));
+			}
+		}
+		if (vec_myfront3node.size() > 0)
+		{
+			std::random_shuffle(vec_myfront3node.begin(), vec_myfront3node.end());
+		}
+
+		vec_tmp.insert(vec_tmp.end(), vec_myfront3node.begin(), vec_myfront3node.end());
+
+		int tmpsize = vec_tmp.size();
+		int leftcount = tmpsize > count ? count : tmpsize;
+
+		for (int i = 0; i < leftcount - 1; i++)
+		{
+			vec_indexs.push_back(vec_tmp[i]->getTag());
+		}
+	}
+	return vec_indexs;
+}
+
+std::vector<int> FightingLayer::calcSkill6AttackNodeIndex(int fighterindex, int type, int count)
+{
+	std::vector<int> vec_indexs;
+	if (type == 0)
+	{
+		vec_enemyfront3node.clear();
+		vec_enemyback3node.clear();
+		int enemycount = m_enemyHeros.size();
+
+		int findex = fighterindex;
+
+		FightHeroNode* enemynode = (FightHeroNode*)this->getChildByTag(6 + findex);
+		if (enemynode != NULL && findex < enemycount && m_enemyHeros[findex] != NULL && m_enemyHeros[findex]->getHp() > 0)//自身位置正前方
+			vec_indexs.push_back(findex);
+
+		std::vector<FightHeroNode*> vec_tmp;
+
+		for (int i = 0; i < enemycount; i++)
+		{
+			if (m_enemyHeros[i] != NULL && m_enemyHeros[i]->getHp() > 0)
+			{
+				if (i < 3 && i != findex)
+					vec_enemyfront3node.push_back((FightHeroNode*)this->getChildByTag(6 + i));
+			}
+		}
+		if (vec_enemyfront3node.size() > 0)
+		{
+			std::random_shuffle(vec_enemyfront3node.begin(), vec_enemyfront3node.end());
+		}
+		vec_tmp.insert(vec_tmp.end(), vec_enemyfront3node.begin(), vec_enemyfront3node.end());
+
+		enemynode = (FightHeroNode*)this->getChildByTag(6 + 3 + findex);
+		if (enemynode != NULL && findex + 3 < enemycount && m_enemyHeros[findex + 3] != NULL && m_enemyHeros[findex + 3]->getHp() > 0)//正前方后排位置
+		{
+			vec_tmp.push_back(enemynode);
+		}
+
+		for (int i = 3; i < enemycount; i++)
+		{
+			if (m_enemyHeros[i] != NULL && m_enemyHeros[i]->getHp() > 0 && i != findex + 3)
+			{
+				vec_enemyback3node.push_back((FightHeroNode*)this->getChildByTag(6 + i));
+			}
+		}
+
+		if (vec_enemyback3node.size() > 0)
+		{
+			std::random_shuffle(vec_enemyback3node.begin(), vec_enemyback3node.end());
+		}
+		vec_tmp.insert(vec_tmp.end(), vec_enemyback3node.begin(), vec_enemyback3node.end());
+
+		int tmpsize = vec_tmp.size();
+		int leftcount = tmpsize > count ? count : tmpsize;
+
+		for (int i = 0; i < leftcount - 1; i++)
+		{
+			vec_indexs.push_back(vec_tmp[i]->getTag() - 6);
+		}
+	}
+	else
+	{
+		vec_myfront3node.clear();
+		vec_myback3node.clear();
+
+		int findex = fighterindex;
+
+		FightHeroNode* mynode = (FightHeroNode*)this->getChildByTag(findex - 6);
+		if (mynode != NULL && GlobalInstance::myCardHeros[findex - 6] != NULL && GlobalInstance::myCardHeros[findex - 6]->getState() != HS_DEAD)//自身位置正前方
+			vec_indexs.push_back(findex - 6);
+
+		std::vector<FightHeroNode*> vec_tmp;
+
+		for (int i = 0; i < 3; i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getHp() > 0 && i != findex - 6)
+			{
+				vec_myfront3node.push_back((FightHeroNode*)this->getChildByTag(i));
+			}
+		}
+		if (vec_myfront3node.size() > 0)
+		{
+			std::random_shuffle(vec_myfront3node.begin(), vec_myfront3node.end());
+		}
+
+		vec_tmp.insert(vec_tmp.end(), vec_myfront3node.begin(), vec_myfront3node.end());
+
+		mynode = (FightHeroNode*)this->getChildByTag(findex - 6 + 3);
+		if (mynode != NULL && GlobalInstance::myCardHeros[findex - 6 + 3] != NULL && GlobalInstance::myCardHeros[findex - 6 + 3]->getState() != HS_DEAD)//正前方后排位置
+			vec_tmp.push_back(mynode);
+
+		for (int i = 3; i < 6; i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD && i != findex - 6)
+				vec_myback3node.push_back((FightHeroNode*)this->getChildByTag(i));
+		}
+
+		if (vec_myback3node.size() > 0)
+		{
+			std::random_shuffle(vec_myback3node.begin(), vec_myback3node.end());
+		}
+		vec_tmp.insert(vec_tmp.end(), vec_myback3node.begin(), vec_myback3node.end());
+
+		int tmpsize = vec_tmp.size();
+		int leftcount = tmpsize > count ? count : tmpsize;
+
+		for (int i = 0; i < leftcount - 1; i++)
+		{
+			vec_indexs.push_back(vec_tmp[i]->getTag());
+		}
+	}
+	return vec_indexs;
 }

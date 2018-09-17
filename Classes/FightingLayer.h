@@ -40,6 +40,12 @@ private:
 
 	int calcAttackNodeIndex(int fighterindex, int type);
 
+	int calcSkill2AttackNodeIndex(int fighterindex, int type);
+
+	std::vector<int> calcSkill5AttackNodeIndex(int fighterindex, int type, int count);
+
+	std::vector<int> calcSkill6AttackNodeIndex(int fighterindex, int type, int count);
+
 private:
 	std::vector<Npc*> m_enemyHeros;
 	cocos2d::ui::Widget* m_escapebtn;
