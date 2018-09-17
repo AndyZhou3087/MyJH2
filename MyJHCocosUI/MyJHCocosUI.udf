@@ -11,8 +11,9 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="taskLayer.csd" />
+          <FilePathData Path="hitBoxLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="taskLayer.csd" />
+        <ActiveDocument Path="hitBoxLayer.csd" />
       </Value>
     </Item>
   </Properties>

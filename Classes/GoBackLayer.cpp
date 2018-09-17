@@ -11,6 +11,7 @@
 #include "MainMapScene.h"
 #include "NewGuideLayer.h"
 #include "MapBlockScene.h"
+#include "HintBoxLayer.h"
 
 USING_NS_CC;
 
@@ -153,13 +154,41 @@ void GoBackLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			}
 			else
 			{
-				MovingLabel::show(ResourceLang::map_lang["hcjznomore"]);
+				int coin = GlobalInstance::map_AllResources["t001"].coinval;
+				std::string s = StringUtils::format(ResourceLang::map_lang["gobakccostcoin"].c_str(), coin);
+				HintBoxLayer* hint = HintBoxLayer::create(s, 6);
+				this->addChild(hint);
+				AnimationEffect::openAniEffect((Layer*)hint);
 			}
 		}
 		else
 		{
 			AnimationEffect::closeAniEffect((Layer*)this);
 		}
+	}
+}
+
+void GoBackLayer::costCoinGoback()
+{
+	int coin = GlobalInstance::map_AllResources["t001"].coinval;
+	if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= coin)
+	{
+		DynamicValueInt dal;
+		dal.setValue(coin);
+		GlobalInstance::getInstance()->costMyCoinCount(dal);
+
+		if (m_forwhere == 0)
+		{
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+		}
+		else
+		{
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+		}
+	}
+	else
+	{
+		MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
 	}
 }
 

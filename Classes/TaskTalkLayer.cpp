@@ -550,6 +550,10 @@ void TaskTalkLayer::showTypeText(float dt)
 		std::u32string utf32String;
 		StringUtils::UTF8ToUTF32(m_wordlbl->getString(), utf32String);
 		int len = utf32String.length();
+		if (m_wordcount == 126)
+		{
+			descscoll->jumpToBottom();
+		}
 		if (m_wordcount >= len)
 		{
 			m_wordcount = 0;
