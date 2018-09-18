@@ -1016,11 +1016,10 @@ void MapBlockScene::doMyStatus()
 
 void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 {
+	int mycr = mycurRow*blockColCount + mycurCol;
 	std::string str;
 	str.append(m_mapid);
-	str.append(StringUtils::format("%d", mbolck->getMapBlockRow()));
-	str.append(StringUtils::format("%d", mbolck->getMapBlockCol()));
-	str.append(StringUtils::format("%d", mbolck->getPosType()));
+	str.append(StringUtils::format("-%d", mycr));
 	if (DataSave::getInstance()->getMapBoxRewards(str))
 	{
 		return;
@@ -1051,7 +1050,7 @@ void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 		MovingLabel::show(ResourceLang::map_lang["nothingbox"]);
 	}
 
-	mbolck->getChildByName("posicon")->setVisible(false);
+	mbolck->removePosIcon();
 	DataSave::getInstance()->setMapBoxRewards(str, true);
 }
 
@@ -1345,9 +1344,7 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						{
 							std::string str;
 							str.append(m_mapid);
-							str.append(StringUtils::format("%d", blockRowCount - 1 - r));
-							str.append(StringUtils::format("%d", c));
-							str.append(StringUtils::format("%d", postype));
+							str.append(StringUtils::format("-%d", rc));
 							if (!DataSave::getInstance()->getMapBoxRewards(str))
 							{
 								mb->setPosIcon();

@@ -79,13 +79,3 @@ void MapBlock::removePosIcon()
 {
 	this->removeChildByName("posicon");
 }
-
-int MapBlock::getMapBlockRow()
-{
-	return Row;
-}
-
-int MapBlock::getMapBlockCol()
-{
-	return Col;
-}
