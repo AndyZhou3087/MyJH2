@@ -935,6 +935,9 @@ std::vector<int> FightingLayer::calcSkill6AttackNodeIndex(int fighterindex, int 
 
 		int findex = fighterindex;
 
+		if (findex > 3)
+			findex -= 3;
+
 		FightHeroNode* enemynode = (FightHeroNode*)this->getChildByTag(6 + findex);
 		if (enemynode != NULL && findex < enemycount && m_enemyHeros[findex] != NULL && m_enemyHeros[findex]->getHp() > 0)//自身位置正前方
 			vec_indexs.push_back(findex);
@@ -954,6 +957,7 @@ std::vector<int> FightingLayer::calcSkill6AttackNodeIndex(int fighterindex, int 
 			std::random_shuffle(vec_enemyfront3node.begin(), vec_enemyfront3node.end());
 		}
 		vec_tmp.insert(vec_tmp.end(), vec_enemyfront3node.begin(), vec_enemyfront3node.end());
+
 
 		enemynode = (FightHeroNode*)this->getChildByTag(6 + 3 + findex);
 		if (enemynode != NULL && findex + 3 < enemycount && m_enemyHeros[findex + 3] != NULL && m_enemyHeros[findex + 3]->getHp() > 0)//正前方后排位置
