@@ -10,7 +10,7 @@
 
 CardHeroNode::CardHeroNode()
 {
-
+	m_isdraging = false;
 }
 
 
@@ -45,9 +45,11 @@ bool CardHeroNode::init()
 	//头像框
 	headbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("hbox");
 	headbox->addTouchEventListener(CC_CALLBACK_2(CardHeroNode::onClick, this));
-
+	headbox->setSwallowTouches(false);
 	//头像
 	headimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("head");
+
+	this->setContentSize(headbox->getContentSize());
 
 	cardnamebox = csbnode->getChildByName("cardnamebox");
 	//名字
@@ -84,10 +86,15 @@ void CardHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		if (m_isdraging)
+		{
+			m_isdraging = false;
+			return;
+		}
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		Layer* layer = SelectMyHerosLayer::create(HS_TAKEON);
 		layer->setTag(this->getTag());
-		this->getParent()->addChild(layer, 0, "selectmyheroslayer");
+		this->getParent()->addChild(layer, 3, "selectmyheroslayer");
 		AnimationEffect::openAniEffect((Layer*)layer);
 	}
 }
@@ -164,19 +171,27 @@ void CardHeroNode::setData(Hero* herodata)
 		headimg->setVisible(false);
 		lvlbl->setVisible(false);
 		namelbl->setVisible(false);
-		desclbl->setVisible(true);
+
 		vocationbox->setVisible(false);
 		powertext->setVisible(false);
 		powericon->setVisible(false);
-		std::string indexstr = StringUtils::format("selheronum%d", this->getTag() + 1);
-		std::string descstr = StringUtils::format(ResourceLang::map_lang["selherohinttext"].c_str(), ResourceLang::map_lang[indexstr].c_str());
-		desclbl->setString(descstr);
+
 		cardnamebox->setVisible(false);
+
+		updateSelPosLbl();
 		for (int i = 1; i <= 5; i++)
 		{
 			stars[i - 1]->setVisible(false);
 		}
 	}
+}
+
+void CardHeroNode::updateSelPosLbl()
+{
+	desclbl->setVisible(true);
+	std::string indexstr = StringUtils::format("selheronum%d", this->getTag() + 1);
+	std::string descstr = StringUtils::format(ResourceLang::map_lang["selherohinttext"].c_str(), ResourceLang::map_lang[indexstr].c_str());
+	desclbl->setString(descstr);
 }
 
 void CardHeroNode::updatePowerCount(float dt)

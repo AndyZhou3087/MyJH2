@@ -25,7 +25,7 @@ OutTownLayer::OutTownLayer()
 
 OutTownLayer::~OutTownLayer()
 {
-	
+	clickHero = -1;
 }
 
 
@@ -106,9 +106,14 @@ bool OutTownLayer::init()
 
 	for (int i = 0; i < 6; i++)
 	{
+		Vec2 pos = Vec2(140 + i % 3 * 215, /*745 + */1060 - i / 3 * 250);
+		Sprite* cardnodebg = Sprite::create(ResourcePath::makeImagePath("cardherobox_.png"));
+		cardnodebg->setPosition(Vec2(pos.x, pos.y+15));
+		this->addChild(cardnodebg, 0);
+
 		m_myCardHerosNode[i] = CardHeroNode::create();
-		m_myCardHerosNode[i]->setPosition(Vec2(140 + i % 3 * 215, /*745 + */1060 - i / 3 * 250));
-		this->addChild(m_myCardHerosNode[i], 0, i);
+		m_myCardHerosNode[i]->setPosition(pos);
+		this->addChild(m_myCardHerosNode[i], 1, i);
 		m_myCardHerosNode[i]->setData(GlobalInstance::myCardHeros[i]);
 	}
 
@@ -145,19 +150,97 @@ bool OutTownLayer::init()
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = [=](Touch *touch, Event *event)
-	{
-		return true;
-	};
+	listener->onTouchBegan = CC_CALLBACK_2(OutTownLayer::onTouchBegan, this);
 
-	listener->onTouchMoved = [](Touch *touch, Event *event)
-	{
-		auto touchPos = touch->getLocation();
-
-	};
+	listener->onTouchMoved = CC_CALLBACK_2(OutTownLayer::onTouchMoved, this);
+	listener->onTouchEnded = CC_CALLBACK_2(OutTownLayer::onTouchEnded, this);
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+bool OutTownLayer::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event)
+{
+	auto touchPos = touch->getLocation();
+	for (int i = 0; i < 6; i++)
+	{
+		if (GlobalInstance::myCardHeros[i] != NULL)
+		{
+			float x = m_myCardHerosNode[i]->getPositionX();
+			float y = m_myCardHerosNode[i]->getPositionY();
+
+			if (touchPos.x >= x - 70 && touchPos.x <= x + 70 && touchPos.y >= y - 70 && touchPos.y <= y + 70)
+			{
+				m_myCardHerosNode[i]->setLocalZOrder(2);
+				clickHero = i;
+				break;
+			}
+		}
+	}
+
+	return true;
+}
+
+void OutTownLayer::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event)
+{
+	if (clickHero >= 0)
+	{
+		auto touchPos = touch->getLocation();
+		m_myCardHerosNode[clickHero]->setPosition(touchPos);
+		m_myCardHerosNode[clickHero]->setIsDrading(true);
+	}
+}
+
+void OutTownLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event)
+{
+	if (clickHero >= 0)
+	{
+		auto touchPos = touch->getLocation();
+		log("touchPos.x = %.f, touchPos.y = %.f", touchPos.x, touchPos.y);
+		m_myCardHerosNode[clickHero]->setPosition(touchPos);
+
+		bool ischange = false;
+		for (int i = 0; i < 6; i++)
+		{
+			if (i != clickHero)
+			{
+				float x = m_myCardHerosNode[i]->getPositionX();
+				float y = m_myCardHerosNode[i]->getPositionY();
+
+				if (touchPos.x >= x - 70 && touchPos.x <= x + 70 && touchPos.y >= y - 70 && touchPos.y <= y + 70)
+				{
+					CardHeroNode* cardnode = m_myCardHerosNode[clickHero];
+
+					m_myCardHerosNode[clickHero]->setLocalZOrder(1);
+					m_myCardHerosNode[clickHero]->runAction(MoveTo::create(0.2f, Vec2(140 + i % 3 * 215, /*745 + */1060 - i / 3 * 250)));
+					m_myCardHerosNode[clickHero]->setTag(i);
+					GlobalInstance::myCardHeros[clickHero]->setPos(i + 1);
+					m_myCardHerosNode[i]->runAction(MoveTo::create(0.2f, Vec2(140 + clickHero % 3 * 215, /*745 + */1060 - clickHero / 3 * 250)));
+					m_myCardHerosNode[i]->setTag(clickHero);
+					
+					if (GlobalInstance::myCardHeros[i] != NULL)
+						GlobalInstance::myCardHeros[i]->setPos(clickHero + 1);
+					else
+						m_myCardHerosNode[i]->updateSelPosLbl();
+
+					m_myCardHerosNode[clickHero] = m_myCardHerosNode[i];
+					m_myCardHerosNode[i] = cardnode;
+
+					Hero * myhero = GlobalInstance::myCardHeros[clickHero];
+					GlobalInstance::myCardHeros[clickHero] = GlobalInstance::myCardHeros[i];
+					GlobalInstance::myCardHeros[i] = myhero;
+					
+					ischange = true;
+					break;
+				}
+			}
+		}
+		if (!ischange)
+		{
+			m_myCardHerosNode[clickHero]->setPosition(Vec2(140 + clickHero % 3 * 215, /*745 + */1060 - clickHero / 3 * 250));
+		}
+		clickHero = -1;
+	}
 }
 
 void OutTownLayer::delayShowNewerGuide(float dt)

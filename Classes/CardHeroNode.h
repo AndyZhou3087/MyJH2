@@ -17,6 +17,10 @@ public:
 	static CardHeroNode* create();
 
 	void setData(Hero* herodata);
+
+	CC_SYNTHESIZE(bool, m_isdraging, IsDrading);//是否拖动中
+
+	void updateSelPosLbl();
 private:
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
@@ -33,6 +37,7 @@ private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onPowerClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void updatePowerCount(float dt);
+
 	Hero* m_herodata;
 };
 #endif

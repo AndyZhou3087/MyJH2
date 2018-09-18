@@ -22,6 +22,9 @@ public:
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
 private:
+	bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
+	void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event);
+	void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event);
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onSubBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -43,6 +46,7 @@ private:
 	bool m_isLongPress;
 	Node* m_longTouchNode;
 	cocos2d::ui::Button* actionbtn;
+	int clickHero;
 };
 
 #endif
