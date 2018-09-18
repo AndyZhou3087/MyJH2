@@ -21,10 +21,10 @@ RewardLayer::~RewardLayer()
 }
 
 
-RewardLayer* RewardLayer::create(std::vector<MSGAWDSDATA> vec_rewards)
+RewardLayer* RewardLayer::create(std::vector<MSGAWDSDATA> vec_rewards, int forwhere)
 {
 	RewardLayer *pRet = new(std::nothrow)RewardLayer();
-	if (pRet && pRet->init(vec_rewards))
+	if (pRet && pRet->init(vec_rewards, forwhere))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -38,7 +38,7 @@ RewardLayer* RewardLayer::create(std::vector<MSGAWDSDATA> vec_rewards)
 }
 
 // on "init" you need to initialize your instance
-bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards)
+bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere)
 {
 	if (!Layer::init())
 	{
@@ -133,7 +133,7 @@ bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards)
 				GlobalInstance::getInstance()->addMyCoinCount(dvint);
 			}
 			else
-				MyRes::Add(resid, count, MYSTORAGE, qu, GlobalInstance::getInstance()->generateStoneCount(qu));
+				MyRes::Add(resid, count, forwhere, qu, GlobalInstance::getInstance()->generateStoneCount(qu));
 		}
 		else
 		{

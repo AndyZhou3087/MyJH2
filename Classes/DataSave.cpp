@@ -338,3 +338,14 @@ int DataSave::getResetSilverRefHeroCountTime()
 {
 	return loadIntDataByKey("silverrefherotime", 0);
 }
+
+bool DataSave::getMapBoxRewards(std::string key)
+{
+	int val = loadIntDataByKey(key, 0);
+	return val == 1 ? true : false;
+}
+
+void DataSave::setMapBoxRewards(std::string key, bool val)
+{
+	saveIntDataByKey(key, val == true ? 1 : 0);
+}

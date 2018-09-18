@@ -341,6 +341,11 @@ public:
 	****************************/
 	int getResetSilverRefHeroCountTime();
 
+	//获取地图中的宝箱是否领取1已领取，0未领取
+	bool getMapBoxRewards(std::string key);
+	//保存地图宝箱
+	void setMapBoxRewards(std::string key, bool val);
+
 private:
 	static DataSave* _Context;//类实例
 

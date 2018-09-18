@@ -5,6 +5,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "GlobalInstance.h"
+#include "ResBase.h"
 
 USING_NS_CC;
 
@@ -14,8 +15,8 @@ public:
 	RewardLayer();
 	~RewardLayer();
 
-	static RewardLayer* create(std::vector<MSGAWDSDATA> vec_rewards);
-	bool init(std::vector<MSGAWDSDATA> vec_rewards);
+	static RewardLayer* create(std::vector<MSGAWDSDATA> vec_rewards, int forwhere = MYSTORAGE);
+	bool init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere = MYSTORAGE);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void removeSelf();

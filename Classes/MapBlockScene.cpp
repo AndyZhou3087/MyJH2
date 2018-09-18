@@ -1016,6 +1016,15 @@ void MapBlockScene::doMyStatus()
 
 void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 {
+	std::string str;
+	str.append(m_mapid);
+	str.append(StringUtils::format("%d", mbolck->getMapBlockRow()));
+	str.append(StringUtils::format("%d", mbolck->getMapBlockCol()));
+	str.append(StringUtils::format("%d", mbolck->getPosType()));
+	if (DataSave::getInstance()->getMapBoxRewards(str))
+	{
+		return;
+	}
 	std::vector<MSGAWDSDATA> vec_rewards;
 	for (unsigned int i = 0; i < mbolck->vec_RewardsRes.size(); i++)
 	{
@@ -1025,14 +1034,25 @@ void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 		wdata.rid = mdata.sid;
 		wdata.count = mdata.intPara1;
 		wdata.qu = mdata.intPara2;
-		vec_rewards.push_back(wdata);
+
+		int rnd = mdata.floatPara3 * 100;
+		int r2 = GlobalInstance::getInstance()->createRandomNum(10000);
+		if (r2 < rnd)
+			vec_rewards.push_back(wdata);
 	}
 	if (vec_rewards.size() > 0)
 	{
-		RewardLayer* layer = RewardLayer::create(vec_rewards);
-		g_mainScene->addChild(layer);
+		RewardLayer* layer = RewardLayer::create(vec_rewards, MYPACKAGE);
+		this->addChild(layer);
 		AnimationEffect::openAniEffect(layer);
 	}
+	else
+	{
+		MovingLabel::show(ResourceLang::map_lang["nothingbox"]);
+	}
+
+	mbolck->getChildByName("posicon")->setVisible(false);
+	DataSave::getInstance()->setMapBoxRewards(str, true);
 }
 
 void MapBlockScene::createRndMonsters()
@@ -1319,11 +1339,29 @@ void MapBlockScene::parseMapXml(std::string mapname)
 					mb->getTexture()->setAliasTexParameters();
 
 					mb->setPosType(postype);
-					if (postype > 0)//起点有多个，只会显示一个，不在这里设置
-						mb->setPosIcon();
+					if (postype > POS_START)//起点有多个，只会显示一个，不在这里设置
+					{
+						if (postype == POS_BOX)
+						{
+							std::string str;
+							str.append(m_mapid);
+							str.append(StringUtils::format("%d", blockRowCount - 1 - r));
+							str.append(StringUtils::format("%d", c));
+							str.append(StringUtils::format("%d", postype));
+							if (!DataSave::getInstance()->getMapBoxRewards(str))
+							{
+								mb->setPosIcon();
+							}
+						}
+						else
+						{
+							mb->setPosIcon();
+						}
+					}
+						
 					mb->setWalkable(walkable);
 					map_mapBlocks[rc] = mb;
-					if (postype == 0)
+					if (postype == POS_START)
 					{
 						mb->setWalkable(true);
 						vec_startpos.push_back(rc);

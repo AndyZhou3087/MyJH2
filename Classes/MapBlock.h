@@ -71,6 +71,9 @@ public:
 
 	void removePosIcon();
 
+	int getMapBlockRow();
+	int getMapBlockCol();
+
 public:
 	std::map<int, int> map_eventrnd;//7个事件概率
 	FOURProperty npcs[6];//6个怪物数据
