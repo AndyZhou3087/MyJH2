@@ -14,6 +14,7 @@
 #include "NewGuideLayer.h"
 #include "StoreHouseLayer.h"
 #include "HeroAttrLayer.h"
+#include "GoBackLayer.h"
 
 USING_NS_CC;
 
@@ -164,6 +165,15 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 					AnimationEffect::closeAniEffect((Layer*)this->getParent());
 					return;
 				}
+			}
+			else if (m_forwhere == 6)
+			{
+				GoBackLayer* golayer = (GoBackLayer*)this->getParent();
+				if (golayer != NULL)
+				{
+					golayer->costCoinGoback();
+				}
+				return;
 			}
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;

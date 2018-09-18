@@ -21,6 +21,9 @@ public:
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
 
+	//消耗元宝回城
+	void costCoinGoback();
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
