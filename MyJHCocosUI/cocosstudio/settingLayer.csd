@@ -87,16 +87,6 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="idbox" ActionTag="-211273571" Tag="228" IconVisible="False" LeftMargin="274.0234" RightMargin="245.9766" TopMargin="522.0012" BottomMargin="715.9988" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="16" Scale9Height="16" ctype="ImageViewObjectData">
-            <Size X="200.0000" Y="42.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="374.0234" Y="736.9988" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5195" Y="0.5758" />
-            <PreSize X="0.2778" Y="0.0328" />
-            <FileData Type="MarkedSubImage" Path="ui/ninegrid.png" Plist="ui.plist" />
-          </AbstractNodeData>
           <AbstractNodeData Name="nicknamebox" ActionTag="-77288383" Tag="229" IconVisible="False" LeftMargin="274.0234" RightMargin="245.9766" TopMargin="600.1340" BottomMargin="637.8660" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="16" Scale9Height="16" ctype="ImageViewObjectData">
             <Size X="200.0000" Y="42.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -107,26 +97,26 @@
             <PreSize X="0.2778" Y="0.0328" />
             <FileData Type="MarkedSubImage" Path="ui/ninegrid.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="id" ActionTag="1136468656" Tag="230" IconVisible="False" LeftMargin="283.0001" RightMargin="256.9999" TopMargin="526.5000" BottomMargin="716.5000" IsCustomSize="True" FontSize="32" LabelText="0001245" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="id" ActionTag="1136468656" Tag="230" IconVisible="False" LeftMargin="283.0005" RightMargin="256.9995" TopMargin="528.4996" BottomMargin="714.5004" IsCustomSize="True" FontSize="32" LabelText="0001245" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="180.0000" Y="37.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="373.0001" Y="735.0000" />
+            <Position X="373.0005" Y="733.0004" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="0" G="0" B="0" />
-            <PrePosition X="0.5181" Y="0.5742" />
+            <PrePosition X="0.5181" Y="0.5727" />
             <PreSize X="0.2500" Y="0.0289" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="nameinput" ActionTag="-1749444345" Tag="231" IconVisible="False" LeftMargin="277.0001" RightMargin="250.9999" TopMargin="606.3854" BottomMargin="643.6146" TouchEnable="True" FontSize="30" IsCustomSize="True" LabelText="王小贵" PlaceHolderText="请输入昵称：" MaxLengthText="10" ctype="TextFieldObjectData">
-            <Size X="192.0000" Y="30.0000" />
+          <AbstractNodeData Name="nameinput" ActionTag="-1749444345" Tag="231" IconVisible="False" LeftMargin="277.0001" RightMargin="250.9999" TopMargin="609.8854" BottomMargin="647.1146" TouchEnable="True" FontSize="22" IsCustomSize="True" LabelText="王小贵" PlaceHolderText="请输入昵称：" MaxLengthText="10" ctype="TextFieldObjectData">
+            <Size X="192.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="373.0001" Y="658.6146" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="0" G="0" B="0" />
             <PrePosition X="0.5181" Y="0.5145" />
-            <PreSize X="0.2667" Y="0.0234" />
+            <PreSize X="0.2667" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
           </AbstractNodeData>
           <AbstractNodeData Name="randnamebtn" ActionTag="1185489381" Tag="232" IconVisible="False" LeftMargin="473.6633" RightMargin="176.3367" TopMargin="594.5359" BottomMargin="630.4641" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="40" Scale9Height="33" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">

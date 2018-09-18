@@ -69,7 +69,7 @@ bool SettingLayer::init()
 
 	mynickname = GlobalInstance::getInstance()->getMyNickName();
 
-	m_editName = cocos2d::ui::EditBox::create(nameTextField->getContentSize(), cocos2d::ui::Scale9Sprite::createWithSpriteFrameName("ui/blank.png"));
+	m_editName = cocos2d::ui::EditBox::create(Size(nameTextField->getContentSize().width, 40), cocos2d::ui::Scale9Sprite::createWithSpriteFrameName("ui/blank.png"));
 	m_editName->setPosition(nameTextField->getPosition());
 	m_editName->setFontColor(Color3B::BLACK);
 	m_editName->setPlaceHolder(ResourceLang::map_lang["nicknameplaceholder"].c_str());

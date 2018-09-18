@@ -286,7 +286,7 @@ void HomeHillLayer::updateTime(float dt)
 	std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
 	m_timelbl->setString(timestr);
 	m_timebar->setPercent(lefttime * 100 / RES_REFRESHTIME);
-	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getTotalFarmers() - GlobalInstance::getInstance()->getWorkingFarmerCount());
+	std::string str = StringUtils::format("%d/%d", GlobalInstance::getInstance()->getTotalFarmers() - GlobalInstance::getInstance()->getWorkingFarmerCount(), GlobalInstance::getInstance()->getTotalFarmers());
 	m_leftfarmercount->setString(str);
 }
 

@@ -34,7 +34,7 @@
 	<s name="outputtext">产量：</s>
 	<s name="farmercounttext">工人数量</s>
 	<s name="farmermaxhint">岗位已满，升级资源可增加工人上限！</s>
-	<s name="leftfarmertext">空闲工人:</s>
+	<s name="leftfarmertext">空闲工人/工人总数:</s>
 	<s name="farmerlack">工人不足</s>
 	<s name="reslack">资源不足！</s>
 	<s name="maxlv">已升到最高等级！</s>
