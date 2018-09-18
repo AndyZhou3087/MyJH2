@@ -120,6 +120,8 @@ private:
 
 	void creatNpcOrBoss(MapBlock* mbolck);
 
+	void createBoxRewards(MapBlock* mbolck);
+
 	int getWinExp();
 
 	void createMyRender();

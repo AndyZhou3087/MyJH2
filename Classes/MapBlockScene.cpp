@@ -22,6 +22,7 @@
 #include "CutScenesLayer.h"
 #include "GoBackLayer.h"
 #include "NewGuideLayer.h"
+#include "RewardLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -962,6 +963,10 @@ void MapBlockScene::doMyStatus()
 		{
 			createRndMonsters();
 		}
+		else if (mapblock->getPosType() == POS_BOX)
+		{
+			createBoxRewards(mapblock);
+		}
 		if (vec_enemys.size() > 0)
 		{
 			cacelLongTouch();
@@ -1006,6 +1011,27 @@ void MapBlockScene::doMyStatus()
 	if (status != MAP_S_NOTING)
 	{
 		cacelLongTouch();
+	}
+}
+
+void MapBlockScene::createBoxRewards(MapBlock* mbolck)
+{
+	std::vector<MSGAWDSDATA> vec_rewards;
+	for (unsigned int i = 0; i < mbolck->vec_RewardsRes.size(); i++)
+	{
+		FOURProperty mdata = mbolck->vec_RewardsRes[i];
+
+		MSGAWDSDATA wdata;
+		wdata.rid = mdata.sid;
+		wdata.count = mdata.intPara1;
+		wdata.qu = mdata.intPara2;
+		vec_rewards.push_back(wdata);
+	}
+	if (vec_rewards.size() > 0)
+	{
+		RewardLayer* layer = RewardLayer::create(vec_rewards);
+		g_mainScene->addChild(layer);
+		AnimationEffect::openAniEffect(layer);
 	}
 }
 

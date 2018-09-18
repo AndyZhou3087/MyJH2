@@ -48,7 +48,8 @@ typedef enum
 	POS_MONSTER,
 	POS_NPC,
 	POS_BOSS,
-	POS_TBOSS
+	POS_TBOSS,
+	POS_BOX//宝箱
 }POSTYPE;
 
 class MapBlock : public Sprite
