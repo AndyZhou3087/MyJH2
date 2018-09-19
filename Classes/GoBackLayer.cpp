@@ -95,7 +95,7 @@ bool GoBackLayer::init(int forwhere)
 	cocos2d::ui::ImageView* cancelbtntext = (cocos2d::ui::ImageView*)cancelbtn->getChildByName("text");
 	cancelbtntext->loadTexture(ResourcePath::makeTextImgPath("cancelbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	this->scheduleOnce(schedule_selector(GoBackLayer::delayShowNewerGuide), 0.3f);
+	this->scheduleOnce(schedule_selector(GoBackLayer::delayShowNewerGuide), newguidetime);
 
 	//фа╠ноб╡Ц╣Ц╩В
 	auto listener = EventListenerTouchOneByOne::create();

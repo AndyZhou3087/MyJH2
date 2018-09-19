@@ -437,7 +437,7 @@ void NewGuideLayer::showNextGuide()
 			HospitalLayer* layer = (HospitalLayer*)g_mainScene->getChildByName("1hospital");
 			if (layer != NULL)
 			{
-				layer->scheduleOnce(schedule_selector(HospitalLayer::delayShowNewerGuide), 0.3f);
+				layer->scheduleOnce(schedule_selector(HospitalLayer::delayShowNewerGuide), newguidetime);
 				//layer->delayShowNewerGuide(0);
 			}
 		}

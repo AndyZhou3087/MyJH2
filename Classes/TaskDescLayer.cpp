@@ -247,7 +247,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 	}
 
 
-	this->scheduleOnce(schedule_selector(TaskDescLayer::delayShowNewerGuide), 0.1f);
+	this->scheduleOnce(schedule_selector(TaskDescLayer::delayShowNewerGuide), newguidetime);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)

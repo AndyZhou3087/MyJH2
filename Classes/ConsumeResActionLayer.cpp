@@ -261,7 +261,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 	updateUI(0);
 	this->schedule(schedule_selector(ConsumeResActionLayer::updateUI), 1);
 
-	this->scheduleOnce(schedule_selector(ConsumeResActionLayer::delayShowNewerGuide), 0.3f);
+	this->scheduleOnce(schedule_selector(ConsumeResActionLayer::delayShowNewerGuide), newguidetime);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();

@@ -131,7 +131,7 @@ bool RandHeroLayer::init()
 	updateUI(0);
 	this->schedule(schedule_selector(RandHeroLayer::updateUI), 1.0f);
 
-	this->scheduleOnce(schedule_selector(RandHeroLayer::delayShowNewerGuide), 0.1f);
+	this->scheduleOnce(schedule_selector(RandHeroLayer::delayShowNewerGuide), newguidetime);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();

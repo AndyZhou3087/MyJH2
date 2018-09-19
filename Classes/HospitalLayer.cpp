@@ -64,7 +64,7 @@ bool HospitalLayer::init()
 
 	updateContent();
 
-	this->scheduleOnce(schedule_selector(HospitalLayer::delayShowNewerGuide), 0.3f);
+	this->scheduleOnce(schedule_selector(HospitalLayer::delayShowNewerGuide), newguidetime);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)

@@ -74,7 +74,7 @@ bool SelectEquipLayer::init(int restype, Hero* herodata)
 	loadData();
 	updateContent();
 
-	this->scheduleOnce(schedule_selector(SelectEquipLayer::delayShowNewerGuide), 0.3f);
+	this->scheduleOnce(schedule_selector(SelectEquipLayer::delayShowNewerGuide), newguidetime);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)

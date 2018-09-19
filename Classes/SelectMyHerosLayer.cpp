@@ -5,6 +5,7 @@
 #include "AnimationEffect.h"
 #include "NewGuideLayer.h"
 #include "MainScene.h"
+#include "Const.h"
 
 USING_NS_CC;
 
@@ -85,7 +86,7 @@ bool SelectMyHerosLayer::init(int wheretype)
 
 	refreshMyHerosUi();
 
-	this->scheduleOnce(schedule_selector(SelectMyHerosLayer::delayShowNewerGuide), 0.1f);
+	this->scheduleOnce(schedule_selector(SelectMyHerosLayer::delayShowNewerGuide), newguidetime);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();

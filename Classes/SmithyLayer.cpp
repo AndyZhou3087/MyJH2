@@ -107,7 +107,7 @@ bool SmithyLayer::init(Building* buidingData)
 	loadData();
 	updateContent(lastCategoryindex);
 
-	this->scheduleOnce(schedule_selector(SmithyLayer::delayShowNewerGuide), 0.3f);
+	this->scheduleOnce(schedule_selector(SmithyLayer::delayShowNewerGuide), newguidetime);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();

@@ -9,6 +9,7 @@
 #include "AnimationEffect.h"
 #include "MainScene.h"
 #include "NewGuideLayer.h"
+#include "Const.h"
 
 USING_NS_CC;
 
@@ -105,7 +106,7 @@ bool InnRoomLayer::init(Building* buidingData)
 
 	refreshMyHerosUi();
 
-	this->scheduleOnce(schedule_selector(InnRoomLayer::delayShowNewerGuide), 0.3f);
+	this->scheduleOnce(schedule_selector(InnRoomLayer::delayShowNewerGuide), newguidetime);
 
 	updateRedPoint(0);
 	this->schedule(schedule_selector(InnRoomLayer::updateRedPoint), 1.0f);

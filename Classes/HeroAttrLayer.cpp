@@ -21,6 +21,7 @@
 #include "NewGuideLayer.h"
 #include "LoadingBarProgressTimer.h"
 #include "HintBoxLayer.h"
+#include "Const.h"
 
 USING_NS_CC;
 
@@ -330,7 +331,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 		}
 	}
 
-	this->scheduleOnce(schedule_selector(HeroAttrLayer::delayShowNewerGuide), 0.3f);
+	this->scheduleOnce(schedule_selector(HeroAttrLayer::delayShowNewerGuide), newguidetime);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();

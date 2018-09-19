@@ -108,7 +108,7 @@ bool TaskLayer::init()
 
 	updateDailyTip();
 
-	this->scheduleOnce(schedule_selector(TaskLayer::delayShowNewerGuide), 0.3f);
+	this->scheduleOnce(schedule_selector(TaskLayer::delayShowNewerGuide), newguidetime);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
