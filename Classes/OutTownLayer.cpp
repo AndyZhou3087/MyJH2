@@ -217,6 +217,7 @@ void OutTownLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_ev
 					m_myCardHerosNode[clickHero]->setTag(i);
 					GlobalInstance::myCardHeros[clickHero]->setPos(i + 1);
 					
+					m_myCardHerosNode[i]->setTag(clickHero);
 					if (GlobalInstance::myCardHeros[i] != NULL)
 					{
 						m_myCardHerosNode[i]->runAction(MoveTo::create(0.2f, Vec2(140 + clickHero % 3 * 215, /*745 + */1060 - clickHero / 3 * 250)));
@@ -227,9 +228,6 @@ void OutTownLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_ev
 						m_myCardHerosNode[i]->setPosition(Vec2(140 + clickHero % 3 * 215, /*745 + */1060 - clickHero / 3 * 250));
 						m_myCardHerosNode[i]->updateSelPosLbl();
 					}
-
-
-					m_myCardHerosNode[i]->setTag(clickHero);
 
 					m_myCardHerosNode[clickHero] = m_myCardHerosNode[i];
 					m_myCardHerosNode[i] = cardnode;
