@@ -29,6 +29,7 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 #import "iosfunc.h"
+#import "IOSPurchaseWrap.h"
 
 @implementation AppController
 
@@ -63,7 +64,7 @@ static AppDelegate s_sharedApplication;
 
     // Use RootViewController to manage CCEAGLView
     _viewController = [[RootViewController alloc]init];
-    _viewController.wantsFullScreenLayout = YES;
+    //_viewController.wantsFullScreenLayout = YES;
     
 
     // Set RootViewController to window
@@ -89,6 +90,9 @@ static AppDelegate s_sharedApplication;
     //run the cocos2d-x game scene
     app->run();
 
+    //init buy
+    initBuy();
+    
     return YES;
 }
 

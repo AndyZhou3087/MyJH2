@@ -10,6 +10,9 @@
 #include "DynamicValue.h"
 #include "MyRes.h"
 #include "GiftContentLayer.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#include "IOSPurchaseWrap.h"
+#endif
 
 USING_NS_CC;
 
