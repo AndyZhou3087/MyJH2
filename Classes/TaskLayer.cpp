@@ -16,6 +16,7 @@
 #include "SimpleResPopLayer.h"
 #include "MainScene.h"
 #include "NewGuideLayer.h"
+#include "RewardLayer.h"
 
 TaskLayer::TaskLayer()
 {
@@ -56,6 +57,7 @@ bool TaskLayer::init()
 
 	langtype = GlobalInstance::getInstance()->getLang();
 
+	//»ý·Ö
 	pnode = (cocos2d::ui::Widget*)m_csbnode->getChildByName("pnode");
 	mypoint = (cocos2d::ui::Text*)pnode->getChildByName("mypoint");
 	std::string pstr = StringUtils::format("%d", DataSave::getInstance()->getMyyDailyPoint());
@@ -386,14 +388,17 @@ void TaskLayer::loadData(int category)
 			cocos2d::ui::Widget* point = (cocos2d::ui::Widget*)pnode->getChildByName(str);
 			point->addTouchEventListener(CC_CALLBACK_2(TaskLayer::onPointClick, this));
 			point->setTag(it->first);
-			/*if (m_point < it->first || Quest::map_PointReward[it->first] == 1)
+			cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)point->getChildByName("icon");
+			if (m_point < it->first)
 			{
-				point->setTouchEnabled(false);
+				CommonFuncs::changeGray(point);
+				CommonFuncs::changeGray(icon);
 			}
 			else
 			{
-				point->setTouchEnabled(true);
-			}*/
+				CommonFuncs::removeGray(point);
+				CommonFuncs::removeGray(icon);
+			}
 
 			str = StringUtils::format("%dpoint", it->first);
 			cocos2d::ui::Text* plabel = (cocos2d::ui::Text*)pnode->getChildByName(str);
@@ -410,7 +415,8 @@ void TaskLayer::onPointClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	{
 		Node* pnode = (Node*)pSender;
 		int tag = pnode->getTag();
-		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)pSender;
+		cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)pSender;
+		cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)node->getChildByName("icon");
 
 		std::string resid;
 		switch (tag)
@@ -447,10 +453,26 @@ void TaskLayer::onPointClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			return;
 		}
 
-		MyRes::Add(resid);
+		CommonFuncs::removeGray(node);
+		CommonFuncs::removeGray(icon);
+		//MyRes::Add(resid);
 		std::string str = StringUtils::format(ResourceLang::map_lang["dailytype_9"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str(), 1);
 		MovingLabel::show(str);
 		Quest::saveDailyPointReward(tag);
+
+		std::vector<MSGAWDSDATA> vec_rewards;
+		MSGAWDSDATA wdata;
+		wdata.rid = resid;
+		wdata.count = 1;
+		wdata.qu = 0;
+		vec_rewards.push_back(wdata);
+
+		if (vec_rewards.size() > 0)
+		{
+			RewardLayer* layer = RewardLayer::create(vec_rewards);
+			g_mainScene->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
 	}
 }
 
