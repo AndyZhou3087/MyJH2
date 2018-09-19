@@ -257,6 +257,22 @@ void MainMenuLayer::updateUI(float dt)
 	textstr = StringUtils::format(ResourceLang::map_lang["daytext"].c_str(), GlobalInstance::map_buyVipDays["vip0"]);
 	vipstrArr[1]->setString(textstr);
 	
+	//成就更新
+	int achcount = 0;
+	for (unsigned int i = 0; i < GlobalInstance::vec_achievedata.size(); i++)
+	{
+		AchieveData data = GlobalInstance::vec_achievedata[i];
+		if (data.state == DAILY_FINISHED)
+		{
+			achcount++;
+			achredpoint->setVisible(true);
+			break;
+		}
+	}
+	if (achcount <= 0)
+	{
+		achredpoint->setVisible(false);
+	}
 }
 
 void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

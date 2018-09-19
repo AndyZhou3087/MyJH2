@@ -87,14 +87,17 @@ bool GambleBoxLayer::init(int isWin, int diceid, int cost)
 	if (isWin == 0)
 	{
 		gettext->setVisible(false);
+		DynamicValueInt dvl;
+		dvl.setValue(cost);
+		GlobalInstance::getInstance()->costMyCoinCount(dvl);
 	}
 	else
 	{
 		cocos2d::ui::Text* count = (cocos2d::ui::Text*)gettext->getChildByName("count");
-		str = StringUtils::format("%d", cost*2);
+		str = StringUtils::format("%d", cost);
 		count->setString(str);
 		DynamicValueInt dvl;
-		dvl.setValue(cost * 2);
+		dvl.setValue(cost);
 		GlobalInstance::getInstance()->addMyCoinCount(dvl);
 	}
 

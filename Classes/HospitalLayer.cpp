@@ -125,6 +125,11 @@ void HospitalLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 void HospitalLayer::updateContent()
 {
+	if (isScheduled(schedule_selector(HospitalLayer::delayShowNewerGuide)))
+	{
+		this->unschedule(schedule_selector(HospitalLayer::delayShowNewerGuide));
+	}
+
 	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
 	cointext->setString(str);
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
