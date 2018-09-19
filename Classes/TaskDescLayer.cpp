@@ -116,18 +116,21 @@ bool TaskDescLayer::init(TaskData* data, int type)
 	closebtn->setTag(0);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskDescLayer::onBtnClick, this));
 	closebtn->setTitleText(ResourceLang::map_lang["closetext"]);
+	closebtn->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 
 	accbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("accbtn");
 	accbtn->setPosition(Vec2(357, 376));
 	accbtn->setTag(1);
 	accbtn->addTouchEventListener(CC_CALLBACK_2(TaskDescLayer::onBtnClick, this));
 	accbtn->setTitleText(ResourceLang::map_lang["acctasktext"]);
+	accbtn->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 
 	getbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("getbtn");
 	getbtn->setPosition(Vec2(357, 376));
 	getbtn->setTag(2);
 	getbtn->addTouchEventListener(CC_CALLBACK_2(TaskDescLayer::onBtnClick, this));
 	getbtn->setTitleText(ResourceLang::map_lang["getrewardtext"]);
+	getbtn->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("ScrollView");
 	scrollView->setScrollBarEnabled(false);
@@ -232,6 +235,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 		Label *namelbl = Label::createWithTTF(str, FONT_NAME, 23);
 		namelbl->setColor(Color3B(255, 255, 255));
 		namelbl->setPosition(Vec2(box->getContentSize().width / 2, -10));
+		namelbl->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 		box->addChild(namelbl);
 	}
 

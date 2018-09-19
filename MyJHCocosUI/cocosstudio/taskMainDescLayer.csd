@@ -16,7 +16,7 @@
             <PreSize X="0.8333" Y="0.5172" />
             <FileData Type="Normal" Path="images/smallbg.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="accbtn" ActionTag="-1278662692" Tag="113" IconVisible="False" LeftMargin="137.2277" RightMargin="142.7723" TopMargin="787.3243" BottomMargin="366.6757" TouchEnable="True" FontSize="30" ButtonText="接受任务" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="accbtn" ActionTag="-1278662692" Tag="113" IconVisible="False" LeftMargin="137.2277" RightMargin="142.7723" TopMargin="787.3243" BottomMargin="366.6757" TouchEnable="True" FontSize="25" ButtonText="接受任务" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="440.0000" Y="126.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="357.2277" Y="429.6757" />
@@ -32,7 +32,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="closebtn" ActionTag="680774181" Tag="114" IconVisible="False" LeftMargin="137.2277" RightMargin="142.7723" TopMargin="1085.3571" BottomMargin="68.6429" TouchEnable="True" FontSize="30" ButtonText="离开" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="closebtn" ActionTag="680774181" Tag="114" IconVisible="False" LeftMargin="137.2277" RightMargin="142.7723" TopMargin="1085.3571" BottomMargin="68.6429" TouchEnable="True" FontSize="25" ButtonText="离开" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="440.0000" Y="126.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="357.2277" Y="131.6429" />
@@ -92,7 +92,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="43" G="30" B="20" />
           </AbstractNodeData>
-          <AbstractNodeData Name="getbtn" ActionTag="189690347" VisibleForFrame="False" Tag="120" IconVisible="False" LeftMargin="138.2272" RightMargin="141.7728" TopMargin="932.3237" BottomMargin="221.6763" TouchEnable="True" FontSize="30" ButtonText="领取奖励" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="getbtn" ActionTag="189690347" VisibleForFrame="False" Tag="120" IconVisible="False" LeftMargin="138.2272" RightMargin="141.7728" TopMargin="932.3237" BottomMargin="221.6763" TouchEnable="True" FontSize="25" ButtonText="领取奖励" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="440.0000" Y="126.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="358.2272" Y="284.6763" />
@@ -108,25 +108,25 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rewardlabel" ActionTag="-1134415561" Tag="20" IconVisible="False" LeftMargin="125.0909" RightMargin="114.9091" TopMargin="499.8868" BottomMargin="725.1132" IsCustomSize="True" FontSize="25" LabelText="任务完成可获得奖励：（你的选择会影响你的奖励，谨慎选择）" ShadowOffsetX="1.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="480.0000" Y="55.0000" />
+          <AbstractNodeData Name="rewardlabel" ActionTag="-1134415561" Tag="20" IconVisible="False" LeftMargin="125.0909" RightMargin="358.9091" TopMargin="508.8859" BottomMargin="742.1141" IsCustomSize="True" FontSize="25" LabelText="任务完成可获得奖励：" ShadowOffsetX="1.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="236.0000" Y="29.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="125.0909" Y="752.6132" />
+            <Position X="125.0909" Y="756.6141" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1737" Y="0.5880" />
-            <PreSize X="0.6667" Y="0.0430" />
+            <PrePosition X="0.1737" Y="0.5911" />
+            <PreSize X="0.3278" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="43" G="30" B="20" />
           </AbstractNodeData>
-          <AbstractNodeData Name="ScrollView" ActionTag="-443032628" Tag="28" IconVisible="False" LeftMargin="114.0776" RightMargin="105.9224" TopMargin="559.8703" BottomMargin="550.1297" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="ScrollView" ActionTag="-443032628" Tag="28" IconVisible="False" LeftMargin="114.0777" RightMargin="105.9224" TopMargin="560.8704" BottomMargin="549.1296" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="500.0000" Y="170.0000" />
             <AnchorPoint />
-            <Position X="114.0776" Y="550.1297" />
+            <Position X="114.0777" Y="549.1296" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1584" Y="0.4298" />
+            <PrePosition X="0.1584" Y="0.4290" />
             <PreSize X="0.6944" Y="0.1328" />
             <SingleColor A="255" R="255" G="255" B="255" />
             <FirstColor A="255" R="255" G="150" B="100" />
@@ -147,6 +147,17 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="500" Height="1000" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="setpline0_0" ActionTag="-1069320293" Tag="114" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="366.5640" RightMargin="347.4360" TopMargin="463.1560" BottomMargin="634.8440" ctype="SpriteObjectData">
+            <Size X="6.0000" Y="182.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="369.5640" Y="725.8440" />
+            <Scale ScaleX="1.0000" ScaleY="3.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5133" Y="0.5671" />
+            <PreSize X="0.0083" Y="0.1422" />
+            <FileData Type="MarkedSubImage" Path="ui/setpline0.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

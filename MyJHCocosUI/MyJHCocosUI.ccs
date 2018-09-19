@@ -312,6 +312,7 @@
           <Image Name="mapleftbtn.png" />
           <Image Name="mapname_sel0.png" />
           <Image Name="mapname_sel1.png" />
+          <Image Name="mapnamebox.png" />
           <Image Name="mapnamebox0.png" />
           <Image Name="mapnamebox1.png" />
           <Image Name="mappackbtn.png" />
