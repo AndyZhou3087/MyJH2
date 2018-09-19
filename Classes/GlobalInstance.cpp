@@ -71,7 +71,7 @@ int GlobalInstance::unlockchapter = 1;
 
 std::string GlobalInstance::noticeID = "";
 
-int GlobalInstance::myOutMapCarry = 0;
+int GlobalInstance::myOutMapCarry = 100;
 
 int GlobalInstance::silverRefHeroCount = 0;
 
