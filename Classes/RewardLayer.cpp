@@ -148,10 +148,6 @@ bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere)
 	{
 		return true;
 	};
-	listener->onTouchEnded = [=](Touch *touch, Event *event)
-	{
-		removeSelf();
-	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;

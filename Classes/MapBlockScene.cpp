@@ -965,7 +965,13 @@ void MapBlockScene::doMyStatus()
 		}
 		else if (mapblock->getPosType() == POS_BOX)
 		{
-			createBoxRewards(mapblock);
+			std::string str = StringUtils::format("%s-%d", m_mapid.c_str(), mycurRow*blockColCount + mycurCol);
+			if (!DataSave::getInstance()->getMapBoxRewards(str))
+			{
+				status = MAP_S_EVENT;
+				createBoxRewards(mapblock);
+				DataSave::getInstance()->setMapBoxRewards(str, true);
+			}
 		}
 		if (vec_enemys.size() > 0)
 		{
@@ -1016,14 +1022,6 @@ void MapBlockScene::doMyStatus()
 
 void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 {
-	int mycr = mycurRow*blockColCount + mycurCol;
-	std::string str;
-	str.append(m_mapid);
-	str.append(StringUtils::format("-%d", mycr));
-	if (DataSave::getInstance()->getMapBoxRewards(str))
-	{
-		return;
-	}
 	std::vector<MSGAWDSDATA> vec_rewards;
 	for (unsigned int i = 0; i < mbolck->vec_RewardsRes.size(); i++)
 	{
@@ -1051,7 +1049,6 @@ void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 	}
 
 	mbolck->removePosIcon();
-	DataSave::getInstance()->setMapBoxRewards(str, true);
 }
 
 void MapBlockScene::createRndMonsters()
