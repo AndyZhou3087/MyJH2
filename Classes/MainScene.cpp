@@ -26,7 +26,6 @@ MainScene::MainScene()
 {
 	m_isDraging = false;
 	costFoodsT = 0;
-	GlobalInstance::myOutMapCarry = 0;
 	isPlayNewHeroAnim = false;
 }
 
