@@ -178,7 +178,7 @@ void MainMenuLayer::onFinish(int code)
 			|| (NewGuideLayer::checkifNewerGuide(55) && Quest::isMainQuestFinish(1)) || (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
 			|| ((NewGuideLayer::checkifNewerGuide(66) || (NewGuideLayer::checkifNewerGuide(69) && !NewGuideLayer::checkifNewerGuide(67))) && GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0)
 			|| (NewGuideLayer::checkifNewerGuide(73) && GlobalInstance::getInstance()->getHerosLevelCount(15) > 0) || (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(77))
-			|| (GlobalInstance::getInstance()->getMapUnlockGuide() && NewGuideLayer::checkifNewerGuide(15)))
+			|| (GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15)))
 		{
 			return;
 		}

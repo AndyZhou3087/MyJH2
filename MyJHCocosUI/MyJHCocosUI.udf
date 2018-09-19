@@ -10,9 +10,10 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="cardHeroNode.csd" />
+          <FilePathData Path="ui.csi" />
+          <FilePathData Path="taskMainNode.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="cardHeroNode.csd" />
+        <ActiveDocument Path="taskMainNode.csd" />
       </Value>
     </Item>
   </Properties>

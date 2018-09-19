@@ -490,8 +490,8 @@ public:
 	//判断平均出战角色等级
 	int getFightHerosLevel();
 
-	//判断是否通关神龙教m1-4-2
-	bool getMapUnlockGuide();
+	//判断后山解锁条件
+	bool getUnlockHomehillCondition();
 
 	/****************************
 	银两刷新英雄次数

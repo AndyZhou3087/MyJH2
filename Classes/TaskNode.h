@@ -20,7 +20,8 @@ public:
 	static TaskNode* create(TaskData* data, int type = 0);
 
 private:
-	cocos2d::ui::ImageView* redpoint;//提示红点
+	cocos2d::ui::Widget* redpoint;//提示红点
+	cocos2d::ui::Widget* redtip;
 	cocos2d::ui::Text* namelbl;//名字
 	cocos2d::ui::Widget* finish;//完成
 	TaskData* m_Data;

@@ -732,7 +732,7 @@ void NewGuideLayer::setNewGuideInfo(int step)
 				hero->setState(HS_TAKEON);
 				hero->setPos(i + 1);
 				DynamicValueInt dal;
-				dal.setValue(100000);
+				dal.setValue(GlobalInstance::vec_herosAttr[4].vec_exp[49]);
 				hero->setExp(dal);
 				hero->setHp(hero->getMaxHp());
 				GlobalInstance::myCardHeros[i] = hero;

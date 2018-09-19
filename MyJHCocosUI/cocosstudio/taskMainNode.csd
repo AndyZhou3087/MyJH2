@@ -39,6 +39,17 @@
             <FileData Type="MarkedSubImage" Path="ui/taskhinticon.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="redtip" ActionTag="1632544935" Tag="31" IconVisible="False" LeftMargin="88.4005" RightMargin="-114.4005" TopMargin="-22.2923" BottomMargin="-15.7077" ctype="SpriteObjectData">
+            <Size X="26.0000" Y="38.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="101.4005" Y="3.2923" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/taskgeticon.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
           <AbstractNodeData Name="finish" ActionTag="1392050042" Tag="257" IconVisible="False" LeftMargin="-281.7020" RightMargin="51.7020" TopMargin="-53.8613" BottomMargin="-10.1387" ctype="SpriteObjectData">
             <Size X="230.0000" Y="64.0000" />
             <Children>

@@ -552,6 +552,7 @@ void Quest::finishTaskBranch(int ftype)
 	GlobalInstance::myCurBranchData.finishtype = ftype;
 	saveBranchData();
 	setDailyTask(FINISH_BRANCH, 1);
+	setAchieveTypeCount(FINISH_BRANCH, 1);
 }
 
 void Quest::finishBranchQuest()
@@ -559,6 +560,7 @@ void Quest::finishBranchQuest()
 	GlobalInstance::myCurBranchData.isfinish = QUEST_FINISH;
 	saveBranchData();
 	setDailyTask(FINISH_BRANCH, 1);
+	setAchieveTypeCount(FINISH_BRANCH, 1);
 }
 
 void Quest::saveBranchData()

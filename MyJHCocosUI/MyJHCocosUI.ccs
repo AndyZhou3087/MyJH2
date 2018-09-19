@@ -937,6 +937,7 @@
           <Image Name="taskdailybigbg.png" />
           <Image Name="taskdailyf.png" />
           <Image Name="taskframe.png" />
+          <Image Name="taskgeticon.png" />
           <Image Name="taskhinticon.png" />
           <Image Name="taskprobar.png" />
           <Image Name="taskprobg.png" />
