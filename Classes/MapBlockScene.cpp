@@ -284,12 +284,21 @@ void MapBlockScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
 {
 	if (NewGuideLayer::checkifNewerGuide(step))
 	{
+		if (g_NewGuideLayer != NULL)
+		{
+			g_NewGuideLayer->removeFromParentAndCleanup(true);
+		}
 		if (g_NewGuideLayer == NULL)
 		{
 			g_NewGuideLayer = NewGuideLayer::create(step, nodes);
 			this->addChild(g_NewGuideLayer, 10);
 		}
 	}
+}
+
+bool MapBlockScene::getIsMoving()
+{
+	return isMoving;
 }
 
 void MapBlockScene::goBackMainHomeScene()

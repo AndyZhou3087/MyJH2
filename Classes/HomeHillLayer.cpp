@@ -131,7 +131,7 @@ void HomeHillLayer::delayShowNewerGuide(float dt)
 {
 	if (!NewGuideLayer::checkifNewerGuide(14))
 	{
-		if (GlobalInstance::getInstance()->getMapUnlockGuide() && !NewGuideLayer::checkifNewerGuide(15))
+		if (GlobalInstance::getInstance()->getUnlockHomehillCondition() && !NewGuideLayer::checkifNewerGuide(15))
 		{
 			if (NewGuideLayer::checkifNewerGuide(16))
 			{

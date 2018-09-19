@@ -1775,7 +1775,7 @@ int GlobalInstance::getFightHerosLevel()
 	return avlv;
 }
 
-bool GlobalInstance::getMapUnlockGuide()
+bool GlobalInstance::getUnlockHomehillCondition()
 {
 	for (unsigned int i = 0; i < Quest::myFinishMainQuest.size(); i++)
 	{
@@ -1784,6 +1784,10 @@ bool GlobalInstance::getMapUnlockGuide()
 		{
 			return true;
 		}
+	}
+	if (MyRes::getMyResCount("r001") < 200)
+	{
+		return true;
 	}
 	return false;
 }

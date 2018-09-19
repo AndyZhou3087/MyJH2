@@ -57,7 +57,9 @@ bool TaskNode::init(TaskData* data, int type)
 	namelbl->setString(data->name);
 
 	//ÌáÊ¾ºìµã
-	redpoint = (cocos2d::ui::ImageView*)csbnode->getChildByName("redpoint");
+	redpoint = (cocos2d::ui::Widget*)csbnode->getChildByName("redpoint");
+	redtip = (cocos2d::ui::Widget*)csbnode->getChildByName("redtip");
+	redtip->setVisible(false);
 
 	//
 	finish = (cocos2d::ui::Widget*)csbnode->getChildByName("finish");
@@ -94,16 +96,24 @@ void TaskNode::updateData(float dt)
 		{
 			id = GlobalInstance::myCurBranchData.id;
 		}
-		if (m_Data->id == id)
+		/*if (m_Data->id == id)
 		{
 			redpoint->setVisible(true);
 		}
 		if (m_Data->isfinish == QUEST_ACC)
 		{
 			redpoint->setVisible(false);
-		}
+		}*/
 	}
 
+	if (m_Data->isfinish == QUEST_TASK)
+	{
+		redtip->setVisible(true);
+	}
+	else
+	{
+		redtip->setVisible(false);
+	}
 }
 
 void TaskNode::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

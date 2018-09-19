@@ -132,7 +132,7 @@ bool MainScene::init()
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
 		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && NewGuideLayer::checkifNewerGuide(66)) || i == 9
 			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 5) || (NewGuideLayer::checkifNewerGuide(73) && i == 3)
-			|| (i == 8 && !GlobalInstance::getInstance()->getMapUnlockGuide() && NewGuideLayer::checkifNewerGuide(15)))//医馆,市场,训练场，竞技场,后山,铁匠铺默认不开放
+			|| (i == 8 && !GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15)))//医馆,市场,训练场，竞技场,后山,铁匠铺默认不开放
 		{
 			//buildingNomal->setTouchEnabled(false);
 			buildnametext->setVisible(false);
@@ -225,7 +225,7 @@ void MainScene::delayShowNewerGuide(float dt)
 				showNewerGuide(77);
 			}
 		}
-		else if (GlobalInstance::getInstance()->getMapUnlockGuide() && NewGuideLayer::checkifNewerGuide(15))
+		else if (GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15))
 		{
 			showNewerGuide(15);
 		}
@@ -446,7 +446,7 @@ bool MainScene::buildingIsClickOn(int tag)
 	}
 	else if (tag == 8)
 	{
-		if (!GlobalInstance::getInstance()->getMapUnlockGuide() && NewGuideLayer::checkifNewerGuide(15))
+		if (!GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15))
 		{
 			return true;
 		}
@@ -484,7 +484,7 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 
 			if ((NewGuideLayer::checkifNewerGuide(63) && tag == 2) || (tag == 6 && NewGuideLayer::checkifNewerGuide(66)) || tag == 9
 				|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && tag == 5) || (NewGuideLayer::checkifNewerGuide(73) && tag == 3)
-				|| (tag == 8 && !GlobalInstance::getInstance()->getMapUnlockGuide() && NewGuideLayer::checkifNewerGuide(15)))
+				|| (tag == 8 && !GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15)))
 			{
 				Node* buildParent;
 				if (tag <= 5)

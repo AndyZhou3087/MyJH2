@@ -4569,6 +4569,17 @@
 				<key>sourceSize</key>
 				<string>{196,86}</string>
 			</dict>
+			<key>ui/taskgeticon.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1002,646},{26,38}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{26,38}</string>
+			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>

@@ -72,6 +72,8 @@ public:
 	void showNewerGuideGoBack();
 	//引导第一次打败boss
 	bool getFirstFightBoss();
+	//获取是否移动//针对新手引导
+	bool getIsMoving();
 
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);

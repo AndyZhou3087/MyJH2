@@ -250,13 +250,6 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-//#ifdef ANALYTICS
-//	if (step == 0)
-//		AnalyticUtil::onEvent("newerstart");
-//	else if (step == 44)
-//		AnalyticUtil::onEvent("newerend");
-//#endif
-
 	return true;
 }
 
@@ -288,7 +281,14 @@ void NewGuideLayer::showNextGuide()
 			g_MapBlockScene->delayShowNewerGuide(0);
 		}
 	}
-	else if (m_step == 1 || m_step == 14 || m_step == 15 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 22 || m_step == 23
+	else if (m_step == 1)
+	{
+		if (g_MapBlockScene != NULL && !g_MapBlockScene->getIsMoving())
+		{
+			this->removeFromParentAndCleanup(true);
+		}
+	}
+	else if (m_step == 14 || m_step == 15 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 22 || m_step == 23
 		|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31 || m_step == 32 || m_step == 33 || m_step == 35 || m_step == 19
 		|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46 || m_step == 48 || m_step == 50
 		|| m_step == 52 || m_step == 53 || m_step == 54 || m_step == 55 || m_step == 56 || m_step == 57 || m_step == 59 || m_step == 63
@@ -732,7 +732,7 @@ void NewGuideLayer::setNewGuideInfo(int step)
 				hero->setState(HS_TAKEON);
 				hero->setPos(i + 1);
 				DynamicValueInt dal;
-				dal.setValue(100000);
+				dal.setValue(GlobalInstance::vec_herosAttr[4].vec_exp[49]);
 				hero->setExp(dal);
 				hero->setHp(hero->getMaxHp());
 				GlobalInstance::myCardHeros[i] = hero;

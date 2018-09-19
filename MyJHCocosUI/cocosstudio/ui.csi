@@ -417,6 +417,7 @@
       <FilePathData Path="ui/taskhinticon.png" />
       <FilePathData Path="ui/r013.png" />
       <FilePathData Path="ui/maincityhintbox.png" />
+      <FilePathData Path="ui/taskgeticon.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
