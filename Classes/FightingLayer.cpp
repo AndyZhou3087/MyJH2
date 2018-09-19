@@ -105,9 +105,6 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 		}
 	}
 
-	int r = GlobalInstance::getInstance()->createRandomNum(5);
-	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_FIGHT_0 + r);
-
 	checkNewGuide();
 
 	//фа╠ноб╡Ц╣Ц╩В

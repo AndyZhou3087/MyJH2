@@ -281,11 +281,13 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			{
 				if (isGo == 1)
 				{
+					showFastWords();
 					g_MapBlockScene->showFightingLayer(m_vec_enemys);
 					isGo = 0;
 				}
 				if (isFight)
 				{
+					showFastWords();
 					g_MapBlockScene->showFightingLayer(m_vec_enemys);
 				}
 			}
@@ -440,6 +442,7 @@ void TaskTalkLayer::questFight(std::string bwords)
 	}
 	else
 	{
+		showFastWords();
 		g_MapBlockScene->showFightingLayer(m_vec_enemys);
 		this->removeFromParentAndCleanup(true);
 	}

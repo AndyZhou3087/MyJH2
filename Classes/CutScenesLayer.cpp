@@ -67,6 +67,9 @@ bool CutScenesLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 	//std::string str = StringUtils::format("effect/skill%dpacker.png", reloadArr[curReloadPlistNum]);
 	//Director::getInstance()->getTextureCache()->addImageAsync(str, CC_CALLBACK_1(CutScenesLayer::loadingOver, this));
 
+	int r = GlobalInstance::getInstance()->createRandomNum(5);
+	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_FIGHT_0 + r);
+
 	this->scheduleOnce(schedule_selector(CutScenesLayer::delayShowResult), 1.5f);
 	//фа╠ноб╡Ц╣Ц╩В
 	auto listener = EventListenerTouchOneByOne::create();

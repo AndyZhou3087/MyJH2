@@ -162,6 +162,7 @@ bool OutTownLayer::init()
 
 bool OutTownLayer::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
+	clickHero = -1;
 	auto touchPos = touch->getLocation();
 	for (int i = 0; i < 6; i++)
 	{

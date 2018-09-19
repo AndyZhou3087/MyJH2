@@ -979,7 +979,7 @@ void MapBlockScene::doMyStatus()
 		}
 		else if (mapblock->getPosType() == POS_NOTHING)
 		{
-			createRndMonsters();
+			//createRndMonsters();
 		}
 		else if (mapblock->getPosType() == POS_BOX)
 		{
@@ -1353,23 +1353,6 @@ void MapBlockScene::parseMapXml(std::string mapname)
 					mb->getTexture()->setAliasTexParameters();
 
 					mb->setPosType(postype);
-					if (postype > POS_START)//起点有多个，只会显示一个，不在这里设置
-					{
-						if (postype == POS_BOX)
-						{
-							std::string str;
-							str.append(m_mapid);
-							str.append(StringUtils::format("-%d", rc));
-							if (!DataSave::getInstance()->getMapBoxRewards(str))
-							{
-								mb->setPosIcon();
-							}
-						}
-						else
-						{
-							mb->setPosIcon();
-						}
-					}
 						
 					mb->setWalkable(walkable);
 					map_mapBlocks[rc] = mb;
@@ -1464,6 +1447,32 @@ void MapBlockScene::parseMapXml(std::string mapname)
 							mb->vec_choiceDatas.push_back(cdata);
 						}
 						e0 = e0->NextSiblingElement();
+					}
+
+					if (postype > POS_START)//起点有多个，只会显示一个，不在这里设置
+					{
+						bool showPosIcon = true;
+						if (postype == POS_BOX)
+						{
+							std::string str = StringUtils::format("%s-%d", m_mapid.c_str(), rc);
+							if (DataSave::getInstance()->getMapBoxRewards(str))
+								showPosIcon = false;
+						}
+						if (postype == POS_NPC || postype == POS_BOSS || postype == POS_TBOSS)
+						{
+							int r = GlobalInstance::getInstance()->createRandomNum(100);
+							if (r >= mb->getPosNpcRnd())
+								showPosIcon = false;
+						}
+						if (showPosIcon)
+						{
+							mb->setPosType(postype);
+							mb->setPosIcon();
+						}
+						else
+						{
+							mb->setPosType(-1);
+						}
 					}
 				}
 				element = element->NextSiblingElement();
