@@ -41,6 +41,19 @@
               </AbstractNodeData>
               <AbstractNodeData Name="main_10_t" ActionTag="-1328797559" Tag="45" IconVisible="False" LeftMargin="853.0000" RightMargin="1583.0000" TopMargin="424.0000" BottomMargin="704.0000" LeftEage="14" RightEage="14" TopEage="50" BottomEage="50" Scale9OriginX="14" Scale9OriginY="50" Scale9Width="16" Scale9Height="52" ctype="ImageViewObjectData">
                 <Size X="44.0000" Y="152.0000" />
+                <Children>
+                  <AbstractNodeData Name="main_10_p" ActionTag="1464594878" Tag="101" IconVisible="False" LeftMargin="30.0000" RightMargin="-10.0000" TopMargin="-3.0000" BottomMargin="131.0000" ctype="SpriteObjectData">
+                    <Size X="24.0000" Y="24.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="42.0000" Y="143.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.9545" Y="0.9408" />
+                    <PreSize X="0.5455" Y="0.1579" />
+                    <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="875.0000" Y="780.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />

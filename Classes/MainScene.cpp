@@ -27,6 +27,7 @@ MainScene::MainScene()
 	m_isDraging = false;
 	costFoodsT = 0;
 	isPlayNewHeroAnim = false;
+	tasktip = NULL;
 }
 
 MainScene::~MainScene()
@@ -152,7 +153,8 @@ bool MainScene::init()
 		}
 		else if (i == 10)
 		{
-			updateTaskIcon();	
+			updateTaskIcon();
+			tasktip = (cocos2d::ui::Widget*)buildnametext->getChildByName("main_10_p");
 		}
 
 		buildingSelect->setVisible(false);
@@ -164,6 +166,9 @@ bool MainScene::init()
 	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_HOME);
 
 	this->scheduleOnce(schedule_selector(MainScene::delayShowNewerGuide), 1.1f);
+
+	updateTaskLayerTip(0);
+	this->schedule(schedule_selector(MainScene::updateTaskLayerTip), 1.0f);
 
 	maincityhintbox = scroll_2->getChildByName("maincityhintbox");
 	maincityhintbox->setScale(0);
@@ -372,6 +377,54 @@ void MainScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
 			g_NewGuideLayer = NewGuideLayer::create(step, nodes);
 			this->addChild(g_NewGuideLayer, 10);
 		}
+	}
+}
+
+void MainScene::updateTaskLayerTip(float dt)
+{
+	//主线
+	int mcount = 0;
+	for (unsigned int i = 0; i < Quest::myFinishMainQuest.size(); i++)
+	{
+		TaskData* data = &Quest::myFinishMainQuest[i];
+		if (data->isfinish == QUEST_FINISH)
+		{
+			mcount++;
+			break;
+		}
+	}
+	//支线
+	int bcount = 0;
+	for (unsigned int i = 0; i < Quest::myFinishBranchQuest.size(); i++)
+	{
+		TaskData* data = &Quest::myFinishBranchQuest[i];
+		if (data->isfinish == QUEST_FINISH)
+		{
+			bcount++;
+			break;
+		}
+	}
+	//每日
+	int dcount = 0;
+	std::map<std::string, DailyTaskData>::iterator it;
+	for (it = GlobalInstance::map_DTdata.begin(); it != GlobalInstance::map_DTdata.end(); it++)
+	{
+		DailyTaskData* data = &GlobalInstance::map_DTdata[it->first];
+		if (data->state == DAILY_FINISHED)
+		{
+			dcount++;
+			break;
+		}
+	}
+
+	//主线支线每日判断
+	if (GlobalInstance::myCurMainData.isfinish == QUEST_TASK || GlobalInstance::myCurBranchData.isfinish == QUEST_TASK || mcount > 0 || bcount> 0 || dcount > 0)
+	{
+		tasktip->setVisible(true);
+	}
+	else
+	{
+		tasktip->setVisible(false);
 	}
 }
 

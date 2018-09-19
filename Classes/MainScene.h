@@ -48,6 +48,9 @@ public:
 	bool buildingIsClickOn(int tag);
 
 private:
+	void updateTaskLayerTip(float dt);
+
+private:
 	cocos2d::ui::ScrollView* scroll_3;//最外层滑动层，包括训练场-仓库-铁匠铺-医馆-出城
 	cocos2d::ui::ScrollView* scroll_2;//中间层滑动层，包括后山-客栈-市场
 	cocos2d::ui::ScrollView* scroll_1;//最内层滑动层，包括议事厅-竞技场
@@ -68,6 +71,8 @@ private:
 	std::vector<Node*> vec_taskicon;
 	bool isPlayNewHeroAnim;
 	Node* maincityhintbox;
+
+	cocos2d::ui::Widget* tasktip;
 };
 extern MainScene* g_mainScene;
 #endif
