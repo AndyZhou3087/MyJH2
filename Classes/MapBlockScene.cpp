@@ -116,6 +116,15 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	m_csbnode = CSLoader::createNode(ResourcePath::makePath("mapBlockLayer.csb"));
 	this->addChild(m_csbnode);
 
+	std::u32string utf32String;
+	StringUtils::UTF8ToUTF32(GlobalInstance::map_AllResources[mapname].name, utf32String);
+
+	int u32strlen = utf32String.length();
+	cocos2d::ui::ImageView* mapnamebox = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("mapnamebox");
+	cocos2d::ui::Text* mapnamelbl = (cocos2d::ui::Text*)m_csbnode->getChildByName("mapname");
+	mapnamebox->setContentSize(Size(70 + (mapnamelbl->getFontSize() + 1) * u32strlen, mapnamebox->getContentSize().height));
+	mapnamelbl->setString(GlobalInstance::map_AllResources[mapname].name);
+
 	Node* topnode = m_csbnode->getChildByName("mapblocktop");
 
 	carrycountlbl = (cocos2d::ui::Text*)topnode->getChildByName("carrycount");
@@ -321,7 +330,7 @@ void MapBlockScene::loadTaskUI()
 	//添加任务提示框
 	m_tasknode = CSLoader::createNode(ResourcePath::makePath("taskTipsNode.csb"));
 	this->addChild(m_tasknode);
-	m_tasknode->setPosition(Vec2(589, 930));
+	m_tasknode->setPosition(Vec2(589, 955));
 
 	cocos2d::ui::ImageView* tasktitle = (cocos2d::ui::ImageView*)m_tasknode->getChildByName("title");
 	tasktitle->loadTexture(ResourcePath::makeTextImgPath("maptask_title", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -461,14 +470,14 @@ void MapBlockScene::onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		case 0:
 		{
 			questbtn->setVisible(false);
-			MoveTo* moveto = MoveTo::create(0.15f, Vec2(589, 930));
+			MoveTo* moveto = MoveTo::create(0.15f, Vec2(589, m_tasknode->getPositionY()));
 			m_tasknode->runAction(moveto);
 		}
 			break;
 		case 1:
 		{
 			questbtn->setVisible(true);
-			MoveTo* moveto = MoveTo::create(0.15f, Vec2(860, 930));
+			MoveTo* moveto = MoveTo::create(0.15f, Vec2(860, m_tasknode->getPositionY()));
 			m_tasknode->runAction(moveto);
 		}
 			break;
@@ -700,7 +709,7 @@ bool MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
 void MapBlockScene::createMap()
 {
 	scrollView = ScrollView::create();
-	scrollView->setViewSize(Size(720, 800));
+	scrollView->setViewSize(Size(720, 825));
 	scrollView->setPosition(0, 242);
 	m_csbnode->addChild(scrollView, -1);
 

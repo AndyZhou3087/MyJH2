@@ -287,7 +287,7 @@ void MarketLayer::buyRes(int iterindex, int count)
 	if (resid.compare("r013") == 0)
 	{
 		DynamicValueInt dvint;
-		dvint.setValue(1000);
+		dvint.setValue(1000 * count);
 		GlobalInstance::getInstance()->addMySoliverCount(dvint);
 	}
 	else

@@ -120,12 +120,14 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 	closebtn->setTag(0);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtnClick, this));
 	closebtn->setTitleText(ResourceLang::map_lang["closetext"]);
+	closebtn->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 
 	givebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("accbtn");
 	givebtn->setPosition(Vec2(357, 429));
 	givebtn->setTag(data->type[0]);
 	givebtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtnClick, this));
 	givebtn->setTitleText(data->need1desc);
+	givebtn->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 
 	fightbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("getbtn");
 	fightbtn->setVisible(true);
@@ -136,6 +138,7 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 	}
 	fightbtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtn2Click, this));
 	fightbtn->setTitleText(data->need2desc);
+	fightbtn->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("ScrollView");
 	scrollView->setScrollBarEnabled(false);
@@ -228,6 +231,7 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 		Label *namelbl = Label::createWithTTF(str, FONT_NAME, 23);
 		namelbl->setColor(Color3B(255, 255, 255));
 		namelbl->setPosition(Vec2(box->getContentSize().width / 2, -10));
+		namelbl->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 		box->addChild(namelbl);
 
 	}
