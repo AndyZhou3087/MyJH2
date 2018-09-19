@@ -113,7 +113,7 @@ bool MarketLayer::init(Building* buidingData)
 	updateUI(0);
 	this->schedule(schedule_selector(MarketLayer::updateUI), 1.0f);
 
-	this->schedule(schedule_selector(MarketLayer::delayShowNewerGuide), 0.6f);
+	this->schedule(schedule_selector(MarketLayer::delayShowNewerGuide), newguidetime);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();

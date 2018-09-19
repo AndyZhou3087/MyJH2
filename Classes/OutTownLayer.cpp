@@ -10,6 +10,7 @@
 #include "MarketLayer.h"
 #include "MainScene.h"
 #include "NewGuideLayer.h"
+#include "Const.h"
 
 USING_NS_CC;
 
@@ -146,7 +147,7 @@ bool OutTownLayer::init()
 		tobuytext->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onGoBuyText, this));
 	}
 
-	this->scheduleOnce(schedule_selector(OutTownLayer::delayShowNewerGuide), 0.1f);
+	this->scheduleOnce(schedule_selector(OutTownLayer::delayShowNewerGuide), newguidetime);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();

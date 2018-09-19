@@ -114,7 +114,7 @@ bool HomeHillLayer::init(Building* buidingData)
 	updateTime(0);
 	this->schedule(schedule_selector(HomeHillLayer::updateTime), 1.0f);
 
-	this->scheduleOnce(schedule_selector(HomeHillLayer::delayShowNewerGuide), 0.3f);
+	this->scheduleOnce(schedule_selector(HomeHillLayer::delayShowNewerGuide), newguidetime);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();

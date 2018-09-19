@@ -206,7 +206,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("selectbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	}
 
-	this->scheduleOnce(schedule_selector(EquipDescLayer::delayShowNewerGuide), 0.1f);
+	this->scheduleOnce(schedule_selector(EquipDescLayer::delayShowNewerGuide), newguidetime);
 
 	//фа╠ноб╡Ц╣Ц╩В
 	auto listener = EventListenerTouchOneByOne::create();

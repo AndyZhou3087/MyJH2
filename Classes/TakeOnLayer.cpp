@@ -273,7 +273,7 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 		strenthbtn->setVisible(false);
 	}
 
-	this->scheduleOnce(schedule_selector(TakeOnLayer::delayShowNewerGuide), 0.1f);
+	this->scheduleOnce(schedule_selector(TakeOnLayer::delayShowNewerGuide), newguidetime);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)

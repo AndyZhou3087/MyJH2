@@ -148,7 +148,7 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 		accbtn3->setVisible(false);
 	}
 
-	this->scheduleOnce(schedule_selector(ChangeVocationLayer::delayShowNewerGuide), 0.35f);
+	this->scheduleOnce(schedule_selector(ChangeVocationLayer::delayShowNewerGuide), newguidetime);
 
 	//фа╠ноб╡Ц╣Ц╩В
 	auto listener = EventListenerTouchOneByOne::create();
