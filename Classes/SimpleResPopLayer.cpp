@@ -18,10 +18,10 @@ SimpleResPopLayer::~SimpleResPopLayer()
 }
 
 
-SimpleResPopLayer* SimpleResPopLayer::create(std::string resid)
+SimpleResPopLayer* SimpleResPopLayer::create(std::string resid, int forwhere)
 {
 	SimpleResPopLayer *pRet = new(std::nothrow)SimpleResPopLayer();
-	if (pRet && pRet->init(resid))
+	if (pRet && pRet->init(resid, forwhere))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -35,7 +35,7 @@ SimpleResPopLayer* SimpleResPopLayer::create(std::string resid)
 }
 
 // on "init" you need to initialize your instance
-bool SimpleResPopLayer::init(std::string resid)
+bool SimpleResPopLayer::init(std::string resid, int forwhere)
 {
 	if (!Layer::init())
 	{
@@ -47,6 +47,9 @@ bool SimpleResPopLayer::init(std::string resid)
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("simpleResPopLayer.csb"));
 	this->addChild(csbnode);
+
+	cocos2d::ui::ImageView* smallbg = (cocos2d::ui::ImageView*)csbnode->getChildByName("smallbg");
+	smallbg->setSwallowTouches(false);
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -84,8 +87,13 @@ bool SimpleResPopLayer::init(std::string resid)
 	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	res->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
+	std::string str = GlobalInstance::map_AllResources[resid].desc;
+
+	if (forwhere == 1)
+		str.append(ResourceLang::map_lang["reswheregettext"]);
+
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desclbl");
-	desclbl->setString(GlobalInstance::map_AllResources[resid].desc);
+	desclbl->setString(str);
 
 	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	namelbl->setString(GlobalInstance::map_AllResources[resid].name);

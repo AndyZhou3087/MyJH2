@@ -11,6 +11,7 @@
 #include "SoundManager.h"
 #include "NewGuideLayer.h"
 #include "MainScene.h"
+#include "EquipDescLayer.h"
 
 USING_NS_CC;
 
@@ -343,7 +344,7 @@ void SmithyLayer::makeRes(std::string resid)
 			qu = 3;
 	}
 	int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
-	MyRes::Add(resid, 1, MYSTORAGE, qu, stc);
+	ResBase* retres = MyRes::Add(resid, 1, MYSTORAGE, qu, stc);
 
 	std::string qukey = StringUtils::format("potential_%d", qu);
 	std::string resstr = StringUtils::format(ResourceLang::map_lang["makeresdesc"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str());
@@ -358,6 +359,10 @@ void SmithyLayer::makeRes(std::string resid)
 	hascount->setVisible(true);
 	std::string countstr = StringUtils::format(ResourceLang::map_lang["hasequipcount"].c_str(), MyRes::getEquipableCount(resid));
 	hascount->setString(countstr);
+
+	EquipDescLayer* layer = EquipDescLayer::create(retres, 1);
+	this->addChild(layer);
+	AnimationEffect::openAniEffect(layer);
 }
 
 void SmithyLayer::onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

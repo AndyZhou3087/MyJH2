@@ -13,8 +13,8 @@ public:
 	SimpleResPopLayer();
 	~SimpleResPopLayer();
 
-	static SimpleResPopLayer* create(std::string resid);
-	bool init(std::string resid);
+	static SimpleResPopLayer* create(std::string resid, int forwhere = 0);
+	bool init(std::string resid, int forwhere = 0);
 };
 
 #endif

@@ -189,7 +189,9 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	}
 	else if (fromwhere == 1)//takeon界面查看套装装备信息
 	{
-		actionbtn->setVisible(false);
+		status = S_NONE;
+		//actionbtn->setVisible(false);
+		srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("closebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	}
 	else if (fromwhere == 2)//换下功法
 	{
@@ -344,6 +346,10 @@ void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				WgLvLayer* wglayer = WgLvLayer::create(m_res);
 				this->addChild(wglayer);
 				AnimationEffect::openAniEffect((Layer*)wglayer);
+			}
+			else
+			{
+				AnimationEffect::closeAniEffect(this);
 			}
 		}
 	}

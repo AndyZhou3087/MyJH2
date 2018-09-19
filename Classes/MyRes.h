@@ -11,7 +11,7 @@ public:
 
 	static int getMyResCount(std::string resid, int inwhere = MYSTORAGE);
 
-	static void Add(std::string resid, int count = 1, int inwhere = MYSTORAGE, int qu = 0, int stonescount = 0);
+	static ResBase* Add(std::string resid, int count = 1, int inwhere = MYSTORAGE, int qu = 0, int stonescount = 0);
 
 	static void Add(ResBase* res, int count = 0, int inwhere = MYSTORAGE);
 

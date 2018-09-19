@@ -9,6 +9,7 @@ USING_NS_CC;
 
 typedef enum
 {
+	S_NONE = 0,
 	S_EQUIP_SEL,
 	S_EQUIP_DECOMPOSE,
 	S_EQUIP_TAKEOFF,

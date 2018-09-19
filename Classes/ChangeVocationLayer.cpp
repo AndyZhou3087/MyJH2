@@ -12,6 +12,7 @@
 #include "SoundManager.h"
 #include "NewGuideLayer.h"
 #include "MainScene.h"
+#include "SimpleResPopLayer.h"
 
 USING_NS_CC;
 
@@ -86,6 +87,7 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox")->getChildByName("res");
 	std::string respath = StringUtils::format("ui/%s.png", needresid.c_str());
 	res->loadTexture(respath, cocos2d::ui::Widget::TextureResType::PLIST);
+	res->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onImgClick, this));
 
 	cocos2d::ui::Text* rewardlabel = (cocos2d::ui::Text*)csbnode->getChildByName("rewardlabel");
 
@@ -250,6 +252,17 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 			}
 			AnimationEffect::closeAniEffect((Layer*)this);
 		}
+	}
+}
+
+void ChangeVocationLayer::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		SimpleResPopLayer* layer = SimpleResPopLayer::create(needresid, 1);
+		this->addChild(layer);
+		AnimationEffect::openAniEffect(layer);
 	}
 }
 

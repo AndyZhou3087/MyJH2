@@ -248,5 +248,6 @@
 	<s name="unlockmain_9">敬请期待...</s>
 	<s name="poweraddtext">%02d:%02d后恢复1点体力</s>
 	<s name="gobakccostcoin">是否消耗%d元宝购买回城卷轴？</s>	
-	<s name="nothingbox">包袱里空空如也...</s>	
+	<s name="nothingbox">包袱里空空如也...</s>
+	<s name="reswheregettext">，可在市场购买</s>		
 </strings>

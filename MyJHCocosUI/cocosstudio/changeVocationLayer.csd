@@ -97,7 +97,7 @@
           <AbstractNodeData Name="resbox" ActionTag="1214179370" Tag="87" IconVisible="False" LeftMargin="121.0100" RightMargin="473.9900" TopMargin="605.8041" BottomMargin="549.1959" ctype="SpriteObjectData">
             <Size X="125.0000" Y="125.0000" />
             <Children>
-              <AbstractNodeData Name="res" ActionTag="-1431564977" Tag="73" IconVisible="False" LeftMargin="8.0000" RightMargin="8.0000" TopMargin="8.0000" BottomMargin="8.0000" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="res" ActionTag="-1431564977" Tag="73" IconVisible="False" LeftMargin="8.0000" RightMargin="8.0000" TopMargin="8.0000" BottomMargin="8.0000" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
                 <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="62.5000" Y="62.5000" />

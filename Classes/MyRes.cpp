@@ -103,7 +103,7 @@ ResBase* MyRes::getMyPutOnResByType(int type, std::string whos)
 	return NULL;
 }
 
-void MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescount)
+ResBase* MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescount)
 {
 	int i = 0;
 	for (; i < sizeof(RES_TYPES_CHAR)/sizeof(RES_TYPES_CHAR[0]);i++)
@@ -112,6 +112,7 @@ void MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescou
 			break;
 	}
 
+	ResBase* retres = NULL;
 	if (i >= T_ARMOR && i <= T_FASHION)
 	{
 		Equip* res = new Equip();
@@ -132,6 +133,7 @@ void MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescou
 			res->vec_stones.push_back("o");//用一个占位
 		}
 		vec_MyResources.push_back(res);
+		retres = res;
 	}
 	else if (i >= T_WG && i <= T_NG)
 	{
@@ -148,6 +150,7 @@ void MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescou
 		res->setWhere(inwhere);
 
 		vec_MyResources.push_back(res);
+		retres = res;
 	}
 	else
 	{
@@ -164,9 +167,12 @@ void MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescou
 		DynamicValueInt dvalue;
 		dvalue.setValue(res->getCount().getValue() + count);
 		res->setCount(dvalue);
+		retres = res;
 	}
 	Quest::setAchieveTypeCount(ACHIEVE_GOODS, count, resid);
 	saveData();
+	
+	return retres;
 }
 
 void MyRes::Add(ResBase* res, int count, int inwhere)
