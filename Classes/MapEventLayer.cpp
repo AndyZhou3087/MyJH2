@@ -16,6 +16,9 @@ int maxqupr[5] = { 585,885,985,995,1000 };
 
 USING_NS_CC;
 
+std::vector<EventData> MapEventLayer::vec_eventdata;
+std::map<std::string, EventData> MapEventLayer::map_eventdata;
+
 MapEventLayer::MapEventLayer()
 {
 	lastBetIndex = -1;
@@ -136,6 +139,7 @@ bool MapEventLayer::init(int eventindex)
 
 void MapEventLayer::loadEventData()
 {
+	map_eventdata.clear();
 	int avelv = GlobalInstance::getInstance()->getFightHerosLevel();
 	int i = avelv / 10 + 1;
 	std::string str = StringUtils::format("json/event%d.json", i);
@@ -473,6 +477,7 @@ void MapEventLayer::eventElderExtort()
 
 void MapEventLayer::loadPrData()
 {
+	vec_eventdata.clear();
 	std::map<std::string, EventData>::iterator it;
 	for (it = map_eventdata.begin(); it != map_eventdata.end(); it++)
 	{

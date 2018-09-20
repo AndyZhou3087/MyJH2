@@ -1090,8 +1090,38 @@ void MapBlockScene::doMyStatus()
 
 void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 {
+	MapEventLayer::loadEventData();
+	MapEventLayer::loadPrData();
 	std::vector<MSGAWDSDATA> vec_rewards;
-	for (unsigned int i = 0; i < mbolck->vec_RewardsRes.size(); i++)
+	int r = GlobalInstance::getInstance()->createRandomNum(4) + 0;
+	for (int i = 0; i < r; i++)
+	{
+		std::string resid = MapEventLayer::getDataIdByPr();
+		int m_count = MapEventLayer::getResCountRand(resid);
+		int qu = 0;
+		int t = 0;
+		for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+		{
+			if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+				break;
+		}
+		if (t >= T_ARMOR && t <= T_FASHION)
+		{
+			qu = MapEventLayer::getEquipQuRand(resid);
+		}
+		else if (t >= T_WG && t <= T_NG)
+		{
+			qu = GlobalInstance::map_GF[resid].qu;
+		}
+
+		MSGAWDSDATA wdata;
+		wdata.rid = resid;
+		wdata.count = m_count;
+		wdata.qu = qu;
+		vec_rewards.push_back(wdata);
+	}
+	
+	/*for (unsigned int i = 0; i < mbolck->vec_RewardsRes.size(); i++)
 	{
 		FOURProperty mdata = mbolck->vec_RewardsRes[i];
 
@@ -1104,7 +1134,7 @@ void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 		int r2 = GlobalInstance::getInstance()->createRandomNum(10000);
 		if (r2 < rnd)
 			vec_rewards.push_back(wdata);
-	}
+	}*/
 	if (vec_rewards.size() > 0)
 	{
 		RewardLayer* layer = RewardLayer::create(vec_rewards, MYPACKAGE);

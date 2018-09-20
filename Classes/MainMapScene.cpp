@@ -35,6 +35,11 @@ Scene* MainMapScene::createScene()
 
 bool MainMapScene::init()
 {
+	if (!Layer::init())
+	{
+		return false;
+	}
+
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("mainMapLayer.csb"));
 	this->addChild(csbnode);
 
