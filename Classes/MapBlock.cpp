@@ -62,17 +62,14 @@ void MapBlock::setBuilding(std::string buildname)
 
 void MapBlock::setPosIcon()
 {
-	if (m_postype != 1)
-	{
-		std::string posiconname = StringUtils::format("mappos/postype%d.csb", m_postype);
-		auto posicon = CSLoader::createNode(posiconname);
-		posicon->setPosition(Vec2(this->getContentSize().width / 2, this->getContentSize().height / 2 - 10));
-		this->addChild(posicon, 0, "posicon");
+	std::string posiconname = StringUtils::format("mappos/postype%d.csb", m_postype);
+	auto posicon = CSLoader::createNode(posiconname);
+	posicon->setPosition(Vec2(this->getContentSize().width / 2, this->getContentSize().height / 2 - 10));
+	this->addChild(posicon, 0, "posicon");
 
-		auto action = CSLoader::createTimeline(posiconname);
-		posicon->runAction(action);
-		action->gotoFrameAndPlay(0, true);
-	}
+	auto action = CSLoader::createTimeline(posiconname);
+	posicon->runAction(action);
+	action->gotoFrameAndPlay(0, true);
 }
 
 void MapBlock::removePosIcon()

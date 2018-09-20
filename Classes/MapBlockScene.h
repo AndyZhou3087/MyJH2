@@ -187,6 +187,9 @@ private:
 
 	cocos2d::ui::Widget* keybtnArr[4];
 	cocos2d::ui::Widget* gocitybtn;
+
+	std::vector<MapBlock*> vec_normalBlocks;
+	std::vector<MapBlock*> vec_monsterBlocks;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

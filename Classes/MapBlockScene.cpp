@@ -156,6 +156,54 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	map_mapBlocks[randStartPos]->setPosIcon();
 
+	std::map<int, MapBlock*>::iterator it;
+
+	for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+	{
+		MapBlock* block = map_mapBlocks[it->first];
+		if (block->getPosType() == POS_NOTHING && block->getWalkable())
+			vec_normalBlocks.push_back(block);
+	}
+
+	std::random_shuffle(vec_normalBlocks.begin(), vec_normalBlocks.end());
+
+	int tcount = vec_normalBlocks.size()/10;
+
+	int mcount = 0;
+	std::vector<MapBlock*>::iterator mit;
+
+	for (mit = vec_normalBlocks.begin(); mit != vec_normalBlocks.end();)
+	{
+
+		if (mcount >= tcount)
+			break;
+
+		bool ret = true;
+
+		for (unsigned int i = 0; i < vec_monsterBlocks.size(); i++)
+		{
+			int off = abs((*mit)->Row - vec_monsterBlocks[i]->Row) + abs((*mit)->Col - vec_monsterBlocks[i]->Col);
+			if (off <= 3)
+			{
+				ret = false;
+				break;
+			}
+		}
+		if (ret)
+		{
+			vec_monsterBlocks.push_back(*mit);
+			count++;
+		}
+		mit = vec_normalBlocks.erase(mit);
+
+	}
+
+	for (unsigned int i = 0; i < vec_monsterBlocks.size(); i++)
+	{
+		vec_monsterBlocks[i]->setPosType(POS_MONSTER);
+		vec_monsterBlocks[i]->setPosIcon();
+	}
+
 	setMyPos();
 
 	updateLabel(0);
@@ -977,9 +1025,11 @@ void MapBlockScene::doMyStatus()
 		{
 			creatNpcOrBoss(mapblock);
 		}
-		else if (mapblock->getPosType() == POS_NOTHING)
+		else if (mapblock->getPosType() == POS_MONSTER)
 		{
 			createRndMonsters();
+			mapblock->setPosType(POS_NOTHING);
+			mapblock->removePosIcon();
 		}
 		else if (mapblock->getPosType() == POS_BOX)
 		{
@@ -1071,83 +1121,146 @@ void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 
 void MapBlockScene::createRndMonsters()
 {
-	int r = 100;
-	
-	if (walkcount > 1)
-		r = GlobalInstance::getInstance()->createRandomNum(100);
-	if (r < monsterComeRnd/3)
+	//int r = 100;
+	//
+	//if (walkcount > 1)
+	//	r = GlobalInstance::getInstance()->createRandomNum(100);
+	//if (r < monsterComeRnd/3)
+	//{
+	//	monsterComeRnd = DEFAULTRND;
+	//	walkcount = 0;
+	//	int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
+	//	for (int i = 0; i < rndcount; i++)
+	//	{
+	//		int r1 = GlobalInstance::getInstance()->createRandomNum(100);
+	//		int rnd = 0;
+	//		for (unsigned int m = 0; m < MapBlock::vec_randMonsters.size(); m++)
+	//		{
+	//			FOURProperty propty = MapBlock::vec_randMonsters[m];
+	//			rnd += propty.floatPara3;
+	//			if (r1 < rnd)
+	//			{
+	//				int minlv = propty.intPara1 / 1000;
+	//				int maxlv = propty.intPara1 % 1000;
+	//				int minqu = propty.intPara2 / 1000;
+	//				int maxqu = propty.intPara2 % 1000;
+	//				int rlv = minlv + GlobalInstance::getInstance()->createRandomNum(maxlv - minlv + 1);
+	//				int rqu = minqu + GlobalInstance::getInstance()->createRandomNum(maxqu - minqu + 1);
+
+	//				Npc* enemyhero = new Npc();
+	//				std::string sid = MapBlock::vec_randMonsters[m].sid;
+	//				enemyhero->setId(sid);
+	//				enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
+	//				enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
+	//				enemyhero->setPotential(rqu);
+	//				enemyhero->setLevel(rlv - 1);
+	//				enemyhero->setHp(enemyhero->getMaxHp());
+	//				vec_enemys.push_back(enemyhero);
+	//				break;
+	//			}
+	//		}
+
+	//	}
+
+	//	for (unsigned int i = 0; i < MapBlock::vec_randMonstersRes.size(); i++)
+	//	{
+	//		FOURProperty propty = MapBlock::vec_randMonstersRes[i];
+	//		int rnd = propty.floatPara3 * 100;
+	//		int r2 = GlobalInstance::getInstance()->createRandomNum(10000);
+	//		if (r2 < rnd)
+	//			vec_winrewards.push_back(propty);
+	//	}
+	//}
+
+	int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
+	for (int i = 0; i < rndcount; i++)
 	{
-		monsterComeRnd = DEFAULTRND;
-		walkcount = 0;
-		int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
-		for (int i = 0; i < rndcount; i++)
+		int r1 = GlobalInstance::getInstance()->createRandomNum(100);
+		int rnd = 0;
+		for (unsigned int m = 0; m < MapBlock::vec_randMonsters.size(); m++)
 		{
-			int r1 = GlobalInstance::getInstance()->createRandomNum(100);
-			int rnd = 0;
-			for (unsigned int m = 0; m < MapBlock::vec_randMonsters.size(); m++)
+			FOURProperty propty = MapBlock::vec_randMonsters[m];
+			rnd += propty.floatPara3;
+			if (r1 < rnd)
 			{
-				FOURProperty propty = MapBlock::vec_randMonsters[m];
-				rnd += propty.floatPara3;
-				if (r1 < rnd)
-				{
-					int minlv = propty.intPara1 / 1000;
-					int maxlv = propty.intPara1 % 1000;
-					int minqu = propty.intPara2 / 1000;
-					int maxqu = propty.intPara2 % 1000;
-					int rlv = minlv + GlobalInstance::getInstance()->createRandomNum(maxlv - minlv + 1);
-					int rqu = minqu + GlobalInstance::getInstance()->createRandomNum(maxqu - minqu + 1);
+				int minlv = propty.intPara1 / 1000;
+				int maxlv = propty.intPara1 % 1000;
+				int minqu = propty.intPara2 / 1000;
+				int maxqu = propty.intPara2 % 1000;
+				int rlv = minlv + GlobalInstance::getInstance()->createRandomNum(maxlv - minlv + 1);
+				int rqu = minqu + GlobalInstance::getInstance()->createRandomNum(maxqu - minqu + 1);
 
-					Npc* enemyhero = new Npc();
-					std::string sid = MapBlock::vec_randMonsters[m].sid;
-					enemyhero->setId(sid);
-					enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
-					enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
-					enemyhero->setPotential(rqu);
-					enemyhero->setLevel(rlv - 1);
-					enemyhero->setHp(enemyhero->getMaxHp());
-					vec_enemys.push_back(enemyhero);
-					break;
-				}
+				Npc* enemyhero = new Npc();
+				std::string sid = MapBlock::vec_randMonsters[m].sid;
+				enemyhero->setId(sid);
+				enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
+				enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
+				enemyhero->setPotential(rqu);
+				enemyhero->setLevel(rlv - 1);
+				enemyhero->setHp(enemyhero->getMaxHp());
+				vec_enemys.push_back(enemyhero);
+				break;
 			}
-
 		}
 
-		for (unsigned int i = 0; i < MapBlock::vec_randMonstersRes.size(); i++)
-		{
-			FOURProperty propty = MapBlock::vec_randMonstersRes[i];
-			int rnd = propty.floatPara3 * 100;
-			int r2 = GlobalInstance::getInstance()->createRandomNum(10000);
-			if (r2 < rnd)
-				vec_winrewards.push_back(propty);
-		}
+	}
+
+	for (unsigned int i = 0; i < MapBlock::vec_randMonstersRes.size(); i++)
+	{
+		FOURProperty propty = MapBlock::vec_randMonstersRes[i];
+		int rnd = propty.floatPara3 * 100;
+		int r2 = GlobalInstance::getInstance()->createRandomNum(10000);
+		if (r2 < rnd)
+			vec_winrewards.push_back(propty);
 	}
 
 }
 
 void MapBlockScene::creatNpcOrBoss(MapBlock* mbolck)
 {
-	int r1 = GlobalInstance::getInstance()->createRandomNum(100);
-	if (r1 < mbolck->getPosNpcRnd())
+	//int r1 = GlobalInstance::getInstance()->createRandomNum(100);
+	//if (r1 < mbolck->getPosNpcRnd())
+	//{
+	//	for (unsigned int m = 0; m < 6; m++)
+	//	{
+	//		FOURProperty propty = mbolck->npcs[m];
+	//		if (propty.sid.length() <= 0)
+	//		{
+	//			vec_enemys.push_back(NULL);
+	//		}
+	//		else
+	//		{
+	//			Npc* enemyhero = new Npc();
+	//			std::string sid = propty.sid;
+	//			enemyhero->setId(sid);
+	//			enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
+	//			enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
+	//			enemyhero->setPotential(propty.intPara1);
+	//			enemyhero->setLevel(propty.intPara2 - 1);
+	//			enemyhero->setHp(enemyhero->getMaxHp());
+	//			vec_enemys.push_back(enemyhero);
+	//		}
+	//	}
+	//}
+
+	for (unsigned int m = 0; m < 6; m++)
 	{
-		for (unsigned int m = 0; m < 6; m++)
+		FOURProperty propty = mbolck->npcs[m];
+		if (propty.sid.length() <= 0)
 		{
-			FOURProperty propty = mbolck->npcs[m];
-			if (propty.sid.length() <= 0)
-			{
-				vec_enemys.push_back(NULL);
-			}
-			else
-			{
-				Npc* enemyhero = new Npc();
-				std::string sid = propty.sid;
-				enemyhero->setId(sid);
-				enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
-				enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
-				enemyhero->setPotential(propty.intPara1);
-				enemyhero->setLevel(propty.intPara2 - 1);
-				enemyhero->setHp(enemyhero->getMaxHp());
-				vec_enemys.push_back(enemyhero);
-			}
+			vec_enemys.push_back(NULL);
+		}
+		else
+		{
+			Npc* enemyhero = new Npc();
+			std::string sid = propty.sid;
+			enemyhero->setId(sid);
+			enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
+			enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
+			enemyhero->setPotential(propty.intPara1);
+			enemyhero->setLevel(propty.intPara2 - 1);
+			enemyhero->setHp(enemyhero->getMaxHp());
+			vec_enemys.push_back(enemyhero);
 		}
 	}
 
