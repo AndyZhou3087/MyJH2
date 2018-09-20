@@ -72,13 +72,13 @@
             <FileData Type="Normal" Path="images/loadingpoint.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="logo" ActionTag="-944981589" Tag="44" IconVisible="False" LeftMargin="82.0001" RightMargin="81.9999" TopMargin="125.0000" BottomMargin="915.0000" ctype="SpriteObjectData">
-            <Size X="556.0000" Y="240.0000" />
+          <AbstractNodeData Name="logo" ActionTag="-944981589" Tag="44" IconVisible="False" LeftMargin="127.5000" RightMargin="37.5000" TopMargin="116.5000" BottomMargin="906.5000" ctype="SpriteObjectData">
+            <Size X="555.0000" Y="257.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0001" Y="1035.0000" />
+            <Position X="405.0000" Y="1035.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.8086" />
+            <PrePosition X="0.5625" Y="0.8086" />
             <PreSize X="0.7722" Y="0.1875" />
             <FileData Type="Normal" Path="logo.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
