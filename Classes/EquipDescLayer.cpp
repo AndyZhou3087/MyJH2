@@ -67,11 +67,27 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	smallbg->setSwallowTouches(true);
 
 	cocos2d::ui::ImageView* resbox_qu = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox_qu");
+
+	std::string qustr;
 	int s = m_res->getQU().getValue();
-	std::string qustr = StringUtils::format("ui/resbox_qu%d.png", s);
-	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
+	int t = 0;
+	for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+	{
+		if (m_res->getId().compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+			break;
+	}
+	if (t >= T_ARMOR && t <= T_NG)
+	{
+		qustr = StringUtils::format("ui/resbox_qu%d.png", s);
+	}
+	else if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
+	{
+		s = atoi(m_res->getId().substr(1).c_str()) - 1;
+		qustr = StringUtils::format("ui/resbox_qu%d.png", s);
+	}
 
 	CommonFuncs::playResBoxEffect(resbox_qu, s);
+	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	std::string str = GlobalInstance::getInstance()->getResUIFrameName(res->getId(), s);
@@ -255,6 +271,10 @@ void EquipDescLayer::showNewerGuide(int step)
 
 void EquipDescLayer::updateAttr()
 {
+	if (!(m_res->getType() >= T_ARMOR && m_res->getType() <= T_NG))
+	{
+		return;
+	}
 	std::vector<float> vec_attrval;
 
 	vec_attrval.push_back(m_res->getHp());

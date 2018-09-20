@@ -135,6 +135,8 @@ void HospitalLayer::updateContent()
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	silvertext->setString(str);
 
+	int scrollpos = scrollview->getScrolledPercentVertical();
+
 	scrollview->removeAllChildrenWithCleanup(true);
 	vec_deadheros.clear();
 	vec_deadNodes.clear();
@@ -170,4 +172,6 @@ void HospitalLayer::updateContent()
 		//node->setPosition(Vec2(319, innerheight - i*itemheight - itemheight*0.5));
 		vec_deadNodes.push_back(node);
 	}
+
+	scrollview->jumpToPercentVertical(scrollpos);
 }

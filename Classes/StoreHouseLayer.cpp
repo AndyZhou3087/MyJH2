@@ -158,7 +158,7 @@ void StoreHouseLayer::updateContent(int category)
 			CC_CALLBACK_1(StoreHouseLayer::onclick, this));
 		boxItem->setUserData((void*)map_cateRes[category][m]);
 
-		boxItem->setPosition(Vec2(qubox->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
+		boxItem->setPosition(Vec2(qubox->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight + 5));
 
 		MyMenu* menu = MyMenu::create();
 		menu->addChild(boxItem);

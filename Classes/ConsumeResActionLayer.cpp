@@ -328,7 +328,8 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 					std::map<std::string, int> map_res = vec_res[i];
 					std::map<std::string, int>::iterator map_it = map_res.begin();
 					std::string resid = map_it->first;
-					MyRes::Use(resid, map_res[resid]);
+					ResBase* res = MyRes::getMyRes(resid);
+					MyRes::Use(res, map_res[resid]);
 				}
 				action();
 
