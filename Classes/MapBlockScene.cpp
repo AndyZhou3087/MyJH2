@@ -1143,7 +1143,7 @@ void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 	
 	if (vec_rewards.size() > 0)
 	{
-		RewardLayer* layer = RewardLayer::create(vec_rewards, MYPACKAGE);
+		RewardLayer* layer = RewardLayer::create(vec_rewards);
 		this->addChild(layer);
 		AnimationEffect::openAniEffect(layer);
 	}

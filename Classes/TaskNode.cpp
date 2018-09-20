@@ -57,8 +57,8 @@ bool TaskNode::init(TaskData* data, int type)
 	namelbl->setString(data->name);
 
 	//ÌáÊ¾ºìµã
-	redpoint = (cocos2d::ui::Widget*)csbnode->getChildByName("redpoint");
-	redtip = (cocos2d::ui::Widget*)csbnode->getChildByName("redtip");
+	redpoint = (cocos2d::ui::Widget*)csbnode->getChildByName("redtip");
+	redtip = (cocos2d::ui::Widget*)csbnode->getChildByName("redpoint");
 	redtip->setVisible(false);
 
 	//
