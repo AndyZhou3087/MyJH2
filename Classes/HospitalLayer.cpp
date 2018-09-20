@@ -173,5 +173,8 @@ void HospitalLayer::updateContent()
 		vec_deadNodes.push_back(node);
 	}
 
-	scrollview->jumpToPercentVertical(scrollpos);
+	if (scrollpos > 0)
+	{
+		scrollview->jumpToPercentVertical(scrollpos);
+	}
 }

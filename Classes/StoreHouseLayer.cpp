@@ -395,7 +395,10 @@ void StoreHouseLayer::decompose(ResBase* res)
 
 		float scrollpos = scrollview->getScrolledPercentVertical();
 		updateContent(lastCategoryindex);
-		scrollview->jumpToPercentVertical(scrollpos);
+		if (scrollpos > 0)
+		{
+			scrollview->jumpToPercentVertical(scrollpos);
+		}
 
 		Quest::setDailyTask(DECOMPOSE_EQUIP, 1);
 		Quest::setAchieveTypeCount(DECOMPOSE_EQUIP, 1);

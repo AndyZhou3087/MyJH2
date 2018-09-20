@@ -98,6 +98,8 @@ bool TaskLayer::init()
 	updateQuestTip();
 	updateContent(0);
 
+	loadData(2);//先让每日任务积分图标变灰
+
 	updateDaily(0);
 	this->schedule(schedule_selector(TaskLayer::updateDaily), 1.0f);
 
