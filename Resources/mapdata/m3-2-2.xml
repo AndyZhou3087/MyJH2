@@ -15,7 +15,7 @@
     <ma id="s002" c="2" qu="0">20.00</ma>
   </Monstors>
   <Cells rs="35" cs="35">
-    <Cell c="0" r="0" p="-1" w="1" m="89.png" />
+    <Cell c="0" r="0" p="5" w="1" m="89.png" />
     <Cell c="0" r="1" p="-1" w="1" m="88.png" />
     <Cell c="0" r="2" p="-1" w="1" m="88.png" />
     <Cell c="0" r="3" p="-1" w="1" m="88.png" />
@@ -159,7 +159,7 @@
     <Cell c="4" r="1" p="-1" w="1" m="94.png" />
     <Cell c="4" r="2" p="-1" w="1" m="94.png" />
     <Cell c="4" r="3" p="-1" w="0" m="96.png" />
-    <Cell c="4" r="4" p="-1" w="1" m="94.png" />
+    <Cell c="4" r="4" p="5" w="1" m="94.png" />
     <Cell c="4" r="5" p="-1" w="1" m="94.png" />
     <Cell c="4" r="6" p="-1" w="1" m="94.png" />
     <Cell c="4" r="7" p="-1" w="1" m="94.png" />
@@ -1074,7 +1074,7 @@
     <Cell c="29" r="28" p="-1" w="0" m="94.png" d="26.png" />
     <Cell c="29" r="29" p="-1" w="1" m="94.png" />
     <Cell c="29" r="30" p="-1" w="0" m="94.png" d="30.png" />
-    <Cell c="29" r="31" p="-1" w="1" m="94.png" />
+    <Cell c="29" r="31" p="5" w="1" m="94.png" />
     <Cell c="29" r="32" p="-1" w="0" m="84.png" />
     <Cell c="29" r="33" p="-1" w="0" m="91.png" />
     <Cell c="29" r="34" p="-1" w="0" m="94.png" d="23.png" />
