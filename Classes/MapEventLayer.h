@@ -28,21 +28,22 @@ public:
 	static MapEventLayer* create(int eventindex);
 	virtual void onExit();
     bool init(int eventindex);
-	std::string getDataIdByPr();//随机获取数据
-	int getEquipQuRand(std::string resid);//随机装备品质
-	int getResCountRand(std::string id);//随机数量
+	static std::string getDataIdByPr();//随机获取数据
+	static int getEquipQuRand(std::string resid);//随机装备品质
+	static int getResCountRand(std::string id);//随机数量
 	void continueGamble();
 	void updateCoin(float dt);
+
+	static void loadEventData();
+	static void loadPrData();
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void boxEventNode();
 	void eventNothing();
 	void eventHurt();
-
-	void loadPrData();
-	int getAllPr();//获取总概率
-	int getEventMaxQu(int maxqu);
+	static int getAllPr();//获取总概率
+	static int getEventMaxQu(int maxqu);
 
 	static bool larger_callback(EventData a, EventData b);
 
@@ -54,8 +55,6 @@ private:
 	void openDice(float dt);
 	void playGamblebox(float dt);
 
-	void loadEventData();
-
 private:
 	Node* eventnode_1;
 	Node* eventnode_2;
@@ -64,7 +63,7 @@ private:
 	Node* animnode;
 
 	cocos2d::ui::ImageView* eventimg;
-	std::vector<EventData> vec_eventdata;
+	static std::vector<EventData> vec_eventdata;
 	std::vector<std::vector<std::string>> vec_eventrewards;
 	cocos2d::ui::Widget* betselectArr[2];
 	cocos2d::ui::ImageView* betArr[2];
@@ -81,7 +80,7 @@ private:
 	int isWin;
 	int hdcount;//事件死亡数
 
-	std::map<std::string, EventData> map_eventdata;
+	static std::map<std::string, EventData> map_eventdata;
 };
 
 #endif
