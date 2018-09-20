@@ -1341,13 +1341,13 @@ void MapBlockScene::showFightResult(int result)
 		if (map_mapBlocks[bindex]->getPosType() == POS_BOSS)
 		{
 			map_mapBlocks[bindex]->removePosIcon();
-			map_mapBlocks[bindex]->setPosNpcRnd(0);
+			map_mapBlocks[bindex]->setPosType(POS_NOTHING);
 			openAllMap();
 		}
 		else if (map_mapBlocks[bindex]->getPosType() == POS_TBOSS)
 		{
 			map_mapBlocks[bindex]->removePosIcon();
-			map_mapBlocks[bindex]->setPosNpcRnd(0);
+			map_mapBlocks[bindex]->setPosType(POS_NOTHING);
 		}
 	}
 
