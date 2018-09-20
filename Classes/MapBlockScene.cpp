@@ -161,7 +161,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
 	{
 		MapBlock* block = map_mapBlocks[it->first];
-		if (block->getPosType() == POS_NOTHING && block->getWalkable())
+		if (block->getPosType() == POS_NOTHING && block->getWalkable() && block->map_eventrnd.size() <= 0)
 			vec_normalBlocks.push_back(block);
 	}
 
