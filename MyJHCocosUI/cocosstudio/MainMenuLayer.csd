@@ -467,20 +467,20 @@
                 <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="74.0000" Y="76.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <Scale ScaleX="1.3000" ScaleY="1.3000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5068" Y="0.5205" />
                 <PreSize X="0.7466" Y="0.7466" />
                 <FileData Type="MarkedSubImage" Path="ui/vip1.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="text" ActionTag="1674110561" Tag="98" IconVisible="False" LeftMargin="75.8564" RightMargin="1.1436" TopMargin="100.5000" BottomMargin="4.5000" FontSize="32" LabelText="20天" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="69.0000" Y="41.0000" />
+              <AbstractNodeData Name="text" ActionTag="1674110561" Tag="98" IconVisible="False" LeftMargin="75.8564" RightMargin="-5.8564" TopMargin="99.0000" BottomMargin="3.0000" FontSize="35" LabelText="20天" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="76.0000" Y="44.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="75.8564" Y="25.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5196" Y="0.1712" />
-                <PreSize X="0.4726" Y="0.2808" />
+                <PreSize X="0.5205" Y="0.3014" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="159" G="101" B="44" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
@@ -494,27 +494,27 @@
             <PreSize X="0.2028" Y="0.1141" />
             <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="vip2btn" ActionTag="-1446059751" Tag="107" IconVisible="False" LeftMargin="9.6725" RightMargin="564.3275" TopMargin="250.6796" BottomMargin="883.3204" TouchEnable="True" LeftEage="48" RightEage="48" TopEage="48" BottomEage="48" Scale9OriginX="48" Scale9OriginY="48" Scale9Width="50" Scale9Height="50" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="vip2btn" ActionTag="-1446059751" Tag="107" IconVisible="False" LeftMargin="9.6725" RightMargin="564.3275" TopMargin="250.6797" BottomMargin="883.3204" TouchEnable="True" LeftEage="48" RightEage="48" TopEage="48" BottomEage="48" Scale9OriginX="48" Scale9OriginY="48" Scale9Width="50" Scale9Height="50" ctype="ImageViewObjectData">
             <Size X="146.0000" Y="146.0000" />
             <Children>
               <AbstractNodeData Name="icon" ActionTag="958928047" Tag="109" IconVisible="False" LeftMargin="19.5000" RightMargin="17.5000" TopMargin="15.5000" BottomMargin="21.5000" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
                 <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="74.0000" Y="76.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <Scale ScaleX="1.3000" ScaleY="1.3000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5068" Y="0.5205" />
                 <PreSize X="0.7466" Y="0.7466" />
                 <FileData Type="MarkedSubImage" Path="ui/vip0.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="text" ActionTag="1984423007" Tag="100" IconVisible="False" LeftMargin="72.1530" RightMargin="4.8470" TopMargin="100.5000" BottomMargin="4.5000" FontSize="32" LabelText="20天" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="69.0000" Y="41.0000" />
+              <AbstractNodeData Name="text" ActionTag="1984423007" Tag="100" IconVisible="False" LeftMargin="72.1530" RightMargin="-2.1530" TopMargin="99.0000" BottomMargin="3.0000" FontSize="35" LabelText="20天" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="76.0000" Y="44.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="72.1530" Y="25.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4942" Y="0.1712" />
-                <PreSize X="0.4726" Y="0.2808" />
+                <PreSize X="0.5205" Y="0.3014" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="72" G="105" B="132" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
