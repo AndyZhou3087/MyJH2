@@ -74,15 +74,19 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 	//°´Å¥1
 	cocos2d::ui::Button* accbtn1 = (cocos2d::ui::Button*)csbnode->getChildByName("accbtn1");
 	accbtn1->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onBtnClick, this));
+	accbtn1->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
+
 	//°´Å¥2
 	cocos2d::ui::Button* accbtn2 = (cocos2d::ui::Button*)csbnode->getChildByName("accbtn2");
 	accbtn2->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onBtnClick, this));
+	accbtn2->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 
 	//°´Å¥3
 	cocos2d::ui::Button* accbtn3 = (cocos2d::ui::Button*)csbnode->getChildByName("accbtn3");
 	accbtn3->setTag(0);
 	accbtn3->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onBtnClick, this));
 	accbtn3->setTitleText(ResourceLang::map_lang["changeclosetext"]);
+	accbtn3->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 
 	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox")->getChildByName("res");
 	std::string respath = StringUtils::format("ui/%s.png", needresid.c_str());

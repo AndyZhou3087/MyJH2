@@ -50,6 +50,7 @@ bool MapBlock::init(int row, int col, std::string boardName)
 
 void MapBlock::setBuilding(std::string buildname)
 {
+	m_buildname = buildname;
 	if (buildname.length() > 0)
 	{
 		std::string filename = StringUtils::format("mapui/buildblock_%s", buildname.c_str());
@@ -64,8 +65,18 @@ void MapBlock::setPosIcon()
 {
 	std::string posiconname = StringUtils::format("mappos/postype%d.csb", m_postype);
 	auto posicon = CSLoader::createNode(posiconname);
-	posicon->setPosition(Vec2(this->getContentSize().width / 2, this->getContentSize().height / 2 - 10));
-	this->addChild(posicon, 0, "posicon");
+
+	if (m_buildname.compare("26") == 0 || m_buildname.compare("27") == 0)//特殊处理草-可以占在草里，不这样，桥上有问题
+	{
+		posicon->setPosition(Vec2(this->getContentSize().width / 2, this->getContentSize().height / 2 - 10));
+		this->addChild(posicon, 0, "posicon");
+	}
+	else
+	{
+		posicon->setPosition(Vec2(Col*MAPBLOCKWIDTH + MAPBLOCKWIDTH/2, Row*MAPBLOCKHEIGHT + MAPBLOCKHEIGHT/2));
+		std::string posname = StringUtils::format("posicon%d", this->getLocalZOrder());
+		this->getParent()->addChild(posicon, this->getLocalZOrder() + 10001, posname);
+	}
 
 	auto action = CSLoader::createTimeline(posiconname);
 	posicon->runAction(action);
@@ -74,5 +85,11 @@ void MapBlock::setPosIcon()
 
 void MapBlock::removePosIcon()
 {
-	this->removeChildByName("posicon");
+	if (m_buildname.compare("26") == 0 || m_buildname.compare("27") == 0)//特殊处理草-可以占在草里，不这样，桥上有问题
+		this->removeChildByName("posicon");
+	else
+	{
+		std::string posname = StringUtils::format("posicon%d", this->getLocalZOrder());
+		this->getParent()->removeChildByName(posname);
+	}
 }
