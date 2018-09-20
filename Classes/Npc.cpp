@@ -74,3 +74,13 @@ void Npc::clearSkill(GongFa* gf)
 	if (gf != NULL)
 		gf->setSkillCount(0);
 }
+
+void Npc::setFightRound(int count)
+{
+	m_fightround = count;
+}
+
+int Npc::getFightRound()
+{
+	return m_fightround;
+}

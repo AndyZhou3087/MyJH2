@@ -163,7 +163,7 @@ bool OutTownLayer::init()
 bool OutTownLayer::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
 	clickHero = -1;
-	auto touchPos = touch->getLocation();
+	beginTouchPoint = touch->getLocation();
 	for (int i = 0; i < 6; i++)
 	{
 		if (GlobalInstance::myCardHeros[i] != NULL)
@@ -171,7 +171,7 @@ bool OutTownLayer::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_ev
 			float x = m_myCardHerosNode[i]->getPositionX();
 			float y = m_myCardHerosNode[i]->getPositionY();
 
-			if (touchPos.x >= x - 70 && touchPos.x <= x + 70 && touchPos.y >= y - 70 && touchPos.y <= y + 70)
+			if (beginTouchPoint.x >= x - 70 && beginTouchPoint.x <= x + 70 && beginTouchPoint.y >= y - 70 && beginTouchPoint.y <= y + 70)
 			{
 				m_myCardHerosNode[i]->setLocalZOrder(2);
 				clickHero = i;
@@ -185,11 +185,15 @@ bool OutTownLayer::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_ev
 
 void OutTownLayer::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
-	if (clickHero >= 0)
+	auto movedPoint = touch->getLocation();
+	if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
 	{
-		auto touchPos = touch->getLocation();
-		m_myCardHerosNode[clickHero]->setPosition(touchPos);
-		m_myCardHerosNode[clickHero]->setIsDrading(true);
+		if (clickHero >= 0)
+		{
+			auto touchPos = touch->getLocation();
+			m_myCardHerosNode[clickHero]->setPosition(touchPos);
+			m_myCardHerosNode[clickHero]->setIsDrading(true);
+		}
 	}
 }
 
@@ -245,6 +249,7 @@ void OutTownLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_ev
 		if (!ischange)
 		{
 			m_myCardHerosNode[clickHero]->setPosition(Vec2(140 + clickHero % 3 * 215, /*745 + */1060 - clickHero / 3 * 250));
+			m_myCardHerosNode[clickHero]->setLocalZOrder(1);
 		}
 		clickHero = -1;
 	}

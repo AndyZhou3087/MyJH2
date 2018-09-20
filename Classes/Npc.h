@@ -47,6 +47,12 @@ public:
 
 	virtual void clearSkill(GongFa* gf);
 
+	virtual void setFightRound(int count);
+
+	virtual int getFightRound();
+
+protected:
+	int m_fightround;//战斗回合数
 
 public:
 	std::vector<int> vec_whosufferskill;//施放给谁

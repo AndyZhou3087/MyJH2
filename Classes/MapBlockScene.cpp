@@ -979,7 +979,7 @@ void MapBlockScene::doMyStatus()
 		}
 		else if (mapblock->getPosType() == POS_NOTHING)
 		{
-			//createRndMonsters();
+			createRndMonsters();
 		}
 		else if (mapblock->getPosType() == POS_BOX)
 		{

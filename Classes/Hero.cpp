@@ -420,16 +420,31 @@ GongFa* Hero::checkSkillWg()
 
 		if (gf != NULL && GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1)
 		{
-			int r = GlobalInstance::getInstance()->createRandomNum(100);
 			//新手引导100%放技能
 			if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
 			{
-				r = -1;
-			}
-			if (r < GlobalInstance::map_GF[gf->getId()].skillrnd)
-			{
 				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
 				return gf;
+			}
+
+			if (i == 0)
+			{ 
+				if (m_fightround == GlobalInstance::map_GF[gf->getId()].skillrnd)
+				{
+					m_fightround = 0;
+					gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+					return gf;
+				}
+			}
+			else
+			{
+				int r = GlobalInstance::getInstance()->createRandomNum(100);
+
+				if (r < GlobalInstance::map_GF[gf->getId()].skillrnd)
+				{
+					gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+					return gf;
+				}
 			}
 		}
 	}

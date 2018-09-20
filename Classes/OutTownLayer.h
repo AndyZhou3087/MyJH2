@@ -47,6 +47,7 @@ private:
 	Node* m_longTouchNode;
 	cocos2d::ui::Button* actionbtn;
 	int clickHero;
+	Vec2 beginTouchPoint;
 };
 
 #endif

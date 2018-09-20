@@ -99,7 +99,7 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 		{
 			FightHeroNode * fightHeroNode = FightHeroNode::create();
 			fightHeroNode->setPosition(145 + i % 3 * 215, 460 - i / 3 * 260);
-
+			GlobalInstance::myCardHeros[i]->setFightRound(0);
 			fightHeroNode->setData(GlobalInstance::myCardHeros[i], F_HERO, FS_FIGHTING);
 			addChild(fightHeroNode, 2, i);
 		}
@@ -419,6 +419,7 @@ void FightingLayer::showAtk(int fightertag)
 				if (r < dodge * 100)
 				{
 					enemyfnode->hurt(0, 2);
+					myhero->setFightRound(myhero->getFightRound() + 1);
 					SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DODGE);
 					return;
 				}
@@ -485,6 +486,7 @@ void FightingLayer::showAtk(int fightertag)
 				{
 					SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_ATK);
 				}
+				myhero->setFightRound(myhero->getFightRound() + 1);
 				enemyfnode->hurt(atkhp, state);
 			}
 		}
