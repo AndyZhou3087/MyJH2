@@ -16,7 +16,7 @@
             <PreSize X="0.8333" Y="0.5172" />
             <FileData Type="Normal" Path="images/smallbg.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="accbtn1" ActionTag="-1278662692" Tag="113" IconVisible="False" LeftMargin="137.2281" RightMargin="142.7719" TopMargin="789.3252" BottomMargin="364.6748" TouchEnable="True" FontSize="30" ButtonText="转职为剑客" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="accbtn1" ActionTag="-1278662692" Tag="113" IconVisible="False" LeftMargin="137.2281" RightMargin="142.7719" TopMargin="789.3252" BottomMargin="364.6748" TouchEnable="True" FontSize="28" ButtonText="转职为剑客" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="440.0000" Y="126.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="357.2281" Y="427.6748" />
@@ -32,7 +32,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="accbtn2" ActionTag="680774181" Tag="114" IconVisible="False" LeftMargin="137.2281" RightMargin="142.7719" TopMargin="931.3575" BottomMargin="222.6425" TouchEnable="True" FontSize="30" ButtonText="转职为刀客" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="accbtn2" ActionTag="680774181" Tag="114" IconVisible="False" LeftMargin="137.2281" RightMargin="142.7719" TopMargin="931.3575" BottomMargin="222.6425" TouchEnable="True" FontSize="28" ButtonText="转职为刀客" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="440.0000" Y="126.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="357.2281" Y="285.6425" />
@@ -129,7 +129,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="43" G="30" B="20" />
           </AbstractNodeData>
-          <AbstractNodeData Name="accbtn3" ActionTag="573861771" Tag="94" IconVisible="False" LeftMargin="138.8065" RightMargin="141.1935" TopMargin="1070.2952" BottomMargin="83.7049" TouchEnable="True" FontSize="30" ButtonText="再考虑一下…" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="accbtn3" ActionTag="573861771" Tag="94" IconVisible="False" LeftMargin="138.8065" RightMargin="141.1935" TopMargin="1070.2952" BottomMargin="83.7049" TouchEnable="True" FontSize="28" ButtonText="再考虑一下…" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="410" Scale9Height="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="440.0000" Y="126.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="358.8065" Y="146.7049" />
