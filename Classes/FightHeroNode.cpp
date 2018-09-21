@@ -1,6 +1,7 @@
 ﻿#include "FightHeroNode.h"
 #include "CommonFuncs.h"
 #include "Resource.h"
+#include "Const.h"
 #include "FighterAttrLayer.h"
 #include "FightingLayer.h"
 #include "LoadingBarProgressTimer.h"
@@ -333,8 +334,9 @@ void FightHeroNode::hurt(float hp, int stat)//stat -1:不显示普攻动画
 					showAtkOrHurtAnim(1);
 			}
 			if (hurtup > 0)
+			{
 				numfnt->setString(hurtstr);
-
+			}
 			ActionInterval* ac1 = Spawn::create(Show::create(), FadeIn::create(0.1f), EaseSineIn::create(ScaleTo::create(0.15f, 1)), NULL);
 			statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), NULL));
 		
@@ -671,6 +673,14 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 				s->setVisible(false);
 				this->addChild(s);
 				map_skillattricon[stype].push_back(s);
+
+				Label *lbl = Label::createWithTTF(ResourceLang::map_lang["skillattratkspeedup"], FONT_NAME, 20);
+				lbl->setColor(Color3B(36, 255, 82));
+				lbl->setVisible(false);
+				lbl->setPosition(Vec2(0, 110));
+				lbl->enableOutline(Color4B(67, 105, 44, 255), 2);
+				this->addChild(lbl, 20);
+				map_skillattrlabel[stype].push_back(lbl);
 			}
 			else if (stype == SKILL_12)
 			{
@@ -678,6 +688,15 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 				this->addChild(s);
 				s->setVisible(false);
 				map_skillattricon[stype].push_back(s);
+
+				Label *lbl = Label::createWithTTF(ResourceLang::map_lang["skillattratkup"], FONT_NAME, 20);
+				lbl->setColor(Color3B(36, 255, 82));
+				lbl->setVisible(false);
+				lbl->setPosition(Vec2(0, 110));
+				lbl->enableOutline(Color4B(67, 105, 44, 255), 2);
+				this->addChild(lbl, 20);
+				map_skillattrlabel[stype].push_back(lbl);
+
 			}
 			else if (stype == SKILL_17)
 			{
@@ -689,6 +708,23 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 				this->addChild(s1);
 				s1->setVisible(false);
 				map_skillattricon[stype].push_back(s1);
+
+				Label *lbl = Label::createWithTTF(ResourceLang::map_lang["skillattratkup"], FONT_NAME, 20);
+				lbl->setColor(Color3B(36, 255, 82));
+				lbl->setVisible(false);
+				lbl->setPosition(Vec2(0, 110));
+				lbl->enableOutline(Color4B(67, 105, 44, 255), 2);
+				this->addChild(lbl, 20);
+				map_skillattrlabel[stype].push_back(lbl);
+
+				Label *lbl1 = Label::createWithTTF(ResourceLang::map_lang["skillattrdfdwon"], FONT_NAME, 20);
+				lbl1->setColor(Color3B(255, 61, 61));
+				lbl1->setVisible(false);
+				lbl1->setPosition(Vec2(0, 110));
+				lbl1->enableOutline(Color4B(90, 6, 6, 255), 2);
+				this->addChild(lbl1, 20);
+				map_skillattrlabel[stype].push_back(lbl1);
+
 			}
 			else if (stype == SKILL_18)
 			{
@@ -696,10 +732,19 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 				this->addChild(s);
 				s->setVisible(false);
 				map_skillattricon[stype].push_back(s);
+
+				Label *lbl = Label::createWithTTF(ResourceLang::map_lang["skillattrdfup"], FONT_NAME, 20);
+				lbl->setColor(Color3B(36, 255, 82));
+				lbl->setVisible(false);
+				lbl->setPosition(Vec2(0, 110));
+				lbl->enableOutline(Color4B(67, 105, 44, 255), 2);
+				this->addChild(lbl, 20);
+				map_skillattrlabel[stype].push_back(lbl);
+
 			}
 			if (map_skillattricon.size() > 0)
 			{
-				this->scheduleOnce(schedule_selector(FightHeroNode::showSkillAttrIcon), 0.55f);
+				this->scheduleOnce(schedule_selector(FightHeroNode::showSkillAttrIcon), 0.1f);
 			}
 
 			for (unsigned int i = 0; i < m_Data->vec_whosufferskill.size(); i++)
@@ -713,6 +758,15 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 					fnode->addChild(s);
 					s->setVisible(false);
 					fnode->map_skillattricon[stype].push_back(s);
+
+					Label *lbl = Label::createWithTTF(ResourceLang::map_lang["skillattratkspeeddwon"], FONT_NAME, 20);
+					lbl->setColor(Color3B(255, 61, 61));
+					lbl->setVisible(false);
+					lbl->setPosition(Vec2(0, 110));
+					lbl->enableOutline(Color4B(90, 6, 6, 255), 2);
+					fnode->addChild(lbl, 20);
+					map_skillattrlabel[stype].push_back(lbl);
+
 				}
 				else if (stype == SKILL_11)
 				{
@@ -720,10 +774,18 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 					fnode->addChild(s);
 					s->setVisible(false);
 					fnode->map_skillattricon[stype].push_back(s);
+
+					Label *lbl = Label::createWithTTF(ResourceLang::map_lang["skillattrdfdwon"], FONT_NAME, 20);
+					lbl->setColor(Color3B(255, 61, 61));
+					lbl->setVisible(false);
+					lbl->setPosition(Vec2(0, 110));
+					lbl->enableOutline(Color4B(90, 6, 6, 255), 2);
+					fnode->addChild(lbl, 20);
+					map_skillattrlabel[stype].push_back(lbl);
 				}
 				if (fnode->map_skillattricon[stype].size() > 0)
 				{
-					fnode->scheduleOnce(schedule_selector(FightHeroNode::showSkillAttrIcon), 0.55f);
+					fnode->scheduleOnce(schedule_selector(FightHeroNode::showSkillAttrIcon), 0.1f);
 				}
 			}
 
@@ -1418,6 +1480,18 @@ void FightHeroNode::showSkillAttrIcon(float dt)
 			map_skillattricon[it->first][m]->setVisible(true);
 			i++;
 		}
+	}
+
+	std::map<int, std::vector<Label*>>::iterator lit;
+	for (lit = map_skillattrlabel.begin(); lit != map_skillattrlabel.end();)
+	{
+		int i = 0;
+		for (unsigned int m = 0; m < map_skillattrlabel[lit->first].size(); m++)
+		{
+			map_skillattrlabel[lit->first][m]->runAction(Sequence::create(DelayTime::create(i*0.8f), Show::create(), FadeOut::create(1.0f), RemoveSelf::create(), NULL));
+			i++;
+		}
+		lit = map_skillattrlabel.erase(lit);
 	}
 }
 

@@ -268,7 +268,7 @@ float Hero::getAtkSpeed()
 			heroatkspeed += (takeOnEquip[i]->getAtkSpeed()*herobns);
 		}
 	}
-	return heroatkspeed;
+	return heroatkspeed > 3.0f ? 3.0f : heroatkspeed;
 }
 float Hero::getCrit()
 {

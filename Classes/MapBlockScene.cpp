@@ -168,7 +168,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	std::random_shuffle(vec_normalBlocks.begin(), vec_normalBlocks.end());
 
-	int tcount = vec_normalBlocks.size()/15;
+	int tcount = vec_normalBlocks.size()/18;
 
 	int mcount = 0;
 	std::vector<MapBlock*>::iterator mit;
@@ -1192,7 +1192,7 @@ void MapBlockScene::createRndMonsters()
 	//				enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
 	//				enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
 	//				enemyhero->setPotential(rqu);
-	//				enemyhero->setLevel(rlv - 1);
+	//				enemyhero->setLevel(rlv);
 	//				enemyhero->setHp(enemyhero->getMaxHp());
 	//				vec_enemys.push_back(enemyhero);
 	//				break;
@@ -1235,7 +1235,7 @@ void MapBlockScene::createRndMonsters()
 				enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
 				enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
 				enemyhero->setPotential(rqu);
-				enemyhero->setLevel(rlv - 1);
+				enemyhero->setLevel(rlv);
 				enemyhero->setHp(enemyhero->getMaxHp());
 				vec_enemys.push_back(enemyhero);
 				break;

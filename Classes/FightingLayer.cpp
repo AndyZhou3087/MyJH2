@@ -9,6 +9,7 @@
 #include "MapBlockScene.h"
 #include "SoundManager.h"
 #include "NewGuideLayer.h"
+#include "Shake.h"
 
 USING_NS_CC;
 
@@ -294,7 +295,6 @@ void FightingLayer::showAtk(int fightertag)
 	
 	if (fightertag < 6)//自己英雄攻击
 	{
-		int enemyindex = -1;//打哪个敌人
 		Hero* myhero = GlobalInstance::myCardHeros[fightertag];//攻击的英雄
 		if (myhero->getState() != HS_DEAD)//没有死亡可继续战斗
 		{
@@ -310,6 +310,8 @@ void FightingLayer::showAtk(int fightertag)
 
 			if (myhero->getSkillingType() >= 0)//触发了技能
 			{
+				int attackindex = -1;
+
 				if (stype == SKILL_5)//攻击多个目标
 				{
 					int scount = GlobalInstance::map_GF[gf->getId()].skilleff2;
@@ -373,7 +375,7 @@ void FightingLayer::showAtk(int fightertag)
 						if (stype == SKILL_12)
 							myatk *= (1 + GlobalInstance::map_GF[gf->getId()].skilleff1/100);
 
-						int attackindex = calcAttackNodeIndex(fightertag, 0);
+						attackindex = calcAttackNodeIndex(fightertag, 0);
 						FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + attackindex);
 						fnode->hurt(myatk, 0);
 					}
@@ -387,7 +389,7 @@ void FightingLayer::showAtk(int fightertag)
 					{
 						float myatk = myhero->getAtk();
 						myatk *= (1 + GlobalInstance::map_GF[gf->getId()].skilleff1 / 100);
-						int attackindex = calcAttackNodeIndex(fightertag, 0);
+						attackindex = calcAttackNodeIndex(fightertag, 0);
 						FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + attackindex);
 						fnode->hurt(myatk, 0);
 
@@ -395,37 +397,34 @@ void FightingLayer::showAtk(int fightertag)
 				}
 				else if (stype == SKILL_2)
 				{
-					int attackindex = calcSkill2AttackNodeIndex(fightertag, 0);
+					attackindex = calcSkill2AttackNodeIndex(fightertag, 0);
 					myhero->vec_whosufferskill.push_back(6 + attackindex);
 				}
 				else//技能攻击单个目标
 				{
-					int attackindex = calcAttackNodeIndex(fightertag, 0);
+					attackindex = calcAttackNodeIndex(fightertag, 0);
 					myhero->vec_whosufferskill.push_back(6 + attackindex);
 				}
-			}
-			else//没有触发技能
-			{
-				enemyindex = calcAttackNodeIndex(fightertag, 0);
-			}
-			//计算闪避
-			if (enemyindex >= 0)//没有触发技能
-			{
-				FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(6 + enemyindex);
-				float dodge = m_enemyHeros[enemyindex]->getDodge();
 
-				int r = GlobalInstance::getInstance()->createRandomNum(10000);
-
-				if (r < dodge * 100)
+				//受到攻击动画
+				if ((stype == SKILL_9 || stype == SKILL_12 || stype == SKILL_17) && attackindex >= 0)
 				{
-					enemyfnode->hurt(0, 2);
-					myhero->setFightRound(myhero->getFightRound() + 1);
-					SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DODGE);
-					return;
+					FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(6 + attackindex);
+					enemyfnode->runAction(Shake::create(0.2f, 3.0f));
 				}
-			}
-			else//触发技能
-			{
+				else
+				{
+					for (unsigned int i = 0; i < myhero->vec_whosufferskill.size(); i++)
+					{
+						if (myhero->vec_whosufferskill[i] >= 6)
+						{
+							FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(myhero->vec_whosufferskill[i]);
+							enemyfnode->runAction(Shake::create(0.2f, 3.0f));
+						}
+					}
+				}
+
+				//不是增加自身属性
 				if (myhero->getSkillingType() >= 0 && myhero->getSkillingType() != SKILL_7 && myhero->getSkillingType() != SKILL_8 && myhero->getSkillingType() != SKILL_9 && myhero->getSkillingType() != SKILL_12 && myhero->getSkillingType() != SKILL_17)
 				{
 					bool isdodge = false;
@@ -452,19 +451,34 @@ void FightingLayer::showAtk(int fightertag)
 						SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DODGE);
 					}
 				}
-			}
 
-			if (myhero->getSkillingType() >= 0)//触发了技能
-			{
+				//释放技能
 				FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(fightertag);
 
 				FightHeroNode* enemynode = (FightHeroNode*)this->getChildByTag(myhero->vec_whosufferskill[0]);
 
 				myfnode->playSkill(myhero->getSkillingType(), enemynode);//技能动画,1对1
 			}
-			else//正常攻击
+			else//没有触发技能
 			{
+				int enemyindex = calcAttackNodeIndex(fightertag, 0);
+
 				FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(6 + enemyindex);
+				float dodge = m_enemyHeros[enemyindex]->getDodge();
+
+				enemyfnode->runAction(Shake::create(0.2f, 3.0f));
+
+				int rdodge = GlobalInstance::getInstance()->createRandomNum(10000);
+
+				if (rdodge < dodge * 100)
+				{
+					enemyfnode->hurt(0, 2);
+					myhero->setFightRound(myhero->getFightRound() + 1);
+					SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DODGE);
+					return;
+				}
+
+				//正常攻击
 				float atkhp = GlobalInstance::myCardHeros[fightertag]->getAtk();
 
 				//计算暴击
@@ -473,9 +487,9 @@ void FightingLayer::showAtk(int fightertag)
 				if (gf != NULL)
 					crit += gf->getCrit();
 
-				int r = GlobalInstance::getInstance()->createRandomNum(10000);
+				int rcrit = GlobalInstance::getInstance()->createRandomNum(10000);
 				int state = 0;
-				if (r < crit * 100)
+				if (rcrit < crit * 100)
 				{
 					state = 1;
 					atkhp *= 2;
@@ -528,6 +542,9 @@ void FightingLayer::showAtk(int fightertag)
 			myfindex = calcAttackNodeIndex(fightertag, 1);
 		}
 
+		FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(myfindex);
+		myfnode->runAction(Shake::create(0.2f, 3.0f));
+
 		if (stype < 0)
 		{
 			Hero* myhero = GlobalInstance::myCardHeros[myfindex];
@@ -539,7 +556,6 @@ void FightingLayer::showAtk(int fightertag)
 					stype = SKILL_15;
 					GlobalInstance::myCardHeros[myfindex]->vec_whosufferskill.clear();
 					GlobalInstance::myCardHeros[myfindex]->vec_whosufferskill.push_back(fightertag);
-					FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(myfindex);
 					myfnode->hurt(atkhp, -1);
 					if (GlobalInstance::myCardHeros[myfindex]->getHp() > 0)
 						myfnode->playSkill(stype, (FightHeroNode*)this->getChildByTag(fightertag));
@@ -550,7 +566,6 @@ void FightingLayer::showAtk(int fightertag)
 					stype = SKILL_18;
 					GlobalInstance::myCardHeros[myfindex]->vec_whosufferskill.clear();
 					GlobalInstance::myCardHeros[myfindex]->vec_whosufferskill.push_back(myfindex);
-					FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(myfindex);
 					myfnode->hurt(atkhp*(1 - GlobalInstance::map_GF[gf->getId()].skilleff1/100), -1);
 					if (GlobalInstance::myCardHeros[myfindex]->getHp() > 0)
 						myfnode->playSkill(stype, myfnode);
@@ -561,7 +576,6 @@ void FightingLayer::showAtk(int fightertag)
 					stype = SKILL_20;
 					GlobalInstance::myCardHeros[myfindex]->vec_whosufferskill.clear();
 					GlobalInstance::myCardHeros[myfindex]->vec_whosufferskill.push_back(fightertag);
-					FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(myfindex);
 					myfnode->hurt(atkhp, -1);
 					if (GlobalInstance::myCardHeros[myfindex]->getHp() > 0)
 						myfnode->playSkill(stype, (FightHeroNode*)this->getChildByTag(fightertag));
@@ -569,8 +583,6 @@ void FightingLayer::showAtk(int fightertag)
 				}
 			}
 		}
-		FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(myfindex);
-
 
 		//计算暴击
 		float crit = m_enemyHeros[fightertag - 6]->getCrit();
@@ -663,9 +675,9 @@ int FightingLayer::calcAttackNodeIndex(int fighterindex, int type)
 		if (findex >= 3)
 			findex -= 3;
 
-		FightHeroNode* enemynode = (FightHeroNode*)this->getChildByTag(6 + fighterindex);
-		if (enemynode != NULL && fighterindex < enemycount && m_enemyHeros[fighterindex] != NULL && m_enemyHeros[fighterindex]->getHp() > 0)//自身位置正前方前排
-			return fighterindex;
+		FightHeroNode* enemynode = (FightHeroNode*)this->getChildByTag(6 + findex);
+		if (enemynode != NULL && findex < enemycount && m_enemyHeros[findex] != NULL && m_enemyHeros[findex]->getHp() > 0)//自身位置正前方前排
+			return findex;
 
 		enemynode = (FightHeroNode*)this->getChildByTag(6 + findex + 3);
 		if (enemynode != NULL && findex + 3 < enemycount && m_enemyHeros[findex + 3] != NULL && m_enemyHeros[findex + 3]->getHp() > 0)//正前方后排位置

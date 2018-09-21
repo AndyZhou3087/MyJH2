@@ -249,5 +249,11 @@
 	<s name="poweraddtext">%02d:%02d后恢复1点体力</s>
 	<s name="gobakccostcoin">是否消耗%d元宝购买回城卷轴？</s>	
 	<s name="nothingbox">包袱里空空如也...</s>
-	<s name="reswheregettext">，可在市场购买</s>		
+	<s name="reswheregettext">，可在市场购买</s>
+	<s name="skillattrdfup">防御力提升</s>
+	<s name="skillattrdfdwon">防御力降低</s>
+	<s name="skillattratkup">攻击力提升</s>
+	<s name="skillattratkdwon">攻击力降低</s>
+	<s name="skillattratkspeedup">攻击速度提升</s>
+	<s name="skillattratkspeeddwon">攻击速度降低</s>	
 </strings>
