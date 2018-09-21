@@ -136,6 +136,7 @@ public:
 	float dfbns;
 	bool isPlaySkillAnim;
 	std::map<int, std::vector<Sprite*>> map_skillattricon;
+	std::map<int, std::vector<Label*>> map_skillattrlabel;
 };
 #endif
 
