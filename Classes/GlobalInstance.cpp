@@ -1781,8 +1781,8 @@ bool GlobalInstance::getUnlockHomehillCondition()
 {
 	for (unsigned int i = 0; i < Quest::myFinishMainQuest.size(); i++)
 	{
-		TaskData data = Quest::myFinishMainQuest[i];
-		if (data.id == 7)//通关神龙教地图m1-4-2
+		TaskData* data = Quest::myFinishMainQuest[i];
+		if (data->id == 7)//通关神龙教地图m1-4-2
 		{
 			return true;
 		}

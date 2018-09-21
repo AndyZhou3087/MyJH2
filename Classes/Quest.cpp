@@ -7,8 +7,8 @@
 #include "MapBlockScene.h"
 #include "ResBase.h"
 
-std::vector<TaskData> Quest::myFinishMainQuest;
-std::vector<TaskData> Quest::myFinishBranchQuest;
+std::vector<TaskData*> Quest::myFinishMainQuest;
+std::vector<TaskData*> Quest::myFinishBranchQuest;
 std::map<std::string, int> Quest::map_NpcQuestRes;
 std::map<std::string, int> Quest::map_NpcBranchQuestRes;
 std::map<int, int> Quest::map_DailyTypeCount;
@@ -20,8 +20,8 @@ bool Quest::initFinishTaskData()
 {
 	for (unsigned int i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
 	{
-		TaskData data = GlobalInstance::vec_TaskMain[i];
-		if (data.isfinish >= QUEST_FINISH)
+		TaskData* data = &GlobalInstance::vec_TaskMain[i];
+		if (data->isfinish >= QUEST_FINISH)
 		{
 			myFinishMainQuest.push_back(data);
 		}
@@ -48,7 +48,7 @@ void Quest::initCurNeedData()
 	}
 }
 
-void Quest::AddFinishQuest(TaskData data)
+void Quest::AddFinishQuest(TaskData* data)
 {
 	myFinishMainQuest.push_back(data);
 	map_NpcQuestRes.clear();
@@ -67,7 +67,7 @@ void Quest::saveMainData()
 		{
 			GlobalInstance::vec_TaskMain[i].isfinish = GlobalInstance::myCurMainData.isfinish;
 			GlobalInstance::vec_TaskMain[i].finishtype = GlobalInstance::myCurMainData.finishtype;
-			AddFinishQuest(GlobalInstance::myCurMainData);
+			AddFinishQuest(&GlobalInstance::myCurMainData);
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
 			if (i + 1 < GlobalInstance::vec_TaskMain.size())
 			{
@@ -102,13 +102,13 @@ bool Quest::getMutexMainQuestType(int id, int type)
 {
 	for (unsigned int i = 0; i < myFinishMainQuest.size(); i++)
 	{
-		TaskData data = myFinishMainQuest[i];
-		if (getTypeBtn(data.id, data.finishtype) == BTN_1)
+		TaskData* data = myFinishMainQuest[i];
+		if (getTypeBtn(data->id, data->finishtype) == BTN_1)
 		{
-			if (data.mutex1.size() > 0)
+			if (data->mutex1.size() > 0)
 			{
-				int fid = data.mutex1[0];
-				int ftype = data.mutex1[1];
+				int fid = data->mutex1[0];
+				int ftype = data->mutex1[1];
 				//判断互斥1里是否有当前任务id
 				if (id == fid)
 				{
@@ -121,10 +121,10 @@ bool Quest::getMutexMainQuestType(int id, int type)
 		}
 		else
 		{
-			if (data.mutex2.size() > 0)
+			if (data->mutex2.size() > 0)
 			{
-				int fid = data.mutex2[0];
-				int ftype = data.mutex2[1];
+				int fid = data->mutex2[0];
+				int ftype = data->mutex2[1];
 				//判断互斥2里是否有当前任务id
 				if (id == fid)
 				{
@@ -303,10 +303,10 @@ bool Quest::isMainQuestFinish(int questid)
 {
 	for (unsigned int i = 0; i < myFinishMainQuest.size(); i++)
 	{
-		TaskData data = myFinishMainQuest[i];
-		if (data.id == questid)
+		TaskData* data = myFinishMainQuest[i];
+		if (data->id == questid)
 		{
-			if (data.isfinish >= QUEST_FINISH)
+			if (data->isfinish >= QUEST_FINISH)
 			{
 				return true;
 			}
@@ -323,8 +323,8 @@ bool Quest::isShowQuestTip()
 	}
 	/*for (unsigned int i = 0; i < myFinishMainQuest.size(); i++)
 	{
-		TaskData data = myFinishMainQuest[i];
-		if (data.isfinish != QUEST_GET)
+		TaskData* data = myFinishMainQuest[i];
+		if (data->isfinish != QUEST_GET)
 		{
 			return true;
 		}
@@ -338,8 +338,8 @@ bool Quest::initFinishTaskBranchData()
 {
 	for (unsigned int i = 0; i < GlobalInstance::vec_TaskBranch.size(); i++)
 	{
-		TaskData data = GlobalInstance::vec_TaskBranch[i];
-		if (data.isfinish >= QUEST_FINISH)
+		TaskData* data = &GlobalInstance::vec_TaskBranch[i];
+		if (data->isfinish >= QUEST_FINISH)
 		{
 			myFinishBranchQuest.push_back(data);
 		}
@@ -370,13 +370,13 @@ bool Quest::getMutexBranchQuestType(int id, int type)
 {
 	for (unsigned int i = 0; i < myFinishBranchQuest.size(); i++)
 	{
-		TaskData data = myFinishBranchQuest[i];
-		if (getTypeBranchBtn(data.id, data.finishtype) == BTN_1)
+		TaskData* data = myFinishBranchQuest[i];
+		if (getTypeBranchBtn(data->id, data->finishtype) == BTN_1)
 		{
-			if (data.mutex1.size() > 0)
+			if (data->mutex1.size() > 0)
 			{
-				int fid = data.mutex1[0];
-				int ftype = data.mutex1[1];
+				int fid = data->mutex1[0];
+				int ftype = data->mutex1[1];
 				//判断互斥1里是否有当前任务id
 				if (id == fid)
 				{
@@ -389,10 +389,10 @@ bool Quest::getMutexBranchQuestType(int id, int type)
 		}
 		else
 		{
-			if (data.mutex2.size() > 0)
+			if (data->mutex2.size() > 0)
 			{
-				int fid = data.mutex2[0];
-				int ftype = data.mutex2[1];
+				int fid = data->mutex2[0];
+				int ftype = data->mutex2[1];
 				//判断互斥2里是否有当前任务id
 				if (id == fid)
 				{
@@ -536,7 +536,7 @@ bool Quest::getResBranchFinish()
 	return false;
 }
 
-void Quest::AddFinishBranchQuest(TaskData data)
+void Quest::AddFinishBranchQuest(TaskData* data)
 {
 	myFinishBranchQuest.push_back(data);
 	map_NpcBranchQuestRes.clear();
@@ -572,7 +572,7 @@ void Quest::saveBranchData()
 		{
 			GlobalInstance::vec_TaskBranch[i].isfinish = GlobalInstance::myCurBranchData.isfinish;
 			GlobalInstance::vec_TaskBranch[i].finishtype = GlobalInstance::myCurBranchData.finishtype;
-			AddFinishBranchQuest(GlobalInstance::myCurBranchData);
+			AddFinishBranchQuest(&GlobalInstance::myCurBranchData);
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
 			if (i + 1 < GlobalInstance::vec_TaskBranch.size())
 			{
@@ -601,8 +601,8 @@ bool Quest::isShowBranchQuestTip()
 	}
 	/*for (unsigned int i = 0; i < myFinishBranchQuest.size(); i++)
 	{
-		TaskData data = myFinishBranchQuest[i];
-		if (data.isfinish != QUEST_GET)
+		TaskData* data = myFinishBranchQuest[i];
+		if (data->isfinish != QUEST_GET)
 		{
 			return true;
 		}

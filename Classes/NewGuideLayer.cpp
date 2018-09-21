@@ -843,7 +843,7 @@ void NewGuideLayer::setNewGuideInfo(int step)
 	{
 		for (unsigned int i = 0; i < Quest::myFinishMainQuest.size(); i++)
 		{
-			TaskData* data = &Quest::myFinishMainQuest[i];
+			TaskData* data = Quest::myFinishMainQuest[i];
 			if (data->id == 1)
 			{
 				data->isfinish = QUEST_FINISH;
