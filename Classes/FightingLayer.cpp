@@ -663,9 +663,9 @@ int FightingLayer::calcAttackNodeIndex(int fighterindex, int type)
 		if (findex >= 3)
 			findex -= 3;
 
-		FightHeroNode* enemynode = (FightHeroNode*)this->getChildByTag(6 + fighterindex);
-		if (enemynode != NULL && fighterindex < enemycount && m_enemyHeros[fighterindex] != NULL && m_enemyHeros[fighterindex]->getHp() > 0)//自身位置正前方前排
-			return fighterindex;
+		FightHeroNode* enemynode = (FightHeroNode*)this->getChildByTag(6 + findex);
+		if (enemynode != NULL && findex < enemycount && m_enemyHeros[findex] != NULL && m_enemyHeros[findex]->getHp() > 0)//自身位置正前方前排
+			return findex;
 
 		enemynode = (FightHeroNode*)this->getChildByTag(6 + findex + 3);
 		if (enemynode != NULL && findex + 3 < enemycount && m_enemyHeros[findex + 3] != NULL && m_enemyHeros[findex + 3]->getHp() > 0)//正前方后排位置

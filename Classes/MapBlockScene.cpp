@@ -1189,7 +1189,7 @@ void MapBlockScene::createRndMonsters()
 	//				enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
 	//				enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
 	//				enemyhero->setPotential(rqu);
-	//				enemyhero->setLevel(rlv - 1);
+	//				enemyhero->setLevel(rlv);
 	//				enemyhero->setHp(enemyhero->getMaxHp());
 	//				vec_enemys.push_back(enemyhero);
 	//				break;
@@ -1232,7 +1232,7 @@ void MapBlockScene::createRndMonsters()
 				enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
 				enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
 				enemyhero->setPotential(rqu);
-				enemyhero->setLevel(rlv - 1);
+				enemyhero->setLevel(rlv);
 				enemyhero->setHp(enemyhero->getMaxHp());
 				vec_enemys.push_back(enemyhero);
 				break;
