@@ -176,6 +176,13 @@ bool MainScene::init()
 	cocos2d::ui::Text* hinttext = (cocos2d::ui::Text*)maincityhintbox->getChildByName("text");
 	hinttext->setString(ResourceLang::map_lang["newherohint"]);
 
+
+	//监测训练场开放
+	if (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0)
+	{
+		this->schedule(schedule_selector(MainScene::checkBuildingOpen), 3.0f);
+	}
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -198,6 +205,21 @@ bool MainScene::init()
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void MainScene::checkBuildingOpen(float dt)
+{
+	if (GlobalInstance::getInstance()->getHerosLevelCount(20) > 0)
+	{
+		this->unschedule(schedule_selector(MainScene::checkBuildingOpen));
+		Node* textnode = scroll_3->getChildByName("main_05_t");
+		textnode->setVisible(true);
+		Node* cnode = scroll_3->getChildByName("main_05_c");
+		if (cnode != NULL)
+		{
+			cnode->setVisible(false);
+		}
+	}
 }
 
 void MainScene::delayShowNewerGuide(float dt)

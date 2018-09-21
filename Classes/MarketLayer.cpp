@@ -113,7 +113,7 @@ bool MarketLayer::init(Building* buidingData)
 	updateUI(0);
 	this->schedule(schedule_selector(MarketLayer::updateUI), 1.0f);
 
-	this->schedule(schedule_selector(MarketLayer::delayShowNewerGuide), newguidetime);
+	//this->scheduleOnce(schedule_selector(MarketLayer::delayShowNewerGuide), newguidetime + (int)vec_Res.size()*0.07f);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -264,12 +264,23 @@ void MarketLayer::updateContent()
 		Node* itemnode = MarketResNode::create(vec_Res[i].resid, vec_Res[i].stockcount);
 
 		itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
-		itemnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
+		if (vec_Res[i].resid.compare("d001") == 0)
+		{
+			itemnode->runAction(Sequence::create(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))), CallFunc::create(CC_CALLBACK_0(MarketLayer::todoNewguide, this)), NULL));
+		}
+		else
+		{
+			itemnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
+		}
 		//itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 		m_contentscroll->addChild(itemnode, 0 , i);
 	}
 }
 
+void MarketLayer::todoNewguide()
+{
+	delayShowNewerGuide(0);
+}
 
 void MarketLayer::lvup()
 {

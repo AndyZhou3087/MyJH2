@@ -27,6 +27,10 @@ OutTownLayer::OutTownLayer()
 OutTownLayer::~OutTownLayer()
 {
 	clickHero = -1;
+	if ((GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0 && NewGuideLayer::checkifNewerGuide(66)) || (GlobalInstance::getInstance()->getHerosLevelCount(15) > 0 && NewGuideLayer::checkifNewerGuide(73)))
+	{
+		g_mainScene->delayShowNewerGuide(0);
+	}
 }
 
 

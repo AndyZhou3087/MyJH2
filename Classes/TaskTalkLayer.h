@@ -42,6 +42,7 @@ private:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onBtn2Click(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void onCloseClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void checkWordLblColor(std::string wordstr);
 	void showTypeText(float dt);
 	void questGive(std::string bwords, std::vector<std::map<std::string, int>> need);

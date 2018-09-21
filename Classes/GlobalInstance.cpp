@@ -1735,6 +1735,7 @@ int GlobalInstance::getHerosChangeLevelCount()
 		if (hero->getLevel() + 1 == 10)
 		{
 			count++;
+			break;
 		}
 	}
 	return count;
@@ -1749,6 +1750,7 @@ int GlobalInstance::getHerosLevelCount(int lv)
 		if (hero->getLevel() + 1 >= lv)
 		{
 			count++;
+			break;
 		}
 	}
 	return count;

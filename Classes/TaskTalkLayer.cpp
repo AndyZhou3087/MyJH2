@@ -118,7 +118,7 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 	closebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("closebtn");
 	closebtn->setPosition(Vec2(357, 131));
 	closebtn->setTag(0);
-	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtnClick, this));
+	closebtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onCloseClick, this));
 	closebtn->setTitleText(ResourceLang::map_lang["closetext"]);
 	closebtn->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 
@@ -269,6 +269,31 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 	return true;
 }
 
+void TaskTalkLayer::onCloseClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
+
+		if (btn->getTitleText().compare(ResourceLang::map_lang["okbtntext"]) == 0)
+		{
+			if (isGo == 1)
+			{
+				showFastWords();
+				g_MapBlockScene->showFightingLayer(m_vec_enemys);
+				isGo = 0;
+			}
+			if (isFight)
+			{
+				showFastWords();
+				g_MapBlockScene->showFightingLayer(m_vec_enemys);
+			}
+		}
+		this->removeFromParentAndCleanup(true);
+	}
+}
+
 void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
@@ -282,23 +307,6 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 		switch (tag)
 		{
-		case 0:
-			if (btn->getTitleText().compare(ResourceLang::map_lang["okbtntext"]) == 0)
-			{
-				if (isGo == 1)
-				{
-					showFastWords();
-					g_MapBlockScene->showFightingLayer(m_vec_enemys);
-					isGo = 0;
-				}
-				if (isFight)
-				{
-					showFastWords();
-					g_MapBlockScene->showFightingLayer(m_vec_enemys);
-				}
-			}
-			this->removeFromParentAndCleanup(true);
-			break;
 		case QUEST_GIVE: //
 			questGive(bwords, data->need1);
 			break;

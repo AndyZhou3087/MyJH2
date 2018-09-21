@@ -64,7 +64,7 @@ bool HospitalLayer::init()
 
 	updateContent();
 
-	this->scheduleOnce(schedule_selector(HospitalLayer::delayShowNewerGuide), newguidetime);
+	//this->scheduleOnce(schedule_selector(HospitalLayer::delayShowNewerGuide), newguidetime);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -125,11 +125,6 @@ void HospitalLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 void HospitalLayer::updateContent()
 {
-	if (isScheduled(schedule_selector(HospitalLayer::delayShowNewerGuide)))
-	{
-		this->unschedule(schedule_selector(HospitalLayer::delayShowNewerGuide));
-	}
-
 	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
 	cointext->setString(str);
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
@@ -153,7 +148,10 @@ void HospitalLayer::updateContent()
 
 
 	if (vec_deadheros.size() <= 0)
+	{
+		delayShowNewerGuide(0);
 		hintdesc->setString(ResourceLang::map_lang["hospitalhintdesc"]);
+	}
 
 	int itemheight = 170;
 	int innerheight = itemheight * size;
@@ -168,13 +166,25 @@ void HospitalLayer::updateContent()
 		MyHeroNode* node = MyHeroNode::create(hero, HS_DEAD);
 		scrollview->addChild(node);
 		node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
-		node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
-		//node->setPosition(Vec2(319, innerheight - i*itemheight - itemheight*0.5));
 		vec_deadNodes.push_back(node);
+		if (i == 0)
+		{
+			node->runAction(Sequence::create(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))), CallFunc::create(CC_CALLBACK_0(HospitalLayer::todoNewGuide, this)), NULL));
+		}
+		else
+		{
+			node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+		}
+		//node->setPosition(Vec2(319, innerheight - i*itemheight - itemheight*0.5));
 	}
 
 	if (scrollpos > 0)
 	{
 		scrollview->jumpToPercentVertical(scrollpos);
 	}
+}
+
+void HospitalLayer::todoNewGuide()
+{
+	delayShowNewerGuide(0);
 }

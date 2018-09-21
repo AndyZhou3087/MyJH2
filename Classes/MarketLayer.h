@@ -46,6 +46,7 @@ private:
 	void saveStockRes();
 
 	void updateUI(float dt);
+	void todoNewguide();
 private:
 	std::vector<MK_RES> vec_Res;
 	cocos2d::ui::Text* lvUIlbl;

@@ -66,7 +66,7 @@ bool MapEventLayer::init(int eventindex)
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	//读取event数据
-	loadEventData();
+	loadEventData("event");
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("mapEventLayer.csb"));
 	this->addChild(csbnode);
@@ -137,12 +137,12 @@ bool MapEventLayer::init(int eventindex)
     return true;
 }
 
-void MapEventLayer::loadEventData()
+void MapEventLayer::loadEventData(std::string filename)
 {
 	map_eventdata.clear();
 	int avelv = GlobalInstance::getInstance()->getFightHerosLevel();
 	int i = avelv / 10 + 1;
-	std::string str = StringUtils::format("json/event%d.json", i);
+	std::string str = StringUtils::format("json/%s%d.json", filename.c_str(), i);
 
 	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath(str));
 	rapidjson::Value& allData = doc["b"];
