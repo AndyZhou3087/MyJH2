@@ -256,4 +256,10 @@
 	<s name="skillattratkdwon">攻击力降低</s>
 	<s name="skillattratkspeedup">攻击速度提升</s>
 	<s name="skillattratkspeeddwon">攻击速度降低</s>	
+	<s name="newguideheroname_0">戒嗔法师</s>
+	<s name="newguideheroname_1">张五侠</s>	
+	<s name="newguideheroname_2">唐蓝</s>	
+	<s name="newguideheroname_3">任小姐</s>	
+	<s name="newguideheroname_4">辽东大侠</s>	
+	<s name="newguideheroname_5">长春子</s>	
 </strings>

@@ -174,7 +174,7 @@ void MainMenuLayer::onFinish(int code)
 {
 	if (code == SUCCESS)
 	{
-		if (NewGuideLayer::checkifNewerGuide(14) || NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(45)
+		if (NewGuideLayer::checkifNewerGuide(14) || NewGuideLayer::checkifNewerGuide(22) || NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(45)
 			|| (NewGuideLayer::checkifNewerGuide(55) && Quest::isMainQuestFinish(1)) || (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
 			|| ((NewGuideLayer::checkifNewerGuide(66) || (NewGuideLayer::checkifNewerGuide(69) && !NewGuideLayer::checkifNewerGuide(67))) && GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0)
 			|| (NewGuideLayer::checkifNewerGuide(73) && GlobalInstance::getInstance()->getHerosLevelCount(15) > 0) || (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(77))

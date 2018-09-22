@@ -76,6 +76,7 @@ private:
 	Node* maincityhintbox;
 
 	cocos2d::ui::Widget* tasktip;
+	cocos2d::ui::Widget* hostip;
 };
 extern MainScene* g_mainScene;
 #endif

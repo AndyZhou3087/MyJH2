@@ -280,7 +280,9 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 
 void ConsumeResActionLayer::delayShowNewerGuide(float dt)
 {
-	if (GlobalInstance::getInstance()->getUnlockHomehillCondition() && !NewGuideLayer::checkifNewerGuide(15))
+	/*if (GlobalInstance::getInstance()->getUnlockHomehillCondition() && !NewGuideLayer::checkifNewerGuide(15))
+	{*/
+	if (!NewGuideLayer::checkifNewerGuide(15))
 	{
 		if (NewGuideLayer::checkifNewerGuide(17))
 		{

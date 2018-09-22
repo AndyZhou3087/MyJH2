@@ -375,6 +375,7 @@ void TaskDescLayer::accpTask()
 void TaskDescLayer::getRewards()
 {
 	m_data->isfinish = QUEST_GET;
+	Quest::setFinishTaskState(m_type, m_data);
 	std::vector<MSGAWDSDATA> vec_rewards;
 	std::vector<std::vector<std::string>> m_rewards;
 	for (unsigned int i = 0; i < m_data->type.size(); i++)
