@@ -1013,6 +1013,7 @@ void MapBlockScene::doMyStatus()
 		for (rnd_it = mapblock->map_eventrnd.begin(); rnd_it != mapblock->map_eventrnd.end(); rnd_it++)
 		{
 			mapblock->map_eventrnd[rnd_it->first] = 0;
+			mapblock->removeEventIcon();
 		}
 
 		if (ret == 0 || ret == 1 || ret == 3 || ret == 5 || ret == 6)//其它事件美术没有准备好，会崩溃，有图后打开这里
@@ -1541,6 +1542,11 @@ void MapBlockScene::parseMapXml(std::string mapname)
 									ernd += rnd;
 									mb->map_eventrnd[i] = ernd;
 								}
+							}
+
+							if (mb->map_eventrnd.size() == 1 && mb->map_eventrnd[mb->map_eventrnd.begin()->first] >= 100)
+							{
+								mb->setEventIcon(mb->map_eventrnd.begin()->first);
 							}
 						}
 						else if (ename.compare("npcid") == 0)

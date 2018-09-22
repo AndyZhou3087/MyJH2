@@ -93,3 +93,23 @@ void MapBlock::removePosIcon()
 		this->getParent()->removeChildByName(posname);
 	}
 }
+
+void MapBlock::setEventIcon(int eventtype)
+{
+	if (eventtype >= 5)
+	{
+		std::string eventiconname = StringUtils::format("mappos/posevent%d.csb", eventtype);
+		auto eventicon = CSLoader::createNode(eventiconname);
+		eventicon->setPosition(Vec2(this->getContentSize().width / 2, this->getContentSize().height / 2 - 10));
+		this->addChild(eventicon, 0, "eventicon");
+
+		auto action = CSLoader::createTimeline(eventiconname);
+		eventicon->runAction(action);
+		action->gotoFrameAndPlay(0, true);
+	}
+}
+
+void MapBlock::removeEventIcon()
+{
+	this->removeChildByName("eventicon");
+}

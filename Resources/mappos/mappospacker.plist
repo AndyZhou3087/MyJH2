@@ -95,7 +95,7 @@
 			<key>mappos/posbox/baog.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,648},{45,60}}</string>
+				<string>{{0,719},{45,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -106,7 +106,7 @@
 			<key>mappos/posbox/heidk.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,708},{57,25}}</string>
+				<string>{{0,818},{57,25}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -124,6 +124,28 @@
 				<false />
 				<key>sourceSize</key>
 				<string>{72,72}</string>
+			</dict>
+			<key>mappos/posevent/sd.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,648},{61,71}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{61,71}</string>
+			</dict>
+			<key>mappos/posevent/sz.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,779},{39,39}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{39,39}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>

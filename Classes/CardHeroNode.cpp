@@ -209,6 +209,24 @@ void CardHeroNode::updatePowerCount(float dt)
 {
 	if (m_herodata != NULL)
 	{
+		int pasttime = GlobalInstance::servertime - m_herodata->getPowerTime();
+		int lefttime = HEROPOWER_RESETTIME - pasttime % HEROPOWER_RESETTIME;
+
+		DynamicValueInt dv;
+		int count = pasttime / HEROPOWER_RESETTIME;
+		if (count > 0)
+		{
+			m_herodata->setPowerTime(GlobalInstance::servertime);
+			if (count + m_herodata->getPower().getValue() > 100)
+				count = 100;
+			else
+				count += m_herodata->getPower().getValue();
+			dv.setValue(count);
+
+			m_herodata->setPower(dv);
+			GlobalInstance::getInstance()->saveHero(m_herodata);
+		}
+
 		std::string str = StringUtils::format("%d/100", m_herodata->getPower().getValue());
 		powertext->setString(str);
 		powertext->setVisible(true);

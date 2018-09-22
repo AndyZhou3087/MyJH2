@@ -239,6 +239,7 @@ void MyHeroNode::updateTime(float dt)
 				dv.setValue(count);
 
 				m_heroData->setPower(dv);
+				GlobalInstance::getInstance()->saveHero(m_heroData);
 			}
 
 			std::string hpstr;
@@ -247,7 +248,6 @@ void MyHeroNode::updateTime(float dt)
 
 			hpstr = StringUtils::format(ResourceLang::map_lang["powerdesc"].c_str(), m_heroData->getPower().getValue(), timestr.c_str());
 			hpdesc->setString(hpstr);
-			GlobalInstance::getInstance()->saveHero(m_heroData);
 		}
 
 	}
@@ -368,15 +368,17 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					for (int i = 0; i < 6; i++)
 					{
 						if (GlobalInstance::myCardHeros[i] == NULL)
-						{
 							break;
-						}
 						else
-						{
 							carrycount++;
-						}
-
 					}
+
+					if (carrycount >= 6)
+					{
+						MovingLabel::show(ResourceLang::map_lang["outtownmax"]);
+						return;
+					}
+
 					m_heroData->setState(HS_TAKEON);
 					m_heroData->setPos(carrycount + 1);
 					GlobalInstance::myCardHeros[carrycount] = m_heroData;

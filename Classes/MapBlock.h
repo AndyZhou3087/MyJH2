@@ -7,15 +7,6 @@
 #include "json.h"
 USING_NS_CC;
 
-typedef enum
-{
-	B_START = 0,//起点
-	B_MONSTER,//怪物
-	B_NPC,//NPC
-	B_BOSS,//BOSS
-	B_TBOSS//特殊BOSS
-}BLOCKPOSTYPE;
-
 /*************
 4个属性的结构体
 第一个属性string
@@ -68,8 +59,10 @@ public:
 	CC_SYNTHESIZE(bool, m_iscansee, IsCanSee);//视野是否可见
 
 	void setPosIcon();
-
 	void removePosIcon();
+
+	void setEventIcon(int eventtype);
+	void removeEventIcon();
 
 public:
 	std::string m_buildname;
