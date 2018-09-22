@@ -73,7 +73,7 @@ bool SelectMyHerosLayer::init(int wheretype)
 		desc->setString(ResourceLang::map_lang["heroempty"]);
 
 	//关闭按钮
-	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
+	closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(SelectMyHerosLayer::onBtnClick, this));
 
 	//我的英雄滚动控件
@@ -103,7 +103,7 @@ void SelectMyHerosLayer::delayShowNewerGuide(float dt)
 {
 	if (!NewGuideLayer::checkifNewerGuide(45))
 	{
-		if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
+		/*if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(47))
 			{
@@ -117,6 +117,25 @@ void SelectMyHerosLayer::delayShowNewerGuide(float dt)
 			{
 				showNewerGuide(51);
 			}
+		}*/
+		if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(47))
+			{
+				showNewerGuide(47);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(48))
+			{
+				showNewerGuide(48);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(49))
+			{
+				showNewerGuide(49);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(50))
+			{
+				showNewerGuide(50);
+			}
 		}
 	}
 }
@@ -128,13 +147,17 @@ void SelectMyHerosLayer::showNewerGuide(int step)
 	{
 		nodes.push_back(m_contentscroll->getChildByTag(0)->getChildByName("csbnode")->getChildByName("actionbtn"));
 	}
-	else if (step == 49)
+	else if (step == 48)
 	{
 		nodes.push_back(m_contentscroll->getChildByTag(1)->getChildByName("csbnode")->getChildByName("actionbtn"));
 	}
-	else if (step == 51)
+	else if (step == 49)
 	{
 		nodes.push_back(m_contentscroll->getChildByTag(2)->getChildByName("csbnode")->getChildByName("actionbtn"));
+	}
+	else if (step == 50)
+	{
+		nodes.push_back(closebtn);
 	}
 	g_mainScene->showNewerGuideNode(step, nodes);
 }

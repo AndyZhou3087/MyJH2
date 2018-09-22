@@ -27,6 +27,7 @@ private:
 private:
 	cocos2d::ui::ScrollView* m_contentscroll;
 	int m_wheretype;
+	cocos2d::ui::Widget* closebtn;
 };
 
 #endif
