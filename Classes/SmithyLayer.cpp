@@ -360,6 +360,10 @@ void SmithyLayer::makeRes(std::string resid)
 	std::string countstr = StringUtils::format(ResourceLang::map_lang["hasequipcount"].c_str(), MyRes::getEquipableCount(resid));
 	hascount->setString(countstr);
 
+	if (!(retres->getType() >= T_ARMOR && retres->getType() <= T_NG))
+	{
+		return;
+	}
 	EquipDescLayer* layer = EquipDescLayer::create(retres, 1);
 	this->addChild(layer);
 	AnimationEffect::openAniEffect(layer);

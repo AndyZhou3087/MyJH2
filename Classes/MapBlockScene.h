@@ -142,6 +142,8 @@ private:
 
 	void openAllMap();
 
+	void closeTaskTipNode(float dt);
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;

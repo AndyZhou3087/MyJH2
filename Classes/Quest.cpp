@@ -737,7 +737,6 @@ void Quest::setAchieveTypeCount(int type, int count, std::string resid)
 		{
 			data->state = DAILY_FINISHED;
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
-			break;
 		}
 	}
 	GlobalInstance::getInstance()->saveMyAchieveData();

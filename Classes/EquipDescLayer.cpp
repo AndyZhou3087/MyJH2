@@ -271,10 +271,6 @@ void EquipDescLayer::showNewerGuide(int step)
 
 void EquipDescLayer::updateAttr()
 {
-	if (!(m_res->getType() >= T_ARMOR && m_res->getType() <= T_NG))
-	{
-		return;
-	}
 	std::vector<float> vec_attrval;
 
 	vec_attrval.push_back(m_res->getHp());

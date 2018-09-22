@@ -250,6 +250,8 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	int r = GlobalInstance::getInstance()->createRandomNum(5);
 	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_SUBMAP_0 + r);
 
+	this->scheduleOnce(schedule_selector(MapBlockScene::closeTaskTipNode), 10.0f);
+
 	this->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.1f);
 
 	return true;
@@ -534,6 +536,14 @@ void MapBlockScene::onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			break;
 		}
 	}
+}
+
+void MapBlockScene::closeTaskTipNode(float dt)
+{
+	m_tasknode->stopAllActions();
+	questbtn->setVisible(true);
+	MoveTo* moveto = MoveTo::create(0.15f, Vec2(860, m_tasknode->getPositionY()));
+	m_tasknode->runAction(moveto);
 }
 
 void MapBlockScene::onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

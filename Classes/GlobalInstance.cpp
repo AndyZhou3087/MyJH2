@@ -534,7 +534,7 @@ void GlobalInstance::loadAchieveData()
 				}
 			}
 
-			data.state = 0;
+			data.state = DAILY_UNFINISHED;
 
 			vec_achievedata.push_back(data);
 		}
