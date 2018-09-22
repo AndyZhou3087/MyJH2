@@ -367,8 +367,15 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 					for (int i = 0; i < 6; i++)
 					{
-						if (GlobalInstance::myCardHeros[i] != NULL)
+						if (GlobalInstance::myCardHeros[i] == NULL)
+						{
+							break;
+						}
+						else
+						{
 							carrycount++;
+						}
+
 					}
 					m_heroData->setState(HS_TAKEON);
 					m_heroData->setPos(carrycount + 1);
@@ -476,9 +483,6 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				//	setStateTag(HS_OWNED);
 				//	cardheroNode->setData(NULL);
 				//}
-
-
-
 				outTownLayer->updateHeroCarry();
 			}
 			else if (m_showtype == HS_DEAD)
