@@ -429,7 +429,7 @@ GongFa* Hero::checkSkillWg()
 
 			if (i == 0)
 			{ 
-				if (m_fightround == GlobalInstance::map_GF[gf->getId()].skillrnd)
+				if (m_fightround >= GlobalInstance::map_GF[gf->getId()].skillrnd)
 				{
 					m_fightround = 0;
 					gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
