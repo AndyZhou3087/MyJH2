@@ -359,51 +359,126 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			else if (m_showtype == HS_TAKEON)
 			{
 				SelectMyHerosLayer* selectheroLayer = (SelectMyHerosLayer*)g_mainScene->getChildByName("0outtown")->getChildByName("selectmyheroslayer");
-				int selectIndex = selectheroLayer->getTag();
 				OutTownLayer* outTownLayer = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
-				CardHeroNode* cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(selectIndex);
+
 				if (m_heroData->getState() == HS_OWNED)
 				{
-					//清楚掉之前选择的
-					for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+					int carrycount = 0;
+
+					for (int i = 0; i < 6; i++)
 					{
-						if (GlobalInstance::vec_myHeros[i]->getPos() == selectheroLayer->getTag() + 1)
-						{
-							GlobalInstance::vec_myHeros[i]->setState(HS_OWNED);
-							GlobalInstance::vec_myHeros[i]->setPos(0);
-							//selectheroLayer->getMyHeroNode(this->getTag())->setStateTag(HS_OWNED);
-							break;
-						}
+						if (GlobalInstance::myCardHeros[i] != NULL)
+							carrycount++;
 					}
 					m_heroData->setState(HS_TAKEON);
-					m_heroData->setPos(selectIndex + 1);
-					GlobalInstance::myCardHeros[selectIndex] = m_heroData;
+					m_heroData->setPos(carrycount + 1);
+					GlobalInstance::myCardHeros[carrycount] = m_heroData;
 					GlobalInstance::getInstance()->saveMyHeros();
 					setStateTag(HS_TAKEON);
 
+					CardHeroNode* cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(carrycount);
 					cardheroNode->setData(m_heroData);
-					selectheroLayer->removeFromParentAndCleanup(true);
 				}
 				else if (m_heroData->getState() == HS_TAKEON)
 				{
-					int heroinwhere = 0;
-					if (selectIndex + 1 == m_heroData->getPos())//取消框里的那个英雄
+					int heropos = m_heroData->getPos();
+					//清楚掉之前选择的
+					for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 					{
-						heroinwhere = selectIndex;
+						if (GlobalInstance::vec_myHeros[i]->getPos() > 0 && GlobalInstance::vec_myHeros[i]->getPos() != heropos)
+						{
+							selectheroLayer->getMyHeroNode(i)->setStateTag(HS_OWNED);
+						}
 					}
-					else//取消另外一个框的英雄
-					{
-						heroinwhere = m_heroData->getPos() - 1;
-						cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(heroinwhere);
-					}
-					GlobalInstance::myCardHeros[heroinwhere] = NULL;
+
+					GlobalInstance::myCardHeros[heropos - 1] = NULL;
 
 					m_heroData->setState(HS_OWNED);
 					m_heroData->setPos(0);
-					GlobalInstance::getInstance()->saveMyHeros();
+
 					setStateTag(HS_OWNED);
-					cardheroNode->setData(NULL);
+
+					std::vector<Hero*> vec_hero;
+					for (int i = 0; i < 6; i++)
+					{
+						if (GlobalInstance::myCardHeros[i] != NULL)
+							vec_hero.push_back(GlobalInstance::myCardHeros[i]);
+					}
+
+					int mycarryherosize = vec_hero.size();
+					for (int i = 0; i < 6; i++)
+					{
+						if (i < mycarryherosize)
+						{
+							GlobalInstance::myCardHeros[i] = vec_hero[i];
+							GlobalInstance::myCardHeros[i]->setPos(i + 1);
+						}
+						else
+						{
+							GlobalInstance::myCardHeros[i] = NULL;
+						}
+						CardHeroNode *cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(i);
+						cardheroNode->setData(GlobalInstance::myCardHeros[i]);
+					}
+
+					for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+					{
+						if (GlobalInstance::vec_myHeros[i]->getPos() > 0)
+						{
+							selectheroLayer->getMyHeroNode(i)->setStateTag(HS_TAKEON);
+						}
+					}
+
+					GlobalInstance::getInstance()->saveMyHeros();
 				}
+
+				//int selectIndex = selectheroLayer->getTag();
+				//CardHeroNode* cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(selectIndex);
+				//if (m_heroData->getState() == HS_OWNED)
+				//{
+				//	//清楚掉之前选择的
+				//	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+				//	{
+				//		if (GlobalInstance::vec_myHeros[i]->getPos() == selectheroLayer->getTag() + 1)
+				//		{
+				//			GlobalInstance::vec_myHeros[i]->setState(HS_OWNED);
+				//			GlobalInstance::vec_myHeros[i]->setPos(0);
+				//			//selectheroLayer->getMyHeroNode(this->getTag())->setStateTag(HS_OWNED);
+				//			break;
+				//		}
+				//	}
+				//	m_heroData->setState(HS_TAKEON);
+				//	m_heroData->setPos(selectIndex + 1);
+				//	GlobalInstance::myCardHeros[selectIndex] = m_heroData;
+				//	GlobalInstance::getInstance()->saveMyHeros();
+				//	setStateTag(HS_TAKEON);
+
+				//	cardheroNode->setData(m_heroData);
+				//	selectheroLayer->removeFromParentAndCleanup(true);
+				//}
+				//else if (m_heroData->getState() == HS_TAKEON)
+				//{
+				//	int heroinwhere = 0;
+				//	if (selectIndex + 1 == m_heroData->getPos())//取消框里的那个英雄
+				//	{
+				//		heroinwhere = selectIndex;
+				//	}
+				//	else//取消另外一个框的英雄
+				//	{
+				//		heroinwhere = m_heroData->getPos() - 1;
+				//		cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(heroinwhere);
+				//	}
+				//	GlobalInstance::myCardHeros[heroinwhere] = NULL;
+
+				//	m_heroData->setState(HS_OWNED);
+				//	m_heroData->setPos(0);
+				//	GlobalInstance::getInstance()->saveMyHeros();
+				//	setStateTag(HS_OWNED);
+				//	cardheroNode->setData(NULL);
+				//}
+
+
+
 				outTownLayer->updateHeroCarry();
 			}
 			else if (m_showtype == HS_DEAD)
