@@ -131,8 +131,8 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 "",
 };
 
-int voc[6] = { 6,4,10,3,9,1 };
-std::string gf[6][2] = { { "x014","w014" },{ "x004","w004" },{ "x031","w031" },{ "x016","w016" },{ "x027","w027" },{ "x006","w006" } };
+int voc[6] = { 6,4,11,3,8,1 };
+std::string gf[6][2] = { { "x014","w014" },{ "x004","w004" },{ "x035","w035" },{ "x016","w016" },{ "x023","w023" },{ "x006","w006" } };
 int stenNodesArr[70] = { 72,17,19,75,34,37,25,27,29,32,35,38,71,79,16,18,20,21,64,23,31,78,39,70,53,15,22,69,77,40,55,45,63,66,73,
 0,1,11,13,67,68,46,48,50,52,24,26,28,30,33,36,80,47,49,51,54,74,76,81,42,60,43,58,61,57,41,59,44,56,62 };
 
@@ -293,8 +293,7 @@ void NewGuideLayer::showNextGuide()
 		|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46 || m_step == 48 || m_step == 50
 		|| m_step == 52 || m_step == 53 || m_step == 54 || m_step == 55 || m_step == 56 || m_step == 57 || m_step == 59 || m_step == 63
 		|| m_step == 65 || m_step == 66 || m_step == 69 || m_step == 70 || m_step == 71 || m_step == 72 || m_step == 73 || m_step == 74
-		|| m_step == 75 || m_step == 77 || m_step == 78 || m_step == 79 || m_step == 80 || m_step == 81 || m_step == 85 || m_step == 86
-		|| m_step == 87)
+		|| m_step == 75 || m_step == 77 || m_step == 78 || m_step == 79 || m_step == 80 || m_step == 81  || m_step == 86 || m_step == 87)
 	{
 		this->removeFromParentAndCleanup(true);
 	}
@@ -345,7 +344,7 @@ void NewGuideLayer::showNextGuide()
 			}
 		}
 	}
-	else if (m_step == 39 || m_step == 44 || m_step == 68 || m_step == 76)
+	else if (m_step == 39 || m_step == 44 || m_step == 68 || m_step == 76 || m_step == 85)
 	{
 		this->removeFromParentAndCleanup(true);
 		if (g_mainScene != NULL)
@@ -727,6 +726,8 @@ void NewGuideLayer::setNewGuideInfo(int step)
 			{
 				Hero* hero = new Hero();
 				hero->generate();
+				std::string strname = StringUtils::format("newguideheroname_%d", i);
+				hero->setName(ResourceLang::map_lang[strname]);
 				hero->setPotential(4);
 				hero->setVocation(voc[i]);
 				hero->setState(HS_TAKEON);
@@ -792,7 +793,7 @@ void NewGuideLayer::setNewGuideInfo(int step)
 
 		if (checkifNewerGuide(step))
 		{
-			for (int i = SECONDGUIDESTEP + 1; i < step; i++)
+			for (int i = 22; i < step; i++)
 			{
 				DataSave::getInstance()->setIsNewerGuide(i, 1);
 			}

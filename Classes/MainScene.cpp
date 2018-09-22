@@ -28,6 +28,7 @@ MainScene::MainScene()
 	costFoodsT = 0;
 	isPlayNewHeroAnim = false;
 	tasktip = NULL;
+	hostip = NULL;
 }
 
 MainScene::~MainScene()
@@ -156,6 +157,10 @@ bool MainScene::init()
 			updateTaskIcon();
 			tasktip = (cocos2d::ui::Widget*)buildnametext->getChildByName("main_10_p");
 		}
+		else if (i == 2)
+		{
+			hostip = (cocos2d::ui::Widget*)buildnametext->getChildByName("main_02_p");
+		}
 
 		buildingSelect->setVisible(false);
 		buildingSelect->setUserData((void*)it->first.c_str());
@@ -252,9 +257,16 @@ void MainScene::delayShowNewerGuide(float dt)
 				showNewerGuide(77);
 			}
 		}
-		else if (GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15))
+		/*else if (GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15))
 		{
 			showNewerGuide(15);
+		}*/
+		else if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(15))
+			{
+				showNewerGuide(15);
+			}
 		}
 		else if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
 		{
@@ -408,8 +420,8 @@ void MainScene::updateTaskLayerTip(float dt)
 	int mcount = 0;
 	for (unsigned int i = 0; i < Quest::myFinishMainQuest.size(); i++)
 	{
-		TaskData* data = Quest::myFinishMainQuest[i];
-		if (data->isfinish == QUEST_FINISH)
+		TaskData data = Quest::myFinishMainQuest[i];
+		if (data.isfinish == QUEST_FINISH)
 		{
 			mcount++;
 			break;
@@ -419,8 +431,8 @@ void MainScene::updateTaskLayerTip(float dt)
 	int bcount = 0;
 	for (unsigned int i = 0; i < Quest::myFinishBranchQuest.size(); i++)
 	{
-		TaskData* data = Quest::myFinishBranchQuest[i];
-		if (data->isfinish == QUEST_FINISH)
+		TaskData data = Quest::myFinishBranchQuest[i];
+		if (data.isfinish == QUEST_FINISH)
 		{
 			bcount++;
 			break;
@@ -448,6 +460,26 @@ void MainScene::updateTaskLayerTip(float dt)
 	else
 	{
 		tasktip->setVisible(false);
+	}
+
+	//医馆提示
+	int deadcount = 0;
+	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+	{
+		Hero* hero = GlobalInstance::vec_myHeros[i];
+		if (hero->getState() == HS_DEAD)
+		{
+			deadcount++;
+			break;
+		}
+	}
+	if (deadcount > 0)
+	{
+		hostip->setVisible(true);
+	}
+	else
+	{
+		hostip->setVisible(false);
 	}
 }
 
