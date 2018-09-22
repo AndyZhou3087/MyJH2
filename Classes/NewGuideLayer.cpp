@@ -20,6 +20,7 @@
 #include "Quest.h"
 #include "HospitalLayer.h"
 #include "MarketLayer.h"
+#include "SelectMyHerosLayer.h"
 
 std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教应该就在前面了，咱们快去看看。", //0
 "", //1
@@ -290,7 +291,7 @@ void NewGuideLayer::showNextGuide()
 	}
 	else if (m_step == 14 || m_step == 15 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 22 || m_step == 23
 		|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31 || m_step == 32 || m_step == 33 || m_step == 35 || m_step == 19
-		|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46 || m_step == 48 || m_step == 50
+		|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46
 		|| m_step == 52 || m_step == 53 || m_step == 54 || m_step == 55 || m_step == 56 || m_step == 57 || m_step == 59 || m_step == 63
 		|| m_step == 65 || m_step == 66 || m_step == 69 || m_step == 70 || m_step == 71 || m_step == 72 || m_step == 73 || m_step == 74
 		|| m_step == 75 || m_step == 77 || m_step == 78 || m_step == 79 || m_step == 80 || m_step == 81  || m_step == 86 || m_step == 87)
@@ -416,7 +417,35 @@ void NewGuideLayer::showNextGuide()
 			}
 		}
 	}
-	else if (m_step == 47 || m_step == 49 || m_step == 51)
+	/*else if (m_step == 47 || m_step == 49 || m_step == 51)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_mainScene != NULL)
+		{
+			OutTownLayer* layer = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
+			if (layer != NULL)
+			{
+				layer->delayShowNewerGuide(0);
+			}
+		}
+	}*/
+	else if (m_step == 47 || m_step == 48 || m_step == 49)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_mainScene != NULL)
+		{
+			OutTownLayer* layer = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
+			if (layer != NULL)
+			{
+				SelectMyHerosLayer* selayer = (SelectMyHerosLayer*)layer->getChildByName("selectmyheroslayer");
+				if (selayer != NULL)
+				{
+					selayer->delayShowNewerGuide(0);
+				}
+			}
+		}
+	}
+	else if (m_step == 50)
 	{
 		this->removeFromParentAndCleanup(true);
 		if (g_mainScene != NULL)
@@ -503,13 +532,9 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 					scalex = 3.0f;
 					scaley = 3.0f;
 				}
-				else if (m_step == 30 || m_step == 47)
+				else if (m_step == 30)
 				{
 					m_pos.y = m_pos.y + 20;
-				}
-				else if (m_step == 49 || m_step == 51)
-				{
-					m_pos.y = m_pos.y + 5;
 				}
 				else if (m_step == 41 || m_step == 54 || m_step == 56)
 				{
@@ -518,7 +543,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 				cnode->setPosition(m_pos);
 				cnode->setScale(scalex*1.5f, scaley*1.5f);
 				if (m_step == 0 || m_step == 1 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 19 || m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52 ||
-					m_step == 38 || m_step == 47 || m_step == 49 || m_step == 51 || m_step == 71 || m_step == 75 || m_step == 81 || m_step == 87)
+					m_step == 38 || m_step == 47 || m_step == 48 || m_step == 49 || m_step == 51 || m_step == 71 || m_step == 75 || m_step == 81 || m_step == 87)
 				{
 					cnode->setScale(scalex*1.5f);
 				}

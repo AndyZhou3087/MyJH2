@@ -278,14 +278,14 @@ void OutTownLayer::delayShowNewerGuide(float dt)
 			{
 				showNewerGuide(46);
 			}
-			else if (NewGuideLayer::checkifNewerGuide(48))
+			/*else if (NewGuideLayer::checkifNewerGuide(48))
 			{
 				showNewerGuide(48);
 			}
 			else if (NewGuideLayer::checkifNewerGuide(50))
 			{
 				showNewerGuide(50);
-			}
+			}*/
 			else if (NewGuideLayer::checkifNewerGuide(52))
 			{
 				showNewerGuide(52);
