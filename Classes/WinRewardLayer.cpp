@@ -67,14 +67,13 @@ bool WinRewardLayer::init(std::vector<FOURProperty> reward_res)
 	closebtn->addTouchEventListener(CC_CALLBACK_2(WinRewardLayer::onBtnClick, this));
 
 	//按钮
-	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
-	actionbtn->setTag(1000);
-	actionbtn->addTouchEventListener(CC_CALLBACK_2(WinRewardLayer::onBtnClick, this));
+	m_allgetbtn = (cocos2d::ui::Button*)csbnode->getChildByName("actionbtn");
+	m_allgetbtn->setTag(1000);
+	m_allgetbtn->addTouchEventListener(CC_CALLBACK_2(WinRewardLayer::onBtnClick, this));
 
 	//按钮文字
-	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
-	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("allgetbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-
+	cocos2d::ui::ImageView* m_allgetbtntxt = (cocos2d::ui::ImageView*)m_allgetbtn->getChildByName("text");
+	m_allgetbtntxt->loadTexture(ResourcePath::makeTextImgPath("allgetbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//按钮
 	cocos2d::ui::Widget* continuebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn_0");
@@ -294,24 +293,24 @@ void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 					if (cancarry <= 0)
 						break;
 
+					int addcount = 0;
 					if (vec_dropdownres[i]->getType() >= T_ARMOR && vec_dropdownres[i]->getType() <= T_FASHION)//装备类的是一个一个的
 					{
 						cancarry--;
-						MyRes::Add(vec_dropdownres[i], vec_dropdownres[i]->getCount().getValue(), MYPACKAGE);
+						addcount = vec_dropdownres[i]->getCount().getValue();
 					}
 					else
 					{
-						int addcount = 0;
 						if (cancarry >= vec_dropdownres[i]->getCount().getValue())
 							addcount = vec_dropdownres[i]->getCount().getValue();
 						else
 							addcount = cancarry;
 						cancarry -= addcount;
-						MyRes::Add(vec_dropdownres[i], addcount, MYPACKAGE);
-						DynamicValueInt dv;
-						dv.setValue(vec_dropdownres[i]->getCount().getValue() - addcount);
-						vec_dropdownres[i]->setCount(dv);
 					}
+					MyRes::Add(vec_dropdownres[i], addcount, MYPACKAGE);
+					DynamicValueInt dv;
+					dv.setValue(vec_dropdownres[i]->getCount().getValue() - addcount);
+					vec_dropdownres[i]->setCount(dv);
 
 				}
 				//return;
@@ -559,6 +558,7 @@ void WinRewardLayer::addDropRes(ResBase* res)
 	}
 	MyRes::Use(res, 1, MYPACKAGE);
 	loadMyPackageRes();
+	m_allgetbtn->setEnabled(true);
 }
 
 void WinRewardLayer::reduceDropRes(ResBase* res, int count, int iteindex)
@@ -585,6 +585,9 @@ void WinRewardLayer::reduceDropRes(ResBase* res, int count, int iteindex)
 			releaseDropRes(iteindex);
 		}
 	}
+
+	if (vec_dropdownres.size() <= 0)
+		m_allgetbtn->setEnabled(false);
 }
 
 void WinRewardLayer::releaseDropRes(int interindex)

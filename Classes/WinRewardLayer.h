@@ -51,7 +51,7 @@ private:
 
 	std::vector<ResBase*> vec_dropdownres;
 	std::vector<ResBase*> vec_mypackagres;
-
+	cocos2d::ui::Button* m_allgetbtn;
 	bool m_isLongPress;
 	int m_longTouchTag;
 
