@@ -410,7 +410,7 @@ void FightingLayer::showAtk(int fightertag)
 				if ((stype == SKILL_9 || stype == SKILL_12 || stype == SKILL_17) && attackindex >= 0)
 				{
 					FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(6 + attackindex);
-					enemyfnode->runAction(Shake::create(0.2f, 3.0f));
+					enemyfnode->runAction(Shake::create(0.2f, 5.0f));
 				}
 				else
 				{
@@ -419,7 +419,7 @@ void FightingLayer::showAtk(int fightertag)
 						if (myhero->vec_whosufferskill[i] >= 6)
 						{
 							FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(myhero->vec_whosufferskill[i]);
-							enemyfnode->runAction(Shake::create(0.2f, 3.0f));
+							enemyfnode->runAction(Shake::create(0.2f, 5.0f));
 						}
 					}
 				}
@@ -466,7 +466,7 @@ void FightingLayer::showAtk(int fightertag)
 				FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(6 + enemyindex);
 				float dodge = m_enemyHeros[enemyindex]->getDodge();
 
-				enemyfnode->runAction(Shake::create(0.2f, 3.0f));
+				enemyfnode->runAction(Shake::create(0.2f, 5.0f));
 
 				int rdodge = GlobalInstance::getInstance()->createRandomNum(10000);
 
@@ -543,7 +543,7 @@ void FightingLayer::showAtk(int fightertag)
 		}
 
 		FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(myfindex);
-		myfnode->runAction(Shake::create(0.2f, 3.0f));
+		myfnode->runAction(Shake::create(0.2f, 5.0f));
 
 		if (stype < 0)
 		{

@@ -7,5 +7,14 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="fightHeroNode.csd" />
+          <FilePathData Path="gambleBoxLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="fightHeroNode.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>

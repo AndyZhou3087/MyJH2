@@ -28,7 +28,7 @@ public:
     virtual Shake* reverse(void) const override;
     virtual void startWithTarget(Node *target) override;
     virtual void update(float time) override;
-    virtual void stop(void);
+    virtual void stop(void) override;
     
 protected:
      // Initial position of the shaked node
