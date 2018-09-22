@@ -7,6 +7,7 @@
 #include "GlobalInstance.h"
 #include "Const.h"
 #include "MovingLabel.h"
+#include "HeroAttrLayer.h"
 
 CardHeroNode::CardHeroNode()
 {
@@ -92,10 +93,20 @@ void CardHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 			return;
 		}
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		Layer* layer = SelectMyHerosLayer::create(HS_TAKEON);
-		layer->setTag(this->getTag());
-		this->getParent()->addChild(layer, 3, "selectmyheroslayer");
-		AnimationEffect::openAniEffect((Layer*)layer);
+
+		if (m_herodata == NULL)
+		{
+			Layer* layer = SelectMyHerosLayer::create(HS_TAKEON);
+			layer->setTag(this->getTag());
+			this->getParent()->addChild(layer, 3, "selectmyheroslayer");
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
+		else
+		{
+			Layer* layer = HeroAttrLayer::create(m_herodata, 0);
+			this->getParent()->addChild(layer, 3, this->getTag());
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 	}
 }
 

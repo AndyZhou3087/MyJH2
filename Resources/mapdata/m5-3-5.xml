@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cfg>
   <Monstors minc="5" maxc="6">
-    <m id="n052" minlv="50" maxlv="60" minqu="1" maxqu="2">100</m>
+    <m id="n052" minlv="50" maxlv="60" minqu="0" maxqu="2">100</m>
     <ma id="r001" c="30" qu="0">10.00</ma>
     <ma id="r002" c="30" qu="0">10.00</ma>
     <ma id="r003" c="30" qu="0">10.00</ma>

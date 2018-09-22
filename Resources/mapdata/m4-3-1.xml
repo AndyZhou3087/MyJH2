@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cfg>
   <Monstors minc="3" maxc="5">
-    <m id="n004" minlv="40" maxlv="40" minqu="2" maxqu="3">34</m>
-    <m id="n011" minlv="40" maxlv="40" minqu="2" maxqu="3">33</m>
-    <m id="n012" minlv="40" maxlv="40" minqu="2" maxqu="3">33</m>
+    <m id="n004" minlv="40" maxlv="40" minqu="1" maxqu="2">34</m>
+    <m id="n011" minlv="40" maxlv="40" minqu="1" maxqu="2">33</m>
+    <m id="n012" minlv="40" maxlv="40" minqu="1" maxqu="2">33</m>
     <ma id="r001" c="30" qu="0">10.00</ma>
     <ma id="r002" c="30" qu="0">10.00</ma>
     <ma id="r003" c="30" qu="0">10.00</ma>
@@ -64,7 +64,7 @@
     <Cell c="1" r="10" p="-1" w="1" m="65.png" />
     <Cell c="1" r="11" p="-1" w="1" m="65.png" />
     <Cell c="1" r="12" p="-1" w="1" m="65.png" />
-    <Cell c="1" r="13" p="5" w="1" m="65.png" />
+    <Cell c="1" r="13" p="-1" w="1" m="65.png" />
     <Cell c="1" r="14" p="-1" w="0" m="72.png" />
     <Cell c="1" r="15" p="-1" w="0" m="66.png" d="1.png" />
     <Cell c="1" r="16" p="-1" w="0" m="66.png" d="1.png" />
@@ -1191,7 +1191,7 @@
     <Cell c="32" r="33" p="-1" w="1" m="65.png" />
     <Cell c="32" r="34" p="-1" w="0" m="73.png" />
     <Cell c="33" r="0" p="-1" w="0" m="46.png" />
-    <Cell c="33" r="1" p="5" w="1" m="65.png" />
+    <Cell c="33" r="1" p="-1" w="1" m="65.png" />
     <Cell c="33" r="2" p="-1" w="1" m="65.png" />
     <Cell c="33" r="3" p="-1" w="1" m="65.png" />
     <Cell c="33" r="4" p="-1" w="1" m="65.png" />
@@ -1205,7 +1205,7 @@
     <Cell c="33" r="12" p="-1" w="1" m="65.png" />
     <Cell c="33" r="13" p="-1" w="1" m="65.png" />
     <Cell c="33" r="14" p="-1" w="0" m="72.png" />
-    <Cell c="33" r="15" p="5" w="1" m="65.png" />
+    <Cell c="33" r="15" p="-1" w="1" m="65.png" />
     <Cell c="33" r="16" p="-1" w="0" m="65.png" />
     <Cell c="33" r="17" p="-1" w="0" m="65.png" />
     <Cell c="33" r="18" p="-1" w="0" m="65.png" />

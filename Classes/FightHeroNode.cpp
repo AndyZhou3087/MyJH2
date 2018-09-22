@@ -12,6 +12,7 @@
 #include "SoundManager.h"
 #include "SkillStartLayer.h"
 #include "AnimationEffect.h"
+#include "Shake.h"
 
 FightHeroNode::FightHeroNode()
 {
@@ -71,6 +72,8 @@ bool FightHeroNode::init()
 
 	//名字
 	namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
+
+	hpbar_bg = (cocos2d::ui::Widget*)csbnode->getChildByName("herohpbarbg");
 
 	//血量进度条
 	hp_bar = (cocos2d::ui::LoadingBar*)csbnode->getChildByName("hpbar");
@@ -793,6 +796,7 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 		}
 		else
 		{
+			attackShakeAnim();
 			changeSkillValue(stype, whosufferNode);
 		}
 	}
@@ -1159,7 +1163,11 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 		if (!m_Data->getIsDodge())
 			headimg->runAction(Sequence::create(DelayTime::create(dt1 + 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillEffect, this, stype, myHeroPos)), NULL));
 	}
-	
+
+	if (stype != SKILL_4 && stype != SKILL_7 && stype != SKILL_8 && stype != SKILL_9 && stype != SKILL_12 && stype != 13 && stype != SKILL_17 && stype != SKILL_18)
+	{
+		hpbar_bg->runAction(Sequence::create(DelayTime::create(dt1 + 0.85f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackShakeAnim, this)), NULL));
+	}
 
 	namelbl->runAction(Sequence::create(DelayTime::create(dt2 + 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, myHeroPos)), NULL));
 }
@@ -1293,6 +1301,11 @@ void FightHeroNode::nextRound(float dt)
 {
 	FightingLayer* fighting = (FightingLayer*)this->getParent();
 	fighting->resumeAtkSchedule();
+}
+
+void FightHeroNode::attackShakeAnim()
+{
+	this->runAction(Shake::create(0.2f, 5.0f));
 }
 
 void FightHeroNode::playSkillEffect(int stype)
