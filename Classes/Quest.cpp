@@ -67,7 +67,7 @@ void Quest::saveMainData()
 		{
 			GlobalInstance::vec_TaskMain[i].isfinish = GlobalInstance::myCurMainData.isfinish;
 			GlobalInstance::vec_TaskMain[i].finishtype = GlobalInstance::myCurMainData.finishtype;
-			AddFinishQuest(&GlobalInstance::myCurMainData);
+			AddFinishQuest(&GlobalInstance::vec_TaskMain[i]);
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
 			if (i + 1 < GlobalInstance::vec_TaskMain.size())
 			{
@@ -572,7 +572,7 @@ void Quest::saveBranchData()
 		{
 			GlobalInstance::vec_TaskBranch[i].isfinish = GlobalInstance::myCurBranchData.isfinish;
 			GlobalInstance::vec_TaskBranch[i].finishtype = GlobalInstance::myCurBranchData.finishtype;
-			AddFinishBranchQuest(&GlobalInstance::myCurBranchData);
+			AddFinishBranchQuest(&GlobalInstance::vec_TaskBranch[i]);
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
 			if (i + 1 < GlobalInstance::vec_TaskBranch.size())
 			{
