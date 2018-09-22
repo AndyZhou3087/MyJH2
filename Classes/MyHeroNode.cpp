@@ -390,13 +390,13 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				{
 					int heropos = m_heroData->getPos();
 					//清楚掉之前选择的
-					for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
-					{
-						if (GlobalInstance::vec_myHeros[i]->getPos() > 0 && GlobalInstance::vec_myHeros[i]->getPos() != heropos)
-						{
-							selectheroLayer->getMyHeroNode(i)->setStateTag(HS_OWNED);
-						}
-					}
+					//for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+					//{
+					//	if (GlobalInstance::vec_myHeros[i]->getPos() > 0 && GlobalInstance::vec_myHeros[i]->getPos() != heropos)
+					//	{
+					//		selectheroLayer->getMyHeroNode(i)->setStateTag(HS_OWNED);
+					//	}
+					//}
 
 					GlobalInstance::myCardHeros[heropos - 1] = NULL;
 
@@ -405,36 +405,36 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 					setStateTag(HS_OWNED);
 
-					std::vector<Hero*> vec_hero;
-					for (int i = 0; i < 6; i++)
-					{
-						if (GlobalInstance::myCardHeros[i] != NULL)
-							vec_hero.push_back(GlobalInstance::myCardHeros[i]);
-					}
+					//std::vector<Hero*> vec_hero;
+					//for (int i = 0; i < 6; i++)
+					//{
+					//	if (GlobalInstance::myCardHeros[i] != NULL)
+					//		vec_hero.push_back(GlobalInstance::myCardHeros[i]);
+					//}
 
-					int mycarryherosize = vec_hero.size();
-					for (int i = 0; i < 6; i++)
-					{
-						if (i < mycarryherosize)
-						{
-							GlobalInstance::myCardHeros[i] = vec_hero[i];
-							GlobalInstance::myCardHeros[i]->setPos(i + 1);
-						}
-						else
-						{
-							GlobalInstance::myCardHeros[i] = NULL;
-						}
-						CardHeroNode *cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(i);
-						cardheroNode->setData(GlobalInstance::myCardHeros[i]);
-					}
+					//int mycarryherosize = vec_hero.size();
+					//for (int i = 0; i < 6; i++)
+					//{
+					//	if (i < mycarryherosize)
+					//	{
+					//		GlobalInstance::myCardHeros[i] = vec_hero[i];
+					//		GlobalInstance::myCardHeros[i]->setPos(i + 1);
+					//	}
+					//	else
+					//	{
+					//		GlobalInstance::myCardHeros[i] = NULL;
+					//	}
+					//	CardHeroNode *cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(i);
+					//	cardheroNode->setData(GlobalInstance::myCardHeros[i]);
+					//}
 
-					for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
-					{
-						if (GlobalInstance::vec_myHeros[i]->getPos() > 0)
-						{
-							selectheroLayer->getMyHeroNode(i)->setStateTag(HS_TAKEON);
-						}
-					}
+					//for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+					//{
+					//	if (GlobalInstance::vec_myHeros[i]->getPos() > 0)
+					//	{
+					//		selectheroLayer->getMyHeroNode(i)->setStateTag(HS_TAKEON);
+					//	}
+					//}
 
 					GlobalInstance::getInstance()->saveMyHeros();
 				}

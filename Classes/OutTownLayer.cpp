@@ -11,6 +11,7 @@
 #include "MainScene.h"
 #include "NewGuideLayer.h"
 #include "Const.h"
+#include "SelectMyHerosLayer.h"
 
 USING_NS_CC;
 
@@ -84,6 +85,14 @@ bool OutTownLayer::init()
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
 	closebtn->setTag(1001);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onBtnClick, this));
+
+	//更换队形按钮
+	cocos2d::ui::Widget* changebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("changebtn");
+	changebtn->setTag(1002);
+	changebtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onBtnClick, this));
+
+	cocos2d::ui::ImageView* changetxt = (cocos2d::ui::ImageView*)changebtn->getChildByName("text");
+	changetxt->loadTexture(ResourcePath::makeTextImgPath("changequene_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::Text* foodname = (cocos2d::ui::Text*)csbnode->getChildByName("r001box")->getChildByName("namelbl");
 	foodname->setString(GlobalInstance::map_AllResources["r001"].name);
@@ -355,6 +364,12 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		case 1001://关闭
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
+		case 1002:
+		{
+			Layer* layer = SelectMyHerosLayer::create(HS_TAKEON);
+			this->addChild(layer, 3, "selectmyheroslayer");
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 		default:
 			break;
 		}

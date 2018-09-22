@@ -301,26 +301,26 @@ void InnRoomLayer::fireHero(int index)
 {
 	GlobalInstance::getInstance()->fireHero(index);
 
-	std::vector<Hero*> vec_hero;
-	for (int i = 0; i < 6; i++)
-	{
-		if (GlobalInstance::myCardHeros[i] != NULL)
-			vec_hero.push_back(GlobalInstance::myCardHeros[i]);
-	}
+	//std::vector<Hero*> vec_hero;
+	//for (int i = 0; i < 6; i++)
+	//{
+	//	if (GlobalInstance::myCardHeros[i] != NULL)
+	//		vec_hero.push_back(GlobalInstance::myCardHeros[i]);
+	//}
 
-	int mycarryherosize = vec_hero.size();
-	for (int i = 0; i < 6; i++)
-	{
-		if (i < mycarryherosize)
-		{
-			GlobalInstance::myCardHeros[i] = vec_hero[i];
-			GlobalInstance::myCardHeros[i]->setPos(i + 1);
-		}
-		else
-		{
-			GlobalInstance::myCardHeros[i] = NULL;
-		}
-	}
+	//int mycarryherosize = vec_hero.size();
+	//for (int i = 0; i < 6; i++)
+	//{
+	//	if (i < mycarryherosize)
+	//	{
+	//		GlobalInstance::myCardHeros[i] = vec_hero[i];
+	//		GlobalInstance::myCardHeros[i]->setPos(i + 1);
+	//	}
+	//	else
+	//	{
+	//		GlobalInstance::myCardHeros[i] = NULL;
+	//	}
+	//}
 
 	refreshMyHerosUi();
 }
