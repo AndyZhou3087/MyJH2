@@ -1275,12 +1275,12 @@
     <Cell c="25" r="3" p="3" w="1" m="94.png">
       <npcid>n059</npcid>
       <npcrnd>100</npcrnd>
-      <msatt1 id="n056" qu="2">65</msatt1>
-      <msatt2 id="n056" qu="2">65</msatt2>
-      <msatt3 id="n056" qu="2">65</msatt3>
-      <msatt4 id="n057" qu="3">65</msatt4>
+      <msatt1 id="n056" qu="1">65</msatt1>
+      <msatt2 id="n056" qu="1">65</msatt2>
+      <msatt3 id="n056" qu="1">65</msatt3>
+      <msatt4 id="n057" qu="2">65</msatt4>
       <msatt5 id="n059" qu="3">65</msatt5>
-      <msatt6 id="n058" qu="3">65</msatt6>
+      <msatt6 id="n058" qu="2">65</msatt6>
       <msawd1 id="s003" qu="0" rnd="10.00">1</msawd1>
       <msawd2 id="m003" qu="0" rnd="10.00">1</msawd2>
       <msawd3 id="e003" qu="0" rnd="5.00">1</msawd3>

@@ -832,9 +832,9 @@
     <Cell c="16" r="12" p="3" w="1" m="94.png">
       <npcid>n050</npcid>
       <npcrnd>100</npcrnd>
-      <msatt1 id="n048" qu="2">60</msatt1>
-      <msatt2 id="n048" qu="2">60</msatt2>
-      <msatt3 id="n048" qu="2">60</msatt3>
+      <msatt1 id="n048" qu="1">60</msatt1>
+      <msatt2 id="n048" qu="1">60</msatt2>
+      <msatt3 id="n048" qu="1">60</msatt3>
       <msatt5 id="n050" qu="3">60</msatt5>
       <msawd1 id="s003" qu="0" rnd="1.00">1</msawd1>
       <msawd2 id="m003" qu="0" rnd="1.00">1</msawd2>

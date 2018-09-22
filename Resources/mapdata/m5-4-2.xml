@@ -2434,9 +2434,9 @@
     <Cell c="48" r="14" p="3" w="1" m="94.png">
       <npcid>n056</npcid>
       <npcrnd>100</npcrnd>
-      <msatt1 id="n008" qu="2">60</msatt1>
-      <msatt2 id="n008" qu="2">60</msatt2>
-      <msatt3 id="n008" qu="2">60</msatt3>
+      <msatt1 id="n008" qu="1">60</msatt1>
+      <msatt2 id="n008" qu="1">60</msatt2>
+      <msatt3 id="n008" qu="1">60</msatt3>
       <msatt5 id="n056" qu="3">65</msatt5>
       <msawd1 id="s002" qu="0" rnd="5.00">1</msawd1>
       <msawd2 id="c001" qu="0" rnd="10.00">1</msawd2>

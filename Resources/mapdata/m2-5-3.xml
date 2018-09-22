@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cfg>
   <Monstors minc="3" maxc="6">
-    <m id="n002" minlv="20" maxlv="30" minqu="0" maxqu="2">25</m>
-    <m id="n007" minlv="20" maxlv="30" minqu="0" maxqu="2">25</m>
-    <m id="n008" minlv="20" maxlv="30" minqu="0" maxqu="2">25</m>
-    <m id="n023" minlv="20" maxlv="30" minqu="0" maxqu="2">25</m>
+    <m id="n002" minlv="20" maxlv="30" minqu="0" maxqu="1">25</m>
+    <m id="n007" minlv="20" maxlv="30" minqu="0" maxqu="1">25</m>
+    <m id="n008" minlv="20" maxlv="30" minqu="0" maxqu="1">25</m>
+    <m id="n023" minlv="20" maxlv="30" minqu="0" maxqu="1">25</m>
     <ma id="r001" c="20" qu="0">20.00</ma>
     <ma id="r002" c="20" qu="0">20.00</ma>
     <ma id="r003" c="20" qu="0">20.00</ma>
@@ -144,7 +144,7 @@
     <Cell c="5" r="3" p="-1" w="1" m="94.png" />
     <Cell c="5" r="4" p="-1" w="0" m="96.png" />
     <Cell c="5" r="5" p="-1" w="1" m="94.png" d="27.png" />
-    <Cell c="5" r="6" p="5" w="1" m="94.png" />
+    <Cell c="5" r="6" p="-1" w="1" m="94.png" />
     <Cell c="5" r="7" p="-1" w="1" m="94.png" />
     <Cell c="5" r="8" p="-1" w="1" m="94.png" />
     <Cell c="5" r="9" p="-1" w="1" m="94.png" />
@@ -182,7 +182,7 @@
     <Cell c="6" r="16" p="-1" w="1" m="94.png" />
     <Cell c="6" r="17" p="-1" w="0" m="94.png" d="19.png" />
     <Cell c="6" r="18" p="-1" w="0" m="94.png" />
-    <Cell c="6" r="19" p="-1" w="1" m="94.png" />
+    <Cell c="6" r="19" p="5" w="1" m="94.png" />
     <Cell c="6" r="20" p="-1" w="0" m="84.png" />
     <Cell c="6" r="21" p="-1" w="1" m="94.png" />
     <Cell c="6" r="22" p="-1" w="0" m="96.png" />
@@ -233,7 +233,7 @@
     <Cell c="8" r="13" p="-1" w="1" m="94.png" />
     <Cell c="8" r="14" p="-1" w="1" m="94.png" />
     <Cell c="8" r="15" p="-1" w="0" m="96.png" />
-    <Cell c="8" r="16" p="5" w="1" m="94.png" />
+    <Cell c="8" r="16" p="-1" w="1" m="94.png" />
     <Cell c="8" r="17" p="-1" w="1" m="94.png" />
     <Cell c="8" r="18" p="-1" w="1" m="94.png">
       <event>0;0;0;0;0;0;50</event>
@@ -644,9 +644,7 @@
     <Cell c="23" r="22" p="-1" w="1" m="94.png" />
     <Cell c="23" r="23" p="-1" w="1" m="94.png" />
     <Cell c="23" r="24" p="-1" w="0" m="84.png" />
-    <Cell c="24" r="0" p="-1" w="1" m="86.png">
-      <event>100;0;0;0;0;0;0</event>
-    </Cell>
+    <Cell c="24" r="0" p="-1" w="0" m="86.png" />
     <Cell c="24" r="1" p="-1" w="1" m="85.png" />
     <Cell c="24" r="2" p="-1" w="1" m="85.png" />
     <Cell c="24" r="3" p="-1" w="1" m="85.png" />
