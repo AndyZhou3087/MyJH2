@@ -256,6 +256,7 @@
       <FilePathData Path="text_zh_cn/reward_text.png" />
       <FilePathData Path="text_zh_cn/powericon_text.png" />
       <FilePathData Path="text_zh_cn/carryout_text.png" />
+      <FilePathData Path="text_zh_cn/changequene_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

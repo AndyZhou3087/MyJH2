@@ -224,7 +224,7 @@
 	<s name="foodcreatordesc">产出：%s+1</s>
 	<s name="smithylvdesc">升级铁匠铺可制造更多物品</s>
 	<s name="needresdesc">所需%s</s>	
-	<s name="changelineuphint">点击头像（框）更换角色或者拖拽角色变换阵容</s>
+	<s name="changelineuphint">可拖拽角色变换阵容</s>
 	<s name="outtownhintdesc">合理搭配阵容，可以最好的发挥战斗力</s>
 	<s name="taskhintdesc">完成主线任务，可以解锁更多的地图</s>
 	<s name="marketrefreshdesc">立即补满货物库存数量</s>

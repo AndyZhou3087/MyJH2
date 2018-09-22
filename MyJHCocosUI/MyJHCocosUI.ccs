@@ -389,6 +389,7 @@
           <Image Name="cancelbtn_text.png" />
           <Image Name="carryout_text.png" />
           <Image Name="changebtn_text.png" />
+          <Image Name="changequene_text.png" />
           <Image Name="cleanread_text.png" />
           <Image Name="closebtn_text.png" />
           <Image Name="continuebtn_text.png" />

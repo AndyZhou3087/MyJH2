@@ -646,19 +646,19 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 void HeroAttrLayer::fireHero()
 {
-	GlobalInstance::getInstance()->fireHero(this->getTag());
-	m_heroData = NULL;
 	InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
 	if (innroomLayer != NULL)
 	{
-		innroomLayer->refreshMyHerosUi();
+		innroomLayer->fireHero(this->getTag());
 	}
 	else
 	{
+		GlobalInstance::getInstance()->fireHero(this->getTag());
 		OutTownLayer* outTown = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
 		SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
 		sellayer->refreshMyHerosUi();
 	}
+	m_heroData = NULL;
 	AnimationEffect::closeAniEffect((Layer*)this);
 }
 
