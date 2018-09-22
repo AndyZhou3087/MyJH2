@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cfg>
   <Monstors minc="2" maxc="6">
-    <m id="n003" minlv="15" maxlv="25" minqu="1" maxqu="2">15</m>
-    <m id="n004" minlv="15" maxlv="25" minqu="1" maxqu="2">15</m>
-    <m id="n005" minlv="15" maxlv="25" minqu="1" maxqu="2">15</m>
-    <m id="n006" minlv="15" maxlv="25" minqu="1" maxqu="2">15</m>
-    <m id="n007" minlv="15" maxlv="25" minqu="1" maxqu="2">15</m>
-    <m id="n008" minlv="15" maxlv="25" minqu="1" maxqu="2">25</m>
+    <m id="n003" minlv="15" maxlv="25" minqu="0" maxqu="1">15</m>
+    <m id="n004" minlv="15" maxlv="25" minqu="0" maxqu="1">15</m>
+    <m id="n005" minlv="15" maxlv="25" minqu="0" maxqu="1">15</m>
+    <m id="n006" minlv="15" maxlv="25" minqu="0" maxqu="1">15</m>
+    <m id="n007" minlv="15" maxlv="25" minqu="0" maxqu="1">15</m>
+    <m id="n008" minlv="15" maxlv="25" minqu="0" maxqu="1">25</m>
     <ma id="r001" c="10" qu="0">20.00</ma>
     <ma id="r002" c="10" qu="0">20.00</ma>
     <ma id="r003" c="10" qu="0">20.00</ma>

@@ -406,24 +406,6 @@ void FightingLayer::showAtk(int fightertag)
 					myhero->vec_whosufferskill.push_back(6 + attackindex);
 				}
 
-				//受到攻击动画
-				if ((stype == SKILL_9 || stype == SKILL_12 || stype == SKILL_17) && attackindex >= 0)
-				{
-					FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(6 + attackindex);
-					enemyfnode->runAction(Shake::create(0.2f, 5.0f));
-				}
-				else
-				{
-					for (unsigned int i = 0; i < myhero->vec_whosufferskill.size(); i++)
-					{
-						if (myhero->vec_whosufferskill[i] >= 6)
-						{
-							FightHeroNode* enemyfnode = (FightHeroNode*)this->getChildByTag(myhero->vec_whosufferskill[i]);
-							enemyfnode->runAction(Shake::create(0.2f, 5.0f));
-						}
-					}
-				}
-
 				//不是增加自身属性
 				if (myhero->getSkillingType() >= 0 && myhero->getSkillingType() != SKILL_7 && myhero->getSkillingType() != SKILL_8 && myhero->getSkillingType() != SKILL_9 && myhero->getSkillingType() != SKILL_12 && myhero->getSkillingType() != SKILL_17)
 				{

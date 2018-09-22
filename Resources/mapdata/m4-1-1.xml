@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cfg>
   <Monstors minc="3" maxc="5">
-    <m id="n001" minlv="30" maxlv="35" minqu="2" maxqu="3">15</m>
-    <m id="n005" minlv="30" maxlv="35" minqu="2" maxqu="3">15</m>
-    <m id="n006" minlv="30" maxlv="35" minqu="2" maxqu="3">15</m>
-    <m id="n007" minlv="30" maxlv="35" minqu="2" maxqu="3">15</m>
-    <m id="n008" minlv="30" maxlv="35" minqu="2" maxqu="3">20</m>
-    <m id="n009" minlv="30" maxlv="35" minqu="2" maxqu="3">20</m>
+    <m id="n001" minlv="30" maxlv="35" minqu="0" maxqu="1">15</m>
+    <m id="n005" minlv="30" maxlv="35" minqu="1" maxqu="2">15</m>
+    <m id="n006" minlv="30" maxlv="35" minqu="0" maxqu="2">15</m>
+    <m id="n007" minlv="30" maxlv="35" minqu="1" maxqu="2">15</m>
+    <m id="n008" minlv="30" maxlv="35" minqu="0" maxqu="2">20</m>
+    <m id="n009" minlv="30" maxlv="35" minqu="1" maxqu="2">20</m>
     <ma id="r001" c="20" qu="0">20.00</ma>
     <ma id="r002" c="20" qu="0">20.00</ma>
     <ma id="r003" c="20" qu="0">20.00</ma>
@@ -205,7 +205,7 @@
     <Cell c="6" r="3" p="-1" w="1" m="33.png" />
     <Cell c="6" r="4" p="-1" w="1" m="33.png" />
     <Cell c="6" r="5" p="-1" w="1" m="33.png" />
-    <Cell c="6" r="6" p="5" w="1" m="33.png" />
+    <Cell c="6" r="6" p="-1" w="1" m="33.png" />
     <Cell c="6" r="7" p="-1" w="0" m="33.png" d="32.png" />
     <Cell c="6" r="8" p="-1" w="0" m="33.png" />
     <Cell c="6" r="9" p="-1" w="0" m="33.png" />
@@ -302,7 +302,7 @@
     <Cell c="9" r="10" p="-1" w="1" m="33.png" />
     <Cell c="9" r="11" p="-1" w="0" m="33.png" />
     <Cell c="9" r="12" p="-1" w="0" m="33.png" />
-    <Cell c="9" r="13" p="5" w="1" m="33.png" />
+    <Cell c="9" r="13" p="-1" w="1" m="33.png" />
     <Cell c="9" r="14" p="-1" w="0" m="33.png" d="32.png" />
     <Cell c="9" r="15" p="-1" w="0" m="33.png" />
     <Cell c="9" r="16" p="-1" w="0" m="33.png" />
@@ -922,7 +922,7 @@
     <Cell c="29" r="13" p="-1" w="1" m="33.png" />
     <Cell c="29" r="14" p="-1" w="1" m="33.png" />
     <Cell c="29" r="15" p="-1" w="1" m="33.png" />
-    <Cell c="29" r="16" p="5" w="1" m="33.png" />
+    <Cell c="29" r="16" p="-1" w="1" m="33.png" />
     <Cell c="29" r="17" p="-1" w="0" m="33.png" />
     <Cell c="29" r="18" p="-1" w="0" m="33.png" />
     <Cell c="29" r="19" p="-1" w="0" m="33.png" />

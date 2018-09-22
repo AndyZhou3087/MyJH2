@@ -67,11 +67,13 @@ public:
 
 	void attackedSkillEffect(int stype, int myHeroPos);
 
+	void attackShakeAnim();
 private:
 	Node* csbnode;
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
 	cocos2d::ui::Text* namelbl;
+	cocos2d::ui::Widget* hpbar_bg;
 	cocos2d::ui::LoadingBar* hp_bar;
 	cocos2d::ui::LoadingBar* atkspeed_bar;
 	cocos2d::ui::Widget* atkspeed_barbg;
