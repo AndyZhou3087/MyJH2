@@ -768,7 +768,7 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 					lbl->setPosition(Vec2(0, 110));
 					lbl->enableOutline(Color4B(90, 6, 6, 255), 2);
 					fnode->addChild(lbl, 20);
-					map_skillattrlabel[stype].push_back(lbl);
+					fnode->map_skillattrlabel[stype].push_back(lbl);
 
 				}
 				else if (stype == SKILL_11)
@@ -784,7 +784,7 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 					lbl->setPosition(Vec2(0, 110));
 					lbl->enableOutline(Color4B(90, 6, 6, 255), 2);
 					fnode->addChild(lbl, 20);
-					map_skillattrlabel[stype].push_back(lbl);
+					fnode->map_skillattrlabel[stype].push_back(lbl);
 				}
 				if (fnode->map_skillattricon[stype].size() > 0)
 				{
