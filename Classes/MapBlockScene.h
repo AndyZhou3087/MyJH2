@@ -190,6 +190,8 @@ private:
 
 	std::vector<MapBlock*> vec_normalBlocks;
 	std::vector<MapBlock*> vec_monsterBlocks;
+
+	int firstpostype;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

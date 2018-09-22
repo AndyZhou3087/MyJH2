@@ -27,7 +27,7 @@ public:
 	static void initCurNeedData();
 
 	//添加已完成任务
-	static void AddFinishQuest(TaskData data);
+	static void AddFinishQuest(TaskData* data);
 
 	//判断二选一条件下是否有互斥,若有返回true
 	static bool getMutexMainQuestType(int id, int type);
@@ -69,7 +69,7 @@ public:
 	static void initCurBranchNeedData();
 
 	//添加已完成任务
-	static void AddFinishBranchQuest(TaskData data);
+	static void AddFinishBranchQuest(TaskData* data);
 
 	//判断二选一条件下是否有互斥,若有返回true
 	static bool getMutexBranchQuestType(int id, int type);
@@ -124,11 +124,11 @@ public:
 	static void setAchieveTypeCount(int type, int count,std::string resid = "0");
 
 public:
-	static std::vector<TaskData> myFinishMainQuest;
+	static std::vector<TaskData*> myFinishMainQuest;
 
 	static std::map<std::string, int> map_NpcQuestRes;
 
-	static std::vector<TaskData> myFinishBranchQuest;
+	static std::vector<TaskData*> myFinishBranchQuest;
 
 	//支线任务npc物品
 	static std::map<std::string, int> map_NpcBranchQuestRes;

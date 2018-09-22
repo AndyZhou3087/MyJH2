@@ -1735,6 +1735,7 @@ int GlobalInstance::getHerosChangeLevelCount()
 		if (hero->getLevel() + 1 == 10)
 		{
 			count++;
+			break;
 		}
 	}
 	return count;
@@ -1749,6 +1750,7 @@ int GlobalInstance::getHerosLevelCount(int lv)
 		if (hero->getLevel() + 1 >= lv)
 		{
 			count++;
+			break;
 		}
 	}
 	return count;
@@ -1779,8 +1781,8 @@ bool GlobalInstance::getUnlockHomehillCondition()
 {
 	for (unsigned int i = 0; i < Quest::myFinishMainQuest.size(); i++)
 	{
-		TaskData data = Quest::myFinishMainQuest[i];
-		if (data.id == 7)//通关神龙教地图m1-4-2
+		TaskData* data = Quest::myFinishMainQuest[i];
+		if (data->id == 7)//通关神龙教地图m1-4-2
 		{
 			return true;
 		}

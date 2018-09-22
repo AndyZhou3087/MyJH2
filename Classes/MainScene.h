@@ -47,6 +47,9 @@ public:
 	//判断是否可点击
 	bool buildingIsClickOn(int tag);
 
+	//监测市场开放
+	void checkBuildingOpen(float dt);
+
 private:
 	void updateTaskLayerTip(float dt);
 

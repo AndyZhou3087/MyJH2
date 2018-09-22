@@ -432,15 +432,15 @@ void NewGuideLayer::showNextGuide()
 	else if (m_step == 64)
 	{
 		this->removeFromParentAndCleanup(true);
-		if (g_mainScene != NULL)
-		{
-			HospitalLayer* layer = (HospitalLayer*)g_mainScene->getChildByName("1hospital");
-			if (layer != NULL)
-			{
-				layer->scheduleOnce(schedule_selector(HospitalLayer::delayShowNewerGuide), newguidetime);
-				//layer->delayShowNewerGuide(0);
-			}
-		}
+		//if (g_mainScene != NULL)
+		//{
+		//	HospitalLayer* layer = (HospitalLayer*)g_mainScene->getChildByName("1hospital");
+		//	if (layer != NULL)
+		//	{
+		//		layer->scheduleOnce(schedule_selector(HospitalLayer::delayShowNewerGuide), newguidetime);
+		//		//layer->delayShowNewerGuide(0);
+		//	}
+		//}
 	}
 	else if (m_step == 67)
 	{
@@ -843,7 +843,7 @@ void NewGuideLayer::setNewGuideInfo(int step)
 	{
 		for (unsigned int i = 0; i < Quest::myFinishMainQuest.size(); i++)
 		{
-			TaskData* data = &Quest::myFinishMainQuest[i];
+			TaskData* data = Quest::myFinishMainQuest[i];
 			if (data->id == 1)
 			{
 				data->isfinish = QUEST_FINISH;

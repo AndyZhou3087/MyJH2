@@ -34,7 +34,7 @@ public:
 	void continueGamble();
 	void updateCoin(float dt);
 
-	static void loadEventData();
+	static void loadEventData(std::string filename);
 	static void loadPrData();
 
 private:

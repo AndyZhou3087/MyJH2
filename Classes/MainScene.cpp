@@ -176,6 +176,13 @@ bool MainScene::init()
 	cocos2d::ui::Text* hinttext = (cocos2d::ui::Text*)maincityhintbox->getChildByName("text");
 	hinttext->setString(ResourceLang::map_lang["newherohint"]);
 
+
+	//监测训练场开放
+	if (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0)
+	{
+		this->schedule(schedule_selector(MainScene::checkBuildingOpen), 3.0f);
+	}
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -200,6 +207,21 @@ bool MainScene::init()
     return true;
 }
 
+void MainScene::checkBuildingOpen(float dt)
+{
+	if (GlobalInstance::getInstance()->getHerosLevelCount(20) > 0)
+	{
+		this->unschedule(schedule_selector(MainScene::checkBuildingOpen));
+		Node* textnode = scroll_3->getChildByName("main_05_t");
+		textnode->setVisible(true);
+		Node* cnode = scroll_3->getChildByName("main_05_c");
+		if (cnode != NULL)
+		{
+			cnode->setVisible(false);
+		}
+	}
+}
+
 void MainScene::delayShowNewerGuide(float dt)
 {
 	if (!NewGuideLayer::checkifNewerGuide(14))
@@ -208,7 +230,7 @@ void MainScene::delayShowNewerGuide(float dt)
 		{
 			showNewerGuide(63);
 		}
-		else if (GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0)
+		else if (GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0 && NewGuideLayer::checkifNewerGuide(66))
 		{
 			if (NewGuideLayer::checkifNewerGuide(66))
 			{
@@ -219,7 +241,7 @@ void MainScene::delayShowNewerGuide(float dt)
 				showNewerGuide(69);
 			}
 		}
-		else if (GlobalInstance::getInstance()->getHerosLevelCount(15) > 0)
+		else if (GlobalInstance::getInstance()->getHerosLevelCount(15) > 0 && NewGuideLayer::checkifNewerGuide(73))
 		{
 			if (NewGuideLayer::checkifNewerGuide(73))
 			{
@@ -386,7 +408,7 @@ void MainScene::updateTaskLayerTip(float dt)
 	int mcount = 0;
 	for (unsigned int i = 0; i < Quest::myFinishMainQuest.size(); i++)
 	{
-		TaskData* data = &Quest::myFinishMainQuest[i];
+		TaskData* data = Quest::myFinishMainQuest[i];
 		if (data->isfinish == QUEST_FINISH)
 		{
 			mcount++;
@@ -397,7 +419,7 @@ void MainScene::updateTaskLayerTip(float dt)
 	int bcount = 0;
 	for (unsigned int i = 0; i < Quest::myFinishBranchQuest.size(); i++)
 	{
-		TaskData* data = &Quest::myFinishBranchQuest[i];
+		TaskData* data = Quest::myFinishBranchQuest[i];
 		if (data->isfinish == QUEST_FINISH)
 		{
 			bcount++;
@@ -409,16 +431,17 @@ void MainScene::updateTaskLayerTip(float dt)
 	std::map<std::string, DailyTaskData>::iterator it;
 	for (it = GlobalInstance::map_DTdata.begin(); it != GlobalInstance::map_DTdata.end(); it++)
 	{
-		DailyTaskData* data = &GlobalInstance::map_DTdata[it->first];
-		if (data->state == DAILY_FINISHED)
+		DailyTaskData data = GlobalInstance::map_DTdata[it->first];
+		if (data.state == DAILY_FINISHED)
 		{
 			dcount++;
 			break;
 		}
 	}
 
+	//log("-------maintask = %d, branchtask = %d, mcount = %d, bcount = %d, dcount = %d ", GlobalInstance::myCurMainData.isfinish, GlobalInstance::myCurBranchData.isfinish, mcount, bcount, dcount);
 	//主线支线每日判断
-	if (GlobalInstance::myCurMainData.isfinish == QUEST_TASK || GlobalInstance::myCurBranchData.isfinish == QUEST_TASK || mcount > 0 || bcount> 0 || dcount > 0)
+	if (GlobalInstance::myCurMainData.isfinish == QUEST_TASK || GlobalInstance::myCurBranchData.isfinish == QUEST_TASK || mcount > 0 || bcount > 0 || dcount > 0)
 	{
 		tasktip->setVisible(true);
 	}

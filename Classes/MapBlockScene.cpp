@@ -46,6 +46,7 @@ MapBlockScene::MapBlockScene()
 	_fogrender = NULL;
 	mapIsAllOpen = false;
 	randStartPos = -1;
+	firstpostype = -1;
 }
 
 
@@ -968,9 +969,7 @@ void MapBlockScene::resetBlockData()
 
 bool MapBlockScene::getFirstFightBoss()
 {
-	int mycr = mycurRow*blockColCount + mycurCol;
-	MapBlock* mapblock = map_mapBlocks[mycr];
-	if (mapblock->getPosType() == POS_BOSS)
+	if (firstpostype == POS_BOSS)
 	{
 		return true;
 	}
@@ -1023,6 +1022,10 @@ void MapBlockScene::doMyStatus()
 		vec_winrewards.clear();
 		if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS)
 		{
+			if (mapblock->getPosType() == POS_BOSS)
+			{
+				firstpostype = mapblock->getPosType();
+			}
 			creatNpcOrBoss(mapblock);
 		}
 		else if (mapblock->getPosType() == POS_MONSTER)
@@ -1110,7 +1113,7 @@ void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 	}
 	else
 	{
-		MapEventLayer::loadEventData();
+		MapEventLayer::loadEventData("boxevent");
 		MapEventLayer::loadPrData();
 		int r = GlobalInstance::getInstance()->createRandomNum(4) + 0;
 		for (int i = 0; i < r; i++)
