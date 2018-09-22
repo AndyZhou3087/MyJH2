@@ -405,6 +405,9 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 					setStateTag(HS_OWNED);
 
+					CardHeroNode *cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(heropos - 1);
+					cardheroNode->setData(NULL);
+
 					//std::vector<Hero*> vec_hero;
 					//for (int i = 0; i < 6; i++)
 					//{
