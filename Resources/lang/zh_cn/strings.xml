@@ -264,5 +264,6 @@
 	<s name="newguideheroname_3">任小姐</s>	
 	<s name="newguideheroname_4">辽东大侠</s>	
 	<s name="newguideheroname_5">长春子</s>
-	<s name="outtownmax">出城人数已满</s>		
+	<s name="outtownmax">出城人数已满</s>
+	<s name="maporderhint">请先通关[%s]</s>				
 </strings>
