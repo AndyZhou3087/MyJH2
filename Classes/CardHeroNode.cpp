@@ -227,8 +227,8 @@ void CardHeroNode::updatePowerCount(float dt)
 			GlobalInstance::getInstance()->saveHero(m_herodata);
 		}
 
-		std::string str = StringUtils::format("%d/100", m_herodata->getPower().getValue());
-		powertext->setString(str);
+		std::string powstr = StringUtils::format("%d/100", m_herodata->getPower().getValue());
+		powertext->setString(powstr);
 		powertext->setVisible(true);
 		if (m_herodata->getPower().getValue() <= 0)
 			powertext->setTextColor(Color4B(Color3B(255,35,35)));

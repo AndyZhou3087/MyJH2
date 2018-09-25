@@ -346,6 +346,11 @@ public:
 	//保存地图宝箱
 	void setMapBoxRewards(std::string key, bool val);
 
+	//每个地图完成到哪个
+	int getMapOrderCount(std::string mapid);
+	//每个地图完成到哪个
+	void setMapOrderCount(std::string mapid, int val);
+
 private:
 	static DataSave* _Context;//类实例
 
