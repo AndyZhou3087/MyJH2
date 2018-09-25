@@ -142,34 +142,10 @@ void CardHeroNode::setData(Hero* herodata)
 
 		powericon->setVisible(true);
 
-		str = StringUtils::format("lv.%d", herodata->getLevel()+1);
-		lvlbl->setString(str);
-		lvlbl->setVisible(true);
-
-		namelbl->setString(herodata->getName());
-		namelbl->setVisible(true);
-
 		desclbl->setVisible(false);
-
-		if (herodata->getVocation() >= 4)
-		{
-			str = StringUtils::format("ui/cardvocation%d.png", herodata->getVocation());
-			vocationicon->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
-			vocationbox->setVisible(true);
-		}
-		else
-			vocationbox->setVisible(false);
 
 		cardnamebox->setVisible(true);
 
-
-		int startx[] = {0, -7, -15, -22, -30};
-
-		for (int i = 0; i < herodata->getChangeCount() - 1; i++)
-		{
-			stars[i]->setVisible(true);
-			stars[i]->setPositionX(startx[(herodata->getChangeCount() - 2)] + 15 * i);
-		}
 		updatePowerCount(0);
 		this->schedule(schedule_selector(CardHeroNode::updatePowerCount), 1);
 
@@ -209,6 +185,30 @@ void CardHeroNode::updatePowerCount(float dt)
 {
 	if (m_herodata != NULL)
 	{
+		std::string str = StringUtils::format("lv.%d", m_herodata->getLevel() + 1);
+		lvlbl->setString(str);
+		lvlbl->setVisible(true);
+
+		namelbl->setString(m_herodata->getName());
+		namelbl->setVisible(true);
+
+		if (m_herodata->getVocation() >= 4)
+		{
+			str = StringUtils::format("ui/cardvocation%d.png", m_herodata->getVocation());
+			vocationicon->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+			vocationbox->setVisible(true);
+		}
+		else
+			vocationbox->setVisible(false);
+
+		int startx[] = { 0, -7, -15, -22, -30 };
+
+		for (int i = 0; i < m_herodata->getChangeCount() - 1; i++)
+		{
+			stars[i]->setVisible(true);
+			stars[i]->setPositionX(startx[(m_herodata->getChangeCount() - 2)] + 15 * i);
+		}
+
 		int pasttime = GlobalInstance::servertime - m_herodata->getPowerTime();
 		int lefttime = HEROPOWER_RESETTIME - pasttime % HEROPOWER_RESETTIME;
 
