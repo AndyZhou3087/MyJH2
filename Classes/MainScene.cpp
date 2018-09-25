@@ -236,7 +236,7 @@ void MainScene::delayShowNewerGuide(float dt)
 		{
 			showNewerGuide(63);
 		}
-		else if (GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0 && NewGuideLayer::checkifNewerGuide(66))
+		else if (GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0 && NewGuideLayer::checkifNewerGuide(69))
 		{
 			if (NewGuideLayer::checkifNewerGuide(66))
 			{
@@ -247,7 +247,7 @@ void MainScene::delayShowNewerGuide(float dt)
 				showNewerGuide(69);
 			}
 		}
-		else if (GlobalInstance::getInstance()->getHerosLevelCount(15) > 0 && NewGuideLayer::checkifNewerGuide(73))
+		else if (GlobalInstance::getInstance()->getHerosLevelCount(15) > 0 && NewGuideLayer::checkifNewerGuide(77))
 		{
 			if (NewGuideLayer::checkifNewerGuide(73))
 			{
@@ -256,6 +256,13 @@ void MainScene::delayShowNewerGuide(float dt)
 			else if (NewGuideLayer::checkifNewerGuide(77))
 			{
 				showNewerGuide(77);
+			}
+		}
+		else if (GlobalInstance::getInstance()->getLittleHerosPower(10) && NewGuideLayer::checkifNewerGuide(88))
+		{
+			if (NewGuideLayer::checkifNewerGuide(88))
+			{
+				showNewerGuide(88);
 			}
 		}
 		/*else if (GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15))
@@ -398,6 +405,19 @@ void MainScene::showNewerGuide(int step)
 		cnode->setVisible(false);
 		cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_03_t");
 		text->setVisible(true);
+		nodes.push_back(node);
+	}
+	else if (step == 88)
+	{
+		scroll_3->setEnabled(true);
+
+		scroll_3->jumpToPercentHorizontal(32);
+		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+
+		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_04_n");//仓库
+		node->setTouchEnabled(true);
+		node->setSwallowTouches(false);
 		nodes.push_back(node);
 	}
 	showNewerGuideNode(step, nodes);

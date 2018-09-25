@@ -9,6 +9,7 @@
 #include "MainScene.h"
 #include "AnimationEffect.h"
 #include "RewardLayer.h"
+#include "NewGuideLayer.h"
 
 USING_NS_CC;
 
@@ -97,7 +98,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 	coutlbl->setString(str);
 
 	//按钮
-	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
+	actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(ResDescLayer::onBtnClick, this));
 	
 	std::string btntextstr;
@@ -209,6 +210,8 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 		actionbtn->setVisible(false);
 	}
 
+	this->scheduleOnce(schedule_selector(ResDescLayer::delayShowNewerGuide), newguidetime);
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -224,6 +227,27 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void ResDescLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(89))
+	{
+		if (NewGuideLayer::checkifNewerGuide(90))
+		{
+			showNewerGuide(90);
+		}
+	}
+}
+
+void ResDescLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 90)
+	{
+		nodes.push_back(actionbtn);
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

@@ -22,6 +22,9 @@ public:
 	static ResDescLayer* create(ResBase* res, int fromwhere);
 	virtual void onExit();
     bool init(ResBase* res, int fromwhere);
+
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
@@ -29,6 +32,7 @@ private:
 	int status;
 	ResBase* m_res;
 	int m_fromwhere;
+	cocos2d::ui::Widget* actionbtn;
 };
 
 #endif

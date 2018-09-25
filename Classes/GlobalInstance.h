@@ -493,6 +493,12 @@ public:
 	//判断后山解锁条件
 	bool getUnlockHomehillCondition();
 
+	//判断任意角色体力小于某个值
+	bool getLittleHerosPower(int comlv);
+
+	//判断是否第一次出战六个角色
+	bool getEnoughFightHeros();
+
 	/****************************
 	银两刷新英雄次数
 	****************************/

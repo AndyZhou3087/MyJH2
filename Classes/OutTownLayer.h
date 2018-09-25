@@ -48,6 +48,7 @@ private:
 	cocos2d::ui::Button* actionbtn;
 	int clickHero;
 	Vec2 beginTouchPoint;
+	cocos2d::ui::Widget* changebtn;
 };
 
 #endif

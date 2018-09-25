@@ -346,6 +346,7 @@ void TaskTalkLayer::onBtn2Click(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			break;
 		case QUEST_NOTFIGHT:
 			questNotFight(bwords);
+			break;
 		case QUEST_TAKEMY:
 			questTakeGoods(bwords, data->need2);
 			break;

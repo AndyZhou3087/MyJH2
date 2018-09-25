@@ -27,6 +27,9 @@ public:
 	void decompose(ResBase* res);
 
 	void updateUI();
+
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -44,6 +47,8 @@ private:
 	int langtype;
 	cocos2d::ui::ImageView* actionbtntxt;
 	bool isfastcomposing;
+	MenuItemSprite* newguideboxitem;
+	cocos2d::ui::Widget* closebtn;
 };
 #endif
 
