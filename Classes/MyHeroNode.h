@@ -42,6 +42,7 @@ private:
 	bool clickflag;
 	Vec2 beginTouchPoint;
 	Node* csbnode;
+	cocos2d::ui::Widget* arrowglv;
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

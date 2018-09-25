@@ -1827,6 +1827,19 @@ bool GlobalInstance::getEnoughFightHeros()
 	}
 }
 
+bool GlobalInstance::getCanUpgradeCount()
+{
+	for (int i = 1; i < 5; i++)
+	{
+		std::string str = StringUtils::format("s00%d", i);
+		if (MyRes::getMyResCount(str) > 0)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 DynamicValueInt GlobalInstance::getMySoliverCount()
 {
 	return GlobalInstance::mySoliverCount;

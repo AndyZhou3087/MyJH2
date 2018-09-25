@@ -62,6 +62,9 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	clickimg->setTag(1);
 	clickimg->setSwallowTouches(false);
 
+	arrowglv = (cocos2d::ui::Widget*)csbnode->getChildByName("arrowglv");
+	arrowglv->setVisible(false);
+
 	//头像框
 	headbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("herobox");
 
@@ -268,6 +271,18 @@ void MyHeroNode::updateTime(float dt)
 
 	std::string  lvstr = StringUtils::format("Lv.%d", m_heroData->getLevel() + 1);
 	lvlbl->setString(lvstr);
+
+	if (!arrowglv->isVisible() && ((m_heroData->getLevel() + 1) / 10) == m_heroData->getChangeCount() && GlobalInstance::getInstance()->getCanUpgradeCount())
+	{
+		arrowglv->stopAllActions();
+		arrowglv->setVisible(true);
+		arrowglv->runAction(RepeatForever::create(Sequence::create(FadeOut::create(0.5f), FadeIn::create(0.5f), NULL)));
+	}
+	else if (arrowglv->isVisible() && (((m_heroData->getLevel() + 1) / 10) != m_heroData->getChangeCount() || !GlobalInstance::getInstance()->getCanUpgradeCount()))
+	{
+		arrowglv->stopAllActions();
+		arrowglv->setVisible(false);
+	}
 }
 
 void MyHeroNode::updateData()
@@ -282,6 +297,7 @@ void MyHeroNode::updateData()
 	vocationlbl->setString(ResourceLang::map_lang[str]);
 
 	namelbl->setString(m_heroData->getName());
+	arrowglv->setPositionX(-103 + namelbl->getContentSize().width + 8);
 
 	for (int i = 0; i < m_heroData->getChangeCount() - 1; i++)
 	{

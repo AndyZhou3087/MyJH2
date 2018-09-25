@@ -716,6 +716,7 @@
           <Image Name="a028-3.png" />
           <Image Name="actionbtn_blue.png" />
           <Image Name="actionbtn_yellow.png" />
+          <Image Name="arrowglv.png" />
           <Image Name="b001.png" />
           <Image Name="b002.png" />
           <Image Name="b003.png" />
@@ -1060,6 +1061,7 @@
         <Project Name="fightLayer.csd" Type="Layer" />
         <Project Name="fightResultLayer.csd" Type="Layer" />
         <Project Name="gambleBoxLayer.csd" Type="Layer" />
+        <Project Name="gfDescLayer.csd" Type="Layer" />
         <Project Name="giftDescLayer.csd" Type="Layer" />
         <Project Name="goBackLayer.csd" Type="Layer" />
         <Project Name="headInfoLayer.csd" Type="Layer" />
@@ -1117,7 +1119,6 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="gfDescLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

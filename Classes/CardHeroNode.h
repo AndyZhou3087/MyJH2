@@ -33,12 +33,15 @@ private:
 	cocos2d::ui::ImageView* powericon;
 	cocos2d::Node* stars[5];
 	cocos2d::Node* cardnamebox;
+	Hero* m_herodata;
+	cocos2d::ui::Widget* arrowglv;
+
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onPowerClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void updatePowerCount(float dt);
-
-	Hero* m_herodata;
+	void updateIcon(float dt);
+	
 };
 #endif
 

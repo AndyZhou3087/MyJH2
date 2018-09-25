@@ -178,6 +178,17 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
           </AbstractNodeData>
+          <AbstractNodeData Name="arrowglv" ActionTag="1623243493" Tag="130" IconVisible="False" LeftMargin="40.1905" RightMargin="-66.1905" TopMargin="33.9300" BottomMargin="-65.9300" ctype="SpriteObjectData">
+            <Size X="26.0000" Y="32.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="53.1905" Y="-49.9300" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/arrowglv.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
