@@ -393,3 +393,27 @@ void MyRes::saveData()
 	}
 	DataSave::getInstance()->setMyRes(str.substr(0, str.length() - 1));
 }
+
+void MyRes::removeSivlerAndCoin()
+{
+	std::vector<ResBase*>::iterator mit;
+	for (mit = MyRes::vec_MyResources.begin(); mit != MyRes::vec_MyResources.end();)
+	{
+		ResBase* res = *mit;
+		if (res->getId().compare("r006") == 0 || res->getId().compare("r012") == 0)
+		{
+			DynamicValueInt dvint;
+			dvint.setValue(res->getCount().getValue());
+
+			if (res->getId().compare("r006") == 0)
+				GlobalInstance::getInstance()->addMySoliverCount(dvint);
+			else
+				GlobalInstance::getInstance()->addMyCoinCount(dvint);
+			mit = MyRes::vec_MyResources.erase(mit);
+		}
+		else
+		{
+			mit++;
+		}
+	}
+}
