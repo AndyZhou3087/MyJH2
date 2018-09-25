@@ -144,6 +144,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 	//属性信息
 	heroattrbottom = csbnode->getChildByName("heroattrbottom");
 	moditybtn = (cocos2d::ui::Widget*)heroattrbottom->getChildByName("moditybtn");
+	heroattrnamebox = (cocos2d::ui::Widget*)heroattrbottom->getChildByName("heroattrnamebox");
 
 	//品质
 	cocos2d::ui::ImageView* heroattrqu = (cocos2d::ui::ImageView*)heroattrbottom->getChildByName("heroattrqu");
@@ -370,6 +371,10 @@ void HeroAttrLayer::delayShowNewerGuide(float dt)
 			{
 				showNewerGuide(35);
 			}
+			else if (NewGuideLayer::checkifNewerGuide(93))
+			{
+				showNewerGuide(93);
+			}
 			else if (NewGuideLayer::checkifNewerGuide(38))
 			{
 				showNewerGuide(38);
@@ -418,6 +423,10 @@ void HeroAttrLayer::showNewerGuide(int step)
 	else if (step == 79)
 	{
 		nodes.push_back(equipnode->getChildren().at(0));
+	}
+	else if (step == 93)
+	{
+		nodes.push_back(heroattrnamebox);
 	}
 	g_mainScene->showNewerGuideNode(step, nodes);
 }
@@ -474,6 +483,16 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 		editBox->setText(m_heroData->getName().c_str());
 		MovingLabel::show(ResourceLang::map_lang["nicknameempty"]);
 		return;
+	}
+
+	//引导改名
+	if (g_NewGuideLayer != NULL)
+	{
+		g_NewGuideLayer->removeFromParentAndCleanup(true);
+	}
+	if (!NewGuideLayer::checkifNewerGuide(93))
+	{
+		delayShowNewerGuide(0);
 	}
 
 	if (GlobalInstance::getInstance()->checkifSameName(editBox->getText()))

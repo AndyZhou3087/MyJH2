@@ -21,6 +21,7 @@
 #include "HospitalLayer.h"
 #include "MarketLayer.h"
 #include "SelectMyHerosLayer.h"
+#include "StoreHouseLayer.h"
 
 std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教应该就在前面了，咱们快去看看。", //0
 "", //1
@@ -130,6 +131,17 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 //回城卷轴
 "小师妹：师兄，我们要赶快回到帮派里，刚好这里有茅山派的回城卷轴，师兄快用一下吧！",//86
 "",
+
+//点击仓库
+"小师妹：师兄，各位侠客因为长期各地奔波，现在体力不足，现在让我们帮他们恢复下体力吧！",//88
+"",
+"",
+"小师妹：师兄，侠客们的体力恢复了，继续驰骋江湖吧！",
+//第一次上满6个英雄
+"小师妹：师兄，上阵的侠客们都已经满了，如果想更换侠客，只需点击更换阵容，就可以替换啦！",//92
+
+//93接引导客栈第37步
+"小师妹：英雄不问出处，现在侠客加入了咱们的门派，掌门师兄可以给这些侠客起一个响亮的名字了！",
 };
 
 int voc[6] = { 6,4,11,3,8,1 };
@@ -294,7 +306,8 @@ void NewGuideLayer::showNextGuide()
 		|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46
 		|| m_step == 52 || m_step == 53 || m_step == 54 || m_step == 55 || m_step == 56 || m_step == 57 || m_step == 59 || m_step == 63
 		|| m_step == 65 || m_step == 66 || m_step == 69 || m_step == 70 || m_step == 71 || m_step == 72 || m_step == 73 || m_step == 74
-		|| m_step == 75 || m_step == 77 || m_step == 78 || m_step == 79 || m_step == 80 || m_step == 81  || m_step == 86 || m_step == 87)
+		|| m_step == 75 || m_step == 77 || m_step == 78 || m_step == 79 || m_step == 80 || m_step == 81  || m_step == 86 || m_step == 87
+		|| m_step == 88 || m_step == 89 || m_step == 91 || m_step == 92)
 	{
 		this->removeFromParentAndCleanup(true);
 	}
@@ -482,6 +495,18 @@ void NewGuideLayer::showNextGuide()
 			}
 		}
 	}
+	else if (m_step == 90)
+	{
+		this->removeFromParentAndCleanup(true);
+		if (g_mainScene != NULL)
+		{
+			StoreHouseLayer* layer = (StoreHouseLayer*)g_mainScene->getChildByName("3storehouse");
+			if (layer != NULL)
+			{
+				layer->delayShowNewerGuide(0);
+			}
+		}
+	}
 }
 
 bool NewGuideLayer::checkifNewerGuide(int index)
@@ -543,7 +568,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 				cnode->setPosition(m_pos);
 				cnode->setScale(scalex*1.5f, scaley*1.5f);
 				if (m_step == 0 || m_step == 1 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 19 || m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52 ||
-					m_step == 38 || m_step == 47 || m_step == 48 || m_step == 49 || m_step == 51 || m_step == 71 || m_step == 75 || m_step == 81 || m_step == 87)
+					m_step == 38 || m_step == 47 || m_step == 48 || m_step == 49 || m_step == 51 || m_step == 71 || m_step == 75 || m_step == 81 || m_step == 87 || m_step == 90)
 				{
 					cnode->setScale(scalex*1.5f);
 				}
@@ -627,7 +652,7 @@ void NewGuideLayer::showWord(std::string wordstr)
 		{
 			textbox->setPosition(Vec2(360, 530));
 		}
-		else if (m_step == 63 || m_step == 72)
+		else if (m_step == 63 || m_step == 72 || m_step == 88 || m_step == 93)
 		{
 			textbox->setPosition(Vec2(360, 650));
 		}
@@ -822,6 +847,7 @@ void NewGuideLayer::setNewGuideInfo(int step)
 			{
 				DataSave::getInstance()->setIsNewerGuide(i, 1);
 			}
+			DataSave::getInstance()->setIsNewerGuide(93, 1);
 		}
 	}
 	else if (step == MIDELEGUIDESTEP)

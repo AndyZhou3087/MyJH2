@@ -13,11 +13,15 @@
 #include "Quest.h"
 #include "AnimationEffect.h"
 #include "HintBoxLayer.h"
+#include "NewGuideLayer.h"
+#include "MainScene.h"
+#include "NewGuideLayer.h"
 
 StoreHouseLayer::StoreHouseLayer()
 {
 	lastCategoryindex = 0;
 	isfastcomposing = false;
+	newguideboxitem = NULL;
 }
 
 
@@ -48,7 +52,7 @@ bool StoreHouseLayer::init()
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("titleimg");
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("storehousetitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)m_csbnode->getChildByName("closebtn");
+	closebtn = (cocos2d::ui::Widget*)m_csbnode->getChildByName("closebtn");
 	closebtn->setTag(1001);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(StoreHouseLayer::onBtnClick, this));
 
@@ -77,6 +81,8 @@ bool StoreHouseLayer::init()
 	}
 	updateContent(0);
 
+	this->scheduleOnce(schedule_selector(StoreHouseLayer::delayShowNewerGuide), newguidetime);
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -88,6 +94,38 @@ bool StoreHouseLayer::init()
 
 
 	return true;
+}
+
+void StoreHouseLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(88))
+	{
+		if (NewGuideLayer::checkifNewerGuide(89))
+		{
+			showNewerGuide(89);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(91))
+		{
+			showNewerGuide(91);
+		}
+	}
+}
+
+void StoreHouseLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 89)
+	{
+		if (newguideboxitem != NULL)
+		{
+			nodes.push_back(newguideboxitem);
+		}
+	}
+	else if (step == 91)
+	{
+		nodes.push_back(closebtn);
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void StoreHouseLayer::updateContent(int category)
@@ -168,6 +206,26 @@ void StoreHouseLayer::updateContent(int category)
 		scrollview->addChild(menu);
 
 		std::string resid = map_cateRes[category][m]->getId();
+
+		//引导体力药水
+		if (!NewGuideLayer::checkifNewerGuide(88) && NewGuideLayer::checkifNewerGuide(89))
+		{
+			if (map_cateRes[category][m]->getId().compare("p001") == 0)
+			{
+				newguideboxitem = boxItem;
+				int posh = innerheight - m / 4 * itemheight + 5;
+				int vsizeh = contentheight;
+				if (posh > vsizeh)
+				{
+					float per = (1 - (float)(posh - vsizeh) / (innerheight - vsizeh)) * 100;
+					scrollview->jumpToPercentVertical(per);
+				}
+				else
+				{
+					scrollview->jumpToBottom();
+				}
+			}
+		}
 
 		std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 

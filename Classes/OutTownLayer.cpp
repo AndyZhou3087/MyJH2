@@ -87,7 +87,7 @@ bool OutTownLayer::init()
 	closebtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onBtnClick, this));
 
 	//更换队形按钮
-	cocos2d::ui::Widget* changebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("changebtn");
+	changebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("changebtn");
 	changebtn->setTag(1002);
 	changebtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onBtnClick, this));
 
@@ -291,6 +291,10 @@ void OutTownLayer::delayShowNewerGuide(float dt)
 				showNewerGuide(52);
 			}
 		}
+		else if (NewGuideLayer::checkifNewerGuide(92) && GlobalInstance::getInstance()->getEnoughFightHeros())
+		{
+			showNewerGuide(92);
+		}
 	}
 }
 
@@ -312,6 +316,10 @@ void OutTownLayer::showNewerGuide(int step)
 	else if (step == 52)
 	{
 		nodes.push_back(actionbtn);
+	}
+	else if (step == 92)
+	{
+		nodes.push_back(changebtn);
 	}
 	g_mainScene->showNewerGuideNode(step, nodes);
 }

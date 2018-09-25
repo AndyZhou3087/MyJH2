@@ -160,6 +160,8 @@ private:
 	Node* m_longTouchNode;
 
 	bool isCanClickFullHero;
+
+	cocos2d::ui::Widget* heroattrnamebox;
 };
 
 #endif

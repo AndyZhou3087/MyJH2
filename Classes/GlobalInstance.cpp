@@ -1794,6 +1794,39 @@ bool GlobalInstance::getUnlockHomehillCondition()
 	return false;
 }
 
+bool GlobalInstance::getLittleHerosPower(int comlv)
+{
+	for (unsigned int i = 0; i < vec_myHeros.size(); i++)
+	{
+		Hero* hero = vec_myHeros[i];
+		if (hero->getPower().getValue() < comlv)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool GlobalInstance::getEnoughFightHeros()
+{
+	int count = 0;
+	for (int i = 0; i < 6; i++)
+	{
+		if (GlobalInstance::myCardHeros[i] != NULL)
+		{
+			count++;
+		}
+	}
+	if (count == 6)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 DynamicValueInt GlobalInstance::getMySoliverCount()
 {
 	return GlobalInstance::mySoliverCount;
