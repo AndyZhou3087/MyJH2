@@ -983,6 +983,11 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 				lastexp = m_heroData->getExp().getValue();
 				expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
 			}
+			else
+			{
+				lastexp = m_heroData->getExp().getValue();
+				expbar->setPercent(percent);
+			}
 		}
 
 		if (lastVaction != m_heroData->getVocation())

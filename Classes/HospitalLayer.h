@@ -33,6 +33,7 @@ private:
 	cocos2d::ui::Text* hintdesc;
 	std::vector<MyHeroNode*> vec_deadNodes;
 	int dcount;
+	cocos2d::ui::Widget* closebtn;
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

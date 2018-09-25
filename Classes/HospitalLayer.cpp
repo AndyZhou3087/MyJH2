@@ -44,7 +44,7 @@ bool HospitalLayer::init()
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("titleimg");
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("hospital_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)m_csbnode->getChildByName("closebtn");
+	closebtn = (cocos2d::ui::Widget*)m_csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(HospitalLayer::onBtnClick, this));
 
 	scrollview = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("scrollview");
@@ -107,6 +107,10 @@ void HospitalLayer::showNewerGuide(int step)
 	if (step == 64)
 	{
 		nodes.push_back(vec_deadNodes[0]->getChildByName("csbnode")->getChildByName("actionbtn"));
+	}
+	else if (step == 65)
+	{
+		nodes.push_back(closebtn);
 	}
 	if (g_mainScene != NULL)
 	{

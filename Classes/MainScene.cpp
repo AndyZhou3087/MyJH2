@@ -360,6 +360,14 @@ void MainScene::showNewerGuide(int step)
 	}
 	else if (step == 63)
 	{
+		DynamicValueInt dval = GlobalInstance::getInstance()->getMySoliverCount();
+		if (dval.getValue() < 5000)
+		{
+			DynamicValueInt dva;
+			dva.setValue(5000 - dval.getValue());
+			GlobalInstance::getInstance()->addMySoliverCount(dva);
+		}
+
 		scroll_3->setEnabled(true);
 
 		scroll_3->jumpToPercentHorizontal(100);
