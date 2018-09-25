@@ -73,7 +73,7 @@ typedef struct
 	std::vector<int> vec_skillbns;//技能加成
 	int skillrnd;
 	float skilleff1;
-	float skilleff2;
+	int skilleff2;
 	int skill;
 	int qu;
 	std::vector<int> vec_hp;

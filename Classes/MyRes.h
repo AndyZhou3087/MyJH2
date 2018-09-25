@@ -43,6 +43,8 @@ public:
 
 	//获取同一种装备和功法的个数
 	static int getEquipableCount(std::string resid, int inwhere = MYSTORAGE);
+
+	static void removeSivlerAndCoin();
 public:
 
 	static std::vector<ResBase* > vec_MyResources;//我的资源，包括背包，仓库，装备上的

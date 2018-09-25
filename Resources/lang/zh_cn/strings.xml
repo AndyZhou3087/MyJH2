@@ -193,7 +193,9 @@
 	<s name="haveroles">拥有角色：%d</s>	
 	<s name="havegold">拥有元宝：%d</s>	
 	<s name="havesliver">拥有银两：%d</s>	
-	<s name="fitjob">适合职业：%s</s>
+	<s name="fitjob">适合职业：</s>
+	<s name="skilltext">可用技能：</s>
+	<s name="skillname">[%s]</s>
 	<s name="fitalljob">适合所有职业</s>
 	<s name="vision">视野：%d</s>
 	<s name="unlocktitletext">解锁以下内容</s>

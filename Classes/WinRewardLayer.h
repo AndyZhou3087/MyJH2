@@ -45,6 +45,7 @@ private:
 
 	void longTouchAction(int tag);
 
+	int getMyCarryCount();
 private:
 	cocos2d::ui::Text* carrycountlbl;
 	std::vector<FOURProperty> m_rewards;

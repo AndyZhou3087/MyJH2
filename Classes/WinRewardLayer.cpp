@@ -20,6 +20,14 @@ WinRewardLayer::WinRewardLayer()
 
 WinRewardLayer::~WinRewardLayer()
 {
+	std::vector<ResBase*>::iterator it;
+	for (it = vec_dropdownres.begin(); it != vec_dropdownres.end();)
+	{
+		delete (*it);
+		it = vec_dropdownres.erase(it);
+	}
+
+	MyRes::removeSivlerAndCoin();
 }
 
 WinRewardLayer* WinRewardLayer::create(std::vector<FOURProperty> reward_res)
@@ -132,6 +140,23 @@ void WinRewardLayer::updateScrollviewContent()
 		if (i == 0)
 		{
 			std::sort(vec_dropdownres.begin(), vec_dropdownres.end(), sortDropResByType);
+
+			std::vector<ResBase*> vec_tmp;;
+			std::vector<ResBase*>::iterator it;
+			for (it = vec_dropdownres.begin(); it != vec_dropdownres.end();)
+			{
+				if ((*it)->getId().compare("r006") == 0 || (*it)->getId().compare("r012") == 0)
+				{
+					vec_tmp.push_back(*it);
+					it = vec_dropdownres.erase(it);
+				}
+				else
+					it++;
+			}
+			for (unsigned int i=0;i<vec_tmp.size();i++)
+
+				vec_dropdownres.insert(vec_dropdownres.begin(), vec_tmp[i]);
+			
 			vec_res = vec_dropdownres;
 		}
 		else
@@ -197,10 +222,10 @@ void WinRewardLayer::updateScrollviewContent()
 		}
 	}
 
-	std::string str = StringUtils::format("%d/%d", MyRes::getMyPackageCount(), GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/);
+	std::string str = StringUtils::format("%d/%d", getMyCarryCount(), GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/);
 	carrycountlbl->setString(str);
 
-	if (MyRes::getMyPackageCount() >= GlobalInstance::myOutMapCarry)
+	if (getMyCarryCount() >= GlobalInstance::myOutMapCarry)
 	{
 		carrycountlbl->setTextColor(Color4B(255, 61, 61, 255));
 	}
@@ -280,14 +305,15 @@ void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 
 			for (unsigned int i = 0; i < vec_dropdownres.size(); i++)
 			{
-				packagecount += vec_dropdownres[i]->getCount().getValue();
+				if (vec_dropdownres[i]->getId().compare("r006") != 0 && vec_dropdownres[i]->getId().compare("r012") != 0)
+					packagecount += vec_dropdownres[i]->getCount().getValue();
 			}
 
-			if (MyRes::getMyPackageCount() + packagecount > GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/)
+			if (getMyCarryCount() + packagecount > GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/)
 			{
 				MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
 
-				int cancarry = GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/ - MyRes::getMyPackageCount();
+				int cancarry = GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/ - getMyCarryCount();
 				for (unsigned int i = 0; i < vec_dropdownres.size(); i++)
 				{
 					if (cancarry <= 0)
@@ -305,7 +331,11 @@ void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 							addcount = vec_dropdownres[i]->getCount().getValue();
 						else
 							addcount = cancarry;
-						cancarry -= addcount;
+
+						if (vec_dropdownres[i]->getId().compare("r006") != 0 && vec_dropdownres[i]->getId().compare("r012") != 0)
+							cancarry -= addcount;
+						else
+							addcount = vec_dropdownres[i]->getCount().getValue();
 					}
 					MyRes::Add(vec_dropdownres[i], addcount, MYPACKAGE);
 					DynamicValueInt dv;
@@ -339,7 +369,10 @@ void WinRewardLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			for (it = vec_dropdownres.begin(); it != vec_dropdownres.end();)
 			{
 				if ((*it)->getCount().getValue() <= 0)
+				{
+					delete (*it);
 					it = vec_dropdownres.erase(it);
+				}
 				else
 					it++;
 			}
@@ -419,12 +452,18 @@ void WinRewardLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 
 		if (tag / 10000 == 0)//点击的是两个scrollview的 0--掉落，1--背包
 		{
-			if (MyRes::getMyPackageCount() + 1 > GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/)
+			int addcount = 0;
+			ResBase* res = (ResBase*)clicknode->getUserData();
+
+			if (res->getId().compare("r006") != 0 && res->getId().compare("r012") != 0)
+				addcount = 1;
+
+			if (getMyCarryCount() + addcount > GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/)
 			{
 				MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
 				return;
 			}
-			ResBase* res = (ResBase*)clicknode->getUserData();
+
 			reduceDropRes(res, 1, tag % 10000);
 		}
 		else if (tag / 10000 == 1)
@@ -442,7 +481,12 @@ void WinRewardLayer::longTouchAction(int tag)
 	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 	if (tag / 10000 == 0)//点击的是两个scrollview的 0--掉落，1--背包
 	{
-		if (MyRes::getMyPackageCount() + 1 > GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/)
+		ResBase* res = vec_dropdownres[tag % 10000];//clicknode->getUserData();
+		int addcount = 0;
+		if (res->getId().compare("r006") != 0 && res->getId().compare("r012") != 0)
+			addcount = 1;
+
+		if (getMyCarryCount() + addcount > GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/)
 		{
 			cancelLongTouch();
 			MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
@@ -451,7 +495,6 @@ void WinRewardLayer::longTouchAction(int tag)
 		int ressize = vec_dropdownres.size();
 		if (tag % 10000 < ressize)
 		{
-			ResBase* res = vec_dropdownres[tag % 10000];//clicknode->getUserData();
 			reduceDropRes(res, 1, tag % 10000);
 		}
 		else
@@ -597,6 +640,18 @@ void WinRewardLayer::releaseDropRes(int interindex)
 	vec_dropdownres.erase(vec_dropdownres.begin() + interindex);
 }
 
+int WinRewardLayer::getMyCarryCount()
+{
+	int myPackageCount = MyRes::getMyPackageCount();
+	int count = 0;
+	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
+	{
+		ResBase* res = MyRes::vec_MyResources[i];
+		if (res->getId().compare("r006") == 0 || res->getId().compare("r012") == 0)
+			count += res->getCount().getValue();
+	}
+	return myPackageCount -= count;
+}
 
 bool WinRewardLayer::sortDropResByType(ResBase* a, ResBase* b)
 {

@@ -59,7 +59,11 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	csbnode = CSLoader::createNode(ResourcePath::makePath("equipDescLayer.csb"));
+	if (res->getType() >= T_WG && res->getType() <= T_NG)
+		csbnode = CSLoader::createNode(ResourcePath::makePath("gfDescLayer.csb"));
+	else
+		csbnode = CSLoader::createNode(ResourcePath::makePath("equipDescLayer.csb"));
+
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
@@ -131,8 +135,42 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 				jobstr.append(GlobalInstance::map_AllResources[GlobalInstance::vec_herosAttr[i].id].name);
 			}
 		}
-		str = StringUtils::format(ResourceLang::map_lang["fitjob"].c_str(), jobstr.c_str());
-		jobtext->setString(str);
+		jobtext->setString(jobstr);
+
+		cocos2d::ui::Text* vocationtextlbl = (cocos2d::ui::Text*)csbnode->getChildByName("vocationtext");
+		vocationtextlbl->setString(ResourceLang::map_lang["fitjob"]);
+
+		cocos2d::ui::Text* skilltextlbl = (cocos2d::ui::Text*)csbnode->getChildByName("skilltext");
+		skilltextlbl->setString(ResourceLang::map_lang["skilltext"]);
+		
+		cocos2d::ui::Text* skillnamelbl = (cocos2d::ui::Text*)csbnode->getChildByName("skillname");
+		std::string skillname = StringUtils::format(ResourceLang::map_lang["skillname"].c_str(), GlobalInstance::map_AllResources[gf->getId()].name.c_str());
+		skillnamelbl->setString(skillname);
+
+		cocos2d::ui::Text* skilldesclbl = (cocos2d::ui::Text*)csbnode->getChildByName("skilldesc");
+		Label* dlbl = (Label*)skilldesclbl->getVirtualRenderer();
+		dlbl->setLineSpacing(10);
+
+		int skilltype = GlobalInstance::map_GF[gf->getId()].skill;
+		std::string skillids = StringUtils::format("sk%03d", skilltype);
+		std::string skilldesc = GlobalInstance::map_AllResources[skillids].desc;
+		if (skilltype == SKILL_1 || skilltype == SKILL_13 || skilltype == SKILL_15 || skilltype == SKILL_20)
+			skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[gf->getId()].skilleff1);
+		else if (skilltype == SKILL_2)
+			skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[gf->getId()].skilleff1/100);
+		else if (skilltype == SKILL_3 || skilltype == SKILL_4)
+			skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[gf->getId()].skilleff2 - 1);
+		else if (skilltype == SKILL_5 || skilltype == SKILL_6)
+			skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[gf->getId()].skilleff2, GlobalInstance::map_GF[gf->getId()].skilleff1);
+		else if (skilltype == SKILL_7)
+			skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[gf->getId()].skilleff1);
+		else if (skilltype == SKILL_8)
+			skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[gf->getId()].skilleff2, GlobalInstance::map_GF[gf->getId()].skilleff1);
+		else if (skilltype == SKILL_9 || skilltype == SKILL_10 || skilltype == SKILL_11 || skilltype == SKILL_12 || skilltype == SKILL_14 || skilltype == SKILL_16 || skilltype == SKILL_18)
+			skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[gf->getId()].skilleff1, GlobalInstance::map_GF[gf->getId()].skilleff2 - 1);
+		else if (skilltype == SKILL_17)
+			skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[gf->getId()].skilleff1, GlobalInstance::map_GF[gf->getId()].skilleff1, GlobalInstance::map_GF[gf->getId()].skilleff2 - 1);
+		skilldesclbl->setString(skilldesc);
 	}
 	else if (m_res->getType() == T_ARMOR)
 	{
@@ -150,7 +188,8 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 
 			}
 		}
-		str = StringUtils::format(ResourceLang::map_lang["fitjob"].c_str(), jobstr.c_str());
+		str = ResourceLang::map_lang["fitjob"];
+		str.append(jobstr);
 		jobtext->setString(str);
 	}
 	else if (m_res->getType() >= T_EQUIP && m_res->getType() <= T_FASHION)

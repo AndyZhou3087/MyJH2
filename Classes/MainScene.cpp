@@ -182,6 +182,7 @@ bool MainScene::init()
 	hinttext->setString(ResourceLang::map_lang["newherohint"]);
 
 
+
 	//监测训练场开放
 	if (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0)
 	{
