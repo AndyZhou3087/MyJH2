@@ -38,6 +38,7 @@ HeroAttrLayer::HeroAttrLayer()
 	m_isLongPress = false;
 	m_longTouchNode = NULL;
 	isCanClickFullHero = true;
+	redtip = NULL;
 }
 
 HeroAttrLayer::~HeroAttrLayer()
@@ -233,9 +234,6 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 	expbar = (cocos2d::ui::LoadingBar*)heroattrbottom->getChildByName("heroattrexpbar");
 	expbar->setPercent(0);
 
-	updataAtrrUI(0);
-	this->schedule(schedule_selector(HeroAttrLayer::updataAtrrUI), 1.0f);
-
 	//按钮
 	std::string btnname[] = { "firebtn", "changebtn", "backbtn", "recruitbtn"};//与BTNTYPE对应
 	for (int i = 0; i < sizeof(btnname) / sizeof(btnname[0]); i++)
@@ -263,6 +261,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 		{
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			redtip = (cocos2d::ui::Widget*)btn->getChildByName("redtip");
 			if (herostate == HS_READY || herostate == HS_TRAINING)
 			{
 				btn->setVisible(false);
@@ -331,6 +330,9 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 				btn->setVisible(false);
 		}
 	}
+
+	updataAtrrUI(0);
+	this->schedule(schedule_selector(HeroAttrLayer::updataAtrrUI), 1.0f);
 
 	this->scheduleOnce(schedule_selector(HeroAttrLayer::delayShowNewerGuide), newguidetime);
 
@@ -990,6 +992,18 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 		{
 			lastVaction = m_heroData->getVocation();
 			updateVocationUI();
+		}
+
+		if (redtip != NULL)
+		{
+			if (!redtip->isVisible() && ((m_heroData->getLevel() + 1) / 10) == m_heroData->getChangeCount() && GlobalInstance::getInstance()->getCanUpgradeCount() && (m_heroData->getLevel() + 1) < 50)
+			{
+				redtip->setVisible(true);
+			}
+			else if (redtip->isVisible() && (((m_heroData->getLevel() + 1) / 10) != m_heroData->getChangeCount() || !GlobalInstance::getInstance()->getCanUpgradeCount() || (m_heroData->getLevel() + 1) == 50))
+			{
+				redtip->setVisible(false);
+			}
 		}
 	}
 }

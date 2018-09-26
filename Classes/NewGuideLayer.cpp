@@ -679,10 +679,12 @@ void NewGuideLayer::showWord(std::string wordstr)
 		m_wordlbl->setString(utf8word);
 
 		std::vector<std::string> vec_resname;
-		vec_resname.push_back(CommonFuncs::gbk2utf("小师妹"));
-		vec_resname.push_back(CommonFuncs::gbk2utf("魔教人物"));
-		vec_resname.push_back(CommonFuncs::gbk2utf("昆仑派"));
-		vec_resname.push_back(CommonFuncs::gbk2utf("赏善罚恶使张三"));
+		for (int i = 0; i < 4; i++)
+		{
+			std::string nstr = StringUtils::format("newguidename%d", i);
+			vec_resname.push_back(CommonFuncs::gbk2utf(ResourceLang::map_lang[nstr].c_str()));
+		}
+		
 
 		for (unsigned int i = 0; i < vec_resname.size(); i++)
 		{

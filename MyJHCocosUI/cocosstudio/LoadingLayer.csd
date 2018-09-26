@@ -79,9 +79,19 @@
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5625" Y="0.8086" />
-            <PreSize X="0.7722" Y="0.1875" />
+            <PreSize X="0.7708" Y="0.2008" />
             <FileData Type="Normal" Path="logo.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="userpro" ActionTag="-1605686106" Alpha="126" Tag="109" IconVisible="False" TopMargin="1168.8000" BottomMargin="1.2000" TouchEnable="True" Scale9Enable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="24" Scale9Height="24" ctype="ImageViewObjectData">
+            <Size X="720.0000" Y="110.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="56.2000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.0439" />
+            <PreSize X="1.0000" Y="0.0859" />
+            <FileData Type="MarkedSubImage" Path="ui/headclip.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

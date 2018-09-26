@@ -7,6 +7,9 @@
 #include "DataSave.h"
 #include "MapBlockScene.h"
 #include "NewGuideLayer.h"
+#include "AnimationEffect.h"
+#include "Const.h"
+#include "CommonFuncs.h"
 
 USING_NS_CC;
 
@@ -15,6 +18,8 @@ int skillEffectArr[16] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 17, 18, 20
 LoadingScene::LoadingScene()
 {
 	isGetPlayerId = false;
+	protocal = -1;
+	loadSuccess = false;
 }
 
 LoadingScene::~LoadingScene()
@@ -54,6 +59,38 @@ bool LoadingScene::init()
 	Node *loadingbar = csbnode->getChildByName("loadingbar");
 	loadingbar->runAction(RepeatForever::create(RotateTo::create(0.8f, 720)));
 
+	cocos2d::ui::ImageView* userpro = (cocos2d::ui::ImageView*)csbnode->getChildByName("userpro");
+	userpro->addTouchEventListener(CC_CALLBACK_2(LoadingScene::onBtnClick, this));
+
+	//解析语言xml
+	int langtype = DataSave::getInstance()->getLocalLang();
+	ResourceLang::load(langtype);
+
+	std::string wordstr = ResourceLang::map_lang["usertips0"];
+	Label* m_wordlbl = Label::createWithTTF(wordstr, FONT_NAME, 22);
+	m_wordlbl->setColor(Color3B(255, 255, 255));
+	m_wordlbl->setPosition(Vec2(360, 58));
+	csbnode->addChild(m_wordlbl);
+	DrawNode* underlineNode = DrawNode::create();
+	m_wordlbl->addChild(underlineNode, 100000);
+	underlineNode->setLineWidth(1.0f);
+	underlineNode->drawLine(Vec2(0, 0), Vec2(m_wordlbl->getContentSize().width, 0), Color4F(m_wordlbl->getDisplayedColor()));
+
+	std::u32string utf32String;
+	StringUtils::UTF8ToUTF32(m_wordlbl->getString(), utf32String);
+
+	std::string resname = ResourceLang::map_lang["usertips1"];
+	std::u32string m_utf32String;
+	StringUtils::UTF8ToUTF32(resname, m_utf32String);
+	std::size_t findpos = utf32String.find(m_utf32String);
+	if (findpos != std::string::npos)
+	{
+		int len = m_utf32String.length();
+		for (int i = findpos; i < findpos + len; i++)
+		{
+			m_wordlbl->getLetter(i)->setColor(Color3B(255, 194, 99));
+		}
+	}
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -66,7 +103,30 @@ bool LoadingScene::init()
 	//先获取服务器数据
 	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
 
+	userProlayer = UserProtocolLayer::create();
+	this->addChild(userProlayer, 0, "UserProtocolLayer");
+	AnimationEffect::openAniEffect((Layer*)userProlayer);
+
     return true;
+}
+
+void LoadingScene::setUserProtocol(int ar)
+{
+	protocal = ar;
+	if (loadSuccess && protocal == 1)
+	{
+		enterNewScene();
+	}
+}
+
+void LoadingScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		userProlayer = UserProtocolLayer::create();
+		this->addChild(userProlayer, 0, "UserProtocolLayer");
+		AnimationEffect::openAniEffect((Layer*)userProlayer);
+	}
 }
 
 void LoadingScene::showPointAnim(float dt)
@@ -82,9 +142,6 @@ void LoadingScene::delayLoadLocalData(float dt)
 	GlobalInstance::getInstance()->loadInitData();
 	int langtype = DataSave::getInstance()->getLocalLang();
 	GlobalInstance::getInstance()->setLang(langtype);
-
-	//解析语言xml
-	ResourceLang::load(langtype);
 
 	//解析建筑物xml
 	Building::parseData();
@@ -152,7 +209,7 @@ void LoadingScene::delayGetServerData(float dt)
 	HttpDataSwap::init(this)->getPlayerId();
 }
 
-void LoadingScene::showNextScene(float dt)
+void LoadingScene::enterNewScene()
 {
 	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
 	{
@@ -175,6 +232,16 @@ void LoadingScene::showNextScene(float dt)
 		}
 		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 	}
+}
+
+void LoadingScene::showNextScene(float dt)
+{
+	loadSuccess = true;
+	if (userProlayer != NULL || protocal == 0)
+	{
+		return;
+	}
+	enterNewScene();
 }
 
 void LoadingScene::loadingSkillEffectOver(cocos2d::Texture2D* texture)

@@ -5,6 +5,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "HttpDataSwap.h"
+#include "UserProtocolLayer.h"
 
 USING_NS_CC;
 class LoadingScene : public cocos2d::Layer, public HTTPDataDelegateProtocol
@@ -31,16 +32,22 @@ public:
 
 	void onFinish(int errcode);
 
+	void setUserProtocol(int ar);
+	void enterNewScene();
+
 private:
 	CREATE_FUNC(LoadingScene);
 
 	void showPointAnim(float dt);
 
 	void loadingSkillEffectOver(cocos2d::Texture2D* texture);
+	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:
 	bool isGetPlayerId;
 	Node* point[3];
 	int curEffectPlistNum;
+	int protocal;
+	bool loadSuccess;
 };
 
 #endif

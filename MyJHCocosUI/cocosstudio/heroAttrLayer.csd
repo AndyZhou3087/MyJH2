@@ -525,6 +525,17 @@
                     <PreSize X="0.3725" Y="0.4524" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/changebtn_text.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="redtip" ActionTag="-978668872" VisibleForFrame="False" Tag="210" IconVisible="False" LeftMargin="174.0000" RightMargin="6.0000" BottomMargin="60.0000" ctype="SpriteObjectData">
+                    <Size X="24.0000" Y="24.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="186.0000" Y="72.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.9118" Y="0.8571" />
+                    <PreSize X="0.1176" Y="0.2857" />
+                    <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="363.7607" Y="58.4289" />
@@ -738,7 +749,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="addexpdesc" ActionTag="670872382" Tag="125" IconVisible="False" LeftMargin="-124.1834" RightMargin="-99.8166" TopMargin="-96.2901" BottomMargin="71.2901" FontSize="20" LabelText="点击使用人参增加经验值" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="addexpdesc" ActionTag="670872382" Tag="125" IconVisible="False" LeftMargin="-124.6834" RightMargin="-100.3166" TopMargin="-97.2901" BottomMargin="70.2901" FontSize="20" LabelText="点击使用人参增加经验值" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
                 <Size X="225.0000" Y="27.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-12.1834" Y="83.7901" />
