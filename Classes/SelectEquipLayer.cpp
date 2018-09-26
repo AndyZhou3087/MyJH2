@@ -254,6 +254,7 @@ void SelectEquipLayer::onclick(Ref* pSender)
 	else if (res->getType() >= T_WG && res->getType() <= T_NG)
 	{
 		layer = EquipDescLayer::create(res, 3);
+		layer->setUserData((void*)m_herodata);
 	}
 	else
 	{

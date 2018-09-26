@@ -122,7 +122,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		attrlblArr[i] = (cocos2d::ui::Text*)csbnode->getChildByName(str);
 	}
 
-	updateAttr();
+	//updateAttr();
 
 	cocos2d::ui::Text* jobtext = (cocos2d::ui::Text*)csbnode->getChildByName("attrtext_6");
 	if (m_res->getType() >= T_WG && m_res->getType() <= T_NG)
@@ -286,6 +286,12 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	return true;
 }
 
+void EquipDescLayer::onEnterTransitionDidFinish()
+{
+	Layer::onEnterTransitionDidFinish();
+	updateAttr();
+}
+
 void EquipDescLayer::delayShowNewerGuide(float dt)
 {
 	if (!NewGuideLayer::checkifNewerGuide(33))
@@ -330,35 +336,36 @@ void EquipDescLayer::updateAttr()
 		if (m_res->getType() >= T_WG && m_res->getType() <= T_NG)
 		{
 			float herobns = GlobalInstance::map_GF[m_res->getId()].vec_herobns[carryhero->getVocation()];
-			hp += hp * herobns;
-			atk += atk * herobns;
-			df += df * herobns;
-			atkspeed += atkspeed * herobns;
-			crit += crit * herobns;
-			dodge += dodge * herobns;
+			hp *= herobns;
+			atk *= herobns;
+			df *= herobns;
+			atkspeed *= herobns;
+			crit *= herobns;
+			dodge *= herobns;
 		}
 		else if (m_res->getType() >= T_ARMOR && m_res->getType() <= T_FASHION)
 		{
 			float herobns = GlobalInstance::map_Equip[m_res->getId()].vec_bns[carryhero->getVocation()];
-			hp += hp*herobns;
+			hp *= herobns;
 			if (GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit.size() >= 2)
 			{
 				if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit[1], carryhero->getName()) != NULL)
 					hp += ((Equip*)m_res)->getSuitHp();
 			}
 
-			atk += atk * herobns;
+			atk *= herobns;
 
-			df += df*herobns;
+			df *= herobns;
+
 			if (GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit.size() >= 3)
 			{
 				if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit[2], carryhero->getName()) != NULL)
 					df += ((Equip*)m_res)->getSuitDf();
 			}
 
-			atkspeed += atkspeed * herobns;
-			crit += crit * herobns;
-			dodge += dodge * herobns;
+			atkspeed *= herobns;
+			crit *= herobns;
+			dodge *= herobns;
 		}
 	}
 
