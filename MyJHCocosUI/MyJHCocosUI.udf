@@ -9,7 +9,12 @@
     </Item>
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
-        <ActiveDocument />
+        <OpenedDocuments>
+          <FilePathData Path="cardHeroNode.csd" />
+          <FilePathData Path="myHeroNode.csd" />
+          <FilePathData Path="ui.csi" />
+        </OpenedDocuments>
+        <ActiveDocument Path="myHeroNode.csd" />
       </Value>
     </Item>
   </Properties>

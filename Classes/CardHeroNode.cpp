@@ -41,6 +41,8 @@ bool CardHeroNode::init()
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("cardHeroNode.csb"));
 	this->addChild(csbnode, 0, "csbnode");
 
+	arrowglv = (cocos2d::ui::Widget*)csbnode->getChildByName("arrowglv");
+
 	desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 
 	//头像框
@@ -131,6 +133,7 @@ void CardHeroNode::setData(Hero* herodata)
 {
 	m_herodata = herodata;
 
+	arrowglv->setVisible(false);
 	if (herodata != NULL)
 	{
 		std::string str = StringUtils::format("cardh_%d_%d.png", herodata->getVocation(), herodata->getSex());
@@ -227,12 +230,25 @@ void CardHeroNode::updatePowerCount(float dt)
 			GlobalInstance::getInstance()->saveHero(m_herodata);
 		}
 
-		std::string powstr = StringUtils::format("%d/100", m_herodata->getPower().getValue());
-		powertext->setString(powstr);
+		str = StringUtils::format("%d/100", m_herodata->getPower().getValue());
+		powertext->setString(str);
 		powertext->setVisible(true);
 		if (m_herodata->getPower().getValue() <= 0)
 			powertext->setTextColor(Color4B(Color3B(255,35,35)));
 		else
 			powertext->setTextColor(Color4B(Color3B(101, 76, 36)));
+
+
+		if (!arrowglv->isVisible() && ((m_herodata->getLevel() + 1) / 10) == m_herodata->getChangeCount() && GlobalInstance::getInstance()->getCanUpgradeCount())
+		{
+			arrowglv->stopAllActions();
+			arrowglv->setVisible(true);
+			arrowglv->runAction(RepeatForever::create(Sequence::create(FadeOut::create(0.5f), FadeIn::create(0.5f), NULL)));
+		}
+		else if (arrowglv->isVisible() && (((m_herodata->getLevel() + 1) / 10) != m_herodata->getChangeCount() || !GlobalInstance::getInstance()->getCanUpgradeCount()))
+		{
+			arrowglv->stopAllActions();
+			arrowglv->setVisible(false);
+		}
 	}
 }

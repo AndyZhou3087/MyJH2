@@ -485,16 +485,6 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 		return;
 	}
 
-	//引导改名
-	if (g_NewGuideLayer != NULL)
-	{
-		g_NewGuideLayer->removeFromParentAndCleanup(true);
-	}
-	if (!NewGuideLayer::checkifNewerGuide(93))
-	{
-		delayShowNewerGuide(0);
-	}
-
 	if (GlobalInstance::getInstance()->checkifSameName(editBox->getText()))
 	{
 		editBox->setText(m_heroData->getName().c_str());
@@ -531,6 +521,16 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 	{
 		equipnode->setPositionY(490);
 		heroattrbottom->setPositionY(0);
+	}
+
+	//引导改名
+	if (g_NewGuideLayer != NULL)
+	{
+		g_NewGuideLayer->removeFromParentAndCleanup(true);
+	}
+	if (!NewGuideLayer::checkifNewerGuide(93))
+	{
+		delayShowNewerGuide(0);
 	}
 }
 

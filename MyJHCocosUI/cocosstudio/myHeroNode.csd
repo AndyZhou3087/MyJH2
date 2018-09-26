@@ -36,7 +36,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/h_1_0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="2067373338" Tag="18" IconVisible="False" LeftMargin="-103.0003" RightMargin="-3.9997" TopMargin="-53.2964" BottomMargin="13.2964" FontSize="35" LabelText="小虾米" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="name" ActionTag="2067373338" Tag="18" IconVisible="False" LeftMargin="-103.0003" RightMargin="-4.9997" TopMargin="-54.0612" BottomMargin="12.0612" FontSize="35" LabelText="小虾米" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="108.0000" Y="42.0000" />
             <AnchorPoint ScaleY="0.6176" />
             <Position X="-103.0003" Y="38.0004" />
@@ -250,6 +250,17 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="arrowglv" ActionTag="95069146" Tag="129" IconVisible="False" LeftMargin="13.3263" RightMargin="-39.3263" TopMargin="-50.5880" BottomMargin="18.5880" ctype="SpriteObjectData">
+            <Size X="26.0000" Y="32.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="13.3263" Y="34.5880" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/arrowglv.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
         </Children>
       </ObjectData>
