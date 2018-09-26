@@ -7,6 +7,8 @@
 #include "GlobalInstance.h"
 #include "AnimationEffect.h"
 #include "MainScene.h"
+#include "NewGuideLayer.h"
+#include "Const.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
@@ -63,7 +65,7 @@ bool SettingLayer::init()
 	cocos2d::ui::Text* idlbl = (cocos2d::ui::Text*)csbnode->getChildByName("id");
 	idlbl->setString(GlobalInstance::getInstance()->getMyID());
     
-	cocos2d::ui::TextField* nameTextField = (cocos2d::ui::TextField*)csbnode->getChildByName("nameinput");
+	nameTextField = (cocos2d::ui::TextField*)csbnode->getChildByName("nameinput");
 	nameTextField->setString("");
 	nameTextField->setVisible(false);
 
@@ -82,6 +84,8 @@ bool SettingLayer::init()
 	m_editName->setDelegate(this);
 	csbnode->addChild(m_editName);
 
+	this->scheduleOnce(schedule_selector(SettingLayer::delayShowNewerGuide), newguidetime);
+
 	//layer 点击事件，屏蔽下层事件
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -92,6 +96,24 @@ bool SettingLayer::init()
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
+}
+
+void SettingLayer::delayShowNewerGuide(float dt)
+{
+	if (NewGuideLayer::checkifNewerGuide(14))
+	{
+		showNewerGuide(14);
+	}
+}
+
+void SettingLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 14)
+	{
+		nodes.push_back(nameTextField);
+	}
+	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void SettingLayer::updateSoundStatus(int type)
