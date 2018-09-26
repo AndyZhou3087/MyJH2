@@ -17,6 +17,9 @@ public:
 
 	virtual bool init();
 	CREATE_FUNC(SettingLayer);
+
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
 private:
 
 	/****************************
@@ -57,6 +60,7 @@ private:
 	cocos2d::ui::EditBox* m_editName;
 	std::string mynickname;
 	std::string lastchangedname;
+	cocos2d::ui::TextField* nameTextField;
 };
 #endif
 

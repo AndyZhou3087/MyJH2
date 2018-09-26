@@ -524,10 +524,6 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 	}
 
 	//引导改名
-	if (g_NewGuideLayer != NULL)
-	{
-		g_NewGuideLayer->removeFromParentAndCleanup(true);
-	}
 	if (!NewGuideLayer::checkifNewerGuide(93))
 	{
 		delayShowNewerGuide(0);

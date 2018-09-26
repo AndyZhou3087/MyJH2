@@ -162,12 +162,12 @@ void MainMenuLayer::showNewerGuide(int step)
 	SettingLayer* layer = SettingLayer::create();
 	g_mainScene->addChild(layer, 0, "settinglayer");
 	AnimationEffect::openAniEffect((Layer*)layer);
-	std::vector<Node*> nodes;
+	//std::vector<Node*> nodes;
 	/*if (step == 14)
 	{
 		nodes.push_back(csbnode->getChildByName("setbtn"));
 	}*/
-	g_mainScene->showNewerGuideNode(step, nodes);
+	//g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void MainMenuLayer::onFinish(int code)
