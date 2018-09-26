@@ -228,13 +228,13 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 
 		int finishOrder = DataSave::getInstance()->getMapOrderCount(m_mainmapid);
 
-		/*if (clicknode->getTag() - 1 > finishOrder)
+		if (clicknode->getTag() - 1 > finishOrder)
 		{
 			std::string premapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag() - 1);
 			std::string str = StringUtils::format(ResourceLang::map_lang["maporderhint"].c_str(), GlobalInstance::map_AllResources[premapid].name.c_str());
 			MovingLabel::show(str);
 			return;
-		}*/
+		}
 
 		std::string mapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag());
 		showCloudAnim(clicknode->getParent()->getParent(), clicknode->getParent()->getPosition());
