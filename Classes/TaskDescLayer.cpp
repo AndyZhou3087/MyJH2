@@ -208,8 +208,13 @@ bool TaskDescLayer::init(TaskData* data, int type)
 			if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
 				break;
 		}
-		if (t >= T_ARMOR && t <= T_NG)
+		if (t >= T_ARMOR && t <= T_FASHION)
 		{
+			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
+		else if (t >= T_WG && t <= T_NG)
+		{
+			qu = GlobalInstance::map_GF[resid].qu;
 			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
 		else if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)

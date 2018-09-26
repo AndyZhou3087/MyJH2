@@ -176,9 +176,14 @@ void StoreHouseLayer::updateContent(int category)
 	{
 		std::string qustr = "ui/resbox.png";
 		int qu = 0;
-		if (map_cateRes[category][m]->getType() >= T_ARMOR && map_cateRes[category][m]->getType() <= T_NG)
+		if (map_cateRes[category][m]->getType() >= T_ARMOR && map_cateRes[category][m]->getType() <= T_FASHION)
 		{
 			qu = ((Equipable*)map_cateRes[category][m])->getQU().getValue();
+			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
+		else if (map_cateRes[category][m]->getType() >= T_WG && map_cateRes[category][m]->getType() <= T_NG)
+		{
+			qu = GlobalInstance::map_GF[map_cateRes[category][m]->getId()].qu;
 			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
 		else if (map_cateRes[category][m]->getType() == T_RENS || map_cateRes[category][m]->getType() == T_DAN || map_cateRes[category][m]->getType() == T_MIJI || map_cateRes[category][m]->getType() == T_BOX)

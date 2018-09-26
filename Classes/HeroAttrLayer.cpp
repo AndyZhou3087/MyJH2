@@ -819,6 +819,7 @@ void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			if (equiptype[clickindex] == T_WG || equiptype[clickindex] == T_NG)
 			{
 				layer = EquipDescLayer::create(res, 2);
+				layer->setUserData((void*)m_heroData);
 			}
 			else
 			{
@@ -888,6 +889,7 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 		{
 			qubox->setScale(1.0f);
 			resimg->setScale(1.0f);
+			qu = GlobalInstance::map_GF[res->getId()].qu;
 		}
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		resstr = GlobalInstance::getInstance()->getResUIFrameName(res->getId(), qu);

@@ -80,8 +80,13 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		if (m_res->getId().compare(0, 1, RES_TYPES_CHAR[t]) == 0)
 			break;
 	}
-	if (t >= T_ARMOR && t <= T_NG)
+	if (t >= T_ARMOR && t <= T_FASHION)
 	{
+		qustr = StringUtils::format("ui/resbox_qu%d.png", s);
+	}
+	else if (t >= T_WG && t <= T_NG)
+	{
+		s = GlobalInstance::map_GF[m_res->getId()].qu;
 		qustr = StringUtils::format("ui/resbox_qu%d.png", s);
 	}
 	else if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
@@ -143,16 +148,17 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		cocos2d::ui::Text* skilltextlbl = (cocos2d::ui::Text*)csbnode->getChildByName("skilltext");
 		skilltextlbl->setString(ResourceLang::map_lang["skilltext"]);
 		
+		int skilltype = GlobalInstance::map_GF[gf->getId()].skill;
+		std::string skillids = StringUtils::format("sk%03d", skilltype);
+
 		cocos2d::ui::Text* skillnamelbl = (cocos2d::ui::Text*)csbnode->getChildByName("skillname");
-		std::string skillname = StringUtils::format(ResourceLang::map_lang["skillname"].c_str(), GlobalInstance::map_AllResources[gf->getId()].name.c_str());
+		std::string skillname = StringUtils::format(ResourceLang::map_lang["skillname"].c_str(), GlobalInstance::map_AllResources[skillids].name.c_str());
 		skillnamelbl->setString(skillname);
 
 		cocos2d::ui::Text* skilldesclbl = (cocos2d::ui::Text*)csbnode->getChildByName("skilldesc");
 		Label* dlbl = (Label*)skilldesclbl->getVirtualRenderer();
 		dlbl->setLineSpacing(10);
 
-		int skilltype = GlobalInstance::map_GF[gf->getId()].skill;
-		std::string skillids = StringUtils::format("sk%03d", skilltype);
 		std::string skilldesc = GlobalInstance::map_AllResources[skillids].desc;
 		if (skilltype == SKILL_1 || skilltype == SKILL_13 || skilltype == SKILL_15 || skilltype == SKILL_20)
 			skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[gf->getId()].skilleff1);
@@ -312,12 +318,56 @@ void EquipDescLayer::updateAttr()
 {
 	std::vector<float> vec_attrval;
 
-	vec_attrval.push_back(m_res->getHp());
-	vec_attrval.push_back(m_res->getAtk());
-	vec_attrval.push_back(m_res->getDf());
-	vec_attrval.push_back(m_res->getAtkSpeed());
-	vec_attrval.push_back(m_res->getCrit());
-	vec_attrval.push_back(m_res->getDodge());
+	float hp = m_res->getHp();
+	float atk = m_res->getAtk();
+	float df = m_res->getDf();
+	float atkspeed = m_res->getAtkSpeed();
+	float crit = m_res->getCrit();
+	float dodge = m_res->getDodge();
+	Hero* carryhero = (Hero*)this->getUserData();
+	if (carryhero != NULL)
+	{
+		if (m_res->getType() >= T_WG && m_res->getType() <= T_NG)
+		{
+			float herobns = GlobalInstance::map_GF[m_res->getId()].vec_herobns[carryhero->getVocation()];
+			hp += hp * herobns;
+			atk += atk * herobns;
+			df += df * herobns;
+			atkspeed += atkspeed * herobns;
+			crit += crit * herobns;
+			dodge += dodge * herobns;
+		}
+		else if (m_res->getType() >= T_ARMOR && m_res->getType() <= T_FASHION)
+		{
+			float herobns = GlobalInstance::map_Equip[m_res->getId()].vec_bns[carryhero->getVocation()];
+			hp += hp*herobns;
+			if (GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit.size() >= 2)
+			{
+				if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit[1], carryhero->getName()) != NULL)
+					hp += ((Equip*)m_res)->getSuitHp();
+			}
+
+			atk += atk * herobns;
+
+			df += df*herobns;
+			if (GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit.size() >= 3)
+			{
+				if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit[2], carryhero->getName()) != NULL)
+					df += ((Equip*)m_res)->getSuitDf();
+			}
+
+			atkspeed += atkspeed * herobns;
+			crit += crit * herobns;
+			dodge += dodge * herobns;
+		}
+	}
+
+	vec_attrval.push_back(hp);
+	vec_attrval.push_back(atk);
+	vec_attrval.push_back(df);
+	vec_attrval.push_back(atkspeed);
+	vec_attrval.push_back(crit);
+	vec_attrval.push_back(dodge);
 
 	for (int i = 0; i <= 5; i++)
 	{

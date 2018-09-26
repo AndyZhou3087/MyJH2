@@ -125,8 +125,18 @@ bool MessageDescLayer::init(int index)
 				if (k >= T_ARMOR && k <= T_FASHION)
 					qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 
-				resbox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
+				else if (k >= T_WG && k <= T_NG)
+				{
+					qu = GlobalInstance::map_GF[resid].qu;
+					qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+				}
+				else if (k == T_RENS || k == T_DAN || k == T_MIJI || k == T_BOX)
+				{
+					qu = atoi(resid.substr(1).c_str()) - 1;
+					qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+				}
 
+				resbox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 				cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
 				str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);

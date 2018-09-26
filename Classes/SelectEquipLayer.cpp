@@ -162,7 +162,7 @@ void SelectEquipLayer::updateContent()
 		{
 			GongFa* gf = (GongFa*)vec_res[m];
 			lv = gf->getLv().getValue() + 1;
-			qu = gf->getQU().getValue();
+			qu = GlobalInstance::map_GF[vec_res[m]->getId()].qu;
 		}
 		else
 		{
