@@ -104,6 +104,11 @@ bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere)
 			{
 				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
+			else if (t >= T_WG && t <= T_NG)
+			{
+				qu = GlobalInstance::map_GF[resid].qu;
+				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
 			else if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
 			{
 				qu = atoi(resid.substr(1).c_str()) - 1;

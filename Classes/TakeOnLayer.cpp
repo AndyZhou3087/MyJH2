@@ -376,6 +376,7 @@ void TakeOnLayer::onEquipclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		Node* node = (Node*)pSender;
 
 		EquipDescLayer* layer = EquipDescLayer::create((ResBase*)node->getUserData(), 1);
+		layer->setUserData((void*)m_herodata);
 		this->addChild(layer);
 		AnimationEffect::openAniEffect((Layer*)layer);
 	}
@@ -529,14 +530,33 @@ void TakeOnLayer::updateAttr()
 		if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit[2], m_herodata->getName()) != NULL)
 			suitdf = m_equip->getSuitDf();
 	}
+	float hp = m_equip->getHp();
+	float atk = m_equip->getAtk();
+	float df = m_equip->getDf();
+	float atkspeed = m_equip->getAtkSpeed();
+	float crit = m_equip->getCrit();
+	float dodge = m_equip->getDodge();
+
+	float herobns = 1.0f;
+
+	if (MyRes::getMyPutOnResById(m_equip->getId(), m_herodata->getName()) != NULL)
+	{
+		herobns = GlobalInstance::map_Equip[m_equip->getId()].vec_bns[m_herodata->getVocation()];
+	}
+	hp *= herobns;
+	atk *= herobns;
+	df *= herobns;
+	atkspeed *= herobns;
+	crit *= herobns;
+	dodge *= herobns;
 
 	float attrval[] = {
-		m_equip->getHp() + suithp,
-		m_equip->getAtk(),
-		m_equip->getDf() + suitdf,
-		m_equip->getAtkSpeed(),
-		m_equip->getCrit(),
-		m_equip->getDodge()
+		hp + suithp,
+		atk,
+		df + suitdf,
+		atkspeed,
+		crit,
+		dodge
 	};
 	//角色属性文字
 	for (int i = 0; i <= 5; i++)

@@ -21,7 +21,7 @@ class EquipDescLayer : public cocos2d::Layer
 public:
 	EquipDescLayer();
 	~EquipDescLayer();
-
+	virtual void onEnterTransitionDidFinish();
 	static EquipDescLayer* create(ResBase* res, int fromwhere);
 	virtual void onExit();
 	bool init(ResBase* res, int fromwhere);

@@ -432,6 +432,10 @@ void FightingLayer::showAtk(int fightertag)
 					{
 						SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DODGE);
 					}
+					else
+					{
+						SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_ATK);
+					}
 				}
 
 				//ÊÍ·Å¼¼ÄÜ

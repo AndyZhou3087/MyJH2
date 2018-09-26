@@ -113,9 +113,14 @@ void MyPackageLayer::updateScrollviewContent()
 	{
 		std::string qustr = "ui/resbox.png";
 		int qu = 0;
-		if (vec_res[m]->getType() >= T_ARMOR && vec_res[m]->getType() <= T_NG)
+		if (vec_res[m]->getType() >= T_ARMOR && vec_res[m]->getType() <= T_FASHION)
 		{
 			qu = ((Equipable*)vec_res[m])->getQU().getValue();
+			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
+		else if (vec_res[m]->getType() >= T_WG && vec_res[m]->getType() <= T_NG)
+		{
+			qu = GlobalInstance::map_GF[vec_res[m]->getId()].qu;
 			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
 		else if (vec_res[m]->getType() == T_RENS || vec_res[m]->getType() == T_DAN || vec_res[m]->getType() == T_MIJI || vec_res[m]->getType() == T_BOX)

@@ -78,14 +78,15 @@ bool WgLvLayer::init(ResBase* res)
 	name = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	name->setString(GlobalInstance::map_AllResources[m_res->getId()].name);
 
+	int qu = GlobalInstance::map_GF[m_res->getId()].qu;
 	//品质box
 	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox");
-	std::string str = StringUtils::format("ui/resbox_qu%d.png", m_res->getQU().getValue());
+	std::string str = StringUtils::format("ui/resbox_qu%d.png", qu);
 	resbox->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//icon图标
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)csbnode->getChildByName("icon");
-	str = GlobalInstance::getInstance()->getResUIFrameName(m_res->getId(), m_res->getQU().getValue());
+	str = GlobalInstance::getInstance()->getResUIFrameName(m_res->getId(), qu);
 	icon->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//进度条

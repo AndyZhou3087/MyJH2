@@ -162,7 +162,7 @@ void SelectEquipLayer::updateContent()
 		{
 			GongFa* gf = (GongFa*)vec_res[m];
 			lv = gf->getLv().getValue() + 1;
-			qu = gf->getQU().getValue();
+			qu = GlobalInstance::map_GF[vec_res[m]->getId()].qu;
 		}
 		else
 		{
@@ -254,6 +254,7 @@ void SelectEquipLayer::onclick(Ref* pSender)
 	else if (res->getType() >= T_WG && res->getType() <= T_NG)
 	{
 		layer = EquipDescLayer::create(res, 3);
+		layer->setUserData((void*)m_herodata);
 	}
 	else
 	{

@@ -89,21 +89,27 @@ void MovingLabel::changeTextColor()
 {
 	std::string lbltext = this->getString();
 
-	//std::map<std::string, AllResources>::iterator it;
-	//for (it = GlobalInstance::map_AllResources.begin(); it != GlobalInstance::map_AllResources.end(); it++)
-	//{
-	//	std::string resname = GlobalInstance::map_AllResources[it->first].name;
+	std::u32string utf32lblString;
+	StringUtils::UTF8ToUTF32(lbltext, utf32lblString);
 
-	//	findpos = lbltext.find(resname);
-	//	if (findpos != std::string::npos) 
-	//	{
-	//		for (int i = findpos/3; i < (findpos + resname.length())/3; i++)
-	//		{
-	//			this->getLetter(i)->setColor(Color3B(204, 4, 4));
-	//		}
-	//		break;
-	//	}
-	//}
+	std::map<std::string, AllResources>::iterator it;
+	for (it = GlobalInstance::map_AllResources.begin(); it != GlobalInstance::map_AllResources.end(); it++)
+	{
+		std::string resname = GlobalInstance::map_AllResources[it->first].name;
+
+		std::u32string utf32ResString;
+		StringUtils::UTF8ToUTF32(resname, utf32ResString);
+
+		std::size_t findpos = utf32lblString.find(utf32ResString);
+		if (findpos != std::string::npos) 
+		{
+			for (int i = findpos; i < (findpos + utf32ResString.length()); i++)
+			{
+				this->getLetter(i)->setColor(Color3B(255, 61, 61));
+			}
+			break;
+		}
+	}
 
 	if (lbltext.find(ResourceLang::map_lang["makesucc"]) != std::string::npos)
 	{
@@ -112,11 +118,15 @@ void MovingLabel::changeTextColor()
 		{
 			std::string qukey = StringUtils::format("potential_%d", i);
 			std::string qustr = ResourceLang::map_lang[qukey];
-			findpos = lbltext.substr(lbltext.length() - 4).find_last_of(qustr);
+
+			std::u32string utf32QuString;
+			StringUtils::UTF8ToUTF32(qustr, utf32QuString);
+
+			findpos = utf32lblString.substr(utf32lblString.length() - 2).find_last_of(utf32QuString);
 			if (findpos != std::string::npos)
 			{
-				findpos = lbltext.length() - 4 + findpos;
-				for (unsigned int m = findpos/3; m < (findpos + qustr.length())/3; m++)
+				findpos = utf32lblString.length() - 2 + findpos;
+				for (unsigned int m = findpos; m < (findpos + utf32QuString.length()); m++)
 				{
 					this->getLetter(m)->setColor(POTENTIALCOLOR[i]);
 				}

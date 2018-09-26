@@ -110,9 +110,13 @@ bool AchieveNode::init(AchieveData* data)
 				if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
 					break;
 			}
-			if (t >= T_ARMOR && t <= T_NG)
+			if (t >= T_ARMOR && t <= T_FASHION)
 			{
 				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
+			else if (t >= T_WG && t <= T_NG)
+			{
+				boxstr = StringUtils::format("ui/resbox_qu%d.png", GlobalInstance::map_GF[resid].qu);
 			}
 			resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 			if (m_Data->type == ACHIEVE_GOODS)
