@@ -492,6 +492,14 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 	}
 	else
 	{
+		for (int i = 0; i < equipnode->getChildrenCount(); i++)
+		{
+			Equipable* eres = (Equipable*)MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
+			if (eres != NULL)
+			{
+				eres->setWhos(editBox->getText());
+			}
+		}
 		m_heroData->setName(editBox->getText());
 
 		if (g_mainScene != NULL)
