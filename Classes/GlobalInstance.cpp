@@ -79,6 +79,8 @@ int GlobalInstance::resetSilverRefHeroCountTime = 0;
 
 bool GlobalInstance::isNewHeroRefresh = false;
 
+std::string GlobalInstance::qq;
+
 GlobalInstance::GlobalInstance()
 {
 

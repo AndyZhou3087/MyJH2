@@ -260,6 +260,7 @@
       <FilePathData Path="text_zh_cn/usertitle.png" />
       <FilePathData Path="text_zh_cn/agreetext.png" />
       <FilePathData Path="text_zh_cn/refusetext.png" />
+      <FilePathData Path="text_zh_cn/retry_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

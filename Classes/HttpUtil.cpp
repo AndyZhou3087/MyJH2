@@ -36,6 +36,7 @@ void HttpUtil::doData(std::string url, HttpCBFunc http_cb, std::string filename,
 	httpReq->setUrl(url.c_str());
 	httpReq->setResponseCallback(CC_CALLBACK_2(HttpUtil::onHttpRequestCompleted, this));
 	httpClient->setTimeoutForConnect(10);
+	httpClient->setTimeoutForRead(30);
 	httpClient->send(httpReq);
 	httpReq->release();
 	httpReq = NULL;
