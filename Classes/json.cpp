@@ -1,5 +1,9 @@
 ﻿
 #include "json.h"
+#include "Utility.h"
+
+//#define encrypt_jsonxml 1
+
 std::string JsonWriter(rapidjson::Document& doc)
 {
 	rapidjson::StringBuffer buffer;
@@ -26,6 +30,10 @@ rapidjson::Document ReadJsonFile(const std::string& name)
 {
 	rapidjson::Document doc;
 	std::string filestr = FileUtils::getInstance()->getStringFromFile(name);
+#if encrypt_jsonxml
+	Encrypt((char*)filestr.c_str(), false);
+	filestr = parseData(filestr.c_str());
+#endif
 	if (filestr.length() > 0)
 	{
 		JsonReader(filestr, doc);

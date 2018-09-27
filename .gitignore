@@ -7,3 +7,5 @@ bin/
 MyJHCocosUI/Resources/res
 .cocos-project.json
 CMakeLists.txt
+Resources/jsonEnc
+Resources/xmlEnc
