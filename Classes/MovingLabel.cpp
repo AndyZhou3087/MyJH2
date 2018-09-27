@@ -92,24 +92,24 @@ void MovingLabel::changeTextColor()
 	std::u32string utf32lblString;
 	StringUtils::UTF8ToUTF32(lbltext, utf32lblString);
 
-	std::map<std::string, AllResources>::iterator it;
-	for (it = GlobalInstance::map_AllResources.begin(); it != GlobalInstance::map_AllResources.end(); it++)
-	{
-		std::string resname = GlobalInstance::map_AllResources[it->first].name;
+	//std::map<std::string, AllResources>::iterator it;
+	//for (it = GlobalInstance::map_AllResources.begin(); it != GlobalInstance::map_AllResources.end(); it++)
+	//{
+	//	std::string resname = GlobalInstance::map_AllResources[it->first].name;
 
-		std::u32string utf32ResString;
-		StringUtils::UTF8ToUTF32(resname, utf32ResString);
+	//	std::u32string utf32ResString;
+	//	StringUtils::UTF8ToUTF32(resname, utf32ResString);
 
-		std::size_t findpos = utf32lblString.find(utf32ResString);
-		if (findpos != std::string::npos) 
-		{
-			for (int i = findpos; i < (findpos + utf32ResString.length()); i++)
-			{
-				this->getLetter(i)->setColor(Color3B(255, 61, 61));
-			}
-			break;
-		}
-	}
+	//	std::size_t findpos = utf32lblString.find(utf32ResString);
+	//	if (findpos != std::string::npos) 
+	//	{
+	//		for (int i = findpos; i < (findpos + utf32ResString.length()); i++)
+	//		{
+	//			this->getLetter(i)->setColor(Color3B(255, 61, 61));
+	//		}
+	//		break;
+	//	}
+	//}
 
 	if (lbltext.find(ResourceLang::map_lang["makesucc"]) != std::string::npos)
 	{

@@ -50,6 +50,8 @@ public:
 	//监测市场开放
 	void checkBuildingOpen(float dt);
 
+	static void saveAllData();
+
 private:
 	void updateTaskLayerTip(float dt);
 

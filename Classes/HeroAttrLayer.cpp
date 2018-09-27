@@ -44,6 +44,7 @@ HeroAttrLayer::~HeroAttrLayer()
 {
 	//保存数据
 	GlobalInstance::getInstance()->saveMyHeros();
+	MyRes::saveData();
 }
 
 

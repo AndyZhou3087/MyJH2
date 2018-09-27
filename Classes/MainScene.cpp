@@ -867,3 +867,10 @@ void MainScene::updateTaskIcon()
 		vec_taskicon[i]->runAction(RepeatForever::create(Sequence::create(MoveBy::create(1.0f, Vec2(-10, 0)), MoveBy::create(1.0f, Vec2(10, 0)), NULL)));
 	}
 }
+
+void MainScene::saveAllData()
+{
+	GlobalInstance::getInstance()->saveMyHeros();
+	MyRes::saveData();
+	HttpDataSwap::init(NULL)->postAllData();
+}

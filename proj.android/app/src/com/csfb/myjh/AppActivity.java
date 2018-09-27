@@ -52,7 +52,7 @@ public class AppActivity extends Cocos2dxActivity {
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            JNI.postData();
+            JNI.saveAllData();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("提示");
             builder.setMessage("确认退出"+ this.getString(R.string.app_name) + "吗？");
