@@ -374,6 +374,7 @@
         </Folder>
         <Folder Name="text_zh_cn">
           <Image Name="achieve_title.png" />
+          <Image Name="agreetext.png" />
           <Image Name="allgetbtn_text.png" />
           <Image Name="backbtn_text.png" />
           <Image Name="break_text.png" />
@@ -527,6 +528,7 @@
           <Image Name="recruit_text.png" />
           <Image Name="recruitbtn_text.png" />
           <Image Name="refreshbtn_text.png" />
+          <Image Name="refusetext.png" />
           <Image Name="replacebtn_text.png" />
           <Image Name="resitemlv_text.png" />
           <Image Name="reward_text.png" />
@@ -621,6 +623,7 @@
           <Image Name="trainlv_text.png" />
           <Image Name="trainstart_text.png" />
           <Image Name="usebtn_text.png" />
+          <Image Name="usertitle.png" />
           <Image Name="wgcurtext.png" />
           <Image Name="wglv_text.png" />
           <Image Name="wgnexttext.png" />
@@ -940,6 +943,7 @@
           <Image Name="taskdailybigbg.png" />
           <Image Name="taskdailyf.png" />
           <Image Name="taskframe.png" />
+          <Image Name="taskgeticon.png" />
           <Image Name="taskhinticon.png" />
           <Image Name="taskprobar.png" />
           <Image Name="taskprobg.png" />
@@ -1119,6 +1123,8 @@
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="UserProtocolLayer.csd" Type="Layer" />
+        <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

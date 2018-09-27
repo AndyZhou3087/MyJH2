@@ -272,13 +272,13 @@ void MyHeroNode::updateTime(float dt)
 	std::string  lvstr = StringUtils::format("Lv.%d", m_heroData->getLevel() + 1);
 	lvlbl->setString(lvstr);
 
-	if (!arrowglv->isVisible() && ((m_heroData->getLevel() + 1) / 10) == m_heroData->getChangeCount() && GlobalInstance::getInstance()->getCanUpgradeCount())
+	if (!arrowglv->isVisible() && ((m_heroData->getLevel() + 1) / 10) == m_heroData->getChangeCount() && GlobalInstance::getInstance()->getCanUpgradeCount() && (m_heroData->getLevel() + 1) < 50)
 	{
 		arrowglv->stopAllActions();
 		arrowglv->setVisible(true);
 		arrowglv->runAction(RepeatForever::create(Sequence::create(FadeOut::create(0.5f), FadeIn::create(0.5f), NULL)));
 	}
-	else if (arrowglv->isVisible() && (((m_heroData->getLevel() + 1) / 10) != m_heroData->getChangeCount() || !GlobalInstance::getInstance()->getCanUpgradeCount()))
+	else if (arrowglv->isVisible() && (((m_heroData->getLevel() + 1) / 10) != m_heroData->getChangeCount() || !GlobalInstance::getInstance()->getCanUpgradeCount() || (m_heroData->getLevel() + 1) == 50))
 	{
 		arrowglv->stopAllActions();
 		arrowglv->setVisible(false);

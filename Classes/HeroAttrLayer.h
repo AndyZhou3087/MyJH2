@@ -162,6 +162,7 @@ private:
 	bool isCanClickFullHero;
 
 	cocos2d::ui::Widget* heroattrnamebox;
+	cocos2d::ui::Widget* redtip;
 };
 
 #endif
