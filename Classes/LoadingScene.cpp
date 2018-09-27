@@ -246,16 +246,17 @@ void LoadingScene::enterNewScene()
 		{
 			NewGuideLayer::setNewGuideInfo(FOURTHGUIDESTEP);
 		}
-
-		if (DataSave::getInstance()->getExitScene() == 0)
+		
+		int exitscene = DataSave::getInstance()->getExitScene();
+		if (exitscene == 0)
 		{
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 		}
-		else if (DataSave::getInstance()->getExitScene() == 1)
+		else if (exitscene == 1)
 		{
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
 		}
-		else if (DataSave::getInstance()->getExitScene() == 2)
+		else if (exitscene == 2)
 		{
 			std::string str = DataSave::getInstance()->getMapScenePos();
 			std::vector<std::string> vec_map;
