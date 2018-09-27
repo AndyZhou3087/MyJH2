@@ -74,20 +74,20 @@ bool UserProtocolLayer::init()
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("scrollView");
 
-	std::string wordstr = ResourceLang::map_lang["usercontent"];
-	Label* m_wordlbl = Label::createWithTTF(wordstr, FONT_NAME, 26);
-	m_wordlbl->setLineBreakWithoutSpace(true);
-	m_wordlbl->setColor(Color3B(92, 92, 92));
-	m_wordlbl->setAnchorPoint(Vec2(0, 1));
-	m_wordlbl->setMaxLineWidth(scrollView->getContentSize().width);
-	scrollView->addChild(m_wordlbl, 0, "talklbl");
+	//std::string wordstr = ResourceLang::map_lang["usercontent"];
+	//Label* m_wordlbl = Label::createWithTTF(wordstr, FONT_NAME, 26);
+	//m_wordlbl->setLineBreakWithoutSpace(true);
+	//m_wordlbl->setColor(Color3B(92, 92, 92));
+	//m_wordlbl->setAnchorPoint(Vec2(0, 1));
+	//m_wordlbl->setMaxLineWidth(scrollView->getContentSize().width);
+	//scrollView->addChild(m_wordlbl, 0, "talklbl");
 
-	int innerheight = m_wordlbl->getStringNumLines() * 26;//contentlbl->getHeight();
-	int contentheight = scrollView->getContentSize().height;
-	if (innerheight < contentheight)
-		innerheight = contentheight;
-	scrollView->setInnerContainerSize(Size(scrollView->getContentSize().width, innerheight));
-	m_wordlbl->setPosition(Vec2(0, innerheight));
+	//int innerheight = m_wordlbl->getStringNumLines() * 26;//contentlbl->getHeight();
+	//int contentheight = scrollView->getContentSize().height;
+	//if (innerheight < contentheight)
+	//	innerheight = contentheight;
+	//scrollView->setInnerContainerSize(Size(scrollView->getContentSize().width, innerheight));
+	//m_wordlbl->setPosition(Vec2(0, innerheight));
 
 
 	auto listener = EventListenerTouchOneByOne::create();
