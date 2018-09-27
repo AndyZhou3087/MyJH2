@@ -361,3 +361,35 @@ void DataSave::setMapOrderCount(std::string mapid, int val)
 	std::string str = StringUtils::format("order%s", mapid.c_str());
 	saveIntDataByKey(str, val);
 }
+
+bool DataSave::getUserProtocal()
+{
+	int val = loadIntDataByKey("UserProtocal", 0);
+	return val == 1 ? true : false;
+}
+
+void DataSave::setUserProtocal(int val)
+{
+	saveIntDataByKey("UserProtocal", val);
+}
+//默认0主场景，1地图外场景，2地图内场景
+int DataSave::getExitScene()
+{
+	return loadIntDataByKey("ExitScene", 0);
+}
+
+void DataSave::setExitScene(int val)
+{
+	saveIntDataByKey("ExitScene", val);
+}
+
+void DataSave::setMapScenePos(std::string mapid, int pos)
+{
+	std::string str = StringUtils::format("%s,%d", mapid.c_str(), pos);
+	saveStringDataByKey("ScenePos", str);
+}
+
+std::string DataSave::getMapScenePos()
+{
+	return loadStringDataByKey("ScenePos", "");
+}

@@ -104,6 +104,9 @@ void MapBlockScene::onExit()
 		str.append(startstr);
 		DataSave::getInstance()->setMapVisibleArea(m_mapid, str);
 	}
+	//记录位置
+	DataSave::getInstance()->setExitScene(2);
+	DataSave::getInstance()->setMapScenePos(m_mapid, mycurRow*blockColCount + mycurCol);
 
 	Layer::onExit();
 }
@@ -151,11 +154,23 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 		int startposindex = GlobalInstance::getInstance()->createRandomNum(count);
 		randStartPos = vec_startpos[startposindex];
 	}
-
 	mycurCol = randStartPos % blockColCount;
 	mycurRow = randStartPos / blockColCount;
-
 	map_mapBlocks[randStartPos]->setPosIcon();
+
+	//地图引导过后是否有记录
+	if (!NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
+	{
+		std::string str = DataSave::getInstance()->getMapScenePos();
+		std::vector<std::string> vec_map;
+		CommonFuncs::split(str, vec_map, ",");
+		if (vec_map.size() > 1)
+		{
+			int myStartPos = atoi(vec_map[1].c_str());
+			mycurCol = myStartPos % blockColCount;
+			mycurRow = myStartPos / blockColCount;
+		}
+	}
 
 	std::map<int, MapBlock*>::iterator it;
 

@@ -19,6 +19,7 @@
 #include "AnimationEffect.h"
 #include "NewGuideLayer.h"
 #include "Quest.h"
+#include "DataSave.h"
 #include "ErrorHintLayer.h"
 
 USING_NS_CC;
@@ -703,6 +704,9 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 
 void MainScene::onExit()
 {
+	//记录位置
+	DataSave::getInstance()->setExitScene(0);
+
 	Layer::onExit();
 }
 

@@ -322,6 +322,16 @@ public:
 	void setIsNewerGuide(int index, bool val);
 
 	/****************************
+	是否同意隐私策略
+	****************************/
+	bool getUserProtocal();
+
+	/****************************
+	设置是否有新手引导
+	****************************/
+	void setUserProtocal(int val);
+
+	/****************************
 	银两刷新英雄次数
 	****************************/
 	void setSilverRefHeroCount(int val);
@@ -350,6 +360,21 @@ public:
 	int getMapOrderCount(std::string mapid);
 	//每个地图完成到哪个
 	void setMapOrderCount(std::string mapid, int val);
+
+	/****************************
+	获取退出时的场景
+	****************************/
+	int getExitScene();
+
+	/****************************
+	记录退出时的场景
+	****************************/
+	void setExitScene(int val);
+
+	//地图内界面时保存地图id和位置
+	void setMapScenePos(std::string mapid, int pos);
+	//获取地图id和位置
+	std::string getMapScenePos();
 
 private:
 	static DataSave* _Context;//类实例

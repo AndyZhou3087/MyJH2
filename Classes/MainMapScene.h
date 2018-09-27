@@ -18,6 +18,8 @@ public:
 
 	virtual bool init();
 
+	virtual void onExit();
+
 	static cocos2d::Scene* createScene();
 
 	void showNewerGuide(int step, Node* node);

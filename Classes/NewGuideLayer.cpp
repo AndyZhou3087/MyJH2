@@ -22,6 +22,7 @@
 #include "MarketLayer.h"
 #include "SelectMyHerosLayer.h"
 #include "StoreHouseLayer.h"
+#include "Building.h"
 
 std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教应该就在前面了，咱们快去看看。", //0
 "", //1
@@ -811,6 +812,30 @@ void NewGuideLayer::setNewGuideInfo(int step)
 			for (int i = 0; i < step; i++)
 			{
 				DataSave::getInstance()->setIsNewerGuide(i, 1);
+			}
+		}
+	}
+	else if (step == SECONDGUIDESTEP)
+	{
+		MyRes::vec_MyResources.clear();
+		GlobalInstance::vec_resCreators.clear();
+		DataSave::getInstance()->setMyRes(defaultres);
+		DataSave::getInstance()->setResCreatorData("0-0");
+		GlobalInstance::getInstance()->loadMyResData();
+		GlobalInstance::getInstance()->loadResCreatorData();
+		Building* m_buidingData = Building::map_buildingDatas["7homehill"];
+		m_buidingData->level.setValue(0);
+		GlobalInstance::getInstance()->saveTotalFarmers(0);
+
+		if (checkifNewerGuide(step))
+		{
+			for (int i = 15; i < 22; i++)
+			{
+				DataSave::getInstance()->setIsNewerGuide(i, 1);
+			}
+			for (int j = 82; j < 86; j++)
+			{
+				DataSave::getInstance()->setIsNewerGuide(j, 1);
 			}
 		}
 	}

@@ -363,7 +363,7 @@
               <AbstractNodeData Name="main_05_t" ActionTag="1138452042" Tag="50" IconVisible="False" LeftMargin="228.0000" RightMargin="2208.0000" TopMargin="704.0000" BottomMargin="424.0000" LeftEage="14" RightEage="14" TopEage="50" BottomEage="50" Scale9OriginX="14" Scale9OriginY="50" Scale9Width="16" Scale9Height="52" ctype="ImageViewObjectData">
                 <Size X="44.0000" Y="152.0000" />
                 <Children>
-                  <AbstractNodeData Name="main_05_p" ActionTag="1080785627" Tag="69" IconVisible="False" LeftMargin="30.0000" RightMargin="-10.0000" TopMargin="-3.0000" BottomMargin="131.0000" ctype="SpriteObjectData">
+                  <AbstractNodeData Name="main_05_p" ActionTag="1080785627" VisibleForFrame="False" Tag="69" IconVisible="False" LeftMargin="30.0000" RightMargin="-10.0000" TopMargin="-3.0000" BottomMargin="131.0000" ctype="SpriteObjectData">
                     <Size X="24.0000" Y="24.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="42.0000" Y="143.0000" />
