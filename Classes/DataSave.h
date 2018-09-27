@@ -376,6 +376,16 @@ public:
 	//获取地图id和位置
 	std::string getMapScenePos();
 
+	/****************************
+	是否第一次进入游戏
+	****************************/
+	bool getFirstEnter();
+
+	/****************************
+	设置是否第一次进入游戏
+	****************************/
+	void setFirstEnter(bool val);
+
 private:
 	static DataSave* _Context;//类实例
 

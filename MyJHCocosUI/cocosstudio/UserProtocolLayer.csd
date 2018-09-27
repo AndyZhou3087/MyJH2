@@ -37,33 +37,21 @@
             <PreSize X="0.1611" Y="0.0531" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/usertitle.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scrollView" ActionTag="1665342809" Tag="103" IconVisible="False" LeftMargin="85.1451" RightMargin="84.8549" TopMargin="371.5480" BottomMargin="408.4520" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
-            <Size X="550.0000" Y="500.0000" />
+          <AbstractNodeData Name="scrollView" ActionTag="1665342809" Tag="103" IconVisible="False" LeftMargin="70.0000" RightMargin="70.0000" TopMargin="305.0000" BottomMargin="375.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+            <Size X="580.0000" Y="600.0000" />
             <AnchorPoint />
-            <Position X="85.1451" Y="408.4520" />
+            <Position X="70.0000" Y="375.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1183" Y="0.3191" />
-            <PreSize X="0.7639" Y="0.3906" />
+            <PrePosition X="0.0972" Y="0.2930" />
+            <PreSize X="0.8056" Y="0.4688" />
             <SingleColor A="255" R="255" G="150" B="100" />
             <FirstColor A="255" R="255" G="150" B="100" />
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
-            <InnerNodeSize Width="550" Height="500" />
+            <InnerNodeSize Width="585" Height="600" />
           </AbstractNodeData>
-          <AbstractNodeData Name="titletext" ActionTag="1379071071" Tag="104" IconVisible="False" LeftMargin="295.3256" RightMargin="302.6744" TopMargin="311.8856" BottomMargin="934.1144" FontSize="30" LabelText="隐私策略" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="122.0000" Y="34.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="356.3256" Y="951.1144" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="92" G="92" B="92" />
-            <PrePosition X="0.4949" Y="0.7431" />
-            <PreSize X="0.1694" Y="0.0266" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="refusebtn" ActionTag="527888963" Tag="106" IconVisible="False" LeftMargin="115.7975" RightMargin="400.2025" TopMargin="901.9291" BottomMargin="294.0709" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="refusebtn" ActionTag="527888963" Tag="106" IconVisible="False" LeftMargin="115.7976" RightMargin="400.2024" TopMargin="918.9286" BottomMargin="277.0714" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-928209875" Tag="108" IconVisible="False" LeftMargin="68.9107" RightMargin="55.0893" TopMargin="20.7831" BottomMargin="27.2169" LeftEage="26" RightEage="26" TopEage="11" BottomEage="11" Scale9OriginX="26" Scale9OriginY="11" Scale9Width="28" Scale9Height="14" ctype="ImageViewObjectData">
@@ -78,10 +66,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="217.7975" Y="336.0709" />
+            <Position X="217.7976" Y="319.0714" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3025" Y="0.2626" />
+            <PrePosition X="0.3025" Y="0.2493" />
             <PreSize X="0.2833" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
@@ -90,7 +78,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="agreebtn" ActionTag="1664592032" Tag="105" IconVisible="False" LeftMargin="416.2328" RightMargin="99.7672" TopMargin="901.9291" BottomMargin="294.0709" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="agreebtn" ActionTag="1664592032" Tag="105" IconVisible="False" LeftMargin="416.2335" RightMargin="99.7665" TopMargin="918.9286" BottomMargin="277.0714" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-667203216" Tag="107" IconVisible="False" LeftMargin="65.3760" RightMargin="58.6240" TopMargin="20.5713" BottomMargin="27.4287" LeftEage="26" RightEage="26" TopEage="11" BottomEage="11" Scale9OriginX="26" Scale9OriginY="11" Scale9Width="28" Scale9Height="14" ctype="ImageViewObjectData">
@@ -105,10 +93,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="518.2328" Y="336.0709" />
+            <Position X="518.2335" Y="319.0714" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7198" Y="0.2626" />
+            <PrePosition X="0.7198" Y="0.2493" />
             <PreSize X="0.2833" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />

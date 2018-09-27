@@ -183,7 +183,7 @@ bool MainScene::init()
 	cocos2d::ui::Text* hinttext = (cocos2d::ui::Text*)maincityhintbox->getChildByName("text");
 	hinttext->setString(ResourceLang::map_lang["newherohint"]);
 
-
+	DataSave::getInstance()->setFirstEnter(false);
 
 	//监测训练场开放
 	if (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0)

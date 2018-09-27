@@ -393,3 +393,14 @@ std::string DataSave::getMapScenePos()
 {
 	return loadStringDataByKey("ScenePos", "");
 }
+
+bool DataSave::getFirstEnter()
+{
+	int val = loadIntDataByKey("firstenter", 1);
+	return val == 1 ? true : false;
+}
+
+void DataSave::setFirstEnter(bool val)
+{
+	saveIntDataByKey("firstenter", val == true ? 1 : 0);
+}

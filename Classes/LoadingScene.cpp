@@ -11,21 +11,23 @@
 #include "Const.h"
 #include "CommonFuncs.h"
 #include "MainMapScene.h"
+#include "MovingLabel.h"
+#include "ErrorHintLayer.h"
 
 USING_NS_CC;
 
 int skillEffectArr[16] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 17, 18, 20 };
 
+LoadingScene* g_loadingScene = NULL;
+
 LoadingScene::LoadingScene()
 {
 	isGetPlayerId = false;
-	protocal = -1;
-	loadSuccess = false;
 }
 
 LoadingScene::~LoadingScene()
 {
-	
+	g_loadingScene = NULL;
 }
 
 Scene* LoadingScene::createScene()
@@ -34,10 +36,10 @@ Scene* LoadingScene::createScene()
     auto scene = Scene::create();
     
     // 'layer' is an autorelease object
-	auto mainLayer = LoadingScene::create();
+	g_loadingScene = LoadingScene::create();
 
     // add layer as a child to scene
-	scene->addChild(mainLayer);
+	scene->addChild(g_loadingScene);
 
     // return the scene
     return scene;
@@ -57,11 +59,23 @@ bool LoadingScene::init()
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("LoadingLayer.csb"));
 	this->addChild(csbnode);
 
-	Node *loadingbar = csbnode->getChildByName("loadingbar");
-	loadingbar->runAction(RepeatForever::create(RotateTo::create(0.8f, 720)));
+	m_loadingbar = csbnode->getChildByName("loadingbar");
+	m_loadingbar->setVisible(false);
 
-	cocos2d::ui::ImageView* userpro = (cocos2d::ui::ImageView*)csbnode->getChildByName("userpro");
-	userpro->addTouchEventListener(CC_CALLBACK_2(LoadingScene::onBtnClick, this));
+	m_userpro = (cocos2d::ui::ImageView*)csbnode->getChildByName("userpro");
+	m_userpro->addTouchEventListener(CC_CALLBACK_2(LoadingScene::onBtnClick, this));
+	m_userpro->setTag(0);
+
+	cocos2d::ui::ImageView* loadingbg = (cocos2d::ui::ImageView*)csbnode->getChildByName("loadingbg");
+	loadingbg->addTouchEventListener(CC_CALLBACK_2(LoadingScene::onBtnClick, this));
+	loadingbg->setTag(1);
+	loadingbg->setEnabled(false);
+
+	m_loadingtext = csbnode->getChildByName("loadingtext");
+	m_loadingtext->setVisible(false);
+
+	m_loadingclicktext = csbnode->getChildByName("loadingclicktext");
+	m_loadingclicktext->setVisible(false);
 
 	//解析语言xml
 	int langtype = DataSave::getInstance()->getLocalLang();
@@ -70,7 +84,7 @@ bool LoadingScene::init()
 	ResourceLang::load(langtype);
 
 	std::string wordstr = ResourceLang::map_lang["usertips0"];
-	Label* m_wordlbl = Label::createWithTTF(wordstr, FONT_NAME, 22);
+	m_wordlbl = Label::createWithTTF(wordstr, FONT_NAME, 22);
 	m_wordlbl->setColor(Color3B(255, 255, 255));
 	m_wordlbl->setPosition(Vec2(360, 58));
 	csbnode->addChild(m_wordlbl);
@@ -80,16 +94,15 @@ bool LoadingScene::init()
 	underlineNode->drawLine(Vec2(0, 0), Vec2(m_wordlbl->getContentSize().width, 0), Color4F(m_wordlbl->getDisplayedColor()));
 
 	std::u32string utf32String;
-	StringUtils::UTF8ToUTF32(m_wordlbl->getString(), utf32String);
+	StringUtils::UTF8ToUTF32(wordstr, utf32String);
 
 	std::string resname = ResourceLang::map_lang["usertips1"];
-	std::u32string m_utf32String;
-	StringUtils::UTF8ToUTF32(resname, m_utf32String);
-	std::size_t findpos = utf32String.find(m_utf32String);
+	std::u32string tiputf32String;
+	StringUtils::UTF8ToUTF32(resname, tiputf32String);
+	std::size_t findpos = utf32String.find(tiputf32String);
 	if (findpos != std::string::npos)
 	{
-		int len = m_utf32String.length();
-		for (int i = findpos; i < findpos + len; i++)
+		for (unsigned int i = findpos; i < findpos + tiputf32String.length(); i++)
 		{
 			m_wordlbl->getLetter(i)->setColor(Color3B(255, 194, 99));
 		}
@@ -101,44 +114,72 @@ bool LoadingScene::init()
 		point[i] = csbnode->getChildByName(pointstr);
 		point[i]->setVisible(false);
 	}
-	showPointAnim(0);
-	this->schedule(schedule_selector(LoadingScene::showPointAnim), 1.5f);
-	//先获取服务器数据
-	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
 
 	//未同意时弹出，同意后不再弹出
 	if (!DataSave::getInstance()->getUserProtocal())
 	{
-		userProlayer = UserProtocolLayer::create();
+		Layer *userProlayer = UserProtocolLayer::create();
 		this->addChild(userProlayer, 0, "UserProtocolLayer");
-		AnimationEffect::openAniEffect((Layer*)userProlayer);
+		AnimationEffect::openAniEffect(userProlayer);
 	}
 	else
 	{
-		userpro->setVisible(false);
+		m_userpro->setVisible(false);
 		m_wordlbl->setVisible(false);
+	}
+	//IOS第一次安装会有联网权限提示
+	if (DataSave::getInstance()->getFirstEnter())
+	{
+		loadingbg->setEnabled(true);
+		m_loadingclicktext->setVisible(true);
+		m_loadingclicktext->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
+	}
+	else
+	{
+		loadData();
 	}
 
     return true;
 }
 
-void LoadingScene::setUserProtocol(int ar)
+void LoadingScene::loadData()
 {
-	protocal = ar;
-	DataSave::getInstance()->setUserProtocal(protocal);
-	if (loadSuccess && protocal == 1)
-	{
-		enterNewScene();
-	}
+	m_loadingclicktext->stopAllActions();
+	m_loadingclicktext->setVisible(false);
+
+	m_loadingtext->setVisible(true);
+	m_loadingbar->setVisible(true);
+	m_loadingbar->runAction(RepeatForever::create(RotateTo::create(0.8f, 720)));
+	showPointAnim(0);
+	this->schedule(schedule_selector(LoadingScene::showPointAnim), 1.5f);
+	//先获取服务器数据
+	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
 }
 
 void LoadingScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		userProlayer = UserProtocolLayer::create();
-		this->addChild(userProlayer, 0, "UserProtocolLayer");
-		AnimationEffect::openAniEffect((Layer*)userProlayer);
+		Node* node = (Node*)pSender;
+		if (node->getTag() == 0)
+		{
+			Layer *userProlayer = UserProtocolLayer::create();
+			this->addChild(userProlayer, 0, "UserProtocolLayer");
+			AnimationEffect::openAniEffect(userProlayer);
+		}
+		else
+		{
+			if (!DataSave::getInstance()->getUserProtocal())
+			{
+				MovingLabel::show(ResourceLang::map_lang["usertipshint"]);
+			}
+			else
+			{
+				m_userpro->setVisible(false);
+				m_wordlbl->setVisible(false);
+				loadData();
+			}
+		}
 	}
 }
 
@@ -268,11 +309,6 @@ void LoadingScene::enterNewScene()
 
 void LoadingScene::showNextScene(float dt)
 {
-	loadSuccess = true;
-	if ((userProlayer != NULL || protocal == 0) && !DataSave::getInstance()->getUserProtocal())
-	{
-		return;
-	}
 	enterNewScene();
 }
 
@@ -299,6 +335,7 @@ void LoadingScene::loadingSkillEffectOver(cocos2d::Texture2D* texture)
 void LoadingScene::onFinish(int errcode)
 {
 	bool isLoadLocal = false;
+	bool isDataOk = false;
 	if (errcode == 0)
 	{
 		if (isGetPlayerId)
@@ -308,21 +345,28 @@ void LoadingScene::onFinish(int errcode)
 		}
 		else
 			isLoadLocal = true;
+		isDataOk = true;
 	}
 	else//网络异常
 	{
 		if (!isGetPlayerId && (errcode == 3 || errcode == 4))
+		{
 			isLoadLocal = true;
+			isDataOk = true;
+		}
 	}
 
+	if (!isDataOk)//数据错误
+	{
+		ErrorHintLayer* layer = ErrorHintLayer::create(0);
+		this->addChild(layer);
+		AnimationEffect::openAniEffect(layer);
+		return;
+	}
 	if (isLoadLocal)
 	{
 		//加载本地数据
 		this->scheduleOnce(schedule_selector(LoadingScene::delayLoadLocalData), 0.1f);
-	}
-	else//数据错误
-	{
-
 	}
 }
 

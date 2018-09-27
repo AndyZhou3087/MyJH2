@@ -1,4 +1,4 @@
-#include "UserTipsBoxLayer.h"
+﻿#include "UserTipsBoxLayer.h"
 #include <algorithm>
 #include "CommonFuncs.h"
 #include "Const.h"
@@ -8,6 +8,7 @@
 #include "UserProtocolLayer.h"
 #include "LoadingScene.h"
 #include "AnimationEffect.h"
+#include "DataSave.h"
 
 UserTipsBoxLayer::UserTipsBoxLayer()
 {
@@ -96,10 +97,8 @@ void UserTipsBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
 		int tag = btn->getTag();
 
-		UserProtocolLayer* layer = (UserProtocolLayer*)this->getParent();
-		LoadingScene* load = (LoadingScene*)layer->getParent();
-		load->setUserProtocol(tag);
-		AnimationEffect::closeAniEffect((Layer*)layer);
+		DataSave::getInstance()->setUserProtocal(tag);
+		AnimationEffect::closeAniEffect(this);
 
 	}
 }

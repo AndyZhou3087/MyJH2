@@ -4,7 +4,7 @@
 #include "Resource.h"
 #include "GlobalInstance.h"
 #include "AnimationEffect.h"
-#include "WaitingProgress.h"
+#include "LoadingScene.h"
 
 ErrorHintLayer::ErrorHintLayer()
 {
@@ -69,14 +69,14 @@ bool ErrorHintLayer::init(int forwhere)
 	{
 		text->setString(ResourceLang::map_lang["networkerror"]);
 		text_1->setVisible(false);
-		text_1->setVisible(false);
+		text_2->setVisible(false);
 		actiontextstr = "retry_text";
 	}
 	else if (forwhere == 1)
 	{
 		text->setString(ResourceLang::map_lang["dataerr0"]);
 		text_1->setVisible(false);
-		text_1->setVisible(false);
+		text_2->setVisible(false);
 	}
 	else if (forwhere == 2)
 	{
@@ -91,7 +91,7 @@ bool ErrorHintLayer::init(int forwhere)
 		else
 		{
 			text_1->setVisible(false);
-			text_1->setVisible(false);
+			text_2->setVisible(false);
 		}
 		actionbtn->setVisible(false);
 	}
@@ -125,9 +125,9 @@ void ErrorHintLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
 		if (m_forwhere == 0)
 		{
-			WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["reconnect"]);
-			this->addChild(wp, 0, "waitingprogress");
-			HttpDataSwap::init(this)->getServerTime();
+			if (g_loadingScene != NULL)
+				HttpDataSwap::init(g_loadingScene)->getPlayerId();
+			AnimationEffect::closeAniEffect(this);
 		}
 	}
 }
@@ -135,9 +135,8 @@ void ErrorHintLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 
 void ErrorHintLayer::onFinish(int code)
 {
-	this->removeChildByName("waitingprogress");
 	if (code == SUCCESS)
 	{
-		AnimationEffect::closeAniEffect(this);
+
 	}
 }

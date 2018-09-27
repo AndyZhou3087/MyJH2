@@ -32,7 +32,6 @@ public:
 
 	void onFinish(int errcode);
 
-	void setUserProtocol(int ar);
 	void enterNewScene();
 
 private:
@@ -42,12 +41,17 @@ private:
 
 	void loadingSkillEffectOver(cocos2d::Texture2D* texture);
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	void loadData();
 private:
 	bool isGetPlayerId;
+	Node *m_loadingbar;
 	Node* point[3];
+	Node* m_loadingclicktext;
+	Node* m_loadingtext;
+	Label* m_wordlbl;
+	cocos2d::ui::ImageView* m_userpro;
 	int curEffectPlistNum;
-	int protocal;
-	bool loadSuccess;
 };
-
+extern LoadingScene* g_loadingScene;
 #endif

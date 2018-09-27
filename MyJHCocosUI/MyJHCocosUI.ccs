@@ -1059,6 +1059,7 @@
         <Project Name="changeVocationLayer.csd" Type="Layer" />
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
         <Project Name="equipDescLayer.csd" Type="Layer" />
+        <Project Name="errorHintLayer.csd" Type="Layer" />
         <Project Name="eventBusinessLayer.csd" Type="Layer" />
         <Project Name="eventBuyLayer.csd" Type="Layer" />
         <Project Name="fighterAttrLayer.csd" Type="Layer" />
@@ -1077,6 +1078,7 @@
         <Project Name="hospitalLayer.csd" Type="Layer" />
         <Project Name="innRoomLayer.csd" Type="Layer" />
         <Image Name="loadingbg.jpg" />
+        <Image Name="loadingclicktext.png" />
         <Project Name="LoadingLayer.csd" Type="Layer" />
         <Image Name="logo.png" />
         <Project Name="MainLayer.csd" Type="Layer" />
@@ -1126,7 +1128,6 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="errorHintLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -1,4 +1,4 @@
-#include "UserProtocolLayer.h"
+ï»¿#include "UserProtocolLayer.h"
 #include <algorithm>
 #include "CommonFuncs.h"
 #include "Const.h"
@@ -8,8 +8,8 @@
 #include "UserTipsBoxLayer.h"
 #include "AnimationEffect.h"
 #include "LoadingScene.h"
+#include "DataSave.h"
 
-UserProtocolLayer* userProlayer = NULL;
 UserProtocolLayer::UserProtocolLayer()
 {
 
@@ -18,7 +18,7 @@ UserProtocolLayer::UserProtocolLayer()
 
 UserProtocolLayer::~UserProtocolLayer()
 {
-	userProlayer = NULL;
+
 }
 
 UserProtocolLayer* UserProtocolLayer::create()
@@ -55,9 +55,6 @@ bool UserProtocolLayer::init()
 	cocos2d::ui::ImageView* usertitle = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("usertitle");
 	usertitle->loadTexture(ResourcePath::makeTextImgPath("usertitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::Text* titletext = (cocos2d::ui::Text*)m_csbnode->getChildByName("titletext");
-	titletext->setString(ResourceLang::map_lang["usertile"]);
-
 	cocos2d::ui::Button* agreebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("agreebtn");
 	agreebtn->setTag(1);
 	agreebtn->addTouchEventListener(CC_CALLBACK_2(UserProtocolLayer::onBtnClick, this));
@@ -74,22 +71,13 @@ bool UserProtocolLayer::init()
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("scrollView");
 
-	//std::string wordstr = ResourceLang::map_lang["usercontent"];
-	//Label* m_wordlbl = Label::createWithTTF(wordstr, FONT_NAME, 26);
-	//m_wordlbl->setLineBreakWithoutSpace(true);
-	//m_wordlbl->setColor(Color3B(92, 92, 92));
-	//m_wordlbl->setAnchorPoint(Vec2(0, 1));
-	//m_wordlbl->setMaxLineWidth(scrollView->getContentSize().width);
-	//scrollView->addChild(m_wordlbl, 0, "talklbl");
-
-	//int innerheight = m_wordlbl->getStringNumLines() * 26;//contentlbl->getHeight();
-	//int contentheight = scrollView->getContentSize().height;
-	//if (innerheight < contentheight)
-	//	innerheight = contentheight;
-	//scrollView->setInnerContainerSize(Size(scrollView->getContentSize().width, innerheight));
-	//m_wordlbl->setPosition(Vec2(0, innerheight));
-
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	cocos2d::experimental::ui::WebView * webView = cocos2d::experimental::ui::WebView::create();
+	webView->setContentSize(scrollView->getContentSize());
+	webView->setPosition(Vec2(scrollView->getContentSize().width/2, scrollView->getContentSize().height/2));
+	webView->loadFile("userprotocol.html");
+    scrollView->addChild(webView);
+#endif
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -116,17 +104,17 @@ void UserProtocolLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::T
 
 		switch (tag)
 		{
-		case 0://¾Ü¾ø
+		case 0:
 		{
 			UserTipsBoxLayer* layer = UserTipsBoxLayer::create();
-			this->addChild(layer);
+			this->getParent()->addChild(layer);
+			this->removeFromParentAndCleanup(true);
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 			break;
-		case 1://Í¬Òâ
+		case 1:
 		{
-			LoadingScene* load = (LoadingScene*)this->getParent();
-			load->setUserProtocol(tag);
+			DataSave::getInstance()->setUserProtocal(tag);
 			AnimationEffect::closeAniEffect((Layer*)this);
 		}
 			break;
