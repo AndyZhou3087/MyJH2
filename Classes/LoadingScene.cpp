@@ -65,6 +65,8 @@ bool LoadingScene::init()
 
 	//解析语言xml
 	int langtype = DataSave::getInstance()->getLocalLang();
+	GlobalInstance::getInstance()->setLang(langtype);
+
 	ResourceLang::load(langtype);
 
 	std::string wordstr = ResourceLang::map_lang["usertips0"];
@@ -151,8 +153,7 @@ void LoadingScene::showPointAnim(float dt)
 void LoadingScene::delayLoadLocalData(float dt)
 {
 	GlobalInstance::getInstance()->loadInitData();
-	int langtype = DataSave::getInstance()->getLocalLang();
-	GlobalInstance::getInstance()->setLang(langtype);
+	int langtype = GlobalInstance::getInstance()->getLang();
 
 	//解析建筑物xml
 	Building::parseData();
