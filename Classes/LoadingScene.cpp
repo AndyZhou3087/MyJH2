@@ -10,6 +10,7 @@
 #include "AnimationEffect.h"
 #include "Const.h"
 #include "CommonFuncs.h"
+#include "MainMapScene.h"
 
 USING_NS_CC;
 
@@ -103,9 +104,18 @@ bool LoadingScene::init()
 	//先获取服务器数据
 	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
 
-	userProlayer = UserProtocolLayer::create();
-	this->addChild(userProlayer, 0, "UserProtocolLayer");
-	AnimationEffect::openAniEffect((Layer*)userProlayer);
+	//未同意时弹出，同意后不再弹出
+	if (!DataSave::getInstance()->getUserProtocal())
+	{
+		userProlayer = UserProtocolLayer::create();
+		this->addChild(userProlayer, 0, "UserProtocolLayer");
+		AnimationEffect::openAniEffect((Layer*)userProlayer);
+	}
+	else
+	{
+		userpro->setVisible(false);
+		m_wordlbl->setVisible(false);
+	}
 
     return true;
 }
@@ -113,6 +123,7 @@ bool LoadingScene::init()
 void LoadingScene::setUserProtocol(int ar)
 {
 	protocal = ar;
+	DataSave::getInstance()->setUserProtocal(protocal);
 	if (loadSuccess && protocal == 1)
 	{
 		enterNewScene();
@@ -218,7 +229,11 @@ void LoadingScene::enterNewScene()
 	}
 	else
 	{
-		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
+		if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
+		{
+			NewGuideLayer::setNewGuideInfo(SECONDGUIDESTEP);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
 		{
 			NewGuideLayer::setNewGuideInfo(THRIDGUIDESTEP);
 		}
@@ -230,14 +245,29 @@ void LoadingScene::enterNewScene()
 		{
 			NewGuideLayer::setNewGuideInfo(FOURTHGUIDESTEP);
 		}
-		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+
+		if (DataSave::getInstance()->getExitScene() == 0)
+		{
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+		}
+		else if (DataSave::getInstance()->getExitScene() == 1)
+		{
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+		}
+		else if (DataSave::getInstance()->getExitScene() == 2)
+		{
+			std::string str = DataSave::getInstance()->getMapScenePos();
+			std::vector<std::string> vec_map;
+			CommonFuncs::split(str, vec_map, ",");
+			Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene(vec_map[0], 1)));
+		}
 	}
 }
 
 void LoadingScene::showNextScene(float dt)
 {
 	loadSuccess = true;
-	if (userProlayer != NULL || protocal == 0)
+	if ((userProlayer != NULL || protocal == 0) && !DataSave::getInstance()->getUserProtocal())
 	{
 		return;
 	}

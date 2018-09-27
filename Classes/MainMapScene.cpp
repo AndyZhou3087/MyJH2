@@ -6,6 +6,7 @@
 #include "MainScene.h"
 #include "SoundManager.h"
 #include "NewGuideLayer.h"
+#include "DataSave.h"
 
 MainMapScene::MainMapScene()
 {
@@ -31,6 +32,14 @@ Scene* MainMapScene::createScene()
 
 	// return the scene
 	return scene;
+}
+
+void MainMapScene::onExit()
+{
+	//记录位置
+	DataSave::getInstance()->setExitScene(1);
+
+	Layer::onExit();
 }
 
 bool MainMapScene::init()
