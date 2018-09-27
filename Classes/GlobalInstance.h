@@ -586,6 +586,8 @@ public:
 
 	static bool isNewHeroRefresh;
 
+	static std::string qq;
+
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

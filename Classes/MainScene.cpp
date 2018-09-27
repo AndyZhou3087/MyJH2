@@ -20,6 +20,7 @@
 #include "NewGuideLayer.h"
 #include "Quest.h"
 #include "DataSave.h"
+#include "ErrorHintLayer.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -736,6 +737,11 @@ void MainScene::onFinish(int code)
 
 		updateTime(0);
 		this->schedule(schedule_selector(MainScene::updateTime), 1);
+	}
+	else
+	{
+		ErrorHintLayer* layer = ErrorHintLayer::create(0);
+		this->addChild(layer, 1000);
 	}
 }
 

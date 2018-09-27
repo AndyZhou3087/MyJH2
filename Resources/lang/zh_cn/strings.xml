@@ -274,5 +274,11 @@
 	<s name="usertips0">请详细阅读《游戏用户协议和隐私策略》后方可进入游戏</s>
 	<s name="usertips1">《游戏用户协议和隐私策略》</s>
 	<s name="refuseusertext">拒绝用户协议将无法进入游戏！确定要拒绝吗？</s>
-	<s name="usercontent">1、隐私策略阿萨嘎的gas的gas的gas的gas的gas的轧死的噶阿骨打阿萨德噶</s>	
+	<s name="usercontent">1、隐私策略阿萨嘎的gas的gas的gas的gas的gas的轧死的噶阿骨打阿萨德噶</s>
+	<s name="networkerror">网络异常，与服务器断开连接，请检查网络设置！</s>
+	<s name="dataerr0">检测到您在游戏中存在违规行为，为维护游戏公平性，将您的数据清零处理！</s>
+	<s name="dataerr1">检测到您在游戏中多次修改数据，为维护游戏公平性，将您的账号封停处理！</s>
+	<s name="comtactus">如有疑问请联系客服</s>
+	<s name="qq">QQ:</s>
+	<s name="reconnect">连接中...</s>	
 </strings>

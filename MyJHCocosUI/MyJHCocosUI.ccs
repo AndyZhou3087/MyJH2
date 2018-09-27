@@ -531,6 +531,7 @@
           <Image Name="refusetext.png" />
           <Image Name="replacebtn_text.png" />
           <Image Name="resitemlv_text.png" />
+          <Image Name="retry_text.png" />
           <Image Name="reward_text.png" />
           <Image Name="selectbtn_text.png" />
           <Image Name="selheadtitle.png" />
@@ -1125,6 +1126,7 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="errorHintLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>
