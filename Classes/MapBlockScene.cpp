@@ -159,7 +159,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	map_mapBlocks[randStartPos]->setPosIcon();
 
 	//地图引导过后是否有记录
-	if (!NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
+	if (!NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP) && DataSave::getInstance()->getExitScene() == 2)
 	{
 		std::string str = DataSave::getInstance()->getMapScenePos();
 		std::vector<std::string> vec_map;
