@@ -36,6 +36,8 @@ private:
 	Hero* m_herodata;
 	cocos2d::ui::Widget* arrowglv;
 
+	int lastvaction;
+
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onPowerClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

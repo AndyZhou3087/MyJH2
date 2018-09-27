@@ -12,6 +12,7 @@
 CardHeroNode::CardHeroNode()
 {
 	m_isdraging = false;
+	lastvaction = -1;
 }
 
 
@@ -136,11 +137,7 @@ void CardHeroNode::setData(Hero* herodata)
 	arrowglv->setVisible(false);
 	if (herodata != NULL)
 	{
-		std::string str = StringUtils::format("cardh_%d_%d.png", herodata->getVocation(), herodata->getSex());
-		headimg->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
-		headimg->setVisible(true);
-
-		str = StringUtils::format("cardherobox_%d.png", herodata->getPotential());
+		std::string str = StringUtils::format("cardherobox_%d.png", herodata->getPotential());
 		headbox->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 
 		powericon->setVisible(true);
@@ -195,14 +192,24 @@ void CardHeroNode::updatePowerCount(float dt)
 		namelbl->setString(m_herodata->getName());
 		namelbl->setVisible(true);
 
-		if (m_herodata->getVocation() >= 4)
+		if (lastvaction != m_herodata->getVocation())
 		{
-			str = StringUtils::format("ui/cardvocation%d.png", m_herodata->getVocation());
-			vocationicon->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
-			vocationbox->setVisible(true);
+			str = StringUtils::format("cardh_%d_%d.png", m_herodata->getVocation(), m_herodata->getSex());
+			headimg->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
+			headimg->setVisible(true);
+
+			if (m_herodata->getVocation() >= 4)
+			{
+				str = StringUtils::format("ui/cardvocation%d.png", m_herodata->getVocation());
+				vocationicon->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+				vocationbox->setVisible(true);
+			}
+			else
+				vocationbox->setVisible(false);
+
+
+			lastvaction = m_herodata->getVocation();
 		}
-		else
-			vocationbox->setVisible(false);
 
 		int startx[] = { 0, -7, -15, -22, -30 };
 
