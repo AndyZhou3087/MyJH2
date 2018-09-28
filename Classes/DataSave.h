@@ -386,6 +386,16 @@ public:
 	****************************/
 	void setFirstEnter(bool val);
 
+	/****************************
+	修改数据作弊次数
+	****************************/
+	int getCheatCount();
+
+	/****************************
+	设置修改数据作弊次数
+	****************************/
+	void setCheatCount(int val);
+
 private:
 	static DataSave* _Context;//类实例
 

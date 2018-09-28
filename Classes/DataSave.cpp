@@ -404,3 +404,13 @@ void DataSave::setFirstEnter(bool val)
 {
 	saveIntDataByKey("firstenter", val == true ? 1 : 0);
 }
+
+int DataSave::getCheatCount()
+{
+	return loadIntDataByKey("chartcount", 1);
+}
+
+void DataSave::setCheatCount(int val)
+{
+	saveIntDataByKey("chartcount", val);
+}

@@ -9,7 +9,14 @@
     </Item>
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
-        <ActiveDocument />
+        <OpenedDocuments>
+          <FilePathData Path="errorHintLayer.csd" />
+          <FilePathData Path="UserTipsBoxLayer.csd" />
+          <FilePathData Path="text_zh_cn.csi" />
+          <FilePathData Path="UserProtocolLayer.csd" />
+          <FilePathData Path="LoadingLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="errorHintLayer.csd" />
       </Value>
     </Item>
   </Properties>

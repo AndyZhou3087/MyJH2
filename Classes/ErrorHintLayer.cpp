@@ -5,6 +5,9 @@
 #include "GlobalInstance.h"
 #include "AnimationEffect.h"
 #include "LoadingScene.h"
+#include "DataSave.h"
+#include "MyRes.h"
+#include "HttpDataSwap.h"
 
 ErrorHintLayer::ErrorHintLayer()
 {
@@ -77,6 +80,8 @@ bool ErrorHintLayer::init(int forwhere)
 		text->setString(ResourceLang::map_lang["dataerr0"]);
 		text_1->setVisible(false);
 		text_2->setVisible(false);
+		int cheatcount = DataSave::getInstance()->getCheatCount();
+		DataSave::getInstance()->setCheatCount(cheatcount + 1);
 	}
 	else if (forwhere == 2)
 	{
@@ -94,12 +99,22 @@ bool ErrorHintLayer::init(int forwhere)
 			text_2->setVisible(false);
 		}
 		actionbtn->setVisible(false);
+
+		HttpDataSwap::init(NULL)->report("0");
+	}
+
+	if (forwhere == 1 || forwhere == 2)
+	{
+		GlobalInstance::getInstance()->saveMyHeros();
+		MyRes::saveData();
+
+		DataSave::getInstance()->setMyCoinCount(GlobalInstance::getInstance()->getMyCoinCount().getValue());
+		DataSave::getInstance()->setMySoliverCount(GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	}
 
 
 	actionbtntext->loadTexture(ResourcePath::makeTextImgPath(actiontextstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	actionbtntext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath(actiontextstr, langtype))->getContentSize());
-
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -127,7 +142,12 @@ void ErrorHintLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		{
 			if (g_loadingScene != NULL)
 				HttpDataSwap::init(g_loadingScene)->getPlayerId();
+
+		}
+		else if (m_forwhere == 1)
+		{
 			AnimationEffect::closeAniEffect(this);
+			GlobalInstance::isCheat = false;
 		}
 	}
 }

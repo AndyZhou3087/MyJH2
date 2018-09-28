@@ -55,6 +55,18 @@ void HttpDataSwap::postAllData()
 	url.append("playerid=");
 	url.append(GlobalInstance::getInstance()->UUID());
 
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
 	std::string postdata = GlobalInstance::getInstance()->getUserDefaultXmlString();
 
 	if (postdata.length() > 0)
@@ -116,8 +128,17 @@ void HttpDataSwap::vipIsOn()
 	url.append("jh_takemonthlycard?");
 	url.append("playerid=");
 	url.append(GlobalInstance::getInstance()->UUID());
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
 	url.append("&ver=");
 	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpVipIsOnCB, this));
 }
 
@@ -128,6 +149,18 @@ void HttpDataSwap::vipSuccNotice(std::string vipid)
 	url.append("jh_buynotify?");
 	url.append("playerid=");
 	url.append(GlobalInstance::getInstance()->UUID());
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
 	url.append("&goodsid=");
 	url.append(vipid);
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpBlankCB, this));
@@ -252,6 +285,35 @@ void HttpDataSwap::modifyName(int type, std::string nickname)
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpModifyNameCB, this));
 }
 
+void HttpDataSwap::report(std::string data)
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_report?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	url.append("&data=");
+	std::string str = StringUtils::format("%d", data);
+	url.append(str);
+
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpReportCB, this));
+}
+
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
@@ -282,7 +344,6 @@ void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::strin
 
 void HttpDataSwap::httpPostAllDataCB(std::string retdata, int code, std::string extdata)
 {
-	log("httpPostAllDataCB retdata =%s", retdata.c_str());
 	int ret = code;
 	if (code == 0)
 	{
@@ -326,7 +387,20 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 			{
 				std::string strid = iter->name.GetString();
 
-				if (strid.compare(0, 3, "vip") == 0)
+				if (strid.compare("qq") == 0)
+				{
+					GlobalInstance::qq = iter->value.GetString();
+				}
+				if (strid.compare("forbidden") == 0)
+				{
+					int val = atoi(iter->value.GetString());
+					if (val == 1)
+					{
+						MainScene::cheatAction();
+						break;
+					}
+				}
+				else if (strid.compare(0, 3, "vip") == 0)
 				{
 					int val = iter->value.GetInt();
 					if (val > 0)
@@ -549,6 +623,30 @@ void HttpDataSwap::httpModifyNameCB(std::string retdata, int code, std::string e
 					GlobalInstance::getInstance()->setMyNickName(v.GetString());
 				}
 			}
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpReportCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
 		}
 		else
 		{

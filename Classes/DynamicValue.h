@@ -1,6 +1,7 @@
 ﻿#ifndef _H_DYNAMICVALUE_H_
 #define _H_DYNAMICVALUE_H_
  
+#include "MainScene.h"
 /****************************
 所有数值相关，使用这个类型，防止修改内存
 m_Value 数值值，内存中异或加密
@@ -17,7 +18,8 @@ public:
 
     CEncryptValue() : m_Value(0), m_EncryptKey(23), randomNum(1987), verifyNum(0)
     {
-
+		m_Value ^= m_EncryptKey;
+		verifyNum = m_Value + randomNum;//设置验证值
     }
 
     ~CEncryptValue()
@@ -31,7 +33,11 @@ public:
 		if (Verify())
 			return m_Value ^ m_EncryptKey;
 		else
-			return 0;
+		{
+			setValue(0);
+			MainScene::cheatAction();
+			return m_Value ^ m_EncryptKey;
+		}
     }
 
 	//设置值，异或加密，设置验证值
@@ -56,7 +62,7 @@ public:
 			return true;
 
 		return false;
-		//**非法修改值 可以在次告诉服务器或者是退出程序**        
+		//**非法修改值 可以在此告诉服务器或者是退出程序**        
 	}
 public:
 
@@ -73,10 +79,5 @@ typedef CEncryptValue<int> DynamicValueInt;
 
 //float type
 typedef CEncryptValue<float> DynamicValueFloat;
-
-//bool type
-typedef CEncryptValue<bool> DynamicValueBool;
-
- 
 
 #endif

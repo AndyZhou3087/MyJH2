@@ -7,7 +7,6 @@
 std::map<std::string, Building*> Building::map_buildingDatas;
 Building::Building()
 {
-	
 }
 
 
