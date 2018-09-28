@@ -209,6 +209,8 @@ void MainMapScene::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		if (mapname.compare("m0-1") == 0)
 		{
+			//记录位置
+			DataSave::getInstance()->setExitScene(1);
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 		}
 		else

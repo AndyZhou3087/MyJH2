@@ -270,6 +270,9 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 				}
 			}
 			clicknode->setTouchEnabled(false);
+
+			//记录位置
+			DataSave::getInstance()->setExitScene(1);
 			Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene(mapid, GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].bgtype)));
 		}
 		else

@@ -12,6 +12,7 @@
 #include "NewGuideLayer.h"
 #include "Const.h"
 #include "SelectMyHerosLayer.h"
+#include "DataSave.h"
 
 USING_NS_CC;
 
@@ -365,6 +366,9 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			GlobalInstance::getInstance()->recoveCardHeroMaxHp();
 			GlobalInstance::myOutMapCarry = GlobalInstance::getInstance()->getTotalCarry();
 			GlobalInstance::getInstance()->parseMapJson();
+
+			//记录位置
+			DataSave::getInstance()->setExitScene(0);
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
 			
 			break;
