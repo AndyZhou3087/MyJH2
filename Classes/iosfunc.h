@@ -15,3 +15,4 @@ const char * getDeviceIDInKeychain();
 const char* gbkToUTF8(const char * p);
 bool isIphoneX();
 const char* getUserDefaultXml();
+void UMengInit();

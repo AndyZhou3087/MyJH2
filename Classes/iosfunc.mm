@@ -7,9 +7,13 @@
 
 #import <Foundation/Foundation.h>
 #import "iosfunc.h"
-//#import <UShareUI/UShareUI.h>
 #import "JHKeychain.h"
 #import <sys/utsname.h>
+#import "Const.h"
+#ifdef UMENG
+#import "UMCCCommon.h"
+#import "MobClickCpp.h"
+#endif
 
 const char * getuuid()
 {
@@ -133,4 +137,13 @@ bool isIphoneX()
 
     return FALSE;
 }
+
+#ifdef UMENG
+void UMengInit()
+{
+    UMCCCommon::setLogEnabled(true);
+    umeng::MobClickCpp::init();
+    UMCCCommon::init("5badecdef1f556df9e0000f5", "ios-myjh2");
+}
+#endif
 

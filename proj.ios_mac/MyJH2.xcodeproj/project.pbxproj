@@ -167,6 +167,12 @@
 		726CA467215DFD90002D0273 /* userprotocol.html in Resources */ = {isa = PBXBuildFile; fileRef = 726CA464215DFD90002D0273 /* userprotocol.html */; };
 		726CA468215DFD90002D0273 /* errorHintLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 726CA465215DFD90002D0273 /* errorHintLayer.csb */; };
 		726CA469215DFD90002D0273 /* loadingclicktext.png in Resources */ = {isa = PBXBuildFile; fileRef = 726CA466215DFD90002D0273 /* loadingclicktext.png */; };
+		726CA46F215E2AAB002D0273 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726CA46E215E2AAB002D0273 /* UMAnalytics.framework */; };
+		726CA47F215E2F3B002D0273 /* MobClickCpp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 726CA47C215E2F3A002D0273 /* MobClickCpp.mm */; };
+		726CA480215E2F3B002D0273 /* DplusMobClickCpp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 726CA47E215E2F3B002D0273 /* DplusMobClickCpp.mm */; };
+		726CA483215E2F4E002D0273 /* UMCCCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 726CA481215E2F4D002D0273 /* UMCCCommon.mm */; };
+		726CA491215E3576002D0273 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726CA490215E3576002D0273 /* UMCommon.framework */; };
+		726CA493215E3646002D0273 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 726CA492215E3645002D0273 /* libsqlite3.0.tbd */; };
 		72796F5A214BC1FE00664B82 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 72796F58214BC1FE00664B82 /* logo.png */; };
 		7282706520F5B7B200B07087 /* FightingLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7282703C20F5B7A500B07087 /* FightingLayer.cpp */; };
 		7282706620F5B7B200B07087 /* SetInStoneLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7282704020F5B7A900B07087 /* SetInStoneLayer.cpp */; };
@@ -521,6 +527,15 @@
 		726CA464215DFD90002D0273 /* userprotocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = userprotocol.html; sourceTree = "<group>"; };
 		726CA465215DFD90002D0273 /* errorHintLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = errorHintLayer.csb; sourceTree = "<group>"; };
 		726CA466215DFD90002D0273 /* loadingclicktext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingclicktext.png; sourceTree = "<group>"; };
+		726CA46E215E2AAB002D0273 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
+		726CA47B215E2F3A002D0273 /* MobClickCpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClickCpp.h; path = ../Classes/UMeng/Analytics/MobClickCpp.h; sourceTree = "<group>"; };
+		726CA47C215E2F3A002D0273 /* MobClickCpp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MobClickCpp.mm; path = ../Classes/UMeng/Analytics/MobClickCpp.mm; sourceTree = "<group>"; };
+		726CA47D215E2F3B002D0273 /* DplusMobClickCpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DplusMobClickCpp.h; path = ../Classes/UMeng/Analytics/DplusMobClickCpp.h; sourceTree = "<group>"; };
+		726CA47E215E2F3B002D0273 /* DplusMobClickCpp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = DplusMobClickCpp.mm; path = ../Classes/UMeng/Analytics/DplusMobClickCpp.mm; sourceTree = "<group>"; };
+		726CA481215E2F4D002D0273 /* UMCCCommon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UMCCCommon.mm; path = ../Classes/UMeng/Common/UMCCCommon.mm; sourceTree = "<group>"; };
+		726CA482215E2F4E002D0273 /* UMCCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UMCCCommon.h; path = ../Classes/UMeng/Common/UMCCCommon.h; sourceTree = "<group>"; };
+		726CA490215E3576002D0273 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
+		726CA492215E3645002D0273 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
 		72796F58214BC1FE00664B82 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		7282703C20F5B7A500B07087 /* FightingLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FightingLayer.cpp; sourceTree = "<group>"; };
 		7282703E20F5B7A900B07087 /* MaterialDescLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialDescLayer.h; sourceTree = "<group>"; };
@@ -642,17 +657,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				726CA493215E3646002D0273 /* libsqlite3.0.tbd in Frameworks */,
 				72FCFBF0214FC7460020DEF3 /* StoreKit.framework in Frameworks */,
 				294D0D641D0D56D500F7F5D4 /* CoreText.framework in Frameworks */,
 				ED545A7C1B68A1F400C3958E /* libiconv.dylib in Frameworks */,
 				52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */,
 				1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */,
+				726CA491215E3576002D0273 /* UMCommon.framework in Frameworks */,
 				D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
 				BF1712471292920000B8313A /* libz.dylib in Frameworks */,
+				726CA46F215E2AAB002D0273 /* UMAnalytics.framework in Frameworks */,
 				BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */,
 				D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */,
 				D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */,
@@ -721,6 +739,14 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				726CA482215E2F4E002D0273 /* UMCCCommon.h */,
+				726CA481215E2F4D002D0273 /* UMCCCommon.mm */,
+				726CA47D215E2F3B002D0273 /* DplusMobClickCpp.h */,
+				726CA47E215E2F3B002D0273 /* DplusMobClickCpp.mm */,
+				726CA47B215E2F3A002D0273 /* MobClickCpp.h */,
+				726CA47C215E2F3A002D0273 /* MobClickCpp.mm */,
+				726CA490215E3576002D0273 /* UMCommon.framework */,
+				726CA46E215E2AAB002D0273 /* UMAnalytics.framework */,
 				46880B8319C43A87006E1F66 /* Classes */,
 				46880B7519C43A67006E1F66 /* Resources */,
 				1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */,
@@ -735,6 +761,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				726CA492215E3645002D0273 /* libsqlite3.0.tbd */,
 				72FCFBEF214FC7450020DEF3 /* StoreKit.framework */,
 				294D0D631D0D56D500F7F5D4 /* CoreText.framework */,
 				ED545A7D1B68A1FA00C3958E /* libiconv.dylib */,
@@ -1355,6 +1382,7 @@
 				72C1A0EA2136914D00246A17 /* NewPopLayer.cpp in Sources */,
 				720452EB20D892200011D560 /* SelectMyHerosLayer.cpp in Sources */,
 				7232D81E20E639D600299738 /* MarketLayer.cpp in Sources */,
+				726CA47F215E2F3B002D0273 /* MobClickCpp.mm in Sources */,
 				72BAB5762130213200714493 /* SkillStartLayer.cpp in Sources */,
 				7282707320F5B7B200B07087 /* Equipable.cpp in Sources */,
 				720452E020D892200011D560 /* JHKeychain.mm in Sources */,
@@ -1378,8 +1406,10 @@
 				72C1A0EB2136914D00246A17 /* TaskNode.cpp in Sources */,
 				7282707220F5B7B200B07087 /* LoadingBarProgressTimer.cpp in Sources */,
 				720452E320D892200011D560 /* Building.cpp in Sources */,
+				726CA480215E2F3B002D0273 /* DplusMobClickCpp.mm in Sources */,
 				72421DC421269C31008B1B57 /* EventBuyLayer.cpp in Sources */,
 				7282707820F5B7B200B07087 /* Quest.cpp in Sources */,
+				726CA483215E2F4E002D0273 /* UMCCCommon.mm in Sources */,
 				72FCFBEE214FAF0E0020DEF3 /* IOSPurchaseWrap.mm in Sources */,
 				72DD1CB02139564000832ADB /* GiftContentLayer.cpp in Sources */,
 				720452FC20D892200011D560 /* SoundManager.cpp in Sources */,
@@ -1477,6 +1507,10 @@
 				COMPRESS_PNG_FILES = NO;
 				DEVELOPMENT_TEAM = 4XUL6A3335;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1512,6 +1546,10 @@
 				COMPRESS_PNG_FILES = NO;
 				DEVELOPMENT_TEAM = 4XUL6A3335;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
