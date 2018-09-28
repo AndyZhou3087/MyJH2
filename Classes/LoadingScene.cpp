@@ -13,6 +13,11 @@
 #include "MainMapScene.h"
 #include "MovingLabel.h"
 #include "ErrorHintLayer.h"
+#ifdef UMENG
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#include "iosfunc.h"
+#endif
+#endif
 
 USING_NS_CC;
 
@@ -154,6 +159,7 @@ void LoadingScene::loadData()
 	this->schedule(schedule_selector(LoadingScene::showPointAnim), 1.5f);
 	//先获取服务器数据
 	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
+
 }
 
 void LoadingScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -370,6 +376,21 @@ void LoadingScene::onFinish(int errcode)
 	{
 		//加载本地数据
 		this->scheduleOnce(schedule_selector(LoadingScene::delayLoadLocalData), 0.1f);
+#ifdef UMENG
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+		//std::string ret;
+		//JniMethodInfo methodInfo;
+		//if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getUserDefaultXmlString", "()Ljava/lang/String;"))
+		//{
+		//	jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+		//	ret = methodInfo.env->GetStringUTFChars(jstr, 0);
+		//}
+		//return ret;
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+		UMengInit();
+#endif
+#endif
+
 	}
 }
 

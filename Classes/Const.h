@@ -25,6 +25,10 @@
 
 //#define encrypt_jsonxml 1 //加密
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#define UMENG
+#endif
+
 const static float newguidetime = 0.3f;
 
 const static float creatorResLvUpPara[] = {0.5f, 0.9f, 0.7f, 0.8f, 1.0f};

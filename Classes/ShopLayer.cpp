@@ -211,7 +211,10 @@ void ShopLayer::setMessage(PYARET ret)
 				int count = atoi(vec_res[1].c_str());
 				DynamicValueInt dal;
 				dal.setValue(count);
-				GlobalInstance::getInstance()->addMyCoinCount(dal);
+				GlobalInstance::getInstance()->addMyCoinCount(dal);	
+#ifdef UMENG
+				umeng::MobClickCpp::pay(GlobalInstance::vec_shopdata[payindex].price, 2, count);
+#endif
 			}
 		}
 		else if (type == GIFT)//Àñ°ü
