@@ -49,12 +49,25 @@ bool JsonEncrypt::init()
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("LoadingLayer.csb"));
 	this->addChild(csbnode);
 
+	//创建该路径
+#ifdef _WIN32
+	CreateDirectoryA("../Resources/ResourcesEnc/", NULL);
+	CreateDirectoryA("../Resources/ResourcesEnc/json/", NULL);
+	CreateDirectoryA("../Resources/ResourcesEnc/mapdata/", NULL);
+	CreateDirectoryA("../Resources/ResourcesEnc/lang/", NULL);
+	CreateDirectoryA("../Resources/ResourcesEnc/lang/zh_cn/", NULL);
+#else
+	/*mkdir("../Resources/ResourcesEnc/json/", S_IRWXU | S_IRWXG | S_IRWXO);
+	mkdir("../Resources/ResourcesEnc/mapdata/", S_IRWXU | S_IRWXG | S_IRWXO);
+	mkdir("../Resources/ResourcesEnc/lang/zh_cn/", S_IRWXU | S_IRWXG | S_IRWXO);*/
+#endif
+
 	//遍历目录
-	dfsFolder("G:/dev/MyJH2/MyJH2/Resources/json");
-	dfsFolder("G:/dev/MyJH2/MyJH2/Resources/mapdata");
+	dfsFolder("../Resources/json", "json");
+	dfsFolder("../Resources/mapdata", "mapdata");
 
 	std::string sfilestr = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath("lang/zh_cn/allresdesc.json"));
-	setEncrypt(sfilestr, ResourcePath::makePath("jsonEnc/allresdesc.json"));
+	setEncrypt(sfilestr, ResourcePath::makePath("ResourcesEnc/lang/zh_cn/allresdesc.json"));
 
 
 	return true;
@@ -81,7 +94,7 @@ std::string JsonEncrypt::parseJsonXml(std::string s)
 	return parseStr;
 }
 
-void JsonEncrypt::dfsFolder(std::string folderPath, int depth)
+void JsonEncrypt::dfsFolder(std::string folderPath, std::string foldername, int depth)
 {
 #ifdef WIN32
 	_finddata_t FileInfo;
@@ -101,28 +114,17 @@ void JsonEncrypt::dfsFolder(std::string folderPath, int depth)
 			if ((strcmp(FileInfo.name, ".") != 0) && (strcmp(FileInfo.name, "..") != 0))
 			{
 				string newPath = folderPath + "\\" + FileInfo.name;
-				dfsFolder(newPath);
+				dfsFolder(newPath, foldername);
 			}
 		}
 		else
 		{
 			string filename = (folderPath + "\\" + FileInfo.name);
-			std::string boxstr;
-			std::string jxstr;
 			log("filename = %s ", FileInfo.name);
-			if (folderPath.compare("G:/dev/MyJH2/MyJH2/Resources/json") == 0)
-			{
-				jxstr = "json";
-				boxstr = "jsonEnc";
-			}
-			else
-			{
-				jxstr = "mapdata";
-				boxstr = "xmlEnc";
-			}
-			std::string str = StringUtils::format("%s/%s", jxstr.c_str(), FileInfo.name);
+
+			std::string str = StringUtils::format("%s/%s", foldername.c_str(), FileInfo.name);
 			std::string filestr = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath(str));
-			str = StringUtils::format("%s/%s", boxstr.c_str(), FileInfo.name);
+			str = StringUtils::format("ResourcesEnc/%s/%s", foldername.c_str(), FileInfo.name);
 			setEncrypt(filestr, ResourcePath::makePath(str));
 
 			//cout << folderPath << "\\" << FileInfo.name << " " << endl;
