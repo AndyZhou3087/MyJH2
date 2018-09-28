@@ -13,8 +13,6 @@
 //#include <sys/stat.h>
 #endif
 
-#include <sys/stat.h>
-
 USING_NS_CC;
 class JsonEncrypt : public cocos2d::Layer
 {

@@ -35,7 +35,7 @@ private:
 	cocos2d::Node* cardnamebox;
 	Hero* m_herodata;
 	cocos2d::ui::Widget* arrowglv;
-
+	cocos2d::ui::ImageView* powerclick;
 	int lastvaction;
 
 private:

@@ -8,6 +8,7 @@
 #include "NewGuideLayer.h"
 #include "DataSave.h"
 
+MainMapScene* g_MainMapScene = NULL;
 MainMapScene::MainMapScene()
 {
 	m_isDraging = false;
@@ -16,7 +17,7 @@ MainMapScene::MainMapScene()
 
 MainMapScene::~MainMapScene()
 {
-
+	g_MainMapScene = NULL;
 }
 
 Scene* MainMapScene::createScene()
@@ -25,10 +26,10 @@ Scene* MainMapScene::createScene()
 	auto scene = Scene::create();
 
 	// 'layer' is an autorelease object
-	auto mainLayer = MainMapScene::create();
+	g_MainMapScene = MainMapScene::create();
 
 	// add layer as a child to scene
-	scene->addChild(mainLayer);
+	scene->addChild(g_MainMapScene);
 
 	// return the scene
 	return scene;
