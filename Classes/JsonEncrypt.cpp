@@ -10,9 +10,6 @@
 
 USING_NS_CC;
 
-std::string jsonArr[17] = { "achieve","branchtask","buildings","dailytask","equip","gf","heroatr","mainmap","maintask","npc","npcatr","resaction","shop",
-"skill","submap","suitequip","tbox" };
-
 JsonEncrypt::JsonEncrypt()
 {
 
@@ -52,52 +49,12 @@ bool JsonEncrypt::init()
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("LoadingLayer.csb"));
 	this->addChild(csbnode);
 
-	//加密
-	for (int i = 0; i < sizeof(jsonArr) / sizeof(jsonArr[0]); i++)
-	{
-		std::string str = StringUtils::format("json/%s.json", jsonArr[i].c_str());
-		std::string filestr = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath(str));
-		str = StringUtils::format("jsonEnc/%s.json", jsonArr[i].c_str());
-		setEncrypt(filestr, ResourcePath::makePath(str));
-	}
-
-	for (int j = 1; j < 6; j++)
-	{
-		std::string str = StringUtils::format("json/boxevent%d.json", j);
-		std::string filestr = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath(str));
-		str = StringUtils::format("jsonEnc/boxevent%d.json", j);
-		setEncrypt(filestr, ResourcePath::makePath(str));
-
-		str = StringUtils::format("json/event%d.json", j);
-		filestr = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath(str));
-		str = StringUtils::format("jsonEnc/event%d.json", j);
-		setEncrypt(filestr, ResourcePath::makePath(str));
-	}
+	//遍历目录
+	dfsFolder("G:/dev/MyJH2/MyJH2/Resources/json");
+	dfsFolder("G:/dev/MyJH2/MyJH2/Resources/mapdata");
 
 	std::string sfilestr = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath("lang/zh_cn/allresdesc.json"));
 	setEncrypt(sfilestr, ResourcePath::makePath("jsonEnc/allresdesc.json"));
-
-	for (int m = 1; m < 6; m++)
-	{
-		for (int n = 1; n < 6; n++)
-		{
-			for (int q = 1; q < 6; q++)
-			{
-				std::string str = StringUtils::format("mapdata/m%d-%d-%d.xml", m, n, q);
-				std::string filestr = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath(str));
-				if (filestr.length() > 0)
-				{
-					str = StringUtils::format("xmlEnc/m%d-%d-%d.xml", m, n, q);
-					setEncrypt(filestr, ResourcePath::makePath(str));
-				}
-			}
-		}
-	}
-	std::string filestr = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath("mapdata/m0-0-0.xml"));
-	if (filestr.length() > 0)
-	{
-		setEncrypt(filestr, ResourcePath::makePath("xmlEnc/m0-0-0.xml"));
-	}
 
 
 	return true;
@@ -122,6 +79,84 @@ std::string JsonEncrypt::parseJsonXml(std::string s)
 	Encrypt((char*)s.c_str(), false);
 	std::string parseStr = parseData(s.c_str());
 	return parseStr;
+}
+
+void JsonEncrypt::dfsFolder(std::string folderPath, int depth)
+{
+#ifdef WIN32
+	_finddata_t FileInfo;
+	string strfind = folderPath + "\\*";
+	long Handle = _findfirst(strfind.c_str(), &FileInfo);
+
+	if (Handle == -1L)
+	{
+		//cerr << "can not match the folder path" << endl;
+		exit(-1);
+	}
+	do {
+		//判断是否有子目录
+		if (FileInfo.attrib & _A_SUBDIR)
+		{
+			//这个语句很重要
+			if ((strcmp(FileInfo.name, ".") != 0) && (strcmp(FileInfo.name, "..") != 0))
+			{
+				string newPath = folderPath + "\\" + FileInfo.name;
+				dfsFolder(newPath);
+			}
+		}
+		else
+		{
+			string filename = (folderPath + "\\" + FileInfo.name);
+			std::string boxstr;
+			std::string jxstr;
+			log("filename = %s ", FileInfo.name);
+			if (folderPath.compare("G:/dev/MyJH2/MyJH2/Resources/json") == 0)
+			{
+				jxstr = "json";
+				boxstr = "jsonEnc";
+			}
+			else
+			{
+				jxstr = "mapdata";
+				boxstr = "xmlEnc";
+			}
+			std::string str = StringUtils::format("%s/%s", jxstr.c_str(), FileInfo.name);
+			std::string filestr = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath(str));
+			str = StringUtils::format("%s/%s", boxstr.c_str(), FileInfo.name);
+			setEncrypt(filestr, ResourcePath::makePath(str));
+
+			//cout << folderPath << "\\" << FileInfo.name << " " << endl;
+		}
+	} while (_findnext(Handle, &FileInfo) == 0);
+
+	_findclose(Handle);
+//#else
+//	DIR *dp;
+//	struct dirent *entry;
+//	struct stat statbuf;
+//	if ((dp = opendir(folderPath.c_str())) == NULL) {
+//		fprintf(stderr, "cannot open directory: %s\n", folderPath.c_str());
+//		return;
+//	}
+//	chdir(folderPath.c_str());
+//	while ((entry = readdir(dp)) != NULL) {
+//		lstat(entry->d_name, &statbuf);
+//		if (S_ISDIR(statbuf.st_mode)) {
+//
+//			if (strcmp(".", entry->d_name) == 0 ||
+//				strcmp("..", entry->d_name) == 0)
+//				continue;
+//			printf("%*s%s/\n", depth, "", entry->d_name);
+//			dfsFolder(entry->d_name, depth + 4);
+//		}
+//		else {
+//			string filename = entry->d_name;
+//			54             printf("%*s%s\n", depth, "", entry->d_name);
+//		}
+//	}
+//	chdir("..");
+//	closedir(dp);
+#endif
 }
 
 void JsonEncrypt::onExit()

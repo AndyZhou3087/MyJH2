@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include <io.h>
 
 USING_NS_CC;
 class JsonEncrypt : public cocos2d::Layer
@@ -22,6 +23,8 @@ private:
 	void setEncrypt(std::string sValue, std::string filename);
 
 	std::string parseJsonXml(std::string s);
+
+	void dfsFolder(std::string folderPath, int depth = 0);
 };
 
 #endif
