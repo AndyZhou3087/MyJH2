@@ -247,6 +247,9 @@ void LoadingScene::delayLoadLocalData(float dt)
 	//加载商城
 	GlobalInstance::getInstance()->loadShopData();
 
+	//加载地图数据
+	GlobalInstance::getInstance()->parseMapJson();
+
 	//数据处理完，
 	//加载技能特效
 	curEffectPlistNum = 0;
