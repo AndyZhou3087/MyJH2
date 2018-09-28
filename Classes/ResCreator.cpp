@@ -5,6 +5,7 @@ ResCreator::ResCreator(std::string strid)
 {
 	m_name = strid;
 	m_lv.setValue(-1);
+	m_farmersCount.setValue(0);
 }
 
 

@@ -884,3 +884,19 @@ void MainScene::saveAllData()
 	MyRes::saveData();
 	HttpDataSwap::init(NULL)->postAllData();
 }
+
+void MainScene::cheatAction()
+{
+	int cheatcount = DataSave::getInstance()->getCheatCount();
+	int para = 1;
+	if (cheatcount >= 2)
+		para = 2;
+	
+	if (!GlobalInstance::isCheat)
+	{
+		GlobalInstance::isCheat = true;
+		ErrorHintLayer* layer = ErrorHintLayer::create(para);
+		Director::getInstance()->getRunningScene()->addChild(layer, 10000);
+		AnimationEffect::openAniEffect(layer);
+	}
+}

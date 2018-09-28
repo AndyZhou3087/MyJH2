@@ -57,7 +57,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="text" ActionTag="-886733092" Tag="153" IconVisible="False" LeftMargin="235.1665" RightMargin="226.8335" TopMargin="1132.4613" BottomMargin="118.5387" FontSize="25" LabelText="ios官方qq群：1234567" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="qqtext" ActionTag="-886733092" Tag="153" IconVisible="False" LeftMargin="235.1665" RightMargin="226.8335" TopMargin="1132.4613" BottomMargin="118.5387" TouchEnable="True" FontSize="25" LabelText="ios官方qq群：1234567" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="258.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="364.1665" Y="133.0387" />
@@ -69,7 +69,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="coinbox" ActionTag="-2093725128" Tag="170" IconVisible="False" LeftMargin="528.3914" RightMargin="35.6086" TopMargin="1210.4069" BottomMargin="15.5932" TouchEnable="True" LeftEage="51" RightEage="51" TopEage="17" BottomEage="17" Scale9OriginX="51" Scale9OriginY="17" Scale9Width="54" Scale9Height="20" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="coinbox" ActionTag="-2093725128" Tag="170" IconVisible="False" LeftMargin="528.3914" RightMargin="35.6086" TopMargin="1210.4067" BottomMargin="15.5932" TouchEnable="True" LeftEage="51" RightEage="51" TopEage="17" BottomEage="17" Scale9OriginX="51" Scale9OriginY="17" Scale9Width="54" Scale9Height="20" ctype="ImageViewObjectData">
             <Size X="156.0000" Y="54.0000" />
             <Children>
               <AbstractNodeData Name="coin" ActionTag="1655063692" Tag="171" IconVisible="False" LeftMargin="5.1796" RightMargin="108.8204" TopMargin="15.8942" BottomMargin="12.1058" ctype="SpriteObjectData">

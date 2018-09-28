@@ -81,6 +81,8 @@ bool GlobalInstance::isNewHeroRefresh = false;
 
 std::string GlobalInstance::qq;
 
+bool GlobalInstance::isCheat = false;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -1666,7 +1668,8 @@ int GlobalInstance::calcFoodMakeOut()
 		for (unsigned int i = 1; i < GlobalInstance::vec_resCreators.size(); i++)
 		{
 			ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
-			foodountcount -= rescreator->getFarmersCount().getValue() * needfood[i - 1];
+			int count = rescreator->getFarmersCount().getValue() * needfood[i - 1];
+			foodountcount -= count;
 		}
 	}
 	return foodountcount;

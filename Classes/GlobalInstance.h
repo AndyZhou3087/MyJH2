@@ -588,6 +588,8 @@ public:
 
 	static std::string qq;
 
+	static bool isCheat;
+
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

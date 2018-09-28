@@ -34,6 +34,8 @@ public:
 
 	void vipSuccNotice(std::string vipid);
 
+	void report(std::string data);
+
 private:
 	HTTPDataDelegateProtocol *m_pDelegateProtocol;//接口对象
 	static bool isdoing;
@@ -58,6 +60,8 @@ private:
 	void httpModifyNameCB(std::string retdata, int code, std::string extdata);
 
 	void httpVipIsOnCB(std::string retdata, int code, std::string extdata);
+
+	void httpReportCB(std::string retdata, int code, std::string extdata);
 
 	void httpBlankCB(std::string retdata, int code, std::string extdata);
 };

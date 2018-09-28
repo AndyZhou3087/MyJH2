@@ -52,6 +52,8 @@ public:
 
 	static void saveAllData();
 
+	static void cheatAction();
+
 private:
 	void updateTaskLayerTip(float dt);
 
