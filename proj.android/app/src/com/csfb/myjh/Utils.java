@@ -15,6 +15,9 @@ import java.net.NetworkInterface;
 import java.util.Enumeration;
 import java.util.Map;
 import java.util.UUID;
+
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -303,6 +306,14 @@ public class Utils {
         }
         return result;
     }
+
+	public static void copyToClipboard(String content)
+	{
+		ClipboardManager cm = (ClipboardManager) sContext.getSystemService(Context.CLIPBOARD_SERVICE);
+		// 将文本内容放到系统剪贴板里。
+		ClipData myClip = ClipData.newPlainText("qqnum", content);
+		cm.setPrimaryClip(myClip);
+	}
 
     public static String getUserDefaultXmlString()
 	{

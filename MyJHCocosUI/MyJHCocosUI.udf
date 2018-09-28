@@ -7,17 +7,5 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="errorHintLayer.csd" />
-          <FilePathData Path="UserTipsBoxLayer.csd" />
-          <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="UserProtocolLayer.csd" />
-          <FilePathData Path="LoadingLayer.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="errorHintLayer.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

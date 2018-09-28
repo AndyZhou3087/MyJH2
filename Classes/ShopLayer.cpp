@@ -12,6 +12,7 @@
 #include "GiftContentLayer.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "IOSPurchaseWrap.h"
+#include "iosfunc.h"
 #endif
 
 USING_NS_CC;
@@ -68,8 +69,24 @@ bool ShopLayer::init()
 	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(ShopLayer::onBtnClick, this));
 
-	cocos2d::ui::Text* text = (cocos2d::ui::Text*)csbnode->getChildByName("text");
-	text->setString(ResourceLang::map_lang["officalQQ"]);
+	cocos2d::ui::Text* text = (cocos2d::ui::Text*)csbnode->getChildByName("qqtext");
+	text->addTouchEventListener(CC_CALLBACK_2(ShopLayer::onQQClick, this));
+
+	std::string qqstr = ResourceLang::map_lang["officalQQ"];
+	if (GlobalInstance::qq.length() > 0)
+	{
+		qqstr.append(GlobalInstance::qq);
+		text->setString(qqstr);
+
+		DrawNode* underlineNode = DrawNode::create();
+		text->addChild(underlineNode, 1);
+		underlineNode->setLineWidth(2.0f);
+		underlineNode->drawLine(Vec2(0, 0), Vec2(text->getContentSize().width, 0), Color4F(text->getDisplayedColor()));
+	}
+	else
+	{
+		text->setVisible(false);
+	}
 
 	coinlbl = (cocos2d::ui::Text*)csbnode->getChildByName("coinbox")->getChildByName("countlbl");
 
@@ -116,6 +133,28 @@ void ShopLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		AnimationEffect::closeAniEffect((Layer*)this);
+	}
+}
+
+void ShopLayer::onQQClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+		JniMethodInfo methodInfo;
+		char p_str1[32] = { 0 };
+		sprintf(p_str1, "%s", GlobalInstance::qq.c_str());
+		if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "copyToClipboard", "(Ljava/lang/String;)V"))
+		{
+			jstring str1 = methodInfo.env->NewStringUTF(p_str1);
+			methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1);
+		}
+		MovingLabel::show(ResourceLang::map_lang["copyqq"]);
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+		copytoclipboard((char*)GlobalInstance::qq.c_str());
+		MovingLabel::show(ResourceLang::map_lang["copyqq"]);
+#endif
 	}
 }
 
