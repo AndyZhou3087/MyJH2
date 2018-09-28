@@ -27,6 +27,7 @@
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #define UMENG
+#include "UMeng/Analytics/MobClickCpp.h"
 #endif
 
 const static float newguidetime = 0.3f;
