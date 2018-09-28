@@ -30,7 +30,6 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Environment;
-import android.util.Log;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlSerializer;
