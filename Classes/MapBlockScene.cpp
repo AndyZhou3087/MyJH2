@@ -375,8 +375,6 @@ void MapBlockScene::goBackMainHomeScene()
 	{
 		keybtnArr[i]->setEnabled(false);
 	}
-	//记录位置
-	DataSave::getInstance()->setExitScene(2);
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 }
 

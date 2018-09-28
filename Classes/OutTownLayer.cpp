@@ -365,9 +365,6 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 			GlobalInstance::getInstance()->recoveCardHeroMaxHp();
 			GlobalInstance::myOutMapCarry = GlobalInstance::getInstance()->getTotalCarry();
-
-			//记录位置
-			DataSave::getInstance()->setExitScene(0);
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
 			
 			break;
