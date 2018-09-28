@@ -23,6 +23,7 @@
 #include "GoBackLayer.h"
 #include "NewGuideLayer.h"
 #include "RewardLayer.h"
+#include "Utility.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 

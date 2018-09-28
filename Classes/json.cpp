@@ -1,8 +1,7 @@
 ﻿
 #include "json.h"
 #include "Utility.h"
-
-//#define encrypt_jsonxml 1
+#include "Const.h"
 
 std::string JsonWriter(rapidjson::Document& doc)
 {
