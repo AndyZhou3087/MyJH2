@@ -307,9 +307,7 @@ void HttpDataSwap::report(std::string data)
 	url.append(GlobalInstance::getInstance()->getPlatForm());
 
 	url.append("&data=");
-	std::string str = StringUtils::format("%d", data);
-	url.append(str);
-
+	url.append(data);
 
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpReportCB, this));
 }
