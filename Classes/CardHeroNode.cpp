@@ -65,9 +65,9 @@ bool CardHeroNode::init()
 	//体力
 	powertext = (cocos2d::ui::Text*)csbnode->getChildByName("powertext");
 
-	cocos2d::ui::ImageView* powerclick = (cocos2d::ui::ImageView*)csbnode->getChildByName("powerclick");
+	powerclick = (cocos2d::ui::ImageView*)csbnode->getChildByName("powerclick");
 	powerclick->addTouchEventListener(CC_CALLBACK_2(CardHeroNode::onPowerClick, this));
-
+	powerclick->setVisible(false);
 	//等级
 
 	lvlbl = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
@@ -140,6 +140,7 @@ void CardHeroNode::setData(Hero* herodata)
 		std::string str = StringUtils::format("cardherobox_%d.png", herodata->getPotential());
 		headbox->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 
+		powerclick->setVisible(true);
 		powericon->setVisible(true);
 
 		desclbl->setVisible(false);
@@ -161,6 +162,8 @@ void CardHeroNode::setData(Hero* herodata)
 
 		vocationbox->setVisible(false);
 		powertext->setVisible(false);
+
+		powerclick->setVisible(false);
 		powericon->setVisible(false);
 
 		cardnamebox->setVisible(false);
