@@ -289,8 +289,12 @@ void SettingLayer::onFinish(int errcode)
 	}
 	else
 	{
-		if (errcode == 2)
+		if (errcode == 2)//1--player not exit;2--timesout;3--used;4--senstive
 			MovingLabel::show(ResourceLang::map_lang["modifynicknametimeslimit"]);
+		else if (errcode == 3)
+			MovingLabel::show(ResourceLang::map_lang["nicknameused"]);
+		else if (errcode == 4)
+			MovingLabel::show(ResourceLang::map_lang["senstiveword"]);
 		else
 			MovingLabel::show(ResourceLang::map_lang["modifynicknamefail"]);
 		m_editName->setText(mynickname.c_str());
