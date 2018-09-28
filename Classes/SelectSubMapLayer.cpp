@@ -269,7 +269,7 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 					GlobalInstance::getInstance()->saveHero(GlobalInstance::myCardHeros[i]);
 				}
 			}
-			clicknode->setTouchEnabled(false);
+			clicknode->setEnabled(false);
 			Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene(mapid, GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].bgtype)));
 		}
 		else

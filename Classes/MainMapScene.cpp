@@ -190,7 +190,7 @@ void MainMapScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
 
 void MainMapScene::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	Node* clicknode = (Node*)pSender;
+	cocos2d::ui::Widget* clicknode = (cocos2d::ui::Widget*)pSender;
 	Node* selnode = (Node*)clicknode->getUserData();
 
 	switch (type)
@@ -210,6 +210,7 @@ void MainMapScene::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		if (mapname.compare("m0-1") == 0)
 		{
+			clicknode->setEnabled(false);
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 		}
 		else
