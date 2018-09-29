@@ -412,7 +412,7 @@ void ConsumeResActionLayer::action()
 		
 #ifdef UMENG
 		umeng::eventDict dict;
-		std::string lvstr = StringUtils::format("%d", bdata->level.getValue());
+		std::string lvstr = StringUtils::format("%d", bdata->level.getValue() + 1);
 		dict["lv"] = lvstr;
 		umeng::MobClickCpp::event(bdata->name.c_str(), &dict);
 #endif
