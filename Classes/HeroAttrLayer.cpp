@@ -487,14 +487,12 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 	{
 		editBox->setText(m_heroData->getName().c_str());
 		MovingLabel::show(ResourceLang::map_lang["nicknameempty"]);
-		return;
 	}
 	else if (m_heroData->getName().compare(editstr) == 0)
 	{
-		return;
-	}
 
-	if (GlobalInstance::getInstance()->checkifSameName(editBox->getText()))
+	}
+	else if (GlobalInstance::getInstance()->checkifSameName(editBox->getText()))
 	{
 		editBox->setText(m_heroData->getName().c_str());
 		MovingLabel::show(ResourceLang::map_lang["samename"]);
