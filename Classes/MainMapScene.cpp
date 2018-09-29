@@ -162,6 +162,8 @@ bool MainMapScene::init()
 
     //记录位置
     DataSave::getInstance()->setExitScene(1);
+
+	DataSave::getInstance()->setHeroMapCarryCount(GlobalInstance::myOutMapCarry);
     
 	return true;
 }

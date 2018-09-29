@@ -301,10 +301,12 @@ void LoadingScene::enterNewScene()
         }
         else if (exitscene == 1)
         {
+			GlobalInstance::myOutMapCarry = DataSave::getInstance()->getHeroMapCarryCount();
             Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
         }
         else if (exitscene == 2)
         {
+			GlobalInstance::myOutMapCarry = DataSave::getInstance()->getHeroMapCarryCount();
             std::string str = DataSave::getInstance()->getMapScenePos();
             std::vector<std::string> vec_map;
             CommonFuncs::split(str, vec_map, ",");

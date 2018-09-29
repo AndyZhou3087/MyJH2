@@ -394,6 +394,16 @@ std::string DataSave::getMapScenePos()
 	return loadStringDataByKey("ScenePos", "");
 }
 
+void DataSave::setHeroMapCarryCount(int val)
+{
+	saveIntDataByKey("mymapcarry", val);
+}
+
+int DataSave::getHeroMapCarryCount()
+{
+	return loadIntDataByKey("mymapcarry", 100);
+}
+
 bool DataSave::getFirstEnter()
 {
 	int val = loadIntDataByKey("firstenter", 1);

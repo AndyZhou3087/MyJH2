@@ -376,6 +376,11 @@ public:
 	//获取地图id和位置
 	std::string getMapScenePos();
 
+	//地图内界面时保存负重
+	void setHeroMapCarryCount(int val);
+	//获取地图负重
+	int getHeroMapCarryCount();
+
 	/****************************
 	是否第一次进入游戏
 	****************************/
