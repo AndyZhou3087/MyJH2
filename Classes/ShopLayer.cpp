@@ -242,6 +242,10 @@ void ShopLayer::setMessage(PYARET ret)
 	MovingLabel::show(ResourceLang::map_lang[str]);
 	payindex = -1;
 	isPaying = false;
+	
+#ifdef UMENG
+	umeng::MobClickCpp::event(GlobalInstance::vec_shopdata[payindex].icon.c_str());
+#endif
 }
 
 void ShopLayer::showVipReward(ShopData* data, int tag)

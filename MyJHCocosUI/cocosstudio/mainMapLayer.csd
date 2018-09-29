@@ -1132,7 +1132,7 @@
                   <AbstractNodeData Name="m22-4" ActionTag="-488144422" Tag="430" IconVisible="True" LeftMargin="435.0000" RightMargin="1989.0000" TopMargin="1080.0000" BottomMargin="520.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <Children>
-                      <AbstractNodeData Name="select" CanEdit="False" ActionTag="-1783559427" Tag="431" IconVisible="False" LeftMargin="-29.5000" RightMargin="-29.5000" TopMargin="-81.5000" BottomMargin="-81.5000" LeftEage="18" RightEage="18" TopEage="28" BottomEage="28" Scale9OriginX="18" Scale9OriginY="28" Scale9Width="23" Scale9Height="107" ctype="ImageViewObjectData">
+                      <AbstractNodeData Name="select" ActionTag="-1783559427" Tag="431" IconVisible="False" LeftMargin="-29.5000" RightMargin="-29.5000" TopMargin="-81.5000" BottomMargin="-81.5000" LeftEage="18" RightEage="18" TopEage="28" BottomEage="28" Scale9OriginX="18" Scale9OriginY="28" Scale9Width="23" Scale9Height="107" ctype="ImageViewObjectData">
                         <Size X="59.0000" Y="163.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <Position />
@@ -1142,7 +1142,7 @@
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="MarkedSubImage" Path="mapui/mapname_sel0.png" Plist="mapui.plist" />
                       </AbstractNodeData>
-                      <AbstractNodeData Name="normal" CanEdit="False" ActionTag="862028608" Tag="432" IconVisible="False" LeftMargin="-26.5000" RightMargin="-26.5000" TopMargin="-79.5000" BottomMargin="-79.5000" TouchEnable="True" LeftEage="18" RightEage="18" TopEage="28" BottomEage="28" Scale9OriginX="18" Scale9OriginY="28" Scale9Width="17" Scale9Height="103" ctype="ImageViewObjectData">
+                      <AbstractNodeData Name="normal" ActionTag="862028608" Tag="432" IconVisible="False" LeftMargin="-26.5000" RightMargin="-26.5000" TopMargin="-79.5000" BottomMargin="-79.5000" TouchEnable="True" LeftEage="18" RightEage="18" TopEage="28" BottomEage="28" Scale9OriginX="18" Scale9OriginY="28" Scale9Width="17" Scale9Height="103" ctype="ImageViewObjectData">
                         <Size X="53.0000" Y="159.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <Position />
@@ -1152,7 +1152,7 @@
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="MarkedSubImage" Path="mapui/mapnamebox0.png" Plist="mapui.plist" />
                       </AbstractNodeData>
-                      <AbstractNodeData Name="text" CanEdit="False" ActionTag="-2047825339" Tag="433" IconVisible="False" LeftMargin="-15.4992" RightMargin="-15.5008" TopMargin="-50.9998" BottomMargin="-23.0002" LeftEage="8" RightEage="8" TopEage="28" BottomEage="28" Scale9OriginX="8" Scale9OriginY="28" Scale9Width="15" Scale9Height="18" ctype="ImageViewObjectData">
+                      <AbstractNodeData Name="text" ActionTag="-2047825339" Tag="433" IconVisible="False" LeftMargin="-15.4992" RightMargin="-15.5008" TopMargin="-50.9998" BottomMargin="-23.0002" LeftEage="8" RightEage="8" TopEage="28" BottomEage="28" Scale9OriginX="8" Scale9OriginY="28" Scale9Width="15" Scale9Height="18" ctype="ImageViewObjectData">
                         <Size X="31.0000" Y="74.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <Position X="0.0008" Y="13.9998" />

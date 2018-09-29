@@ -375,6 +375,17 @@ void TaskDescLayer::accpTask()
 	{
 		GlobalInstance::myCurBranchData.isfinish = QUEST_ACC;
 	}
+#ifdef UMENG
+	std::string eventstr;
+	if (m_type == 0)
+		eventstr = StringUtils::format("maintask@%d", GlobalInstance::myCurMainData.id);
+	else
+		eventstr = StringUtils::format("branchtask@%d", GlobalInstance::myCurBranchData.id);
+
+	umeng::eventDict dict;
+	dict["status"] = "accepted";
+	umeng::MobClickCpp::event(eventstr.c_str(), &dict);
+#endif
 }
 
 void TaskDescLayer::getRewards()
@@ -421,4 +432,16 @@ void TaskDescLayer::getRewards()
 		g_mainScene->addChild(layer);
 		AnimationEffect::openAniEffect(layer);
 	}
+
+#ifdef UMENG
+	std::string eventstr;
+	if (m_type == 0)
+		eventstr = StringUtils::format("maintask@%d", GlobalInstance::myCurMainData.id);
+	else
+		eventstr = StringUtils::format("branchtask@%d", GlobalInstance::myCurBranchData.id);
+
+	umeng::eventDict dict;
+	dict["status"] = "getreward";
+	umeng::MobClickCpp::event(eventstr.c_str(), &dict);
+#endif
 }

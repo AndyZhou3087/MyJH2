@@ -409,6 +409,14 @@ void ConsumeResActionLayer::action()
 		showNextLvDesc(bdata);
 
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUILDLVUP);
+		
+#ifdef UMENG
+		umeng::eventDict dict;
+		std::string lvstr = StringUtils::format("%d", bdata->level.getValue());
+		dict["lv"] = lvstr;
+		umeng::MobClickCpp::event(bdata->name.c_str(), &dict);
+#endif
+
 	}
 	else if (m_actiontype == CA_EMPLOYFARMER)
 	{

@@ -123,6 +123,12 @@ bool TaskLayer::init()
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
+#ifdef UMENG
+	umeng::eventDict dict;
+	std::string jfstr = StringUtils::format("%d", DataSave::getInstance()->getMyyDailyPoint());
+	dict["pv"] = jfstr;
+	umeng::MobClickCpp::event("dailytaskbp", &dict);
+#endif
 
 	return true;
 }

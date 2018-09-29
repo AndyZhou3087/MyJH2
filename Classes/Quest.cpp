@@ -6,6 +6,7 @@
 #include "SoundManager.h"
 #include "MapBlockScene.h"
 #include "ResBase.h"
+#include "Const.h"
 
 std::vector<TaskData> Quest::myFinishMainQuest;
 std::vector<TaskData> Quest::myFinishBranchQuest;
@@ -281,6 +282,13 @@ void Quest::finishQuest()
 	GlobalInstance::myCurMainData.isfinish = QUEST_FINISH;
 	GlobalInstance::myCurMainData.finishtype = QUEST_GIVE;
 	saveMainData();
+
+#ifdef UMENG
+	umeng::eventDict dict;
+	std::string eventstr = StringUtils::format("maintask@%d", GlobalInstance::myCurMainData.id);
+	dict["status"] = "finish";
+	umeng::MobClickCpp::event(eventstr.c_str(), &dict);
+#endif
 }
 
 void Quest::finishTaskMain(int ftype)
@@ -288,6 +296,13 @@ void Quest::finishTaskMain(int ftype)
 	GlobalInstance::myCurMainData.isfinish = QUEST_FINISH;
 	GlobalInstance::myCurMainData.finishtype = ftype;
 	saveMainData();
+
+#ifdef UMENG
+	umeng::eventDict dict;
+	std::string eventstr = StringUtils::format("maintask@%d", GlobalInstance::myCurMainData.id);
+	dict["status"] = "finish";
+	umeng::MobClickCpp::event(eventstr.c_str(), &dict);
+#endif
 }
 
 bool Quest::getMainQuest()
@@ -553,6 +568,13 @@ void Quest::finishTaskBranch(int ftype)
 	saveBranchData();
 	setDailyTask(FINISH_BRANCH, 1);
 	setAchieveTypeCount(FINISH_BRANCH, 1);
+
+#ifdef UMENG
+	umeng::eventDict dict;
+	std::string eventstr = StringUtils::format("branchtask@%d", GlobalInstance::myCurBranchData.id);
+	dict["status"] = "finish";
+	umeng::MobClickCpp::event(eventstr.c_str(), &dict);
+#endif
 }
 
 void Quest::finishBranchQuest()
@@ -561,6 +583,12 @@ void Quest::finishBranchQuest()
 	saveBranchData();
 	setDailyTask(FINISH_BRANCH, 1);
 	setAchieveTypeCount(FINISH_BRANCH, 1);
+#ifdef UMENG
+	umeng::eventDict dict;
+	std::string eventstr = StringUtils::format("branchtask@%d", GlobalInstance::myCurBranchData.id);
+	dict["status"] = "finish";
+	umeng::MobClickCpp::event(eventstr.c_str(), &dict);
+#endif
 }
 
 void Quest::saveBranchData()

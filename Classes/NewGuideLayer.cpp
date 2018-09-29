@@ -264,6 +264,30 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
+
+#ifdef UMENG
+	if (m_step == 0)
+		umeng::MobClickCpp::event("newerguide0");
+	else if (m_step == 5)
+		umeng::MobClickCpp::event("newerguide1");
+	else if (m_step == 11)
+		umeng::MobClickCpp::event("newerguide2");
+	else if (m_step == 14)
+		umeng::MobClickCpp::event("newerguide3");
+	else if (m_step == 15)
+		umeng::MobClickCpp::event("newerguide4");
+	else if (m_step == 22)
+		umeng::MobClickCpp::event("newerguide5");
+	else if (m_step == 40)
+		umeng::MobClickCpp::event("newerguide6");
+	else if (m_step == 45)
+		umeng::MobClickCpp::event("newerguide7");
+	else if (m_step == 53)
+		umeng::MobClickCpp::event("newerguide8");
+	else if (m_step == 86)
+		umeng::MobClickCpp::event("newerguide9");
+#endif
+
 	return true;
 }
 
