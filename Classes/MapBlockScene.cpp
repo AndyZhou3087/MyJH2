@@ -1,4 +1,4 @@
-﻿#include "MapBlockScene.h"
+#include "MapBlockScene.h"
 #include "Resource.h"
 #include "MyRes.h"
 #include "CommonFuncs.h"
@@ -105,8 +105,7 @@ void MapBlockScene::onExit()
 		str.append(startstr);
 		DataSave::getInstance()->setMapVisibleArea(m_mapid, str);
 	}
-	//记录位置
-	DataSave::getInstance()->setExitScene(2);
+
 	DataSave::getInstance()->setMapScenePos(m_mapid, mycurRow*blockColCount + mycurCol);
 
 	Layer::onExit();
@@ -270,6 +269,8 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	this->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.1f);
 
+    //记录位置
+    DataSave::getInstance()->setExitScene(2);
 	return true;
 }
 

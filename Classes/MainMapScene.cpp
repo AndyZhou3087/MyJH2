@@ -1,4 +1,4 @@
-﻿#include "MainMapScene.h"
+#include "MainMapScene.h"
 #include "Resource.h"
 #include "SelectSubMapLayer.h"
 #include "GlobalInstance.h"
@@ -37,9 +37,6 @@ Scene* MainMapScene::createScene()
 
 void MainMapScene::onExit()
 {
-	//记录位置
-	DataSave::getInstance()->setExitScene(1);
-
 	Layer::onExit();
 }
 
@@ -163,6 +160,9 @@ bool MainMapScene::init()
 
 	HttpDataSwap::init(this)->getServerTime();
 
+    //记录位置
+    DataSave::getInstance()->setExitScene(1);
+    
 	return true;
 }
 
