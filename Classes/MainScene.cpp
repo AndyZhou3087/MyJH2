@@ -777,12 +777,21 @@ void MainScene::updateTime(float dt)
 
 				int rcount = MyRes::getMyResCount(rescreator->getName());
 
-				if (addcount + rcount >= maxcount)
-					addcount = maxcount - rcount;
-
-				if (addcount < 0 && rcount < abs(addcount))
+				if (addcount < 0)
 				{
-					addcount = -rcount;
+					if (addcount + rcount <= 0)
+						addcount = -rcount;
+				}
+				else
+				{
+					if (rcount > maxcount)
+					{
+						MyRes::Add(rescreator->getName(), maxcount - rcount);
+						rcount = maxcount;
+						addcount = 0;
+					}
+					else if (addcount + rcount > maxcount)
+						addcount = maxcount - rcount;
 				}
 
 				std::string formatstr;
