@@ -86,7 +86,6 @@ bool GoBackLayer::init(int forwhere)
 	actionbtn = (cocos2d::ui::Button*)csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(GoBackLayer::onBtnClick, this));
 	actionbtn->setTag(1);
-	actionbtn->setEnabled(false);
 
 	cocos2d::ui::ImageView* actionbtntext = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
 	actionbtntext->loadTexture(ResourcePath::makeTextImgPath("usebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -94,11 +93,17 @@ bool GoBackLayer::init(int forwhere)
 	cancelbtn = (cocos2d::ui::Button*)csbnode->getChildByName("cancelbtn");
 	cancelbtn->addTouchEventListener(CC_CALLBACK_2(GoBackLayer::onBtnClick, this));
 	cancelbtn->setTag(0);
-	cancelbtn->setEnabled(false);
+
 	cocos2d::ui::ImageView* cancelbtntext = (cocos2d::ui::ImageView*)cancelbtn->getChildByName("text");
 	cancelbtntext->loadTexture(ResourcePath::makeTextImgPath("cancelbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	this->scheduleOnce(schedule_selector(GoBackLayer::delayShowNewerGuide), newguidetime);
+
+	if (!NewGuideLayer::checkifNewerGuide(86) && NewGuideLayer::checkifNewerGuide(87))
+	{
+		actionbtn->setEnabled(false);
+		cancelbtn->setEnabled(false);
+	}
 
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
@@ -117,9 +122,9 @@ void GoBackLayer::delayShowNewerGuide(float dt)
 	if (!NewGuideLayer::checkifNewerGuide(86) && NewGuideLayer::checkifNewerGuide(87))
 	{
 		showNewerGuide(87);
+		actionbtn->setEnabled(true);
+		cancelbtn->setEnabled(true);
 	}
-	actionbtn->setEnabled(true);
-	cancelbtn->setEnabled(true);
 }
 
 void GoBackLayer::showNewerGuide(int step)
