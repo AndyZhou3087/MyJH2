@@ -22,7 +22,9 @@
         <meta-data android:name="android.app.lib_name"
                    android:value="MyGame" />
 
-        <meta-data android:value="TH_PAYCHANNEL" android:name="NONE"/>
+        <meta-data android:name="UMENG_APPKEY"  android:value="5baf4209b465f5b970000260"/>
+        <meta-data android:name="TH_PAYCHANNEL" android:value="SELF"/>
+
         <activity
             android:name="com.csfb.myjh.AppActivity"
             android:screenOrientation="portrait"

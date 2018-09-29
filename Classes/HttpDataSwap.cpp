@@ -142,7 +142,7 @@ void HttpDataSwap::vipIsOn()
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpVipIsOnCB, this));
 }
 
-void HttpDataSwap::vipSuccNotice(std::string vipid)
+void HttpDataSwap::paySuccNotice(std::string goodsid, int price)
 {
 	std::string url;
 	url.append(HTTPURL);
@@ -162,7 +162,11 @@ void HttpDataSwap::vipSuccNotice(std::string vipid)
 	url.append(GlobalInstance::getInstance()->getPlatForm());
 
 	url.append("&goodsid=");
-	url.append(vipid);
+	url.append(goodsid);
+
+	url.append("&price=");
+	std::string pricestr = StringUtils::format("%d", price * 100);
+	url.append(pricestr);
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpBlankCB, this));
 }
 

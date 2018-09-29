@@ -237,15 +237,18 @@ void ShopLayer::setMessage(PYARET ret)
 		{
 			showVipReward(&GlobalInstance::vec_shopdata[payindex], payindex);
 		}
+
+		if (type != VIP)
+			HttpDataSwap::init(NULL)->paySuccNotice(GlobalInstance::vec_shopdata[payindex].icon, GlobalInstance::vec_shopdata[payindex].price);
+
+#ifdef UMENG
+		umeng::MobClickCpp::event(GlobalInstance::vec_shopdata[payindex].icon.c_str());
+#endif
 	}
-	std::string str = StringUtils::format("buy_%d", (int)ret);
-	MovingLabel::show(ResourceLang::map_lang[str]);
+	//std::string str = StringUtils::format("buy_%d", (int)ret);
+	//MovingLabel::show(ResourceLang::map_lang[str]);
 	payindex = -1;
 	isPaying = false;
-	
-#ifdef UMENG
-	umeng::MobClickCpp::event(GlobalInstance::vec_shopdata[payindex].icon.c_str());
-#endif
 }
 
 void ShopLayer::showVipReward(ShopData* data, int tag)

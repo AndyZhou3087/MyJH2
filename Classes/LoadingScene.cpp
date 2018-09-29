@@ -367,9 +367,17 @@ void LoadingScene::onFinish(int errcode)
 
 	if (!isDataOk)//数据错误
 	{
-		ErrorHintLayer* layer = ErrorHintLayer::create(0);
-		this->addChild(layer);
-		AnimationEffect::openAniEffect(layer);
+		ErrorHintLayer* layer = (ErrorHintLayer*)this->getChildByName("networkerrlayer");
+		if (layer == NULL)
+		{
+			layer = ErrorHintLayer::create(0);
+			this->addChild(layer, 0, "networkerrlayer");
+			AnimationEffect::openAniEffect(layer);
+		}
+		else
+		{
+
+		}
 		return;
 	}
 	if (isLoadLocal)
@@ -377,13 +385,7 @@ void LoadingScene::onFinish(int errcode)
 		//加载本地数据
 		this->scheduleOnce(schedule_selector(LoadingScene::delayLoadLocalData), 0.1f);
 #ifdef UMENG
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-		JniMethodInfo methodInfo;
-		if (JniHelper::getStaticMethodInfo(methodInfo, "com/csfb/myjh/AppActivity", "initUmeng", "()V"))
-		{
-			methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID);
-		}
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 		UMengInit();
 #endif
 #endif

@@ -33,6 +33,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 
 import com.umeng.analytics.UMGameAnalytics;
+import com.umeng.analytics.game.UMGameAgent;
 import com.umeng.common.UMCocosConfigure;
 import com.umeng.commonsdk.UMConfigure;
 
@@ -59,6 +60,7 @@ public class AppActivity extends Cocos2dxActivity {
         m_self = this;
         // DO OTHER INITIALIZATION BELOW
         Utils.init(this);
+        initUmeng();
     }
 
     public static void copyToClipboard(final String content)
@@ -78,7 +80,8 @@ public class AppActivity extends Cocos2dxActivity {
     public static void initUmeng()
     {
         UMGameAnalytics.init(m_self);
-        UMCocosConfigure.init(m_self, "5badecdef1f556df9e0000f5", Utils.getChannelID(), UMConfigure.DEVICE_TYPE_PHONE,
+        UMConfigure.setLogEnabled(true);
+        UMCocosConfigure.init(m_self, null, Utils.getChannelID(), UMConfigure.DEVICE_TYPE_PHONE,
                 null);
     }
 
@@ -105,5 +108,19 @@ public class AppActivity extends Cocos2dxActivity {
             return false;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 集成游戏统计分析,初始化 Session
+        UMGameAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // //集成游戏统计分析, 结束 Session
+        UMGameAgent.onPause(this);
     }
 }

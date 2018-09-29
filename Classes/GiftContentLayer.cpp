@@ -86,7 +86,7 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 	{
 		int id = atoi(data->icon.substr(3, 1).c_str());
 		std::string vipid = StringUtils::format("vip%d", id + 2);
-		HttpDataSwap::init(this)->vipSuccNotice(vipid);
+		HttpDataSwap::init(this)->paySuccNotice(vipid, data->price);
 		buybtn->setVisible(false);
 		price->setVisible(false);
 	}

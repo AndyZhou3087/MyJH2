@@ -18,10 +18,12 @@ public:
 
 	static ErrorHintLayer* create(int forwhere);//0--联网失败；1--作弊一次，清零警告；2，多次作弊，封停
 
+	void resetBtn();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onFinish(int code);
 	int m_forwhere;
+	cocos2d::ui::Button* actionbtn;
 };
 #endif
 

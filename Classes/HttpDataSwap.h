@@ -32,7 +32,7 @@ public:
 
 	void vipIsOn();
 
-	void vipSuccNotice(std::string vipid);
+	void paySuccNotice(std::string goodsid, int price/*分为单位*/);
 
 	void report(std::string data);
 

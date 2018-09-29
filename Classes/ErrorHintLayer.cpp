@@ -55,7 +55,7 @@ bool ErrorHintLayer::init(int forwhere)
 	cocos2d::ui::ImageView* title = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("title");
 	title->loadTexture(ResourcePath::makeTextImgPath("usertitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::Button* actionbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("actionbtn");
+	actionbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(ErrorHintLayer::onBtnClick, this));
 
 	cocos2d::ui::ImageView* actionbtntext = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
@@ -138,6 +138,7 @@ void ErrorHintLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
+		btn->setEnabled(false);
 		if (m_forwhere == 0)
 		{
 			if (g_loadingScene != NULL)
@@ -152,6 +153,10 @@ void ErrorHintLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 	}
 }
 
+void ErrorHintLayer::resetBtn()
+{
+	actionbtn->setEnabled(true);
+}
 
 void ErrorHintLayer::onFinish(int code)
 {
