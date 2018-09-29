@@ -285,7 +285,7 @@ void Quest::finishQuest()
 
 #ifdef UMENG
 	umeng::eventDict dict;
-	std::string eventstr = StringUtils::format("maintask@%d", GlobalInstance::myCurMainData.id);
+	std::string eventstr = StringUtils::format("maintask_%d", GlobalInstance::myCurMainData.id);
 	dict["status"] = "finish";
 	umeng::MobClickCpp::event(eventstr.c_str(), &dict);
 #endif
@@ -299,7 +299,7 @@ void Quest::finishTaskMain(int ftype)
 
 #ifdef UMENG
 	umeng::eventDict dict;
-	std::string eventstr = StringUtils::format("maintask@%d", GlobalInstance::myCurMainData.id);
+	std::string eventstr = StringUtils::format("maintask_%d", GlobalInstance::myCurMainData.id);
 	dict["status"] = "finish";
 	umeng::MobClickCpp::event(eventstr.c_str(), &dict);
 #endif
@@ -571,7 +571,7 @@ void Quest::finishTaskBranch(int ftype)
 
 #ifdef UMENG
 	umeng::eventDict dict;
-	std::string eventstr = StringUtils::format("branchtask@%d", GlobalInstance::myCurBranchData.id);
+	std::string eventstr = StringUtils::format("branchtask_%d", GlobalInstance::myCurBranchData.id);
 	dict["status"] = "finish";
 	umeng::MobClickCpp::event(eventstr.c_str(), &dict);
 #endif
@@ -585,7 +585,7 @@ void Quest::finishBranchQuest()
 	setAchieveTypeCount(FINISH_BRANCH, 1);
 #ifdef UMENG
 	umeng::eventDict dict;
-	std::string eventstr = StringUtils::format("branchtask@%d", GlobalInstance::myCurBranchData.id);
+	std::string eventstr = StringUtils::format("branchtask_%d", GlobalInstance::myCurBranchData.id);
 	dict["status"] = "finish";
 	umeng::MobClickCpp::event(eventstr.c_str(), &dict);
 #endif

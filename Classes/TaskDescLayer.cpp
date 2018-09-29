@@ -378,9 +378,9 @@ void TaskDescLayer::accpTask()
 #ifdef UMENG
 	std::string eventstr;
 	if (m_type == 0)
-		eventstr = StringUtils::format("maintask@%d", GlobalInstance::myCurMainData.id);
+		eventstr = StringUtils::format("maintask_%d", GlobalInstance::myCurMainData.id);
 	else
-		eventstr = StringUtils::format("branchtask@%d", GlobalInstance::myCurBranchData.id);
+		eventstr = StringUtils::format("branchtask_%d", GlobalInstance::myCurBranchData.id);
 
 	umeng::eventDict dict;
 	dict["status"] = "accepted";
@@ -436,9 +436,9 @@ void TaskDescLayer::getRewards()
 #ifdef UMENG
 	std::string eventstr;
 	if (m_type == 0)
-		eventstr = StringUtils::format("maintask@%d", GlobalInstance::myCurMainData.id);
+		eventstr = StringUtils::format("maintask_%d", GlobalInstance::myCurMainData.id);
 	else
-		eventstr = StringUtils::format("branchtask@%d", GlobalInstance::myCurBranchData.id);
+		eventstr = StringUtils::format("branchtask_%d", GlobalInstance::myCurBranchData.id);
 
 	umeng::eventDict dict;
 	dict["status"] = "getreward";
