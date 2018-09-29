@@ -3,7 +3,6 @@ package com.csfb.myjh;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.Reader;
@@ -15,9 +14,6 @@ import java.net.NetworkInterface;
 import java.util.Enumeration;
 import java.util.Map;
 import java.util.UUID;
-
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -135,7 +131,7 @@ public class Utils {
 		String serial = null;
 		String m_szDevIDShort = "35" +
 				Build.BOARD.length()%10+ Build.BRAND.length()%10 +
-				Build.CPU_ABI.length()%10 + Build.DEVICE.length()%10 +
+				Build.HARDWARE.length()%10 + Build.DEVICE.length()%10 +
 				Build.DISPLAY.length()%10 + Build.HOST.length()%10 +
 				Build.ID.length()%10 + Build.MANUFACTURER.length()%10 +
 				Build.MODEL.length()%10 + Build.PRODUCT.length()%10 +
@@ -164,20 +160,8 @@ public class Utils {
             return vname;
         } catch (Exception e) {
             e.printStackTrace();
-            return "";
         }
-    }
-    
-    public static int getVersionCode() {
-        try {
-            PackageManager manager = sContext.getPackageManager();
-            PackageInfo info = manager.getPackageInfo(sContext.getPackageName(), 0);
-            int vcode = info.versionCode;
-            return vcode;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+		return "";
     }
     
     public static String getPkgName()
@@ -208,30 +192,21 @@ public class Utils {
 	}
 	
     public static boolean getNetworkAvailable() 
-    { 
-    	boolean success = false;
-    	//获得网络连接服务   
-    	ConnectivityManager connManager = (ConnectivityManager) sContext.getSystemService(Context.CONNECTIVITY_SERVICE);   
-    	State state = connManager.getNetworkInfo(   
-    	ConnectivityManager.TYPE_WIFI).getState(); // 获取网络连接状态   
-    	if (State.CONNECTED == state) 
-    	{ // 判断是否正在使用WIFI网络   
-    		success = true;
-    		return success;
-    	}
-    	try{
-	    	state = connManager.getNetworkInfo(   
-	    	ConnectivityManager.TYPE_MOBILE).getState(); // 获取网络连接状态   
-	    	if (State.CONNECTED == state) 
-	    	{ // 判断是否正在使用GPRS网络   
-	    		success = true;   
-	    	}
-    	}catch (Exception e)
-    	{
-    		e.printStackTrace();
-    	}
-    	return success;
-    	  
+    {
+        try {
+            ConnectivityManager connectivity = (ConnectivityManager) sContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (connectivity != null) {
+                NetworkInfo info = connectivity.getActiveNetworkInfo();
+                    if (info != null && info.isConnected()) {
+                        if (info.getDetailedState() == NetworkInfo.DetailedState.CONNECTED) {
+                            return true;
+                        }
+                    }
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
     }
     
     public static String gbkToUTF8(String str)
@@ -244,45 +219,6 @@ public class Utils {
 		}
 
     	return retstr;
-    }
-    
-    public static String getIPAddress() {
-        NetworkInfo info = ((ConnectivityManager) sContext
-                .getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
-        if (info != null && info.isConnected()) {
-            if (info.getType() == ConnectivityManager.TYPE_MOBILE) {//当前使用2G/3G/4G网络
-                try {
-                    //Enumeration<NetworkInterface> en=NetworkInterface.getNetworkInterfaces();
-                    for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
-                        NetworkInterface intf = en.nextElement();
-                        for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
-                            InetAddress inetAddress = enumIpAddr.nextElement();
-                            if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
-                                return inetAddress.getHostAddress();
-                            }
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            } else if (info.getType() == ConnectivityManager.TYPE_WIFI) {//当前使用无线网络
-                WifiManager wifiManager = (WifiManager) sContext.getSystemService(Context.WIFI_SERVICE);
-                WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-                String ipAddress = intIP2StringIP(wifiInfo.getIpAddress());//得到IPV4地址
-                return ipAddress;
-            }
-        } else {
-            //当前无网络连接,请在设置中打开网络
-        }
-        return "";
-    }
-    
-    public static String intIP2StringIP(int ip) {
-        return (ip & 0xFF) + "." +
-                ((ip >> 8) & 0xFF) + "." +
-                ((ip >> 16) & 0xFF) + "." +
-                (ip >> 24 & 0xFF);
     }
 
     public static String readAssetStringByLine(String filename, int line) {
@@ -305,14 +241,6 @@ public class Utils {
         }
         return result;
     }
-
-	public static void copyToClipboard(String content)
-	{
-		ClipboardManager cm = (ClipboardManager) sContext.getSystemService(Context.CLIPBOARD_SERVICE);
-		// 将文本内容放到系统剪贴板里。
-		ClipData myClip = ClipData.newPlainText("qqnum", content);
-		cm.setPrimaryClip(myClip);
-	}
 
     public static String getUserDefaultXmlString()
 	{

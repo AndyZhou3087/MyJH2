@@ -115,9 +115,16 @@ android.applicationVariants.all { variant ->
             exclude "**/*.gz"
         }
     }
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':libcocos2dx')
+    implementation files('libs/umeng-common-1.5.3.jar')
+    implementation files('libs/umeng-analytics-7.5.3.jar')
 }

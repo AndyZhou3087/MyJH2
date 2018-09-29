@@ -22,6 +22,7 @@
         <meta-data android:name="android.app.lib_name"
                    android:value="MyGame" />
 
+        <meta-data android:value="TH_PAYCHANNEL" android:name="NONE"/>
         <activity
             android:name="com.csfb.myjh.AppActivity"
             android:screenOrientation="portrait"

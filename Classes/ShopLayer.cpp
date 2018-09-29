@@ -145,7 +145,7 @@ void ShopLayer::onQQClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		JniMethodInfo methodInfo;
 		char p_str1[32] = { 0 };
 		sprintf(p_str1, "%s", GlobalInstance::qq.c_str());
-		if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "copyToClipboard", "(Ljava/lang/String;)V"))
+		if (JniHelper::getStaticMethodInfo(methodInfo, "com/csfb/myjh/AppActivity", "copyToClipboard", "(Ljava/lang/String;)V"))
 		{
 			jstring str1 = methodInfo.env->NewStringUTF(p_str1);
 			methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1);

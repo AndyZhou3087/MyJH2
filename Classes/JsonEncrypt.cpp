@@ -1,4 +1,4 @@
-#include "JsonEncrypt.h"
+ï»¿#include "JsonEncrypt.h"
 #include "Resource.h"
 #include "MainScene.h"
 #include "DataSave.h"
@@ -49,7 +49,7 @@ bool JsonEncrypt::init()
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("LoadingLayer.csb"));
 	this->addChild(csbnode);
 
-	//´´½¨¸ÃÂ·¾¶
+	//åˆ›å»ºè¯¥è·¯å¾„
 #ifdef _WIN32
 	CreateDirectoryA("../Resources/ResourcesEnc/", NULL);
 	CreateDirectoryA("../Resources/ResourcesEnc/json/", NULL);
@@ -62,7 +62,7 @@ bool JsonEncrypt::init()
 	mkdir("../Resources/ResourcesEnc/lang/zh_cn/", S_IRWXU | S_IRWXG | S_IRWXO);*/
 #endif
 
-	//±éÀúÄ¿Â¼
+	//éå†ç›®å½•
 	dfsFolder("../Resources/json", "json");
 	dfsFolder("../Resources/mapdata", "mapdata");
 
@@ -107,10 +107,10 @@ void JsonEncrypt::dfsFolder(std::string folderPath, std::string foldername, int 
 		exit(-1);
 	}
 	do {
-		//ÅĞ¶ÏÊÇ·ñÓĞ×ÓÄ¿Â¼
+		//åˆ¤æ–­æ˜¯å¦æœ‰å­ç›®å½•
 		if (FileInfo.attrib & _A_SUBDIR)
 		{
-			//Õâ¸öÓï¾äºÜÖØÒª
+			//è¿™ä¸ªè¯­å¥å¾ˆé‡è¦
 			if ((strcmp(FileInfo.name, ".") != 0) && (strcmp(FileInfo.name, "..") != 0))
 			{
 				string newPath = folderPath + "\\" + FileInfo.name;

@@ -6,7 +6,7 @@
 #include "cocostudio/CocoStudio.h"
 #ifdef _WIN32
 #include <io.h>
-#else             
+#else
 //#include <unistd.h>
 //#include <stdio.h>
 //#include <dirent.h>

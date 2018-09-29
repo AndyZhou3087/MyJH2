@@ -36,6 +36,12 @@
     <content url="file://$MODULE_DIR$/../../Classes">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../Classes/UMeng/Analytics">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/UMeng/Analytics" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/UMeng/Common">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/UMeng/Common" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../Resources">
       <sourceFolder url="file://$MODULE_DIR$/../../Resources" type="java-resource" />
     </content>
@@ -392,6 +398,8 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: __local_aars__:D.\cocos2dxprojects\MyJH2\proj.android\app\libs\umeng-common-1.5.3.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:D.\cocos2dxprojects\MyJH2\proj.android\app\libs\umeng-analytics-7.5.3.jar:unspecified@jar" level="project" />
     <orderEntry type="module" module-name="libcocos2dx" />
   </component>
 </module>

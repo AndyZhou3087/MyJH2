@@ -23,16 +23,26 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 package com.csfb.myjh;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.KeyEvent;
+
+import com.umeng.analytics.UMGameAnalytics;
+import com.umeng.common.UMCocosConfigure;
+import com.umeng.commonsdk.UMConfigure;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
 
 
 public class AppActivity extends Cocos2dxActivity {
+
+    private static Activity m_self = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.setEnableVirtualButton(false);
@@ -45,10 +55,32 @@ public class AppActivity extends Cocos2dxActivity {
             // Don't need to finish it again since it's finished in super.onCreate .
             return;
         }
+
+        m_self = this;
         // DO OTHER INITIALIZATION BELOW
         Utils.init(this);
     }
 
+    public static void copyToClipboard(final String content)
+    {
+        m_self.runOnUiThread(new Runnable()
+        {
+            public void run()
+            {
+                ClipboardManager cm = (ClipboardManager) m_self.getSystemService(Context.CLIPBOARD_SERVICE);
+                // 将文本内容放到系统剪贴板里。
+                ClipData myClip = ClipData.newPlainText("qqnum", content);
+                cm.setPrimaryClip(myClip);
+            }
+        });
+    }
+
+    public static void initUmeng()
+    {
+        UMGameAnalytics.init(m_self);
+        UMCocosConfigure.init(m_self, "5badecdef1f556df9e0000f5", Utils.getChannelID(), UMConfigure.DEVICE_TYPE_PHONE,
+                null);
+    }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

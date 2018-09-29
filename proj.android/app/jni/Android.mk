@@ -14,6 +14,8 @@ LOCAL_MODULE_FILENAME := libMyGame
 FILE_LIST := $(wildcard $(LOCAL_PATH)/*.cpp)
 FILE_LIST += $(wildcard $(LOCAL_PATH)/hellocpp/*.cpp)
 FILE_LIST += $(wildcard $(LOCAL_PATH)/../../../Classes/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/../../../Classes/UMeng/Analytics/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/../../../Classes/UMeng/Common/*.cpp)
 LOCAL_SRC_FILES := $(FILE_LIST:$(LOCAL_PATH)/%=%) 
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes
