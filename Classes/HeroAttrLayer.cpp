@@ -102,6 +102,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 	std::string fullimgstr = StringUtils::format("hfull_%d_%d.png", herodata->getVocation(), herodata->getSex());
 	herofullimg->loadTexture(ResourcePath::makeImagePath(fullimgstr), cocos2d::ui::Widget::TextureResType::LOCAL);
 	herofullimg->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onHeroFullClick, this));
+	herofullimg->setEnabled(false);
 
 	cocos2d::ui::Button* hintbtn = (cocos2d::ui::Button*)csbnode->getChildByName("hintbtn");
 	hintbtn->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onHeroHintClick, this));
@@ -398,6 +399,7 @@ void HeroAttrLayer::delayShowNewerGuide(float dt)
 			}
 		}
 	}
+	herofullimg->setEnabled(true);
 }
 
 void HeroAttrLayer::showNewerGuide(int step)
