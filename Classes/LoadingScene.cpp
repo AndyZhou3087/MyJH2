@@ -376,7 +376,7 @@ void LoadingScene::onFinish(int errcode)
 		}
 		else
 		{
-
+			layer->resetBtn();
 		}
 		return;
 	}
