@@ -86,12 +86,15 @@ bool GoBackLayer::init(int forwhere)
 	actionbtn = (cocos2d::ui::Button*)csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(GoBackLayer::onBtnClick, this));
 	actionbtn->setTag(1);
+	actionbtn->setEnabled(false);
+
 	cocos2d::ui::ImageView* actionbtntext = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
 	actionbtntext->loadTexture(ResourcePath::makeTextImgPath("usebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::Button* cancelbtn = (cocos2d::ui::Button*)csbnode->getChildByName("cancelbtn");
+	cancelbtn = (cocos2d::ui::Button*)csbnode->getChildByName("cancelbtn");
 	cancelbtn->addTouchEventListener(CC_CALLBACK_2(GoBackLayer::onBtnClick, this));
 	cancelbtn->setTag(0);
+	cancelbtn->setEnabled(false);
 	cocos2d::ui::ImageView* cancelbtntext = (cocos2d::ui::ImageView*)cancelbtn->getChildByName("text");
 	cancelbtntext->loadTexture(ResourcePath::makeTextImgPath("cancelbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
@@ -103,10 +106,7 @@ bool GoBackLayer::init(int forwhere)
 	{
 		return true;
 	};
-	listener->onTouchEnded = [=](Touch *touch, Event *event)
-	{
-		AnimationEffect::closeAniEffect((Layer*)this);
-	};
+
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
@@ -118,6 +118,8 @@ void GoBackLayer::delayShowNewerGuide(float dt)
 	{
 		showNewerGuide(87);
 	}
+	actionbtn->setEnabled(true);
+	cancelbtn->setEnabled(true);
 }
 
 void GoBackLayer::showNewerGuide(int step)

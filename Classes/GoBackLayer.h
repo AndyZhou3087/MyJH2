@@ -30,6 +30,7 @@ private:
 private:
 	int m_forwhere;
 	cocos2d::ui::Button* actionbtn;
+	cocos2d::ui::Button* cancelbtn;
 };
 
 #endif
