@@ -16,6 +16,7 @@
 #include "AnimationEffect.h"
 #include "EquipDescLayer.h"
 #include "StoreHouseLayer.h"
+#include "SimpleResPopLayer.h"
 
 StrengthenLayer::StrengthenLayer()
 {
@@ -89,6 +90,12 @@ bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 
 	for (int i = 0; i < 3; i++)
 	{
+
+		str = StringUtils::format("resbox_%d", i);
+		cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
+		resbox->addTouchEventListener(CC_CALLBACK_2(StrengthenLayer::onResClick, this));
+		resbox->setTag(i);
+
 		str = StringUtils::format("resname_%d", i);
 		cocos2d::ui::Text* resname = (cocos2d::ui::Text*)csbnode->getChildByName(str);
 		std::string restr = StringUtils::format("q00%d", i + 1);
@@ -250,5 +257,19 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		}
 
 		AnimationEffect::closeAniEffect((Layer*)this);
+	}
+}
+
+void StrengthenLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		Node* node = (Node*)pSender;
+		int tag = node->getTag();
+		std::string restr = StringUtils::format("q00%d", tag + 1);
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		SimpleResPopLayer* layer = SimpleResPopLayer::create(restr, 2);
+		this->addChild(layer);
+		AnimationEffect::openAniEffect(layer);
 	}
 }

@@ -20,6 +20,7 @@ public:
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:
 	int langtype;
 	Equip* m_equip;

@@ -91,6 +91,8 @@ bool SimpleResPopLayer::init(std::string resid, int forwhere)
 
 	if (forwhere == 1)
 		str.append(ResourceLang::map_lang["reswheregettext"]);
+	else if (forwhere == 2)
+		str.append(ResourceLang::map_lang["reswheregettext1"]);
 
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desclbl");
 	desclbl->setString(str);
