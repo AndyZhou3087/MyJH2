@@ -1,4 +1,4 @@
-﻿#include "LoadingScene.h"
+#include "LoadingScene.h"
 #include "Resource.h"
 #include "MainScene.h"
 #include "DataSave.h"
@@ -273,47 +273,44 @@ void LoadingScene::delayGetServerData(float dt)
 
 void LoadingScene::enterNewScene()
 {
-	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
-	{
-		NewGuideLayer::setNewGuideInfo(FIRSTGUIDESTEP);
-		Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
-	}
-	else
-	{
-		if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
-		{
-			NewGuideLayer::setNewGuideInfo(SECONDGUIDESTEP);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
-		{
-			NewGuideLayer::setNewGuideInfo(THRIDGUIDESTEP);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(MIDELEGUIDESTEP))
-		{
-			NewGuideLayer::setNewGuideInfo(MIDELEGUIDESTEP);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(FOURTHGUIDESTEP))
-		{
-			NewGuideLayer::setNewGuideInfo(FOURTHGUIDESTEP);
-		}
-		
-		int exitscene = DataSave::getInstance()->getExitScene();
-		if (exitscene == 0)
-		{
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
-		}
-		else if (exitscene == 1)
-		{
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
-		}
-		else if (exitscene == 2)
-		{
-			std::string str = DataSave::getInstance()->getMapScenePos();
-			std::vector<std::string> vec_map;
-			CommonFuncs::split(str, vec_map, ",");
-			Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene(vec_map[0], 1)));
-		}
-	}
+    int index = -1;
+    int STEPS[] = {FIRSTGUIDESTEP, SECONDGUIDESTEP, THRIDGUIDESTEP, MIDELEGUIDESTEP, FOURTHGUIDESTEP};
+    for (int i=0;i<sizeof(STEPS)/sizeof(STEPS[0]);i++)
+    {
+        if (NewGuideLayer::checkifNewerGuide(STEPS[i]))
+        {
+            NewGuideLayer::setNewGuideInfo(STEPS[i]);
+            index = i;
+            break;
+        }
+    }
+    if (index == 0)
+    {
+        Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
+    }
+    else if (index > 0)
+    {
+        Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+    }
+    else
+    {
+        int exitscene = DataSave::getInstance()->getExitScene();
+        if (exitscene == 0)
+        {
+            Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+        }
+        else if (exitscene == 1)
+        {
+            Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+        }
+        else if (exitscene == 2)
+        {
+            std::string str = DataSave::getInstance()->getMapScenePos();
+            std::vector<std::string> vec_map;
+            CommonFuncs::split(str, vec_map, ",");
+            Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene(vec_map[0], 1)));
+        }
+    }
 }
 
 void LoadingScene::showNextScene(float dt)

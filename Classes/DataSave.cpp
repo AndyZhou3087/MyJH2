@@ -1,4 +1,4 @@
-﻿#include "DataSave.h"
+#include "DataSave.h"
 #include "cocos2d.h"
 #include "MD5.h"
 #include "Utility.h"

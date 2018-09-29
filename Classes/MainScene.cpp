@@ -1,4 +1,4 @@
-﻿#include "MainScene.h"
+#include "MainScene.h"
 #include "Resource.h"
 #include "MainMenuLayer.h"
 #include "GlobalInstance.h"
@@ -184,6 +184,8 @@ bool MainScene::init()
 	hinttext->setString(ResourceLang::map_lang["newherohint"]);
 
 	DataSave::getInstance()->setFirstEnter(false);
+    //记录位置
+    DataSave::getInstance()->setExitScene(0);
 
 	//监测训练场开放
 	if (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0)
@@ -704,9 +706,6 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 
 void MainScene::onExit()
 {
-	//记录位置
-	DataSave::getInstance()->setExitScene(0);
-
 	Layer::onExit();
 }
 
