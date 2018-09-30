@@ -214,43 +214,32 @@ void FightHeroNode::update(float dt)
 		if (this->getTag() >= 6)
 		{
 			int stype = -1;
-			int whoSkill = -1;
 			for (unsigned int i = 0; i < 6; i++)
 			{
 				Hero* myhero = GlobalInstance::myCardHeros[i];
 				if (myhero != NULL && myhero->getState() != HS_DEAD && myhero->getSkillingType() >= 0)//释放技能中
 				{
 					stype = myhero->getSkillingType();
-					whoSkill = i;
-					break;
-				}
-			}
-			bool isSufferSkill = false;
-			//技能是否释放此NPC
-			if (stype >= 0 && whoSkill >= 0)
-			{
-				for (unsigned int i = 0; i < GlobalInstance::myCardHeros[whoSkill]->vec_whosufferskill.size(); i++)
-				{
-					if (GlobalInstance::myCardHeros[whoSkill]->vec_whosufferskill[i] == this->getTag())
+					for (unsigned int m = 0; m < GlobalInstance::myCardHeros[i]->vec_whosufferskill.size(); m++)
 					{
-						isSufferSkill = true;
+						if (GlobalInstance::myCardHeros[i]->vec_whosufferskill[m] == this->getTag() && stype == SKILL_3)//是否释放动弹不得
+						{
+							isSufferSkill3 = true;
+							break;
+						}
+					}
+					if (isSufferSkill3)
+					{
+						GongFa* gf = (GongFa*)GlobalInstance::myCardHeros[i]->checkSkillWg();
+						gf->setSkillCount(gf->getSkillCount() - 1);
+						if (gf->getSkillCount() <= 0)
+						{
+							GlobalInstance::myCardHeros[i]->clearSkill(gf);
+							this->removeSufferSkillAnim(0);
+						}
+						nextRound(0);
 						break;
 					}
-				}
-			}
-			if (isSufferSkill)
-			{
-				if (stype == SKILL_3)
-				{
-					isSufferSkill3 = true;
-					GongFa* gf = (GongFa*)GlobalInstance::myCardHeros[whoSkill]->checkSkillWg();
-					gf->setSkillCount(gf->getSkillCount() - 1);
-					if (gf->getSkillCount() <= 0)
-					{
-						GlobalInstance::myCardHeros[whoSkill]->clearSkill(gf);
-						this->removeSufferSkillAnim(0);
-					}
-					nextRound(0);
 				}
 			}
 		}

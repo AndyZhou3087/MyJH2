@@ -141,7 +141,7 @@ bool isIphoneX()
 #ifdef UMENG
 void UMengInit()
 {
-    UMCCCommon::setLogEnabled(true);
+    //UMCCCommon::setLogEnabled(true);
     umeng::MobClickCpp::init();
     UMCCCommon::init("5badecdef1f556df9e0000f5", "ios-myjh2");
 }

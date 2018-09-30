@@ -46,6 +46,8 @@ private:
 
 	std::vector<int> calcSkill6AttackNodeIndex(int fighterindex, int type, int count);
 
+	void fightOver(int ret);
+
 private:
 	std::vector<Npc*> m_enemyHeros;
 	cocos2d::ui::Widget* m_escapebtn;

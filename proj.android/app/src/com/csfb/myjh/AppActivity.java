@@ -80,7 +80,7 @@ public class AppActivity extends Cocos2dxActivity {
     public static void initUmeng()
     {
         UMGameAnalytics.init(m_self);
-        UMConfigure.setLogEnabled(true);
+        //UMConfigure.setLogEnabled(true);
         UMCocosConfigure.init(m_self, null, Utils.getChannelID(), UMConfigure.DEVICE_TYPE_PHONE,
                 null);
     }

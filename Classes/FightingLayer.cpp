@@ -259,11 +259,16 @@ void FightingLayer::resumeAtkSchedule()
 	}
 	else
 	{
-		pauseAtkSchedule();
-		this->runAction(Sequence::create(DelayTime::create(0.7f), RemoveSelf::create(), NULL));
-		if (g_MapBlockScene != NULL)
-			g_MapBlockScene->showFightResult(ret);
+		fightOver(ret);
 	}
+}
+
+void FightingLayer::fightOver(int ret)
+{
+	pauseAtkSchedule();
+	this->runAction(Sequence::create(DelayTime::create(0.7f), RemoveSelf::create(), NULL));
+	if (g_MapBlockScene != NULL)
+		g_MapBlockScene->showFightResult(ret);
 }
 
 void FightingLayer::clearSkillsData()
@@ -287,9 +292,10 @@ void FightingLayer::clearSkillsData()
 
 void FightingLayer::showAtk(int fightertag)
 {
-	if (checkFightResult() >= 0)
+	int ret = checkFightResult();
+	if (ret >= 0)
 	{
-		resumeAtkSchedule();
+		fightOver(ret);
 		return;
 	}
 	
@@ -503,23 +509,16 @@ void FightingLayer::showAtk(int fightertag)
 			if (myhero != NULL && myhero->getState() != HS_DEAD && myhero->getSkillingType() >= 0)//释放技能中
 			{
 				stype = myhero->getSkillingType();
-				whoSkill = i;
-				break;
-			}
-		}
-		bool isSufferSkill = false;
-		//技能是否释放此NPC
-		if (stype >= 0 && whoSkill >= 0)
-		{
-			if (stype == SKILL_4)
-			{
-				GongFa* gf = GlobalInstance::myCardHeros[whoSkill]->checkSkillWg();
-				gf->setSkillCount(gf->getSkillCount() - 1);
-				if (gf->getSkillCount() <= 0)
+				if (stype == SKILL_4)
 				{
-					GlobalInstance::myCardHeros[whoSkill]->clearSkill(gf);
+					GongFa* gf = GlobalInstance::myCardHeros[i]->checkSkillWg();
+					gf->setSkillCount(gf->getSkillCount() - 1);
+					if (gf->getSkillCount() <= 0)
+					{
+						GlobalInstance::myCardHeros[whoSkill]->clearSkill(gf);
+					}
+					myfindex = i;
 				}
-				myfindex = whoSkill;
 			}
 		}
 
@@ -537,9 +536,9 @@ void FightingLayer::showAtk(int fightertag)
 			GongFa* gf = myhero->checkSkillWg();
 			if (gf != NULL)
 			{
-				if (GlobalInstance::map_GF[gf->getId()].skill == SKILL_15)
+				stype = GlobalInstance::map_GF[gf->getId()].skill;
+				if (stype == SKILL_15)
 				{
-					stype = SKILL_15;
 					GlobalInstance::myCardHeros[myfindex]->vec_whosufferskill.clear();
 					GlobalInstance::myCardHeros[myfindex]->vec_whosufferskill.push_back(fightertag);
 					myfnode->hurt(atkhp, -1);
@@ -547,9 +546,8 @@ void FightingLayer::showAtk(int fightertag)
 						myfnode->playSkill(stype, (FightHeroNode*)this->getChildByTag(fightertag));
 					return;
 				}
-				else if (GlobalInstance::map_GF[gf->getId()].skill == SKILL_18)
+				else if (stype == SKILL_18)
 				{
-					stype = SKILL_18;
 					GlobalInstance::myCardHeros[myfindex]->vec_whosufferskill.clear();
 					GlobalInstance::myCardHeros[myfindex]->vec_whosufferskill.push_back(myfindex);
 					myfnode->hurt(atkhp*(1 - GlobalInstance::map_GF[gf->getId()].skilleff1/100), -1);
@@ -557,9 +555,8 @@ void FightingLayer::showAtk(int fightertag)
 						myfnode->playSkill(stype, myfnode);
 					return;
 				}
-				else if (GlobalInstance::map_GF[gf->getId()].skill == SKILL_20)
+				else if (stype == SKILL_20)
 				{
-					stype = SKILL_20;
 					GlobalInstance::myCardHeros[myfindex]->vec_whosufferskill.clear();
 					GlobalInstance::myCardHeros[myfindex]->vec_whosufferskill.push_back(fightertag);
 					myfnode->hurt(atkhp, -1);
