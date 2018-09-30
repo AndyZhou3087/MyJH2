@@ -48,6 +48,7 @@ private:
 	Node *m_loadingbar;
 	Node* point[3];
 	Node* m_loadingclicktext;
+	cocos2d::ui::ImageView* m_loadingbg;
 	Node* m_loadingtext;
 	Label* m_wordlbl;
 	cocos2d::ui::ImageView* m_userpro;

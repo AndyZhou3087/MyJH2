@@ -72,10 +72,10 @@ bool LoadingScene::init()
 	m_userpro->addTouchEventListener(CC_CALLBACK_2(LoadingScene::onBtnClick, this));
 	m_userpro->setTag(0);
 
-	cocos2d::ui::ImageView* loadingbg = (cocos2d::ui::ImageView*)csbnode->getChildByName("loadingbg");
-	loadingbg->addTouchEventListener(CC_CALLBACK_2(LoadingScene::onBtnClick, this));
-	loadingbg->setTag(1);
-	loadingbg->setEnabled(false);
+	m_loadingbg = (cocos2d::ui::ImageView*)csbnode->getChildByName("loadingbg");
+	m_loadingbg->addTouchEventListener(CC_CALLBACK_2(LoadingScene::onBtnClick, this));
+	m_loadingbg->setTag(1);
+	m_loadingbg->setEnabled(false);
 
 	m_loadingtext = csbnode->getChildByName("loadingtext");
 	m_loadingtext->setVisible(false);
@@ -136,7 +136,7 @@ bool LoadingScene::init()
 	//IOS第一次安装会有联网权限提示
 	if (DataSave::getInstance()->getFirstEnter())
 	{
-		loadingbg->setEnabled(true);
+		m_loadingbg->setEnabled(true);
 		m_loadingclicktext->setVisible(true);
 		m_loadingclicktext->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
 	}
@@ -182,6 +182,7 @@ void LoadingScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			}
 			else
 			{
+				m_loadingbg->setEnabled(false);
 				m_userpro->setVisible(false);
 				m_wordlbl->setVisible(false);
 				loadData();
