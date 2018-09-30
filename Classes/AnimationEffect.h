@@ -11,7 +11,7 @@ public:
 	static void openAniEffect(cocos2d::Layer* layer);
 
 	static void closeAniEffect(cocos2d::Layer* layer);
-
+	
 };
 
 #endif

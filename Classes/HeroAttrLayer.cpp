@@ -431,7 +431,7 @@ void HeroAttrLayer::showNewerGuide(int step)
 	}
 	else if (step == 93)
 	{
-		nodes.push_back(heroattrnamebox);
+		nodes.push_back(m_editName);
 	}
 	g_mainScene->showNewerGuideNode(step, nodes);
 }

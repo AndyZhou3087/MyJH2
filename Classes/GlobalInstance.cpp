@@ -791,9 +791,9 @@ void GlobalInstance::loadMyTaskMainData()
 			myCurMainData = vec_TaskMain[vec_tmp.size()-1];
 			Quest::initCurBranchNeedData();
 		}
-		else
+		else if (vec_TaskMain[vec_tmp.size() - 1].isfinish >= QUEST_FINISH)
 		{
-			myCurMainData = vec_TaskMain[vec_tmp.size()];
+			myCurMainData = vec_TaskMain[vec_tmp.size() - 1];
 		}
 		
 	}
@@ -993,9 +993,9 @@ void GlobalInstance::loadMyTaskBranchData()
 		{
 			myCurBranchData = vec_TaskBranch[vec_tmp.size() - 1];
 		}
-		else
+		else if (vec_TaskBranch[vec_tmp.size() - 1].isfinish >= QUEST_FINISH)
 		{
-			myCurBranchData = vec_TaskBranch[vec_tmp.size()];
+			myCurBranchData = vec_TaskBranch[vec_tmp.size() - 1];
 		}
 
 	}

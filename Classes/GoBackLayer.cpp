@@ -99,12 +99,6 @@ bool GoBackLayer::init(int forwhere)
 
 	this->scheduleOnce(schedule_selector(GoBackLayer::delayShowNewerGuide), newguidetime);
 
-	if (!NewGuideLayer::checkifNewerGuide(86) && NewGuideLayer::checkifNewerGuide(87))
-	{
-		actionbtn->setEnabled(false);
-		cancelbtn->setEnabled(false);
-	}
-
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -122,8 +116,6 @@ void GoBackLayer::delayShowNewerGuide(float dt)
 	if (!NewGuideLayer::checkifNewerGuide(86) && NewGuideLayer::checkifNewerGuide(87))
 	{
 		showNewerGuide(87);
-		actionbtn->setEnabled(true);
-		cancelbtn->setEnabled(true);
 	}
 }
 

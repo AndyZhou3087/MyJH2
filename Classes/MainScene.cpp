@@ -193,6 +193,20 @@ bool MainScene::init()
 		this->schedule(schedule_selector(MainScene::checkBuildingOpen), 3.0f);
 	}
 
+	//for (unsigned i = 0; i < GlobalInstance::vec_TaskMain.size() - 2; i++)
+	//{
+	//	GlobalInstance::vec_TaskMain[i].isfinish = QUEST_FINISH;
+	//	GlobalInstance::vec_TaskMain[i].finishtype = 0;
+	//}
+	//GlobalInstance::getInstance()->saveMyTaskMainData();
+
+	//for (unsigned i = 0; i < GlobalInstance::vec_TaskBranch.size() -2; i++)
+	//{
+	//	GlobalInstance::vec_TaskBranch[i].isfinish = QUEST_FINISH;
+	//	GlobalInstance::vec_TaskBranch[i].finishtype = 0;
+	//}
+	//GlobalInstance::getInstance()->saveMyTaskBranchData();
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -810,7 +824,6 @@ void MainScene::updateTime(float dt)
 			}
 		}
 	}
-
 
 	int refreshtime = GlobalInstance::getInstance()->getRefreshHeroTime();
 	int pasttime = GlobalInstance::servertime - refreshtime;
