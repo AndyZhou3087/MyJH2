@@ -174,6 +174,7 @@
 		726CA491215E3576002D0273 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726CA490215E3576002D0273 /* UMCommon.framework */; };
 		726CA493215E3646002D0273 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 726CA492215E3645002D0273 /* libsqlite3.0.tbd */; };
 		72796F5A214BC1FE00664B82 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 72796F58214BC1FE00664B82 /* logo.png */; };
+		727CFC8B2160B4BB0004F5DC /* CannotTouchLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 727CFC882160B4BB0004F5DC /* CannotTouchLayer.cpp */; };
 		7282706520F5B7B200B07087 /* FightingLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7282703C20F5B7A500B07087 /* FightingLayer.cpp */; };
 		7282706620F5B7B200B07087 /* SetInStoneLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7282704020F5B7A900B07087 /* SetInStoneLayer.cpp */; };
 		7282706720F5B7B200B07087 /* TaskDailyNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7282704220F5B7AA00B07087 /* TaskDailyNode.cpp */; };
@@ -537,6 +538,8 @@
 		726CA490215E3576002D0273 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
 		726CA492215E3645002D0273 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
 		72796F58214BC1FE00664B82 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		727CFC882160B4BB0004F5DC /* CannotTouchLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CannotTouchLayer.cpp; sourceTree = "<group>"; };
+		727CFC8A2160B4BB0004F5DC /* CannotTouchLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CannotTouchLayer.h; sourceTree = "<group>"; };
 		7282703C20F5B7A500B07087 /* FightingLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FightingLayer.cpp; sourceTree = "<group>"; };
 		7282703E20F5B7A900B07087 /* MaterialDescLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialDescLayer.h; sourceTree = "<group>"; };
 		7282704020F5B7A900B07087 /* SetInStoneLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SetInStoneLayer.cpp; sourceTree = "<group>"; };
@@ -897,6 +900,8 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				727CFC882160B4BB0004F5DC /* CannotTouchLayer.cpp */,
+				727CFC8A2160B4BB0004F5DC /* CannotTouchLayer.h */,
 				72421DBA21269C30008B1B57 /* AchieveLayer.cpp */,
 				72421DBF21269C30008B1B57 /* AchieveLayer.h */,
 				72421DBD21269C30008B1B57 /* AchieveNode.cpp */,
@@ -1412,6 +1417,7 @@
 				726CA483215E2F4E002D0273 /* UMCCCommon.mm in Sources */,
 				72FCFBEE214FAF0E0020DEF3 /* IOSPurchaseWrap.mm in Sources */,
 				72DD1CB02139564000832ADB /* GiftContentLayer.cpp in Sources */,
+				727CFC8B2160B4BB0004F5DC /* CannotTouchLayer.cpp in Sources */,
 				720452FC20D892200011D560 /* SoundManager.cpp in Sources */,
 				72BAB5752130213200714493 /* CutScenesLayer.cpp in Sources */,
 				7232D82420E639D600299738 /* StoreHouseLayer.cpp in Sources */,

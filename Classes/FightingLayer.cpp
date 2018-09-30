@@ -502,7 +502,6 @@ void FightingLayer::showAtk(int fightertag)
 		float atkhp = m_enemyHeros[fightertag - 6]->getAtk();
 		int myfindex = -1;
 		int stype = -1;
-		int whoSkill = -1;
 		for (unsigned int i = 0; i < 6; i++)
 		{
 			Hero* myhero = GlobalInstance::myCardHeros[i];
@@ -515,7 +514,7 @@ void FightingLayer::showAtk(int fightertag)
 					gf->setSkillCount(gf->getSkillCount() - 1);
 					if (gf->getSkillCount() <= 0)
 					{
-						GlobalInstance::myCardHeros[whoSkill]->clearSkill(gf);
+						GlobalInstance::myCardHeros[i]->clearSkill(gf);
 					}
 					myfindex = i;
 				}
