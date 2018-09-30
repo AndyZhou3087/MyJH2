@@ -3,6 +3,7 @@
 #include "CommonFuncs.h"
 #include "Const.h"
 #include "MapBlockScene.h"
+#include "NewGuideLayer.h"
 
 StoryScene* storylayer = NULL;
 StoryScene::StoryScene()
@@ -88,8 +89,8 @@ void StoryScene::delayShowText(float dt)
 		curshowlabel->getLetter(index)->setScale(0);
 		index++;
 	}
-	bg->setEnabled(true);
 	curshowlabel->setVisible(true);
+	bg->setEnabled(true);
 	curshowlabel->schedule([&](float dt) {
 		curshowlabel->getLetter(wordcount)->setScale(1.0f);
 		wordcount += 1;
@@ -123,6 +124,7 @@ void StoryScene::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventT
 		if (isShowOver)
 		{
 			bg->setEnabled(false);
+			NewGuideLayer::setNewGuideInfo(FIRSTGUIDESTEP);
 			Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
 		}
 		else
@@ -140,6 +142,7 @@ void StoryScene::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventT
 					vec_labels[i]->getLetter(index)->setScale(1);
 					index++;
 				}
+				vec_labels[i]->setVisible(true);
 			}
 			showindex++;
 			wordcount = 0;
