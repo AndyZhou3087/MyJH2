@@ -1113,6 +1113,8 @@
         <Project Name="simpleResPopLayer.csd" Type="Layer" />
         <Project Name="smithyLayer.csd" Type="Layer" />
         <Project Name="storeHouseLayer.csd" Type="Layer" />
+        <Image Name="storybg.jpg" />
+        <Project Name="storyLayer.csd" Type="Layer" />
         <Project Name="strengthenLayer.csd" Type="Layer" />
         <Project Name="takeOnLayer.csd" Type="Layer" />
         <Project Name="taskDayNode.csd" Type="Node" />

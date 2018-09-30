@@ -13,6 +13,7 @@
 #include "MainMapScene.h"
 #include "MovingLabel.h"
 #include "ErrorHintLayer.h"
+#include "StoryScene.h"
 #ifdef UMENG
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
@@ -273,46 +274,53 @@ void LoadingScene::delayGetServerData(float dt)
 
 void LoadingScene::enterNewScene()
 {
-    int index = -1;
-    int STEPS[] = {FIRSTGUIDESTEP, SECONDGUIDESTEP, THRIDGUIDESTEP, MIDELEGUIDESTEP, FOURTHGUIDESTEP};
-    for (int i=0;i<sizeof(STEPS)/sizeof(STEPS[0]);i++)
-    {
-        if (NewGuideLayer::checkifNewerGuide(STEPS[i]))
-        {
-            NewGuideLayer::setNewGuideInfo(STEPS[i]);
-            index = i;
-            break;
-        }
-    }
-    if (index == 0)
-    {
-        Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
-    }
-    else if (index > 0)
-    {
-        Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
-    }
-    else
-    {
-        int exitscene = DataSave::getInstance()->getExitScene();
-        if (exitscene == 0)
-        {
-            Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
-        }
-        else if (exitscene == 1)
-        {
-			GlobalInstance::myOutMapCarry = DataSave::getInstance()->getHeroMapCarryCount();
-            Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
-        }
-        else if (exitscene == 2)
-        {
-			GlobalInstance::myOutMapCarry = DataSave::getInstance()->getHeroMapCarryCount();
-            std::string str = DataSave::getInstance()->getMapScenePos();
-            std::vector<std::string> vec_map;
-            CommonFuncs::split(str, vec_map, ",");
-            Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene(vec_map[0], 1)));
-        }
-    }
+	if (DataSave::getInstance()->getFirstEnter())
+	{
+		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, StoryScene::createScene()));
+	}
+	else
+	{
+		int index = -1;
+		int STEPS[] = { FIRSTGUIDESTEP, SECONDGUIDESTEP, THRIDGUIDESTEP, MIDELEGUIDESTEP, FOURTHGUIDESTEP };
+		for (int i = 0; i < sizeof(STEPS) / sizeof(STEPS[0]); i++)
+		{
+			if (NewGuideLayer::checkifNewerGuide(STEPS[i]))
+			{
+				NewGuideLayer::setNewGuideInfo(STEPS[i]);
+				index = i;
+				break;
+			}
+		}
+		if (index == 0)
+		{
+			Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
+		}
+		else if (index > 0)
+		{
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+		}
+		else
+		{
+			int exitscene = DataSave::getInstance()->getExitScene();
+			if (exitscene == 0)
+			{
+				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+			}
+			else if (exitscene == 1)
+			{
+				GlobalInstance::myOutMapCarry = DataSave::getInstance()->getHeroMapCarryCount();
+				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+			}
+			else if (exitscene == 2)
+			{
+				GlobalInstance::myOutMapCarry = DataSave::getInstance()->getHeroMapCarryCount();
+				std::string str = DataSave::getInstance()->getMapScenePos();
+				std::vector<std::string> vec_map;
+				CommonFuncs::split(str, vec_map, ",");
+				Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene(vec_map[0], 1)));
+			}
+		}
+	}
 }
 
 void LoadingScene::showNextScene(float dt)
