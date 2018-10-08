@@ -43,6 +43,8 @@ private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	void loadData();
+
+	void loadLocalData();
 private:
 	bool isGetPlayerId;
 	Node *m_loadingbar;

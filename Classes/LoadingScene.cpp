@@ -159,8 +159,10 @@ void LoadingScene::loadData()
 	showPointAnim(0);
 	this->schedule(schedule_selector(LoadingScene::showPointAnim), 1.5f);
 	//先获取服务器数据
-	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
-
+	if (DataSave::getInstance()->getFirstEnter())
+		this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
+	else
+		loadLocalData();
 }
 
 void LoadingScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -390,15 +392,19 @@ void LoadingScene::onFinish(int errcode)
 	}
 	if (isLoadLocal)
 	{
-		//加载本地数据
-		this->scheduleOnce(schedule_selector(LoadingScene::delayLoadLocalData), 0.1f);
+		loadLocalData();
+	}
+}
+
+void LoadingScene::loadLocalData()
+{
+	//加载本地数据
+	this->scheduleOnce(schedule_selector(LoadingScene::delayLoadLocalData), 0.1f);
 #ifdef UMENG
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-		UMengInit();
+	UMengInit();
 #endif
 #endif
-
-	}
 }
 
 void LoadingScene::onExit()
