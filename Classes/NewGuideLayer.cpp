@@ -321,10 +321,10 @@ void NewGuideLayer::showNextGuide()
 	}
 	else if (m_step == 1)
 	{
-		if (g_MapBlockScene != NULL && !g_MapBlockScene->getIsMoving())
+		/*if (g_MapBlockScene != NULL && !g_MapBlockScene->getIsMoving())
 		{
 			this->removeFromParentAndCleanup(true);
-		}
+		}*/
 	}
 	else if (m_step == 14 || m_step == 15 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 22 || m_step == 23
 		|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31 || m_step == 32 || m_step == 33 || m_step == 35 || m_step == 19
