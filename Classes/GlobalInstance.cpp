@@ -793,7 +793,14 @@ void GlobalInstance::loadMyTaskMainData()
 		}
 		else if (vec_TaskMain[vec_tmp.size() - 1].isfinish >= QUEST_FINISH)
 		{
-			myCurMainData = vec_TaskMain[vec_tmp.size() - 1];
+			if (vec_tmp.size() < GlobalInstance::vec_TaskMain.size())
+			{
+				myCurMainData = vec_TaskMain[vec_tmp.size()];
+			}
+			else
+			{
+				myCurMainData = vec_TaskMain[vec_tmp.size() - 1];
+			}
 		}
 		
 	}

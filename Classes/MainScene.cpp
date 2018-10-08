@@ -870,14 +870,14 @@ void MainScene::updateTaskIcon()
 	}
 	vec_taskicon.clear();
 
-	if (GlobalInstance::myCurMainData.isfinish != QUEST_ACC)
+ 	if (GlobalInstance::myCurMainData.isfinish == QUEST_TASK)
 	{
 		Sprite* taskicon = Sprite::createWithSpriteFrameName("ui/maintask_icon.png");
 		taskicon->setPosition(Vec2(80, 90));
 		buildnametext->addChild(taskicon);
 		vec_taskicon.push_back(taskicon);
 	}
-	if (GlobalInstance::myCurBranchData.isfinish != QUEST_ACC)
+	if (GlobalInstance::myCurBranchData.isfinish == QUEST_TASK)
 	{
 		Sprite* taskicon = Sprite::createWithSpriteFrameName("ui/branchtask_icon.png");
 		taskicon->setPosition(Vec2(80, 90));
