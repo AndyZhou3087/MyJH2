@@ -133,7 +133,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 		std::map<std::string, int> map_res;
 		map_res["r002"] = dint.getValue();
 		vec_res.push_back(map_res);
-		costcoindv.setValue(GlobalInstance::map_AllResources["r002"].silverval * dint.getValue()/10);
+		costcoindv.setValue(GlobalInstance::map_AllResources["r002"].silverval * dint.getValue()/100);
 
 		showNextLvDesc(NULL);
 	}
