@@ -6,6 +6,7 @@
 #include "HttpDataSwap.h"
 #include "WaitingProgress.h"
 #include "AnimationEffect.h"
+#include "MyRes.h"
 
 USING_NS_CC;
 
@@ -163,6 +164,69 @@ void MessageLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				{
 					GlobalInstance::vec_messsages[i].status = 3;
 					updateStatus(i);
+
+					std::string contentstr = GlobalInstance::vec_messsages[i].content;
+					std::vector<MSGAWDSDATA> awdslist;
+					int pos = GlobalInstance::vec_messsages[i].content.find_last_of("$$");
+					if (pos >= 0)
+					{
+						contentstr = contentstr.substr(0, pos - 1);
+						std::string awdstr = GlobalInstance::vec_messsages[i].content.substr(pos + 1);
+						std::vector<std::string> vec_str;
+						CommonFuncs::split(awdstr, vec_str, ";");
+						for (unsigned int n = 0; n < vec_str.size(); n++)
+						{
+							std::vector<std::string> one_str;
+							CommonFuncs::split(vec_str[n], one_str, "-");
+
+							MSGAWDSDATA adata;
+							adata.rid = one_str[0];
+							adata.count = atoi(one_str[1].c_str());
+							adata.qu = atoi(one_str[2].c_str());
+							awdslist.push_back(adata);
+						}
+					}
+
+					for (unsigned int i = 0; i < awdslist.size(); i++)
+					{
+						int qu = awdslist[i].qu;
+						std::string resid = awdslist[i].rid;
+						int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
+
+						int addcount = awdslist[i].count;
+
+						if (resid.compare(0, 1, "r") == 0)
+						{
+							for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
+							{
+								ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
+								if (rescreator->getLv().getValue() >= 0 && rescreator->getName().compare(resid) == 0)
+								{
+
+									int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
+									int rcount = MyRes::getMyResCount(rescreator->getName());
+									if (addcount + rcount >= maxcount)
+										addcount = maxcount - rcount;
+									break;
+								}
+							}
+						}
+
+						if (resid.compare("r006") == 0)
+						{
+							DynamicValueInt dvint;
+							dvint.setValue(addcount);
+							GlobalInstance::getInstance()->addMySoliverCount(dvint);
+						}
+						else if (resid.compare("r012") == 0)
+						{
+							DynamicValueInt dvint;
+							dvint.setValue(addcount);
+							GlobalInstance::getInstance()->addMyCoinCount(dvint);
+						}
+						else
+							MyRes::Add(awdslist[i].rid, addcount, MYSTORAGE, qu, stc);
+					}
 					hasawd = true;
 				}
 			}

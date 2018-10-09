@@ -70,11 +70,10 @@ inline std::string loadStringDataByKey(string key, std::string defaultValue = ""
 		return defaultValue;
 	}
 #if encrypt_data
-	char valuebuffer[4096];
-	sprintf(valuebuffer, "%s", s.c_str());
-	Encrypt(valuebuffer, false);
+	string valuestr = s;
+	Encrypt((char*)valuestr.c_str(), false);
 
-	string parseKey = parseData(valuebuffer);
+	string parseKey = parseData(valuestr);
 	return parseKey;
 #else
 	return s;
@@ -86,10 +85,9 @@ inline void saveStringDataByKey(string key, string sValue = ""){
 	sprintf(keybuffer, "jh%s", key.c_str());
 #if encrypt_data
 	string encryptvalue = encryptData(reinterpret_cast<const unsigned char*>(sValue.c_str()), sValue.length());
-	char valuebuffer[4096];
-	sprintf(valuebuffer, "%s", encryptvalue.c_str());
-	Encrypt(valuebuffer, true);
-	encryptvalue = valuebuffer;
+	string valuestr = encryptvalue;
+	Encrypt((char*)valuestr.c_str(), true);
+	encryptvalue = valuestr;
 #else
 	string encryptvalue = sValue;
 #endif

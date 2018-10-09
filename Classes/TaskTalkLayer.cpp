@@ -283,17 +283,17 @@ void TaskTalkLayer::onCloseClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 
 		if (btn->getTitleText().compare(ResourceLang::map_lang["okbtntext"]) == 0)
 		{
-			if (isGo == 1)
+			if (isFight)
+			{
+				showFastWords();
+				g_MapBlockScene->showFightingLayer(m_vec_enemys);
+			}
+			else if (isGo == 1)
 			{
 				showFastWords();
 				g_MapBlockScene->showFightingLayer(m_vec_enemys);
 				isGo = 0;
 			}
-			/*if (isFight)
-			{
-				showFastWords();
-				g_MapBlockScene->showFightingLayer(m_vec_enemys);
-			}*/
 		}
 		this->removeFromParentAndCleanup(true);
 	}
@@ -454,7 +454,7 @@ void TaskTalkLayer::questFight(std::string bwords)
 {
 	if (bwords.length()>1)
 	{
-		//isFight = true;
+		isFight = true;
 		checkWordLblColor(bwords);
 		closebtn->setTitleText(ResourceLang::map_lang["okbtntext"]);
 		fightbtn->setVisible(false);

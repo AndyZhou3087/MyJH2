@@ -262,7 +262,21 @@ void MessageDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 						}
 					}
 				}
-				MyRes::Add(awdslist[i].rid, addcount, MYSTORAGE, qu, stc);
+
+				if (resid.compare("r006") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(addcount);
+					GlobalInstance::getInstance()->addMySoliverCount(dvint);
+				}
+				else if (resid.compare("r012") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(addcount);
+					GlobalInstance::getInstance()->addMyCoinCount(dvint);
+				}
+				else
+					MyRes::Add(awdslist[i].rid, addcount, MYSTORAGE, qu, stc);
 			}
 			MovingLabel::show(ResourceLang::map_lang["msgawdsucc"]);
 

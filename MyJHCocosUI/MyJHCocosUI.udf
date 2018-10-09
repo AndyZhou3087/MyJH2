@@ -7,5 +7,18 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="strengthenLayer.csd" />
+          <FilePathData Path="heroAttrLayer.csd" />
+          <FilePathData Path="goBackLayer.csd" />
+          <FilePathData Path="rewardLayer.csd" />
+          <FilePathData Path="storyLayer.csd" />
+          <FilePathData Path="LoadingLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="storyLayer.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>
