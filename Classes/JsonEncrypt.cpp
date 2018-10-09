@@ -63,10 +63,10 @@ bool JsonEncrypt::init()
 #endif
 
 	//遍历目录
-	dfsFolder("../Resources/json", "json");
-	dfsFolder("../Resources/mapdata", "mapdata");
+	dfsFolder("../Resources/jsonbackup/json", "json");
+	dfsFolder("../Resources/jsonbackup/mapdata", "mapdata");
 
-	std::string sfilestr = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath("lang/zh_cn/allresdesc.json"));
+	std::string sfilestr = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath("jsonbackup/lang/zh_cn/allresdesc.json"));
 	setEncrypt(sfilestr, ResourcePath::makePath("ResourcesEnc/lang/zh_cn/allresdesc.json"));
 
 
@@ -122,7 +122,7 @@ void JsonEncrypt::dfsFolder(std::string folderPath, std::string foldername, int 
 			string filename = (folderPath + "\\" + FileInfo.name);
 			log("filename = %s ", FileInfo.name);
 
-			std::string str = StringUtils::format("%s/%s", foldername.c_str(), FileInfo.name);
+			std::string str = StringUtils::format("jsonbackup/%s/%s", foldername.c_str(), FileInfo.name);
 			std::string filestr = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath(str));
 			str = StringUtils::format("ResourcesEnc/%s/%s", foldername.c_str(), FileInfo.name);
 			setEncrypt(filestr, ResourcePath::makePath(str));
