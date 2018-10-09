@@ -56,7 +56,7 @@ bool StoryScene::init()
 	std::string storytext = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath("story.txt"));
 
 	std::string spitstr = "\n";
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	spitstr = "\r\n";
 #endif
 	std::vector<std::string> vec_text;
