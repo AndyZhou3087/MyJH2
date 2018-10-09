@@ -1,4 +1,4 @@
-﻿
+
 #ifndef _H_UTILITY_H_
 #define _H_UTILITY_H_
 
