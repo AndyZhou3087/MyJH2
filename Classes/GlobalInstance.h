@@ -267,6 +267,55 @@ typedef struct
 	int qu;
 }MSGAWDSDATA;
 
+//npc关系
+typedef enum
+{
+	NPC_NORMOL = 0,//无关系
+	NPC_MASTER,
+	NPC_FRIEND,
+	NPC_COUPEL
+}NPCRELATION;
+
+//npc加成属性
+typedef enum
+{
+	HP = 0,
+	ATTACK,//攻击
+	DEFENCE,//防御
+	AVOID,//闪避
+	CRIT,//暴击
+	SPEED//速度
+}NPCQUA;
+
+typedef struct
+{
+	std::string npcid;
+	std::vector<std::string> talk;
+	std::vector<std::string> mytalk;
+	std::string desc;
+	std::vector<std::vector<std::string>> reward;//获得物品id-count-qu
+	std::vector<std::string> res;
+	std::vector<std::string> enemynpc;
+	int friendmax;//好友度上限
+	int friendneed;//可结交好友度
+	int masterneed;//可拜师好友度
+	int marryneed;//可结亲好友度
+	std::string friendword;//结交成功对话
+	std::string masterword;
+	std::string marryword;
+	std::vector<float> masterratio;
+	std::vector<float> conpelratio;
+	std::vector<float> friendratio;
+	int fightcost;
+}NpcRelationData;
+
+typedef struct
+{
+	std::string npcid;
+	int friendly;//好友度
+	int relation;//关系状态
+}NpcFriendly;
+
 class GlobalInstance
 {
 public:
@@ -527,6 +576,21 @@ public:
 	****************************/
 	void recoveCardHeroMaxHp();
 
+	/****************************
+	读取npc数据
+	****************************/	
+	void loadNpcFriendData();
+
+	/****************************
+	读取npc好友
+	****************************/
+	void loadNpcFriendly();
+
+	/****************************
+	保存npc好友
+	****************************/
+	void saveNpcFriendly();
+
 private:
 	static GlobalInstance* _Context;//类实例
 
@@ -581,6 +645,9 @@ public:
 	static std::vector<ShopData> vec_shopdata;//商城
 	static std::map<std::string, int> map_buyVipDays;//购买的月卡时间
 	static std::vector<std::string> vec_buyVipIds;//月卡id
+
+	static std::map<std::string, NpcRelationData> map_npcrelation;
+	static std::map<std::string, NpcFriendly> map_myfriendly;
 
 	static int myOutMapCarry;
 

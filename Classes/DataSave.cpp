@@ -339,6 +339,16 @@ int DataSave::getResetSilverRefHeroCountTime()
 	return loadIntDataByKey("silverrefherotime", 0);
 }
 
+void DataSave::setNpcFriendly(std::string val)
+{
+	saveStringDataByKey("friendly", val);
+}
+
+std::string DataSave::getNpcFriendly()
+{
+	return loadStringDataByKey("friendly", "");//npcid-好友度-关系
+}
+
 bool DataSave::getMapBoxRewards(std::string key)
 {
 	int val = loadIntDataByKey(key, 0);

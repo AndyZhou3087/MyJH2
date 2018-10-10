@@ -10,14 +10,11 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="strengthenLayer.csd" />
-          <FilePathData Path="heroAttrLayer.csd" />
-          <FilePathData Path="goBackLayer.csd" />
-          <FilePathData Path="rewardLayer.csd" />
-          <FilePathData Path="storyLayer.csd" />
-          <FilePathData Path="LoadingLayer.csd" />
+          <FilePathData Path="npcLayer.csd" />
+          <FilePathData Path="ui.csi" />
+          <FilePathData Path="text_zh_cn.csi" />
         </OpenedDocuments>
-        <ActiveDocument Path="storyLayer.csd" />
+        <ActiveDocument Path="npcLayer.csd" />
       </Value>
     </Item>
   </Properties>

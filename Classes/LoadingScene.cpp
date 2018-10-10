@@ -260,6 +260,12 @@ void LoadingScene::delayLoadLocalData(float dt)
 	//加载地图数据
 	GlobalInstance::getInstance()->parseMapJson();
 
+	//加载npc好友数据
+	GlobalInstance::getInstance()->loadNpcFriendData();
+
+	//加载好友数据
+	GlobalInstance::getInstance()->loadNpcFriendly();
+
 	//数据处理完，
 	//加载技能特效
 	curEffectPlistNum = 0;

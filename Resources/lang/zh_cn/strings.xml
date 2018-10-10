@@ -284,5 +284,11 @@
 	<s name="qq">QQ:</s>
 	<s name="copyqq">QQ号已复制到剪切板</s>
 	<s name="nicknameused">抱歉！该昵称已被其他人使用</s>
-	<s name="senstiveword">抱歉！该昵称包含敏感词</s>		
+	<s name="senstiveword">抱歉！该昵称包含敏感词</s>	
+	<s name="npcrelation_0">无关系</s>	
+	<s name="npcrelation_1">师徒</s>	
+	<s name="npcrelation_2">好友</s>	
+	<s name="npcrelation_3">配偶</s>
+	<s name="npcfriendlytext">好感度：</s>
+	<s name="npcrelationtext">关系：</s>
 </strings>

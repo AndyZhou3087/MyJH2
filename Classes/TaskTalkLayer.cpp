@@ -14,7 +14,6 @@
 TaskTalkLayer::TaskTalkLayer()
 {
 	isGo = 0;
-	m_wordindex = 0;
 	m_wordcount = 0;
 	isFight = false;
 	m_wordlbl = NULL;

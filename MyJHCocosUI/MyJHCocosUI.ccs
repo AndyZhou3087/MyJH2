@@ -37,10 +37,26 @@
           <Image Name="hfull_0_1.png" />
           <Image Name="hfull_1_0.png" />
           <Image Name="hfull_1_1.png" />
+          <Image Name="hfull_10_0.png" />
+          <Image Name="hfull_10_1.png" />
+          <Image Name="hfull_11_0.png" />
+          <Image Name="hfull_11_1.png" />
           <Image Name="hfull_2_0.png" />
           <Image Name="hfull_2_1.png" />
           <Image Name="hfull_3_0.png" />
           <Image Name="hfull_3_1.png" />
+          <Image Name="hfull_4_0.png" />
+          <Image Name="hfull_4_1.png" />
+          <Image Name="hfull_5_0.png" />
+          <Image Name="hfull_5_1.png" />
+          <Image Name="hfull_6_0.png" />
+          <Image Name="hfull_6_1.png" />
+          <Image Name="hfull_7_0.png" />
+          <Image Name="hfull_7_1.png" />
+          <Image Name="hfull_8_0.png" />
+          <Image Name="hfull_8_1.png" />
+          <Image Name="hfull_9_0.png" />
+          <Image Name="hfull_9_1.png" />
           <Image Name="loadingbar.png" />
           <Image Name="loadingpoint.png" />
           <Image Name="loadingtext.png" />
@@ -48,6 +64,34 @@
           <Image Name="mapblockbottom.png" />
           <Image Name="mapblocktop.png" />
           <Image Name="materialbox.png" />
+          <Image Name="n001.png" />
+          <Image Name="n002.png" />
+          <Image Name="n003.png" />
+          <Image Name="n004.png" />
+          <Image Name="n005.png" />
+          <Image Name="n006.png" />
+          <Image Name="n007.png" />
+          <Image Name="n008.png" />
+          <Image Name="n009.png" />
+          <Image Name="n010.png" />
+          <Image Name="n011.png" />
+          <Image Name="n012.png" />
+          <Image Name="n013.png" />
+          <Image Name="n014.png" />
+          <Image Name="n015.png" />
+          <Image Name="n016.png" />
+          <Image Name="n017.png" />
+          <Image Name="n018.png" />
+          <Image Name="n019.png" />
+          <Image Name="n020.png" />
+          <Image Name="n021.png" />
+          <Image Name="n022.png" />
+          <Image Name="n023.png" />
+          <Image Name="n024.png" />
+          <Image Name="n025.png" />
+          <Image Name="n026.png" />
+          <Image Name="n027.png" />
+          <Image Name="n028.png" />
           <Image Name="newpopbg.png" />
           <Image Name="poptitletie.png" />
           <Image Name="selectequipbg.png" />
@@ -520,6 +564,18 @@
           <Image Name="msgallget_text.png" />
           <Image Name="msggeted_text.png" />
           <Image Name="mypackagetitle.png" />
+          <Image Name="npctext_0.png" />
+          <Image Name="npctext_1.png" />
+          <Image Name="npctext_2.png" />
+          <Image Name="npctext_2_1.png" />
+          <Image Name="npctext_3.png" />
+          <Image Name="npctext_3_1.png" />
+          <Image Name="npctext_4.png" />
+          <Image Name="npctext_4_1.png" />
+          <Image Name="npctext_5.png" />
+          <Image Name="npctext_bscg.png" />
+          <Image Name="npctext_jjcg.png" />
+          <Image Name="npctext_jqcg.png" />
           <Image Name="okbtn_text.png" />
           <Image Name="onkeyread_text.png" />
           <Image Name="outtowntitle.png" />
@@ -811,6 +867,9 @@
           <Image Name="f004.png" />
           <Image Name="f004-2.png" />
           <Image Name="f004-3.png" />
+          <Image Name="friendly_bar_0.png" />
+          <Image Name="friendly_bar_1.png" />
+          <Image Name="friendly_bg.png" />
           <Image Name="g001.png" />
           <Image Name="g001-2.png" />
           <Image Name="g001-3.png" />
@@ -893,6 +952,16 @@
           <Image Name="messageicon.png" />
           <Image Name="ninegrid.png" />
           <Image Name="normal9bg.png" />
+          <Image Name="npc_fight.png" />
+          <Image Name="npc_friend0.png" />
+          <Image Name="npc_friend1.png" />
+          <Image Name="npc_give.png" />
+          <Image Name="npc_marry.png" />
+          <Image Name="npc_marry1.png" />
+          <Image Name="npc_master0.png" />
+          <Image Name="npc_master1.png" />
+          <Image Name="npc_talk.png" />
+          <Image Name="npctalkframe.png" />
           <Image Name="p001.png" />
           <Image Name="pointicon_0.png" />
           <Image Name="pointicon_1.png" />
@@ -1130,6 +1199,7 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="npcLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

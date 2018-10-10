@@ -31,7 +31,6 @@ private:
 	cocos2d::ui::Text* desc;
 	Label* m_wordlbl;
 	bool isShowWord;
-	int m_wordindex;
 	int m_wordcount;
 	int isGo;
 	bool isFight;

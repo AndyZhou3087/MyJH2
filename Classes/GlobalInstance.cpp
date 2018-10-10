@@ -44,6 +44,9 @@ std::vector<ShopData> GlobalInstance::vec_shopdata;
 std::map<std::string, int> GlobalInstance::map_buyVipDays;
 std::vector<std::string> GlobalInstance::vec_buyVipIds;
 
+std::map<std::string, NpcRelationData> GlobalInstance::map_npcrelation;
+std::map<std::string, NpcFriendly> GlobalInstance::map_myfriendly;
+
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
 int GlobalInstance::refreshResTime = 0;
@@ -1578,6 +1581,150 @@ void GlobalInstance::loadShopData()
 
 			vec_shopdata.push_back(data);
 		}
+	}
+}
+
+void GlobalInstance::loadNpcFriendData()
+{
+	rapidjson::Document rsdoc = ReadJsonFile(ResourcePath::makePath("json/friend.json"));
+	rapidjson::Value& rsallData = rsdoc["b"];
+	for (unsigned int i = 0; i < rsallData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = rsallData[i];
+		if (jsonvalue.IsObject())
+		{
+			NpcRelationData data;
+			rapidjson::Value& v = jsonvalue["npcid"];
+			data.npcid = v.GetString();
+
+			v = jsonvalue["desc"];
+			data.desc = v.GetString();
+
+			v = jsonvalue["talk"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				data.talk.push_back(v[i].GetString());
+			}
+
+			v = jsonvalue["mytalk"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				data.mytalk.push_back(v[i].GetString());
+			}
+
+			v = jsonvalue["res"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 1)
+				{
+					data.res.push_back(onestr);
+				}
+			}
+
+			v = jsonvalue["enemynpc"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 1)
+				{
+					data.enemynpc.push_back(onestr);
+				}
+			}
+
+			v = jsonvalue["friendmax"];
+			data.friendmax = atoi(v.GetString());
+
+			v = jsonvalue["friendneed"];
+			data.friendneed = atoi(v.GetString());
+
+			v = jsonvalue["friendword"];
+			data.friendword = v.GetString();
+
+			v = jsonvalue["masterneed"];
+			data.masterneed = atoi(v.GetString());
+
+			v = jsonvalue["masterword"];
+			data.masterword = v.GetString();
+
+			v = jsonvalue["marryneed"];
+			data.marryneed = atoi(v.GetString());
+
+			v = jsonvalue["marryword"];
+			data.marryword = v.GetString();
+
+			v = jsonvalue["masterratio"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				float ratio = v[i].GetFloat();
+				data.masterratio.push_back(ratio);
+			}
+			
+			v = jsonvalue["conpelratio"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				float ratio = v[i].GetFloat();
+				data.conpelratio.push_back(ratio);
+			}
+
+			v = jsonvalue["friendratio"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				float ratio = v[i].GetFloat();
+				data.friendratio.push_back(ratio);
+			}
+
+			v = jsonvalue["fightcost"];
+			data.fightcost = atoi(v.GetString());
+			
+			v = jsonvalue["reward"];			for (unsigned int i = 0; i < v.Size(); i++)			{				std::string onestr = v[i].GetString();				if (onestr.length() > 5)				{					std::vector<std::string> vec;					std::vector<std::string> vec_tmp;					CommonFuncs::split(onestr, vec_tmp, "-");					for (unsigned int j = 0; j < vec_tmp.size(); j++)					{						vec.push_back(vec_tmp[j]);					}					data.reward.push_back(vec);				}			}
+			
+			map_npcrelation[data.npcid] = data;
+
+			NpcFriendly fdata;
+
+			fdata.npcid = data.npcid;
+			fdata.friendly = 0;
+			fdata.relation = NPC_NORMOL;
+
+			map_myfriendly[fdata.npcid] = fdata;
+		}
+	}
+}
+
+void GlobalInstance::loadNpcFriendly()
+{
+	std::string str = DataSave::getInstance()->getNpcFriendly();
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_tmp;
+		CommonFuncs::split(str, vec_tmp, ";");
+		for (unsigned int i = 0; i < vec_tmp.size(); i++)
+		{
+			std::vector<std::string> vec_one;
+			CommonFuncs::split(vec_tmp[i], vec_one, "-");
+			map_myfriendly[vec_one[0]].friendly = atoi(vec_one[1].c_str());
+			map_myfriendly[vec_one[0]].relation = atoi(vec_one[2].c_str());
+		}
+	}
+}
+
+void GlobalInstance::saveNpcFriendly()
+{
+	std::string str;
+	std::map<std::string, NpcFriendly>::iterator it;
+	for (it = map_myfriendly.begin(); it != map_myfriendly.end(); it++)
+	{
+		NpcFriendly data = map_myfriendly[it->first];
+		if (data.friendly > 0 || data.relation > NPC_NORMOL)
+		{
+			std::string onestr = StringUtils::format("%s-%d-%d;", data.npcid, data.friendly, data.relation);
+			str.append(onestr);
+		}
+	}
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setNpcFriendly(str.substr(0, str.length() - 1));
 	}
 }
 

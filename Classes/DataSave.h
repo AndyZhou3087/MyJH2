@@ -401,6 +401,16 @@ public:
 	****************************/
 	void setCheatCount(int val);
 
+	/****************************
+	保存好友度
+	****************************/
+	void setNpcFriendly(std::string val);
+
+	/***************************
+	设置生产者数据
+	****************************/
+	std::string getNpcFriendly();
+
 private:
 	static DataSave* _Context;//类实例
 

@@ -419,6 +419,19 @@
       <FilePathData Path="ui/maincityhintbox.png" />
       <FilePathData Path="ui/arrowglv.png" />
       <FilePathData Path="ui/taskgeticon.png" />
+      <FilePathData Path="ui/npc_fight.png" />
+      <FilePathData Path="ui/npc_friend0.png" />
+      <FilePathData Path="ui/npc_friend1.png" />
+      <FilePathData Path="ui/npc_give.png" />
+      <FilePathData Path="ui/npc_marry.png" />
+      <FilePathData Path="ui/npc_master0.png" />
+      <FilePathData Path="ui/npc_master1.png" />
+      <FilePathData Path="ui/npc_talk.png" />
+      <FilePathData Path="ui/npctalkframe.png" />
+      <FilePathData Path="ui/friendly_bar_0.png" />
+      <FilePathData Path="ui/friendly_bar_1.png" />
+      <FilePathData Path="ui/friendly_bg.png" />
+      <FilePathData Path="ui/npc_marry1.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

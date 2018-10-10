@@ -261,6 +261,18 @@
       <FilePathData Path="text_zh_cn/agreetext.png" />
       <FilePathData Path="text_zh_cn/refusetext.png" />
       <FilePathData Path="text_zh_cn/retry_text.png" />
+      <FilePathData Path="text_zh_cn/npctext_bscg.png" />
+      <FilePathData Path="text_zh_cn/npctext_jjcg.png" />
+      <FilePathData Path="text_zh_cn/npctext_jqcg.png" />
+      <FilePathData Path="text_zh_cn/npctext_0.png" />
+      <FilePathData Path="text_zh_cn/npctext_1.png" />
+      <FilePathData Path="text_zh_cn/npctext_2.png" />
+      <FilePathData Path="text_zh_cn/npctext_2_1.png" />
+      <FilePathData Path="text_zh_cn/npctext_3.png" />
+      <FilePathData Path="text_zh_cn/npctext_3_1.png" />
+      <FilePathData Path="text_zh_cn/npctext_4.png" />
+      <FilePathData Path="text_zh_cn/npctext_4_1.png" />
+      <FilePathData Path="text_zh_cn/npctext_5.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>
