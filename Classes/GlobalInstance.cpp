@@ -1677,7 +1677,22 @@ void GlobalInstance::loadNpcFriendData()
 			v = jsonvalue["fightcost"];
 			data.fightcost = atoi(v.GetString());
 			
-			v = jsonvalue["reward"];			for (unsigned int i = 0; i < v.Size(); i++)			{				std::string onestr = v[i].GetString();				if (onestr.length() > 5)				{					std::vector<std::string> vec;					std::vector<std::string> vec_tmp;					CommonFuncs::split(onestr, vec_tmp, "-");					for (unsigned int j = 0; j < vec_tmp.size(); j++)					{						vec.push_back(vec_tmp[j]);					}					data.reward.push_back(vec);				}			}
+			v = jsonvalue["reward"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				std::string onestr = v[i].GetString();
+				if (onestr.length() > 5)
+				{
+					std::vector<std::string> vec;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(onestr, vec_tmp, "-");
+					for (unsigned int j = 0; j < vec_tmp.size(); j++)
+					{
+						vec.push_back(vec_tmp[j]);
+					}
+					data.reward.push_back(vec);
+				}
+			}
 			
 			map_npcrelation[data.npcid] = data;
 
@@ -1718,7 +1733,7 @@ void GlobalInstance::saveNpcFriendly()
 		NpcFriendly data = map_myfriendly[it->first];
 		if (data.friendly > 0 || data.relation > NPC_NORMOL)
 		{
-			std::string onestr = StringUtils::format("%s-%d-%d;", data.npcid, data.friendly, data.relation);
+			std::string onestr = StringUtils::format("%s-%d-%d;", data.npcid.c_str(), data.friendly.c_str(), data.relation.c_str());
 			str.append(onestr);
 		}
 	}
