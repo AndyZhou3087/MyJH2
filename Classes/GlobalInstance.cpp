@@ -1733,7 +1733,7 @@ void GlobalInstance::saveNpcFriendly()
 		NpcFriendly data = map_myfriendly[it->first];
 		if (data.friendly > 0 || data.relation > NPC_NORMOL)
 		{
-			std::string onestr = StringUtils::format("%s-%d-%d;", data.npcid.c_str(), data.friendly.c_str(), data.relation.c_str());
+			std::string onestr = StringUtils::format("%s-%d-%d;", data.npcid.c_str(), data.friendly, data.relation);
 			str.append(onestr);
 		}
 	}
