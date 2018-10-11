@@ -16,7 +16,7 @@
             <PreSize X="0.4750" Y="0.3031" />
             <FileData Type="Normal" Path="images/n028.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="hero" ActionTag="-880361653" Tag="167" IconVisible="False" LeftMargin="112.8344" RightMargin="-292.8344" TopMargin="318.7833" BottomMargin="-247.7834" LeftEage="99" RightEage="99" TopEage="119" BottomEage="119" Scale9OriginX="99" Scale9OriginY="119" Scale9Width="702" Scale9Height="971" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="hero" ActionTag="-880361653" Tag="167" IconVisible="False" LeftMargin="112.8344" RightMargin="-292.8344" TopMargin="318.7834" BottomMargin="-247.7834" LeftEage="99" RightEage="99" TopEage="119" BottomEage="119" Scale9OriginX="99" Scale9OriginY="119" Scale9Width="702" Scale9Height="971" ctype="ImageViewObjectData">
             <Size X="900.0000" Y="1209.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="562.8344" Y="356.7166" />
@@ -190,7 +190,7 @@
             <PreSize X="0.0361" Y="0.0188" />
             <ImageFileData Type="MarkedSubImage" Path="ui/friendly_bar_0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="friendlybar_4" ActionTag="-1833086213" Tag="129" IconVisible="False" LeftMargin="284.1942" RightMargin="409.8058" TopMargin="1022.8193" BottomMargin="233.1806" ProgressInfo="100" ctype="LoadingBarObjectData">
+          <AbstractNodeData Name="friendlybar_4" ActionTag="-1833086213" Tag="129" IconVisible="False" LeftMargin="284.1942" RightMargin="409.8058" TopMargin="1022.8194" BottomMargin="233.1806" ProgressInfo="100" ctype="LoadingBarObjectData">
             <Size X="26.0000" Y="24.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="297.1942" Y="245.1806" />
@@ -200,25 +200,25 @@
             <PreSize X="0.0361" Y="0.0188" />
             <ImageFileData Type="MarkedSubImage" Path="ui/friendly_bar_0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="text1" ActionTag="-1483696789" Tag="130" IconVisible="False" LeftMargin="448.7586" RightMargin="207.2415" TopMargin="1020.0992" BottomMargin="229.9007" FontSize="26" LabelText="关系：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="text1" ActionTag="-1483696789" Tag="130" IconVisible="False" LeftMargin="391.7617" RightMargin="264.2383" TopMargin="1020.0993" BottomMargin="229.9007" FontSize="26" LabelText="关系：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="64.0000" Y="30.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="480.7586" Y="244.9007" />
+            <Position X="423.7617" Y="244.9007" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="25" G="68" B="101" />
-            <PrePosition X="0.6677" Y="0.1913" />
+            <PrePosition X="0.5886" Y="0.1913" />
             <PreSize X="0.0889" Y="0.0234" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="relationship" ActionTag="-1408252783" Tag="131" IconVisible="False" LeftMargin="524.7446" RightMargin="141.2554" TopMargin="1019.4945" BottomMargin="230.5055" FontSize="26" LabelText="师徒" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="relationship" ActionTag="-1408252783" Tag="131" IconVisible="False" LeftMargin="467.7486" RightMargin="198.2515" TopMargin="1019.4945" BottomMargin="230.5055" FontSize="26" LabelText="师徒" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="54.0000" Y="30.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="524.7446" Y="245.5055" />
+            <Position X="467.7486" Y="245.5055" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="25" G="68" B="101" />
-            <PrePosition X="0.7288" Y="0.1918" />
+            <PrePosition X="0.6497" Y="0.1918" />
             <PreSize X="0.0750" Y="0.0234" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
@@ -383,7 +383,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scrollView" ActionTag="-1484555802" Tag="165" IconVisible="False" LeftMargin="29.4970" RightMargin="30.5029" TopMargin="786.5001" BottomMargin="443.4999" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="scrollView" ActionTag="-1484555802" Tag="165" IconVisible="False" LeftMargin="29.4970" RightMargin="30.5030" TopMargin="786.5001" BottomMargin="443.4999" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="660.0000" Y="50.0000" />
             <AnchorPoint />
             <Position X="29.4970" Y="443.4999" />

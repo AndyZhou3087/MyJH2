@@ -72,6 +72,26 @@ float Hero::getHp()
 	if (m_hp < -100)
 	{
 		m_hp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[0] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
+		std::map<std::string, NpcFriendly>::iterator it;
+		for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+		{
+			std::string nid = it->first;
+			for (unsigned int i = 0; i < it->second.relation.size(); i++)
+			{
+				if (it->second.relation[i] == NPC_FRIEND)
+				{
+					m_hp += m_hp*GlobalInstance::map_npcrelation[nid].friendratio[0];
+				}
+				else if (it->second.relation[i] == NPC_MASTER)
+				{
+					m_hp += m_hp*GlobalInstance::map_npcrelation[nid].masterratio[0];
+				}
+				else if (it->second.relation[i] == NPC_COUPEL)
+				{
+					m_hp += m_hp*GlobalInstance::map_npcrelation[nid].conpelratio[0];
+				}
+			}
+		}
 	}
 	else if (m_hp < 0)
 	{
@@ -187,6 +207,28 @@ float Hero::getAtk()
 			heroatk += (takeOnEquip[i]->getAtk()*herobns);
 		}
 	}
+
+	std::map<std::string, NpcFriendly>::iterator it;
+	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			if (it->second.relation[i] == NPC_FRIEND)
+			{
+				heroatk += heroatk*GlobalInstance::map_npcrelation[nid].friendratio[1];
+			}
+			else if (it->second.relation[i] == NPC_MASTER)
+			{
+				heroatk += heroatk*GlobalInstance::map_npcrelation[nid].masterratio[1];
+			}
+			else if (it->second.relation[i] == NPC_COUPEL)
+			{
+				heroatk += heroatk*GlobalInstance::map_npcrelation[nid].conpelratio[1];
+			}
+		}
+	}
+
 	return heroatk;
 }
 float Hero::getDf()
@@ -212,6 +254,27 @@ float Hero::getDf()
 			{
 				float herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
 				herodf += takeOnEquip[i]->getDf()*herobns;
+			}
+		}
+	}
+
+	std::map<std::string, NpcFriendly>::iterator it;
+	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			if (it->second.relation[i] == NPC_FRIEND)
+			{
+				herodf += herodf*GlobalInstance::map_npcrelation[nid].friendratio[2];
+			}
+			else if (it->second.relation[i] == NPC_MASTER)
+			{
+				herodf += herodf*GlobalInstance::map_npcrelation[nid].masterratio[2];
+			}
+			else if (it->second.relation[i] == NPC_COUPEL)
+			{
+				herodf += herodf*GlobalInstance::map_npcrelation[nid].conpelratio[2];
 			}
 		}
 	}
@@ -268,6 +331,28 @@ float Hero::getAtkSpeed()
 			heroatkspeed += (takeOnEquip[i]->getAtkSpeed()*herobns);
 		}
 	}
+
+	std::map<std::string, NpcFriendly>::iterator it;
+	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			if (it->second.relation[i] == NPC_FRIEND)
+			{
+				heroatkspeed += heroatkspeed*GlobalInstance::map_npcrelation[nid].friendratio[5];
+			}
+			else if (it->second.relation[i] == NPC_MASTER)
+			{
+				heroatkspeed += heroatkspeed*GlobalInstance::map_npcrelation[nid].masterratio[5];
+			}
+			else if (it->second.relation[i] == NPC_COUPEL)
+			{
+				heroatkspeed += heroatkspeed*GlobalInstance::map_npcrelation[nid].conpelratio[5];
+			}
+		}
+	}
+
 	return heroatkspeed > 3.0f ? 3.0f : heroatkspeed;
 }
 float Hero::getCrit()
@@ -289,6 +374,28 @@ float Hero::getCrit()
 			herocrit += (takeOnEquip[i]->getCrit()*herobns);
 		}
 	}
+
+	std::map<std::string, NpcFriendly>::iterator it;
+	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			if (it->second.relation[i] == NPC_FRIEND)
+			{
+				herocrit += herocrit*GlobalInstance::map_npcrelation[nid].friendratio[4];
+			}
+			else if (it->second.relation[i] == NPC_MASTER)
+			{
+				herocrit += herocrit*GlobalInstance::map_npcrelation[nid].masterratio[4];
+			}
+			else if (it->second.relation[i] == NPC_COUPEL)
+			{
+				herocrit += herocrit*GlobalInstance::map_npcrelation[nid].conpelratio[4];
+			}
+		}
+	}
+
 	return herocrit;
 }
 float Hero::getDodge()
@@ -310,6 +417,28 @@ float Hero::getDodge()
 			herododge += (takeOnEquip[i]->getDodge()*herobns);
 		}
 	}
+
+	std::map<std::string, NpcFriendly>::iterator it;
+	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			if (it->second.relation[i] == NPC_FRIEND)
+			{
+				herododge += herododge*GlobalInstance::map_npcrelation[nid].friendratio[3];
+			}
+			else if (it->second.relation[i] == NPC_MASTER)
+			{
+				herododge += herododge*GlobalInstance::map_npcrelation[nid].masterratio[3];
+			}
+			else if (it->second.relation[i] == NPC_COUPEL)
+			{
+				herododge += herododge*GlobalInstance::map_npcrelation[nid].conpelratio[3];
+			}
+		}
+	}
+
 	return herododge;
 }
 

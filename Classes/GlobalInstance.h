@@ -313,7 +313,7 @@ typedef struct
 {
 	std::string npcid;
 	int friendly;//好友度
-	int relation;//关系状态
+	std::vector<int> relation;//关系状态
 }NpcFriendly;
 
 class GlobalInstance

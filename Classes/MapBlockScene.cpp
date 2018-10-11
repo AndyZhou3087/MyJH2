@@ -1094,7 +1094,7 @@ void MapBlockScene::doMyStatus()
 			else if (m_mapid.compare("m0-0-0") != 0 && (mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS || mapblock->getPosType() == POS_NPC))
 			{
 				isTask = true;
-				NpcLayer* layer = NpcLayer::create(mapblock->getPosNpcID());
+				NpcLayer* layer = NpcLayer::create(mapblock->getPosNpcID(), vec_enemys);
 				this->addChild(layer);
 				AnimationEffect::openAniEffect((Layer*)layer);
 			}
