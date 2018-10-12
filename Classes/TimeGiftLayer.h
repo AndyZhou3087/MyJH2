@@ -22,6 +22,8 @@ private:
 private:
 	ShopData* m_data;
 	cocos2d::ui::Text* lefttime;
+
+	void updatetime(float dt);
 };
 
 #endif

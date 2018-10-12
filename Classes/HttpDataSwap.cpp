@@ -402,6 +402,18 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 						break;
 					}
 				}
+				else if (strid.compare("giftopen") == 0)
+				{
+					GlobalInstance::serverTimeGiftData.isopen = iter->value.GetInt() == 1 ? true : false;
+				}
+				else if (strid.compare("turntime") == 0)
+				{
+					GlobalInstance::serverTimeGiftData.lefttime = iter->value.GetInt();
+				}
+				else if (strid.compare("turn") == 0)
+				{
+					GlobalInstance::serverTimeGiftData.turn = iter->value.GetInt();
+				}
 				else if (strid.compare(0, 3, "vip") == 0)
 				{
 					int val = iter->value.GetInt();

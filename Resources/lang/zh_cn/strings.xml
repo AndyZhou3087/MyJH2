@@ -286,5 +286,6 @@
 	<s name="nicknameused">抱歉！该昵称已被其他人使用</s>
 	<s name="senstiveword">抱歉！该昵称包含敏感词</s>
 	<s name="timegiftprice_0">原价：￥%d</s>
-	<s name="timegiftprice_1">现价：￥%d</s>			
+	<s name="timegiftprice_1">现价：￥%d</s>
+	<s name="timegiftlefttime">限时：%02d:%02d:%02d</s>				
 </strings>

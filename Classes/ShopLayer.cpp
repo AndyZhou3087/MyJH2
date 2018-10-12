@@ -230,7 +230,21 @@ void ShopLayer::setMessage(PYARET ret)
 					qu = atoi(vec_res[2].c_str());
 				}
 				int stonescount = GlobalInstance::getInstance()->generateStoneCount(qu);
-				MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
+
+				if (resid.compare("r006") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(count);
+					GlobalInstance::getInstance()->addMySoliverCount(dvint);
+				}
+				else if (resid.compare("r012") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(count);
+					GlobalInstance::getInstance()->addMyCoinCount(dvint);
+				}
+				else
+					MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
 			}
 		}
 		else if (type == VIP)//ÔÂ¿¨

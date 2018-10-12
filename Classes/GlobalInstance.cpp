@@ -86,6 +86,8 @@ std::string GlobalInstance::qq;
 
 bool GlobalInstance::isCheat = false;
 
+S_TimeGift GlobalInstance::serverTimeGiftData;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -243,6 +245,10 @@ void GlobalInstance::loadInitData()
 	GlobalInstance::myCoinCount.setValue(DataSave::getInstance()->getMyCoinCount());
 
 	silverRefHeroCount = DataSave::getInstance()->getSilverRefHeroCount();
+
+	serverTimeGiftData.isopen = false;
+	serverTimeGiftData.lefttime = 0;
+	serverTimeGiftData.turn = 0;
 }
 
 void GlobalInstance::saveMyHeros()

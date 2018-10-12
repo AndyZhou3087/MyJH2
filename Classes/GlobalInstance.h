@@ -316,6 +316,13 @@ typedef struct
 	std::vector<int> relation;//关系状态
 }NpcFriendly;
 
+typedef struct
+{
+	bool isopen;
+	int lefttime;
+	int turn;
+}S_TimeGift;
+
 class GlobalInstance
 {
 public:
@@ -656,6 +663,8 @@ public:
 	static std::string qq;
 
 	static bool isCheat;
+
+	static S_TimeGift serverTimeGiftData;
 
 private:
 	static int refreshHeroTime;
