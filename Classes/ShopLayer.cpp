@@ -266,6 +266,8 @@ void ShopLayer::setMessage(PYARET ret)
 		if (type != VIP)
 			HttpDataSwap::init(NULL)->paySuccNotice(GlobalInstance::vec_shopdata[payindex].icon, GlobalInstance::vec_shopdata[payindex].price);
 
+		HttpDataSwap::init(NULL)->postAllData();
+
 #ifdef UMENG
 		umeng::MobClickCpp::event(GlobalInstance::vec_shopdata[payindex].icon.c_str());
 #endif

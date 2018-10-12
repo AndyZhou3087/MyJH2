@@ -140,6 +140,8 @@ bool MainMapScene::init()
 
 	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_MAINMAP);
 
+	HttpDataSwap::init(NULL)->postAllData();
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
