@@ -33,6 +33,8 @@ typedef enum
 	T_VSION,//视野
 	T_GOBACK,//回城卷轴
 	T_TLMED,//体力药水
+	T_HEROCARD,//抽英雄卷
+	T_ARMCARD,//抽武器卷
 	T_OTHER
 }RESTYPE;
 class ResBase

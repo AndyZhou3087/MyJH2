@@ -14,6 +14,9 @@
 #include "MarketLayer.h"
 #include "ShopLayer.h"
 #include "DataSave.h"
+#include "MyRes.h"
+#include "HeroAttrLayer.h"
+#include "InnRoomLayer.h"
 
 USING_NS_CC;
 
@@ -74,7 +77,7 @@ bool RandHeroLayer::init()
 	lvUIText->setString(str);
 
 
-	std::string btnname[] = { "srefreshbtn", "crefreshbtn", "silverbox", "addbtn1", "coinbox", "addbtn2","closebtn"};//与BTNTYPE对应
+	std::string btnname[] = { "srefreshbtn", "crefreshbtn", "usecardbtn", "silverbox", "addbtn1", "coinbox", "addbtn2","closebtn"};//与BTNTYPE对应
 	for (int i = 0; i < sizeof(btnname) / sizeof(btnname[0]); i++)
 	{
 		int tag = i + BTN_S_REFRESH;
@@ -94,6 +97,12 @@ bool RandHeroLayer::init()
 			cocos2d::ui::ImageView* crefreshbtntxt = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			crefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("crefresh_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
+		else if (tag == BTN_USECARD)
+		{
+			//使用卷轴按钮文字
+			cocos2d::ui::ImageView* usecardbtntxt = (cocos2d::ui::ImageView*)btn->getChildByName("text");
+			usecardbtntxt->loadTexture(ResourcePath::makeTextImgPath("usecard_Text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		}
 		else if (tag == BTN_ADD_SILVERBOX)
 		{
 			mysilverlbl = (cocos2d::ui::Text*)btn->getChildByName("countlbl");
@@ -111,6 +120,10 @@ bool RandHeroLayer::init()
 	refreshcoinlbl = (cocos2d::ui::Text*)csbnode->getChildByName("cnumbl");
 	lblstr = StringUtils::format("%d", COINREFRESH_NUM);
 	refreshcoinlbl->setString(lblstr);
+
+	herocardcountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("cardnumbl");
+	lblstr = StringUtils::format("%d", MyRes::getMyResCount("u001"));
+	herocardcountlbl->setString(lblstr);
 
 	m_timebar = (cocos2d::ui::LoadingBar*)csbnode->getChildByName("timebar");
 	m_timebar->setPercent(100);
@@ -226,6 +239,36 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			{
 				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
 			}
+			break;
+		case BTN_USECARD:
+		{
+			if (MyRes::getMyResCount("u001") > 0)
+			{
+				Hero* myhero = new Hero();
+				myhero->generate();
+				myhero->setPotential(3);
+				myhero->setState(HS_OWNED);
+
+				GlobalInstance::vec_myHeros.push_back(myhero);
+				GlobalInstance::getInstance()->saveMyHeros();
+				MyRes::Use("u001");
+				Layer* layer = HeroAttrLayer::create(myhero);
+				layer->setName("heroattrlayer");
+				g_mainScene->addChild(layer, 0, this->getTag());
+				AnimationEffect::openAniEffect((Layer*)layer);
+
+				std::string str = StringUtils::format("%d", MyRes::getMyResCount("u001"));
+				herocardcountlbl->setString(str);
+
+				InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+				innroomLayer->refreshMyHerosUi();
+			}
+			else
+			{
+				std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources["u001"].name.c_str());
+				MovingLabel::show(str);
+			}
+		}
 			break;
 		case BTN_ADD_SILVERBOX://增加银子
 		case BTN_ADD_SILVER://增加银子

@@ -21,6 +21,7 @@
 #include "MarketLayer.h"
 #include "ShopLayer.h"
 #include "MovingLabel.h"
+#include "TimeGiftLayer.h"
 
 USING_NS_CC;
 
@@ -279,7 +280,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 {
 	Node* clicknode = (Node*)pSender;
 	int menuType = clicknode->getTag();
-	if (menuType >= SETBTN && menuType <= SHOPBTN)
+	if (menuType >= SETBTN && menuType <= SHOPBTN || menuType == TIMEGIFTBTN)
 		CommonFuncs::BtnAction(pSender, type);
 	else if (type == ui::Widget::TouchEventType::ENDED)
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
@@ -366,6 +367,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
 					this->addChild(layer);
 					AnimationEffect::openAniEffect((Layer*)layer);
+					break;
 				}
 			}
 			break;
@@ -377,6 +379,19 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
 					this->addChild(layer);
 					AnimationEffect::openAniEffect((Layer*)layer);
+					break;
+				}
+			}
+			break;
+		case TIMEGIFTBTN:
+			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+			{
+				if (GlobalInstance::vec_shopdata[i].icon.compare(0, 8, "timegift") == 0)
+				{
+					TimeGiftLayer* layer = TimeGiftLayer::create(&GlobalInstance::vec_shopdata[i]);
+					this->addChild(layer, 0, i);
+					AnimationEffect::openAniEffect((Layer*)layer);
+					break;
 				}
 			}
 			break;

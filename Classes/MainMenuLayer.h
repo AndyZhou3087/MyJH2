@@ -25,8 +25,9 @@ typedef enum
 	COINBOX,//金币狂按钮
 	ADDSILVERBTN,//银子“+”按钮
 	ADDCOINBTN,//金币“+”按钮
-	VIP1BTN,//月卡
-	VIP2BTN
+	VIP1BTN,//月卡1
+	VIP2BTN,//月卡2
+	TIMEGIFTBTN//限时礼包
 }MENUTYPE;
 class MainMenuLayer : public cocos2d::Layer, public HTTPDataDelegateProtocol
 {

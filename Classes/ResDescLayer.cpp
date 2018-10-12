@@ -10,6 +10,8 @@
 #include "AnimationEffect.h"
 #include "RewardLayer.h"
 #include "NewGuideLayer.h"
+#include "HeroAttrLayer.h"
+#include "EquipDescLayer.h"
 
 USING_NS_CC;
 
@@ -77,6 +79,13 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		CommonFuncs::playResBoxEffect(resbox, qu);
 	}
+	else if (t >= T_HEROCARD && t <= T_ARMCARD)
+	{
+		int qu = 3;
+		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		CommonFuncs::playResBoxEffect(resbox, qu);
+	}
+	resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	std::string str = StringUtils::format("ui/%s.png", res->getId().c_str());
@@ -180,6 +189,11 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 			std::string visonstr = StringUtils::format("%s%d", ResourceLang::map_lang["lvtexts"].c_str(), res->getCount().getValue());
 			coutlbl->setString(visonstr);
 		}
+		else if (res->getType() == T_HEROCARD || res->getType() == T_ARMCARD)
+		{
+			btntextstr = "usecard_Text";
+			status = S_CAN_USE;
+		}
 		else
 		{
 			if (GlobalInstance::map_AllResources[res->getId()].vec_needres.size() > 0)
@@ -204,6 +218,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 		//按钮文字
 		cocos2d::ui::ImageView* btntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
 		btntxt->loadTexture(ResourcePath::makeTextImgPath(btntextstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		btntxt->ignoreContentAdaptWithSize(true);
 	}
 	else
 	{
@@ -326,6 +341,51 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 				MyRes::Use(m_res->getId());
 
+				if (storelayer != NULL)
+					storelayer->updateUI();
+			}
+			else if (m_res->getType() == T_HEROCARD)
+			{
+				Hero* myhero = new Hero();
+				myhero->generate();
+				myhero->setPotential(3);
+				myhero->setState(HS_OWNED);
+				GlobalInstance::vec_myHeros.push_back(myhero);
+				GlobalInstance::getInstance()->saveMyHeros();
+				MyRes::Use(m_res->getId());
+				Layer* layer = HeroAttrLayer::create(myhero);
+				layer->setName("heroattrlayer");
+				g_mainScene->addChild(layer, 0, this->getTag());
+				AnimationEffect::openAniEffect((Layer*)layer);
+
+				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+				if (storelayer != NULL)
+					storelayer->updateUI();
+			}
+			else if (m_res->getType() == T_ARMCARD)
+			{
+				MyRes::Use(m_res->getId());
+				//品质概率
+				int qu = 3;
+				int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
+				std::vector<std::string> vec_equipres;
+
+				std::map<std::string, EquipData>::iterator it;
+
+				for (it = GlobalInstance::map_Equip.begin(); it != GlobalInstance::map_Equip.end(); it++)
+				{
+					vec_equipres.push_back(it->first);
+				}
+
+				int r = GlobalInstance::getInstance()->createRandomNum(vec_equipres.size());
+				
+				ResBase* retres = MyRes::Add(vec_equipres[r], 1, MYSTORAGE, qu, stc);
+
+				EquipDescLayer* layer = EquipDescLayer::create(retres, 1);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
+
+				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
 				if (storelayer != NULL)
 					storelayer->updateUI();
 			}

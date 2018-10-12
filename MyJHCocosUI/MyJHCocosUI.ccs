@@ -673,6 +673,7 @@
           <Image Name="text_unlock.png" />
           <Image Name="text_vip0.png" />
           <Image Name="text_vip1.png" />
+          <Image Name="timegifttitle.png" />
           <Image Name="train_text.png" />
           <Image Name="traincoin_text.png" />
           <Image Name="traindoing_text.png" />
@@ -680,6 +681,7 @@
           <Image Name="trainlv_text.png" />
           <Image Name="trainstart_text.png" />
           <Image Name="usebtn_text.png" />
+          <Image Name="usecard_Text.png" />
           <Image Name="usertitle.png" />
           <Image Name="wgcurtext.png" />
           <Image Name="wglv_text.png" />
@@ -932,6 +934,7 @@
           <Image Name="herohpbarbg.png" />
           <Image Name="heroitem.png" />
           <Image Name="herotag_0.png" />
+          <Image Name="k001.png" />
           <Image Name="m001.png" />
           <Image Name="m002.png" />
           <Image Name="m003.png" />
@@ -1019,6 +1022,8 @@
           <Image Name="taskprobg.png" />
           <Image Name="timebar.png" />
           <Image Name="timebargb.png" />
+          <Image Name="timegift.png" />
+          <Image Name="timegifttimebox.png" />
           <Image Name="timeicon.png" />
           <Image Name="timeiconbox.png" />
           <Image Name="top1.png" />
@@ -1027,6 +1032,7 @@
           <Image Name="trainning_1.png" />
           <Image Name="trainning_2.png" />
           <Image Name="trainning_3.png" />
+          <Image Name="u001.png" />
           <Image Name="v001.png" />
           <Image Name="vip0.png" />
           <Image Name="vip1.png" />
@@ -1166,6 +1172,7 @@
         <Project Name="messageNode.csd" Type="Node" />
         <Project Name="myHeroNode.csd" Type="Node" />
         <Project Name="newPopLayer.csd" Type="Layer" />
+        <Project Name="npcLayer.csd" Type="Layer" />
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
@@ -1199,7 +1206,7 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="npcLayer.csd" Type="Layer" />
+        <Project Name="timeGiftLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

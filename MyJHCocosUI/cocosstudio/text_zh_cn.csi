@@ -273,6 +273,8 @@
       <FilePathData Path="text_zh_cn/npctext_4.png" />
       <FilePathData Path="text_zh_cn/npctext_4_1.png" />
       <FilePathData Path="text_zh_cn/npctext_5.png" />
+      <FilePathData Path="text_zh_cn/timegifttitle.png" />
+      <FilePathData Path="text_zh_cn/usecard_Text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

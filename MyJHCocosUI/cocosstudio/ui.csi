@@ -432,6 +432,10 @@
       <FilePathData Path="ui/friendly_bar_1.png" />
       <FilePathData Path="ui/friendly_bg.png" />
       <FilePathData Path="ui/npc_marry1.png" />
+      <FilePathData Path="ui/k001.png" />
+      <FilePathData Path="ui/timegift.png" />
+      <FilePathData Path="ui/timegifttimebox.png" />
+      <FilePathData Path="ui/u001.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

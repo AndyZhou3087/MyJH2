@@ -121,6 +121,9 @@ bool LoadingScene::init()
 		point[i]->setVisible(false);
 	}
 
+
+
+
 	//未同意时弹出，同意后不再弹出
 	if (!DataSave::getInstance()->getUserProtocal())
 	{

@@ -330,7 +330,7 @@ void Hero::generate()
 	} while (GlobalInstance::getInstance()->checkifSameName(nickname));
 	setName(nickname);
 
-	m_hp = getMaxHp();
+	//m_hp = getMaxHp();
 }
 
 std::string Hero::generateName()

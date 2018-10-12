@@ -124,7 +124,7 @@
 	<s name="changesuretext">确定要突破吗？</s>
 	<s name="breaktext">突破</s>
 	<s name="breakcondition">突破条件</s>
-	<s name="notenouph">%s不足</s>
+	<s name="notenouph">「%s」不足！</s>
 	<s name="6innroomnextlvdesc">升级后侠客容量+1，提升招募高品质侠客的概率</s>
 	<s name="2smithynextlvdesc">升级后可制造%s</s>
 	<s name="4trainigroomnextlvdesc">升级后每小时训练经验+%d</s>
@@ -284,5 +284,7 @@
 	<s name="qq">QQ:</s>
 	<s name="copyqq">QQ号已复制到剪切板</s>
 	<s name="nicknameused">抱歉！该昵称已被其他人使用</s>
-	<s name="senstiveword">抱歉！该昵称包含敏感词</s>		
+	<s name="senstiveword">抱歉！该昵称包含敏感词</s>
+	<s name="timegiftprice_0">原价：￥%d</s>
+	<s name="timegiftprice_1">现价：￥%d</s>			
 </strings>

@@ -23,7 +23,7 @@
 
 #define CLICKOFFSETP 8
 
-#define encrypt_jsonxml 1 //加密
+//#define encrypt_jsonxml 1 //加密
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #define UMENG
@@ -50,7 +50,7 @@ const static int COSTLV[] = { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 15, 1
 const static float ODDS[] = { 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 96.5f, 92.5f, 88.0f, 83.0f, 77.5f, 71.5f, 65.0f, 58.0f, 50.5f, 42.5f, 34.0f, 25.0f, 15.5f, 5.5f };
 
 //区分资源类型的字符
-const static std::string RES_TYPES_CHAR[] = { "r","a","e","g","f","w","x","s","c","d","m","b","y","v","t","p" };
+const static std::string RES_TYPES_CHAR[] = { "r","a","e","g","f","w","x","s","c","d","m","b","y","v","t","p","u","k" };
 
 const static std::string defaultres = "r001-500-1;r002-500-1;r003-500-1;r004-500-1;t001-10-1;r005-500-1;p001-5-1;w001-1-1-0-0-;x001-1-1-0-0-";
 
