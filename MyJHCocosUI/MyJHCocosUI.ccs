@@ -564,6 +564,7 @@
           <Image Name="msgallget_text.png" />
           <Image Name="msggeted_text.png" />
           <Image Name="mypackagetitle.png" />
+          <Image Name="npcgive_text.png" />
           <Image Name="npctext_0.png" />
           <Image Name="npctext_1.png" />
           <Image Name="npctext_2.png" />
@@ -1207,6 +1208,7 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="npcgiveLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>
