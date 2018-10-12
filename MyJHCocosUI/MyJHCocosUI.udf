@@ -10,13 +10,7 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="ui.csi" />
-          <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="giftDescLayer.csd" />
-          <FilePathData Path="timeGiftLayer.csd" />
-          <FilePathData Path="MainMenuLayer.csd" />
-          <FilePathData Path="rewardLayer.csd" />
-          <FilePathData Path="randHeroLayer.csd" />
+          <FilePathData Path="npcLayer.csd" />
         </OpenedDocuments>
         <ActiveDocument Path="randHeroLayer.csd" />
       </Value>

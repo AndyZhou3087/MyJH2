@@ -1700,7 +1700,7 @@ void GlobalInstance::loadNpcFriendData()
 
 			fdata.npcid = data.npcid;
 			fdata.friendly = 0;
-			fdata.relation = NPC_NORMOL;
+			//fdata.relation = NPC_NORMOL;
 
 			map_myfriendly[fdata.npcid] = fdata;
 		}
@@ -1719,7 +1719,12 @@ void GlobalInstance::loadNpcFriendly()
 			std::vector<std::string> vec_one;
 			CommonFuncs::split(vec_tmp[i], vec_one, "-");
 			map_myfriendly[vec_one[0]].friendly = atoi(vec_one[1].c_str());
-			map_myfriendly[vec_one[0]].relation = atoi(vec_one[2].c_str());
+			std::vector<std::string> vec_two;
+			CommonFuncs::split(vec_one[2], vec_two, ",");
+			for (unsigned int i = 0; i < vec_two.size(); i++)
+			{
+				map_myfriendly[vec_one[0]].relation.push_back(atoi(vec_two[i].c_str()));
+			}
 		}
 	}
 }
@@ -1731,9 +1736,15 @@ void GlobalInstance::saveNpcFriendly()
 	for (it = map_myfriendly.begin(); it != map_myfriendly.end(); it++)
 	{
 		NpcFriendly data = map_myfriendly[it->first];
-		if (data.friendly > 0 || data.relation > NPC_NORMOL)
+		if (data.friendly > 0)
 		{
-			std::string onestr = StringUtils::format("%s-%d-%d;", data.npcid.c_str(), data.friendly, data.relation);
+			std::string s;
+			for (unsigned int i = 0; i < data.relation.size(); i++)
+			{
+				std::string s1 = StringUtils::format("%d,", data.relation[i]);
+				s.append(s1);
+			}
+			std::string onestr = StringUtils::format("%s-%d-%s;", data.npcid.c_str(), data.friendly, s.substr(0, s.length() - 1).c_str());
 			str.append(onestr);
 		}
 	}

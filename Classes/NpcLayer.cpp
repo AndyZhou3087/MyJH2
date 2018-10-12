@@ -7,6 +7,8 @@
 #include "SoundManager.h"
 #include "Const.h"
 #include "DataSave.h"
+#include "MapBlockScene.h"
+#include "RewardLayer.h"
 
 USING_NS_CC;
 
@@ -16,6 +18,7 @@ NpcLayer::NpcLayer()
 	m_wordindex = -1;
 	m_wordcount = 0;
 	m_wordlbl = NULL;
+	btntag = -1;
 }
 
 NpcLayer::~NpcLayer()
@@ -24,10 +27,10 @@ NpcLayer::~NpcLayer()
 }
 
 
-NpcLayer* NpcLayer::create(std::string npcid)
+NpcLayer* NpcLayer::create(std::string npcid, std::vector<Npc*> vec_enemys)
 {
 	NpcLayer *pRet = new(std::nothrow)NpcLayer();
-	if (pRet && pRet->init(npcid))
+	if (pRet && pRet->init(npcid, vec_enemys))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -41,7 +44,7 @@ NpcLayer* NpcLayer::create(std::string npcid)
 }
 
 // on "init" you need to initialize your instance
-bool NpcLayer::init(std::string npcid)
+bool NpcLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 {
 	if (!Layer::init())
 	{
@@ -49,6 +52,7 @@ bool NpcLayer::init(std::string npcid)
 	}
 
 	m_npcid = npcid;
+	m_vec_enemys = vec_enemys;
 	for (unsigned int n = 0; n < GlobalInstance::map_npcrelation[npcid].talk.size(); n++)
 	{
 		m_wordslist.push_back(GlobalInstance::map_npcrelation[npcid].talk[n]);
@@ -60,12 +64,21 @@ bool NpcLayer::init(std::string npcid)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("npcLayer.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("npcLayer.csb"));
 	this->addChild(csbnode);
-	int langtype = GlobalInstance::getInstance()->getLang();
+	langtype = GlobalInstance::getInstance()->getLang();
+
+	friendper = GlobalInstance::map_npcrelation[npcid].friendneed;
+	masterper = GlobalInstance::map_npcrelation[npcid].masterneed;
+	marryper = GlobalInstance::map_npcrelation[npcid].marryneed;
+	myfriendly = GlobalInstance::map_myfriendly[npcid].friendly;
+	myrelation = GlobalInstance::map_myfriendly[npcid].relation;
+
+	npctalkframe = (Sprite*)csbnode->getChildByName("npctalkframe");
+
 	//npc
 	npc = (cocos2d::ui::ImageView*)csbnode->getChildByName("npc");
-	std::string str = StringUtils::format("images/%s.png", npcid.c_str());
+	std::string str = StringUtils::format("images/%s.png", GlobalInstance::map_Npcs[npcid].icon.c_str());
 	npc->loadTexture(str, cocos2d::ui::Widget::TextureResType::LOCAL);
 	npc->ignoreContentAdaptWithSize(true);
 	//hero
@@ -86,8 +99,21 @@ bool NpcLayer::init(std::string npcid)
 
 	//relationship
 	cocos2d::ui::Text* relationship = (cocos2d::ui::Text*)csbnode->getChildByName("relationship");
-	str = StringUtils::format("npcrelation_%d", GlobalInstance::map_myfriendly[npcid].relation);
-	relationship->setString(ResourceLang::map_lang[str]);
+	std::string relationstr;
+	for (unsigned int i = 0; i < myrelation.size(); i++)
+	{
+		std::string st = StringUtils::format("npcrelation_%d", myrelation[i]);
+		relationstr.append(ResourceLang::map_lang[st]);
+		relationstr.append("、");
+	}
+	if (relationstr.length() > 0)
+	{
+		relationship->setString(relationstr.substr(0, relationstr.length() - 1));
+	}
+	else
+	{
+		relationship->setString(ResourceLang::map_lang["npcrelation_0"]);
+	}
 
 	cocos2d::ui::Text* text0 = (cocos2d::ui::Text*)csbnode->getChildByName("text0");
 	text0->setString(ResourceLang::map_lang["npcfriendlytext"]);
@@ -96,43 +122,7 @@ bool NpcLayer::init(std::string npcid)
 	text1->setString(ResourceLang::map_lang["npcrelationtext"]);
 
 	//好感度进度条
-	int friendly = 0;
-	if (GlobalInstance::map_myfriendly.find(npcid) != GlobalInstance::map_myfriendly.end())
-	{
-		friendly = GlobalInstance::map_myfriendly[npcid].friendly;
-	}
-
-	int maxfriendly = GlobalInstance::map_npcrelation[npcid].friendmax;
-	if (friendly > maxfriendly)
-		friendly = maxfriendly;
-	else if (friendly < -maxfriendly)
-		friendly = -maxfriendly;
-
-	int per = maxfriendly / 5;
-	int count = abs(friendly / per);
-	for (int m = 0; m < 5; m++)
-	{
-		std::string barstr = StringUtils::format("friendlybar_%d", m);
-		cocos2d::ui::LoadingBar* friendbar = (cocos2d::ui::LoadingBar*)csbnode->getChildByName(barstr);
-		friendbar->setPercent(0);
-		if (friendly < 0)
-		{
-			friendbar->loadTexture("ui/friendly_bar_1.png", cocos2d::ui::TextureResType::PLIST);
-		}
-		else
-		{
-			friendbar->loadTexture("ui/friendly_bar_0.png", cocos2d::ui::TextureResType::PLIST);
-		}
-		if (m < count)
-		{
-			friendbar->setPercent(100);
-		}
-		else if (m == count)
-		{
-			float percent = fabs(friendly % per * 100.0f / per);
-			friendbar->setPercent(percent);
-		}
-	}
+	loadFriendlyPro();
 
 	std::string btnstr[6] = { "talkbtn","givebtn","friendbtn","masterbtn","marrybtn","fightbtn" };
 	for (int i = 0; i < 6; i++)
@@ -140,12 +130,22 @@ bool NpcLayer::init(std::string npcid)
 		cocos2d::ui::ImageView* npcbtn = (cocos2d::ui::ImageView*)csbnode->getChildByName(btnstr[i]);
 		npcbtn->setTag(i);
 		npcbtn->addTouchEventListener(CC_CALLBACK_2(NpcLayer::onBtnClick, this));
+		btnArr[i] = npcbtn;
 		cocos2d::ui::ImageView* npcbtntxt = (cocos2d::ui::ImageView*)npcbtn->getChildByName("imagetext");
 		str = StringUtils::format("npctext_%d", i);
 		npcbtntxt->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		if (i == 2)
 		{
-			if (GlobalInstance::map_myfriendly[npcid].relation == NPC_FRIEND)
+			bool isFriend = false;
+			for (unsigned int i = 0; i < myrelation.size(); i++)
+			{
+				if (myrelation[i] == NPC_FRIEND)
+				{
+					isFriend = true;
+					break;
+				}
+			}
+			if (isFriend)
 			{
 				npcbtn->loadTexture("ui/npc_friend1.png", cocos2d::ui::Widget::TextureResType::PLIST);
 				npcbtntxt->loadTexture(ResourcePath::makeTextImgPath("npctext_2_1", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -153,7 +153,16 @@ bool NpcLayer::init(std::string npcid)
 		}
 		else if (i == 3)
 		{
-			if (GlobalInstance::map_myfriendly[npcid].relation == NPC_MASTER)
+			bool isFriend = false;
+			for (unsigned int i = 0; i < myrelation.size(); i++)
+			{
+				if (myrelation[i] == NPC_MASTER)
+				{
+					isFriend = true;
+					break;
+				}
+			}
+			if (isFriend)
 			{
 				npcbtn->loadTexture("ui/npc_master1.png", cocos2d::ui::Widget::TextureResType::PLIST);
 				npcbtntxt->loadTexture(ResourcePath::makeTextImgPath("npctext_3_1", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -161,7 +170,16 @@ bool NpcLayer::init(std::string npcid)
 		}
 		else if (i == 4)
 		{
-			if (GlobalInstance::map_myfriendly[npcid].relation == NPC_COUPEL)
+			bool isFriend = false;
+			for (unsigned int i = 0; i < myrelation.size(); i++)
+			{
+				if (myrelation[i] == NPC_COUPEL)
+				{
+					isFriend = true;
+					break;
+				}
+			}
+			if (isFriend)
 			{
 				npcbtn->loadTexture("ui/npc_marry1.png", cocos2d::ui::Widget::TextureResType::PLIST);
 				npcbtntxt->loadTexture(ResourcePath::makeTextImgPath("npctext_4_1", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -170,7 +188,7 @@ bool NpcLayer::init(std::string npcid)
 	}
 
 	//关闭
-	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
+	closebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
 	closebtn->setTag(1000);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(NpcLayer::onBtnClick, this));
 	//按钮文字
@@ -219,6 +237,49 @@ bool NpcLayer::init(std::string npcid)
 	return true;
 }
 
+void NpcLayer::loadFriendlyPro()
+{
+	int friendly = 0;
+	if (GlobalInstance::map_myfriendly.find(m_npcid) != GlobalInstance::map_myfriendly.end())
+	{
+		friendly = GlobalInstance::map_myfriendly[m_npcid].friendly;
+	}
+
+	int maxfriendly = GlobalInstance::map_npcrelation[m_npcid].friendmax;
+	if (friendly > maxfriendly)
+		friendly = maxfriendly;
+	else if (friendly < -maxfriendly)
+		friendly = -maxfriendly;
+
+	int per = maxfriendly / 5;
+	int count = abs(friendly / per);
+	for (int m = 0; m < 5; m++)
+	{
+		std::string barstr = StringUtils::format("friendlybar_%d", m);
+		cocos2d::ui::LoadingBar* friendbar = (cocos2d::ui::LoadingBar*)csbnode->getChildByName(barstr);
+		friendbar->setPercent(0);
+		if (friendly < 0)
+		{
+			friendbar->loadTexture("ui/friendly_bar_1.png", cocos2d::ui::Widget::TextureResType::PLIST);
+		}
+		else
+		{
+			friendbar->loadTexture("ui/friendly_bar_0.png", cocos2d::ui::Widget::TextureResType::PLIST);
+		}
+		if (m < count)
+		{
+			friendbar->setPercent(100);
+		}
+		else if (m == count)
+		{
+			float percent = fabs(friendly % per * 100.0f / per);
+			friendbar->setPercent(percent);
+		}
+	}
+
+	GlobalInstance::getInstance()->saveNpcFriendly();
+}
+
 void NpcLayer::checkWordLblColor(std::string wordstr)
 {
 	if (isScheduled(schedule_selector(NpcLayer::showTypeText)))
@@ -259,18 +320,30 @@ void NpcLayer::checkWordLblColor(std::string wordstr)
 
 void NpcLayer::showTypeText(float dt)
 {
-	hero->setVisible(true);
-	if (m_wordindex % 2 == 0)
+	if (btntag == 0)
 	{
-		hero->setOpacity(150);
-		npc->setOpacity(255);
+		hero->setVisible(true);
+		if (m_wordindex % 2 == 0)
+		{
+			hero->setOpacity(150);
+			npc->setOpacity(255);
+			npctalkframe->setFlippedX(false);
+		}
+		else
+		{
+			hero->setOpacity(255);
+			npc->setOpacity(150);
+			npctalkframe->setFlippedX(true);
+		}
 	}
 	else
 	{
-		hero->setOpacity(255);
-		npc->setOpacity(150);
+		hero->setVisible(false);
+		hero->setOpacity(150);
+		npc->setOpacity(255);
+		npctalkframe->setFlippedX(false);
 	}
-
+	
 	m_wordlbl->schedule([&](float dt) {
 		isShowWord = true;
 		m_wordlbl->getLetter(m_wordcount)->setScale(1.0f);
@@ -316,6 +389,7 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 	{
 		Node* clicknode = (Node*)pSender;
 		int tag = clicknode->getTag();
+		btntag = tag;
 		switch (tag)
 		{
 		case 1000://关闭
@@ -352,30 +426,241 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		{
 			break;
 		}
-		case 2://
+		case 2://结交
 		{
+			bool isFriend = false;
+			for (unsigned int i = 0; i < myrelation.size(); i++)
+			{
+				if (myrelation[i] == NPC_FRIEND)
+				{
+					isFriend = true;
+					break;
+				}
+			}
+			if (!isFriend)
+			{
+				if (myfriendly >= friendper)
+				{
+					if (checkMasterRelation())
+					{
+						//m_wordlbl->setString(ResourceLang::map_lang["npcrelationfail1"]);
+						checkWordLblColor(ResourceLang::map_lang["npcrelationfail1"]); 
+					}
+					else if (checkMutexNpc())
+					{
+						std::string restr;
+						std::map<std::string, NpcFriendly>::iterator it;
+						for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); it++)
+						{
+							std::string nid = it->first;
+							if (it->second.relation.size() > 0)
+							{
+								for (unsigned int i = 0; i < GlobalInstance::map_npcrelation[m_npcid].enemynpc.size(); i++)
+								{
+									std::string pid = GlobalInstance::map_npcrelation[m_npcid].enemynpc[i];
+									if (pid.compare(nid) == 0)
+									{
+										std::string m_str;
+										for (unsigned m = 0; m < it->second.relation.size(); m++)
+										{
+											std::string r = StringUtils::format("npcrelation_%d", it->second.relation[m]);
+											m_str.append(ResourceLang::map_lang[r]);
+											m_str.append(",");
+										}
+										std::string s = StringUtils::format(ResourceLang::map_lang["npcmutexrelation2"].c_str(), GlobalInstance::map_AllResources[nid].name.c_str(), m_str.substr(0, m_str.length() - 1).c_str());
+										restr.append(s);
+										restr.append(",");
+										it->second.relation.clear();
+										it->second.friendly -= it->second.friendly*0.1f;
+									}
+								}
+							}
+						}
 
+						GlobalInstance::map_myfriendly[m_npcid].relation.clear();
+						GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::map_myfriendly[m_npcid].friendly*0.1f;
+						loadFriendlyPro();
 
+						std::string pstr = StringUtils::format(ResourceLang::map_lang["npcmutexrelation"].c_str(), restr.c_str());
+						checkWordLblColor(pstr);
+
+						//不可能点
+						for (int i = 0; i < 6; i++)
+						{
+							btnArr[i]->setEnabled(false);
+						}
+						closebtn->setEnabled(false);
+						this->schedule(schedule_selector(NpcLayer::checkEnterFight), 1.0f);
+					}
+					else
+					{
+						CommonFuncs::playCommonLvUpAnim(this, "npctext_jjcg");
+
+						GlobalInstance::map_myfriendly[m_npcid].relation.push_back(NPC_FRIEND);
+
+						std::vector<MSGAWDSDATA> vec_rewards;
+						for (unsigned int i = 0; i < GlobalInstance::map_npcrelation[m_npcid].reward.size(); i++)
+						{
+							std::vector<std::string> one_res = GlobalInstance::map_npcrelation[m_npcid].reward[i];
+							std::string resid = one_res[0];
+							int count = atoi(one_res[1].c_str());
+							int qu = atoi(one_res[2].c_str());
+
+							MSGAWDSDATA wdata;
+							wdata.rid = resid;
+							wdata.count = count;
+							wdata.qu = qu;
+							vec_rewards.push_back(wdata);
+						}
+						if (vec_rewards.size() > 0)
+						{
+							RewardLayer* layer = RewardLayer::create(vec_rewards);
+							this->addChild(layer);
+							AnimationEffect::openAniEffect((Layer*)layer);
+						}
+
+						btnArr[2]->loadTexture("ui/npc_friend1.png", cocos2d::ui::Widget::TextureResType::PLIST);
+						cocos2d::ui::ImageView* npcbtntxt = (cocos2d::ui::ImageView*)btnArr[2]->getChildByName("imagetext");
+						npcbtntxt->loadTexture(ResourcePath::makeTextImgPath("npctext_2_1", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+					}
+				}
+				else
+				{
+					//m_wordlbl->setString(ResourceLang::map_lang["npcrelationfail"]);
+					checkWordLblColor(ResourceLang::map_lang["npcrelationfail"]);
+				}
+			}
+			else//绝交
+			{
+
+			}
 			break;
 		}
-		case 3:
+		case 3://拜师
 		{
+			bool isMaster = false;
+			for (unsigned int i = 0; i < myrelation.size(); i++)
+			{
+				if (myrelation[i] == NPC_MASTER)
+				{
+					isMaster = true;
+					break;
+				}
+			}
+			if (!isMaster)
+			{
+				if (myfriendly >= masterper)
+				{
+
+				}
+				else
+				{
+					checkWordLblColor(ResourceLang::map_lang["npcrelationfail"]);
+				}
+			}
+			else
+			{
+
+			}
 			break;
 		}
-		case 4://
+		case 4://结亲
 		{
+			bool isMarry = false;
+			for (unsigned int i = 0; i < myrelation.size(); i++)
+			{
+				if (myrelation[i] == NPC_COUPEL)
+				{
+					isMarry = true;
+					break;
+				}
+			}
+			if (!isMarry)
+			{
+				if (myfriendly >= marryper)
+				{
 
+				}
+				else
+				{
+					checkWordLblColor(ResourceLang::map_lang["npcrelationfail"]);
+				}
+			}
+			else
+			{
 
+			}
 			break;
 		}
 		case 5:
 		{
+			GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::map_npcrelation[m_npcid].fightcost;
+			if (myrelation.size() > 0)
+			{
+				std::vector<int>::iterator it;
+				for (it = myrelation.begin(); it != myrelation.end(); it++)
+				{
+					if ((*it == NPC_FRIEND && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].friendneed)
+						|| (*it == NPC_MASTER && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].masterneed)
+						|| (*it == NPC_COUPEL && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].marryneed))
+					{
+						it = myrelation.erase(it);
+					}
+				}
+			}
+			GlobalInstance::getInstance()->saveNpcFriendly();
+			if (g_MapBlockScene != NULL)
+			{
+				g_MapBlockScene->showFightingLayer(m_vec_enemys);
+			}
+			this->removeAllChildrenWithCleanup(true);
 			break;
 		}
 		default:
 			break;
 		}
 	}
+}
+
+bool NpcLayer::checkMutexNpc()
+{
+	std::map<std::string, NpcFriendly>::iterator it;
+	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); it++)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < GlobalInstance::map_npcrelation[m_npcid].enemynpc.size(); i++)
+		{
+			std::string pid = GlobalInstance::map_npcrelation[m_npcid].enemynpc[i];
+			if (pid.compare(nid) == 0)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool NpcLayer::checkMasterRelation()
+{
+	if (find(myrelation.begin(), myrelation.end(), NPC_MASTER) != myrelation.end())
+	{
+		return true;
+	}
+	return false;
+}
+
+void NpcLayer::checkEnterFight(float dt)
+{
+	if (isShowWord)
+	{
+		return;
+	}
+	this->unschedule(schedule_selector(NpcLayer::checkEnterFight));
+	if (g_MapBlockScene != NULL)
+	{
+		g_MapBlockScene->showFightingLayer(m_vec_enemys);
+	}
+	this->removeAllChildrenWithCleanup(true);
 }
 
 void NpcLayer::onExit()
