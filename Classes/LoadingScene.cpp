@@ -160,10 +160,7 @@ void LoadingScene::loadData()
 	showPointAnim(0);
 	this->schedule(schedule_selector(LoadingScene::showPointAnim), 1.5f);
 	//先获取服务器数据
-	if (DataSave::getInstance()->getFirstEnter())
-		this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
-	else
-		loadLocalData();
+	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
 }
 
 void LoadingScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -367,7 +364,10 @@ void LoadingScene::onFinish(int errcode)
 		if (isGetPlayerId)
 		{
 			isGetPlayerId = false;
-			HttpDataSwap::init(this)->getAllData();
+			if (DataSave::getInstance()->getFirstEnter())
+				HttpDataSwap::init(this)->getAllData();
+			else
+				isLoadLocal = true;
 		}
 		else
 			isLoadLocal = true;

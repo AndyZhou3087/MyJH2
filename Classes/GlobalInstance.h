@@ -257,6 +257,7 @@ typedef struct
 	std::vector<std::vector<std::string>> res;//奖励id-count-qu
 	std::string desc;
 	int count;
+	bool show;
 	std::string paycode;
 }ShopData;
 

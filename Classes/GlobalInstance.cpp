@@ -1565,6 +1565,10 @@ void GlobalInstance::loadShopData()
 			v = jsonvalue["count"];
 			data.count = atoi(v.GetString());
 
+			v = jsonvalue["show"];
+
+			data.show = atoi(v.GetString()) == 1?true:false;
+
 			v = jsonvalue["res"];
 			for (unsigned int i = 0; i < v.Size(); i++)
 			{
