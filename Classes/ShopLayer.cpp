@@ -92,25 +92,33 @@ bool ShopLayer::init()
 
 	scrollView = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scrollView");
 
-	int size = GlobalInstance::vec_shopdata.size();
-	int itemheight = 157;
+	std::vector<ShopData*> vec_showNodes;
+	for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+	{
+		if (GlobalInstance::vec_shopdata[i].show)
+		{
+			vec_showNodes.push_back(&GlobalInstance::vec_shopdata[i]);
+
+		}
+	}
+
+	int size = vec_showNodes.size();
+	int itemheight = 160;
+
 	int innerheight = itemheight * size;
 	int contentheight = scrollView->getContentSize().height;
 	if (innerheight < contentheight)
 		innerheight = contentheight;
 	scrollView->setInnerContainerSize(Size(640, innerheight));
 
-	for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+	for (unsigned int i = 0; i < vec_showNodes.size(); i++)
 	{
-		if (GlobalInstance::vec_shopdata[i].show)
-		{
-			ShopNode* node = ShopNode::create(&GlobalInstance::vec_shopdata[i]);
-			node->setTag(i);
-			scrollView->addChild(node);
-			//node->setPosition(Vec2(scrollView->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
-			node->setPosition(Vec2(scrollView->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
-			node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i * 0.07f, Vec2(-scrollView->getContentSize().width / 2 - 600, 0))));
-		}
+		ShopNode* node = ShopNode::create(vec_showNodes[i]);
+		node->setTag(i);
+		scrollView->addChild(node);
+		//node->setPosition(Vec2(scrollView->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
+		node->setPosition(Vec2(scrollView->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
+		node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i * 0.07f, Vec2(-scrollView->getContentSize().width / 2 - 600, 0))));
 	}
 
 	updateCoinLable(0);
