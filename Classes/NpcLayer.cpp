@@ -688,6 +688,7 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		default:
 			break; 
 		}
+
 		loadFriendlyPro();
 		GlobalInstance::getInstance()->saveNpcFriendly();
 	}
