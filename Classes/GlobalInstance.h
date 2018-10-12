@@ -257,6 +257,7 @@ typedef struct
 	std::vector<std::vector<std::string>> res;//奖励id-count-qu
 	std::string desc;
 	int count;
+	bool show;
 	std::string paycode;
 }ShopData;
 
@@ -315,6 +316,13 @@ typedef struct
 	int friendly;//好友度
 	std::vector<int> relation;//关系状态
 }NpcFriendly;
+
+typedef struct
+{
+	bool isopen;
+	int lefttime;
+	int turn;
+}S_TimeGift;
 
 class GlobalInstance
 {
@@ -648,6 +656,7 @@ public:
 
 	static std::map<std::string, NpcRelationData> map_npcrelation;
 	static std::map<std::string, NpcFriendly> map_myfriendly;
+	static int npcmasterfinish;
 
 	static int myOutMapCarry;
 
@@ -656,6 +665,8 @@ public:
 	static std::string qq;
 
 	static bool isCheat;
+
+	static S_TimeGift serverTimeGiftData;
 
 private:
 	static int refreshHeroTime;

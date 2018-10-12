@@ -46,6 +46,7 @@ std::vector<std::string> GlobalInstance::vec_buyVipIds;
 
 std::map<std::string, NpcRelationData> GlobalInstance::map_npcrelation;
 std::map<std::string, NpcFriendly> GlobalInstance::map_myfriendly;
+int GlobalInstance::npcmasterfinish = 0;
 
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;
@@ -85,6 +86,8 @@ bool GlobalInstance::isNewHeroRefresh = false;
 std::string GlobalInstance::qq;
 
 bool GlobalInstance::isCheat = false;
+
+S_TimeGift GlobalInstance::serverTimeGiftData;
 
 GlobalInstance::GlobalInstance()
 {
@@ -243,6 +246,10 @@ void GlobalInstance::loadInitData()
 	GlobalInstance::myCoinCount.setValue(DataSave::getInstance()->getMyCoinCount());
 
 	silverRefHeroCount = DataSave::getInstance()->getSilverRefHeroCount();
+
+	serverTimeGiftData.isopen = false;
+	serverTimeGiftData.lefttime = 0;
+	serverTimeGiftData.turn = 0;
 }
 
 void GlobalInstance::saveMyHeros()
@@ -1558,6 +1565,10 @@ void GlobalInstance::loadShopData()
 
 			v = jsonvalue["count"];
 			data.count = atoi(v.GetString());
+
+			v = jsonvalue["show"];
+
+			data.show = atoi(v.GetString()) == 1?true:false;
 
 			v = jsonvalue["res"];
 			for (unsigned int i = 0; i < v.Size(); i++)

@@ -8,8 +8,11 @@
 #include "MyRes.h"
 #include "ShopLayer.h"
 
+
+
 USING_NS_CC;
 
+int p_price[] = {20, 60, 120};//Ô­¼Û
 TimeGiftLayer::TimeGiftLayer()
 {
 
@@ -70,11 +73,32 @@ bool TimeGiftLayer::init(ShopData* data)
 
 	lefttime = (cocos2d::ui::Text*)csbnode->getChildByName("lefttime");
 
+	updatetime(0);
+
+	this->schedule(schedule_selector(TimeGiftLayer::updatetime), 1.0f);
+
 	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 	desc->setString(data->desc);
 
+	int startindex = 0;
+	int cruindex = 0;
+
+	std::string curgiftname = StringUtils::format("timegift%d", GlobalInstance::serverTimeGiftData.turn);
+	for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+	{
+		if (GlobalInstance::vec_shopdata[i].icon.compare("timegift0") == 0)
+		{
+			startindex = i;
+		}
+		if (GlobalInstance::vec_shopdata[i].icon.compare(curgiftname) == 0)
+		{
+			cruindex = i;
+			break;
+		}
+	}
+
 	cocos2d::ui::Text* price_0 = (cocos2d::ui::Text*)csbnode->getChildByName("price_0");
-	std::string str = StringUtils::format(ResourceLang::map_lang["timegiftprice_0"].c_str(), data->price);
+	std::string str = StringUtils::format(ResourceLang::map_lang["timegiftprice_0"].c_str(), p_price[cruindex - startindex]);
 	price_0->setString(str);
 
 	DrawNode* lineNode = DrawNode::create();
@@ -90,9 +114,11 @@ bool TimeGiftLayer::init(ShopData* data)
 	int startx[] = { 360, 270 ,210 };
 	int offsetx[] = { 0, 180, 150 };
 
-	int starty[] = { 710, 810 };
-	int offsety[] = { 0, 180 };
+	int starty[] = { 710, 780 };
+	int offsety[] = { 0, 170 };
 	int ressize = data->res.size();
+
+	int row = (ressize - 1) / 3;
 	for (int i = 0; i < ressize; i++)
 	{
 		std::string str = "ui/resbox.png";
@@ -127,7 +153,15 @@ bool TimeGiftLayer::init(ShopData* data)
 		Sprite* box = Sprite::createWithSpriteFrameName(str);
 		this->addChild(box);
 
-		box->setPosition(Vec2(startx[(ressize - 1)%3] + offsetx[(ressize - 1) % 3] * (i%3), starty[(ressize-1)/3] + offsety[(ressize - 1) / 3] * (i/3)));
+		int index = 0;
+		if (i < row * 3)
+			index = (3 - 1)%3;
+		else
+			index = (ressize - 1) % 3;
+
+		int x = startx[index] + offsetx[index] * (i % 3);
+		int y = starty[(ressize - 1) / 3] - offsety[(ressize - 1) / 3] * (i / 3);
+		box->setPosition(Vec2(x, y));
 
 		CommonFuncs::playResBoxEffect(box, qu);
 
@@ -166,6 +200,12 @@ bool TimeGiftLayer::init(ShopData* data)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
+}
+
+void TimeGiftLayer::updatetime(float dt)
+{
+	std::string timestr = StringUtils::format(ResourceLang::map_lang["timegiftlefttime"].c_str(), GlobalInstance::serverTimeGiftData.lefttime / 3600, GlobalInstance::serverTimeGiftData.lefttime % 3600 / 60, GlobalInstance::serverTimeGiftData.lefttime % 3600 % 60);
+	lefttime->setString(timestr);
 }
 
 void TimeGiftLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

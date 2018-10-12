@@ -92,22 +92,33 @@ bool ShopLayer::init()
 
 	scrollView = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scrollView");
 
-	int size = GlobalInstance::vec_shopdata.size();
-	int itemheight = 157;
+	std::vector<ShopData*> vec_showNodes;
+	for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+	{
+		if (GlobalInstance::vec_shopdata[i].show)
+		{
+			vec_showNodes.push_back(&GlobalInstance::vec_shopdata[i]);
+
+		}
+	}
+
+	int size = vec_showNodes.size();
+	int itemheight = 160;
+
 	int innerheight = itemheight * size;
 	int contentheight = scrollView->getContentSize().height;
 	if (innerheight < contentheight)
 		innerheight = contentheight;
 	scrollView->setInnerContainerSize(Size(640, innerheight));
 
-	for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+	for (unsigned int i = 0; i < vec_showNodes.size(); i++)
 	{
-		ShopNode* node = ShopNode::create(&GlobalInstance::vec_shopdata[i]);
+		ShopNode* node = ShopNode::create(vec_showNodes[i]);
 		node->setTag(i);
 		scrollView->addChild(node);
 		//node->setPosition(Vec2(scrollView->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 		node->setPosition(Vec2(scrollView->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
-		node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-scrollView->getContentSize().width / 2 - 600, 0))));
+		node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i * 0.07f, Vec2(-scrollView->getContentSize().width / 2 - 600, 0))));
 	}
 
 	updateCoinLable(0);
@@ -230,7 +241,21 @@ void ShopLayer::setMessage(PYARET ret)
 					qu = atoi(vec_res[2].c_str());
 				}
 				int stonescount = GlobalInstance::getInstance()->generateStoneCount(qu);
-				MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
+
+				if (resid.compare("r006") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(count);
+					GlobalInstance::getInstance()->addMySoliverCount(dvint);
+				}
+				else if (resid.compare("r012") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(count);
+					GlobalInstance::getInstance()->addMyCoinCount(dvint);
+				}
+				else
+					MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
 			}
 		}
 		else if (type == VIP)//ÔÂ¿¨
@@ -240,6 +265,8 @@ void ShopLayer::setMessage(PYARET ret)
 
 		if (type != VIP)
 			HttpDataSwap::init(NULL)->paySuccNotice(GlobalInstance::vec_shopdata[payindex].icon, GlobalInstance::vec_shopdata[payindex].price);
+
+		HttpDataSwap::init(NULL)->postAllData();
 
 #ifdef UMENG
 		umeng::MobClickCpp::event(GlobalInstance::vec_shopdata[payindex].icon.c_str());

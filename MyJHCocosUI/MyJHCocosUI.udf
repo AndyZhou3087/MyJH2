@@ -10,9 +10,9 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="npcLayer.csd" />
+          <FilePathData Path="timeGiftLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="randHeroLayer.csd" />
+        <ActiveDocument Path="timeGiftLayer.csd" />
       </Value>
     </Item>
   </Properties>

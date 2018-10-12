@@ -193,6 +193,8 @@ bool MainScene::init()
 		this->schedule(schedule_selector(MainScene::checkBuildingOpen), 3.0f);
 	}
 
+	HttpDataSwap::init(NULL)->postAllData();
+
 	//for (unsigned i = 0; i < GlobalInstance::vec_TaskMain.size() - 2; i++)
 	//{
 	//	GlobalInstance::vec_TaskMain[i].isfinish = QUEST_FINISH;

@@ -441,62 +441,21 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 			{
 				if (myfriendly >= friendper)
 				{
-					if (checkMasterRelation())
+					if (checkNpcRelation(NPC_MASTER))
 					{
 						//m_wordlbl->setString(ResourceLang::map_lang["npcrelationfail1"]);
 						checkWordLblColor(ResourceLang::map_lang["npcrelationfail1"]); 
 					}
 					else if (checkMutexNpc())
 					{
-						std::string restr;
-						std::map<std::string, NpcFriendly>::iterator it;
-						for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); it++)
-						{
-							std::string nid = it->first;
-							if (it->second.relation.size() > 0)
-							{
-								for (unsigned int i = 0; i < GlobalInstance::map_npcrelation[m_npcid].enemynpc.size(); i++)
-								{
-									std::string pid = GlobalInstance::map_npcrelation[m_npcid].enemynpc[i];
-									if (pid.compare(nid) == 0)
-									{
-										std::string m_str;
-										for (unsigned m = 0; m < it->second.relation.size(); m++)
-										{
-											std::string r = StringUtils::format("npcrelation_%d", it->second.relation[m]);
-											m_str.append(ResourceLang::map_lang[r]);
-											m_str.append(",");
-										}
-										std::string s = StringUtils::format(ResourceLang::map_lang["npcmutexrelation2"].c_str(), GlobalInstance::map_AllResources[nid].name.c_str(), m_str.substr(0, m_str.length() - 1).c_str());
-										restr.append(s);
-										restr.append(",");
-										it->second.relation.clear();
-										it->second.friendly -= it->second.friendly*0.1f;
-									}
-								}
-							}
-						}
-
-						GlobalInstance::map_myfriendly[m_npcid].relation.clear();
-						GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::map_myfriendly[m_npcid].friendly*0.1f;
-						loadFriendlyPro();
-
-						std::string pstr = StringUtils::format(ResourceLang::map_lang["npcmutexrelation"].c_str(), restr.c_str());
-						checkWordLblColor(pstr);
-
-						//不可能点
-						for (int i = 0; i < 6; i++)
-						{
-							btnArr[i]->setEnabled(false);
-						}
-						closebtn->setEnabled(false);
-						this->schedule(schedule_selector(NpcLayer::checkEnterFight), 1.0f);
+						mutexNpcBreak();
 					}
 					else
 					{
 						CommonFuncs::playCommonLvUpAnim(this, "npctext_jjcg");
 
 						GlobalInstance::map_myfriendly[m_npcid].relation.push_back(NPC_FRIEND);
+						checkWordLblColor(GlobalInstance::map_npcrelation[m_npcid].friendword);
 
 						std::vector<MSGAWDSDATA> vec_rewards;
 						for (unsigned int i = 0; i < GlobalInstance::map_npcrelation[m_npcid].reward.size(); i++)
@@ -532,7 +491,22 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 			}
 			else//绝交
 			{
+				btnArr[2]->loadTexture("ui/npc_friend0.png", cocos2d::ui::Widget::TextureResType::PLIST);
+				cocos2d::ui::ImageView* npcbtntxt = (cocos2d::ui::ImageView*)btnArr[2]->getChildByName("imagetext");
+				npcbtntxt->loadTexture(ResourcePath::makeTextImgPath("npctext_2", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+				std::vector<int>::iterator it;
+				for (it = myrelation.begin(); it != myrelation.end(); it++)
+				{
+					if (*it == NPC_FRIEND)
+					{
+						myrelation.erase(it);
+						break;
+					}
+				}
+
+				GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::map_npcrelation[m_npcid].friendmax*0.1f;
+				checkWordLblColor(ResourceLang::map_lang["npcfriendbreak"]);
 			}
 			break;
 		}
@@ -551,15 +525,49 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 			{
 				if (myfriendly >= masterper)
 				{
+					if (checkOtherMater().length() > 0)
+					{
+						std::string npcstr = StringUtils::format(ResourceLang::map_lang["npcmasterfail2"].c_str(), checkOtherMater().c_str());
+						checkWordLblColor(npcstr);
+					}
+					else if (checkNpcRelation(NPC_FRIEND))
+					{
+						checkWordLblColor(ResourceLang::map_lang["npcmasterfail3"]);
+					}
+					else if (checkMutexNpc())
+					{
+						mutexNpcBreak();
+					}
+					else
+					{
+						CommonFuncs::playCommonLvUpAnim(this, "npctext_bscg");
 
+						GlobalInstance::map_myfriendly[m_npcid].relation.push_back(NPC_MASTER);
+						checkWordLblColor(GlobalInstance::map_npcrelation[m_npcid].masterword);
+
+						btnArr[3]->loadTexture("ui/npc_master1.png", cocos2d::ui::Widget::TextureResType::PLIST);
+						cocos2d::ui::ImageView* npcbtntxt = (cocos2d::ui::ImageView*)btnArr[3]->getChildByName("imagetext");
+						npcbtntxt->loadTexture(ResourcePath::makeTextImgPath("npctext_3_1", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+					}
 				}
 				else
 				{
-					checkWordLblColor(ResourceLang::map_lang["npcrelationfail"]);
+					checkWordLblColor(ResourceLang::map_lang["npcmasterfail"]);
 				}
 			}
-			else
+			else//出师
 			{
+				checkWordLblColor(ResourceLang::map_lang["npcmasterfinish"]);
+
+				//不能点
+				for (int i = 0; i < 6; i++)
+				{
+					btnArr[i]->setEnabled(false);
+				}
+				closebtn->setEnabled(false);
+				this->schedule(schedule_selector(NpcLayer::checkEnterFight), 1.0f);
+
+				GlobalInstance::npcmasterfinish = 1;//出师战斗
 
 			}
 			break;
@@ -579,7 +587,54 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 			{
 				if (myfriendly >= marryper)
 				{
+					if (checkMutexNpc())
+					{
+						std::string restr;
+						std::map<std::string, NpcFriendly>::iterator it;
+						for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); it++)
+						{
+							std::string nid = it->first;
+							if (it->second.relation.size() > 0)
+							{
+								for (unsigned int i = 0; i < GlobalInstance::map_npcrelation[m_npcid].enemynpc.size(); i++)
+								{
+									std::string pid = GlobalInstance::map_npcrelation[m_npcid].enemynpc[i];
+									if (pid.compare(nid) == 0)
+									{
+										std::string m_str;
+										for (unsigned m = 0; m < it->second.relation.size(); m++)
+										{
+											std::string r = StringUtils::format("npcrelation_%d", it->second.relation[m]);
+											m_str.append(ResourceLang::map_lang[r]);
+											m_str.append(",");
+										}
+										std::string s = StringUtils::format(ResourceLang::map_lang["npcmutexrelation2"].c_str(), GlobalInstance::map_AllResources[nid].name.c_str(), m_str.substr(0, m_str.length() - 1).c_str());
+										restr.append(s);
+										restr.append(",");
+										it->second.relation.clear();
+										it->second.friendly -= it->second.friendly*0.1f;
+									}
+								}
+							}
+						}
 
+						GlobalInstance::map_myfriendly[m_npcid].relation.clear();
+						GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::GlobalInstance::map_npcrelation[m_npcid].friendmax*0.1f;
+
+						std::string pstr = StringUtils::format(ResourceLang::map_lang["npcmutexrelation"].c_str(), restr.c_str());
+						checkWordLblColor(pstr);
+					}
+					else
+					{
+						CommonFuncs::playCommonLvUpAnim(this, "npctext_jqcg");
+
+						GlobalInstance::map_myfriendly[m_npcid].relation.push_back(NPC_COUPEL);
+						checkWordLblColor(GlobalInstance::map_npcrelation[m_npcid].marryword);
+
+						btnArr[4]->loadTexture("ui/npc_marry1.png", cocos2d::ui::Widget::TextureResType::PLIST);
+						cocos2d::ui::ImageView* npcbtntxt = (cocos2d::ui::ImageView*)btnArr[4]->getChildByName("imagetext");
+						npcbtntxt->loadTexture(ResourcePath::makeTextImgPath("npctext_4_1", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+					}
 				}
 				else
 				{
@@ -588,7 +643,22 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 			}
 			else
 			{
+				btnArr[4]->loadTexture("ui/npc_marry.png", cocos2d::ui::Widget::TextureResType::PLIST);
+				cocos2d::ui::ImageView* npcbtntxt = (cocos2d::ui::ImageView*)btnArr[4]->getChildByName("imagetext");
+				npcbtntxt->loadTexture(ResourcePath::makeTextImgPath("npctext_4", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+				std::vector<int>::iterator it;
+				for (it = myrelation.begin(); it != myrelation.end(); it++)
+				{
+					if (*it == NPC_COUPEL)
+					{
+						myrelation.erase(it);
+						break;
+					}
+				}
+
+				GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::map_npcrelation[m_npcid].friendmax*0.1f;
+				checkWordLblColor(ResourceLang::map_lang["npcfriendbreak"]);
 			}
 			break;
 		}
@@ -608,18 +678,65 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 					}
 				}
 			}
-			GlobalInstance::getInstance()->saveNpcFriendly();
 			if (g_MapBlockScene != NULL)
 			{
 				g_MapBlockScene->showFightingLayer(m_vec_enemys);
 			}
-			this->removeAllChildrenWithCleanup(true);
+			this->removeFromParentAndCleanup(true);
 			break;
 		}
 		default:
-			break;
+			break; 
+		}
+		loadFriendlyPro();
+		GlobalInstance::getInstance()->saveNpcFriendly();
+	}
+}
+
+void NpcLayer::mutexNpcBreak()
+{
+	std::string restr;
+	std::map<std::string, NpcFriendly>::iterator it;
+	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); it++)
+	{
+		std::string nid = it->first;
+		if (it->second.relation.size() > 0)
+		{
+			for (unsigned int i = 0; i < GlobalInstance::map_npcrelation[m_npcid].enemynpc.size(); i++)
+			{
+				std::string pid = GlobalInstance::map_npcrelation[m_npcid].enemynpc[i];
+				if (pid.compare(nid) == 0)
+				{
+					std::string m_str;
+					for (unsigned m = 0; m < it->second.relation.size(); m++)
+					{
+						std::string r = StringUtils::format("npcrelation_%d", it->second.relation[m]);
+						m_str.append(ResourceLang::map_lang[r]);
+						m_str.append(",");
+					}
+					std::string s = StringUtils::format(ResourceLang::map_lang["npcmutexrelation2"].c_str(), GlobalInstance::map_AllResources[nid].name.c_str(), m_str.substr(0, m_str.length() - 1).c_str());
+					restr.append(s);
+					restr.append(",");
+					it->second.relation.clear();
+					it->second.friendly -= it->second.friendly*0.1f;
+				}
+			}
 		}
 	}
+
+	GlobalInstance::map_myfriendly[m_npcid].relation.clear();
+	GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::map_npcrelation[m_npcid].friendmax*0.1f;
+
+	std::string pstr = StringUtils::format(ResourceLang::map_lang["npcmutexrelation"].c_str(), restr.c_str());
+	checkWordLblColor(pstr);
+
+	//不能点
+	for (int i = 0; i < 6; i++)
+	{
+		btnArr[i]->setEnabled(false);
+	}
+	closebtn->setEnabled(false);
+	this->schedule(schedule_selector(NpcLayer::checkEnterFight), 1.0f);
 }
 
 bool NpcLayer::checkMutexNpc()
@@ -640,9 +757,9 @@ bool NpcLayer::checkMutexNpc()
 	return false;
 }
 
-bool NpcLayer::checkMasterRelation()
+bool NpcLayer::checkNpcRelation(int relation)
 {
-	if (find(myrelation.begin(), myrelation.end(), NPC_MASTER) != myrelation.end())
+	if (find(myrelation.begin(), myrelation.end(), relation) != myrelation.end())
 	{
 		return true;
 	}
@@ -660,7 +777,25 @@ void NpcLayer::checkEnterFight(float dt)
 	{
 		g_MapBlockScene->showFightingLayer(m_vec_enemys);
 	}
-	this->removeAllChildrenWithCleanup(true);
+	this->removeFromParentAndCleanup(true);
+}
+
+std::string NpcLayer::checkOtherMater()
+{
+	std::map<std::string, NpcFriendly>::iterator it;
+	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); it++)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			int rel = it->second.relation[i];
+			if (rel == NPC_MASTER)
+			{
+				return nid;
+			}
+		}
+	}
+	return "";
 }
 
 void NpcLayer::onExit()

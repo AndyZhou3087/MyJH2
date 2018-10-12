@@ -81,7 +81,12 @@ bool MainMenuLayer::init()
 		{
 			mycoinlbl = (cocos2d::ui::Text*)clickwidget->getChildByName("countlbl");
 		}
-
+		else if (i == TIMEGIFTBTN)
+		{
+			timegiftbtn = clickwidget;
+			timegiftbtn->setVisible(false);
+			timegiftlefttime = (cocos2d::ui::Text*)clickwidget->getChildByName("time");
+		}
 		if (i >= SETBTN && i <= SHOPBTN)
 		{
 			cocos2d::ui::ImageView* textimg =  (cocos2d::ui::ImageView*)clickwidget->getChildByName("text");
@@ -204,6 +209,13 @@ void MainMenuLayer::onFinish(int code)
 			}
 		}
 
+		if (GlobalInstance::serverTimeGiftData.isopen)
+		{
+			timegiftbtn->setVisible(true);
+			std::string timestr = StringUtils::format("%02d:%02d:%02d", GlobalInstance::serverTimeGiftData.lefttime / 3600, GlobalInstance::serverTimeGiftData.lefttime % 3600 / 60, GlobalInstance::serverTimeGiftData.lefttime % 3600 % 60);
+			timegiftlefttime->setString(timestr);
+		}
+
 		if (GlobalInstance::vec_notice.size() <= 0)
 		{
 			return;
@@ -258,6 +270,13 @@ void MainMenuLayer::updateUI(float dt)
 	textstr = StringUtils::format(ResourceLang::map_lang["daytext"].c_str(), GlobalInstance::map_buyVipDays["vip0"]);
 	vipstrArr[1]->setString(textstr);
 	
+	//更新限时礼包时间
+	if (GlobalInstance::serverTimeGiftData.isopen)
+	{
+		GlobalInstance::serverTimeGiftData.lefttime -= 1;
+		std::string timestr = StringUtils::format("%02d:%02d:%02d", GlobalInstance::serverTimeGiftData.lefttime / 3600, GlobalInstance::serverTimeGiftData.lefttime % 3600 / 60, GlobalInstance::serverTimeGiftData.lefttime % 3600 % 60);
+		timegiftlefttime->setString(timestr);
+	}
 	//成就更新
 	int achcount = 0;
 	for (unsigned int i = 0; i < GlobalInstance::vec_achievedata.size(); i++)
@@ -384,9 +403,11 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			}
 			break;
 		case TIMEGIFTBTN:
+		{
+			std::string timegiftname = StringUtils::format("timegift%d", GlobalInstance::serverTimeGiftData.turn);
 			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
 			{
-				if (GlobalInstance::vec_shopdata[i].icon.compare(0, 8, "timegift") == 0)
+				if (GlobalInstance::vec_shopdata[i].icon.compare(timegiftname) == 0)
 				{
 					TimeGiftLayer* layer = TimeGiftLayer::create(&GlobalInstance::vec_shopdata[i]);
 					this->addChild(layer, 0, i);
@@ -394,6 +415,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					break;
 				}
 			}
+		}
 			break;
 		default:
 			break;

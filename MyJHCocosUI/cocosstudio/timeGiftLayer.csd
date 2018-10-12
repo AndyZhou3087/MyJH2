@@ -37,55 +37,55 @@
             <PreSize X="0.2250" Y="0.0445" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/timegifttitle.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="-1128649269" Tag="15" IconVisible="False" LeftMargin="175.9225" RightMargin="164.0775" TopMargin="366.2592" BottomMargin="833.7408" IsCustomSize="True" FontSize="24" LabelText="购买后立即获得以下物品" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="380.0000" Y="80.0000" />
+          <AbstractNodeData Name="desc" ActionTag="-1128649269" Tag="15" IconVisible="False" LeftMargin="175.9224" RightMargin="164.0776" TopMargin="363.2596" BottomMargin="864.7404" IsCustomSize="True" FontSize="24" LabelText="购买后可获得角色招募卷*2、装备抽取卷*2、银两*5000、元宝*100" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="380.0000" Y="52.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="365.9225" Y="873.7408" />
+            <Position X="365.9224" Y="890.7404" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="100" G="100" B="100" />
-            <PrePosition X="0.5082" Y="0.6826" />
-            <PreSize X="0.5278" Y="0.0625" />
+            <PrePosition X="0.5082" Y="0.6959" />
+            <PreSize X="0.5278" Y="0.0406" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lefttime" ActionTag="-689409187" Tag="11" IconVisible="False" LeftMargin="303.5005" RightMargin="303.4995" TopMargin="814.3126" BottomMargin="440.6873" FontSize="22" LabelText="剩余：26天" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="lefttime" ActionTag="-689409187" Tag="11" IconVisible="False" LeftMargin="303.5005" RightMargin="303.4995" TopMargin="823.3127" BottomMargin="431.6873" FontSize="22" LabelText="剩余：26天" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="113.0000" Y="25.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0005" Y="453.1873" />
+            <Position X="360.0005" Y="444.1873" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="100" G="100" B="100" />
-            <PrePosition X="0.5000" Y="0.3541" />
+            <PrePosition X="0.5000" Y="0.3470" />
             <PreSize X="0.1569" Y="0.0195" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="price_0" ActionTag="-1193218477" Tag="19" IconVisible="False" LeftMargin="232.4985" RightMargin="437.5015" TopMargin="771.8824" BottomMargin="481.1175" FontSize="24" LabelText="￥12" OutlineSize="2" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="price_0" ActionTag="-1193218477" Tag="19" IconVisible="False" LeftMargin="232.4985" RightMargin="437.5015" TopMargin="779.8824" BottomMargin="473.1176" FontSize="24" LabelText="￥12" OutlineSize="2" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="50.0000" Y="27.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="257.4985" Y="494.6175" />
+            <Position X="257.4985" Y="486.6176" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="100" G="100" B="100" />
-            <PrePosition X="0.3576" Y="0.3864" />
+            <PrePosition X="0.3576" Y="0.3802" />
             <PreSize X="0.0694" Y="0.0211" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="133" G="104" B="33" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="price" ActionTag="-1156445888" Tag="12" IconVisible="False" LeftMargin="427.4490" RightMargin="240.5510" TopMargin="769.8834" BottomMargin="479.1166" FontSize="24" LabelText="￥12" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="price" ActionTag="-1156445888" Tag="12" IconVisible="False" LeftMargin="427.4490" RightMargin="240.5510" TopMargin="777.8833" BottomMargin="471.1167" FontSize="24" LabelText="￥12" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="52.0000" Y="31.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="453.4490" Y="494.6166" />
+            <Position X="453.4490" Y="486.6167" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="251" G="242" B="202" />
-            <PrePosition X="0.6298" Y="0.3864" />
+            <PrePosition X="0.6298" Y="0.3802" />
             <PreSize X="0.0722" Y="0.0242" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="133" G="104" B="33" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="buybtn" ActionTag="-236399737" Tag="13" IconVisible="False" LeftMargin="286.8555" RightMargin="290.1445" TopMargin="862.0927" BottomMargin="358.9074" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="113" Scale9Height="37" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="buybtn" ActionTag="-236399737" Tag="13" IconVisible="False" LeftMargin="286.8555" RightMargin="290.1445" TopMargin="870.0925" BottomMargin="350.9075" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="113" Scale9Height="37" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="143.0000" Y="59.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="62271224" Tag="14" IconVisible="False" LeftMargin="34.5438" RightMargin="33.4562" TopMargin="10.2765" BottomMargin="13.7235" LeftEage="24" RightEage="24" TopEage="11" BottomEage="11" Scale9OriginX="24" Scale9OriginY="11" Scale9Width="27" Scale9Height="13" ctype="ImageViewObjectData">
@@ -100,10 +100,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="358.3555" Y="388.4074" />
+            <Position X="358.3555" Y="380.4075" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4977" Y="0.3034" />
+            <PrePosition X="0.4977" Y="0.2972" />
             <PreSize X="0.1986" Y="0.0461" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
