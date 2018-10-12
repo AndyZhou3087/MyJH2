@@ -23,9 +23,11 @@ private:
 	void showTypeText(float dt);
 	void showFastWords();
 	bool checkMutexNpc();
-	bool checkMasterRelation();
+	bool checkNpcRelation(int relation);
 	void checkEnterFight(float dt);
 	void loadFriendlyPro();
+	std::string checkOtherMater();
+	void mutexNpcBreak();
 
 private:
 	std::string m_npcid;

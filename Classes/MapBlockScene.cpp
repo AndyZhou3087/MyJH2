@@ -1360,10 +1360,10 @@ void MapBlockScene::updateHeroUI(int which)
 
 void MapBlockScene::showFightResult(int result)
 {
+	int mycr = mycurRow*blockColCount + mycurCol;
+	MapBlock* mapblock = map_mapBlocks[mycr];
 	if (result == 1)//胜利
 	{
-		int mycr = mycurRow*blockColCount + mycurCol;
-		MapBlock* mapblock = map_mapBlocks[mycr];
 		if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(mapblock->getPosNpcID()))
 		{
 			Quest::finishTaskMain(QUEST_FIGHT);
@@ -1388,6 +1388,29 @@ void MapBlockScene::showFightResult(int result)
 		{
 			map_mapBlocks[bindex]->removePosIcon();
 			map_mapBlocks[bindex]->setPosType(POS_NOTHING);
+		}
+	}
+
+	//出师战斗结果
+	if (GlobalInstance::npcmasterfinish == 1)
+	{
+		GlobalInstance::npcmasterfinish = 0;
+		if (result == 1)
+		{
+			MovingLabel::show(ResourceLang::map_lang["masterfinishsuccess"]);
+			std::vector<int>::iterator it;
+			for (it = GlobalInstance::map_myfriendly[mapblock->getPosNpcID()].relation.begin(); it != GlobalInstance::map_myfriendly[mapblock->getPosNpcID()].relation.end(); it++)
+			{
+				if (*it == NPC_MASTER)
+				{
+					GlobalInstance::map_myfriendly[mapblock->getPosNpcID()].relation.erase(it);
+				}
+			}
+			GlobalInstance::getInstance()->saveNpcFriendly();
+		}
+		else
+		{
+			MovingLabel::show(ResourceLang::map_lang["masterfinishfail"]);
 		}
 	}
 

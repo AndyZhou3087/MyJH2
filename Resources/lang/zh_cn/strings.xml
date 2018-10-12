@@ -287,5 +287,22 @@
 	<s name="senstiveword">抱歉！该昵称包含敏感词</s>
 	<s name="timegiftprice_0">原价：￥%d</s>
 	<s name="timegiftprice_1">现价：￥%d</s>
-	<s name="timegiftlefttime">限时：%02d:%02d:%02d</s>				
+	<s name="timegiftlefttime">限时：%02d:%02d:%02d</s>	
+	<s name="npcrelation_0">无关系</s>	
+	<s name="npcrelation_1">师徒</s>	
+	<s name="npcrelation_2">好友</s>	
+	<s name="npcrelation_3">配偶</s>
+	<s name="npcfriendlytext">好感度：</s>
+	<s name="npcrelationtext">关系：</s>
+	<s name="npcrelationfail">咱俩关系还不太熟，不要走这么近。</s>
+	<s name="npcrelationfail1">逆徒！还想跟为师称兄道弟！！！</s>
+	<s name="npcmutexrelation">没想到你%s你这个两面三刀的人！今日起你我恩怨，一刀两断！</s>
+	<s name="npcmutexrelation2">与%s是%s</s>	
+	<s name="npcfriendbreak">好！今日起你我恩怨，一刀两断！</s>
+	<s name="npcmasterfail">缘分未到，还不能收你为徒啊！</s>
+	<s name="npcmasterfail2">你已经是%s的徒弟了，我不能收你。</s>
+	<s name="npcmasterfail3">你我关系这么好，我怎么可以当你师傅？</s>
+	<s name="npcmasterfinish">好！现在翅膀硬了！就让为师试试你的武功如何！</s>
+	<s name="masterfinishsuccess">出师成功</s>
+	<s name="masterfinishfail">出师失败</s>
 </strings>

@@ -46,6 +46,7 @@ std::vector<std::string> GlobalInstance::vec_buyVipIds;
 
 std::map<std::string, NpcRelationData> GlobalInstance::map_npcrelation;
 std::map<std::string, NpcFriendly> GlobalInstance::map_myfriendly;
+int GlobalInstance::npcmasterfinish = 0;
 
 int GlobalInstance::servertime = 0;
 int GlobalInstance::refreshHeroTime = 0;

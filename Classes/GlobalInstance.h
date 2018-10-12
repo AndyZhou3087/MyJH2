@@ -656,6 +656,7 @@ public:
 
 	static std::map<std::string, NpcRelationData> map_npcrelation;
 	static std::map<std::string, NpcFriendly> map_myfriendly;
+	static int npcmasterfinish;
 
 	static int myOutMapCarry;
 
