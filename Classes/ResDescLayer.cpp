@@ -380,6 +380,9 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				int r = GlobalInstance::getInstance()->createRandomNum(vec_equipres.size());
 				
 				ResBase* retres = MyRes::Add(vec_equipres[r], 1, MYSTORAGE, qu, stc);
+				std::string resstr = StringUtils::format(ResourceLang::map_lang["makeresdesc"].c_str(), GlobalInstance::map_AllResources[vec_equipres[r]].name.c_str());
+				std::string descstr = StringUtils::format("%s%s%s%s", ResourceLang::map_lang["useequipcardhint"].c_str(), resstr.c_str(), ResourceLang::map_lang["potentialtext"].c_str(), ResourceLang::map_lang["potential_3"].c_str());
+				MovingLabel::show(descstr);
 
 				EquipDescLayer* layer = EquipDescLayer::create(retres, 1);
 				this->addChild(layer);
