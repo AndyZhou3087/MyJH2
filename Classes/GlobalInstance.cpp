@@ -1453,6 +1453,11 @@ void GlobalInstance::loadAllResourcesData()
 				v = jsonvalue["coin"];
 				map_AllResources[rid].coinval = atoi(v.GetString());
 			}
+			if (jsonvalue.HasMember("friendly"))
+			{
+				v = jsonvalue["friendly"];
+				map_AllResources[rid].friendly = atoi(v.GetString());
+			}
 		}
 	}
 }

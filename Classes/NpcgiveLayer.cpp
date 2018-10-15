@@ -8,12 +8,16 @@
 #include "Const.h"
 #include "DataSave.h"
 #include "MyRes.h"
+#include "NpcLayer.h"
 
 USING_NS_CC;
 
 NpcgiveLayer::NpcgiveLayer()
 {
-
+	lastSelectIndex = 0;
+	lastIndexCount = 0;
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
 }
 
 NpcgiveLayer::~NpcgiveLayer()
@@ -74,13 +78,13 @@ bool NpcgiveLayer::init(std::string npcid)
 	m_friendly->setString(str);
 
 	m_count = (cocos2d::ui::Text*)csbnode->getChildByName("count");
-	str = StringUtils::format("%d/%d", 0, MyRes::getMyResCount(npcid));
-	m_count->setString(str);
 
 	cocos2d::ui::Button* subbtn = (cocos2d::ui::Button*)csbnode->getChildByName("subbtn");
 	subbtn->addTouchEventListener(CC_CALLBACK_2(NpcgiveLayer::onSubBtnClick, this));
+	subbtn->setTag(20000);
 	cocos2d::ui::Button* addbtn = (cocos2d::ui::Button*)csbnode->getChildByName("addbtn");
 	addbtn->addTouchEventListener(CC_CALLBACK_2(NpcgiveLayer::onAddBtnClick, this));
+	addbtn->setTag(10000);
 
 	cocos2d::ui::Button* cancelbtn = (cocos2d::ui::Button*)csbnode->getChildByName("cancelbtn");
 	cancelbtn->addTouchEventListener(CC_CALLBACK_2(NpcgiveLayer::onBtnClick, this));
@@ -97,7 +101,7 @@ bool NpcgiveLayer::init(std::string npcid)
 	int startx[] = { 360, 270 ,210 };
 	int offsetx[] = { 0, 180, 150 };
 	int rewardsize = GlobalInstance::map_npcrelation[npcid].res.size();
-	std::vector<std::string> vec_rewards = GlobalInstance::map_npcrelation[npcid].res;
+	vec_rewards = GlobalInstance::map_npcrelation[npcid].res;
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -107,6 +111,8 @@ bool NpcgiveLayer::init(std::string npcid)
 		resbox->setTag(i);
 		str = StringUtils::format("select_%d", i);
 		cocos2d::ui::Widget* select = (cocos2d::ui::Widget*)csbnode->getChildByName(str);
+		selectArr[i] = select;
+		select->setVisible(false);
 		cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
 		cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)resbox->getChildByName("name");
 
@@ -128,8 +134,17 @@ bool NpcgiveLayer::init(std::string npcid)
 		}
 	}
 
-
-
+	selectArr[lastSelectIndex]->setVisible(true);
+	str = StringUtils::format("%d/%d", 0, MyRes::getMyResCount(vec_rewards[lastSelectIndex]));
+	if (vec_rewards[lastSelectIndex].compare("r006") == 0)
+	{
+		str = StringUtils::format("%d/%d", 0, GlobalInstance::getInstance()->getMySoliverCount().getValue());
+	}
+	else if (vec_rewards[lastSelectIndex].compare("r012") == 0)
+	{
+		str = StringUtils::format("%d/%d", 0, GlobalInstance::getInstance()->getMyCoinCount().getValue());
+	}
+	m_count->setString(str);
 
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
@@ -154,28 +169,66 @@ void NpcgiveLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		case 1000://¹Ø±Õ
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
-		case 1001:
+		case 1001://ÔùËÍ
 		{
-
-
-			/*loadFriendlyPro();
-			GlobalInstance::getInstance()->saveNpcFriendly();*/
+			int friendly = lastIndexCount;// GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount;
+			GlobalInstance::map_myfriendly[m_npcid].friendly += friendly;
+			NpcLayer* npclayer = (NpcLayer*)this->getParent();
+			if (npclayer != NULL)
+			{
+				npclayer->loadFriendlyPro();
+			}
+			if (vec_rewards[lastSelectIndex].compare("r006") == 0)
+			{
+				DynamicValueInt dal;
+				dal.setValue(lastIndexCount);
+				GlobalInstance::getInstance()->costMySoliverCount(dal);
+			}
+			else if (vec_rewards[lastSelectIndex].compare("r012") == 0)
+			{
+				DynamicValueInt dal;
+				dal.setValue(lastIndexCount);
+				GlobalInstance::getInstance()->costMyCoinCount(dal);
+			}
+			else
+			{
+				MyRes::Use(vec_rewards[lastSelectIndex], lastIndexCount);
+			}
+			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		}
 		case 0:
 		{
+			lastSelectIndex = 0;
+			selectArr[0]->setVisible(true);
+			selectArr[1]->setVisible(false);
+			selectArr[2]->setVisible(false);
 			break;
 		}
 		case 1:
 		{
+			lastSelectIndex = 1;
+			selectArr[1]->setVisible(true);
+			selectArr[0]->setVisible(false);
+			selectArr[2]->setVisible(false);
 			break;
 		}
 		case 2:
 		{
+			lastSelectIndex = 2;
+			selectArr[2]->setVisible(true);
+			selectArr[0]->setVisible(false);
+			selectArr[1]->setVisible(false);
 			break;
 		}
 		default:
 			break;
+		}
+
+		if (tag >= 0 && tag <= 2)
+		{
+			lastIndexCount = 0;
+			updateCaryyCountLbl();
 		}
 	}
 }
@@ -184,40 +237,119 @@ void NpcgiveLayer::onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 {
 	CommonFuncs::BtnAction(pSender, type);
 	Node* clicknode = (Node*)pSender;
-	/*if (type == ui::Widget::TouchEventType::BEGAN)
+	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
 		m_longTouchNode = clicknode;
-		if (!isScheduled(schedule_selector(OutTownLayer::longTouchUpdate)))
-			schedule(schedule_selector(OutTownLayer::longTouchUpdate), 0.1f);
+		if (!isScheduled(schedule_selector(NpcgiveLayer::longTouchUpdate)))
+			schedule(schedule_selector(NpcgiveLayer::longTouchUpdate), 0.1f);
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		cancelLongTouch();
-		addRes(clicknode);
+		addRes();
 	}
 	else if (type == ui::Widget::TouchEventType::CANCELED)
 	{
 		cancelLongTouch();
-	}*/
+	}
 }
 
 void NpcgiveLayer::onSubBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
 	Node* clicknode = (Node*)pSender;
-	/*if (type == ui::Widget::TouchEventType::BEGAN)
+	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
 		m_longTouchNode = clicknode;
-		if (!isScheduled(schedule_selector(OutTownLayer::longTouchUpdate)))
-			schedule(schedule_selector(OutTownLayer::longTouchUpdate), 0.1f);
+		if (!isScheduled(schedule_selector(NpcgiveLayer::longTouchUpdate)))
+			schedule(schedule_selector(NpcgiveLayer::longTouchUpdate), 0.1f);
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		cancelLongTouch();
-		subRes(clicknode);
+		subRes();
 	}
 	else if (type == ui::Widget::TouchEventType::CANCELED)
 	{
 		cancelLongTouch();
-	}*/
+	}
+}
+
+void NpcgiveLayer::updateCaryyCountLbl()
+{
+	std::string str = StringUtils::format("%d/%d", lastIndexCount, MyRes::getMyResCount(vec_rewards[lastSelectIndex]));
+	if (vec_rewards[lastSelectIndex].compare("r006") == 0)
+	{
+		str = StringUtils::format("%d/%d", lastIndexCount, GlobalInstance::getInstance()->getMySoliverCount().getValue());
+	}
+	else if (vec_rewards[lastSelectIndex].compare("r012") == 0)
+	{
+		str = StringUtils::format("%d/%d", lastIndexCount, GlobalInstance::getInstance()->getMyCoinCount().getValue());
+	}
+	m_count->setString(str);
+
+	int friendly = lastIndexCount;// GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount;
+	str = StringUtils::format("%d", friendly);
+	m_friendly->setString(str);
+}
+
+void NpcgiveLayer::longTouchUpdate(float delay)
+{
+	m_isLongPress = true;
+	if (m_longTouchNode != NULL) {
+		if (m_longTouchNode->getTag() == 10000)
+			addRes();
+		else if (m_longTouchNode->getTag() == 20000)
+			subRes();
+	}
+}
+
+void NpcgiveLayer::cancelLongTouch()
+{
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
+	unschedule(schedule_selector(NpcgiveLayer::longTouchUpdate));
+}
+
+void NpcgiveLayer::addRes()
+{
+	bool isLack = false;
+	if (vec_rewards[lastSelectIndex].compare("r006") == 0)
+	{
+		if (lastIndexCount >= GlobalInstance::getInstance()->getMySoliverCount().getValue())
+		{
+			isLack = true;
+		}
+	}
+	else if (vec_rewards[lastSelectIndex].compare("r012") == 0)
+	{
+		if (lastIndexCount >= GlobalInstance::getInstance()->getMyCoinCount().getValue())
+		{
+			isLack = true;
+		}
+	}
+	else
+	{
+		if (lastIndexCount >= MyRes::getMyResCount(vec_rewards[lastSelectIndex]))
+		{
+			isLack = true;
+		}
+	}
+	if (isLack)
+	{
+		std::string str = StringUtils::format(ResourceLang::map_lang["lacktext"].c_str(), GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].name.c_str());
+		MovingLabel::show(str);
+		return;
+	}
+	lastIndexCount++;
+	updateCaryyCountLbl();
+}
+
+void NpcgiveLayer::subRes()
+{
+	if (lastIndexCount <= 0)
+		return;
+
+	lastIndexCount--;
+	updateCaryyCountLbl();
 }
