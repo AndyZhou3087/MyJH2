@@ -16,6 +16,7 @@ public:
 	static NpcLayer* create(std::string npcid, std::vector<Npc*> vec_enemys);
 	virtual void onExit();
 	bool init(std::string npcid, std::vector<Npc*> vec_enemys);
+	void loadFriendlyPro();
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -25,7 +26,6 @@ private:
 	bool checkMutexNpc();
 	bool checkNpcRelation(int relation);
 	void checkEnterFight(float dt);
-	void loadFriendlyPro();
 	std::string checkOtherMater();
 	void mutexNpcBreak();
 

@@ -9,6 +9,7 @@
 #include "DataSave.h"
 #include "MapBlockScene.h"
 #include "RewardLayer.h"
+#include "NpcgiveLayer.h"
 
 USING_NS_CC;
 
@@ -424,6 +425,9 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		}
 		case 1:
 		{
+			NpcgiveLayer* layer = NpcgiveLayer::create(m_npcid);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
 			break;
 		}
 		case 2://½á½»
@@ -638,7 +642,7 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 				}
 				else
 				{
-					checkWordLblColor(ResourceLang::map_lang["npcrelationfail"]);
+					checkWordLblColor(ResourceLang::map_lang["npccoupelfail"]);
 				}
 			}
 			else
@@ -658,7 +662,7 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 				}
 
 				GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::map_npcrelation[m_npcid].friendmax*0.1f;
-				checkWordLblColor(ResourceLang::map_lang["npcfriendbreak"]);
+				checkWordLblColor(ResourceLang::map_lang["npccoupelbreak"]);
 			}
 			break;
 		}
@@ -689,8 +693,10 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 			break; 
 		}
 
-		loadFriendlyPro();
-		GlobalInstance::getInstance()->saveNpcFriendly();
+		if (tag != 5)
+		{
+			loadFriendlyPro();
+		}
 	}
 }
 

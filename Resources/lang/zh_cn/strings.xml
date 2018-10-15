@@ -305,4 +305,11 @@
 	<s name="npcmasterfinish">好！现在翅膀硬了！就让为师试试你的武功如何！</s>
 	<s name="masterfinishsuccess">出师成功</s>
 	<s name="masterfinishfail">出师失败</s>
+	<s name="npccoupelbreak">好你个负心汉！！！</s>
+	<s name="npccoupelfail">少侠请自重！</s>
+	<s name="npcgivetitle">赠送下列任意道具都可增加好感度</s>
+	<s name="npcgivetips">点击要选择的道具</s>
+	<s name="npcgivetext0">赠送数量：</s>
+	<s name="npcgivetext1">增加好感度：</s>
+	<s name="npcgivemost">背不动更多东西了，请先丢弃部分物品</s>
 </strings>
