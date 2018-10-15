@@ -1404,6 +1404,7 @@ void MapBlockScene::showFightResult(int result)
 				if (*it == NPC_MASTER)
 				{
 					GlobalInstance::map_myfriendly[mapblock->getPosNpcID()].relation.erase(it);
+					break;
 				}
 			}
 			GlobalInstance::getInstance()->saveNpcFriendly();
