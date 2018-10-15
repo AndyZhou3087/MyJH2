@@ -299,7 +299,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 {
 	Node* clicknode = (Node*)pSender;
 	int menuType = clicknode->getTag();
-	if (menuType >= SETBTN && menuType <= SHOPBTN || menuType == TIMEGIFTBTN)
+	if ((menuType >= SETBTN && menuType <= SHOPBTN) || menuType == TIMEGIFTBTN)
 		CommonFuncs::BtnAction(pSender, type);
 	else if (type == ui::Widget::TouchEventType::ENDED)
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
