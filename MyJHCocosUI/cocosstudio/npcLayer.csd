@@ -48,37 +48,37 @@
             <FileData Type="MarkedSubImage" Path="ui/npctalkframe.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="heroattrnamebox" ActionTag="1682325322" Tag="116" IconVisible="False" LeftMargin="256.1612" RightMargin="220.8388" TopMargin="910.4609" BottomMargin="315.5391" ctype="SpriteObjectData">
+          <AbstractNodeData Name="heroattrnamebox" ActionTag="1682325322" Tag="116" IconVisible="False" LeftMargin="256.1612" RightMargin="220.8388" TopMargin="907.4607" BottomMargin="318.5393" ctype="SpriteObjectData">
             <Size X="243.0000" Y="54.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="377.6612" Y="342.5391" />
+            <Position X="377.6612" Y="345.5393" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5245" Y="0.2676" />
+            <PrePosition X="0.5245" Y="0.2700" />
             <PreSize X="0.3375" Y="0.0422" />
             <FileData Type="MarkedSubImage" Path="ui/heroattrnamebox.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="npcname" ActionTag="24720776" Tag="117" IconVisible="False" LeftMargin="325.1046" RightMargin="323.8954" TopMargin="920.0349" BottomMargin="319.9651" FontSize="35" LabelText="武僧" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="npcname" ActionTag="24720776" Tag="117" IconVisible="False" LeftMargin="325.1046" RightMargin="323.8954" TopMargin="917.0349" BottomMargin="322.9651" FontSize="35" LabelText="武僧" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="71.0000" Y="40.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.6046" Y="339.9651" />
+            <Position X="360.6046" Y="342.9651" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="25" G="68" B="101" />
-            <PrePosition X="0.5008" Y="0.2656" />
+            <PrePosition X="0.5008" Y="0.2679" />
             <PreSize X="0.0986" Y="0.0313" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="npcdesc" ActionTag="665925077" Tag="118" IconVisible="False" LeftMargin="83.5000" RightMargin="83.5000" TopMargin="972.9306" BottomMargin="278.0694" FontSize="25" LabelText="哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="553.0000" Y="29.0000" />
+          <AbstractNodeData Name="npcdesc" ActionTag="665925077" Tag="118" IconVisible="False" LeftMargin="35.0000" RightMargin="35.0000" TopMargin="962.4305" BottomMargin="267.5695" IsCustomSize="True" FontSize="22" LabelText="哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="650.0000" Y="50.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="292.5694" />
+            <Position X="360.0000" Y="292.5695" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="25" G="68" B="101" />
             <PrePosition X="0.5000" Y="0.2286" />
-            <PreSize X="0.7681" Y="0.0227" />
+            <PreSize X="0.9028" Y="0.0391" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
@@ -212,7 +212,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="relationship" ActionTag="-1408252783" Tag="131" IconVisible="False" LeftMargin="467.7486" RightMargin="198.2515" TopMargin="1019.4945" BottomMargin="230.5055" FontSize="26" LabelText="师徒" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="relationship" ActionTag="-1408252783" Tag="131" IconVisible="False" LeftMargin="467.7486" RightMargin="198.2514" TopMargin="1019.4945" BottomMargin="230.5055" FontSize="26" LabelText="师徒" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="54.0000" Y="30.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="467.7486" Y="245.5055" />

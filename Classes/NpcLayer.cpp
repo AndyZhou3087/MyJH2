@@ -321,7 +321,6 @@ void NpcLayer::showTypeText(float dt)
 {
 	if (btntag == 0)
 	{
-		hero->setVisible(true);
 		if (m_wordindex % 2 == 0)
 		{
 			hero->setOpacity(150);
@@ -330,6 +329,7 @@ void NpcLayer::showTypeText(float dt)
 		}
 		else
 		{
+			hero->setVisible(true);
 			hero->setOpacity(255);
 			npc->setOpacity(150);
 			npctalkframe->setFlippedX(true);
@@ -420,7 +420,10 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 			}
 			else
 			{
-				checkWordLblColor(m_wordslist[m_wordindex]);
+				if (m_wordslist[m_wordindex].length() > 0)
+				{
+					checkWordLblColor(m_wordslist[m_wordindex]);
+				}
 			}
 			break;
 		}
