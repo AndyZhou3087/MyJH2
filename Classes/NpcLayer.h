@@ -49,6 +49,7 @@ private:
 	Node* csbnode;
 	int langtype;
 	cocos2d::ui::Button* closebtn;
+	cocos2d::ui::Text* relationship;
 };
 
 #endif

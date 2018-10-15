@@ -97,22 +97,7 @@ bool NpcLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	npcdesc->setString(GlobalInstance::map_npcrelation[npcid].desc);
 
 	//relationship
-	cocos2d::ui::Text* relationship = (cocos2d::ui::Text*)csbnode->getChildByName("relationship");
-	std::string relationstr;
-	for (unsigned int i = 0; i < GlobalInstance::map_myfriendly[npcid].relation.size(); i++)
-	{
-		std::string st = StringUtils::format("npcrelation_%d", GlobalInstance::map_myfriendly[npcid].relation[i]);
-		relationstr.append(ResourceLang::map_lang[st]);
-		relationstr.append("¡¢");
-	}
-	if (relationstr.length() > 0)
-	{
-		relationship->setString(relationstr.substr(0, relationstr.length() - 1));
-	}
-	else
-	{
-		relationship->setString(ResourceLang::map_lang["npcrelation_0"]);
-	}
+	relationship = (cocos2d::ui::Text*)csbnode->getChildByName("relationship");
 
 	cocos2d::ui::Text* text0 = (cocos2d::ui::Text*)csbnode->getChildByName("text0");
 	text0->setString(ResourceLang::map_lang["npcfriendlytext"]);
@@ -274,6 +259,22 @@ void NpcLayer::loadFriendlyPro()
 			float percent = fabs(friendly % per * 100.0f / per);
 			friendbar->setPercent(percent);
 		}
+	}
+
+	std::string relationstr;
+	for (unsigned int i = 0; i < GlobalInstance::map_myfriendly[m_npcid].relation.size(); i++)
+	{
+		std::string st = StringUtils::format("npcrelation_%d", GlobalInstance::map_myfriendly[m_npcid].relation[i]);
+		relationstr.append(ResourceLang::map_lang[st]);
+		relationstr.append(",");
+	}
+	if (relationstr.length() > 0)
+	{
+		relationship->setString(relationstr.substr(0, relationstr.length() - 1));
+	}
+	else
+	{
+		relationship->setString(ResourceLang::map_lang["npcrelation_0"]);
 	}
 
 	GlobalInstance::getInstance()->saveNpcFriendly();
