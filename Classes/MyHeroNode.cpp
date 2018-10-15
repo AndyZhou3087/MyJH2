@@ -605,5 +605,7 @@ void MyHeroNode::setStateTag(int state)
 		std::string tagtextstr = StringUtils::format("%d", m_heroData->getPos());
 		tagtext->setString(tagtextstr);
 	}
-	actbtntxt->loadTexture(ResourcePath::makeTextImgPath(btntextstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	if (btntextstr.length() > 0)
+		actbtntxt->loadTexture(ResourcePath::makeTextImgPath(btntextstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 }

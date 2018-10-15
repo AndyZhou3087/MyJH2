@@ -302,7 +302,12 @@ void StoreHouseLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 
 void StoreHouseLayer::updateUI()
 {
+	float scrollpos = scrollview->getScrolledPercentVertical();
 	updateContent(lastCategoryindex);
+	if (scrollpos > 0)
+	{
+		scrollview->jumpToPercentVertical(scrollpos);
+	}
 }
 
 void StoreHouseLayer::onclick(Ref* pSender)
@@ -461,12 +466,7 @@ void StoreHouseLayer::decompose(ResBase* res)
 		std::string showstr = StringUtils::format(ResourceLang::map_lang["decomposesucc"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str(), str.c_str());
 		MovingLabel::show(showstr);
 
-		float scrollpos = scrollview->getScrolledPercentVertical();
-		updateContent(lastCategoryindex);
-		if (scrollpos > 0)
-		{
-			scrollview->jumpToPercentVertical(scrollpos);
-		}
+		updateUI();
 
 		Quest::setDailyTask(DECOMPOSE_EQUIP, 1);
 		Quest::setAchieveTypeCount(DECOMPOSE_EQUIP, 1);
