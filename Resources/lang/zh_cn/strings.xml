@@ -276,7 +276,6 @@
 	<s name="usertips1">《游戏用户协议和隐私策略》</s>
 	<s name="usertipshint">请点击下方用户隐私协议并同意</s>	
 	<s name="refuseusertext">拒绝用户协议将无法进入游戏！确定要拒绝吗？</s>
-	<s name="usercontent">1、隐私策略阿萨嘎的gas的gas的gas的gas的gas的轧死的噶阿骨打阿萨德噶</s>
 	<s name="networkerror">网络异常，与服务器断开连接，请检查网络设置！</s>
 	<s name="dataerr0">检测到您在游戏中存在违规行为，为维护游戏公平性，将您的数据清零处理！</s>
 	<s name="dataerr1">检测到您在游戏中多次修改数据，为维护游戏公平性，将您的账号封停处理！</s>
@@ -287,7 +286,8 @@
 	<s name="senstiveword">抱歉！该昵称包含敏感词</s>
 	<s name="timegiftprice_0">原价：￥%d</s>
 	<s name="timegiftprice_1">现价：￥%d</s>
-	<s name="timegiftlefttime">限时：%02d:%02d:%02d</s>	
+	<s name="timegiftlefttime">限时：%02d:%02d:%02d</s>
+	<s name="useequipcardhint">使用装备获取券获得</s>	
 	<s name="npcrelation_0">无关系</s>	
 	<s name="npcrelation_1">师徒</s>	
 	<s name="npcrelation_2">好友</s>	

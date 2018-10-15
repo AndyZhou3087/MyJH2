@@ -111,7 +111,7 @@ void MovingLabel::changeTextColor()
 	//	}
 	//}
 
-	if (lbltext.find(ResourceLang::map_lang["makesucc"]) != std::string::npos)
+	if (lbltext.find(ResourceLang::map_lang["makesucc"]) != std::string::npos || lbltext.find(ResourceLang::map_lang["useequipcardhint"]) != std::string::npos)
 	{
 		std::size_t findpos = std::string::npos;
 		for (int i = 0; i < 5; i++)
