@@ -696,11 +696,15 @@ void HeroAttrLayer::fireHero()
 	{
 		GlobalInstance::getInstance()->fireHero(this->getTag());
 		OutTownLayer* outTown = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
-		SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
-		sellayer->refreshMyHerosUi();
+		if (outTown != NULL)
+		{
+			SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
+			if (sellayer != NULL)
+				sellayer->refreshMyHerosUi();
+		}
 	}
 	m_heroData = NULL;
-	AnimationEffect::closeAniEffect((Layer*)this);
+	AnimationEffect::closeAniEffect(this);
 }
 
 void HeroAttrLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

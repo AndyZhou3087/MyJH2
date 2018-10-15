@@ -254,7 +254,7 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				MyRes::Use("u001");
 				Layer* layer = HeroAttrLayer::create(myhero);
 				layer->setName("heroattrlayer");
-				g_mainScene->addChild(layer, 0, this->getTag());
+				g_mainScene->addChild(layer, 0, GlobalInstance::vec_myHeros.size() - 1);
 				AnimationEffect::openAniEffect((Layer*)layer);
 
 				std::string str = StringUtils::format("%d", MyRes::getMyResCount("u001"));
