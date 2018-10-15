@@ -72,6 +72,63 @@ bool HeadInfoLayer::init()
 	str = StringUtils::format(ResourceLang::map_lang["havegold"].c_str(), GlobalInstance::getInstance()->getMyCoinCount().getValue());
 	attrtext_2->setString(str);
 
+	std::vector<std::string> vec_friend;
+	std::vector<std::string> vec_master;
+	std::vector<std::string> vec_coupel;
+	std::map<std::string, NpcFriendly>::iterator it;
+	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); it++)
+	{
+		if (it->second.relation.size() > 0)
+		{
+			for (unsigned int i = 0; i < it->second.relation.size(); i++)
+			{
+				if (it->second.relation[i] == NPC_FRIEND)
+				{
+					vec_friend.push_back(it->second.npcid);
+				}
+				else if (it->second.relation[i] == NPC_MASTER)
+				{
+					vec_master.push_back(it->second.npcid);
+				}
+				else
+				{
+					vec_coupel.push_back(it->second.npcid);
+				}
+			}
+		}
+	}
+	cocos2d::ui::Text* attrtext_3 = (cocos2d::ui::Text*)csbnode->getChildByName("attrtext_3");
+	if (vec_master.size() > 0)
+	{
+		str = StringUtils::format(ResourceLang::map_lang["npcmastertitle"].c_str(), GlobalInstance::map_AllResources[vec_master[0]].name.c_str());
+		attrtext_3->setString(str);
+	}
+	else
+	{
+		attrtext_3->setVisible(false);
+	}
+
+	cocos2d::ui::Text* attrtext_4 = (cocos2d::ui::Text*)csbnode->getChildByName("attrtext_4");
+	str = StringUtils::format(ResourceLang::map_lang["npcfriendtitle"].c_str(), vec_friend.size());
+	attrtext_4->setString(str);
+
+	cocos2d::ui::Text* attrtext_5 = (cocos2d::ui::Text*)csbnode->getChildByName("attrtext_5");
+	if (vec_coupel.size() > 0)
+	{
+		std::string onestr;
+		for (unsigned int m = 0; m < vec_coupel.size(); m++)
+		{
+			onestr.append(GlobalInstance::map_AllResources[vec_coupel[m]].name);
+			onestr.append(",");
+		}
+		str = StringUtils::format(ResourceLang::map_lang["npccoupeltitle"].c_str(), onestr.substr(0, onestr.length() - 1).c_str());
+		attrtext_5->setString(str);
+	}
+	else
+	{
+		attrtext_5->setVisible(false);
+	}
+
 	cocos2d::ui::Button* actionbtn = (cocos2d::ui::Button*)csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(HeadInfoLayer::onBtnClick, this));
 	actionbtn->setTag(0);

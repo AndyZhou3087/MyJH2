@@ -72,8 +72,6 @@ bool NpcLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	friendper = GlobalInstance::map_npcrelation[npcid].friendneed;
 	masterper = GlobalInstance::map_npcrelation[npcid].masterneed;
 	marryper = GlobalInstance::map_npcrelation[npcid].marryneed;
-	myfriendly = GlobalInstance::map_myfriendly[npcid].friendly;
-	myrelation = GlobalInstance::map_myfriendly[npcid].relation;
 
 	npctalkframe = (Sprite*)csbnode->getChildByName("npctalkframe");
 
@@ -101,9 +99,9 @@ bool NpcLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	//relationship
 	cocos2d::ui::Text* relationship = (cocos2d::ui::Text*)csbnode->getChildByName("relationship");
 	std::string relationstr;
-	for (unsigned int i = 0; i < myrelation.size(); i++)
+	for (unsigned int i = 0; i < GlobalInstance::map_myfriendly[npcid].relation.size(); i++)
 	{
-		std::string st = StringUtils::format("npcrelation_%d", myrelation[i]);
+		std::string st = StringUtils::format("npcrelation_%d", GlobalInstance::map_myfriendly[npcid].relation[i]);
 		relationstr.append(ResourceLang::map_lang[st]);
 		relationstr.append("、");
 	}
@@ -138,9 +136,9 @@ bool NpcLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 		if (i == 2)
 		{
 			bool isFriend = false;
-			for (unsigned int i = 0; i < myrelation.size(); i++)
+			for (unsigned int i = 0; i < GlobalInstance::map_myfriendly[npcid].relation.size(); i++)
 			{
-				if (myrelation[i] == NPC_FRIEND)
+				if (GlobalInstance::map_myfriendly[npcid].relation[i] == NPC_FRIEND)
 				{
 					isFriend = true;
 					break;
@@ -155,9 +153,9 @@ bool NpcLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 		else if (i == 3)
 		{
 			bool isFriend = false;
-			for (unsigned int i = 0; i < myrelation.size(); i++)
+			for (unsigned int i = 0; i < GlobalInstance::map_myfriendly[npcid].relation.size(); i++)
 			{
-				if (myrelation[i] == NPC_MASTER)
+				if (GlobalInstance::map_myfriendly[npcid].relation[i] == NPC_MASTER)
 				{
 					isFriend = true;
 					break;
@@ -172,9 +170,9 @@ bool NpcLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 		else if (i == 4)
 		{
 			bool isFriend = false;
-			for (unsigned int i = 0; i < myrelation.size(); i++)
+			for (unsigned int i = 0; i < GlobalInstance::map_myfriendly[npcid].relation.size(); i++)
 			{
-				if (myrelation[i] == NPC_COUPEL)
+				if (GlobalInstance::map_myfriendly[npcid].relation[i] == NPC_COUPEL)
 				{
 					isFriend = true;
 					break;
@@ -391,6 +389,9 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		Node* clicknode = (Node*)pSender;
 		int tag = clicknode->getTag();
 		btntag = tag;
+
+		int myfriendly = GlobalInstance::map_myfriendly[m_npcid].friendly;
+
 		switch (tag)
 		{
 		case 1000://关闭
@@ -433,9 +434,9 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		case 2://结交
 		{
 			bool isFriend = false;
-			for (unsigned int i = 0; i < myrelation.size(); i++)
+			for (unsigned int i = 0; i < GlobalInstance::map_myfriendly[m_npcid].relation.size(); i++)
 			{
-				if (myrelation[i] == NPC_FRIEND)
+				if (GlobalInstance::map_myfriendly[m_npcid].relation[i] == NPC_FRIEND)
 				{
 					isFriend = true;
 					break;
@@ -500,11 +501,11 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 				npcbtntxt->loadTexture(ResourcePath::makeTextImgPath("npctext_2", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 				std::vector<int>::iterator it;
-				for (it = myrelation.begin(); it != myrelation.end(); it++)
+				for (it = GlobalInstance::map_myfriendly[m_npcid].relation.begin(); it != GlobalInstance::map_myfriendly[m_npcid].relation.end(); it++)
 				{
 					if (*it == NPC_FRIEND)
 					{
-						myrelation.erase(it);
+						GlobalInstance::map_myfriendly[m_npcid].relation.erase(it);
 						break;
 					}
 				}
@@ -517,9 +518,9 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		case 3://拜师
 		{
 			bool isMaster = false;
-			for (unsigned int i = 0; i < myrelation.size(); i++)
+			for (unsigned int i = 0; i < GlobalInstance::map_myfriendly[m_npcid].relation.size(); i++)
 			{
-				if (myrelation[i] == NPC_MASTER)
+				if (GlobalInstance::map_myfriendly[m_npcid].relation[i] == NPC_MASTER)
 				{
 					isMaster = true;
 					break;
@@ -579,9 +580,9 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		case 4://结亲
 		{
 			bool isMarry = false;
-			for (unsigned int i = 0; i < myrelation.size(); i++)
+			for (unsigned int i = 0; i < GlobalInstance::map_myfriendly[m_npcid].relation.size(); i++)
 			{
-				if (myrelation[i] == NPC_COUPEL)
+				if (GlobalInstance::map_myfriendly[m_npcid].relation[i] == NPC_COUPEL)
 				{
 					isMarry = true;
 					break;
@@ -652,11 +653,11 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 				npcbtntxt->loadTexture(ResourcePath::makeTextImgPath("npctext_4", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 				std::vector<int>::iterator it;
-				for (it = myrelation.begin(); it != myrelation.end(); it++)
+				for (it = GlobalInstance::map_myfriendly[m_npcid].relation.begin(); it != GlobalInstance::map_myfriendly[m_npcid].relation.end(); it++)
 				{
 					if (*it == NPC_COUPEL)
 					{
-						myrelation.erase(it);
+						GlobalInstance::map_myfriendly[m_npcid].relation.erase(it);
 						break;
 					}
 				}
@@ -669,16 +670,16 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		case 5:
 		{
 			GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::map_npcrelation[m_npcid].fightcost;
-			if (myrelation.size() > 0)
+			if (GlobalInstance::map_myfriendly[m_npcid].relation.size() > 0)
 			{
 				std::vector<int>::iterator it;
-				for (it = myrelation.begin(); it != myrelation.end(); it++)
+				for (it = GlobalInstance::map_myfriendly[m_npcid].relation.begin(); it != GlobalInstance::map_myfriendly[m_npcid].relation.end(); it++)
 				{
 					if ((*it == NPC_FRIEND && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].friendneed)
 						|| (*it == NPC_MASTER && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].masterneed)
 						|| (*it == NPC_COUPEL && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].marryneed))
 					{
-						it = myrelation.erase(it);
+						it = GlobalInstance::map_myfriendly[m_npcid].relation.erase(it);
 					}
 				}
 			}
@@ -766,7 +767,7 @@ bool NpcLayer::checkMutexNpc()
 
 bool NpcLayer::checkNpcRelation(int relation)
 {
-	if (find(myrelation.begin(), myrelation.end(), relation) != myrelation.end())
+	if (find(GlobalInstance::map_myfriendly[m_npcid].relation.begin(), GlobalInstance::map_myfriendly[m_npcid].relation.end(), relation) != GlobalInstance::map_myfriendly[m_npcid].relation.end())
 	{
 		return true;
 	}

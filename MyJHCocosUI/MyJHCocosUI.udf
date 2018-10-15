@@ -11,10 +11,9 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="npcgiveLayer.csd" />
-          <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="rewardLayer.csd" />
+          <FilePathData Path="headInfoLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="npcgiveLayer.csd" />
+        <ActiveDocument Path="headInfoLayer.csd" />
       </Value>
     </Item>
   </Properties>

@@ -44,8 +44,6 @@ private:
 	int friendper;//需要结交的好感度
 	int masterper;//需要拜师的好感度
 	int marryper;//需要结亲的好感度
-	int myfriendly;
-	std::vector<int> myrelation;
 	int btntag;
 	cocos2d::ui::ImageView* btnArr[6];
 	Node* csbnode;

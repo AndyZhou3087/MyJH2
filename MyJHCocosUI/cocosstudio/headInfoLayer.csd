@@ -16,7 +16,7 @@
             <PreSize X="0.8333" Y="0.5172" />
             <FileData Type="Normal" Path="images/smallbg.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="actionbtn" ActionTag="-1138230504" Tag="164" IconVisible="False" LeftMargin="261.0000" RightMargin="255.0000" TopMargin="851.0002" BottomMargin="344.9998" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="actionbtn" ActionTag="-1138230504" Tag="164" IconVisible="False" LeftMargin="261.0000" RightMargin="255.0000" TopMargin="856.0001" BottomMargin="339.9999" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-904874607" Tag="165" IconVisible="False" LeftMargin="64.5216" RightMargin="65.4784" TopMargin="21.2404" BottomMargin="25.7596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="24" Scale9Height="11" ctype="ImageViewObjectData">
@@ -31,10 +31,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="363.0000" Y="386.9998" />
+            <Position X="363.0000" Y="381.9999" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5042" Y="0.3023" />
+            <PrePosition X="0.5042" Y="0.2984" />
             <PreSize X="0.2833" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
@@ -43,37 +43,37 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_2" ActionTag="1881952922" Tag="166" IconVisible="False" LeftMargin="260.9528" RightMargin="288.0472" TopMargin="711.7165" BottomMargin="538.2835" FontSize="26" LabelText="拥有元宝：100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_2" ActionTag="1881952922" Tag="166" IconVisible="False" LeftMargin="260.9531" RightMargin="288.0469" TopMargin="664.1469" BottomMargin="585.8531" FontSize="26" LabelText="拥有元宝：100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="171.0000" Y="30.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="260.9528" Y="553.2835" />
+            <Position X="260.9531" Y="600.8531" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3624" Y="0.4323" />
+            <PrePosition X="0.3624" Y="0.4694" />
             <PreSize X="0.2375" Y="0.0234" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_1" ActionTag="-491295242" Tag="167" IconVisible="False" LeftMargin="260.9528" RightMargin="262.0472" TopMargin="657.8853" BottomMargin="592.1147" FontSize="26" LabelText="拥有银两：10000" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_1" ActionTag="-491295242" Tag="167" IconVisible="False" LeftMargin="260.9531" RightMargin="262.0469" TopMargin="617.6008" BottomMargin="632.3992" FontSize="26" LabelText="拥有银两：10000" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="197.0000" Y="30.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="260.9528" Y="607.1147" />
+            <Position X="260.9531" Y="647.3992" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3624" Y="0.4743" />
+            <PrePosition X="0.3624" Y="0.5058" />
             <PreSize X="0.2736" Y="0.0234" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_0" ActionTag="-122739198" Tag="168" IconVisible="False" LeftMargin="260.9528" RightMargin="288.0472" TopMargin="604.0543" BottomMargin="645.9457" FontSize="26" LabelText="拥有角色：100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_0" ActionTag="-122739198" Tag="168" IconVisible="False" LeftMargin="260.9531" RightMargin="288.0469" TopMargin="571.0547" BottomMargin="678.9453" FontSize="26" LabelText="拥有角色：100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="171.0000" Y="30.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="260.9528" Y="660.9457" />
+            <Position X="260.9531" Y="693.9453" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3624" Y="0.5164" />
+            <PrePosition X="0.3624" Y="0.5421" />
             <PreSize X="0.2375" Y="0.0234" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
@@ -110,6 +110,42 @@
             <PrePosition X="0.5000" Y="0.6650" />
             <PreSize X="0.1903" Y="0.1102" />
             <FileData Type="MarkedSubImage" Path="ui/h_0_0.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="attrtext_5" ActionTag="76628822" Tag="41" IconVisible="False" LeftMargin="260.9531" RightMargin="288.0469" TopMargin="803.7855" BottomMargin="446.2145" FontSize="26" LabelText="拥有元宝：100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="171.0000" Y="30.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="260.9531" Y="461.2145" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3624" Y="0.3603" />
+            <PreSize X="0.2375" Y="0.0234" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="attrtext_4" ActionTag="-1969773757" Tag="42" IconVisible="False" LeftMargin="260.9531" RightMargin="262.0469" TopMargin="757.2393" BottomMargin="492.7607" FontSize="26" LabelText="拥有银两：10000" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="197.0000" Y="30.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="260.9531" Y="507.7607" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3624" Y="0.3967" />
+            <PreSize X="0.2736" Y="0.0234" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="attrtext_3" ActionTag="-1827961053" Tag="43" IconVisible="False" LeftMargin="260.9531" RightMargin="288.0469" TopMargin="710.6931" BottomMargin="539.3069" FontSize="26" LabelText="拥有角色：100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="171.0000" Y="30.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="260.9531" Y="554.3069" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3624" Y="0.4331" />
+            <PreSize X="0.2375" Y="0.0234" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

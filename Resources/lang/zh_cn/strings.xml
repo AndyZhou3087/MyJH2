@@ -311,5 +311,7 @@
 	<s name="npcgivetips">点击要选择的道具</s>
 	<s name="npcgivetext0">赠送数量：</s>
 	<s name="npcgivetext1">增加好感度：</s>
-	<s name="npcgivemost">背不动更多东西了，请先丢弃部分物品</s>
+	<s name="npcmastertitle">师父：%s</s>
+	<s name="npcfriendtitle">结交数量：%d</s>
+	<s name="npccoupeltitle">结亲：%s</s>
 </strings>
