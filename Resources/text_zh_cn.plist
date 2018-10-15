@@ -631,7 +631,7 @@
 				<key>sourceSize</key>
 				<string>{27,86}</string>
 			</dict>
-			<key>text_zh_cn/m5-3.png</key>
+			<key>text_zh_cn/m5-2.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{922,1633},{27,86}}</string>
@@ -829,7 +829,7 @@
 				<key>sourceSize</key>
 				<string>{29,88}</string>
 			</dict>
-			<key>text_zh_cn/m5-2.png</key>
+			<key>text_zh_cn/m5-4.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{620,1101},{29,88}}</string>
@@ -1368,7 +1368,7 @@
 				<key>sourceSize</key>
 				<string>{27,87}</string>
 			</dict>
-			<key>text_zh_cn/m5-4.png</key>
+			<key>text_zh_cn/m5-3.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{889,1674},{27,86}}</string>
