@@ -269,6 +269,8 @@ void MyHeroNode::updateTime(float dt)
 		}
 	}
 
+	namelbl->setString(m_heroData->getName());
+
 	std::string  lvstr = StringUtils::format("Lv.%d", m_heroData->getLevel() + 1);
 	lvlbl->setString(lvstr);
 
@@ -296,7 +298,6 @@ void MyHeroNode::updateData()
 	str = StringUtils::format("vocation_%d", m_heroData->getVocation());
 	vocationlbl->setString(ResourceLang::map_lang[str]);
 
-	namelbl->setString(m_heroData->getName());
 	arrowglv->setPositionX(-103 + namelbl->getContentSize().width + 8);
 
 	for (int i = 0; i < m_heroData->getChangeCount() - 1; i++)

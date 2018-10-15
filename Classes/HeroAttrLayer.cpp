@@ -178,7 +178,6 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 		m_editName->setEnabled(false);
 	}
 
-
 	//角色职业
 	vocation = (cocos2d::ui::Text*)heroattrbottom->getChildByName("vocation");
 	str = StringUtils::format("vocation_%d", herodata->getVocation());
@@ -519,9 +518,21 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 			else
 			{
 				OutTownLayer* outTown = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
-				outTown->getMyCardHeroNode(this->getTag())->setData(GlobalInstance::myCardHeros[this->getTag()]);
-				SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
-				sellayer->getMyHeroNode(this->getTag())->updateData();
+
+				if (outTown != NULL)
+				{
+					CardHeroNode* mycardheroNode = (CardHeroNode*)outTown->getMyCardHeroNode(this->getTag());
+					if (mycardheroNode != NULL && this->getTag() < 6)
+						mycardheroNode->setData(GlobalInstance::myCardHeros[this->getTag()]);
+
+					SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
+					if (sellayer != NULL)
+					{
+						MyHeroNode* myheroNode = (MyHeroNode*)sellayer->getMyHeroNode(this->getTag());
+						if (myheroNode != NULL)
+							myheroNode->updateData();
+					}
+				}
 			}
 		}
 		else if (g_MapBlockScene != NULL)
