@@ -171,7 +171,7 @@ void NpcgiveLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			break;
 		case 1001://ิ๙หอ
 		{
-			int friendly = lastIndexCount;// GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount;
+			int friendly = GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount;
 			GlobalInstance::map_myfriendly[m_npcid].friendly += friendly;
 			NpcLayer* npclayer = (NpcLayer*)this->getParent();
 			if (npclayer != NULL)
@@ -288,7 +288,7 @@ void NpcgiveLayer::updateCaryyCountLbl()
 	}
 	m_count->setString(str);
 
-	int friendly = lastIndexCount;// GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount;
+	int friendly = GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount;
 	str = StringUtils::format("%d", friendly);
 	m_friendly->setString(str);
 }
