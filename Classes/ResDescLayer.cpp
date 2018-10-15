@@ -144,7 +144,21 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 		MyRes::Use(res->getId(), 1, MYSTORAGE);
 
 		int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
-		MyRes::Add(awdres, count, MYSTORAGE, qu, stc);
+
+		if (res->getId().compare("r006") == 0)
+		{
+			DynamicValueInt dvint;
+			dvint.setValue(count);
+			GlobalInstance::getInstance()->addMySoliverCount(dvint);
+		}
+		else if (res->getId().compare("r012") == 0)
+		{
+			DynamicValueInt dvint;
+			dvint.setValue(count);
+			GlobalInstance::getInstance()->addMyCoinCount(dvint);
+		}
+		else
+			MyRes::Add(awdres, count, MYSTORAGE, qu, stc);
 
 		if (g_mainScene != NULL)
 		{

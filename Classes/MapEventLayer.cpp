@@ -276,7 +276,21 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				int count = atoi(vec_rewards[1].c_str());
 				int qu = atoi(vec_rewards[2].c_str());
 				int stonesCount = GlobalInstance::getInstance()->generateStoneCount(qu);
-				MyRes::Add(resid, count, MYPACKAGE, qu, stonesCount);
+
+				if (resid.compare("r006") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(count);
+					GlobalInstance::getInstance()->addMySoliverCount(dvint);
+				}
+				else if (resid.compare("r012") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(count);
+					GlobalInstance::getInstance()->addMyCoinCount(dvint);
+				}
+				else
+					MyRes::Add(resid, count, MYPACKAGE, qu, stonesCount);
 			}
 			//this->removeFromParentAndCleanup(true);
 			AnimationEffect::closeAniEffect((Layer*)this);
