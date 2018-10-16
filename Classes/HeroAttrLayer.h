@@ -91,6 +91,9 @@ private:
 	void longTouchUpdate(float delay);
 	void cancelLongTouch();
 
+	void JumpSceneCallback(cocos2d::Ref* pScene, cocos2d::ui::PageView::EventType type);
+	void pageMoveCallback(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
 private:
 	Node* lvnode;
 	//
@@ -136,6 +139,8 @@ private:
 	//全身像
 	cocos2d::ui::ImageView* herofullimg;
 
+	cocos2d::ui::ImageView* heroattrqu;
+
 	//点击的装备栏位置
 	int clickindex;
 
@@ -163,6 +168,11 @@ private:
 
 	cocos2d::ui::Widget* heroattrnamebox;
 	cocos2d::ui::Widget* redtip;
+
+	cocos2d::ui::PageView* pageView;
+	int m_fromwhere;
+	std::vector<Hero*> vec_norheros;
+	int isPageMoveOk;
 };
 
 #endif
