@@ -639,7 +639,7 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 
-			if ((NewGuideLayer::checkifNewerGuide(63) && tag == 2) || (tag == 6 && NewGuideLayer::checkifNewerGuide(66)) || tag == 9
+			if ((NewGuideLayer::checkifNewerGuide(63) && tag == 2) || (tag == 6 && NewGuideLayer::checkifNewerGuide(66))
 				|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && tag == 5) || (NewGuideLayer::checkifNewerGuide(73) && tag == 3)
 				|| (tag == 8 && !GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15)))
 			{
