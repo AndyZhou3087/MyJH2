@@ -30,6 +30,7 @@
 	<s name="attrtext_4">暴击几率：</s>
 	<s name="attrtext_5">闪避几率：</s>
 	<s name="samename">重复的名字！</s>
+	<s name="errname">名字中不能包含"-"或";"</s>	
 	<s name="maxcaptext">储备：</s>
 	<s name="outputtext">产量：</s>
 	<s name="farmercounttext">工人数量</s>
