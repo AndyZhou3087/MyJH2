@@ -89,6 +89,11 @@ bool GlobalInstance::isCheat = false;
 
 S_TimeGift GlobalInstance::serverTimeGiftData;
 
+Hero* GlobalInstance::myOnChallengeHeros[6];//竞技赛我选择的6个英雄
+
+Hero* GlobalInstance::matchFightHeros[6];//匹配到的6个英雄
+MyMatchInfo GlobalInstance::myMatchInfo;
+
 GlobalInstance::GlobalInstance()
 {
 

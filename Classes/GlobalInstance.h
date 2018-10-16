@@ -325,6 +325,15 @@ typedef struct
 	int turn;
 }S_TimeGift;
 
+typedef struct
+{
+	bool isgetreward;
+	std::string endtime;
+	std::vector<MSGAWDSDATA> vec_reward;
+	int matchexp;
+}MyMatchInfo;
+
+
 class GlobalInstance
 {
 public:
@@ -668,6 +677,12 @@ public:
 	static bool isCheat;
 
 	static S_TimeGift serverTimeGiftData;
+
+	static MyMatchInfo myMatchInfo;
+
+	static Hero* myOnChallengeHeros[6];//竞技赛我选择的6个英雄
+
+	static Hero* matchFightHeros[6];//匹配到的6个英雄
 
 private:
 	static int refreshHeroTime;

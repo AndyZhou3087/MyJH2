@@ -27,7 +27,10 @@ private:
 
 	int clickHero;
 	Vec2 beginTouchPoint;
-	cocos2d::ui::Widget* changebtn;
+	cocos2d::ui::Text* matchlv;
+	cocos2d::ui::Text* matchexp;
+	cocos2d::ui::Text* needexp;
+	cocos2d::ui::Text* nextlvtext;
 };
 
 #endif

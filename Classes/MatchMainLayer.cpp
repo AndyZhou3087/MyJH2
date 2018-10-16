@@ -108,16 +108,18 @@ bool MatchMainLayer::init()
 	cocos2d::ui::Text* matchexptext = (cocos2d::ui::Text*)csbnode->getChildByName("matchexptext");
 	matchexptext->setString(ResourceLang::map_lang["matchexptext"]);
 
-	cocos2d::ui::Text* matchlv = (cocos2d::ui::Text*)csbnode->getChildByName("matchlv");
-	//matchlv->setString(ResourceLang::map_lang["matchexptext"]);
+	 matchlv = (cocos2d::ui::Text*)csbnode->getChildByName("matchlv");
+	matchlv->setString(ResourceLang::map_lang["matchlvname_0"]);
 
-	cocos2d::ui::Text* matchexp = (cocos2d::ui::Text*)csbnode->getChildByName("matchexp");
-	//matchexp->setString(ResourceLang::map_lang["matchexptext"]);
+	matchexp = (cocos2d::ui::Text*)csbnode->getChildByName("matchexp");
+	matchexp->setString("0");
 
-	cocos2d::ui::Text* needexp = (cocos2d::ui::Text*)csbnode->getChildByName("needexp");
-	//needexp->setString(ResourceLang::map_lang["matchexptext"]);
+	needexp = (cocos2d::ui::Text*)csbnode->getChildByName("needexp");
+	std::string str = StringUtils::format(ResourceLang::map_lang["neednextexpdesc"].c_str(), 0);
+	needexp->setString(str);
 
-	cocos2d::ui::Text* nextlvtext = (cocos2d::ui::Text*)csbnode->getChildByName("nextlvtext");
+	nextlvtext = (cocos2d::ui::Text*)csbnode->getChildByName("nextlvtext");
+	nextlvtext->setString("");
 
 	cocos2d::ui::Text* rewardtext = (cocos2d::ui::Text*)csbnode->getChildByName("rewardtext");
 	rewardtext->setString(ResourceLang::map_lang["matchrewardtext"]);

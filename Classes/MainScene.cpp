@@ -21,6 +21,7 @@
 #include "Quest.h"
 #include "DataSave.h"
 #include "ErrorHintLayer.h"
+#include "MatchMainLayer.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -663,7 +664,31 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			{
 				Layer* layer = NULL;
 
-				if (buildname.compare("6innroom") == 0)
+				if (buildname.compare("0outtown") == 0)
+				{
+					layer = OutTownLayer::create();
+				}
+				else if (buildname.compare("1hospital") == 0)
+				{
+					layer = HospitalLayer::create();
+				}
+				else if (buildname.compare("2smithy") == 0)
+				{
+					layer = SmithyLayer::create(Building::map_buildingDatas[buildname]);
+				}
+				else if (buildname.compare("3storehouse") == 0)
+				{
+					layer = StoreHouseLayer::create();
+				}
+				else if (buildname.compare("4trainigroom") == 0)
+				{
+					layer = TrainLayer::create(Building::map_buildingDatas[buildname]);
+				}
+				else if (buildname.compare("5market") == 0)
+				{
+					layer = MarketLayer::create(Building::map_buildingDatas[buildname]);
+				}
+				else if (buildname.compare("6innroom") == 0)
 				{
 					layer = InnRoomLayer::create(Building::map_buildingDatas[buildname]);
 				}
@@ -671,35 +696,14 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				{
 					layer = HomeHillLayer::create(Building::map_buildingDatas[buildname]);
 				}
-				else if (buildname.compare("0outtown") == 0)
+				else if (buildname.compare("8pkground") == 0)
 				{
-					layer = OutTownLayer::create();
-				}
-				else if (buildname.compare("3storehouse") == 0)
-				{
-					layer = StoreHouseLayer::create();
-				}
-				else if (buildname.compare("2smithy") == 0)
-				{
-					layer = SmithyLayer::create(Building::map_buildingDatas[buildname]);
-				}
-				else if (buildname.compare("5market") == 0)
-				{
-					layer = MarketLayer::create(Building::map_buildingDatas[buildname]);
+					layer = MatchMainLayer::create();
 				}
 				else if (buildname.compare("9assemblyhall") == 0)
 				{
 					layer = TaskLayer::create();
 				}
-				else if (buildname.compare("1hospital") == 0)
-				{
-					layer = HospitalLayer::create();
-				}
-				else if (buildname.compare("4trainigroom") == 0)
-				{
-					layer = TrainLayer::create(Building::map_buildingDatas[buildname]);
-				}
-
 				if (layer != NULL)
 				{
 					this->addChild(layer, 0, buildname);
