@@ -314,4 +314,14 @@
 	<s name="npcmastertitle">师父：%s</s>
 	<s name="npcfriendtitle">结交数量：%d</s>
 	<s name="npccoupeltitle">结亲：%s</s>
+	<s name="matchlvtext">段位</s>
+	<s name="matchexptext">积分</s>
+	<s name="matchlvname_0">乡野义士</s>
+	<s name="matchlvname_1">江湖侠士</s>
+	<s name="matchlvname_2">名门侠客</s>
+	<s name="matchlvname_3">一方大侠</s>
+	<s name="matchlvname_4">墨者</s>
+	<s name="neednextexpdesc">还需%d积分可升级至：</s>
+	<s name="matchrewardtext">赛季奖励</s>
+	<s name="matchendtimetext">赛季结束时间：</s>				
 </strings>

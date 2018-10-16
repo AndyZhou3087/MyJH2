@@ -560,6 +560,11 @@
           <Image Name="maptask_title.png" />
           <Image Name="marketlvup_text.png" />
           <Image Name="markettitle.png" />
+          <Image Name="matchbtn_text.png" />
+          <Image Name="matchdoing_text.png" />
+          <Image Name="matchfighttitle.png" />
+          <Image Name="matchrulebtn_text.png" />
+          <Image Name="matchsave_text.png" />
           <Image Name="messagetitle.png" />
           <Image Name="msgallget_text.png" />
           <Image Name="msggeted_text.png" />
@@ -952,6 +957,8 @@
           <Image Name="main_silver.png" />
           <Image Name="maincityhintbox.png" />
           <Image Name="maintask_icon.png" />
+          <Image Name="matchdoingbtn.png" />
+          <Image Name="matchrewardicon.png" />
           <Image Name="messageicon.png" />
           <Image Name="ninegrid.png" />
           <Image Name="normal9bg.png" />
@@ -1166,6 +1173,7 @@
         <Project Name="marketLayer.csd" Type="Layer" />
         <Project Name="marketRefreshLayer.csd" Type="Layer" />
         <Project Name="marketResNode.csd" Type="Node" />
+        <Project Name="matchMainLayer.csd" Type="Layer" />
         <Project Name="materialDescNode.csd" Type="Node" />
         <Project Name="messageDescLayer.csd" Type="Layer" />
         <Project Name="messageLayer.csd" Type="Layer" />

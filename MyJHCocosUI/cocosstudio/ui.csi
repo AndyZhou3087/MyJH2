@@ -436,6 +436,8 @@
       <FilePathData Path="ui/timegift.png" />
       <FilePathData Path="ui/timegifttimebox.png" />
       <FilePathData Path="ui/u001.png" />
+      <FilePathData Path="ui/matchdoingbtn.png" />
+      <FilePathData Path="ui/matchrewardicon.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
