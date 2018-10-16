@@ -314,4 +314,7 @@
 	<s name="npcmastertitle">师父：%s</s>
 	<s name="npcfriendtitle">结交数量：%d</s>
 	<s name="npccoupeltitle">结亲：%s</s>
+	<s name="salegftext">出售后就会永久失去该功法，确定出售？</s>
+	<s name="salegftitle">售价：    %d</s>
+	<s name="salegftips">出售成功</s>
 </strings>

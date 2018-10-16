@@ -75,7 +75,7 @@
             <PreSize X="0.1514" Y="0.0852" />
             <FileData Type="MarkedSubImage" Path="ui/a001.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="coutlbl" ActionTag="1767554532" Tag="58" IconVisible="False" LeftMargin="313.0000" RightMargin="313.0000" TopMargin="589.2396" BottomMargin="664.7604" FontSize="23" LabelText="数量：%s" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="coutlbl" Visible="False" ActionTag="1767554532" Tag="58" IconVisible="False" LeftMargin="313.0000" RightMargin="313.0000" TopMargin="589.2396" BottomMargin="664.7604" FontSize="23" LabelText="数量：%s" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="94.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="677.7604" />
@@ -98,6 +98,58 @@
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="salecount" ActionTag="1858757196" VisibleForFrame="False" Tag="140" IconVisible="False" LeftMargin="281.2177" RightMargin="296.7823" TopMargin="588.6334" BottomMargin="665.3666" FontSize="23" LabelText="售价：    %s" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="142.0000" Y="26.0000" />
+            <Children>
+              <AbstractNodeData Name="main_silver" ActionTag="303970310" Tag="141" IconVisible="False" LeftMargin="66.5930" RightMargin="37.4070" TopMargin="-8.8258" BottomMargin="-3.1742" ctype="SpriteObjectData">
+                <Size X="38.0000" Y="38.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="85.5930" Y="15.8258" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.6028" Y="0.6087" />
+                <PreSize X="0.2676" Y="1.4615" />
+                <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="281.2177" Y="678.3666" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3906" Y="0.5300" />
+            <PreSize X="0.1972" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="closebtn" ActionTag="613568636" VisibleForFrame="False" Tag="142" IconVisible="False" LeftMargin="137.0971" RightMargin="378.9030" TopMargin="798.2622" BottomMargin="397.7378" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="204.0000" Y="84.0000" />
+            <Children>
+              <AbstractNodeData Name="text" ActionTag="1529148387" Tag="143" IconVisible="False" LeftMargin="62.5216" RightMargin="63.4784" TopMargin="19.7404" BottomMargin="24.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="28" Scale9Height="14" ctype="ImageViewObjectData">
+                <Size X="78.0000" Y="40.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="101.5216" Y="44.2596" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4977" Y="0.5269" />
+                <PreSize X="0.3824" Y="0.4762" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/lvupbtn_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="239.0971" Y="439.7378" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3321" Y="0.3435" />
+            <PreSize X="0.2833" Y="0.0656" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

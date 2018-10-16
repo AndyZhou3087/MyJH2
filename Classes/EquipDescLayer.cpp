@@ -14,6 +14,7 @@
 #include "NewGuideLayer.h"
 #include "MainScene.h"
 #include "HintBoxLayer.h"
+#include "SaleGfLayer.h"
 
 USING_NS_CC;
 
@@ -58,14 +59,24 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	int langtype = GlobalInstance::getInstance()->getLang();
 
+	cocos2d::ui::Widget* salebtn;
 	if (res->getType() >= T_WG && res->getType() <= T_NG)
+	{
 		csbnode = CSLoader::createNode(ResourcePath::makePath("gfDescLayer.csb"));
+		//出售按钮
+		salebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("salebtn");
+		salebtn->addTouchEventListener(CC_CALLBACK_2(EquipDescLayer::onBtnClick, this));
+		salebtn->setTag(1000);
+		cocos2d::ui::ImageView* salebtnbtntxt = (cocos2d::ui::ImageView*)salebtn->getChildByName("text");
+		salebtnbtntxt->loadTexture(ResourcePath::makeTextImgPath("text_sale", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		salebtnbtntxt->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("text_sale", langtype))->getContentSize());
+	}
 	else
 		csbnode = CSLoader::createNode(ResourcePath::makePath("equipDescLayer.csb"));
 
 	this->addChild(csbnode);
-	int langtype = GlobalInstance::getInstance()->getLang();
 
 	cocos2d::ui::Widget* smallbg = (cocos2d::ui::Widget*)csbnode->getChildByName("smallbg");
 	smallbg->setSwallowTouches(true);
@@ -217,7 +228,6 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	prominuslb->setString(str);
 	prominuslb->setVisible(false);
 
-
 	//按钮1
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(EquipDescLayer::onBtnClick, this));
@@ -237,6 +247,11 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 			lvbtn->setTag(100);
 			lvbtntxt->loadTexture(ResourcePath::makeTextImgPath("strenthbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			lvbtntxt->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("strenthbtn_text", langtype))->getContentSize());
+		}
+		else if (res->getType() >= T_WG && res->getType() <= T_NG)
+		{
+			actionbtn->setPositionX(490);
+			salebtn->setVisible(true);
 		}
 		if (GlobalInstance::map_AllResources[res->getId()].vec_needres.size() > 0)
 		{
@@ -406,6 +421,12 @@ void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			StrengthenLayer* sLayer = StrengthenLayer::create((Equip*)m_res,1);
 			this->addChild(sLayer);
 			AnimationEffect::openAniEffect((Layer*)sLayer);
+		}
+		else if (tag == 1000)
+		{
+			SaleGfLayer* layer = SaleGfLayer::create((ResBase*)m_res);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 		else
 		{
