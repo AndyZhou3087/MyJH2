@@ -108,7 +108,7 @@ bool MatchMainLayer::init()
 	cocos2d::ui::Text* matchexptext = (cocos2d::ui::Text*)csbnode->getChildByName("matchexptext");
 	matchexptext->setString(ResourceLang::map_lang["matchexptext"]);
 
-	 matchlv = (cocos2d::ui::Text*)csbnode->getChildByName("matchlv");
+	matchlv = (cocos2d::ui::Text*)csbnode->getChildByName("matchlv");
 	matchlv->setString(ResourceLang::map_lang["matchlvname_0"]);
 
 	matchexp = (cocos2d::ui::Text*)csbnode->getChildByName("matchexp");
@@ -127,8 +127,8 @@ bool MatchMainLayer::init()
 	cocos2d::ui::Text* endtimetxt = (cocos2d::ui::Text*)csbnode->getChildByName("endtimetxt");
 	endtimetxt->setString(ResourceLang::map_lang["matchendtimetext"]);
 
-	cocos2d::ui::Text* endtime = (cocos2d::ui::Text*)csbnode->getChildByName("endtime");
-	//endtime->setString(ResourceLang::map_lang["matchendtimetext"]);
+	endtime = (cocos2d::ui::Text*)csbnode->getChildByName("endtime");
+	endtime->setString("");
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -140,7 +140,7 @@ bool MatchMainLayer::init()
 		m_myCardHerosNode[i] = CardHeroNode::create();
 		m_myCardHerosNode[i]->setPosition(pos);
 		this->addChild(m_myCardHerosNode[i], 1, i);
-		m_myCardHerosNode[i]->setData(GlobalInstance::myCardHeros[i]);
+		m_myCardHerosNode[i]->setData(NULL);
 	}
 
 	//屏蔽下层点击

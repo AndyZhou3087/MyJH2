@@ -31,6 +31,7 @@ private:
 	cocos2d::ui::Text* matchexp;
 	cocos2d::ui::Text* needexp;
 	cocos2d::ui::Text* nextlvtext;
+	cocos2d::ui::Text* endtime;
 };
 
 #endif

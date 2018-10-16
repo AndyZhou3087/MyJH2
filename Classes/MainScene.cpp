@@ -135,7 +135,7 @@ bool MainScene::init()
 		buildingNomal->setUserData((void*)buildingSelect);
 		buildingNomal->setTag(i);
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
-		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && NewGuideLayer::checkifNewerGuide(66)) || i == 9
+		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && NewGuideLayer::checkifNewerGuide(66)) /*|| i == 9*/
 			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 5) || (NewGuideLayer::checkifNewerGuide(73) && i == 3)
 			|| (i == 8 && !GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15)))//医馆,市场,训练场，竞技场,后山,铁匠铺默认不开放
 		{
@@ -640,7 +640,7 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 
-			if ((NewGuideLayer::checkifNewerGuide(63) && tag == 2) || (tag == 6 && NewGuideLayer::checkifNewerGuide(66))
+			if ((NewGuideLayer::checkifNewerGuide(63) && tag == 2) || (tag == 6 && NewGuideLayer::checkifNewerGuide(66))/* || (tag == 9)*/
 				|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && tag == 5) || (NewGuideLayer::checkifNewerGuide(73) && tag == 3)
 				|| (tag == 8 && !GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15)))
 			{

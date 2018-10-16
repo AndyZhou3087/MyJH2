@@ -287,19 +287,19 @@
             <PreSize X="0.2083" Y="0.0969" />
             <FileData Type="MarkedSubImage" Path="ui/matchrewardicon.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rewardtext" ActionTag="-680239976" Tag="125" IconVisible="False" LeftMargin="312.2604" RightMargin="286.7396" TopMargin="1127.0139" BottomMargin="118.9860" FontSize="30" LabelText="赛季奖励" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="rewardtext" ActionTag="-680239976" Tag="125" IconVisible="False" LeftMargin="299.5000" RightMargin="299.5000" TopMargin="1127.0140" BottomMargin="118.9860" FontSize="30" LabelText="赛季奖励" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
             <Size X="121.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="372.7604" Y="135.9860" />
+            <Position X="360.0000" Y="135.9860" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="121" G="78" B="46" />
-            <PrePosition X="0.5177" Y="0.1062" />
+            <PrePosition X="0.5000" Y="0.1062" />
             <PreSize X="0.1681" Y="0.0266" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="endtimetxt" ActionTag="130752793" Tag="126" IconVisible="False" LeftMargin="229.7489" RightMargin="348.2511" TopMargin="1180.8584" BottomMargin="74.1415" FontSize="22" LabelText="赛季结束时间：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="endtimetxt" ActionTag="130752793" Tag="126" IconVisible="False" LeftMargin="229.7489" RightMargin="348.2511" TopMargin="1180.8585" BottomMargin="74.1415" FontSize="22" LabelText="赛季结束时间：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
             <Size X="142.0000" Y="25.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="300.7489" Y="86.6415" />
@@ -311,7 +311,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="endtime" ActionTag="288162021" Tag="127" IconVisible="False" LeftMargin="382.1389" RightMargin="228.8611" TopMargin="1180.8584" BottomMargin="74.1415" FontSize="22" LabelText="2018-02-21" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="endtime" ActionTag="288162021" Tag="127" IconVisible="False" LeftMargin="382.1389" RightMargin="228.8611" TopMargin="1180.8585" BottomMargin="74.1415" FontSize="22" LabelText="2018-02-21" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="109.0000" Y="25.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="382.1389" Y="86.6415" />
