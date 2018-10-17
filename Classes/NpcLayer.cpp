@@ -536,7 +536,7 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 				{
 					if (checkOtherMater().length() > 0)
 					{
-						std::string npcstr = StringUtils::format(ResourceLang::map_lang["npcmasterfail2"].c_str(), checkOtherMater().c_str());
+						std::string npcstr = StringUtils::format(ResourceLang::map_lang["npcmasterfail2"].c_str(), GlobalInstance::map_AllResources[checkOtherMater()].name.c_str());
 						checkWordLblColor(npcstr);
 					}
 					else if (checkNpcRelation(NPC_FRIEND))
