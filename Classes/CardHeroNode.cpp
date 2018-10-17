@@ -89,7 +89,7 @@ bool CardHeroNode::init(int forwhere)
 	{
 		powericon->setVisible(false);
 		powertext->setVisible(false);
-		powerclick->setEnabled(false);
+		powerclick->setVisible(false);
 	}
 
 	return true;
@@ -250,6 +250,12 @@ void CardHeroNode::updatePowerCount(float dt)
 		else
 			powertext->setTextColor(Color4B(Color3B(101, 76, 36)));
 
+		if (m_forwhere == 1)
+		{
+			powericon->setVisible(false);
+			powertext->setVisible(false);
+			powerclick->setVisible(false);
+		}
 
 		if (!arrowglv->isVisible() && ((m_herodata->getLevel() + 1) / 10) == m_herodata->getChangeCount() && GlobalInstance::getInstance()->getCanUpgradeCount() && (m_herodata->getLevel() + 1) < 50)
 		{

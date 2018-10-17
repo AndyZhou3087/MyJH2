@@ -8,14 +8,16 @@
 #include "MainScene.h"
 #include "Const.h"
 #include "SelectMyHerosLayer.h"
-#include "DataSave.h"
+#include "HttpDataSwap.h"
+#include "WaitingProgress.h"
+#include "ErrorHintLayer.h"
 
 USING_NS_CC;
 
 MatchMainLayer::MatchMainLayer()
 {
 	clickHero = -1;
-	httptag = -1;
+	httptag = 0;
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -148,6 +150,11 @@ bool MatchMainLayer::init()
 		m_myCardHerosNode[i]->setData(NULL);
 	}
 
+	WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+	this->addChild(wp, 0, "waitingprogress");
+
+	HttpDataSwap::init(this)->getMyMatchHeros();
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = CC_CALLBACK_2(MatchMainLayer::onTouchBegan, this);
@@ -272,9 +279,8 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		}
 			break;
 		case 1001://save http data
-			httptag = 0;
-
-
+			httptag = 1;
+			HttpDataSwap::init(this)->postMyMatchHeros();
 			break;
 		case 1002://rule
 			break;
@@ -285,6 +291,74 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			break;
 		default:
 			break;
+		}
+	}
+}
+
+void MatchMainLayer::updateUI()
+{
+	int lv = 0;
+
+	int lvscores[] = {100, 300, 700, 1000, INT32_MAX};
+	int lvsize = sizeof(lvscores) / sizeof(lvscores[0]);
+
+	for (int i = 0; i < lvsize; i++)
+	{
+		if (GlobalInstance::myMatchInfo.matchscore < lvscores[i])
+		{
+			lv = i;
+			break;
+		}
+	}
+
+	std::string lvnamekey = StringUtils::format("matchlvname_%d", lv);
+	matchlv->setString(ResourceLang::map_lang[lvnamekey]);
+	std::string str = StringUtils::format("%d", GlobalInstance::myMatchInfo.matchscore);
+	matchexp->setString(str);
+
+	if (lv >= lvsize)
+	{
+		needexp->setVisible(false);
+		nextlvtext->setVisible(false);
+	}
+	else
+	{
+		std::string str = StringUtils::format(ResourceLang::map_lang["neednextexpdesc"].c_str(), lvscores[lv] - GlobalInstance::myMatchInfo.matchscore);
+		needexp->setString(str);
+
+		str = StringUtils::format("matchlvname_%d", lv + 1);
+		nextlvtext->setString(ResourceLang::map_lang[str]);
+	}
+	endtime->setString(GlobalInstance::myMatchInfo.endtime);
+
+	std::map<std::string, std::string>::iterator it;
+
+	for (it = GlobalInstance::myMatchInfo.map_myheros.begin(); it != GlobalInstance::myMatchInfo.map_myheros.end(); it++)
+	{
+		std::string herodata = GlobalInstance::myMatchInfo.map_myheros[it->first];
+		int index = atoi(it->first.substr(it->first.length() - 1).c_str());
+		if (herodata.length() > 0)
+		{
+			std::vector<std::string> vec_heros;
+			std::vector<std::string> vec_tmp;
+			CommonFuncs::split(herodata, vec_heros, ";");
+			CommonFuncs::split(vec_heros[0], vec_tmp, "-");
+
+			std::string heroname = vec_tmp[0];
+
+			for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+			{
+				if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getName().compare(heroname) == 0)
+				{
+					GlobalInstance::vec_myHeros[i]->setOnchallengepos(index + 1);
+					GlobalInstance::myOnChallengeHeros[index] = GlobalInstance::vec_myHeros[i];
+				}
+			}
+			m_myCardHerosNode[index]->setData(GlobalInstance::myOnChallengeHeros[index]);
+		}
+		else
+		{
+			GlobalInstance::myOnChallengeHeros[index] = NULL;
 		}
 	}
 }
@@ -301,5 +375,38 @@ CardHeroNode* MatchMainLayer::getMyCardHeroNode(int index)
 
 void MatchMainLayer::onFinish(int code)
 {
+	if (httptag == 0)
+		this->removeChildByName("waitingprogress");
 
+	ErrorHintLayer* networkerrLayer = (ErrorHintLayer*)this->getChildByName("networkerrorlayer");
+
+	if (code == 0)
+	{
+		if (httptag == 0)
+		{
+			if (networkerrLayer != NULL)
+				networkerrLayer->removeFromParentAndCleanup(true);
+			updateUI();
+		}
+		else if (httptag == 1)
+		{
+			MovingLabel::show(ResourceLang::map_lang["matchnetsaveok"]); 
+		}
+	}
+	else
+	{
+		if (httptag == 0)
+		{
+			if (networkerrLayer == NULL)
+			{
+				ErrorHintLayer* layer = ErrorHintLayer::create(0);
+				this->addChild(layer, 1000, "networkerrorlayer");
+			}
+			else
+			{
+				networkerrLayer->resetBtn();
+			}
+		}
+		MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
+	}
 }

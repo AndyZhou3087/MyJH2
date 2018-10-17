@@ -330,8 +330,10 @@ typedef struct
 {
 	bool isgetreward;
 	std::string endtime;
-	std::vector<MSGAWDSDATA> vec_reward;
-	int matchexp;
+	std::string rewardstr;
+	int matchscore;
+	std::map<std::string, std::string> map_myheros;
+	std::map<std::string, std::string> map_matchheros;
 }MyMatchInfo;
 
 

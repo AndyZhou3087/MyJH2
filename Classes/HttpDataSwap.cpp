@@ -3,6 +3,8 @@
 #include "GlobalInstance.h"
 #include "DataSave.h"
 #include "tinyxml2/tinyxml2.h"
+#include "Equip.h"
+#include "GongFa.h"
 
 #define HTTPURL "https://www.stormnet.cn/jhapi/"
 
@@ -329,7 +331,7 @@ void HttpDataSwap::postMyMatchHeros()
 	writedoc.SetObject();
 	rapidjson::Document::AllocatorType& allocator = writedoc.GetAllocator();
 
-	rapidjson::Value object(rapidjson::kObjectType);
+	//rapidjson::Value object(rapidjson::kObjectType);
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -339,14 +341,67 @@ void HttpDataSwap::postMyMatchHeros()
 		{
 			Hero* hero = GlobalInstance::myOnChallengeHeros[i];
 			herodata = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getOnchallengepos(), hero->getChangeCount());
-			object.AddMember(rapidjson::Value(herokey.c_str(), allocator), rapidjson::Value(herodata.c_str(), allocator), allocator);
 
+			std::string equipstr;
 
+			for (int k = T_ARMOR; k <= T_NG; k++)
+			{
+				ResBase* eqres = hero->getEquipable(k);
+				if (eqres != NULL)
+				{
+					std::string onestr;
+					if (eqres->getType() >= T_ARMOR && eqres->getType() <= T_FASHION)
+					{
+						Equip* eres = (Equip*)eqres;
+						std::string stonestr;
+						int estonesize = eres->vec_stones.size();
+						for (int i = 0; i < estonesize; i++)
+						{
+							if (i < estonesize - 1)
+							{
+								stonestr.append(eres->vec_stones[i] + ",");
+							}
+							else
+								stonestr.append(eres->vec_stones[i]);
+						}
+						onestr = StringUtils::format("%s-%d-%d-%s#", eres->getId().c_str(), eres->getQU().getValue(), eres->getLv().getValue(), stonestr.c_str());
+					}
+					else if (eqres->getType() >= T_WG && eqres->getType() <= T_NG)
+					{
+						GongFa* gres = (GongFa*)eqres;
+
+						onestr = StringUtils::format("%s-%d-%d#", gres->getId().c_str(), gres->getQU().getValue(), gres->getExp().getValue());
+					}
+					equipstr.append(onestr);
+				}
+			}
+
+			if (equipstr.length() > 0)
+			{
+				equipstr = equipstr.substr(0, equipstr.length() - 1);
+			}
+			herodata.append(equipstr);
+			writedoc.AddMember(rapidjson::Value(herokey.c_str(), allocator), rapidjson::Value(herodata.c_str(), allocator), allocator);
+		}
+		else
+		{
+			writedoc.AddMember(rapidjson::Value(herokey.c_str(), allocator), rapidjson::Value(herodata.c_str(), allocator), allocator);
 		}
 	}
-	writedoc.AddMember("data", object, allocator);
 
-	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpReportCB, this));
+	std::string jsonstr = JsonWriter(writedoc);
+	jsonstr = StringUtils::format("data=%s", jsonstr.c_str());
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpPostMyMatchHerosCB, this), jsonstr);
+}
+
+void HttpDataSwap::getMyMatchHeros()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_matchmatchselfinfo?");
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMyMatchHerosCB, this));
 }
 
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
@@ -695,6 +750,75 @@ void HttpDataSwap::httpReportCB(std::string retdata, int code, std::string extda
 		{
 			rapidjson::Value& retv = doc["ret"];
 			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpPostMyMatchHerosCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpGetMyMatchHerosCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+
+			rapidjson::Value& mydatav = doc["data"];
+
+			rapidjson::Value& myd = mydatav["isgetaward"];
+			GlobalInstance::myMatchInfo.isgetreward = atoi(myd.GetString()) == 1 ? true : false;
+
+			myd = mydatav["matchscore"];
+			GlobalInstance::myMatchInfo.matchscore = atoi(myd.GetString());
+
+			rapidjson::Value& v = doc["endday"];
+			GlobalInstance::myMatchInfo.endtime = v.GetString();
+
+			v = doc["matchaward"];
+			GlobalInstance::myMatchInfo.rewardstr = v.GetString();
+			
+			for (int i = 0; i < 6; i++)
+			{
+				std::string herokey = StringUtils::format("hero%d", i);
+				std::string herodata = mydatav[herokey.c_str()].GetString();
+				GlobalInstance::myMatchInfo.map_myheros[herokey] = herodata;
+			}
 		}
 		else
 		{

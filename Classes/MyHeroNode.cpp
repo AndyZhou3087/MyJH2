@@ -157,6 +157,13 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 			actbtntxt->loadTexture(ResourcePath::makeTextImgPath("herofight_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		else
 			actbtntxt->loadTexture(ResourcePath::makeTextImgPath("herocancel_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+		if (m_heroData->getOnchallengepos() > 0)
+		{
+			statetag_1->setVisible(true);
+			std::string tagtextstr = StringUtils::format("%d", m_heroData->getOnchallengepos());
+			tagtext_1->setString(tagtextstr);
+		}
 	}
 
 	if (m_heroData->getPower().getValue() >= 100)

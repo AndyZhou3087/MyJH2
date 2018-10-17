@@ -38,6 +38,8 @@ public:
 
 	void postMyMatchHeros();
 
+	void getMyMatchHeros();
+
 private:
 	HTTPDataDelegateProtocol *m_pDelegateProtocol;//接口对象
 	static bool isdoing;
@@ -66,6 +68,8 @@ private:
 	void httpReportCB(std::string retdata, int code, std::string extdata);
 
 	void httpPostMyMatchHerosCB(std::string retdata, int code, std::string extdata);
+
+	void httpGetMyMatchHerosCB(std::string retdata, int code, std::string extdata);
 
 	void httpBlankCB(std::string retdata, int code, std::string extdata);
 };
