@@ -398,13 +398,14 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				std::string descstr = StringUtils::format("%s%s%s%s", ResourceLang::map_lang["useequipcardhint"].c_str(), resstr.c_str(), ResourceLang::map_lang["potentialtext"].c_str(), ResourceLang::map_lang["potential_3"].c_str());
 				MovingLabel::show(descstr);
 
-				EquipDescLayer* layer = EquipDescLayer::create(retres, 1);
-				this->addChild(layer);
-				AnimationEffect::openAniEffect(layer);
-
 				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
 				if (storelayer != NULL)
+				{
+					EquipDescLayer* layer = EquipDescLayer::create(retres, 1);
+					storelayer->addChild(layer);
+					AnimationEffect::openAniEffect(layer);
 					storelayer->updateUI();
+				}
 			}
 		}
 
