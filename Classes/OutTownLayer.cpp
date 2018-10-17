@@ -33,6 +33,22 @@ OutTownLayer::~OutTownLayer()
 	{
 		g_mainScene->delayShowNewerGuide(0);
 	}
+
+	for (int i = 0; i < 6; i++)
+	{
+		Hero* hero = GlobalInstance::myCardHeros[i];
+		if (hero != NULL)
+		{
+			for (int k = T_ARMOR; k <= T_NG; k++)
+			{
+				ResBase* eqres = MyRes::getMyPutOnResByType(k, hero->getName());
+				if (eqres != NULL)
+				{
+					hero->setEquipable((Equipable*)eqres, eqres->getType());
+				}
+			}
+		}
+	}
 }
 
 

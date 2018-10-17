@@ -414,10 +414,6 @@ void HeroAttrLayer::loadHeroUI()
 	{
 		ResBase* eres = MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
 		updateEquipUi(eres, i);
-		if (eres != NULL)
-		{
-			m_heroData->setEquipable((Equipable*)eres, eres->getType());
-		}
 	}
 
 	//品质
