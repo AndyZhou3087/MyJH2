@@ -11,10 +11,8 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="heroAttrLayer.csd" />
-          <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="strengthenLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="strengthenLayer.csd" />
+        <ActiveDocument Path="heroAttrLayer.csd" />
       </Value>
     </Item>
   </Properties>

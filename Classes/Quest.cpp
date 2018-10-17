@@ -756,7 +756,17 @@ void Quest::initAchieveTypeCount(std::string str)
 
 void Quest::setAchieveTypeCount(int type, int count, std::string resid)
 {
-	map_achieveTypeCount[type][resid] += count;
+	if (type == HERO_LEVEL)
+	{
+		if (count > map_achieveTypeCount[type][resid])
+		{
+			map_achieveTypeCount[type][resid] = count;
+		}
+	}
+	else
+	{
+		map_achieveTypeCount[type][resid] += count;
+	}
 
 	for (unsigned int i = 0; i < GlobalInstance::vec_achievedata.size(); i++)
 	{

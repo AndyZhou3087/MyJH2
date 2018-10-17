@@ -134,7 +134,8 @@ typedef enum
 	ACHIEVE_FIGHT,//打败XXnpcX次
 	ACHIEVE_GOODS,//获得XX物品XX个
 	ACHIEVE_GOLD,//消耗XX个元宝
-	ACHIEVE_SLIVER//消耗XX个银两
+	ACHIEVE_SLIVER,//消耗XX个银两
+	HERO_LEVEL//角色等级到X级
 }QUESTDAYTYPE;
 
 typedef struct

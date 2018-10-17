@@ -596,7 +596,11 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 			{
 				if (myfriendly >= marryper)
 				{
-					if (checkMutexNpc())
+					if (checkOtherLover())
+					{
+						checkWordLblColor(ResourceLang::map_lang["npcotherlovetips"]);
+					}
+					else if (checkMutexNpc())
 					{
 						std::string restr;
 						std::map<std::string, NpcFriendly>::iterator it;
@@ -749,6 +753,23 @@ void NpcLayer::mutexNpcBreak()
 	}
 	closebtn->setEnabled(false);
 	this->schedule(schedule_selector(NpcLayer::checkEnterFight), 1.0f);
+}
+
+bool NpcLayer::checkOtherLover()
+{
+	std::map<std::string, NpcFriendly>::iterator it;
+	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); it++)
+	{
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			int rel = it->second.relation[i];
+			if (rel == NPC_COUPEL)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 bool NpcLayer::checkMutexNpc()
