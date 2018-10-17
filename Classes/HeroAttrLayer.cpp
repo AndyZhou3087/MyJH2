@@ -32,6 +32,8 @@ int equiptype[] = { T_ARMOR, T_EQUIP, T_WG, T_NG, T_HANDARMOR, T_FASHION };
 #define S003EXP 15000
 #define S004EXP 50000
 
+const int TOUCH_DISTANCE = 50;
+
 HeroAttrLayer::HeroAttrLayer()
 {
 	isMovingAction = false;
@@ -39,7 +41,6 @@ HeroAttrLayer::HeroAttrLayer()
 	m_longTouchNode = NULL;
 	isCanClickFullHero = true;
 	redtip = NULL;
-	isPageMoveOk = 0;
 }
 
 HeroAttrLayer::~HeroAttrLayer()
@@ -283,7 +284,17 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
+		beginTouchPoint = Director::getInstance()->convertToGL(touch->getLocationInView());
 		return true;
+	};
+	listener->onTouchMoved = [=](Touch *touch, Event *event)
+	{
+		/*Point endPoint = Director::getInstance()->convertToGL(touch->getLocationInView());
+		float distance = endPoint.x - beginTouchPoint.x;
+		if (fabs(distance) > TOUCH_DISTANCE)
+		{
+			adjustScrollView(distance);
+		}*/
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -537,8 +548,6 @@ void HeroAttrLayer::JumpSceneCallback(cocos2d::Ref* pScene, cocos2d::ui::PageVie
 		cocos2d::ui::PageView * m_pageView = dynamic_cast<cocos2d::ui::PageView *>(pScene);
 		int defaultindex = m_pageView->getCurrentPageIndex();
 		CCLOG("--------------adadfgggggggggggg -- %d ", defaultindex);
-
-		//isPageMoveOk = 2;
 
 		heroattrbottom->stopAllActions();
 		equipnode->stopAllActions();
@@ -1155,7 +1164,7 @@ void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 			equipnode->stopAllActions();
 			heroattrbottom->runAction(Sequence::create(MoveTo::create(0.2f, Vec2(0, -heroattrbottom->getContentSize().height)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
 			equipnode->runAction(Sequence::create(MoveTo::create(0.2f, Vec2(360, -560)), NULL));
-			blankclick->setVisible(false);
+			blankclick->setVisible(true);
 		}
 	}
 	else if (type == cocos2d::ui::Widget::TouchEventType::CANCELED)
@@ -1166,7 +1175,7 @@ void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 			equipnode->stopAllActions();
 			heroattrbottom->runAction(Sequence::create(MoveTo::create(0.2f, Vec2(0, 0)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
 			equipnode->runAction(MoveTo::create(0.2f, Vec2(360, 490)));
-			blankclick->setVisible(true);
+			blankclick->setVisible(false);
 		}
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)

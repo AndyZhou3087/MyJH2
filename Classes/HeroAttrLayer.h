@@ -173,7 +173,8 @@ private:
 	cocos2d::ui::PageView* pageView;
 	int m_fromwhere;
 	std::vector<Hero*> vec_norheros;
-	int isPageMoveOk;
+
+	Point beginTouchPoint;
 };
 
 #endif
