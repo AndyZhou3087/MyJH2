@@ -727,8 +727,13 @@ void MainScene::onExit()
 
 void MainScene::onFinish(int code)
 {
+	ErrorHintLayer* networkerrLayer = (ErrorHintLayer*)this->getChildByName("networkerrorlayer");
+
 	if (code == SUCCESS)
 	{
+		if (networkerrLayer != NULL)
+			networkerrLayer->removeFromParentAndCleanup(true);
+
 		if (GlobalInstance::getInstance()->getRefreshHeroTime() == 0)
 		{
 			GlobalInstance::getInstance()->saveRefreshHeroTime(GlobalInstance::servertime);
@@ -755,8 +760,15 @@ void MainScene::onFinish(int code)
 	}
 	else
 	{
-		ErrorHintLayer* layer = ErrorHintLayer::create(0);
-		this->addChild(layer, 1000);
+		if (networkerrLayer == NULL)
+		{
+			ErrorHintLayer* layer = ErrorHintLayer::create(0);
+			this->addChild(layer, 1000, "networkerrorlayer");
+		}
+		else
+		{
+			networkerrLayer->resetBtn();
+		}
 	}
 }
 
