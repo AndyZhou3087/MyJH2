@@ -207,14 +207,6 @@ void LoadingScene::delayLoadLocalData(float dt)
 	//解析建筑物xml
 	Building::parseData();
 
-	//英雄基础属性
-	GlobalInstance::getInstance()->loadHerosAttrData();
-
-	//读取本地英雄
-	GlobalInstance::getInstance()->loadMyHeros();
-
-	GlobalInstance::getInstance()->loadRand3Heros();
-
 	GlobalInstance::getInstance()->loadResCreatorData();
 
 	GlobalInstance::getInstance()->loadAllResourcesData();
@@ -225,6 +217,14 @@ void LoadingScene::delayLoadLocalData(float dt)
 	GlobalInstance::getInstance()->loadEquipData();
 
 	GlobalInstance::getInstance()->loadGFData();
+
+	//英雄基础属性
+	GlobalInstance::getInstance()->loadHerosAttrData();
+
+	//读取本地英雄
+	GlobalInstance::getInstance()->loadMyHeros();
+
+	GlobalInstance::getInstance()->loadRand3Heros();
 
 	GlobalInstance::getInstance()->loadNpcData();
 

@@ -314,6 +314,15 @@ void GlobalInstance::loadMyHeros()
 					if (pos > 0 && state != HS_DEAD)
 					{
 						GlobalInstance::myCardHeros[pos - 1] = hero;
+
+						for (int k = T_ARMOR; k <= T_NG; k++)
+						{
+							ResBase* eqres = MyRes::getMyPutOnResByType(k, hero->getName());
+							if (eqres != NULL)
+							{
+								hero->setEquipable((Equipable*)eqres, eqres->getType());
+							}
+						}
 					}
 
 					hero->setHp(atof(vec_tmp[8].c_str()));
