@@ -398,7 +398,7 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		case 1000://¹Ø±Õ
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
-		case 0://
+		case 0://¶Ô»°
 		{
 			if (isShowWord)
 			{
@@ -428,7 +428,7 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 			}
 			break;
 		}
-		case 1:
+		case 1://ÔùËÍ
 		{
 			NpcgiveLayer* layer = NpcgiveLayer::create(m_npcid);
 			this->addChild(layer);
