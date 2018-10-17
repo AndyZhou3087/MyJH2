@@ -7,5 +7,17 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="heroAttrLayer.csd" />
+          <FilePathData Path="myHeroNode.csd" />
+          <FilePathData Path="ui.csi" />
+          <FilePathData Path="timeGiftLayer.csd" />
+          <FilePathData Path="cardHeroNode.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="cardHeroNode.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>
