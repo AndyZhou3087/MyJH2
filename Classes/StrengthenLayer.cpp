@@ -200,7 +200,7 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		{
 			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() < coincount)
 			{
-				MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
+				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
 				return;
 			}
 			DynamicValueInt dvl;

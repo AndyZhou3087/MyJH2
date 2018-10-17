@@ -171,6 +171,11 @@ void NpcgiveLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			break;
 		case 1001://ิ๙หอ
 		{
+			if (lastIndexCount <= 0)
+			{
+				MovingLabel::show(ResourceLang::map_lang["selectnpcgive"]);
+				return;
+			}
 			int friendly = GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount;
 			GlobalInstance::map_myfriendly[m_npcid].friendly += friendly;
 			NpcLayer* npclayer = (NpcLayer*)this->getParent();

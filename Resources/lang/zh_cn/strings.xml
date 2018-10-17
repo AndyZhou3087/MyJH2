@@ -100,6 +100,7 @@
 	<s name="dailytype_9">获得%s%d个</s>
 	<s name="dailytype_10">消耗%d元宝</s>
 	<s name="dailytype_11">消耗%d银两</s>
+	<s name="dailytype_12">角色升到%d级</s>
 	<s name="dailyrlabel">奖励:</s>
 	<s name="dailypoint">积分x%d</s>
 	<s name="pointtext">%d积分</s>
@@ -297,6 +298,7 @@
 	<s name="npcrelationtext">关系：</s>
 	<s name="npcrelationfail">咱俩关系还不太熟，不要走这么近。</s>
 	<s name="npcrelationfail1">逆徒！还想跟为师称兄道弟！！！</s>
+	<s name="npcotherlovetips">你已经有人了，要从一而终。</s>
 	<s name="npcmutexrelation">没想到你%s你这个两面三刀的人！今日起你我恩怨，一刀两断！</s>
 	<s name="npcmutexrelation2">与%s是%s</s>	
 	<s name="npcfriendbreak">好！今日起你我恩怨，一刀两断！</s>
@@ -318,6 +320,7 @@
 	<s name="salegftext">出售后就会永久失去该功法，确定出售？</s>
 	<s name="salegftitle">售价：    %d</s>
 	<s name="salegftips">出售成功</s>
+	<s name="selectnpcgive">请选择赠送数量</s>
 	<s name="matchlvtext">段位</s>
 	<s name="matchexptext">积分</s>
 	<s name="matchlvname_0">乡野义士</s>

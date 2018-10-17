@@ -92,7 +92,8 @@ private:
 	void cancelLongTouch();
 
 	void JumpSceneCallback(cocos2d::Ref* pScene, cocos2d::ui::PageView::EventType type);
-	void pageMoveCallback(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	
+	void loadHeroUI();
 
 private:
 	Node* lvnode;

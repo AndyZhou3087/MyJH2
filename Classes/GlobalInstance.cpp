@@ -319,6 +319,15 @@ void GlobalInstance::loadMyHeros()
 					if (pos > 0 && state != HS_DEAD)
 					{
 						GlobalInstance::myCardHeros[pos - 1] = hero;
+
+						for (int k = T_ARMOR; k <= T_NG; k++)
+						{
+							ResBase* eqres = MyRes::getMyPutOnResByType(k, hero->getName());
+							if (eqres != NULL)
+							{
+								hero->setEquipable((Equipable*)eqres, eqres->getType());
+							}
+						}
 					}
 
 					hero->setHp(atof(vec_tmp[8].c_str()));
@@ -808,7 +817,7 @@ void GlobalInstance::loadMyTaskMainData()
 		}
 		else if (vec_TaskMain[vec_tmp.size() - 1].isfinish >= QUEST_FINISH)
 		{
-			if (vec_tmp.size() < GlobalInstance::vec_TaskMain.size())
+			if (vec_tmp.size() < vec_TaskMain.size())
 			{
 				myCurMainData = vec_TaskMain[vec_tmp.size()];
 			}
@@ -817,7 +826,6 @@ void GlobalInstance::loadMyTaskMainData()
 				myCurMainData = vec_TaskMain[vec_tmp.size() - 1];
 			}
 		}
-		
 	}
 	else
 	{
@@ -1017,7 +1025,14 @@ void GlobalInstance::loadMyTaskBranchData()
 		}
 		else if (vec_TaskBranch[vec_tmp.size() - 1].isfinish >= QUEST_FINISH)
 		{
-			myCurBranchData = vec_TaskBranch[vec_tmp.size() - 1];
+			if (vec_tmp.size() < vec_TaskBranch.size())
+			{
+				myCurBranchData = vec_TaskBranch[vec_tmp.size()];
+			}
+			else
+			{
+				myCurBranchData = vec_TaskBranch[vec_tmp.size() - 1];
+			}
 		}
 
 	}

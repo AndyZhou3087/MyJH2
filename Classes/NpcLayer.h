@@ -28,6 +28,7 @@ private:
 	void checkEnterFight(float dt);
 	std::string checkOtherMater();
 	void mutexNpcBreak();
+	bool checkOtherLover();
 
 private:
 	std::string m_npcid;

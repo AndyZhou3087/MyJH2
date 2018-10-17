@@ -58,9 +58,14 @@ bool AchieveNode::init(AchieveData* data)
 
 	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox");
 	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
-	if (m_Data->type != ACHIEVE_GOODS)
+	if (m_Data->type != ACHIEVE_GOODS && m_Data->type != HERO_LEVEL)
 	{
 		std::string s = StringUtils::format("ui/dailytask_%d.png", m_Data->type);
+		res->loadTexture(s, cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+	else if (m_Data->type == HERO_LEVEL)
+	{
+		std::string s = StringUtils::format("ui/dailytask_%d.png", UPGRADE_HERO);
 		res->loadTexture(s, cocos2d::ui::Widget::TextureResType::PLIST);
 	}
 
