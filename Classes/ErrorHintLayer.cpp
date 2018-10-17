@@ -8,6 +8,7 @@
 #include "DataSave.h"
 #include "MyRes.h"
 #include "HttpDataSwap.h"
+#include "MainScene.h"
 
 ErrorHintLayer::ErrorHintLayer()
 {
@@ -143,7 +144,8 @@ void ErrorHintLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		{
 			if (g_loadingScene != NULL)
 				HttpDataSwap::init(g_loadingScene)->getPlayerId();
-
+			else if (g_mainScene != NULL)
+				HttpDataSwap::init(g_mainScene)->getServerTime();
 		}
 		else if (m_forwhere == 1)
 		{

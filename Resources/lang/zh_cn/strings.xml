@@ -30,6 +30,7 @@
 	<s name="attrtext_4">暴击几率：</s>
 	<s name="attrtext_5">闪避几率：</s>
 	<s name="samename">重复的名字！</s>
+	<s name="errname">名字中不能包含"-"或";"</s>	
 	<s name="maxcaptext">储备：</s>
 	<s name="outputtext">产量：</s>
 	<s name="farmercounttext">工人数量</s>
@@ -314,6 +315,9 @@
 	<s name="npcmastertitle">师父：%s</s>
 	<s name="npcfriendtitle">结交数量：%d</s>
 	<s name="npccoupeltitle">结亲：%s</s>
+	<s name="salegftext">出售后就会永久失去该功法，确定出售？</s>
+	<s name="salegftitle">售价：    %d</s>
+	<s name="salegftips">出售成功</s>
 	<s name="matchlvtext">段位</s>
 	<s name="matchexptext">积分</s>
 	<s name="matchlvname_0">乡野义士</s>

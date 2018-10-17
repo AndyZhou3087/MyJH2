@@ -39,6 +39,7 @@ HeroAttrLayer::HeroAttrLayer()
 	m_longTouchNode = NULL;
 	isCanClickFullHero = true;
 	redtip = NULL;
+	isPageMoveOk = 0;
 }
 
 HeroAttrLayer::~HeroAttrLayer()
@@ -72,7 +73,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
     {
         return false;
     }
-
+	m_fromwhere = fromwhere;
 	m_heroData = herodata;
 
 	lastVaction = herodata->getVocation();
@@ -103,6 +104,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 	herofullimg->loadTexture(ResourcePath::makeImagePath(fullimgstr), cocos2d::ui::Widget::TextureResType::LOCAL);
 	herofullimg->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onHeroFullClick, this));
 	herofullimg->setEnabled(false);
+	herofullimg->setVisible(false);
 
 	cocos2d::ui::Button* hintbtn = (cocos2d::ui::Button*)csbnode->getChildByName("hintbtn");
 	hintbtn->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onHeroHintClick, this));
@@ -150,7 +152,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 	heroattrnamebox = (cocos2d::ui::Widget*)heroattrbottom->getChildByName("heroattrnamebox");
 
 	//品质
-	cocos2d::ui::ImageView* heroattrqu = (cocos2d::ui::ImageView*)heroattrbottom->getChildByName("heroattrqu");
+	heroattrqu = (cocos2d::ui::ImageView*)heroattrbottom->getChildByName("heroattrqu");
 	std::string str = StringUtils::format("heroattrqu_%d", herodata->getPotential());
 	heroattrqu->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
@@ -332,6 +334,44 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 		}
 	}
 
+
+	//滑动
+	pageView = (cocos2d::ui::PageView*)csbnode->getChildByName("pageView");
+	pageView->addEventListener((ui::PageView::ccPageViewCallback)CC_CALLBACK_2(HeroAttrLayer::JumpSceneCallback, this));
+	pageView->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::pageMoveCallback, this));
+	if (fromwhere != 0)
+	{
+		pageView->setEnabled(false);
+	}
+
+	int pageIndex = 0;
+	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+	{
+		if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD)
+		{
+			vec_norheros.push_back(GlobalInstance::vec_myHeros[i]);
+		}
+	}
+	for (int i = 0; i < vec_norheros.size(); i++)
+	{
+		auto imageView = cocos2d::ui::ImageView::create();
+		std::string fullimgstr = StringUtils::format("hfull_%d_%d.png", vec_norheros[i]->getVocation(), vec_norheros[i]->getSex());
+		imageView->loadTexture(ResourcePath::makeImagePath(fullimgstr), cocos2d::ui::Widget::TextureResType::LOCAL);
+		auto layout = cocos2d::ui::Layout::create();
+		layout->setContentSize(pageView->getContentSize());
+
+		imageView->setPosition(Vec2(layout->getContentSize().width / 2, layout->getContentSize().height / 2));
+		layout->addChild(imageView);
+
+		pageView->addPage(layout);
+		if (herodata->getName().compare(vec_norheros[i]->getName()) == 0)
+		{
+			pageIndex = i;
+		}
+	}
+	pageView->setCurrentPageIndex(pageIndex);
+
+
 	updataAtrrUI(0);
 	this->schedule(schedule_selector(HeroAttrLayer::updataAtrrUI), 1.0f);
 
@@ -466,6 +506,176 @@ void HeroAttrLayer::updateAtrBtnUI()
 	
 }
 
+void HeroAttrLayer::JumpSceneCallback(cocos2d::Ref* pScene, cocos2d::ui::PageView::EventType type)
+{
+	if (type == ui::PageView::EventType::TURNING)
+	{
+		cocos2d::ui::PageView * m_pageView = dynamic_cast<cocos2d::ui::PageView *>(pScene);
+		int defaultindex = m_pageView->getCurrentPageIndex();
+		CCLOG("--------------adadfgggggggggggg -- %d ", defaultindex);
+
+		//isPageMoveOk = 2;
+
+		heroattrbottom->stopAllActions();
+		equipnode->stopAllActions();
+		heroattrbottom->runAction(Sequence::create(MoveTo::create(0.05f, Vec2(0, 0)),CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+		equipnode->runAction(MoveTo::create(0.05f, Vec2(360, 490)));
+		blankclick->setVisible(true);
+
+		m_heroData = vec_norheros[defaultindex];
+
+		for (int i = 0; i < equipnode->getChildrenCount(); i++)
+		{
+			ResBase* eres = MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
+			updateEquipUi(eres, i);
+			if (eres != NULL)
+			{
+				m_heroData->setEquipable((Equipable*)eres, eres->getType());
+			}
+		}
+
+		//品质
+		std::string str = StringUtils::format("heroattrqu_%d", m_heroData->getPotential());
+		heroattrqu->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+		//名字EditBox
+		m_editName->setText(m_heroData->getName().c_str());
+
+		int herostate = m_heroData->getState();
+		if (herostate == HS_READY)
+		{
+			equipnode->setVisible(false);
+			moditybtn->setVisible(false);
+			m_editName->setEnabled(false);
+		}
+
+		//角色职业
+		str = StringUtils::format("vocation_%d", m_heroData->getVocation());
+		vocation->setString(ResourceLang::map_lang[str]);
+
+		//按钮
+		std::string btnname[] = { "firebtn", "changebtn", "backbtn", "recruitbtn" };//与BTNTYPE对应
+		for (int i = 0; i < sizeof(btnname) / sizeof(btnname[0]); i++)
+		{
+			int tag = i + ATTR_FIREBTN;
+			cocos2d::ui::Button* btn = btnArr[i];
+
+			if (tag == ATTR_FIREBTN)
+			{
+				cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
+				txtimg->loadTexture(ResourcePath::makeTextImgPath("firebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+				if (herostate == HS_READY || herostate == HS_TAKEON || herostate == HS_TRAINING)
+				{
+					btn->setVisible(false);
+				}
+				else if (herostate == HS_OWNED)
+				{
+					btn->setVisible(true);
+				}
+			}
+			else if (tag == ATTR_CHANGEBTN)
+			{
+				cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
+				txtimg->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+				if (herostate == HS_READY || herostate == HS_TRAINING)
+				{
+					btn->setVisible(false);
+				}
+				else if (herostate == HS_OWNED || herostate == HS_TAKEON)
+				{
+					if (herostate == HS_TAKEON)
+					{
+						btn->setPositionX(220);
+					}
+					//前4种职业等级10可转职，后面可突破
+					if ((m_heroData->getLevel() + 1) % 10 == 0 && (m_heroData->getVocation() < 4 || (m_heroData->getLevel() + 1) / 10 == m_heroData->getChangeCount() + 1))
+					{
+						if (m_heroData->getLevel() + 1 != 10)
+						{
+							txtimg->loadTexture(ResourcePath::makeTextImgPath("break_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+						}
+						else
+						{
+							txtimg->loadTexture(ResourcePath::makeTextImgPath("changebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+						}
+					}
+					if (m_heroData->getExp().getValue() >= GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getMaxLevel() - 1])
+					{
+						btn->setEnabled(false);
+					}
+				}
+			}
+			else if (tag == ATTR_RECRUITBTN)
+			{
+				cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
+				txtimg->loadTexture(ResourcePath::makeTextImgPath("recruitbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+				if (herostate == HS_READY)
+				{
+					btn->setVisible(true);
+				}
+				else
+				{
+					btn->setVisible(false);
+				}
+			}
+			else if (tag == ATTR_BACKBTN)
+			{
+				cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
+				txtimg->loadTexture(ResourcePath::makeTextImgPath("backbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+				if (herostate == HS_READY || herostate == HS_TAKEON)
+				{
+					btn->setPositionX(500);
+				}
+				else if (herostate == HS_OWNED)
+				{
+					btn->setPositionX(600);
+				}
+				else if (herostate == HS_TRAINING)
+				{
+					btn->setPositionX(360);
+				}
+			}
+		}
+	}
+}
+
+void HeroAttrLayer::pageMoveCallback(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::MOVED)
+	{
+		if (blankclick->isVisible())
+		{
+			heroattrbottom->stopAllActions();
+			equipnode->stopAllActions();
+			heroattrbottom->runAction(Sequence::create(MoveTo::create(0.05f, Vec2(0, -heroattrbottom->getContentSize().height)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+			equipnode->runAction(Sequence::create(MoveTo::create(0.05f, Vec2(360, -560)), NULL));
+			blankclick->setVisible(false);
+		}
+	}
+	else if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		if (!blankclick->isVisible())
+		{
+			heroattrbottom->stopAllActions();
+			equipnode->stopAllActions();
+			heroattrbottom->runAction(Sequence::create(MoveTo::create(0.05f, Vec2(0, 0)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+			equipnode->runAction(MoveTo::create(0.05f, Vec2(360, 490)));
+			blankclick->setVisible(true);
+		}
+	}
+	else if (type == cocos2d::ui::Widget::TouchEventType::CANCELED)
+	{
+		if (!blankclick->isVisible())
+		{
+			heroattrbottom->stopAllActions();
+			equipnode->stopAllActions();
+			heroattrbottom->runAction(Sequence::create(MoveTo::create(0.05f, Vec2(0, 0)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+			equipnode->runAction(MoveTo::create(0.05f, Vec2(360, 490)));
+			blankclick->setVisible(true);
+		}
+	}
+}
+
 void HeroAttrLayer::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)
 {
 	lastchangedname = editBox->getText();
@@ -486,6 +696,11 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 	{
 		editBox->setText(m_heroData->getName().c_str());
 		MovingLabel::show(ResourceLang::map_lang["nicknameempty"]);
+	}
+	else if (std::string::npos != editstr.find("-") || std::string::npos != editstr.find(";"))
+	{
+		editBox->setText(m_heroData->getName().c_str());
+		MovingLabel::show(ResourceLang::map_lang["errname"]);
 	}
 	else if (m_heroData->getName().compare(editstr) == 0)
 	{
@@ -631,6 +846,10 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				lvnode->setVisible(true);
 				addexplbl->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
 				equipnode->setVisible(false);
+				if (m_fromwhere == 0)
+				{
+					pageView->setEnabled(false);
+				}
 			}
 			break;
 		case ATTR_RECRUITBTN:
@@ -673,6 +892,10 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				addexplbl->stopAllActions();
 				addexplbl->setOpacity(255);
 				equipnode->setVisible(true);
+				if (m_fromwhere == 0)
+				{
+					pageView->setEnabled(true);
+				}
 			}
 			else
 			{

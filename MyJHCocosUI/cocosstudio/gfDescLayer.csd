@@ -239,7 +239,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="actionbtn" ActionTag="-782114571" Tag="74" IconVisible="False" LeftMargin="260.9999" RightMargin="255.0001" TopMargin="908.0004" BottomMargin="287.9996" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="actionbtn" ActionTag="-782114571" Tag="74" IconVisible="False" LeftMargin="271.0005" RightMargin="244.9995" TopMargin="881.0002" BottomMargin="314.9998" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-493156186" Tag="75" IconVisible="False" LeftMargin="64.5216" RightMargin="65.4784" TopMargin="21.2404" BottomMargin="25.7596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="24" Scale9Height="11" ctype="ImageViewObjectData">
@@ -254,10 +254,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="362.9999" Y="329.9996" />
+            <Position X="373.0005" Y="356.9998" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5042" Y="0.2578" />
+            <PrePosition X="0.5181" Y="0.2789" />
             <PreSize X="0.2833" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
@@ -266,7 +266,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lvbtn" ActionTag="486500279" VisibleForFrame="False" Tag="72" IconVisible="False" LeftMargin="381.7575" RightMargin="134.2425" TopMargin="908.6339" BottomMargin="287.3661" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="lvbtn" ActionTag="486500279" VisibleForFrame="False" Tag="72" IconVisible="False" LeftMargin="391.7579" RightMargin="124.2421" TopMargin="881.0002" BottomMargin="314.9998" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="1448527328" Tag="73" IconVisible="False" LeftMargin="62.5216" RightMargin="63.4784" TopMargin="19.7404" BottomMargin="24.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="28" Scale9Height="14" ctype="ImageViewObjectData">
@@ -281,10 +281,37 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="483.7575" Y="329.3661" />
+            <Position X="493.7579" Y="356.9998" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6719" Y="0.2573" />
+            <PrePosition X="0.6858" Y="0.2789" />
+            <PreSize X="0.2833" Y="0.0656" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="salebtn" ActionTag="1963404056" VisibleForFrame="False" Tag="100" IconVisible="False" LeftMargin="130.7392" RightMargin="385.2608" TopMargin="881.0002" BottomMargin="314.9998" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="204.0000" Y="84.0000" />
+            <Children>
+              <AbstractNodeData Name="text" ActionTag="599733861" Tag="101" IconVisible="False" LeftMargin="62.5216" RightMargin="63.4784" TopMargin="19.7404" BottomMargin="24.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="28" Scale9Height="14" ctype="ImageViewObjectData">
+                <Size X="78.0000" Y="40.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="101.5216" Y="44.2596" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4977" Y="0.5269" />
+                <PreSize X="0.3824" Y="0.4762" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/lvupbtn_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="232.7392" Y="356.9998" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3232" Y="0.2789" />
             <PreSize X="0.2833" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
