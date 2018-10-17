@@ -57,10 +57,11 @@ bool SelectMyHerosLayer::init(int wheretype)
 	int langtype = GlobalInstance::getInstance()->getLang();
 	//标题
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
+	titleimg->ignoreContentAdaptWithSize(true);
 
 	std::string titlenamstr = "outtowntitle";
 	if (wheretype == HS_ONCHALLENGE)
-		titlenamstr = "";
+		titlenamstr = "matchfighttitle";
 
 	titleimg->loadTexture(ResourcePath::makeTextImgPath(titlenamstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 

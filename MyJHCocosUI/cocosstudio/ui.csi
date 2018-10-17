@@ -438,6 +438,7 @@
       <FilePathData Path="ui/u001.png" />
       <FilePathData Path="ui/matchdoingbtn.png" />
       <FilePathData Path="ui/matchrewardicon.png" />
+      <FilePathData Path="ui/herotag_1.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

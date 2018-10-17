@@ -12,9 +12,9 @@ public:
 	CardHeroNode();
 	~CardHeroNode();
 
-	virtual bool init();
+	virtual bool init(int forwhere);
 
-	static CardHeroNode* create();
+	static CardHeroNode* create(int forwhere = 0);//0--出城界面，1--竞技场
 
 	void setData(Hero* herodata);
 
@@ -38,7 +38,7 @@ private:
 	cocos2d::ui::Widget* arrowglv;
 	cocos2d::ui::ImageView* powerclick;
 	int lastvaction;
-
+	int m_forwhere;
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onPowerClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

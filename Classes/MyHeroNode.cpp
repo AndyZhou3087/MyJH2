@@ -19,6 +19,7 @@
 #include "SoundManager.h"
 #include "NewGuideLayer.h"
 #include "DataSave.h"
+#include "MatchMainLayer.h"
 
 #define RSILVERCOUNT 100
 
@@ -105,7 +106,12 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 
 	statetag = (cocos2d::ui::ImageView*)csbnode->getChildByName("tag");
 
+	statetag_1 = (cocos2d::ui::ImageView*)csbnode->getChildByName("tag_1");
+	statetag_1->setVisible(false);
+
 	tagtext = (cocos2d::ui::Text*)statetag->getChildByName("text");
+
+	tagtext_1 = (cocos2d::ui::Text*)statetag_1->getChildByName("text");
 
 	countdown = (cocos2d::ui::Text*)csbnode->getChildByName("countdown");
 
@@ -144,6 +150,15 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	{
 		changeBtnContent();
 	}
+	else if (m_showtype == HS_ONCHALLENGE)
+	{
+		hpdesc->setVisible(false);
+		if (m_heroData->getOnchallengepos() == 0)
+			actbtntxt->loadTexture(ResourcePath::makeTextImgPath("herofight_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		else
+			actbtntxt->loadTexture(ResourcePath::makeTextImgPath("herocancel_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+
 	if (m_heroData->getPower().getValue() >= 100)
 	{
 		std::string hpstr = StringUtils::format(ResourceLang::map_lang["powerdesc"].c_str(), m_heroData->getPower().getValue(), ResourceLang::map_lang["powermaxtext"].c_str());;
@@ -562,6 +577,58 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					MovingLabel::show(ResourceLang::map_lang["canttrain"]);
 				}
 			}
+			else if (m_showtype == HS_ONCHALLENGE)
+			{
+				std::string btntextstr;
+				if (m_heroData->getOnchallengepos() == 0)
+				{
+					int carrycount = 0;
+
+					for (int i = 0; i < 6; i++)
+					{
+						if (GlobalInstance::myOnChallengeHeros[i] == NULL)
+							break;
+						else
+							carrycount++;
+					}
+
+					if (carrycount >= 6)
+					{
+						MovingLabel::show(ResourceLang::map_lang["matchmax"]);
+						return;
+					}
+					m_heroData->setOnchallengepos(carrycount + 1);
+					GlobalInstance::myOnChallengeHeros[carrycount] = m_heroData;
+
+					MatchMainLayer* matchMainLayer = (MatchMainLayer*)g_mainScene->getChildByName("8pkground");
+					CardHeroNode* cardheroNode = (CardHeroNode*)matchMainLayer->getMyCardHeroNode(carrycount);
+					cardheroNode->setData(m_heroData);
+					statetag_1->setVisible(true);
+					btntextstr = "herocancel_text";
+				}
+				else if (m_heroData->getOnchallengepos() > 0)
+				{
+					int heropos = m_heroData->getOnchallengepos();
+
+					GlobalInstance::myOnChallengeHeros[heropos - 1] = NULL;
+
+					m_heroData->setOnchallengepos(0);
+
+					MatchMainLayer* matchMainLayer = (MatchMainLayer*)g_mainScene->getChildByName("8pkground");
+					CardHeroNode *cardheroNode = (CardHeroNode*)matchMainLayer->getMyCardHeroNode(heropos - 1);
+					cardheroNode->setData(NULL);
+					statetag_1->setVisible(false);
+					btntextstr = "herofight_text";
+				}
+				if (statetag_1->isVisible())
+				{
+					std::string tagtextstr = StringUtils::format("%d", m_heroData->getOnchallengepos());
+					tagtext_1->setString(tagtextstr);
+				}
+
+				if (btntextstr.length() > 0)
+					actbtntxt->loadTexture(ResourcePath::makeTextImgPath(btntextstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			}
 		}
 	}
 }
@@ -578,7 +645,6 @@ void MyHeroNode::setStateTag(int state)
 			statetag->setVisible(true);
 			statetag->loadTexture(ResourcePath::makePath("ui/herotag_0.png"), cocos2d::ui::Widget::TextureResType::PLIST);
 			btntextstr = "herocancel_text";
-
 		}
 		else if (state == HS_OWNED)
 		{
@@ -599,8 +665,8 @@ void MyHeroNode::setStateTag(int state)
 		{
 			statetag->setVisible(false);
 		}
-
 	}
+
 	if (statetag->isVisible())
 	{
 		std::string tagtextstr = StringUtils::format("%d", m_heroData->getPos());

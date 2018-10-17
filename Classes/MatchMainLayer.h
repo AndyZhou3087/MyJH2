@@ -5,9 +5,11 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "CardHeroNode.h"
+#include "HttpDataSwap.h"
+
 USING_NS_CC;
 
-class MatchMainLayer : public cocos2d::Layer
+class MatchMainLayer : public cocos2d::Layer, public HTTPDataDelegateProtocol
 {
 public:
 	MatchMainLayer();
@@ -22,6 +24,8 @@ private:
 	void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event);
 	void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event);
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	void onFinish(int code);
 private:
 	CardHeroNode* m_myCardHerosNode[6];
 
@@ -32,6 +36,8 @@ private:
 	cocos2d::ui::Text* needexp;
 	cocos2d::ui::Text* nextlvtext;
 	cocos2d::ui::Text* endtime;
+
+	int httptag;
 };
 
 #endif

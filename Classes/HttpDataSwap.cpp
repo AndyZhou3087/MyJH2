@@ -316,6 +316,39 @@ void HttpDataSwap::report(std::string data)
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpReportCB, this));
 }
 
+void HttpDataSwap::postMyMatchHeros()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_matchmatchsave?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	rapidjson::Document writedoc;
+	writedoc.SetObject();
+	rapidjson::Document::AllocatorType& allocator = writedoc.GetAllocator();
+
+	rapidjson::Value object(rapidjson::kObjectType);
+
+	for (int i = 0; i < 6; i++)
+	{
+		std::string herokey = StringUtils::format("hero%d", i);
+		std::string herodata;
+		if (GlobalInstance::myOnChallengeHeros[i] != NULL)
+		{
+			Hero* hero = GlobalInstance::myOnChallengeHeros[i];
+			herodata = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getOnchallengepos(), hero->getChangeCount());
+			object.AddMember(rapidjson::Value(herokey.c_str(), allocator), rapidjson::Value(herodata.c_str(), allocator), allocator);
+
+
+		}
+	}
+	writedoc.AddMember("data", object, allocator);
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpReportCB, this));
+}
+
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;

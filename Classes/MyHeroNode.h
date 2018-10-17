@@ -29,7 +29,9 @@ private:
 	cocos2d::ui::Text* lvlbl;
 	cocos2d::ui::ImageView* actbtntxt;
 	cocos2d::ui::ImageView* statetag;
+	cocos2d::ui::ImageView* statetag_1;
 	cocos2d::ui::Text* tagtext;
+	cocos2d::ui::Text* tagtext_1;
 	cocos2d::ui::Text* countdown;
 	cocos2d::ui::Text* count;
 	cocos2d::ui::ImageView* stars[5];

@@ -12,7 +12,7 @@ class SelectMyHerosLayer : public cocos2d::Layer
 public:
 	SelectMyHerosLayer();
 	~SelectMyHerosLayer();
-	static SelectMyHerosLayer* create(int wheretype);//1--出城选择，2-竞技场选择
+	static SelectMyHerosLayer* create(int wheretype);//2--出城选择，3-竞技场选择
 	virtual void onExit();
     bool init(int wheretype);
 	//更新scrollview

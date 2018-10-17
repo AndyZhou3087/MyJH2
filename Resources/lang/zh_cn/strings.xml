@@ -327,5 +327,6 @@
 	<s name="matchlvname_4">墨者</s>
 	<s name="neednextexpdesc">还需%d积分可升级至：</s>
 	<s name="matchrewardtext">赛季奖励</s>
-	<s name="matchendtimetext">赛季结束时间：</s>				
+	<s name="matchendtimetext">赛季结束时间：</s>
+	<s name="matchmax">参战人物已满！</s>				
 </strings>

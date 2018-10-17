@@ -21,10 +21,10 @@ CardHeroNode::~CardHeroNode()
 
 }
 
-CardHeroNode* CardHeroNode::create()
+CardHeroNode* CardHeroNode::create(int forwhere)
 {
 	CardHeroNode *pRet = new(std::nothrow)CardHeroNode();
-	if (pRet && pRet->init())
+	if (pRet && pRet->init(forwhere))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -37,8 +37,10 @@ CardHeroNode* CardHeroNode::create()
 	}
 }
 
-bool CardHeroNode::init()
+bool CardHeroNode::init(int forwhere)
 {
+	m_forwhere = forwhere;
+
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("cardHeroNode.csb"));
 	this->addChild(csbnode, 0, "csbnode");
 
@@ -83,6 +85,13 @@ bool CardHeroNode::init()
 		stars[i - 1]->setVisible(false);
 	}
 
+	if (forwhere == 1)
+	{
+		powericon->setVisible(false);
+		powertext->setVisible(false);
+		powerclick->setEnabled(false);
+	}
+
 	return true;
 }
 
@@ -99,7 +108,11 @@ void CardHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 
 		if (m_herodata == NULL)
 		{
-			Layer* layer = SelectMyHerosLayer::create(HS_TAKEON);
+			Layer* layer;
+			if (m_forwhere == 0)
+				layer = SelectMyHerosLayer::create(HS_TAKEON);
+			else
+				layer = SelectMyHerosLayer::create(HS_ONCHALLENGE);
 			layer->setTag(this->getTag());
 			this->getParent()->addChild(layer, 3, "selectmyheroslayer");
 			AnimationEffect::openAniEffect((Layer*)layer);

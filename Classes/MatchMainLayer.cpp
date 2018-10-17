@@ -15,11 +15,16 @@ USING_NS_CC;
 MatchMainLayer::MatchMainLayer()
 {
 	clickHero = -1;
+	httptag = -1;
+
+	for (int i = 0; i < 6; i++)
+	{
+		GlobalInstance::myOnChallengeHeros[i] = NULL;
+	}
 }
 
 MatchMainLayer::~MatchMainLayer()
 {
-	clickHero = -1;
 }
 
 
@@ -77,7 +82,7 @@ bool MatchMainLayer::init()
 	cocos2d::ui::ImageView* savebtntxt = (cocos2d::ui::ImageView*)savebtn->getChildByName("text");
 	savebtntxt->loadTexture(ResourcePath::makeTextImgPath("matchsave_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	//保存队形按钮
+	//规则按钮
 	cocos2d::ui::Button* rulebtn = (cocos2d::ui::Button*)csbnode->getChildByName("rulebtn");
 	rulebtn->setTag(1002);
 	rulebtn->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onBtnClick, this));
@@ -137,7 +142,7 @@ bool MatchMainLayer::init()
 		cardnodebg->setPosition(Vec2(pos.x, pos.y+14));
 		this->addChild(cardnodebg, 0);
 
-		m_myCardHerosNode[i] = CardHeroNode::create();
+		m_myCardHerosNode[i] = CardHeroNode::create(1);
 		m_myCardHerosNode[i]->setPosition(pos);
 		this->addChild(m_myCardHerosNode[i], 1, i);
 		m_myCardHerosNode[i]->setData(NULL);
@@ -259,9 +264,25 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		int tag = clicknode->getTag();
 		switch (tag)
 		{
-		case 1000://出城
+		case 1000://更换队形
+		{
+			Layer* layer = SelectMyHerosLayer::create(HS_ONCHALLENGE);
+			this->addChild(layer, 3, "selectmyheroslayer");
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
-		
+		case 1001://save http data
+			httptag = 0;
+
+
+			break;
+		case 1002://rule
+			break;
+		case 1003://getmatch
+			break;
+		case 1004:
+			AnimationEffect::closeAniEffect(this);
+			break;
 		default:
 			break;
 		}
@@ -276,4 +297,9 @@ void MatchMainLayer::onExit()
 CardHeroNode* MatchMainLayer::getMyCardHeroNode(int index)
 {
 	return m_myCardHerosNode[index];
+}
+
+void MatchMainLayer::onFinish(int code)
+{
+
 }

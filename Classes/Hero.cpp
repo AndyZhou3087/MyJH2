@@ -22,6 +22,7 @@ Hero::Hero()
 	m_state = 0;
 	m_randattr = 0.0f;
 	m_pos = 0;
+	m_onchallengepos = 0;
 	m_hp = INT32_MIN;
 	m_trainhour = 0;
 	m_traintime = 0;
@@ -52,6 +53,7 @@ Hero::Hero(Hero* hero)
 	m_randattr = hero->getRandAttr();
 	m_state = hero->getState();
 	m_pos = 0;
+	m_onchallengepos = 0;
 	m_hp = hero->getHp();
 	m_trainhour = hero->getTrainHour();
 	m_traintime = hero->getTrainTime();
