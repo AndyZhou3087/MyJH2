@@ -37,7 +37,7 @@
             <PreSize X="0.2250" Y="0.0445" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/timegifttitle.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="-1128649269" Tag="15" IconVisible="False" LeftMargin="150.9224" RightMargin="139.0776" TopMargin="363.2596" BottomMargin="864.7404" IsCustomSize="True" FontSize="22" LabelText="购买后可获得角色招募卷*2、装备抽取卷*2、元宝*300、祝福石*10、混沌石*10" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="desc" ActionTag="-1128649269" Tag="15" IconVisible="False" LeftMargin="150.9224" RightMargin="139.0776" TopMargin="363.2596" BottomMargin="864.7404" IsCustomSize="True" FontSize="21" LabelText="购买后可获得角色招募卷*2、装备抽取卷*2、银两*5000、元宝*100" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="430.0000" Y="52.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="365.9224" Y="890.7404" />

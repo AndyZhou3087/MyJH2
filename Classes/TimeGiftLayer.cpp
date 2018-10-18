@@ -73,9 +73,16 @@ bool TimeGiftLayer::init(ShopData* data)
 
 	lefttime = (cocos2d::ui::Text*)csbnode->getChildByName("lefttime");
 
-	updatetime(0);
+	if (GlobalInstance::serverTimeGiftData.isopen)
+	{
+		updatetime(0);
 
-	this->schedule(schedule_selector(TimeGiftLayer::updatetime), 1.0f);
+		this->schedule(schedule_selector(TimeGiftLayer::updatetime), 1.0f);
+	}
+	else
+	{
+		lefttime->setVisible(false);
+	}
 
 	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 	desc->setString(data->desc);
@@ -83,14 +90,13 @@ bool TimeGiftLayer::init(ShopData* data)
 	int startindex = 0;
 	int cruindex = 0;
 
-	std::string curgiftname = StringUtils::format("timegift%d", GlobalInstance::serverTimeGiftData.turn);
 	for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
 	{
 		if (GlobalInstance::vec_shopdata[i].icon.compare("timegift0") == 0)
 		{
 			startindex = i;
 		}
-		if (GlobalInstance::vec_shopdata[i].icon.compare(curgiftname) == 0)
+		if (GlobalInstance::vec_shopdata[i].icon.compare(data->icon) == 0)
 		{
 			cruindex = i;
 			break;
