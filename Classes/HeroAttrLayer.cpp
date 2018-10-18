@@ -39,7 +39,7 @@ HeroAttrLayer::HeroAttrLayer()
 	m_longTouchNode = NULL;
 	isCanClickFullHero = true;
 	redtip = NULL;
-	isPageMoveOk = 0;
+	pageMoveClickIndex = 0;
 }
 
 HeroAttrLayer::~HeroAttrLayer()
@@ -96,6 +96,10 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 
 	blankclick = (cocos2d::ui::ImageView*)csbnode->getChildByName("blankclick");
 	blankclick->setSwallowTouches(true);
+
+	cantclick = (cocos2d::ui::ImageView*)csbnode->getChildByName("cantclick");
+	cantclick->setSwallowTouches(true);
+	cantclick->setVisible(false);
 
 	//英雄全身图
 	herofullimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("hfull");
@@ -282,6 +286,10 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
+	{
+		return true;
+	};
+	listener->onTouchMoved = [=](Touch *touch, Event *event)
 	{
 		return true;
 	};
@@ -534,13 +542,11 @@ void HeroAttrLayer::JumpSceneCallback(cocos2d::Ref* pScene, cocos2d::ui::PageVie
 		int defaultindex = m_pageView->getCurrentPageIndex();
 		CCLOG("--------------adadfgggggggggggg -- %d ", defaultindex);
 
-		//isPageMoveOk = 2;
-
-		heroattrbottom->stopAllActions();
+		/*heroattrbottom->stopAllActions();
 		equipnode->stopAllActions();
 		heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, 0)),CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
-		equipnode->runAction(MoveTo::create(0.3f, Vec2(360, 490)));
-		blankclick->setVisible(true);
+		equipnode->runAction(MoveTo::create(0.3f, Vec2(360, 490)));*/
+		cantclick->setVisible(false);
 
 		m_heroData = vec_norheros[defaultindex];
 
@@ -1143,26 +1149,31 @@ void HeroAttrLayer::updateVocationUI()
 
 void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	if (type == cocos2d::ui::Widget::TouchEventType::MOVED)
+	if (type == cocos2d::ui::Widget::TouchEventType::BEGAN)
 	{
-		if (blankclick->isVisible())
+		pageMoveClickIndex = 1;
+	}
+	else if (type == cocos2d::ui::Widget::TouchEventType::MOVED)
+	{
+		pageMoveClickIndex = 2;
+		if (!cantclick->isVisible())
 		{
 			heroattrbottom->stopAllActions();
 			equipnode->stopAllActions();
 			heroattrbottom->runAction(Sequence::create(MoveTo::create(0.2f, Vec2(0, -heroattrbottom->getContentSize().height)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
 			equipnode->runAction(Sequence::create(MoveTo::create(0.2f, Vec2(360, -560)), NULL));
-			blankclick->setVisible(false);
+			cantclick->setVisible(true);
 		}
 	}
 	else if (type == cocos2d::ui::Widget::TouchEventType::CANCELED)
 	{
-		if (!blankclick->isVisible())
+		if (cantclick->isVisible())
 		{
 			heroattrbottom->stopAllActions();
 			equipnode->stopAllActions();
 			heroattrbottom->runAction(Sequence::create(MoveTo::create(0.2f, Vec2(0, 0)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
 			equipnode->runAction(MoveTo::create(0.2f, Vec2(360, 490)));
-			blankclick->setVisible(true);
+			cantclick->setVisible(false);
 		}
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
@@ -1179,18 +1190,46 @@ void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 			isMovingAction = true;
 			heroattrbottom->stopAllActions();
 			equipnode->stopAllActions();
-			if (heroattrbottom->getPositionY() >= 0)
+			if (pageMoveClickIndex == 1)
 			{
-				heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, -heroattrbottom->getContentSize().height)), DelayTime::create(0.12f), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
-				equipnode->runAction(Sequence::create(MoveTo::create(0.4f, Vec2(360, -560)), NULL));
-				blankclick->setVisible(false);
+				if (heroattrbottom->getPositionY() >= 0)
+				{
+					heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, -heroattrbottom->getContentSize().height)), DelayTime::create(0.12f), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+					equipnode->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(360, -560)), NULL));
+					blankclick->setVisible(false);
+					cantclick->setVisible(true);
+				}
+				else
+				{
+					heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, 0)), DelayTime::create(0.02f), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+					equipnode->runAction(MoveTo::create(0.3f, Vec2(360, 490)));
+					blankclick->setVisible(true);
+					cantclick->setVisible(false);
+				}
 			}
 			else
 			{
-				heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, 0)), DelayTime::create(0.02f), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
-				equipnode->runAction(MoveTo::create(0.3f, Vec2(360, 490)));
-				blankclick->setVisible(true);
+				if (heroattrbottom->getPositionY() >= 0)
+				{
+					heroattrbottom->setPositionY(0);
+					equipnode->setPositionY(490);
+					heroattrbottom->runAction(Sequence::create(DelayTime::create(0.5f), MoveTo::create(0.3f, Vec2(0, -heroattrbottom->getContentSize().height)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+					equipnode->runAction(Sequence::create(DelayTime::create(0.5f), MoveTo::create(0.3f, Vec2(360, -560)), NULL));
+					blankclick->setVisible(false);
+					cantclick->setVisible(true);
+				}
+				else
+				{
+					heroattrbottom->setPositionY(-heroattrbottom->getContentSize().height);
+					equipnode->setPositionY(-560);
+					heroattrbottom->runAction(Sequence::create(DelayTime::create(0.5f), MoveTo::create(0.3f, Vec2(0, 0)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+					equipnode->runAction(Sequence::create(DelayTime::create(0.5f), MoveTo::create(0.3f, Vec2(360, 490)), NULL));
+					blankclick->setVisible(true);
+					cantclick->setVisible(false);
+				}
 			}
+			
+			
 		}
 	}
 }

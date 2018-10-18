@@ -27,7 +27,7 @@
             <PreSize X="0.8417" Y="0.8797" />
             <FileData Type="Normal" Path="images/hfull_0_0.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="pageView" ActionTag="978755310" Alpha="0" Tag="111" IconVisible="False" LeftMargin="-90.0000" RightMargin="-90.0000" TopMargin="44.0000" BottomMargin="110.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ScrollDirectionType="0" ctype="PageViewObjectData">
+          <AbstractNodeData Name="pageView" ActionTag="978755310" Alpha="0" Tag="111" IconVisible="False" LeftMargin="-90.0000" RightMargin="-90.0000" TopMargin="44.0000" BottomMargin="110.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="0" ctype="PageViewObjectData">
             <Size X="900.0000" Y="1126.0000" />
             <AnchorPoint />
             <Position X="-90.0000" Y="110.0000" />
@@ -806,6 +806,16 @@
             <PrePosition X="0.9546" Y="0.9741" />
             <PreSize X="0.0431" Y="0.0406" />
             <FileData Type="MarkedSubImage" Path="ui/herohinticon.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="cantclick" ActionTag="-1594071010" Tag="72" IconVisible="False" TopMargin="720.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+            <Size X="720.0000" Y="560.0000" />
+            <AnchorPoint />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="1.0000" Y="0.4375" />
+            <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

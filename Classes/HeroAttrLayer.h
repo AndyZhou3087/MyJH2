@@ -161,6 +161,7 @@ private:
 	int breakcount;
 
 	cocos2d::ui::ImageView* blankclick;
+	cocos2d::ui::ImageView* cantclick;
 
 	bool m_isLongPress;
 	Node* m_longTouchNode;
@@ -173,7 +174,9 @@ private:
 	cocos2d::ui::PageView* pageView;
 	int m_fromwhere;
 	std::vector<Hero*> vec_norheros;
-	int isPageMoveOk;
+
+	Point beginTouchPoint;
+	int pageMoveClickIndex;
 };
 
 #endif
