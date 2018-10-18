@@ -36,7 +36,7 @@ private:
 	void updateUI(float dt);
 
 	//创建3个随机英雄数据
-	void create3RandHero();
+	void create3RandHero(int tool = 1);
 
 	//删除3个随机英雄数据
 	void delete3RandHero();

@@ -11,6 +11,7 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="heroAttrLayer.csd" />
+          <FilePathData Path="myHeroNode.csd" />
         </OpenedDocuments>
         <ActiveDocument Path="heroAttrLayer.csd" />
       </Value>
