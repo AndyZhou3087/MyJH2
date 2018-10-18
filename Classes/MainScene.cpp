@@ -21,6 +21,7 @@
 #include "Quest.h"
 #include "DataSave.h"
 #include "ErrorHintLayer.h"
+#include "CommonFuncs.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -31,6 +32,7 @@ MainScene::MainScene()
 	isPlayNewHeroAnim = false;
 	tasktip = NULL;
 	hostip = NULL;
+	traintip = NULL;
 }
 
 MainScene::~MainScene()
@@ -162,6 +164,10 @@ bool MainScene::init()
 		else if (i == 2)
 		{
 			hostip = (cocos2d::ui::Widget*)buildnametext->getChildByName("main_02_p");
+		}
+		else if (i == 5)
+		{
+			traintip = (cocos2d::ui::Widget*)buildnametext->getChildByName("main_05_p");
 		}
 
 		buildingSelect->setVisible(false);
@@ -862,6 +868,42 @@ void MainScene::updateTime(float dt)
 		maincityhintbox->setVisible(false);
 	}
 
+	int tcount = 0;
+	for (unsigned int m = 0; m < GlobalInstance::vec_myHeros.size(); m++)
+	{
+		Hero* trainhero = GlobalInstance::vec_myHeros[m];
+		if (trainhero->getState() == HS_TRAINING)
+		{
+			tcount++;
+			int refreshtime = trainhero->getTrainTime();
+			int pasttime = GlobalInstance::servertime - refreshtime;
+			if (pasttime >= trainhero->getTrainHour())
+			{
+				int lv = Building::map_buildingDatas["4trainigroom"]->level.getValue();
+				int bexp = Building::map_buildingDatas["4trainigroom"]->vec_exdatatrain[lv];
+
+				int lastLevel = trainhero->getLevel();
+				trainhero->setExpLimit(trainhero->getTrainHour() / 3600 * bexp);
+				int curLevel = trainhero->getLevel();
+				if (lastLevel <= curLevel - 1)
+				{
+					CommonFuncs::playCommonLvUpAnim(this, "texiao_sjcg");
+				}
+				trainhero->setTrainHour(0);
+				trainhero->setTrainTime(0);
+				trainhero->setState(HS_OWNED);
+				tcount--;
+			}
+		}
+	}
+	if (tcount > 0)
+	{
+		traintip->setVisible(true);
+	}
+	else
+	{
+		traintip->setVisible(false);
+	}
 }
 
 void MainScene::showInnRoomNewHeroAnim()
