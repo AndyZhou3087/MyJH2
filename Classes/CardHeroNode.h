@@ -43,7 +43,6 @@ private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onPowerClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void updatePowerCount(float dt);
-	void updateIcon(float dt);
 	void updateVocationData();
 };
 #endif

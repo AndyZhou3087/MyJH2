@@ -871,7 +871,7 @@ void HttpDataSwap::httpGetMatchPairDataCB(std::string retdata, int code, std::st
 			{
 				std::string herokey = StringUtils::format("hero%d", i);
 				std::string herodata = mydatav[herokey.c_str()].GetString();
-				GlobalInstance::myMatchInfo.map_myheros[herokey] = herodata;
+				GlobalInstance::myMatchInfo.map_pairheros[herokey] = herodata;
 			}
 		}
 		else

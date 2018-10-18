@@ -333,7 +333,7 @@ typedef struct
 	std::string rewardstr;
 	int matchscore;
 	std::map<std::string, std::string> map_myheros;
-	std::map<std::string, std::string> map_matchheros;
+	std::map<std::string, std::string> map_pairheros;
 }MyMatchInfo;
 
 
@@ -688,7 +688,7 @@ public:
 
 	static Hero* myOnChallengeHeros[6];//竞技赛我选择的6个英雄
 
-	static Hero* matchFightHeros[6];//匹配到的6个英雄
+	static Hero* matchPairHeros[6];//匹配到的6个英雄
 
 private:
 	static int refreshHeroTime;
