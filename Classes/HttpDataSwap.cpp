@@ -340,7 +340,7 @@ void HttpDataSwap::postMyMatchHeros()
 		if (GlobalInstance::myOnChallengeHeros[i] != NULL)
 		{
 			Hero* hero = GlobalInstance::myOnChallengeHeros[i];
-			herodata = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getOnchallengepos(), hero->getChangeCount());
+			herodata = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getChangeCount());
 
 			std::string equipstr;
 
@@ -872,6 +872,10 @@ void HttpDataSwap::httpGetMatchPairDataCB(std::string retdata, int code, std::st
 				std::string herokey = StringUtils::format("hero%d", i);
 				std::string herodata = mydatav[herokey.c_str()].GetString();
 				GlobalInstance::myMatchInfo.map_pairheros[herokey] = herodata;
+
+				GlobalInstance::myMatchInfo.pairnickname = mydatav["nickname"].GetString();
+
+				GlobalInstance::myMatchInfo.pairscore = atoi(mydatav["matchscore"].GetString());
 			}
 		}
 		else

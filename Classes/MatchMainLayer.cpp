@@ -11,6 +11,7 @@
 #include "HttpDataSwap.h"
 #include "WaitingProgress.h"
 #include "ErrorHintLayer.h"
+#include "MatchVSLayer.h"
 
 USING_NS_CC;
 
@@ -431,7 +432,8 @@ void MatchMainLayer::onFinish(int code)
 		}
 		else if (httptag == 3)
 		{
-
+			MatchVSLayer* layer = MatchVSLayer::create();
+			this->addChild(layer, 100);
 		}
 	}
 	else

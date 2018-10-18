@@ -334,6 +334,8 @@ typedef struct
 	int matchscore;
 	std::map<std::string, std::string> map_myheros;
 	std::map<std::string, std::string> map_pairheros;
+	std::string pairnickname;
+	int pairscore;
 }MyMatchInfo;
 
 

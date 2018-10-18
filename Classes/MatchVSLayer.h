@@ -18,7 +18,7 @@ public:
 private:
 
 	void loadData();
-
+	void parsePairHeros();
 private:
 	Node* csbnode;
 };
