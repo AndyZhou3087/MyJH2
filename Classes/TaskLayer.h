@@ -42,7 +42,7 @@ private:
 	void updateDaily(float dt);
 
 	static bool larger_callback(TaskData a, TaskData b);
-	static bool larger_branchcallback(TaskData a, TaskData b);
+	static bool larger_ordercallback(TaskData a, TaskData b);
 private:
 	std::vector<cocos2d::ui::Button*> vec_categoryBtn;
 	int lastCategoryindex;
