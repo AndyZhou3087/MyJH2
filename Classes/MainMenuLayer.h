@@ -27,7 +27,10 @@ typedef enum
 	ADDCOINBTN,//金币“+”按钮
 	VIP1BTN,//月卡1
 	VIP2BTN,//月卡2
-	TIMEGIFTBTN//限时礼包
+	TIMEGIFTBTN,//限时礼包
+	TIMEGIFTBTN_0,
+	TIMEGIFTBTN_1,
+	TIMEGIFTBTN_2
 }MENUTYPE;
 class MainMenuLayer : public cocos2d::Layer, public HTTPDataDelegateProtocol
 {
@@ -67,6 +70,8 @@ private:
 	cocos2d::ui::ImageView* head;//头像
 	Node* csbnode;
 	cocos2d::ui::Text* vipstrArr[2];
+	cocos2d::ui::Widget* tgiftbtn[3];
+	cocos2d::ui::Text* tgiftname[3];
 };
 
 #endif

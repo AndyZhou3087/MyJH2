@@ -567,6 +567,123 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="timegiftbtn_0" ActionTag="-469829593" Tag="238" IconVisible="False" LeftMargin="616.0237" RightMargin="21.9763" TopMargin="133.9990" BottomMargin="1064.0010" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="52" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="82.0000" Y="82.0000" />
+            <Children>
+              <AbstractNodeData Name="box" ActionTag="-2020892520" Tag="239" IconVisible="False" LeftMargin="-5.5000" RightMargin="-15.5000" TopMargin="64.0001" BottomMargin="-8.0001" LeftEage="18" RightEage="18" TopEage="10" BottomEage="10" Scale9OriginX="18" Scale9OriginY="10" Scale9Width="67" Scale9Height="6" ctype="ImageViewObjectData">
+                <Size X="103.0000" Y="26.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="46.0000" Y="4.9999" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5610" Y="0.0610" />
+                <PreSize X="1.2561" Y="0.3171" />
+                <FileData Type="MarkedSubImage" Path="ui/timegifttimebox.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="name" ActionTag="-1416914566" Tag="240" IconVisible="False" LeftMargin="4.0716" RightMargin="2.9284" TopMargin="68.9945" BottomMargin="-7.9945" FontSize="18" LabelText="12:00:00" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="75.0000" Y="21.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="41.5716" Y="2.5055" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5070" Y="0.0306" />
+                <PreSize X="0.9146" Y="0.2561" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="657.0237" Y="1105.0010" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9125" Y="0.8633" />
+            <PreSize X="0.1139" Y="0.0641" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/timegift.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/timegift.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/timegift.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="timegiftbtn_1" ActionTag="756839762" Tag="241" IconVisible="False" LeftMargin="616.0237" RightMargin="21.9763" TopMargin="236.0839" BottomMargin="961.9161" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="52" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="82.0000" Y="82.0000" />
+            <Children>
+              <AbstractNodeData Name="box" ActionTag="-136681016" Tag="242" IconVisible="False" LeftMargin="-5.5000" RightMargin="-15.5000" TopMargin="64.0001" BottomMargin="-8.0001" LeftEage="18" RightEage="18" TopEage="10" BottomEage="10" Scale9OriginX="18" Scale9OriginY="10" Scale9Width="67" Scale9Height="6" ctype="ImageViewObjectData">
+                <Size X="103.0000" Y="26.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="46.0000" Y="4.9999" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5610" Y="0.0610" />
+                <PreSize X="1.2561" Y="0.3171" />
+                <FileData Type="MarkedSubImage" Path="ui/timegifttimebox.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="name" ActionTag="2048194481" Tag="243" IconVisible="False" LeftMargin="4.0716" RightMargin="2.9284" TopMargin="68.9945" BottomMargin="-7.9945" FontSize="18" LabelText="12:00:00" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="75.0000" Y="21.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="41.5716" Y="2.5055" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5070" Y="0.0306" />
+                <PreSize X="0.9146" Y="0.2561" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="657.0237" Y="1002.9161" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9125" Y="0.7835" />
+            <PreSize X="0.1139" Y="0.0641" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/timegift.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/timegift.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/timegift.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="timegiftbtn_2" ActionTag="91918064" Tag="244" IconVisible="False" LeftMargin="621.5237" RightMargin="16.4763" TopMargin="338.1686" BottomMargin="859.8314" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="52" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="82.0000" Y="82.0000" />
+            <Children>
+              <AbstractNodeData Name="box" ActionTag="476029503" Tag="245" IconVisible="False" LeftMargin="-5.5000" RightMargin="-15.5000" TopMargin="64.0001" BottomMargin="-8.0001" LeftEage="18" RightEage="18" TopEage="10" BottomEage="10" Scale9OriginX="18" Scale9OriginY="10" Scale9Width="67" Scale9Height="6" ctype="ImageViewObjectData">
+                <Size X="103.0000" Y="26.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="46.0000" Y="4.9999" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5610" Y="0.0610" />
+                <PreSize X="1.2561" Y="0.3171" />
+                <FileData Type="MarkedSubImage" Path="ui/timegifttimebox.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="name" ActionTag="7152751" Tag="246" IconVisible="False" LeftMargin="4.0716" RightMargin="2.9284" TopMargin="68.9945" BottomMargin="-7.9945" FontSize="18" LabelText="12:00:00" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="75.0000" Y="21.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="41.5716" Y="2.5055" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5070" Y="0.0306" />
+                <PreSize X="0.9146" Y="0.2561" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="662.5237" Y="900.8314" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9202" Y="0.7038" />
+            <PreSize X="0.1139" Y="0.0641" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/timegift.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/timegift.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/timegift.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

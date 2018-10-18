@@ -284,7 +284,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 		}
 	}
 
-	for (int i = 0; i < vec_norheros.size(); i++)
+	for (unsigned int i = 0; i < vec_norheros.size(); i++)
 	{
 		auto imageView = cocos2d::ui::ImageView::create();
 		std::string fullimgstr = StringUtils::format("hfull_%d_%d.png", vec_norheros[i]->getVocation(), vec_norheros[i]->getSex());

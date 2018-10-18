@@ -87,6 +87,13 @@ bool MainMenuLayer::init()
 			timegiftbtn->setVisible(false);
 			timegiftlefttime = (cocos2d::ui::Text*)clickwidget->getChildByName("time");
 		}
+		else if (i >= TIMEGIFTBTN_0 && i <= TIMEGIFTBTN_2)
+		{
+			tgiftbtn[i - TIMEGIFTBTN_0] = clickwidget;
+			tgiftbtn[i - TIMEGIFTBTN_0]->setVisible(false);
+			tgiftname[i - TIMEGIFTBTN_0] = (cocos2d::ui::Text*)clickwidget->getChildByName("name");
+		}
+
 		if (i >= SETBTN && i <= SHOPBTN)
 		{
 			cocos2d::ui::ImageView* textimg =  (cocos2d::ui::ImageView*)clickwidget->getChildByName("text");
@@ -216,15 +223,29 @@ void MainMenuLayer::onFinish(int code)
 			timegiftlefttime->setString(timestr);
 		}
 
-		if (GlobalInstance::vec_notice.size() <= 0)
-		{
-			return;
-		}
-		if (GlobalInstance::noticeID.compare(GlobalInstance::vec_notice[0].id) != 0)
+		if (GlobalInstance::vec_notice.size() > 0 && GlobalInstance::noticeID.compare(GlobalInstance::vec_notice[0].id) != 0)
 		{
 			NewPopLayer* unlock = NewPopLayer::create();
 			this->addChild(unlock);
 			AnimationEffect::openAniEffect((Layer*)unlock);
+		}
+	}
+
+	if (!GlobalInstance::serverTimeGiftData.isopen)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			tgiftbtn[i]->setVisible(true);
+
+			std::string timegiftname = StringUtils::format("timegift%d", i);
+			for (unsigned int n = 0; n < GlobalInstance::vec_shopdata.size(); n++)
+			{
+				if (GlobalInstance::vec_shopdata[n].icon.compare(timegiftname) == 0)
+				{
+					tgiftname[i]->setString(GlobalInstance::vec_shopdata[n].name);
+					break;
+				}
+			}
 		}
 	}
 }
@@ -299,7 +320,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 {
 	Node* clicknode = (Node*)pSender;
 	int menuType = clicknode->getTag();
-	if ((menuType >= SETBTN && menuType <= SHOPBTN) || menuType == TIMEGIFTBTN)
+	if ((menuType >= SETBTN && menuType <= SHOPBTN) || menuType == TIMEGIFTBTN || (menuType >= TIMEGIFTBTN_0 && menuType <= TIMEGIFTBTN_2))
 		CommonFuncs::BtnAction(pSender, type);
 	else if (type == ui::Widget::TouchEventType::ENDED)
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
@@ -405,6 +426,24 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		case TIMEGIFTBTN:
 		{
 			std::string timegiftname = StringUtils::format("timegift%d", GlobalInstance::serverTimeGiftData.turn);
+			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+			{
+				if (GlobalInstance::vec_shopdata[i].icon.compare(timegiftname) == 0)
+				{
+					TimeGiftLayer* layer = TimeGiftLayer::create(&GlobalInstance::vec_shopdata[i]);
+					this->addChild(layer, 0, i);
+					AnimationEffect::openAniEffect((Layer*)layer);
+					break;
+				}
+			}
+		}
+		break;
+		case TIMEGIFTBTN_0:
+		case TIMEGIFTBTN_1:
+		case TIMEGIFTBTN_2:
+		{
+			int turn = menuType - TIMEGIFTBTN_0;
+			std::string timegiftname = StringUtils::format("timegift%d", turn);
 			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
 			{
 				if (GlobalInstance::vec_shopdata[i].icon.compare(timegiftname) == 0)
