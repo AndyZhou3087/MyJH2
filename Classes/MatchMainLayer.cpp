@@ -285,6 +285,8 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		case 1002://rule
 			break;
 		case 1003://getmatch
+			httptag = 2;
+			HttpDataSwap::init(this)->getMatchPairData();
 			break;
 		case 1004:
 			AnimationEffect::closeAniEffect(this);

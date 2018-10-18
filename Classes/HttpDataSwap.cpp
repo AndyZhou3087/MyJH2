@@ -404,6 +404,16 @@ void HttpDataSwap::getMyMatchHeros()
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMyMatchHerosCB, this));
 }
 
+void HttpDataSwap::getMatchPairData()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_matchmatchinfo?");
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMatchPairDataCB, this));
+}
+
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
@@ -799,20 +809,64 @@ void HttpDataSwap::httpGetMyMatchHerosCB(std::string retdata, int code, std::str
 			rapidjson::Value& retv = doc["ret"];
 			ret = retv.GetInt();
 
+			if (doc.HasMember("data"))
+			{
+				rapidjson::Value& mydatav = doc["data"];
+
+				rapidjson::Value& myd = mydatav["isgetaward"];
+				GlobalInstance::myMatchInfo.isgetreward = atoi(myd.GetString()) == 1 ? true : false;
+				myd = mydatav["matchscore"];
+				GlobalInstance::myMatchInfo.matchscore = atoi(myd.GetString());
+
+				for (int i = 0; i < 6; i++)
+				{
+					std::string herokey = StringUtils::format("hero%d", i);
+					std::string herodata = mydatav[herokey.c_str()].GetString();
+					GlobalInstance::myMatchInfo.map_myheros[herokey] = herodata;
+				}
+			}
+
+			if (doc.HasMember("endday"))
+			{
+				rapidjson::Value& v = doc["endday"];
+				GlobalInstance::myMatchInfo.endtime = v.GetString();
+			}
+
+			if (doc.HasMember("matchaward"))
+			{
+				rapidjson::Value& v = doc["matchaward"];
+				GlobalInstance::myMatchInfo.rewardstr = v.GetString();
+			}
+			if (ret == 2)
+				ret = SUCCESS;
+
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpGetMatchPairDataCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+
 			rapidjson::Value& mydatav = doc["data"];
 
-			rapidjson::Value& myd = mydatav["isgetaward"];
-			GlobalInstance::myMatchInfo.isgetreward = atoi(myd.GetString()) == 1 ? true : false;
-
-			myd = mydatav["matchscore"];
-			GlobalInstance::myMatchInfo.matchscore = atoi(myd.GetString());
-
-			rapidjson::Value& v = doc["endday"];
-			GlobalInstance::myMatchInfo.endtime = v.GetString();
-
-			v = doc["matchaward"];
-			GlobalInstance::myMatchInfo.rewardstr = v.GetString();
-			
 			for (int i = 0; i < 6; i++)
 			{
 				std::string herokey = StringUtils::format("hero%d", i);
