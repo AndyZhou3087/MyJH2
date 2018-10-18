@@ -275,10 +275,10 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="arrowglv" ActionTag="95069146" Tag="129" IconVisible="False" LeftMargin="13.3263" RightMargin="-39.3263" TopMargin="-50.5880" BottomMargin="18.5880" ctype="SpriteObjectData">
+          <AbstractNodeData Name="arrowglv" ActionTag="95069146" Tag="129" IconVisible="False" LeftMargin="82.3263" RightMargin="-108.3263" TopMargin="-51.5880" BottomMargin="19.5880" ctype="SpriteObjectData">
             <Size X="26.0000" Y="32.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="13.3263" Y="34.5880" />
+            <Position X="82.3263" Y="35.5880" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />

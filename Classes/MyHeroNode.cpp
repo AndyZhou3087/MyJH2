@@ -320,7 +320,7 @@ void MyHeroNode::updateData()
 	str = StringUtils::format("vocation_%d", m_heroData->getVocation());
 	vocationlbl->setString(ResourceLang::map_lang[str]);
 
-	arrowglv->setPositionX(-103 + namelbl->getContentSize().width + 8);
+	//arrowglv->setPositionX(-103 + namelbl->getContentSize().width + 8);
 
 	for (int i = 0; i < m_heroData->getChangeCount() - 1; i++)
 	{
@@ -361,7 +361,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				fromwhere = 1;
 			else if (m_showtype == HS_DEAD)
 				fromwhere = 2;
-			Layer* layer = HeroAttrLayer::create(m_heroData, fromwhere);
+			Layer* layer = HeroAttrLayer::create(m_heroData, fromwhere, 1);
 			layer->setName("heroattrlayer");
 			g_mainScene->addChild(layer, 0, this->getTag());
 			AnimationEffect::openAniEffect((Layer*)layer);

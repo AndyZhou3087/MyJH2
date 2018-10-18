@@ -2201,6 +2201,41 @@ int GlobalInstance::generateHeroPotential()
 	return 0;
 }
 
+int GlobalInstance::generateHeroPotentialByCoin()
+{
+	int innroomlv = DataSave::getInstance()->getBuildingLv("6innroom");
+	if (innroomlv < 10)
+	{
+		int r = GlobalInstance::getInstance()->createRandomNum(100);
+		if (r < 50)
+			return 1;
+		else if (r < 99)
+			return 2;
+		return 3;
+	}
+	else if (innroomlv < 19)
+	{
+		int r = GlobalInstance::getInstance()->createRandomNum(10000);
+		if (r < 4999)
+			return 1;
+		else if (r < 9899)
+			return 2;
+		else if (r < 9999)
+			return 3;
+		return 4;
+	}
+	else
+	{
+		int r = GlobalInstance::getInstance()->createRandomNum(10000);
+		if (r < 9499)
+			return 2;
+		else if (r < 9999)
+			return 3;
+		return 4;
+	}
+	return 0;
+}
+
 std::string GlobalInstance::getResUIFrameName(std::string resid, int qu)
 {
 	std::string str = StringUtils::format("ui/%s.png", resid.c_str());

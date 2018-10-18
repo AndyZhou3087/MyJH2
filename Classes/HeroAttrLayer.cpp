@@ -50,10 +50,10 @@ HeroAttrLayer::~HeroAttrLayer()
 }
 
 
-HeroAttrLayer* HeroAttrLayer::create(Hero* herodata, int fromwhere)
+HeroAttrLayer* HeroAttrLayer::create(Hero* herodata, int fromwhere, int clickwhere)
 {
 	HeroAttrLayer *pRet = new(std::nothrow)HeroAttrLayer();
-	if (pRet && pRet->init(herodata, fromwhere))
+	if (pRet && pRet->init(herodata, fromwhere, clickwhere))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -67,7 +67,7 @@ HeroAttrLayer* HeroAttrLayer::create(Hero* herodata, int fromwhere)
 }
 
 // on "init" you need to initialize your instance
-bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
+bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 {
     if ( !Layer::init() )
     {
@@ -230,7 +230,14 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 		btn->setTag(tag);
 		btn->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onBtnClick, this));
 		btnArr[i] = btn;
-		if (fromwhere != 0)
+	}
+	//设置ui
+	loadHeroUI();
+	for (int i = 0; i < sizeof(btnname) / sizeof(btnname[0]); i++)
+	{
+		int tag = i + ATTR_FIREBTN;
+		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)heroattrbottom->getChildByName(btnname[i]);
+		if (m_fromwhere != 0)
 		{
 			if (tag == ATTR_BACKBTN)
 				btn->setPositionX(360);
@@ -238,9 +245,6 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 				btn->setVisible(false);
 		}
 	}
-
-	//设置ui
-	loadHeroUI();
 
 	//滑动
 	pageView = (cocos2d::ui::PageView*)csbnode->getChildByName("pageView");
@@ -252,13 +256,34 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 	}
 
 	int pageIndex = 0;
-	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+	if (clickwhere != 0)
 	{
-		if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD)
+		if (fromwhere == 0)
 		{
-			vec_norheros.push_back(GlobalInstance::vec_myHeros[i]);
+			for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+			{
+				if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD)
+				{
+					vec_norheros.push_back(GlobalInstance::vec_myHeros[i]);
+				}
+			}
+		}
+		else
+		{
+			for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+			{
+				vec_norheros.push_back(GlobalInstance::vec_myHeros[i]);
+			}
 		}
 	}
+	else if (clickwhere == 0)
+	{
+		for (unsigned int i = 0; i < GlobalInstance::vec_rand3Heros.size(); i++)
+		{
+			vec_norheros.push_back(GlobalInstance::vec_rand3Heros[i]);
+		}
+	}
+
 	for (int i = 0; i < vec_norheros.size(); i++)
 	{
 		auto imageView = cocos2d::ui::ImageView::create();
@@ -275,6 +300,10 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere)
 		{
 			pageIndex = i;
 		}
+	}
+	if (clickwhere == 2)
+	{
+		pageIndex == vec_norheros.size() - 1;
 	}
 	pageView->setCurrentPageIndex(pageIndex);
 
@@ -540,7 +569,6 @@ void HeroAttrLayer::JumpSceneCallback(cocos2d::Ref* pScene, cocos2d::ui::PageVie
 	{
 		cocos2d::ui::PageView * m_pageView = dynamic_cast<cocos2d::ui::PageView *>(pScene);
 		int defaultindex = m_pageView->getCurrentPageIndex();
-		CCLOG("--------------adadfgggggggggggg -- %d ", defaultindex);
 
 		/*heroattrbottom->stopAllActions();
 		equipnode->stopAllActions();
@@ -724,10 +752,10 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				lvnode->setVisible(true);
 				addexplbl->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
 				equipnode->setVisible(false);
-				if (m_fromwhere == 0)
+				/*if (m_fromwhere == 0)
 				{
 					pageView->setEnabled(false);
-				}
+				}*/
 			}
 			break;
 		case ATTR_RECRUITBTN:
@@ -770,10 +798,10 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				addexplbl->stopAllActions();
 				addexplbl->setOpacity(255);
 				equipnode->setVisible(true);
-				if (m_fromwhere == 0)
+				/*if (m_fromwhere == 0)
 				{
 					pageView->setEnabled(true);
-				}
+				}*/
 			}
 			else
 			{

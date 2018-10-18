@@ -252,7 +252,7 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				GlobalInstance::vec_myHeros.push_back(myhero);
 				GlobalInstance::getInstance()->saveMyHeros();
 				MyRes::Use("u001");
-				Layer* layer = HeroAttrLayer::create(myhero);
+				Layer* layer = HeroAttrLayer::create(myhero, 0, 2);
 				layer->setName("heroattrlayer");
 				g_mainScene->addChild(layer, 0, GlobalInstance::vec_myHeros.size() - 1);
 				AnimationEffect::openAniEffect((Layer*)layer);
@@ -351,7 +351,7 @@ void RandHeroLayer::refresh3Hero(int i)
 		DynamicValueInt dval;
 		dval.setValue(COINREFRESH_NUM);
 		GlobalInstance::getInstance()->costMyCoinCount(dval);
-		create3RandHero();
+		create3RandHero(i);
 		for (int i = 0; i < 3; i++)
 		{
 			heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
@@ -408,13 +408,18 @@ void RandHeroLayer::updateUI(float dt)
 
 }
 
-void RandHeroLayer::create3RandHero()
+void RandHeroLayer::create3RandHero(int tool)
 {
 	delete3RandHero();
 	for (int i = 0; i < 3; i++)
 	{
 		Hero* randhero = new Hero();
 		randhero->generate();
+		//元宝刷新
+		if (tool == 2)
+		{
+			randhero->setPotential(GlobalInstance::getInstance()->generateHeroPotentialByCoin());
+		}
 		//新手
 		if (NewGuideLayer::checkifNewerGuide(24))
 		{

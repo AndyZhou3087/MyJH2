@@ -367,7 +367,7 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				GlobalInstance::vec_myHeros.push_back(myhero);
 				GlobalInstance::getInstance()->saveMyHeros();
 				MyRes::Use(m_res->getId());
-				Layer* layer = HeroAttrLayer::create(myhero);
+				Layer* layer = HeroAttrLayer::create(myhero, 0, 2);
 				layer->setName("heroattrlayer");
 				g_mainScene->addChild(layer, 0, GlobalInstance::vec_myHeros.size() - 1);
 				AnimationEffect::openAniEffect((Layer*)layer);

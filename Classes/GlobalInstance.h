@@ -515,6 +515,9 @@ public:
 	//根据客栈等级概率生成品质
 	int generateHeroPotential();
 
+	//根据客栈等级概率生成品质(元宝刷新概率)
+	int generateHeroPotentialByCoin();
+
 	//加载每日配置
 	void loadDailyTaskData();
 	//读取每日数据
