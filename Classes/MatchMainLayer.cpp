@@ -93,11 +93,11 @@ bool MatchMainLayer::init()
 	rulebtntxt->loadTexture(ResourcePath::makeTextImgPath("matchrulebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//匹配按钮
-	cocos2d::ui::Button* matchbtn = (cocos2d::ui::Button*)csbnode->getChildByName("matchbtn");
+	matchbtn = (cocos2d::ui::Button*)csbnode->getChildByName("matchbtn");
 	matchbtn->setTag(1003);
 	matchbtn->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onBtnClick, this));
 
-	cocos2d::ui::ImageView* matchbtntxt = (cocos2d::ui::ImageView*)matchbtn->getChildByName("text");
+	matchbtntxt = (cocos2d::ui::ImageView*)matchbtn->getChildByName("text");
 	matchbtntxt->loadTexture(ResourcePath::makeTextImgPath("matchbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	matchbtntxt->ignoreContentAdaptWithSize(true);
 
@@ -285,8 +285,23 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		case 1002://rule
 			break;
 		case 1003://getmatch
+		{
+			int count = 0;
+
+			for (int i = 0; i < 6; i++)
+			{
+				if (GlobalInstance::myOnChallengeHeros[i] == NULL)
+					count++;
+			}
+			if (count == 6)
+			{
+				MovingLabel::show(ResourceLang::map_lang["mymatchherosempty"]);
+				return;
+			}
+			setMatchBtnStatus(1);
 			httptag = 2;
-			HttpDataSwap::init(this)->getMatchPairData();
+			HttpDataSwap::init(this)->postMyMatchHeros();
+		}
 			break;
 		case 1004:
 			AnimationEffect::closeAniEffect(this);
@@ -294,6 +309,21 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		default:
 			break;
 		}
+	}
+}
+
+void MatchMainLayer::setMatchBtnStatus(int s)
+{
+	int langtype = GlobalInstance::getInstance()->getLang();
+	if (s == 0)
+	{
+		matchbtn->setEnabled(true);
+		matchbtntxt->loadTexture(ResourcePath::makeTextImgPath("matchbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+	else if (s == 1)
+	{
+		matchbtn->setEnabled(false);
+		matchbtntxt->loadTexture(ResourcePath::makeTextImgPath("matchdoing_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	}
 }
 
@@ -394,6 +424,15 @@ void MatchMainLayer::onFinish(int code)
 		{
 			MovingLabel::show(ResourceLang::map_lang["matchnetsaveok"]); 
 		}
+		else if (httptag == 2)
+		{
+			httptag = 3;
+			HttpDataSwap::init(this)->getMatchPairData();
+		}
+		else if (httptag == 3)
+		{
+
+		}
 	}
 	else
 	{
@@ -409,6 +448,12 @@ void MatchMainLayer::onFinish(int code)
 				networkerrLayer->resetBtn();
 			}
 		}
+
+		else if (httptag == 2 || httptag == 3)
+		{
+			setMatchBtnStatus(0);
+		}
+		
 		MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
 	}
 }

@@ -959,8 +959,12 @@
           <Image Name="main_silver.png" />
           <Image Name="maincityhintbox.png" />
           <Image Name="maintask_icon.png" />
+          <Image Name="matchbox0.png" />
+          <Image Name="matchbox1.png" />
           <Image Name="matchdoingbtn.png" />
           <Image Name="matchrewardicon.png" />
+          <Image Name="matchS.png" />
+          <Image Name="matchV.png" />
           <Image Name="messageicon.png" />
           <Image Name="ninegrid.png" />
           <Image Name="normal9bg.png" />
@@ -1176,6 +1180,7 @@
         <Project Name="marketRefreshLayer.csd" Type="Layer" />
         <Project Name="marketResNode.csd" Type="Node" />
         <Project Name="matchMainLayer.csd" Type="Layer" />
+        <Project Name="matchVSLayer.csd" Type="Layer" />
         <Project Name="materialDescNode.csd" Type="Node" />
         <Project Name="messageDescLayer.csd" Type="Layer" />
         <Project Name="messageLayer.csd" Type="Layer" />

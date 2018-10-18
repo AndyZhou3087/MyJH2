@@ -322,6 +322,7 @@
 	<s name="salegftips">出售成功</s>
 	<s name="selectnpcgive">请选择赠送数量</s>
 	<s name="matchlvtext">段位</s>
+	<s name="matchlvtext_1">段位：</s>
 	<s name="matchexptext">积分</s>
 	<s name="matchlvname_0">乡野义士</s>
 	<s name="matchlvname_1">江湖侠士</s>
@@ -333,5 +334,6 @@
 	<s name="matchendtimetext">赛季结束时间：</s>
 	<s name="matchmax">参战人物已满！</s>
 	<s name="matchnetworkerr">获取数据失败！请检查网络连接。</s>
-	<s name="matchnetsaveok">保存成功！</s>				
+	<s name="matchnetsaveok">保存成功！</s>
+	<s name="mymatchherosempty">请选择出战侠客！</s>					
 </strings>

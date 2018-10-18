@@ -28,9 +28,12 @@ private:
 	void onFinish(int code);
 
 	void updateUI();
+
+	void setMatchBtnStatus(int s);
 private:
 	CardHeroNode* m_myCardHerosNode[6];
-
+	cocos2d::ui::Button* matchbtn;
+	cocos2d::ui::ImageView* matchbtntxt;
 	int clickHero;
 	Vec2 beginTouchPoint;
 	cocos2d::ui::Text* matchlv;
