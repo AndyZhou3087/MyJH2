@@ -569,7 +569,6 @@ void HeroAttrLayer::JumpSceneCallback(cocos2d::Ref* pScene, cocos2d::ui::PageVie
 	{
 		cocos2d::ui::PageView * m_pageView = dynamic_cast<cocos2d::ui::PageView *>(pScene);
 		int defaultindex = m_pageView->getCurrentPageIndex();
-		CCLOG("--------------adadfgggggggggggg -- %d ", defaultindex);
 
 		/*heroattrbottom->stopAllActions();
 		equipnode->stopAllActions();
