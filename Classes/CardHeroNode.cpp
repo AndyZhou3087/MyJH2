@@ -106,7 +106,7 @@ void CardHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 		}
 		else
 		{
-			Layer* layer = HeroAttrLayer::create(m_herodata, 0);
+			Layer* layer = HeroAttrLayer::create(m_herodata, 0, 3);
 			this->getParent()->addChild(layer, 3, this->getTag());
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
