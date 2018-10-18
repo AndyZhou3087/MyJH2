@@ -303,7 +303,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 	}
 	if (clickwhere == 2)
 	{
-		pageIndex == vec_norheros.size() - 1;
+		pageIndex = vec_norheros.size() - 1;
 	}
 	pageView->setCurrentPageIndex(pageIndex);
 
