@@ -55,6 +55,11 @@ void Quest::AddFinishQuest(TaskData data)
 	map_NpcQuestRes.clear();
 	DataSave::getInstance()->setMyCurTaskNeed("");
 
+	if (g_MapBlockScene != NULL)
+	{
+		g_MapBlockScene->showUnlockChapter();
+	}
+
 	//ÌØÐ§
 	CommonFuncs::playCommonLvUpAnim(g_MapBlockScene, "texiao_rwwc");
 }

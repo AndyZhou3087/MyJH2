@@ -216,7 +216,7 @@ void TaskLayer::updateContent(int category)
 	if (category == 0)
 	{
 		ressize = GlobalInstance::vec_TaskMain.size();
-		sort(GlobalInstance::vec_TaskMain.begin(), GlobalInstance::vec_TaskMain.end(), larger_callback);
+		sort(GlobalInstance::vec_TaskMain.begin(), GlobalInstance::vec_TaskMain.end(), larger_ordercallback);
 		scrollview->setContentSize(Size(scrollview->getContentSize().width, 990));
 		pnode->setVisible(false);
 
@@ -231,7 +231,7 @@ void TaskLayer::updateContent(int category)
 	else if (category == 1)
 	{
 		ressize = GlobalInstance::vec_TaskBranch.size();
-		sort(GlobalInstance::vec_TaskBranch.begin(), GlobalInstance::vec_TaskBranch.end(), larger_branchcallback);
+		sort(GlobalInstance::vec_TaskBranch.begin(), GlobalInstance::vec_TaskBranch.end(), larger_ordercallback);
 		scrollview->setContentSize(Size(scrollview->getContentSize().width, 990));
 		pnode->setVisible(false);
 
@@ -363,11 +363,11 @@ bool TaskLayer::larger_callback(TaskData a, TaskData b)
 		return false;
 }
 
-bool TaskLayer::larger_branchcallback(TaskData a, TaskData b)
+bool TaskLayer::larger_ordercallback(TaskData a, TaskData b)
 {
-	int needcountA = a.isfinish;
-	int needcountB = b.isfinish;
-	if (needcountA < needcountB)
+	int needcountA = a.id;
+	int needcountB = b.id;
+	if (needcountA > needcountB)
 		return true;
 	else
 		return false;
