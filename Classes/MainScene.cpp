@@ -169,6 +169,7 @@ bool MainScene::init()
 		else if (i == 5)
 		{
 			traintip = (cocos2d::ui::Widget*)buildnametext->getChildByName("main_05_p");
+			traintip->setVisible(false);
 		}
 
 		buildingSelect->setVisible(false);
@@ -872,13 +873,11 @@ void MainScene::updateTime(float dt)
 		maincityhintbox->setVisible(false);
 	}
 
-	int tcount = 0;
 	for (unsigned int m = 0; m < GlobalInstance::vec_myHeros.size(); m++)
 	{
 		Hero* trainhero = GlobalInstance::vec_myHeros[m];
 		if (trainhero->getState() == HS_TRAINING)
 		{
-			tcount++;
 			int refreshtime = trainhero->getTrainTime();
 			int pasttime = GlobalInstance::servertime - refreshtime;
 			if (pasttime >= trainhero->getTrainHour())
@@ -896,17 +895,10 @@ void MainScene::updateTime(float dt)
 				trainhero->setTrainHour(0);
 				trainhero->setTrainTime(0);
 				trainhero->setState(HS_OWNED);
-				tcount--;
+
+				traintip->setVisible(true);
 			}
 		}
-	}
-	if (tcount > 0)
-	{
-		traintip->setVisible(true);
-	}
-	else
-	{
-		traintip->setVisible(false);
 	}
 }
 

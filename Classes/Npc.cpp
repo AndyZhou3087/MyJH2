@@ -14,6 +14,15 @@ Npc::~Npc()
 
 }
 
+float Npc::getHp()
+{
+	return m_hp;
+}
+
+void Npc::setHp(float hp)
+{
+	m_hp = hp;
+}
 
 int Npc::getLevel()
 {
