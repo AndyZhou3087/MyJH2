@@ -23,7 +23,7 @@
 
 #define CLICKOFFSETP 8
 
-#define encrypt_jsonxml 1 //加密
+//#define encrypt_jsonxml 1 //加密
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #define UMENG
