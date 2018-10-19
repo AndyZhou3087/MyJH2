@@ -16,9 +16,13 @@ public:
 	CC_SYNTHESIZE(std::string, m_name, Name);//名称，唯一不重复
 	CC_SYNTHESIZE(int, m_vocation, Vocation);// 职业
 	CC_SYNTHESIZE(int, m_potential, Potential);//潜力，品质
-	CC_SYNTHESIZE(float, m_hp, Hp);//血量
 	CC_SYNTHESIZE(std::string, m_id, Id);//id
 	CC_SYNTHESIZE(bool, m_isdodge, IsDodge);//是否闪避
+
+		//血量
+	virtual float getHp();
+
+	virtual void setHp(float hp);
 
 	virtual int getLevel();
 
@@ -57,6 +61,7 @@ protected:
 public:
 	std::vector<int> vec_whosufferskill;//施放给谁
 	int m_lv;
+	float m_hp;
 };
 
 #endif
