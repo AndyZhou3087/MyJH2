@@ -10,8 +10,9 @@ using namespace std;
 
 USING_NS_CC;
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #define encrypt_data 1
-
+#endif
 
 // 加/解密函数；bEncrypt = true 加密；bEncrypt = false 解密
 inline char* Encrypt(char* pMsg, bool bEncrypt)

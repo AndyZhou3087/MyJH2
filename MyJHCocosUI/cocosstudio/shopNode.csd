@@ -37,8 +37,8 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/gd3.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="-212857847" Tag="158" IconVisible="False" LeftMargin="-159.0988" RightMargin="86.0988" TopMargin="-50.2541" BottomMargin="22.2541" FontSize="23" LabelText="60元宝" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="73.0000" Y="28.0000" />
+          <AbstractNodeData Name="name" ActionTag="-212857847" Tag="158" IconVisible="False" LeftMargin="-159.0988" RightMargin="86.0988" TopMargin="-50.2541" BottomMargin="22.2541" FontSize="23" LabelText="60元宝" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="72.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="-159.0988" Y="36.2541" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />

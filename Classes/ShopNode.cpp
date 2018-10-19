@@ -55,6 +55,16 @@ bool ShopNode::init(ShopData* shopdata)
 	//Ãû×Ö
 	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	namelbl->setString(shopdata->name);
+	Label *namelabel = (Label*)namelbl->getVirtualRenderer();
+	namelabel->enableBold();
+	/*namelbl->setVisible(false);
+
+	Label *namelabel = Label::createWithTTF(shopdata->name, FONT_NAME, 23);
+	namelabel->setPosition(namelbl->getPosition());
+	namelabel->setAnchorPoint(Vec2(0, 0.5));
+	namelabel->setColor(Color3B(236, 132, 78));
+	namelabel->enableBold();
+	csbnode->addChild(namelabel);*/
 
 	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 	desc->setString(shopdata->desc);
