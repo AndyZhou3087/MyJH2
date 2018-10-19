@@ -10,8 +10,8 @@
 
 USING_NS_CC;
 
-#define SILVERREFRESH_NUM 100
-#define COINREFRESH_NUM 10
+#define SILVERREFRESH_NUM 2000
+#define COINREFRESH_NUM 20
 
 MarketRefreshLayer::MarketRefreshLayer()
 {

@@ -1367,7 +1367,7 @@ void MapBlockScene::showFightResult(int result)
 		if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(mapblock->getPosNpcID()))
 		{
 			Quest::finishTaskMain(QUEST_FIGHT);
-			showUnlockChapter();
+			//showUnlockChapter();
 
 		}
 		else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(mapblock->getPosNpcID()))
