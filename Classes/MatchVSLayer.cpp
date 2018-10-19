@@ -5,6 +5,7 @@
 #include "Const.h"
 #include "Equip.h"
 #include "GongFa.h"
+#include "FightingLayer.h"
 
 USING_NS_CC;
 
@@ -59,6 +60,7 @@ bool MatchVSLayer::init()
 	//effectnode->runAction(action);
 	//action->gotoFrameAndPlay(0, false);
 
+	this->scheduleOnce(schedule_selector(MatchVSLayer::delayShowFight), 1);
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -260,4 +262,16 @@ void MatchVSLayer::parsePairHeros()
 			GlobalInstance::matchPairHeros[index] = NULL;
 		}
 	}
+}
+
+void MatchVSLayer::delayShowFight(float dt)
+{
+	std::vector<Npc*> vec_pairs;
+	for (int i = 0; i < 6; i++)
+	{
+		vec_pairs.push_back(GlobalInstance::matchPairHeros[i]);
+		GlobalInstance::myCardHeros[i] = GlobalInstance::myOnChallengeHeros[i];
+	}
+	FightingLayer* layer = FightingLayer::create(vec_pairs, 1);
+	this->getParent()->addChild(layer, 0, "FightingLayer");
 }

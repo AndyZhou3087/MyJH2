@@ -19,6 +19,8 @@ private:
 
 	void loadData();
 	void parsePairHeros();
+
+	void delayShowFight(float dt);
 private:
 	Node* csbnode;
 };
