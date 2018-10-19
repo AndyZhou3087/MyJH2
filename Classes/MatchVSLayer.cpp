@@ -274,4 +274,5 @@ void MatchVSLayer::delayShowFight(float dt)
 	}
 	FightingLayer* layer = FightingLayer::create(vec_pairs, 1);
 	this->getParent()->addChild(layer, 0, "FightingLayer");
+	this->removeFromParentAndCleanup(true);
 }
