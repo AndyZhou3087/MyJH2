@@ -383,8 +383,22 @@ void MatchMainLayer::updateUI()
 			{
 				if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getName().compare(heroname) == 0)
 				{
-					GlobalInstance::vec_myHeros[i]->setOnchallengepos(index + 1);
-					GlobalInstance::myOnChallengeHeros[index] = GlobalInstance::vec_myHeros[i];
+					Hero* myownhero = GlobalInstance::vec_myHeros[i];
+					Hero* hero = new Hero();
+					hero->setName(heroname);
+					DynamicValueInt dvint;
+					dvint.setValue(myownhero->getExp().getValue());
+					hero->setExp(dvint);
+
+					hero->setVocation(myownhero->getVocation());
+
+					hero->setPotential(myownhero->getPotential());
+
+					hero->setSex(myownhero->getSex());
+					hero->setRandAttr(myownhero->getRandAttr());
+					hero->setChangeCount(myownhero->getChangeCount());
+					hero->setState(HS_ONCHALLENGE);
+					GlobalInstance::myOnChallengeHeros[index] = hero;
 				}
 			}
 			m_myCardHerosNode[index]->setData(GlobalInstance::myOnChallengeHeros[index]);

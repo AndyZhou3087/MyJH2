@@ -273,6 +273,6 @@ void MatchVSLayer::delayShowFight(float dt)
 		GlobalInstance::myCardHeros[i] = GlobalInstance::myOnChallengeHeros[i];
 	}
 	FightingLayer* layer = FightingLayer::create(vec_pairs, 1);
-	this->getParent()->addChild(layer, 0, "FightingLayer");
+	this->getParent()->addChild(layer, 100, "FightingLayer");
 	this->removeFromParentAndCleanup(true);
 }

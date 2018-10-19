@@ -89,7 +89,10 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 		{
 			FightHeroNode * fightHeroNode = FightHeroNode::create();
 			fightHeroNode->setPosition(145 + i % 3 * 215, 860 + i / 3 * 260);
-			fightHeroNode->setData(m_enemyHeros[i], F_NPC, FS_FIGHTING);
+			FIGHTDATA_TYPE datatype = F_NPC;
+			if (enemyHeros[i]->getId().length() <= 0)
+				datatype = F_HERO;
+			fightHeroNode->setData(m_enemyHeros[i], datatype, FS_FIGHTING);
 			addChild(fightHeroNode, 1, 6 + i);
 		}
 	}
@@ -196,11 +199,14 @@ void FightingLayer::onExit()
 void FightingLayer::updateMapHero(int which)
 {
 	//GlobalInstance::myCardHeros[which] = NULL;
-	g_MapBlockScene->updateHeroUI(which);
-	fightcount++;
+	if (g_MapBlockScene != NULL)
+	{
+		g_MapBlockScene->updateHeroUI(which);
+		fightcount++;
 
-	if (fightcount > 10)
-		m_escapebtn->setVisible(true);
+		if (fightcount > 10)
+			m_escapebtn->setVisible(true);
+	}
 }
 
 void FightingLayer::pauseAtkSchedule()
