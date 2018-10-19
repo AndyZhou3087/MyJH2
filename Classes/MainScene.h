@@ -54,6 +54,9 @@ public:
 
 	static void cheatAction();
 
+public:
+	cocos2d::ui::Widget* traintip;
+
 private:
 	void updateTaskLayerTip(float dt);
 
@@ -81,7 +84,6 @@ private:
 
 	cocos2d::ui::Widget* tasktip;
 	cocos2d::ui::Widget* hostip;
-	cocos2d::ui::Widget* traintip;
 };
 extern MainScene* g_mainScene;
 #endif

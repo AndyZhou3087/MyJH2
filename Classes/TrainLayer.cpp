@@ -46,6 +46,14 @@ bool TrainLayer::init(Building* buidingData)
 		return false;
 	}
 
+	if (g_mainScene != NULL)
+	{
+		if (g_mainScene->traintip != NULL)
+		{
+			g_mainScene->traintip->setVisible(false);
+		}
+	}
+
 	m_buidingData = buidingData;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color,0,"colorLayer");
