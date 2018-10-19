@@ -115,42 +115,48 @@ ResBase* MyRes::Add(std::string resid, int count, int inwhere, int qu, int stone
 	ResBase* retres = NULL;
 	if (i >= T_ARMOR && i <= T_FASHION)
 	{
-		Equip* res = new Equip();
-		res->setId(resid);
-		res->setType(i);
-		DynamicValueInt dvalue;
-		dvalue.setValue(count);
-		res->setCount(dvalue);
-
-		DynamicValueInt quvalue;
-		quvalue.setValue(qu);
-		res->setQU(quvalue);
-		res->setWhere(inwhere);
-
-		if (stonescount > 0)
+		for (int m = 0; m < count; m++)
 		{
-			for (int n = 0; n < stonescount; n++)
-			res->vec_stones.push_back("o");//用一个占位
+			Equip* res = new Equip();
+			res->setId(resid);
+			res->setType(i);
+			DynamicValueInt dvalue;
+			dvalue.setValue(1);
+			res->setCount(dvalue);
+
+			DynamicValueInt quvalue;
+			quvalue.setValue(qu);
+			res->setQU(quvalue);
+			res->setWhere(inwhere);
+
+			if (stonescount > 0)
+			{
+				for (int n = 0; n < stonescount; n++)
+					res->vec_stones.push_back("o");//用一个占位
+			}
+			vec_MyResources.push_back(res);
+			retres = res;
 		}
-		vec_MyResources.push_back(res);
-		retres = res;
 	}
 	else if (i >= T_WG && i <= T_NG)
 	{
-		GongFa* res = new GongFa();
-		res->setId(resid);
-		res->setType(i);
-		DynamicValueInt dvalue;
-		dvalue.setValue(count);
-		res->setCount(dvalue);
+		for (int m = 0; m < count; m++)
+		{
+			GongFa* res = new GongFa();
+			res->setId(resid);
+			res->setType(i);
+			DynamicValueInt dvalue;
+			dvalue.setValue(1);
+			res->setCount(dvalue);
 
-		DynamicValueInt quvalue;
-		quvalue.setValue(qu);
-		res->setQU(quvalue);
-		res->setWhere(inwhere);
+			DynamicValueInt quvalue;
+			quvalue.setValue(qu);
+			res->setQU(quvalue);
+			res->setWhere(inwhere);
 
-		vec_MyResources.push_back(res);
-		retres = res;
+			vec_MyResources.push_back(res);
+			retres = res;
+		}
 	}
 	else
 	{
@@ -183,40 +189,46 @@ void MyRes::Add(ResBase* res, int count, int inwhere)
 	int type = res->getType();
 	if (type >= T_ARMOR && type <= T_FASHION)
 	{
-		Equip* ores = (Equip*)res;
-		Equip* eres = new Equip();
-		eres->setId(res->getId());
-		eres->setType(type);
-		DynamicValueInt dvalue;
-		dvalue.setValue(count);
-		eres->setCount(dvalue);
-
-		DynamicValueInt quvalue;
-		quvalue.setValue(res->getQU().getValue());
-		eres->setQU(quvalue);
-		eres->setWhere(inwhere);
-		int ssize = ores->vec_stones.size();
-		if (ssize > 0)
+		for (int m = 0; m < count; m++)
 		{
-			for (int n = 0; n < ssize; n++)
-				eres->vec_stones.push_back(ores->vec_stones[n]);
+			Equip* ores = (Equip*)res;
+			Equip* eres = new Equip();
+			eres->setId(res->getId());
+			eres->setType(type);
+			DynamicValueInt dvalue;
+			dvalue.setValue(1);
+			eres->setCount(dvalue);
+
+			DynamicValueInt quvalue;
+			quvalue.setValue(res->getQU().getValue());
+			eres->setQU(quvalue);
+			eres->setWhere(inwhere);
+			int ssize = ores->vec_stones.size();
+			if (ssize > 0)
+			{
+				for (int n = 0; n < ssize; n++)
+					eres->vec_stones.push_back(ores->vec_stones[n]);
+			}
+			vec_MyResources.push_back(eres);
 		}
-		vec_MyResources.push_back(eres);
 	}
 	else if (type >= T_WG && type <= T_NG)
 	{
-		GongFa* gres = new GongFa();
-		gres->setId(res->getId());
-		gres->setType(type);
-		DynamicValueInt dvalue;
-		dvalue.setValue(count);
-		gres->setCount(dvalue);
+		for (int m = 0; m < count; m++)
+		{
+			GongFa* gres = new GongFa();
+			gres->setId(res->getId());
+			gres->setType(type);
+			DynamicValueInt dvalue;
+			dvalue.setValue(count);
+			gres->setCount(dvalue);
 
-		DynamicValueInt quvalue;
-		quvalue.setValue(res->getQU().getValue());
-		gres->setQU(quvalue);
-		gres->setWhere(inwhere);
-		vec_MyResources.push_back(gres);
+			DynamicValueInt quvalue;
+			quvalue.setValue(res->getQU().getValue());
+			gres->setQU(quvalue);
+			gres->setWhere(inwhere);
+			vec_MyResources.push_back(gres);
+		}
 	}
 	else
 	{

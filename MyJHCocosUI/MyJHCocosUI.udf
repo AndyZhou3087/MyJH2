@@ -10,9 +10,9 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="matchVSLayer.csd" />
+          <FilePathData Path="marketRefreshLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="matchVSLayer.csd" />
+        <ActiveDocument Path="marketRefreshLayer.csd" />
       </Value>
     </Item>
   </Properties>

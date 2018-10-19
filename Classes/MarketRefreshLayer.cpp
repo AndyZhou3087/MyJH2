@@ -76,6 +76,14 @@ bool MarketRefreshLayer::init()
 	cocos2d::ui::Text* attactlb = (cocos2d::ui::Text*)csbnode->getChildByName("attactlb");
 	attactlb->setString(ResourceLang::map_lang["marketrefreshdesc"]);
 
+	cocos2d::ui::Text* cointext = (cocos2d::ui::Text*)csbnode->getChildByName("cointext");
+	std::string str = StringUtils::format("x%d", COINREFRESH_NUM);
+	cointext->setString(str);
+
+	cocos2d::ui::Text* slivertext = (cocos2d::ui::Text*)csbnode->getChildByName("slivertext");
+	str = StringUtils::format("x%d", SILVERREFRESH_NUM);
+	slivertext->setString(str);
+
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
