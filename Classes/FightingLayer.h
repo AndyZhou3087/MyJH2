@@ -20,6 +20,8 @@ public:
 
 	void showAtk(int fightertag);
 
+	void heroFight(int fightertag);
+
 	void pauseAtkSchedule();
 	void resumeAtkSchedule();
 
@@ -54,7 +56,8 @@ private:
 	cocos2d::ui::Widget* m_escapebtn;
 	int fightcount;
 
-	std::vector<FightHeroNode*> vec_myheronode;
+	std::vector<FightHeroNode*> vec_atkheronode;
+	std::vector< FightHeroNode*> vec_pairheronode;
 
 	std::vector<FightHeroNode*> vec_myfront3node;
 	std::vector<FightHeroNode*> vec_myback3node;
