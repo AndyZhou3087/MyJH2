@@ -29,14 +29,15 @@ FightingLayer::~FightingLayer()
 			fnode->map_skillattricon.clear();
 		}
 	}
-	clearSkillsData();
+	clearSkillsData(0);
+	clearSkillsData(1);
 }
 
 
-FightingLayer* FightingLayer::create(std::vector<Npc*> enemyHeros, int bgtype)
+FightingLayer* FightingLayer::create(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHeros, int bgtype)
 {
 	FightingLayer *pRet = new(std::nothrow)FightingLayer();
-	if (pRet && pRet->init(enemyHeros, bgtype))
+	if (pRet && pRet->init(myHeros, enemyHeros, bgtype))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -50,7 +51,7 @@ FightingLayer* FightingLayer::create(std::vector<Npc*> enemyHeros, int bgtype)
 }
 
 // on "init" you need to initialize your instance
-bool FightingLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
+bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHeros, int bgtype)
 {
 	if (!Layer::init())
 	{
@@ -58,6 +59,7 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 	}
 
 	m_enemyHeros = enemyHeros;
+	m_myHeros = myHeros;
 	//LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	//this->addChild(color,0,"colorLayer");
 
@@ -97,14 +99,14 @@ bool FightingLayer::init(std::vector<Npc*> enemyHeros, int bgtype)
 		}
 	}
 
-	for (int i = 0; i < 6; i++)
+	for (unsigned int i = 0; i < m_myHeros.size(); i++)
 	{
-		if (GlobalInstance::myCardHeros[i] != NULL)
+		if (m_myHeros[i] != NULL)
 		{
 			FightHeroNode * fightHeroNode = FightHeroNode::create();
 			fightHeroNode->setPosition(145 + i % 3 * 215, 460 - i / 3 * 260);
-			GlobalInstance::myCardHeros[i]->setFightRound(0);
-			fightHeroNode->setData(GlobalInstance::myCardHeros[i], F_HERO, FS_FIGHTING);
+			m_myHeros[i]->setFightRound(0);
+			fightHeroNode->setData(m_myHeros[i], F_HERO, FS_FIGHTING);
 			addChild(fightHeroNode, 2, i);
 		}
 	}
@@ -198,7 +200,6 @@ void FightingLayer::onExit()
 
 void FightingLayer::updateMapHero(int which)
 {
-	//GlobalInstance::myCardHeros[which] = NULL;
 	if (g_MapBlockScene != NULL)
 	{
 		g_MapBlockScene->updateHeroUI(which);
@@ -277,20 +278,44 @@ void FightingLayer::fightOver(int ret)
 		g_MapBlockScene->showFightResult(ret);
 }
 
-void FightingLayer::clearSkillsData()
+void FightingLayer::clearSkillsData(int type)
 {
-	for (int i = 0; i < 6; i++)
+	if (type == 0)
 	{
-		Hero* myheor = GlobalInstance::myCardHeros[i];
-		if (myheor != NULL)
+		for (unsigned int i = 0; i < m_myHeros.size(); i++)
 		{
-			int t[] = { T_WG , T_NG };
-
-			for (int m = 0; m < 2; m++)
+			Hero* myhero = m_myHeros[i];
+			if (myhero != NULL)
 			{
-				GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(t[m], myheor->getName());
-				if (gf != NULL)
-					myheor->clearSkill(gf);
+				int t[] = { T_WG , T_NG };
+
+				for (int m = 0; m < 2; m++)
+				{
+					GongFa* gf = (GongFa*)myhero->getEquipable(t[m]);
+					if (gf != NULL)
+						myhero->clearSkill(gf);
+				}
+			}
+		}
+	}
+	else
+	{
+		for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
+		{
+			if (m_enemyHeros[i]->getId().length() <= 0)//hero角色，
+			{
+				Hero* myhero = (Hero*)m_enemyHeros[i];
+				if (myhero != NULL)
+				{
+					int t[] = { T_WG , T_NG };
+
+					for (int m = 0; m < 2; m++)
+					{
+						GongFa* gf = (GongFa*)myhero->getEquipable(t[m]);
+						if (gf != NULL)
+							myhero->clearSkill(gf);
+					}
+				}
 			}
 		}
 	}
@@ -307,7 +332,7 @@ void FightingLayer::showAtk(int fightertag)
 	
 	if (fightertag < 6)//自己英雄攻击
 	{
-		Hero* myhero = GlobalInstance::myCardHeros[fightertag];//攻击的英雄
+		Hero* myhero = m_myHeros[fightertag];//攻击的英雄
 		if (myhero->getState() != HS_DEAD)//没有死亡可继续战斗
 		{
 			GongFa* gf = myhero->checkSkillWg();//触发技能的功法
@@ -349,7 +374,7 @@ void FightingLayer::showAtk(int fightertag)
 					vec_myheronode.clear();
 					for (unsigned int i = 0; i < 6; i++)
 					{
-						if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getHp() > 0)
+						if (m_myHeros[i] != NULL && m_myHeros[i]->getHp() > 0)
 						{
 							FightHeroNode* mynode = (FightHeroNode*)this->getChildByTag(i);
 							vec_myheronode.push_back(mynode);

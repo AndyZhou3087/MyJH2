@@ -14,9 +14,9 @@ public:
 	FightingLayer();
 	~FightingLayer();
 
-	static FightingLayer* create(std::vector<Npc*> enemyHeros, int bgtype);
+	static FightingLayer* create(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHeros, int bgtype);
 	virtual void onExit();
-	bool init(std::vector<Npc*> enemyHeros, int bgtype);
+	bool init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHeros, int bgtype);
 
 	void showAtk(int fightertag);
 
@@ -30,7 +30,7 @@ public:
 
 	static bool sortbyHp_lesscb(FightHeroNode* a, FightHeroNode* b);
 
-	void clearSkillsData();
+	void clearSkillsData(int type);//0-我的英雄，1--对手
 
 	void checkNewGuide();
 	void showNewerGuide(int step);
@@ -50,6 +50,7 @@ private:
 
 private:
 	std::vector<Npc*> m_enemyHeros;
+	std::vector<Hero*> m_myHeros;
 	cocos2d::ui::Widget* m_escapebtn;
 	int fightcount;
 

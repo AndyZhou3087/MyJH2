@@ -118,7 +118,12 @@ void CutScenesLayer::updateFadeOut()
 	MapBlockScene* mapblock = (MapBlockScene*)this->getParent();
 	if (mapblock!=NULL)
 	{
-		FightingLayer* layer = FightingLayer::create(enemys, m_fightbgtype);
+		std::vector<Hero*> vec_myheros;
+		for (int i = 0; i < 6; i++)
+		{
+			vec_myheros.push_back(GlobalInstance::myCardHeros[i]);
+		}
+		FightingLayer* layer = FightingLayer::create(vec_myheros, enemys, m_fightbgtype);
 		mapblock->addChild(layer, 0, "FightingLayer");
 	}
 	this->removeFromParentAndCleanup(true);

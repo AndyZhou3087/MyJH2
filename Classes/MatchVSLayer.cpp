@@ -267,12 +267,13 @@ void MatchVSLayer::parsePairHeros()
 void MatchVSLayer::delayShowFight(float dt)
 {
 	std::vector<Npc*> vec_pairs;
+	std::vector<Hero*> vec_myheros;
 	for (int i = 0; i < 6; i++)
 	{
+		vec_myheros.push_back(GlobalInstance::myCardHeros[i]);
 		vec_pairs.push_back(GlobalInstance::matchPairHeros[i]);
-		GlobalInstance::myCardHeros[i] = GlobalInstance::myOnChallengeHeros[i];
 	}
-	FightingLayer* layer = FightingLayer::create(vec_pairs, 1);
+	FightingLayer* layer = FightingLayer::create(vec_myheros, vec_pairs, 1);
 	this->getParent()->addChild(layer, 100, "FightingLayer");
 	this->removeFromParentAndCleanup(true);
 }
