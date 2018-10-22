@@ -257,13 +257,13 @@ void CardHeroNode::updatePowerCount(float dt)
 			powerclick->setVisible(false);
 		}
 
-		if (!arrowglv->isVisible() && ((m_herodata->getLevel() + 1) / 10) == m_herodata->getChangeCount() && GlobalInstance::getInstance()->getCanUpgradeCount() && (m_herodata->getLevel() + 1) < 50)
+		if (!arrowglv->isVisible() && ((m_herodata->getLevel() + 1) / 10) == m_herodata->getChangeCount() && GlobalInstance::getInstance()->getCanUpgradeCount("s00") && (m_herodata->getLevel() + 1) < 50)
 		{
 			arrowglv->stopAllActions();
 			arrowglv->setVisible(true);
 			arrowglv->runAction(RepeatForever::create(Sequence::create(FadeOut::create(0.5f), FadeIn::create(0.5f), NULL)));
 		}
-		else if (arrowglv->isVisible() && (((m_herodata->getLevel() + 1) / 10) != m_herodata->getChangeCount() || !GlobalInstance::getInstance()->getCanUpgradeCount() || (m_herodata->getLevel() + 1) == 50))
+		else if (arrowglv->isVisible() && (((m_herodata->getLevel() + 1) / 10) != m_herodata->getChangeCount() || !GlobalInstance::getInstance()->getCanUpgradeCount("s00") || (m_herodata->getLevel() + 1) == 50))
 		{
 			arrowglv->stopAllActions();
 			arrowglv->setVisible(false);

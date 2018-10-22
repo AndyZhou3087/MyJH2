@@ -140,8 +140,9 @@ bool MapEventLayer::init(int eventindex)
 void MapEventLayer::loadEventData(std::string filename)
 {
 	map_eventdata.clear();
-	int avelv = GlobalInstance::getInstance()->getFightHerosLevel();
-	int i = avelv / 10 + 1;
+	/*int avelv = GlobalInstance::getInstance()->getFightHerosLevel();
+	int i = avelv / 10 + 1;*/
+	int i = GlobalInstance::getInstance()->getUnlockChapter();
 	std::string str = StringUtils::format("json/%s%d.json", filename.c_str(), i);
 
 	rapidjson::Document doc = ReadJsonFile(ResourcePath::makePath(str));

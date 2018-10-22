@@ -575,7 +575,7 @@ public:
 	bool getEnoughFightHeros();
 
 	//判断可升级人参的数量
-	bool getCanUpgradeCount();
+	bool getCanUpgradeCount(std::string gstr);
 
 	/****************************
 	银两刷新英雄次数

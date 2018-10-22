@@ -17,6 +17,7 @@ TaskTalkLayer::TaskTalkLayer()
 	m_wordcount = 0;
 	isFight = false;
 	m_wordlbl = NULL;
+	cntEnabel = 0;
 }
 
 
@@ -155,25 +156,27 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 		//ÅÐ¶ÏÊÇ·ñ»¥³â
 		if (m_type == 0)
 		{
-			if (Quest::getMutexMainQuestType(data->id, data->type[0]))
+			/*if (Quest::getMutexMainQuestType(data->id) == BTN_1)
 			{
 				givebtn->setTouchEnabled(false);
 			}
-			if (Quest::getMutexMainQuestType(data->id, data->type[1]))
+			else if (Quest::getMutexMainQuestType(data->id) == BTN_2)
 			{
 				fightbtn->setTouchEnabled(false);
-			}
+			}*/
+			cntEnabel = Quest::getMutexMainQuestType(data->id);
 		}
 		else
 		{
-			if (Quest::getMutexBranchQuestType(data->id, data->type[0]))
+			/*if (Quest::getMutexBranchQuestType(data->id) == BTN_1)
 			{
 				givebtn->setTouchEnabled(false);
 			}
-			if (Quest::getMutexBranchQuestType(data->id, data->type[1]))
+			else if (Quest::getMutexBranchQuestType(data->id) == BTN_2)
 			{
 				fightbtn->setTouchEnabled(false);
-			}
+			}*/
+			cntEnabel = Quest::getMutexBranchQuestType(data->id);
 		}
 	}
 
@@ -300,6 +303,14 @@ void TaskTalkLayer::onCloseClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 
 void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
+	if (cntEnabel == BTN_1)
+	{
+		if (type == ui::Widget::TouchEventType::ENDED)
+		{
+			MovingLabel::show(ResourceLang::map_lang["questerror"]);
+		}
+		return;
+	}
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
@@ -331,6 +342,14 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 void TaskTalkLayer::onBtn2Click(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
+	if (cntEnabel == BTN_2)
+	{
+		if (type == ui::Widget::TouchEventType::ENDED)
+		{
+			MovingLabel::show(ResourceLang::map_lang["questerror"]);
+		}
+		return;
+	}
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{

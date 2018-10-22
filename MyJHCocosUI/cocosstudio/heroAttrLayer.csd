@@ -76,6 +76,17 @@
                     <PreSize X="0.4151" Y="0.2453" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/equiptext_0.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="redpoint" ActionTag="509801400" Tag="300" IconVisible="False" LeftMargin="77.7754" RightMargin="4.2246" TopMargin="3.4630" BottomMargin="78.5370" ctype="SpriteObjectData">
+                    <Size X="24.0000" Y="24.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="89.7754" Y="90.5370" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8469" Y="0.8541" />
+                    <PreSize X="0.2264" Y="0.2264" />
+                    <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-294.9840" />
@@ -107,6 +118,17 @@
                     <PrePosition X="0.0755" Y="0.0755" />
                     <PreSize X="0.4151" Y="0.2453" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/equiptext_1.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="redpoint" ActionTag="-1954628408" Tag="303" IconVisible="False" LeftMargin="77.4702" RightMargin="4.5298" TopMargin="3.1576" BottomMargin="78.8424" ctype="SpriteObjectData">
+                    <Size X="24.0000" Y="24.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="89.4702" Y="90.8424" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8441" Y="0.8570" />
+                    <PreSize X="0.2264" Y="0.2264" />
+                    <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -140,6 +162,17 @@
                     <PreSize X="0.4000" Y="0.2240" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/equiptext_3.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="redpoint" ActionTag="-1593023468" Tag="301" IconVisible="False" LeftMargin="96.4964" RightMargin="4.5036" TopMargin="2.6960" BottomMargin="98.3040" ctype="SpriteObjectData">
+                    <Size X="24.0000" Y="24.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="108.4964" Y="110.3040" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8680" Y="0.8824" />
+                    <PreSize X="0.1920" Y="0.1920" />
+                    <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-64.2035" Y="9.5001" />
@@ -171,6 +204,17 @@
                     <PrePosition X="0.0640" Y="0.0640" />
                     <PreSize X="0.4160" Y="0.2240" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/equiptext_2.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="redpoint" ActionTag="-880041077" Tag="302" IconVisible="False" LeftMargin="96.7748" RightMargin="4.2252" TopMargin="2.6959" BottomMargin="98.3041" ctype="SpriteObjectData">
+                    <Size X="24.0000" Y="24.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="108.7748" Y="110.3041" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8702" Y="0.8824" />
+                    <PreSize X="0.1920" Y="0.1920" />
+                    <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -204,6 +248,17 @@
                     <PreSize X="0.4151" Y="0.2264" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/equiptext_4.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="redpoint" ActionTag="1771176264" Tag="304" IconVisible="False" LeftMargin="78.1550" RightMargin="3.8450" TopMargin="3.4195" BottomMargin="78.5805" ctype="SpriteObjectData">
+                    <Size X="24.0000" Y="24.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="90.1550" Y="90.5805" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8505" Y="0.8545" />
+                    <PreSize X="0.2264" Y="0.2264" />
+                    <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="185.5771" Y="0.0001" />
@@ -235,6 +290,17 @@
                     <PrePosition X="0.0755" Y="0.0755" />
                     <PreSize X="0.4151" Y="0.2453" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/equiptext_5.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="redpoint" ActionTag="-747155040" Tag="305" IconVisible="False" LeftMargin="77.9938" RightMargin="4.0062" TopMargin="3.2580" BottomMargin="78.7420" ctype="SpriteObjectData">
+                    <Size X="24.0000" Y="24.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="89.9938" Y="90.7420" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8490" Y="0.8561" />
+                    <PreSize X="0.2264" Y="0.2264" />
+                    <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -807,7 +873,7 @@
             <PreSize X="0.0431" Y="0.0406" />
             <FileData Type="MarkedSubImage" Path="ui/herohinticon.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="cantclick" ActionTag="-1594071010" Tag="72" IconVisible="False" TopMargin="720.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="cantclick" Visible="False" ActionTag="-1594071010" Tag="72" IconVisible="False" TopMargin="720.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
             <Size X="720.0000" Y="560.0000" />
             <AnchorPoint />
             <Position />

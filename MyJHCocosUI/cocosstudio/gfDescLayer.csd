@@ -279,6 +279,17 @@
                 <PreSize X="0.3824" Y="0.4762" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/lvupbtn_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
+              <AbstractNodeData Name="redpoint" ActionTag="363287405" Tag="298" IconVisible="False" LeftMargin="174.6943" RightMargin="5.3057" TopMargin="0.5648" BottomMargin="59.4352" ctype="SpriteObjectData">
+                <Size X="24.0000" Y="24.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="186.6943" Y="71.4352" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.9152" Y="0.8504" />
+                <PreSize X="0.1176" Y="0.2857" />
+                <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="493.7579" Y="356.9998" />

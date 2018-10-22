@@ -20,7 +20,7 @@ AchieveLayer::AchieveLayer()
 
 AchieveLayer::~AchieveLayer()
 {
-	
+	GlobalInstance::getInstance()->saveMyAchieveData();
 }
 
 bool AchieveLayer::init()

@@ -21,6 +21,7 @@ static bool isChangeEquip = false;
 TakeOnLayer::TakeOnLayer()
 {
 	nohasEquip = NULL;
+	redpoint = NULL;
 }
 
 
@@ -254,6 +255,7 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 	strenthbtn->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onBtnClick, this));
 	cocos2d::ui::ImageView* strenthbtntxt = (cocos2d::ui::ImageView*)strenthbtn->getChildByName("text");
 	strenthbtntxt->loadTexture(ResourcePath::makeTextImgPath("strenthbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	redpoint = (cocos2d::ui::Widget*)strenthbtn->getChildByName("redpoint");
 
 	if (MyRes::getMyPutOnResById(m_equip->getId(), herodata->getName()) == NULL)
 	{
@@ -273,6 +275,8 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 		strenthbtn->setVisible(false);
 	}
 
+	updateRedpoint(0);
+	this->schedule(schedule_selector(TakeOnLayer::updateRedpoint), 1.0f);
 	this->scheduleOnce(schedule_selector(TakeOnLayer::delayShowNewerGuide), newguidetime);
 
 	auto listener = EventListenerTouchOneByOne::create();
@@ -285,6 +289,30 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 
 
 	return true;
+}
+
+void TakeOnLayer::updateRedpoint(float dt)
+{
+	int equipcount = 0;
+	if (redpoint != NULL && m_equip != NULL)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			std::string restr = StringUtils::format("q00%d", i + 1);
+			if (MyRes::getMyResCount(restr) >= m_equip->getLv().getValue() + 1)
+			{
+				equipcount++;
+			}
+		}
+	}
+	if (equipcount == 3)
+	{
+		redpoint->setVisible(true);
+	}
+	else
+	{
+		redpoint->setVisible(false);
+	}
 }
 
 void TakeOnLayer::delayShowNewerGuide(float dt)
