@@ -20,6 +20,7 @@
 #include "SimplePopLayer.h"
 #include "SoundManager.h"
 #include "RewardLayer.h"
+#include "NewGuideLayer.h"
 
 TaskDailyNode::TaskDailyNode()
 {
@@ -278,9 +279,16 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 			case UPGRADE_BUILDING:
 			{
-				SmithyLayer* layer = SmithyLayer::create(Building::map_buildingDatas["2smithy"]);
-				g_mainScene->addChild(layer, 0, "2smithy");
-				AnimationEffect::openAniEffect((Layer*)layer);
+				if (!NewGuideLayer::checkifNewerGuide(73))
+				{
+					SmithyLayer* layer = SmithyLayer::create(Building::map_buildingDatas["2smithy"]);
+					g_mainScene->addChild(layer, 0, "2smithy");
+					AnimationEffect::openAniEffect((Layer*)layer);
+				}
+				else
+				{
+					MovingLabel::showbyNode(g_mainScene, ResourceLang::map_lang["unlockmain_3"], (Color4B)Color3B::WHITE, Vec2(360, 640));
+				}
 			}
 			break;
 			case STRENG_EQUIP:

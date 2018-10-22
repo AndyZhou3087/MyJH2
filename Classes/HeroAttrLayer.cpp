@@ -136,11 +136,13 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 
 	//装备栏
 	equipnode = csbnode->getChildByName("equipnode");
+	int rc = 0;
 	for (int i = 0; i < equipnode->getChildrenCount(); i++)
 	{
 		cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
 		node->setTag(i);
 		node->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onEquipClick, this));
+		redpointArr[i] = (cocos2d::ui::Widget*)node->getChildByName("redpoint");
 	}
 	//属性信息
 	heroattrbottom = csbnode->getChildByName("heroattrbottom");
@@ -230,6 +232,10 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 		btn->setTag(tag);
 		btn->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onBtnClick, this));
 		btnArr[i] = btn;
+		if (i == 1)
+		{
+			redtip = (cocos2d::ui::Widget*)btn->getChildByName("redtip");
+		}
 	}
 	//设置ui
 	loadHeroUI();
@@ -1155,13 +1161,56 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 
 		if (redtip != NULL)
 		{
-			if (!redtip->isVisible() && ((m_heroData->getLevel() + 1) / 10) == m_heroData->getChangeCount() && GlobalInstance::getInstance()->getCanUpgradeCount() && (m_heroData->getLevel() + 1) < 50)
+			int c = (m_heroData->getLevel() + 1) / 10;
+			std::string needresid = StringUtils::format("d%03d", c);
+			if (!redtip->isVisible() && (((m_heroData->getLevel() + 1) / 10 == m_heroData->getChangeCount() && GlobalInstance::getInstance()->getCanUpgradeCount("s00")) || ((m_heroData->getLevel() + 1) / 10 != m_heroData->getChangeCount() && MyRes::getMyResCount(needresid) > 0)) && (m_heroData->getLevel() + 1) < 50)
 			{
 				redtip->setVisible(true);
 			}
-			else if (redtip->isVisible() && (((m_heroData->getLevel() + 1) / 10) != m_heroData->getChangeCount() || !GlobalInstance::getInstance()->getCanUpgradeCount() || (m_heroData->getLevel() + 1) == 50))
+			else if (redtip->isVisible() && (((m_heroData->getLevel() + 1) / 10 != m_heroData->getChangeCount() && MyRes::getMyResCount(needresid) <= 0) || !GlobalInstance::getInstance()->getCanUpgradeCount("s00") || (m_heroData->getLevel() + 1) == 50))
 			{
 				redtip->setVisible(false);
+			}
+		}
+
+		
+		for (int i = 0; i < 6; i++)
+		{
+			if (i != 2 && i != 3)
+			{
+				Equip* m_equip = (Equip*)MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
+				int equipcount = 0;
+				if (m_equip != NULL)
+				{
+					for (int i = 0; i < 3; i++)
+					{
+						std::string restr = StringUtils::format("q00%d", i + 1);
+						if (MyRes::getMyResCount(restr) >= m_equip->getLv().getValue() + 1)
+						{
+							equipcount++;
+						}
+					}
+				}
+				if (equipcount == 3)
+				{
+					redpointArr[i]->setVisible(true);
+				}
+				else
+				{
+					redpointArr[i]->setVisible(false);
+				}
+			}
+			else
+			{
+				Equipable* m_res = (Equipable*)MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
+				redpointArr[i]->setVisible(false);
+				if (m_res != NULL)
+				{
+					if (GlobalInstance::getInstance()->getCanUpgradeCount("m00"))
+					{
+						redpointArr[i]->setVisible(true);
+					}
+				}
 			}
 		}
 	}

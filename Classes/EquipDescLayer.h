@@ -39,6 +39,7 @@ private:
 	cocos2d::ui::Text* attrlblArr[6];
 	cocos2d::ui::Text* namelbl;
 	Node* csbnode;
+	cocos2d::ui::Widget* redpoint;
 };
 
 #endif

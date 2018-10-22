@@ -11,7 +11,7 @@ USING_NS_CC;
 
 typedef enum
 {
-	BTN_1 = 0,
+	BTN_1 = 1,
 	BTN_2,
 }TASKBTNTYPE;
 
@@ -36,7 +36,7 @@ public:
 	static void AddFinishQuest(TaskData data);
 
 	//判断二选一条件下是否有互斥,若有返回true
-	static bool getMutexMainQuestType(int id, int type);
+	static int getMutexMainQuestType(int id);
 
 	//判断是否接受此npc任务
 	static bool getMainQuestNpc(std::string npcid);
@@ -80,7 +80,7 @@ public:
 	static void AddFinishBranchQuest(TaskData data);
 
 	//判断二选一条件下是否有互斥,若有返回true
-	static bool getMutexBranchQuestType(int id, int type);
+	static int getMutexBranchQuestType(int id);
 
 	//判断是否接受此npc任务
 	static bool getBranchQuestNpc(std::string npcid);

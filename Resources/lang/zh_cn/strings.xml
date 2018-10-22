@@ -321,4 +321,5 @@
 	<s name="salegftitle">售价：    %d</s>
 	<s name="salegftips">出售成功</s>
 	<s name="selectnpcgive">请选择赠送数量</s>
+	<s name="questerror">因前置任务选择，导致此项无法选择</s>
 </strings>

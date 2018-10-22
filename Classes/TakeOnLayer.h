@@ -34,6 +34,7 @@ private:
 	void onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	void updateUI();
+	void updateRedpoint(float dt);
 private:
 	int langtype;
 	Equip* m_equip;
@@ -46,6 +47,7 @@ private:
 	Node *csbnode;
 
 	cocos2d::ui::Text* name;
+	cocos2d::ui::Widget* redpoint;
 };
 #endif
 

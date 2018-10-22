@@ -37,6 +37,7 @@ private:
 	int m_type;
 	TaskData* data;
 	cocos2d::ui::ScrollView* descscoll;
+	int cntEnabel;
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

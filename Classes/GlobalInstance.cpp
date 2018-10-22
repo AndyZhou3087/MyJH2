@@ -2043,11 +2043,11 @@ bool GlobalInstance::getEnoughFightHeros()
 	}
 }
 
-bool GlobalInstance::getCanUpgradeCount()
+bool GlobalInstance::getCanUpgradeCount(std::string gstr)
 {
 	for (int i = 1; i < 5; i++)
 	{
-		std::string str = StringUtils::format("s00%d", i);
+		std::string str = StringUtils::format("%s%d", gstr.c_str(), i);
 		if (MyRes::getMyResCount(str) > 0)
 		{
 			return true;

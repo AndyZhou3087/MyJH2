@@ -236,6 +236,16 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	cocos2d::ui::Widget* lvbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("lvbtn");
 	lvbtn->setTag(1);
 	lvbtn->addTouchEventListener(CC_CALLBACK_2(EquipDescLayer::onBtnClick, this));
+	redpoint = (cocos2d::ui::Widget*)lvbtn->getChildByName("redpoint");
+	redpoint->setVisible(false);
+	if (m_res != NULL)
+	{
+		if (GlobalInstance::getInstance()->getCanUpgradeCount("m00"))
+		{
+			redpoint->setVisible(true);
+		}
+	}
+
 	cocos2d::ui::ImageView* lvbtntxt = (cocos2d::ui::ImageView*)lvbtn->getChildByName("text");
 	lvbtntxt->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	if (fromwhere == 0)//²Ö¿â½øÈë

@@ -104,45 +104,33 @@ int Quest::getTypeBtn(int id,int ftype)
 	return -1;
 }
 
-bool Quest::getMutexMainQuestType(int id, int type)
+int Quest::getMutexMainQuestType(int id)
 {
 	for (unsigned int i = 0; i < myFinishMainQuest.size(); i++)
 	{
 		TaskData data = myFinishMainQuest[i];
-		if (getTypeBtn(data.id, data.finishtype) == BTN_1)
+		if (data.mutex1.size() > 0)
 		{
-			if (data.mutex1.size() > 0)
+			int fid = data.mutex1[0];
+			int ftype = data.mutex1[1];
+			//判断互斥1里是否有当前任务id
+			if (id == fid)
 			{
-				int fid = data.mutex1[0];
-				int ftype = data.mutex1[1];
-				//判断互斥1里是否有当前任务id
-				if (id == fid)
-				{
-					if (type == ftype)
-					{
-						return true;
-					}
-				}
+				return ftype;
 			}
 		}
-		else
+		if (data.mutex2.size() > 0)
 		{
-			if (data.mutex2.size() > 0)
+			int fid = data.mutex2[0];
+			int ftype = data.mutex2[1];
+			//判断互斥2里是否有当前任务id
+			if (id == fid)
 			{
-				int fid = data.mutex2[0];
-				int ftype = data.mutex2[1];
-				//判断互斥2里是否有当前任务id
-				if (id == fid)
-				{
-					if (type == ftype)
-					{
-						return true;
-					}
-				}
+				return ftype;
 			}
 		}
 	}
-	return false;
+	return 0;
 }
 
 bool Quest::getMainQuestNpc(std::string npcid)
@@ -386,45 +374,33 @@ void Quest::initCurBranchNeedData()
 	}
 }
 
-bool Quest::getMutexBranchQuestType(int id, int type)
+int Quest::getMutexBranchQuestType(int id)
 {
 	for (unsigned int i = 0; i < myFinishBranchQuest.size(); i++)
 	{
 		TaskData data = myFinishBranchQuest[i];
-		if (getTypeBranchBtn(data.id, data.finishtype) == BTN_1)
+		if (data.mutex1.size() > 0)
 		{
-			if (data.mutex1.size() > 0)
+			int fid = data.mutex1[0];
+			int ftype = data.mutex1[1];
+			//判断互斥1里是否有当前任务id
+			if (id == fid)
 			{
-				int fid = data.mutex1[0];
-				int ftype = data.mutex1[1];
-				//判断互斥1里是否有当前任务id
-				if (id == fid)
-				{
-					if (type == ftype)
-					{
-						return true;
-					}
-				}
+				return ftype;
 			}
 		}
-		else
+		if (data.mutex2.size() > 0)
 		{
-			if (data.mutex2.size() > 0)
+			int fid = data.mutex2[0];
+			int ftype = data.mutex2[1];
+			//判断互斥2里是否有当前任务id
+			if (id == fid)
 			{
-				int fid = data.mutex2[0];
-				int ftype = data.mutex2[1];
-				//判断互斥2里是否有当前任务id
-				if (id == fid)
-				{
-					if (type == ftype)
-					{
-						return true;
-					}
-				}
+				return ftype;
 			}
 		}
 	}
-	return false;
+	return 0;
 }
 
 int Quest::getTypeBranchBtn(int id, int ftype)
