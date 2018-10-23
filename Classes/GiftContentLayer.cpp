@@ -280,6 +280,7 @@ void GiftContentLayer::onFinish(int code)
 				lefttime->setVisible(true);
 				std::string str = StringUtils::format(ResourceLang::map_lang["lefttimetext"].c_str(), it->second);
 				lefttime->setString(str);
+				break;
 			}
 		}
 	}
