@@ -294,25 +294,16 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 
 void TakeOnLayer::updateRedpoint(float dt)
 {
-	int equipcount = 0;
 	if (redpoint != NULL && m_equip != NULL)
 	{
-		for (int i = 0; i < 3; i++)
+		if (GlobalInstance::getInstance()->strengthMaterial(m_equip))
 		{
-			std::string restr = StringUtils::format("q00%d", i + 1);
-			if (MyRes::getMyResCount(restr) >= m_equip->getLv().getValue() + 1)
-			{
-				equipcount++;
-			}
+			redpoint->setVisible(true);
 		}
-	}
-	if (equipcount == 3)
-	{
-		redpoint->setVisible(true);
-	}
-	else
-	{
-		redpoint->setVisible(false);
+		else
+		{
+			redpoint->setVisible(false);
+		}
 	}
 
 	//卸下红点

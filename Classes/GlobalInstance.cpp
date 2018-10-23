@@ -1788,27 +1788,116 @@ void GlobalInstance::saveNpcFriendly()
 bool GlobalInstance::compareHighEquip(int type, Hero* herodata)
 {
 	Equipable* myequip = herodata->getEquipable(type);
+	bool isCanShow = false;
 	if (myequip != NULL)
 	{
 		float mycount = myequip->getAtk() + myequip->getAtkSpeed() + myequip->getCrit() + myequip->getDf() + myequip->getDodge() + myequip->getHp();
 		float avecount = mycount;
+		bool isSelffit = false;
+		if (type >= T_WG && type <= T_NG)
+		{
+			for (unsigned int i = 0; i < GlobalInstance::map_GF[myequip->getId()].vec_skillbns.size(); i++)
+			{
+				int m = GlobalInstance::map_GF[myequip->getId()].vec_skillbns[i];
+				if (m == 1)
+				{
+					if (i == herodata->getVocation())
+					{
+						isSelffit = true;
+						break;
+					}
+				}
+			}
+		}
+		else if (type == T_ARMOR)
+		{
+			for (unsigned int i = 0; i < GlobalInstance::map_Equip[myequip->getId()].vec_bns.size(); i++)
+			{
+				float m = GlobalInstance::map_Equip[myequip->getId()].vec_bns[i];
+				if (m >= 1)
+				{
+					if (i == herodata->getVocation())
+					{
+						isSelffit = true;
+						break;
+					}
+				}
+			}
+		}
 		for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
 		{
+			bool isfit = false;
 			ResBase* res = MyRes::vec_MyResources[i];
 			if (type == res->getType())
 			{
 				Equipable* m_res = (Equipable*)res;
-				float procount = m_res->getAtk() + m_res->getAtkSpeed() + m_res->getCrit() + m_res->getDf() + m_res->getDodge() + m_res->getHp();
-				if (procount > avecount)
+				if (type >= T_WG && type <= T_NG)
 				{
-					avecount = procount;
+					for (unsigned int i = 0; i < GlobalInstance::map_GF[m_res->getId()].vec_skillbns.size(); i++)
+					{
+						int m = GlobalInstance::map_GF[m_res->getId()].vec_skillbns[i];
+						if (m == 1)
+						{
+							if (i == herodata->getVocation())
+							{
+								isfit = true;
+								break;
+							}
+						}
+					}
+				}
+				else if (type == T_ARMOR)
+				{
+					for (unsigned int i = 0; i < GlobalInstance::map_Equip[m_res->getId()].vec_bns.size(); i++)
+					{
+						float m = GlobalInstance::map_Equip[m_res->getId()].vec_bns[i];
+						if (m >= 1)
+						{
+							if (i == herodata->getVocation())
+							{
+								isfit = true;
+								break;
+							}
+						}
+					}
+				}
+				if (isfit && isSelffit)
+				{
+					float procount = m_res->getAtk() + m_res->getAtkSpeed() + m_res->getCrit() + m_res->getDf() + m_res->getDodge() + m_res->getHp();
+					if (procount > avecount)
+					{
+						avecount = procount;
+					}
+				}
+				else if (isfit && !isSelffit)
+				{
+					isCanShow = true;
+					break;
 				}
 			}
 		}
-		if (avecount > mycount)
+		if (avecount > mycount || isCanShow)
 		{
 			return true;
 		}
+	}
+	return false;
+}
+
+bool GlobalInstance::strengthMaterial(Equipable* m_res)
+{
+	int equipcount = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		std::string restr = StringUtils::format("q00%d", i + 1);
+		if (MyRes::getMyResCount(restr) >= m_res->getLv().getValue() + 1)
+		{
+			equipcount++;
+		}
+	}
+	if (equipcount == 3 && (m_res->getLv().getValue() + 1) < (sizeof(COSTLV) / sizeof(COSTLV[0])))
+	{
+		return true;
 	}
 	return false;
 }

@@ -210,6 +210,17 @@
           <AbstractNodeData Name="lvbtn" ActionTag="862093696" VisibleForFrame="False" Tag="126" IconVisible="False" LeftMargin="381.7579" RightMargin="134.2421" TopMargin="828.6329" BottomMargin="367.3671" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
+              <AbstractNodeData Name="redpoint" ActionTag="1861003033" Tag="58" IconVisible="False" LeftMargin="174.6943" RightMargin="5.3057" TopMargin="0.5648" BottomMargin="59.4352" ctype="SpriteObjectData">
+                <Size X="24.0000" Y="24.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="186.6943" Y="71.4352" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.9152" Y="0.8504" />
+                <PreSize X="0.1176" Y="0.2857" />
+                <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
               <AbstractNodeData Name="text" ActionTag="612233943" Tag="127" IconVisible="False" LeftMargin="62.5216" RightMargin="63.4784" TopMargin="19.7404" BottomMargin="24.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="28" Scale9Height="14" ctype="ImageViewObjectData">
                 <Size X="78.0000" Y="40.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

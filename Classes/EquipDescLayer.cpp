@@ -264,7 +264,9 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		}
 		else {
 			status = S_EQUIP_WGLV;
-			srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			lvbtn->setVisible(true);
+			actionbtn->setVisible(false);
+			//srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 	}
 	else if (fromwhere == 1)//takeon界面查看套装装备信息
@@ -442,9 +444,23 @@ void EquipDescLayer::updateAttr()
 
 	if (m_res != NULL)
 	{
-		if (redpoint != NULL && GlobalInstance::getInstance()->getCanUpgradeCount("m00"))
+		if (redpoint != NULL)
 		{
-			redpoint->setVisible(true);
+			if (m_res->getType() >= T_WG && m_res->getType() <= T_NG && (m_res->getLv().getValue() + 1) < GlobalInstance::map_GF[m_res->getId()].vec_df.size() && GlobalInstance::getInstance()->getCanUpgradeCount("m00"))
+			{
+				redpoint->setVisible(true);
+			}
+			else if (m_res->getType() >= T_ARMOR && m_res->getType() <= T_FASHION)
+			{
+				if (GlobalInstance::getInstance()->strengthMaterial(m_res))
+				{
+					redpoint->setVisible(true);
+				}
+				else
+				{
+					redpoint->setVisible(false);
+				}
+			}
 		}
 		if (salepoint != NULL && carryhero != NULL && GlobalInstance::getInstance()->compareHighEquip(m_res->getType(), carryhero))
 		{
