@@ -248,6 +248,7 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 	takeoffbtn->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onBtnClick, this));
 	cocos2d::ui::ImageView* takeoffbtntxt = (cocos2d::ui::ImageView*)takeoffbtn->getChildByName("text");
 	takeoffbtntxt->loadTexture(ResourcePath::makeTextImgPath("takeoffbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	takeoffpoint = (cocos2d::ui::Widget*)takeoffbtn->getChildByName("redpoint");
 
 	//强化按钮
 	cocos2d::ui::Widget* strenthbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn_1");
@@ -312,6 +313,28 @@ void TakeOnLayer::updateRedpoint(float dt)
 	else
 	{
 		redpoint->setVisible(false);
+	}
+
+	//卸下红点
+	if (takeoffpoint != NULL && m_equip != NULL)
+	{
+		Hero* myhero = NULL;
+		for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+		{
+			if (GlobalInstance::vec_myHeros[i]->getName().compare(m_equip->getWhos()) == 0)
+			{
+				myhero = GlobalInstance::vec_myHeros[i];
+				break;
+			}
+		}
+		if (myhero != NULL && GlobalInstance::getInstance()->compareHighEquip(m_equip->getType(), myhero))
+		{
+			takeoffpoint->setVisible(true);
+		}
+		else
+		{
+			takeoffpoint->setVisible(false);
+		}
 	}
 }
 

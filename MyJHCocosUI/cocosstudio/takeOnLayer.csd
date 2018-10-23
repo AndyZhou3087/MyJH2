@@ -473,6 +473,17 @@
                 <PreSize X="0.3578" Y="0.4881" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/takeoffbtn_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
+              <AbstractNodeData Name="redpoint" ActionTag="1333791091" Tag="174" IconVisible="False" LeftMargin="173.8685" RightMargin="6.1315" TopMargin="2.2922" BottomMargin="57.7078" ctype="SpriteObjectData">
+                <Size X="24.0000" Y="24.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="185.8685" Y="69.7078" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.9111" Y="0.8299" />
+                <PreSize X="0.1176" Y="0.2857" />
+                <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="361.4930" Y="109.4904" />

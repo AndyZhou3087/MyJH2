@@ -20,7 +20,7 @@ USING_NS_CC;
 
 EquipDescLayer::EquipDescLayer()
 {
-
+	salepoint = NULL;
 }
 
 EquipDescLayer::~EquipDescLayer()
@@ -54,6 +54,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	}
 
 	m_res = (Equipable*)res;
+
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color,0,"colorLayer");
 
@@ -131,6 +132,8 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	{
 		str = StringUtils::format("attrtext_%d",i);
 		attrlblArr[i] = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+		str = StringUtils::format("addtext_%d", i); 
+		addtextArr[i] = (cocos2d::ui::Text*)csbnode->getChildByName(str);
 	}
 
 	//updateAttr();
@@ -218,32 +221,23 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		jobtext->setVisible(false);
 	}
 
-	//增加了多少攻击力
-	cocos2d::ui::Text* attaddlb = (cocos2d::ui::Text*)csbnode->getChildByName("attaddlb");
-	attaddlb->setString(str);
-	attaddlb->setVisible(false);
-
-	//增加了多少防御力
-	cocos2d::ui::Text* prominuslb = (cocos2d::ui::Text*)csbnode->getChildByName("prominuslb");
-	prominuslb->setString(str);
-	prominuslb->setVisible(false);
-
 	//按钮1
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(EquipDescLayer::onBtnClick, this));
 	cocos2d::ui::ImageView* srefreshbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
+	salepoint = (cocos2d::ui::Widget*)actionbtn->getChildByName("redpoint");
+	if (salepoint != NULL)
+	{
+		salepoint->setVisible(false);
+	}
 	//按钮2
 	cocos2d::ui::Widget* lvbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("lvbtn");
 	lvbtn->setTag(1);
 	lvbtn->addTouchEventListener(CC_CALLBACK_2(EquipDescLayer::onBtnClick, this));
 	redpoint = (cocos2d::ui::Widget*)lvbtn->getChildByName("redpoint");
-	redpoint->setVisible(false);
-	if (m_res != NULL)
+	if (redpoint != NULL)
 	{
-		if (GlobalInstance::getInstance()->getCanUpgradeCount("m00"))
-		{
-			redpoint->setVisible(true);
-		}
+		redpoint->setVisible(false);
 	}
 
 	cocos2d::ui::ImageView* lvbtntxt = (cocos2d::ui::ImageView*)lvbtn->getChildByName("text");
@@ -401,14 +395,42 @@ void EquipDescLayer::updateAttr()
 	vec_attrval.push_back(crit);
 	vec_attrval.push_back(dodge);
 
+	
 	for (int i = 0; i <= 5; i++)
 	{
 		std::string str = StringUtils::format("addattrtext_%d", i);
 		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), vec_attrval[i]);
 		attrlblArr[i]->setString(str);
+		addtextArr[i]->setPositionX(attrlblArr[i]->getPositionX() + attrlblArr[i]->getContentSize().width / 2 + 10);
+		float value = 0.0f;
+		if (carryhero != NULL)
+		{
+			value = GlobalInstance::getInstance()->compareOtherEquip(m_res, carryhero, i);
+		}
+		if (value != 0.0f)
+		{
+			addtextArr[i]->setVisible(true);
+			if (value > 0)
+			{
+				str = StringUtils::format("(+%f)", value);
+				addtextArr[i]->setString(str);
+				addtextArr[i]->setColor(Color3B(57, 251, 87));
+			}
+			else
+			{
+				str = StringUtils::format("(%f)", value);
+				addtextArr[i]->setString(str);
+				addtextArr[i]->setColor(Color3B(255, 0, 0));
+			}
+		}
+		else
+		{
+			addtextArr[i]->setVisible(false);
+		}
 	}
-	std::string namestr = GlobalInstance::map_AllResources[m_res->getId()].name;
 
+
+	std::string namestr = GlobalInstance::map_AllResources[m_res->getId()].name;
 	if (m_res->getLv().getValue() > 0)
 	{
 		if (m_res->getType() >= T_WG && m_res->getType() <= T_NG)
@@ -417,6 +439,18 @@ void EquipDescLayer::updateAttr()
 			namestr = StringUtils::format("+%d%s", m_res->getLv().getValue(), namestr.c_str());
 	}
 	namelbl->setString(namestr);
+
+	if (m_res != NULL)
+	{
+		if (redpoint != NULL && GlobalInstance::getInstance()->getCanUpgradeCount("m00"))
+		{
+			redpoint->setVisible(true);
+		}
+		if (salepoint != NULL && carryhero != NULL && GlobalInstance::getInstance()->compareHighEquip(m_res->getType(), carryhero))
+		{
+			salepoint->setVisible(true);
+		}
+	}
 }
 
 void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

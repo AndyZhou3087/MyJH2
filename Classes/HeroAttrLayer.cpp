@@ -1191,7 +1191,7 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 						}
 					}
 				}
-				if (equipcount == 3)
+				if (equipcount == 3 || GlobalInstance::getInstance()->compareHighEquip(equiptype[i], m_heroData))
 				{
 					redpointArr[i]->setVisible(true);
 				}
@@ -1206,7 +1206,7 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 				redpointArr[i]->setVisible(false);
 				if (m_res != NULL)
 				{
-					if (GlobalInstance::getInstance()->getCanUpgradeCount("m00"))
+					if (GlobalInstance::getInstance()->getCanUpgradeCount("m00") || GlobalInstance::getInstance()->compareHighEquip(equiptype[i], m_heroData))
 					{
 						redpointArr[i]->setVisible(true);
 					}

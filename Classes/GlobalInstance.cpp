@@ -1785,6 +1785,99 @@ void GlobalInstance::saveNpcFriendly()
 	}
 }
 
+bool GlobalInstance::compareHighEquip(int type, Hero* herodata)
+{
+	Equipable* myequip = herodata->getEquipable(type);
+	if (myequip != NULL)
+	{
+		float mycount = myequip->getAtk() + myequip->getAtkSpeed() + myequip->getCrit() + myequip->getDf() + myequip->getDodge() + myequip->getHp();
+		float avecount = mycount;
+		for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
+		{
+			ResBase* res = MyRes::vec_MyResources[i];
+			if (type == res->getType())
+			{
+				Equipable* m_res = (Equipable*)res;
+				float procount = m_res->getAtk() + m_res->getAtkSpeed() + m_res->getCrit() + m_res->getDf() + m_res->getDodge() + m_res->getHp();
+				if (procount > avecount)
+				{
+					avecount = procount;
+				}
+			}
+		}
+		if (avecount > mycount)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+float GlobalInstance::compareOtherEquip(ResBase* m_res, Hero* herodata, int attr)
+{
+	Equipable* myequip = herodata->getEquipable(m_res->getType());
+	if (myequip != NULL)
+	{
+		float m_hp = myequip->getHp();
+		float m_atk = myequip->getAtk();
+		float m_df = myequip->getDf();
+		float m_atspeed = myequip->getAtkSpeed();
+		float m_crit = myequip->getCrit();
+		float m_dodge = myequip->getDodge();
+		Equipable* equip = (Equip*)m_res;
+		if (attr == 0)
+		{
+			float hp = equip->getHp();
+			if (m_hp - hp != 0)
+			{
+				return m_hp - hp;
+			}
+		}
+		else if (attr == 1)
+		{
+			float atk = equip->getAtk();
+			if (m_atk - atk != 0)
+			{
+				return m_atk - atk;
+			}
+		}
+		else if (attr == 2)
+		{
+			float atk = equip->getDf();
+			if (m_df - atk != 0)
+			{
+				return m_df - atk;
+			}
+		}
+		else if (attr == 3)
+		{
+			float atk = equip->getAtkSpeed();
+			if (m_atspeed - atk != 0)
+			{
+				return m_atspeed - atk;
+			}
+		}
+		else if (attr == 4)
+		{
+			float atk = equip->getCrit();
+			if (m_crit - atk != 0)
+			{
+				return m_crit - atk;
+			}
+		}
+		else if (attr == 1)
+		{
+			float atk = equip->getDodge();
+			if (m_dodge - atk != 0)
+			{
+				return m_dodge - atk;
+			}
+		}
+	}
+
+	return 0.0f;
+}
+
 int GlobalInstance::getTotalFarmers()
 {
 	return totalFarmercount;
