@@ -744,40 +744,43 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 				FightHeroNode* fnode = (FightHeroNode*)this->getParent()->getChildByTag(m_Data->vec_whosufferskill[i]);
 				fnode->attackedSkill(stype, this->getTag());
 
-				if (stype == SKILL_10)
+				if (!fnode->getData()->getIsDodge())
 				{
-					Sprite* s = Sprite::createWithSpriteFrameName("mapui/attricon2down.png");
-					fnode->addChild(s);
-					s->setVisible(false);
-					fnode->map_skillattricon[stype].push_back(s);
+					if (stype == SKILL_10)
+					{
+						Sprite* s = Sprite::createWithSpriteFrameName("mapui/attricon2down.png");
+						fnode->addChild(s);
+						s->setVisible(false);
+						fnode->map_skillattricon[stype].push_back(s);
 
-					Label *lbl = Label::createWithTTF(ResourceLang::map_lang["skillattratkspeeddwon"], FONT_NAME, 23);
-					lbl->setColor(Color3B(255, 61, 61));
-					lbl->setVisible(false);
-					lbl->setPosition(Vec2(0, 110));
-					lbl->enableOutline(Color4B(90, 6, 6, 255), 2);
-					fnode->addChild(lbl, 20);
-					fnode->map_skillattrlabel[stype].push_back(lbl);
+						Label *lbl = Label::createWithTTF(ResourceLang::map_lang["skillattratkspeeddwon"], FONT_NAME, 23);
+						lbl->setColor(Color3B(255, 61, 61));
+						lbl->setVisible(false);
+						lbl->setPosition(Vec2(0, 110));
+						lbl->enableOutline(Color4B(90, 6, 6, 255), 2);
+						fnode->addChild(lbl, 20);
+						fnode->map_skillattrlabel[stype].push_back(lbl);
 
-				}
-				else if (stype == SKILL_11)
-				{
-					Sprite* s = Sprite::createWithSpriteFrameName("mapui/attricon0down.png");
-					fnode->addChild(s);
-					s->setVisible(false);
-					fnode->map_skillattricon[stype].push_back(s);
+					}
+					else if (stype == SKILL_11)
+					{
+						Sprite* s = Sprite::createWithSpriteFrameName("mapui/attricon0down.png");
+						fnode->addChild(s);
+						s->setVisible(false);
+						fnode->map_skillattricon[stype].push_back(s);
 
-					Label *lbl = Label::createWithTTF(ResourceLang::map_lang["skillattrdfdwon"], FONT_NAME, 23);
-					lbl->setColor(Color3B(255, 61, 61));
-					lbl->setVisible(false);
-					lbl->setPosition(Vec2(0, 110));
-					lbl->enableOutline(Color4B(90, 6, 6, 255), 2);
-					fnode->addChild(lbl, 20);
-					fnode->map_skillattrlabel[stype].push_back(lbl);
-				}
-				if (fnode->map_skillattricon[stype].size() > 0)
-				{
-					fnode->scheduleOnce(schedule_selector(FightHeroNode::showSkillAttrIcon), 0.1f);
+						Label *lbl = Label::createWithTTF(ResourceLang::map_lang["skillattrdfdwon"], FONT_NAME, 23);
+						lbl->setColor(Color3B(255, 61, 61));
+						lbl->setVisible(false);
+						lbl->setPosition(Vec2(0, 110));
+						lbl->enableOutline(Color4B(90, 6, 6, 255), 2);
+						fnode->addChild(lbl, 20);
+						fnode->map_skillattrlabel[stype].push_back(lbl);
+					}
+					if (fnode->map_skillattricon[stype].size() > 0)
+					{
+						fnode->scheduleOnce(schedule_selector(FightHeroNode::showSkillAttrIcon), 0.1f);
+					}
 				}
 			}
 		}
@@ -1151,11 +1154,6 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 			headimg->runAction(Sequence::create(DelayTime::create(dt1 + 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillEffect, this, stype, myHeroPos)), NULL));
 	}
 
-	if (stype != SKILL_4 && stype != SKILL_7 && stype != SKILL_8 && stype != SKILL_9 && stype != SKILL_12 && stype != 13 && stype != SKILL_17 && stype != SKILL_18)
-	{
-		hpbar_bg->runAction(Sequence::create(DelayTime::create(dt1 + 0.85f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackShakeAnim, this)), NULL));
-	}
-
 	namelbl->runAction(Sequence::create(DelayTime::create(dt2 + 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, myHeroPos)), NULL));
 }
 
@@ -1258,6 +1256,14 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, stype==3);
+
+	if (stype != SKILL_4 && stype != SKILL_7 && stype != SKILL_8 && stype != SKILL_9 && stype != SKILL_12 && stype != 13 && stype != SKILL_17 && stype != SKILL_18)
+	{
+		float dt = action->getDuration() / 60.0f - 0.2f;
+		if (dt < 0.0)
+			dt = 0.0f;
+		hpbar_bg->runAction(Sequence::create(DelayTime::create(dt), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackShakeAnim, this)), NULL));
+	}
 
 	if (stype != 3)
 		this->scheduleOnce(schedule_selector(FightHeroNode::removeSufferSkillAnim), action->getDuration()/60.0f);
@@ -1398,6 +1404,7 @@ void FightHeroNode::refreshSkillAttrIcon(int stype)
 	{
 		map_skillattricon[stype][m]->runAction(Sequence::create(FadeOut::create(0.2f), FadeIn::create(0.2f), FadeOut::create(0.1f), RemoveSelf::create(), NULL));
 	}
-	map_skillattricon.erase(stype);
+	if (map_skillattricon.find(stype) != map_skillattricon.end())
+		map_skillattricon.erase(stype);
 	this->scheduleOnce(schedule_selector(FightHeroNode::showSkillAttrIcon), 0.5f);
 }
