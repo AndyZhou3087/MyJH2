@@ -1313,29 +1313,57 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 
 	if (stype == 1)
 	{
+		float movex = 0;
+		float movey = 0;
 		float offsety = 450;
 		float angle = 0;
-		Vec2 pos = this->getPosition();
-		Vec2 mypos = this->getParent()->getChildByTag(myHeroPos)->getPosition();
-		float tanx = pos.x - mypos.x;
-		float tany = pos.y - mypos.y;
-		float tanz = sqrt(tanx*tanx + tany*tany);
-		float tan_yx = std::fabs(tany) / std::fabs(tanx);
-		angle = 90 - atan(tan_yx) * 180 / M_PI;
-		
-		float movex = 0;
-		if (tanx > 0)
+		float tanz = 0;
+		if (myHeroPos < 6)
 		{
-			effectnode->setRotation(angle);
-			movex = -tanx + offsety * sin(angle * M_PI / 180);
+			Vec2 pos = this->getPosition();
+			Vec2 mypos = this->getParent()->getChildByTag(myHeroPos)->getPosition();
+			float tanx = pos.x - mypos.x;
+			float tany = pos.y - mypos.y;
+			float tanz = sqrt(tanx*tanx + tany * tany);
+			float tan_yx = std::fabs(tany) / std::fabs(tanx);
+			angle = 90 - atan(tan_yx) * 180 / M_PI;
+
+
+			if (tanx > 0)
+			{
+				effectnode->setRotation(angle);
+				movex = -tanx + offsety * sin(angle * M_PI / 180);
+			}
+			else
+			{
+				effectnode->setRotation(-angle);
+				movex = -tanx - offsety * sin(angle * M_PI / 180);
+			}
+			movey = -tany + offsety * cos(angle * M_PI / 180);
 		}
 		else
 		{
-			effectnode->setRotation(-angle);
-			movex = -tanx - offsety * sin(angle * M_PI / 180);
-		}
-		float movey = -tany + offsety * cos(angle * M_PI / 180);
+			Vec2 pos = this->getPosition();
+			Vec2 mypos = this->getParent()->getChildByTag(myHeroPos)->getPosition();
+			float tanx = pos.x - mypos.x;
+			float tany = pos.y - mypos.y;
+			tanz = sqrt(tanx*tanx + tany * tany);
+			float tan_yx = std::fabs(tany) / std::fabs(tanx);
+			angle = 90 - atan(tan_yx) * 180 / M_PI;
 
+
+			if (tanx > 0)
+			{
+				effectnode->setRotation(angle);
+				movex = -tanx + offsety * sin(angle * M_PI / 180);
+			}
+			else
+			{
+				effectnode->setRotation(-angle);
+				movex = -tanx - offsety * sin(angle * M_PI / 180);
+			}
+			movey = -tany + offsety * cos(angle * M_PI / 180);
+		}
 
 		if (tanz > 420)
 			effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
