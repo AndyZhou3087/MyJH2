@@ -1154,11 +1154,6 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 			headimg->runAction(Sequence::create(DelayTime::create(dt1 + 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillEffect, this, stype, myHeroPos)), NULL));
 	}
 
-	if (stype != SKILL_4 && stype != SKILL_7 && stype != SKILL_8 && stype != SKILL_9 && stype != SKILL_12 && stype != 13 && stype != SKILL_17 && stype != SKILL_18)
-	{
-		hpbar_bg->runAction(Sequence::create(DelayTime::create(dt1 + 0.85f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackShakeAnim, this)), NULL));
-	}
-
 	namelbl->runAction(Sequence::create(DelayTime::create(dt2 + 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, myHeroPos)), NULL));
 }
 
@@ -1364,6 +1359,14 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, stype==3);
+
+	if (stype != SKILL_4 && stype != SKILL_7 && stype != SKILL_8 && stype != SKILL_9 && stype != SKILL_12 && stype != 13 && stype != SKILL_17 && stype != SKILL_18)
+	{
+		float dt = action->getDuration() / 60.0f - 0.2f;
+		if (dt < 0.0)
+			dt = 0.0f;
+		hpbar_bg->runAction(Sequence::create(DelayTime::create(dt), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackShakeAnim, this)), NULL));
+	}
 
 	if (stype != 3)
 		this->scheduleOnce(schedule_selector(FightHeroNode::removeSufferSkillAnim), action->getDuration()/60.0f);
