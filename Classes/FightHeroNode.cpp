@@ -216,29 +216,69 @@ void FightHeroNode::update(float dt)
 			int stype = -1;
 			for (unsigned int i = 0; i < 6; i++)
 			{
-				Hero* myhero = GlobalInstance::myCardHeros[i];
-				if (myhero != NULL && myhero->getState() != HS_DEAD && myhero->getSkillingType() >= 0)//释放技能中
+				FightHeroNode* fnode = (FightHeroNode*)fighting->getChildByTag(i);
+				if (fnode != NULL && fnode->getData() != NULL)
 				{
-					stype = myhero->getSkillingType();
-					for (unsigned int m = 0; m < GlobalInstance::myCardHeros[i]->vec_whosufferskill.size(); m++)
+					Hero* myhero = (Hero*)fnode->getData();
+					if (myhero != NULL && myhero->getState() != HS_DEAD && myhero->getSkillingType() >= 0)//释放技能中
 					{
-						if (GlobalInstance::myCardHeros[i]->vec_whosufferskill[m] == this->getTag() && stype == SKILL_3)//是否释放动弹不得
+						stype = myhero->getSkillingType();
+						for (unsigned int m = 0; m < myhero->vec_whosufferskill.size(); m++)
 						{
-							isSufferSkill3 = true;
+							if (myhero->vec_whosufferskill[m] == this->getTag() && stype == SKILL_3)//是否释放动弹不得
+							{
+								isSufferSkill3 = true;
+								break;
+							}
+						}
+						if (isSufferSkill3)
+						{
+							GongFa* gf = (GongFa*)myhero->checkSkillWg();
+							gf->setSkillCount(gf->getSkillCount() - 1);
+							if (gf->getSkillCount() <= 0)
+							{
+								myhero->clearSkill(gf);
+								this->removeSufferSkillAnim(0);
+							}
+							nextRound(0);
 							break;
 						}
 					}
-					if (isSufferSkill3)
+				}
+			}
+		}
+		else
+		{
+			int stype = -1;
+			for (unsigned int i = 0; i < 6; i++)
+			{
+				FightHeroNode* fnode = (FightHeroNode*)fighting->getChildByTag(6 + i);
+				if (fnode != NULL && fnode->getData() != NULL && fnode->getData()->getId().length() <= 0)
+				{
+					Hero* myhero = (Hero*)fnode->getData();
+					if (myhero != NULL && myhero->getState() != HS_DEAD && myhero->getSkillingType() >= 0)//释放技能中
 					{
-						GongFa* gf = (GongFa*)GlobalInstance::myCardHeros[i]->checkSkillWg();
-						gf->setSkillCount(gf->getSkillCount() - 1);
-						if (gf->getSkillCount() <= 0)
+						stype = myhero->getSkillingType();
+						for (unsigned int m = 0; m < myhero->vec_whosufferskill.size(); m++)
 						{
-							GlobalInstance::myCardHeros[i]->clearSkill(gf);
-							this->removeSufferSkillAnim(0);
+							if (myhero->vec_whosufferskill[m] == this->getTag() && stype == SKILL_3)//是否释放动弹不得
+							{
+								isSufferSkill3 = true;
+								break;
+							}
 						}
-						nextRound(0);
-						break;
+						if (isSufferSkill3)
+						{
+							GongFa* gf = (GongFa*)myhero->checkSkillWg();
+							gf->setSkillCount(gf->getSkillCount() - 1);
+							if (gf->getSkillCount() <= 0)
+							{
+								myhero->clearSkill(gf);
+								this->removeSufferSkillAnim(0);
+							}
+							nextRound(0);
+							break;
+						}
 					}
 				}
 			}
@@ -402,17 +442,22 @@ void FightHeroNode::hurtAnimFinish()
 			bool isskillfinish = false;
 			for (int i = 0; i < 6; i++)
 			{
-				if (GlobalInstance::myCardHeros[i] != NULL)
+				FightHeroNode* fnode = (FightHeroNode*)fighting->getChildByTag(i);
+				if (fnode != NULL && fnode->getData() != NULL)
 				{
-					int count = 0;
-					for (unsigned int n = 0; n < GlobalInstance::myCardHeros[i]->vec_whosufferskill.size(); n++)
+					Hero* myhero = (Hero*)fnode->getData();
+					if (myhero != NULL)
 					{
-						if (GlobalInstance::myCardHeros[i]->vec_whosufferskill[n] == this->getTag())
+						int count = 0;
+						for (unsigned int n = 0; n < myhero->vec_whosufferskill.size(); n++)
 						{
-							isskillfinish = true;
-							GongFa* gf = GlobalInstance::myCardHeros[i]->checkSkillWg();
-							GlobalInstance::myCardHeros[i]->clearSkill(gf);
-							return;
+							if (myhero->vec_whosufferskill[n] == this->getTag())
+							{
+								isskillfinish = true;
+								GongFa* gf = myhero->checkSkillWg();
+								myhero->clearSkill(gf);
+								return;
+							}
 						}
 					}
 				}
@@ -1303,13 +1348,11 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 
 void FightHeroNode::resetZorder(float dt)
 {
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 12; i++)
 	{
-		if (GlobalInstance::myCardHeros[i] != NULL)
-		{
-			FightHeroNode* myheronode = (FightHeroNode*)this->getParent()->getChildByTag(i);
+		FightHeroNode* myheronode = (FightHeroNode*)this->getParent()->getChildByTag(i);
+		if (myheronode != NULL)
 			myheronode->setLocalZOrder(2);
-		}
 	}
 }
 
