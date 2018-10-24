@@ -303,17 +303,14 @@ void TaskTalkLayer::onCloseClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 
 void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	if (cntEnabel == BTN_1)
-	{
-		if (type == ui::Widget::TouchEventType::ENDED)
-		{
-			MovingLabel::show(ResourceLang::map_lang["questerror"]);
-		}
-		return;
-	}
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		if (cntEnabel == BTN_1)
+		{
+			MovingLabel::show(ResourceLang::map_lang["questerror"]);
+			return;
+		}
 		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
 		int tag = btn->getTag();
 
@@ -342,17 +339,14 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 void TaskTalkLayer::onBtn2Click(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	if (cntEnabel == BTN_2)
-	{
-		if (type == ui::Widget::TouchEventType::ENDED)
-		{
-			MovingLabel::show(ResourceLang::map_lang["questerror"]);
-		}
-		return;
-	}
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		if (cntEnabel == BTN_2)
+		{
+			MovingLabel::show(ResourceLang::map_lang["questerror"]);
+			return;
+		}
 		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)pSender;
 		int tag = btn->getTag();
 
