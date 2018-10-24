@@ -527,7 +527,6 @@ void FightingLayer::showAtk(int fightertag)
 		}
 
 		FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(myfindex);
-		myfnode->runAction(Shake::create(0.2f, 5.0f));
 
 		if (stype < 0)
 		{
@@ -566,6 +565,7 @@ void FightingLayer::showAtk(int fightertag)
 			}
 		}
 
+		myfnode->runAction(Shake::create(0.2f, 5.0f));
 		//¼ÆËã±©»÷
 		float crit = m_enemyHeros[fightertag - 6]->getCrit();
 
