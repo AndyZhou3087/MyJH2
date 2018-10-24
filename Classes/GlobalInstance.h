@@ -617,6 +617,21 @@ public:
 	****************************/
 	void saveNpcFriendly();
 
+	/****************************
+	装备武功比较是否有更高级
+	****************************/
+	bool compareHighEquip(int type, Hero* herodata);
+
+	/****************************
+	比较装备之间数值
+	****************************/
+	float compareOtherEquip(ResBase* m_res, Hero* herodata, int attr);
+
+	/****************************
+	是否有强化材料
+	****************************/
+	bool strengthMaterial(Equipable* m_res);
+
 private:
 	static GlobalInstance* _Context;//类实例
 

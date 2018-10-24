@@ -131,11 +131,12 @@ void SelectEquipLayer::updateContent()
 {
 	scrollview->removeAllChildrenWithCleanup(true);
 
-	int itemheight = 160;
-	int ressize = MyRes::vec_MyResources.size();
-
 	vec_res.clear();
+
 	loadData();
+
+	int itemheight = 160;
+	int ressize = vec_res.size();
 
 	int row = ressize % 4 == 0 ? ressize / 4 : (ressize / 4 + 1);
 	int innerheight = itemheight * row;

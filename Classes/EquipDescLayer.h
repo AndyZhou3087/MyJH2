@@ -37,9 +37,11 @@ private:
 	int status;
 	Equipable* m_res;
 	cocos2d::ui::Text* attrlblArr[6];
+	cocos2d::ui::Text* addtextArr[6];
 	cocos2d::ui::Text* namelbl;
 	Node* csbnode;
 	cocos2d::ui::Widget* redpoint;
+	cocos2d::ui::Widget* salepoint;
 };
 
 #endif

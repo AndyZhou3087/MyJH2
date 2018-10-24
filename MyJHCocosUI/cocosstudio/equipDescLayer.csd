@@ -72,22 +72,22 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="prominuslb" ActionTag="-433079049" Tag="767" IconVisible="False" LeftMargin="443.1860" RightMargin="218.8140" TopMargin="626.7299" BottomMargin="627.2701" FontSize="23" LabelText="(-15)" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="addtext_1" ActionTag="-433079049" Tag="767" IconVisible="False" LeftMargin="441.8547" RightMargin="220.1453" TopMargin="626.0931" BottomMargin="627.9069" FontSize="23" LabelText="(-15)" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="58.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="443.1860" Y="640.2701" />
+            <Position X="441.8547" Y="640.9069" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="0" B="0" />
-            <PrePosition X="0.6155" Y="0.5002" />
+            <PrePosition X="0.6137" Y="0.5007" />
             <PreSize X="0.0806" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attaddlb" ActionTag="1874819517" Tag="768" IconVisible="False" LeftMargin="441.8546" RightMargin="220.1454" TopMargin="587.4741" BottomMargin="666.5259" FontSize="23" LabelText="(+15)" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="addtext_0" ActionTag="1874819517" Tag="768" IconVisible="False" LeftMargin="441.8547" RightMargin="220.1453" TopMargin="587.4740" BottomMargin="666.5260" FontSize="23" LabelText="(+15)" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="58.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="441.8546" Y="679.5259" />
+            <Position X="441.8547" Y="679.5260" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="87" G="251" B="87" />
             <PrePosition X="0.6137" Y="0.5309" />
@@ -210,6 +210,17 @@
           <AbstractNodeData Name="lvbtn" ActionTag="862093696" VisibleForFrame="False" Tag="126" IconVisible="False" LeftMargin="381.7579" RightMargin="134.2421" TopMargin="828.6329" BottomMargin="367.3671" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
+              <AbstractNodeData Name="redpoint" ActionTag="1861003033" Tag="58" IconVisible="False" LeftMargin="174.6943" RightMargin="5.3057" TopMargin="0.5648" BottomMargin="59.4352" ctype="SpriteObjectData">
+                <Size X="24.0000" Y="24.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="186.6943" Y="71.4352" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.9152" Y="0.8504" />
+                <PreSize X="0.1176" Y="0.2857" />
+                <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
               <AbstractNodeData Name="text" ActionTag="612233943" Tag="127" IconVisible="False" LeftMargin="62.5216" RightMargin="63.4784" TopMargin="19.7404" BottomMargin="24.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="28" Scale9Height="14" ctype="ImageViewObjectData">
                 <Size X="78.0000" Y="40.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -233,6 +244,54 @@
             <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="addtext_2" ActionTag="-1875367190" Tag="221" IconVisible="False" LeftMargin="441.8547" RightMargin="220.1453" TopMargin="664.7117" BottomMargin="589.2883" FontSize="23" LabelText="(-15)" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="58.0000" Y="26.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="441.8547" Y="602.2883" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="0" B="0" />
+            <PrePosition X="0.6137" Y="0.4705" />
+            <PreSize X="0.0806" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="addtext_3" ActionTag="-764295253" Tag="222" IconVisible="False" LeftMargin="441.8547" RightMargin="220.1453" TopMargin="703.3306" BottomMargin="550.6694" FontSize="23" LabelText="(-15)" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="58.0000" Y="26.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="441.8547" Y="563.6694" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="0" B="0" />
+            <PrePosition X="0.6137" Y="0.4404" />
+            <PreSize X="0.0806" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="addtext_4" ActionTag="2091924397" Tag="223" IconVisible="False" LeftMargin="441.8547" RightMargin="220.1453" TopMargin="741.9495" BottomMargin="512.0505" FontSize="23" LabelText="(-15)" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="58.0000" Y="26.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="441.8547" Y="525.0505" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="0" B="0" />
+            <PrePosition X="0.6137" Y="0.4102" />
+            <PreSize X="0.0806" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="addtext_5" ActionTag="1283912740" Tag="224" IconVisible="False" LeftMargin="441.8547" RightMargin="220.1453" TopMargin="780.5683" BottomMargin="473.4317" FontSize="23" LabelText="(-15)" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="58.0000" Y="26.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="441.8547" Y="486.4317" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="0" B="0" />
+            <PrePosition X="0.6137" Y="0.3800" />
+            <PreSize X="0.0806" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

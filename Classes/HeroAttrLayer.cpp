@@ -1179,25 +1179,16 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 			if (i != 2 && i != 3)
 			{
 				Equip* m_equip = (Equip*)MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
-				int equipcount = 0;
 				if (m_equip != NULL)
 				{
-					for (int i = 0; i < 3; i++)
+					if (GlobalInstance::getInstance()->strengthMaterial(m_equip) || GlobalInstance::getInstance()->compareHighEquip(equiptype[i], m_heroData))
 					{
-						std::string restr = StringUtils::format("q00%d", i + 1);
-						if (MyRes::getMyResCount(restr) >= m_equip->getLv().getValue() + 1)
-						{
-							equipcount++;
-						}
+						redpointArr[i]->setVisible(true);
 					}
-				}
-				if (equipcount == 3)
-				{
-					redpointArr[i]->setVisible(true);
-				}
-				else
-				{
-					redpointArr[i]->setVisible(false);
+					else
+					{
+						redpointArr[i]->setVisible(false);
+					}
 				}
 			}
 			else
@@ -1206,7 +1197,7 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 				redpointArr[i]->setVisible(false);
 				if (m_res != NULL)
 				{
-					if (GlobalInstance::getInstance()->getCanUpgradeCount("m00"))
+					if ((GlobalInstance::getInstance()->getCanUpgradeCount("m00") && (m_res->getLv().getValue() + 1) < GlobalInstance::map_GF[m_res->getId()].vec_df.size()) || GlobalInstance::getInstance()->compareHighEquip(equiptype[i], m_heroData))
 					{
 						redpointArr[i]->setVisible(true);
 					}
