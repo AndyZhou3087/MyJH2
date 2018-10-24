@@ -357,7 +357,7 @@ void FightingLayer::heroFight(int fightertag)
 		}
 		for (unsigned int i = 0; i < vec_tmp.size(); i++)
 		{
-			if (vec_tmp[i]->getId().length() <= 0)
+			if (vec_tmp[i] != NULL && vec_tmp[i]->getId().length() <= 0)
 			{
 				Hero* myhero = (Hero*)vec_tmp[i];
 				if (myhero != NULL && myhero->getState() != HS_DEAD && myhero->getSkillingType() >= 0)//释放技能中
