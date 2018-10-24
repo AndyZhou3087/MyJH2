@@ -82,11 +82,16 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 	str = StringUtils::format(ResourceLang::map_lang["shoppricetext"].c_str(), data->price);
 	price->setString(str);
 
-	if (m_type != 0)
+	if (m_type == 1)
 	{
 		int id = atoi(data->icon.substr(3, 1).c_str());
 		std::string vipid = StringUtils::format("vip%d", id + 2);
 		HttpDataSwap::init(this)->paySuccNotice(vipid, data->price);
+		buybtn->setVisible(false);
+		price->setVisible(false);
+	}
+	else if (m_type == 2)
+	{
 		buybtn->setVisible(false);
 		price->setVisible(false);
 	}
