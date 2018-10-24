@@ -475,24 +475,26 @@ void FightHeroNode::delayShowReviveAnim(float dt)
 
 bool FightHeroNode::checkReviveSkill()
 {
-	GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_WG, m_Data->getName());
-
-	gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, m_Data->getName());
-	if (gf != NULL)
+	if (m_Data->getId().length() <= 0)
 	{
-		if (GlobalInstance::map_GF[gf->getId()].skill == SKILL_13)
+		Hero* hero = (Hero*)m_Data;
+		GongFa* gf = (GongFa*)hero->getEquipable(T_WG);
+		if (gf != NULL)
 		{
-			if (gf->getSkillCount() <= 0)
+			if (GlobalInstance::map_GF[gf->getId()].skill == SKILL_13)
 			{
-				gf->setSkillCount(1);
-				return true;
+				if (gf->getSkillCount() <= 0)
+				{
+					gf->setSkillCount(1);
+					return true;
+				}
+				else
+				{
+					gf->setSkillCount(0);
+				}
 			}
-			else
-			{
-				gf->setSkillCount(0);
-			}
-		}
 
+		}
 	}
 	return false;
 }
@@ -624,6 +626,7 @@ void FightHeroNode::setFightState(int winexp)
 	}
 	else
 	{
+
 		hp_bar->setPercent(percent);
 		rettext->loadTexture(ResourcePath::makeTextImgPath("windeath_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		retbox->setVisible(true);
@@ -636,7 +639,8 @@ void FightHeroNode::setFightState(int winexp)
 		CommonFuncs::changeGray(headimg);
 		CommonFuncs::changeGray(hp_bar->getVirtualRenderer());
 		CommonFuncs::changeGray(retbox);
-		GlobalInstance::myCardHeros[this->getTag()] = NULL;
+		if (g_MapBlockScene != NULL)
+			GlobalInstance::myCardHeros[this->getTag()] = NULL;
 	}
 
 	GlobalInstance::getInstance()->saveHero(myhero);

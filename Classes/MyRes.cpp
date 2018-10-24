@@ -67,42 +67,6 @@ int MyRes::getMyPackageCount()
 	return count;
 }
 
-ResBase* MyRes::getMyPutOnResById(std::string sid, std::string whos)
-{
-	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
-	{
-		ResBase* res = vec_MyResources[i];
-		if (res->getId().compare(sid) == 0 && res->getWhere() == MYEQUIP)
-		{
-			if (res->getType() >= T_ARMOR && res->getType() <= T_NG)
-			{
-				Equipable* e = (Equipable*)res;
-				if (e->getWhos().compare(whos) == 0)
-					return e;
-			}
-		}
-	}
-	return NULL;
-}
-
-ResBase* MyRes::getMyPutOnResByType(int type, std::string whos)
-{
-	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
-	{
-		ResBase* res = vec_MyResources[i];
-		if (res->getType() == type && res->getWhere() == MYEQUIP)
-		{
-			if (res->getType() >= T_ARMOR && res->getType() <= T_NG)
-			{
-				Equipable* e = (Equipable*)res;
-				if (e->getWhos().compare(whos) == 0)
-					return e;
-			}
-		}
-	}
-	return NULL;
-}
-
 ResBase* MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescount)
 {
 	int i = 0;

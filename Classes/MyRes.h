@@ -24,12 +24,6 @@ public:
 	//背包中物品总个数
 	static int getMyPackageCount();
 
-	//获取装备栏中的物品
-	static ResBase* getMyPutOnResById(std::string sid, std::string whos);
-
-	//获取装备栏中的物品BYTYPE
-	static ResBase* getMyPutOnResByType(int type, std::string who);
-
 	//将背包中的物品放到仓库中，回城使用
 	static void putMyPackagesToStorage();
 

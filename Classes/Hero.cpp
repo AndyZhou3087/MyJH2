@@ -252,8 +252,18 @@ float Hero::getDf()
 				herodf += (equip->getDf()*herobns);
 				if (GlobalInstance::map_EquipSuit[equip->getId()].vec_suit.size() >= 3)
 				{
-					if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[equip->getId()].vec_suit[2], getName()) != NULL)
-						herodf += equip->getSuitDf();
+					std::string suitid = GlobalInstance::map_EquipSuit[equip->getId()].vec_suit[2];
+					int t = 0;
+					for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+					{
+						if (suitid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+							break;
+					}
+					if (t >= T_ARMOR && t <= T_FASHION)
+					{
+						if (getEquipable(t) != NULL)
+							herodf += equip->getSuitDf();
+					}
 				}
 			}
 			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
@@ -302,8 +312,18 @@ float Hero::getMaxHp()
 				herohp += (equip->getHp()*herobns);
 				if (GlobalInstance::map_EquipSuit[equip->getId()].vec_suit.size() >= 2)
 				{
-					if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[equip->getId()].vec_suit[1], getName()) != NULL)
-						herohp += equip->getSuitHp();
+					std::string suitid = GlobalInstance::map_EquipSuit[equip->getId()].vec_suit[1];
+					int t = 0;
+					for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+					{
+						if (suitid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+							break;
+					}
+					if (t >= T_ARMOR && t <= T_FASHION)
+					{
+						if (getEquipable(t) != NULL)
+							herohp += equip->getSuitHp();
+					}
 				}
 			}
 			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
@@ -541,7 +561,7 @@ GongFa* Hero::checkSkillWg()
 	int t[] = { T_WG ,T_NG };
 	for (int i = 0; i < 2; i++)
 	{
-		GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(t[i], getName());
+		GongFa* gf = (GongFa*)getEquipable(t[i]);
 
 		if (gf != NULL && gf->getSkillCount() > 0)
 		{
@@ -551,7 +571,7 @@ GongFa* Hero::checkSkillWg()
 
 	for (int i = 0; i < 2; i++)
 	{
-		GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(t[i], getName());
+		GongFa* gf = (GongFa*)getEquipable(t[i]);
 
 		if (gf != NULL && GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1)
 		{

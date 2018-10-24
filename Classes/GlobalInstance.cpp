@@ -322,7 +322,7 @@ void GlobalInstance::loadMyHeros()
 
 						for (int k = T_ARMOR; k <= T_NG; k++)
 						{
-							ResBase* eqres = MyRes::getMyPutOnResByType(k, hero->getName());
+							ResBase* eqres = hero->getEquipable(k);
 							if (eqres != NULL)
 							{
 								hero->setEquipable((Equipable*)eqres, eqres->getType());
@@ -2018,7 +2018,7 @@ void GlobalInstance::fireHero(int index)
 	bool equipchange = false;
 	for (int i = T_ARMOR; i <= T_NG; i++)
 	{
-		Equipable* equip = (Equipable*)MyRes::getMyPutOnResByType(i, GlobalInstance::vec_myHeros[index]->getName());
+		Equipable* equip = (Equipable*)GlobalInstance::vec_myHeros[index]->getEquipable(i);
 		if (equip != NULL)
 		{
 			equipchange = true;

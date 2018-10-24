@@ -68,7 +68,7 @@ bool SkillStartLayer::init(int herovacation, int skilltype, int onstate)
 	this->scheduleOnce(schedule_selector(SkillStartLayer::showTextAnim), 0.3f);
 
 	if (onstate == 1)
-		effectnode->getChildByName("Node")->setPositionX(720);
+		effectnode->getChildByName("Node")->setPositionY(1280);
 
 	cocos2d::ui::ImageView* hero = (cocos2d::ui::ImageView*)effectnode->getChildByName("Node")->getChildByName("hero");
 	std::string herostr = StringUtils::format("hfull_%d_0.png", herovacation);

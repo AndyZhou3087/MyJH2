@@ -152,7 +152,17 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 
 					cocos2d::ui::Text* statlbl = (cocos2d::ui::Text*)suitresbox->getChildByName("status");
 
-					Equipable* eres = (Equipable*)MyRes::getMyPutOnResById(eid, herodata->getName());
+					int t = 0;
+					for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+					{
+						if (eid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+							break;
+					}
+					Equipable* eres = NULL;
+					if (t >= T_ARMOR && t <= T_FASHION)
+					{
+						eres = (Equipable*)herodata->getEquipable(t);
+					}
 					if (eres == NULL)
 					{
 						if (MyRes::getMyResCount(eid) <= 0)
@@ -258,7 +268,7 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 	strenthbtntxt->loadTexture(ResourcePath::makeTextImgPath("strenthbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	redpoint = (cocos2d::ui::Widget*)strenthbtn->getChildByName("redpoint");
 
-	if (MyRes::getMyPutOnResById(m_equip->getId(), herodata->getName()) == NULL)
+	if (herodata->getEquipable(m_equip->getType()) == NULL)
 	{
 		actionbtn->setTag(1002);
 		actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("selectbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -564,13 +574,34 @@ void TakeOnLayer::updateAttr()
 	float suitdf = 0;
 	if (GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit.size() >= 2)
 	{
-		if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit[1], m_herodata->getName()) != NULL)
-			suithp = m_equip->getSuitHp();
+		std::string suitid = GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit[1];
+		int t = 0;
+		for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+		{
+			if (suitid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+				break;
+		}
+		if (t >= T_ARMOR && t <= T_FASHION)
+		{
+			if (m_herodata->getEquipable(t) != NULL)
+				suithp = m_equip->getSuitHp();
+		}
+
 	}
 	if (GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit.size() >= 3)
 	{
-		if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit[2], m_herodata->getName()) != NULL)
-			suitdf = m_equip->getSuitDf();
+		std::string suitid = GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit[2];
+		int t = 0;
+		for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+		{
+			if (suitid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+				break;
+		}
+		if (t >= T_ARMOR && t <= T_FASHION)
+		{
+			if (m_herodata->getEquipable(t) != NULL)
+				suitdf = m_equip->getSuitDf();
+		}
 	}
 	float hp = m_equip->getHp();
 	float atk = m_equip->getAtk();
@@ -581,7 +612,7 @@ void TakeOnLayer::updateAttr()
 
 	float herobns = 1.0f;
 
-	if (MyRes::getMyPutOnResById(m_equip->getId(), m_herodata->getName()) != NULL)
+	if (m_herodata->getEquipable(m_equip->getType()) != NULL)
 	{
 		herobns = GlobalInstance::map_Equip[m_equip->getId()].vec_bns[m_herodata->getVocation()];
 	}

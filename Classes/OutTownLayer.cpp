@@ -41,7 +41,7 @@ OutTownLayer::~OutTownLayer()
 		{
 			for (int k = T_ARMOR; k <= T_NG; k++)
 			{
-				ResBase* eqres = MyRes::getMyPutOnResByType(k, hero->getName());
+				ResBase* eqres = hero->getEquipable(k);
 				if (eqres != NULL)
 				{
 					hero->setEquipable((Equipable*)eqres, eqres->getType());

@@ -455,7 +455,7 @@ void HeroAttrLayer::loadHeroUI()
 {
 	for (int i = 0; i < equipnode->getChildrenCount(); i++)
 	{
-		ResBase* eres = MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
+		ResBase* eres = m_heroData->getEquipable(equiptype[i]);
 		updateEquipUi(eres, i);
 	}
 
@@ -627,7 +627,7 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 	{
 		for (int i = 0; i < equipnode->getChildrenCount(); i++)
 		{
-			Equipable* eres = (Equipable*)MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
+			Equipable* eres = (Equipable*)m_heroData->getEquipable(equiptype[i]);
 			if (eres != NULL)
 			{
 				eres->setWhos(editBox->getText());
@@ -961,7 +961,7 @@ void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		clickindex = clicknode->getTag();
 
 		Layer* layer;
-		ResBase* res = MyRes::getMyPutOnResByType(equiptype[clickindex], m_heroData->getName());
+		ResBase* res = m_heroData->getEquipable(equiptype[clickindex]);
 
 		if (res == NULL)
 		{
@@ -1016,7 +1016,7 @@ void HeroAttrLayer::takeOff(ResBase* res)
 
 void HeroAttrLayer::changeEquip(ResBase* res)
 {
-	Equipable* takeOnEquip = (Equipable*)MyRes::getMyPutOnResByType(res->getType(), m_heroData->getName());
+	Equipable* takeOnEquip = (Equipable*)m_heroData->getEquipable(res->getType());
 	if (takeOnEquip != NULL)
 	{
 		takeOnEquip->setWhere(MYSTORAGE);
@@ -1178,7 +1178,7 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 		{
 			if (i != 2 && i != 3)
 			{
-				Equip* m_equip = (Equip*)MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
+				Equip* m_equip = (Equip*)m_heroData->getEquipable(equiptype[i]);
 				if (m_equip != NULL)
 				{
 					if (GlobalInstance::getInstance()->strengthMaterial(m_equip) || GlobalInstance::getInstance()->compareHighEquip(equiptype[i], m_heroData))
@@ -1193,7 +1193,7 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 			}
 			else
 			{
-				Equipable* m_res = (Equipable*)MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
+				Equipable* m_res = (Equipable*)m_heroData->getEquipable(equiptype[i]);
 				redpointArr[i]->setVisible(false);
 				if (m_res != NULL)
 				{

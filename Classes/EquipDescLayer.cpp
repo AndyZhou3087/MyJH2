@@ -370,8 +370,18 @@ void EquipDescLayer::updateAttr()
 			hp *= herobns;
 			if (GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit.size() >= 2)
 			{
-				if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit[1], carryhero->getName()) != NULL)
-					hp += ((Equip*)m_res)->getSuitHp();
+				std::string suitid = GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit[1];
+				int t = 0;
+				for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+				{
+					if (suitid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+						break;
+				}
+				if (t >= T_ARMOR && t <= T_FASHION)
+				{
+					if (carryhero->getEquipable(t) != NULL)
+						hp += ((Equip*)m_res)->getSuitHp();
+				}
 			}
 
 			atk *= herobns;
@@ -380,8 +390,18 @@ void EquipDescLayer::updateAttr()
 
 			if (GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit.size() >= 3)
 			{
-				if (MyRes::getMyPutOnResById(GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit[2], carryhero->getName()) != NULL)
-					df += ((Equip*)m_res)->getSuitDf();
+				std::string suitid = GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit[2];
+				int t = 0;
+				for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+				{
+					if (suitid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+						break;
+				}
+				if (t >= T_ARMOR && t <= T_FASHION)
+				{
+					if (carryhero->getEquipable(t) != NULL)
+						df += ((Equip*)m_res)->getSuitDf();
+				}
 			}
 
 			atkspeed *= herobns;
