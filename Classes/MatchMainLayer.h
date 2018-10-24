@@ -30,6 +30,8 @@ private:
 	void updateUI();
 
 	void setMatchBtnStatus(int s);
+
+	bool checkEmptyHeros();
 private:
 	CardHeroNode* m_myCardHerosNode[6];
 	cocos2d::ui::Button* matchbtn;

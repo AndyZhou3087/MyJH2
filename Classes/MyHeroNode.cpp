@@ -605,7 +605,6 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 						return;
 					}
 					m_heroData->setOnchallengepos(carrycount + 1);
-					GlobalInstance::myOnChallengeHeros[carrycount] = m_heroData;
 
 					MatchMainLayer* matchMainLayer = (MatchMainLayer*)g_mainScene->getChildByName("8pkground");
 					CardHeroNode* cardheroNode = (CardHeroNode*)matchMainLayer->getMyCardHeroNode(carrycount);

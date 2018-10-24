@@ -22,6 +22,7 @@ MatchMainLayer::MatchMainLayer()
 
 	for (int i = 0; i < 6; i++)
 	{
+		delete GlobalInstance::myOnChallengeHeros[i];
 		GlobalInstance::myOnChallengeHeros[i] = NULL;
 	}
 }
@@ -280,6 +281,11 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		}
 			break;
 		case 1001://save http data
+			if (checkEmptyHeros())
+			{
+				MovingLabel::show(ResourceLang::map_lang["mymatchherosempty"]);
+				return;
+			}
 			httptag = 1;
 			HttpDataSwap::init(this)->postMyMatchHeros();
 			break;
@@ -287,14 +293,7 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			break;
 		case 1003://getmatch
 		{
-			int count = 0;
-
-			for (int i = 0; i < 6; i++)
-			{
-				if (GlobalInstance::myOnChallengeHeros[i] == NULL)
-					count++;
-			}
-			if (count == 6)
+			if (checkEmptyHeros())
 			{
 				MovingLabel::show(ResourceLang::map_lang["mymatchherosempty"]);
 				return;
@@ -311,6 +310,20 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			break;
 		}
 	}
+}
+
+bool MatchMainLayer::checkEmptyHeros()
+{
+	int count = 0;
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (GlobalInstance::myOnChallengeHeros[i] == NULL)
+			count++;
+	}
+	if (count == 6)
+		return true;
+	return false;
 }
 
 void MatchMainLayer::setMatchBtnStatus(int s)
@@ -364,6 +377,12 @@ void MatchMainLayer::updateUI()
 	}
 	endtime->setString(GlobalInstance::myMatchInfo.endtime);
 
+
+	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+	{
+		GlobalInstance::vec_myHeros[i]->setOnchallengepos(0);
+	}
+
 	std::map<std::string, std::string>::iterator it;
 
 	for (it = GlobalInstance::myMatchInfo.map_myheros.begin(); it != GlobalInstance::myMatchInfo.map_myheros.end(); it++)
@@ -381,6 +400,7 @@ void MatchMainLayer::updateUI()
 
 			for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 			{
+				GlobalInstance::vec_myHeros[i]->setOnchallengepos(0);
 				if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getName().compare(heroname) == 0)
 				{
 					Hero* myownhero = GlobalInstance::vec_myHeros[i];
@@ -398,9 +418,12 @@ void MatchMainLayer::updateUI()
 					hero->setRandAttr(myownhero->getRandAttr());
 					hero->setChangeCount(myownhero->getChangeCount());
 					hero->setState(HS_ONCHALLENGE);
+					hero->setOnchallengepos(index + 1);
 					GlobalInstance::myOnChallengeHeros[index] = hero;
+					GlobalInstance::vec_myHeros[i]->setOnchallengepos(index + 1);
 				}
 			}
+			GlobalInstance::getInstance()->saveMyHeros();
 			m_myCardHerosNode[index]->setData(GlobalInstance::myOnChallengeHeros[index]);
 		}
 		else

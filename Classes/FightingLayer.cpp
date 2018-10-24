@@ -381,8 +381,12 @@ void FightingLayer::heroFight(int fightertag)
 		{
 			atindex = calcAttackNodeIndex(fightertag, whoatk);
 		}
+		int atnodetag = atindex;
 
-		FightHeroNode* afnode = (FightHeroNode*)this->getChildByTag(atindex);
+		if (whoatk == 0)
+			atnodetag += 6;
+
+		FightHeroNode* afnode = (FightHeroNode*)this->getChildByTag(atnodetag);
 		
 		if (astype < 0)
 		{
@@ -429,6 +433,8 @@ void FightingLayer::heroFight(int fightertag)
 		}
 		else
 		{
+			afnode->runAction(Shake::create(0.2f, 5.0f));
+
 			Npc* attackdata = NULL;
 			if (whoatk == 0)
 				attackdata = m_enemyHeros[atindex];
