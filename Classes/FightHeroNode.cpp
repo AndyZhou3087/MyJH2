@@ -834,7 +834,7 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 		}
 		else
 		{
-			attackShakeAnim();
+			whosufferNode->attackShakeAnim();
 			changeSkillValue(stype, whosufferNode);
 		}
 	}
