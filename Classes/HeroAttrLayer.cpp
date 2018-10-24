@@ -1179,7 +1179,7 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 			if (i != 2 && i != 3)
 			{
 				redpointArr[i]->setVisible(false);
-				Equip* m_equip = (Equip*)MyRes::getMyPutOnResByType(equiptype[i], m_heroData->getName());
+				Equip* m_equip = (Equip*)m_heroData->getEquipable(equiptype[i]);
 				if (m_equip != NULL)
 				{
 					if (GlobalInstance::getInstance()->strengthMaterial(m_equip) || GlobalInstance::getInstance()->compareHighEquip(equiptype[i], m_heroData))
