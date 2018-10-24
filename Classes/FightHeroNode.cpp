@@ -838,7 +838,8 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 		}
 		else
 		{
-			whosufferNode->attackShakeAnim();
+			if (stype != SKILL_4 && stype != SKILL_7 && stype != SKILL_8 && stype != SKILL_9 && stype != SKILL_12 && stype != 13 && stype != SKILL_17 && stype != SKILL_18)
+				whosufferNode->attackShakeAnim();
 			changeSkillValue(stype, whosufferNode);
 		}
 	}

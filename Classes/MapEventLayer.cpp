@@ -11,6 +11,7 @@
 #include "MovingLabel.h"
 
 #define BETCOSTCOIN 50
+#define BETPRO 514
 
 int maxqupr[5] = { 585,885,985,995,1000 };
 
@@ -362,8 +363,8 @@ void MapEventLayer::showResult(float dt)
 
 void MapEventLayer::openDice(float dt)
 {
-	int r = GlobalInstance::getInstance()->createRandomNum(10) + 1;
-	if (r < 4)
+	int r = GlobalInstance::getInstance()->createRandomNum(1000) + 1;
+	if (r < BETPRO)
 	{
 		if (lastBetIndex == 0)
 		{
