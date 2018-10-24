@@ -16,10 +16,10 @@ SkillStartLayer::~SkillStartLayer()
 }
 
 
-SkillStartLayer* SkillStartLayer::create(int herovacation, int skilltype)
+SkillStartLayer* SkillStartLayer::create(int herovacation, int skilltype, int onstate)
 {
 	SkillStartLayer *pRet = new(std::nothrow)SkillStartLayer();
-	if (pRet && pRet->init(herovacation, skilltype))
+	if (pRet && pRet->init(herovacation, skilltype, onstate))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -33,7 +33,7 @@ SkillStartLayer* SkillStartLayer::create(int herovacation, int skilltype)
 }
 
 // on "init" you need to initialize your instance
-bool SkillStartLayer::init(int herovacation, int skilltype)
+bool SkillStartLayer::init(int herovacation, int skilltype, int onstate)
 {
 	if (!Layer::init())
 	{
@@ -66,6 +66,10 @@ bool SkillStartLayer::init(int herovacation, int skilltype)
 	action->gotoFrameAndPlay(0, false);
 	this->scheduleOnce(schedule_selector(SkillStartLayer::remove), action->getDuration()/30.f);
 	this->scheduleOnce(schedule_selector(SkillStartLayer::showTextAnim), 0.3f);
+
+	if (onstate == 1)
+		effectnode->getChildByName("Node")->setPositionX(720);
+
 	cocos2d::ui::ImageView* hero = (cocos2d::ui::ImageView*)effectnode->getChildByName("Node")->getChildByName("hero");
 	std::string herostr = StringUtils::format("hfull_%d_0.png", herovacation);
 	hero->ignoreContentAdaptWithSize(true);

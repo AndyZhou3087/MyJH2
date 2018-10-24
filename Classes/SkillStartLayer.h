@@ -13,8 +13,8 @@ public:
 	SkillStartLayer();
 	~SkillStartLayer();
 
-	static SkillStartLayer* create(int herovacation, int skilltype);
-	bool init(int herovacation, int skilltype);
+	static SkillStartLayer* create(int herovacation, int skilltype, int onstate);//onstate//在哪个场景中，正常战斗0，竞技场中1
+	bool init(int herovacation, int skilltype, int onstate);
 private:
 	void remove(float dt);
 

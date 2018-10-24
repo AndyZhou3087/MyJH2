@@ -685,7 +685,10 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 			{
 				if (this->getParent()->getChildByName("skillstart") == NULL)
 				{
-					SkillStartLayer* layer = SkillStartLayer::create(m_Data->getVocation(), stype);
+					int onstate = 0;
+					if (g_MapBlockScene == NULL)
+						onstate = 1;
+					SkillStartLayer* layer = SkillStartLayer::create(m_Data->getVocation(), stype, onstate);
 					this->getParent()->addChild(layer, 10, "skillstart");
 				}
 				delay += 1.0f;
@@ -1261,30 +1264,61 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
 	csbnode->addChild(effectnode, 1, "playskillani");
 
-
-	float offsety = 450;
-	float angle = 0;
-	Vec2 mypos = this->getPosition();
-	Vec2 enemypos = this->getParent()->getChildByTag(enemyindex)->getPosition();
-	float tanx = enemypos.x - mypos.x;
-	float tany = enemypos.y - mypos.y;
-	float tanz = sqrt(tanx*tanx + tany*tany);
-	float tan_yx = std::fabs(tany) / std::fabs(tanx);
-	angle = 90 - atan(tan_yx) * 180 / M_PI;
-
 	float movex = 0;
-	if (tanx > 0)
+	float movey = 0;
+	float tanz = 0;
+	if (enemyindex >= 6)
 	{
-		effectnode->setRotation(angle);
-		movex = tanx - offsety * sin(angle * M_PI / 180);
+		float offsety = 450;
+		float angle = 0;
+		Vec2 mypos = this->getPosition();
+		Vec2 enemypos = this->getParent()->getChildByTag(enemyindex)->getPosition();
+		float tanx = enemypos.x - mypos.x;
+		float tany = enemypos.y - mypos.y;
+		tanz = sqrt(tanx*tanx + tany * tany);
+		float tan_yx = std::fabs(tany) / std::fabs(tanx);
+		angle = 90 - atan(tan_yx) * 180 / M_PI;
+
+
+		if (tanx > 0)
+		{
+			effectnode->setRotation(angle);
+			movex = tanx - offsety * sin(angle * M_PI / 180);
+		}
+		else
+		{
+			effectnode->setRotation(-angle);
+			movex = -fabs(tanx) + offsety * sin(angle * M_PI / 180);
+		}
+		movey = tany - offsety * cos(angle * M_PI / 180);
 	}
 	else
 	{
-		effectnode->setRotation(-angle);
-		movex = -fabs(tanx) + offsety * sin(angle * M_PI / 180);
-	}
-	float movey = tany - offsety * cos(angle * M_PI / 180);
+		float offsety = 450;
+		float angle = 0;
+		Vec2 mypos = this->getPosition();
+		Vec2 enemypos = this->getParent()->getChildByTag(enemyindex)->getPosition();
+		float tanx = enemypos.x - mypos.x;
+		float tany = enemypos.y - mypos.y;
+		tanz = sqrt(tanx*tanx + tany * tany);
+		float tan_yx = std::fabs(tany) / std::fabs(tanx);
+		angle = 90 - atan(tan_yx) * 180 / M_PI;
 
+		movex = 0;
+
+		effectnode->setSkewX(180);
+		if (tanx > 0)
+		{
+			effectnode->setRotation(-angle);
+			movex = tanx - offsety * sin(angle * M_PI / 180);
+		}
+		else
+		{
+			effectnode->setRotation(angle);
+			movex = -fabs(tanx) + offsety * sin(angle * M_PI / 180);
+		}
+		movey = tany - offsety * cos(angle * M_PI / 180);
+	}
 
 	if (tanz > 420)
 		effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
@@ -1351,15 +1385,15 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 			float tan_yx = std::fabs(tany) / std::fabs(tanx);
 			angle = 90 - atan(tan_yx) * 180 / M_PI;
 
-
+			effectnode->setSkewX(180);
 			if (tanx > 0)
 			{
-				effectnode->setRotation(angle);
+				effectnode->setRotation(-angle);
 				movex = -tanx + offsety * sin(angle * M_PI / 180);
 			}
 			else
 			{
-				effectnode->setRotation(-angle);
+				effectnode->setRotation(angle);
 				movex = -tanx - offsety * sin(angle * M_PI / 180);
 			}
 			movey = -tany + offsety * cos(angle * M_PI / 180);
