@@ -383,8 +383,7 @@ void FightingLayer::heroFight(int fightertag)
 		}
 
 		FightHeroNode* afnode = (FightHeroNode*)this->getChildByTag(atindex);
-		afnode->runAction(Shake::create(0.2f, 5.0f));
-
+		
 		if (astype < 0)
 		{
 			if (vec_tmp[atindex]->getId().length() <= 0)
@@ -771,7 +770,7 @@ void FightingLayer::showAtk(int fightertag)
 				myfindex = calcAttackNodeIndex(fightertag, 1);
 			}
 
-		FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(myfindex);
+			FightHeroNode* myfnode = (FightHeroNode*)this->getChildByTag(myfindex);
 
 			if (stype < 0)
 			{
@@ -809,9 +808,10 @@ void FightingLayer::showAtk(int fightertag)
 					}
 				}
 			}
+			myfnode->runAction(Shake::create(0.2f, 5.0f));
 
-		//¼ÆËã±©»÷
-		float crit = m_enemyHeros[fightertag - 6]->getCrit();
+			//¼ÆËã±©»÷
+			float crit = m_enemyHeros[fightertag - 6]->getCrit();
 
 			int r = GlobalInstance::getInstance()->createRandomNum(10000);
 			int state = 0;
