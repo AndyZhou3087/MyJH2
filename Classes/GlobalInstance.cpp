@@ -1828,6 +1828,10 @@ bool GlobalInstance::compareHighEquip(int type, Hero* herodata)
 		{
 			bool isfit = false;
 			ResBase* res = MyRes::vec_MyResources[i];
+			if (res->getWhere() == MYEQUIP)
+			{
+				continue;
+			}
 			if (type == res->getType())
 			{
 				Equipable* m_res = (Equipable*)res;
