@@ -619,6 +619,11 @@ public:
 	****************************/
 	bool strengthMaterial(Equipable* m_res);
 
+	/****************************
+	议事厅任务红点显示
+	****************************/
+	bool checkNewQuest();
+
 private:
 	static GlobalInstance* _Context;//类实例
 

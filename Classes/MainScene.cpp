@@ -472,44 +472,8 @@ void MainScene::showNewerGuideNode(int step, std::vector<Node*> nodes)
 
 void MainScene::updateTaskLayerTip(float dt)
 {
-	//主线
-	int mcount = 0;
-	for (unsigned int i = 0; i < Quest::myFinishMainQuest.size(); i++)
-	{
-		TaskData data = Quest::myFinishMainQuest[i];
-		if (data.isfinish == QUEST_FINISH)
-		{
-			mcount++;
-			break;
-		}
-	}
-	//支线
-	int bcount = 0;
-	for (unsigned int i = 0; i < Quest::myFinishBranchQuest.size(); i++)
-	{
-		TaskData data = Quest::myFinishBranchQuest[i];
-		if (data.isfinish == QUEST_FINISH)
-		{
-			bcount++;
-			break;
-		}
-	}
-	//每日
-	int dcount = 0;
-	std::map<std::string, DailyTaskData>::iterator it;
-	for (it = GlobalInstance::map_DTdata.begin(); it != GlobalInstance::map_DTdata.end(); it++)
-	{
-		DailyTaskData data = GlobalInstance::map_DTdata[it->first];
-		if (data.state == DAILY_FINISHED)
-		{
-			dcount++;
-			break;
-		}
-	}
-
-	//log("-------maintask = %d, branchtask = %d, mcount = %d, bcount = %d, dcount = %d ", GlobalInstance::myCurMainData.isfinish, GlobalInstance::myCurBranchData.isfinish, mcount, bcount, dcount);
 	//主线支线每日判断
-	if (GlobalInstance::myCurMainData.isfinish == QUEST_TASK || GlobalInstance::myCurBranchData.isfinish == QUEST_TASK || mcount > 0 || bcount > 0 || dcount > 0)
+	if (GlobalInstance::getInstance()->checkNewQuest())
 	{
 		tasktip->setVisible(true);
 	}
