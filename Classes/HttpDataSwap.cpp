@@ -316,6 +316,33 @@ void HttpDataSwap::report(std::string data)
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpReportCB, this));
 }
 
+void HttpDataSwap::checklegalword(std::string words)
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_checklegalword?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	url.append("&nickname=");
+	url.append(words);
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpChecklegalwordCB, this));
+}
+
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
@@ -653,6 +680,30 @@ void HttpDataSwap::httpModifyNameCB(std::string retdata, int code, std::string e
 }
 
 void HttpDataSwap::httpReportCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpChecklegalwordCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
 	if (code == 0)
