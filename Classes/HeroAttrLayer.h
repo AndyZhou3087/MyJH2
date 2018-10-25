@@ -98,7 +98,7 @@ private:
 
 	void onFinish(int errcode);
 
-	void modifyName(int type, std::string utf8name = "");
+	void modifyName(std::string utf8name = "");
 
 	void updateHeroNameAction(std::string newname);
 private:

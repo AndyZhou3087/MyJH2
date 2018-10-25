@@ -824,7 +824,6 @@ void HttpDataSwap::httpChecklegalwordCB(std::string retdata, int code, std::stri
 	}
 	release();
 }
-}
 
 void HttpDataSwap::httpPostMyMatchHerosCB(std::string retdata, int code, std::string extdata)
 {

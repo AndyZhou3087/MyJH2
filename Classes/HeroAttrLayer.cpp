@@ -630,7 +630,7 @@ void HeroAttrLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 		utf8str = gbkToUTF8(editBox->getText());
 #endif
-		modifyName(0, utf8str);
+		modifyName(utf8str);
 	}
 
 	if (equipnode->isVisible())
@@ -1292,6 +1292,88 @@ void HeroAttrLayer::cancelLongTouch()
 	m_isLongPress = false;
 	m_longTouchNode = NULL;
 	unschedule(schedule_selector(HeroAttrLayer::longTouchUpdate));
+}
+
+void HeroAttrLayer::modifyName(std::string utf8name)
+{
+	if (utf8name.length() > 0)
+	{
+		WaitingProgress* waitbox = WaitingProgress::create(ResourceLang::map_lang["doingtext"]);
+		Director::getInstance()->getRunningScene()->addChild(waitbox, 1, "waitbox");
+
+		HttpDataSwap::init(this)->checklegalword(utf8name);
+	}
+	else
+	{
+		MovingLabel::show(ResourceLang::map_lang["nicknameempty"]);
+	}
+}
+
+void HeroAttrLayer::onFinish(int errcode)
+{
+	Director::getInstance()->getRunningScene()->removeChildByName("waitbox");
+	if (errcode == 0)
+	{
+		updateHeroNameAction(m_editName->getText());
+		MovingLabel::show(ResourceLang::map_lang["modifynicknamesucc"]);
+	}
+	else
+	{
+		if (errcode == 2)//1--player not exit;2--timesout;3--used;4--senstive
+			MovingLabel::show(ResourceLang::map_lang["senstiveword"]);
+		else
+			MovingLabel::show(ResourceLang::map_lang["modifynicknamefail"]);
+
+		m_editName->setText(m_heroData->getName().c_str());
+	}
+}
+
+void HeroAttrLayer::updateHeroNameAction(std::string newname)
+{
+
+	for (int i = 0; i < equipnode->getChildrenCount(); i++)
+	{
+		Equipable* eres = (Equipable*)m_heroData->getEquipable(equiptype[i]);
+		if (eres != NULL)
+		{
+			eres->setWhos(newname);
+		}
+	}
+	m_heroData->setName(newname);
+
+	if (g_mainScene != NULL)
+	{
+		InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+		if (innroomLayer != NULL)
+		{
+			innroomLayer->getMyHeroNode(this->getTag())->updateData();
+		}
+		else
+		{
+			OutTownLayer* outTown = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
+
+			if (outTown != NULL)
+			{
+				CardHeroNode* mycardheroNode = (CardHeroNode*)outTown->getMyCardHeroNode(this->getTag());
+				if (mycardheroNode != NULL && this->getTag() < 6)
+					mycardheroNode->setData(GlobalInstance::myCardHeros[this->getTag()]);
+
+				SelectMyHerosLayer* sellayer = (SelectMyHerosLayer*)outTown->getChildByName("selectmyheroslayer");
+				if (sellayer != NULL)
+				{
+					MyHeroNode* myheroNode = (MyHeroNode*)sellayer->getMyHeroNode(this->getTag());
+					if (myheroNode != NULL)
+						myheroNode->updateData();
+				}
+			}
+		}
+	}
+	else if (g_MapBlockScene != NULL)
+	{
+		//g_MapBlockScene->getFightHeroNode(this->getTag())->setData((Npc*)GlobalInstance::myCardHeros[this->getTag()]);
+		moditybtn->setVisible(false);
+		m_editName->setEnabled(false);
+	}
 }
 
 void HeroAttrLayer::onExit()
