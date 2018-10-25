@@ -22,8 +22,11 @@ MatchMainLayer::MatchMainLayer()
 
 	for (int i = 0; i < 6; i++)
 	{
-		delete GlobalInstance::myOnChallengeHeros[i];
-		GlobalInstance::myOnChallengeHeros[i] = NULL;
+		if (GlobalInstance::myOnChallengeHeros[i] != NULL)
+		{
+			delete GlobalInstance::myOnChallengeHeros[i];
+			GlobalInstance::myOnChallengeHeros[i] = NULL;
+		}
 	}
 }
 
@@ -228,13 +231,13 @@ void MatchMainLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_
 					m_myCardHerosNode[clickHero]->setLocalZOrder(1);
 					m_myCardHerosNode[clickHero]->runAction(MoveTo::create(0.2f, Vec2(140 + i % 3 * 215, /*745 + */1060 - i / 3 * 250)));
 					m_myCardHerosNode[clickHero]->setTag(i);
-					GlobalInstance::myCardHeros[clickHero]->setPos(i + 1);
+					GlobalInstance::myOnChallengeHeros[clickHero]->setOnchallengepos(i + 1);
 					
 					m_myCardHerosNode[i]->setTag(clickHero);
-					if (GlobalInstance::myCardHeros[i] != NULL)
+					if (GlobalInstance::myOnChallengeHeros[i] != NULL)
 					{
 						m_myCardHerosNode[i]->runAction(MoveTo::create(0.2f, Vec2(140 + clickHero % 3 * 215, /*745 + */1060 - clickHero / 3 * 250)));
-						GlobalInstance::myCardHeros[i]->setPos(clickHero + 1);
+						GlobalInstance::myOnChallengeHeros[i]->setOnchallengepos(clickHero + 1);
 					}
 					else
 					{
@@ -245,9 +248,9 @@ void MatchMainLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_
 					m_myCardHerosNode[clickHero] = m_myCardHerosNode[i];
 					m_myCardHerosNode[i] = cardnode;
 
-					Hero * myhero = GlobalInstance::myCardHeros[clickHero];
-					GlobalInstance::myCardHeros[clickHero] = GlobalInstance::myCardHeros[i];
-					GlobalInstance::myCardHeros[i] = myhero;
+					Hero * myhero = GlobalInstance::myOnChallengeHeros[clickHero];
+					GlobalInstance::myOnChallengeHeros[clickHero] = GlobalInstance::myOnChallengeHeros[i];
+					GlobalInstance::myOnChallengeHeros[i] = myhero;
 					
 					ischange = true;
 					break;
@@ -258,6 +261,22 @@ void MatchMainLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_
 		{
 			m_myCardHerosNode[clickHero]->setPosition(Vec2(140 + clickHero % 3 * 215, /*745 + */1060 - clickHero / 3 * 250));
 			m_myCardHerosNode[clickHero]->setLocalZOrder(1);
+		}
+		else
+		{
+			for (int m = 0; m < 6; m++)
+			{
+				if (GlobalInstance::myOnChallengeHeros[m] != NULL)
+				{
+					for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+					{
+						if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getName().compare(GlobalInstance::myOnChallengeHeros[m]->getName()) == 0)
+						{
+							GlobalInstance::vec_myHeros[i]->setOnchallengepos(GlobalInstance::myOnChallengeHeros[m]->getOnchallengepos());
+						}
+					}
+				}
+			}
 		}
 		clickHero = -1;
 	}
@@ -420,10 +439,11 @@ void MatchMainLayer::updateUI()
 					hero->setOnchallengepos(index + 1);
 					GlobalInstance::myOnChallengeHeros[index] = hero;
 					GlobalInstance::vec_myHeros[i]->setOnchallengepos(index + 1);
+					m_myCardHerosNode[index]->setData(GlobalInstance::vec_myHeros[i]);
 				}
 			}
 			GlobalInstance::getInstance()->saveMyHeros();
-			m_myCardHerosNode[index]->setData(GlobalInstance::myOnChallengeHeros[index]);
+
 		}
 		else
 		{

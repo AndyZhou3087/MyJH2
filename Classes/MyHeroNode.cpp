@@ -604,6 +604,24 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 						MovingLabel::show(ResourceLang::map_lang["matchmax"]);
 						return;
 					}
+
+					Hero* hero = new Hero();
+					hero->setName(m_heroData->getName());
+					DynamicValueInt dvint;
+					dvint.setValue(m_heroData->getExp().getValue());
+					hero->setExp(dvint);
+
+					hero->setVocation(m_heroData->getVocation());
+
+					hero->setPotential(m_heroData->getPotential());
+
+					hero->setSex(m_heroData->getSex());
+					hero->setRandAttr(m_heroData->getRandAttr());
+					hero->setChangeCount(m_heroData->getChangeCount());
+					hero->setState(HS_ONCHALLENGE);
+					hero->setOnchallengepos(carrycount + 1);
+					GlobalInstance::myOnChallengeHeros[carrycount] = hero;
+
 					m_heroData->setOnchallengepos(carrycount + 1);
 
 					MatchMainLayer* matchMainLayer = (MatchMainLayer*)g_mainScene->getChildByName("8pkground");
@@ -616,6 +634,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				{
 					int heropos = m_heroData->getOnchallengepos();
 
+					delete GlobalInstance::myOnChallengeHeros[heropos - 1];
 					GlobalInstance::myOnChallengeHeros[heropos - 1] = NULL;
 
 					m_heroData->setOnchallengepos(0);
@@ -626,6 +645,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					statetag_1->setVisible(false);
 					btntextstr = "herofight_text";
 				}
+				GlobalInstance::getInstance()->saveHero(m_heroData);
 				if (statetag_1->isVisible())
 				{
 					std::string tagtextstr = StringUtils::format("%d", m_heroData->getOnchallengepos());

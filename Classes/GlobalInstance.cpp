@@ -324,15 +324,17 @@ void GlobalInstance::loadMyHeros()
 					int pos = atoi(vec_tmp[7].c_str());
 					hero->setPos(pos);
 					if (pos > 0 && state != HS_DEAD)
-					{
 						GlobalInstance::myCardHeros[pos - 1] = hero;
 
-						for (int k = T_ARMOR; k <= T_NG; k++)
+					for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
+					{
+						ResBase* res = MyRes::vec_MyResources[i];
+						if (res->getType() >= T_ARMOR && res->getType() <= T_NG)
 						{
-							ResBase* eqres = hero->getEquipable(k);
-							if (eqres != NULL)
+							Equipable* eres = (Equipable*)res;
+							if (hero->getName().compare(eres->getWhos()) == 0)
 							{
-								hero->setEquipable((Equipable*)eqres, eqres->getType());
+								hero->setEquipable(eres, eres->getType());
 							}
 						}
 					}
