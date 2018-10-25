@@ -36,6 +36,8 @@ public:
 
 	void report(std::string data);
 
+	void checklegalword(std::string words);
+
 	void postMyMatchHeros();
 
 	void getMyMatchHeros();
@@ -76,6 +78,8 @@ private:
 	void httpGetMatchPairDataCB(std::string retdata, int code, std::string extdata);
 
 	void httpBlankCB(std::string retdata, int code, std::string extdata);
+
+	void httpChecklegalwordCB(std::string retdata, int code, std::string extdata);
 };
 
 class HTTPDataDelegateProtocol

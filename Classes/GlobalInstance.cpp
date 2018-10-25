@@ -212,17 +212,24 @@ int GlobalInstance::getSysSecTime()
 
 int GlobalInstance::createRandomNum(int val)
 {
-	int syssec = GlobalInstance::getSysSecTime();
-	int static randNum = 0;
-	randNum += 3600 * 24;
-	syssec += randNum;
-	if (randNum < 0 || randNum > INT32_MAX)
-	{
-		syssec = 0;
-		randNum = 0;
-	}
-	srand(syssec);
-	int r = rand() % val;
+	//int syssec = GlobalInstance::getSysSecTime();
+	//int static randNum = 0;
+	//randNum += 3600 * 24;
+	//syssec += randNum;
+	//if (randNum < 0 || randNum > INT32_MAX)
+	//{
+	//	syssec = 0;
+	//	randNum = 0;
+	//}
+	//log("zhou syssec = %d", syssec);
+	//srand(syssec);
+	//int r = rand() % val;
+	//return r;
+
+	//3.x 以后随机数产生方法
+	auto rand = RandomHelper();
+	//产生MIN~MIX的整数包括最大和最小
+	int r = rand.random_int(0, val - 1);
 	return r;
 }
 

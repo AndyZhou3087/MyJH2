@@ -206,7 +206,7 @@ void MainMenuLayer::onFinish(int code)
 					{
 						if (GlobalInstance::vec_shopdata[i].icon.compare(it->first) == 0)
 						{
-							GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i, 1);
+							GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i, 2);
 							this->addChild(layer, 0, "GiftContentLayer");
 							AnimationEffect::openAniEffect((Layer*)layer);
 							break;
