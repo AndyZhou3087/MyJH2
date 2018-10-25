@@ -455,7 +455,7 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 						//m_wordlbl->setString(ResourceLang::map_lang["npcrelationfail1"]);
 						checkWordLblColor(ResourceLang::map_lang["npcrelationfail1"]); 
 					}
-					else if (checkMutexNpc())
+					else if (checkMutexNpc(NPC_FRIEND))
 					{
 						mutexNpcBreak();
 					}
@@ -543,7 +543,7 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 					{
 						checkWordLblColor(ResourceLang::map_lang["npcmasterfail3"]);
 					}
-					else if (checkMutexNpc())
+					else if (checkMutexNpc(NPC_MASTER))
 					{
 						mutexNpcBreak();
 					}
@@ -600,7 +600,7 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 					{
 						checkWordLblColor(ResourceLang::map_lang["npcotherlovetips"]);
 					}
-					else if (checkMutexNpc())
+					else if (checkMutexNpc(NPC_COUPEL))
 					{
 						std::string restr;
 						std::map<std::string, NpcFriendly>::iterator it;
@@ -772,7 +772,7 @@ bool NpcLayer::checkOtherLover()
 	return false;
 }
 
-bool NpcLayer::checkMutexNpc()
+bool NpcLayer::checkMutexNpc(int m_relation)
 {
 	std::map<std::string, NpcFriendly>::iterator it;
 	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); it++)
@@ -783,7 +783,13 @@ bool NpcLayer::checkMutexNpc()
 			std::string pid = GlobalInstance::map_npcrelation[m_npcid].enemynpc[i];
 			if (pid.compare(nid) == 0)
 			{
-				return true;
+				for (unsigned int m = 0; m < it->second.relation.size(); m++)
+				{
+					if (it->second.relation[m] == m_relation)
+					{
+						return true;
+					}
+				}
 			}
 		}
 	}

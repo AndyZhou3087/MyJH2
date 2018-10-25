@@ -23,7 +23,7 @@ private:
 	void checkWordLblColor(std::string wordstr);
 	void showTypeText(float dt);
 	void showFastWords();
-	bool checkMutexNpc();
+	bool checkMutexNpc(int m_relation);
 	bool checkNpcRelation(int relation);
 	void checkEnterFight(float dt);
 	std::string checkOtherMater();
