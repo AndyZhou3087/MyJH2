@@ -6,6 +6,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "Hero.h"
 #include "ResBase.h"
+#include "HttpDataSwap.h"
 USING_NS_CC;
 
 typedef enum
@@ -16,7 +17,7 @@ typedef enum
 	ATTR_RECRUITBTN//招募按钮
 }ATTRBTN;
 
-class HeroAttrLayer : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate
+class HeroAttrLayer : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate, public HTTPDataDelegateProtocol
 {
 public:
 	HeroAttrLayer();
@@ -95,6 +96,11 @@ private:
 	
 	void loadHeroUI();
 
+	void onFinish(int errcode);
+
+	void modifyName(int type, std::string utf8name = "");
+
+	void updateHeroNameAction(std::string newname);
 private:
 	Node* lvnode;
 	//
