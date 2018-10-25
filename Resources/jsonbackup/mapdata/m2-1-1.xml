@@ -214,7 +214,7 @@
     <Cell c="6" r="12" p="-1" w="1" m="22.png" />
     <Cell c="6" r="13" p="-1" w="1" m="22.png" />
     <Cell c="6" r="14" p="-1" w="1" m="22.png" />
-    <Cell c="6" r="15" p="2" w="1" m="22.png">
+    <Cell c="6" r="15" p="4" w="1" m="22.png">
       <npcid>n116</npcid>
       <npcrnd>100</npcrnd>
       <msatt5 id="n116" qu="2">30</msatt5>

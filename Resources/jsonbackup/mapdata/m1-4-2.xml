@@ -93,7 +93,7 @@
     <Cell c="2" r="15" p="-1" w="1" m="6.png" />
     <Cell c="2" r="16" p="-1" w="1" m="6.png" />
     <Cell c="2" r="17" p="-1" w="1" m="6.png" />
-    <Cell c="2" r="18" p="2" w="1" m="6.png">
+    <Cell c="2" r="18" p="4" w="1" m="6.png">
       <npcid>n117</npcid>
       <npcrnd>100</npcrnd>
       <msatt5 id="n117" qu="2">1</msatt5>

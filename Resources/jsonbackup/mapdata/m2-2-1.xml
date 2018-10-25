@@ -459,7 +459,7 @@
     <Cell c="12" r="19" p="-1" w="1" m="22.png" />
     <Cell c="12" r="20" p="-1" w="1" m="22.png" />
     <Cell c="12" r="21" p="-1" w="0" m="22.png" d="18.png" />
-    <Cell c="12" r="22" p="2" w="1" m="22.png">
+    <Cell c="12" r="22" p="4" w="1" m="22.png">
       <npcid>n118</npcid>
       <npcrnd>100</npcrnd>
       <msatt5 id="n118" qu="2">30</msatt5>
