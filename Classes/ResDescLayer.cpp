@@ -203,7 +203,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 			std::string visonstr = StringUtils::format("%s%d", ResourceLang::map_lang["lvtexts"].c_str(), res->getCount().getValue());
 			coutlbl->setString(visonstr);
 		}
-		else if (res->getType() == T_HEROCARD || res->getType() == T_ARMCARD)
+		else if (/*res->getType() == T_HEROCARD || */res->getType() == T_ARMCARD)
 		{
 			btntextstr = "usecard_Text";
 			status = S_CAN_USE;
@@ -358,24 +358,24 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				if (storelayer != NULL)
 					storelayer->updateUI();
 			}
-			else if (m_res->getType() == T_HEROCARD)
-			{
-				Hero* myhero = new Hero();
-				myhero->generate();
-				myhero->setPotential(3);
-				myhero->setState(HS_OWNED);
-				GlobalInstance::vec_myHeros.push_back(myhero);
-				GlobalInstance::getInstance()->saveMyHeros();
-				MyRes::Use(m_res->getId());
-				Layer* layer = HeroAttrLayer::create(myhero, 0, 2);
-				layer->setName("heroattrlayer");
-				g_mainScene->addChild(layer, 0, GlobalInstance::vec_myHeros.size() - 1);
-				AnimationEffect::openAniEffect((Layer*)layer);
+			//else if (m_res->getType() == T_HEROCARD)
+			//{
+			//	Hero* myhero = new Hero();
+			//	myhero->generate();
+			//	myhero->setPotential(3);
+			//	myhero->setState(HS_OWNED);
+			//	GlobalInstance::vec_myHeros.push_back(myhero);
+			//	GlobalInstance::getInstance()->saveMyHeros();
+			//	MyRes::Use(m_res->getId());
+			//	Layer* layer = HeroAttrLayer::create(myhero, 0, 2);
+			//	layer->setName("heroattrlayer");
+			//	g_mainScene->addChild(layer, 0, GlobalInstance::vec_myHeros.size() - 1);
+			//	AnimationEffect::openAniEffect((Layer*)layer);
 
-				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
-				if (storelayer != NULL)
-					storelayer->updateUI();
-			}
+			//	StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+			//	if (storelayer != NULL)
+			//		storelayer->updateUI();
+			//}
 			else if (m_res->getType() == T_ARMCARD)
 			{
 				MyRes::Use(m_res->getId());
