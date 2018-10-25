@@ -400,7 +400,6 @@ void MatchMainLayer::updateUI()
 
 			for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 			{
-				GlobalInstance::vec_myHeros[i]->setOnchallengepos(0);
 				if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getName().compare(heroname) == 0)
 				{
 					Hero* myownhero = GlobalInstance::vec_myHeros[i];
