@@ -244,24 +244,26 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 			if (MyRes::getMyResCount("u001") > 0)
 			{
-				Hero* myhero = new Hero();
-				myhero->generate();
-				myhero->setPotential(3);
-				myhero->setState(HS_OWNED);
+				if (checkIsTopPotentail(3) < 0)
+					refresh3Hero(3);
+				//Hero* myhero = new Hero();
+				//myhero->generate();
+				//myhero->setPotential(3);
+				//myhero->setState(HS_OWNED);
 
-				GlobalInstance::vec_myHeros.push_back(myhero);
-				GlobalInstance::getInstance()->saveMyHeros();
-				MyRes::Use("u001");
-				Layer* layer = HeroAttrLayer::create(myhero, 0, 2);
-				layer->setName("heroattrlayer");
-				g_mainScene->addChild(layer, 0, GlobalInstance::vec_myHeros.size() - 1);
-				AnimationEffect::openAniEffect((Layer*)layer);
+				//GlobalInstance::vec_myHeros.push_back(myhero);
+				//GlobalInstance::getInstance()->saveMyHeros();
+				//MyRes::Use("u001");
+				//Layer* layer = HeroAttrLayer::create(myhero, 0, 2);
+				//layer->setName("heroattrlayer");
+				//g_mainScene->addChild(layer, 0, GlobalInstance::vec_myHeros.size() - 1);
+				//AnimationEffect::openAniEffect((Layer*)layer);
 
-				std::string str = StringUtils::format("%d", MyRes::getMyResCount("u001"));
-				herocardcountlbl->setString(str);
+				//std::string str = StringUtils::format("%d", MyRes::getMyResCount("u001"));
+				//herocardcountlbl->setString(str);
 
-				InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-				innroomLayer->refreshMyHerosUi();
+				//InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+				//innroomLayer->refreshMyHerosUi();
 			}
 			else
 			{
@@ -336,30 +338,28 @@ void RandHeroLayer::refresh3Hero(int i)
 
 		std::string str = StringUtils::format("%d", SILVERREFRESH_NUM + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
 		refreshsilverlbl->setString(str);
-
-		create3RandHero();
-		for (int i = 0; i < 3; i++)
-		{
-			heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
-		}
-		//记录刷新次数
-		Quest::setDailyTask(FRESH_PUBENLIST, 1);
-		Quest::setAchieveTypeCount(FRESH_PUBENLIST, 1);
 	}
-	else
+	else if (i == 2)
 	{
 		DynamicValueInt dval;
 		dval.setValue(COINREFRESH_NUM);
 		GlobalInstance::getInstance()->costMyCoinCount(dval);
-		create3RandHero(i);
-		for (int i = 0; i < 3; i++)
-		{
-			heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
-		}
-		//记录刷新次数
-		Quest::setDailyTask(FRESH_PUBENLIST, 1);
-		Quest::setAchieveTypeCount(FRESH_PUBENLIST, 1);
 	}
+	else if (i == 3)
+	{
+		MyRes::Use("u001");
+		std::string str = StringUtils::format("%d", MyRes::getMyResCount("u001"));
+		herocardcountlbl->setString(str);
+	}
+
+	create3RandHero(i);
+	for (int i = 0; i < 3; i++)
+	{
+		heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
+	}
+	//记录刷新次数
+	Quest::setDailyTask(FRESH_PUBENLIST, 1);
+	Quest::setAchieveTypeCount(FRESH_PUBENLIST, 1);
 }
 
 void RandHeroLayer::updateUI(float dt)
@@ -430,6 +430,12 @@ void RandHeroLayer::create3RandHero(int tool)
 			}
 		}
 		GlobalInstance::vec_rand3Heros.push_back(randhero);
+	}
+	
+	if (tool == 3)//角色券刷新
+	{
+		int r = GlobalInstance::getInstance()->createRandomNum(3);
+		GlobalInstance::vec_rand3Heros[r]->setPotential(3);
 	}
 	GlobalInstance::getInstance()->saveRand3Heros();
 }
