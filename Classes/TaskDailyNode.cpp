@@ -22,6 +22,7 @@
 #include "RewardLayer.h"
 #include "NewGuideLayer.h"
 #include "HomeHillLayer.h"
+#include "TrainLayer.h"
 
 TaskDailyNode::TaskDailyNode()
 {
@@ -280,9 +281,36 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 			case UPGRADE_BUILDING:
 			{
-				HomeHillLayer* layer = HomeHillLayer::create(Building::map_buildingDatas["7homehill"]);
-				g_mainScene->addChild(layer, 0, "7homehill");
-				AnimationEffect::openAniEffect((Layer*)layer);
+				if (Building::map_buildingDatas["7homehill"]->level.getValue() < Building::map_buildingDatas["7homehill"]->maxlevel.getValue() - 1)
+				{
+					HomeHillLayer* layer = HomeHillLayer::create(Building::map_buildingDatas["7homehill"]);
+					g_mainScene->addChild(layer, 0, "7homehill");
+					AnimationEffect::openAniEffect((Layer*)layer);
+				}
+				else if (Building::map_buildingDatas["6innroom"]->level.getValue() < Building::map_buildingDatas["6innroom"]->maxlevel.getValue() - 1)
+				{
+					InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
+					g_mainScene->addChild(layer, 0, "6innroom");
+					AnimationEffect::openAniEffect((Layer*)layer);
+				}
+				else if (Building::map_buildingDatas["5market"]->level.getValue() < Building::map_buildingDatas["5market"]->maxlevel.getValue() - 1)
+				{
+					MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
+					g_mainScene->addChild(layer, 0, "5market");
+					AnimationEffect::openAniEffect((Layer*)layer);
+				}
+				else if (Building::map_buildingDatas["2smithy"]->level.getValue() < Building::map_buildingDatas["2smithy"]->maxlevel.getValue() - 1)
+				{
+					SmithyLayer* layer = SmithyLayer::create(Building::map_buildingDatas["2smithy"]);
+					g_mainScene->addChild(layer, 0, "2smithy");
+					AnimationEffect::openAniEffect((Layer*)layer);
+				}
+				else
+				{
+					TrainLayer* layer = TrainLayer::create(Building::map_buildingDatas["4trainigroom"]);
+					g_mainScene->addChild(layer, 0, "4trainigroom");
+					AnimationEffect::openAniEffect((Layer*)layer);
+				}
 			}
 			break;
 			case STRENG_EQUIP:
