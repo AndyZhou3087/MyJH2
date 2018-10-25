@@ -55,11 +55,6 @@ void Quest::AddFinishQuest(TaskData data)
 	map_NpcQuestRes.clear();
 	DataSave::getInstance()->setMyCurTaskNeed("");
 
-	if (g_MapBlockScene != NULL)
-	{
-		g_MapBlockScene->showUnlockChapter();
-	}
-
 	//特效
 	CommonFuncs::playCommonLvUpAnim(g_MapBlockScene, "texiao_rwwc");
 }
@@ -83,6 +78,12 @@ void Quest::saveMainData()
 		}
 	}
 	GlobalInstance::getInstance()->saveMyTaskMainData();
+
+	//解锁章节
+	if (g_MapBlockScene != NULL)
+	{
+		g_MapBlockScene->showUnlockChapter();
+	}
 }
 
 int Quest::getTypeBtn(int id,int ftype)

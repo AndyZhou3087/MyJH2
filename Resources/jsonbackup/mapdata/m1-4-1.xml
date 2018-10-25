@@ -803,7 +803,11 @@
     <Cell c="25" r="23" p="-1" w="0" m="6.png" />
     <Cell c="25" r="24" p="-1" w="0" m="6.png" d="17.png" />
     <Cell c="25" r="25" p="-1" w="0" m="6.png" />
-    <Cell c="25" r="26" p="-1" w="1" m="6.png" />
+    <Cell c="25" r="26" p="4" w="1" m="6.png">
+      <npcid>n115</npcid>
+      <npcrnd>100</npcrnd>
+      <msatt5 id="n115" qu="2">20</msatt5>
+    </Cell>
     <Cell c="25" r="27" p="-1" w="1" m="6.png" />
     <Cell c="25" r="28" p="-1" w="1" m="6.png" />
     <Cell c="25" r="29" p="-1" w="1" m="21.png" />

@@ -781,7 +781,7 @@ bool NpcLayer::checkMutexNpc()
 		for (unsigned int i = 0; i < GlobalInstance::map_npcrelation[m_npcid].enemynpc.size(); i++)
 		{
 			std::string pid = GlobalInstance::map_npcrelation[m_npcid].enemynpc[i];
-			if (pid.compare(nid) == 0)
+			if (pid.compare(nid) == 0 && it->second.relation.size() > 0)
 			{
 				return true;
 			}

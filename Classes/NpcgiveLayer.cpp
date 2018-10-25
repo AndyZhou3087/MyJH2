@@ -178,6 +178,10 @@ void NpcgiveLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			}
 			int friendly = GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount;
 			GlobalInstance::map_myfriendly[m_npcid].friendly += friendly;
+			if (GlobalInstance::map_myfriendly[m_npcid].friendly > GlobalInstance::map_npcrelation[m_npcid].friendmax)
+			{
+				GlobalInstance::map_myfriendly[m_npcid].friendly = GlobalInstance::map_npcrelation[m_npcid].friendmax;
+			}
 			NpcLayer* npclayer = (NpcLayer*)this->getParent();
 			if (npclayer != NULL)
 			{

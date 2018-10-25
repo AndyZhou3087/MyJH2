@@ -1440,14 +1440,14 @@ void MapBlockScene::showUnlockChapter()
 
 void MapBlockScene::openAllMap()
 {
-	if (_fogrender != NULL)
+	/*if (_fogrender != NULL)
 	{
 		_fogrender->removeFromParentAndCleanup(true);
 		_fogrender = NULL;
 	}
 	mapIsAllOpen = true;
 	std::string str = StringUtils::format("-1;%d", randStartPos);
-	DataSave::getInstance()->setMapVisibleArea(m_mapid, str);
+	DataSave::getInstance()->setMapVisibleArea(m_mapid, str);*/
 
 	std::string mainid = m_mapid.substr(0, m_mapid.find_last_of("-"));
 	int finishOrder = DataSave::getInstance()->getMapOrderCount(mainid);

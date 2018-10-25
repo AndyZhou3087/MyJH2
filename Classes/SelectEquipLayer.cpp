@@ -219,6 +219,18 @@ void SelectEquipLayer::updateContent()
 		countlbl->setColor(Color3B::WHITE);
 		countlbl->setPosition(Vec2(boxItem->getContentSize().width - 10, 10));
 		boxItem->addChild(countlbl);
+
+		Sprite * redpoint = Sprite::createWithSpriteFrameName("ui/main_btn_redpoint.png");
+		redpoint->setPosition(Vec2(boxItem->getContentSize().width - 20, boxItem->getContentSize().height - 20));
+		boxItem->addChild(redpoint);
+		redpoint->setVisible(false);
+		if (GlobalInstance::getInstance()->compareFitEquip(vec_res[m]->getType(), m_herodata).length() > 0)
+		{
+			if (vec_res[m]->getId().compare(GlobalInstance::getInstance()->compareFitEquip(vec_res[m]->getType(), m_herodata)) == 0)
+			{
+				redpoint->setVisible(true);
+			}
+		}
 	}
 }
 

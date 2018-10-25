@@ -1902,6 +1902,65 @@ bool GlobalInstance::compareHighEquip(int type, Hero* herodata)
 	return false;
 }
 
+std::string GlobalInstance::compareFitEquip(int type, Hero* herodata)
+{
+	float avecount = 0;
+	std::string resid;
+	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
+	{
+		bool isfit = false;
+		ResBase* res = MyRes::vec_MyResources[i];
+		if (res->getWhere() == MYEQUIP)
+		{
+			continue;
+		}
+		if (type == res->getType())
+		{
+			Equipable* m_res = (Equipable*)res;
+			if (type >= T_WG && type <= T_NG)
+			{
+				for (unsigned int i = 0; i < GlobalInstance::map_GF[m_res->getId()].vec_skillbns.size(); i++)
+				{
+					int m = GlobalInstance::map_GF[m_res->getId()].vec_skillbns[i];
+					if (m == 1)
+					{
+						if (i == herodata->getVocation())
+						{
+							isfit = true;
+							break;
+						}
+					}
+				}
+			}
+			else if (type == T_ARMOR)
+			{
+				for (unsigned int i = 0; i < GlobalInstance::map_Equip[m_res->getId()].vec_bns.size(); i++)
+				{
+					float m = GlobalInstance::map_Equip[m_res->getId()].vec_bns[i];
+					if (m >= 1)
+					{
+						if (i == herodata->getVocation())
+						{
+							isfit = true;
+							break;
+						}
+					}
+				}
+			}
+			if (isfit)
+			{
+				float procount = m_res->getAtk() + m_res->getAtkSpeed() + m_res->getCrit() + m_res->getDf() + m_res->getDodge() + m_res->getHp();
+				if (procount > avecount)
+				{
+					avecount = procount;
+					resid = m_res->getId();
+				}
+			}
+		}
+	}
+	return resid;
+}
+
 bool GlobalInstance::checkNewQuest()
 {
 	//主线
