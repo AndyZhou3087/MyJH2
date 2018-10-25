@@ -23,11 +23,10 @@
 
 #define CLICKOFFSETP 8
 
-//#define encrypt_jsonxml 1 //加密
-
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #define UMENG
 #include "UMeng/Analytics/MobClickCpp.h"
+#define encrypt_jsonxml 1 //加密
 #endif
 
 const static float newguidetime = 0.3f;

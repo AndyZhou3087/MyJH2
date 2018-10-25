@@ -205,13 +205,13 @@
     <Cell c="9" r="1" p="-1" w="0" m="22.png" />
     <Cell c="9" r="2" p="-1" w="0" m="22.png" />
     <Cell c="9" r="3" p="3" w="1" m="22.png">
-      <npcid>n017</npcid>
+      <npcid>n108</npcid>
       <npcrnd>100</npcrnd>
       <msatt1 id="n001" qu="0">10</msatt1>
       <msatt2 id="n003" qu="0">10</msatt2>
       <msatt3 id="n004" qu="0">10</msatt3>
       <msatt4 id="n007" qu="1">10</msatt4>
-      <msatt5 id="n017" qu="1">10</msatt5>
+      <msatt5 id="n108" qu="1">10</msatt5>
       <msatt6 id="n013" qu="1">10</msatt6>
       <msawd1 id="d001" qu="0" rnd="25.00">1</msawd1>
       <msawd2 id="a005" qu="1" rnd="15.00">1</msawd2>

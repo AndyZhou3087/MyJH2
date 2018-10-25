@@ -1382,7 +1382,7 @@ void MapBlockScene::showFightResult(int result)
 		{
 			map_mapBlocks[bindex]->removePosIcon();
 			map_mapBlocks[bindex]->setPosType(POS_NOTHING);
-			openAllMap();
+			//openAllMap();
 		}
 		else if (map_mapBlocks[bindex]->getPosType() == POS_TBOSS)
 		{
@@ -1435,7 +1435,7 @@ void MapBlockScene::showUnlockChapter()
 		}
 	}
 	//地图全开
-	openAllMap();
+	//openAllMap();
 }
 
 void MapBlockScene::openAllMap()

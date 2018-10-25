@@ -610,6 +610,11 @@ public:
 	bool compareHighEquip(int type, Hero* herodata);
 
 	/****************************
+	判断哪个更适合当前装备
+	****************************/
+	std::string compareFitEquip(int type, Hero* herodata);
+
+	/****************************
 	比较装备之间数值
 	****************************/
 	float compareOtherEquip(ResBase* m_res, Hero* herodata, int attr);
