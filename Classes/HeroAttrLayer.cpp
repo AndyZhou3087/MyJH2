@@ -23,6 +23,9 @@
 #include "HintBoxLayer.h"
 #include "Const.h"
 #include "WaitingProgress.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#include "iosfunc.h"
+#endif
 
 USING_NS_CC;
 
