@@ -321,17 +321,15 @@ void GlobalInstance::loadMyHeros()
 					if (pos > 0 && state != HS_DEAD)
 					{
 						GlobalInstance::myCardHeros[pos - 1] = hero;
-
-						for (int k = T_ARMOR; k <= T_NG; k++)
+					}
+					for (int k = T_ARMOR; k <= T_NG; k++)
+					{
+						ResBase* eqres = MyRes::getMyPutOnResByType(k, hero->getName());
+						if (eqres != NULL)
 						{
-							ResBase* eqres = MyRes::getMyPutOnResByType(k, hero->getName());
-							if (eqres != NULL)
-							{
-								hero->setEquipable((Equipable*)eqres, eqres->getType());
-							}
+							hero->setEquipable((Equipable*)eqres, eqres->getType());
 						}
 					}
-
 					hero->setHp(atof(vec_tmp[8].c_str()));
 					hero->setTrainHour(atoi(vec_tmp[9].c_str()));
 					hero->setTrainTime(atoi(vec_tmp[10].c_str()));
