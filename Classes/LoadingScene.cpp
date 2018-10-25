@@ -270,6 +270,7 @@ void LoadingScene::delayLoadLocalData(float dt)
 	std::string str = StringUtils::format("effect/skill%dpacker.png", skillEffectArr[curEffectPlistNum]);
 	Director::getInstance()->getTextureCache()->addImageAsync(str, CC_CALLBACK_1(LoadingScene::loadingSkillEffectOver, this));
 	//this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.1f);
+	DataSave::getInstance()->setMapOrderCount("m1-1", 1);
 }
 
 
