@@ -12,6 +12,7 @@
 #include "WaitingProgress.h"
 #include "ErrorHintLayer.h"
 #include "MatchVSLayer.h"
+#include "MatchRuleLayer.h"
 #include "FightingResultLayer.h"
 
 
@@ -311,6 +312,11 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			HttpDataSwap::init(this)->postMyMatchHeros();
 			break;
 		case 1002://rule
+		{
+			MatchRuleLayer* layer = MatchRuleLayer::create();
+			this->addChild(layer, 1000);
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		case 1003://getmatch
 		{

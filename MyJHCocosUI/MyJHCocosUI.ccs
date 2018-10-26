@@ -1180,6 +1180,7 @@
         <Project Name="marketRefreshLayer.csd" Type="Layer" />
         <Project Name="marketResNode.csd" Type="Node" />
         <Project Name="matchMainLayer.csd" Type="Layer" />
+        <Project Name="matchRuleLayer.csd" Type="Layer" />
         <Project Name="matchVSLayer.csd" Type="Layer" />
         <Project Name="materialDescNode.csd" Type="Node" />
         <Project Name="messageDescLayer.csd" Type="Layer" />
