@@ -54,6 +54,10 @@ bool MatchRuleLayer::init()
 	cocos2d::ui::Text* title = (cocos2d::ui::Text*)csbnode->getChildByName("title");
 	title->setString(ResourceLang::map_lang["matchruletitle"]);
 
+	cocos2d::ui::Text* title2 = (cocos2d::ui::Text*)csbnode->getChildByName("title2");
+	title2->setString(ResourceLang::map_lang["matchrulecontent"]);
+	title2->setVisible(false);
+
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scrollView");
 	Label* contentlbl = Label::createWithTTF(ResourceLang::map_lang["matchruletext"], FONT_NAME, 25);
 	contentlbl->setAnchorPoint(Vec2(0, 1));

@@ -328,7 +328,7 @@ typedef struct
 
 typedef struct
 {
-	bool isgetreward;
+	int getrewardstate;//0未到时间，1到时间可领取，2已领取
 	std::string endtime;
 	std::string rewardstr;
 	int matchscore;

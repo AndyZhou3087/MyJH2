@@ -14,6 +14,7 @@
 #include "MatchVSLayer.h"
 #include "MatchRuleLayer.h"
 #include "FightingResultLayer.h"
+#include "MatchRewardLayer.h"
 
 
 USING_NS_CC;
@@ -113,6 +114,10 @@ bool MatchMainLayer::init()
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
 	closebtn->setTag(1004);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onBtnClick, this));
+
+	cocos2d::ui::Widget* matchrewardicon = (cocos2d::ui::Widget*)csbnode->getChildByName("matchrewardicon");
+	matchrewardicon->setTag(1005);
+	matchrewardicon->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onBtnClick, this));
 
 	cocos2d::ui::Text* changehint = (cocos2d::ui::Text*)csbnode->getChildByName("changehint");
 	changehint->setString(ResourceLang::map_lang["changelineuphint"]);
@@ -288,11 +293,14 @@ void MatchMainLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_
 
 void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	CommonFuncs::BtnAction(pSender, type);
+	Node* clicknode = (Node*)pSender;
+	int tag = clicknode->getTag();
+	if (tag != 1005)
+	{
+		CommonFuncs::BtnAction(pSender, type);
+	}
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Node* clicknode = (Node*)pSender;
-		int tag = clicknode->getTag();
 		switch (tag)
 		{
 		case 1000://更换队形
@@ -332,6 +340,18 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			break;
 		case 1004:
 			AnimationEffect::closeAniEffect(this);
+			break;
+		case 1005:
+			if (GlobalInstance::myMatchInfo.getrewardstate == 0)
+			{
+				MatchRewardLayer* layer = MatchRewardLayer::create();
+				this->addChild(layer, 1000);
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
+			else if (GlobalInstance::myMatchInfo.getrewardstate == 1)
+			{
+
+			}
 			break;
 		default:
 			break;

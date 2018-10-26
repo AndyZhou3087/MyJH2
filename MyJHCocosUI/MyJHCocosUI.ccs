@@ -1223,6 +1223,7 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="matchRewardNode.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>
