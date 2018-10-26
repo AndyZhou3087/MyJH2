@@ -1222,6 +1222,7 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="matchRuleLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

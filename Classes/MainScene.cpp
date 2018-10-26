@@ -160,6 +160,7 @@ bool MainScene::init()
 		{
 			updateTaskIcon();
 			tasktip = (cocos2d::ui::Widget*)buildnametext->getChildByName("main_10_p");
+			tasktip->setVisible(false);
 		}
 		else if (i == 2)
 		{
@@ -728,6 +729,13 @@ void MainScene::onFinish(int code)
 
 		updateTime(0);
 		this->schedule(schedule_selector(MainScene::updateTime), 1);
+
+		//议事厅每日更新
+		int t = (GlobalInstance::servertime + 8 * 60 * 60) / 60 / 60 / 24;
+		if (t > DataSave::getInstance()->getMyFreshDate())
+		{
+			Quest::resetDailyTask();
+		}
 	}
 	else
 	{
