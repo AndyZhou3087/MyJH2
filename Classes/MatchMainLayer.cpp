@@ -12,6 +12,8 @@
 #include "WaitingProgress.h"
 #include "ErrorHintLayer.h"
 #include "MatchVSLayer.h"
+#include "FightingResultLayer.h"
+
 
 USING_NS_CC;
 
@@ -457,9 +459,64 @@ void MatchMainLayer::onExit()
 	Layer::onExit();
 }
 
+void MatchMainLayer::showFightResult(int ret)
+{
+	fightret = ret;
+	this->scheduleOnce(schedule_selector(MatchMainLayer::delayShowFightResultLayer), 1.0f);
+}
+
+void MatchMainLayer::delayShowFightResultLayer(float dt)
+{
+	std::vector<FOURProperty> vec_empty;
+	
+	FightingResultLayer* FRlayer = FightingResultLayer::create(vec_empty, fightret);
+	this->addChild(FRlayer);
+	AnimationEffect::openAniEffect((Layer*)FRlayer);
+
+	for (unsigned int i = 0; i < 6; i++)
+	{
+		if (GlobalInstance::matchPairHeros[i] != NULL)
+		{
+			delete GlobalInstance::matchPairHeros[i];
+			GlobalInstance::matchPairHeros[i] = NULL;
+		}
+	}
+}
+
 CardHeroNode* MatchMainLayer::getMyCardHeroNode(int index)
 {
 	return m_myCardHerosNode[index];
+}
+
+void MatchMainLayer::bindHeroData()
+{
+	for (int m = 0; m < 6; m++)
+	{
+		if (GlobalInstance::myOnChallengeHeros[m] != NULL)
+		{
+			for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+			{
+				Hero* myhero = GlobalInstance::vec_myHeros[i];
+				if (myhero->getState() != HS_DEAD && myhero->getName().compare(GlobalInstance::myOnChallengeHeros[m]->getName()) == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(myhero->getExp().getValue());
+					GlobalInstance::myOnChallengeHeros[m]->setExp(dvint);
+
+					GlobalInstance::myOnChallengeHeros[m]->setVocation(myhero->getVocation());
+					GlobalInstance::myOnChallengeHeros[m]->setChangeCount(myhero->getChangeCount());
+
+					for (int k = T_ARMOR; k <= T_NG; k++)
+					{
+						Equipable* eres = myhero->getEquipable(k);
+						if (eres != NULL)
+							GlobalInstance::myOnChallengeHeros[m]->setEquipable(eres, k);
+					}
+					GlobalInstance::myOnChallengeHeros[m]->setHp(GlobalInstance::myOnChallengeHeros[m]->getMaxHp());
+				}
+			}
+		}
+	}
 }
 
 void MatchMainLayer::onFinish(int code)
@@ -488,6 +545,8 @@ void MatchMainLayer::onFinish(int code)
 		}
 		else if (httptag == 3)
 		{
+			//需要重新设置GlobalInstance::myOnChallengeHeros的数据
+			bindHeroData();
 			MatchVSLayer* layer = MatchVSLayer::create();
 			this->addChild(layer, 100);
 		}

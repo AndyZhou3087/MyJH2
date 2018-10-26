@@ -10,6 +10,7 @@
 #include "SoundManager.h"
 #include "NewGuideLayer.h"
 #include "Shake.h"
+#include "MatchMainLayer.h"
 
 USING_NS_CC;
 
@@ -276,6 +277,14 @@ void FightingLayer::fightOver(int ret)
 	this->runAction(Sequence::create(DelayTime::create(0.7f), RemoveSelf::create(), NULL));
 	if (g_MapBlockScene != NULL)
 		g_MapBlockScene->showFightResult(ret);
+	else
+	{
+		if (g_mainScene != NULL)
+		{
+			MatchMainLayer* matchlayer = (MatchMainLayer*)g_mainScene->getChildByName("8pkground");
+			matchlayer->showFightResult(ret);
+		}
+	}
 }
 
 void FightingLayer::clearSkillsData(int type)
