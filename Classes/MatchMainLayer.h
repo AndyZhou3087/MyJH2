@@ -19,6 +19,9 @@ public:
     bool init();
 	CardHeroNode* getMyCardHeroNode(int index);
 
+	void showFightResult(int ret);
+
+	void delayShowFightResultLayer(float dt);
 private:
 	bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
 	void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event);
@@ -32,6 +35,8 @@ private:
 	void setMatchBtnStatus(int s);
 
 	bool checkEmptyHeros();
+
+	void bindHeroData();
 private:
 	CardHeroNode* m_myCardHerosNode[6];
 	cocos2d::ui::Button* matchbtn;
@@ -45,6 +50,7 @@ private:
 	cocos2d::ui::Text* endtime;
 
 	int httptag;
+	int fightret;
 };
 
 #endif
