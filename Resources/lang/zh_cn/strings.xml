@@ -353,4 +353,5 @@
 	<s name="matchwinscoretext">本局积分：</s>
 	<s name="matchtotalscoretext">我的积分：</s>		
 	<s name="matchrewardget">点击可领取奖励</s>
+	<s name="matchgetreward">奖励已领取</s>
 </strings>

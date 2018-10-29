@@ -157,13 +157,15 @@ bool MatchMainLayer::init()
 		endtimetxt->setVisible(false);
 		endtime->setVisible(false);
 		rewardtext->setString(ResourceLang::map_lang["matchrewardget"]);
-		rewardtext->setColor(Color3B(28, 208, 255));
+		rewardtext->setTextColor(Color4B(28, 208, 255, 255));
+		//matchrewardicon
 	}
 	else if (GlobalInstance::myMatchInfo.getrewardstate == 2)
 	{
 		endtimetxt->setVisible(false);
 		endtime->setVisible(false);
 		rewardtext->setVisible(false);
+		//matchrewardicon
 	}
 
 	for (int i = 0; i < 6; i++)
