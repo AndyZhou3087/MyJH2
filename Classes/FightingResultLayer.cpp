@@ -63,7 +63,9 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp,
 	Node* matchinfonode = csbnode->getChildByName("matchinfonode");
 
 	if (m_onstate == 0)
+	{
 		matchinfonode->setVisible(false);
+	}
 	else
 	{
 
@@ -87,6 +89,8 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp,
 		cocos2d::ui::Text* myscore = (cocos2d::ui::Text*)matchinfonode->getChildByName("myscore");
 		str = StringUtils::format("%d", GlobalInstance::myMatchInfo.matchscore);
 		myscore->setString(str);
+
+		HttpDataSwap::init(NULL)->sendMatchResult(wscore);
 	}
 
 	//°´Å¥

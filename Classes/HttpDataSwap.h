@@ -44,6 +44,8 @@ public:
 
 	void getMatchPairData();
 
+	void sendMatchResult(int score);
+
 private:
 	HTTPDataDelegateProtocol *m_pDelegateProtocol;//接口对象
 	static bool isdoing;
@@ -80,6 +82,8 @@ private:
 	void httpBlankCB(std::string retdata, int code, std::string extdata);
 
 	void httpChecklegalwordCB(std::string retdata, int code, std::string extdata);
+
+	void httpSendMatchResultCB(std::string retdata, int code, std::string extdata);
 };
 
 class HTTPDataDelegateProtocol

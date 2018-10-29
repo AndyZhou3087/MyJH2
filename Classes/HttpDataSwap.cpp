@@ -5,6 +5,7 @@
 #include "tinyxml2/tinyxml2.h"
 #include "Equip.h"
 #include "GongFa.h"
+#include "MD5.h"
 
 #define HTTPURL "https://www.stormnet.cn/jhapi/"
 
@@ -439,6 +440,28 @@ void HttpDataSwap::getMatchPairData()
 	url.append("playerid=");
 	url.append(GlobalInstance::getInstance()->UUID());
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMatchPairDataCB, this));
+}
+
+void HttpDataSwap::sendMatchResult(int score)
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_matchmatchresult?");
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+	url.append("&matchplayerid=");
+	url.append(GlobalInstance::myMatchInfo.pairplayerid);
+	url.append("&score=");
+	std::string scorestr = StringUtils::format("%d", score);
+	url.append(scorestr);
+	url.append("&sign=");
+	std::string md5ostr = GlobalInstance::getInstance()->UUID() + scorestr + GlobalInstance::myMatchInfo.pairplayerid;
+
+	std::string signstr = md5(md5ostr + "key=zhoujian-87");
+	url.append(signstr);
+	
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpSendMatchResultCB, this));
 }
 
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
@@ -925,9 +948,33 @@ void HttpDataSwap::httpGetMatchPairDataCB(std::string retdata, int code, std::st
 				GlobalInstance::myMatchInfo.map_pairheros[herokey] = herodata;
 
 				GlobalInstance::myMatchInfo.pairnickname = mydatav["nickname"].GetString();
-
+				GlobalInstance::myMatchInfo.pairplayerid = mydatav["playerid"].GetString();
 				GlobalInstance::myMatchInfo.pairscore = atoi(mydatav["matchscore"].GetString());
 			}
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpSendMatchResultCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
 		}
 		else
 		{
