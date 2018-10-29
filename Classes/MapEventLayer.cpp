@@ -12,6 +12,7 @@
 
 #define BETCOSTCOIN 50
 #define BETPRO 514
+#define COSTSLIVER 5000
 
 int maxqupr[5] = { 585,885,985,995,1000 };
 
@@ -108,7 +109,14 @@ bool MapEventLayer::init(int eventindex)
 
 	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)eventnode_1->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(MapEventLayer::onBtnClick, this));
-	closebtn->setTag(0);
+	if (m_eventindex != POS_WOMAN && m_eventindex != POS_THIEF)
+	{
+		closebtn->setTag(0);
+	}
+	else
+	{
+		closebtn->setTag(-1);
+	}
 	cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)closebtn->getChildByName("text");
 	str = StringUtils::format("mapeventtext_%d_0", eventindex);
 	text->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -206,9 +214,24 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 		switch (tag)
 		{
+		case -1:
+			if (m_eventindex == POS_WOMAN)
+			{
+				eventnode_1->setVisible(false);
+				eventnode_2->setVisible(false);
+				eventnode_3->setVisible(true);
+				getSliverByEventW();
+			}
+			else if (m_eventindex == POS_THIEF)
+			{
+				eventnode_1->setVisible(false);
+				eventnode_2->setVisible(false);
+				eventnode_3->setVisible(true);
+				eventElderExtort(m_eventindex);
+			}
+			break;
 		case 0:
 			AnimationEffect::closeAniEffect((Layer*)this);
-			//this->removeFromParentAndCleanup(true);
 			break;
 		case 1:
 			if (m_eventindex == MAP_JUMP || m_eventindex == POS_CAVE)
@@ -257,7 +280,47 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					eventnode_1->setVisible(false);
 					eventnode_2->setVisible(false);
 					eventnode_3->setVisible(true);
-					eventElderExtort();
+					eventElderExtort(m_eventindex);
+				}
+			}
+			else if (m_eventindex == POS_WOMAN)
+			{
+				int r = GlobalInstance::getInstance()->createRandomNum(100) + 1;
+				if (r <= 25)
+				{
+					eventnode_1->setVisible(false);
+					eventnode_2->setVisible(true);
+					eventnode_3->setVisible(false);
+					boxEventNode();
+				}
+				else if (r <= 50)
+				{
+					eventnode_1->setVisible(false);
+					eventnode_2->setVisible(false);
+					eventnode_3->setVisible(true);
+					eventNothing();
+				}
+				else if (r <= 75)
+				{
+					eventnode_1->setVisible(false);
+					eventnode_2->setVisible(false);
+					eventnode_3->setVisible(true);
+					eventElderExtort(m_eventindex);
+				}
+				else
+				{
+					eventnode_1->setVisible(false);
+					eventnode_2->setVisible(false);
+					eventnode_3->setVisible(true);
+					eventFight();
+				}
+			}
+			else if (m_eventindex == POS_THIEF)
+			{
+				AnimationEffect::closeAniEffect((Layer*)this);
+				if (g_MapBlockScene != NULL)
+				{
+					g_MapBlockScene->eventFight();
 				}
 			}
 			else if (m_eventindex == POS_BET)
@@ -345,10 +408,65 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			lastBetIndex = 1;
 		}
 			break;
+		case 1000:
+		{
+			AnimationEffect::closeAniEffect((Layer*)this);
+			if (g_MapBlockScene != NULL)
+			{
+				g_MapBlockScene->eventFight();
+			}
+		}
+		break;
 		default:
 			break;
 		}
 	}
+}
+
+void MapEventLayer::getSliverByEventW()
+{
+	cocos2d::ui::Widget* costsliver = (cocos2d::ui::Widget*)eventnode_3->getChildByName("costsliver");
+	costsliver->setVisible(true);
+	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)costsliver->getChildByName("desc");
+	desc->setString(ResourceLang::map_lang["event2_5"]);
+	desc->setTextColor(Color4B(255, 255, 255, 255));
+	cocos2d::ui::Text* count = (cocos2d::ui::Text*)costsliver->getChildByName("count");
+
+	cocos2d::ui::Text* textdesc = (cocos2d::ui::Text*)eventnode_3->getChildByName("text");
+	textdesc->setString(ResourceLang::map_lang["event2_6"]);
+
+	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)eventnode_3->getChildByName("closebtn");
+	closebtn->addTouchEventListener(CC_CALLBACK_2(MapEventLayer::onBtnClick, this));
+	closebtn->setTag(0);
+	cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)closebtn->getChildByName("text");
+	text->loadTexture(ResourcePath::makeTextImgPath("okbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	text->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("okbtn_text", langtype))->getContentSize());
+
+	std::string str = StringUtils::format("images/event%d-3.jpg", m_eventindex);
+	eventimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
+
+	int rsliver = GlobalInstance::getInstance()->createRandomNum(3001) + 2000;
+	str = StringUtils::format("%d", rsliver);
+	count->setString(str);
+	DynamicValueInt val;
+	val.setValue(rsliver);
+	GlobalInstance::getInstance()->addMySoliverCount(val);
+}
+
+void MapEventLayer::eventFight()
+{
+	cocos2d::ui::Text* textdesc = (cocos2d::ui::Text*)eventnode_3->getChildByName("text");
+	std::string str = StringUtils::format("event%d_4", m_eventindex);
+	textdesc->setString(ResourceLang::map_lang[str]);
+
+	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)eventnode_3->getChildByName("closebtn");
+	closebtn->addTouchEventListener(CC_CALLBACK_2(MapEventLayer::onBtnClick, this));
+	closebtn->setTag(1000);
+	cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)closebtn->getChildByName("text");
+	text->loadTexture(ResourcePath::makeTextImgPath("okbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	str = StringUtils::format("images/event%d-4.jpg", m_eventindex);
+	eventimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 }
 
 void MapEventLayer::showResult(float dt)
@@ -459,15 +577,30 @@ void MapEventLayer::doGambling()
 	eventnode_4->addChild(animnode);
 }
 
-void MapEventLayer::eventElderExtort()
+void MapEventLayer::eventElderExtort(int type)
 {
 	cocos2d::ui::Widget* costsliver = (cocos2d::ui::Widget*)eventnode_3->getChildByName("costsliver");
 	costsliver->setVisible(true);
 	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)costsliver->getChildByName("desc");
 	desc->setString(ResourceLang::map_lang["elderextort"]);
+	cocos2d::ui::Text* count = (cocos2d::ui::Text*)costsliver->getChildByName("count");
+	//std::string str = StringUtils::format("%d", COSTSLIVER);
+	//count->setString(str);
 
 	cocos2d::ui::Text* textdesc = (cocos2d::ui::Text*)eventnode_3->getChildByName("text");
-	std::string str = StringUtils::format("event%d_2", m_eventindex);
+	std::string str;
+	if (type == POS_ELDER)
+	{
+		str = StringUtils::format("event%d_2", m_eventindex);
+	}
+	else if (type == POS_WOMAN)
+	{
+		str = StringUtils::format("event%d_3", m_eventindex);
+	}
+	else if (type == POS_THIEF)
+	{
+		str = StringUtils::format("event%d_1", m_eventindex);
+	}
 	textdesc->setString(ResourceLang::map_lang[str]);
 
 	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)eventnode_3->getChildByName("closebtn");
@@ -476,13 +609,24 @@ void MapEventLayer::eventElderExtort()
 	cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)closebtn->getChildByName("text");
 	text->loadTexture(ResourcePath::makeTextImgPath("mapeventtext_lk", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	str = StringUtils::format("images/event%d-2.jpg", m_eventindex);
-	eventimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
+	int m_costsliver;
+	if (type != POS_THIEF)
+	{
+		str = StringUtils::format("images/event%d-2.jpg", m_eventindex);
+		eventimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
+		m_costsliver = COSTSLIVER;
+	}
+	else
+	{
+		m_costsliver = 2000;
+	}
+	str = StringUtils::format("%d", m_costsliver);
+	count->setString(str);
 
 	if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= 5000)
 	{
 		DynamicValueInt val;
-		val.setValue(5000);
+		val.setValue(m_costsliver);
 		GlobalInstance::getInstance()->costMySoliverCount(val);
 	}
 	else

@@ -282,6 +282,8 @@
       <FilePathData Path="text_zh_cn/matchdoing_text.png" />
       <FilePathData Path="text_zh_cn/matchrulebtn_text.png" />
       <FilePathData Path="text_zh_cn/getscore_text.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_2_0.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_2_1.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

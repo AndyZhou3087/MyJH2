@@ -550,8 +550,12 @@
           <Image Name="mapeventtext_0_1.png" />
           <Image Name="mapeventtext_1_0.png" />
           <Image Name="mapeventtext_1_1.png" />
+          <Image Name="mapeventtext_2_0.png" />
+          <Image Name="mapeventtext_2_1.png" />
           <Image Name="mapeventtext_3_0.png" />
           <Image Name="mapeventtext_3_1.png" />
+          <Image Name="mapeventtext_4_0.png" />
+          <Image Name="mapeventtext_4_1.png" />
           <Image Name="mapeventtext_5_0.png" />
           <Image Name="mapeventtext_5_1.png" />
           <Image Name="mapeventtext_6_0.png" />
@@ -561,11 +565,6 @@
           <Image Name="maptask_title.png" />
           <Image Name="marketlvup_text.png" />
           <Image Name="markettitle.png" />
-          <Image Name="matchbtn_text.png" />
-          <Image Name="matchdoing_text.png" />
-          <Image Name="matchfighttitle.png" />
-          <Image Name="matchrulebtn_text.png" />
-          <Image Name="matchsave_text.png" />
           <Image Name="messagetitle.png" />
           <Image Name="msgallget_text.png" />
           <Image Name="msggeted_text.png" />
