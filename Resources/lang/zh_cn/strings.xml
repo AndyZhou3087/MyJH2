@@ -340,5 +340,6 @@
 	<s name="matchruletitle">比赛规则</s>
 	<s name="matchruletext">比赛规则比赛规则比赛规则比赛规则比赛规则比赛规则比赛规则比赛规则比赛规则</s>
 	<s name="matchrulecontent">赛季结束后按照下列段位可领取奖励：</s>
-	<s name="matchlv">段位 %d (%d~%d积分)</s>
+	<s name="matchlv">段位%s(%d~%d积分)</s>
+	<s name="matchrewardget">点击可领取奖励</s>
 </strings>

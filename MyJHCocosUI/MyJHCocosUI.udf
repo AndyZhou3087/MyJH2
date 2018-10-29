@@ -12,8 +12,9 @@
         <OpenedDocuments>
           <FilePathData Path="matchMainLayer.csd" />
           <FilePathData Path="matchRuleLayer.csd" />
+          <FilePathData Path="matchRewardNode.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="matchRuleLayer.csd" />
+        <ActiveDocument Path="matchMainLayer.csd" />
       </Value>
     </Item>
   </Properties>

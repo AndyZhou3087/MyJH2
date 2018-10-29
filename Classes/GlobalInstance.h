@@ -642,6 +642,8 @@ public:
 	****************************/
 	bool checkNewQuest();
 
+	std::vector<std::vector<std::string>> getMatchRewardByLv(int lv);
+
 private:
 	static GlobalInstance* _Context;//类实例
 
