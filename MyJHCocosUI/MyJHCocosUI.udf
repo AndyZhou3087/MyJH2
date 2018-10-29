@@ -11,8 +11,9 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="mapEventLayer.csd" />
+          <FilePathData Path="text_zh_cn.csi" />
         </OpenedDocuments>
-        <ActiveDocument Path="mapEventLayer.csd" />
+        <ActiveDocument Path="text_zh_cn.csi" />
       </Value>
     </Item>
   </Properties>

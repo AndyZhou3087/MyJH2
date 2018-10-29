@@ -1025,7 +1025,7 @@ void MapBlockScene::doMyStatus()
 			break;
 		}
 	}
-	//ret = 2;
+	//ret = 4;
 	if (ret >= 0)
 	{
 		status = MAP_S_EVENT;
@@ -1036,7 +1036,7 @@ void MapBlockScene::doMyStatus()
 			mapblock->removeEventIcon();
 		}
 
-		if (ret == 0 || ret == 1 || ret == 2 || ret == 3 || ret == 5 || ret == 6)//其它事件美术没有准备好，会崩溃，有图后打开这里
+		if (ret == 0 || ret == 1 || ret == 2 || ret == 3 || ret == 4 || ret == 5 || ret == 6)//其它事件美术没有准备好，会崩溃，有图后打开这里
 		{
 			MapEventLayer* mlayer = MapEventLayer::create(ret);
 			this->addChild(mlayer);

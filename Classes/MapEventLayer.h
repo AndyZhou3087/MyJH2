@@ -56,6 +56,7 @@ private:
 	void playGamblebox(float dt);
 	void eventFight();
 	void getSliverByEventW();
+	void doThiefEvent();
 
 private:
 	Node* eventnode_1;
