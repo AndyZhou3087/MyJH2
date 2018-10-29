@@ -1025,6 +1025,7 @@ void MapBlockScene::doMyStatus()
 			break;
 		}
 	}
+	//ret = 2;
 	if (ret >= 0)
 	{
 		status = MAP_S_EVENT;
@@ -1035,7 +1036,7 @@ void MapBlockScene::doMyStatus()
 			mapblock->removeEventIcon();
 		}
 
-		if (ret == 0 || ret == 1 || ret == 3 || ret == 5 || ret == 6)//其它事件美术没有准备好，会崩溃，有图后打开这里
+		if (ret == 0 || ret == 1 || ret == 2 || ret == 3 || ret == 5 || ret == 6)//其它事件美术没有准备好，会崩溃，有图后打开这里
 		{
 			MapEventLayer* mlayer = MapEventLayer::create(ret);
 			this->addChild(mlayer);
@@ -1290,6 +1291,49 @@ void MapBlockScene::createRndMonsters()
 			vec_winrewards.push_back(propty);
 	}
 
+}
+
+void MapBlockScene::eventFight()
+{
+	createEventMonsters();
+
+	showFightingLayer(vec_enemys);
+}
+
+void MapBlockScene::createEventMonsters()
+{
+	int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
+	for (int i = 0; i < rndcount; i++)
+	{
+		int r1 = GlobalInstance::getInstance()->createRandomNum(100);
+		int rnd = 0;
+		for (unsigned int m = 0; m < MapBlock::vec_randMonsters.size(); m++)
+		{
+			FOURProperty propty = MapBlock::vec_randMonsters[m];
+			rnd += propty.floatPara3;
+			if (r1 < rnd)
+			{
+				int minlv = propty.intPara1 / 1000;
+				int maxlv = propty.intPara1 % 1000;
+				int minqu = propty.intPara2 / 1000;
+				int maxqu = propty.intPara2 % 1000;
+				int rlv = minlv + GlobalInstance::getInstance()->createRandomNum(maxlv - minlv + 1);
+				int rqu = minqu + GlobalInstance::getInstance()->createRandomNum(maxqu - minqu + 1);
+
+				Npc* enemyhero = new Npc();
+				std::string sid = "n001";
+				enemyhero->setId(sid);
+				enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
+				enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
+				enemyhero->setPotential(rqu);
+				enemyhero->setLevel(rlv);
+				enemyhero->setHp(enemyhero->getMaxHp());
+				vec_enemys.push_back(enemyhero);
+				break;
+			}
+		}
+
+	}
 }
 
 void MapBlockScene::creatNpcOrBoss(MapBlock* mbolck)

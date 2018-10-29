@@ -47,13 +47,15 @@ private:
 
 	static bool larger_callback(EventData a, EventData b);
 
-	void eventElderExtort();
+	void eventElderExtort(int type);
 	void loadBoxUI(cocos2d::ui::ImageView* box,std::string resid);
 	void doGambling();
 
 	void showResult(float dt);
 	void openDice(float dt);
 	void playGamblebox(float dt);
+	void eventFight();
+	void getSliverByEventW();
 
 private:
 	Node* eventnode_1;

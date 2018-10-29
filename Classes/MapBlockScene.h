@@ -75,6 +75,8 @@ public:
 	//获取是否移动//针对新手引导
 	bool getIsMoving();
 
+	void eventFight();
+
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
 
@@ -143,6 +145,8 @@ private:
 	void openAllMap();
 
 	void closeTaskTipNode(float dt);
+
+	void createEventMonsters();
 
 private:
 	Node* m_csbnode;
