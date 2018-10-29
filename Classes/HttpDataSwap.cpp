@@ -865,7 +865,7 @@ void HttpDataSwap::httpGetMyMatchHerosCB(std::string retdata, int code, std::str
 				rapidjson::Value& mydatav = doc["data"];
 
 				rapidjson::Value& myd = mydatav["isgetaward"];
-				GlobalInstance::myMatchInfo.isgetreward = atoi(myd.GetString()) == 1 ? true : false;
+				GlobalInstance::myMatchInfo.getrewardstate = atoi(myd.GetString());
 				myd = mydatav["matchscore"];
 				GlobalInstance::myMatchInfo.matchscore = atoi(myd.GetString());
 

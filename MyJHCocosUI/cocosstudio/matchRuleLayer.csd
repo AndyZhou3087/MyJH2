@@ -29,19 +29,31 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scrollView" ActionTag="120921528" Tag="32" IconVisible="False" LeftMargin="120.2516" RightMargin="119.7484" TopMargin="428.7000" BottomMargin="371.3001" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
-            <Size X="480.0000" Y="480.0000" />
+          <AbstractNodeData Name="scrollView" ActionTag="120921528" Tag="32" IconVisible="False" LeftMargin="120.2516" RightMargin="119.7484" TopMargin="458.6999" BottomMargin="371.3001" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+            <Size X="480.0000" Y="450.0000" />
             <AnchorPoint />
             <Position X="120.2516" Y="371.3001" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.1670" Y="0.2901" />
-            <PreSize X="0.6667" Y="0.3750" />
+            <PreSize X="0.6667" Y="0.3516" />
             <SingleColor A="255" R="255" G="150" B="100" />
             <FirstColor A="255" R="255" G="150" B="100" />
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
-            <InnerNodeSize Width="480" Height="480" />
+            <InnerNodeSize Width="480" Height="450" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="title2" ActionTag="2059024410" Tag="5" IconVisible="False" LeftMargin="180.9212" RightMargin="177.0788" TopMargin="411.0847" BottomMargin="843.9153" FontSize="22" LabelText="赛季结束后按照下列段位可领取奖励：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="362.0000" Y="25.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="361.9212" Y="856.4153" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5027" Y="0.6691" />
+            <PreSize X="0.5028" Y="0.0195" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

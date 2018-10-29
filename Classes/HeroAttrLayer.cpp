@@ -724,10 +724,10 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				lvnode->setVisible(true);
 				addexplbl->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
 				equipnode->setVisible(false);
-				/*if (m_fromwhere == 0)
+				if (m_fromwhere == 0)
 				{
 					pageView->setEnabled(false);
-				}*/
+				}
 			}
 			break;
 		case ATTR_RECRUITBTN:

@@ -142,7 +142,7 @@ void Hero::checkLevelQuest(int lv)
 	}
 	if (m_lastlevel != lv)
 	{
-		Quest::setAchieveTypeCount(HERO_LEVEL, lv);
+		Quest::setAchieveTypeCount(HERO_LEVEL, lv + 1);
 	}
 	m_lastlevel = lv;
 }

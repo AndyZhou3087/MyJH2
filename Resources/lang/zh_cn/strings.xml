@@ -339,6 +339,8 @@
 	<s name="mymatchherosempty">请选择出战侠客！</s>
 	<s name="matchruletitle">比赛规则</s>
 	<s name="matchruletext">比赛规则比赛规则比赛规则比赛规则比赛规则比赛规则比赛规则比赛规则比赛规则</s>
+	<s name="matchrulecontent">赛季结束后按照下列段位可领取奖励：</s>
+	<s name="matchlv">段位 %d (%d~%d积分)</s>
 	<s name="matchwinscoretext">本局积分：</s>
 	<s name="matchtotalscoretext">我的积分：</s>		
 </strings>
