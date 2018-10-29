@@ -10,9 +10,10 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="matchRuleLayer.csd" />
+          <FilePathData Path="matchMainLayer.csd" />
+          <FilePathData Path="fightResultLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="matchRuleLayer.csd" />
+        <ActiveDocument Path="fightResultLayer.csd" />
       </Value>
     </Item>
   </Properties>

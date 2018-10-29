@@ -46,6 +46,8 @@ public:
 
 	void setFightState(int winexp);
 
+	void setMatchFightState();
+
 	//发动技能
 	void playSkill(int stype, FightHeroNode* whosufferNode);
 
@@ -72,6 +74,8 @@ private:
 	Node* csbnode;
 	cocos2d::ui::ImageView* headbox;
 	cocos2d::ui::ImageView* headimg;
+
+	cocos2d::ui::Widget* cardnamebox;
 	cocos2d::ui::Text* namelbl;
 	cocos2d::ui::Widget* hpbar_bg;
 	cocos2d::ui::LoadingBar* hp_bar;

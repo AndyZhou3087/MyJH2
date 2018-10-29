@@ -270,7 +270,7 @@ void MatchVSLayer::delayShowFight(float dt)
 	std::vector<Hero*> vec_myheros;
 	for (int i = 0; i < 6; i++)
 	{
-		vec_myheros.push_back(GlobalInstance::myCardHeros[i]);
+		vec_myheros.push_back(GlobalInstance::myOnChallengeHeros[i]);
 		vec_pairs.push_back(GlobalInstance::matchPairHeros[i]);
 	}
 	FightingLayer* layer = FightingLayer::create(vec_myheros, vec_pairs, 1);

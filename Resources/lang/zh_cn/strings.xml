@@ -339,4 +339,6 @@
 	<s name="mymatchherosempty">请选择出战侠客！</s>
 	<s name="matchruletitle">比赛规则</s>
 	<s name="matchruletext">比赛规则比赛规则比赛规则比赛规则比赛规则比赛规则比赛规则比赛规则比赛规则</s>
+	<s name="matchwinscoretext">本局积分：</s>
+	<s name="matchtotalscoretext">我的积分：</s>		
 </strings>

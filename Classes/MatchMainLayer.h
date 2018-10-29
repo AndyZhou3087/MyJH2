@@ -32,6 +32,8 @@ private:
 
 	void updateUI();
 
+	void updateScore(float dt);
+
 	void setMatchBtnStatus(int s);
 
 	bool checkEmptyHeros();

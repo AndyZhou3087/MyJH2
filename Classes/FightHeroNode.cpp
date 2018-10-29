@@ -70,6 +70,7 @@ bool FightHeroNode::init()
 	critnumbg = (cocos2d::ui::ImageView*)csbnode->getChildByName("critnumbg");
 	critnumbg->setVisible(false);
 
+	cardnamebox = (cocos2d::ui::Text*)csbnode->getChildByName("cardnamebox");
 	//名字
 	namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 
@@ -626,7 +627,7 @@ void FightHeroNode::setFightState(int winexp)
 	}
 	else
 	{
-
+		myhero->setOnchallengepos(0);
 		hp_bar->setPercent(percent);
 		rettext->loadTexture(ResourcePath::makeTextImgPath("windeath_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		retbox->setVisible(true);
@@ -649,6 +650,30 @@ void FightHeroNode::setFightState(int winexp)
 	lvtext->setString(lvstr);
 
 	lvtext->runAction(Sequence::create(DelayTime::create(4.5f), Show::create(), FadeIn::create(0.5f), NULL));
+}
+
+void FightHeroNode::setMatchFightState()
+{
+	hp_bar->setVisible(false);
+	hpbar_bg->setVisible(false);
+	Hero* myhero = (Hero*)m_Data;
+	if (myhero->getState() == HS_DEAD)
+	{
+		int langtype = GlobalInstance::getInstance()->getLang();
+		rettext->loadTexture(ResourcePath::makeTextImgPath("windeath_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		retbox->setVisible(true);
+		retbox->setPositionY(retbox->getPositionY() + 40);
+		retbox->setScale(3);
+
+		retbox->runAction(Speed::create(ScaleTo::create(1.2f, 1.0f), 5));
+
+		CommonFuncs::changeGray(headbox);
+		CommonFuncs::changeGray(headimg);
+		CommonFuncs::changeGray(hp_bar->getVirtualRenderer());
+		CommonFuncs::changeGray(retbox);
+	}
+	cardnamebox->setPositionY(-90);
+	namelbl->setPositionY(cardnamebox->getPositionY());
 }
 
 void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)

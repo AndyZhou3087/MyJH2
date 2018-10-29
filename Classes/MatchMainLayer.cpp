@@ -163,6 +163,8 @@ bool MatchMainLayer::init()
 
 	HttpDataSwap::init(this)->getMyMatchHeros();
 
+	this->schedule(schedule_selector(MatchMainLayer::updateScore), 1.0f);
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = CC_CALLBACK_2(MatchMainLayer::onTouchBegan, this);
@@ -368,11 +370,11 @@ void MatchMainLayer::setMatchBtnStatus(int s)
 	}
 }
 
-void MatchMainLayer::updateUI()
+void MatchMainLayer::updateScore(float dt)
 {
 	int lv = 0;
 
-	int lvscores[] = {100, 300, 700, 1000, INT32_MAX};
+	int lvscores[] = { 100, 300, 700, 1000, INT32_MAX };
 	int lvsize = sizeof(lvscores) / sizeof(lvscores[0]);
 
 	for (int i = 0; i < lvsize; i++)
@@ -386,8 +388,6 @@ void MatchMainLayer::updateUI()
 
 	std::string lvnamekey = StringUtils::format("matchlvname_%d", lv);
 	matchlv->setString(ResourceLang::map_lang[lvnamekey]);
-	std::string str = StringUtils::format("%d", GlobalInstance::myMatchInfo.matchscore);
-	matchexp->setString(str);
 
 	if (lv >= lvsize)
 	{
@@ -402,6 +402,13 @@ void MatchMainLayer::updateUI()
 		str = StringUtils::format("matchlvname_%d", lv + 1);
 		nextlvtext->setString(ResourceLang::map_lang[str]);
 	}
+	std::string str = StringUtils::format("%d", GlobalInstance::myMatchInfo.matchscore);
+	matchexp->setString(str);
+}
+
+void MatchMainLayer::updateUI()
+{
+	updateScore(0);
 	endtime->setString(GlobalInstance::myMatchInfo.endtime);
 
 
@@ -475,8 +482,8 @@ void MatchMainLayer::delayShowFightResultLayer(float dt)
 {
 	std::vector<FOURProperty> vec_empty;
 	
-	FightingResultLayer* FRlayer = FightingResultLayer::create(vec_empty, fightret);
-	this->addChild(FRlayer);
+	FightingResultLayer* FRlayer = FightingResultLayer::create(vec_empty, fightret, 1);
+	this->addChild(FRlayer, 100);
 	AnimationEffect::openAniEffect((Layer*)FRlayer);
 
 	for (unsigned int i = 0; i < 6; i++)
@@ -555,6 +562,7 @@ void MatchMainLayer::onFinish(int code)
 			bindHeroData();
 			MatchVSLayer* layer = MatchVSLayer::create();
 			this->addChild(layer, 100);
+			setMatchBtnStatus(0);
 		}
 	}
 	else

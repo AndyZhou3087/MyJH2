@@ -33,6 +33,97 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="matchinfonode" ActionTag="1927496671" Tag="126" IconVisible="True" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="1020.0000" BottomMargin="260.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <Children>
+              <AbstractNodeData Name="fightretline_1" ActionTag="918966727" Tag="125" IconVisible="False" LeftMargin="-269.0000" RightMargin="91.0000" TopMargin="-14.1411" BottomMargin="-18.8589" ctype="SpriteObjectData">
+                <Size X="178.0000" Y="33.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="-180.0000" Y="-2.3589" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/fightretline.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="getscoretext" ActionTag="-1946341882" Tag="158" IconVisible="False" LeftMargin="-79.0000" RightMargin="-79.0000" TopMargin="-19.5000" BottomMargin="-19.5000" LeftEage="52" RightEage="52" TopEage="12" BottomEage="12" Scale9OriginX="52" Scale9OriginY="12" Scale9Width="54" Scale9Height="15" ctype="ImageViewObjectData">
+                <Size X="158.0000" Y="39.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/getscore_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="fightretline_2" ActionTag="458235504" Tag="127" IconVisible="False" LeftMargin="91.0000" RightMargin="-269.0000" TopMargin="-14.1411" BottomMargin="-18.8589" FlipX="True" ctype="SpriteObjectData">
+                <Size X="178.0000" Y="33.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="180.0000" Y="-2.3589" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/fightretline.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="winscoretext" ActionTag="505509070" Tag="154" IconVisible="False" LeftMargin="-84.8212" RightMargin="-32.1788" TopMargin="40.7779" BottomMargin="-72.7779" FontSize="26" LabelText="本局积分：" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="117.0000" Y="32.0000" />
+                <AnchorPoint ScaleY="0.6176" />
+                <Position X="-84.8212" Y="-53.0147" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="0" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="winscore" ActionTag="-1088770092" Tag="155" IconVisible="False" LeftMargin="42.3255" RightMargin="-84.3255" TopMargin="42.0133" BottomMargin="-74.0133" FontSize="26" LabelText="+30" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="42.0000" Y="32.0000" />
+                <AnchorPoint ScaleY="0.6176" />
+                <Position X="42.3255" Y="-54.2501" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="0" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="myscoretext" ActionTag="-784805180" Tag="156" IconVisible="False" LeftMargin="-84.8212" RightMargin="-32.1788" TopMargin="82.3122" BottomMargin="-114.3122" FontSize="26" LabelText="我的积分：" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="117.0000" Y="32.0000" />
+                <AnchorPoint ScaleY="0.6176" />
+                <Position X="-84.8212" Y="-94.5490" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="0" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="myscore" ActionTag="168954003" Tag="157" IconVisible="False" LeftMargin="42.3255" RightMargin="-71.3255" TopMargin="83.1333" BottomMargin="-115.1333" FontSize="26" LabelText="30" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="29.0000" Y="32.0000" />
+                <AnchorPoint ScaleY="0.6176" />
+                <Position X="42.3255" Y="-95.3701" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="0" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint />
+            <Position X="360.0000" Y="260.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.2031" />
+            <PreSize X="0.0000" Y="0.0000" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
