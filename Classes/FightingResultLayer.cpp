@@ -12,6 +12,7 @@
 
 USING_NS_CC;
 
+#define WINSCORE 5
 FightingResultLayer::FightingResultLayer()
 {
 
@@ -23,10 +24,10 @@ FightingResultLayer::~FightingResultLayer()
 }
 
 
-FightingResultLayer* FightingResultLayer::create(std::vector<FOURProperty> reward_res, int winexp)
+FightingResultLayer* FightingResultLayer::create(std::vector<FOURProperty> reward_res, int winexp, int onstate)
 {
 	FightingResultLayer *pRet = new(std::nothrow)FightingResultLayer();
-	if (pRet && pRet->init(reward_res, winexp))
+	if (pRet && pRet->init(reward_res, winexp, onstate))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -40,14 +41,16 @@ FightingResultLayer* FightingResultLayer::create(std::vector<FOURProperty> rewar
 }
 
 // on "init" you need to initialize your instance
-bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp)
+bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp, int onstate)
 {
 	if (!Layer::init())
 	{
 		return false;
 	}
+	m_onstate = onstate;
 	m_rewards = reward_res;
 
+	int langtype = GlobalInstance::getInstance()->getLang();
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color,0,"colorLayer");
 
@@ -56,7 +59,39 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp)
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("fightResultLayer.csb"));
 	this->addChild(csbnode);
-	int langtype = GlobalInstance::getInstance()->getLang();
+
+	Node* matchinfonode = csbnode->getChildByName("matchinfonode");
+
+	if (m_onstate == 0)
+	{
+		matchinfonode->setVisible(false);
+	}
+	else
+	{
+
+		cocos2d::ui::ImageView* getscoretext = (cocos2d::ui::ImageView*)matchinfonode->getChildByName("getscoretext");
+		getscoretext->loadTexture(ResourcePath::makeTextImgPath("getscore_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+		cocos2d::ui::Text* winscoretext = (cocos2d::ui::Text*)matchinfonode->getChildByName("winscoretext");
+		winscoretext->setString(ResourceLang::map_lang["matchwinscoretext"]);
+		cocos2d::ui::Text* winscore = (cocos2d::ui::Text*)matchinfonode->getChildByName("winscore");
+
+		int wscore = 0;
+		if (winexp > 0)
+		{
+			wscore = WINSCORE;
+			GlobalInstance::myMatchInfo.matchscore += wscore;
+		}
+		std::string str = StringUtils::format("+%d", wscore);
+		winscore->setString(str);
+		cocos2d::ui::Text* myscoretext = (cocos2d::ui::Text*)matchinfonode->getChildByName("myscoretext");
+		myscoretext->setString(ResourceLang::map_lang["matchtotalscoretext"]);
+		cocos2d::ui::Text* myscore = (cocos2d::ui::Text*)matchinfonode->getChildByName("myscore");
+		str = StringUtils::format("%d", GlobalInstance::myMatchInfo.matchscore);
+		myscore->setString(str);
+
+		HttpDataSwap::init(NULL)->sendMatchResult(wscore);
+	}
 
 	//°´Å¥
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
@@ -104,11 +139,23 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp)
 	for (int i = 0; i < 6; i++)
 	{
 		FightHeroNode * fightHeroNode = FightHeroNode::create();
+
+		Hero* fighthero = NULL;
+		if (onstate == 0)
+			fighthero = GlobalInstance::myCardHeros[i];
+		else
+			fighthero = GlobalInstance::myOnChallengeHeros[i];
+
 		fightHeroNode->setPosition(145 + i%3*215, 680 -  i/3*280);
-		fightHeroNode->setData(GlobalInstance::myCardHeros[i], F_HERO, fs);
+		fightHeroNode->setData(fighthero, F_HERO, fs);
 		addChild(fightHeroNode, 0, i);
-		if (GlobalInstance::myCardHeros[i] != NULL)
-			fightHeroNode->setFightState(winexp);
+		if (fighthero != NULL)
+		{
+			if (onstate == 0)
+				fightHeroNode->setFightState(winexp);
+			else
+				fightHeroNode->setMatchFightState();
+		}
 	}
 
 	//ÆÁ±ÎÏÂ²ãµã»÷
@@ -131,14 +178,24 @@ void FightingResultLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 		Node* node = (Node*)pSender;
 		if (node->getTag() == 1000)
 		{
-			node->setVisible(false);
-			WinRewardLayer* layer = WinRewardLayer::create(m_rewards);
-			this->addChild(layer);
-			AnimationEffect::openAniEffect((Layer*)layer);
+			if (m_onstate == 0)
+			{
+				node->setVisible(false);
+				WinRewardLayer* layer = WinRewardLayer::create(m_rewards);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
+			else
+			{
+				AnimationEffect::closeAniEffect(this);
+			}
 		}
 		else
 		{
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+			if (m_onstate == 0)
+				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+			else
+				AnimationEffect::closeAniEffect(this);
 		}
 	}
 }

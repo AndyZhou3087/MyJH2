@@ -460,6 +460,7 @@
           <Image Name="eventbusinesstitle.png" />
           <Image Name="fastdecompose_text.png" />
           <Image Name="firebtn_text.png" />
+          <Image Name="getscore_text.png" />
           <Image Name="gocitybtn_text.png" />
           <Image Name="goout_text.png" />
           <Image Name="halltitle.png" />
@@ -875,6 +876,7 @@
           <Image Name="f004.png" />
           <Image Name="f004-2.png" />
           <Image Name="f004-3.png" />
+          <Image Name="fightretline.png" />
           <Image Name="friendly_bar_0.png" />
           <Image Name="friendly_bar_1.png" />
           <Image Name="friendly_bg.png" />

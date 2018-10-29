@@ -443,6 +443,7 @@
       <FilePathData Path="ui/matchV.png" />
       <FilePathData Path="ui/matchbox0.png" />
       <FilePathData Path="ui/matchbox1.png" />
+      <FilePathData Path="ui/fightretline.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
