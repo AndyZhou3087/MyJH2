@@ -548,6 +548,12 @@ void MatchMainLayer::bindHeroData()
 					GlobalInstance::myOnChallengeHeros[m]->setHp(GlobalInstance::myOnChallengeHeros[m]->getMaxHp());
 				}
 			}
+
+			if (GlobalInstance::myOnChallengeHeros[m] != NULL)
+			{
+				GlobalInstance::myOnChallengeHeros[m]->setState(HS_ONCHALLENGE);
+				GlobalInstance::myOnChallengeHeros[m]->setHp(GlobalInstance::myOnChallengeHeros[m]->getMaxHp());
+			}
 		}
 	}
 }

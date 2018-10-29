@@ -237,14 +237,16 @@ void FightingLayer::resumeAtkSchedule()
 			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(i);
 			if (fnode != NULL && fnode->isPlaySkillAnim)
 			{
+				log("zhou < 6 1");
 				return;
 			}
 		}
-		for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
+		for (unsigned int i = 0; i < 6; i++)
 		{
 			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + i);
 			if (fnode != NULL && fnode->isPlaySkillAnim)
 			{
+				log("zhou >= 6 1");
 				return;
 			}
 		}
@@ -253,14 +255,16 @@ void FightingLayer::resumeAtkSchedule()
 			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(i);
 			if (fnode != NULL)
 			{
+				log("zhou < 6 2");
 				fnode->resumeTimeSchedule();
 			}
 		}
-		for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
+		for (unsigned int i = 0; i < 6; i++)
 		{
 			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + i);
 			if (fnode != NULL)
 			{
+				log("zhou >= 6 2");
 				fnode->resumeTimeSchedule();
 			}
 		}
@@ -461,32 +465,6 @@ void FightingLayer::heroFight(int fightertag)
 				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DODGE);
 				return;
 			}
-
-			//正常攻击
-			float atkhp = atkhero->getAtk();
-
-			//计算暴击
-			float crit = atkhero->getCrit();
-			GongFa* gf = (GongFa*)atkhero->getEquipable(T_WG);
-			if (gf != NULL)
-				crit += gf->getCrit();
-
-			int rcrit = GlobalInstance::getInstance()->createRandomNum(10000);
-			int state = 0;
-			if (rcrit < crit * 100)
-			{
-				state = 1;
-				atkhp *= 2;
-
-				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_CRIT);
-			}
-			else
-			{
-				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_ATK);
-			}
-			atkhero->setFightRound(atkhero->getFightRound() + 1);
-			afnode->hurt(atkhp, state);
-			return;
 		}
 
 		GongFa* gf = atkhero->checkSkillWg();//触发技能的功法
@@ -744,7 +722,7 @@ void FightingLayer::showAtk(int fightertag)
 		fightOver(ret);
 		return;
 	}
-	
+
 	if (fightertag < 6)//自己英雄攻击
 	{
 		heroFight(fightertag);

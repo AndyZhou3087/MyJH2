@@ -939,17 +939,20 @@ void HttpDataSwap::httpGetMatchPairDataCB(std::string retdata, int code, std::st
 			rapidjson::Value& retv = doc["ret"];
 			ret = retv.GetInt();
 
-			rapidjson::Value& mydatav = doc["data"];
-
-			for (int i = 0; i < 6; i++)
+			if (doc.HasMember("data"))
 			{
-				std::string herokey = StringUtils::format("hero%d", i);
-				std::string herodata = mydatav[herokey.c_str()].GetString();
-				GlobalInstance::myMatchInfo.map_pairheros[herokey] = herodata;
+				rapidjson::Value& mydatav = doc["data"];
 
-				GlobalInstance::myMatchInfo.pairnickname = mydatav["nickname"].GetString();
-				GlobalInstance::myMatchInfo.pairplayerid = mydatav["playerid"].GetString();
-				GlobalInstance::myMatchInfo.pairscore = atoi(mydatav["matchscore"].GetString());
+				for (int i = 0; i < 6; i++)
+				{
+					std::string herokey = StringUtils::format("hero%d", i);
+					std::string herodata = mydatav[herokey.c_str()].GetString();
+					GlobalInstance::myMatchInfo.map_pairheros[herokey] = herodata;
+
+					GlobalInstance::myMatchInfo.pairnickname = mydatav["nickname"].GetString();
+					GlobalInstance::myMatchInfo.pairplayerid = mydatav["playerid"].GetString();
+					GlobalInstance::myMatchInfo.pairscore = atoi(mydatav["matchscore"].GetString());
+				}
 			}
 		}
 		else

@@ -815,7 +815,7 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 			{
 				this->scheduleOnce(schedule_selector(FightHeroNode::showSkillAttrIcon), 0.1f);
 			}
-
+			log("zhou = %d", m_Data->vec_whosufferskill.size());
 			for (unsigned int i = 0; i < m_Data->vec_whosufferskill.size(); i++)
 			{
 				FightHeroNode* fnode = (FightHeroNode*)this->getParent()->getChildByTag(m_Data->vec_whosufferskill[i]);
@@ -1264,6 +1264,7 @@ void FightHeroNode::recoveHp(float hp)
 
 void FightHeroNode::nextRound(float dt)
 {
+	log("zhou nextRound");
 	FightingLayer* fighting = (FightingLayer*)this->getParent();
 	fighting->resumeAtkSchedule();
 }
