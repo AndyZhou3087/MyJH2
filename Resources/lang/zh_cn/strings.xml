@@ -343,4 +343,5 @@
 	<s name="matchlv">段位 %d (%d~%d积分)</s>
 	<s name="matchwinscoretext">本局积分：</s>
 	<s name="matchtotalscoretext">我的积分：</s>		
+	<s name="matchrewardget">点击可领取奖励</s>
 </strings>

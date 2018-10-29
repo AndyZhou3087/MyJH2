@@ -18,7 +18,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox_0" ActionTag="-1337568791" Tag="75" IconVisible="False" LeftMargin="-230.0666" RightMargin="105.0666" TopMargin="-61.1795" BottomMargin="-63.8205" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox_0" ActionTag="-1337568791" Tag="75" IconVisible="False" LeftMargin="-230.5000" RightMargin="105.5000" TopMargin="-62.5000" BottomMargin="-62.5000" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <Children>
               <AbstractNodeData Name="res" ActionTag="-935490588" Tag="76" IconVisible="False" LeftMargin="7.1254" RightMargin="8.8746" TopMargin="7.6421" BottomMargin="8.3579" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="27" Scale9Height="27" ctype="ImageViewObjectData">
@@ -57,14 +57,14 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-167.5666" Y="-1.3205" />
+            <Position X="-168.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox_1" ActionTag="-92652634" Tag="79" IconVisible="False" LeftMargin="-64.2800" RightMargin="-60.7200" TopMargin="-61.1795" BottomMargin="-63.8205" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox_1" ActionTag="-92652634" Tag="79" IconVisible="False" LeftMargin="-62.5000" RightMargin="-62.5000" TopMargin="-62.5000" BottomMargin="-62.5000" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <Children>
               <AbstractNodeData Name="res" ActionTag="-1913450515" Tag="80" IconVisible="False" LeftMargin="7.1254" RightMargin="8.8746" TopMargin="7.6421" BottomMargin="8.3579" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="27" Scale9Height="27" ctype="ImageViewObjectData">
@@ -103,14 +103,14 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-1.7800" Y="-1.3205" />
+            <Position />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox_2" ActionTag="1554568192" Tag="83" IconVisible="False" LeftMargin="101.5062" RightMargin="-226.5062" TopMargin="-61.1795" BottomMargin="-63.8205" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox_2" ActionTag="1554568192" Tag="83" IconVisible="False" LeftMargin="105.5000" RightMargin="-230.5000" TopMargin="-62.5000" BottomMargin="-62.5000" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <Children>
               <AbstractNodeData Name="res" ActionTag="1242416622" Tag="84" IconVisible="False" LeftMargin="7.1254" RightMargin="8.8746" TopMargin="7.6421" BottomMargin="8.3579" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="27" Scale9Height="27" ctype="ImageViewObjectData">
@@ -149,7 +149,7 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="164.0062" Y="-1.3205" />
+            <Position X="168.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />

@@ -15,6 +15,7 @@
 #include "MatchRuleLayer.h"
 #include "FightingResultLayer.h"
 #include "MatchRewardLayer.h"
+#include "RewardLayer.h"
 
 
 USING_NS_CC;
@@ -23,6 +24,7 @@ MatchMainLayer::MatchMainLayer()
 {
 	clickHero = -1;
 	httptag = 0;
+	m_matchlv = -1;
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -141,14 +143,28 @@ bool MatchMainLayer::init()
 	nextlvtext = (cocos2d::ui::Text*)csbnode->getChildByName("nextlvtext");
 	nextlvtext->setString("");
 
-	cocos2d::ui::Text* rewardtext = (cocos2d::ui::Text*)csbnode->getChildByName("rewardtext");
+	rewardtext = (cocos2d::ui::Text*)csbnode->getChildByName("rewardtext");
 	rewardtext->setString(ResourceLang::map_lang["matchrewardtext"]);
 
-	cocos2d::ui::Text* endtimetxt = (cocos2d::ui::Text*)csbnode->getChildByName("endtimetxt");
+	endtimetxt = (cocos2d::ui::Text*)csbnode->getChildByName("endtimetxt");
 	endtimetxt->setString(ResourceLang::map_lang["matchendtimetext"]);
 
 	endtime = (cocos2d::ui::Text*)csbnode->getChildByName("endtime");
 	endtime->setString("");
+	
+	if (GlobalInstance::myMatchInfo.getrewardstate == 1)
+	{
+		endtimetxt->setVisible(false);
+		endtime->setVisible(false);
+		rewardtext->setString(ResourceLang::map_lang["matchrewardget"]);
+		rewardtext->setColor(Color3B(28, 208, 255));
+	}
+	else if (GlobalInstance::myMatchInfo.getrewardstate == 2)
+	{
+		endtimetxt->setVisible(false);
+		endtime->setVisible(false);
+		rewardtext->setVisible(false);
+	}
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -352,7 +368,27 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			}
 			else if (GlobalInstance::myMatchInfo.getrewardstate == 1)
 			{
+				std::vector<MSGAWDSDATA> vec_rewards;
+				std::vector<std::vector<std::string>> vec_matchreward = GlobalInstance::getInstance()->getMatchRewardByLv(m_matchlv);
+				for (unsigned int i = 0; i < vec_matchreward.size(); i++)
+				{
+					std::vector<std::string> one_res = vec_matchreward[i];
+					std::string resid = one_res[0];
+					int count = atoi(one_res[1].c_str());
+					int qu = atoi(one_res[2].c_str());
 
+					MSGAWDSDATA wdata;
+					wdata.rid = resid;
+					wdata.count = count;
+					wdata.qu = qu;
+					vec_rewards.push_back(wdata);
+				}
+				if (vec_rewards.size() > 0)
+				{
+					RewardLayer* layer = RewardLayer::create(vec_rewards);
+					this->addChild(layer, 1000);
+					AnimationEffect::openAniEffect((Layer*)layer);
+				}
 			}
 			break;
 		default:
@@ -406,6 +442,7 @@ void MatchMainLayer::updateScore(float dt)
 		}
 	}
 
+	m_matchlv = lv;
 	std::string lvnamekey = StringUtils::format("matchlvname_%d", lv);
 	matchlv->setString(ResourceLang::map_lang[lvnamekey]);
 

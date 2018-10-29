@@ -2006,6 +2006,31 @@ bool GlobalInstance::checkNewQuest()
 	return false;
 }
 
+std::vector<std::vector<std::string>> GlobalInstance::getMatchRewardByLv(int lv)
+{
+	std::vector<std::vector<std::string>> vec_matchlv;
+	std::vector<std::string> vec_retstr;
+	CommonFuncs::split(GlobalInstance::myMatchInfo.rewardstr, vec_retstr, ";");
+	for (unsigned int i = 0; i < vec_retstr.size(); i++)
+	{
+		std::vector<std::vector<std::string>> vec_mstr;
+		std::vector<std::string> vec_match;
+		CommonFuncs::split(vec_retstr[i], vec_match, ",");
+		for (unsigned m = 0; m < vec_match.size(); m++)
+		{
+			std::vector<std::string> vec_res;
+			CommonFuncs::split(vec_match[m], vec_res, "-");
+			vec_mstr.push_back(vec_res);
+		}
+		if (i == lv)
+		{
+			vec_matchlv = vec_mstr;
+			break;
+		}
+	}
+	return vec_matchlv;
+}
+
 bool GlobalInstance::strengthMaterial(Equipable* m_res)
 {
 	int equipcount = 0;
