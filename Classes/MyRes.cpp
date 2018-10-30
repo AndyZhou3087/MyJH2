@@ -220,7 +220,7 @@ void MyRes::Add(ResBase* res, int count, int inwhere)
 			gres->setId(res->getId());
 			gres->setType(type);
 			DynamicValueInt dvalue;
-			dvalue.setValue(count);
+			dvalue.setValue(1);
 			gres->setCount(dvalue);
 
 			DynamicValueInt quvalue;
