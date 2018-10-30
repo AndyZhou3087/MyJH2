@@ -429,7 +429,7 @@ void MapEventLayer::getSliverByEventW()
 	costsliver->setVisible(true);
 	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)costsliver->getChildByName("desc");
 	desc->setString(ResourceLang::map_lang["event2_5"]);
-	desc->setTextColor(Color4B(255, 255, 255, 255));
+	desc->setTextColor(Color4B(0, 255, 0, 255));
 	cocos2d::ui::Text* count = (cocos2d::ui::Text*)costsliver->getChildByName("count");
 
 	cocos2d::ui::Text* textdesc = (cocos2d::ui::Text*)eventnode_3->getChildByName("text");
@@ -439,10 +439,10 @@ void MapEventLayer::getSliverByEventW()
 	closebtn->addTouchEventListener(CC_CALLBACK_2(MapEventLayer::onBtnClick, this));
 	closebtn->setTag(0);
 	cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)closebtn->getChildByName("text");
-	text->loadTexture(ResourcePath::makeTextImgPath("okbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-	text->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("okbtn_text", langtype))->getContentSize());
+	text->loadTexture(ResourcePath::makeTextImgPath("mapeventtext_lk", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	text->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("mapeventtext_lk", langtype))->getContentSize());
 
-	std::string str = StringUtils::format("images/event%d-3.jpg", m_eventindex);
+	std::string str = "images/event2-0.jpg";
 	eventimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 
 	int rsliver = GlobalInstance::getInstance()->createRandomNum(3001) + 2000;
