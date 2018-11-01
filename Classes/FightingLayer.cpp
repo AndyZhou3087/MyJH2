@@ -659,7 +659,9 @@ void FightingLayer::heroFight(int fightertag)
 		}
 		else//没有触发技能
 		{
-			int attackindex = calcAttackNodeIndex(fightertag, whoatk);
+			int attackindex = atindex;
+			if (atindex < 0)
+				attackindex = calcAttackNodeIndex(fightertag, whoatk);
 
 			Npc* attackdata = NULL;
 			if (whoatk == 0)
