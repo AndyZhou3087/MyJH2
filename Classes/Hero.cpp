@@ -564,9 +564,10 @@ GongFa* Hero::checkSkillWg()
 {
 	int t[] = { T_WG ,T_NG };
 
-	if (m_isTop)
+	/*******测试技能start*********/
+	if (!m_isTop)
 	{
-		std::string gfid = "w013";
+		std::string gfid = "w033";
 		GongFa* res = new GongFa();
 		res->setId(gfid);
 		res->setType(T_WG);
@@ -580,7 +581,7 @@ GongFa* Hero::checkSkillWg()
 		res->setWhere(MYEQUIP);
 		setEquipable(res, T_WG);
 	}
-
+	/*******测试技能end*********/
 	for (int i = 0; i < 2; i++)
 	{
 		GongFa* gf = (GongFa*)getEquipable(t[i]);
@@ -595,7 +596,10 @@ GongFa* Hero::checkSkillWg()
 	{
 		GongFa* gf = (GongFa*)getEquipable(t[i]);
 
+		/*******测试技能start*********/
 		if (gf != NULL /*&& GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1*/)
+		/*******测试技能end*********/
+		//if (gf != NULL && GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1)
 		{
 			//新手引导100%放技能
 			if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
@@ -605,8 +609,11 @@ GongFa* Hero::checkSkillWg()
 			}
 
 			if (i == 0)
-			{ 
-				if (m_fightround >= 0/*GlobalInstance::map_GF[gf->getId()].skillrnd*/)
+			{
+				/*******测试技能start*********/
+				if (m_fightround >= 0/*&& GlobalInstance::map_GF[gf->getId()].skillrnd*/)
+				/*******测试技能end*********/
+				//if (m_fightround >= 0 && GlobalInstance::map_GF[gf->getId()].skillrnd)
 				{
 					m_fightround = 0;
 					gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);

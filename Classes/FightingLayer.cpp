@@ -96,7 +96,7 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 			if (enemyHeros[i]->getId().length() <= 0)
 				datatype = F_HERO;
 			fightHeroNode->setData(m_enemyHeros[i], datatype, FS_FIGHTING);
-			addChild(fightHeroNode, 1, 6 + i);
+			addChild(fightHeroNode, i, 6 + i);
 		}
 	}
 
@@ -108,7 +108,7 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 			fightHeroNode->setPosition(145 + i % 3 * 215, 460 - i / 3 * 260);
 			m_myHeros[i]->setFightRound(0);
 			fightHeroNode->setData(m_myHeros[i], F_HERO, FS_FIGHTING);
-			addChild(fightHeroNode, 2, i);
+			addChild(fightHeroNode, 6 + i, i);
 		}
 	}
 
@@ -375,9 +375,9 @@ void FightingLayer::heroFight(int fightertag)
 				Hero* myhero = (Hero*)vec_tmp[i];
 				if (myhero != NULL && myhero->getState() != HS_DEAD && myhero->getSkillingType() >= 0)//释放技能中
 				{
-					astype = myhero->getSkillingType();
 					if (astype == SKILL_4)
 					{
+						astype = myhero->getSkillingType();
 						GongFa* gf = myhero->checkSkillWg();
 						gf->setSkillCount(gf->getSkillCount() - 1);
 						if (gf->getSkillCount() <= 0)
@@ -737,7 +737,6 @@ void FightingLayer::showAtk(int fightertag)
 		}
 		else
 		{
-
 			float atkhp = m_enemyHeros[fightertag - 6]->getAtk();
 			int myfindex = -1;
 			int stype = -1;

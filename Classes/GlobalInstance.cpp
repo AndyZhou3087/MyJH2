@@ -327,17 +327,13 @@ void GlobalInstance::loadMyHeros()
 					hero->setPos(pos);
 					if (pos > 0 && state != HS_DEAD)
 						GlobalInstance::myCardHeros[pos - 1] = hero;
-
-					for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
+					}
+					for (int k = T_ARMOR; k <= T_NG; k++)
 					{
-						ResBase* res = MyRes::vec_MyResources[i];
-						if (res->getType() >= T_ARMOR && res->getType() <= T_NG)
+						ResBase* eqres = MyRes::getMyPutOnResByType(k, hero->getName());
+						if (eqres != NULL)
 						{
-							Equipable* eres = (Equipable*)res;
-							if (hero->getName().compare(eres->getWhos()) == 0)
-							{
-								hero->setEquipable(eres, eres->getType());
-							}
+							hero->setEquipable((Equipable*)eqres, eqres->getType());
 						}
 					}
 
@@ -2006,49 +2002,6 @@ bool GlobalInstance::checkNewQuest()
 		return true;
 	}
 	return false;
-}
-
-std::vector<std::vector<std::string>> GlobalInstance::getMatchRewardByLv(int lv)
-{
-	std::vector<std::vector<std::string>> vec_matchlv;
-	std::vector<std::string> vec_retstr;
-	CommonFuncs::split(GlobalInstance::myMatchInfo.rewardstr, vec_retstr, ";");
-	for (unsigned int i = 0; i < vec_retstr.size(); i++)
-	{
-		std::vector<std::vector<std::string>> vec_mstr;
-		std::vector<std::string> vec_match;
-		CommonFuncs::split(vec_retstr[i], vec_match, ",");
-		for (unsigned m = 0; m < vec_match.size(); m++)
-		{
-			std::vector<std::string> vec_res;
-			CommonFuncs::split(vec_match[m], vec_res, "-");
-			vec_mstr.push_back(vec_res);
-		}
-		if (i == lv)
-		{
-			vec_matchlv = vec_mstr;
-			break;
-		}
-	}
-	return vec_matchlv;
-}
-
-int GlobalInstance::getMatchLvByScroe(int m_lv)
-{
-	int lv = 0;
-	int lvscores[] = { 100, 300, 700, 1000, INT32_MAX };
-	int lvsize = sizeof(lvscores) / sizeof(lvscores[0]);
-
-	for (int i = 0; i < lvsize; i++)
-	{
-		if (m_lv < lvscores[i])
-		{
-			lv = i;
-			break;
-		}
-	}
-
-	return lv;
 }
 
 bool GlobalInstance::strengthMaterial(Equipable* m_res)
