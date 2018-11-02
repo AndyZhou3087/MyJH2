@@ -716,7 +716,7 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 					if (this->getTag() < 6)
 					{
 						SkillStartLayer* layer = SkillStartLayer::create(m_Data->getVocation(), stype);
-						this->getParent()->addChild(layer, 10, "skillstart");
+						this->getParent()->addChild(layer, 100, "skillstart");
 						delay += 1.0f;
 					}
 				}
@@ -1282,7 +1282,7 @@ void FightHeroNode::attackShakeAnim()
 
 void FightHeroNode::playSkillEffect(int stype)
 {
-	this->setLocalZOrder(0);
+	this->setLocalZOrder(12);
 
 	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
@@ -1298,7 +1298,7 @@ void FightHeroNode::playSkillEffect(int stype)
 
 void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 {
-	this->setLocalZOrder(0);
+	this->setLocalZOrder(12);
 	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
 	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
@@ -1350,6 +1350,7 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 			Sprite* s = (Sprite*)effectnode->getChildren().at(i);
 			s->setFlippedY(true);
 			//s->setAnchorPoint(Vec2(0.49f, 0.64f));
+			s->setPositionY(s->getPositionY() - 170);
 		}
 
 		//effectnode->setPositionX(effectnode->getPositionX() + 50);
@@ -1376,6 +1377,7 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, false);
 	this->scheduleOnce(schedule_selector(FightHeroNode::removePlaySkillAnim), action->getDuration() / 60.0f);
+	this->scheduleOnce(schedule_selector(FightHeroNode::resetZorder), action->getDuration() / 60.0f);
 }
 
 void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
@@ -1454,7 +1456,8 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 		if (tanz > 420)
 			effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
 	}
-	this->scheduleOnce(schedule_selector(FightHeroNode::resetZorder), action->getDuration() / 60.0f);
+	if (stype != SKILL_5)
+		this->scheduleOnce(schedule_selector(FightHeroNode::resetZorder), action->getDuration() / 60.0f);
 }
 
 void FightHeroNode::resetZorder(float dt)

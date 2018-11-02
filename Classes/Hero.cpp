@@ -565,7 +565,7 @@ GongFa* Hero::checkSkillWg()
 	int t[] = { T_WG ,T_NG };
 
 	/*******测试技能start*********/
-	if (!m_isTop)
+	if (m_isTop)
 	{
 		std::string gfid = "w033";
 		GongFa* res = new GongFa();
