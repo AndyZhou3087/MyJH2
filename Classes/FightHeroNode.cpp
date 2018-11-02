@@ -479,7 +479,7 @@ bool FightHeroNode::checkReviveSkill()
 	if (m_Data->getId().length() <= 0)
 	{
 		Hero* hero = (Hero*)m_Data;
-		GongFa* gf = (GongFa*)hero->getEquipable(T_WG);
+		GongFa* gf = (GongFa*)hero->getEquipable(T_NG);
 		if (gf != NULL)
 		{
 			if (GlobalInstance::map_GF[gf->getId()].skill == SKILL_13)

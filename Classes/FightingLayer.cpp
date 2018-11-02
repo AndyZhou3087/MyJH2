@@ -375,9 +375,9 @@ void FightingLayer::heroFight(int fightertag)
 				Hero* myhero = (Hero*)vec_tmp[i];
 				if (myhero != NULL && myhero->getState() != HS_DEAD && myhero->getSkillingType() >= 0)//释放技能中
 				{
-					astype = myhero->getSkillingType();
 					if (astype == SKILL_4)
 					{
+						astype = myhero->getSkillingType();
 						GongFa* gf = myhero->checkSkillWg();
 						gf->setSkillCount(gf->getSkillCount() - 1);
 						if (gf->getSkillCount() <= 0)
