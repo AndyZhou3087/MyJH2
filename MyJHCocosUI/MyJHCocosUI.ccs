@@ -568,6 +568,7 @@
           <Image Name="msgallget_text.png" />
           <Image Name="msggeted_text.png" />
           <Image Name="mypackagetitle.png" />
+          <Image Name="npcgive_text.png" />
           <Image Name="npctext_0.png" />
           <Image Name="npctext_1.png" />
           <Image Name="npctext_2.png" />
