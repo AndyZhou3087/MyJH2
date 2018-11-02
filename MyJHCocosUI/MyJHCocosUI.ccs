@@ -592,6 +592,8 @@
           <Image Name="outtowntitle.png" />
           <Image Name="package_text.png" />
           <Image Name="powericon_text.png" />
+          <Image Name="ranking_text.png" />
+          <Image Name="ranktitle_text.png" />
           <Image Name="recruit_text.png" />
           <Image Name="recruitbtn_text.png" />
           <Image Name="refreshbtn_text.png" />
@@ -600,6 +602,7 @@
           <Image Name="resitemlv_text.png" />
           <Image Name="retry_text.png" />
           <Image Name="reward_text.png" />
+          <Image Name="rule_text.png" />
           <Image Name="selectbtn_text.png" />
           <Image Name="selheadtitle.png" />
           <Image Name="settingtitle.png" />
@@ -695,6 +698,7 @@
           <Image Name="usebtn_text.png" />
           <Image Name="usecard_Text.png" />
           <Image Name="usertitle.png" />
+          <Image Name="watchline_text.png" />
           <Image Name="wgcurtext.png" />
           <Image Name="wglv_text.png" />
           <Image Name="wgnexttext.png" />
@@ -970,9 +974,11 @@
           <Image Name="matchbox1.png" />
           <Image Name="matchdoingbtn.png" />
           <Image Name="matchrewardicon.png" />
+          <Image Name="matchruleicon.png" />
           <Image Name="matchS.png" />
           <Image Name="matchV.png" />
           <Image Name="messageicon.png" />
+          <Image Name="myheroitem.png" />
           <Image Name="ninegrid.png" />
           <Image Name="normal9bg.png" />
           <Image Name="npc_fight.png" />
@@ -1008,6 +1014,9 @@
           <Image Name="r013.png" />
           <Image Name="randheadbox.png" />
           <Image Name="randnamebtn.png" />
+          <Image Name="rank_1.png" />
+          <Image Name="rank_2.png" />
+          <Image Name="rank_3.png" />
           <Image Name="resaddbtn.png" />
           <Image Name="resbox.png" />
           <Image Name="resbox_qu0.png" />
@@ -1200,6 +1209,7 @@
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
+        <Project Name="matchRankLayer.csd" Type="Layer" />
         <Project Name="resDescLayer.csd" Type="Scene" />
         <Project Name="rewardLayer.csd" Type="Layer" />
         <Project Name="selectEquipLayer.csd" Type="Scene" />
@@ -1231,7 +1241,7 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="rankingLayer.csd" Type="Layer" />
+        <Project Name="matchRankNode.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>

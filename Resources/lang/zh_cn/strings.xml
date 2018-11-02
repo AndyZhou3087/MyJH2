@@ -334,6 +334,9 @@
 	<s name="matchlvtext">段位</s>
 	<s name="matchlvtext_1">段位：</s>
 	<s name="matchexptext">积分</s>
+	<s name="matchexptext_1">积分：</s>
+	<s name="mymatchrank">我的排名</s>
+	<s name="notrank">未上榜</s>
 	<s name="matchlvname_0">乡野义士</s>
 	<s name="matchlvname_1">江湖侠士</s>
 	<s name="matchlvname_2">名门侠客</s>

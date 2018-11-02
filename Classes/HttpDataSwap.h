@@ -46,6 +46,8 @@ public:
 
 	void sendMatchResult(int score);
 
+	void getMatchRankHeros();
+
 private:
 	HTTPDataDelegateProtocol *m_pDelegateProtocol;//接口对象
 	static bool isdoing;
@@ -84,6 +86,8 @@ private:
 	void httpChecklegalwordCB(std::string retdata, int code, std::string extdata);
 
 	void httpSendMatchResultCB(std::string retdata, int code, std::string extdata);
+
+	void httpGetMyMatchRankingCB(std::string retdata, int code, std::string extdata);
 };
 
 class HTTPDataDelegateProtocol

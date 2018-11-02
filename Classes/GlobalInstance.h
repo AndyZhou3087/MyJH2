@@ -339,6 +339,21 @@ typedef struct
 	int pairscore;
 }MyMatchInfo;
 
+typedef struct
+{
+	int rank;
+	std::string playerid;
+	std::string nickname;
+	int matchscore;
+	std::map<std::string, std::string> map_otherheros;
+}MyRankData;
+
+typedef struct
+{
+	int myrank;
+	std::vector<MyRankData> vec_rankData;
+}MyRankInfo;
+
 
 class GlobalInstance
 {
@@ -645,6 +660,8 @@ public:
 
 	std::vector<std::vector<std::string>> getMatchRewardByLv(int lv);
 
+	int getMatchLvByScroe(int m_lv);
+
 private:
 	static GlobalInstance* _Context;//类实例
 
@@ -719,6 +736,8 @@ public:
 	static Hero* myOnChallengeHeros[6];//竞技赛我选择的6个英雄
 
 	static Hero* matchPairHeros[6];//匹配到的6个英雄
+
+	static MyRankInfo myRankInfo;
 
 private:
 	static int refreshHeroTime;

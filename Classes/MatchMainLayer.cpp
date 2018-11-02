@@ -16,6 +16,7 @@
 #include "FightingResultLayer.h"
 #include "MatchRewardLayer.h"
 #include "RewardLayer.h"
+#include "MatchRankLayer.h"
 
 
 USING_NS_CC;
@@ -101,7 +102,7 @@ bool MatchMainLayer::init()
 	rulebtn->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onBtnClick, this));
 
 	cocos2d::ui::ImageView* rulebtntxt = (cocos2d::ui::ImageView*)rulebtn->getChildByName("text");
-	rulebtntxt->loadTexture(ResourcePath::makeTextImgPath("matchrulebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	rulebtntxt->loadTexture(ResourcePath::makeTextImgPath("rule_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//匹配按钮
 	matchbtn = (cocos2d::ui::Button*)csbnode->getChildByName("matchbtn");
@@ -111,6 +112,13 @@ bool MatchMainLayer::init()
 	matchbtntxt = (cocos2d::ui::ImageView*)matchbtn->getChildByName("text");
 	matchbtntxt->loadTexture(ResourcePath::makeTextImgPath("matchbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	matchbtntxt->ignoreContentAdaptWithSize(true);
+
+	//排行榜
+	cocos2d::ui::Button* rankbtn = (cocos2d::ui::Button*)csbnode->getChildByName("rankbtn");
+	rankbtn->setTag(1006);
+	rankbtn->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onBtnClick, this));
+	cocos2d::ui::ImageView* rankbtnbtntxt = (cocos2d::ui::ImageView*)rankbtn->getChildByName("text");
+	rankbtnbtntxt->loadTexture(ResourcePath::makeTextImgPath("ranking_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//关闭按钮
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
@@ -392,6 +400,13 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 					AnimationEffect::openAniEffect((Layer*)layer);
 				}
 			}
+			break;
+		case 1006:
+		{
+			MatchRankLayer* layer = MatchRankLayer::create();
+			this->addChild(layer, 1000);
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		default:
 			break;

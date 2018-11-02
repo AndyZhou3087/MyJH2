@@ -94,6 +94,8 @@ Hero* GlobalInstance::myOnChallengeHeros[6];//竞技赛我选择的6个英雄
 Hero* GlobalInstance::matchPairHeros[6];//匹配到的6个英雄
 MyMatchInfo GlobalInstance::myMatchInfo;
 
+MyRankInfo GlobalInstance::myRankInfo;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -326,16 +328,12 @@ void GlobalInstance::loadMyHeros()
 					if (pos > 0 && state != HS_DEAD)
 						GlobalInstance::myCardHeros[pos - 1] = hero;
 
-					for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
+					for (int k = T_ARMOR; k <= T_NG; k++)
 					{
-						ResBase* res = MyRes::vec_MyResources[i];
-						if (res->getType() >= T_ARMOR && res->getType() <= T_NG)
+						ResBase* eqres = hero->getEquipable(k);
+						if (eqres != NULL)
 						{
-							Equipable* eres = (Equipable*)res;
-							if (hero->getName().compare(eres->getWhos()) == 0)
-							{
-								hero->setEquipable(eres, eres->getType());
-							}
+							hero->setEquipable((Equipable*)eqres, eqres->getType());
 						}
 					}
 
@@ -1959,6 +1957,24 @@ std::string GlobalInstance::compareFitEquip(int type, Hero* herodata)
 		}
 	}
 	return resid;
+}
+
+int GlobalInstance::getMatchLvByScroe(int m_lv)
+{
+	int lv = 0;
+	int lvscores[] = { 100, 300, 700, 1000, INT32_MAX };
+	int lvsize = sizeof(lvscores) / sizeof(lvscores[0]);
+	
+	for (int i = 0; i < lvsize; i++)
+	{
+		if (m_lv < lvscores[i])
+		{
+			lv = i;
+			break;
+		}
+	}
+	
+	return lv;
 }
 
 bool GlobalInstance::checkNewQuest()

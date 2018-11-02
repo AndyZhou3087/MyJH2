@@ -444,6 +444,11 @@
       <FilePathData Path="ui/matchbox0.png" />
       <FilePathData Path="ui/matchbox1.png" />
       <FilePathData Path="ui/fightretline.png" />
+      <FilePathData Path="ui/matchruleicon.png" />
+      <FilePathData Path="ui/rank_1.png" />
+      <FilePathData Path="ui/rank_2.png" />
+      <FilePathData Path="ui/rank_3.png" />
+      <FilePathData Path="ui/myheroitem.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
