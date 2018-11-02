@@ -507,9 +507,9 @@ void FightingLayer::showAtk(int fightertag)
 			Hero* myhero = GlobalInstance::myCardHeros[i];
 			if (myhero != NULL && myhero->getState() != HS_DEAD && myhero->getSkillingType() >= 0)//释放技能中
 			{
-				stype = myhero->getSkillingType();
 				if (stype == SKILL_4)
 				{
+					stype = myhero->getSkillingType();
 					GongFa* gf = GlobalInstance::myCardHeros[i]->checkSkillWg();
 					gf->setSkillCount(gf->getSkillCount() - 1);
 					if (gf->getSkillCount() <= 0)

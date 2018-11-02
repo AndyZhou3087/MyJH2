@@ -431,9 +431,7 @@ void FightHeroNode::delayShowReviveAnim(float dt)
 
 bool FightHeroNode::checkReviveSkill()
 {
-	GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_WG, m_Data->getName());
-
-	gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, m_Data->getName());
+	GongFa* gf = (GongFa*)MyRes::getMyPutOnResByType(T_NG, m_Data->getName());
 	if (gf != NULL)
 	{
 		if (GlobalInstance::map_GF[gf->getId()].skill == SKILL_13)
