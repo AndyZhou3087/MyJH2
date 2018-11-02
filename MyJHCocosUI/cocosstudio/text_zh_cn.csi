@@ -278,6 +278,9 @@
       <FilePathData Path="text_zh_cn/text_sale.png" />
       <FilePathData Path="text_zh_cn/mapeventtext_2_0.png" />
       <FilePathData Path="text_zh_cn/mapeventtext_2_1.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_4_0.png" />
+      <FilePathData Path="text_zh_cn/mapeventtext_4_1.png" />
+      <FilePathData Path="text_zh_cn/npcgive_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

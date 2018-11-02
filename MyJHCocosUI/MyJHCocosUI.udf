@@ -10,7 +10,6 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="mapEventLayer.csd" />
           <FilePathData Path="text_zh_cn.csi" />
         </OpenedDocuments>
         <ActiveDocument Path="text_zh_cn.csi" />
