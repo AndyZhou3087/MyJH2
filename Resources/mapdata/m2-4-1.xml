@@ -70,7 +70,9 @@
     <Cell c="1" r="25" p="-1" w="1" m="44.png" />
     <Cell c="1" r="26" p="-1" w="1" m="44.png" />
     <Cell c="1" r="27" p="-1" w="1" m="44.png" />
-    <Cell c="1" r="28" p="-1" w="1" m="44.png" />
+    <Cell c="1" r="28" p="5" w="1" m="44.png">
+      <msawd1 id="a002" qu="4" rnd="100.00">1</msawd1>
+    </Cell>
     <Cell c="1" r="29" p="-1" w="0" m="73.png" />
     <Cell c="2" r="0" p="-1" w="0" m="72.png" />
     <Cell c="2" r="1" p="-1" w="1" m="44.png" />

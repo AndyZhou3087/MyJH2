@@ -431,6 +431,7 @@ void FightHeroNode::hurtAnimFinish()
 				int v = ((Hero*)m_Data)->getVocation();
 
 				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DIE);
+				nextRound(0);
 			}
 		}
 
