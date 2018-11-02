@@ -742,7 +742,7 @@ void MainScene::onFinish(int code)
 		}
 	}
 	else
-	{ 
+	{
 		if (networkerrLayer == NULL)
 		{
 			ErrorHintLayer* layer = ErrorHintLayer::create(0);
