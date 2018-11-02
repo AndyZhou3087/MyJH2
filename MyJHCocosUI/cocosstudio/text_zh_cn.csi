@@ -287,6 +287,10 @@
       <FilePathData Path="text_zh_cn/matchrulebtn_text.png" />
       <FilePathData Path="text_zh_cn/matchsave_text.png" />
       <FilePathData Path="text_zh_cn/npcgive_text.png" />
+      <FilePathData Path="text_zh_cn/ranking_text.png" />
+      <FilePathData Path="text_zh_cn/rule_text.png" />
+      <FilePathData Path="text_zh_cn/watchline_text.png" />
+      <FilePathData Path="text_zh_cn/ranktitle_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

@@ -213,30 +213,30 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="35" G="35" B="35" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rulebtn" ActionTag="1361025167" Tag="119" IconVisible="False" LeftMargin="107.6247" RightMargin="408.3753" TopMargin="873.3434" BottomMargin="322.6566" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-            <Size X="204.0000" Y="84.0000" />
+          <AbstractNodeData Name="rulebtn" ActionTag="1361025167" Tag="119" IconVisible="False" LeftMargin="49.0614" RightMargin="560.9386" TopMargin="1152.0962" BottomMargin="51.9038" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="80" Scale9Height="54" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="110.0000" Y="76.0000" />
             <Children>
-              <AbstractNodeData Name="text" ActionTag="501663319" Tag="120" IconVisible="False" LeftMargin="29.5216" RightMargin="30.4784" TopMargin="18.7404" BottomMargin="23.2596" LeftEage="23" RightEage="23" TopEage="13" BottomEage="13" Scale9OriginX="23" Scale9OriginY="13" Scale9Width="98" Scale9Height="16" ctype="ImageViewObjectData">
-                <Size X="144.0000" Y="42.0000" />
+              <AbstractNodeData Name="text" ActionTag="501663319" Tag="120" IconVisible="False" LeftMargin="10.3585" RightMargin="19.6415" TopMargin="49.7887" BottomMargin="2.2113" LeftEage="23" RightEage="23" TopEage="7" BottomEage="7" Scale9OriginX="23" Scale9OriginY="7" Scale9Width="34" Scale9Height="10" ctype="ImageViewObjectData">
+                <Size X="80.0000" Y="24.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="101.5216" Y="44.2596" />
+                <Position X="50.3585" Y="14.2113" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4977" Y="0.5269" />
-                <PreSize X="0.7059" Y="0.5000" />
-                <FileData Type="MarkedSubImage" Path="text_zh_cn/matchrulebtn_text.png" Plist="text_zh_cn.plist" />
+                <PrePosition X="0.4578" Y="0.1870" />
+                <PreSize X="0.7273" Y="0.3158" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/rule_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="209.6247" Y="364.6566" />
+            <Position X="104.0614" Y="89.9038" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2911" Y="0.2849" />
-            <PreSize X="0.2833" Y="0.0656" />
+            <PrePosition X="0.1445" Y="0.0702" />
+            <PreSize X="0.1528" Y="0.0594" />
             <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
-            <PressedFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
-            <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/matchruleicon.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/matchruleicon.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/matchruleicon.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
@@ -322,6 +322,33 @@
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="35" G="35" B="35" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="rankbtn" ActionTag="-836280509" Tag="34" IconVisible="False" LeftMargin="111.7280" RightMargin="404.2720" TopMargin="872.2213" BottomMargin="323.7787" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="204.0000" Y="84.0000" />
+            <Children>
+              <AbstractNodeData Name="text" ActionTag="-1999502657" Tag="35" IconVisible="False" LeftMargin="46.0216" RightMargin="46.9784" TopMargin="21.2404" BottomMargin="25.7596" LeftEage="23" RightEage="23" TopEage="13" BottomEage="13" Scale9OriginX="23" Scale9OriginY="13" Scale9Width="65" Scale9Height="11" ctype="ImageViewObjectData">
+                <Size X="111.0000" Y="37.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="101.5216" Y="44.2596" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4977" Y="0.5269" />
+                <PreSize X="0.5441" Y="0.4405" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/ranking_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="213.7280" Y="365.7787" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.2968" Y="0.2858" />
+            <PreSize X="0.2833" Y="0.0656" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/matchdoingbtn.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

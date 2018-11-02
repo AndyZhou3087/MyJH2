@@ -94,6 +94,8 @@ Hero* GlobalInstance::myOnChallengeHeros[6];//竞技赛我选择的6个英雄
 Hero* GlobalInstance::matchPairHeros[6];//匹配到的6个英雄
 MyMatchInfo GlobalInstance::myMatchInfo;
 
+MyRankInfo GlobalInstance::myRankInfo;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -2029,6 +2031,24 @@ std::vector<std::vector<std::string>> GlobalInstance::getMatchRewardByLv(int lv)
 		}
 	}
 	return vec_matchlv;
+}
+
+int GlobalInstance::getMatchLvByScroe(int m_lv)
+{
+	int lv = 0;
+	int lvscores[] = { 100, 300, 700, 1000, INT32_MAX };
+	int lvsize = sizeof(lvscores) / sizeof(lvscores[0]);
+
+	for (int i = 0; i < lvsize; i++)
+	{
+		if (m_lv < lvscores[i])
+		{
+			lv = i;
+			break;
+		}
+	}
+
+	return lv;
 }
 
 bool GlobalInstance::strengthMaterial(Equipable* m_res)

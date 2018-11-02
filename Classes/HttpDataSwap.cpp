@@ -432,6 +432,16 @@ void HttpDataSwap::getMyMatchHeros()
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMyMatchHerosCB, this));
 }
 
+void HttpDataSwap::getMatchRankHeros()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_matchmatchranklist?");
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMyMatchRankingCB, this));
+}
+
 void HttpDataSwap::getMatchPairData()
 {
 	std::string url;
@@ -858,6 +868,66 @@ void HttpDataSwap::httpPostMyMatchHerosCB(std::string retdata, int code, std::st
 		{
 			rapidjson::Value& retv = doc["ret"];
 			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpGetMyMatchRankingCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+			if (doc.HasMember("data"))
+			{
+				rapidjson::Value& mydatav = doc["data"];
+
+				GlobalInstance::myRankInfo.vec_rankData.clear();
+				for (int m = 0; m < mydatav.Size(); m++)
+				{
+					MyRankData data;
+					data.rank = m;
+					rapidjson::Value& myd = mydatav[m]["playerid"];
+					data.playerid = myd.GetString();
+					myd = mydatav[m]["nickname"];
+					data.nickname = myd.GetString();
+					myd = mydatav[m]["matchscore"];
+					data.matchscore = atoi(myd.GetString());
+
+					for (int i = 0; i < 6; i++)
+					{
+						std::string herokey = StringUtils::format("hero%d", i);
+						std::string herodata = mydatav[m][herokey.c_str()].GetString();
+						data.map_otherheros[herokey] = herodata;
+					}
+
+					GlobalInstance::myRankInfo.vec_rankData.push_back(data);
+				}
+			}
+
+			if (doc.HasMember("myrank"))
+			{
+				rapidjson::Value& v = doc["myrank"];
+				GlobalInstance::myRankInfo.myrank = atoi(v.GetString());
+			}
+			
+			if (ret == 2)
+				ret = SUCCESS;
+
 		}
 		else
 		{
