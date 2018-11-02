@@ -737,7 +737,6 @@ void FightingLayer::showAtk(int fightertag)
 		}
 		else
 		{
-
 			float atkhp = m_enemyHeros[fightertag - 6]->getAtk();
 			int myfindex = -1;
 			int stype = -1;
