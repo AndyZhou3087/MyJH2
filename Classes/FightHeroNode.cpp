@@ -104,7 +104,6 @@ bool FightHeroNode::init()
 	skilltextbox->setVisible(false);
 
 	skilltext = (cocos2d::ui::ImageView*)skilltextbox->getChildByName("skilltext");
-
 	lvtext = (cocos2d::ui::Text*)csbnode->getChildByName("lvtext");
 	lvtext->setVisible(false);
 
@@ -697,7 +696,6 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 		if (stype == 1)
 		{
 			delay = 1.0f;
-			this->setLocalZOrder(0);
 		}
 
 		if (isPlaySkillAnim)
@@ -715,13 +713,13 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 			{
 				if (this->getParent()->getChildByName("skillstart") == NULL)
 				{
-					int onstate = 0;
-					if (g_MapBlockScene == NULL)
-						onstate = 1;
-					SkillStartLayer* layer = SkillStartLayer::create(m_Data->getVocation(), stype, onstate);
-					this->getParent()->addChild(layer, 10, "skillstart");
+					if (this->getTag() < 6)
+					{
+						SkillStartLayer* layer = SkillStartLayer::create(m_Data->getVocation(), stype);
+						this->getParent()->addChild(layer, 10, "skillstart");
+						delay += 1.0f;
+					}
 				}
-				delay += 1.0f;
 			}
 
 			if (stype == SKILL_5)
@@ -1226,19 +1224,26 @@ void FightHeroNode::attackedSkill(int stype, int myHeroPos)
 		dt1 = 0.0f;
 		dt2 = 0.1f;
 	}
-
+	float skillstarttime = 1.0f;
+	if (myHeroPos >= 6)//对手攻击，不会有技能说明动画
+	{
+		skillstarttime = 0.05f;
+	}
 	if (stype != 4)
 	{
 		if (!m_Data->getIsDodge())
-			headimg->runAction(Sequence::create(DelayTime::create(dt1 + 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillEffect, this, stype, myHeroPos)), NULL));
+			headimg->runAction(Sequence::create(DelayTime::create(dt1 + skillstarttime), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillEffect, this, stype, myHeroPos)), NULL));
 	}
 
 	if (stype != SKILL_4 && stype != SKILL_7 && stype != SKILL_8 && stype != SKILL_9 && stype != SKILL_12 && stype != 13 && stype != SKILL_17 && stype != SKILL_18)
 	{
-		hpbar_bg->runAction(Sequence::create(DelayTime::create(dt2 + 0.7f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackShakeAnim, this)), NULL));
+		float dtime = skillstarttime - 0.3f;
+		if (dtime < 0)
+			dtime = 0.05f;
+		hpbar_bg->runAction(Sequence::create(DelayTime::create(dt2 + dtime), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackShakeAnim, this)), NULL));
 	}
 
-	namelbl->runAction(Sequence::create(DelayTime::create(dt2 + 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, myHeroPos)), NULL));
+	namelbl->runAction(Sequence::create(DelayTime::create(dt2 + skillstarttime), CallFunc::create(CC_CALLBACK_0(FightHeroNode::attackedSkillCB, this, stype, myHeroPos)), NULL));
 }
 
 void FightHeroNode::attackedSkillCB(int stype, int myHeroPos)
@@ -1280,7 +1285,7 @@ void FightHeroNode::playSkillEffect(int stype)
 	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
 	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
-	csbnode->addChild(effectnode, 1, "playskillani");
+	csbnode->addChild(effectnode, 3, "playskillani");
 
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
@@ -1294,7 +1299,7 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
 	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
-	csbnode->addChild(effectnode, 1, "playskillani");
+	csbnode->addChild(effectnode, 3, "playskillani");
 
 	float movex = 0;
 	float movey = 0;
@@ -1338,7 +1343,12 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 
 		movex = 0;
 
-		effectnode->setSkewX(180);
+		for (int i = 0; i < effectnode->getChildrenCount(); i++)
+		{
+			Sprite* s = (Sprite*)effectnode->getChildren().at(i);
+			s->setFlippedY(true);
+			s->setPositionY(s->getPositionY() + 500);
+		}
 		if (tanx > 0)
 		{
 			effectnode->setRotation(-angle);
@@ -1349,7 +1359,7 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 			effectnode->setRotation(angle);
 			movex = -fabs(tanx) + offsety * sin(angle * M_PI / 180);
 		}
-		movey = tany - offsety * cos(angle * M_PI / 180);
+		movey = -fabs(tany) + offsety * cos(angle * M_PI / 180);
 	}
 
 	if (tanz > 420)
@@ -1358,7 +1368,6 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, false);
-
 	this->scheduleOnce(schedule_selector(FightHeroNode::removePlaySkillAnim), action->getDuration() / 60.0f);
 }
 
@@ -1367,7 +1376,7 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 	std::string effectname = StringUtils::format("effect/skill_%d_1.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
 	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
-	csbnode->addChild(effectnode, 1, "sufferskillani");
+	csbnode->addChild(effectnode, 3, "sufferskillani");
 
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
@@ -1394,7 +1403,6 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 			float tan_yx = std::fabs(tany) / std::fabs(tanx);
 			angle = 90 - atan(tan_yx) * 180 / M_PI;
 
-
 			if (tanx > 0)
 			{
 				effectnode->setRotation(angle);
@@ -1417,7 +1425,12 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 			float tan_yx = std::fabs(tany) / std::fabs(tanx);
 			angle = 90 - atan(tan_yx) * 180 / M_PI;
 
-			effectnode->setSkewX(180);
+			for (int i = 0; i < effectnode->getChildrenCount(); i++)
+			{
+				Sprite* s = (Sprite*)effectnode->getChildren().at(i);
+				s->setFlippedY(true);
+				s->setPositionY(s->getPositionY() + 500);
+			}
 			if (tanx > 0)
 			{
 				effectnode->setRotation(-angle);
@@ -1428,12 +1441,12 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 				effectnode->setRotation(angle);
 				movex = -tanx - offsety * sin(angle * M_PI / 180);
 			}
-			movey = -tany + offsety * cos(angle * M_PI / 180);
+			movey = fabs(tany) - offsety * cos(angle * M_PI / 180);
 		}
 
 		if (tanz > 420)
 			effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
-		this->scheduleOnce(schedule_selector(FightHeroNode::resetZorder), action->getDuration() / 60.0f);
+		//this->scheduleOnce(schedule_selector(FightHeroNode::resetZorder), action->getDuration() / 60.0f);
 	}
 }
 
@@ -1460,7 +1473,7 @@ void FightHeroNode::showAtkOrHurtAnim(int type)
 	}
 	auto effectnode = CSLoader::createNode(effectname);
 	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
-	csbnode->addChild(effectnode, 1, "atkhurt");
+	csbnode->addChild(effectnode, 3, "atkhurt");
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, false);

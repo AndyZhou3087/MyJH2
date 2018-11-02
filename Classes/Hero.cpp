@@ -36,6 +36,8 @@ Hero::Hero()
 	}
 	m_skillingtype = -1;
 	m_isdodge = false;
+	m_fightround = 0;
+	m_isTop = false;
 }
 
 
@@ -67,6 +69,8 @@ Hero::Hero(Hero* hero)
 	}
 	m_skillingtype = -1;
 	m_isdodge = false;
+	m_fightround = 0;
+	m_isTop = false;
 }
 
 float Hero::getHp()
@@ -559,6 +563,24 @@ void Hero::setEquipable(Equipable* edata, int etype)
 GongFa* Hero::checkSkillWg()
 {
 	int t[] = { T_WG ,T_NG };
+
+	if (m_isTop)
+	{
+		std::string gfid = "w013";
+		GongFa* res = new GongFa();
+		res->setId(gfid);
+		res->setType(T_WG);
+		DynamicValueInt dvalue;
+		dvalue.setValue(1);
+		res->setCount(dvalue);
+
+		DynamicValueInt quvalue;
+		quvalue.setValue(GlobalInstance::map_GF[gfid].qu);
+		res->setQU(quvalue);
+		res->setWhere(MYEQUIP);
+		setEquipable(res, T_WG);
+	}
+
 	for (int i = 0; i < 2; i++)
 	{
 		GongFa* gf = (GongFa*)getEquipable(t[i]);
@@ -573,7 +595,7 @@ GongFa* Hero::checkSkillWg()
 	{
 		GongFa* gf = (GongFa*)getEquipable(t[i]);
 
-		if (gf != NULL && GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1)
+		if (gf != NULL /*&& GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1*/)
 		{
 			//新手引导100%放技能
 			if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
@@ -584,7 +606,7 @@ GongFa* Hero::checkSkillWg()
 
 			if (i == 0)
 			{ 
-				if (m_fightround >= GlobalInstance::map_GF[gf->getId()].skillrnd)
+				if (m_fightround >= 0/*GlobalInstance::map_GF[gf->getId()].skillrnd*/)
 				{
 					m_fightround = 0;
 					gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
@@ -595,7 +617,7 @@ GongFa* Hero::checkSkillWg()
 			{
 				int r = GlobalInstance::getInstance()->createRandomNum(100);
 
-				if (r < GlobalInstance::map_GF[gf->getId()].skillrnd)
+				if (r < 100/*GlobalInstance::map_GF[gf->getId()].skillrnd*/)
 				{
 					gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
 					return gf;
