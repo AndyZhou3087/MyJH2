@@ -1282,6 +1282,8 @@ void FightHeroNode::attackShakeAnim()
 
 void FightHeroNode::playSkillEffect(int stype)
 {
+	this->setLocalZOrder(0);
+
 	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
 	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
@@ -1296,6 +1298,7 @@ void FightHeroNode::playSkillEffect(int stype)
 
 void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 {
+	this->setLocalZOrder(0);
 	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
 	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
@@ -1316,7 +1319,6 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 		float tan_yx = std::fabs(tany) / std::fabs(tanx);
 		angle = 90 - atan(tan_yx) * 180 / M_PI;
 
-
 		if (tanx > 0)
 		{
 			effectnode->setRotation(angle);
@@ -1328,27 +1330,32 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 			movex = -fabs(tanx) + offsety * sin(angle * M_PI / 180);
 		}
 		movey = tany - offsety * cos(angle * M_PI / 180);
+		if (tanz > 420)
+			effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
 	}
 	else
 	{
 		float offsety = 450;
 		float angle = 0;
 		Vec2 mypos = this->getPosition();
-		Vec2 enemypos = this->getParent()->getChildByTag(enemyindex)->getPosition();
-		float tanx = enemypos.x - mypos.x;
-		float tany = enemypos.y - mypos.y;
+		Vec2 pos = this->getParent()->getChildByTag(enemyindex)->getPosition();
+		float tanx = pos.x - mypos.x;
+		float tany = pos.y - mypos.y;
 		tanz = sqrt(tanx*tanx + tany * tany);
 		float tan_yx = std::fabs(tany) / std::fabs(tanx);
 		angle = 90 - atan(tan_yx) * 180 / M_PI;
-
-		movex = 0;
 
 		for (int i = 0; i < effectnode->getChildrenCount(); i++)
 		{
 			Sprite* s = (Sprite*)effectnode->getChildren().at(i);
 			s->setFlippedY(true);
-			s->setPositionY(s->getPositionY() + 500);
+			//s->setAnchorPoint(Vec2(0.49f, 0.64f));
 		}
+
+		//effectnode->setPositionX(effectnode->getPositionX() + 50);
+		effectnode->setAnchorPoint(Vec2(0.49f, 0.64f));
+		effectnode->setPositionY(effectnode->getPositionY() - 170);
+		
 		if (tanx > 0)
 		{
 			effectnode->setRotation(-angle);
@@ -1359,11 +1366,11 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 			effectnode->setRotation(angle);
 			movex = -fabs(tanx) + offsety * sin(angle * M_PI / 180);
 		}
-		movey = -fabs(tany) + offsety * cos(angle * M_PI / 180);
-	}
 
-	if (tanz > 420)
-		effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
+		movey = -fabs(tany) + offsety * cos(angle * M_PI / 180);
+		if (tanz > 420)
+			effectnode->runAction(Sequence::create(DelayTime::create(0.2f), MoveBy::create(1.0f, Vec2(movex, movey)), NULL));
+	}
 
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
@@ -1446,8 +1453,8 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 
 		if (tanz > 420)
 			effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
-		//this->scheduleOnce(schedule_selector(FightHeroNode::resetZorder), action->getDuration() / 60.0f);
 	}
+	this->scheduleOnce(schedule_selector(FightHeroNode::resetZorder), action->getDuration() / 60.0f);
 }
 
 void FightHeroNode::resetZorder(float dt)
@@ -1456,7 +1463,7 @@ void FightHeroNode::resetZorder(float dt)
 	{
 		FightHeroNode* myheronode = (FightHeroNode*)this->getParent()->getChildByTag(i);
 		if (myheronode != NULL)
-			myheronode->setLocalZOrder(2);
+			myheronode->setLocalZOrder(i);
 	}
 }
 

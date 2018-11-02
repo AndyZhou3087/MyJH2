@@ -96,7 +96,7 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 			if (enemyHeros[i]->getId().length() <= 0)
 				datatype = F_HERO;
 			fightHeroNode->setData(m_enemyHeros[i], datatype, FS_FIGHTING);
-			addChild(fightHeroNode, 1, 6 + i);
+			addChild(fightHeroNode, i, 6 + i);
 		}
 	}
 
@@ -108,7 +108,7 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 			fightHeroNode->setPosition(145 + i % 3 * 215, 460 - i / 3 * 260);
 			m_myHeros[i]->setFightRound(0);
 			fightHeroNode->setData(m_myHeros[i], F_HERO, FS_FIGHTING);
-			addChild(fightHeroNode, 2, i);
+			addChild(fightHeroNode, 6 + i, i);
 		}
 	}
 
