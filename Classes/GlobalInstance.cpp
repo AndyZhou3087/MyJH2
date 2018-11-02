@@ -2017,7 +2017,6 @@ bool GlobalInstance::checkNewQuest()
 			break;
 		}
 	}
-
 	//log("-------maintask = %d, branchtask = %d, mcount = %d, bcount = %d, dcount = %d ", GlobalInstance::myCurMainData.isfinish, GlobalInstance::myCurBranchData.isfinish, mcount, bcount, dcount);
 	if (GlobalInstance::myCurMainData.isfinish == QUEST_TASK || GlobalInstance::myCurBranchData.isfinish == QUEST_TASK || mcount > 0 || bcount > 0 || dcount > 0)
 	{
