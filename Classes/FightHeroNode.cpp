@@ -1349,12 +1349,11 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 		{
 			Sprite* s = (Sprite*)effectnode->getChildren().at(i);
 			s->setFlippedY(true);
-			//s->setAnchorPoint(Vec2(0.49f, 0.64f));
-			s->setPositionY(s->getPositionY() - 170);
+			s->setAnchorPoint(Vec2(0.5f, 0.64f));
 		}
 
 		//effectnode->setPositionX(effectnode->getPositionX() + 50);
-		effectnode->setAnchorPoint(Vec2(0.49f, 0.64f));
+		effectnode->setAnchorPoint(Vec2(0.5f, 0.64f));
 		effectnode->setPositionY(effectnode->getPositionY() - 170);
 		
 		if (tanx > 0)
