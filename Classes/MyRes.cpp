@@ -1,4 +1,4 @@
-﻿#include "MyRes.h"
+#include "MyRes.h"
 #include "DataSave.h"
 #include "Equipable.h"
 #include "Const.h"
@@ -403,7 +403,8 @@ void MyRes::saveData()
 		}
 		str.append(onestr);
 	}
-	DataSave::getInstance()->setMyRes(str.substr(0, str.length() - 1));
+    if (str.length() > 0)
+        DataSave::getInstance()->setMyRes(str.substr(0, str.length() - 1));
 }
 
 void MyRes::removeSivlerAndCoin()
