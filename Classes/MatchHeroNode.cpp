@@ -7,6 +7,7 @@
 #include "SoundManager.h"
 #include "DataSave.h"
 #include "GlobalInstance.h"
+#include "Equip.h"
 
 MatchHeroNode::MatchHeroNode()
 {
@@ -66,14 +67,20 @@ bool MatchHeroNode::init(std::string herostr)
 		CommonFuncs::split(herostr, vec_heros, ";");
 		CommonFuncs::split(vec_heros[0], vec_tmp, "-");
 
+		std::string str = vec_tmp[0];
 		Hero* hero = new Hero();
+		hero->setName(str);
 		DynamicValueInt dvint;
 		dvint.setValue(atoi(vec_tmp[1].c_str()));
 		hero->setExp(dvint);
-		hero->setChangeCount(atoi(vec_tmp[6].c_str()));
 		hero->setVocation(atoi(vec_tmp[2].c_str()));
+		hero->setPotential(atoi(vec_tmp[3].c_str()));
+		hero->setSex(atoi(vec_tmp[4].c_str()));
+		hero->setRandAttr(atoi(vec_tmp[5].c_str()));
+		hero->setChangeCount(atoi(vec_tmp[6].c_str()));
+		hero->setState(HS_ONCHALLENGE);
+		hero->setFTtype(1);
 
-		std::string str = vec_tmp[0];
 		namelbl->setString(str);
 		str = StringUtils::format("vocation_%d", hero->getVocation());
 		vocation->setString(ResourceLang::map_lang[str]);
@@ -95,6 +102,71 @@ bool MatchHeroNode::init(std::string herostr)
 			stars[i]->setPositionX(startx[(hero->getChangeCount() - 2)] + 15 * i);
 		}
 
+		if (vec_heros[1].length() > 0)
+		{
+			std::vector<std::string> vec_tmp;
+			CommonFuncs::split(vec_heros[1], vec_tmp, "#");
+			for (unsigned int i = 0; i < vec_tmp.size(); i++)
+			{
+				std::vector<std::string> vec_one;
+				CommonFuncs::split(vec_tmp[i], vec_one, "-");
+				std::string rid = vec_one[0];
+
+				int m = 0;
+				for (; m < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); m++)
+				{
+					if (rid.compare(0, 1, RES_TYPES_CHAR[m]) == 0)
+						break;
+				}
+				if (m >= T_ARMOR && m <= T_FASHION)
+				{
+					Equip* res = new Equip();
+					res->setId(rid);
+					res->setType(m);
+					DynamicValueInt dv;
+					dv.setValue(1);
+					res->setCount(dv);
+					res->setWhere(MYEQUIP);
+
+					DynamicValueInt dv1;
+					dv1.setValue(atoi(vec_one[1].c_str()));
+					res->setQU(dv1);
+
+					DynamicValueInt dv2;
+					dv2.setValue(atoi(vec_one[2].c_str()));
+					res->setLv(dv2);
+
+					CommonFuncs::split(vec_one[3], res->vec_stones, ",");
+
+					res->setWhos(hero->getName());
+
+					hero->setEquipable(res, m);
+				}
+				else if (m >= T_WG && m <= T_NG)
+				{
+
+					GongFa* res = new GongFa();
+					res->setId(rid);
+					res->setType(m);
+					DynamicValueInt dv;
+					dv.setValue(1);
+					res->setCount(dv);
+					res->setWhere(MYEQUIP);
+
+					DynamicValueInt dv1;
+					dv1.setValue(atoi(vec_one[1].c_str()));
+					res->setQU(dv1);
+
+					DynamicValueInt dv2;
+					dv2.setValue(atoi(vec_one[2].c_str()));
+					res->setExp(dv2);
+
+					res->setWhos(hero->getName());
+					hero->setEquipable(res, m);
+				}
+
+			}
+		}
 	}
 
 
