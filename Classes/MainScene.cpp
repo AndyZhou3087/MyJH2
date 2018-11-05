@@ -72,8 +72,8 @@ bool MainScene::init()
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("MainLayer.csb"));
 	this->addChild(csbnode);
 
-	Node* menunode = MainMenuLayer::create();
-	this->addChild(menunode);
+	g_MainMenuLayer = MainMenuLayer::create();
+	this->addChild(g_MainMenuLayer);
 
 	scroll_3 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_3");
 	scroll_3->setScrollBarEnabled(false);

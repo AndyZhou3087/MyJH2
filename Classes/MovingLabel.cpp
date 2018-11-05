@@ -4,40 +4,45 @@
 #include "Resource.h"
 
 std::queue<MovingLabel*> MovingLabel::queue_labels;
+Node* MovingLabel::lastRunningScene = NULL;
+
 MovingLabel::MovingLabel()
 {
 	ismoving = false;
 }
-
 
 MovingLabel::~MovingLabel()
 {
 
 }
 
-void MovingLabel::show(std::string text, Color4B color, Vec2 pos)
+void MovingLabel::show(std::string text, Color4B color, Vec2 pos, Node* parent)
 {
-	MovingLabel* label = MovingLabel::create(text, color, pos);
-	queue_labels.push(label);
-	Director::getInstance()->getRunningScene()->addChild(label, 10);
-	if (queue_labels.size() == 1)
+	if (lastRunningScene != Director::getInstance()->getRunningScene())
 	{
-		queue_labels.front()->showAction();
+		lastRunningScene = Director::getInstance()->getRunningScene();
+		while (!queue_labels.empty()) queue_labels.pop();
 	}
-}
 
-void MovingLabel::showbyNode(Node* node, std::string text, Color4B color, Vec2 pos)
-{
-	MovingLabel* label = MovingLabel::create(text, color, pos);
-	queue_labels.push(label);
-	if (node != NULL)
+	if (queue_labels.size() <= 5)
 	{
-		node->addChild(label, 10);
+		MovingLabel* label = MovingLabel::create(text, color, pos);
+		queue_labels.push(label);
+		if (parent == NULL)
+			Director::getInstance()->getRunningScene()->addChild(label, 100000);
+		else
+			parent->addChild(label, 100000);
+
 		if (queue_labels.size() == 1)
 		{
 			queue_labels.front()->showAction();
 		}
 	}
+}
+
+void MovingLabel::showbyNode(Node* node, std::string text, Color4B color, Vec2 pos)
+{
+	show(text, color, pos, node);
 }
 
 MovingLabel* MovingLabel::create(std::string text, Color4B color, Vec2 pos)
