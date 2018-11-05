@@ -23,7 +23,8 @@ USING_NS_CC;
 
 WgLvLayer::WgLvLayer()
 {
-
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
 }
 
 WgLvLayer::~WgLvLayer()
@@ -207,73 +208,89 @@ void WgLvLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 void WgLvLayer::onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
-	if (type == ui::Widget::TouchEventType::ENDED)
+
+	if (type == ui::Widget::TouchEventType::BEGAN)
+	{
+		m_longTouchNode = clicknode;
+		if (!isScheduled(schedule_selector(WgLvLayer::longTouchUpdate)))
+			schedule(schedule_selector(WgLvLayer::longTouchUpdate), 0.1f);
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		cancelLongTouch();
+		addGfExp(clicknode->getTag());
+	}
+	else if (type == ui::Widget::TouchEventType::CANCELED)
+	{
+		cancelLongTouch();
+	}
+}
 
-		int maxlv = GlobalInstance::map_GF[m_res->getId()].vec_exp.size();
+void WgLvLayer::addGfExp(int gftag)
+{
+	int maxlv = GlobalInstance::map_GF[m_res->getId()].vec_exp.size();
 
-		//if (m_res->getLv().getValue() + 1 == m_res->getMaxLv())
+	//if (m_res->getLv().getValue() + 1 == m_res->getMaxLv())
+	if (m_res->getExp().getValue() >= GlobalInstance::map_GF[m_res->getId()].vec_exp[maxlv - 1])
+	{
+		MovingLabel::show(ResourceLang::map_lang["wgmostlv"]);
+		return;
+	}
+
+	int tag = gftag;
+	int count;
+	switch (tag)
+	{
+	case 1:
+		count = M001EXP;
+		break;
+	case 2:
+		count = M002EXP;
+		break;
+	case 3:
+		count = M003EXP;
+		break;
+	case 4:
+		count = M004EXP;
+		break;
+	default:
+		break;
+	}
+
+	std::string str = StringUtils::format("m00%d", tag);
+	if (MyRes::getMyResCount(str) >= 1)
+	{
+		MyRes::Use(str);
+		DynamicValueInt dal;
+		dal.setValue(m_res->getExp().getValue() + count);
+		m_res->setExp(dal);
 		if (m_res->getExp().getValue() >= GlobalInstance::map_GF[m_res->getId()].vec_exp[maxlv - 1])
 		{
-			MovingLabel::show(ResourceLang::map_lang["wgmostlv"]);
-			return;
+			DynamicValueInt dvint;
+			dvint.setValue(GlobalInstance::map_GF[m_res->getId()].vec_exp[maxlv - 1]);
+			m_res->setExp(dvint);
 		}
 
-		int tag = clicknode->getTag();
-		int count;
-		switch (tag)
+		std::string s = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), count);
+		MovingLabel::show(s);
+		str = StringUtils::format("%d", MyRes::getMyResCount(str));
+		goodarr[tag - 1]->setString(str);
+		updataAtrrUI();
+		MyRes::saveData();
+
+		EquipDescLayer* layer = (EquipDescLayer*)this->getParent();
+		if (layer != NULL)
 		{
-		case 1:
-			count = M001EXP;
-			break;
-		case 2:
-			count = M002EXP;
-			break;
-		case 3:
-			count = M003EXP;
-			break;
-		case 4:
-			count = M004EXP;
-			break;
-		default:
-			break;
+			layer->updateAttr();
+			StoreHouseLayer* storeHouseLayer = (StoreHouseLayer*)g_mainScene->getChildByName("3storehouse");
+			if (storeHouseLayer != NULL)
+				storeHouseLayer->updateUI();
 		}
-
-		std::string str = StringUtils::format("m00%d", tag);
-		if (MyRes::getMyResCount(str) >= 1)
-		{
-			MyRes::Use(str);
-			DynamicValueInt dal;
-			dal.setValue(m_res->getExp().getValue() + count);
-			m_res->setExp(dal);
-			if (m_res->getExp().getValue() >= GlobalInstance::map_GF[m_res->getId()].vec_exp[maxlv - 1])
-			{
-				DynamicValueInt dvint;
-				dvint.setValue(GlobalInstance::map_GF[m_res->getId()].vec_exp[maxlv - 1]);
-				m_res->setExp(dvint);
-			}
-
-			std::string s = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), count);
-			MovingLabel::show(s);
-			str = StringUtils::format("%d", MyRes::getMyResCount(str));
-			goodarr[tag - 1]->setString(str);
-			updataAtrrUI();
-			MyRes::saveData();
-
-			EquipDescLayer* layer = (EquipDescLayer*)this->getParent();
-			if (layer != NULL)
-			{
-				layer->updateAttr();
-				StoreHouseLayer* storeHouseLayer = (StoreHouseLayer*)g_mainScene->getChildByName("3storehouse");
-				if (storeHouseLayer != NULL)
-					storeHouseLayer->updateUI();
-			}
-		}
-		else
-		{
-			MovingLabel::show(ResourceLang::map_lang["reslack"]);
-		}
+	}
+	else
+	{
+		MovingLabel::show(ResourceLang::map_lang["reslack"]);
 	}
 }
 
@@ -327,7 +344,7 @@ void WgLvLayer::updataAtrrUI()
 	float percent = (m_res->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
 
 	if (mycurlv > myprelv)
-		expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, 100), LoadingBarProgressFromTo::create(0.2f, 0, percent), NULL));
+		expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, 100), DelayTime::create(0.05f), LoadingBarProgressFromTo::create(0.2f, 0, percent), NULL));
 	else
 		expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
 
@@ -377,6 +394,21 @@ void WgLvLayer::updataAtrrUI()
 	attrstr = StringUtils::format("%.3f%%", GlobalInstance::map_GF[m_res->getId()].vec_avoid[nextlv]);
 	dodgelbl2->setString(attrstr);
 
+}
+
+void WgLvLayer::longTouchUpdate(float delay)
+{
+	m_isLongPress = true;
+	if (m_longTouchNode != NULL) {
+		addGfExp(m_longTouchNode->getTag());
+	}
+}
+
+void WgLvLayer::cancelLongTouch()
+{
+	m_isLongPress = false;
+	m_longTouchNode = NULL;
+	unschedule(schedule_selector(WgLvLayer::longTouchUpdate));
 }
 
 void WgLvLayer::onExit()
