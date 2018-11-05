@@ -189,7 +189,7 @@ void MatchVSLayer::parsePairHeros()
 			hero->setRandAttr(atoi(vec_tmp[5].c_str()));
 			hero->setChangeCount(atoi(vec_tmp[6].c_str()));
 			hero->setState(HS_ONCHALLENGE);
-			hero->setTop(true);
+			hero->setFTtype(1);
 			GlobalInstance::matchPairHeros[index] = hero;
 
 			if (vec_heros[1].length() > 0)

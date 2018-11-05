@@ -37,7 +37,7 @@ Hero::Hero()
 	m_skillingtype = -1;
 	m_isdodge = false;
 	m_fightround = 0;
-	m_isTop = false;
+	m_ftype = 0;
 }
 
 
@@ -70,7 +70,7 @@ Hero::Hero(Hero* hero)
 	m_skillingtype = -1;
 	m_isdodge = false;
 	m_fightround = 0;
-	m_isTop = false;
+	m_ftype = 0;
 }
 
 float Hero::getHp()
@@ -565,22 +565,22 @@ GongFa* Hero::checkSkillWg()
 	int t[] = { T_WG ,T_NG };
 
 	/*******测试技能start*********/
-	if (m_isTop)
-	{
-		std::string gfid = "w033";
-		GongFa* res = new GongFa();
-		res->setId(gfid);
-		res->setType(T_WG);
-		DynamicValueInt dvalue;
-		dvalue.setValue(1);
-		res->setCount(dvalue);
+	//if (m_ftype == 1)
+	//{
+	//	std::string gfid = "w033";
+	//	GongFa* res = new GongFa();
+	//	res->setId(gfid);
+	//	res->setType(T_WG);
+	//	DynamicValueInt dvalue;
+	//	dvalue.setValue(1);
+	//	res->setCount(dvalue);
 
-		DynamicValueInt quvalue;
-		quvalue.setValue(GlobalInstance::map_GF[gfid].qu);
-		res->setQU(quvalue);
-		res->setWhere(MYEQUIP);
-		setEquipable(res, T_WG);
-	}
+	//	DynamicValueInt quvalue;
+	//	quvalue.setValue(GlobalInstance::map_GF[gfid].qu);
+	//	res->setQU(quvalue);
+	//	res->setWhere(MYEQUIP);
+	//	setEquipable(res, T_WG);
+	//}
 	/*******测试技能end*********/
 	for (int i = 0; i < 2; i++)
 	{
@@ -597,9 +597,9 @@ GongFa* Hero::checkSkillWg()
 		GongFa* gf = (GongFa*)getEquipable(t[i]);
 
 		/*******测试技能start*********/
-		if (gf != NULL /*&& GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1*/)
+		//if (gf != NULL /*&& GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1*/)
 		/*******测试技能end*********/
-		//if (gf != NULL && GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1)
+		if (gf != NULL && GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1)
 		{
 			//新手引导100%放技能
 			if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
@@ -611,9 +611,9 @@ GongFa* Hero::checkSkillWg()
 			if (i == 0)
 			{
 				/*******测试技能start*********/
-				if (m_fightround >= 0/*&& GlobalInstance::map_GF[gf->getId()].skillrnd*/)
+				//if (m_fightround >= 0)
 				/*******测试技能end*********/
-				//if (m_fightround >= 0 && GlobalInstance::map_GF[gf->getId()].skillrnd)
+				if (m_fightround >= GlobalInstance::map_GF[gf->getId()].skillrnd)
 				{
 					m_fightround = 0;
 					gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
@@ -623,8 +623,10 @@ GongFa* Hero::checkSkillWg()
 			else
 			{
 				int r = GlobalInstance::getInstance()->createRandomNum(100);
-
-				if (r < 100/*GlobalInstance::map_GF[gf->getId()].skillrnd*/)
+				/*******测试技能start*********/
+				//if (r < 100)
+				/*******测试技能end*********/
+				if (r < GlobalInstance::map_GF[gf->getId()].skillrnd)
 				{
 					gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
 					return gf;
