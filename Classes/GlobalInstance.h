@@ -336,6 +336,7 @@ typedef struct
 	std::map<std::string, std::string> map_pairheros;
 	std::string pairplayerid;
 	std::string pairnickname;
+	std::map<std::string, NpcFriendly> map_pairfriendly;
 	int pairscore;
 }MyMatchInfo;
 
@@ -661,6 +662,11 @@ public:
 	std::vector<std::vector<std::string>> getMatchRewardByLv(int lv);
 
 	int getMatchLvByScroe(int m_lv);
+
+	/****************************
+	竞技场解析匹配到的对手好友度
+	****************************/
+	void parsePairFriendly(std::string fstr);
 
 private:
 	static GlobalInstance* _Context;//类实例

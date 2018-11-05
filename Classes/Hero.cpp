@@ -1,10 +1,8 @@
 ﻿#include "Hero.h"
 #include "Resource.h"
 #include "CommonFuncs.h"
-#include "GlobalInstance.h"
 #include "Const.h"
 #include "ResBase.h"
-#include "GlobalInstance.h"
 #include "Equip.h"
 #include "GongFa.h"
 #include "MyRes.h"
@@ -15,6 +13,8 @@
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/jni/JniHelper.h"
 #endif
+
+std::map<std::string, NpcFriendly> map_friendly;
 
 Hero::Hero()
 {
@@ -79,7 +79,17 @@ float Hero::getHp()
 	{
 		m_hp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[0] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
 		std::map<std::string, NpcFriendly>::iterator it;
-		for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+
+		if (m_ftype == 0)
+		{
+			map_friendly = GlobalInstance::map_myfriendly;
+		}
+		else if (m_ftype == 1)
+		{
+			map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+		}
+
+		for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
 		{
 			std::string nid = it->first;
 			for (unsigned int i = 0; i < it->second.relation.size(); i++)
@@ -219,7 +229,16 @@ float Hero::getAtk()
 	}
 
 	std::map<std::string, NpcFriendly>::iterator it;
-	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+	if (m_ftype == 0)
+	{
+		map_friendly = GlobalInstance::map_myfriendly;
+	}
+	else if (m_ftype == 1)
+	{
+		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+	}
+
+	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
 	{
 		std::string nid = it->first;
 		for (unsigned int i = 0; i < it->second.relation.size(); i++)
@@ -279,7 +298,16 @@ float Hero::getDf()
 	}
 
 	std::map<std::string, NpcFriendly>::iterator it;
-	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+	if (m_ftype == 0)
+	{
+		map_friendly = GlobalInstance::map_myfriendly;
+	}
+	else if (m_ftype == 1)
+	{
+		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+	}
+
+	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
 	{
 		std::string nid = it->first;
 		for (unsigned int i = 0; i < it->second.relation.size(); i++)
@@ -363,7 +391,16 @@ float Hero::getAtkSpeed()
 	}
 
 	std::map<std::string, NpcFriendly>::iterator it;
-	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+	if (m_ftype == 0)
+	{
+		map_friendly = GlobalInstance::map_myfriendly;
+	}
+	else if (m_ftype == 1)
+	{
+		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+	}
+
+	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
 	{
 		std::string nid = it->first;
 		for (unsigned int i = 0; i < it->second.relation.size(); i++)
@@ -406,7 +443,16 @@ float Hero::getCrit()
 	}
 
 	std::map<std::string, NpcFriendly>::iterator it;
-	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+	if (m_ftype == 0)
+	{
+		map_friendly = GlobalInstance::map_myfriendly;
+	}
+	else if (m_ftype == 1)
+	{
+		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+	}
+
+	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
 	{
 		std::string nid = it->first;
 		for (unsigned int i = 0; i < it->second.relation.size(); i++)
@@ -449,7 +495,16 @@ float Hero::getDodge()
 	}
 
 	std::map<std::string, NpcFriendly>::iterator it;
-	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+	if (m_ftype == 0)
+	{
+		map_friendly = GlobalInstance::map_myfriendly;
+	}
+	else if (m_ftype == 1)
+	{
+		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+	}
+
+	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
 	{
 		std::string nid = it->first;
 		for (unsigned int i = 0; i < it->second.relation.size(); i++)

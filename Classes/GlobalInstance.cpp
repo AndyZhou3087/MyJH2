@@ -1981,6 +1981,46 @@ int GlobalInstance::getMatchLvByScroe(int m_lv)
 	return lv;
 }
 
+void GlobalInstance::parsePairFriendly(std::string fstr)
+{	
+	GlobalInstance::myMatchInfo.map_pairfriendly.clear();
+	if (fstr.length() > 0)
+	{
+		std::vector<std::string> vec_fstr;
+		CommonFuncs::split(fstr, vec_fstr, ";");
+
+		for (unsigned int i = 0; i < vec_fstr.size(); i++)
+		{
+			std::vector<std::string> vec_one;
+			CommonFuncs::split(vec_fstr[i], vec_one, "-");
+			if (vec_one.size() >= 2)
+			{
+				std::string nid = vec_one[0];
+				int ralation = atoi(vec_one[i].c_str());
+				NpcFriendly s_f;
+				s_f.npcid = nid;
+				s_f.friendly = 0;
+				if (ralation == NPC_COUPEL + 1)
+				{
+					s_f.relation.push_back(1);
+					s_f.relation.push_back(3);
+				}
+				else if (ralation == NPC_COUPEL + 2)
+				{
+					s_f.relation.push_back(1);
+					s_f.relation.push_back(2);
+				}
+				else
+				{
+					s_f.relation.push_back(ralation);
+				}
+
+				GlobalInstance::myMatchInfo.map_pairfriendly[nid] = s_f;
+			}
+		}
+	}
+}
+
 bool GlobalInstance::checkNewQuest()
 {
 	//主线
