@@ -1,4 +1,4 @@
-#include "MyRes.h"
+﻿#include "MyRes.h"
 #include "DataSave.h"
 #include "Equipable.h"
 #include "Const.h"
