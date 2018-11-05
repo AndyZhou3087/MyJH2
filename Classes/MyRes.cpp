@@ -199,6 +199,10 @@ void MyRes::Add(ResBase* res, int count, int inwhere)
 			dvalue.setValue(1);
 			eres->setCount(dvalue);
 
+			DynamicValueInt dlv;
+			dlv.setValue(ores->getLv().getValue());
+			eres->setLv(dlv);
+
 			DynamicValueInt quvalue;
 			quvalue.setValue(res->getQU().getValue());
 			eres->setQU(quvalue);
@@ -222,6 +226,10 @@ void MyRes::Add(ResBase* res, int count, int inwhere)
 			DynamicValueInt dvalue;
 			dvalue.setValue(1);
 			gres->setCount(dvalue);
+
+			DynamicValueInt dexp;
+			dexp.setValue(((GongFa*)res)->getExp().getValue());
+			gres->setExp(dexp);
 
 			DynamicValueInt quvalue;
 			quvalue.setValue(res->getQU().getValue());
@@ -276,6 +284,7 @@ int MyRes::Use(ResBase* res, int count, int where)
 {
 	int restype = res->getType();
 
+	int index = -1;
 	unsigned int i = 0;
 	for (i = 0; i < vec_MyResources.size(); i++)
 	{
@@ -288,6 +297,7 @@ int MyRes::Use(ResBase* res, int count, int where)
 
 				if (equip->getLv().getValue() == myequip->getLv().getValue() && equip->getQU().getValue() == myequip->getQU().getValue() && equip->vec_stones == myequip->vec_stones)
 				{
+					index = i;
 					break;
 				}
 			}
@@ -297,16 +307,21 @@ int MyRes::Use(ResBase* res, int count, int where)
 				GongFa* mygf = (GongFa*)vec_MyResources[i];
 				if (gf->getExp().getValue() == mygf->getExp().getValue() && gf->getQU().getValue() == gf->getQU().getValue())
 				{
+					index = i;
 					break;
 				}
 			}
 			else
 			{
+				index = i;
 				break;
 			}
 		}
 	}
-	return Use(i, count);
+	if (index >= 0)
+		return Use(i, count);
+	else
+		return 0;
 }
 
 int MyRes::Use(std::string resid, int count, int inwhere)
