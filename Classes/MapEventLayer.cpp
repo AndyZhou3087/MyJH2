@@ -370,9 +370,9 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			}
 			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= BETCOSTCOIN)
 			{
-				/*DynamicValueInt dvl;
+				DynamicValueInt dvl;
 				dvl.setValue(BETCOSTCOIN);
-				GlobalInstance::getInstance()->costMyCoinCount(dvl);*/
+				GlobalInstance::getInstance()->costMyCoinCount(dvl);
 			}
 			else
 			{
