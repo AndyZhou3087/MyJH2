@@ -446,9 +446,16 @@ void EquipDescLayer::updateAttr()
 	{
 		if (redpoint != NULL)
 		{
-			if (m_res->getType() >= T_WG && m_res->getType() <= T_NG && (m_res->getLv().getValue() + 1) < GlobalInstance::map_GF[m_res->getId()].vec_df.size() && GlobalInstance::getInstance()->getCanUpgradeCount("m00"))
+			if (m_res->getType() >= T_WG && m_res->getType() <= T_NG)
 			{
-				redpoint->setVisible(true);
+				if ((m_res->getLv().getValue() + 1) < GlobalInstance::map_GF[m_res->getId()].vec_df.size() && GlobalInstance::getInstance()->getCanUpgradeCount("m00"))
+				{
+					redpoint->setVisible(true);
+				}
+				else
+				{
+					redpoint->setVisible(false);
+				}
 			}
 			else if (m_res->getType() >= T_ARMOR && m_res->getType() <= T_FASHION)
 			{
