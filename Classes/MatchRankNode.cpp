@@ -6,6 +6,7 @@
 #include "AnimationEffect.h"
 #include "SoundManager.h"
 #include "DataSave.h"
+#include "MatchContentLayer.h"
 
 MatchRankNode::MatchRankNode()
 {
@@ -80,6 +81,13 @@ bool MatchRankNode::init(MyRankData herodata, int type)
 
 	if (type == 1)//ÎÒµÄÅÅÐÐ
 	{
+		MyRankData mydata;
+		mydata.matchscore = GlobalInstance::myMatchInfo.matchscore;
+		mydata.nickname = GlobalInstance::getInstance()->getMyNickName();
+		mydata.rank = GlobalInstance::myRankInfo.myrank;
+		mydata.map_otherheros = GlobalInstance::myMatchInfo.map_myheros;
+		m_herodata = mydata;
+
 		ranktext->setVisible(false);
 		rankimg->setVisible(false);
 		myranktext->setVisible(true);
@@ -87,8 +95,8 @@ bool MatchRankNode::init(MyRankData herodata, int type)
 		namelbl->setString(GlobalInstance::getInstance()->getMyNickName());
 		std::string str = StringUtils::format("%d", GlobalInstance::myMatchInfo.matchscore);
 		point->setString(str);
-		str = StringUtils::format("%d", GlobalInstance::getInstance()->getMatchLvByScroe(GlobalInstance::myMatchInfo.matchscore));
-		division->setString(str);
+		str = StringUtils::format("matchlvname_%d", GlobalInstance::getInstance()->getMatchLvByScroe(GlobalInstance::myMatchInfo.matchscore));
+		division->setString(ResourceLang::map_lang[str]);
 		herobox->loadTexture("ui/main_menu_box.png", cocos2d::ui::Widget::TextureResType::PLIST);
 		str = StringUtils::format("ui/h_%d_0.png", DataSave::getInstance()->getHeadId());
 		heroimg->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
@@ -108,8 +116,8 @@ bool MatchRankNode::init(MyRankData herodata, int type)
 		namelbl->setString(herodata.nickname);
 		std::string str = StringUtils::format("%d", herodata.matchscore);
 		point->setString(str);
-		str = StringUtils::format("%d", GlobalInstance::getInstance()->getMatchLvByScroe(herodata.matchscore));
-		division->setString(str);
+		str = StringUtils::format("matchlvname_%d", GlobalInstance::getInstance()->getMatchLvByScroe(herodata.matchscore));
+		division->setString(ResourceLang::map_lang[str]);
 		str = getFirstHeroPotential();
 		herobox->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 		str = getFirstHeroId();
@@ -198,6 +206,8 @@ void MatchRankNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		if (!clickflag)
 			return;
 
-		
+		MatchContentLayer* layer = MatchContentLayer::create(m_herodata);
+		g_mainScene->addChild(layer);
+		AnimationEffect::openAniEffect((Layer*)layer);
 	}
 }

@@ -40,7 +40,7 @@ public:
 	CC_SYNTHESIZE(int, m_changecount, ChangeCount);//转职，突破
 	CC_SYNTHESIZE(int, m_skillingtype, SkillingType);//触发的技能
 	CC_SYNTHESIZE(int, m_onchallengepos, Onchallengepos);//竞技场的位置
-	CC_SYNTHESIZE(int, m_isTop, Top);//方向，是上面还是下面，有一些技能有方向变换
+	CC_SYNTHESIZE(int, m_ftype, FTtype);//战斗类型，0-我自己，1--竞技场中对手，2--
 	//血量
 	float getHp();
 

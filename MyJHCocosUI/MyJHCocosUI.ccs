@@ -1195,7 +1195,11 @@
         <Project Name="marketLayer.csd" Type="Layer" />
         <Project Name="marketRefreshLayer.csd" Type="Layer" />
         <Project Name="marketResNode.csd" Type="Node" />
+        <Project Name="matchContentLayer.csd" Type="Layer" />
+        <Project Name="matchHeroNode.csd" Type="Node" />
         <Project Name="matchMainLayer.csd" Type="Layer" />
+        <Project Name="matchRankLayer.csd" Type="Layer" />
+        <Project Name="matchRankNode.csd" Type="Node" />
         <Project Name="matchRewardNode.csd" Type="Node" />
         <Project Name="matchRuleLayer.csd" Type="Layer" />
         <Project Name="matchVSLayer.csd" Type="Layer" />
@@ -1209,7 +1213,6 @@
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
-        <Project Name="matchRankLayer.csd" Type="Layer" />
         <Project Name="resDescLayer.csd" Type="Scene" />
         <Project Name="rewardLayer.csd" Type="Layer" />
         <Project Name="selectEquipLayer.csd" Type="Scene" />
@@ -1241,7 +1244,6 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="matchRankNode.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>

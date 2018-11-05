@@ -1300,6 +1300,9 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 {
 	this->setLocalZOrder(12);
 	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
+
+	if (enemyindex < 6)
+		effectname = StringUtils::format("effect/skill_%d_0_f.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
 	effectnode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
 	csbnode->addChild(effectnode, 3, "playskillani");
@@ -1330,8 +1333,6 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 			movex = -fabs(tanx) + offsety * sin(angle * M_PI / 180);
 		}
 		movey = tany - offsety * cos(angle * M_PI / 180);
-		if (tanz > 420)
-			effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
 	}
 	else
 	{
@@ -1344,17 +1345,6 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 		tanz = sqrt(tanx*tanx + tany * tany);
 		float tan_yx = std::fabs(tany) / std::fabs(tanx);
 		angle = 90 - atan(tan_yx) * 180 / M_PI;
-
-		for (int i = 0; i < effectnode->getChildrenCount(); i++)
-		{
-			Sprite* s = (Sprite*)effectnode->getChildren().at(i);
-			s->setFlippedY(true);
-			s->setAnchorPoint(Vec2(0.5f, 0.64f));
-		}
-
-		//effectnode->setPositionX(effectnode->getPositionX() + 50);
-		effectnode->setAnchorPoint(Vec2(0.5f, 0.64f));
-		effectnode->setPositionY(effectnode->getPositionY() - 170);
 		
 		if (tanx > 0)
 		{
@@ -1368,10 +1358,9 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 		}
 
 		movey = -fabs(tany) + offsety * cos(angle * M_PI / 180);
-		if (tanz > 420)
-			effectnode->runAction(Sequence::create(DelayTime::create(0.2f), MoveBy::create(1.0f, Vec2(movex, movey)), NULL));
 	}
-
+	if (tanz > 420)
+		effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, false);
