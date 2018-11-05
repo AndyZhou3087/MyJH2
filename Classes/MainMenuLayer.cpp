@@ -25,6 +25,8 @@
 
 USING_NS_CC;
 
+MainMenuLayer* g_MainMenuLayer = NULL;
+
 MainMenuLayer::MainMenuLayer()
 {
 
@@ -32,7 +34,7 @@ MainMenuLayer::MainMenuLayer()
 
 MainMenuLayer::~MainMenuLayer()
 {
-	
+	g_MainMenuLayer = NULL;
 }
 
 

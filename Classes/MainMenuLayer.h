@@ -73,5 +73,5 @@ private:
 	cocos2d::ui::Widget* tgiftbtn[3];
 	cocos2d::ui::Text* tgiftname[3];
 };
-
+extern MainMenuLayer* g_MainMenuLayer;
 #endif
