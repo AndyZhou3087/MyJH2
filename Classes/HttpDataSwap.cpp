@@ -409,13 +409,46 @@ void HttpDataSwap::postMyMatchHeros()
 				equipstr = equipstr.substr(0, equipstr.length() - 1);
 			}
 			herodata.append(equipstr);
-			writedoc.AddMember(rapidjson::Value(herokey.c_str(), allocator), rapidjson::Value(herodata.c_str(), allocator), allocator);
 		}
-		else
+
+		writedoc.AddMember(rapidjson::Value(herokey.c_str(), allocator), rapidjson::Value(herodata.c_str(), allocator), allocator);
+	}
+
+	std::string friendlystr;
+	std::map<std::string, NpcFriendly>::iterator it;
+	for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+	{
+		std::string nid = it->first;
+		int ralation = 0;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
 		{
-			writedoc.AddMember(rapidjson::Value(herokey.c_str(), allocator), rapidjson::Value(herodata.c_str(), allocator), allocator);
+			if (it->second.relation[i] == NPC_FRIEND)
+			{
+				ralation += NPC_FRIEND;
+			}
+			else if (it->second.relation[i] == NPC_MASTER)
+			{
+				ralation += NPC_MASTER;
+			}
+			else if (it->second.relation[i] == NPC_COUPEL)
+			{
+				ralation += NPC_COUPEL;
+			}
+		}
+		if (ralation == NPC_COUPEL && it->second.relation.size() == 2)//关系数值1，2，3，(1,2),(1,3)
+			ralation = 5;
+		if (ralation > 0)
+		{
+			std::string fonestr = StringUtils::format("%s-%d;", nid.substr(1).c_str(), ralation);
+			friendlystr.append(fonestr);
 		}
 	}
+
+	if (friendlystr.length() > 0)
+	{
+		friendlystr = friendlystr.substr(0, friendlystr.length() - 1);
+	}
+	writedoc.AddMember("friendly", rapidjson::Value(friendlystr.c_str(), allocator), allocator);
 
 	std::string jsonstr = JsonWriter(writedoc);
 	jsonstr = StringUtils::format("data=%s", jsonstr.c_str());
@@ -1018,11 +1051,13 @@ void HttpDataSwap::httpGetMatchPairDataCB(std::string retdata, int code, std::st
 					std::string herokey = StringUtils::format("hero%d", i);
 					std::string herodata = mydatav[herokey.c_str()].GetString();
 					GlobalInstance::myMatchInfo.map_pairheros[herokey] = herodata;
-
-					GlobalInstance::myMatchInfo.pairnickname = mydatav["nickname"].GetString();
-					GlobalInstance::myMatchInfo.pairplayerid = mydatav["playerid"].GetString();
-					GlobalInstance::myMatchInfo.pairscore = atoi(mydatav["matchscore"].GetString());
 				}
+				GlobalInstance::myMatchInfo.pairnickname = mydatav["nickname"].GetString();
+				GlobalInstance::myMatchInfo.pairplayerid = mydatav["playerid"].GetString();
+				GlobalInstance::myMatchInfo.pairscore = atoi(mydatav["matchscore"].GetString());
+
+				if (mydatav.HasMember("friendly"))
+					GlobalInstance::getInstance()->parsePairFriendly(mydatav["friendly"].GetString());
 			}
 		}
 		else

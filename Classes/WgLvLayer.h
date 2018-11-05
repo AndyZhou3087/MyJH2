@@ -32,6 +32,11 @@ private:
 	void onGoodsClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	void updataAtrrUI();
+
+	void addGfExp(int gftag);
+
+	void longTouchUpdate(float delay);
+	void cancelLongTouch();
 private:
 
 	GongFa* m_res;
@@ -81,6 +86,9 @@ private:
 	cocos2d::ui::Text* lvtext;
 	cocos2d::ui::Text* name;
 	int myprelv;
+
+	bool m_isLongPress;
+	Node* m_longTouchNode;
 };
 
 #endif
