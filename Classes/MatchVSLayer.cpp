@@ -189,7 +189,7 @@ void MatchVSLayer::parsePairHeros()
 			hero->setPotential(atoi(vec_tmp[3].c_str()));
 
 			hero->setSex(atoi(vec_tmp[4].c_str()));
-			hero->setRandAttr(atoi(vec_tmp[5].c_str()));
+			hero->setId(vec_tmp[5]);
 			hero->setChangeCount(atoi(vec_tmp[6].c_str()));
 			hero->setState(HS_ONCHALLENGE);
 			hero->setFTtype(1);
@@ -231,8 +231,6 @@ void MatchVSLayer::parsePairHeros()
 
 						CommonFuncs::split(vec_one[3], res->vec_stones, ",");
 
-						res->setWhos(hero->getName());
-
 						hero->setEquipable(res, m);
 					}
 					else if (m >= T_WG && m <= T_NG)
@@ -254,7 +252,6 @@ void MatchVSLayer::parsePairHeros()
 						dv2.setValue(atoi(vec_one[2].c_str()));
 						res->setExp(dv2);
 
-						res->setWhos(hero->getName());
 						hero->setEquipable(res, m);
 					}
 

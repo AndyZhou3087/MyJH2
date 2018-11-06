@@ -368,7 +368,7 @@ void HttpDataSwap::postMyMatchHeros()
 		if (GlobalInstance::myOnChallengeHeros[i] != NULL)
 		{
 			Hero* hero = GlobalInstance::myOnChallengeHeros[i];
-			herodata = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getChangeCount());
+			herodata = StringUtils::format("%s-%d-%d-%d-%d-%s-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getId().c_str(), hero->getChangeCount());
 
 			std::string equipstr;
 

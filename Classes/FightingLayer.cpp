@@ -93,7 +93,7 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 			FightHeroNode * fightHeroNode = FightHeroNode::create();
 			fightHeroNode->setPosition(145 + i % 3 * 215, 860 + i / 3 * 260);
 			FIGHTDATA_TYPE datatype = F_NPC;
-			if (enemyHeros[i]->getId().length() <= 0)
+			if (enemyHeros[i]->getId().length() > 10)
 				datatype = F_HERO;
 			fightHeroNode->setData(m_enemyHeros[i], datatype, FS_FIGHTING);
 			addChild(fightHeroNode, i, 6 + i);
@@ -315,7 +315,7 @@ void FightingLayer::clearSkillsData(int type)
 	{
 		for (unsigned int i = 0; i < m_enemyHeros.size(); i++)
 		{
-			if (m_enemyHeros[i] != NULL && m_enemyHeros[i]->getId().length() <= 0)//hero角色，
+			if (m_enemyHeros[i] != NULL && m_enemyHeros[i]->getId().length() > 10)//hero角色，
 			{
 				Hero* myhero = (Hero*)m_enemyHeros[i];
 				if (myhero != NULL)
@@ -370,7 +370,7 @@ void FightingLayer::heroFight(int fightertag)
 		}
 		for (unsigned int i = 0; i < vec_tmp.size(); i++)
 		{
-			if (vec_tmp[i] != NULL && vec_tmp[i]->getId().length() <= 0)
+			if (vec_tmp[i] != NULL && vec_tmp[i]->getId().length() > 10)
 			{
 				Hero* myhero = (Hero*)vec_tmp[i];
 				if (myhero != NULL && myhero->getState() != HS_DEAD && myhero->getSkillingType() >= 0)//释放技能中
@@ -403,7 +403,7 @@ void FightingLayer::heroFight(int fightertag)
 		
 		if (astype < 0)
 		{
-			if (vec_tmp[atindex]->getId().length() <= 0)
+			if (vec_tmp[atindex]->getId().length() > 10)
 			{
 				Hero* myhero = (Hero*)vec_tmp[atindex];
 				GongFa* gf = myhero->checkSkillWg();
@@ -731,7 +731,7 @@ void FightingLayer::showAtk(int fightertag)
 	}
 	else//NPC攻击
 	{
-		if (m_enemyHeros[fightertag - 6]->getId().length() <= 0)
+		if (m_enemyHeros[fightertag - 6]->getId().length() > 10)
 		{
 			heroFight(fightertag);
 		}

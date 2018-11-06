@@ -290,7 +290,7 @@ void GlobalInstance::saveHeroByIndex(int index)
 {
 	std::string herokey = StringUtils::format("hero%d", index);
 	Hero* hero = GlobalInstance::vec_myHeros[index];
-	std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%.2f-%d-%d-%.2f-%d-%d-%d-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getRandAttr(), hero->getState(), hero->getPos(), hero->getHp(), 
+	std::string datastr = StringUtils::format("%s-%d-%d-%d-%d-%s-%d-%d-%d-%d-%d-%d-%d-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getId().c_str(), hero->getState(), hero->getPos(), (int)hero->getHp(), 
 		hero->getTrainHour(), hero->getTrainTime(), hero->getPower().getValue(), hero->getPowerTime(), hero->getChangeCount());
 	DataSave::getInstance()->setHeroData(herokey, datastr);
 }
@@ -320,7 +320,7 @@ void GlobalInstance::loadMyHeros()
 					hero->setVocation(atoi(vec_tmp[2].c_str()));
 					hero->setPotential(atoi(vec_tmp[3].c_str()));
 					hero->setSex(atoi(vec_tmp[4].c_str()));
-					hero->setRandAttr(atof(vec_tmp[5].c_str()));
+					hero->setId(vec_tmp[5]);
 					int state = atoi(vec_tmp[6].c_str());
 					hero->setState(state);
 					int pos = atoi(vec_tmp[7].c_str());

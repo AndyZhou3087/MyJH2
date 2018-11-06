@@ -605,19 +605,10 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 						return;
 					}
 
-					Hero* hero = new Hero();
-					hero->setName(m_heroData->getName());
+					Hero* hero = new Hero(m_heroData);
 					DynamicValueInt dvint;
 					dvint.setValue(m_heroData->getExp().getValue());
 					hero->setExp(dvint);
-
-					hero->setVocation(m_heroData->getVocation());
-
-					hero->setPotential(m_heroData->getPotential());
-
-					hero->setSex(m_heroData->getSex());
-					hero->setRandAttr(m_heroData->getRandAttr());
-					hero->setChangeCount(m_heroData->getChangeCount());
 					hero->setState(HS_ONCHALLENGE);
 					hero->setOnchallengepos(carrycount + 1);
 					GlobalInstance::myOnChallengeHeros[carrycount] = hero;
@@ -633,6 +624,13 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				else if (m_heroData->getOnchallengepos() > 0)
 				{
 					int heropos = m_heroData->getOnchallengepos();
+
+					for (int k = T_ARMOR; k <= T_NG; k++)
+					{
+						Equipable* eres = GlobalInstance::myOnChallengeHeros[heropos - 1]->getEquipable(k);
+						if (eres != NULL && eres->getWhos().length() <= 0)
+							delete eres;
+					}
 
 					delete GlobalInstance::myOnChallengeHeros[heropos - 1];
 					GlobalInstance::myOnChallengeHeros[heropos - 1] = NULL;

@@ -31,6 +31,12 @@ MatchMainLayer::MatchMainLayer()
 	{
 		if (GlobalInstance::myOnChallengeHeros[i] != NULL)
 		{
+			for (int k = T_ARMOR; k <= T_NG; k++)
+			{
+				Equipable* eres = GlobalInstance::myOnChallengeHeros[i]->getEquipable(k);
+				if (eres != NULL && eres->getWhos().length() <= 0)
+					delete eres;
+			}
 			delete GlobalInstance::myOnChallengeHeros[i];
 			GlobalInstance::myOnChallengeHeros[i] = NULL;
 		}
@@ -306,7 +312,7 @@ void MatchMainLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_
 				{
 					for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 					{
-						if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getName().compare(GlobalInstance::myOnChallengeHeros[m]->getName()) == 0)
+						if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getId().compare(GlobalInstance::myOnChallengeHeros[m]->getId()) == 0)
 						{
 							GlobalInstance::vec_myHeros[i]->setOnchallengepos(GlobalInstance::myOnChallengeHeros[m]->getOnchallengepos());
 						}
@@ -363,6 +369,7 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			}
 			setMatchBtnStatus(1);
 			httptag = 2;
+			bindHeroData();
 			HttpDataSwap::init(this)->postMyMatchHeros();
 		}
 			break;
@@ -504,35 +511,27 @@ void MatchMainLayer::updateUI()
 			CommonFuncs::split(herodata, vec_heros, ";");
 			CommonFuncs::split(vec_heros[0], vec_tmp, "-");
 
-			std::string heroname = vec_tmp[0];
+			std::string heroid = vec_tmp[5];
 
 			for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 			{
-				if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getName().compare(heroname) == 0)
+				if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getId().compare(heroid) == 0)
 				{
 					Hero* myownhero = GlobalInstance::vec_myHeros[i];
-					Hero* hero = new Hero();
-					hero->setName(heroname);
+					Hero* hero = new Hero(myownhero);
 					DynamicValueInt dvint;
 					dvint.setValue(myownhero->getExp().getValue());
 					hero->setExp(dvint);
 
-					hero->setVocation(myownhero->getVocation());
-
-					hero->setPotential(myownhero->getPotential());
-
-					hero->setSex(myownhero->getSex());
-					hero->setRandAttr(myownhero->getRandAttr());
-					hero->setChangeCount(myownhero->getChangeCount());
 					hero->setState(HS_ONCHALLENGE);
 					hero->setOnchallengepos(index + 1);
 					GlobalInstance::myOnChallengeHeros[index] = hero;
 					GlobalInstance::vec_myHeros[i]->setOnchallengepos(index + 1);
 					m_myCardHerosNode[index]->setData(GlobalInstance::vec_myHeros[i]);
+
 				}
 			}
 			GlobalInstance::getInstance()->saveMyHeros();
-
 		}
 		else
 		{
@@ -564,6 +563,12 @@ void MatchMainLayer::delayShowFightResultLayer(float dt)
 	{
 		if (GlobalInstance::matchPairHeros[i] != NULL)
 		{
+			for (int k = T_ARMOR; k <= T_NG; k++)
+			{
+				Equipable* eres = GlobalInstance::matchPairHeros[i]->getEquipable(k);
+				if (eres != NULL)
+					delete eres;
+			}
 			delete GlobalInstance::matchPairHeros[i];
 			GlobalInstance::matchPairHeros[i] = NULL;
 		}
@@ -584,12 +589,12 @@ void MatchMainLayer::bindHeroData()
 			for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 			{
 				Hero* myhero = GlobalInstance::vec_myHeros[i];
-				if (myhero->getState() != HS_DEAD && myhero->getName().compare(GlobalInstance::myOnChallengeHeros[m]->getName()) == 0)
+				if (myhero->getState() != HS_DEAD && myhero->getId().compare(GlobalInstance::myOnChallengeHeros[m]->getId()) == 0)
 				{
 					DynamicValueInt dvint;
 					dvint.setValue(myhero->getExp().getValue());
 					GlobalInstance::myOnChallengeHeros[m]->setExp(dvint);
-
+					GlobalInstance::myOnChallengeHeros[m]->setName(myhero->getName());
 					GlobalInstance::myOnChallengeHeros[m]->setVocation(myhero->getVocation());
 					GlobalInstance::myOnChallengeHeros[m]->setChangeCount(myhero->getChangeCount());
 
@@ -599,14 +604,9 @@ void MatchMainLayer::bindHeroData()
 						if (eres != NULL)
 							GlobalInstance::myOnChallengeHeros[m]->setEquipable(eres, k);
 					}
+					GlobalInstance::myOnChallengeHeros[m]->setState(HS_ONCHALLENGE);
 					GlobalInstance::myOnChallengeHeros[m]->setHp(GlobalInstance::myOnChallengeHeros[m]->getMaxHp());
 				}
-			}
-
-			if (GlobalInstance::myOnChallengeHeros[m] != NULL)
-			{
-				GlobalInstance::myOnChallengeHeros[m]->setState(HS_ONCHALLENGE);
-				GlobalInstance::myOnChallengeHeros[m]->setHp(GlobalInstance::myOnChallengeHeros[m]->getMaxHp());
 			}
 		}
 	}

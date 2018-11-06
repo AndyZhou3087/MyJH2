@@ -253,7 +253,7 @@ void FightHeroNode::update(float dt)
 			for (unsigned int i = 0; i < 6; i++)
 			{
 				FightHeroNode* fnode = (FightHeroNode*)fighting->getChildByTag(6 + i);
-				if (fnode != NULL && fnode->getData() != NULL && fnode->getData()->getId().length() <= 0)
+				if (fnode != NULL && fnode->getData() != NULL && fnode->getData()->getId().length() > 10)
 				{
 					Hero* myhero = (Hero*)fnode->getData();
 					if (myhero != NULL && myhero->getState() != HS_DEAD && myhero->getSkillingType() >= 0)//释放技能中
@@ -476,7 +476,7 @@ void FightHeroNode::delayShowReviveAnim(float dt)
 
 bool FightHeroNode::checkReviveSkill()
 {
-	if (m_Data->getId().length() <= 0)
+	if (m_Data->getId().length() > 10)
 	{
 		Hero* hero = (Hero*)m_Data;
 		GongFa* gf = (GongFa*)hero->getEquipable(T_NG);
@@ -680,7 +680,7 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 {
 	GongFa* gf = m_Data->checkSkillWg();
 
-	if (m_Data->getId().length() <= 0)//是否是自己的英雄
+	if (m_Data->getId().length() > 10)//是否是自己的英雄
 	{
 		if (gf->getSkillCount() <= 0)
 		{

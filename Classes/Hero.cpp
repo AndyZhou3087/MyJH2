@@ -63,6 +63,7 @@ Hero::Hero(Hero* hero)
 	m_powertime = hero->getPowerTime();
 	m_changecount = hero->getChangeCount();
 	m_lastlevel = hero->getLevel();
+	m_id = hero->getId();
 	for (int i = 0; i < 6; i++)
 	{
 		takeOnEquip[i] = NULL;

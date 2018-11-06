@@ -45,6 +45,8 @@ private:
 	void loadData();
 
 	void loadLocalData();
+
+	void addHeroId();
 private:
 	bool isGetPlayerId;
 	Node *m_loadingbar;

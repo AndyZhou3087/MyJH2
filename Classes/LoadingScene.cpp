@@ -264,6 +264,9 @@ void LoadingScene::delayLoadLocalData(float dt)
 	//加载好友数据
 	GlobalInstance::getInstance()->loadNpcFriendly();
 
+	//本地英雄加上ID兼容上一个版本
+	addHeroId();
+
 	//数据处理完，
 	//加载技能特效
 	curEffectPlistNum = 0;
@@ -272,6 +275,26 @@ void LoadingScene::delayLoadLocalData(float dt)
 	//this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.1f);
 }
 
+//本地英雄加上ID兼容上一个版本
+void LoadingScene::addHeroId()
+{
+	int count = 0;
+	bool needsave = false;
+	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+	{
+		Hero * hero = GlobalInstance::vec_myHeros[i];
+		if (hero->getId().length() > 10)
+		{
+			needsave = true;
+			count--;
+			int systime = GlobalInstance::getInstance()->getSysSecTime() + count;
+			std::string heroid = StringUtils::format("%d%02d", systime, GlobalInstance::getInstance()->createRandomNum(100));
+			hero->setId(heroid);
+		}
+	}
+	if (needsave)
+		GlobalInstance::getInstance()->saveMyHeros();
+}
 
 void LoadingScene::delayGetServerData(float dt)
 {

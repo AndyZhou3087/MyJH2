@@ -295,6 +295,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 			}
 			moditybtn->setVisible(false);
 			m_editName->setEnabled(false);
+			pageView->setEnabled(true);
 		}
 		else
 		{
@@ -757,6 +758,10 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				m_heroData->setState(HS_OWNED);
 				//加入到我的英雄列表
 				Hero* myhero = new Hero(m_heroData);
+
+				std::string heroid = StringUtils::format("%d%02d", GlobalInstance::getInstance()->getSysSecTime(), GlobalInstance::getInstance()->createRandomNum(100));
+
+				myhero->setId(heroid);
 
 				GlobalInstance::vec_myHeros.push_back(myhero);
 				//保存数据

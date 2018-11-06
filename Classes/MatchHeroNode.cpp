@@ -144,8 +144,6 @@ bool MatchHeroNode::init(int index, std::string herostr)
 
 					CommonFuncs::split(vec_one[3], res->vec_stones, ",");
 
-					res->setWhos(hero->getName());
-
 					hero->setEquipable(res, m);
 				}
 				else if (m >= T_WG && m <= T_NG)
@@ -166,8 +164,6 @@ bool MatchHeroNode::init(int index, std::string herostr)
 					DynamicValueInt dv2;
 					dv2.setValue(atoi(vec_one[2].c_str()));
 					res->setExp(dv2);
-
-					res->setWhos(hero->getName());
 					hero->setEquipable(res, m);
 				}
 			}
