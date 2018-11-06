@@ -97,6 +97,24 @@ bool NpcgiveLayer::init(std::string npcid)
 	cocos2d::ui::ImageView* givetext = (cocos2d::ui::ImageView*)givebtn->getChildByName("text");
 	givetext->loadTexture(ResourcePath::makeTextImgPath("npcgive_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+	desc = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
+	int f = GlobalInstance::map_npcrelation[npcid].friendneed - GlobalInstance::map_myfriendly[npcid].friendly;
+	if (f <= 0)
+	{
+		f = 0;
+	}
+	int m = GlobalInstance::map_npcrelation[npcid].masterneed - GlobalInstance::map_myfriendly[npcid].friendly;
+	if (m <= 0)
+	{
+		m = 0;
+	}
+	int c = GlobalInstance::map_npcrelation[npcid].marryneed - GlobalInstance::map_myfriendly[npcid].friendly;
+	if (c <= 0)
+	{
+		c = 0;
+	}
+	str = StringUtils::format(ResourceLang::map_lang["npcgivedesc"].c_str(), f, m, c);
+	desc->setString(str);
 
 	int startx[] = { 360, 270 ,210 };
 	int offsetx[] = { 0, 180, 150 };
@@ -176,12 +194,14 @@ void NpcgiveLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				MovingLabel::show(ResourceLang::map_lang["selectnpcgive"]);
 				return;
 			}
-			int friendly = GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount;
-			GlobalInstance::map_myfriendly[m_npcid].friendly += friendly;
 			if (GlobalInstance::map_myfriendly[m_npcid].friendly > GlobalInstance::map_npcrelation[m_npcid].friendmax)
 			{
 				GlobalInstance::map_myfriendly[m_npcid].friendly = GlobalInstance::map_npcrelation[m_npcid].friendmax;
+				MovingLabel::show(ResourceLang::map_lang["npcgivemost"]);
+				return;
 			}
+			int friendly = GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount;
+			GlobalInstance::map_myfriendly[m_npcid].friendly += friendly;
 			NpcLayer* npclayer = (NpcLayer*)this->getParent();
 			if (npclayer != NULL)
 			{
@@ -300,6 +320,24 @@ void NpcgiveLayer::updateCaryyCountLbl()
 	int friendly = GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount;
 	str = StringUtils::format("%d", friendly);
 	m_friendly->setString(str);
+
+	int f = GlobalInstance::map_npcrelation[m_npcid].friendneed - GlobalInstance::map_myfriendly[m_npcid].friendly - friendly;
+	if (f <= 0)
+	{
+		f = 0;
+	}
+	int m = GlobalInstance::map_npcrelation[m_npcid].masterneed - GlobalInstance::map_myfriendly[m_npcid].friendly - friendly;
+	if (m <= 0)
+	{
+		m = 0;
+	}
+	int c = GlobalInstance::map_npcrelation[m_npcid].marryneed - GlobalInstance::map_myfriendly[m_npcid].friendly - friendly;
+	if (c <= 0)
+	{
+		c = 0;
+	}
+	str = StringUtils::format(ResourceLang::map_lang["npcgivedesc"].c_str(), f, m, c);
+	desc->setString(str);
 }
 
 void NpcgiveLayer::longTouchUpdate(float delay)
