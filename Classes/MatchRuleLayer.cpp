@@ -59,14 +59,16 @@ bool MatchRuleLayer::init()
 	title2->setVisible(false);
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scrollView");
-	Label* contentlbl = Label::createWithTTF(ResourceLang::map_lang["matchruletext"], FONT_NAME, 25);
+	std::string str = CommonFuncs::replace_all(ResourceLang::map_lang["matchruletext"], "\\n", "\n");
+	Label* contentlbl = Label::createWithTTF(str, FONT_NAME, 25);
 	contentlbl->setAnchorPoint(Vec2(0, 1));
 	contentlbl->setColor(Color3B(255, 255, 255));
 	contentlbl->enableShadow(Color4B::BLACK, Size(1, -1));
 	contentlbl->setLineBreakWithoutSpace(true);
 	contentlbl->setMaxLineWidth(scrollView->getContentSize().width);
+	contentlbl->setLineSpacing(8);
 	scrollView->addChild(contentlbl);
-	int innerheight = contentlbl->getStringNumLines() * 25;//contentlbl->getHeight();
+	int innerheight = contentlbl->getStringNumLines() * 33;//contentlbl->getHeight();
 	int contentheight = scrollView->getContentSize().height;
 	if (innerheight < contentheight)
 		innerheight = contentheight;
