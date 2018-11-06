@@ -629,7 +629,10 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					{
 						Equipable* eres = GlobalInstance::myOnChallengeHeros[heropos - 1]->getEquipable(k);
 						if (eres != NULL && eres->getWhos().length() <= 0)
+						{
 							delete eres;
+							eres = NULL;
+						}
 					}
 
 					delete GlobalInstance::myOnChallengeHeros[heropos - 1];

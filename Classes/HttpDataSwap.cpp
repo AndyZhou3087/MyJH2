@@ -1039,6 +1039,8 @@ void HttpDataSwap::httpGetMatchPairDataCB(std::string retdata, int code, std::st
 		rapidjson::Document doc;
 		if (JsonReader(retdata, doc))
 		{
+			GlobalInstance::myMatchInfo.map_pairfriendly.clear();
+
 			rapidjson::Value& retv = doc["ret"];
 			ret = retv.GetInt();
 

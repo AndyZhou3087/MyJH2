@@ -35,7 +35,10 @@ MatchMainLayer::MatchMainLayer()
 			{
 				Equipable* eres = GlobalInstance::myOnChallengeHeros[i]->getEquipable(k);
 				if (eres != NULL && eres->getWhos().length() <= 0)
+				{
 					delete eres;
+					eres = NULL;
+				}
 			}
 			delete GlobalInstance::myOnChallengeHeros[i];
 			GlobalInstance::myOnChallengeHeros[i] = NULL;
@@ -568,7 +571,10 @@ void MatchMainLayer::delayShowFightResultLayer(float dt)
 			{
 				Equipable* eres = GlobalInstance::matchPairHeros[i]->getEquipable(k);
 				if (eres != NULL)
+				{
 					delete eres;
+					eres = NULL;
+				}
 			}
 			delete GlobalInstance::matchPairHeros[i];
 			GlobalInstance::matchPairHeros[i] = NULL;

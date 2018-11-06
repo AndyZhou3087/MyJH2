@@ -843,9 +843,18 @@ int FightingLayer::checkFightResult()
 	int esize = m_enemyHeros.size();
 	for (int i = 0; i < esize; i++)
 	{
-		if (m_enemyHeros[i] == NULL || m_enemyHeros[i]->getHp() <= 0)
+		if (m_enemyHeros[i] == NULL)
 		{
-			index++;
+			if (m_enemyHeros[i]->getId().length <= 10)//地图中的NPC
+			{
+				if (m_enemyHeros[i]->getHp() <= 0)//地图中的NPC
+					index++;
+			}
+			else
+			{
+				if (((Hero*)m_enemyHeros[i])->getState() == HS_DEAD)
+					index++;
+			}
 		}
 	}
 	if (index == esize)

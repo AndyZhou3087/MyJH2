@@ -18,6 +18,15 @@ MatchHeroNode::MatchHeroNode()
 
 MatchHeroNode::~MatchHeroNode()
 {
+	for (int k = T_ARMOR; k <= T_NG; k++)
+	{
+		Equipable* eres = hero->getEquipable(k);
+		if (eres != NULL)
+		{
+			delete eres;
+			eres = NULL;
+		}
+	}
 	delete hero;
 }
 

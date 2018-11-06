@@ -283,7 +283,7 @@ void LoadingScene::addHeroId()
 	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 	{
 		Hero * hero = GlobalInstance::vec_myHeros[i];
-		if (hero->getId().length() < 10)
+		if (hero->getId().length() <= 10)
 		{
 			needsave = true;
 			count--;
