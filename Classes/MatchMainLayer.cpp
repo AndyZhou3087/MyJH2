@@ -351,6 +351,7 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				return;
 			}
 			httptag = 1;
+			bindHeroData();
 			HttpDataSwap::init(this)->postMyMatchHeros();
 			break;
 		case 1002://rule
