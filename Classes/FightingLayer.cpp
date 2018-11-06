@@ -845,7 +845,7 @@ int FightingLayer::checkFightResult()
 	{
 		if (m_enemyHeros[i] == NULL)
 		{
-			if (m_enemyHeros[i]->getId().length <= 10)//地图中的NPC
+			if (m_enemyHeros[i]->getId().length() <= 10)//地图中的NPC
 			{
 				if (m_enemyHeros[i]->getHp() <= 0)//地图中的NPC
 					index++;

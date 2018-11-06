@@ -1194,7 +1194,7 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 				redpointArr[i]->setVisible(false);
 				if (m_res != NULL)
 				{
-					if ((GlobalInstance::getInstance()->getCanUpgradeCount("m00") && (m_res->getLv().getValue() + 1) < GlobalInstance::map_GF[m_res->getId()].vec_df.size()) || GlobalInstance::getInstance()->compareHighEquip(equiptype[i], m_heroData))
+					if ((GlobalInstance::getInstance()->getCanUpgradeCount("m00") && (m_res->getLv().getValue() + 1) < (int)GlobalInstance::map_GF[m_res->getId()].vec_df.size()) || GlobalInstance::getInstance()->compareHighEquip(equiptype[i], m_heroData))
 					{
 						redpointArr[i]->setVisible(true);
 					}

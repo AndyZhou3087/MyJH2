@@ -930,7 +930,7 @@ void HttpDataSwap::httpGetMyMatchRankingCB(std::string retdata, int code, std::s
 				rapidjson::Value& mydatav = doc["data"];
 
 				GlobalInstance::myRankInfo.vec_rankData.clear();
-				for (int m = 0; m < mydatav.Size(); m++)
+				for (unsigned int m = 0; m < mydatav.Size(); m++)
 				{
 					MyRankData data;
 					data.rank = m;
