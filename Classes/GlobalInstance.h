@@ -668,6 +668,9 @@ public:
 	****************************/
 	void parsePairFriendly(std::string fstr);
 
+	//判断是否有可升级建筑
+	bool isCanUpgradeBuilding();
+
 private:
 	static GlobalInstance* _Context;//类实例
 

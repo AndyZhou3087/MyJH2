@@ -35,6 +35,7 @@ private:
 	Node* m_longTouchNode;
 	bool m_isLongPress;
 	std::vector<std::string> vec_rewards;
+	cocos2d::ui::Text* desc;
 };
 
 #endif

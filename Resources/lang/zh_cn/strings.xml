@@ -358,4 +358,6 @@
 	<s name="matchrewardget">点击可领取奖励</s>
 	<s name="matchgetreward">奖励已领取</s>
 	<s name="matchnosorttext">未排位&#xA;%s</s>
+	<s name="npcgivedesc">结交还需：%d,拜师还需：%d,结亲还需：%d</s>
+	<s name="npcgivemost">好友度已达上限</s>
 </strings>

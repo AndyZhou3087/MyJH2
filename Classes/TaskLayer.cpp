@@ -324,8 +324,13 @@ void TaskLayer::updateContent(int category)
 			vec_all.push_back(vec_get[i]);
 		}
 
+		bool isCanUp = GlobalInstance::getInstance()->isCanUpgradeBuilding();
 		for (unsigned int i = 0; i < vec_all.size(); i++)
 		{
+			if (!isCanUp && vec_all[i]->type == UPGRADE_BUILDING && vec_all[i]->state == DAILY_UNFINISHED)
+			{
+				continue;
+			}
 			Node* node = TaskDailyNode::create(vec_all[i]);
 			scrollview->addChild(node);
 
