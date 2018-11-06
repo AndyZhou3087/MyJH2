@@ -76,23 +76,15 @@ bool MatchContentLayer::init(MyRankData herodata)
 	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(MatchContentLayer::onBtnClick, this));
 
-	std::vector<std::string> vec_heronode;
+	int index = 0;
 	std::map<std::string, std::string>::iterator it;
 	for (it = herodata.map_otherheros.begin(); it != herodata.map_otherheros.end(); it++)
 	{
-		if (it->second.length() > 0)
-		{
-			vec_heronode.push_back(it->second);
-		}
-	}
-
-	for (unsigned int i = 0; i < vec_heronode.size(); i++)
-	{
-		MatchHeroNode* node = MatchHeroNode::create(vec_heronode[i]);
+		MatchHeroNode* node = MatchHeroNode::create(index, it->second);
 		this->addChild(node);
-		node->setPosition(Vec2(153 + (i % 3) * 215, 686 - (i / 3) * 251));
+		node->setPosition(Vec2(153 + (index % 3) * 215, 686 - (index / 3) * 251));
+		index++;
 	}
-
 
 	//фа╠ноб╡Ц╣Ц╩В
 	auto listener = EventListenerTouchOneByOne::create();

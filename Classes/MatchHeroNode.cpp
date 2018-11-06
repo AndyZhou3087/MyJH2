@@ -20,10 +20,10 @@ MatchHeroNode::~MatchHeroNode()
 	delete hero;
 }
 
-MatchHeroNode* MatchHeroNode::create(std::string herostr)
+MatchHeroNode* MatchHeroNode::create(int index, std::string herostr)
 {
 	MatchHeroNode *pRet = new(std::nothrow)MatchHeroNode();
-	if (pRet && pRet->init(herostr))
+	if (pRet && pRet->init(index, herostr))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -36,7 +36,7 @@ MatchHeroNode* MatchHeroNode::create(std::string herostr)
 	}
 }
 
-bool MatchHeroNode::init(std::string herostr)
+bool MatchHeroNode::init(int index, std::string herostr)
 {
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("matchHeroNode.csb"));
 	this->addChild(csbnode, 0, "csbnode");
@@ -51,6 +51,9 @@ bool MatchHeroNode::init(std::string herostr)
 	cocos2d::ui::Text* lv = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
 	//ְҵ
 	cocos2d::ui::Text* vocation = (cocos2d::ui::Text*)csbnode->getChildByName("vocation");
+
+	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
+	desclbl->setVisible(false);
 
 	for (int i = 1; i <= 5; i++)
 	{
@@ -68,7 +71,7 @@ bool MatchHeroNode::init(std::string herostr)
 		CommonFuncs::split(vec_heros[0], vec_tmp, "-");
 
 		std::string str = vec_tmp[0];
-		Hero* hero = new Hero();
+		hero = new Hero();
 		hero->setName(str);
 		DynamicValueInt dvint;
 		dvint.setValue(atoi(vec_tmp[1].c_str()));
@@ -164,11 +167,22 @@ bool MatchHeroNode::init(std::string herostr)
 					res->setWhos(hero->getName());
 					hero->setEquipable(res, m);
 				}
-
 			}
 		}
 	}
+	else
+	{
+		hbox->loadTexture("images/cardherobox_.png", cocos2d::ui::Widget::TextureResType::LOCAL);
+		head->setVisible(false);
+		namelbl->setVisible(false);
+		lv->setVisible(false);
+		vocation->setVisible(false);
+		csbnode->getChildByName("cardnamebox")->setVisible(false);
+		desclbl->setVisible(true);
 
-
+		std::string indexstr = StringUtils::format("selheronum%d", index + 1);
+		std::string descstr = StringUtils::format(ResourceLang::map_lang["matchnosorttext"].c_str(), ResourceLang::map_lang[indexstr].c_str());
+		desclbl->setString(descstr);
+	}
 	return true;
 }

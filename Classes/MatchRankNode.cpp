@@ -106,7 +106,7 @@ bool MatchRankNode::init(MyRankData herodata, int type)
 		}
 		else
 		{
-			str = StringUtils::format("%d", GlobalInstance::myRankInfo.myrank);
+			str = StringUtils::format("%d", GlobalInstance::myRankInfo.myrank + 1);
 			myrank->setString(str);
 		}
 	}

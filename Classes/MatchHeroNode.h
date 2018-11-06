@@ -13,9 +13,9 @@ public:
 	MatchHeroNode();
 	~MatchHeroNode();
 
-	bool init(std::string herostr);
+	bool init(int index, std::string herostr);
 
-	static MatchHeroNode* create(std::string herostr);
+	static MatchHeroNode* create(int index, std::string herostr);
 
 private:
 	cocos2d::Node* stars[5];

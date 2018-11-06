@@ -16,7 +16,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="images/cardherobox_0.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="head" ActionTag="661038644" Tag="43" IconVisible="False" LeftMargin="-66.0000" RightMargin="-66.0000" TopMargin="-94.4999" BottomMargin="-66.5001" LeftEage="43" RightEage="43" TopEage="65" BottomEage="65" Scale9OriginX="43" Scale9OriginY="65" Scale9Width="46" Scale9Height="31" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="head" ActionTag="661038644" Tag="43" IconVisible="False" LeftMargin="-66.0000" RightMargin="-66.0000" TopMargin="-94.4999" BottomMargin="-66.5001" TouchEnable="True" LeftEage="43" RightEage="43" TopEage="65" BottomEage="65" Scale9OriginX="43" Scale9OriginY="65" Scale9Width="46" Scale9Height="31" ctype="ImageViewObjectData">
             <Size X="132.0000" Y="161.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position Y="13.9999" />
@@ -117,6 +117,18 @@
             <Position Y="-115.3425" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="93" G="69" B="11" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="desc" ActionTag="791532576" Tag="43" IconVisible="False" LeftMargin="-41.6245" RightMargin="-41.3755" TopMargin="-36.9999" BottomMargin="-9.0001" FontSize="20" LabelText="点击选择&#xA;①" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="83.0000" Y="46.0000" />
+            <AnchorPoint ScaleX="0.5015" ScaleY="0.5000" />
+            <Position Y="13.9999" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
