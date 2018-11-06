@@ -22,7 +22,7 @@ private:
 	Hero* hero;
 
 private:
-	//void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 };
 #endif

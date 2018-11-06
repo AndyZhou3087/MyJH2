@@ -11,7 +11,10 @@ USING_NS_CC;
 
 MatchVSLayer::MatchVSLayer()
 {
-
+	for (int i = 0; i < 6; i++)
+	{
+		GlobalInstance::matchPairHeros[i] = NULL;
+	}
 }
 
 MatchVSLayer::~MatchVSLayer()

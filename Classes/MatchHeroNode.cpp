@@ -8,6 +8,7 @@
 #include "DataSave.h"
 #include "GlobalInstance.h"
 #include "Equip.h"
+#include "HeroAttrLayer.h"
 
 MatchHeroNode::MatchHeroNode()
 {
@@ -45,6 +46,8 @@ bool MatchHeroNode::init(int index, std::string herostr)
 
 	cocos2d::ui::ImageView* hbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("hbox");
 	cocos2d::ui::ImageView* head = (cocos2d::ui::ImageView*)csbnode->getChildByName("head");
+
+	head->addTouchEventListener(CC_CALLBACK_2(MatchHeroNode::onBtnClick, this));
 	//Ãû×Ö
 	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	//µÈ¼¶
@@ -81,7 +84,7 @@ bool MatchHeroNode::init(int index, std::string herostr)
 		hero->setSex(atoi(vec_tmp[4].c_str()));
 		hero->setRandAttr(atoi(vec_tmp[5].c_str()));
 		hero->setChangeCount(atoi(vec_tmp[6].c_str()));
-		hero->setState(HS_ONCHALLENGE);
+		hero->setState(HS_TRAINING);
 		hero->setFTtype(1);
 
 		namelbl->setString(str);
@@ -96,7 +99,7 @@ bool MatchHeroNode::init(int index, std::string herostr)
 		str = StringUtils::format("images/cardherobox_%s.png", vec_tmp[3].c_str());
 		hbox->loadTexture(str, cocos2d::ui::Widget::TextureResType::LOCAL);
 
-		str = StringUtils::format("Lv.%d", hero->getLevel());
+		str = StringUtils::format("Lv.%d", hero->getLevel() + 1);
 		lv->setString(str);
 
 		for (int i = 0; i < hero->getChangeCount() - 1; i++)
@@ -169,9 +172,12 @@ bool MatchHeroNode::init(int index, std::string herostr)
 				}
 			}
 		}
+
+		GlobalInstance::matchPairHeros[index] = hero;
 	}
 	else
 	{
+		GlobalInstance::matchPairHeros[index] = NULL;
 		hbox->loadTexture("images/cardherobox_.png", cocos2d::ui::Widget::TextureResType::LOCAL);
 		head->setVisible(false);
 		namelbl->setVisible(false);
@@ -185,4 +191,16 @@ bool MatchHeroNode::init(int index, std::string herostr)
 		desclbl->setString(descstr);
 	}
 	return true;
+}
+
+void MatchHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	Node* clicknode = (Node*)pSender;
+
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		Layer* layer = HeroAttrLayer::create(hero, 4, 4);
+		g_mainScene->addChild(layer);
+	}
 }

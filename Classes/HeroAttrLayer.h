@@ -22,9 +22,9 @@ class HeroAttrLayer : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate
 public:
 	HeroAttrLayer();
 	~HeroAttrLayer();
-	static HeroAttrLayer* create(Hero* herodata, int fromwhere = 0, int clickwhere = 0);//0-客栈点击；1-训练场点击；2--医馆点击
+	static HeroAttrLayer* create(Hero* herodata, int fromwhere = 0, int clickwhere = 0);//fromwhere 0-客栈点击；1-训练场点击；2--医馆点击
 	virtual void onExit();
-    bool init(Hero* herodata, int fromwhere = 0, int clickwhere = 0);//clickwhere = 0，招募进，1-从客栈,训练场，医院进，2-卷轴进，3-出城进
+    bool init(Hero* herodata, int fromwhere = 0, int clickwhere = 0);//clickwhere = 0，招募进，1-从客栈,训练场，医院进，2-卷轴进，3-出城进，4-竞技场看出阵容
 
 	void changeEquip(ResBase* res);
 
