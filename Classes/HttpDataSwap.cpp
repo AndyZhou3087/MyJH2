@@ -948,6 +948,9 @@ void HttpDataSwap::httpGetMyMatchRankingCB(std::string retdata, int code, std::s
 						data.map_otherheros[herokey] = herodata;
 					}
 
+					if (mydatav[m].HasMember("friendly"))
+						data.friendly = mydatav[m].GetString();
+
 					GlobalInstance::myRankInfo.vec_rankData.push_back(data);
 				}
 			}

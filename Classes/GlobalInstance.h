@@ -347,6 +347,7 @@ typedef struct
 	std::string nickname;
 	int matchscore;
 	std::map<std::string, std::string> map_otherheros;
+	std::string friendly;
 }MyRankData;
 
 typedef struct

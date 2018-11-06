@@ -1984,7 +1984,6 @@ int GlobalInstance::getMatchLvByScroe(int m_lv)
 
 void GlobalInstance::parsePairFriendly(std::string fstr)
 {	
-	GlobalInstance::myMatchInfo.map_pairfriendly.clear();
 	if (fstr.length() > 0)
 	{
 		std::vector<std::string> vec_fstr;

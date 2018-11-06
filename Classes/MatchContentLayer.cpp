@@ -89,6 +89,9 @@ bool MatchContentLayer::init(MyRankData herodata)
 		index++;
 	}
 
+	GlobalInstance::myMatchInfo.map_pairfriendly.clear();
+	GlobalInstance::getInstance()->parsePairFriendly(herodata.friendly);
+
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
