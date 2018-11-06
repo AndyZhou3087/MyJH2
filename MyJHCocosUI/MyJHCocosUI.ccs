@@ -1209,6 +1209,7 @@
         <Project Name="messageNode.csd" Type="Node" />
         <Project Name="myHeroNode.csd" Type="Node" />
         <Project Name="newPopLayer.csd" Type="Layer" />
+        <Project Name="npcgiveLayer.csd" Type="Layer" />
         <Project Name="npcLayer.csd" Type="Layer" />
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />

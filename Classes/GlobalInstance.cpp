@@ -6,6 +6,7 @@
 #include "MyRes.h"
 #include "Const.h"
 #include "Quest.h"
+#include "Building.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
@@ -2019,6 +2020,19 @@ void GlobalInstance::parsePairFriendly(std::string fstr)
 			}
 		}
 	}
+}
+
+bool GlobalInstance::isCanUpgradeBuilding()
+{
+	if (Building::map_buildingDatas["7homehill"]->level.getValue() < Building::map_buildingDatas["7homehill"]->maxlevel.getValue() - 1
+		|| Building::map_buildingDatas["6innroom"]->level.getValue() < Building::map_buildingDatas["6innroom"]->maxlevel.getValue() - 1
+		|| Building::map_buildingDatas["5market"]->level.getValue() < Building::map_buildingDatas["5market"]->maxlevel.getValue() - 1
+		|| Building::map_buildingDatas["2smithy"]->level.getValue() < Building::map_buildingDatas["2smithy"]->maxlevel.getValue() - 1
+		|| Building::map_buildingDatas["4trainigroom"]->level.getValue() < Building::map_buildingDatas["4trainigroom"]->maxlevel.getValue() - 1)
+	{
+		return true;
+	}
+	return false;
 }
 
 bool GlobalInstance::checkNewQuest()

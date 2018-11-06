@@ -324,14 +324,18 @@ void TaskLayer::updateContent(int category)
 			vec_all.push_back(vec_get[i]);
 		}
 
+		bool isCanUp = GlobalInstance::getInstance()->isCanUpgradeBuilding();
 		for (unsigned int i = 0; i < vec_all.size(); i++)
 		{
+			if (!isCanUp && vec_all[i]->type == UPGRADE_BUILDING && vec_all[i]->state == DAILY_UNFINISHED)
+			{
+				continue;
+			}
 			Node* node = TaskDailyNode::create(vec_all[i]);
 			scrollview->addChild(node);
 
 			node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
 			node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
-			//node->setPosition(Vec2(scrollview->getContentSize().width / 2, innerheight - i*itemheight - itemheight*0.5));
 		}
 	}
 	
