@@ -278,6 +278,24 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 				}
 			}
 		}
+		else if (fromwhere == 4)//竞技场看阵容
+		{
+			for (int i = 0; i < 6; i++)
+			{
+				if (GlobalInstance::matchPairHeros[i] != NULL)
+				{
+					vec_norheros.push_back(GlobalInstance::matchPairHeros[i]);
+				}
+			}
+			for (int i = 0; i < equipnode->getChildrenCount(); i++)
+			{
+				cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
+				node->setEnabled(false);
+				redpointArr[i]->setOpacity(0);
+			}
+			moditybtn->setVisible(false);
+			m_editName->setEnabled(false);
+		}
 		else
 		{
 			for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
@@ -967,8 +985,11 @@ void HeroAttrLayer::takeOn(ResBase* res)
 	Equipable* equipable = (Equipable*)res;
 	equipable->setWhere(MYEQUIP);
 	equipable->setWhos(m_heroData->getName());
+	MyRes::saveData();
+
 	m_heroData->setEquipable((Equipable*)res, res->getType());
 	updateEquipUi(res, clickindex);
+
 	m_heroData->setHp(m_heroData->getMaxHp());
 }
 
@@ -976,6 +997,8 @@ void HeroAttrLayer::takeOff(ResBase* res)
 {
 	res->setWhere(MYSTORAGE);
 	m_heroData->setEquipable(NULL, res->getType());
+
+	MyRes::saveData();
 	updateEquipUi(NULL, clickindex);
 	m_heroData->setHp(m_heroData->getMaxHp());
 }
@@ -1039,7 +1062,6 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 	}
 	qubox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 	resimg->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
-	MyRes::saveData();
 
 	for (int i = 0; i < equipnode->getChildrenCount(); i++)
 	{
@@ -1047,10 +1069,17 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 		cocos2d::ui::ImageView* qubox = (cocos2d::ui::ImageView*)node->getChildByName("qubox");
 		if (qubox->getRenderFile().file.compare("ui/heroattradd.png") == 0)
 		{
-			if (MyRes::hasResByType(equiptype[i]))
-				qubox->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
+			if (m_fromwhere != 4)
+			{
+				if (MyRes::hasResByType(equiptype[i]))
+					qubox->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
+				else
+					qubox->setVisible(false);
+			}
 			else
+			{
 				qubox->setVisible(false);
+			}
 		}
 	}
 
