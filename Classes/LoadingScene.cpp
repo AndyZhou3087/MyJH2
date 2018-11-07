@@ -286,7 +286,7 @@ void LoadingScene::addHeroId()
 		if (hero->getId().length() <= 10)
 		{
 			needsave = true;
-			count--;
+			count-=2;
 			int systime = GlobalInstance::getInstance()->getSysSecTime() + count;
 			std::string heroid = StringUtils::format("%d%02d", systime, GlobalInstance::getInstance()->createRandomNum(100));
 			hero->setId(heroid);
