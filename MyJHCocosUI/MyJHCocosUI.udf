@@ -10,10 +10,9 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="npcgiveLayer.csd" />
-          <FilePathData Path="npcLayer.csd" />
+          <FilePathData Path="matchRuleLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="npcgiveLayer.csd" />
+        <ActiveDocument Path="matchRuleLayer.csd" />
       </Value>
     </Item>
   </Properties>
