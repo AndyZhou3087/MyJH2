@@ -313,10 +313,16 @@ void TaskLayer::updateContent(int category)
 		for (unsigned int i = 0; i < vec_fin.size(); i++)
 		{
 			vec_all.push_back(vec_fin[i]);
-
 		}
+
+		bool isCanUp = GlobalInstance::getInstance()->isCanUpgradeBuilding();
+		bool isAllf = GlobalInstance::getInstance()->isAllFinishBranch();
 		for (unsigned int i = 0; i < vec_unfin.size(); i++)
 		{
+			if ((!isCanUp && vec_unfin[i]->type == UPGRADE_BUILDING) || (isAllf && vec_unfin[i]->type == FINISH_BRANCH))
+			{
+				continue;
+			}
 			vec_all.push_back(vec_unfin[i]);
 		}
 		for (unsigned int i = 0; i < vec_get.size(); i++)
@@ -324,13 +330,15 @@ void TaskLayer::updateContent(int category)
 			vec_all.push_back(vec_get[i]);
 		}
 
-		bool isCanUp = GlobalInstance::getInstance()->isCanUpgradeBuilding();
+		itemheight = 140;
+		innerheight = itemheight * vec_all.size();
+		contentheight = scrollview->getContentSize().height;
+		if (innerheight < contentheight)
+			innerheight = contentheight;
+		scrollview->setInnerContainerSize(Size(scrollview->getContentSize().width, innerheight));
+
 		for (unsigned int i = 0; i < vec_all.size(); i++)
 		{
-			if (!isCanUp && vec_all[i]->type == UPGRADE_BUILDING && vec_all[i]->state == DAILY_UNFINISHED)
-			{
-				continue;
-			}
 			Node* node = TaskDailyNode::create(vec_all[i]);
 			scrollview->addChild(node);
 
