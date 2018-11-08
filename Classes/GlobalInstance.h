@@ -332,6 +332,7 @@ typedef struct
 	std::string endtime;
 	std::string rewardstr;
 	int matchscore;
+	int awardindex;
 	std::map<std::string, std::string> map_myheros;
 	std::map<std::string, std::string> map_pairheros;
 	std::string pairplayerid;

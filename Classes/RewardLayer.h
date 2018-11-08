@@ -6,17 +6,18 @@
 #include "cocostudio/CocoStudio.h"
 #include "GlobalInstance.h"
 #include "ResBase.h"
+#include "HttpDataSwap.h"
 
 USING_NS_CC;
 
-class RewardLayer : public cocos2d::Layer
+class RewardLayer : public cocos2d::Layer, public HTTPDataDelegateProtocol
 {
 public:
 	RewardLayer();
 	~RewardLayer();
 
-	static RewardLayer* create(std::vector<MSGAWDSDATA> vec_rewards, int forwhere = MYSTORAGE);
-	bool init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere = MYSTORAGE);
+	static RewardLayer* create(std::vector<MSGAWDSDATA> vec_rewards, int forwhere = MYSTORAGE, int type = 0);
+	bool init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere = MYSTORAGE, int type = 0);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void removeSelf();

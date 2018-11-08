@@ -25,7 +25,6 @@ MatchMainLayer::MatchMainLayer()
 {
 	clickHero = -1;
 	httptag = 0;
-	m_matchlv = -1;
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -169,21 +168,6 @@ bool MatchMainLayer::init()
 	endtime = (cocos2d::ui::Text*)csbnode->getChildByName("endtime");
 	endtime->setString("");
 	
-	if (GlobalInstance::myMatchInfo.getrewardstate == 1)
-	{
-		endtimetxt->setVisible(false);
-		endtime->setVisible(false);
-		rewardtext->setString(ResourceLang::map_lang["matchrewardget"]);
-		rewardtext->setTextColor(Color4B(28, 208, 255, 255));
-		//matchrewardicon
-	}
-	else if (GlobalInstance::myMatchInfo.getrewardstate == 2)
-	{
-		endtimetxt->setVisible(false);
-		endtime->setVisible(false);
-		rewardtext->setVisible(false);
-		//matchrewardicon
-	}
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -330,7 +314,7 @@ void MatchMainLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_
 
 void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	Node* clicknode = (Node*)pSender;
+	cocos2d::ui::Widget* clicknode = (cocos2d::ui::Widget*)pSender;
 	int tag = clicknode->getTag();
 	if (tag != 1005)
 	{
@@ -390,7 +374,7 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			else if (GlobalInstance::myMatchInfo.getrewardstate == 1)
 			{
 				std::vector<MSGAWDSDATA> vec_rewards;
-				std::vector<std::vector<std::string>> vec_matchreward = GlobalInstance::getInstance()->getMatchRewardByLv(m_matchlv);
+				std::vector<std::vector<std::string>> vec_matchreward = GlobalInstance::getInstance()->getMatchRewardByLv(GlobalInstance::myMatchInfo.awardindex);
 				for (unsigned int i = 0; i < vec_matchreward.size(); i++)
 				{
 					std::vector<std::string> one_res = vec_matchreward[i];
@@ -406,10 +390,12 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				}
 				if (vec_rewards.size() > 0)
 				{
-					RewardLayer* layer = RewardLayer::create(vec_rewards);
+					RewardLayer* layer = RewardLayer::create(vec_rewards, MYSTORAGE, 1);
 					this->addChild(layer, 1000);
 					AnimationEffect::openAniEffect((Layer*)layer);
 				}
+				rewardtext->setVisible(false);
+				clicknode->setEnabled(false);
 			}
 			break;
 		case 1006:
@@ -470,7 +456,6 @@ void MatchMainLayer::updateScore(float dt)
 		}
 	}
 
-	m_matchlv = lv;
 	std::string lvnamekey = StringUtils::format("matchlvname_%d", lv);
 	matchlv->setString(ResourceLang::map_lang[lvnamekey]);
 
@@ -650,6 +635,15 @@ void MatchMainLayer::onFinish(int code)
 			MatchVSLayer* layer = MatchVSLayer::create();
 			this->addChild(layer, 100);
 			setMatchBtnStatus(0);
+		}
+
+		if (GlobalInstance::myMatchInfo.getrewardstate == 1)
+		{
+			endtimetxt->setVisible(false);
+			endtime->setVisible(false);
+			rewardtext->setString(ResourceLang::map_lang["matchrewardget"]);
+			rewardtext->setTextColor(Color4B(28, 208, 255, 255));
+			//matchrewardicon
 		}
 	}
 	else

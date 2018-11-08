@@ -55,7 +55,6 @@ private:
 
 	int httptag;
 	int fightret;
-	int m_matchlv;
 };
 
 #endif
