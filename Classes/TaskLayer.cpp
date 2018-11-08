@@ -309,6 +309,7 @@ void TaskLayer::updateContent(int category)
 				vec_unfin.push_back(&GlobalInstance::map_DTdata[it->first]);
 			}
 		}
+
 		std::vector<DailyTaskData*> vec_all;
 		for (unsigned int i = 0; i < vec_fin.size(); i++)
 		{
