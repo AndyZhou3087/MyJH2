@@ -2034,6 +2034,15 @@ bool GlobalInstance::isCanUpgradeBuilding()
 	return false;
 }
 
+bool GlobalInstance::isAllFinishBranch()
+{
+	if (Quest::myFinishBranchQuest.size() == GlobalInstance::vec_TaskBranch.size())
+	{
+		return true;
+	}
+	return false;
+}
+
 bool GlobalInstance::checkNewQuest()
 {
 	//主线

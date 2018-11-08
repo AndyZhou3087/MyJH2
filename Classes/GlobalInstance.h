@@ -672,6 +672,8 @@ public:
 	//判断是否有可升级建筑
 	bool isCanUpgradeBuilding();
 
+	//判断是否完成所有支线任务
+	bool isAllFinishBranch();
 private:
 	static GlobalInstance* _Context;//类实例
 
