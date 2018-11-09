@@ -21,10 +21,10 @@ RewardLayer::~RewardLayer()
 }
 
 
-RewardLayer* RewardLayer::create(std::vector<MSGAWDSDATA> vec_rewards, int forwhere)
+RewardLayer* RewardLayer::create(std::vector<MSGAWDSDATA> vec_rewards, int forwhere, int type)
 {
 	RewardLayer *pRet = new(std::nothrow)RewardLayer();
-	if (pRet && pRet->init(vec_rewards, forwhere))
+	if (pRet && pRet->init(vec_rewards, forwhere, type))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -38,7 +38,7 @@ RewardLayer* RewardLayer::create(std::vector<MSGAWDSDATA> vec_rewards, int forwh
 }
 
 // on "init" you need to initialize your instance
-bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere)
+bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere, int type)
 {
 	if (!Layer::init())
 	{
@@ -146,6 +146,10 @@ bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere)
 		}
 	}
 
+	if (type == 1)
+	{
+		HttpDataSwap::init(this)->getRewardMatch();
+	}
 
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();

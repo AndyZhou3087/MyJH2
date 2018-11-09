@@ -355,6 +355,18 @@ void HttpDataSwap::postMyMatchHeros()
 	url.append("playerid=");
 	url.append(GlobalInstance::getInstance()->UUID());
 
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
 	rapidjson::Document writedoc;
 	writedoc.SetObject();
 	rapidjson::Document::AllocatorType& allocator = writedoc.GetAllocator();
@@ -462,6 +474,17 @@ void HttpDataSwap::getMyMatchHeros()
 	url.append("jh_matchmatchselfinfo?");
 	url.append("playerid=");
 	url.append(GlobalInstance::getInstance()->UUID());
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMyMatchHerosCB, this));
 }
 
@@ -472,6 +495,17 @@ void HttpDataSwap::getMatchRankHeros()
 	url.append("jh_matchmatchranklist?");
 	url.append("playerid=");
 	url.append(GlobalInstance::getInstance()->UUID());
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMyMatchRankingCB, this));
 }
 
@@ -482,6 +516,17 @@ void HttpDataSwap::getMatchPairData()
 	url.append("jh_matchmatchinfo?");
 	url.append("playerid=");
 	url.append(GlobalInstance::getInstance()->UUID());
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMatchPairDataCB, this));
 }
 
@@ -492,6 +537,17 @@ void HttpDataSwap::sendMatchResult(int score)
 	url.append("jh_matchmatchresult?");
 	url.append("playerid=");
 	url.append(GlobalInstance::getInstance()->UUID());
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
 	url.append("&matchplayerid=");
 	url.append(GlobalInstance::myMatchInfo.pairplayerid);
 	url.append("&score=");
@@ -505,6 +561,29 @@ void HttpDataSwap::sendMatchResult(int score)
 	
 
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpSendMatchResultCB, this));
+}
+
+void HttpDataSwap::getRewardMatch()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_matchmatchgetaward?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMyRewardCB, this));
 }
 
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
@@ -949,7 +1028,11 @@ void HttpDataSwap::httpGetMyMatchRankingCB(std::string retdata, int code, std::s
 					}
 
 					if (mydatav[m].HasMember("friendly"))
-						data.friendly = mydatav[m].GetString();
+					{
+						myd = mydatav[m]["friendly"];
+						data.friendly = myd.GetString();
+					}
+						
 
 					GlobalInstance::myRankInfo.vec_rankData.push_back(data);
 				}
@@ -978,6 +1061,20 @@ void HttpDataSwap::httpGetMyMatchRankingCB(std::string retdata, int code, std::s
 	release();
 }
 
+void HttpDataSwap::httpGetMyRewardCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+
+	}
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
 void HttpDataSwap::httpGetMyMatchHerosCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
@@ -997,6 +1094,8 @@ void HttpDataSwap::httpGetMyMatchHerosCB(std::string retdata, int code, std::str
 				GlobalInstance::myMatchInfo.getrewardstate = atoi(myd.GetString());
 				myd = mydatav["matchscore"];
 				GlobalInstance::myMatchInfo.matchscore = atoi(myd.GetString());
+				myd = mydatav["awardindex"];
+				GlobalInstance::myMatchInfo.awardindex = atoi(myd.GetString());
 
 				for (int i = 0; i < 6; i++)
 				{

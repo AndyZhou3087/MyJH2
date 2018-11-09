@@ -48,6 +48,8 @@ public:
 
 	void getMatchRankHeros();
 
+	void getRewardMatch();
+
 private:
 	HTTPDataDelegateProtocol *m_pDelegateProtocol;//接口对象
 	static bool isdoing;
@@ -88,6 +90,8 @@ private:
 	void httpSendMatchResultCB(std::string retdata, int code, std::string extdata);
 
 	void httpGetMyMatchRankingCB(std::string retdata, int code, std::string extdata);
+
+	void httpGetMyRewardCB(std::string retdata, int code, std::string extdata);
 };
 
 class HTTPDataDelegateProtocol

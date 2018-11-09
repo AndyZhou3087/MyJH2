@@ -18,16 +18,20 @@ MatchHeroNode::MatchHeroNode()
 
 MatchHeroNode::~MatchHeroNode()
 {
-	for (int k = T_ARMOR; k <= T_NG; k++)
+	if (hero != NULL)
 	{
-		Equipable* eres = hero->getEquipable(k);
-		if (eres != NULL)
+		for (int k = T_ARMOR; k <= T_NG; k++)
 		{
-			delete eres;
-			eres = NULL;
+			Equipable* eres = hero->getEquipable(k);
+			if (eres != NULL)
+			{
+				delete eres;
+				eres = NULL;
+			}
 		}
+		delete hero;
+		hero = NULL;
 	}
-	delete hero;
 }
 
 MatchHeroNode* MatchHeroNode::create(int index, std::string herostr)
