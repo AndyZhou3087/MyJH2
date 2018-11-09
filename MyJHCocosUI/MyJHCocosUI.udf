@@ -11,8 +11,9 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="text_zh_cn.csi" />
+          <FilePathData Path="homeHillLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="text_zh_cn.csi" />
+        <ActiveDocument Path="homeHillLayer.csd" />
       </Value>
     </Item>
   </Properties>
