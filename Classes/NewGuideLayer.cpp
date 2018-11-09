@@ -24,6 +24,7 @@
 #include "StoreHouseLayer.h"
 #include "Building.h"
 
+
 std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教应该就在前面了，咱们快去看看。", //0
 "", //1
 "小师妹：掌门师兄，传言果然是真的，十四天书现世，六大派和魔教为了争夺天书才打起来。", //2
