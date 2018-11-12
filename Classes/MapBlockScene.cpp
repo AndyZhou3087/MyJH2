@@ -1290,7 +1290,6 @@ void MapBlockScene::createRndMonsters()
 		if (r2 < rnd)
 			vec_winrewards.push_back(propty);
 	}
-
 }
 
 void MapBlockScene::eventFight()
