@@ -62,6 +62,7 @@ bool GambleBoxLayer::init(int isWin, int diceid, int cost)
 	cocos2d::ui::Widget* okbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("okbtn");
 	okbtn->addTouchEventListener(CC_CALLBACK_2(GambleBoxLayer::onBtnClick, this));
 	okbtn->setTag(1);
+	okbtn->setPosition(Vec2(360, 514));
 	//按钮1文字
 	cocos2d::ui::ImageView* okbtntxt = (cocos2d::ui::ImageView*)okbtn->getChildByName("text");
 	okbtntxt->loadTexture(ResourcePath::makeTextImgPath("continuebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -70,6 +71,7 @@ bool GambleBoxLayer::init(int isWin, int diceid, int cost)
 	cocos2d::ui::Widget* cancelbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("cancelbtn");
 	cancelbtn->addTouchEventListener(CC_CALLBACK_2(GambleBoxLayer::onBtnClick, this));
 	cancelbtn->setTag(0);
+	cancelbtn->setVisible(false);
 	//按钮2文字
 	cocos2d::ui::ImageView* cancelbtntxt = (cocos2d::ui::ImageView*)cancelbtn->getChildByName("text");
 	cancelbtntxt->loadTexture(ResourcePath::makeTextImgPath("backbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
