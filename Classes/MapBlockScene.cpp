@@ -1025,7 +1025,7 @@ void MapBlockScene::doMyStatus()
 			break;
 		}
 	}
-	//ret = 4;
+	ret = 5;
 	if (ret >= 0)
 	{
 		status = MAP_S_EVENT;
