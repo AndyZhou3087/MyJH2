@@ -1029,7 +1029,7 @@ void MapBlockScene::doMyStatus()
 	if (ret >= 0)
 	{
 		status = MAP_S_EVENT;
-		//触发过一次不再触发
+		//触发过一次不再触发 
 		for (rnd_it = mapblock->map_eventrnd.begin(); rnd_it != mapblock->map_eventrnd.end(); rnd_it++)
 		{
 			mapblock->map_eventrnd[rnd_it->first] = 0;
