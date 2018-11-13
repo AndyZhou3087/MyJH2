@@ -681,7 +681,7 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 			if (GlobalInstance::map_myfriendly[m_npcid].relation.size() > 0)
 			{
 				std::vector<int>::iterator it;
-				for (it = GlobalInstance::map_myfriendly[m_npcid].relation.begin(); it != GlobalInstance::map_myfriendly[m_npcid].relation.end(); it++)
+				for (it = GlobalInstance::map_myfriendly[m_npcid].relation.begin(); it != GlobalInstance::map_myfriendly[m_npcid].relation.end();)
 				{
 					if ((*it == NPC_FRIEND && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].friendneed)
 						|| (*it == NPC_MASTER && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].masterneed)
@@ -689,6 +689,8 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 					{
 						it = GlobalInstance::map_myfriendly[m_npcid].relation.erase(it);
 					}
+					else
+						it++;
 				}
 			}
 			if (g_MapBlockScene != NULL)
