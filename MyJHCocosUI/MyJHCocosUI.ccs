@@ -973,6 +973,9 @@
           <Image Name="matchbox0.png" />
           <Image Name="matchbox1.png" />
           <Image Name="matchdoingbtn.png" />
+          <Image Name="matchreward_0.png" />
+          <Image Name="matchreward_1.png" />
+          <Image Name="matchreward_bg.png" />
           <Image Name="matchrewardicon.png" />
           <Image Name="matchruleicon.png" />
           <Image Name="matchS.png" />

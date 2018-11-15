@@ -449,6 +449,9 @@
       <FilePathData Path="ui/rank_2.png" />
       <FilePathData Path="ui/rank_3.png" />
       <FilePathData Path="ui/myheroitem.png" />
+      <FilePathData Path="ui/matchreward_bg.png" />
+      <FilePathData Path="ui/matchreward_0.png" />
+      <FilePathData Path="ui/matchreward_1.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
