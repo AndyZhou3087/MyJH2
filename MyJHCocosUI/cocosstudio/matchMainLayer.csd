@@ -213,7 +213,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="35" G="35" B="35" />
           </AbstractNodeData>
-          <AbstractNodeData Name="ninegrid" ActionTag="-306596267" Tag="123" IconVisible="False" LeftMargin="34.9998" RightMargin="35.0001" TopMargin="1011.4559" BottomMargin="46.5441" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="624" Scale9Height="196" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="ninegrid" ActionTag="-306596267" Tag="123" IconVisible="False" LeftMargin="34.9998" RightMargin="35.0002" TopMargin="1011.4559" BottomMargin="46.5441" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="624" Scale9Height="196" ctype="ImageViewObjectData">
             <Size X="650.0000" Y="222.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="359.9998" Y="157.5441" />
@@ -299,7 +299,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="endtimetxt" ActionTag="130752793" Tag="126" IconVisible="False" LeftMargin="159.9454" RightMargin="427.0546" TopMargin="1100.4324" BottomMargin="154.5677" FontSize="22" LabelText="赛季结束时间" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="endtimetxt" ActionTag="130752793" Tag="126" IconVisible="False" LeftMargin="159.9454" RightMargin="427.0546" TopMargin="1100.4323" BottomMargin="154.5677" FontSize="22" LabelText="赛季结束时间" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
             <Size X="133.0000" Y="25.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="226.4454" Y="167.0677" />
@@ -311,8 +311,8 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="endtime" ActionTag="288162021" Tag="127" IconVisible="False" LeftMargin="168.7973" RightMargin="432.2027" TopMargin="1135.9758" BottomMargin="116.0242" FontSize="23" LabelText="2018-02-21" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-            <Size X="119.0000" Y="28.0000" />
+          <AbstractNodeData Name="endtime" ActionTag="288162021" Tag="127" IconVisible="False" LeftMargin="168.7973" RightMargin="432.2027" TopMargin="1135.9758" BottomMargin="116.0242" FontSize="23" LabelText="2018-02-21" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="120.0000" Y="30.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="228.2973" Y="130.0242" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
