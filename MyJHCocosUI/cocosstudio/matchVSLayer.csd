@@ -339,7 +339,7 @@
       <ObjectData Name="Layer" Tag="101" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
-          <AbstractNodeData Name="matchbox0" ActionTag="-1436024075" Tag="103" IconVisible="False" LeftMargin="-763.0000" RightMargin="717.0000" TopMargin="676.0000" BottomMargin="226.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="matchbox0" ActionTag="-1436024075" Tag="103" IconVisible="False" LeftMargin="0.0001" RightMargin="-46.0001" TopMargin="676.0000" BottomMargin="226.0000" ctype="SpriteObjectData">
             <Size X="766.0000" Y="378.0000" />
             <Children>
               <AbstractNodeData Name="mhero0" ActionTag="999539802" Tag="117" IconVisible="False" LeftMargin="12.9999" RightMargin="599.0001" TopMargin="50.9948" BottomMargin="173.0052" LeftEage="50" RightEage="50" TopEage="50" BottomEage="50" Scale9OriginX="50" Scale9OriginY="50" Scale9Width="54" Scale9Height="54" ctype="ImageViewObjectData">
@@ -476,15 +476,15 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-380.0000" Y="415.0000" />
+            <Position X="383.0001" Y="415.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="-0.5278" Y="0.3242" />
+            <PrePosition X="0.5319" Y="0.3242" />
             <PreSize X="1.0639" Y="0.2953" />
             <FileData Type="MarkedSubImage" Path="ui/matchbox0.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="matchbox1" ActionTag="2126374088" Tag="104" IconVisible="False" LeftMargin="717.0000" RightMargin="-763.0000" TopMargin="201.0000" BottomMargin="701.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="matchbox1" ActionTag="2126374088" Tag="104" IconVisible="False" LeftMargin="-46.0000" TopMargin="201.0000" BottomMargin="701.0000" ctype="SpriteObjectData">
             <Size X="766.0000" Y="378.0000" />
             <Children>
               <AbstractNodeData Name="phero0" ActionTag="-1725606141" Tag="105" IconVisible="False" LeftMargin="182.9995" RightMargin="429.0005" TopMargin="179.9961" BottomMargin="44.0039" LeftEage="50" RightEage="50" TopEage="50" BottomEage="50" Scale9OriginX="50" Scale9OriginY="50" Scale9Width="54" Scale9Height="54" ctype="ImageViewObjectData">
@@ -621,15 +621,15 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1100.0000" Y="890.0000" />
+            <Position X="337.0000" Y="890.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="1.5278" Y="0.6953" />
+            <PrePosition X="0.4681" Y="0.6953" />
             <PreSize X="1.0639" Y="0.2953" />
             <FileData Type="MarkedSubImage" Path="ui/matchbox1.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="mynickname" ActionTag="-1555457048" Alpha="0" Tag="178" IconVisible="False" LeftMargin="99.0001" RightMargin="468.9999" TopMargin="595.0700" BottomMargin="650.9300" FontSize="30" LabelText="呼呼节开幕" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="mynickname" ActionTag="-1555457048" Tag="178" IconVisible="False" LeftMargin="99.0001" RightMargin="468.9999" TopMargin="595.0700" BottomMargin="650.9300" FontSize="30" LabelText="呼呼节开幕" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="152.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="175.0001" Y="667.9300" />
@@ -641,7 +641,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="92" B="144" />
           </AbstractNodeData>
-          <AbstractNodeData Name="mymatchlv" ActionTag="1302734861" Alpha="0" Tag="179" IconVisible="False" LeftMargin="86.0001" RightMargin="455.9999" TopMargin="638.5208" BottomMargin="612.4792" FontSize="25" LabelText="段位：巨虎虎虎" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="mymatchlv" ActionTag="1302734861" Tag="179" IconVisible="False" LeftMargin="86.0001" RightMargin="455.9999" TopMargin="638.5208" BottomMargin="612.4792" FontSize="25" LabelText="段位：巨虎虎虎" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="178.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="175.0001" Y="626.9792" />
@@ -653,7 +653,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="92" B="144" />
           </AbstractNodeData>
-          <AbstractNodeData Name="pairnickname" ActionTag="-457448794" Alpha="0" Tag="180" IconVisible="False" LeftMargin="501.1237" RightMargin="98.8763" TopMargin="595.0700" BottomMargin="650.9300" FontSize="30" LabelText="就好几回" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="pairnickname" ActionTag="-457448794" Tag="180" IconVisible="False" LeftMargin="501.1237" RightMargin="98.8763" TopMargin="595.0700" BottomMargin="650.9300" FontSize="30" LabelText="就好几回" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="120.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="561.1237" Y="667.9300" />
@@ -665,7 +665,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="135" G="88" B="16" />
           </AbstractNodeData>
-          <AbstractNodeData Name="pairmatchlv" ActionTag="-927668024" Alpha="0" Tag="181" IconVisible="False" LeftMargin="472.6246" RightMargin="70.3754" TopMargin="638.5207" BottomMargin="612.4793" FontSize="25" LabelText="段位：开假睫毛" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="pairmatchlv" ActionTag="-927668024" Tag="181" IconVisible="False" LeftMargin="472.6246" RightMargin="70.3754" TopMargin="638.5207" BottomMargin="612.4793" FontSize="25" LabelText="段位：开假睫毛" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="177.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="561.1246" Y="626.9793" />
@@ -677,24 +677,24 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="135" G="88" B="16" />
           </AbstractNodeData>
-          <AbstractNodeData Name="matchV" ActionTag="-1547195917" Tag="182" IconVisible="False" LeftMargin="-74.0000" RightMargin="726.0000" TopMargin="577.8073" BottomMargin="598.1927" ctype="SpriteObjectData">
+          <AbstractNodeData Name="matchV" ActionTag="-1547195917" Tag="182" IconVisible="False" LeftMargin="81.3680" RightMargin="570.6320" TopMargin="577.8073" BottomMargin="598.1927" ctype="SpriteObjectData">
             <Size X="68.0000" Y="104.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-40.0000" Y="650.1927" />
+            <Position X="115.3680" Y="650.1927" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="-0.0556" Y="0.5080" />
+            <PrePosition X="0.1602" Y="0.5080" />
             <PreSize X="0.0944" Y="0.0812" />
             <FileData Type="MarkedSubImage" Path="ui/matchV.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="matchS" ActionTag="63958131" Tag="183" IconVisible="False" LeftMargin="739.0000" RightMargin="-101.0000" TopMargin="575.8073" BottomMargin="598.1927" ctype="SpriteObjectData">
+          <AbstractNodeData Name="matchS" ActionTag="63958131" Tag="183" IconVisible="False" LeftMargin="589.6453" RightMargin="48.3547" TopMargin="575.8073" BottomMargin="598.1927" ctype="SpriteObjectData">
             <Size X="82.0000" Y="106.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="780.0000" Y="651.1927" />
+            <Position X="630.6453" Y="651.1927" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="1.0833" Y="0.5087" />
+            <PrePosition X="0.8759" Y="0.5087" />
             <PreSize X="0.1139" Y="0.0828" />
             <FileData Type="MarkedSubImage" Path="ui/matchS.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
