@@ -59,11 +59,11 @@ bool MatchVSLayer::init()
 	parsePairHeros();
 	loadData();
 
-	//auto action = CSLoader::createTimeline(ResourcePath::makePath("matchVSLayer.csb"));
-	//effectnode->runAction(action);
-	//action->gotoFrameAndPlay(0, false);
+	auto action = CSLoader::createTimeline(ResourcePath::makePath("matchVSLayer.csb"));
+	csbnode->runAction(action);
+	action->gotoFrameAndPlay(0, false);
 
-	this->scheduleOnce(schedule_selector(MatchVSLayer::delayShowFight), 1);
+	this->scheduleOnce(schedule_selector(MatchVSLayer::delayShowFight), 2.5f);
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
