@@ -133,7 +133,7 @@ bool MatchMainLayer::init()
 	closebtn->setTag(1004);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onBtnClick, this));
 
-	cocos2d::ui::Widget* matchrewardicon = (cocos2d::ui::Widget*)csbnode->getChildByName("matchrewardicon");
+	matchrewardicon = (cocos2d::ui::ImageView*)csbnode->getChildByName("matchrewardicon");
 	matchrewardicon->setTag(1005);
 	matchrewardicon->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onBtnClick, this));
 
@@ -639,11 +639,11 @@ void MatchMainLayer::onFinish(int code)
 
 		if (GlobalInstance::myMatchInfo.getrewardstate == 1)
 		{
-			endtimetxt->setVisible(false);
-			endtime->setVisible(false);
+			/*endtimetxt->setVisible(false);
+			endtime->setVisible(false);*/
 			rewardtext->setString(ResourceLang::map_lang["matchrewardget"]);
-			rewardtext->setTextColor(Color4B(28, 208, 255, 255));
-			//matchrewardicon
+			//rewardtext->setTextColor(Color4B(28, 208, 255, 255));
+			matchrewardicon->loadTexture("ui/matchreward_1.png", cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 	}
 	else

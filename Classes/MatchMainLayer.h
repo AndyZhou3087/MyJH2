@@ -52,6 +52,7 @@ private:
 	cocos2d::ui::Text* endtime;
 	cocos2d::ui::Text* rewardtext;
 	cocos2d::ui::Text* endtimetxt;
+	cocos2d::ui::ImageView* matchrewardicon;
 
 	int httptag;
 	int fightret;

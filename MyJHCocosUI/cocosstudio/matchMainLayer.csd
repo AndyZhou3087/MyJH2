@@ -213,7 +213,17 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="35" G="35" B="35" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rulebtn" ActionTag="1361025167" Tag="119" IconVisible="False" LeftMargin="49.0614" RightMargin="560.9386" TopMargin="1152.0962" BottomMargin="51.9038" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="80" Scale9Height="54" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="ninegrid" ActionTag="-306596267" Tag="123" IconVisible="False" LeftMargin="34.9998" RightMargin="35.0002" TopMargin="1011.4559" BottomMargin="46.5441" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="624" Scale9Height="196" ctype="ImageViewObjectData">
+            <Size X="650.0000" Y="222.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="359.9998" Y="157.5441" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.1231" />
+            <PreSize X="0.9028" Y="0.1734" />
+            <FileData Type="MarkedSubImage" Path="ui/matchreward_bg.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="rulebtn" ActionTag="1361025167" Tag="119" IconVisible="False" LeftMargin="42.0614" RightMargin="567.9386" TopMargin="1152.0962" BottomMargin="51.9038" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="80" Scale9Height="54" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="110.0000" Y="76.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="501663319" Tag="120" IconVisible="False" LeftMargin="10.3585" RightMargin="19.6415" TopMargin="49.7887" BottomMargin="2.2113" LeftEage="23" RightEage="23" TopEage="7" BottomEage="7" Scale9OriginX="23" Scale9OriginY="7" Scale9Width="34" Scale9Height="10" ctype="ImageViewObjectData">
@@ -228,10 +238,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="104.0614" Y="89.9038" />
+            <Position X="97.0614" Y="89.9038" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1445" Y="0.0702" />
+            <PrePosition X="0.1348" Y="0.0702" />
             <PreSize X="0.1528" Y="0.0594" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/matchruleicon.png" Plist="ui.plist" />
@@ -267,60 +277,50 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="ninegrid" ActionTag="-306596267" Tag="123" IconVisible="False" LeftMargin="199.9999" RightMargin="200.0001" TopMargin="974.9559" BottomMargin="60.0441" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="16" Scale9Height="16" ctype="ImageViewObjectData">
-            <Size X="320.0000" Y="245.0000" />
+          <AbstractNodeData Name="matchrewardicon" ActionTag="1789521628" Tag="128" IconVisible="False" LeftMargin="408.5681" RightMargin="137.4319" TopMargin="994.3392" BottomMargin="125.6608" TouchEnable="True" LeftEage="49" RightEage="49" TopEage="40" BottomEage="40" Scale9OriginX="49" Scale9OriginY="40" Scale9Width="76" Scale9Height="80" ctype="ImageViewObjectData">
+            <Size X="174.0000" Y="160.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="359.9999" Y="182.5441" />
+            <Position X="495.5681" Y="205.6608" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.1426" />
-            <PreSize X="0.4444" Y="0.1914" />
-            <FileData Type="MarkedSubImage" Path="ui/ninegrid.png" Plist="ui.plist" />
+            <PrePosition X="0.6883" Y="0.1607" />
+            <PreSize X="0.2417" Y="0.1250" />
+            <FileData Type="MarkedSubImage" Path="ui/matchreward_0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="matchrewardicon" ActionTag="1789521628" Tag="128" IconVisible="False" LeftMargin="285.0000" RightMargin="285.0000" TopMargin="998.0000" BottomMargin="158.0000" TouchEnable="True" LeftEage="49" RightEage="49" TopEage="40" BottomEage="40" Scale9OriginX="49" Scale9OriginY="40" Scale9Width="52" Scale9Height="44" ctype="ImageViewObjectData">
-            <Size X="150.0000" Y="124.0000" />
+          <AbstractNodeData Name="rewardtext" ActionTag="-680239976" Tag="125" IconVisible="False" LeftMargin="438.6313" RightMargin="159.3687" TopMargin="1208.9410" BottomMargin="48.0590" FontSize="20" LabelText="点击查看奖励" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="122.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="220.0000" />
+            <Position X="499.6313" Y="59.5590" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.1719" />
-            <PreSize X="0.2083" Y="0.0969" />
-            <FileData Type="MarkedSubImage" Path="ui/matchrewardicon.png" Plist="ui.plist" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="rewardtext" ActionTag="-680239976" Tag="125" IconVisible="False" LeftMargin="299.5000" RightMargin="299.5000" TopMargin="1127.0140" BottomMargin="118.9860" FontSize="30" LabelText="赛季奖励" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-            <Size X="121.0000" Y="34.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="135.9860" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="121" G="78" B="46" />
-            <PrePosition X="0.5000" Y="0.1062" />
-            <PreSize X="0.1681" Y="0.0266" />
+            <CColor A="255" R="48" G="255" B="0" />
+            <PrePosition X="0.6939" Y="0.0465" />
+            <PreSize X="0.1694" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="endtimetxt" ActionTag="130752793" Tag="126" IconVisible="False" LeftMargin="229.7489" RightMargin="348.2511" TopMargin="1180.8585" BottomMargin="74.1415" FontSize="22" LabelText="赛季结束时间：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-            <Size X="142.0000" Y="25.0000" />
+          <AbstractNodeData Name="endtimetxt" ActionTag="130752793" Tag="126" IconVisible="False" LeftMargin="159.9454" RightMargin="427.0546" TopMargin="1100.4323" BottomMargin="154.5677" FontSize="22" LabelText="赛季结束时间" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="133.0000" Y="25.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="300.7489" Y="86.6415" />
+            <Position X="226.4454" Y="167.0677" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="121" G="78" B="46" />
-            <PrePosition X="0.4177" Y="0.0677" />
-            <PreSize X="0.1972" Y="0.0195" />
+            <CColor A="255" R="101" G="76" B="36" />
+            <PrePosition X="0.3145" Y="0.1305" />
+            <PreSize X="0.1847" Y="0.0195" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="endtime" ActionTag="288162021" Tag="127" IconVisible="False" LeftMargin="382.1389" RightMargin="228.8611" TopMargin="1180.8585" BottomMargin="74.1415" FontSize="22" LabelText="2018-02-21" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="109.0000" Y="25.0000" />
-            <AnchorPoint ScaleY="0.5000" />
-            <Position X="382.1389" Y="86.6415" />
+          <AbstractNodeData Name="endtime" ActionTag="288162021" Tag="127" IconVisible="False" LeftMargin="168.7973" RightMargin="432.2027" TopMargin="1135.9758" BottomMargin="116.0242" FontSize="23" LabelText="2018-02-21" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="120.0000" Y="30.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="228.2973" Y="130.0242" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="5" G="165" B="25" />
-            <PrePosition X="0.5307" Y="0.0677" />
-            <PreSize X="0.1514" Y="0.0195" />
+            <CColor A="255" R="255" G="250" B="221" />
+            <PrePosition X="0.3171" Y="0.1016" />
+            <PreSize X="0.1653" Y="0.0219" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="80" G="38" B="12" />
+            <OutlineColor A="255" R="175" G="86" B="0" />
             <ShadowColor A="255" R="35" G="35" B="35" />
           </AbstractNodeData>
           <AbstractNodeData Name="rankbtn" ActionTag="-836280509" Tag="34" IconVisible="False" LeftMargin="111.7280" RightMargin="404.2720" TopMargin="872.2213" BottomMargin="323.7787" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">

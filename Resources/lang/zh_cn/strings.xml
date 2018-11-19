@@ -343,8 +343,8 @@
 	<s name="matchlvname_3">一方大侠</s>
 	<s name="matchlvname_4">墨者</s>
 	<s name="neednextexpdesc">还需%d积分可升级至：</s>
-	<s name="matchrewardtext">赛季奖励</s>
-	<s name="matchendtimetext">赛季结束时间：</s>
+	<s name="matchrewardtext">点击查看奖励</s>
+	<s name="matchendtimetext">赛季结束时间</s>
 	<s name="matchmax">参战人物已满！</s>
 	<s name="matchnetworkerr">获取数据失败！请检查网络连接。</s>
 	<s name="matchnetsaveok">保存成功！</s>
