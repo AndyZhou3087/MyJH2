@@ -1995,8 +1995,8 @@ void GlobalInstance::parsePairFriendly(std::string fstr)
 			CommonFuncs::split(vec_fstr[i], vec_one, "-");
 			if (vec_one.size() >= 2)
 			{
-				std::string nid = vec_one[0];
-				int ralation = atoi(vec_one[i].c_str());
+				std::string nid = StringUtils::format("n%s", vec_one[0].c_str());
+				int ralation = atoi(vec_one[1].c_str());
 				NpcFriendly s_f;
 				s_f.npcid = nid;
 				s_f.friendly = 0;
