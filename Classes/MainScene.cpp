@@ -137,9 +137,10 @@ bool MainScene::init()
 		buildingNomal->setUserData((void*)buildingSelect);
 		buildingNomal->setTag(i);
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
-		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && NewGuideLayer::checkifNewerGuide(66)) /*|| i == 9*/
+		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && NewGuideLayer::checkifNewerGuide(66))
 			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 5) || (NewGuideLayer::checkifNewerGuide(73) && i == 3)
-			|| (i == 8 && !GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15)))//医馆,市场,训练场，竞技场,后山,铁匠铺默认不开放
+			|| (i == 8 && !GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15))
+			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 9))//医馆,市场,训练场，竞技场,后山,铁匠铺默认不开放
 		{
 			//buildingNomal->setTouchEnabled(false);
 			buildnametext->setVisible(false);
@@ -250,6 +251,14 @@ void MainScene::checkBuildingOpen(float dt)
 		Node* textnode = scroll_3->getChildByName("main_05_t");
 		textnode->setVisible(true);
 		Node* cnode = scroll_3->getChildByName("main_05_c");
+		if (cnode != NULL)
+		{
+			cnode->setVisible(false);
+		}
+
+		textnode = scroll_1->getChildByName("main_09_t");
+		textnode->setVisible(true);
+		cnode = scroll_1->getChildByName("main_09_c");
 		if (cnode != NULL)
 		{
 			cnode->setVisible(false);
@@ -583,7 +592,10 @@ bool MainScene::buildingIsClickOn(int tag)
 	}
 	else if (tag == 9)
 	{
-		return true;
+		if (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0)
+		{
+			return true;
+		}
 	}
 
 	return false;
@@ -612,9 +624,10 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 
-			if ((NewGuideLayer::checkifNewerGuide(63) && tag == 2) || (tag == 6 && NewGuideLayer::checkifNewerGuide(66))/* || (tag == 9)*/
+			if ((NewGuideLayer::checkifNewerGuide(63) && tag == 2) || (tag == 6 && NewGuideLayer::checkifNewerGuide(66))
 				|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && tag == 5) || (NewGuideLayer::checkifNewerGuide(73) && tag == 3)
-				|| (tag == 8 && !GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15)))
+				|| (tag == 8 && !GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15))
+				|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && tag == 9))
 			{
 				Node* buildParent;
 				if (tag <= 5)

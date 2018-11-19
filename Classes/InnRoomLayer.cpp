@@ -170,7 +170,10 @@ void InnRoomLayer::showNewerGuide(int step)
 	}
 	else if (step == 31 || step == 78)
 	{
-		nodes.push_back(m_contentscroll->getChildByTag(0)->getChildByName("csbnode")->getChildByName("clickimg"));
+		if (m_contentscroll->getChildByTag(0) != NULL)
+		{
+			nodes.push_back(m_contentscroll->getChildByTag(0)->getChildByName("csbnode")->getChildByName("clickimg"));
+		}
 	}
 	else if (step == 39)
 	{
@@ -189,7 +192,10 @@ void InnRoomLayer::showNewerGuide(int step)
 			}
 		}
 	}
-	g_mainScene->showNewerGuideNode(step, nodes);
+	if (nodes.size() > 0)
+	{
+		g_mainScene->showNewerGuideNode(step, nodes);
+	}
 }
 
 void InnRoomLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

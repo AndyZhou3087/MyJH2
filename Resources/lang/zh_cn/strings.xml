@@ -258,7 +258,7 @@
 	<s name="unlockmain_5">角色20级后可解锁...</s>
 	<s name="unlockmain_6">任意角色10级后可解锁...</s>
 	<s name="unlockmain_8">通关神龙教地图后可解锁</s>
-	<s name="unlockmain_9">敬请期待...</s>
+	<s name="unlockmain_9">角色20级后可解锁...</s>
 	<s name="poweraddtext">%02d:%02d后恢复1点体力</s>
 	<s name="gobakccostcoin">是否消耗%d元宝购买回城卷轴？</s>	
 	<s name="nothingbox">包袱里空空如也...</s>
@@ -343,7 +343,7 @@
 	<s name="matchlvname_3">一方大侠</s>
 	<s name="matchlvname_4">墨者</s>
 	<s name="neednextexpdesc">还需%d积分可升级至：</s>
-	<s name="matchrewardtext">点击查看奖励</s>
+	<s name="matchrewardtext">点击宝箱查看奖励</s>
 	<s name="matchendtimetext">赛季结束时间</s>
 	<s name="matchmax">参战人物已满！</s>
 	<s name="matchnetworkerr">获取数据失败！请检查网络连接。</s>
