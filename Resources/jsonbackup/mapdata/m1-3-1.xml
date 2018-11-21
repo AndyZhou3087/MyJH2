@@ -81,7 +81,9 @@
     <Cell c="2" r="16" p="-1" w="1" m="22.png" />
     <Cell c="2" r="17" p="-1" w="1" m="22.png" />
     <Cell c="2" r="18" p="-1" w="1" m="22.png" />
-    <Cell c="2" r="19" p="5" w="1" m="22.png" />
+    <Cell c="2" r="19" p="5" w="1" m="22.png">
+      <msawd1 id="f001" qu="4" rnd="100.00">1</msawd1>
+    </Cell>
     <Cell c="3" r="0" p="-1" w="0" m="33.png" d="8.png" />
     <Cell c="3" r="1" p="-1" w="1" m="22.png" />
     <Cell c="3" r="2" p="-1" w="1" m="22.png" />
