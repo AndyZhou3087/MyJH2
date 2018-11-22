@@ -70,6 +70,12 @@ bool MarketResNode::init(std::string resid, int rescount)
 	}
 	resbox->loadTexture(ResourcePath::makePath(boxstr), cocos2d::ui::Widget::TextureResType::PLIST);
 
+	if (resid.compare("r014") >= 0 && resid.compare("r018") <= 0)
+	{
+		int intid = atoi(resid.substr(1).c_str());
+		resid = StringUtils::format("r%03d", intid - 13);
+	}
+
 	cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	std::string str = StringUtils::format("ui/%s.png", resid.c_str());
 	resimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);

@@ -301,6 +301,12 @@ void MarketLayer::buyRes(int iterindex, int count)
 		dvint.setValue(1000 * count);
 		GlobalInstance::getInstance()->addMySoliverCount(dvint);
 	}
+	else if (resid.compare("r014") >= 0 && resid.compare("r018") <= 0)
+	{
+		int intid = atoi(resid.substr(1).c_str());
+		resid = StringUtils::format("r%03d", intid - 13);
+		MyRes::Add(resid, 100 * count);
+	}
 	else
 		MyRes::Add(resid, count);
 
