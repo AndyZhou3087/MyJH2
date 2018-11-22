@@ -12,7 +12,7 @@
 {"id":"n011","cname":"刺客","vocation":"7","nicon":"n006"},
 {"id":"n012","cname":"唐门弟子","vocation":"11","nicon":"n007"},
 {"id":"n013","cname":"山贼","vocation":"8","nicon":"n005"},
-{"id":"n014","cname":"小头领","vocation":"4","nicon":"n002"},
+{"id":"n014","cname":"帮主","vocation":"4","nicon":"n002"},
 {"id":"n015","cname":"教众","vocation":"0","nicon":"n003"},
 {"id":"n016","cname":"舵主","vocation":"4","nicon":"n002"},
 {"id":"n017","cname":"寨主","vocation":"4","nicon":"n002"},
@@ -139,7 +139,14 @@
 {"id":"n138","cname":"独臂大侠","vocation":"4","nicon":"n028"},
 {"id":"n139","cname":"龙姑娘","vocation":"4","nicon":"n007"},
 {"id":"n140","cname":"金轮明王","vocation":"6","nicon":"n010"},
-{"id":"n141","cname":"周万通","vocation":"9","nicon":"n018"},
-{"id":"n142","cname":"东方教主","vocation":"3","nicon":"n013"},
-{"id":"n143","cname":"独孤求败","vocation":"4","nicon":"n010"}
+{"id":"n141","cname":"李洛水","vocation":"4","nicon":"n007"},
+{"id":"n142","cname":"周万通","vocation":"9","nicon":"n018"},
+{"id":"n143","cname":"张小凡","vocation":"9","nicon":"n028"},
+{"id":"n144","cname":"郡主","vocation":"3","nicon":"n007"},
+{"id":"n145","cname":"狮王","vocation":"8","nicon":"n015"},
+{"id":"n146","cname":"蝠王","vocation":"4","nicon":"n006"},
+{"id":"n147","cname":"鹰王","vocation":"3","nicon":"n018"},
+{"id":"n148","cname":"杨之肖","vocation":"0","nicon":"n015"},
+{"id":"n149","cname":"东方教主","vocation":"3","nicon":"n013"},
+{"id":"n150","cname":"独孤求败","vocation":"4","nicon":"n010"}
 ]}

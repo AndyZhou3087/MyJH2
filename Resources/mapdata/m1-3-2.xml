@@ -401,9 +401,7 @@
     <Cell c="17" r="18" p="-1" w="1" m="22.png" />
     <Cell c="17" r="19" p="-1" w="0" m="33.png" d="8.png" />
     <Cell c="18" r="0" p="-1" w="0" m="33.png" d="8.png" />
-    <Cell c="18" r="1" p="5" w="1" m="22.png">
-      <msawd1 id="r012" qu="0" rnd="100.00">100</msawd1>
-    </Cell>
+    <Cell c="18" r="1" p="-1" w="1" m="22.png" />
     <Cell c="18" r="2" p="-1" w="1" m="22.png" />
     <Cell c="18" r="3" p="-1" w="1" m="22.png" />
     <Cell c="18" r="4" p="-1" w="1" m="22.png" />

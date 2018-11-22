@@ -748,9 +748,7 @@
     <Cell c="23" r="23" p="-1" w="1" m="11.png" />
     <Cell c="23" r="24" p="-1" w="0" m="47.png" />
     <Cell c="23" r="25" p="-1" w="1" m="11.png" />
-    <Cell c="23" r="26" p="5" w="1" m="11.png">
-      <msawd1 id="r012" qu="0" rnd="100.00">100</msawd1>
-    </Cell>
+    <Cell c="23" r="26" p="-1" w="1" m="11.png" />
     <Cell c="23" r="27" p="-1" w="0" m="46.png" />
     <Cell c="23" r="28" p="-1" w="1" m="11.png" />
     <Cell c="23" r="29" p="-1" w="0" m="47.png" />

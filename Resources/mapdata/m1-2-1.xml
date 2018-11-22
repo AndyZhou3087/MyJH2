@@ -80,9 +80,7 @@
     <Cell c="3" r="2" p="-1" w="0" m="6.png" d="1.png" />
     <Cell c="3" r="3" p="-1" w="0" m="6.png" d="1.png" />
     <Cell c="3" r="4" p="-1" w="0" m="6.png" />
-    <Cell c="3" r="5" p="5" w="1" m="107.png">
-      <msawd1 id="g001" qu="4" rnd="100.00">1</msawd1>
-    </Cell>
+    <Cell c="3" r="5" p="-1" w="1" m="107.png" />
     <Cell c="3" r="6" p="-1" w="0" m="6.png" d="1.png" />
     <Cell c="3" r="7" p="-1" w="0" m="6.png" />
     <Cell c="3" r="8" p="-1" w="0" m="6.png" d="3.png" />

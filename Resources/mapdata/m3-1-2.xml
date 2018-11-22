@@ -901,9 +901,7 @@
     <Cell c="28" r="22" p="-1" w="1" m="6.png" d="3.png" />
     <Cell c="28" r="23" p="-1" w="1" m="6.png" />
     <Cell c="28" r="24" p="-1" w="1" m="6.png" />
-    <Cell c="28" r="25" p="5" w="1" m="6.png">
-      <msawd1 id="r012" qu="0" rnd="100.00">100</msawd1>
-    </Cell>
+    <Cell c="28" r="25" p="-1" w="1" m="6.png" />
     <Cell c="28" r="26" p="-1" w="1" m="6.png">
       <event>0;0;0;0;0;0;100</event>
     </Cell>
