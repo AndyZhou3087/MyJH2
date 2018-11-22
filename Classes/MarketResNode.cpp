@@ -126,8 +126,6 @@ bool MarketResNode::init(std::string resid, int rescount)
 
 void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-
-
 	Node* clicknode = (Node*)pSender;
 	int tag = clicknode->getTag();
 	if (tag != 2000)
