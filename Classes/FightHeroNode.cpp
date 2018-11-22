@@ -1483,7 +1483,7 @@ void FightHeroNode::showDeathAnim()
 	std::string effectname = "effect/carddeath.csb";
 	auto effectnode = CSLoader::createNode(effectname);
 	effectnode->setPosition(Vec2(this->getPositionX(), this->getPositionY() + 20));
-	this->getParent()->addChild(effectnode, 10, "death");
+	this->getParent()->addChild(effectnode, 20, "death");
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
 	action->gotoFrameAndPlay(0, false);
