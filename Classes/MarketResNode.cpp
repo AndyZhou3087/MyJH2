@@ -70,6 +70,10 @@ bool MarketResNode::init(std::string resid, int rescount)
 	}
 	resbox->loadTexture(ResourcePath::makePath(boxstr), cocos2d::ui::Widget::TextureResType::PLIST);
 
+	//名字
+	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
+	namelbl->setString(GlobalInstance::map_AllResources[resid].name);
+
 	if (resid.compare("r014") >= 0 && resid.compare("r018") <= 0)
 	{
 		int intid = atoi(resid.substr(1).c_str());
@@ -80,9 +84,7 @@ bool MarketResNode::init(std::string resid, int rescount)
 	std::string str = StringUtils::format("ui/%s.png", resid.c_str());
 	resimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	//名字
-	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
-	namelbl->setString(GlobalInstance::map_AllResources[resid].name);
+
 
 	//描述
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
