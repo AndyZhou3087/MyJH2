@@ -304,8 +304,8 @@ void MarketLayer::buyRes(int iterindex, int count)
 	else if (resid.compare("r014") >= 0 && resid.compare("r018") <= 0)
 	{
 		int intid = atoi(resid.substr(1).c_str());
-		resid = StringUtils::format("r%03d", intid - 13);
-		MyRes::Add(resid, 100 * count);
+		std::string nresid = StringUtils::format("r%03d", intid - 13);
+		MyRes::Add(nresid, 100 * count);
 	}
 	else
 		MyRes::Add(resid, count);
