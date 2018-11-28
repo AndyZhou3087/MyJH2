@@ -410,19 +410,20 @@ void FightHeroNode::hurtAnimFinish()
 		{
 			removePlaySkillAnim(0);
 
-			fighting->pauseAtkSchedule();
 			GongFa* gf = m_Data->checkSkillWg();
 			if (gf != NULL && GlobalInstance::map_GF[gf->getId()].skill != SKILL_13)
 				m_Data->clearSkill(gf);
 
 			if (checkReviveSkill())
 			{
+				fighting->pauseAtkSchedule();
 				isPlaySkillAnim = true;
 				this->scheduleOnce(schedule_selector(FightHeroNode::delayShowReviveAnim), 0.6f);
 				return;
 			}
 			else
 			{
+				pauseTimeSchedule();
 				((Hero*)m_Data)->setState(HS_DEAD);
 
 				((Hero*)m_Data)->setPos(0);
@@ -430,7 +431,7 @@ void FightHeroNode::hurtAnimFinish()
 				int v = ((Hero*)m_Data)->getVocation();
 
 				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DIE);
-				nextRound(0);
+				//nextRound(0);
 			}
 		}
 
@@ -678,6 +679,9 @@ void FightHeroNode::setMatchFightState()
 
 void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 {
+	FightingLayer* fighting = (FightingLayer*)this->getParent();
+	fighting->pauseAtkSchedule();
+
 	GongFa* gf = m_Data->checkSkillWg();
 
 	if (m_Data->getId().length() > 10)//是否是自己的英雄
