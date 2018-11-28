@@ -27,7 +27,7 @@
 #include "UMeng/Analytics/MobClickCpp.h"
 #define encrypt_jsonxml 1 //加密
 #endif
-
+#define encrypt_jsonxml 1
 const static float newguidetime = 0.3f;
 
 const static float creatorResLvUpPara[] = {0.5f, 0.9f, 0.7f, 0.8f, 1.0f};

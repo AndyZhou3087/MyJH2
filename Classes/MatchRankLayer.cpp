@@ -5,6 +5,7 @@
 #include "Const.h"
 #include "AnimationEffect.h"
 #include "MovingLabel.h"
+#include "WaitingProgress.h"
 
 USING_NS_CC;
 
@@ -58,18 +59,16 @@ bool MatchRankLayer::init()
 	title->loadTexture(ResourcePath::makeTextImgPath("ranktitle_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	text = (cocos2d::ui::Text*)csbnode->getChildByName("text");
-	text->setVisible(true);
-	text->setString(ResourceLang::map_lang["datawaitingtext"]);
+	text->setVisible(false);
+	text->setString(ResourceLang::map_lang["doingtext"]);
 
 	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(MatchRankLayer::onBtnClick, this));
 
 	scrollView = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scrollView");
-	MyRankData data;
-	mynode = MatchRankNode::create(data, 1);
-	this->addChild(mynode);
-	mynode->setPosition(Vec2(352, 120));
-	mynode->setVisible(false);
+
+	WaitingProgress* waitbox = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+	Director::getInstance()->getRunningScene()->addChild(waitbox, 100, "waitbox");
 
 	HttpDataSwap::init(this)->getMatchRankHeros();
 
@@ -119,12 +118,20 @@ void MatchRankLayer::loadMyRankHeros()
 
 void MatchRankLayer::onFinish(int code)
 {
+	Director::getInstance()->getRunningScene()->removeChildByName("waitbox");
 	if (code == 0)
 	{
-		text->setVisible(false);
-		mynode->setVisible(true);
+		this->removeChildByName("waitbox");
+		text->setVisible(true);
+
+		MyRankData data;
+		mynode = MatchRankNode::create(data, 1);
+		this->addChild(mynode);
+		mynode->setPosition(Vec2(352, 120));
 
 		loadMyRankHeros();
+
+		text->setVisible(false);
 	}
 	else
 	{

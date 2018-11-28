@@ -100,7 +100,7 @@ bool MatchRankNode::init(MyRankData herodata, int type)
 		herobox->loadTexture("ui/main_menu_box.png", cocos2d::ui::Widget::TextureResType::PLIST);
 		str = StringUtils::format("ui/h_%d_0.png", DataSave::getInstance()->getHeadId());
 		heroimg->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
-		if (GlobalInstance::myRankInfo.myrank <= 0)
+		if (GlobalInstance::myRankInfo.myrank < 0)
 		{
 			myrank->setString(ResourceLang::map_lang["notrank"]);
 		}

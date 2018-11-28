@@ -1096,7 +1096,7 @@ void HttpDataSwap::httpGetMyMatchHerosCB(std::string retdata, int code, std::str
 				GlobalInstance::myMatchInfo.matchscore = atoi(myd.GetString());
 				myd = mydatav["awardindex"];
 				GlobalInstance::myMatchInfo.awardindex = atoi(myd.GetString());
-
+				GlobalInstance::myMatchInfo.map_myheros.clear();
 				for (int i = 0; i < 6; i++)
 				{
 					std::string herokey = StringUtils::format("hero%d", i);

@@ -81,7 +81,7 @@ bool MatchRewardLayer::init()
 	int lvscores[] = { 100, 300, 700, 1000, INT32_MAX };
 	int lvsize = sizeof(lvscores) / sizeof(lvscores[0]);
 	int itemheight = 220;
-	int innerheight = (lvsize - 1) * itemheight;
+	int innerheight = lvsize * itemheight;
 	int contentheight = scrollView->getContentSize().height;
 	if (innerheight < contentheight)
 		innerheight = contentheight;
@@ -90,15 +90,19 @@ bool MatchRewardLayer::init()
 	int offsetx[] = { 0, 217, 168 };
 	for (int i = 0; i < lvsize; i++)
 	{
-		if (i + 1 == lvsize)
-		{
-			break;
-		}
 		Node* node = CSLoader::createNode(ResourcePath::makePath("matchRewardNode.csb"));
 		scrollView->addChild(node);
 		node->setPosition(Vec2(240, innerheight - i * itemheight - itemheight / 2));
 		std::string lvname = StringUtils::format("matchlvname_%d", i);
-		std::string str = StringUtils::format(ResourceLang::map_lang["matchlv"].c_str(), ResourceLang::map_lang[lvname].c_str(), lvscores[i] + 1, lvscores[i + 1]);
+		int minscore = 0;
+		int maxscore = lvscores[i];
+		if (i > 0)
+		{
+			minscore = lvscores[i - 1] + 1;
+			//maxscore = lvscores[i];
+		}
+
+		std::string str = StringUtils::format(ResourceLang::map_lang["matchlv"].c_str(), ResourceLang::map_lang[lvname].c_str(), minscore, maxscore);
 		cocos2d::ui::Text* title = (cocos2d::ui::Text*)node->getChildByName("title");
 		title->setString(str);
 		if (vec_matchlv.size() == lvsize)
