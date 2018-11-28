@@ -664,6 +664,12 @@ void MatchMainLayer::onFinish(int code)
 		else if (httptag == 2 || httptag == 3)
 		{
 			setMatchBtnStatus(0);
+
+			if (httptag == 3 && code == 3)
+			{
+				MovingLabel::show(ResourceLang::map_lang["nomatch"]);
+				return;
+			}
 		}
 		
 		MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
