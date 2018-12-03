@@ -394,6 +394,10 @@ void FightingLayer::heroFight(int fightertag)
 		{
 			atindex = calcAttackNodeIndex(fightertag, whoatk);
 		}
+
+		if (atindex < 0)
+			return;
+
 		int atnodetag = atindex;
 
 		if (whoatk == 0)
