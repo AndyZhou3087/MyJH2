@@ -205,8 +205,7 @@ void ShopLayer::beginPay(int index)
 		methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1, str2, 0);
 	}
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	//buy(GlobalInstance::vec_shopdata[payindex].paycode.c_str());
-	setMessage(PAY_SUCC);
+	buy(GlobalInstance::vec_shopdata[payindex].paycode.c_str());
 #endif
 }
 
