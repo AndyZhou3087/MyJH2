@@ -246,7 +246,8 @@
 	<s name="gocitycard">回城卷轴：%d</s>
 	<s name="tomartketbuy1">去市场升级</s>	
 	<s name="tomartketbuy2">去市场购买</s>
-	<s name="confirmdecompose">是否确认分解%s级%s</s>
+	<s name="confirmdecompose">是否确认分解%s级%s？</s>
+	<s name="confirmdecompose1">%s级%s镶嵌有宝石，是否确认分解？</s>
 	<s name="noequipputon">当前没有对应装备，可通过完成副本、铁匠铺制造获得</s>
 	<s name="nogfputon">当前没有对应武功，可通过完成副本获得</s>
 	<s name="newherohint">有新的角色招募</s>

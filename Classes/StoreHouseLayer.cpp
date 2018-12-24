@@ -317,34 +317,20 @@ void StoreHouseLayer::onclick(Ref* pSender)
 	ResBase* res = (ResBase*)node->getUserData();
 	if (isfastcomposing)
 	{
-		if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
-		{
-			Equip* eres = (Equip*)res;
-			if (eres->getQU().getValue() >= 2)
-			{
-				std::string potentialstr = StringUtils::format("potential_%d", eres->getQU().getValue());
-				std::string hintstr = StringUtils::format(ResourceLang::map_lang["confirmdecompose"].c_str(), ResourceLang::map_lang[potentialstr].c_str(), GlobalInstance::map_AllResources[eres->getId()].name.c_str());
-				HintBoxLayer* hint = HintBoxLayer::create(hintstr, 5);
-				hint->setUserData((void*)eres);
-				this->addChild(hint);
-				AnimationEffect::openAniEffect((Layer*)hint);
-				return;
-			}
-		}
-		decompose(res);
+		decomposeCheck(res);
 	}
 	else
 	{
 		if (res->getType() >= T_ARMOR && res->getType() <= T_NG)
 		{
 			EquipDescLayer* layer = EquipDescLayer::create(res, 0);//从仓库进入
-			this->addChild(layer);
+			this->addChild(layer, 0, 1111);
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 		else
 		{
 			ResDescLayer* layer = ResDescLayer::create(res, 0);
-			this->addChild(layer);
+			this->addChild(layer, 0, 1111);
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 	}
@@ -416,6 +402,46 @@ void StoreHouseLayer::onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 
 		updateContent(node->getTag());
 	}
+}
+
+int StoreHouseLayer::decomposeCheck(ResBase* res)
+{
+	if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
+	{
+		Equip* eres = (Equip*)res;
+
+		bool ishasstones = false;
+		for (unsigned int n = 0; n < eres->vec_stones.size(); n++)
+		{
+			if (eres->vec_stones[n].length() >= 3)//有镶嵌宝石
+			{
+				ishasstones = true;
+				break;
+			}
+		}
+
+		if (eres->getQU().getValue() >= 2 || ishasstones)
+		{
+			std::string potentialstr = StringUtils::format("potential_%d", eres->getQU().getValue());
+			std::string hintstr = StringUtils::format(ResourceLang::map_lang["confirmdecompose"].c_str(), ResourceLang::map_lang[potentialstr].c_str(), GlobalInstance::map_AllResources[eres->getId()].name.c_str());
+			HintBoxLayer* hint = HintBoxLayer::create(hintstr, 5);
+
+			if (ishasstones)
+			{
+				hintstr = StringUtils::format(ResourceLang::map_lang["confirmdecompose1"].c_str(), ResourceLang::map_lang[potentialstr].c_str(), GlobalInstance::map_AllResources[eres->getId()].name.c_str());
+				hint = HintBoxLayer::create(hintstr, 7);
+			}
+
+			hint->setUserData((void*)eres);
+			this->addChild(hint, 0, 100);
+			AnimationEffect::openAniEffect((Layer*)hint);
+			return 1;
+		}
+	}
+
+	decompose(res);
+
+	return 0;
 }
 
 void StoreHouseLayer::decompose(ResBase* res)

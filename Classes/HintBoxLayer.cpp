@@ -155,14 +155,15 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			{
 				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
 			}
-			else if (m_forwhere == 5)
+			else if (m_forwhere == 5 || m_forwhere == 7)
 			{
 				StoreHouseLayer* storelayer = (StoreHouseLayer*)g_mainScene->getChildByName("3storehouse");
 				if (storelayer != NULL)
-					storelayer->decompose((ResBase*)this->getUserData());
-				if (this->getTag() == 100)
 				{
-					AnimationEffect::closeAniEffect((Layer*)this->getParent());
+					storelayer->decompose((ResBase*)this->getUserData());
+					AnimationEffect::closeAniEffect((Layer*)this);
+					if (storelayer->getChildByTag(1111) != NULL)
+						AnimationEffect::closeAniEffect((Layer*)storelayer->getChildByTag(1111));
 					return;
 				}
 			}

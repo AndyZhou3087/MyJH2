@@ -26,6 +26,8 @@ public:
 
 	void decompose(ResBase* res);
 
+	int decomposeCheck(ResBase* res);
+
 	void updateUI();
 
 	void delayShowNewerGuide(float dt);

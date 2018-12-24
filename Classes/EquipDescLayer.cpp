@@ -522,23 +522,11 @@ void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
 				if (storelayer != NULL)
 				{
-					if (m_res->getType() >= T_ARMOR && m_res->getType() <= T_FASHION)
+					if (storelayer->decomposeCheck(m_res) == 0)
 					{
-						Equip* eres = (Equip*)m_res;
-						if (eres->getQU().getValue() >= 2)
-						{
-							std::string potentialstr = StringUtils::format("potential_%d", eres->getQU().getValue());
-							std::string hintstr = StringUtils::format(ResourceLang::map_lang["confirmdecompose"].c_str(), ResourceLang::map_lang[potentialstr].c_str(), GlobalInstance::map_AllResources[eres->getId()].name.c_str());
-							HintBoxLayer* hint = HintBoxLayer::create(hintstr, 5);
-							hint->setUserData((void*)eres);
-							this->addChild(hint, 0, 100);
-							AnimationEffect::openAniEffect((Layer*)hint);
-							return;
-						}
+						AnimationEffect::closeAniEffect((Layer*)this);
 					}
-					storelayer->decompose(m_res);
 				}
-				AnimationEffect::closeAniEffect((Layer*)this);
 			}
 			else if (status == S_EQUIP_TAKEOFF)
 			{
