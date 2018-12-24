@@ -17,7 +17,7 @@ USING_NS_CC;
 
 GoBackLayer::GoBackLayer()
 {
-
+	gobackcoin.setValue(GlobalInstance::map_AllResources["t001"].coinval);
 }
 
 GoBackLayer::~GoBackLayer()
@@ -169,11 +169,10 @@ void GoBackLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 
 void GoBackLayer::costCoinGoback()
 {
-	int coin = GlobalInstance::map_AllResources["t001"].coinval;
-	if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= coin)
+	if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= gobackcoin.getValue())
 	{
 		DynamicValueInt dal;
-		dal.setValue(coin);
+		dal.setValue(gobackcoin.getValue());
 		GlobalInstance::getInstance()->costMyCoinCount(dal);
 
 		if (m_forwhere == 0)

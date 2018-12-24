@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include "DynamicValue.h"
 
 USING_NS_CC;
 
@@ -30,7 +31,7 @@ private:
 	cocos2d::ui::Text* m_friendly;
 	cocos2d::ui::Text* m_count;
 	int lastSelectIndex;
-	int lastIndexCount;
+	DynamicValueInt lastIndexCount;
 	cocos2d::ui::Widget* selectArr[3];
 	Node* m_longTouchNode;
 	bool m_isLongPress;

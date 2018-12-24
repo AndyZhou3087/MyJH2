@@ -91,14 +91,17 @@ bool MessageDescLayer::init(int index)
 			CommonFuncs::split(awdstr, vec_str, ";");
 			for (unsigned int n = 0; n < vec_str.size(); n++)
 			{
-				std::vector<std::string> one_str;
-				CommonFuncs::split(vec_str[n], one_str, "-");
+				if (vec_str[n].length() > 0)
+				{
+					std::vector<std::string> one_str;
+					CommonFuncs::split(vec_str[n], one_str, "-");
 
-				MSGAWDSDATA adata;
-				adata.rid = one_str[0];
-				adata.count = atoi(one_str[1].c_str());
-				adata.qu = atoi(one_str[2].c_str());
-				awdslist.push_back(adata);
+					MSGAWDSDATA adata;
+					adata.rid = one_str[0];
+					adata.count = atoi(one_str[1].c_str());
+					adata.qu = atoi(one_str[2].c_str());
+					awdslist.push_back(adata);
+				}
 			}
 		}
 

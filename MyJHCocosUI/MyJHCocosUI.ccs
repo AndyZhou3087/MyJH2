@@ -1181,6 +1181,7 @@
         <Project Name="homeHillLayer.csd" Type="Layer" />
         <Project Name="hospitalLayer.csd" Type="Layer" />
         <Project Name="innRoomLayer.csd" Type="Layer" />
+        <Project Name="LevelForm.csd" Type="Layer" />
         <Image Name="loadingbg.jpg" />
         <Image Name="loadingclicktext.png" />
         <Project Name="LoadingLayer.csd" Type="Layer" />
@@ -1245,7 +1246,6 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="LevelForm.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

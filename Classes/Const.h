@@ -22,6 +22,14 @@
 #define RESCREATOREMAXLV 50
 #define CLICKOFFSETP 8
 
+#define BETCOSTCOIN 50 //
+
+#define COINREFRESH_MARKET_NUM 20//元宝刷新市场
+#define SILVERREFRESH_MARKET_NUM 2000//银两刷新市场
+
+#define COINREFRESH_HERO_NUM 50//元宝刷新招募英雄
+#define SILVERREFRESH_HERO_NUM 100//银两刷新招募英雄
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #define UMENG
 #include "UMeng/Analytics/MobClickCpp.h"

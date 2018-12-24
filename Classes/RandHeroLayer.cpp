@@ -20,11 +20,12 @@
 
 USING_NS_CC;
 
-#define SILVERREFRESH_NUM 100
-#define COINREFRESH_NUM 50
 RandHeroLayer::RandHeroLayer()
 {
 	GlobalInstance::isNewHeroRefresh = false;
+	refreshHeroCoin.setValue(COINREFRESH_HERO_NUM);
+	refreshHeroSilver.setValue(SILVERREFRESH_HERO_NUM);
+
 }
 
 RandHeroLayer::~RandHeroLayer()
@@ -115,10 +116,10 @@ bool RandHeroLayer::init()
 
 
 	refreshsilverlbl = (cocos2d::ui::Text*)csbnode->getChildByName("snumbl");
-	std::string lblstr = StringUtils::format("%d", SILVERREFRESH_NUM + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
+	std::string lblstr = StringUtils::format("%d", refreshHeroSilver.getValue() + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
 	refreshsilverlbl->setString(lblstr);
 	refreshcoinlbl = (cocos2d::ui::Text*)csbnode->getChildByName("cnumbl");
-	lblstr = StringUtils::format("%d", COINREFRESH_NUM);
+	lblstr = StringUtils::format("%d", COINREFRESH_HERO_NUM);
 	refreshcoinlbl->setString(lblstr);
 
 	herocardcountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("cardnumbl");
@@ -219,7 +220,7 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		switch (tag)
 		{
 		case BTN_S_REFRESH://银子刷新
-			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= SILVERREFRESH_NUM + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100)
+			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= refreshHeroSilver.getValue() + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100)
 			{
 				if (checkIsTopPotentail(1) < 0)
 					refresh3Hero(1);
@@ -230,7 +231,7 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			}
 			break;
 		case BTN_C_REFRESH://元宝刷新
-			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= COINREFRESH_NUM)
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= refreshHeroCoin.getValue())
 			{
 				if (checkIsTopPotentail(2) < 0)
 					refresh3Hero(2);
@@ -331,18 +332,18 @@ void RandHeroLayer::refresh3Hero(int i)
 	if (i == 1)
 	{
 		DynamicValueInt dval;
-		dval.setValue(SILVERREFRESH_NUM + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
+		dval.setValue(refreshHeroSilver.getValue() + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
 		GlobalInstance::getInstance()->costMySoliverCount(dval);
 
 		GlobalInstance::getInstance()->setSilverRefHeroCount(GlobalInstance::getInstance()->getSilverRefHeroCount() + 1);
 
-		std::string str = StringUtils::format("%d", SILVERREFRESH_NUM + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
+		std::string str = StringUtils::format("%d", refreshHeroSilver.getValue() + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
 		refreshsilverlbl->setString(str);
 	}
 	else if (i == 2)
 	{
 		DynamicValueInt dval;
-		dval.setValue(COINREFRESH_NUM);
+		dval.setValue(refreshHeroCoin.getValue());
 		GlobalInstance::getInstance()->costMyCoinCount(dval);
 	}
 	else if (i == 3)
@@ -370,7 +371,7 @@ void RandHeroLayer::updateUI(float dt)
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
 	mycoinlbl->setString(str);
 
-	str = StringUtils::format("%d", SILVERREFRESH_NUM + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
+	str = StringUtils::format("%d", refreshHeroSilver.getValue() + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
 	refreshsilverlbl->setString(str);
 
 	int lefttime = 0;

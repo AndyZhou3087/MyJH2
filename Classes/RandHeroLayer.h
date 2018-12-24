@@ -57,6 +57,8 @@ private:
 	cocos2d::ui::LoadingBar* m_timebar;
 	cocos2d::ui::Text* m_timelbl;
 	Node* csbnode;
+	DynamicValueInt refreshHeroCoin;
+	DynamicValueInt refreshHeroSilver;
 
 };
 

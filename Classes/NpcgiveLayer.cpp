@@ -15,7 +15,7 @@ USING_NS_CC;
 NpcgiveLayer::NpcgiveLayer()
 {
 	lastSelectIndex = 0;
-	lastIndexCount = 0;
+	lastIndexCount.setValue(0);
 	m_isLongPress = false;
 	m_longTouchNode = NULL;
 }
@@ -189,7 +189,7 @@ void NpcgiveLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			break;
 		case 1001://ิ๙หอ
 		{
-			if (lastIndexCount <= 0)
+			if (lastIndexCount.getValue() <= 0)
 			{
 				MovingLabel::show(ResourceLang::map_lang["selectnpcgive"]);
 				return;
@@ -200,7 +200,7 @@ void NpcgiveLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				MovingLabel::show(ResourceLang::map_lang["npcgivemost"]);
 				return;
 			}
-			int friendly = GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount;
+			int friendly = GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount.getValue();
 			GlobalInstance::map_myfriendly[m_npcid].friendly += friendly;
 			NpcLayer* npclayer = (NpcLayer*)this->getParent();
 			if (npclayer != NULL)
@@ -210,18 +210,18 @@ void NpcgiveLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			if (vec_rewards[lastSelectIndex].compare("r006") == 0)
 			{
 				DynamicValueInt dal;
-				dal.setValue(lastIndexCount);
+				dal.setValue(lastIndexCount.getValue());
 				GlobalInstance::getInstance()->costMySoliverCount(dal);
 			}
 			else if (vec_rewards[lastSelectIndex].compare("r012") == 0)
 			{
 				DynamicValueInt dal;
-				dal.setValue(lastIndexCount);
+				dal.setValue(lastIndexCount.getValue());
 				GlobalInstance::getInstance()->costMyCoinCount(dal);
 			}
 			else
 			{
-				MyRes::Use(vec_rewards[lastSelectIndex], lastIndexCount);
+				MyRes::Use(vec_rewards[lastSelectIndex], lastIndexCount.getValue());
 			}
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
@@ -256,7 +256,7 @@ void NpcgiveLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 		if (tag >= 0 && tag <= 2)
 		{
-			lastIndexCount = 0;
+			lastIndexCount.setValue(0);
 			updateCaryyCountLbl();
 		}
 	}
@@ -306,18 +306,18 @@ void NpcgiveLayer::onSubBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 
 void NpcgiveLayer::updateCaryyCountLbl()
 {
-	std::string str = StringUtils::format("%d/%d", lastIndexCount, MyRes::getMyResCount(vec_rewards[lastSelectIndex]));
+	std::string str = StringUtils::format("%d/%d", lastIndexCount.getValue(), MyRes::getMyResCount(vec_rewards[lastSelectIndex]));
 	if (vec_rewards[lastSelectIndex].compare("r006") == 0)
 	{
-		str = StringUtils::format("%d/%d", lastIndexCount, GlobalInstance::getInstance()->getMySoliverCount().getValue());
+		str = StringUtils::format("%d/%d", lastIndexCount.getValue(), GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	}
 	else if (vec_rewards[lastSelectIndex].compare("r012") == 0)
 	{
-		str = StringUtils::format("%d/%d", lastIndexCount, GlobalInstance::getInstance()->getMyCoinCount().getValue());
+		str = StringUtils::format("%d/%d", lastIndexCount.getValue(), GlobalInstance::getInstance()->getMyCoinCount().getValue());
 	}
 	m_count->setString(str);
 
-	int friendly = GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount;
+	int friendly = GlobalInstance::map_AllResources[vec_rewards[lastSelectIndex]].friendly * lastIndexCount.getValue();
 	str = StringUtils::format("%d", friendly);
 	m_friendly->setString(str);
 
@@ -363,21 +363,21 @@ void NpcgiveLayer::addRes()
 	bool isLack = false;
 	if (vec_rewards[lastSelectIndex].compare("r006") == 0)
 	{
-		if (lastIndexCount >= GlobalInstance::getInstance()->getMySoliverCount().getValue())
+		if (lastIndexCount.getValue() >= GlobalInstance::getInstance()->getMySoliverCount().getValue())
 		{
 			isLack = true;
 		}
 	}
 	else if (vec_rewards[lastSelectIndex].compare("r012") == 0)
 	{
-		if (lastIndexCount >= GlobalInstance::getInstance()->getMyCoinCount().getValue())
+		if (lastIndexCount.getValue() >= GlobalInstance::getInstance()->getMyCoinCount().getValue())
 		{
 			isLack = true;
 		}
 	}
 	else
 	{
-		if (lastIndexCount >= MyRes::getMyResCount(vec_rewards[lastSelectIndex]))
+		if (lastIndexCount.getValue() >= MyRes::getMyResCount(vec_rewards[lastSelectIndex]))
 		{
 			isLack = true;
 		}
@@ -388,15 +388,15 @@ void NpcgiveLayer::addRes()
 		MovingLabel::show(str);
 		return;
 	}
-	lastIndexCount++;
+	lastIndexCount.setValue(lastIndexCount.getValue()+1);
 	updateCaryyCountLbl();
 }
 
 void NpcgiveLayer::subRes()
 {
-	if (lastIndexCount <= 0)
+	if (lastIndexCount.getValue() <= 0)
 		return;
 
-	lastIndexCount--;
+	lastIndexCount.setValue(lastIndexCount.getValue() - 1);
 	updateCaryyCountLbl();
 }

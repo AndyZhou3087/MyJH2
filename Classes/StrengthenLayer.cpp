@@ -20,7 +20,7 @@
 
 StrengthenLayer::StrengthenLayer()
 {
-	coincount = 0;
+	coincount.setValue(0);
 }
 
 
@@ -106,7 +106,7 @@ bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 		str = StringUtils::format("%d/%d", MyRes::getMyResCount(restr), m_equip->getLv().getValue() + 1);//一级需求一个
 		rescount->setString(str);
 
-		coincount += GlobalInstance::map_AllResources[restr].coinval * (m_equip->getLv().getValue() + 1);
+		coincount.setValue(coincount.getValue() + GlobalInstance::map_AllResources[restr].coinval * (m_equip->getLv().getValue() + 1));
 		if (MyRes::getMyResCount(restr) < m_equip->getLv().getValue() + 1)
 		{
 			rescount->setColor(Color3B(255, 0, 0));
@@ -141,7 +141,7 @@ bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 	drationbtntxt->loadTexture(ResourcePath::makeTextImgPath("drstrenth_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::Text* silvercount = (cocos2d::ui::Text*)csbnode->getChildByName("silvercount");
-	str = StringUtils::format("x%d", coincount);
+	str = StringUtils::format("x%d", coincount.getValue());
 	silvercount->setString(str);
 
 
@@ -198,13 +198,13 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		}
 		else
 		{
-			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() < coincount)
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() < coincount.getValue())
 			{
 				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
 				return;
 			}
 			DynamicValueInt dvl;
-			dvl.setValue(coincount);
+			dvl.setValue(coincount.getValue());
 			GlobalInstance::getInstance()->costMyCoinCount(dvl);
 		}
 

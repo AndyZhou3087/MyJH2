@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include "DynamicValue.h"
 
 USING_NS_CC;
 
@@ -31,6 +32,7 @@ private:
 	int m_forwhere;
 	cocos2d::ui::Button* actionbtn;
 	cocos2d::ui::Button* cancelbtn;
+	DynamicValueInt gobackcoin;
 };
 
 #endif

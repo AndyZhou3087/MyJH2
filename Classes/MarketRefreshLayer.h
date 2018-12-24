@@ -22,6 +22,9 @@ private:
 	void onreBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void closebtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
+private:
+	DynamicValueInt refreshCoin;
+	DynamicValueInt refreshSilver;
 };
 
 #endif

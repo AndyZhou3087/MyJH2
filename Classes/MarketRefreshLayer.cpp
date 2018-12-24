@@ -10,12 +10,12 @@
 
 USING_NS_CC;
 
-#define SILVERREFRESH_NUM 2000
-#define COINREFRESH_NUM 20
 
 MarketRefreshLayer::MarketRefreshLayer()
 {
+	refreshCoin.setValue(COINREFRESH_MARKET_NUM);
 
+	refreshSilver.setValue(SILVERREFRESH_MARKET_NUM);
 }
 
 MarketRefreshLayer::~MarketRefreshLayer()
@@ -77,11 +77,11 @@ bool MarketRefreshLayer::init()
 	attactlb->setString(ResourceLang::map_lang["marketrefreshdesc"]);
 
 	cocos2d::ui::Text* cointext = (cocos2d::ui::Text*)csbnode->getChildByName("cointext");
-	std::string str = StringUtils::format("x%d", COINREFRESH_NUM);
+	std::string str = StringUtils::format("x%d", COINREFRESH_MARKET_NUM);
 	cointext->setString(str);
 
 	cocos2d::ui::Text* slivertext = (cocos2d::ui::Text*)csbnode->getChildByName("slivertext");
-	str = StringUtils::format("x%d", SILVERREFRESH_NUM);
+	str = StringUtils::format("x%d", refreshSilver.getValue());
 	slivertext->setString(str);
 
 	//屏蔽下层点击
@@ -109,10 +109,10 @@ void MarketRefreshLayer::onreBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget
 		switch (tag)
 		{
 		case 10://元宝刷新
-			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= COINREFRESH_NUM)
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= refreshCoin.getValue())
 			{
 				DynamicValueInt dval;
-				dval.setValue(COINREFRESH_NUM);
+				dval.setValue(refreshCoin.getValue());
 				GlobalInstance::getInstance()->costMyCoinCount(dval);
 				MarketLayer* market = (MarketLayer*)this->getParent();
 				if (market!=NULL)
@@ -127,10 +127,10 @@ void MarketRefreshLayer::onreBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget
 			}
 			break;
 		case 100://银两刷新
-			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= SILVERREFRESH_NUM)
+			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= refreshSilver.getValue())
 			{
 				DynamicValueInt dval;
-				dval.setValue(SILVERREFRESH_NUM);
+				dval.setValue(refreshSilver.getValue());
 				GlobalInstance::getInstance()->costMySoliverCount(dval);
 				MarketLayer* market = (MarketLayer*)this->getParent();
 				if (market != NULL)
