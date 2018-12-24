@@ -10,9 +10,7 @@
 #include "GambleBoxLayer.h"
 #include "MovingLabel.h"
 
-#define BETCOSTCOIN 50
-#define BETPRO 514
-#define COSTSLIVER 5000
+#define BETPRO 450
 
 int maxqupr[5] = { 585,885,985,995,1000 };
 
@@ -27,6 +25,7 @@ MapEventLayer::MapEventLayer()
 	winbs = -1;
 	isWin = -1;
 	hdcount = 0;
+	betCostCoin.setValue(BETCOSTCOIN);
 }
 
 MapEventLayer::~MapEventLayer()
@@ -368,11 +367,12 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				MovingLabel::show(ResourceLang::map_lang["bettipstext"]);
 				return;
 			}
-			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= BETCOSTCOIN)
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= betCostCoin.getValue())
 			{
 				DynamicValueInt dvl;
-				dvl.setValue(BETCOSTCOIN);
-				GlobalInstance::getInstance()->costMyCoinCount(dvl);
+				dvl.setValue(-betCostCoin.getValue());
+				//GlobalInstance::getInstance()->costMyCoinCount(dvl);
+				GlobalInstance::getInstance()->addMyCoinCount(dvl);
 			}
 			else
 			{
@@ -609,24 +609,24 @@ void MapEventLayer::eventElderExtort(int type)
 	cocos2d::ui::ImageView* text = (cocos2d::ui::ImageView*)closebtn->getChildByName("text");
 	text->loadTexture(ResourcePath::makeTextImgPath("mapeventtext_lk", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	int m_costsliver;
+	DynamicValueInt costslivercount;
 	if (type != POS_THIEF)
 	{
 		str = StringUtils::format("images/event%d-2.jpg", m_eventindex);
 		eventimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
-		m_costsliver = COSTSLIVER;
+		costslivercount.setValue(5000);
 	}
 	else
 	{
-		m_costsliver = 2000;
+		costslivercount.setValue(2000);
 	}
-	str = StringUtils::format("%d", m_costsliver);
+	str = StringUtils::format("%d", costslivercount.getValue());
 	count->setString(str);
 
-	if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= 5000)
+	if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= costslivercount.getValue())
 	{
 		DynamicValueInt val;
-		val.setValue(m_costsliver);
+		val.setValue(costslivercount.getValue());
 		GlobalInstance::getInstance()->costMySoliverCount(val);
 	}
 	else

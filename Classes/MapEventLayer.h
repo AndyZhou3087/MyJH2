@@ -83,6 +83,8 @@ private:
 	int isWin;
 	int hdcount;//事件死亡数
 
+	DynamicValueInt betCostCoin;
+
 	static std::map<std::string, EventData> map_eventdata;
 };
 
