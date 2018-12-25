@@ -105,6 +105,9 @@ bool NpcLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	cocos2d::ui::Text* text1 = (cocos2d::ui::Text*)csbnode->getChildByName("text1");
 	text1->setString(ResourceLang::map_lang["npcrelationtext"]);
 
+	cocos2d::ui::Text* hinttext = (cocos2d::ui::Text*)csbnode->getChildByName("hinttext");
+	hinttext->setString(ResourceLang::map_lang["npcgivehint"]);
+
 	//好感度进度条
 	loadFriendlyPro();
 

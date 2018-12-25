@@ -60,31 +60,66 @@ bool NpcgiveLayer::init(std::string npcid)
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("npcgiveLayer.csb"));
 	this->addChild(csbnode);
+
+	Node* contentnode = csbnode->getChildByName("contentnode");
+
 	int langtype = GlobalInstance::getInstance()->getLang();
 
-	cocos2d::ui::Text* title = (cocos2d::ui::Text*)csbnode->getChildByName("title");
+	cocos2d::ui::Text* title = (cocos2d::ui::Text*)contentnode->getChildByName("title");
 	title->setString(ResourceLang::map_lang["npcgivetitle"]);
 
-	cocos2d::ui::Text* tips = (cocos2d::ui::Text*)csbnode->getChildByName("tips");
+	cocos2d::ui::Text* tips = (cocos2d::ui::Text*)contentnode->getChildByName("tips");
 	tips->setString(ResourceLang::map_lang["npcgivetips"]);
 
-	cocos2d::ui::Text* text0 = (cocos2d::ui::Text*)csbnode->getChildByName("text0");
+	cocos2d::ui::Text* text0 = (cocos2d::ui::Text*)contentnode->getChildByName("text0");
 	text0->setString(ResourceLang::map_lang["npcgivetext0"]);
-	cocos2d::ui::Text* text1 = (cocos2d::ui::Text*)csbnode->getChildByName("text1");
+	cocos2d::ui::Text* text1 = (cocos2d::ui::Text*)contentnode->getChildByName("text1");
 	text1->setString(ResourceLang::map_lang["npcgivetext1"]);
 
-	m_friendly = (cocos2d::ui::Text*)csbnode->getChildByName("friendly");
+	m_friendly = (cocos2d::ui::Text*)contentnode->getChildByName("friendly");
 	std::string str = "0";
 	m_friendly->setString(str);
 
-	m_count = (cocos2d::ui::Text*)csbnode->getChildByName("count");
+	m_count = (cocos2d::ui::Text*)contentnode->getChildByName("count");
 
-	cocos2d::ui::Button* subbtn = (cocos2d::ui::Button*)csbnode->getChildByName("subbtn");
+	cocos2d::ui::Button* subbtn = (cocos2d::ui::Button*)contentnode->getChildByName("subbtn");
 	subbtn->addTouchEventListener(CC_CALLBACK_2(NpcgiveLayer::onSubBtnClick, this));
 	subbtn->setTag(20000);
-	cocos2d::ui::Button* addbtn = (cocos2d::ui::Button*)csbnode->getChildByName("addbtn");
+	cocos2d::ui::Button* addbtn = (cocos2d::ui::Button*)contentnode->getChildByName("addbtn");
 	addbtn->addTouchEventListener(CC_CALLBACK_2(NpcgiveLayer::onAddBtnClick, this));
 	addbtn->setTag(10000);
+
+	std::string renationattrstr[3];
+
+	std::vector<std::vector<float>> vec_ranations;
+	vec_ranations.push_back(GlobalInstance::map_npcrelation[npcid].friendratio);
+	vec_ranations.push_back(GlobalInstance::map_npcrelation[npcid].masterratio);
+	vec_ranations.push_back(GlobalInstance::map_npcrelation[npcid].conpelratio);
+
+	bool ishasrenation = false;
+	cocos2d::ui::Text* renationtext[3];
+
+	for (int m = 0; m < 3; m++)
+	{
+		for (unsigned int i = 0; i < vec_ranations[m].size(); i++)
+		{
+			if (vec_ranations[m][i] > 0)
+			{
+				std::string attrkey = StringUtils::format("reattrtext_%d", i);
+				std::string attrstr = StringUtils::format("%s +%.0f%%", ResourceLang::map_lang[attrkey].c_str(), vec_ranations[m][i] * 100);
+				std::string namekey = StringUtils::format("ra%dhint", m);
+				renationattrstr[m] = StringUtils::format(ResourceLang::map_lang[namekey].c_str(), attrstr.c_str());
+			}
+		}
+
+		if (renationattrstr[m].length() > 0)
+		{
+			ishasrenation = true;
+			std::string renationtextname = StringUtils::format("ra%dtext", m);
+			renationtext[m] = (cocos2d::ui::Text*)csbnode->getChildByName(renationtextname);
+			renationtext[m]->setString(renationattrstr[m]);
+		}
+	}
 
 	cocos2d::ui::Button* cancelbtn = (cocos2d::ui::Button*)csbnode->getChildByName("cancelbtn");
 	cancelbtn->addTouchEventListener(CC_CALLBACK_2(NpcgiveLayer::onBtnClick, this));
@@ -97,7 +132,16 @@ bool NpcgiveLayer::init(std::string npcid)
 	cocos2d::ui::ImageView* givetext = (cocos2d::ui::ImageView*)givebtn->getChildByName("text");
 	givetext->loadTexture(ResourcePath::makeTextImgPath("npcgive_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	desc = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
+	if (!ishasrenation)
+	{
+		cocos2d::ui::ImageView* smallbg = (cocos2d::ui::ImageView*)csbnode->getChildByName("smallbg");
+		smallbg->setContentSize(Size(smallbg->getContentSize().width, 700));
+		givebtn->setPositionY(390);
+		cancelbtn->setPositionY(390);
+		contentnode->setPositionY(690);
+	}
+
+	desc = (cocos2d::ui::Text*)contentnode->getChildByName("desc");
 	int f = GlobalInstance::map_npcrelation[npcid].friendneed - GlobalInstance::map_myfriendly[npcid].friendly;
 	if (f <= 0)
 	{
@@ -116,7 +160,7 @@ bool NpcgiveLayer::init(std::string npcid)
 	str = StringUtils::format(ResourceLang::map_lang["npcgivedesc"].c_str(), f, m, c);
 	desc->setString(str);
 
-	int startx[] = { 360, 270 ,210 };
+	int startx[] = { 0, -90 ,-150 };
 	int offsetx[] = { 0, 180, 150 };
 	int rewardsize = GlobalInstance::map_npcrelation[npcid].res.size();
 	vec_rewards = GlobalInstance::map_npcrelation[npcid].res;
@@ -124,11 +168,11 @@ bool NpcgiveLayer::init(std::string npcid)
 	for (int i = 0; i < 3; i++)
 	{
 		std::string str = StringUtils::format("resbox_%d", i);
-		cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
+		cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)contentnode->getChildByName(str);
 		resbox->addTouchEventListener(CC_CALLBACK_2(NpcgiveLayer::onBtnClick, this));
 		resbox->setTag(i);
 		str = StringUtils::format("select_%d", i);
-		cocos2d::ui::Widget* select = (cocos2d::ui::Widget*)csbnode->getChildByName(str);
+		cocos2d::ui::Widget* select = (cocos2d::ui::Widget*)contentnode->getChildByName(str);
 		selectArr[i] = select;
 		select->setVisible(false);
 		cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");

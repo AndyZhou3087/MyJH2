@@ -361,5 +361,15 @@
 	<s name="matchnosorttext">未排位&#xA;%s</s>
 	<s name="npcgivedesc">结交还需：%d,拜师还需：%d,结亲还需：%d</s>
 	<s name="npcgivemost">好友度已达上限</s>
-	<s name="nomatch">未匹配到玩家，请明日再试！</s>	
+	<s name="nomatch">未匹配到玩家，请明日再试！</s>
+	<s name="npcgivehint">赠送物品，投其所好，可以改变与NPC的关系。</s>
+	<s name="ra0hint">好友：%s</s>
+	<s name="ra1hint">师徒：%s</s>
+	<s name="ra2hint">结亲：%s</s>
+	<s name="reattrtext_0">生命值</s>
+	<s name="reattrtext_1">攻击力</s>
+	<s name="reattrtext_2">防御力</s>
+	<s name="reattrtext_3">闪避几率</s>
+	<s name="reattrtext_4">暴击几率</s>
+	<s name="reattrtext_5">攻击速度</s>	
 </strings>

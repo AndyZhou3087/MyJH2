@@ -79,36 +79,6 @@ float Hero::getHp()
 	if (m_hp < -100)
 	{
 		m_hp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[0] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
-		std::map<std::string, NpcFriendly>::iterator it;
-
-		if (m_ftype == 0)
-		{
-			map_friendly = GlobalInstance::map_myfriendly;
-		}
-		else if (m_ftype == 1)
-		{
-			map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
-		}
-
-		for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
-		{
-			std::string nid = it->first;
-			for (unsigned int i = 0; i < it->second.relation.size(); i++)
-			{
-				if (it->second.relation[i] == NPC_FRIEND)
-				{
-					m_hp += m_hp*GlobalInstance::map_npcrelation[nid].friendratio[0];
-				}
-				else if (it->second.relation[i] == NPC_MASTER)
-				{
-					m_hp += m_hp*GlobalInstance::map_npcrelation[nid].masterratio[0];
-				}
-				else if (it->second.relation[i] == NPC_COUPEL)
-				{
-					m_hp += m_hp*GlobalInstance::map_npcrelation[nid].conpelratio[0];
-				}
-			}
-		}
 	}
 	else if (m_hp < 0)
 	{
@@ -332,7 +302,8 @@ float Hero::getDf()
 }
 float Hero::getMaxHp()
 {
-	float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
+	float herobasehp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
+	float herohp = herobasehp;
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -366,6 +337,38 @@ float Hero::getMaxHp()
 			}
 		}
 	}
+
+	std::map<std::string, NpcFriendly>::iterator it;
+
+	if (m_ftype == 0)
+	{
+		map_friendly = GlobalInstance::map_myfriendly;
+	}
+	else if (m_ftype == 1)
+	{
+		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+	}
+
+	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			if (it->second.relation[i] == NPC_FRIEND)
+			{
+				herohp += herobasehp * GlobalInstance::map_npcrelation[nid].friendratio[0];
+			}
+			else if (it->second.relation[i] == NPC_MASTER)
+			{
+				herohp += herobasehp * GlobalInstance::map_npcrelation[nid].masterratio[0];
+			}
+			else if (it->second.relation[i] == NPC_COUPEL)
+			{
+				herohp += herobasehp * GlobalInstance::map_npcrelation[nid].conpelratio[0];
+			}
+		}
+	}
+
 	if (m_hp > herohp)
 		m_hp = herohp;
 	return herohp;
