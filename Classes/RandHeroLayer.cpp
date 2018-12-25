@@ -269,6 +269,7 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			else
 			{
 				std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources["u001"].name.c_str());
+				str.append(ResourceLang::map_lang["herocardhint"]);
 				MovingLabel::show(str);
 			}
 		}

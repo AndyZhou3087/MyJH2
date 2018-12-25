@@ -371,5 +371,6 @@
 	<s name="reattrtext_2">防御力</s>
 	<s name="reattrtext_3">闪避几率</s>
 	<s name="reattrtext_4">暴击几率</s>
-	<s name="reattrtext_5">攻击速度</s>	
+	<s name="reattrtext_5">攻击速度</s>
+	<s name="herocardhint">可通过限时礼包获得！</s>		
 </strings>
