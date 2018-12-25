@@ -244,7 +244,7 @@ float Hero::getDf()
 				float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
 				Equip* equip = (Equip*)takeOnEquip[i];
 				herodf += (equip->getDf()*herobns);
-				if (GlobalInstance::map_EquipSuit[equip->getId()].vec_suit.size() >= 3)
+				if (GlobalInstance::map_EquipSuit.find(equip->getId()) != GlobalInstance::map_EquipSuit.end() && GlobalInstance::map_EquipSuit[equip->getId()].vec_suit.size() >= 3)
 				{
 					std::string suitid = GlobalInstance::map_EquipSuit[equip->getId()].vec_suit[2];
 					int t = 0;
@@ -313,7 +313,7 @@ float Hero::getMaxHp()
 				float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
 				Equip* equip = (Equip*)takeOnEquip[i];
 				herohp += (equip->getHp()*herobns);
-				if (GlobalInstance::map_EquipSuit[equip->getId()].vec_suit.size() >= 2)
+				if (GlobalInstance::map_EquipSuit.find(equip->getId()) != GlobalInstance::map_EquipSuit.end() && GlobalInstance::map_EquipSuit[equip->getId()].vec_suit.size() >= 2)
 				{
 					std::string suitid = GlobalInstance::map_EquipSuit[equip->getId()].vec_suit[1];
 					int t = 0;

@@ -368,7 +368,7 @@ void EquipDescLayer::updateAttr()
 		{
 			float herobns = GlobalInstance::map_Equip[m_res->getId()].vec_bns[carryhero->getVocation()];
 			hp *= herobns;
-			if (GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit.size() >= 2)
+			if (GlobalInstance::map_EquipSuit.find(m_res->getId()) != GlobalInstance::map_EquipSuit.end() && GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit.size() >= 2)
 			{
 				std::string suitid = GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit[1];
 				int t = 0;
@@ -388,7 +388,7 @@ void EquipDescLayer::updateAttr()
 
 			df *= herobns;
 
-			if (GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit.size() >= 3)
+			if (GlobalInstance::map_EquipSuit.find(m_res->getId()) != GlobalInstance::map_EquipSuit.end() && GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit.size() >= 3)
 			{
 				std::string suitid = GlobalInstance::map_EquipSuit[m_res->getId()].vec_suit[2];
 				int t = 0;

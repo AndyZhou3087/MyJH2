@@ -49,6 +49,8 @@ private:
 	cocos2d::ui::Text* name;
 	cocos2d::ui::Widget* redpoint;
 	cocos2d::ui::Widget* takeoffpoint;
+
+	Node* attrnode;
 };
 #endif
 

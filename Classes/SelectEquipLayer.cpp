@@ -295,24 +295,27 @@ void SelectEquipLayer::updateLv(float dt)
 {
 	if (m_clickindex >= 0)
 	{
-		Label * namelbl = (Label*)scrollview->getChildByTag(m_clickindex)->getChildByName("item")->getChildByName("resname");
+		if (vec_res[m_clickindex]->getType() >= T_ARMOR && vec_res[m_clickindex]->getType() <= T_NG)
+		{
+			Label * namelbl = (Label*)scrollview->getChildByTag(m_clickindex)->getChildByName("item")->getChildByName("resname");
 
-		int lv = 0;
-		Equipable* eres = (Equipable*)vec_res[m_clickindex];
-		std::string namestr = GlobalInstance::map_AllResources[eres->getId()].name;
-		if (eres->getType() >= T_ARMOR && eres->getType() <= T_FASHION)
-		{
-			lv = eres->getLv().getValue();
-		}
-		else
-		{
-			lv = eres->getLv().getValue() + 1;
-		}
+			int lv = 0;
+			Equipable* eres = (Equipable*)vec_res[m_clickindex];
+			std::string namestr = GlobalInstance::map_AllResources[eres->getId()].name;
+			if (eres->getType() >= T_ARMOR && eres->getType() <= T_FASHION)
+			{
+				lv = eres->getLv().getValue();
+			}
+			else
+			{
+				lv = eres->getLv().getValue() + 1;
+			}
 
-		if (eres->getLv().getValue() > 0)
-		{
-			namestr = StringUtils::format("+%d%s", lv, namestr.c_str());
-			namelbl->setString(namestr);
+			if (eres->getLv().getValue() > 0)
+			{
+				namestr = StringUtils::format("+%d%s", lv, namestr.c_str());
+				namelbl->setString(namestr);
+			}
 		}
 	}
 }

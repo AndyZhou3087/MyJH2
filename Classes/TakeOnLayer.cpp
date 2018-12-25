@@ -67,6 +67,12 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 	csbnode = CSLoader::createNode(ResourcePath::makePath("takeOnLayer.csb"));
 	this->addChild(csbnode);
 
+	Node* suitnode = csbnode->getChildByName("suitnode");
+
+	attrnode = csbnode->getChildByName("attrnode");
+
+	Node* infonode = csbnode->getChildByName("infonode");
+
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -81,7 +87,7 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 	int qu = m_equip->getQU().getValue();
 
 	std::string str;
-	name = (cocos2d::ui::Text*)csbnode->getChildByName("name");
+	name = (cocos2d::ui::Text*)infonode->getChildByName("name");
 	name->setTextColor(Color4B(POTENTIALCOLOR[qu]));
 
 	std::string namestr = GlobalInstance::map_AllResources[m_equip->getId()].name;
@@ -93,25 +99,48 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 
 	name->setString(namestr);
 
-	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox");
+	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)infonode->getChildByName("resbox");
 	str = StringUtils::format("ui/resbox_qu%d.png", qu);
 	resbox->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
+	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)infonode->getChildByName("res");
 	str = GlobalInstance::getInstance()->getResUIFrameName(m_equip->getId(), qu);
 
 	p_res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::Text* qutext = (cocos2d::ui::Text*)csbnode->getChildByName("qutext");
+	cocos2d::ui::Text* qutext = (cocos2d::ui::Text*)infonode->getChildByName("qutext");
 	qutext->setString(ResourceLang::map_lang["potentialtext"]);
 
-	cocos2d::ui::Text* qulbl = (cocos2d::ui::Text*)csbnode->getChildByName("qu");
+	cocos2d::ui::Text* qulbl = (cocos2d::ui::Text*)infonode->getChildByName("qu");
 	std::string st = StringUtils::format("potential_%d", qu);
 	qulbl->setString(ResourceLang::map_lang[st]);
 	qulbl->setTextColor(Color4B(POTENTIALCOLOR[qu]));
 
-	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
+	cocos2d::ui::Text* desc = (cocos2d::ui::Text*)infonode->getChildByName("desc");
 	desc->setString(GlobalInstance::map_AllResources[m_equip->getId()].desc);
+
+	//选择，更换按钮
+	actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
+	actionbtn->setTag(1001);
+	actionbtn->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onBtnClick, this));
+	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
+	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("replacebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	//卸下按钮
+	cocos2d::ui::Widget* takeoffbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn_0");
+	takeoffbtn->setTag(1003);
+	takeoffbtn->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onBtnClick, this));
+	cocos2d::ui::ImageView* takeoffbtntxt = (cocos2d::ui::ImageView*)takeoffbtn->getChildByName("text");
+	takeoffbtntxt->loadTexture(ResourcePath::makeTextImgPath("takeoffbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	takeoffpoint = (cocos2d::ui::Widget*)takeoffbtn->getChildByName("redpoint");
+
+	//强化按钮
+	cocos2d::ui::Widget* strenthbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn_1");
+	strenthbtn->setTag(1004);
+	strenthbtn->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onBtnClick, this));
+	cocos2d::ui::ImageView* strenthbtntxt = (cocos2d::ui::ImageView*)strenthbtn->getChildByName("text");
+	strenthbtntxt->loadTexture(ResourcePath::makeTextImgPath("strenthbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	redpoint = (cocos2d::ui::Widget*)strenthbtn->getChildByName("redpoint");
 
 	int equ = m_equip->getQU().getValue();
 
@@ -125,16 +154,16 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 		for (unsigned int i = 0; i < 3; i++)
 		{
 			str = StringUtils::format("desc_%d", i);
-			cocos2d::ui::Text* suitresdesc = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+			cocos2d::ui::Text* suitresdesc = (cocos2d::ui::Text*)suitnode->getChildByName(str);
 
 			str = StringUtils::format("resbox_%d", i);
-			cocos2d::ui::ImageView* suitresbox = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
+			cocos2d::ui::ImageView* suitresbox = (cocos2d::ui::ImageView*)suitnode->getChildByName(str);
 
 			str = StringUtils::format("res_%d", i);
-			cocos2d::ui::ImageView* suitres = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
+			cocos2d::ui::ImageView* suitres = (cocos2d::ui::ImageView*)suitnode->getChildByName(str);
 
 			str = StringUtils::format("nothing%d", i);
-			cocos2d::ui::Text* statlbl = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+			cocos2d::ui::Text* statlbl = (cocos2d::ui::Text*)suitnode->getChildByName(str);
 			statlbl->setString(ResourceLang::map_lang["nothing"]);
 			statlbl->setOpacity(168);
 			statlbl->setVisible(false);
@@ -223,50 +252,38 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 		for (int i = 0; i < 3; i++)
 		{
 			str = StringUtils::format("resbox_%d", i);
-			cocos2d::ui::ImageView* suitresbox = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
+			cocos2d::ui::ImageView* suitresbox = (cocos2d::ui::ImageView*)suitnode->getChildByName(str);
 			//suitresbox->setOpacity(128);
 			str = StringUtils::format("res_%d", i);
-			cocos2d::ui::ImageView* suitres = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
+			cocos2d::ui::ImageView* suitres = (cocos2d::ui::ImageView*)suitnode->getChildByName(str);
 			//suitres->setVisible(false);
 			str = StringUtils::format("nothing%d", i);
-			cocos2d::ui::Text* statlbl = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+			cocos2d::ui::Text* statlbl = (cocos2d::ui::Text*)suitnode->getChildByName(str);
 			statlbl->setString(ResourceLang::map_lang["nothing"]);
 			statlbl->setOpacity(168);
 
 			if (i != 0)
 			{
 				str = StringUtils::format("desc_%d", i);
-				cocos2d::ui::Text* suitresdesc = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+				cocos2d::ui::Text* suitresdesc = (cocos2d::ui::Text*)suitnode->getChildByName(str);
 				str = StringUtils::format(ResourceLang::map_lang["nothingeffect"].c_str(), i);
 				suitresdesc->setString(str);
 				suitresdesc->setOpacity(128);
 			}
 		}
+
+		cocos2d::ui::ImageView* smallbg = (cocos2d::ui::ImageView*)csbnode->getChildByName("bg");
+		smallbg->setContentSize(Size(smallbg->getContentSize().width, 1000));
+		suitnode->setVisible(false);
+		closebtn->setPositionY(1105);
+		infonode->setPositionY(920);
+		attrnode->setPositionY(520);
+		actionbtn->setPositionY(225);
+		takeoffbtn->setPositionY(225);
+		strenthbtn->setPositionY(225);
 	}
+
 	updateUI();
-
-	//选择，更换按钮
-	actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
-	actionbtn->setTag(1001);
-	actionbtn->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onBtnClick, this));
-	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
-	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("replacebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-
-	//卸下按钮
-	cocos2d::ui::Widget* takeoffbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn_0");
-	takeoffbtn->setTag(1003);
-	takeoffbtn->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onBtnClick, this));
-	cocos2d::ui::ImageView* takeoffbtntxt = (cocos2d::ui::ImageView*)takeoffbtn->getChildByName("text");
-	takeoffbtntxt->loadTexture(ResourcePath::makeTextImgPath("takeoffbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-	takeoffpoint = (cocos2d::ui::Widget*)takeoffbtn->getChildByName("redpoint");
-
-	//强化按钮
-	cocos2d::ui::Widget* strenthbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn_1");
-	strenthbtn->setTag(1004);
-	strenthbtn->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onBtnClick, this));
-	cocos2d::ui::ImageView* strenthbtntxt = (cocos2d::ui::ImageView*)strenthbtn->getChildByName("text");
-	strenthbtntxt->loadTexture(ResourcePath::makeTextImgPath("strenthbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-	redpoint = (cocos2d::ui::Widget*)strenthbtn->getChildByName("redpoint");
 
 	if (herodata->getEquipable(m_equip->getType()) == NULL)
 	{
@@ -515,13 +532,13 @@ void TakeOnLayer::updateUI()
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		std::string str = StringUtils::format("stone%d", i);
-		cocos2d::ui::ImageView* stone = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
+		cocos2d::ui::ImageView* stone = (cocos2d::ui::ImageView*)attrnode->getChildByName(str);
 
 		str = StringUtils::format("equipstonebox_%d", i);
-		cocos2d::ui::ImageView* equipstonebox = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
+		cocos2d::ui::ImageView* equipstonebox = (cocos2d::ui::ImageView*)attrnode->getChildByName(str);
 
 		str = StringUtils::format("stonedesc%d", i);
-		cocos2d::ui::Text* stonedesc = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+		cocos2d::ui::Text* stonedesc = (cocos2d::ui::Text*)attrnode->getChildByName(str);
 		if (i < m_equip->vec_stones.size())
 		{
 			std::string stoneid = m_equip->vec_stones[i];
@@ -572,7 +589,7 @@ void TakeOnLayer::updateAttr()
 	name->setString(sstr);
 	float suithp = 0;
 	float suitdf = 0;
-	if (GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit.size() >= 2)
+	if (GlobalInstance::map_EquipSuit.find(m_equip->getId()) != GlobalInstance::map_EquipSuit.end() && GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit.size() >= 2)
 	{
 		std::string suitid = GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit[1];
 		int t = 0;
@@ -588,7 +605,7 @@ void TakeOnLayer::updateAttr()
 		}
 
 	}
-	if (GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit.size() >= 3)
+	if (GlobalInstance::map_EquipSuit.find(m_equip->getId()) != GlobalInstance::map_EquipSuit.end() && GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit.size() >= 3)
 	{
 		std::string suitid = GlobalInstance::map_EquipSuit[m_equip->getId()].vec_suit[2];
 		int t = 0;
@@ -635,7 +652,7 @@ void TakeOnLayer::updateAttr()
 	for (int i = 0; i <= 5; i++)
 	{
 		std::string str = StringUtils::format("attrtext_%d", i);
-		cocos2d::ui::Text* attrlbl = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+		cocos2d::ui::Text* attrlbl = (cocos2d::ui::Text*)attrnode->getChildByName(str);
 		str = StringUtils::format("addattrtext_%d", i);
 		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), attrval[i]);
 		attrlbl->setString(str);

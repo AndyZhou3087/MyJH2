@@ -95,7 +95,7 @@ float Equip::getSuitDf()
 	float df = 0.0f;
 	df = ebns *  GlobalInstance::map_Equip[getId()].df;
 
-	if (GlobalInstance::map_EquipSuit[getId()].vec_suit.size() >= 3)
+	if (GlobalInstance::map_EquipSuit.find(getId()) != GlobalInstance::map_EquipSuit.end() && GlobalInstance::map_EquipSuit[getId()].vec_suit.size() >= 3)
 	{
 		std::string eid = GlobalInstance::map_EquipSuit[getId()].vec_suit[2];
 		df = df * GlobalInstance::map_EquipSuit[getId()].vec_bns[1] / 100;
@@ -109,7 +109,7 @@ float Equip::getSuitHp()
 	float ebns = POTENTIAL_BNS[equ];
 	float hp = 0.0f;
 	hp = ebns * GlobalInstance::map_Equip[getId()].maxhp;
-	if (GlobalInstance::map_EquipSuit[getId()].vec_suit.size() >= 2)
+	if (GlobalInstance::map_EquipSuit.find(getId()) != GlobalInstance::map_EquipSuit.end() && GlobalInstance::map_EquipSuit[getId()].vec_suit.size() >= 2)
 	{
 		std::string eid = GlobalInstance::map_EquipSuit[getId()].vec_suit[1];
 		hp = hp * GlobalInstance::map_EquipSuit[getId()].vec_bns[0] / 100;
