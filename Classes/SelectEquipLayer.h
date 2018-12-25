@@ -27,10 +27,13 @@ private:
 	cocos2d::ui::ScrollView* scrollview;
 	void loadData();
 	void updateContent();
+
+	void updateLv(float dt);
 private:
 	int m_restype;
 	std::vector<ResBase*> vec_res;
 	Hero* m_herodata;
+	int m_clickindex;
 };
 #endif
 

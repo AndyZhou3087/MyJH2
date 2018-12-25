@@ -1029,29 +1029,44 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 	qubox->setOpacity(255);
 	cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)node->getChildByName("img");
 	resimg->ignoreContentAdaptWithSize(true);
+
+	cocos2d::ui::Text* lvtext = (cocos2d::ui::Text*)node->getChildByName("lvtext");
+
 	std::string qustr;
 	std::string resstr;
+
 	if (res != NULL)
 	{
 		int type = res->getType();
 		qubox->setAnchorPoint(Vec2(0.5, 0.5));
 		qubox->setPosition(Vec2(qubox->getParent()->getContentSize().width / 2, qubox->getParent()->getContentSize().height / 2));
 
+		std::string lvstr;
+		lvtext->setVisible(true);
 
 		int qu =  ((Equipable*)res)->getQU().getValue();
+
 		if (type >= T_ARMOR && type <= T_FASHION)
 		{
 			qubox->setScale(0.84f);
 			resimg->setScale(0.84f);
+
+			int slv = ((Equipable*)res)->getLv().getValue();
+			if(slv > 0)
+				lvstr = StringUtils::format("%+d", slv);
 		}
 		else if (type >= T_WG && type <= T_NG)
 		{
 			qubox->setScale(1.0f);
 			resimg->setScale(1.0f);
 			qu = GlobalInstance::map_GF[res->getId()].qu;
+
+			int lv = ((Equipable*)res)->getLv().getValue();
+			lvstr = StringUtils::format("lv.%d", lv + 1);
 		}
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		resstr = GlobalInstance::getInstance()->getResUIFrameName(res->getId(), qu);
+		lvtext->setString(lvstr);
 	}
 	else
 	{
@@ -1064,6 +1079,7 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 		resimg->setScale(1.0f);
 		qustr = "ui/heroattradd.png";
 		resstr = ResourcePath::makeTextImgPath(StringUtils::format("equiptext_%d", barindex), langtype);
+		lvtext->setVisible(false);
 	}
 	qubox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 	resimg->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
@@ -1176,29 +1192,47 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 		
 		for (int i = 0; i < 6; i++)
 		{
-			if (i != 2 && i != 3)
+			Equipable* eres = (Equipable*)m_heroData->getEquipable(equiptype[i]);
+			redpointArr[i]->setVisible(false);
+			if (eres != NULL)
 			{
-				redpointArr[i]->setVisible(false);
-				Equip* m_equip = (Equip*)m_heroData->getEquipable(equiptype[i]);
-				if (m_equip != NULL)
+				if (i != 2 && i != 3)
 				{
-					if (GlobalInstance::getInstance()->strengthMaterial(m_equip) || GlobalInstance::getInstance()->compareHighEquip(equiptype[i], m_heroData))
+					if (GlobalInstance::getInstance()->strengthMaterial(eres) || GlobalInstance::getInstance()->compareHighEquip(equiptype[i], m_heroData))
+					{
+						redpointArr[i]->setVisible(true);
+					}
+				}
+				else
+				{
+					if ((GlobalInstance::getInstance()->getCanUpgradeCount("m00") && (eres->getLv().getValue() + 1) < (int)GlobalInstance::map_GF[eres->getId()].vec_df.size()) || GlobalInstance::getInstance()->compareHighEquip(equiptype[i], m_heroData))
 					{
 						redpointArr[i]->setVisible(true);
 					}
 				}
 			}
+			//更新等级
+			cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
+			cocos2d::ui::Text* lvtext = (cocos2d::ui::Text*)node->getChildByName("lvtext");
+			std::string lvstr;
+			if (eres != NULL)
+			{
+				if (eres->getType() >= T_ARMOR && eres->getType() <= T_FASHION)
+				{
+					int slv = eres->getLv().getValue();
+					if (slv > 0)
+						lvstr = StringUtils::format("%+d", slv);
+				}
+				else if (eres->getType() >= T_WG && eres->getType() <= T_NG)
+				{
+					int lv = eres->getLv().getValue();
+					lvstr = StringUtils::format("lv.%d", lv + 1);
+				}
+				lvtext->setString(lvstr);
+			}
 			else
 			{
-				Equipable* m_res = (Equipable*)m_heroData->getEquipable(equiptype[i]);
-				redpointArr[i]->setVisible(false);
-				if (m_res != NULL)
-				{
-					if ((GlobalInstance::getInstance()->getCanUpgradeCount("m00") && (m_res->getLv().getValue() + 1) < (int)GlobalInstance::map_GF[m_res->getId()].vec_df.size()) || GlobalInstance::getInstance()->compareHighEquip(equiptype[i], m_heroData))
-					{
-						redpointArr[i]->setVisible(true);
-					}
-				}
+				lvtext->setVisible(false);
 			}
 		}
 	}

@@ -16,13 +16,13 @@
 
 SelectEquipLayer::SelectEquipLayer()
 {
-
+	m_clickindex = -1;
 }
 
 
 SelectEquipLayer::~SelectEquipLayer()
 {
-
+	m_clickindex = -1;
 }
 
 
@@ -88,6 +88,7 @@ bool SelectEquipLayer::init(int restype, Hero* herodata)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
+	this->schedule(schedule_selector(SelectEquipLayer::updateLv), 1);
 
 	return true;
 }
@@ -182,15 +183,16 @@ void SelectEquipLayer::updateContent()
 			qubox,
 			CC_CALLBACK_1(SelectEquipLayer::onclick, this));
 		boxItem->setUserData((void*)vec_res[m]);
+		boxItem->setTag(m);
 
 		boxItem->setPosition(Vec2(qubox->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
 
 		MyMenu* menu = MyMenu::create();
-		menu->addChild(boxItem);
+		menu->addChild(boxItem, 0, "item");
 		menu->setTouchlimit(scrollview);
 		menu->setPosition(Vec2(0, 0));
 
-		scrollview->addChild(menu);
+		scrollview->addChild(menu, 0, m);
 
 		std::string resid = vec_res[m]->getId();
 
@@ -205,13 +207,13 @@ void SelectEquipLayer::updateContent()
 		{
 			Equipable* eres = (Equipable*)vec_res[m];
 			if (eres->getLv().getValue() > 0)
-				namestr = StringUtils::format("+%d%s", eres->getLv().getValue() + 1, namestr.c_str());
+				namestr = StringUtils::format("+%d%s", lv, namestr.c_str());
 		}
 
 		Label *namelbl = Label::createWithTTF(namestr, FONT_NAME, 23);
 		namelbl->setColor(Color3B(26, 68, 101));
 		namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -10));
-		boxItem->addChild(namelbl);
+		boxItem->addChild(namelbl, 0, "resname");
 
 		std::string countstr = StringUtils::format("%d", vec_res[m]->getCount().getValue());
 		Label *countlbl = Label::createWithTTF(countstr, FONT_NAME, 23);
@@ -258,6 +260,8 @@ void SelectEquipLayer::onclick(Ref* pSender)
 {
 	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 	Node* node = (Node*)pSender;
+	m_clickindex = node->getTag();
+
 	ResBase* res = (ResBase*)node->getUserData();
 	Layer* layer;
 	if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
@@ -284,5 +288,31 @@ void SelectEquipLayer::loadData()
 		ResBase* res = MyRes::vec_MyResources[i];
 		if (res->getType() == m_restype && res->getWhere() == MYSTORAGE)
 			vec_res.push_back(res);
+	}
+}
+
+void SelectEquipLayer::updateLv(float dt)
+{
+	if (m_clickindex >= 0)
+	{
+		Label * namelbl = (Label*)scrollview->getChildByTag(m_clickindex)->getChildByName("item")->getChildByName("resname");
+
+		int lv = 0;
+		Equipable* eres = (Equipable*)vec_res[m_clickindex];
+		std::string namestr = GlobalInstance::map_AllResources[eres->getId()].name;
+		if (eres->getType() >= T_ARMOR && eres->getType() <= T_FASHION)
+		{
+			lv = eres->getLv().getValue();
+		}
+		else
+		{
+			lv = eres->getLv().getValue() + 1;
+		}
+
+		if (eres->getLv().getValue() > 0)
+		{
+			namestr = StringUtils::format("+%d%s", lv, namestr.c_str());
+			namelbl->setString(namestr);
+		}
 	}
 }

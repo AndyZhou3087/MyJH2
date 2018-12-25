@@ -302,8 +302,7 @@ float Hero::getDf()
 }
 float Hero::getMaxHp()
 {
-	float herobasehp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
-	float herohp = herobasehp;
+	float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -356,15 +355,15 @@ float Hero::getMaxHp()
 		{
 			if (it->second.relation[i] == NPC_FRIEND)
 			{
-				herohp += herobasehp * GlobalInstance::map_npcrelation[nid].friendratio[0];
+				herohp += herohp * GlobalInstance::map_npcrelation[nid].friendratio[0];
 			}
 			else if (it->second.relation[i] == NPC_MASTER)
 			{
-				herohp += herobasehp * GlobalInstance::map_npcrelation[nid].masterratio[0];
+				herohp += herohp * GlobalInstance::map_npcrelation[nid].masterratio[0];
 			}
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
-				herohp += herobasehp * GlobalInstance::map_npcrelation[nid].conpelratio[0];
+				herohp += herohp * GlobalInstance::map_npcrelation[nid].conpelratio[0];
 			}
 		}
 	}

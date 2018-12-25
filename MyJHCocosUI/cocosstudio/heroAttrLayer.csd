@@ -87,6 +87,18 @@
                     <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="lvtext" ActionTag="-1650693721" Tag="241" IconVisible="False" LeftMargin="66.0000" RightMargin="10.0000" TopMargin="80.5000" BottomMargin="4.5000" FontSize="18" LabelText="+20" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="30.0000" Y="21.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="96.0000" Y="15.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.9057" Y="0.1415" />
+                    <PreSize X="0.2830" Y="0.1981" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-294.9840" />
@@ -129,6 +141,18 @@
                     <PreSize X="0.2264" Y="0.2264" />
                     <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
                     <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="lvtext" ActionTag="-952486910" Tag="242" IconVisible="False" LeftMargin="48.0000" RightMargin="10.0000" TopMargin="80.5000" BottomMargin="4.5000" FontSize="18" LabelText="lv.50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="48.0000" Y="21.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="96.0000" Y="15.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.9057" Y="0.1415" />
+                    <PreSize X="0.4528" Y="0.1981" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -173,6 +197,18 @@
                     <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="lvtext" ActionTag="2142331947" Tag="243" IconVisible="False" LeftMargin="62.0000" RightMargin="10.0000" TopMargin="97.5000" BottomMargin="4.5000" FontSize="20" LabelText="lv.50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="53.0000" Y="23.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="115.0000" Y="16.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.9200" Y="0.1280" />
+                    <PreSize X="0.4240" Y="0.1840" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-64.2035" Y="9.5001" />
@@ -215,6 +251,18 @@
                     <PreSize X="0.1920" Y="0.1920" />
                     <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
                     <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="lvtext" ActionTag="326826224" Tag="244" IconVisible="False" LeftMargin="62.0000" RightMargin="10.0000" TopMargin="97.5000" BottomMargin="4.5000" FontSize="20" LabelText="lv.50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="53.0000" Y="23.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="115.0000" Y="16.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.9200" Y="0.1280" />
+                    <PreSize X="0.4240" Y="0.1840" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -259,6 +307,18 @@
                     <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="lvtext" ActionTag="-861814385" Tag="245" IconVisible="False" LeftMargin="48.0000" RightMargin="10.0000" TopMargin="80.5000" BottomMargin="4.5000" FontSize="18" LabelText="lv.50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="48.0000" Y="21.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="96.0000" Y="15.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.9057" Y="0.1415" />
+                    <PreSize X="0.4528" Y="0.1981" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="185.5771" Y="0.0001" />
@@ -301,6 +361,18 @@
                     <PreSize X="0.2264" Y="0.2264" />
                     <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
                     <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="lvtext" ActionTag="1310842118" Tag="246" IconVisible="False" LeftMargin="48.0000" RightMargin="10.0000" TopMargin="80.5000" BottomMargin="4.5000" FontSize="18" LabelText="lv.50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="48.0000" Y="21.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="96.0000" Y="15.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.9057" Y="0.1415" />
+                    <PreSize X="0.4528" Y="0.1981" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
