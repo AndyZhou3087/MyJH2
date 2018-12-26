@@ -437,14 +437,12 @@
       <FilePathData Path="ui/timegifttimebox.png" />
       <FilePathData Path="ui/u001.png" />
       <FilePathData Path="ui/matchdoingbtn.png" />
-      <FilePathData Path="ui/matchrewardicon.png" />
       <FilePathData Path="ui/herotag_1.png" />
       <FilePathData Path="ui/matchS.png" />
       <FilePathData Path="ui/matchV.png" />
       <FilePathData Path="ui/matchbox0.png" />
       <FilePathData Path="ui/matchbox1.png" />
       <FilePathData Path="ui/fightretline.png" />
-      <FilePathData Path="ui/matchruleicon.png" />
       <FilePathData Path="ui/rank_1.png" />
       <FilePathData Path="ui/rank_2.png" />
       <FilePathData Path="ui/rank_3.png" />
@@ -452,6 +450,7 @@
       <FilePathData Path="ui/matchreward_bg.png" />
       <FilePathData Path="ui/matchreward_0.png" />
       <FilePathData Path="ui/matchreward_1.png" />
+      <FilePathData Path="ui/matchruleicon.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

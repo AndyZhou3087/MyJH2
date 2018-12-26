@@ -311,14 +311,14 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="endtime" ActionTag="288162021" Tag="127" IconVisible="False" LeftMargin="168.7973" RightMargin="432.2027" TopMargin="1135.9758" BottomMargin="116.0242" FontSize="23" LabelText="2018-02-21" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="endtime" ActionTag="288162021" Tag="127" IconVisible="False" LeftMargin="168.2973" RightMargin="431.7027" TopMargin="1134.9758" BottomMargin="115.0242" FontSize="23" LabelText="2018-02-21" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
             <Size X="120.0000" Y="30.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="228.2973" Y="130.0242" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="250" B="221" />
             <PrePosition X="0.3171" Y="0.1016" />
-            <PreSize X="0.1653" Y="0.0219" />
+            <PreSize X="0.1667" Y="0.0234" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="175" G="86" B="0" />
             <ShadowColor A="255" R="35" G="35" B="35" />

@@ -276,7 +276,8 @@ void ResDescLayer::showNewerGuide(int step)
 	{
 		nodes.push_back(actionbtn);
 	}
-	g_mainScene->showNewerGuideNode(step, nodes);
+	if (g_mainScene != NULL)
+		g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -325,7 +326,7 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				MyRes::Use("p001");
 
 				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
-				if (storelayer != NULL)
+				if (g_mainScene != NULL && storelayer != NULL)
 					storelayer->updateUI();
 			}
 			else if (m_res->getType() == T_BOX)
@@ -355,7 +356,7 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 				MyRes::Use(m_res->getId());
 
-				if (storelayer != NULL)
+				if (g_mainScene != NULL && storelayer != NULL)
 					storelayer->updateUI();
 			}
 			//else if (m_res->getType() == T_HEROCARD)

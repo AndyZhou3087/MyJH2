@@ -10,6 +10,10 @@
 #include "NewGuideLayer.h"
 #include "MainMapScene.h"
 #include "DataSave.h"
+#include "BuyResLayer.h"
+#include "MyRes.h"
+#include "ResDescLayer.h"
+#include "AnimationEffect.h"
 
 USING_NS_CC;
 
@@ -278,6 +282,24 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 			nohpherostr = nohpherostr.substr(0, nohpherostr.length());
 			nohpherostr.append(ResourceLang::map_lang["nomorehp"]);
 			MovingLabel::show(nohpherostr);
+
+			if (MyRes::getMyResCount("p001", MYSTORAGE) > 0)
+			{
+				ResDescLayer* layer = ResDescLayer::create(MyRes::getMyRes("p001", MYSTORAGE), 0);
+				this->addChild(layer, 0, 1111);
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
+			else
+			{
+				std::vector< MSGAWDSDATA> vec_res;
+				MSGAWDSDATA rdata;
+				rdata.rid = "p001";
+				rdata.count = 1;
+				rdata.qu = 0;
+				vec_res.push_back(rdata);
+				BuyResLayer* layer = BuyResLayer::create(vec_res);
+				this->addChild(layer);
+			}
 		}
 	}
 }
