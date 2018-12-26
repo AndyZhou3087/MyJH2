@@ -19,6 +19,7 @@
 #include "NewGuideLayer.h"
 #include "MainScene.h"
 #include "SmithyLayer.h"
+#include "BuyCoinLayer.h"
 
 USING_NS_CC;
 
@@ -354,6 +355,9 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 				else
 				{
 					MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+
+					Layer* layer = BuyCoinLayer::create(costcoindv.getValue() - GlobalInstance::getInstance()->getMyCoinCount().getValue());
+					Director::getInstance()->getRunningScene()->addChild(layer, 100, "buycoinlayer");
 				}
 			}
 			break;

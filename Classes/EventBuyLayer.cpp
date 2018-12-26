@@ -8,6 +8,7 @@
 #include "SoundManager.h"
 #include "AnimationEffect.h"
 #include "SoundManager.h"
+#include "BuyCoinLayer.h"
 
 EventBuyLayer::EventBuyLayer()
 {
@@ -190,7 +191,11 @@ void EventBuyLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			if (myrich.getValue() < buycount * saleval)
 			{
 				if (iscoinsale)
+				{
 					showstr = ResourceLang::map_lang["nomorecoin"];
+					Layer* layer = BuyCoinLayer::create(buycount * saleval - myrich.getValue());
+					Director::getInstance()->getRunningScene()->addChild(layer, 100, "buycoinlayer");
+				}
 				else
 					showstr = ResourceLang::map_lang["nomoresilver"];
 			}

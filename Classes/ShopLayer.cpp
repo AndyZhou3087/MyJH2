@@ -229,6 +229,9 @@ void ShopLayer::setMessage(PYARET ret)
 				umeng::MobClickCpp::pay(GlobalInstance::vec_shopdata[payindex].price, 2, count);
 #endif
 			}
+			Node* buycoinlayer = Director::getInstance()->getRunningScene()->getChildByName("buycoinlayer");
+			if (buycoinlayer != NULL)
+				Director::getInstance()->getRunningScene()->removeChildByName("buycoinlayer");
 		}
 		else if (type == GIFT)//Àñ°ü
 		{

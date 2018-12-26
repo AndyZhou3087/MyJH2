@@ -35,7 +35,7 @@ private:
 
 	void delayShowUI(float dt);
 
-	void updateRichLabel();
+	void updateRichLabel(float dt);
 
 private:
 	cocos2d::ui::Text* carrycountlbl;

@@ -97,6 +97,9 @@ bool HomeHillLayer::init(Building* buidingData)
 	closebtn->setTag(1002);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(HomeHillLayer::onBtnClick, this));
 
+	cocos2d::ui::Text* hintdesc = (cocos2d::ui::Text*)csbnode->getChildByName("hintdesc");
+	hintdesc->setString(ResourceLang::map_lang["homehillhintdesc"]);
+
 	//资源滚动控件
 	m_contentscroll = (cocos2d::ui::ScrollView*)csbnode->getChildByName("contentscroll");
 

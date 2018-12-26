@@ -17,6 +17,7 @@
 #include "MyRes.h"
 #include "HeroAttrLayer.h"
 #include "InnRoomLayer.h"
+#include "BuyCoinLayer.h"
 
 USING_NS_CC;
 
@@ -239,6 +240,8 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			else
 			{
 				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+				Layer* layer = BuyCoinLayer::create(refreshHeroCoin.getValue() - GlobalInstance::getInstance()->getMyCoinCount().getValue());
+				Director::getInstance()->getRunningScene()->addChild(layer, 100, "buycoinlayer");
 			}
 			break;
 		case BTN_USECARD:

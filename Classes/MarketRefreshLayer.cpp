@@ -7,6 +7,7 @@
 #include "MyRes.h"
 #include "MarketLayer.h"
 #include "AnimationEffect.h"
+#include "BuyCoinLayer.h"
 
 USING_NS_CC;
 
@@ -124,6 +125,8 @@ void MarketRefreshLayer::onreBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget
 			else
 			{
 				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+				Layer* layer = BuyCoinLayer::create(refreshCoin.getValue() - GlobalInstance::getInstance()->getMyCoinCount().getValue());
+				Director::getInstance()->getRunningScene()->addChild(layer, 100, "buycoinlayer");
 			}
 			break;
 		case 100://ÒøÁ½Ë¢ĞÂ

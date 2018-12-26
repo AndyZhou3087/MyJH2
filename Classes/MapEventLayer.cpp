@@ -9,6 +9,7 @@
 #include "DynamicValue.h"
 #include "GambleBoxLayer.h"
 #include "MovingLabel.h"
+#include "BuyCoinLayer.h"
 
 #define BETPRO 450
 
@@ -386,6 +387,9 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			else
 			{
 				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+
+				Layer* layer = BuyCoinLayer::create(betCostCoin.getValue() - GlobalInstance::getInstance()->getMyCoinCount().getValue());
+				Director::getInstance()->getRunningScene()->addChild(layer, 100, "buycoinlayer");
 				return;
 			}
 			for (int i = 0; i < 2; i++)

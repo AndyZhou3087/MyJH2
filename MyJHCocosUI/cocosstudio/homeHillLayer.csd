@@ -140,19 +140,19 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="contentscroll" ActionTag="-2094316307" Tag="148" IconVisible="False" LeftMargin="35.0000" RightMargin="35.0000" TopMargin="150.0000" BottomMargin="170.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
-            <Size X="650.0000" Y="960.0000" />
+          <AbstractNodeData Name="contentscroll" ActionTag="-2094316307" Tag="148" IconVisible="False" LeftMargin="34.9974" RightMargin="35.0026" TopMargin="150.0004" BottomMargin="189.9997" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+            <Size X="650.0000" Y="940.0000" />
             <AnchorPoint />
-            <Position X="35.0000" Y="170.0000" />
+            <Position X="34.9974" Y="189.9997" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0486" Y="0.1328" />
-            <PreSize X="0.9028" Y="0.7500" />
+            <PrePosition X="0.0486" Y="0.1484" />
+            <PreSize X="0.9028" Y="0.7344" />
             <SingleColor A="255" R="255" G="150" B="100" />
             <FirstColor A="255" R="255" G="150" B="100" />
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
-            <InnerNodeSize Width="650" Height="960" />
+            <InnerNodeSize Width="650" Height="940" />
           </AbstractNodeData>
           <AbstractNodeData Name="timebargb" ActionTag="308189112" Tag="93" IconVisible="False" LeftMargin="295.9982" RightMargin="296.0018" TopMargin="1136.9979" BottomMargin="113.0021" ctype="SpriteObjectData">
             <Size X="128.0000" Y="30.0000" />
@@ -233,6 +233,18 @@
             <PreSize X="0.1014" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="hintdesc" ActionTag="-1968551174" Tag="69" IconVisible="False" LeftMargin="326.0000" RightMargin="326.0000" TopMargin="1108.5001" BottomMargin="146.4999" FontSize="22" LabelText="999999" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="68.0000" Y="25.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="158.9999" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="125" G="80" B="47" />
+            <PrePosition X="0.5000" Y="0.1242" />
+            <PreSize X="0.0944" Y="0.0195" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>

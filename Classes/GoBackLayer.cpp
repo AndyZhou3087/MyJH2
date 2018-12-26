@@ -12,6 +12,7 @@
 #include "NewGuideLayer.h"
 #include "MapBlockScene.h"
 #include "HintBoxLayer.h"
+#include "BuyCoinLayer.h"
 
 USING_NS_CC;
 
@@ -187,6 +188,8 @@ void GoBackLayer::costCoinGoback()
 	else
 	{
 		MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+		Layer* layer = BuyCoinLayer::create(gobackcoin.getValue() - GlobalInstance::getInstance()->getMyCoinCount().getValue());
+		Director::getInstance()->getRunningScene()->addChild(layer, 100, "buycoinlayer");
 	}
 }
 

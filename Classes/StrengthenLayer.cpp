@@ -17,6 +17,7 @@
 #include "EquipDescLayer.h"
 #include "StoreHouseLayer.h"
 #include "SimpleResPopLayer.h"
+#include "BuyCoinLayer.h"
 
 StrengthenLayer::StrengthenLayer()
 {
@@ -201,6 +202,9 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() < coincount.getValue())
 			{
 				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+
+				Layer* layer = BuyCoinLayer::create(coincount.getValue() - GlobalInstance::getInstance()->getMyCoinCount().getValue());
+				Director::getInstance()->getRunningScene()->addChild(layer, 100, "buycoinlayer");
 				return;
 			}
 			DynamicValueInt dvl;

@@ -81,7 +81,9 @@ bool EventBusinessLayer::init()
 	mypackagescrollview->setBounceEnabled(true);
 	vec_scrollview.push_back(mypackagescrollview);
 
-	updateRichLabel();
+	updateRichLabel(0);
+
+	this->schedule(schedule_selector(EventBusinessLayer::updateRichLabel), 1.0f);
 
 	this->scheduleOnce(schedule_selector(EventBusinessLayer::delayShowUI), 0.1f);
 	//屏蔽下层点击
@@ -275,13 +277,13 @@ void EventBusinessLayer::buyRes(FOURProperty res)
 		}
 	}
 
-	updateRichLabel();
+	updateRichLabel(0);
 
 	loadMyPackageRes();
 	updateScrollviewContent();
 }
 
-void EventBusinessLayer::updateRichLabel()
+void EventBusinessLayer::updateRichLabel(float dt)
 {
 	std::string richstr = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
 	mycoinlbl->setString(richstr);

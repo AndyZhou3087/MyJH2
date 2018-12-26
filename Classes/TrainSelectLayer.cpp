@@ -15,6 +15,7 @@
 #include "TrainLayer.h"
 #include "AnimationEffect.h"
 #include "SoundManager.h"
+#include "BuyCoinLayer.h"
 
 USING_NS_CC;
 
@@ -202,6 +203,8 @@ void TrainSelectLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 			else
 			{
 				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+				Layer* layer = BuyCoinLayer::create(coincount.getValue() - GlobalInstance::getInstance()->getMyCoinCount().getValue());
+				Director::getInstance()->getRunningScene()->addChild(layer, 100, "buycoinlayer");
 			}
 			break;
 		default:
