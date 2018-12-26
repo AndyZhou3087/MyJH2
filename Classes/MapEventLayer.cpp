@@ -129,6 +129,15 @@ bool MapEventLayer::init(int eventindex)
 	text2->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	text2->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath(str, langtype))->getContentSize());
 
+	if (m_eventindex == POS_ELDER && GlobalInstance::getInstance()->getMySoliverCount().getValue() < 5000)
+	{
+		actionbtn->setVisible(false);
+		closebtn->setPositionX(0);
+		text->loadTexture(ResourcePath::makeTextImgPath("mapeventtext_lk", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		text->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("mapeventtext_lk", langtype))->getContentSize());
+		textdesc->setString(ResourceLang::map_lang["nosilvertohelp"]);
+	}
+
 	loadPrData();
 
 	this->schedule(schedule_selector(MapEventLayer::updateCoin), 1.0f);
@@ -267,7 +276,7 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			else if (m_eventindex == POS_ELDER)
 			{
 				int r = GlobalInstance::getInstance()->createRandomNum(10) + 1;
-				if (r <= 5)
+				if (r <= 4)
 				{
 					eventnode_1->setVisible(false);
 					eventnode_2->setVisible(true);
@@ -610,15 +619,15 @@ void MapEventLayer::eventElderExtort(int type)
 	text->loadTexture(ResourcePath::makeTextImgPath("mapeventtext_lk", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	DynamicValueInt costslivercount;
+	costslivercount.setValue(5000);
 	if (type != POS_THIEF)
 	{
 		str = StringUtils::format("images/event%d-2.jpg", m_eventindex);
 		eventimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
-		costslivercount.setValue(5000);
 	}
 	else
 	{
-		costslivercount.setValue(2000);
+
 	}
 	str = StringUtils::format("%d", costslivercount.getValue());
 	count->setString(str);

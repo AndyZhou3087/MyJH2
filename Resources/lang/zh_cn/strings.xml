@@ -372,5 +372,6 @@
 	<s name="reattrtext_3">闪避几率</s>
 	<s name="reattrtext_4">暴击几率</s>
 	<s name="reattrtext_5">攻击速度</s>
-	<s name="herocardhint">可通过限时礼包获得！</s>		
+	<s name="herocardhint">可通过限时礼包获得！</s>
+	<s name="nosilvertohelp">路边有一老人似乎摔伤了，但是老大爷看你穿的破破烂烂，对你抛出一个不屑的眼神。</s>	
 </strings>
