@@ -139,7 +139,7 @@ std::string GlobalInstance::getVersionCode()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getvercode();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "1.0.0";
+	return "1.0.3";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;

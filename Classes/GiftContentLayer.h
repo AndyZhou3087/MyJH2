@@ -21,6 +21,7 @@ private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onFinish(int code);
 
+	void getVipReward();
 private:
 	ShopData* m_data;
 	int m_tag;
@@ -30,6 +31,7 @@ private:
 	cocos2d::ui::Text* price;
 	int langtype;
 	int m_type;
+	bool isgetingvip;//是否正在领取月卡
 };
 
 #endif

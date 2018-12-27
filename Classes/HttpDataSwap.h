@@ -34,6 +34,8 @@ public:
 
 	void paySuccNotice(std::string goodsid, int price/*分为单位*/);
 
+	void getMonthlyReward(std::string vipid);
+
 	void report(std::string data);
 
 	void checklegalword(std::string words);
@@ -76,6 +78,8 @@ private:
 	void httpVipIsOnCB(std::string retdata, int code, std::string extdata);
 
 	void httpReportCB(std::string retdata, int code, std::string extdata);
+
+	void httpGetMonthlyRewardCB(std::string retdata, int code, std::string extdata);
 
 	void httpPostMyMatchHerosCB(std::string retdata, int code, std::string extdata);
 

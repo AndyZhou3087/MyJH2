@@ -170,7 +170,45 @@ void HttpDataSwap::paySuccNotice(std::string goodsid, int price)
 	url.append("&price=");
 	std::string pricestr = StringUtils::format("%d", price * 100);
 	url.append(pricestr);
+
+	url.append("&sign=");
+	std::string md5ostr = GlobalInstance::getInstance()->UUID() + goodsid;
+
+	std::string signstr = md5(md5ostr + "key=zhoujian-87");
+	url.append(signstr);
+
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpBlankCB, this));
+}
+
+void HttpDataSwap::getMonthlyReward(std::string vipid)
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_getmonthlycard?");
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	url.append("&goodsid=");
+	url.append(vipid);
+
+	url.append("&sign=");
+	std::string md5ostr = GlobalInstance::getInstance()->UUID() + vipid;
+
+	std::string signstr = md5(md5ostr + "key=zhoujian-87");
+	url.append(signstr);
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMonthlyRewardCB, this));
 }
 
 void HttpDataSwap::getMessageList(int type)
@@ -689,7 +727,9 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 					int val = iter->value.GetInt();
 					if (val > 0)
 					{
-						GlobalInstance::vec_buyVipIds.push_back(strid);
+						int v = atoi(strid.substr(strid.length() - 1, 1).c_str());
+						std::string vipid = StringUtils::format("vip%d", v - 2);
+						GlobalInstance::vec_buyVipIds.push_back(vipid);
 					}
 				}
 				else
@@ -719,12 +759,36 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 	release();
 }
 
+
+void HttpDataSwap::httpGetMonthlyRewardCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
 void HttpDataSwap::httpGetAllDataCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
 	if (code == 0)
 	{
-
 		rapidjson::Document doc;
 		if (JsonReader(retdata, doc))
 		{

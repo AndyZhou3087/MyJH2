@@ -201,12 +201,12 @@ void MainMenuLayer::onFinish(int code)
 		{
 			if (GlobalInstance::vec_buyVipIds.size()>0)
 			{
-				std::map<std::string, int>::iterator it;
-				for (it = GlobalInstance::map_buyVipDays.begin(); it != GlobalInstance::map_buyVipDays.end(); ++it)
+				
+				for (unsigned int m = 0; m < GlobalInstance::vec_buyVipIds.size();m++)
 				{
 					for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
 					{
-						if (GlobalInstance::vec_shopdata[i].icon.compare(it->first) == 0)
+						if (GlobalInstance::vec_shopdata[i].icon.compare(GlobalInstance::vec_buyVipIds[m]) == 0)
 						{
 							GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i, 2);
 							this->addChild(layer, 0, "GiftContentLayer");

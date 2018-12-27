@@ -10,12 +10,13 @@
 #include "DynamicValue.h"
 #include "ShopLayer.h"
 #include "MyRes.h"
+#include "WaitingProgress.h"
 
 USING_NS_CC;
 
 GiftContentLayer::GiftContentLayer()
 {
-
+	isgetingvip = false;
 }
 
 GiftContentLayer::~GiftContentLayer()
@@ -86,7 +87,7 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 	{
 		int id = atoi(data->icon.substr(3, 1).c_str());
 		std::string vipid = StringUtils::format("vip%d", id + 2);
-		HttpDataSwap::init(this)->paySuccNotice(vipid, data->price);
+		HttpDataSwap::init(NULL)->paySuccNotice(vipid, data->price);
 		buybtn->setVisible(false);
 		price->setVisible(false);
 	}
@@ -108,6 +109,7 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 		desc->setString(str);
 
 		HttpDataSwap::init(this)->vipIsOn();
+
 	}
 
 	std::vector<int> startx;
@@ -227,66 +229,106 @@ void GiftContentLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 		if (tag == 0)
 		{
 			ShopLayer::beginPay(m_tag);
+
+			AnimationEffect::closeAniEffect((Layer*)this);
 		}
 		else
 		{
-			for (unsigned int i = 0; i < m_data->res.size(); i++)
-			{
-				std::vector<std::string> vec_res = m_data->res[i];
-				std::string resid = vec_res[0];
-				int count = atoi(vec_res[1].c_str());
-				int qu = 0;
-				if (vec_res.size() > 2)
-				{
-					qu = atoi(vec_res[2].c_str());
-				}
-				int stonescount = GlobalInstance::getInstance()->generateStoneCount(qu);
+			isgetingvip = true;
+			WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["getmonthlywaiting"]);
+			this->addChild(wp, 0, "waitingprogress");
 
-				if (resid.compare("r006") == 0)
-				{
-					DynamicValueInt dvint;
-					dvint.setValue(count);
-					GlobalInstance::getInstance()->addMySoliverCount(dvint);
-				}
-				else if (resid.compare("r012") == 0)
-				{
-					DynamicValueInt dvint;
-					dvint.setValue(count);
-					GlobalInstance::getInstance()->addMyCoinCount(dvint);
-				}
-				else
-				{
-					MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
-				}
-			}
+			int id = atoi(m_data->icon.substr(3, 1).c_str());
+			std::string vipid = StringUtils::format("vip%d", id + 2);
+
+			HttpDataSwap::init(this)->getMonthlyReward(vipid);
 		}
-		AnimationEffect::closeAniEffect((Layer*)this);
+	}
+}
+
+
+void GiftContentLayer::getVipReward()
+{
+	for (unsigned int i = 0; i < m_data->res.size(); i++)
+	{
+		std::vector<std::string> vec_res = m_data->res[i];
+		std::string resid = vec_res[0];
+		int count = atoi(vec_res[1].c_str());
+		int qu = 0;
+		if (vec_res.size() > 2)
+		{
+			qu = atoi(vec_res[2].c_str());
+		}
+		int stonescount = GlobalInstance::getInstance()->generateStoneCount(qu);
+
+		if (resid.compare("r006") == 0)
+		{
+			DynamicValueInt dvint;
+			dvint.setValue(count);
+			GlobalInstance::getInstance()->addMySoliverCount(dvint);
+		}
+		else if (resid.compare("r012") == 0)
+		{
+			DynamicValueInt dvint;
+			dvint.setValue(count);
+			GlobalInstance::getInstance()->addMyCoinCount(dvint);
+		}
+		else
+		{
+			MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
+		}
 	}
 }
 
 void GiftContentLayer::onFinish(int code)
 {
-	if (GlobalInstance::map_buyVipDays.size() > 0)
+	if (!isgetingvip)
 	{
-		if (m_type != 0)
+		if (code == 0)
 		{
-			buybtn->setVisible(true);
-			buybtn->setTag(1);
-			buybtntext->loadTexture(ResourcePath::makeTextImgPath("msgallget_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			buybtntext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("msgallget_text", langtype))->getContentSize());
-			buybtntext->setScale(0.7f);
-		}
-		//price->setVisible(false);
-		std::map<std::string, int>::iterator it;
-		for (it = GlobalInstance::map_buyVipDays.begin(); it != GlobalInstance::map_buyVipDays.end(); ++it)
-		{
-			if (m_data->icon.compare(it->first) == 0)
+			if (GlobalInstance::map_buyVipDays.size() > 0)
 			{
-				lefttime->setVisible(true);
-				std::string str = StringUtils::format(ResourceLang::map_lang["lefttimetext"].c_str(), it->second);
-				lefttime->setString(str);
-				break;
+				if (m_type != 0)
+				{
+					buybtn->setVisible(true);
+					buybtn->setTag(1);
+					buybtntext->loadTexture(ResourcePath::makeTextImgPath("msgallget_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+					buybtntext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("msgallget_text", langtype))->getContentSize());
+					buybtntext->setScale(0.7f);
+				}
+				//price->setVisible(false);
+				std::map<std::string, int>::iterator it;
+				for (it = GlobalInstance::map_buyVipDays.begin(); it != GlobalInstance::map_buyVipDays.end(); ++it)
+				{
+					if (m_data->icon.compare(it->first) == 0)
+					{
+						lefttime->setVisible(true);
+						std::string str = StringUtils::format(ResourceLang::map_lang["lefttimetext"].c_str(), it->second);
+						lefttime->setString(str);
+						break;
+					}
+				}
 			}
 		}
+		else
+		{
+			MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
+		}
+	}
+	else
+	{
+		isgetingvip = false;
+		this->removeChildByName("waitingprogress");
+
+		if (code == 0)
+		{
+			getVipReward();
+			AnimationEffect::closeAniEffect(this);
+		}
+		else
+		{
+			MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
+		}
+
 	}
 }
