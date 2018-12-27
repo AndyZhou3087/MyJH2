@@ -7,7 +7,7 @@
 #include "CardHeroNode.h"
 USING_NS_CC;
 
-class OutTownLayer : public cocos2d::Layer
+class OutTownLayer : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate
 {
 public:
 	OutTownLayer();
@@ -37,6 +37,16 @@ private:
 	void addRes(Node* clicknode);
 	void subRes(Node* clicknode);
 	void onGoBuyText(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+
+	void editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox);
+
+	void editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox, EditBoxEndAction action);
+
+	void editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std::string &text);
+
+	void editBoxReturn(cocos2d::ui::EditBox *editBox);
+
 private:
 	CardHeroNode* m_myCardHerosNode[6];
 	cocos2d::ui::Text* carrylbl;
@@ -49,6 +59,8 @@ private:
 	int clickHero;
 	Vec2 beginTouchPoint;
 	cocos2d::ui::Widget* changebtn;
+
+	cocos2d::ui::EditBox* m_editCount;
 };
 
 #endif

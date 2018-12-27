@@ -180,6 +180,25 @@ bool OutTownLayer::init()
 		tobuytext->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onGoBuyText, this));
 	}
 
+	cocos2d::ui::TextField* countTextField = (cocos2d::ui::TextField*)csbnode->getChildByName("coutinput");
+	countTextField->setString("");
+	countTextField->setVisible(false);
+
+	m_editCount = cocos2d::ui::EditBox::create(Size(countTextField->getContentSize().width, 35), cocos2d::ui::Scale9Sprite::createWithSpriteFrameName("ui/blank.png"));
+	m_editCount->setPosition(countTextField->getPosition());
+	m_editCount->setFontColor(countTextField->getTextColor());
+	m_editCount->setPlaceHolder(ResourceLang::map_lang["outtownplaceholder"].c_str());
+	m_editCount->setPlaceholderFontSize(25);
+	m_editCount->setInputMode(cocos2d::ui::EditBox::InputMode::NUMERIC);
+	m_editCount->setPlaceholderFontColor(Color3B(112, 116, 109));
+	m_editCount->setMaxLength(4);//英文字符长度，中文2个
+	m_editCount->setTextHorizontalAlignment(TextHAlignment::CENTER);
+	m_editCount->setText(" ");
+	//editName->setReturnType(EditBox::KeyboardReturnType::DONE);
+	m_editCount->setDelegate(this);
+	csbnode->addChild(m_editCount);
+
+
 	this->scheduleOnce(schedule_selector(OutTownLayer::delayShowNewerGuide), newguidetime);
 
 	//屏蔽下层点击
@@ -555,5 +574,52 @@ void OutTownLayer::onGoBuyText(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			AnimationEffect::openAniEffect(layer);
 		}
 	}
+}
+
+void OutTownLayer::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)
+{
+	std::string countstr = StringUtils::format("%d", caryycount[0]);
+	editBox->setText(countstr.c_str());
+	caryycountlbl[0]->setVisible(false);
+}
+
+void OutTownLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox, EditBoxEndAction action)
+{
+	std::string edittext = editBox->getText();
+	editBox->setText(" ");
+	caryycountlbl[0]->setVisible(true);
+
+	int editcount = atoi(edittext.c_str());
+
+	if (editcount < 0)
+	{
+		MovingLabel::show(ResourceLang::map_lang["inputfooderr"]);
+	}
+	else if (editcount > GlobalInstance::getInstance()->getTotalCarry())
+	{
+		MovingLabel::show(ResourceLang::map_lang["inputfoodouter"]);
+	}
+	else
+	{
+		if (editcount > MyRes::getMyResCount(carryResids[0]))
+		{
+			caryycount[0] = MyRes::getMyResCount(carryResids[0]);
+			MovingLabel::show(ResourceLang::map_lang["inputfoodenough"]);
+		}
+		else
+		{
+			caryycount[0] = editcount;
+		}
+		updateCaryyCountLbl();
+	}
+}
+
+void OutTownLayer::editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std::string &text)
+{
+
+}
+
+void OutTownLayer::editBoxReturn(cocos2d::ui::EditBox *editBox)
+{
 
 }

@@ -205,14 +205,14 @@
             <PreSize X="0.2028" Y="0.1141" />
             <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="carrycount0" ActionTag="956928858" Tag="171" IconVisible="False" LeftMargin="419.3960" RightMargin="238.6040" TopMargin="793.4069" BottomMargin="460.5931" FontSize="23" LabelText="20/50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="62.0000" Y="26.0000" />
+          <AbstractNodeData Name="carrycount0" ActionTag="956928858" Tag="171" IconVisible="False" LeftMargin="437.3960" RightMargin="256.6040" TopMargin="793.4100" BottomMargin="460.5900" FontSize="23" LabelText="30" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="26.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="450.3960" Y="473.5931" />
+            <Position X="450.3960" Y="473.5900" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="121" G="78" B="46" />
             <PrePosition X="0.6255" Y="0.3700" />
-            <PreSize X="0.0861" Y="0.0203" />
+            <PreSize X="0.0361" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
@@ -259,7 +259,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="carryoutboxtop" ActionTag="608740584" Tag="630" IconVisible="False" LeftMargin="153.9997" RightMargin="134.0002" TopMargin="669.7322" BottomMargin="549.2678" ctype="SpriteObjectData">
+          <AbstractNodeData Name="carryoutboxtop" ActionTag="608740584" Tag="630" IconVisible="False" LeftMargin="153.9997" RightMargin="134.0003" TopMargin="669.7322" BottomMargin="549.2678" ctype="SpriteObjectData">
             <Size X="432.0000" Y="61.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="369.9997" Y="579.7678" />
@@ -373,6 +373,16 @@
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="coutinput" ActionTag="-2003600626" Tag="273" IconVisible="False" LeftMargin="390.0000" RightMargin="210.0000" TopMargin="794.9100" BottomMargin="462.0900" TouchEnable="True" FontSize="23" IsCustomSize="True" LabelText="100" PlaceHolderText="请输入食物数量：" MaxLengthEnable="True" MaxLengthText="4" ctype="TextFieldObjectData">
+            <Size X="120.0000" Y="23.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="450.0000" Y="473.5900" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.6250" Y="0.3700" />
+            <PreSize X="0.1667" Y="0.0180" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
           </AbstractNodeData>
         </Children>
       </ObjectData>
