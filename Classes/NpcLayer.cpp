@@ -99,6 +99,8 @@ bool NpcLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	//relationship
 	relationship = (cocos2d::ui::Text*)csbnode->getChildByName("relationship");
 
+	friendlycount = (cocos2d::ui::Text*)csbnode->getChildByName("friendlynum");
+
 	cocos2d::ui::Text* text0 = (cocos2d::ui::Text*)csbnode->getChildByName("text0");
 	text0->setString(ResourceLang::map_lang["npcfriendlytext"]);
 
@@ -279,6 +281,17 @@ void NpcLayer::loadFriendlyPro()
 	{
 		relationship->setString(ResourceLang::map_lang["npcrelation_0"]);
 	}
+
+	if (GlobalInstance::map_myfriendly[m_npcid].friendly < 0)
+	{
+		friendlycount->setTextColor(Color4B(255, 0, 0, 255));
+	}
+	else
+	{
+		friendlycount->setTextColor(Color4B(0, 128, 0, 255));
+	}
+	std::string friendlycountstr = StringUtils::format("%d", GlobalInstance::map_myfriendly[m_npcid].friendly);
+	friendlycount->setString(friendlycountstr);
 
 	GlobalInstance::getInstance()->saveNpcFriendly();
 }
@@ -636,7 +649,6 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 
 						GlobalInstance::map_myfriendly[m_npcid].relation.clear();
 						GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::GlobalInstance::map_npcrelation[m_npcid].friendmax*0.1f;
-
 						std::string pstr = StringUtils::format(ResourceLang::map_lang["npcmutexrelation"].c_str(), restr.c_str());
 						checkWordLblColor(pstr);
 					}
@@ -674,6 +686,7 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 				}
 
 				GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::map_npcrelation[m_npcid].friendmax*0.1f;
+
 				checkWordLblColor(ResourceLang::map_lang["npccoupelbreak"]);
 			}
 			break;
@@ -700,6 +713,7 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 			{
 				g_MapBlockScene->showFightingLayer(m_vec_enemys);
 			}
+			GlobalInstance::getInstance()->saveNpcFriendly();
 			this->removeFromParentAndCleanup(true);
 			break;
 		}

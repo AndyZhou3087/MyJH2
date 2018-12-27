@@ -51,6 +51,7 @@ private:
 	int langtype;
 	cocos2d::ui::Button* closebtn;
 	cocos2d::ui::Text* relationship;
+	cocos2d::ui::Text* friendlycount;
 };
 
 #endif

@@ -120,7 +120,7 @@ std::string GlobalInstance::UUID()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getDeviceIDInKeychain();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "865421133526051-********************";
+	return "ffffffff-84a7-2a28-ffff-fffffdabae75";//"865421133526051-********************";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
@@ -1764,14 +1764,33 @@ void GlobalInstance::loadNpcFriendly()
 		CommonFuncs::split(str, vec_tmp, ";");
 		for (unsigned int i = 0; i < vec_tmp.size(); i++)
 		{
-			std::vector<std::string> vec_one;
-			CommonFuncs::split(vec_tmp[i], vec_one, "-");
-			map_myfriendly[vec_one[0]].friendly = atoi(vec_one[1].c_str());
-			std::vector<std::string> vec_two;
-			CommonFuncs::split(vec_one[2], vec_two, ",");
-			for (unsigned int i = 0; i < vec_two.size(); i++)
+			if (vec_tmp[i].length() > 0)
 			{
-				map_myfriendly[vec_one[0]].relation.push_back(atoi(vec_two[i].c_str()));
+				std::vector<std::string> vec_one;
+				std::string sep = "-";
+				if (std::string::npos != vec_tmp[i].find("#"))
+					sep = "#";
+
+				CommonFuncs::split(vec_tmp[i], vec_one, sep);
+
+				std::string renationstr;
+				if (std::string::npos == vec_tmp[i].find("#"))
+				{
+					std::string f = vec_tmp[i].substr(5, vec_tmp[i].find_last_of("-") - 5);
+					map_myfriendly[vec_one[0]].friendly = atoi(f.c_str());
+					renationstr = vec_tmp[i].substr(vec_tmp[i].find_last_of("-") + 1);
+				}
+				else
+				{
+					map_myfriendly[vec_one[0]].friendly = atoi(vec_one[1].c_str());
+					renationstr = vec_one[2];
+				}
+				std::vector<std::string> vec_two;
+				CommonFuncs::split(renationstr, vec_two, ",");
+				for (unsigned int i = 0; i < vec_two.size(); i++)
+				{
+					map_myfriendly[vec_one[0]].relation.push_back(atoi(vec_two[i].c_str()));
+				}
 			}
 		}
 	}
@@ -1784,7 +1803,7 @@ void GlobalInstance::saveNpcFriendly()
 	for (it = map_myfriendly.begin(); it != map_myfriendly.end(); it++)
 	{
 		NpcFriendly data = map_myfriendly[it->first];
-		if (data.friendly > 0)
+		if (data.friendly != 0)
 		{
 			std::string s;
 			for (unsigned int i = 0; i < data.relation.size(); i++)

@@ -170,7 +170,7 @@
             <PreSize X="0.0361" Y="0.0188" />
             <ImageFileData Type="MarkedSubImage" Path="ui/friendly_bar_0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="friendlybar_2" ActionTag="-935979725" Tag="127" IconVisible="False" LeftMargin="225.8858" RightMargin="468.1143" TopMargin="1015.2119" BottomMargin="240.7881" ProgressInfo="100" ctype="LoadingBarObjectData">
+          <AbstractNodeData Name="friendlybar_2" ActionTag="-935979725" Tag="127" IconVisible="False" LeftMargin="225.8858" RightMargin="468.1142" TopMargin="1015.2119" BottomMargin="240.7881" ProgressInfo="100" ctype="LoadingBarObjectData">
             <Size X="26.0000" Y="24.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="238.8858" Y="252.7881" />
@@ -212,7 +212,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="relationship" ActionTag="-1408252783" Tag="131" IconVisible="False" LeftMargin="467.7484" RightMargin="198.2516" TopMargin="1011.4946" BottomMargin="238.5053" FontSize="26" LabelText="师徒" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="relationship" ActionTag="-1408252783" Tag="131" IconVisible="False" LeftMargin="467.7484" RightMargin="198.2516" TopMargin="1011.4947" BottomMargin="238.5053" FontSize="26" LabelText="师徒" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="54.0000" Y="30.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="467.7484" Y="253.5053" />
@@ -405,6 +405,18 @@
             <CColor A="255" R="204" G="4" B="4" />
             <PrePosition X="0.0623" Y="0.0688" />
             <PreSize X="0.6417" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="friendlynum" ActionTag="709283649" Tag="136" IconVisible="False" LeftMargin="320.0000" RightMargin="367.0000" TopMargin="1015.5000" BottomMargin="241.5000" FontSize="20" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="33.0000" Y="23.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="320.0000" Y="253.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="0" G="128" B="0" />
+            <PrePosition X="0.4444" Y="0.1977" />
+            <PreSize X="0.0458" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
