@@ -7,8 +7,8 @@
 #include "AnimationEffect.h"
 #include "MyRes.h"
 #include "ShopLayer.h"
-
-
+#include "SoundManager.h"
+#include "SimpleResPopLayer.h"
 
 USING_NS_CC;
 
@@ -156,7 +156,10 @@ bool TimeGiftLayer::init(ShopData* data)
 			str = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
 
-		Sprite* box = Sprite::createWithSpriteFrameName(str);
+		cocos2d::ui::ImageView* box = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::PLIST);
+		box->addTouchEventListener(CC_CALLBACK_2(TimeGiftLayer::onResclick, this));
+		box->setName(resid);
+		box->setTouchEnabled(true);
 		this->addChild(box);
 
 		int index = 0;
@@ -225,5 +228,18 @@ void TimeGiftLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 			ShopLayer::beginPay(this->getTag());
 		}
+	}
+}
+
+void TimeGiftLayer::onResclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		cocos2d::ui::ImageView* clickres = (cocos2d::ui::ImageView*)pSender;
+		std::string resid = clickres->getName();
+		SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 3);
+		this->addChild(layer);
+		AnimationEffect::openAniEffect(layer);
 	}
 }

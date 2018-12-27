@@ -51,6 +51,9 @@ bool ShopNode::init(ShopData* shopdata)
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)csbnode->getChildByName("icon");
 	std::string str = StringUtils::format("ui/%s.png", shopdata->icon.c_str());
 	icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+	icon->setSwallowTouches(false);
+	if (shopdata->type == GIFT)
+		icon->addTouchEventListener(CC_CALLBACK_2(ShopNode::onBtnClick, this));
 
 	//Ãû×Ö
 	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
@@ -73,6 +76,7 @@ bool ShopNode::init(ShopData* shopdata)
 	cocos2d::ui::Button* buybtn = (cocos2d::ui::Button*)csbnode->getChildByName("buybtn");
 	buybtn->addTouchEventListener(CC_CALLBACK_2(ShopNode::onBtnClick, this));
 	buybtn->setSwallowTouches(false);
+	buybtn->setTag(1);
 	cocos2d::ui::ImageView* buybtntext = (cocos2d::ui::ImageView*)buybtn->getChildByName("text");
 	buybtntext->loadTexture(ResourcePath::makeTextImgPath("mapeventtext_6_1", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
@@ -119,7 +123,8 @@ void ShopNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 			return;
 		if (m_shopdata->type == COIN)
 		{
-			ShopLayer::beginPay(this->getTag());
+			if (clicknode->getTag() == 1)
+				ShopLayer::beginPay(this->getTag());
 		}
 		else
 		{

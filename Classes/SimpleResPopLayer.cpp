@@ -79,6 +79,11 @@ bool SimpleResPopLayer::init(std::string resid, int forwhere)
 		qu = atoi(resid.substr(1).c_str()) - 1;
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
+	else if (t >= T_HEROCARD && t <= T_ARMCARD)
+	{
+		qu = 3;
+		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+	}
 	CommonFuncs::playResBoxEffect(resbox, qu);
 
 	resbox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);

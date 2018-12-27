@@ -22,6 +22,7 @@ private:
 	void onFinish(int code);
 
 	void getVipReward();
+	void onResclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:
 	ShopData* m_data;
 	int m_tag;

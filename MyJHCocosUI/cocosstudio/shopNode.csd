@@ -27,7 +27,7 @@
             <FileData Type="MarkedSubImage" Path="ui/shopitem.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="icon" ActionTag="-118868423" Tag="157" IconVisible="False" LeftMargin="-289.1542" RightMargin="180.1542" TopMargin="-54.5001" BottomMargin="-54.4999" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="icon" ActionTag="-118868423" Tag="157" IconVisible="False" LeftMargin="-289.1542" RightMargin="180.1542" TopMargin="-54.5001" BottomMargin="-54.4999" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
             <Size X="109.0000" Y="109.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-234.6542" Y="0.0001" />
@@ -37,7 +37,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/gd3.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="-212857847" Tag="158" IconVisible="False" LeftMargin="-159.0988" RightMargin="86.0988" TopMargin="-50.2541" BottomMargin="22.2541" FontSize="23" LabelText="60元宝" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="name" ActionTag="-212857847" Tag="158" IconVisible="False" LeftMargin="-159.0988" RightMargin="87.0988" TopMargin="-49.2541" BottomMargin="23.2541" FontSize="23" LabelText="60元宝" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="72.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="-159.0988" Y="36.2541" />
