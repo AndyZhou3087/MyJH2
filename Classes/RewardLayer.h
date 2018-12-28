@@ -16,7 +16,7 @@ public:
 	RewardLayer();
 	~RewardLayer();
 
-	static RewardLayer* create(std::vector<MSGAWDSDATA> vec_rewards, int forwhere = MYSTORAGE, int type = 0);
+	static RewardLayer* create(std::vector<MSGAWDSDATA> vec_rewards, int forwhere = MYSTORAGE, int type = 0);//type:0--正常领取；1--竞技场领取；2--宝箱领取，基础资源放到背包，其他方到仓库
 	bool init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere = MYSTORAGE, int type = 0);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

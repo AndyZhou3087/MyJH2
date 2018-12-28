@@ -115,6 +115,29 @@ bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere, int t
 				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
 
+			if (type == 2)//地图包裹资源有最大限制
+			{
+				for (unsigned int n = 0; n < GlobalInstance::vec_resCreators.size(); n++)
+				{
+					if (resid.compare(GlobalInstance::vec_resCreators[n]->getName()) == 0)
+					{
+						int max = GlobalInstance::vec_resCreators[n]->getMaxCap(GlobalInstance::vec_resCreators[n]->getLv().getValue()).getValue();
+
+						if (MyRes::getMyResCount(resid) >= max)
+						{
+							count = 0;
+						}
+						else
+						{
+							int left = max - MyRes::getMyResCount(resid);
+							if (left < count)
+								count = left;
+						}
+						break;
+					}
+				}
+			}
+
 			CommonFuncs::playResBoxEffect(resbox, qu);
 
 			resbox->setPositionX(startx[rewardsize-1] + offsetx[rewardsize-1]*i);

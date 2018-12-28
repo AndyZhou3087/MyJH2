@@ -1130,7 +1130,16 @@ void HttpDataSwap::httpGetMyRewardCB(std::string retdata, int code, std::string 
 	int ret = code;
 	if (code == 0)
 	{
-
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
 	}
 	if (m_pDelegateProtocol != NULL)
 	{

@@ -320,9 +320,17 @@ void MyRes::putMyPackagesToStorage()
 				if (res->getId().compare(GlobalInstance::vec_resCreators[n]->getName()) == 0)
 				{
 					int max = GlobalInstance::vec_resCreators[n]->getMaxCap(GlobalInstance::vec_resCreators[n]->getLv().getValue()).getValue();
-					int left = max - MyRes::getMyResCount(res->getId());
-					if (left < addcount)
-						addcount = left;
+
+					if (MyRes::getMyResCount(res->getId()) >= max)
+					{
+						addcount = 0;
+					}
+					else
+					{
+						int left = max - MyRes::getMyResCount(res->getId());
+						if (left < addcount)
+							addcount = left;
+					}
 					break;
 				}
 			}

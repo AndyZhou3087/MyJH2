@@ -780,11 +780,11 @@ void MainScene::updateTime(float dt)
 			ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
 			if (rescreator->getFarmersCount().getValue() >= 0 && rescreator->getLv().getValue() >= 0)
 			{
-				int addcount = 0;
+				int addcount = 0;//需要增加的数量
 				if (rescreator->getName().compare("r001") == 0)
 				{
-					int foodout = GlobalInstance::getInstance()->calcFoodMakeOut();
-					addcount = foodout * respasttime / RES_REFRESHTIME;
+					int foodout = GlobalInstance::getInstance()->calcFoodMakeOut();//计算其它采集消耗的食物
+					addcount = foodout * respasttime / RES_REFRESHTIME;//可能增加食物食物数量为负数
 					if (addcount + MyRes::getMyResCount("r001") < 0)
 					{
 						costFoodsT = (abs(addcount) - MyRes::getMyResCount("r001")) / abs(foodout);
@@ -797,9 +797,9 @@ void MainScene::updateTime(float dt)
 					else
 						addcount = (respasttime / RES_REFRESHTIME - costFoodsT) * rescreator->getFarmersCount().getValue();
 				}
-				int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
+				int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();//最大容量
 
-				int rcount = MyRes::getMyResCount(rescreator->getName());
+				int rcount = MyRes::getMyResCount(rescreator->getName());//现有资源
 
 				if (addcount < 0)
 				{
@@ -810,8 +810,8 @@ void MainScene::updateTime(float dt)
 				{
 					if (rcount > maxcount)
 					{
-						MyRes::Add(rescreator->getName(), maxcount - rcount);
-						rcount = maxcount;
+						//MyRes::Add(rescreator->getName(), maxcount - rcount);
+						//rcount = maxcount;
 						addcount = 0;
 					}
 					else if (addcount + rcount > maxcount)
