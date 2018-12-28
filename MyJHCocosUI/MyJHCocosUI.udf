@@ -25,15 +25,5 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="marketLayer.csd" />
-          <FilePathData Path="smithyLayer.csd" />
-          <FilePathData Path="text_zh_cn.csi" />
-        </OpenedDocuments>
-        <ActiveDocument Path="marketLayer.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

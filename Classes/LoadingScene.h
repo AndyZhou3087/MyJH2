@@ -47,6 +47,8 @@ private:
 	void loadLocalData();
 
 	void addHeroId();
+
+	void showTips();
 private:
 	bool isGetPlayerId;
 	Node *m_loadingbar;
@@ -57,6 +59,7 @@ private:
 	Label* m_wordlbl;
 	cocos2d::ui::ImageView* m_userpro;
 	int curEffectPlistNum;
+	cocos2d::ui::Text* tipslbl;
 };
 extern LoadingScene* g_loadingScene;
 #endif

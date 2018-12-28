@@ -83,6 +83,9 @@ bool LoadingScene::init()
 	m_loadingclicktext = csbnode->getChildByName("loadingclicktext");
 	m_loadingclicktext->setVisible(false);
 
+	tipslbl = (cocos2d::ui::Text*)csbnode->getChildByName("tips");
+	tipslbl->setVisible(false);
+
 	//解析语言xml
 	int langtype = DataSave::getInstance()->getLocalLang();
 	GlobalInstance::getInstance()->setLang(langtype);
@@ -157,6 +160,7 @@ void LoadingScene::loadData()
 	m_loadingtext->setVisible(true);
 	m_loadingbar->setVisible(true);
 	m_loadingbar->runAction(RepeatForever::create(RotateTo::create(0.8f, 720)));
+	showTips();
 	showPointAnim(0);
 	this->schedule(schedule_selector(LoadingScene::showPointAnim), 1.5f);
 	//先获取服务器数据
@@ -197,6 +201,8 @@ void LoadingScene::showPointAnim(float dt)
 	{
 		point[i]->runAction(Sequence::create(DelayTime::create(0.4f*i), Show::create(), DelayTime::create(1.2f - 0.4f*i), Hide::create(), NULL));
 	}
+
+	showTips();
 }
 
 void LoadingScene::delayLoadLocalData(float dt)
@@ -440,4 +446,12 @@ void LoadingScene::loadLocalData()
 void LoadingScene::onExit()
 {
 	Layer::onExit();
+}
+
+void LoadingScene::showTips()
+{
+	int r = GlobalInstance::getInstance()->createRandomNum(TIPSCOUNT);
+	std::string keystr = StringUtils::format("tips_%d", r);
+	tipslbl->setVisible(true);
+	tipslbl->setString(ResourceLang::map_lang[keystr]);
 }

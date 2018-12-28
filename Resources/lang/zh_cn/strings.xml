@@ -380,5 +380,12 @@
 	<s name="outtownplaceholder">请输入数量</s>
 	<s name="inputfooderr">食物数量不能为负数！</s>		
 	<s name="inputfoodouter">食物数量超过最大负重！</s>
-	<s name="inputfoodenough">食物数量不足！</s>		
+	<s name="inputfoodenough">食物数量不足！</s>
+	<s name="tips_0">使用招募卷可以招募到高品质的橙色江湖侠客</s>
+	<s name="tips_1">装备只有适合的角色才能发挥最大属性</s>
+	<s name="tips_2">武功內功只有适合的角色才会触发技能</s>
+	<s name="tips_3">地图边缘处可以触发神秘事件</s>
+	<s name="tips_4">探索山洞会得到前人留下的秘宝哦</s>
+	<s name="tips_5">结交江湖侠客可以获得专属属性</s>
+	<s name="tips_6">客栈里可招募的侠客品质由低到高依次为绿，蓝，紫，橙，红</s>	
 </strings>
