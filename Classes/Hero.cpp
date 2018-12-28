@@ -125,10 +125,9 @@ void Hero::checkLevelQuest(int lv)
 		float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[lv] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(lv + 1) / 10];
 		m_hp = herohp;
 	}
-	if (m_lastlevel != lv)
-	{
-		Quest::setAchieveTypeCount(HERO_LEVEL, lv + 1);
-	}
+
+	Quest::setAchieveTypeCount(HERO_LEVEL, lv + 1);
+
 	m_lastlevel = lv;
 }
 
