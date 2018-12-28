@@ -127,8 +127,6 @@ bool SetInStoneLayer::init(ResBase* res, int which, Hero* herodata)
 
 	str = StringUtils::format("addattrtext_%d", textindex);
 	str = StringUtils::format(ResourceLang::map_lang[str].c_str(), STONE_BNS[intv][intid%3]);
-	if (textindex >= 3 && textindex <= 4)
-		str.append("%");
 	attrlbl->setString(str);
 
 	//фа╠ноб╡Ц╣Ц╩В

@@ -58,6 +58,11 @@ void HttpDataSwap::postAllData()
 	url.append("playerid=");
 	url.append(GlobalInstance::getInstance()->UUID());
 
+	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
+	url.append("&coin=");
+
+	url.append(str);
+
 	url.append("&pkg=");
 	url.append(GlobalInstance::getInstance()->getPackageName());
 

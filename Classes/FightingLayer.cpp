@@ -237,7 +237,6 @@ void FightingLayer::resumeAtkSchedule()
 			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(i);
 			if (fnode != NULL && fnode->isPlaySkillAnim)
 			{
-				log("zhou < 6 1");
 				return;
 			}
 		}
@@ -246,7 +245,6 @@ void FightingLayer::resumeAtkSchedule()
 			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + i);
 			if (fnode != NULL && fnode->isPlaySkillAnim)
 			{
-				log("zhou >= 6 1");
 				return;
 			}
 		}
@@ -255,7 +253,6 @@ void FightingLayer::resumeAtkSchedule()
 			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(i);
 			if (fnode != NULL)
 			{
-				log("zhou < 6 2");
 				fnode->resumeTimeSchedule();
 			}
 		}
@@ -264,7 +261,6 @@ void FightingLayer::resumeAtkSchedule()
 			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + i);
 			if (fnode != NULL)
 			{
-				log("zhou >= 6 2");
 				fnode->resumeTimeSchedule();
 			}
 		}

@@ -18,7 +18,7 @@ public:
 	CC_SYNTHESIZE(int, m_potential, Potential);//潜力，品质
 	CC_SYNTHESIZE(std::string, m_id, Id);//id
 	CC_SYNTHESIZE(bool, m_isdodge, IsDodge);//是否闪避
-
+	CC_SYNTHESIZE(bool, m_isRndSkill, IsRndSkill);//是否随机技能
 		//血量
 	virtual float getHp();
 

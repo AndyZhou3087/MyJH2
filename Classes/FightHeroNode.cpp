@@ -209,6 +209,7 @@ void FightHeroNode::update(float dt)
 		FightingLayer* fighting = (FightingLayer*)this->getParent();
 		fighting->pauseAtkSchedule();
 
+		m_Data->setIsRndSkill(false);
 		bool isSufferSkill3 = false;
 
 		if (this->getTag() >= 6)
@@ -457,7 +458,8 @@ void FightHeroNode::hurtAnimFinish()
 							{
 								isskillfinish = true;
 								GongFa* gf = myhero->checkSkillWg();
-								myhero->clearSkill(gf);
+								if(gf!= NULL)
+									myhero->clearSkill(gf);
 								return;
 							}
 						}
@@ -683,6 +685,9 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 	fighting->pauseAtkSchedule();
 
 	GongFa* gf = m_Data->checkSkillWg();
+
+	if (gf == NULL)
+		return;
 
 	if (m_Data->getId().length() > 10)//是否是自己的英雄
 	{
@@ -1008,7 +1013,7 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 		else if (stype == 5 || stype == 6 || stype == 8)
 		{
 			whosufferNode->getData()->setIsDodge(false);
-			gf->setSkillCount(0);
+			m_Data->clearSkill(gf);
 		}
 		else if (stype == 13)
 		{
@@ -1274,7 +1279,6 @@ void FightHeroNode::recoveHp(float hp)
 
 void FightHeroNode::nextRound(float dt)
 {
-	log("zhou nextRound");
 	FightingLayer* fighting = (FightingLayer*)this->getParent();
 	fighting->resumeAtkSchedule();
 }

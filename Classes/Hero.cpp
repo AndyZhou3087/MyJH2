@@ -38,6 +38,7 @@ Hero::Hero()
 	m_isdodge = false;
 	m_fightround = 0;
 	m_ftype = 0;
+	m_isRndSkill = false;
 }
 
 
@@ -72,6 +73,7 @@ Hero::Hero(Hero* hero)
 	m_isdodge = false;
 	m_fightround = 0;
 	m_ftype = 0;
+	m_isRndSkill = false;
 }
 
 float Hero::getHp()
@@ -621,7 +623,24 @@ void Hero::setEquipable(Equipable* edata, int etype)
 
 GongFa* Hero::checkSkillWg()
 {
+
 	int t[] = { T_WG ,T_NG };
+	if (m_isRndSkill)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			GongFa* gf = (GongFa*)getEquipable(t[i]);
+
+			if (gf != NULL && gf->getSkillCount() > 0)
+			{
+				return gf;
+			}
+		}
+		return NULL;
+	}
+
+	m_isRndSkill = true;
+
 
 	/*******测试技能start*********/
 	//if (m_ftype == 1)

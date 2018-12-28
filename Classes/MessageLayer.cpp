@@ -195,23 +195,6 @@ void MessageLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 						int addcount = awdslist[i].count;
 
-						if (resid.compare(0, 1, "r") == 0)
-						{
-							for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
-							{
-								ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
-								if (rescreator->getLv().getValue() >= 0 && rescreator->getName().compare(resid) == 0)
-								{
-
-									int maxcount = rescreator->getMaxCap(rescreator->getLv().getValue()).getValue();
-									int rcount = MyRes::getMyResCount(rescreator->getName());
-									if (addcount + rcount >= maxcount)
-										addcount = maxcount - rcount;
-									break;
-								}
-							}
-						}
-
 						if (resid.compare("r006") == 0)
 						{
 							DynamicValueInt dvint;

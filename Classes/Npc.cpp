@@ -6,6 +6,7 @@
 Npc::Npc()
 {
 	m_isdodge = false;
+	m_isRndSkill = false;
 }
 
 

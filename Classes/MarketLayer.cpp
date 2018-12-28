@@ -163,12 +163,11 @@ void MarketLayer::showNewerGuide(int step)
 	std::vector<Node*> nodes;
 	if (step == 67)
 	{
-		m_contentscroll->setTouchEnabled(false);
-		//m_contentscroll->jumpToBottom();
 		for (unsigned int i = 0; i < map_cateRes[MKCATA_1].size(); i++)
 		{
 			if (map_cateRes[MKCATA_1][i].resid.compare("d001") == 0)
 			{
+				m_contentscroll->setTouchEnabled(false);
 				Node* node = m_contentscroll->getChildByTag(i)->getChildByName("csbnode")->getChildByName("actionbtn");
 				nodes.push_back(node);
 				break;
@@ -325,14 +324,8 @@ void MarketLayer::updateContent(int category)
 		Node* itemnode = MarketResNode::create(vec_Res[i].resid, vec_Res[i].stockcount);
 
 		itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
-		if (vec_Res[i].resid.compare("d001") == 0)
-		{
-			itemnode->runAction(Sequence::create(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))), NULL));
-		}
-		else
-		{
-			itemnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
-		}
+
+		itemnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
 		//itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 		m_contentscroll->addChild(itemnode, 0 , i);
 	}
