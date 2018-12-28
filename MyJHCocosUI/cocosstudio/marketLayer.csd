@@ -290,14 +290,14 @@
               <AbstractNodeData Name="btn1" ActionTag="1727393689" Tag="322" IconVisible="False" LeftMargin="-191.9989" RightMargin="71.9989" TopMargin="-33.9997" BottomMargin="-34.0003" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="122" Scale9Height="46" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="120.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="text" ActionTag="515654832" Tag="323" IconVisible="False" LeftMargin="30.0001" RightMargin="29.9999" TopMargin="13.5007" BottomMargin="21.4993" LeftEage="20" RightEage="20" TopEage="10" BottomEage="10" Scale9OriginX="20" Scale9OriginY="10" Scale9Width="20" Scale9Height="13" ctype="ImageViewObjectData">
-                    <Size X="60.0000" Y="33.0000" />
+                  <AbstractNodeData Name="text" ActionTag="515654832" Tag="323" IconVisible="False" LeftMargin="31.0001" RightMargin="30.9999" TopMargin="18.5009" BottomMargin="20.4991" LeftEage="20" RightEage="20" TopEage="10" BottomEage="10" Scale9OriginX="20" Scale9OriginY="10" Scale9Width="18" Scale9Height="9" ctype="ImageViewObjectData">
+                    <Size X="58.0000" Y="29.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="60.0001" Y="37.9993" />
+                    <Position X="60.0001" Y="34.9991" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.5588" />
-                    <PreSize X="0.5000" Y="0.4853" />
+                    <PrePosition X="0.5000" Y="0.5147" />
+                    <PreSize X="0.4833" Y="0.4265" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/marketcata1_text_n.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
@@ -317,14 +317,14 @@
               <AbstractNodeData Name="btn2" ActionTag="-136105137" Tag="324" IconVisible="False" LeftMargin="-60.9991" RightMargin="-59.0009" TopMargin="-33.9997" BottomMargin="-34.0003" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="122" Scale9Height="46" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="120.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="text" ActionTag="-1441395639" Tag="325" IconVisible="False" LeftMargin="36.0007" RightMargin="27.9993" TopMargin="17.5007" BottomMargin="21.4993" LeftEage="20" RightEage="20" TopEage="10" BottomEage="10" Scale9OriginX="20" Scale9OriginY="10" Scale9Width="16" Scale9Height="9" ctype="ImageViewObjectData">
-                    <Size X="56.0000" Y="29.0000" />
+                  <AbstractNodeData Name="text" ActionTag="-1441395639" Tag="325" IconVisible="False" LeftMargin="33.5007" RightMargin="25.4993" TopMargin="15.5007" BottomMargin="19.4993" LeftEage="20" RightEage="20" TopEage="10" BottomEage="10" Scale9OriginX="20" Scale9OriginY="10" Scale9Width="21" Scale9Height="13" ctype="ImageViewObjectData">
+                    <Size X="61.0000" Y="33.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="64.0007" Y="35.9993" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5333" Y="0.5294" />
-                    <PreSize X="0.4667" Y="0.4265" />
+                    <PreSize X="0.5083" Y="0.4853" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/marketcata2_text_n.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>

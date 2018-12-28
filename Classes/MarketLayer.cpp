@@ -233,15 +233,15 @@ void MarketLayer::loadData()
 				mkres.maxcount = atoi(vec_tmp[1].c_str());
 				mkres.stockcount = mkres.maxcount;
 
-				if (mkres.resid.compare(0, 1, "p") == 0 || mkres.resid.compare(0, 1, "t") == 0 || mkres.resid.compare(0, 1, "v") == 0)
+				if (mkres.resid.compare(0, 1, "p") == 0 || mkres.resid.compare(0, 1, "t") == 0 || mkres.resid.compare(0, 1, "v") == 0 || mkres.resid.compare(0, 1, "c") == 0 || mkres.resid.compare("r006") == 0 || mkres.resid.compare("r001") == 0)
 					map_cateRes[MKCATA_0].push_back(mkres);
-				else if (mkres.resid.compare(0, 1, "c") == 0 || mkres.resid.compare(0, 1, "d") == 0)
+				else if (mkres.resid.compare(0, 1, "d") == 0)
 					map_cateRes[MKCATA_1].push_back(mkres);
 				else if (mkres.resid.compare(0, 1, "s") == 0 || mkres.resid.compare(0, 1, "m") == 0)
 					map_cateRes[MKCATA_2].push_back(mkres);
 				else if (mkres.resid.compare(0, 1, "b") == 0)
 					map_cateRes[MKCATA_3].push_back(mkres);
-				if (mkres.resid.compare(0, 1, "r") == 0 || mkres.resid.compare(0, 1, "q") == 0)
+				else if (mkres.resid.compare(0, 1, "r") == 0 || mkres.resid.compare(0, 1, "q") == 0)
 					map_cateRes[MKCATA_4].push_back(mkres);
 
 				map_cateRes[MKCATA_ALL].push_back(mkres);
