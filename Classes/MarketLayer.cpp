@@ -17,7 +17,7 @@ USING_NS_CC;
 
 MarketLayer::MarketLayer()
 {
-
+	lastCategoryindex = -1;
 }
 
 MarketLayer::~MarketLayer()
@@ -59,7 +59,7 @@ bool MarketLayer::init(Building* buidingData)
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("marketLayer.csb"));
 	this->addChild(csbnode);
-	int langtype = GlobalInstance::getInstance()->getLang();
+	langtype = GlobalInstance::getInstance()->getLang();
 	//标题
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("markettitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -108,12 +108,22 @@ bool MarketLayer::init(Building* buidingData)
 	mysilverlbl = (cocos2d::ui::Text*)csbnode->getChildByName("silvercountlbl");
 
 	loadData();
-	updateContent();
+	updateContent(lastCategoryindex);
 
 	updateUI(0);
 	this->schedule(schedule_selector(MarketLayer::updateUI), 1.0f);
 
 	//this->scheduleOnce(schedule_selector(MarketLayer::delayShowNewerGuide), newguidetime + (int)vec_Res.size()*0.07f);
+
+	Node* categoryBtnNode = csbnode->getChildByName("catanode");
+	for (int i = 0; i < categoryBtnNode->getChildrenCount(); i++)
+	{
+		std::string btnstr = StringUtils::format("btn%d", i);
+		cocos2d::ui::Button* btn = (cocos2d::ui::Button*)categoryBtnNode->getChildByName(btnstr);
+		btn->setTag(i);
+		btn->addTouchEventListener(CC_CALLBACK_2(MarketLayer::onCategory, this));
+		vec_categoryBtn.push_back(btn);
+	}
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -147,10 +157,12 @@ void MarketLayer::showNewerGuide(int step)
 	if (step == 67)
 	{
 		m_contentscroll->setTouchEnabled(false);
-		m_contentscroll->jumpToBottom();
-		for (unsigned int i = 0; i < vec_Res.size(); i++)
+		//m_contentscroll->jumpToBottom();
+		lastCategoryindex = 1;
+		updateContent(1);
+		for (unsigned int i = 0; i < map_cateRes[MKCATA_1].size(); i++)
 		{
-			if (vec_Res[i].resid.compare("d001") == 0)
+			if (map_cateRes[MKCATA_1][i].resid.compare("d001") == 0)
 			{
 				Node* node = m_contentscroll->getChildByTag(i)->getChildByName("csbnode")->getChildByName("actionbtn");
 				nodes.push_back(node);
@@ -206,7 +218,7 @@ void MarketLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 
 void MarketLayer::loadData()
 {
-	vec_Res.clear();
+	map_cateRes.clear();
 	for (int v = 0; v <= m_buidingData->level.getValue(); v++)
 	{
 		int vsize = m_buidingData->vec_exdata.size();
@@ -220,7 +232,19 @@ void MarketLayer::loadData()
 				mkres.resid = vec_tmp[0];
 				mkres.maxcount = atoi(vec_tmp[1].c_str());
 				mkres.stockcount = mkres.maxcount;
-				vec_Res.push_back(mkres);
+
+				if (mkres.resid.compare(0, 1, "p") == 0 || mkres.resid.compare(0, 1, "t") == 0 || mkres.resid.compare(0, 1, "v") == 0)
+					map_cateRes[MKCATA_0].push_back(mkres);
+				else if (mkres.resid.compare(0, 1, "c") == 0 || mkres.resid.compare(0, 1, "d") == 0)
+					map_cateRes[MKCATA_1].push_back(mkres);
+				else if (mkres.resid.compare(0, 1, "s") == 0 || mkres.resid.compare(0, 1, "m") == 0)
+					map_cateRes[MKCATA_2].push_back(mkres);
+				else if (mkres.resid.compare(0, 1, "b") == 0)
+					map_cateRes[MKCATA_3].push_back(mkres);
+				if (mkres.resid.compare(0, 1, "r") == 0 || mkres.resid.compare(0, 1, "q") == 0)
+					map_cateRes[MKCATA_4].push_back(mkres);
+
+				map_cateRes[MKCATA_ALL].push_back(mkres);
 			}
 		}
 	}
@@ -235,22 +259,54 @@ void MarketLayer::loadData()
 			CommonFuncs::split(vec_one[i], vec_tmp, "-");
 			std::string resid = vec_tmp[0];
 			int stockcount = atoi(vec_tmp[1].c_str());
-			for (unsigned int m = 0; m < vec_Res.size(); m++)
+
+			std::map<int, std::vector<MK_RES>>::iterator it;
+
+			for (it = map_cateRes.begin(); it != map_cateRes.end(); it++)
 			{
-				if (vec_Res[m].resid.compare(resid) == 0)
+				for (unsigned int m = 0; m < map_cateRes[it->first].size(); m++)
 				{
-					vec_Res[m].stockcount = stockcount;
+					if (map_cateRes[it->first][m].resid.compare(resid) == 0)
+					{
+						map_cateRes[it->first][m].stockcount = stockcount;
+					}
 				}
 			}
 		}
 	}
 }
 
-void MarketLayer::updateContent()
+void MarketLayer::updateContent(int category)
 {
+	for (unsigned int i = 0; i < vec_categoryBtn.size(); i++)
+	{
+		cocos2d::ui::ImageView* btntext = (cocos2d::ui::ImageView*)vec_categoryBtn[i]->getChildByName("text");
+
+		if (category != i)
+		{
+			std::string textstr = StringUtils::format("marketcata%d_text_n", i);
+			btntext->loadTexture(ResourcePath::makeTextImgPath(textstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			vec_categoryBtn[i]->setBright(true);
+		}
+		else
+		{
+			std::string textstr = StringUtils::format("marketcata%d_text_s", i);
+			vec_categoryBtn[i]->setBright(false);
+			btntext->loadTexture(ResourcePath::makeTextImgPath(textstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		}
+	}
+
 	m_contentscroll->removeAllChildrenWithCleanup(true);
+	m_contentscroll->jumpToTop();
 
 	int itemheight = 190;
+
+	std::vector<MK_RES> vec_Res;
+
+	if (map_cateRes.find(category) != map_cateRes.end())
+	{
+		vec_Res = map_cateRes[category];
+	}
 
 	int size = vec_Res.size();
 	int innerheight = itemheight * size;
@@ -288,12 +344,12 @@ void MarketLayer::lvup()
 	lvUIlbl->setString(str);
 
 	loadData();
-	updateContent();
+	updateContent(lastCategoryindex);
 }
 
 void MarketLayer::buyRes(int iterindex, int count)
 {
-	std::string resid = vec_Res[iterindex].resid;
+	std::string resid = map_cateRes[lastCategoryindex][iterindex].resid;
 
 	if (resid.compare("r013") == 0)
 	{
@@ -310,7 +366,7 @@ void MarketLayer::buyRes(int iterindex, int count)
 	else
 		MyRes::Add(resid, count);
 
-	vec_Res[iterindex].stockcount -= count;
+	map_cateRes[lastCategoryindex][iterindex].stockcount -= count;
 
 	if (GlobalInstance::map_AllResources[resid].coinval > 0)
 	{
@@ -332,14 +388,21 @@ void MarketLayer::buyRes(int iterindex, int count)
 void MarketLayer::saveStockRes()
 {
 	std::string str;
-	for (unsigned int i = 0; i < vec_Res.size(); i++)
+
+	std::map<int, std::vector<MK_RES>>::iterator it;
+
+	for (it = map_cateRes.begin(); it != map_cateRes.end(); it++)
 	{
-		if (vec_Res[i].stockcount < vec_Res[i].maxcount)
+		for (unsigned int m = 0; m < map_cateRes[it->first].size(); m++)
 		{
-			std::string onestr = StringUtils::format("%s-%d;", vec_Res[i].resid.c_str(), vec_Res[i].stockcount);
-			str.append(onestr);
+			if (map_cateRes[it->first][m].stockcount < map_cateRes[it->first][m].maxcount)
+			{
+				std::string onestr = StringUtils::format("%s-%d;", map_cateRes[it->first][m].resid.c_str(), map_cateRes[it->first][m].stockcount);
+				str.append(onestr);
+			}
 		}
 	}
+
 	if (str.length() > 0)
 	{
 		DataSave::getInstance()->setMarketStock(str.substr(0, str.length() - 1));
@@ -378,14 +441,30 @@ void MarketLayer::updateUI(float dt)
 
 void MarketLayer::resetStockRes()
 {
+	std::map<int, std::vector<MK_RES>>::iterator it;
+
+	for (it = map_cateRes.begin(); it != map_cateRes.end(); it++)
+	{
+		for (unsigned int m = 0; m < map_cateRes[it->first].size(); m++)
+		{
+			if (map_cateRes[it->first][m].stockcount != map_cateRes[it->first][m].maxcount)
+			{
+				map_cateRes[it->first][m].stockcount = map_cateRes[it->first][m].maxcount;
+			}
+		}
+	}
+
+	std::vector<MK_RES> vec_Res;
+
+	if (map_cateRes.find(lastCategoryindex) != map_cateRes.end())
+	{
+		vec_Res = map_cateRes[lastCategoryindex];
+	}
+
 	for (unsigned int i = 0; i < vec_Res.size(); i++)
 	{
-		if (vec_Res[i].stockcount != vec_Res[i].maxcount)
-		{
-			vec_Res[i].stockcount = vec_Res[i].maxcount;
-			MarketResNode* marketnode = (MarketResNode*)m_contentscroll->getChildByTag(i);
-			marketnode->reset(vec_Res[i].maxcount);
-		}
+		MarketResNode* marketnode = (MarketResNode*)m_contentscroll->getChildByTag(i);
+		marketnode->reset(vec_Res[i].maxcount);
 	}
 	DataSave::getInstance()->setMarketStock("");
 	//updateContent();
@@ -396,5 +475,20 @@ void MarketLayer::onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		Node* node = (Node*)pSender;
+	}
+}
+
+void MarketLayer::onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		Node* node = (Node*)pSender;
+		if (lastCategoryindex == node->getTag())
+			return;
+
+		lastCategoryindex = node->getTag();
+
+		updateContent(node->getTag());
 	}
 }

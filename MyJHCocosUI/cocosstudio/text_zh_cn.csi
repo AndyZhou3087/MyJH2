@@ -291,6 +291,16 @@
       <FilePathData Path="text_zh_cn/rule_text.png" />
       <FilePathData Path="text_zh_cn/watchline_text.png" />
       <FilePathData Path="text_zh_cn/ranktitle_text.png" />
+      <FilePathData Path="text_zh_cn/marketcata0_text_n.png" />
+      <FilePathData Path="text_zh_cn/marketcata0_text_s.png" />
+      <FilePathData Path="text_zh_cn/marketcata1_text_n.png" />
+      <FilePathData Path="text_zh_cn/marketcata1_text_s.png" />
+      <FilePathData Path="text_zh_cn/marketcata2_text_n.png" />
+      <FilePathData Path="text_zh_cn/marketcata2_text_s.png" />
+      <FilePathData Path="text_zh_cn/marketcata3_text_n.png" />
+      <FilePathData Path="text_zh_cn/marketcata3_text_s.png" />
+      <FilePathData Path="text_zh_cn/marketcata4_text_n.png" />
+      <FilePathData Path="text_zh_cn/marketcata4_text_s.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

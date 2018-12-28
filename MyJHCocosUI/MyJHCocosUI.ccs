@@ -563,6 +563,16 @@
           <Image Name="mapeventtext_lk.png" />
           <Image Name="mappackbtn_text.png" />
           <Image Name="maptask_title.png" />
+          <Image Name="marketcata0_text_n.png" />
+          <Image Name="marketcata0_text_s.png" />
+          <Image Name="marketcata1_text_n.png" />
+          <Image Name="marketcata1_text_s.png" />
+          <Image Name="marketcata2_text_n.png" />
+          <Image Name="marketcata2_text_s.png" />
+          <Image Name="marketcata3_text_n.png" />
+          <Image Name="marketcata3_text_s.png" />
+          <Image Name="marketcata4_text_n.png" />
+          <Image Name="marketcata4_text_s.png" />
           <Image Name="marketlvup_text.png" />
           <Image Name="markettitle.png" />
           <Image Name="matchbtn_text.png" />
@@ -1160,6 +1170,8 @@
         </Folder>
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />
+        <Project Name="buyCoinLayer.csd" Type="Layer" />
+        <Project Name="buyResLayer.csd" Type="Layer" />
         <Project Name="cardHeroNode.csd" Type="Node" />
         <Project Name="changeHeadLayer.csd" Type="Layer" />
         <Project Name="changeVocationLayer.csd" Type="Layer" />
@@ -1248,8 +1260,6 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="buyCoinLayer.csd" Type="Layer" />
-        <Project Name="buyResLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -209,8 +209,6 @@ void SmithyLayer::loadData()
 
 void SmithyLayer::updateContent(int category)
 {
-	m_contentscroll->removeAllChildrenWithCleanup(true);
-
 	for (unsigned int i = 0; i < vec_categoryBtn.size(); i++)
 	{
 		cocos2d::ui::ImageView* btntext = (cocos2d::ui::ImageView*)vec_categoryBtn[i]->getChildByName("text");
@@ -228,6 +226,9 @@ void SmithyLayer::updateContent(int category)
 			btntext->loadTexture(ResourcePath::makeTextImgPath(textstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 	}
+
+	m_contentscroll->removeAllChildrenWithCleanup(true);
+	m_contentscroll->jumpToTop();
 
 	int itemheight = 140;
 

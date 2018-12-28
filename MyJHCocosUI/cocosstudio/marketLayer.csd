@@ -61,14 +61,14 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="contentscroll" ActionTag="-755374728" Tag="24" IconVisible="False" LeftMargin="35.0000" RightMargin="35.0000" TopMargin="150.0000" BottomMargin="170.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
-            <Size X="650.0000" Y="960.0000" />
+          <AbstractNodeData Name="contentscroll" ActionTag="-755374728" Tag="24" IconVisible="False" LeftMargin="35.0000" RightMargin="35.0000" TopMargin="230.0000" BottomMargin="170.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+            <Size X="650.0000" Y="880.0000" />
             <AnchorPoint />
             <Position X="35.0000" Y="170.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0486" Y="0.1328" />
-            <PreSize X="0.9028" Y="0.7500" />
+            <PreSize X="0.9028" Y="0.6875" />
             <SingleColor A="255" R="255" G="150" B="100" />
             <FirstColor A="255" R="255" G="150" B="100" />
             <EndColor A="255" R="255" G="255" B="255" />
@@ -256,6 +256,152 @@
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="catanode" ActionTag="-2045791115" Tag="319" IconVisible="True" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="190.0000" BottomMargin="1090.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <Children>
+              <AbstractNodeData Name="btn0" ActionTag="-1251608903" Tag="320" IconVisible="False" LeftMargin="-322.9987" RightMargin="202.9987" TopMargin="-33.9998" BottomMargin="-34.0002" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="122" Scale9Height="46" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="120.0000" Y="68.0000" />
+                <Children>
+                  <AbstractNodeData Name="text" ActionTag="-1083300226" Tag="321" IconVisible="False" LeftMargin="31.5000" RightMargin="31.5000" TopMargin="15.5004" BottomMargin="19.4996" LeftEage="20" RightEage="20" TopEage="10" BottomEage="10" Scale9OriginX="20" Scale9OriginY="10" Scale9Width="17" Scale9Height="13" ctype="ImageViewObjectData">
+                    <Size X="57.0000" Y="33.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="60.0000" Y="35.9996" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.5294" />
+                    <PreSize X="0.4750" Y="0.4853" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/marketcata0_text_n.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="-262.9987" Y="-0.0002" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="MarkedSubImage" Path="ui/catabtn_s.png" Plist="ui.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="ui/catabtn_s.png" Plist="ui.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="ui/catabtn_n.png" Plist="ui.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="btn1" ActionTag="1727393689" Tag="322" IconVisible="False" LeftMargin="-191.9989" RightMargin="71.9989" TopMargin="-33.9997" BottomMargin="-34.0003" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="122" Scale9Height="46" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="120.0000" Y="68.0000" />
+                <Children>
+                  <AbstractNodeData Name="text" ActionTag="515654832" Tag="323" IconVisible="False" LeftMargin="30.0001" RightMargin="29.9999" TopMargin="13.5007" BottomMargin="21.4993" LeftEage="20" RightEage="20" TopEage="10" BottomEage="10" Scale9OriginX="20" Scale9OriginY="10" Scale9Width="20" Scale9Height="13" ctype="ImageViewObjectData">
+                    <Size X="60.0000" Y="33.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="60.0001" Y="37.9993" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.5588" />
+                    <PreSize X="0.5000" Y="0.4853" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/marketcata1_text_n.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="-131.9989" Y="-0.0003" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="MarkedSubImage" Path="ui/catabtn_s.png" Plist="ui.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="ui/catabtn_s.png" Plist="ui.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="ui/catabtn_n.png" Plist="ui.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="btn2" ActionTag="-136105137" Tag="324" IconVisible="False" LeftMargin="-60.9991" RightMargin="-59.0009" TopMargin="-33.9997" BottomMargin="-34.0003" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="122" Scale9Height="46" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="120.0000" Y="68.0000" />
+                <Children>
+                  <AbstractNodeData Name="text" ActionTag="-1441395639" Tag="325" IconVisible="False" LeftMargin="36.0007" RightMargin="27.9993" TopMargin="17.5007" BottomMargin="21.4993" LeftEage="20" RightEage="20" TopEage="10" BottomEage="10" Scale9OriginX="20" Scale9OriginY="10" Scale9Width="16" Scale9Height="9" ctype="ImageViewObjectData">
+                    <Size X="56.0000" Y="29.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="64.0007" Y="35.9993" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5333" Y="0.5294" />
+                    <PreSize X="0.4667" Y="0.4265" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/marketcata2_text_n.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="-0.9991" Y="-0.0003" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="MarkedSubImage" Path="ui/catabtn_s.png" Plist="ui.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="ui/catabtn_s.png" Plist="ui.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="ui/catabtn_n.png" Plist="ui.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="btn3" ActionTag="1478371150" Tag="326" IconVisible="False" LeftMargin="70.0006" RightMargin="-190.0006" TopMargin="-33.9997" BottomMargin="-34.0003" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="122" Scale9Height="46" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="120.0000" Y="68.0000" />
+                <Children>
+                  <AbstractNodeData Name="text" ActionTag="1760658818" Tag="327" IconVisible="False" LeftMargin="33.5000" RightMargin="31.5000" TopMargin="16.0004" BottomMargin="19.9996" LeftEage="20" RightEage="20" TopEage="10" BottomEage="10" Scale9OriginX="20" Scale9OriginY="10" Scale9Width="15" Scale9Height="12" ctype="ImageViewObjectData">
+                    <Size X="55.0000" Y="32.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="61.0000" Y="35.9996" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5083" Y="0.5294" />
+                    <PreSize X="0.4583" Y="0.4706" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/marketcata3_text_n.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="130.0006" Y="-0.0003" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="MarkedSubImage" Path="ui/catabtn_s.png" Plist="ui.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="ui/catabtn_s.png" Plist="ui.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="ui/catabtn_n.png" Plist="ui.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="btn4" ActionTag="-1384042556" Tag="328" IconVisible="False" LeftMargin="201.0004" RightMargin="-321.0004" TopMargin="-33.9997" BottomMargin="-34.0003" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="122" Scale9Height="46" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="120.0000" Y="68.0000" />
+                <Children>
+                  <AbstractNodeData Name="text" ActionTag="1091077117" Tag="329" IconVisible="False" LeftMargin="31.5000" RightMargin="31.5000" TopMargin="16.0004" BottomMargin="19.9996" LeftEage="20" RightEage="20" TopEage="10" BottomEage="10" Scale9OriginX="20" Scale9OriginY="10" Scale9Width="17" Scale9Height="12" ctype="ImageViewObjectData">
+                    <Size X="57.0000" Y="32.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="60.0000" Y="35.9996" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.5294" />
+                    <PreSize X="0.4750" Y="0.4706" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/marketcata4_text_n.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="261.0004" Y="-0.0003" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="MarkedSubImage" Path="ui/catabtn_s.png" Plist="ui.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="ui/catabtn_s.png" Plist="ui.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="ui/catabtn_n.png" Plist="ui.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint />
+            <Position X="360.0000" Y="1090.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.8516" />
+            <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

@@ -14,6 +14,16 @@ typedef struct
 	int stockcount;
 }MK_RES;
 
+typedef enum
+{
+	MKCATA_ALL = -1,
+	MKCATA_0 = 0,
+	MKCATA_1,
+	MKCATA_2,
+	MKCATA_3,
+	MKCATA_4
+}MARKETCATATYPE;
+
 class MarketLayer : public cocos2d::Layer
 {
 public:
@@ -23,7 +33,7 @@ public:
     bool init(Building* buidingData);
 
 	//更新scrollview
-	void updateContent();
+	void updateContent(int category);
 
 	void lvup();
 
@@ -37,6 +47,7 @@ public:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:
 	Building* m_buidingData;//建筑物数据
 	cocos2d::ui::ScrollView* m_contentscroll;
@@ -48,7 +59,7 @@ private:
 	void updateUI(float dt);
 	void todoNewguide();
 private:
-	std::vector<MK_RES> vec_Res;
+	std::map<int, std::vector<MK_RES>> map_cateRes;
 	cocos2d::ui::Text* lvUIlbl;
 
 	cocos2d::ui::LoadingBar* timebar;
@@ -57,6 +68,9 @@ private:
 	cocos2d::ui::Text* mysilverlbl;
 	cocos2d::ui::Text* mycoinlbl;
 	cocos2d::ui::Widget* closebtn;
+	int langtype;
+	std::vector<cocos2d::ui::Button*> vec_categoryBtn;
+	int lastCategoryindex;
 };
 
 #endif

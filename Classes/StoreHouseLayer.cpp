@@ -131,6 +131,7 @@ void StoreHouseLayer::showNewerGuide(int step)
 void StoreHouseLayer::updateContent(int category)
 {
 	scrollview->removeAllChildrenWithCleanup(true);
+	scrollview->jumpToTop();
 
 	for (unsigned int i = 0; i < vec_categoryBtn.size(); i++)
 	{
