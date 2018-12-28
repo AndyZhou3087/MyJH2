@@ -450,6 +450,19 @@ void StoreHouseLayer::decompose(ResBase* res)
 	std::string resid = res->getId();
 	std::string str;
 	int size = GlobalInstance::map_AllResources[resid].vec_needres.size();
+
+	if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
+	{
+		Equip* resequip = (Equip*)res;
+		for (unsigned int n = 0; n < resequip->vec_stones.size(); n++)
+		{
+			if (resequip->vec_stones[n].length() >= 3)//有镶嵌宝石
+			{
+				MyRes::Add(resequip->vec_stones[n]);
+			}
+		}
+
+	}
 	if (size > 0)
 	{
 		std::string resstr;
