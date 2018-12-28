@@ -1008,6 +1008,7 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 		else if (stype == 5 || stype == 6 || stype == 8)
 		{
 			whosufferNode->getData()->setIsDodge(false);
+			gf->setSkillCount(0);
 		}
 		else if (stype == 13)
 		{
@@ -1037,7 +1038,6 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 				{
 					whosufferNode->refreshSkillAttrIcon(stype);
 				}
-
 			}
 		}
 	}

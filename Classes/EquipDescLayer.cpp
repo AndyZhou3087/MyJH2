@@ -173,6 +173,8 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		Label* dlbl = (Label*)skilldesclbl->getVirtualRenderer();
 		dlbl->setLineSpacing(10);
 
+		std::string allskilldesc = StringUtils::format(ResourceLang::map_lang["gfkilldesc"].c_str(), GlobalInstance::map_GF[gf->getId()].skillrnd);
+		
 		std::string skilldesc = GlobalInstance::map_AllResources[skillids].desc;
 		if (skilltype == SKILL_1 || skilltype == SKILL_13 || skilltype == SKILL_15 || skilltype == SKILL_20)
 			skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[gf->getId()].skilleff1);
@@ -190,7 +192,9 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 			skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[gf->getId()].skilleff1, GlobalInstance::map_GF[gf->getId()].skilleff2 - 1);
 		else if (skilltype == SKILL_17)
 			skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[gf->getId()].skilleff1, GlobalInstance::map_GF[gf->getId()].skilleff1, GlobalInstance::map_GF[gf->getId()].skilleff2 - 1);
-		skilldesclbl->setString(skilldesc);
+		
+		allskilldesc.append(skilldesc);
+		skilldesclbl->setString(allskilldesc);
 	}
 	else if (m_res->getType() == T_ARMOR)
 	{

@@ -381,6 +381,7 @@
 	<s name="inputfooderr">食物数量不能为负数！</s>		
 	<s name="inputfoodouter">食物数量超过最大负重！</s>
 	<s name="inputfoodenough">食物数量不足！</s>
+	<s name="gfkilldesc">%d%%几率触发，</s>		
 	<s name="tips_0">使用招募卷可以招募到高品质的橙色江湖侠客</s>
 	<s name="tips_1">装备只有适合的角色才能发挥最大属性</s>
 	<s name="tips_2">武功內功只有适合的角色才会触发技能</s>

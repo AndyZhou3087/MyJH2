@@ -135,6 +135,8 @@ void Hero::checkLevelQuest(int lv)
 void Hero::setExpLimit(int vexp)
 {
 	bool isChangeLevel = false;
+	m_lastlevel = getLevel();
+
 	int size = GlobalInstance::vec_herosAttr[m_vocation].vec_exp.size();
 	int allexp = m_exp.getValue() + vexp;
 	for (int i = 0; i < size; i++)
@@ -666,20 +668,20 @@ GongFa* Hero::checkSkillWg()
 				return gf;
 			}
 
-			if (i == 0)
-			{
-				/*******测试技能start*********/
-				//if (m_fightround >= 0)
-				/*******测试技能end*********/
-				if (m_fightround >= GlobalInstance::map_GF[gf->getId()].skillrnd)
-				{
-					m_fightround = 0;
-					gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
-					return gf;
-				}
-			}
-			else
-			{
+			//if (i == 0)
+			//{
+			//	/*******测试技能start*********/
+			//	//if (m_fightround >= 0)
+			//	/*******测试技能end*********/
+			//	if (m_fightround >= GlobalInstance::map_GF[gf->getId()].skillrnd)
+			//	{
+			//		m_fightround = 0;
+			//		gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
+			//		return gf;
+			//	}
+			//}
+			//else
+			//{
 				int r = GlobalInstance::getInstance()->createRandomNum(100);
 				/*******测试技能start*********/
 				//if (r < 100)
@@ -689,7 +691,7 @@ GongFa* Hero::checkSkillWg()
 					gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
 					return gf;
 				}
-			}
+			//}
 		}
 	}
 	return NULL;

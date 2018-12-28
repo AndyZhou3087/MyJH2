@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cfg>
   <Monstors minc="4" maxc="5">
-    <m id="n052" minlv="50" maxlv="55" minqu="0" maxqu="2">100</m>
+    <m id="n052" minlv="50" maxlv="60" minqu="0" maxqu="2">100</m>
     <ma id="r001" c="30" qu="0">10.00</ma>
     <ma id="r002" c="30" qu="0">10.00</ma>
     <ma id="r003" c="30" qu="0">10.00</ma>
@@ -173,7 +173,7 @@
     <Cell c="3" r="10" p="4" w="1" m="112.png">
       <npcid>n015</npcid>
       <npcrnd>100</npcrnd>
-      <msatt5 id="n015" qu="3">45</msatt5>
+      <msatt5 id="n015" qu="3">50</msatt5>
     </Cell>
     <Cell c="3" r="11" p="-1" w="1" m="107.png" />
     <Cell c="3" r="12" p="-1" w="1" m="107.png" />

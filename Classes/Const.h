@@ -30,6 +30,8 @@
 #define COINREFRESH_HERO_NUM 50//元宝刷新招募英雄
 #define SILVERREFRESH_HERO_NUM 100//银两刷新招募英雄
 
+#define TIPSCOUNT 7
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #define UMENG
 #include "UMeng/Analytics/MobClickCpp.h"

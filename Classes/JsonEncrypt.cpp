@@ -69,7 +69,8 @@ bool JsonEncrypt::init()
 	std::string sfilestr = FileUtils::getInstance()->getStringFromFile(ResourcePath::makePath("jsonbackup/lang/zh_cn/allresdesc.json"));
 	setEncrypt(sfilestr, ResourcePath::makePath("ResourcesEnc/lang/zh_cn/allresdesc.json"));
 
-
+	cocos2d::ui::Text* tipslbl = (cocos2d::ui::Text*)csbnode->getChildByName("tips");
+	tipslbl->setString("Success");
 	return true;
 }
 

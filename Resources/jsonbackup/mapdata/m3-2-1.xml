@@ -12,7 +12,7 @@
     <ma id="r003" c="20" qu="0">20.00</ma>
     <ma id="r004" c="20" qu="0">20.00</ma>
     <ma id="r005" c="20" qu="0">20.00</ma>
-    <ma id="s002" c="2" qu="0">20.00</ma>
+    <ma id="s002" c="2" qu="0">10.00</ma>
   </Monstors>
   <Cells rs="30" cs="30">
     <Cell c="0" r="0" p="-1" w="1" m="91.png" d="22.png" />
@@ -469,10 +469,10 @@
     <Cell c="15" r="1" p="3" w="1" m="22.png">
       <npcid>n014</npcid>
       <npcrnd>100</npcrnd>
-      <msatt1 id="n013" qu="2">25</msatt1>
-      <msatt2 id="n013" qu="2">25</msatt2>
-      <msatt3 id="n013" qu="2">25</msatt3>
-      <msatt5 id="n014" qu="2">30</msatt5>
+      <msatt1 id="n013" qu="3">25</msatt1>
+      <msatt2 id="n013" qu="3">25</msatt2>
+      <msatt3 id="b013" qu="3">25</msatt3>
+      <msatt5 id="b014" qu="3">30</msatt5>
       <msawd1 id="a005" qu="3" rnd="5.00">1</msawd1>
       <msawd2 id="a009" qu="3" rnd="5.00">1</msawd2>
       <msawd3 id="a013" qu="3" rnd="5.00">1</msawd3>
@@ -922,7 +922,7 @@
     <Cell c="29" r="21" p="4" w="1" m="6.png">
       <npcid>n002</npcid>
       <npcrnd>100</npcrnd>
-      <msatt2 id="n002" qu="2">35</msatt2>
+      <msatt2 id="n002" qu="3">35</msatt2>
     </Cell>
     <Cell c="29" r="22" p="-1" w="1" m="6.png" />
     <Cell c="29" r="23" p="-1" w="1" m="6.png" />
