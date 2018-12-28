@@ -107,14 +107,6 @@ bool MarketLayer::init(Building* buidingData)
 
 	mysilverlbl = (cocos2d::ui::Text*)csbnode->getChildByName("silvercountlbl");
 
-	loadData();
-	updateContent(lastCategoryindex);
-
-	updateUI(0);
-	this->schedule(schedule_selector(MarketLayer::updateUI), 1.0f);
-
-	//this->scheduleOnce(schedule_selector(MarketLayer::delayShowNewerGuide), newguidetime + (int)vec_Res.size()*0.07f);
-
 	Node* categoryBtnNode = csbnode->getChildByName("catanode");
 	for (int i = 0; i < categoryBtnNode->getChildrenCount(); i++)
 	{
@@ -124,6 +116,21 @@ bool MarketLayer::init(Building* buidingData)
 		btn->addTouchEventListener(CC_CALLBACK_2(MarketLayer::onCategory, this));
 		vec_categoryBtn.push_back(btn);
 	}
+
+	if (!NewGuideLayer::checkifNewerGuide(66))
+	{
+		if (NewGuideLayer::checkifNewerGuide(67))
+		{
+			lastCategoryindex = 1;
+		}
+	}
+	loadData();
+	updateContent(lastCategoryindex);
+
+	updateUI(0);
+	this->schedule(schedule_selector(MarketLayer::updateUI), 1.0f);
+
+	this->scheduleOnce(schedule_selector(MarketLayer::delayShowNewerGuide), 0.3f);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -158,8 +165,6 @@ void MarketLayer::showNewerGuide(int step)
 	{
 		m_contentscroll->setTouchEnabled(false);
 		//m_contentscroll->jumpToBottom();
-		lastCategoryindex = 1;
-		updateContent(1);
 		for (unsigned int i = 0; i < map_cateRes[MKCATA_1].size(); i++)
 		{
 			if (map_cateRes[MKCATA_1][i].resid.compare("d001") == 0)
@@ -233,7 +238,7 @@ void MarketLayer::loadData()
 				mkres.maxcount = atoi(vec_tmp[1].c_str());
 				mkres.stockcount = mkres.maxcount;
 
-				if (mkres.resid.compare(0, 1, "p") == 0 || mkres.resid.compare(0, 1, "t") == 0 || mkres.resid.compare(0, 1, "v") == 0 || mkres.resid.compare(0, 1, "c") == 0 || mkres.resid.compare("r006") == 0 || mkres.resid.compare("r001") == 0)
+				if (mkres.resid.compare(0, 1, "p") == 0 || mkres.resid.compare(0, 1, "t") == 0 || mkres.resid.compare(0, 1, "v") == 0 || mkres.resid.compare(0, 1, "c") == 0 || mkres.resid.compare("r013") == 0 || mkres.resid.compare("r014") == 0)
 					map_cateRes[MKCATA_0].push_back(mkres);
 				else if (mkres.resid.compare(0, 1, "d") == 0)
 					map_cateRes[MKCATA_1].push_back(mkres);
@@ -322,7 +327,7 @@ void MarketLayer::updateContent(int category)
 		itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
 		if (vec_Res[i].resid.compare("d001") == 0)
 		{
-			itemnode->runAction(Sequence::create(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))), CallFunc::create(CC_CALLBACK_0(MarketLayer::todoNewguide, this)), NULL));
+			itemnode->runAction(Sequence::create(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))), NULL));
 		}
 		else
 		{
@@ -331,11 +336,6 @@ void MarketLayer::updateContent(int category)
 		//itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 		m_contentscroll->addChild(itemnode, 0 , i);
 	}
-}
-
-void MarketLayer::todoNewguide()
-{
-	delayShowNewerGuide(0);
 }
 
 void MarketLayer::lvup()

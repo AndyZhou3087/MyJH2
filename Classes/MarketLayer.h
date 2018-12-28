@@ -57,7 +57,7 @@ private:
 	void saveStockRes();
 
 	void updateUI(float dt);
-	void todoNewguide();
+
 private:
 	std::map<int, std::vector<MK_RES>> map_cateRes;
 	cocos2d::ui::Text* lvUIlbl;
