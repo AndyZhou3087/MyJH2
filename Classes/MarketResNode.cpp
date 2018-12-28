@@ -85,8 +85,6 @@ bool MarketResNode::init(std::string resid, int rescount)
 	std::string str = StringUtils::format("ui/%s.png", resid.c_str());
 	resimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 
-
-
 	//描述
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 	desclbl->setString(GlobalInstance::map_AllResources[resid].desc);
@@ -229,7 +227,13 @@ void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case 2000:
 		{
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-			SimpleResPopLayer* layer = SimpleResPopLayer::create(m_resid);
+			std::string resstr = m_resid;
+			if (m_resid.compare("r014") >= 0 && m_resid.compare("r018") <= 0)
+			{
+				int intid = atoi(m_resid.substr(1).c_str());
+				resstr = StringUtils::format("r%03d", intid - 13);
+			}
+			SimpleResPopLayer* layer = SimpleResPopLayer::create(resstr);
 			g_mainScene->addChild(layer);
 			AnimationEffect::openAniEffect(layer);
 			break;
