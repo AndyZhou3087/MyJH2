@@ -236,6 +236,10 @@
 		72A2BD0120F8BA1F0085B17D /* hospitalLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A2BCFB20F8BA1F0085B17D /* hospitalLayer.csb */; };
 		72A2BD0220F8BA1F0085B17D /* simpleLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A2BCFC20F8BA1F0085B17D /* simpleLayer.csb */; };
 		72A2BD0320F8BA1F0085B17D /* winRewardLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A2BCFD20F8BA1F0085B17D /* winRewardLayer.csb */; };
+		72A55FDD21D60FFF00D95DA8 /* BuyResLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72A55FDA21D60FFE00D95DA8 /* BuyResLayer.cpp */; };
+		72A55FDE21D60FFF00D95DA8 /* BuyCoinLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72A55FDC21D60FFF00D95DA8 /* BuyCoinLayer.cpp */; };
+		72A55FE121D6101900D95DA8 /* buyResLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A55FDF21D6101800D95DA8 /* buyResLayer.csb */; };
+		72A55FE221D6101900D95DA8 /* buyCoinLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A55FE021D6101800D95DA8 /* buyCoinLayer.csb */; };
 		72AD00F8211461E4009C44DA /* WgLvLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72AD00F3211461E3009C44DA /* WgLvLayer.cpp */; };
 		72AD00F9211461E4009C44DA /* StrengthenLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72AD00F7211461E4009C44DA /* StrengthenLayer.cpp */; };
 		72AD00FC21146216009C44DA /* strengthenLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72AD00FA21146215009C44DA /* strengthenLayer.csb */; };
@@ -658,6 +662,12 @@
 		72A2BCFB20F8BA1F0085B17D /* hospitalLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = hospitalLayer.csb; sourceTree = "<group>"; };
 		72A2BCFC20F8BA1F0085B17D /* simpleLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = simpleLayer.csb; sourceTree = "<group>"; };
 		72A2BCFD20F8BA1F0085B17D /* winRewardLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = winRewardLayer.csb; sourceTree = "<group>"; };
+		72A55FD821D60FFE00D95DA8 /* BuyCoinLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyCoinLayer.h; sourceTree = "<group>"; };
+		72A55FDA21D60FFE00D95DA8 /* BuyResLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuyResLayer.cpp; sourceTree = "<group>"; };
+		72A55FDB21D60FFE00D95DA8 /* BuyResLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyResLayer.h; sourceTree = "<group>"; };
+		72A55FDC21D60FFF00D95DA8 /* BuyCoinLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuyCoinLayer.cpp; sourceTree = "<group>"; };
+		72A55FDF21D6101800D95DA8 /* buyResLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = buyResLayer.csb; sourceTree = "<group>"; };
+		72A55FE021D6101800D95DA8 /* buyCoinLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = buyCoinLayer.csb; sourceTree = "<group>"; };
 		72AD00F3211461E3009C44DA /* WgLvLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WgLvLayer.cpp; sourceTree = "<group>"; };
 		72AD00F5211461E3009C44DA /* StrengthenLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrengthenLayer.h; sourceTree = "<group>"; };
 		72AD00F6211461E4009C44DA /* WgLvLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WgLvLayer.h; sourceTree = "<group>"; };
@@ -860,6 +870,8 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				72A55FE021D6101800D95DA8 /* buyCoinLayer.csb */,
+				72A55FDF21D6101800D95DA8 /* buyResLayer.csb */,
 				7298895621A2989800071057 /* matchContentLayer.csb */,
 				7298895721A2989800071057 /* matchHeroNode.csb */,
 				7298895921A2989800071057 /* matchMainLayer.csb */,
@@ -981,6 +993,10 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				72A55FDC21D60FFF00D95DA8 /* BuyCoinLayer.cpp */,
+				72A55FD821D60FFE00D95DA8 /* BuyCoinLayer.h */,
+				72A55FDA21D60FFE00D95DA8 /* BuyResLayer.cpp */,
+				72A55FDB21D60FFE00D95DA8 /* BuyResLayer.h */,
 				7298894921A2987700071057 /* MatchContentLayer.cpp */,
 				7298893B21A2987600071057 /* MatchContentLayer.h */,
 				7298894221A2987700071057 /* MatchHeroNode.cpp */,
@@ -1355,6 +1371,7 @@
 			files = (
 				7204534320D892640011D560 /* images in Resources */,
 				7206D257211D9FB7002D1BDE /* sounds in Resources */,
+				72A55FE221D6101900D95DA8 /* buyCoinLayer.csb in Resources */,
 				72538DA5217093E3007D7062 /* npcLayer.csb in Resources */,
 				7204533520D892640011D560 /* json in Resources */,
 				7204534020D892640011D560 /* mainMapLayer.csb in Resources */,
@@ -1438,6 +1455,7 @@
 				726CA468215DFD90002D0273 /* errorHintLayer.csb in Resources */,
 				72421DD92126E534008B1B57 /* headInfoLayer.csb in Resources */,
 				7204534120D892640011D560 /* innRoomLayer.csb in Resources */,
+				72A55FE121D6101900D95DA8 /* buyResLayer.csb in Resources */,
 				7282708620F5B7EE00B07087 /* materialDescNode.csb in Resources */,
 				7226FB442142217500467283 /* rewardLayer.csb in Resources */,
 				7204533620D892640011D560 /* cardHeroNode.csb in Resources */,
@@ -1569,6 +1587,7 @@
 				720452DB20D892200011D560 /* DataSave.cpp in Sources */,
 				72538DA1217093C7007D7062 /* TimeGiftLayer.cpp in Sources */,
 				7256A75E2109748D000492EA /* HintBoxLayer.cpp in Sources */,
+				72A55FDE21D60FFF00D95DA8 /* BuyCoinLayer.cpp in Sources */,
 				7226FB3E2142214B00467283 /* SimplePopLayer.cpp in Sources */,
 				72DD1CB12139564000832ADB /* ShopNode.cpp in Sources */,
 				7282706620F5B7B200B07087 /* SetInStoneLayer.cpp in Sources */,
@@ -1586,6 +1605,7 @@
 				720452EC20D892200011D560 /* FightHeroNode.cpp in Sources */,
 				7282706720F5B7B200B07087 /* TaskDailyNode.cpp in Sources */,
 				720452EF20D892200011D560 /* HomeHillLayer.cpp in Sources */,
+				72A55FDD21D60FFF00D95DA8 /* BuyResLayer.cpp in Sources */,
 				7232D82120E639D600299738 /* MarketResNode.cpp in Sources */,
 				7226FB3F2142214B00467283 /* RewardLayer.cpp in Sources */,
 				720452E920D892200011D560 /* MovingLabel.cpp in Sources */,

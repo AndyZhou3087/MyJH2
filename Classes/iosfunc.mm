@@ -90,7 +90,7 @@ const char* getUserDefaultXml()
         //[defs removeObjectForKey:key];
         NSString *kvalue = [[NSUserDefaults standardUserDefaults] stringForKey:key];
         
-        if (kvalue && kvalue.length > 0 && [key hasPrefix:@"jh"] && !([key hasPrefix:@"jhm"] && [key rangeOfString:@"-"].location != NSNotFound))
+        if (kvalue && kvalue.length > 0 && [key hasPrefix:@"jh"] && !([key hasPrefix:@"jhm"] && [key componentsSeparatedByString:@"-"].count == 2))
         {
             NSString * xmlele = [NSString stringWithFormat:@"<%@>%@</%@>",key, kvalue,key];
             content = [content stringByAppendingFormat:@"%@", xmlele];
