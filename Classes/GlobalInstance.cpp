@@ -1811,7 +1811,7 @@ void GlobalInstance::saveNpcFriendly()
 				std::string s1 = StringUtils::format("%d,", data.relation[i]);
 				s.append(s1);
 			}
-			std::string onestr = StringUtils::format("%s-%d-%s;", data.npcid.c_str(), data.friendly, s.substr(0, s.length() - 1).c_str());
+			std::string onestr = StringUtils::format("%s#%d#%s;", data.npcid.c_str(), data.friendly, s.substr(0, s.length() - 1).c_str());
 			str.append(onestr);
 		}
 	}
