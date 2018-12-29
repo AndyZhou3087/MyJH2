@@ -133,7 +133,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 	getbtn->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("ScrollView");
-	scrollView->setScrollBarEnabled(false);
+	scrollView->setScrollBarEnabled(true);
 	scrollView->setBounceEnabled(true);
 
 	if (data->isfinish == QUEST_FINISH)
@@ -173,10 +173,15 @@ bool TaskDescLayer::init(TaskData* data, int type)
 		getbtn->setVisible(false);
 		accbtn->setVisible(false);
 	}
-
-	if (data->type.size() == 1)
+	if (data->finishtype == 1)
 	{
 		rewards = data->reward1;
+		rewardlabel->setString(ResourceLang::map_lang["taskrewardtip3"]);
+	}
+	else if (data->finishtype == 2)
+	{
+		rewards = data->reward2;
+		rewardlabel->setString(ResourceLang::map_lang["taskrewardtip3"]);
 	}
 	else 
 	{
@@ -184,11 +189,27 @@ bool TaskDescLayer::init(TaskData* data, int type)
 		{
 			rewards.push_back(data->reward1[m]);
 		}
-		/*for (unsigned int n = 0; n < data->reward2.size(); n++)
+		for (unsigned int n = 0; n < data->reward2.size(); n++)
 		{
-			rewards.push_back(data->reward2[n]);
-		}*/
+			unsigned int index = 0;
+			for (unsigned int m = 0; m < data->reward1.size(); m++)
+			{
+				if (data->reward2[n][0].compare(data->reward1[m][0]) != 0)
+				{
+					index++;
+				}
+				if (index >= data->reward1.size())
+				{
+					rewards.push_back(data->reward2[n]);
+				}
+			}
+		}
 	}
+
+	int row = rewards.size() % 3 == 0 ? rewards.size() / 3: rewards.size() / 3 + 1;
+	innerheight = row * 170;
+
+	scrollView->setInnerContainerSize(Size(scrollView->getContentSize().width, innerheight));
 
 	for (unsigned int i = 0; i < rewards.size(); i++)
 	{
@@ -225,7 +246,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 
 
 		Sprite * box = Sprite::createWithSpriteFrameName(qustr);
-		box->setPosition(Vec2(80 + i % 3 * 170, 103 - i / 3 * 163));
+		box->setPosition(Vec2(80 + i % 3 * 170, innerheight - box->getContentSize().height/2 - i / 3 * 165));
 		scrollView->addChild(box);
 
 		CommonFuncs::playResBoxEffect(box, qu);

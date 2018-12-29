@@ -69,11 +69,14 @@ int MyRes::getMyPackageCount()
 
 ResBase* MyRes::Add(std::string resid, int count, int inwhere, int qu, int stonescount)
 {
-	int i = 0;
-	for (; i < sizeof(RES_TYPES_CHAR)/sizeof(RES_TYPES_CHAR[0]);i++)
+	int i = -1;
+	for (int k = 0; k < sizeof(RES_TYPES_CHAR)/sizeof(RES_TYPES_CHAR[0]);k++)
 	{
-		if (resid.compare(0, 1, RES_TYPES_CHAR[i]) == 0)
+		if (resid.compare(0, 1, RES_TYPES_CHAR[k]) == 0)
+		{
+			i = k;
 			break;
+		}
 	}
 
 	ResBase* retres = NULL;
@@ -122,7 +125,7 @@ ResBase* MyRes::Add(std::string resid, int count, int inwhere, int qu, int stone
 			retres = res;
 		}
 	}
-	else
+	else if (i > -1)
 	{
 		ResBase* res = getMyRes(resid, inwhere);
 		if (res == NULL)
@@ -139,8 +142,11 @@ ResBase* MyRes::Add(std::string resid, int count, int inwhere, int qu, int stone
 		res->setCount(dvalue);
 		retres = res;
 	}
-	Quest::setAchieveTypeCount(ACHIEVE_GOODS, count, resid);
-	saveData();
+	if (i > -1)
+	{
+		Quest::setAchieveTypeCount(ACHIEVE_GOODS, count, resid);
+		saveData();
+	}
 	
 	return retres;
 }

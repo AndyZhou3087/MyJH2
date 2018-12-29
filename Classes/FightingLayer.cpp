@@ -302,7 +302,9 @@ void FightingLayer::clearSkillsData(int type)
 				{
 					GongFa* gf = (GongFa*)myhero->getEquipable(t[m]);
 					if (gf != NULL)
+					{
 						myhero->clearSkill(gf);
+					}
 				}
 			}
 		}
@@ -548,6 +550,7 @@ void FightingLayer::heroFight(int fightertag)
 
 						int scount = GlobalInstance::map_GF[gf->getId()].skilleff2;
 						int c = ssize < scount ? ssize : scount;
+
 						for (int i = 0; i < c; i++)
 						{
 							atkhero->vec_whosufferskill.push_back(vec_atkheronode[i]->getTag());

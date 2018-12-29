@@ -144,6 +144,8 @@ bool AchieveNode::init(AchieveData* data)
 
 void AchieveNode::updateData(float dt)
 {
+	int c = Quest::map_achieveTypeCount[m_Data->type][m_Data->achid];
+
 	if (m_Data->state == DAILY_UNFINISHED)
 	{
 		finish->setVisible(false);
@@ -158,9 +160,10 @@ void AchieveNode::updateData(float dt)
 	{
 		finish->setVisible(true);
 		getbtn->setVisible(false);
+		c = m_Data->count;
 	}
 
-	int c = Quest::map_achieveTypeCount[m_Data->type][m_Data->achid];
+	//int c = Quest::map_achieveTypeCount[m_Data->type][m_Data->achid];
 	if (c >= m_Data->count)
 	{
 		c = m_Data->count;

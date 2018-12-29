@@ -210,6 +210,7 @@ void FightHeroNode::update(float dt)
 		fighting->pauseAtkSchedule();
 
 		m_Data->setIsRndSkill(false);
+
 		bool isSufferSkill3 = false;
 
 		if (this->getTag() >= 6)
@@ -473,8 +474,10 @@ void FightHeroNode::hurtAnimFinish()
 void FightHeroNode::delayShowReviveAnim(float dt)
 {
 	this->setVisible(true);
+
 	playSkill(SKILL_13, NULL);
 	attackedSkill(SKILL_13, this->getTag());
+
 }
 
 bool FightHeroNode::checkReviveSkill()
@@ -487,14 +490,10 @@ bool FightHeroNode::checkReviveSkill()
 		{
 			if (GlobalInstance::map_GF[gf->getId()].skill == SKILL_13)
 			{
-				if (gf->getSkillCount() <= 0)
+				if (gf->getSkillCount() <= 1)
 				{
-					gf->setSkillCount(1);
+					gf->setSkillCount(2);
 					return true;
-				}
-				else
-				{
-					gf->setSkillCount(0);
 				}
 			}
 
@@ -698,6 +697,12 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 
 		if (gf->getSkillCount() == GlobalInstance::map_GF[gf->getId()].skilleff2)
 		{
+			isPlaySkillAnim = true;
+		}
+
+		if (stype == SKILL_5 || stype == SKILL_6 || stype == SKILL_8)
+		{
+			gf->setSkillCount(m_Data->vec_whosufferskill.size());
 			isPlaySkillAnim = true;
 		}
 
@@ -1005,17 +1010,12 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 			whosufferNode->hurt(0, 2);
 		}
 
-		if (stype == 3 || stype == 4)
+		if (stype == SKILL_3 || stype == SKILL_4)
 		{
 			if (gf->getSkillCount() == GlobalInstance::map_GF[gf->getId()].skilleff2)
 				gf->setSkillCount(gf->getSkillCount() - 1);
 		}
-		else if (stype == 5 || stype == 6 || stype == 8)
-		{
-			whosufferNode->getData()->setIsDodge(false);
-			m_Data->clearSkill(gf);
-		}
-		else if (stype == 13)
+		else if (stype == SKILL_13)
 		{
 
 		}

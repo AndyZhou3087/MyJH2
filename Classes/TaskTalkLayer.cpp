@@ -181,21 +181,46 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 	}
 
 	std::vector<std::vector<std::string>> rewards;
-	if (data->type.size() == 1)
+	//if (data->type.size() == 1)
+	//{
+	//	rewards = data->reward1;
+	//}
+	//else
+	//{
+	//	for (unsigned int m = 0; m < data->reward1.size(); m++)
+	//	{
+	//		rewards.push_back(data->reward1[m]);
+	//	}
+	//	/*for (unsigned int n = 0; n < data->reward2.size(); n++)
+	//	{
+	//		rewards.push_back(data->reward2[n]);
+	//	}*/
+	//}
+
+
+	for (unsigned int m = 0; m < data->reward1.size(); m++)
 	{
-		rewards = data->reward1;
+		rewards.push_back(data->reward1[m]);
 	}
-	else
+	for (unsigned int n = 0; n < data->reward2.size(); n++)
 	{
+		unsigned int index = 0;
 		for (unsigned int m = 0; m < data->reward1.size(); m++)
 		{
-			rewards.push_back(data->reward1[m]);
+			if (data->reward2[n][0].compare(data->reward1[m][0]) != 0)
+			{
+				index++;
+			}
+			if (index >= data->reward1.size())
+			{
+				rewards.push_back(data->reward2[n]);
+			}
 		}
-		/*for (unsigned int n = 0; n < data->reward2.size(); n++)
-		{
-			rewards.push_back(data->reward2[n]);
-		}*/
 	}
+	int row = rewards.size() % 3 == 0 ? rewards.size() / 3 : rewards.size() / 3 + 1;
+	int innerheight = row * 170;
+
+	scrollView->setInnerContainerSize(Size(scrollView->getContentSize().width, innerheight));
 
 	for (unsigned int i = 0; i < rewards.size(); i++)
 	{
@@ -231,7 +256,7 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 		}
 
 		Sprite * box = Sprite::createWithSpriteFrameName(qustr);
-		box->setPosition(Vec2(80 + i % 3 * 170, 103 - i / 3 * 163));
+		box->setPosition(Vec2(80 + i % 3 * 170, innerheight - box->getContentSize().height / 2 - i / 3 * 165));
 		scrollView->addChild(box);
 
 		std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);

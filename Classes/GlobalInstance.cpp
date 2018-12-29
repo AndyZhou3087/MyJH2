@@ -1507,12 +1507,18 @@ void GlobalInstance::loadMyResData()
 			CommonFuncs::split(vec_tmp[i], vec_one, "-");
 			std::string rid = vec_one[0];
 
-			int m = 0;
-			for (; m < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); m++)
+			int m = -1;
+			for (int k = 0; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)
 			{
-				if (rid.compare(0, 1, RES_TYPES_CHAR[m]) == 0)
+				if (rid.compare(0, 1, RES_TYPES_CHAR[k]) == 0)
+				{
+					m = k;
 					break;
+				}
 			}
+			if (rid.length() > 4)
+				continue;
+
 			if (m >= T_ARMOR && m <= T_FASHION)
 			{
 				Equip* res = new Equip();
@@ -1559,8 +1565,7 @@ void GlobalInstance::loadMyResData()
 
 				MyRes::vec_MyResources.push_back(res);
 			}
-
-			else
+			else if (m > -1)
 			{
 				ResBase* res = new ResBase();
 				res->setId(rid);

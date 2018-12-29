@@ -730,33 +730,43 @@ void Quest::initAchieveTypeCount(std::string str)
 	{
 		std::vector<std::string> vec_one;
 		CommonFuncs::split(vec_tmp[i], vec_one, "-");
-		std::map<std::string, int> map_one;
-		map_one[vec_one[1]] = atoi(vec_one[2].c_str());
-		map_achieveTypeCount[atoi(vec_one[0].c_str())] = map_one;
+		//std::map<std::string, int> map_one;
+		//map_one[vec_one[1]] = atoi(vec_one[2].c_str());
+		map_achieveTypeCount[atoi(vec_one[0].c_str())][vec_one[1]] = atoi(vec_one[2].c_str());
 	}
 }
 
 void Quest::setAchieveTypeCount(int type, int count, std::string resid)
 {
-	if (type == HERO_LEVEL)
-	{
-		if (count > map_achieveTypeCount[type][resid])
-		{
-			map_achieveTypeCount[type][resid] = count;
-		}
-	}
-	else
-	{
-		map_achieveTypeCount[type][resid] += count;
-	}
+	//if (type == HERO_LEVEL)
+	//{
+	//	if (count > map_achieveTypeCount[type][resid])
+	//	{
+	//		map_achieveTypeCount[type][resid] = count;
+	//	}
+	//}
+	//else
+	//{
+	//	map_achieveTypeCount[type][resid] += count;
+	//}
 
 	for (unsigned int i = 0; i < GlobalInstance::vec_achievedata.size(); i++)
 	{
 		AchieveData* data = &GlobalInstance::vec_achievedata[i];
-		if (data->type == type && data->count <= map_achieveTypeCount[type][resid] && data->achid.compare(resid) == 0 && data->state == DAILY_UNFINISHED)
+		if (data->type == type && data->achid.compare(resid) == 0)
 		{
-			data->state = DAILY_FINISHED;
-			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
+			map_achieveTypeCount[type][resid] += count;
+
+			if (data->count <= map_achieveTypeCount[type][resid] && data->state == DAILY_UNFINISHED)
+			{
+				data->state = DAILY_FINISHED;
+
+				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
+			}
+			if (data->state == DAILY_FINISHED)
+			{
+				map_achieveTypeCount[type][resid] = data->count;
+			}
 		}
 	}
 	GlobalInstance::getInstance()->saveMyAchieveData();
@@ -765,10 +775,13 @@ void Quest::setAchieveTypeCount(int type, int count, std::string resid)
 	std::map<int, std::map<std::string, int>>::iterator mit;
 	for (mit = map_achieveTypeCount.begin(); mit != map_achieveTypeCount.end(); mit++)
 	{
-		std::map<std::string, int>::iterator map_achdata = mit->second.begin();
-		std::string key = map_achdata->first;
-		std::string onestr = StringUtils::format("%d-%s-%d;", mit->first, key.c_str(), map_achdata->second);
-		str.append(onestr);
+		std::map<std::string, int>::iterator submit;
+		for (submit = mit->second.begin(); submit != mit->second.end(); submit++)
+		{
+			std::string key = submit->first;
+			std::string onestr = StringUtils::format("%d-%s-%d;", mit->first, key.c_str(), submit->second);
+			str.append(onestr);
+		}
 	}
 	DataSave::getInstance()->setAchieveTypeCount(str.substr(0, str.length() - 1));
 }

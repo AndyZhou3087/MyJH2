@@ -86,8 +86,9 @@
 	<s name="acctasktext">接受任务</s>
 	<s name="getrewardtext">领取奖励</s>
 	<s name="okbtntext">确定</s>
-	<s name="taskrewardtip">任务完成可获得奖励：（你的选择会影响你的奖励，谨慎选择）</s>
-	<s name="taskrewardtip2">任务完成可获得奖励：</s>
+	<s name="taskrewardtip">任务完成可能获得以下奖励：（你的选择会影响你的奖励，谨慎选择）</s>
+	<s name="taskrewardtip2">任务完成可能获得以下奖励：</s>
+	<s name="taskrewardtip3">任务完成获得以下奖励：</s>	
 	<s name="dailytype_0">完成%d个支线任务</s>
 	<s name="dailytype_1">刷新%d次客栈招募</s>
 	<s name="dailytype_2">升级%d次英雄角色</s>
@@ -388,5 +389,7 @@
 	<s name="tips_3">地图边缘处可以触发神秘事件</s>
 	<s name="tips_4">探索山洞会得到前人留下的秘宝哦</s>
 	<s name="tips_5">结交江湖侠客可以获得专属属性</s>
-	<s name="tips_6">客栈里可招募的侠客品质由低到高依次为绿，蓝，紫，橙，红</s>	
+	<s name="tips_6">客栈里可招募的侠客品质由低到高依次为绿，蓝，紫，橙，红</s>
+	<s name="taskrew1text">奖励一：</s>	
+	<s name="taskrew2text">奖励二：</s>			
 </strings>
