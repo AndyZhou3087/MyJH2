@@ -434,3 +434,13 @@ void DataSave::setCheatCount(int val)
 {
 	saveIntDataByKey("chartcount", val);
 }
+
+void DataSave::setLocalUUID(std::string val)
+{
+	saveStringDataByKey("uuid", val);
+}
+
+std::string DataSave::getLocalUUID()
+{
+	return loadStringDataByKey("uuid");
+}

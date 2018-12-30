@@ -260,6 +260,9 @@ void GlobalInstance::loadInitData()
 	GlobalInstance::mySoliverCount.setValue(DataSave::getInstance()->getMySoliverCount());
 	GlobalInstance::myCoinCount.setValue(DataSave::getInstance()->getMyCoinCount());
 
+	if (DataSave::getInstance()->getLocalUUID().length() <= 0)
+		DataSave::getInstance()->setLocalUUID(GlobalInstance::getInstance()->UUID());
+
 	silverRefHeroCount = DataSave::getInstance()->getSilverRefHeroCount();
 
 	serverTimeGiftData.isopen = false;

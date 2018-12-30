@@ -411,6 +411,16 @@ public:
 	****************************/
 	std::string getNpcFriendly();
 
+	/****************************
+	uuid
+	****************************/
+	void setLocalUUID(std::string val);
+
+	/***************************
+	uuid
+	****************************/
+	std::string getLocalUUID();
+
 private:
 	static DataSave* _Context;//类实例
 
