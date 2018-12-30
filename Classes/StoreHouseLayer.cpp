@@ -151,19 +151,10 @@ void StoreHouseLayer::updateContent(int category)
 		}
 	}
 
-	map_cateRes.clear();
 	loadData();
 
 	int itemheight = 160;
 
-	if (category == 0)
-	{
-		int catasort[] = { CATA_3 , CATA_1, CATA_2 };
-		for (int i = 0; i < 3; i++)
-		{
-			map_cateRes[category].insert(map_cateRes[category].end(), map_cateRes[catasort[i]].begin(), map_cateRes[catasort[i]].end());
-		}
-	}
 	int ressize = map_cateRes[category].size();
 	int row = ressize % 4 == 0 ? ressize / 4 : (ressize / 4 + 1);
 	int innerheight = itemheight * row;
@@ -278,10 +269,13 @@ void StoreHouseLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		case 1000:
 		{
 			isfastcomposing = true;
-			MovingLabel::show(ResourceLang::map_lang["decomposehint"]);
 			btnnode->setTag(1002);
 			actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("cancelbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			updateContent(lastCategoryindex);
+			if (map_cateRes[lastCategoryindex].size() > 0)
+				MovingLabel::show(ResourceLang::map_lang["decomposehint"]);
+			else
+				MovingLabel::show(ResourceLang::map_lang["nodecomposehint"]);
 			break;
 		}
 		case 1001:
@@ -339,6 +333,8 @@ void StoreHouseLayer::onclick(Ref* pSender)
 
 void StoreHouseLayer::loadData()
 {
+	map_cateRes.clear();
+
 	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
 	{
 		bool isadd = true;
@@ -365,6 +361,12 @@ void StoreHouseLayer::loadData()
 				sort(map_cateRes[CATA_3].begin(), map_cateRes[CATA_3].end(), countsort_callback);
 			}
 		}
+	}
+
+	int catasort[] = { CATA_3 , CATA_1, CATA_2 };
+	for (int i = 0; i < 3; i++)
+	{
+		map_cateRes[CATA_0].insert(map_cateRes[CATA_0].end(), map_cateRes[catasort[i]].begin(), map_cateRes[catasort[i]].end());
 	}
 }
 
@@ -393,7 +395,12 @@ void StoreHouseLayer::onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		Node* node = (Node*)pSender;
 
 		if (isfastcomposing)
-			MovingLabel::show(ResourceLang::map_lang["decomposehint"]);
+		{
+			if (map_cateRes[node->getTag()].size() > 0)
+				MovingLabel::show(ResourceLang::map_lang["decomposehint"]);
+			else
+				MovingLabel::show(ResourceLang::map_lang["nodecomposehint"]);		
+		}
 
 		if (lastCategoryindex == node->getTag())
 			return;

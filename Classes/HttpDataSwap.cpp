@@ -58,10 +58,10 @@ void HttpDataSwap::postAllData()
 	url.append("playerid=");
 	url.append(GlobalInstance::getInstance()->UUID());
 
-	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
+	std::string mycoinstr = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
 	url.append("&coin=");
 
-	url.append(str);
+	url.append(mycoinstr);
 
 	url.append("&pkg=");
 	url.append(GlobalInstance::getInstance()->getPackageName());
@@ -74,6 +74,13 @@ void HttpDataSwap::postAllData()
 
 	url.append("&plat=");
 	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+
+	url.append("&sign=");
+	std::string md5ostr = GlobalInstance::getInstance()->UUID() + mycoinstr;
+
+	std::string signstr = md5(md5ostr + "key=zhoujian-87");
+	url.append(signstr);
 
 	std::string postdata = GlobalInstance::getInstance()->getUserDefaultXmlString();
 

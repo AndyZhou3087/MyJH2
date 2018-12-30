@@ -63,6 +63,7 @@
 	<s name="rescount">数量：%d</s>
 	<s name="decomposesucc">「%s」分解成功-->%s</s>
 	<s name="decomposehint">请点击分解物品</s>
+	<s name="nodecomposehint">此分类没有可分解物品</s>
 	<s name="decomposefail">不能分解</s>
 	<s name="outofstock">没有更多库存了！</s>
 	<s name="nomoresilver">银两不足！</s>
