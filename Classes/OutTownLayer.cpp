@@ -589,28 +589,31 @@ void OutTownLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox,
 	editBox->setText(" ");
 	caryycountlbl[0]->setVisible(true);
 
-	int editcount = atoi(edittext.c_str());
+	if (edittext.length() > 0)
+	{
+		int editcount = atoi(edittext.c_str());
 
-	if (editcount < 0)
-	{
-		MovingLabel::show(ResourceLang::map_lang["inputfooderr"]);
-	}
-	else if (editcount > GlobalInstance::getInstance()->getTotalCarry())
-	{
-		MovingLabel::show(ResourceLang::map_lang["inputfoodouter"]);
-	}
-	else
-	{
-		if (editcount > MyRes::getMyResCount(carryResids[0]))
+		if (editcount < 0)
 		{
-			caryycount[0] = MyRes::getMyResCount(carryResids[0]);
-			MovingLabel::show(ResourceLang::map_lang["inputfoodenough"]);
+			MovingLabel::show(ResourceLang::map_lang["inputfooderr"]);
+		}
+		else if (editcount > GlobalInstance::getInstance()->getTotalCarry())
+		{
+			MovingLabel::show(ResourceLang::map_lang["inputfoodouter"]);
 		}
 		else
 		{
-			caryycount[0] = editcount;
+			if (editcount > MyRes::getMyResCount(carryResids[0]))
+			{
+				caryycount[0] = MyRes::getMyResCount(carryResids[0]);
+				MovingLabel::show(ResourceLang::map_lang["inputfoodenough"]);
+			}
+			else
+			{
+				caryycount[0] = editcount;
+			}
+			updateCaryyCountLbl();
 		}
-		updateCaryyCountLbl();
 	}
 }
 
