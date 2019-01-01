@@ -1,13 +1,15 @@
 ﻿#include "MapEventLayer.h"
 #include "Resource.h"
 #include "CommonFuncs.h"
-#include "Const.h"
+
 #include "MyRes.h"
 #include "EventBusinessLayer.h"
 #include "AnimationEffect.h"
 #include "MapBlockScene.h"
 #include "DynamicValue.h"
+#if MAP_BET
 #include "GambleBoxLayer.h"
+#endif
 #include "MovingLabel.h"
 #include "BuyCoinLayer.h"
 
@@ -332,6 +334,7 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					g_MapBlockScene->eventFight();
 				}
 			}
+#if MAP_BET
 			else if (m_eventindex == POS_BET)
 			{
 				eventnode_1->setVisible(false);
@@ -340,6 +343,7 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				eventnode_4->setVisible(true);
 				doGambling();
 			}
+#endif
 			break;
 		case 2:
 		{
@@ -372,6 +376,7 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case 3:
 		{
+#if MAP_BET
 			if (lastBetIndex == -1)
 			{
 				MovingLabel::show(ResourceLang::map_lang["bettipstext"]);
@@ -405,7 +410,9 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 			int r = GlobalInstance::getInstance()->createRandomNum(3);
 			this->scheduleOnce(schedule_selector(MapEventLayer::showResult), r + 1.0f);
+#endif
 		}
+
 			break;
 		case 100:
 		{
@@ -482,6 +489,7 @@ void MapEventLayer::eventFight()
 	eventimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 }
 
+#if MAP_BET
 void MapEventLayer::showResult(float dt)
 {
 	anim_action = CSLoader::createTimeline("rollDiceAnim.csb");
@@ -537,6 +545,7 @@ void MapEventLayer::playGamblebox(float dt)
 	AnimationEffect::openAniEffect((Layer*)gamble);
 }
 
+
 void MapEventLayer::continueGamble()
 {
 	eventnode_4->removeChildByName("dice");
@@ -549,11 +558,6 @@ void MapEventLayer::continueGamble()
 	m_closebtn->setTouchEnabled(true);
 }
 
-void MapEventLayer::updateCoin(float dt)
-{
-	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
-	coincount->setString(str);
-}
 
 void MapEventLayer::doGambling()
 {
@@ -588,6 +592,12 @@ void MapEventLayer::doGambling()
 	animnode = CSLoader::createNode("rollDiceAnim.csb");
 	animnode->setPosition(Vec2(0, 150));
 	eventnode_4->addChild(animnode);
+}
+#endif
+void MapEventLayer::updateCoin(float dt)
+{
+	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
+	coincount->setString(str);
 }
 
 void MapEventLayer::eventElderExtort(int type)

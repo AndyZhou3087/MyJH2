@@ -190,13 +190,8 @@
 	<s name="event3_2">你好心救他，却被这黑人老人反咬一口说是你打伤了他。要赔他银两才可善罢甘休。</s>
 	<s name="event4_0">劫匪：此路是我开，此树是我栽，想要过此路，留下买路财！</s>
 	<s name="event4_1">给了劫匪一些银两，劫匪放你一马！</s>
-	<s name="event5_0">今天似乎手气不错，要不要来玩一把？</s>
-	<s name="event5_1">请选择押大押小。</s>
-	<s name="event5_2">来来来，买大买小，买定离手，赢了双倍拿走，输了全部放手。</s>
 	<s name="event6_0">神秘商人：走过路过，不要错过！物美价廉，童叟无欺！这位客观，要不要过来瞧瞧？</s>
 	<s name="elderextort">失去银两</s>
-	<s name="gamble_0">再接再厉！下一把一定赢！</s>
-	<s name="gamble_1">恭喜您！今天手气不错！</s>
 	<s name="gettext">获得：</s>
 	<s name="buypricetext">价    格：</s>
 	<s name="buycounttext">购买数量：</s>

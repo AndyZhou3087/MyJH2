@@ -32,6 +32,8 @@
 
 #define TIPSCOUNT 7
 
+#define MAP_BET 0
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #define UMENG
 #include "UMeng/Analytics/MobClickCpp.h"

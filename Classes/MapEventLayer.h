@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include "Const.h"
 #include "GlobalInstance.h"
 
 USING_NS_CC;
@@ -49,11 +50,13 @@ private:
 
 	void eventElderExtort(int type);
 	void loadBoxUI(cocos2d::ui::ImageView* box,std::string resid);
+#if MAP_BET
 	void doGambling();
 
 	void showResult(float dt);
 	void openDice(float dt);
 	void playGamblebox(float dt);
+#endif
 	void eventFight();
 	void getSliverByEventW();
 	void doThiefEvent();
