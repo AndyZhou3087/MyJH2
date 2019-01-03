@@ -894,6 +894,10 @@ void MainScene::showInnRoomNewHeroAnim()
 
 void MainScene::delayGetServerTime(float dt)
 {
+	if (DataSave::getInstance()->getLocalUUID().compare(GlobalInstance::getInstance()->UUID()) != 0)
+	{
+		cheatAction(4);
+	}
 	HttpDataSwap::init(this)->getServerTime();
 }
 
@@ -943,12 +947,24 @@ void MainScene::saveAllData()
 	HttpDataSwap::init(NULL)->postAllData();
 }
 
-void MainScene::cheatAction()
+void MainScene::cheatAction(int type)
 {
-	int cheatcount = DataSave::getInstance()->getCheatCount();
-	int para = 1;
-	if (cheatcount >= 2)
-		para = 2;
+	int para = 0;
+	if (type == 1)
+	{
+		int cheatcount = DataSave::getInstance()->getCheatCount();
+		int para = 1;
+		if (cheatcount >= 2)
+			para = 2;
+	}
+	else if (type == 3)
+	{
+		para = 3;
+	}
+	else if (type == 4)
+	{
+		para = 4;
+	}
 	
 	if (!GlobalInstance::isCheat)
 	{

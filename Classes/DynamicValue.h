@@ -35,7 +35,7 @@ public:
 		else
 		{
 			setValue(0);
-			MainScene::cheatAction();
+			MainScene::cheatAction(0);
 			return m_Value ^ m_EncryptKey;
 		}
     }

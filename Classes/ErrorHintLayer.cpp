@@ -67,6 +67,8 @@ bool ErrorHintLayer::init(int forwhere)
 	cocos2d::ui::Text* text_1 = (cocos2d::ui::Text*)m_csbnode->getChildByName("text_1");
 	cocos2d::ui::Text* text_2 = (cocos2d::ui::Text*)m_csbnode->getChildByName("text_2");
 
+	cocos2d::ui::Text* idtext = (cocos2d::ui::Text*)m_csbnode->getChildByName("idtext");
+
 	std::string actiontextstr = "okbtn_text";
 	 
 	if (forwhere == 0)
@@ -84,9 +86,18 @@ bool ErrorHintLayer::init(int forwhere)
 		int cheatcount = DataSave::getInstance()->getCheatCount();
 		DataSave::getInstance()->setCheatCount(cheatcount + 1);
 	}
-	else if (forwhere == 2)
+	else if (forwhere == 2 || forwhere == 3 || forwhere == 4)
 	{
 		text->setString(ResourceLang::map_lang["dataerr1"]);
+
+		if (forwhere == 2)
+			HttpDataSwap::init(NULL)->report("0");
+		else if (forwhere == 4)
+		{
+			text->setString(ResourceLang::map_lang["dataerr2"]);
+			HttpDataSwap::init(NULL)->report("1");
+		}
+
 		if (GlobalInstance::qq.length() > 0)
 		{
 			text_1->setString(ResourceLang::map_lang["comtactus"]);
@@ -101,7 +112,8 @@ bool ErrorHintLayer::init(int forwhere)
 		}
 		actionbtn->setVisible(false);
 
-		HttpDataSwap::init(NULL)->report("0");
+		std::string idstr = StringUtils::format("ID:%d", GlobalInstance::getInstance()->getMyID());
+		idtext->setString(idstr);
 	}
 
 	if (forwhere == 1 || forwhere == 2)

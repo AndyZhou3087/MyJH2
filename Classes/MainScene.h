@@ -52,7 +52,7 @@ public:
 
 	static void saveAllData();
 
-	static void cheatAction();
+	static void cheatAction(int type);
 
 public:
 	cocos2d::ui::Widget* traintip;

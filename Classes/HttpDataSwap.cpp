@@ -718,7 +718,7 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 					int val = atoi(iter->value.GetString());
 					if (val == 1)
 					{
-						MainScene::cheatAction();
+						MainScene::cheatAction(3);
 						break;
 					}
 				}

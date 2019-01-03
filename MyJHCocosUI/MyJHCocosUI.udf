@@ -25,17 +25,5 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="gfDescLayer.csd" />
-          <FilePathData Path="marketLayer.csd" />
-          <FilePathData Path="taskLayer.csd" />
-          <FilePathData Path="taskMainDescLayer.csd" />
-          <FilePathData Path="taskMainNode.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="taskMainDescLayer.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>
