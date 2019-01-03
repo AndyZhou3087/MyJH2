@@ -39,4 +39,11 @@ rapidjson::Document ReadJsonFile(const std::string& name);
 *****************************/
 void WriteJsonFile(const std::string& name, rapidjson::Document& doc);
 
+/****************************
+根据key值读取value值，根据类型判断，全部返回string
+@para 
+@return string
+*****************************/
+std::string getJsonValueStr(rapidjson::Value& jsonvalue);
+
 #endif // JSON_JSON_H_INCLUDED

@@ -713,7 +713,7 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 				{
 					GlobalInstance::qq = iter->value.GetString();
 				}
-				if (strid.compare("forbidden") == 0)
+				else if (strid.compare("forbidden") == 0)
 				{
 					int val = atoi(iter->value.GetString());
 					if (val == 1)
@@ -755,6 +755,12 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 						GlobalInstance::map_buyVipDays[vipid] = val;
 					}
 				}
+
+			}
+
+			if (doc.HasMember("isreceipt"))
+			{
+				GlobalInstance::isServerReceipt = atoi(getJsonValueStr(doc["isreceipt"]).c_str()) == 1 ? true : false;
 			}
 		}
 		else

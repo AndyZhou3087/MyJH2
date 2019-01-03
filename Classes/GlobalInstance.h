@@ -752,6 +752,8 @@ public:
 
 	static MyRankInfo myRankInfo;
 
+	static bool isServerReceipt;//IOS下用是否服务器验证支付结果
+
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

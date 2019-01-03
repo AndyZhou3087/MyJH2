@@ -53,3 +53,21 @@ void WriteJsonFile(const std::string& name, rapidjson::Document& doc)
 		fclose(fp);
 	}
 }
+
+std::string getJsonValueStr(rapidjson::Value& jsonvalue)
+{
+	std::string str;
+	if (jsonvalue.IsBool())
+	{
+		str = StringUtils::format("%d", jsonvalue.GetBool());
+	}
+	else if (jsonvalue.IsInt())
+	{
+		str = StringUtils::format("%d", jsonvalue.GetInt());
+	}
+	else if (jsonvalue.IsString())
+	{
+		str = jsonvalue.GetString();
+	}
+	return str;
+}
