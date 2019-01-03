@@ -15,4 +15,5 @@
 - (void) restore;
 - (void) initMyBuy;
 - (void) buy:(NSString *) productId;
+- (void) postServerReceipt:(int) issand;
 @end
