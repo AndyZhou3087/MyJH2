@@ -246,12 +246,10 @@
 		72AD00FD21146216009C44DA /* wgLvLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72AD00FB21146215009C44DA /* wgLvLayer.csb */; };
 		72BAB5752130213200714493 /* CutScenesLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72BAB56E2130213000714493 /* CutScenesLayer.cpp */; };
 		72BAB5762130213200714493 /* SkillStartLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72BAB5732130213200714493 /* SkillStartLayer.cpp */; };
-		72BAB5772130213200714493 /* GambleBoxLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72BAB5742130213200714493 /* GambleBoxLayer.cpp */; };
 		72BAB57D2130217600714493 /* gambleBoxLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72BAB5782130217400714493 /* gambleBoxLayer.csb */; };
 		72BAB57E2130217600714493 /* skillstartr.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72BAB5792130217500714493 /* skillstartr.csb */; };
 		72BAB57F2130217600714493 /* skillstarttextanim.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72BAB57A2130217500714493 /* skillstarttextanim.csb */; };
 		72BAB5802130217600714493 /* skillstartl.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72BAB57B2130217500714493 /* skillstartl.csb */; };
-		72BAB5812130217600714493 /* rollDiceAnim.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72BAB57C2130217500714493 /* rollDiceAnim.csb */; };
 		72C1A0E82136914D00246A17 /* TaskDescLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C1A0E02136914B00246A17 /* TaskDescLayer.cpp */; };
 		72C1A0E92136914D00246A17 /* GoBackLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C1A0E32136914C00246A17 /* GoBackLayer.cpp */; };
 		72C1A0EA2136914D00246A17 /* NewPopLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C1A0E42136914C00246A17 /* NewPopLayer.cpp */; };
@@ -675,16 +673,13 @@
 		72AD00FA21146215009C44DA /* strengthenLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = strengthenLayer.csb; sourceTree = "<group>"; };
 		72AD00FB21146215009C44DA /* wgLvLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = wgLvLayer.csb; sourceTree = "<group>"; };
 		72BAB56E2130213000714493 /* CutScenesLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CutScenesLayer.cpp; sourceTree = "<group>"; };
-		72BAB5702130213000714493 /* GambleBoxLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GambleBoxLayer.h; sourceTree = "<group>"; };
 		72BAB5712130213100714493 /* SkillStartLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillStartLayer.h; sourceTree = "<group>"; };
 		72BAB5722130213100714493 /* CutScenesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutScenesLayer.h; sourceTree = "<group>"; };
 		72BAB5732130213200714493 /* SkillStartLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkillStartLayer.cpp; sourceTree = "<group>"; };
-		72BAB5742130213200714493 /* GambleBoxLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GambleBoxLayer.cpp; sourceTree = "<group>"; };
 		72BAB5782130217400714493 /* gambleBoxLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = gambleBoxLayer.csb; sourceTree = "<group>"; };
 		72BAB5792130217500714493 /* skillstartr.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = skillstartr.csb; sourceTree = "<group>"; };
 		72BAB57A2130217500714493 /* skillstarttextanim.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = skillstarttextanim.csb; sourceTree = "<group>"; };
 		72BAB57B2130217500714493 /* skillstartl.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = skillstartl.csb; sourceTree = "<group>"; };
-		72BAB57C2130217500714493 /* rollDiceAnim.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = rollDiceAnim.csb; sourceTree = "<group>"; };
 		72C1A0E02136914B00246A17 /* TaskDescLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskDescLayer.cpp; sourceTree = "<group>"; };
 		72C1A0E12136914B00246A17 /* TaskNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskNode.h; sourceTree = "<group>"; };
 		72C1A0E22136914C00246A17 /* TaskDescLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDescLayer.h; sourceTree = "<group>"; };
@@ -955,7 +950,6 @@
 				7204531220D892620011D560 /* randHeroLayer.csb */,
 				7204531020D892610011D560 /* randHeroNode.csb */,
 				7232D82D20E63A0700299738 /* resDescLayer.csb */,
-				72BAB57C2130217500714493 /* rollDiceAnim.csb */,
 				7282707F20F5B7ED00B07087 /* selectEquipLayer.csb */,
 				7204531D20D892630011D560 /* selectMapNode.csb */,
 				7204531620D892620011D560 /* selectSubMapLayer.csb */,
@@ -1073,8 +1067,6 @@
 				7282704320F5B7AA00B07087 /* FightingLayer.h */,
 				72A2BCF020F8B9FF0085B17D /* FightingResultLayer.cpp */,
 				72A2BCF220F8BA000085B17D /* FightingResultLayer.h */,
-				72BAB5742130213200714493 /* GambleBoxLayer.cpp */,
-				72BAB5702130213000714493 /* GambleBoxLayer.h */,
 				72DD1CAB2139563E00832ADB /* GiftContentLayer.cpp */,
 				72DD1CAF2139564000832ADB /* GiftContentLayer.h */,
 				720452BA20D8921D0011D560 /* GlobalInstance.cpp */,
@@ -1309,7 +1301,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = S2GVW634R5;
+						DevelopmentTeam = UB26S7ZFR8;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1391,7 +1383,6 @@
 				7204533720D892640011D560 /* fightHeroNode.csb in Resources */,
 				7219409D20FED4E200071BFC /* trainLayer.csb in Resources */,
 				72C1A0EE2136917900246A17 /* goBackLayer.csb in Resources */,
-				72BAB5812130217600714493 /* rollDiceAnim.csb in Resources */,
 				7204533920D892640011D560 /* consumeResActionLayer.csb in Resources */,
 				727CFC932160DBEE0004F5DC /* storybg.jpg in Resources */,
 				7204533820D892640011D560 /* selectSubMapLayer.csb in Resources */,
@@ -1616,7 +1607,6 @@
 				7226FB402142214B00467283 /* SimpleResPopLayer.cpp in Sources */,
 				72AD00F9211461E4009C44DA /* StrengthenLayer.cpp in Sources */,
 				720452E120D892200011D560 /* LoadingScene.cpp in Sources */,
-				72BAB5772130213200714493 /* GambleBoxLayer.cpp in Sources */,
 				720452E220D892200011D560 /* OutTownLayer.cpp in Sources */,
 				7226FB3D2142214B00467283 /* NewGuideLayer.cpp in Sources */,
 				7282706F20F5B7B200B07087 /* TakeOnLayer.cpp in Sources */,
@@ -1667,7 +1657,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = S2GVW634R5;
+				DEVELOPMENT_TEAM = UB26S7ZFR8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1709,7 +1699,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = S2GVW634R5;
+				DEVELOPMENT_TEAM = UB26S7ZFR8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
