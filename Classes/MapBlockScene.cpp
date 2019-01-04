@@ -25,6 +25,7 @@
 #include "RewardLayer.h"
 #include "Utility.h"
 #include "NpcLayer.h"
+#include "MyTransitionScene.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -378,7 +379,11 @@ void MapBlockScene::goBackMainHomeScene()
 	{
 		keybtnArr[i]->setEnabled(false);
 	}
+#if USE_TRANSCENE
+	Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAIN)));
+#else
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+#endif
 }
 
 void MapBlockScene::showNewerGuideGoBack()

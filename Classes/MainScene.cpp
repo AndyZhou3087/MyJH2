@@ -894,10 +894,6 @@ void MainScene::showInnRoomNewHeroAnim()
 
 void MainScene::delayGetServerTime(float dt)
 {
-	if (DataSave::getInstance()->getLocalUUID().compare(GlobalInstance::getInstance()->UUID()) != 0)
-	{
-		cheatAction(4);
-	}
 	HttpDataSwap::init(this)->getServerTime();
 }
 

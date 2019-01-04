@@ -24,6 +24,7 @@ typedef enum
 	T_FASHION,//首饰
 	T_WG,//外功
 	T_NG,//内功
+	T_QH,//强化相关资源（玄铁，祝福石，混沌石）
 	T_RENS,//人参，提升经验值
 	T_FU,//闭关用的符
 	T_DAN,//突破用的丹

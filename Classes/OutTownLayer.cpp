@@ -13,6 +13,7 @@
 #include "Const.h"
 #include "SelectMyHerosLayer.h"
 #include "DataSave.h"
+#include "MyTransitionScene.h"
 
 USING_NS_CC;
 
@@ -403,8 +404,11 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 			GlobalInstance::getInstance()->recoveCardHeroMaxHp();
 			GlobalInstance::myOutMapCarry = GlobalInstance::getInstance()->getTotalCarry();
+#if USE_TRANSCENE
+			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAP)));
+#else
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
-			
+#endif			
 			break;
 		}
 		case 1001://关闭

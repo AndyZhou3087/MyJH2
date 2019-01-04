@@ -16,11 +16,12 @@ public:
 
 	virtual bool init(int forwhere);
 
-	static ErrorHintLayer* create(int forwhere);//0--联网失败；1--作弊一次，清零警告；2，多次作弊，封停,3，服务器封号
+	static ErrorHintLayer* create(int forwhere);//0--联网失败；1--作弊一次，清零警告；2，多次作弊，封停,3，服务器封号，4，本地uuid与实际UUID不一致
 
 	void resetBtn();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void onQQClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onFinish(int code);
 	int m_forwhere;
 	cocos2d::ui::Button* actionbtn;

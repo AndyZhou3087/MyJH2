@@ -361,6 +361,13 @@ void LoadingScene::enterNewScene()
 
 void LoadingScene::showNextScene(float dt)
 {
+	if (DataSave::getInstance()->getLocalUUID().compare(GlobalInstance::getInstance()->UUID()) != 0)
+	{
+		HttpDataSwap::init(NULL)->report("1");
+		MainScene::cheatAction(4);
+		return;
+	}
+
 	enterNewScene();
 }
 

@@ -15,6 +15,7 @@
 #include "StoreHouseLayer.h"
 #include "HeroAttrLayer.h"
 #include "GoBackLayer.h"
+#include "MyTransitionScene.h"
 
 USING_NS_CC;
 
@@ -153,7 +154,11 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			}
 			else if (m_forwhere == 4)
 			{
+#if USE_TRANSCENE
+				Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAP)));
+#else
 				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+#endif
 			}
 			else if (m_forwhere == 5 || m_forwhere == 7)
 			{
@@ -179,7 +184,11 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		case -1:
+#if USE_TRANSCENE
+			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAIN)));
+#else
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+#endif
 			break;
 		default:
 			break;

@@ -9,6 +9,7 @@
 #include "MainScene.h"
 #include "SoundManager.h"
 #include "AnimationEffect.h"
+#include "MyTransitionScene.h"
 
 USING_NS_CC;
 
@@ -193,7 +194,11 @@ void FightingResultLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 		else
 		{
 			if (m_onstate == 0)
+#if USE_TRANSCENE
+				Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAIN)));
+#else
 				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+#endif				
 			else
 				AnimationEffect::closeAniEffect(this);
 		}

@@ -950,6 +950,9 @@ void HttpDataSwap::httpGetPlayerIdCB(std::string retdata, int code, std::string 
 
 				v = doc["nickname"];
 				GlobalInstance::getInstance()->setMyNickName(v.GetString());
+
+				if (doc.HasMember("qq"))
+					GlobalInstance::qq = doc["qq"].GetString();
 			}
 		}
 		else

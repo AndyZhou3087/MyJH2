@@ -13,6 +13,7 @@
 #include "MapBlockScene.h"
 #include "HintBoxLayer.h"
 #include "BuyCoinLayer.h"
+#include "MyTransitionScene.h"
 
 USING_NS_CC;
 
@@ -145,11 +146,20 @@ void GoBackLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 				MyRes::Use("t001");
 				if (m_forwhere == 0)
 				{
+#if USE_TRANSCENE
+					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAIN)));
+#else
 					Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+#endif
+					
 				}
 				else
 				{
+#if USE_TRANSCENE
+					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAP)));
+#else
 					Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+#endif
 				}
 			}
 			else
@@ -178,11 +188,19 @@ void GoBackLayer::costCoinGoback()
 
 		if (m_forwhere == 0)
 		{
+#if USE_TRANSCENE
+			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAIN)));
+#else
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+#endif
 		}
 		else
 		{
+#if USE_TRANSCENE
+			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAP)));
+#else
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+#endif
 		}
 	}
 	else

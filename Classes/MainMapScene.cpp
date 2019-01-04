@@ -7,6 +7,7 @@
 #include "SoundManager.h"
 #include "NewGuideLayer.h"
 #include "DataSave.h"
+#include "MyTransitionScene.h"
 
 MainMapScene* g_MainMapScene = NULL;
 MainMapScene::MainMapScene()
@@ -213,7 +214,11 @@ void MainMapScene::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 		if (mapname.compare("m0-1") == 0)
 		{
 			clicknode->setEnabled(false);
+#if USE_TRANSCENE
+			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAIN)));
+#else
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+#endif
 		}
 		else
 		{

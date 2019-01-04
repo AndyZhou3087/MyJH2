@@ -63,9 +63,12 @@ bool ErrorHintLayer::init(int forwhere)
 
 
 	cocos2d::ui::Text* text = (cocos2d::ui::Text*)m_csbnode->getChildByName("text");
+	Label* dlbl = (Label*)text->getVirtualRenderer();
+	dlbl->setLineSpacing(10);
 
 	cocos2d::ui::Text* text_1 = (cocos2d::ui::Text*)m_csbnode->getChildByName("text_1");
 	cocos2d::ui::Text* text_2 = (cocos2d::ui::Text*)m_csbnode->getChildByName("text_2");
+	text_2->addTouchEventListener(CC_CALLBACK_2(ErrorHintLayer::onQQClick, this));
 
 	cocos2d::ui::Text* idtext = (cocos2d::ui::Text*)m_csbnode->getChildByName("idtext");
 
@@ -95,7 +98,9 @@ bool ErrorHintLayer::init(int forwhere)
 		else if (forwhere == 4)
 		{
 			text->setString(ResourceLang::map_lang["dataerr2"]);
-			HttpDataSwap::init(NULL)->report("1");
+
+			if (GlobalInstance::qq.length() < 0)
+				GlobalInstance::qq = "1703153046";
 		}
 
 		if (GlobalInstance::qq.length() > 0)
@@ -104,6 +109,11 @@ bool ErrorHintLayer::init(int forwhere)
 			std::string str = ResourceLang::map_lang["qq"];
 			str.append(GlobalInstance::qq);
 			text_2->setString(str);
+
+			DrawNode* underlineNode = DrawNode::create();
+			text_2->addChild(underlineNode, 1);
+			underlineNode->setLineWidth(2.0f);
+			underlineNode->drawLine(Vec2(0, 0), Vec2(text_2->getContentSize().width, 0), Color4F(text_2->getTextColor()));
 		}
 		else
 		{
@@ -112,7 +122,7 @@ bool ErrorHintLayer::init(int forwhere)
 		}
 		actionbtn->setVisible(false);
 
-		std::string idstr = StringUtils::format("ID:%d", GlobalInstance::getInstance()->getMyID());
+		std::string idstr = StringUtils::format("ID:%s", GlobalInstance::getInstance()->getMyID().c_str());
 		idtext->setString(idstr);
 	}
 
@@ -136,7 +146,7 @@ bool ErrorHintLayer::init(int forwhere)
 	};
 	/*listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-
+	 
 	};*/
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -177,5 +187,27 @@ void ErrorHintLayer::onFinish(int code)
 	if (code == SUCCESS)
 	{
 
+	}
+}
+
+void ErrorHintLayer::onQQClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+		JniMethodInfo methodInfo;
+		char p_str1[32] = { 0 };
+		sprintf(p_str1, "%s", GlobalInstance::qq.c_str());
+		if (JniHelper::getStaticMethodInfo(methodInfo, "com/csfb/myjh/AppActivity", "copyToClipboard", "(Ljava/lang/String;)V"))
+		{
+			jstring str1 = methodInfo.env->NewStringUTF(p_str1);
+			methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1);
+		}
+		MovingLabel::show(ResourceLang::map_lang["copyqq"]);
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+		copytoclipboard((char*)GlobalInstance::qq.c_str());
+		MovingLabel::show(ResourceLang::map_lang["copyqq"]);
+#endif
 	}
 }
