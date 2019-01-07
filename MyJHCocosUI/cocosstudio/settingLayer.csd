@@ -210,6 +210,33 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="cleandatabtn" ActionTag="1011680193" Tag="140" IconVisible="False" LeftMargin="258.0000" RightMargin="258.0000" TopMargin="783.0000" BottomMargin="413.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="204.0000" Y="84.0000" />
+            <Children>
+              <AbstractNodeData Name="text" ActionTag="-523754555" Tag="141" IconVisible="False" LeftMargin="28.0216" RightMargin="28.9784" TopMargin="20.7404" BottomMargin="25.2596" LeftEage="23" RightEage="23" TopEage="13" BottomEage="13" Scale9OriginX="23" Scale9OriginY="13" Scale9Width="101" Scale9Height="12" ctype="ImageViewObjectData">
+                <Size X="147.0000" Y="38.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="101.5216" Y="44.2596" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4977" Y="0.5269" />
+                <PreSize X="0.7206" Y="0.4524" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/cleandata_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="455.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.3555" />
+            <PreSize X="0.2833" Y="0.0656" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

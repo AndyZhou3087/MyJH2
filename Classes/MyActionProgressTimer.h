@@ -18,7 +18,7 @@ public:
 	virtual MyProgressTo* clone() const override;
 	virtual MyProgressTo* reverse() const override;
     virtual void startWithTarget(Node *target) override;
-    void update(float time);
+    void update(float time) override;
     
 	MyProgressTo();
 	~MyProgressTo();

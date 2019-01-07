@@ -9,6 +9,7 @@
 #include "MainScene.h"
 #include "NewGuideLayer.h"
 #include "Const.h"
+#include "HintBoxLayer.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
@@ -47,6 +48,11 @@ bool SettingLayer::init()
 	cocos2d::ui::Button* randnamebtn = (cocos2d::ui::Button*)csbnode->getChildByName("randnamebtn");
 	randnamebtn->setTag(1001);
 	randnamebtn->addTouchEventListener(CC_CALLBACK_2(SettingLayer::onBtnClick, this));
+
+	//删除存档
+	cocos2d::ui::Button* cleandatabtn = (cocos2d::ui::Button*)csbnode->getChildByName("cleandatabtn");
+	cleandatabtn->setTag(1002);
+	cleandatabtn->addTouchEventListener(CC_CALLBACK_2(SettingLayer::onBtnClick, this));
 
 	//音乐checkbox
 	m_musicCheckBox = (cocos2d::ui::CheckBox*)csbnode->getChildByName("musiccheck");
@@ -204,6 +210,14 @@ void SettingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			break;
 		case 1001:
 			modifyName(1);
+			break;
+		case 1002:
+		{
+			HintBoxLayer* layer = HintBoxLayer::create(ResourceLang::map_lang["resetdatatext"], 8);
+			layer->setUserData((void*)this);
+			g_mainScene->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
 			break;
 		default:
 			break;

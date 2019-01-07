@@ -301,6 +301,7 @@
       <FilePathData Path="text_zh_cn/marketcata3_text_s.png" />
       <FilePathData Path="text_zh_cn/marketcata4_text_n.png" />
       <FilePathData Path="text_zh_cn/marketcata4_text_s.png" />
+      <FilePathData Path="text_zh_cn/cleandata_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

@@ -14,7 +14,9 @@
   </Monstors>
   <Cells rs="25" cs="25">
     <Cell c="0" r="0" p="-1" w="0" m="89.png" />
-    <Cell c="0" r="1" p="-1" w="1" m="88.png" />
+    <Cell c="0" r="1" p="5" w="1" m="88.png">
+      <msawd1 id="a018" qu="4" rnd="100.00">1</msawd1>
+    </Cell>
     <Cell c="0" r="2" p="-1" w="1" m="88.png" />
     <Cell c="0" r="3" p="-1" w="1" m="88.png" />
     <Cell c="0" r="4" p="-1" w="1" m="88.png" />

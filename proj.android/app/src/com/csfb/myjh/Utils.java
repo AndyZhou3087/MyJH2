@@ -243,7 +243,7 @@ public class Utils {
         return result;
     }
 
-    public static String getUserDefaultXmlString()
+    public static String getUserDefaultXmlString(int type)
 	{
         final  String xmlRoot = "userDefaultRoot";
 		XmlSerializer serializer = Xml.newSerializer();
@@ -260,10 +260,19 @@ public class Utils {
 			for(Map.Entry<String, ?>  entry : allContent.entrySet()){
 				String key = entry.getKey();
 				String vaulestr = entry.getValue().toString();
-				if (vaulestr != null && vaulestr.trim().length() > 0 && !(key.startsWith("jhm") && getSubCount(key,"-") == 2)) {
-                    serializer.startTag(null, key);
-                    serializer.text(entry.getValue().toString());
-                    serializer.endTag(null, key);
+				if (vaulestr != null && vaulestr.trim().length() > 0 && key.startsWith("jh"))
+				{
+					boolean isok = false;
+					if (type == 1&& !(key.startsWith("jhm") && getSubCount(key,"-") == 2))
+						isok = true;
+					else if (type == 0 && !(key.contains("guide") || key.contains("UserProtocal") || key.contains("firstenter")))
+						isok = true;
+					if (isok)
+					{
+						serializer.startTag(null, key);
+						serializer.text(entry.getValue().toString());
+						serializer.endTag(null, key);
+					}
                 }
 			}
 			serializer.endTag(null, xmlRoot);

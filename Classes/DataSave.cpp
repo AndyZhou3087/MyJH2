@@ -444,3 +444,8 @@ std::string DataSave::getLocalUUID()
 {
 	return loadStringDataByKey("uuid");
 }
+
+void DataSave::deleteDataByKey(std::string key)
+{
+	removeEleByKey(key);
+}

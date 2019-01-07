@@ -28,6 +28,8 @@ public:
 	***************************/
 	void delayLoadLocalData(float dt);
 
+	void parseCfgFiles();
+
 	void delayGetServerData(float dt);
 
 	void onFinish(int errcode);

@@ -388,5 +388,6 @@
 	<s name="tips_5">结交江湖侠客可以获得专属属性</s>
 	<s name="tips_6">客栈里可招募的侠客品质由低到高依次为绿，蓝，紫，橙，红</s>
 	<s name="taskrew1text">奖励一：</s>	
-	<s name="taskrew2text">奖励二：</s>			
+	<s name="taskrew2text">奖励二：</s>
+	<s name="resetdatatext">删除存档只会保留月卡，其他数据（包括元宝）将会清除，请慎重！</s>				
 </strings>

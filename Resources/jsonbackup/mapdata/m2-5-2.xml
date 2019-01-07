@@ -144,6 +144,8 @@
     <Cell c="5" r="3" p="-1" w="0" m="94.png" />
     <Cell c="5" r="4" p="-1" w="0" m="94.png" />
     <Cell c="5" r="5" p="4" w="1" m="94.png">
+      <npcid>n008</npcid>
+      <npcrnd>100</npcrnd>
       <msatt5 id="n008" qu="2">35</msatt5>
     </Cell>
     <Cell c="5" r="6" p="-1" w="0" m="84.png" />
@@ -655,7 +657,9 @@
     <Cell c="24" r="20" p="-1" w="1" m="85.png" />
     <Cell c="24" r="21" p="-1" w="1" m="85.png" />
     <Cell c="24" r="22" p="-1" w="1" m="85.png" />
-    <Cell c="24" r="23" p="-1" w="1" m="85.png" />
+    <Cell c="24" r="23" p="5" w="1" m="85.png">
+      <msawd1 id="r012" qu="0" rnd="100.00">100</msawd1>
+    </Cell>
     <Cell c="24" r="24" p="-1" w="0" m="87.png" />
   </Cells>
 </cfg>

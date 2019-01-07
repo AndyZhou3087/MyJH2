@@ -569,8 +569,11 @@ public:
 	int getUnlockChapter();
 	void saveUnlockChapter(int val);
 
-	//获取本地userdefault中保存的数据
-	std::string getUserDefaultXmlString();
+	//获取本地userdefault中保存的数据, para:0--需要清除的数据，1--传到服务端的数据
+	std::string getUserDefaultXmlString(int type = 1);
+
+	//清除本地userdefault中保存的数据,
+	void cleanUserDefaultXmlData();
 
 	//判断是否有死亡角色
 	int getMyHerosDeadCount();
@@ -675,6 +678,10 @@ public:
 
 	//判断是否完成所有支线任务
 	bool isAllFinishBranch();
+
+	//重置数据
+	void resetData();
+
 private:
 	static GlobalInstance* _Context;//类实例
 
@@ -730,6 +737,7 @@ public:
 	static std::map<std::string, int> map_buyVipDays;//购买的月卡时间
 	static std::vector<std::string> vec_buyVipIds;//月卡id
 
+
 	static std::map<std::string, NpcRelationData> map_npcrelation;
 	static std::map<std::string, NpcFriendly> map_myfriendly;
 	static int npcmasterfinish;
@@ -753,6 +761,8 @@ public:
 	static MyRankInfo myRankInfo;
 
 	static bool isServerReceipt;//IOS下用是否服务器验证支付结果
+
+	static bool isResetData;//充值数据
 
 private:
 	static int refreshHeroTime;

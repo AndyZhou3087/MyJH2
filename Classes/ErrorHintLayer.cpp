@@ -9,6 +9,7 @@
 #include "MyRes.h"
 #include "HttpDataSwap.h"
 #include "MainScene.h"
+#include "MovingLabel.h"
 
 ErrorHintLayer::ErrorHintLayer()
 {
@@ -99,7 +100,7 @@ bool ErrorHintLayer::init(int forwhere)
 		{
 			text->setString(ResourceLang::map_lang["dataerr2"]);
 
-			if (GlobalInstance::qq.length() < 0)
+			if (GlobalInstance::qq.length() <= 0)
 				GlobalInstance::qq = "1703153046";
 		}
 

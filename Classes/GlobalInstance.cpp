@@ -99,6 +99,8 @@ MyRankInfo GlobalInstance::myRankInfo;
 
 bool GlobalInstance::isServerReceipt = false;
 
+bool GlobalInstance::isResetData = false;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -2863,20 +2865,166 @@ void GlobalInstance::recoveCardHeroMaxHp()
 	}
 }
 
-std::string GlobalInstance::getUserDefaultXmlString()
+void GlobalInstance::resetData()
+{
+	for (unsigned int i = 0; i < vec_myHeros.size(); i++)
+	{
+		delete vec_myHeros[i];
+		vec_myHeros[i] = NULL;
+	}
+	vec_myHeros.clear();
+
+	for (unsigned int i = 0; i < vec_rand3Heros.size(); i++)
+	{
+		delete vec_rand3Heros[i];
+		vec_rand3Heros[i] = NULL;
+	}
+	vec_rand3Heros.clear();
+
+	vec_herosAttr.clear();
+
+	for (unsigned int i = 0; i < vec_resCreators.size(); i++)
+	{
+		delete vec_resCreators[i];
+		vec_resCreators[i] = NULL;
+	}
+	vec_resCreators.clear();
+
+	map_AllResources.clear();
+
+	map_EquipSuit.clear();
+
+	map_Equip.clear();
+
+	map_GF.clear();
+
+	map_NpcAttrData.clear();
+
+	map_Npcs.clear();
+
+	vec_TaskMain.clear();
+
+	memset(&myCurMainData, 0x00, sizeof(myCurMainData));
+
+	vec_TaskBranch.clear();
+
+	memset(&myCurBranchData, 0x00, sizeof(myCurBranchData));
+
+	map_DTdata.clear();
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (myCardHeros[i] != NULL)
+		{
+			myCardHeros[i] = NULL;
+		}
+
+		if (myOnChallengeHeros[i] != NULL)
+		{
+			myOnChallengeHeros[i] = NULL;
+		}
+		if (matchPairHeros[i] != NULL)
+		{
+			matchPairHeros[i] = NULL;
+		}
+	}
+	
+	map_mapsdata.clear();
+
+	map_TBoxs.clear();
+
+	vec_messsages.clear();
+
+	vec_notice.clear();
+
+	map_eventdata.clear();
+
+	vec_achievedata.clear();
+
+	vec_shopdata.clear();
+
+	map_buyVipDays.clear();
+
+	vec_buyVipIds.clear();
+
+	map_npcrelation.clear();
+
+	map_myfriendly.clear();
+
+	npcmasterfinish = 0;
+
+	servertime = 0;
+	refreshHeroTime = 0;
+	refreshResTime = 0;
+
+	refreshMarketTime = 0;
+
+	totalFarmercount = 0;
+
+
+	mySoliverCount.setValue(0);
+	myCoinCount.setValue(0);
+
+	unlockchapter = 1;
+
+	noticeID = "";
+
+	myOutMapCarry = 100;
+
+	silverRefHeroCount = 0;
+
+	resetSilverRefHeroCountTime = 0;
+
+	isNewHeroRefresh = false;
+
+	isCheat = false;
+}
+
+std::string GlobalInstance::getUserDefaultXmlString(int type)
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	return FileUtils::getInstance()->getStringFromFile(UserDefault::getInstance()->getXMLFilePath());
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
-	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getUserDefaultXmlString", "()Ljava/lang/String;"))
+	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getUserDefaultXmlString", "(I)Ljava/lang/String;"))
 	{
-		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, type);
 		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
 	}
 	return ret;
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    return getUserDefaultXml();
+    return getUserDefaultXml(type);
 #endif
+}
+
+void GlobalInstance::cleanUserDefaultXmlData()
+{
+	tinyxml2::XMLDocument *pDoc = new tinyxml2::XMLDocument();
+
+	std::string content = getUserDefaultXmlString(0);
+
+	int err = pDoc->Parse(content.c_str());
+	if (err != 0)
+	{
+		delete pDoc;
+		return;
+	}
+	tinyxml2::XMLElement *rootEle = pDoc->RootElement();
+	//int total = rootEle->IntAttribute("total");
+	//获取第一个节点属性
+	//const XMLAttribute *attribute = rootEle->FirstAttribute();
+	//打印节点属性名和值
+	//log("attribute<em>name = %s,attribute</em>value = %s", attribute->Name(), attribute->Value());</p>
+	tinyxml2::XMLElement *element = rootEle->FirstChildElement();
+	while (element != NULL)
+	{
+		std::string key = element->Name();
+		if (!(key.find("guide") != std::string::npos || key.find("UserProtocal") != std::string::npos || key.find("firstenter") != std::string::npos))
+		{
+			DataSave::getInstance()->deleteDataByKey(element->Name());
+		}
+		element = element->NextSiblingElement();
+	}
+	delete pDoc;
 }

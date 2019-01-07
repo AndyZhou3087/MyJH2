@@ -421,6 +421,8 @@ public:
 	****************************/
 	std::string getLocalUUID();
 
+	void deleteDataByKey(std::string key);
+
 private:
 	static DataSave* _Context;//类实例
 

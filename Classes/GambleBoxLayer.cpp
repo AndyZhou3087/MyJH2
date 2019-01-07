@@ -8,8 +8,7 @@
 #include "MapEventLayer.h"
 #include "DynamicValue.h"
 
-USING_NS_CC;
-
+#if MAP_BET
 GambleBoxLayer::GambleBoxLayer()
 {
 
@@ -153,3 +152,4 @@ void GambleBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		}
 	}
 }
+#endif

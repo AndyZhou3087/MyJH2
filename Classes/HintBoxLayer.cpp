@@ -16,6 +16,7 @@
 #include "HeroAttrLayer.h"
 #include "GoBackLayer.h"
 #include "MyTransitionScene.h"
+#include "LoadingScene.h"
 
 USING_NS_CC;
 
@@ -179,6 +180,14 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				{
 					golayer->costCoinGoback();
 				}
+				return;
+			}
+			else if (m_forwhere == 8)
+			{
+				AnimationEffect::closeAniEffect((Layer*)this);
+				GlobalInstance::isResetData = true;
+
+				Director::getInstance()->replaceScene(TransitionFade::create(0.5f, LoadingScene::createScene()));
 				return;
 			}
 			AnimationEffect::closeAniEffect((Layer*)this);

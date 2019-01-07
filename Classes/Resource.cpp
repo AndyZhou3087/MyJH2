@@ -1,6 +1,4 @@
 ﻿#include "Resource.h"
-#include "tinyxml2/tinyxml2.h"
-
 
 std::string ResourcePath::makeImagePath(std::string imageName)
 {

@@ -9,6 +9,7 @@
           <TTF Name="simhei.ttf" />
         </Folder>
         <Folder Name="images">
+          <Image Name="1.jpg" />
           <Image Name="brownbox.png" />
           <Image Name="cardh_0_0.png" />
           <Image Name="cardh_0_1.png" />
@@ -97,8 +98,11 @@
           <Image Name="selectequipbg.png" />
           <Image Name="shopbg.jpg" />
           <Image Name="smallbg.png" />
-          <Image Name="t001.jpg" />
-          <Image Name="t002.jpg" />
+          <Image Name="tansitiohorse.png" />
+          <Image Name="tansitionimg1.jpg" />
+          <Image Name="tansitionimg2.jpg" />
+          <Image Name="tansitionprogressbar.png" />
+          <Image Name="tansitionprogressbg.png" />
           <Image Name="wintitle.png" />
         </Folder>
         <Folder Name="mainimg">
@@ -435,6 +439,7 @@
           <Image Name="carryout_text.png" />
           <Image Name="changebtn_text.png" />
           <Image Name="changequene_text.png" />
+          <Image Name="cleandata_text.png" />
           <Image Name="cleanread_text.png" />
           <Image Name="closebtn_text.png" />
           <Image Name="continuebtn_text.png" />
@@ -1255,6 +1260,7 @@
         <Project Name="timeGiftLayer.csd" Type="Layer" />
         <Project Name="trainLayer.csd" Type="Layer" />
         <Project Name="trainSelectLayer.csd" Type="Layer" />
+        <Project Name="transitionLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
         <Project Name="UserProtocolLayer.csd" Type="Layer" />
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />

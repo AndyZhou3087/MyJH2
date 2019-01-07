@@ -7,7 +7,7 @@
 #include "cocostudio/CocoStudio.h"
 
 USING_NS_CC;
-
+#if MAP_BET
 class GambleBoxLayer : public cocos2d::Layer
 {
 public:
@@ -20,5 +20,5 @@ private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 };
-
+#endif
 #endif

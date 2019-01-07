@@ -1064,7 +1064,7 @@
       <npcid>n022</npcid>
       <npcrnd>100</npcrnd>
       <msatt1 id="n018" qu="3">45</msatt1>
-      <msatt2 id="0" qu="0">0</msatt2>
+      <msatt2 id="n018" qu="3">45</msatt2>
       <msatt3 id="n020" qu="3">45</msatt3>
       <msatt4 id="n019" qu="3">45</msatt4>
       <msatt5 id="n022" qu="4">45</msatt5>

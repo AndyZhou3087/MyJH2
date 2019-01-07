@@ -14,8 +14,6 @@
 #include "platform/android/jni/JniHelper.h"
 #endif
 
-std::map<std::string, NpcFriendly> map_friendly;
-
 Hero::Hero()
 {
 	m_sex = 0;
@@ -201,7 +199,7 @@ float Hero::getAtk()
 			heroatk += (takeOnEquip[i]->getAtk()*herobns);
 		}
 	}
-
+	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	if (m_ftype == 0)
 	{
@@ -270,7 +268,7 @@ float Hero::getDf()
 			}
 		}
 	}
-
+	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	if (m_ftype == 0)
 	{
@@ -340,6 +338,7 @@ float Hero::getMaxHp()
 		}
 	}
 
+	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 
 	if (m_ftype == 0)
@@ -396,6 +395,8 @@ float Hero::getAtkSpeed()
 		}
 	}
 
+	std::map<std::string, NpcFriendly> map_friendly;
+
 	std::map<std::string, NpcFriendly>::iterator it;
 	if (m_ftype == 0)
 	{
@@ -448,6 +449,7 @@ float Hero::getCrit()
 		}
 	}
 
+	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	if (m_ftype == 0)
 	{
@@ -499,7 +501,7 @@ float Hero::getDodge()
 			herododge += (takeOnEquip[i]->getDodge()*herobns);
 		}
 	}
-
+	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	if (m_ftype == 0)
 	{

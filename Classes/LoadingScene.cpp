@@ -163,8 +163,21 @@ void LoadingScene::loadData()
 	showTips();
 	showPointAnim(0);
 	this->schedule(schedule_selector(LoadingScene::showPointAnim), 1.5f);
-	//先获取服务器数据
-	this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
+	if (!GlobalInstance::isResetData)
+	{
+		//先获取服务器数据
+		this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
+	}
+	else
+	{
+		GlobalInstance::isResetData = false;
+		GlobalInstance::getInstance()->resetData();
+		GlobalInstance::getInstance()->cleanUserDefaultXmlData();
+		HttpDataSwap::init(NULL)->postAllData();
+		parseCfgFiles();
+		//enterNewScene();
+		this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 1.0f);
+	}
 }
 
 void LoadingScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -205,7 +218,7 @@ void LoadingScene::showPointAnim(float dt)
 	showTips();
 }
 
-void LoadingScene::delayLoadLocalData(float dt)
+void LoadingScene::parseCfgFiles()
 {
 	GlobalInstance::getInstance()->loadInitData();
 	int langtype = GlobalInstance::getInstance()->getLang();
@@ -272,7 +285,12 @@ void LoadingScene::delayLoadLocalData(float dt)
 
 	//本地英雄加上ID兼容上一个版本
 	addHeroId();
+}
 
+void LoadingScene::delayLoadLocalData(float dt)
+{
+
+	parseCfgFiles();
 	//数据处理完，
 	//加载技能特效
 	curEffectPlistNum = 0;

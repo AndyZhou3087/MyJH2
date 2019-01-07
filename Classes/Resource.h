@@ -2,6 +2,8 @@
 #define __RESOURCE_PATH__
 
 #include "cocos2d.h"
+#include "tinyxml2/tinyxml2.h"
+
 USING_NS_CC;
 
 /******************************

@@ -12,7 +12,6 @@ Building::Building()
 
 Building::~Building()
 {
-	destroy();
 }
 
 void Building::destroy()
