@@ -294,7 +294,6 @@ void LoadingScene::parseCfgFiles()
 
 void LoadingScene::delayLoadLocalData(float dt)
 {
-
 	parseCfgFiles();
 	//数据处理完，
 	//加载技能特效
@@ -361,6 +360,7 @@ void LoadingScene::enterNewScene()
 		else
 		{
 			int exitscene = DataSave::getInstance()->getExitScene();
+
 			if (exitscene == 0)
 			{
 				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
@@ -384,13 +384,6 @@ void LoadingScene::enterNewScene()
 
 void LoadingScene::showNextScene(float dt)
 {
-	if (DataSave::getInstance()->getLocalUUID().compare(GlobalInstance::getInstance()->UUID()) != 0)
-	{
-		HttpDataSwap::init(NULL)->report("1");
-		MainScene::cheatAction(4);
-		return;
-	}
-
 	enterNewScene();
 }
 
@@ -458,6 +451,13 @@ void LoadingScene::onFinish(int errcode)
 	}
 	if (isLoadLocal)
 	{
+		if (DataSave::getInstance()->getLocalUUID().compare(GlobalInstance::getInstance()->UUID()) != 0)
+		{
+			GlobalInstance::isNotSameUUID = true;
+			DataSave::getInstance()->setExitScene(0);
+			HttpDataSwap::init(NULL)->report("1");
+		}
+
 		loadLocalData();
 	}
 }

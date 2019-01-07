@@ -203,7 +203,7 @@ bool MainScene::init()
 		this->schedule(schedule_selector(MainScene::checkBuildingOpen), 3.0f);
 	}
 
-	HttpDataSwap::init(NULL)->postAllData();
+	saveAllData();
 
 	//for (unsigned i = 0; i < GlobalInstance::vec_TaskMain.size() - 2; i++)
 	//{
@@ -938,9 +938,12 @@ void MainScene::updateTaskIcon()
 
 void MainScene::saveAllData()
 {
-	GlobalInstance::getInstance()->saveMyHeros();
-	MyRes::saveData();
-	HttpDataSwap::init(NULL)->postAllData();
+	if (!GlobalInstance::isNotSameUUID)
+	{
+		GlobalInstance::getInstance()->saveMyHeros();
+		MyRes::saveData();
+		HttpDataSwap::init(NULL)->postAllData();
+	}
 }
 
 void MainScene::cheatAction(int type)

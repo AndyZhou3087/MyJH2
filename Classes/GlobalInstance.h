@@ -763,6 +763,8 @@ public:
 
 	static bool isResetData;//充值数据
 
+	static bool isNotSameUUID;
+
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

@@ -718,7 +718,10 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 					int val = atoi(iter->value.GetString());
 					if (val == 1)
 					{
-						MainScene::cheatAction(3);
+						if (GlobalInstance::isNotSameUUID)
+							MainScene::cheatAction(4);
+						else
+							MainScene::cheatAction(3);
 						break;
 					}
 				}

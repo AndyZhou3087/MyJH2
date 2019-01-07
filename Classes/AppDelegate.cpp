@@ -93,7 +93,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
-	if (g_loadingScene == NULL)//loading界面会有封号操作，不要保存和上传数据到服务器
+	if (g_loadingScene == NULL)
 		MainScene::saveAllData();
     // if you use SimpleAudioEngine, it must be pause
     // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();

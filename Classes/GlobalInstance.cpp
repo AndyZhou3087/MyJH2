@@ -99,6 +99,8 @@ bool GlobalInstance::isServerReceipt = false;
 
 bool GlobalInstance::isResetData = false;
 
+bool GlobalInstance::isNotSameUUID = false;
+
 GlobalInstance::GlobalInstance()
 {
 
