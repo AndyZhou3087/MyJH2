@@ -36,6 +36,8 @@ public:
 
 	void enterNewScene();
 
+	void resetLoadData(float dt);
+
 private:
 	CREATE_FUNC(LoadingScene);
 
