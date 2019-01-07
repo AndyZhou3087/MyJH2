@@ -61,7 +61,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="text_2" ActionTag="-1622471689" Tag="37" IconVisible="False" LeftMargin="281.0004" RightMargin="280.9996" TopMargin="676.8770" BottomMargin="574.1230" FontSize="25" LabelText="QQ:123456789" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="text_2" ActionTag="-1622471689" Tag="37" IconVisible="False" LeftMargin="281.0004" RightMargin="280.9996" TopMargin="676.8770" BottomMargin="574.1230" TouchEnable="True" FontSize="25" LabelText="QQ:123456789" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="158.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0004" Y="588.6230" />
