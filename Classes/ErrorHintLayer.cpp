@@ -10,6 +10,9 @@
 #include "HttpDataSwap.h"
 #include "MainScene.h"
 #include "MovingLabel.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#include "iosfunc.h"
+#endif
 
 ErrorHintLayer::ErrorHintLayer()
 {
