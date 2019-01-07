@@ -122,7 +122,7 @@ std::string GlobalInstance::UUID()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getDeviceIDInKeychain();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "ffffffff-84a7-2a28-ffff-fffffdabae75";//"865421133526051-********************";
+	return "865421133526051-********************";//"865421133526051-********************";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
@@ -2866,7 +2866,7 @@ void GlobalInstance::recoveCardHeroMaxHp()
 void GlobalInstance::resetData()
 {
 	MyRes::deleteAllRes();
-
+	Quest::restData();
 	for (unsigned int i = 0; i < vec_myHeros.size(); i++)
 	{
 		delete vec_myHeros[i];

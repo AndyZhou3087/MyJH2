@@ -131,6 +131,8 @@ public:
 	//每日任务
 	static void setAchieveTypeCount(int type, int count,std::string resid = "0");
 
+	static void restData();
+
 public:
 	static std::vector<TaskData> myFinishMainQuest;
 
