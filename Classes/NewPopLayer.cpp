@@ -154,7 +154,10 @@ void NewPopLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	{
 		Node* node = (Node*)pSender;
 		if (node->getTag() < 0)
+		{
+			GlobalInstance::vec_notice[0].status = 1;
 			HttpDataSwap::init(NULL)->updateMessageStatus(GlobalInstance::vec_notice[0].id, 1);
+		}
 
 		AnimationEffect::closeAniEffect((Layer*)this);
 	}
