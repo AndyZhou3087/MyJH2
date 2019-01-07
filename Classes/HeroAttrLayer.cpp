@@ -1000,7 +1000,9 @@ void HeroAttrLayer::takeOn(ResBase* res)
 
 void HeroAttrLayer::takeOff(ResBase* res)
 {
-	res->setWhere(MYSTORAGE);
+	Equipable* equipable = (Equipable*)res;
+	equipable->setWhere(MYSTORAGE);
+	equipable->setWhos("");
 	m_heroData->setEquipable(NULL, res->getType());
 
 	MyRes::saveData();
