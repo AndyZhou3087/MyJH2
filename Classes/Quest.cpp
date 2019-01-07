@@ -812,3 +812,15 @@ void Quest::setFinishTaskState(int type, TaskData* data)
 		}
 	}
 }
+
+void Quest::restData()
+{
+	myFinishMainQuest.clear();
+	myFinishBranchQuest.clear();
+	map_NpcQuestRes.clear();
+	map_NpcBranchQuestRes.clear();
+	map_DailyTypeCount.clear();
+	map_PointReward.clear();
+
+	map_achieveTypeCount.clear();
+}
