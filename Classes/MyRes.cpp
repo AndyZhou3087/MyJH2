@@ -431,4 +431,5 @@ void MyRes::deleteAllRes()
 		delete vec_MyResources[i];
 		vec_MyResources[i] = NULL;
 	}
+	vec_MyResources.clear();
 }
