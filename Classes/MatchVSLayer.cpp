@@ -193,7 +193,6 @@ void MatchVSLayer::parsePairHeros()
 			hero->setChangeCount(atoi(vec_tmp[6].c_str()));
 			hero->setState(HS_ONCHALLENGE);
 			hero->setFTtype(1);
-			hero->setHp(hero->getMaxHp());
 			GlobalInstance::matchPairHeros[index] = hero;
 
 			if (vec_heros[1].length() > 0)
@@ -258,6 +257,7 @@ void MatchVSLayer::parsePairHeros()
 
 				}
 			}
+			hero->setHp(hero->getMaxHp());
 		}
 		else
 		{
