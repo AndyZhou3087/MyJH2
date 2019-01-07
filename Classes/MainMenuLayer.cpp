@@ -29,7 +29,7 @@ MainMenuLayer* g_MainMenuLayer = NULL;
 
 MainMenuLayer::MainMenuLayer()
 {
-
+	isGetVipData = false;
 }
 
 MainMenuLayer::~MainMenuLayer()
@@ -160,8 +160,8 @@ bool MainMenuLayer::init()
 
 void MainMenuLayer::delayGetServerData(float dt)
 {
+	isGetVipData = true;
 	HttpDataSwap::init(this)->vipIsOn();
-	HttpDataSwap::init(this)->getMessageList(0);
 }
 
 void MainMenuLayer::delayShowNewerGuide(float dt)
@@ -190,46 +190,54 @@ void MainMenuLayer::onFinish(int code)
 	if (code == SUCCESS)
 	{
 		if (NewGuideLayer::checkifNewerGuide(14) || NewGuideLayer::checkifNewerGuide(15) || NewGuideLayer::checkifNewerGuide(22) || NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(45)
-			|| (NewGuideLayer::checkifNewerGuide(55) && Quest::isMainQuestFinish(1)) || (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
+			|| (NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP) && NewGuideLayer::checkifNewerGuide(55) && Quest::isMainQuestFinish(1)) || (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
 			|| ((NewGuideLayer::checkifNewerGuide(66) || (NewGuideLayer::checkifNewerGuide(69) && !NewGuideLayer::checkifNewerGuide(67))) && GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0)
 			|| (NewGuideLayer::checkifNewerGuide(73) && GlobalInstance::getInstance()->getHerosLevelCount(15) > 0) || (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(77))
 			|| (GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15)) || (GlobalInstance::getInstance()->getLittleHerosPower(10) && NewGuideLayer::checkifNewerGuide(88)))
 		{
 			return;
 		}
-		if (this->getChildByName("GiftContentLayer") == NULL)
+
+		if (isGetVipData)
 		{
-			if (GlobalInstance::vec_buyVipIds.size()>0)
+			if (this->getChildByName("GiftContentLayer") == NULL)
 			{
-				
-				for (unsigned int m = 0; m < GlobalInstance::vec_buyVipIds.size();m++)
+				if (GlobalInstance::vec_buyVipIds.size() > 0)
 				{
-					for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+
+					for (unsigned int m = 0; m < GlobalInstance::vec_buyVipIds.size(); m++)
 					{
-						if (GlobalInstance::vec_shopdata[i].icon.compare(GlobalInstance::vec_buyVipIds[m]) == 0)
+						for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
 						{
-							GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i, 2);
-							this->addChild(layer, 0, "GiftContentLayer");
-							AnimationEffect::openAniEffect((Layer*)layer);
-							break;
+							if (GlobalInstance::vec_shopdata[i].icon.compare(GlobalInstance::vec_buyVipIds[m]) == 0)
+							{
+								GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i, 2);
+								this->addChild(layer, 0, "GiftContentLayer");
+								AnimationEffect::openAniEffect((Layer*)layer);
+								break;
+							}
 						}
 					}
 				}
 			}
-		}
 
-		if (GlobalInstance::serverTimeGiftData.isopen)
-		{
-			timegiftbtn->setVisible(true);
-			std::string timestr = StringUtils::format("%02d:%02d:%02d", GlobalInstance::serverTimeGiftData.lefttime / 3600, GlobalInstance::serverTimeGiftData.lefttime % 3600 / 60, GlobalInstance::serverTimeGiftData.lefttime % 3600 % 60);
-			timegiftlefttime->setString(timestr);
-		}
+			if (GlobalInstance::serverTimeGiftData.isopen)
+			{
+				timegiftbtn->setVisible(true);
+				std::string timestr = StringUtils::format("%02d:%02d:%02d", GlobalInstance::serverTimeGiftData.lefttime / 3600, GlobalInstance::serverTimeGiftData.lefttime % 3600 / 60, GlobalInstance::serverTimeGiftData.lefttime % 3600 % 60);
+				timegiftlefttime->setString(timestr);
+			}
 
-		if (GlobalInstance::vec_notice.size() > 0 && GlobalInstance::noticeID.compare(GlobalInstance::vec_notice[0].id) != 0)
+			HttpDataSwap::init(this)->getMessageList(0);
+		}
+		else
 		{
-			NewPopLayer* unlock = NewPopLayer::create();
-			this->addChild(unlock);
-			AnimationEffect::openAniEffect((Layer*)unlock);
+			if (GlobalInstance::vec_notice.size() > 0 && GlobalInstance::vec_notice[0].status < 1)
+			{
+				NewPopLayer* unlock = NewPopLayer::create();
+				this->addChild(unlock);
+				AnimationEffect::openAniEffect((Layer*)unlock);
+			}
 		}
 	}
 
@@ -250,6 +258,9 @@ void MainMenuLayer::onFinish(int code)
 			}
 		}
 	}
+
+	isGetVipData = false;
+
 }
 
 void MainMenuLayer::updateUI(float dt)
@@ -267,16 +278,33 @@ void MainMenuLayer::updateUI(float dt)
 	mycoinlbl->setString(str);
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	mysilverlbl->setString(str);
+
+	bool showmessageredpoint = false;
+
+
+	for (unsigned int i = 0; i < GlobalInstance::vec_notice.size(); i++)
+	{
+		int type = GlobalInstance::vec_notice[i].type;
+		int s = GlobalInstance::vec_notice[i].status;
+		if ((type == 0 && s == 0))
+		{
+			showmessageredpoint = true;
+			break;
+		}
+	}
+
 	for (unsigned int i = 0; i < GlobalInstance::vec_messsages.size(); i++)
 	{
 		int type = GlobalInstance::vec_messsages[i].type;
 		int s = GlobalInstance::vec_messsages[i].status;
 		if ((type == 0 && s == 0) || (type != 0 && s < 2))
 		{
-			mailredpoint->setVisible(true);
+			showmessageredpoint = true;
 			break;
 		}
 	}
+
+	mailredpoint->setVisible(showmessageredpoint);
 
 	//月卡更新
 	if (GlobalInstance::map_buyVipDays["vip1"] > 0)

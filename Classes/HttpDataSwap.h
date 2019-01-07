@@ -54,7 +54,6 @@ public:
 
 private:
 	HTTPDataDelegateProtocol *m_pDelegateProtocol;//接口对象
-	static bool isdoing;
 	HttpDataSwap();
 	~HttpDataSwap();
 	HttpDataSwap(HTTPDataDelegateProtocol *pDelegateProtocol);

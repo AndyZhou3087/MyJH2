@@ -72,6 +72,7 @@ private:
 	cocos2d::ui::Text* vipstrArr[2];
 	cocos2d::ui::Widget* tgiftbtn[3];
 	cocos2d::ui::Text* tgiftname[3];
+	bool isGetVipData;
 };
 extern MainMenuLayer* g_MainMenuLayer;
 #endif

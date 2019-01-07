@@ -60,13 +60,25 @@ bool NewPopLayer::init(int unlockchapter)
 	cocos2d::ui::Text* scenetitle = (cocos2d::ui::Text*)csbnode->getChildByName("scenetitle");
 	scenetitle->setString(ResourceLang::map_lang["unlockscenetitle"]);
 	cocos2d::ui::Text* scenetext = (cocos2d::ui::Text*)csbnode->getChildByName("scenetext");
-	cocos2d::ui::Text* content = (cocos2d::ui::Text*)csbnode->getChildByName("content");
+	//cocos2d::ui::Text* content = (cocos2d::ui::Text*)csbnode->getChildByName("content");
+
+	cocos2d::ui::ScrollView* contentscoll = (cocos2d::ui::ScrollView*)csbnode->getChildByName("contentscroll");
+	contentscoll->setScrollBarEnabled(false);
+
+	Label* contentlbl = Label::createWithTTF("", FONT_NAME, 25);
+	contentlbl->setAnchorPoint(Vec2(0, 1));
+	contentlbl->setColor(Color3B(100, 100, 100));
+	contentlbl->setHorizontalAlignment(TextHAlignment::LEFT);
+	//contentlbl->enableShadow(Color4B::BLACK, Size(1, -1));
+	contentlbl->setLineBreakWithoutSpace(true);
+	contentlbl->setMaxLineWidth(contentscoll->getContentSize().width);
+	contentscoll->addChild(contentlbl);
 
 	cocos2d::ui::Button* okbtn = (cocos2d::ui::Button*)csbnode->getChildByName("okbtn");
 	okbtn->addTouchEventListener(CC_CALLBACK_2(NewPopLayer::onBtnClick, this));
 	cocos2d::ui::ImageView* btntext = (cocos2d::ui::ImageView*)okbtn->getChildByName("btntext");
 	btntext->loadTexture(ResourcePath::makeTextImgPath("okbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-
+	okbtn->setTag(unlockchapter);
 	if (unlockchapter != -1)
 	{
 		scenetitle->setVisible(true);
@@ -92,7 +104,17 @@ bool NewPopLayer::init(int unlockchapter)
 		titletext->setString(ResourceLang::map_lang["unlocktitletext"]);
 
 		str = StringUtils::format("unlockchapter%d", unlockchapter);
-		content->setString(ResourceLang::map_lang[str]);
+		//content->setString(ResourceLang::map_lang[str]);
+
+		contentlbl->setString(ResourceLang::map_lang[str]);
+
+		int innerheight = contentlbl->getStringNumLines() * 25;//contentlbl->getHeight();
+		int contentheight = contentscoll->getContentSize().height;
+		if (innerheight < contentheight)
+			innerheight = contentheight;
+		contentscoll->setInnerContainerSize(Size(contentscoll->getContentSize().width, innerheight));
+		contentlbl->setPosition(Vec2(0, innerheight));
+
 	}
 	else
 	{
@@ -101,10 +123,16 @@ bool NewPopLayer::init(int unlockchapter)
 		titletext->setString(GlobalInstance::vec_notice[0].title);
 		scenetitle->setVisible(false);
 		scenetext->setVisible(false);
-		content->setPositionY(790);
+		contentscoll->setPositionY(790);
+		contentscoll->setContentSize(Size(contentscoll->getContentSize().width, 380));
+		contentlbl->setString(GlobalInstance::vec_notice[0].content);
 
-		content->setString(GlobalInstance::vec_notice[0].content);
-		GlobalInstance::noticeID = GlobalInstance::vec_notice[0].id;
+		int innerheight = contentlbl->getStringNumLines() * 25;//contentlbl->getHeight();
+		int contentheight = contentscoll->getContentSize().height;
+		if (innerheight < contentheight)
+			innerheight = contentheight;
+		contentscoll->setInnerContainerSize(Size(contentscoll->getContentSize().width, innerheight));
+		contentlbl->setPosition(Vec2(0, innerheight));
 	}
 
 
@@ -124,6 +152,10 @@ void NewPopLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		Node* node = (Node*)pSender;
+		if (node->getTag() < 0)
+			HttpDataSwap::init(NULL)->updateMessageStatus(GlobalInstance::vec_notice[0].id, 1);
+
 		AnimationEffect::closeAniEffect((Layer*)this);
 	}
 }
