@@ -112,7 +112,7 @@ bool MainMapScene::init()
 		}
 		else
 		{
-			mapname->setVisible(true);
+			mapname->setVisible(false);
 		}
 #endif
 	}
