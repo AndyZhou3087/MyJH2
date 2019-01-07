@@ -133,7 +133,7 @@ inline float loadFloatDataByKey(string key, float defaultValue = 0.0f){
 inline void removeEleByKey(string key)
 {
 	char keybuffer[32];
-	sprintf(keybuffer, "jh%s", key.c_str());
+	sprintf(keybuffer, "%s", key.c_str());
 	UserDefault::getInstance()->deleteValueForKey(keybuffer);
 	UserDefault::getInstance()->flush();
 }

@@ -2965,8 +2965,6 @@ void GlobalInstance::resetData()
 
 	unlockchapter = 1;
 
-	noticeID = "";
-
 	myOutMapCarry = 100;
 
 	silverRefHeroCount = 0;

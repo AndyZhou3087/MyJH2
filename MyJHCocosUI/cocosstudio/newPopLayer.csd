@@ -84,18 +84,6 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="content" ActionTag="1278926669" Tag="9" IconVisible="False" LeftMargin="102.6569" RightMargin="117.3431" TopMargin="659.9424" BottomMargin="420.0576" IsCustomSize="True" FontSize="25" LabelText="新场景" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="500.0000" Y="200.0000" />
-            <AnchorPoint ScaleY="1.0000" />
-            <Position X="102.6569" Y="620.0576" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="100" G="100" B="100" />
-            <PrePosition X="0.1426" Y="0.4844" />
-            <PreSize X="0.6944" Y="0.1563" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
-          </AbstractNodeData>
           <AbstractNodeData Name="okbtn" ActionTag="550077876" Tag="10" IconVisible="False" LeftMargin="274.9164" RightMargin="282.0836" TopMargin="906.7349" BottomMargin="306.2651" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="163.0000" Y="67.0000" />
             <Children>
@@ -122,6 +110,20 @@
             <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="contentscroll" ActionTag="-1183649586" Tag="109" IconVisible="False" LeftMargin="102.0000" RightMargin="118.0000" TopMargin="660.0000" BottomMargin="420.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+            <Size X="500.0000" Y="200.0000" />
+            <AnchorPoint ScaleY="1.0000" />
+            <Position X="102.0000" Y="620.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1417" Y="0.4844" />
+            <PreSize X="0.6944" Y="0.1563" />
+            <SingleColor A="255" R="255" G="150" B="100" />
+            <FirstColor A="255" R="255" G="150" B="100" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
+            <InnerNodeSize Width="500" Height="200" />
           </AbstractNodeData>
         </Children>
       </ObjectData>
