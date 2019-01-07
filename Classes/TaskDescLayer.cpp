@@ -173,15 +173,24 @@ bool TaskDescLayer::init(TaskData* data, int type)
 		getbtn->setVisible(false);
 		accbtn->setVisible(false);
 	}
-	if (data->finishtype == 1)
+
+	if (data->finishtype > 0)
 	{
-		rewards = data->reward1;
 		rewardlabel->setString(ResourceLang::map_lang["taskrewardtip3"]);
-	}
-	else if (data->finishtype == 2)
-	{
-		rewards = data->reward2;
-		rewardlabel->setString(ResourceLang::map_lang["taskrewardtip3"]);
+		for (unsigned int i = 0; i < m_data->type.size(); i++)
+		{
+			if (m_data->finishtype == m_data->type[i])
+			{
+				if (i == 0)
+				{
+					rewards = m_data->reward1;
+				}
+				else
+				{
+					rewards = m_data->reward2;
+				}
+			}
+		}
 	}
 	else 
 	{
