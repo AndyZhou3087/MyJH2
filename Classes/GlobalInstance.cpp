@@ -2865,6 +2865,8 @@ void GlobalInstance::recoveCardHeroMaxHp()
 
 void GlobalInstance::resetData()
 {
+	MyRes::deleteAllRes();
+
 	for (unsigned int i = 0; i < vec_myHeros.size(); i++)
 	{
 		delete vec_myHeros[i];

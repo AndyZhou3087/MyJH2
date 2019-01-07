@@ -423,3 +423,12 @@ void MyRes::removeSivlerAndCoin()
 		}
 	}
 }
+
+void MyRes::deleteAllRes()
+{
+	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
+	{
+		delete vec_MyResources[i];
+		vec_MyResources[i] = NULL;
+	}
+}

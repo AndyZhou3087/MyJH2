@@ -39,6 +39,8 @@ public:
 	static int getEquipableCount(std::string resid, int inwhere = MYSTORAGE);
 
 	static void removeSivlerAndCoin();
+
+	static void deleteAllRes();
 public:
 
 	static std::vector<ResBase* > vec_MyResources;//我的资源，包括背包，仓库，装备上的
