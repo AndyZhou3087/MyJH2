@@ -80,7 +80,7 @@ const char* gbkToUTF8(const char * p) {
     return [utf8str UTF8String];
 }
 
-const char* getUserDefaultXml()
+const char* getUserDefaultXml(int type)
 {
     NSString *content = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
     content = [content stringByAppendingFormat:@"%s", "<userDefaultRoot>"];
@@ -90,7 +90,20 @@ const char* getUserDefaultXml()
         //[defs removeObjectForKey:key];
         NSString *kvalue = [[NSUserDefaults standardUserDefaults] stringForKey:key];
         
-        if (kvalue && kvalue.length > 0 && [key hasPrefix:@"jh"] && !([key hasPrefix:@"jhm"] && [key componentsSeparatedByString:@"-"].count == 2))
+        bool isok = false;
+        if (kvalue && kvalue.length > 0 && [key hasPrefix:@"jh"])
+        {
+            if (type == 1 &&!([key hasPrefix:@"jhm"] && [key componentsSeparatedByString:@"-"].count == 2))
+            {
+                isok = true;
+            }
+            else if (type == 0 && !([key containsString:@"guide"] || [key containsString:@"UserProtocal"] || [key containsString:@"firstenter"]))
+            {
+                isok = true;
+            }
+        }
+        
+        if (isok)
         {
             NSString * xmlele = [NSString stringWithFormat:@"<%@>%@</%@>",key, kvalue,key];
             content = [content stringByAppendingFormat:@"%@", xmlele];

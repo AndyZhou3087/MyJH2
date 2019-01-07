@@ -210,6 +210,9 @@
 		7282708E20F5B7EE00B07087 /* taskMainDescLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7282708220F5B7EE00B07087 /* taskMainDescLayer.csb */; };
 		7282708F20F5B7EE00B07087 /* equipDescLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7282708320F5B7EE00B07087 /* equipDescLayer.csb */; };
 		7282709020F5B7EE00B07087 /* marketRefreshLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7282708420F5B7EE00B07087 /* marketRefreshLayer.csb */; };
+		728A06B821E32772006B5197 /* MyActionProgressTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728A06B621E32771006B5197 /* MyActionProgressTimer.cpp */; };
+		728A06B921E32772006B5197 /* MyTransitionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728A06B721E32772006B5197 /* MyTransitionScene.cpp */; };
+		728A06BB21E3278E006B5197 /* transitionLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 728A06BA21E3278E006B5197 /* transitionLayer.csb */; };
 		7298894C21A2987800071057 /* MatchRankLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7298893E21A2987600071057 /* MatchRankLayer.cpp */; };
 		7298894D21A2987800071057 /* MatchVSLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7298893F21A2987600071057 /* MatchVSLayer.cpp */; };
 		7298894E21A2987800071057 /* MatchRankNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7298894121A2987700071057 /* MatchRankNode.cpp */; };
@@ -622,6 +625,11 @@
 		7282708220F5B7EE00B07087 /* taskMainDescLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = taskMainDescLayer.csb; sourceTree = "<group>"; };
 		7282708320F5B7EE00B07087 /* equipDescLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = equipDescLayer.csb; sourceTree = "<group>"; };
 		7282708420F5B7EE00B07087 /* marketRefreshLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = marketRefreshLayer.csb; sourceTree = "<group>"; };
+		728A06B321E32771006B5197 /* MyActionProgressTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyActionProgressTimer.h; sourceTree = "<group>"; };
+		728A06B521E32771006B5197 /* MyTransitionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTransitionScene.h; sourceTree = "<group>"; };
+		728A06B621E32771006B5197 /* MyActionProgressTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyActionProgressTimer.cpp; sourceTree = "<group>"; };
+		728A06B721E32772006B5197 /* MyTransitionScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyTransitionScene.cpp; sourceTree = "<group>"; };
+		728A06BA21E3278E006B5197 /* transitionLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = transitionLayer.csb; sourceTree = "<group>"; };
 		7298893B21A2987600071057 /* MatchContentLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchContentLayer.h; sourceTree = "<group>"; };
 		7298893D21A2987600071057 /* MatchRankLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchRankLayer.h; sourceTree = "<group>"; };
 		7298893E21A2987600071057 /* MatchRankLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MatchRankLayer.cpp; sourceTree = "<group>"; };
@@ -865,6 +873,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				728A06BA21E3278E006B5197 /* transitionLayer.csb */,
 				72A55FE021D6101800D95DA8 /* buyCoinLayer.csb */,
 				72A55FDF21D6101800D95DA8 /* buyResLayer.csb */,
 				7298895621A2989800071057 /* matchContentLayer.csb */,
@@ -987,6 +996,10 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				728A06B621E32771006B5197 /* MyActionProgressTimer.cpp */,
+				728A06B321E32771006B5197 /* MyActionProgressTimer.h */,
+				728A06B721E32772006B5197 /* MyTransitionScene.cpp */,
+				728A06B521E32771006B5197 /* MyTransitionScene.h */,
 				72A55FDC21D60FFF00D95DA8 /* BuyCoinLayer.cpp */,
 				72A55FD821D60FFE00D95DA8 /* BuyCoinLayer.h */,
 				72A55FDA21D60FFE00D95DA8 /* BuyResLayer.cpp */,
@@ -1368,6 +1381,7 @@
 				7204533520D892640011D560 /* json in Resources */,
 				7204534020D892640011D560 /* mainMapLayer.csb in Resources */,
 				72DD1CB72139565F00832ADB /* shopLayer.csb in Resources */,
+				728A06BB21E3278E006B5197 /* transitionLayer.csb in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				7219409C20FED4E200071BFC /* trainSelectLayer.csb in Resources */,
 				72A2BD0020F8BA1F0085B17D /* gray.vsh in Resources */,
@@ -1523,6 +1537,7 @@
 				7232D81E20E639D600299738 /* MarketLayer.cpp in Sources */,
 				726CA47F215E2F3B002D0273 /* MobClickCpp.mm in Sources */,
 				72BAB5762130213200714493 /* SkillStartLayer.cpp in Sources */,
+				728A06B921E32772006B5197 /* MyTransitionScene.cpp in Sources */,
 				7282707320F5B7B200B07087 /* Equipable.cpp in Sources */,
 				7298894F21A2987800071057 /* MatchHeroNode.cpp in Sources */,
 				720452E020D892200011D560 /* JHKeychain.mm in Sources */,
@@ -1577,6 +1592,7 @@
 				72F700A72178703B00ED33F1 /* SaleGfLayer.cpp in Sources */,
 				720452DB20D892200011D560 /* DataSave.cpp in Sources */,
 				72538DA1217093C7007D7062 /* TimeGiftLayer.cpp in Sources */,
+				728A06B821E32772006B5197 /* MyActionProgressTimer.cpp in Sources */,
 				7256A75E2109748D000492EA /* HintBoxLayer.cpp in Sources */,
 				72A55FDE21D60FFF00D95DA8 /* BuyCoinLayer.cpp in Sources */,
 				7226FB3E2142214B00467283 /* SimplePopLayer.cpp in Sources */,
