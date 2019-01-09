@@ -181,9 +181,10 @@ bool MessageDescLayer::init(int index)
 	contentlbl->setColor(Color3B(255, 255, 255));
 	contentlbl->setHorizontalAlignment(TextHAlignment::LEFT);
 	contentlbl->setLineBreakWithoutSpace(true);
+	contentlbl->setLineSpacing(8);
 	contentlbl->setMaxLineWidth(contentwidth);
 	contentscroll->addChild(contentlbl);
-	int innerheight = contentlbl->getStringNumLines() * 25;
+	int innerheight = contentlbl->getStringNumLines() * 35;
 	int contentheight = contentscroll->getContentSize().height;
 	if (innerheight < contentheight)
 		innerheight = contentheight;

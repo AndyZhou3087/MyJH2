@@ -71,14 +71,26 @@ bool NewPopLayer::init(int unlockchapter)
 	contentlbl->setHorizontalAlignment(TextHAlignment::LEFT);
 	//contentlbl->enableShadow(Color4B::BLACK, Size(1, -1));
 	contentlbl->setLineBreakWithoutSpace(true);
+	contentlbl->setLineSpacing(8);
 	contentlbl->setMaxLineWidth(contentscoll->getContentSize().width);
 	contentscoll->addChild(contentlbl);
 
 	cocos2d::ui::Button* okbtn = (cocos2d::ui::Button*)csbnode->getChildByName("okbtn");
 	okbtn->addTouchEventListener(CC_CALLBACK_2(NewPopLayer::onBtnClick, this));
 	cocos2d::ui::ImageView* btntext = (cocos2d::ui::ImageView*)okbtn->getChildByName("btntext");
+	btntext->ignoreContentAdaptWithSize(true);
 	btntext->loadTexture(ResourcePath::makeTextImgPath("okbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	okbtn->setTag(unlockchapter);
+	okbtn->setPositionX(360);
+
+	cocos2d::ui::Button* cancelbtn = (cocos2d::ui::Button*)csbnode->getChildByName("cancelbtn");
+	cancelbtn->addTouchEventListener(CC_CALLBACK_2(NewPopLayer::onBtnClick, this));
+	cancelbtn->setTag(1001);
+	cocos2d::ui::ImageView* cancelbtntext = (cocos2d::ui::ImageView*)cancelbtn->getChildByName("btntext");
+	cancelbtntext->ignoreContentAdaptWithSize(true);
+	cancelbtntext->loadTexture(ResourcePath::makeTextImgPath("nexttime_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	cancelbtn->setVisible(false);
+
 	if (unlockchapter != -1)
 	{
 		scenetitle->setVisible(true);
@@ -108,7 +120,7 @@ bool NewPopLayer::init(int unlockchapter)
 
 		contentlbl->setString(ResourceLang::map_lang[str]);
 
-		int innerheight = contentlbl->getStringNumLines() * 25;//contentlbl->getHeight();
+		int innerheight = contentlbl->getStringNumLines() * 35;//contentlbl->getHeight();
 		int contentheight = contentscoll->getContentSize().height;
 		if (innerheight < contentheight)
 			innerheight = contentheight;
@@ -133,6 +145,18 @@ bool NewPopLayer::init(int unlockchapter)
 			innerheight = contentheight;
 		contentscoll->setInnerContainerSize(Size(contentscoll->getContentSize().width, innerheight));
 		contentlbl->setPosition(Vec2(0, innerheight));
+		
+		int subtype = GlobalInstance::vec_notice[0].subtype;
+		if (subtype > 0)
+		{
+			btntext->loadTexture(ResourcePath::makeTextImgPath("upgrade_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			if (subtype == 2)
+			{
+				okbtn->setPositionX(230);
+				cancelbtn->setVisible(true);
+				cancelbtn->setPositionX(480);
+			}
+		}
 	}
 
 
@@ -153,12 +177,28 @@ void NewPopLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		Node* node = (Node*)pSender;
-		if (node->getTag() < 0)
+		int subtype = GlobalInstance::vec_notice[0].subtype;
+		if (node->getTag() < 0)//公告类型
 		{
-			GlobalInstance::vec_notice[0].status = 1;
-			HttpDataSwap::init(NULL)->updateMessageStatus(GlobalInstance::vec_notice[0].id, 1);
+			if (subtype == 0)//纯公告
+			{
+				GlobalInstance::vec_notice[0].status = 1;
+				HttpDataSwap::init(NULL)->updateMessageStatus(GlobalInstance::vec_notice[0].id, 1);
+				AnimationEffect::closeAniEffect((Layer*)this);
+			}
+			else if(subtype == 1 || subtype == 2)//更新
+			{
+				GlobalInstance::getInstance()->upgradeApp();
+			}
 		}
-
-		AnimationEffect::closeAniEffect((Layer*)this);
+		else
+		{
+			if (subtype == 2)
+			{
+				GlobalInstance::vec_notice[0].status = 1;
+				HttpDataSwap::init(NULL)->updateMessageStatus(GlobalInstance::vec_notice[0].id, 1);
+			}
+			AnimationEffect::closeAniEffect((Layer*)this);
+		}
 	}
 }

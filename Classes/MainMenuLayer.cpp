@@ -232,7 +232,7 @@ void MainMenuLayer::onFinish(int code)
 		}
 		else
 		{
-			if (GlobalInstance::vec_notice.size() > 0 && GlobalInstance::vec_notice[0].status < 1)
+			if (GlobalInstance::vec_notice.size() > 0 && GlobalInstance::vec_notice[0].status < 1 && GlobalInstance::vec_notice[0].subtype <= 2)
 			{
 				NewPopLayer* unlock = NewPopLayer::create();
 				this->addChild(unlock);

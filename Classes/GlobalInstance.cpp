@@ -3031,3 +3031,22 @@ void GlobalInstance::cleanUserDefaultXmlData()
 	}
 	delete pDoc;
 }
+
+void GlobalInstance::upgradeApp()
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	std::string ret;
+	JniMethodInfo methodInfo;
+	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getUserDefaultXmlString", "(I)Ljava/lang/String;"))
+	{
+		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, type);
+		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
+	}
+	return ret;
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	return openAppUri();
+#endif
+}
+

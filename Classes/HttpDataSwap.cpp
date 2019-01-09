@@ -888,7 +888,16 @@ void HttpDataSwap::httpGetMessageListCB(std::string retdata, int code, std::stri
 							msgdata.type = atoi(dataval.GetString());
 							dataval = onedata["status"];
 							msgdata.status = atoi(dataval.GetString());
+							if (onedata.HasMember("subtype"))
+							{
+								msgdata.subtype = atoi(getJsonValueStr(onedata["subtype"]).c_str());
+							}
+							else
+								msgdata.subtype = 0;
+
 							GlobalInstance::vec_messsages.push_back(msgdata);
+							
+
 							if (extdata.length() > 0)
 							{
 								GlobalInstance::vec_notice.push_back(msgdata);

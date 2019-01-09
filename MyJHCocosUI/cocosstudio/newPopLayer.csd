@@ -84,7 +84,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="okbtn" ActionTag="550077876" Tag="10" IconVisible="False" LeftMargin="274.9164" RightMargin="282.0836" TopMargin="906.7349" BottomMargin="306.2651" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="okbtn" ActionTag="550077876" Tag="10" IconVisible="False" LeftMargin="148.5000" RightMargin="408.5000" TopMargin="906.5000" BottomMargin="306.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="163.0000" Y="67.0000" />
             <Children>
               <AbstractNodeData Name="btntext" ActionTag="-1925092377" Tag="11" IconVisible="False" LeftMargin="42.7861" RightMargin="46.2139" TopMargin="11.8769" BottomMargin="18.1231" LeftEage="24" RightEage="24" TopEage="12" BottomEage="12" Scale9OriginX="24" Scale9OriginY="12" Scale9Width="26" Scale9Height="13" ctype="ImageViewObjectData">
@@ -99,10 +99,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="356.4164" Y="339.7651" />
+            <Position X="230.0000" Y="340.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4950" Y="0.2654" />
+            <PrePosition X="0.3194" Y="0.2656" />
             <PreSize X="0.2264" Y="0.0523" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
@@ -111,7 +111,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="contentscroll" ActionTag="-1183649586" Tag="109" IconVisible="False" LeftMargin="102.0000" RightMargin="118.0000" TopMargin="660.0000" BottomMargin="420.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="contentscroll" ActionTag="-1183649586" Tag="109" IconVisible="False" LeftMargin="102.0000" RightMargin="118.0000" TopMargin="660.0000" BottomMargin="420.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="500.0000" Y="200.0000" />
             <AnchorPoint ScaleY="1.0000" />
             <Position X="102.0000" Y="620.0000" />
@@ -124,6 +124,33 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="500" Height="200" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="cancelbtn" ActionTag="-2109234386" Tag="269" IconVisible="False" LeftMargin="398.5000" RightMargin="158.5000" TopMargin="906.5000" BottomMargin="306.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="163.0000" Y="67.0000" />
+            <Children>
+              <AbstractNodeData Name="btntext" ActionTag="-941162735" Tag="270" IconVisible="False" LeftMargin="18.7861" RightMargin="22.2139" TopMargin="14.8769" BottomMargin="21.1231" LeftEage="24" RightEage="24" TopEage="12" BottomEage="12" Scale9OriginX="24" Scale9OriginY="12" Scale9Width="74" Scale9Height="7" ctype="ImageViewObjectData">
+                <Size X="122.0000" Y="31.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="79.7861" Y="36.6231" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4895" Y="0.5466" />
+                <PreSize X="0.7485" Y="0.4627" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/nexttime_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="480.0000" Y="340.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.6667" Y="0.2656" />
+            <PreSize X="0.2264" Y="0.0523" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

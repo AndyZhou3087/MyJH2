@@ -230,6 +230,7 @@ typedef struct
 	std::string content;
 	int status;
 	int type;
+	int subtype;
 }MessageData;
 
 typedef struct
@@ -681,6 +682,9 @@ public:
 
 	//重置数据
 	void resetData();
+
+	//upgrade
+	void upgradeApp();
 
 private:
 	static GlobalInstance* _Context;//类实例

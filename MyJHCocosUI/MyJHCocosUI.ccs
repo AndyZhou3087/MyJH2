@@ -591,6 +591,7 @@
           <Image Name="msggeted_text.png" />
           <Image Name="msggeting_text.png" />
           <Image Name="mypackagetitle.png" />
+          <Image Name="nexttime_text.png" />
           <Image Name="npcgive_text.png" />
           <Image Name="npctext_0.png" />
           <Image Name="npctext_1.png" />
@@ -712,6 +713,7 @@
           <Image Name="training_text.png" />
           <Image Name="trainlv_text.png" />
           <Image Name="trainstart_text.png" />
+          <Image Name="upgrade_text.png" />
           <Image Name="usebtn_text.png" />
           <Image Name="usecard_Text.png" />
           <Image Name="usertitle.png" />
