@@ -73,7 +73,7 @@ bool MessageDescLayer::init(int index)
 		textscrollheight = 500;
 		awdnode->setVisible(false);
 
-		if (data.subtype == 1 || data.subtype == 2)
+		if (data.subtype == 1 || data.subtype == 2 || data.subtype == 3)
 		{
 			btntag = 1003;
 			actiontextstr = "upgrade_text";
