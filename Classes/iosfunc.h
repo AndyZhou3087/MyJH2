@@ -15,4 +15,5 @@ const char * getDeviceIDInKeychain();
 const char* gbkToUTF8(const char * p);
 bool isIphoneX();
 const char* getUserDefaultXml(int type);
+void openAppUri(const char * url);
 void UMengInit();

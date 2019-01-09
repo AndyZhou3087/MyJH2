@@ -113,6 +113,12 @@ const char* getUserDefaultXml(int type)
     return [content UTF8String];
 }
 
+void openAppUri(const char* url)
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%s", url];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+}
+
 bool isIphoneX()
 {
     struct utsname systemInfo;
