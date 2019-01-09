@@ -104,6 +104,8 @@ bool GlobalInstance::isNotSameUUID = false;
 int GlobalInstance::loginDays = 0;
 int GlobalInstance::isGetLoginRwd = true;
 
+std::string GlobalInstance::upgradeurl;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -2981,6 +2983,8 @@ void GlobalInstance::resetData()
 	isNewHeroRefresh = false;
 
 	isCheat = false;
+
+	upgradeurl = "";
 }
 
 std::string GlobalInstance::getUserDefaultXmlString(int type)
@@ -3032,7 +3036,7 @@ void GlobalInstance::cleanUserDefaultXmlData()
 	delete pDoc;
 }
 
-void GlobalInstance::upgradeApp()
+void GlobalInstance::upgradeApp(std::string url)
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	
@@ -3046,7 +3050,7 @@ void GlobalInstance::upgradeApp()
 	}
 	return ret;
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	return openAppUri();
+	return openAppUri(url.c_str());
 #endif
 }
 

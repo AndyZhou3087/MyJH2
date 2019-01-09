@@ -684,7 +684,7 @@ public:
 	void resetData();
 
 	//upgrade
-	void upgradeApp();
+	void upgradeApp(std::string url);
 
 private:
 	static GlobalInstance* _Context;//类实例
@@ -771,6 +771,8 @@ public:
 
 	static int loginDays;
 	static int isGetLoginRwd;
+
+	static std::string upgradeurl;
 
 private:
 	static int refreshHeroTime;

@@ -905,6 +905,10 @@ void HttpDataSwap::httpGetMessageListCB(std::string retdata, int code, std::stri
 						}
 					}
 				}
+				if (doc.HasMember("updateurl"))
+				{
+					GlobalInstance::upgradeurl = doc["updateurl"].GetString();
+				}
 			}
 		}
 		else

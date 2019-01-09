@@ -124,6 +124,8 @@ bool NewPopLayer::init(int unlockchapter)
 		int contentheight = contentscoll->getContentSize().height;
 		if (innerheight < contentheight)
 			innerheight = contentheight;
+		else
+			contentscoll->setBounceEnabled(false);
 		contentscoll->setInnerContainerSize(Size(contentscoll->getContentSize().width, innerheight));
 		contentlbl->setPosition(Vec2(0, innerheight));
 
@@ -143,6 +145,9 @@ bool NewPopLayer::init(int unlockchapter)
 		int contentheight = contentscoll->getContentSize().height;
 		if (innerheight < contentheight)
 			innerheight = contentheight;
+		else
+			contentscoll->setBounceEnabled(false);
+
 		contentscoll->setInnerContainerSize(Size(contentscoll->getContentSize().width, innerheight));
 		contentlbl->setPosition(Vec2(0, innerheight));
 		
