@@ -167,11 +167,11 @@ void MessageLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 					std::string contentstr = GlobalInstance::vec_messsages[i].content;
 					std::vector<MSGAWDSDATA> awdslist;
-					int pos = GlobalInstance::vec_messsages[i].content.find_last_of("$$");
+					int pos = GlobalInstance::vec_messsages[i].content.find("$$");
 					if (pos >= 0)
 					{
-						contentstr = contentstr.substr(0, pos - 1);
-						std::string awdstr = GlobalInstance::vec_messsages[i].content.substr(pos + 1);
+						contentstr = contentstr.substr(0, pos);
+						std::string awdstr = GlobalInstance::vec_messsages[i].content.substr(pos + 2);
 						std::vector<std::string> vec_str;
 						CommonFuncs::split(awdstr, vec_str, ";");
 						for (unsigned int n = 0; n < vec_str.size(); n++)

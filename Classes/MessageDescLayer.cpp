@@ -82,11 +82,11 @@ bool MessageDescLayer::init(int index)
 		contentstr = data.content;
 
 
-		int pos = data.content.find_last_of("$$");
+		int pos = data.content.find("$$");
 		if (pos >= 0)
 		{
-			contentstr = contentstr.substr(0, pos - 1);
-			std::string awdstr = data.content.substr(pos + 1);
+			contentstr = contentstr.substr(0, pos);
+			std::string awdstr = data.content.substr(pos + 2);
 			std::vector<std::string> vec_str;
 			CommonFuncs::split(awdstr, vec_str, ";");
 			for (unsigned int n = 0; n < vec_str.size(); n++)
