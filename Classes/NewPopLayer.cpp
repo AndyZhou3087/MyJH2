@@ -193,7 +193,7 @@ void NewPopLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			}
 			else if(subtype == 1 || subtype == 2)//¸üÐÂ
 			{
-				GlobalInstance::getInstance()->upgradeApp();
+				GlobalInstance::getInstance()->upgradeApp(GlobalInstance::upgradeurl);
 			}
 		}
 		else
