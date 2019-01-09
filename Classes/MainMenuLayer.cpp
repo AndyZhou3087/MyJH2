@@ -286,7 +286,7 @@ void MainMenuLayer::updateUI(float dt)
 	{
 		int type = GlobalInstance::vec_notice[i].type;
 		int s = GlobalInstance::vec_notice[i].status;
-		if ((type == 0 && s == 0))
+		if (type == 0 && s == 0)
 		{
 			showmessageredpoint = true;
 			break;
@@ -297,7 +297,7 @@ void MainMenuLayer::updateUI(float dt)
 	{
 		int type = GlobalInstance::vec_messsages[i].type;
 		int s = GlobalInstance::vec_messsages[i].status;
-		if ((type == 0 && s == 0) || (type != 0 && s < 2))
+		if (type != 0 && s < 2)
 		{
 			showmessageredpoint = true;
 			break;

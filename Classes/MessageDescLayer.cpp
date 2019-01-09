@@ -72,6 +72,12 @@ bool MessageDescLayer::init(int index)
 		btntag = 1000;
 		textscrollheight = 500;
 		awdnode->setVisible(false);
+
+		if (data.subtype == 1 || data.subtype == 2)
+		{
+			btntag = 1003;
+			actiontextstr = "upgrade_text";
+		}
 	}
 	else
 	{
@@ -163,6 +169,7 @@ bool MessageDescLayer::init(int index)
 	actionbtn->setTag(btntag);
 	//°´Å¥1ÎÄ×Ö
 	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
+	actionbtntxt->ignoreContentAdaptWithSize(true);
 	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath(actiontextstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	actionbtntxt->ignoreContentAdaptWithSize(true);
 
@@ -279,6 +286,9 @@ void MessageDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 			break;
 		case 1002:
 			AnimationEffect::closeAniEffect((Layer*)this);
+			break;
+		case 1003:
+			GlobalInstance::getInstance()->upgradeApp(GlobalInstance::upgradeurl);
 			break;
 		default:
 			break;
