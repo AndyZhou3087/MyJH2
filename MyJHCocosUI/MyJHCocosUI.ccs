@@ -484,6 +484,7 @@
           <Image Name="innroolv_text.png" />
           <Image Name="innroomtitle.png" />
           <Image Name="isrecruited_text.png" />
+          <Image Name="loginrewardtitle.png" />
           <Image Name="lvupbtn_text.png" />
           <Image Name="m0-1.png" />
           <Image Name="m1-1.png" />
@@ -588,6 +589,7 @@
           <Image Name="messagetitle.png" />
           <Image Name="msgallget_text.png" />
           <Image Name="msggeted_text.png" />
+          <Image Name="msggeting_text.png" />
           <Image Name="mypackagetitle.png" />
           <Image Name="npcgive_text.png" />
           <Image Name="npctext_0.png" />
@@ -968,6 +970,7 @@
           <Image Name="herotag_0.png" />
           <Image Name="herotag_1.png" />
           <Image Name="k001.png" />
+          <Image Name="loginrewarditem.png" />
           <Image Name="m001.png" />
           <Image Name="m002.png" />
           <Image Name="m003.png" />
@@ -1204,6 +1207,7 @@
         <Image Name="loadingbg.jpg" />
         <Image Name="loadingclicktext.png" />
         <Project Name="LoadingLayer.csd" Type="Layer" />
+        <Project Name="loginRewardLayer.csd" Type="Layer" />
         <Image Name="logo.png" />
         <Project Name="MainLayer.csd" Type="Layer" />
         <Project Name="mainMapLayer.csd" Type="Layer" />

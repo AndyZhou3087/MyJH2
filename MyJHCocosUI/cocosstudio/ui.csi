@@ -451,6 +451,9 @@
       <FilePathData Path="ui/matchreward_0.png" />
       <FilePathData Path="ui/matchreward_1.png" />
       <FilePathData Path="ui/matchruleicon.png" />
+      <FilePathData Path="ui/loginrewarditem.png" />
+      <FilePathData Path="text_zh_cn/loginrewardtitle.png" />
+      <FilePathData Path="text_zh_cn/msggeting_text.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

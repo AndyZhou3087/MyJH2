@@ -1545,11 +1545,15 @@ void MapBlockScene::delayShowFightResult(float dt)
 void MapBlockScene::parseMapXml(std::string mapname)
 {
 	tinyxml2::XMLDocument *pDoc = new tinyxml2::XMLDocument();
+
+#if encrypt_jsonxml
 	std::string filename = StringUtils::format("mapdata/%s.xml", mapname.c_str());
 	std::string contentstr = FileUtils::getInstance()->getStringFromFile(filename);
-#if encrypt_jsonxml
 	Encrypt((char*)contentstr.c_str(), false);
 	contentstr = parseData(contentstr.c_str());
+#else
+	std::string filename = StringUtils::format("jsonxml_original/mapdata/%s.xml", mapname.c_str());
+	std::string contentstr = FileUtils::getInstance()->getStringFromFile(filename);
 #endif
 	int err = pDoc->Parse(contentstr.c_str());
 	if (err != 0)

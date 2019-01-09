@@ -28,10 +28,12 @@ bool JsonReader(std::string& strData, rapidjson::Document& doc)
 rapidjson::Document ReadJsonFile(const std::string& name)
 {
 	rapidjson::Document doc;
-	std::string filestr = FileUtils::getInstance()->getStringFromFile(name);
 #if encrypt_jsonxml
+	std::string filestr = FileUtils::getInstance()->getStringFromFile(name);
 	Encrypt((char*)filestr.c_str(), false);
 	filestr = parseData(filestr.c_str());
+#else
+	std::string filestr = FileUtils::getInstance()->getStringFromFile("jsonxml_original/" + name);
 #endif
 	if (filestr.length() > 0)
 	{

@@ -2,8 +2,16 @@
 #include "SoundManager.h"
 #include "Resource.h"
 #include "GlobalInstance.h"
+#include "DataBase64.h"
+#include "Utility.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "../cocos2d//external//win32-specific/icon/include/iconv.h"
+#include <io.h>
+#else
+#include <unistd.h>
+#include <stdio.h>
+#include <dirent.h>
+#include <sys/stat.h>
 #endif
 
 #define Button_ACTION (Sequence::create(ScaleTo::create(0.05f,0.95f),NULL))
@@ -199,4 +207,77 @@ void CommonFuncs::playResBoxEffect(cocos2d::Node* target, int qu)
 		effectnode->runAction(action);
 		action->gotoFrameAndPlay(0, true);
 	}
+}
+
+void CommonFuncs::dfsFolder(std::string folderPath, std::vector<std::string> &vec_ret, int depth)
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	_finddata_t FileInfo;
+	std::string strfind = folderPath + "/*";
+	long Handle = _findfirst(strfind.c_str(), &FileInfo);
+
+	if (Handle == -1L)
+	{
+		return;
+	}
+	do {
+		//判断是否有子目录
+		if (FileInfo.attrib & _A_SUBDIR)
+		{
+			//这个语句很重要
+			if ((strcmp(FileInfo.name, ".") != 0) && (strcmp(FileInfo.name, "..") != 0))
+			{
+				std::string newPath = folderPath + "/" + FileInfo.name;
+				dfsFolder(newPath, vec_ret);
+			}
+		}
+		else
+		{
+			std::string filename = (folderPath + "/" + FileInfo.name);
+			log("filename = %s ", FileInfo.name);
+
+			vec_ret.push_back(filename);
+		}
+	} while (_findnext(Handle, &FileInfo) == 0);
+
+	_findclose(Handle);
+#else
+	DIR *dp;
+	struct dirent *entry;
+	struct stat statbuf;
+	if ((dp = opendir(folderPath.c_str())) == NULL) {
+		fprintf(stderr, "cannot open directory: %s\n", folderPath.c_str());
+		return;
+	}
+	chdir(folderPath.c_str());
+	while ((entry = readdir(dp)) != NULL) {
+		lstat(entry->d_name, &statbuf);
+		if (S_ISDIR(statbuf.st_mode)) {
+
+			if (strcmp(".", entry->d_name) == 0 ||
+				strcmp("..", entry->d_name) == 0)
+				continue;
+			printf("%*s%s/\n", depth, "", entry->d_name);
+			dfsFolder(entry->d_name, vec_ret, depth + 4);
+		}
+		else {
+			string filename = entry->d_name;
+			char pathfile[256];
+			memset(pathfile, 0x00, sizeof(pathfile));
+			sprintf(pathfile, "%*s%s\n", depth, "", entry->d_name);
+			vec_ret.push_back(pathfile);
+		}
+	}
+	chdir("..");
+	closedir(dp);
+#endif
+}
+
+void CommonFuncs::encryptToFile(std::string oValue, std::string filename)
+{
+	std::string encryptvalue = encryptData(reinterpret_cast<const unsigned char*>(oValue.c_str()), oValue.length());
+	Encrypt((char*)encryptvalue.c_str(), true);
+	std::string encrypstr = StringUtils::format("%s", encryptvalue.c_str());
+
+	FileUtils::getInstance()->writeStringToFile(encrypstr, filename);
 }

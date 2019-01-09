@@ -464,6 +464,9 @@ void LoadingScene::onFinish(int errcode)
 
 void LoadingScene::loadLocalData()
 {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	cfgFileEncryp();
+#endif
 	//加载本地数据
 	this->scheduleOnce(schedule_selector(LoadingScene::delayLoadLocalData), 0.1f);
 #ifdef UMENG
@@ -484,4 +487,19 @@ void LoadingScene::showTips()
 	std::string keystr = StringUtils::format("tips_%d", r);
 	tipslbl->setVisible(true);
 	tipslbl->setString(ResourceLang::map_lang[keystr]);
+}
+
+void LoadingScene::cfgFileEncryp()
+{
+	std::vector<std::string> vec_files;
+	
+	CommonFuncs::dfsFolder("../Resources/jsonxml_original", vec_files);
+
+	for (unsigned int i = 0; i < vec_files.size(); i++)
+	{
+		std::string filemame = vec_files[i].substr(vec_files[i].find("jsonxml_original"));
+
+		std::string filecontent = FileUtils::getInstance()->getStringFromFile(filemame);
+		CommonFuncs::encryptToFile(filecontent, filemame.substr(filemame.find("/") + 1));
+	}
 }

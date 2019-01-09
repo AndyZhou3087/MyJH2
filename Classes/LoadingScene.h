@@ -53,6 +53,8 @@ private:
 	void addHeroId();
 
 	void showTips();
+
+	void cfgFileEncryp();
 private:
 	bool isGetPlayerId;
 	Node *m_loadingbar;

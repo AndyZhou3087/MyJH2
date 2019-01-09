@@ -101,6 +101,9 @@ bool GlobalInstance::isResetData = false;
 
 bool GlobalInstance::isNotSameUUID = false;
 
+int GlobalInstance::loginDays = 0;
+int GlobalInstance::isGetLoginRwd = true;
+
 GlobalInstance::GlobalInstance()
 {
 

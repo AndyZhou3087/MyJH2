@@ -765,6 +765,9 @@ public:
 
 	static bool isNotSameUUID;
 
+	static int loginDays;
+	static int isGetLoginRwd;
+
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

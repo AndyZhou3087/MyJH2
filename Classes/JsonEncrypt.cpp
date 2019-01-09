@@ -133,32 +133,32 @@ void JsonEncrypt::dfsFolder(std::string folderPath, std::string foldername, int 
 	} while (_findnext(Handle, &FileInfo) == 0);
 
 	_findclose(Handle);
-//#else
-//	DIR *dp;
-//	struct dirent *entry;
-//	struct stat statbuf;
-//	if ((dp = opendir(folderPath.c_str())) == NULL) {
-//		fprintf(stderr, "cannot open directory: %s\n", folderPath.c_str());
-//		return;
-//	}
-//	chdir(folderPath.c_str());
-//	while ((entry = readdir(dp)) != NULL) {
-//		lstat(entry->d_name, &statbuf);
-//		if (S_ISDIR(statbuf.st_mode)) {
-//
-//			if (strcmp(".", entry->d_name) == 0 ||
-//				strcmp("..", entry->d_name) == 0)
-//				continue;
-//			printf("%*s%s/\n", depth, "", entry->d_name);
-//			dfsFolder(entry->d_name, depth + 4);
-//		}
-//		else {
-//			string filename = entry->d_name;
-//			54             printf("%*s%s\n", depth, "", entry->d_name);
-//		}
-//	}
-//	chdir("..");
-//	closedir(dp);
+#else
+	DIR *dp;
+	struct dirent *entry;
+	struct stat statbuf;
+	if ((dp = opendir(folderPath.c_str())) == NULL) {
+		fprintf(stderr, "cannot open directory: %s\n", folderPath.c_str());
+		return;
+	}
+	chdir(folderPath.c_str());
+	while ((entry = readdir(dp)) != NULL) {
+		lstat(entry->d_name, &statbuf);
+		if (S_ISDIR(statbuf.st_mode)) {
+
+			if (strcmp(".", entry->d_name) == 0 ||
+				strcmp("..", entry->d_name) == 0)
+				continue;
+			printf("%*s%s/\n", depth, "", entry->d_name);
+			dfsFolder(entry->d_name, depth + 4);
+		}
+		else {
+			string filename = entry->d_name;
+			printf("%*s%s\n", depth, "", entry->d_name);
+		}
+	}
+	chdir("..");
+	closedir(dp);
 #endif
 }
 

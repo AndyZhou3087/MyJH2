@@ -70,6 +70,21 @@ public:
 	****************************/
 	static void playResBoxEffect(cocos2d::Node* target, int qu);
 
+	/****************************
+	文件目录遍历
+	@param folderpaht 目录
+	@param depth深度默认0，暂时无用
+	@return 文件的绝对路径列表
+	****************************/
+	static void dfsFolder(std::string folderPath, std::vector<std::string> &vec_ret, int depth = 0);
+
+	/****************************
+	加密数据到文件
+	@param oValue 原始数据
+	@param 文件路径filename
+	****************************/
+	static void encryptToFile(std::string oValue, std::string filename);
+
 private:
 
 	/****************************
