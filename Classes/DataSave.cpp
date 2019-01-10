@@ -1,4 +1,4 @@
-﻿#include "DataSave.h"
+#include "DataSave.h"
 #include "cocos2d.h"
 #include "MD5.h"
 #include "Utility.h"
@@ -437,12 +437,12 @@ void DataSave::setCheatCount(int val)
 
 void DataSave::setLocalUUID(std::string val)
 {
-	saveStringDataByKey("uuid", val);
+	saveStringDataByKey("puuid", val);
 }
 
 std::string DataSave::getLocalUUID()
 {
-	return loadStringDataByKey("uuid");
+	return loadStringDataByKey("puuid");
 }
 
 void DataSave::deleteDataByKey(std::string key)

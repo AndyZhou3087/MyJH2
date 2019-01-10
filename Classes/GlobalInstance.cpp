@@ -1,4 +1,4 @@
-﻿#include "GlobalInstance.h"
+#include "GlobalInstance.h"
 #include "DataSave.h"
 #include "Hero.h"
 #include "CommonFuncs.h"
