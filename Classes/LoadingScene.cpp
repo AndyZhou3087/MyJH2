@@ -1,4 +1,4 @@
-﻿#include "LoadingScene.h"
+#include "LoadingScene.h"
 #include "Resource.h"
 #include "MainScene.h"
 #include "DataSave.h"
@@ -301,6 +301,13 @@ void LoadingScene::delayLoadLocalData(float dt)
 	std::string str = StringUtils::format("effect/skill%dpacker.png", skillEffectArr[curEffectPlistNum]);
 	Director::getInstance()->getTextureCache()->addImageAsync(str, CC_CALLBACK_1(LoadingScene::loadingSkillEffectOver, this));
 	//this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 0.1f);
+    
+    if (DataSave::getInstance()->getLocalUUID().compare(GlobalInstance::getInstance()->UUID()) != 0)
+    {
+        GlobalInstance::isNotSameUUID = true;
+        DataSave::getInstance()->setExitScene(0);
+        HttpDataSwap::init(NULL)->report("1");
+    }
 }
 
 //本地英雄加上ID兼容上一个版本
@@ -451,14 +458,8 @@ void LoadingScene::onFinish(int errcode)
 	}
 	if (isLoadLocal)
 	{
-		if (DataSave::getInstance()->getLocalUUID().compare(GlobalInstance::getInstance()->UUID()) != 0)
-		{
-			GlobalInstance::isNotSameUUID = true;
-			DataSave::getInstance()->setExitScene(0);
-			HttpDataSwap::init(NULL)->report("1");
-		}
+        loadLocalData();
 
-		loadLocalData();
 	}
 }
 

@@ -1,4 +1,4 @@
-﻿#import "JHKeychain.h"
+#import "JHKeychain.h"
 
 @implementation JHKeychain
 
