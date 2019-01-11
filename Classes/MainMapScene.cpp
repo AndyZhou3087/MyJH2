@@ -8,6 +8,7 @@
 #include "NewGuideLayer.h"
 #include "DataSave.h"
 #include "MyTransitionScene.h"
+#include "M1_5_BoxLayer.h"
 
 MainMapScene* g_MainMapScene = NULL;
 MainMapScene::MainMapScene()
@@ -59,6 +60,9 @@ bool MainMapScene::init()
 	cocos2d::ui::Widget* mapbg = (cocos2d::ui::Widget*)mapscroll->getChildByName("mapbg");
 	mapbg->setScale(0.8f);
 	int mapnamecount = mapbg->getChildrenCount();
+
+	cocos2d::ui::Widget* m1_5_box = (cocos2d::ui::Widget*)mapbg->getChildByName("m1-5")->getChildByName("box");
+	m1_5_box->addTouchEventListener(CC_CALLBACK_2(MainMapScene::onBoxclick, this));
 
 	std::map<std::string, std::vector<Node*>> map_taskicon;
 
@@ -232,6 +236,24 @@ void MainMapScene::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 		break;
 	default:
 		break;
+	}
+}
+
+void MainMapScene::onBoxclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	cocos2d::ui::Widget* clicknode = (cocos2d::ui::Widget*)pSender;
+	Node* selnode = (Node*)clicknode->getUserData();
+
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		std::string mapname = clicknode->getParent()->getName();
+		if (m_isDraging)
+			return;
+
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+
+		M1_5_BoxLayer* layer = M1_5_BoxLayer::create();
+		this->addChild(layer);
 	}
 }
 

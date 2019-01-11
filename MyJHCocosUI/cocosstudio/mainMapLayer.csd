@@ -342,6 +342,16 @@
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="MarkedSubImage" Path="text_zh_cn/m1-5.png" Plist="text_zh_cn.plist" />
                       </AbstractNodeData>
+                      <AbstractNodeData Name="box" ActionTag="2028108075" Tag="242" IconVisible="False" LeftMargin="54.8372" RightMargin="-142.8372" TopMargin="-24.1173" BottomMargin="-53.8827" TouchEnable="True" LeftEage="18" RightEage="18" TopEage="28" BottomEage="28" Scale9OriginX="18" Scale9OriginY="28" Scale9Width="52" Scale9Height="22" ctype="ImageViewObjectData">
+                        <Size X="88.0000" Y="78.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="98.8372" Y="-14.8827" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition />
+                        <PreSize X="0.0000" Y="0.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/m1-5_box.png" Plist="ui.plist" />
+                      </AbstractNodeData>
                     </Children>
                     <AnchorPoint />
                     <Position X="1898.1163" Y="1417.6334" />

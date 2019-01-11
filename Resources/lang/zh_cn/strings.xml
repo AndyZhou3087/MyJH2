@@ -389,5 +389,6 @@
 	<s name="tips_6">客栈里可招募的侠客品质由低到高依次为绿，蓝，紫，橙，红</s>
 	<s name="taskrew1text">奖励一：</s>	
 	<s name="taskrew2text">奖励二：</s>
-	<s name="resetdatatext">删除存档只会保留月卡，其他数据（包括元宝）将会清除，请慎重！</s>				
+	<s name="resetdatatext">删除存档只会保留月卡，其他数据（包括元宝）将会清除，请慎重！</s>
+	<s name="m1_5_desc">闯王兵败后留下的大批宝藏，藏于洞中，然寻宝者络绎不绝，宝藏被寻宝者所瓜分，击败洞中的寻宝者，可以获得宝物。</s>			
 </strings>

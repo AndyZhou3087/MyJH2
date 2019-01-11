@@ -977,6 +977,7 @@
           <Image Name="m002.png" />
           <Image Name="m003.png" />
           <Image Name="m004.png" />
+          <Image Name="m1-5_box.png" />
           <Image Name="main_achbtn.png" />
           <Image Name="main_addbtn.png" />
           <Image Name="main_btn_redpoint.png" />
@@ -1272,6 +1273,7 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="m1_5_BoxLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

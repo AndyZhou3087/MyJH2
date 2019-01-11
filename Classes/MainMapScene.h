@@ -32,6 +32,8 @@ private:
 	*****************************/
 	void onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
+	void onBoxclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
 	void updateTime(float dt);
 	void onFinish(int code);
 

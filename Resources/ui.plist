@@ -2999,7 +2999,7 @@
 			<key>ui/x016.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{3970,2183},{109,109}}</string>
+				<string>{{3970,2245},{109,109}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -3417,7 +3417,7 @@
 			<key>ui/dailytask_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{3970,2294},{109,109}}</string>
+				<string>{{3970,2356},{109,109}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -4737,7 +4737,7 @@
 			<key>ui/k001.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{3970,2405},{109,109}}</string>
+				<string>{{3970,2467},{109,109}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -4975,6 +4975,17 @@
 				<true />
 				<key>sourceSize</key>
 				<string>{107,47}</string>
+			</dict>
+			<key>ui/m1-5_box.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{4014,2155},{88,78}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{88,78}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
