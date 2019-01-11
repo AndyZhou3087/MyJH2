@@ -37,6 +37,7 @@ private:
 private:
 	Node* horse;
 	cocos2d::ui::LoadingBar* loadingbar;
+	bool ischanging;
 };
 #endif
 

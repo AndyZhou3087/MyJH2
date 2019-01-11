@@ -3,7 +3,7 @@
 #define _H_CONST_H_
 #include "cocos2d.h"
 
-#define ANDOIRJNICLSNAME "com/csfb/myjh/Utils"
+#define ANDOIRJNICLS "com/game/myjh"
 
 #define FONT_NAME "fonts/simhei.ttf"
 

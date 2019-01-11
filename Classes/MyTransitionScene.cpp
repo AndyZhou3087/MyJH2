@@ -8,7 +8,7 @@
 
 MyTransitionScene::MyTransitionScene()
 {
-
+	ischanging = false;
 }
 
 
@@ -88,6 +88,18 @@ bool MyTransitionScene::init(int type)
 
 	schedule(schedule_selector(MyTransitionScene::updateHorse));
 
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = [=](Touch *touch, Event *event)
+	{
+		return true;
+	};
+	listener->onTouchEnded = [=](Touch *touch, Event *event)
+	{
+		loadfinish(type);
+	};
+	listener->setSwallowTouches(true);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
 	return true;
 }
 
@@ -98,6 +110,18 @@ void MyTransitionScene::updateHorse(float dt)
 
 void MyTransitionScene::loadfinish(int type)
 {
+	if (ischanging)
+		return;
+
+	ischanging = true;
+
+	//unschedule(schedule_selector(MyTransitionScene::updateHorse));
+
+	loadingbar->stopAllActions();
+	MyProgressTo * to = MyProgressTo::create(0.2f, 100);
+	loadingbar->runAction(to);
+
+
 	if (type == TO_MAP)
 		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MainMapScene::createScene()));
 	else if (type == TO_MAIN)

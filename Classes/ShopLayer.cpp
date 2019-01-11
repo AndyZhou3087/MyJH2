@@ -158,7 +158,8 @@ void ShopLayer::onQQClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		JniMethodInfo methodInfo;
 		char p_str1[32] = { 0 };
 		sprintf(p_str1, "%s", GlobalInstance::qq.c_str());
-		if (JniHelper::getStaticMethodInfo(methodInfo, "com/csfb/myjh/AppActivity", "copyToClipboard", "(Ljava/lang/String;)V"))
+		std::string clsname = StringUtils::format("%s/AppActivity", ANDOIRJNICLS);
+		if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "copyToClipboard", "(Ljava/lang/String;)V"))
 		{
 			jstring str1 = methodInfo.env->NewStringUTF(p_str1);
 			methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1);
@@ -198,7 +199,8 @@ void ShopLayer::beginPay(int index)
 	sprintf(p_str1, "%s", "paycode.1");
 	char p_str2[32] = { 0 };
 	sprintf(p_str2, "%s", "paycode desc");
-	if (JniHelper::getStaticMethodInfo(methodInfo, "com/csfb/myjh/PayAction", "pay", "(Ljava/lang/String;Ljava/lang/String;I)V"))
+	std::string clsname = StringUtils::format("%s/PayAction", ANDOIRJNICLS);
+	if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "pay", "(Ljava/lang/String;Ljava/lang/String;I)V"))
 	{
 		jstring str1 = methodInfo.env->NewStringUTF(p_str1);
 		jstring str2 = methodInfo.env->NewStringUTF(p_str2);

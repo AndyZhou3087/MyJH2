@@ -575,7 +575,8 @@ std::string Hero::generateName()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)//android apk是压缩包无法通过fopen操作Asset文件，通过cocos的文件操作，需要读取整个文件，文件可能有1w行，所有改用java文件处理
 		std::string ret;
 		JniMethodInfo methodInfo;
-		if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "readAssetStringByLine", "(Ljava/lang/String;I)Ljava/lang/String;"))
+		std::string clsname = StringUtils::format("%s/Utils", ANDOIRJNICLS);
+		if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "readAssetStringByLine", "(Ljava/lang/String;I)Ljava/lang/String;"))
 		{
 			jstring para1 = methodInfo.env->NewStringUTF(heronamefile[i].c_str());
 			jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, para1, randindex[i]);

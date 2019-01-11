@@ -1,4 +1,4 @@
-package com.csfb.myjh;
+package com.game.myjh;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -8,12 +8,10 @@ import java.io.LineNumberReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.util.Enumeration;
+
 import java.util.Map;
 import java.util.UUID;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -21,12 +19,9 @@ import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.NetworkInfo.State;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
+
 import android.os.Build;
 import android.os.Environment;
-import android.util.Log;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlSerializer;
@@ -164,7 +159,7 @@ public class Utils {
         }
 		return "";
     }
-    
+
     public static String getPkgName()
     {
         return sContext.getPackageName();

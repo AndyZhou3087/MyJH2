@@ -2,7 +2,6 @@
 #include "LoadingScene.h"
 #include "MainScene.h"
 #include "SoundManager.h"
-#include "JsonEncrypt.h"
 
 USING_NS_CC;
 
@@ -82,7 +81,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
 	auto scene = LoadingScene::createScene(); 
-	//auto scene = JsonEncrypt::createScene();//¼ÓÃÜ
 
     // run
     director->runWithScene(scene);

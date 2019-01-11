@@ -756,16 +756,20 @@ void Quest::setAchieveTypeCount(int type, int count, std::string resid)
 		if (data->type == type && data->achid.compare(resid) == 0)
 		{
 			map_achieveTypeCount[type][resid] += count;
+			break;
+		}
+	}
 
+	for (unsigned int i = 0; i < GlobalInstance::vec_achievedata.size(); i++)
+	{
+		AchieveData* data = &GlobalInstance::vec_achievedata[i];
+		if (data->type == type && data->achid.compare(resid) == 0)
+		{
 			if (data->count <= map_achieveTypeCount[type][resid] && data->state == DAILY_UNFINISHED)
 			{
 				data->state = DAILY_FINISHED;
 
 				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_FINISHMSSION);
-			}
-			if (data->state == DAILY_FINISHED)
-			{
-				map_achieveTypeCount[type][resid] = data->count;
 			}
 		}
 	}

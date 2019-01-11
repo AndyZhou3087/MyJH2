@@ -1,4 +1,4 @@
-#include "LoadingScene.h"
+﻿#include "LoadingScene.h"
 #include "Resource.h"
 #include "MainScene.h"
 #include "DataSave.h"

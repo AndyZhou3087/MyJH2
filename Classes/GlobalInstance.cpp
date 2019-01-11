@@ -1,4 +1,4 @@
-#include "GlobalInstance.h"
+﻿#include "GlobalInstance.h"
 #include "DataSave.h"
 #include "Hero.h"
 #include "CommonFuncs.h"
@@ -133,14 +133,15 @@ std::string GlobalInstance::UUID()
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
-	
-	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "UUID", "()Ljava/lang/String;"))
+	std::string clsname = StringUtils::format("%s/Utils", ANDOIRJNICLS);
+	if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "UUID", "()Ljava/lang/String;"))
 	{
 		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
 		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
 	}
 	return ret;
 #endif
+
 }
 
 std::string GlobalInstance::getVersionCode()
@@ -152,7 +153,8 @@ std::string GlobalInstance::getVersionCode()
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
-	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getVersion", "()Ljava/lang/String;"))
+	std::string clsname = StringUtils::format("%s/Utils", ANDOIRJNICLS);
+	if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "getVersion", "()Ljava/lang/String;"))
 	{
 		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
 		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
@@ -170,7 +172,8 @@ std::string GlobalInstance::getPackageName()
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
-	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getPkgName", "()Ljava/lang/String;"))
+	std::string clsname = StringUtils::format("%s/Utils", ANDOIRJNICLS);
+	if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "getPkgName", "()Ljava/lang/String;"))
 	{
 		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
 		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
@@ -188,7 +191,8 @@ std::string GlobalInstance::getChannelId()
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
-	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getChannelID", "()Ljava/lang/String;"))
+	std::string clsname = StringUtils::format("%s/Utils", ANDOIRJNICLS);
+	if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "getChannelID", "()Ljava/lang/String;"))
 	{
 		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
 		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
@@ -2994,7 +2998,8 @@ std::string GlobalInstance::getUserDefaultXmlString(int type)
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
-	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getUserDefaultXmlString", "(I)Ljava/lang/String;"))
+	std::string clsname = StringUtils::format("%s/Utils", ANDOIRJNICLS);
+	if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "getUserDefaultXmlString", "(I)Ljava/lang/String;"))
 	{
 		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, type);
 		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
@@ -3043,14 +3048,14 @@ void GlobalInstance::upgradeApp(std::string url)
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
-	if (JniHelper::getStaticMethodInfo(methodInfo, ANDOIRJNICLSNAME, "getUserDefaultXmlString", "(I)Ljava/lang/String;"))
+	std::string clsname = StringUtils::format("%s/AppActivity", ANDOIRJNICLS);
+	if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "upgradeApk", "(Ljava/lang/String;)V"))
 	{
-		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, type);
-		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
+		jstring str1 = methodInfo.env->NewStringUTF(url.c_str());
+		methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1);
 	}
-	return ret;
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	return openAppUri(url.c_str());
+	openAppUri(url.c_str());
 #endif
 }
 

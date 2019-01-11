@@ -1,4 +1,4 @@
-package com.csfb.myjh;
+package com.game.myjh;
 
 public class JNI {
 
