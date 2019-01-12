@@ -5,6 +5,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "HttpDataSwap.h"
+#include "MoreBtnNode.h"
 
 USING_NS_CC;
 //主界面按钮
@@ -16,7 +17,7 @@ typedef enum
 	R003BTN,//玄铁按钮
 	R004BTN,//铁矿按钮
 	R005BTN,//木材按钮
-	SETBTN,//设置按钮
+	MOREBTN,//更多按钮
 	ACHBTN,//成就按钮
 	RANKBTN,//排行榜按钮
 	MAILBTN,//邮箱按钮
@@ -73,6 +74,7 @@ private:
 	cocos2d::ui::Widget* tgiftbtn[3];
 	cocos2d::ui::Text* tgiftname[3];
 	bool isGetVipData;
+	MoreBtnNode* morebtnnode;
 };
 extern MainMenuLayer* g_MainMenuLayer;
 #endif

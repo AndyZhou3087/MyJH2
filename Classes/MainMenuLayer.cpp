@@ -96,7 +96,7 @@ bool MainMenuLayer::init()
 			tgiftname[i - TIMEGIFTBTN_0] = (cocos2d::ui::Text*)clickwidget->getChildByName("name");
 		}
 
-		if (i >= SETBTN && i <= SHOPBTN)
+		if (i >= MOREBTN && i <= SHOPBTN)
 		{
 			cocos2d::ui::ImageView* textimg =  (cocos2d::ui::ImageView*)clickwidget->getChildByName("text");
 			std::string textname = StringUtils::format("main_%s_text", name.c_str());
@@ -132,22 +132,10 @@ bool MainMenuLayer::init()
 	head->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 	head->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
 
-	//ClippingNode* m_clippingNode = ClippingNode::create();
-	//m_clippingNode->setInverted(false);//设置底板可见
-	//m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
-	//csbnode->addChild(m_clippingNode, 1);
-	//m_clippingNode->setAnchorPoint(Vec2(0.5, 1));
-	//m_clippingNode->setPosition(Vec2(headimgbox->getPositionX(), headimgbox->getPositionY() + 80));
-	//std::string str = StringUtils::format("images/cardh_%d_0.png", DataSave::getInstance()->getHeadId());
-	//head = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::LOCAL);
-	//head->setAnchorPoint(Vec2(0.5, 1));
-	//head->setPositionY(0);
-	//m_clippingNode->addChild(head);
-	//Node* stencil = Node::create();
-	//Sprite* cnode = Sprite::createWithSpriteFrameName("ui/headclip.png");
-	//cnode->setAnchorPoint(Vec2(0.5, 1));
-	//stencil->addChild(cnode);
-	//m_clippingNode->setStencil(stencil);
+	morebtnnode = MoreBtnNode::create();
+	morebtnnode->setPosition(Vec2(45, 50));
+	this->addChild(morebtnnode);
+	morebtnnode->setVisible(false);
 
 	updateUI(0);
 	this->schedule(schedule_selector(MainMenuLayer::updateUI), 1.0f);
@@ -155,6 +143,19 @@ bool MainMenuLayer::init()
 	this->scheduleOnce(schedule_selector(MainMenuLayer::delayGetServerData), 1.2f);
 
 	this->scheduleOnce(schedule_selector(MainMenuLayer::delayShowNewerGuide), 1.1f);
+
+
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = [=](Touch *touch, Event *event)
+	{
+		morebtnnode->runAction(Sequence::create(ScaleTo::create(0.2f, 0), Hide::create(), NULL));
+		cocos2d::ui::Button* morebtn = (cocos2d::ui::Button*)csbnode->getChildByName("morebtn");
+		morebtn->setBright(morebtnnode->isVisible());
+		return true;
+	};
+	listener->setSwallowTouches(false);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
     return true;
 }
 
@@ -376,15 +377,20 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			this->addChild(malayer, 0, "MaterialDescLayer");
 		}
 			break;
-		case SETBTN:
+		case MOREBTN:
 		{
-			SettingLayer* layer = SettingLayer::create();
-			g_mainScene->addChild(layer, 0, "settinglayer");
-			AnimationEffect::openAniEffect((Layer*)layer);
+			cocos2d::ui::Button* morebtn = (cocos2d::ui::Button*)pSender;
+
+			if (morebtnnode->isVisible())
+				morebtnnode->runAction(Sequence::create(ScaleTo::create(0.2f, 0), Hide::create(), NULL));
+			else
+				morebtnnode->runAction(Sequence::create(Show::create(), ScaleTo::create(0.2f, 1), NULL));
+
+			morebtn->setBright(morebtnnode->isVisible());
 		}
 			break;
 		case ACHBTN:
-		{
+		{ 
 			AchieveLayer* layer = AchieveLayer::create();
 			g_mainScene->addChild(layer, 0, "achieveLayer");
 			AnimationEffect::openAniEffect((Layer*)layer);

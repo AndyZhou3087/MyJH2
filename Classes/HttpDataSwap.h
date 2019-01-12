@@ -52,6 +52,10 @@ public:
 
 	void getRewardMatch();
 
+	void getLoginData();
+
+	void getLoginAward();
+
 private:
 	HTTPDataDelegateProtocol *m_pDelegateProtocol;//接口对象
 	HttpDataSwap();
@@ -95,6 +99,10 @@ private:
 	void httpGetMyMatchRankingCB(std::string retdata, int code, std::string extdata);
 
 	void httpGetMyRewardCB(std::string retdata, int code, std::string extdata);
+
+	void httpGetLoginDataCB(std::string retdata, int code, std::string extdata);
+
+	void httpGetLoginAwardCB(std::string retdata, int code, std::string extdata);
 };
 
 class HTTPDataDelegateProtocol

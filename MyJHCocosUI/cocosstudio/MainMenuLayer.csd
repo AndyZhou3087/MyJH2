@@ -203,30 +203,30 @@
             <PreSize X="0.2028" Y="0.1141" />
             <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="setbtn" ActionTag="1445093509" Tag="63" IconVisible="False" LeftMargin="4.3420" RightMargin="633.6580" TopMargin="1186.5863" BottomMargin="11.4137" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="52" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-            <Size X="82.0000" Y="82.0000" />
+          <AbstractNodeData Name="morebtn" ActionTag="601813897" Tag="358" IconVisible="False" LeftMargin="5.3400" RightMargin="634.6600" TopMargin="1187.5900" BottomMargin="12.4100" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="50" Scale9Height="58" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="80.0000" Y="80.0000" />
             <Children>
-              <AbstractNodeData Name="text" ActionTag="1291957061" Tag="88" IconVisible="False" LeftMargin="13.0000" RightMargin="13.0000" TopMargin="51.0000" BottomMargin="-1.0000" LeftEage="18" RightEage="18" TopEage="10" BottomEage="10" Scale9OriginX="18" Scale9OriginY="10" Scale9Width="20" Scale9Height="12" ctype="ImageViewObjectData">
-                <Size X="56.0000" Y="32.0000" />
+              <AbstractNodeData Name="text" ActionTag="-915484936" Tag="359" IconVisible="False" LeftMargin="10.5000" RightMargin="8.5000" TopMargin="45.5000" BottomMargin="-4.5000" LeftEage="18" RightEage="18" TopEage="10" BottomEage="10" Scale9OriginX="18" Scale9OriginY="10" Scale9Width="25" Scale9Height="19" ctype="ImageViewObjectData">
+                <Size X="61.0000" Y="39.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="41.0000" Y="15.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.1829" />
-                <PreSize X="0.6829" Y="0.3902" />
-                <FileData Type="MarkedSubImage" Path="text_zh_cn/main_setbtn_text.png" Plist="text_zh_cn.plist" />
+                <PrePosition X="0.5125" Y="0.1875" />
+                <PreSize X="0.7625" Y="0.4875" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/main_morebtn_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="45.3420" Y="52.4137" />
+            <Position X="45.3400" Y="52.4100" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0630" Y="0.0409" />
-            <PreSize X="0.1139" Y="0.0641" />
+            <PreSize X="0.1111" Y="0.0625" />
             <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="MarkedSubImage" Path="ui/main_setbtn.png" Plist="ui.plist" />
-            <PressedFileData Type="MarkedSubImage" Path="ui/main_setbtn.png" Plist="ui.plist" />
-            <NormalFileData Type="MarkedSubImage" Path="ui/main_setbtn.png" Plist="ui.plist" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/morebtn_s.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/morebtn_n.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/morebtn_n.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
@@ -606,7 +606,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="timegiftbtn_1" ActionTag="756839762" Tag="241" IconVisible="False" LeftMargin="616.0237" RightMargin="21.9763" TopMargin="236.0839" BottomMargin="961.9161" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="52" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="timegiftbtn_1" ActionTag="756839762" Tag="241" IconVisible="False" LeftMargin="616.0237" RightMargin="21.9763" TopMargin="236.0840" BottomMargin="961.9161" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="52" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="82.0000" Y="82.0000" />
             <Children>
               <AbstractNodeData Name="box" ActionTag="-136681016" Tag="242" IconVisible="False" LeftMargin="-5.5000" RightMargin="-15.5000" TopMargin="64.0001" BottomMargin="-8.0001" LeftEage="18" RightEage="18" TopEage="10" BottomEage="10" Scale9OriginX="18" Scale9OriginY="10" Scale9Width="67" Scale9Height="6" ctype="ImageViewObjectData">

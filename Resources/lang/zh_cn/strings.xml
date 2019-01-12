@@ -391,4 +391,10 @@
 	<s name="taskrew2text">奖励二：</s>
 	<s name="resetdatatext">删除存档只会保留月卡，其他数据（包括元宝）将会清除，请慎重！</s>
 	<s name="m1_5_desc">闯王兵败后留下的大批宝藏，藏于洞中，然寻宝者络绎不绝，宝藏被寻宝者所瓜分，击败洞中的寻宝者，可以获得宝物。</s>			
+	<s name="loginrewarddesc">连续领取七天后，还可获得神秘大礼！</s>
+	<s name="loginbox1desc">少侠，昨日签到奖励已经领取过了！</s>
+	<s name="loginbox2desc">少侠，这里是一份薄礼，略表心意，请务必收下！</s>
+	<s name="loginbox3desc">少侠，请明日再来！</s>
+	<s name="loginbox4desc">大侠坚毅之心，日月皆知，天地可鉴，现大侠每天都可获得神秘机缘之礼，切莫错过！</s>	
+	<s name="loginbox5desc">少侠，今日签到奖励已领，请明日再来！</s>
 </strings>

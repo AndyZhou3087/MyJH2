@@ -636,6 +636,52 @@ void HttpDataSwap::getRewardMatch()
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMyRewardCB, this));
 }
 
+void HttpDataSwap::getLoginData()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_getcheckinstatus?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetLoginDataCB, this));
+}
+
+void HttpDataSwap::getLoginAward()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_getcheckinaward?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetLoginAwardCB, this));
+}
+
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
@@ -1304,6 +1350,63 @@ void HttpDataSwap::httpSendMatchResultCB(std::string retdata, int code, std::str
 		}
 	}
 
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpGetLoginDataCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+			if (doc.HasMember("login_days"))
+			{
+				GlobalInstance::loginData.logindays = atoi(getJsonValueStr(doc["login_days"]).c_str());
+			}
+			if (doc.HasMember("hasaward"))
+			{
+				GlobalInstance::loginData.isGeted = atoi(getJsonValueStr(doc["hasaward"]).c_str()) == 1 ? false : true;
+			}
+			if (doc.HasMember("award"))
+			{
+				GlobalInstance::loginData.rwds = doc["award"].GetString();
+			}
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+void HttpDataSwap::httpGetLoginAwardCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
 	if (m_pDelegateProtocol != NULL)
 	{
 		m_pDelegateProtocol->onFinish(ret);

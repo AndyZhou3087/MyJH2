@@ -129,6 +129,13 @@ bool ErrorHintLayer::init(int forwhere)
 		std::string idstr = StringUtils::format("ID:%s", GlobalInstance::getInstance()->getMyID().c_str());
 		idtext->setString(idstr);
 	}
+	else if (forwhere == 5)
+	{
+		text->setString(ResourceLang::map_lang["networkerror"]);
+		text_1->setVisible(false);
+		text_2->setVisible(false);
+		actiontextstr = "okbtn_text";
+	}
 
 	if (forwhere == 1 || forwhere == 2)
 	{
@@ -177,6 +184,10 @@ void ErrorHintLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		{
 			AnimationEffect::closeAniEffect(this);
 			GlobalInstance::isCheat = false;
+		}
+		else if (m_forwhere == 5)
+		{
+			AnimationEffect::closeAniEffect(this);
 		}
 	}
 }

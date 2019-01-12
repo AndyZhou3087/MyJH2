@@ -50,7 +50,7 @@ bool LoginRewardLayer::init()
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 
-	int logindays = GlobalInstance::loginDays;
+	int logindays = GlobalInstance::loginData.logindays;
 
 	if (logindays > 8)
 		logindays = 8;
@@ -73,7 +73,7 @@ bool LoginRewardLayer::init()
 			cocos2d::ui::ImageView* getbtntext = (cocos2d::ui::ImageView*)getbtn->getChildByName("text");
 			getbtntext->ignoreContentAdaptWithSize(true);
 
-			if (i == logindays - 1 && !GlobalInstance::isGetLoginRwd)
+			if (i == logindays - 1 && !GlobalInstance::loginData.isGeted)
 			{
 				getbtn->addTouchEventListener(CC_CALLBACK_2(LoginRewardLayer::onBtnClick, this));
 			}

@@ -48,6 +48,7 @@ void SoundManager::loadSounds()
 	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_STRENTHFAIL, ResourcePath::makeSoundPath("strenthfail.mp3")));
 	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_BREAKUPSUCC, ResourcePath::makeSoundPath("breakupsucc.mp3")));
 	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_RECRUITSUCC, ResourcePath::makeSoundPath("recruitsucc.mp3")));
+	_soundIds.insert(SoundIdMapType::value_type((int)SOUND_ID_GETLOGINAWARD, ResourcePath::makeSoundPath("getloginaward.mp3")));
 	
 	
 	//≤Â»Î±≥æ∞“Ù¿÷¡–±Ì

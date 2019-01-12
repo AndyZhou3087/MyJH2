@@ -455,6 +455,10 @@
       <FilePathData Path="text_zh_cn/loginrewardtitle.png" />
       <FilePathData Path="text_zh_cn/msggeting_text.png" />
       <FilePathData Path="ui/m1-5_box.png" />
+      <FilePathData Path="ui/morebtn_n.png" />
+      <FilePathData Path="ui/morebtn_s.png" />
+      <FilePathData Path="ui/loginbtn.png" />
+      <FilePathData Path="ui/more_bg.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

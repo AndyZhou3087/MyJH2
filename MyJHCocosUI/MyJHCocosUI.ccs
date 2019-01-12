@@ -9,7 +9,6 @@
           <TTF Name="simhei.ttf" />
         </Folder>
         <Folder Name="images">
-          <Image Name="1.jpg" />
           <Image Name="brownbox.png" />
           <Image Name="cardh_0_0.png" />
           <Image Name="cardh_0_1.png" />
@@ -61,6 +60,12 @@
           <Image Name="loadingbar.png" />
           <Image Name="loadingpoint.png" />
           <Image Name="loadingtext.png" />
+          <Image Name="loginbg.png" />
+          <Image Name="loginbox1.png" />
+          <Image Name="loginbox2.png" />
+          <Image Name="loginbox3.png" />
+          <Image Name="logintable.png" />
+          <Image Name="loginwordbox.png" />
           <Image Name="mapbg.jpg" />
           <Image Name="mapblockbottom.png" />
           <Image Name="mapblocktop.png" />
@@ -100,10 +105,10 @@
           <Image Name="smallbg.png" />
           <Image Name="tansitiohorse.png" />
           <Image Name="tansitionimg1.jpg" />
-          <Image Name="tansitionimg2.jpg" />
           <Image Name="tansitionprogressbar.png" />
           <Image Name="tansitionprogressbg.png" />
           <Image Name="wintitle.png" />
+          <Image Name="xiaoshimei.png" />
         </Folder>
         <Folder Name="mainimg">
           <Image Name="main_01_n.png" />
@@ -485,6 +490,7 @@
           <Image Name="innroomtitle.png" />
           <Image Name="isrecruited_text.png" />
           <Image Name="loginrewardtitle.png" />
+          <Image Name="loginrewardtitlev2.png" />
           <Image Name="lvupbtn_text.png" />
           <Image Name="m0-1.png" />
           <Image Name="m1-1.png" />
@@ -546,7 +552,9 @@
           <Image Name="main_09_t.png" />
           <Image Name="main_10_t.png" />
           <Image Name="main_achbtn_text.png" />
+          <Image Name="main_loginbtn_text.png" />
           <Image Name="main_mailbtn_text.png" />
+          <Image Name="main_morebtn_text.png" />
           <Image Name="main_rankbtn_text.png" />
           <Image Name="main_setbtn_text.png" />
           <Image Name="main_shopbtn_text.png" />
@@ -972,6 +980,7 @@
           <Image Name="herotag_0.png" />
           <Image Name="herotag_1.png" />
           <Image Name="k001.png" />
+          <Image Name="loginbtn.png" />
           <Image Name="loginrewarditem.png" />
           <Image Name="m001.png" />
           <Image Name="m002.png" />
@@ -1001,6 +1010,9 @@
           <Image Name="matchS.png" />
           <Image Name="matchV.png" />
           <Image Name="messageicon.png" />
+          <Image Name="more_bg.png" />
+          <Image Name="morebtn_n.png" />
+          <Image Name="morebtn_s.png" />
           <Image Name="myheroitem.png" />
           <Image Name="ninegrid.png" />
           <Image Name="normal9bg.png" />
@@ -1211,7 +1223,9 @@
         <Image Name="loadingclicktext.png" />
         <Project Name="LoadingLayer.csd" Type="Layer" />
         <Project Name="loginRewardLayer.csd" Type="Layer" />
+        <Project Name="loginRewardV2Layer.csd" Type="Layer" />
         <Image Name="logo.png" />
+        <Project Name="m1_5_BoxLayer.csd" Type="Layer" />
         <Project Name="MainLayer.csd" Type="Layer" />
         <Project Name="mainMapLayer.csd" Type="Layer" />
         <Project Name="MainMenuLayer.csd" Type="Layer" />
@@ -1234,6 +1248,7 @@
         <Project Name="messageDescLayer.csd" Type="Layer" />
         <Project Name="messageLayer.csd" Type="Layer" />
         <Project Name="messageNode.csd" Type="Node" />
+        <Project Name="morebtnNode.csd" Type="Node" />
         <Project Name="myHeroNode.csd" Type="Node" />
         <Project Name="newPopLayer.csd" Type="Layer" />
         <Project Name="npcgiveLayer.csd" Type="Layer" />
@@ -1273,7 +1288,6 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="m1_5_BoxLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

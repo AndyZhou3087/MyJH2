@@ -661,6 +661,10 @@ void NewGuideLayer::showWord(std::string wordstr)
 		{
 			guide_people->loadTexture("images/NPC3.png", cocos2d::ui::Widget::TextureResType::LOCAL);
 		}
+		else
+		{
+			guide_people->loadTexture("images/xiaoshimei.png", cocos2d::ui::Widget::TextureResType::LOCAL);
+		}
 
 		for (int i = 0; i < 2; i++)
 		{

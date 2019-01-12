@@ -358,6 +358,12 @@ typedef struct
 	std::vector<MyRankData> vec_rankData;
 }MyRankInfo;
 
+typedef struct
+{
+	int logindays;
+	bool isGeted;
+	std::string rwds;
+}LoginData;
 
 class GlobalInstance
 {
@@ -769,10 +775,9 @@ public:
 
 	static bool isNotSameUUID;
 
-	static int loginDays;
-	static int isGetLoginRwd;
-
 	static std::string upgradeurl;
+
+	static LoginData loginData;
 
 private:
 	static int refreshHeroTime;

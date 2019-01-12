@@ -101,10 +101,9 @@ bool GlobalInstance::isResetData = false;
 
 bool GlobalInstance::isNotSameUUID = false;
 
-int GlobalInstance::loginDays = 0;
-int GlobalInstance::isGetLoginRwd = true;
-
 std::string GlobalInstance::upgradeurl;
+
+LoginData GlobalInstance::loginData;
 
 GlobalInstance::GlobalInstance()
 {
@@ -149,7 +148,7 @@ std::string GlobalInstance::getVersionCode()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getvercode();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "1.0.2";
+	return "1.0.6";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
@@ -2989,6 +2988,9 @@ void GlobalInstance::resetData()
 	isCheat = false;
 
 	upgradeurl = "";
+
+	loginData.logindays = 0;
+	loginData.isGeted = false;
 }
 
 std::string GlobalInstance::getUserDefaultXmlString(int type)
