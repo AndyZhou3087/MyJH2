@@ -459,6 +459,7 @@
       <FilePathData Path="ui/morebtn_s.png" />
       <FilePathData Path="ui/loginbtn.png" />
       <FilePathData Path="ui/more_bg.png" />
+      <FilePathData Path="ui/loginrewardclose.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

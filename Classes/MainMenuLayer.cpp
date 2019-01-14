@@ -133,7 +133,7 @@ bool MainMenuLayer::init()
 	head->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
 
 	morebtnnode = MoreBtnNode::create();
-	morebtnnode->setPosition(Vec2(45, 50));
+	morebtnnode->setPosition(Vec2(45, 90));
 	this->addChild(morebtnnode);
 	morebtnnode->setVisible(false);
 

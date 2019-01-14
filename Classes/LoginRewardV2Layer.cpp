@@ -56,6 +56,10 @@ bool LoginRewardV2Layer::init()
 
 	wordtext = (cocos2d::ui::Text*)csbnode->getChildByName("wordtext");
 
+	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
+	closebtn->setTag(1001);
+	closebtn->addTouchEventListener(CC_CALLBACK_2(LoginRewardV2Layer::onBtnClick, this));
+
 	for (int i = 1; i <= 3; i++)
 	{
 		std::string name = StringUtils::format("loginbox%d", i);
@@ -128,6 +132,10 @@ void LoginRewardV2Layer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 					}
 				}
 			}
+		}
+		else if (tag == 1001)
+		{
+			removeSelf();
 		}
 
 	}

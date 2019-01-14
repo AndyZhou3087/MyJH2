@@ -176,7 +176,7 @@ void LoginGetLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		{
 			LoginRewardV2Layer * parent = (LoginRewardV2Layer *)this->getParent();
 			parent->changeLogin();
-			this->scheduleOnce(schedule_selector(LoginGetLayer::removeSelf), 0.8f);
+			this->scheduleOnce(schedule_selector(LoginGetLayer::removeSelf), 0.5f);
 		}
 	}
 }

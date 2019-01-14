@@ -64,6 +64,7 @@
           <Image Name="loginbox1.png" />
           <Image Name="loginbox2.png" />
           <Image Name="loginbox3.png" />
+          <Image Name="loginrewardperson.png" />
           <Image Name="logintable.png" />
           <Image Name="loginwordbox.png" />
           <Image Name="mapbg.jpg" />
@@ -981,6 +982,7 @@
           <Image Name="herotag_1.png" />
           <Image Name="k001.png" />
           <Image Name="loginbtn.png" />
+          <Image Name="loginrewardclose.png" />
           <Image Name="loginrewarditem.png" />
           <Image Name="m001.png" />
           <Image Name="m002.png" />

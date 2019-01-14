@@ -39,15 +39,15 @@
             <FileData Type="Normal" Path="images/loginwordbox.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="hero" ActionTag="603473821" Tag="450" IconVisible="False" LeftMargin="-172.4753" RightMargin="286.4753" TopMargin="215.2892" BottomMargin="-61.2892" FlipX="True" ctype="SpriteObjectData">
-            <Size X="606.0000" Y="1126.0000" />
+          <AbstractNodeData Name="hero" ActionTag="603473821" Tag="450" IconVisible="False" LeftMargin="5.8608" RightMargin="328.1392" TopMargin="249.3810" BottomMargin="438.6190" ctype="SpriteObjectData">
+            <Size X="386.0000" Y="592.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="130.5247" Y="501.7108" />
+            <Position X="198.8608" Y="734.6190" />
             <Scale ScaleX="0.9000" ScaleY="0.9000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1813" Y="0.3920" />
-            <PreSize X="0.8417" Y="0.8797" />
-            <FileData Type="Normal" Path="images/hfull_4_0.png" Plist="" />
+            <PrePosition X="0.2762" Y="0.5739" />
+            <PreSize X="0.5361" Y="0.4625" />
+            <FileData Type="Normal" Path="images/loginrewardperson.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="logintable" ActionTag="1278023478" Tag="451" IconVisible="False" LeftMargin="0.0003" RightMargin="-0.0003" TopMargin="756.5000" BottomMargin="246.5000" ctype="SpriteObjectData">
@@ -114,6 +114,21 @@
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="closebtn" ActionTag="-385608877" Tag="111" IconVisible="False" LeftMargin="637.0000" RightMargin="37.0000" TopMargin="57.0000" BottomMargin="1177.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="24" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="46.0000" Y="46.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="660.0000" Y="1200.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9167" Y="0.9375" />
+            <PreSize X="0.0639" Y="0.0359" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/loginrewardclose.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/loginrewardclose.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/loginrewardclose.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>
