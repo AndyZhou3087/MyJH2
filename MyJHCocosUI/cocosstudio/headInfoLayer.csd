@@ -123,14 +123,14 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_4" ActionTag="-1969773757" Tag="42" IconVisible="False" LeftMargin="260.9531" RightMargin="262.0469" TopMargin="757.2393" BottomMargin="492.7607" FontSize="26" LabelText="拥有银两：10000" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="197.0000" Y="30.0000" />
+          <AbstractNodeData Name="attrtext_4" ActionTag="-1969773757" Tag="42" IconVisible="False" LeftMargin="260.9531" RightMargin="301.0469" TopMargin="757.2393" BottomMargin="492.7607" FontSize="26" LabelText="拥有银两：50" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="158.0000" Y="30.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="260.9531" Y="507.7607" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.3624" Y="0.3967" />
-            <PreSize X="0.2736" Y="0.0234" />
+            <PreSize X="0.2194" Y="0.0234" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
@@ -146,6 +146,22 @@
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="renationbtn" ActionTag="-939643672" Tag="158" IconVisible="False" LeftMargin="444.3468" RightMargin="147.6532" TopMargin="752.3467" BottomMargin="493.6534" TouchEnable="True" FontSize="20" ButtonText="江湖知己" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="98" Scale9Height="12" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="128.0000" Y="34.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="508.3468" Y="510.6534" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.7060" Y="0.3989" />
+            <PreSize X="0.1778" Y="0.0266" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <TextColor A="255" R="47" G="37" B="25" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/renationbtn.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/renationbtn.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/renationbtn.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

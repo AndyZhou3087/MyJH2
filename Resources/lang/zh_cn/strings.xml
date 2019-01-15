@@ -301,7 +301,7 @@
 	<s name="npcrelation_0">无关系</s>	
 	<s name="npcrelation_1">师徒</s>	
 	<s name="npcrelation_2">好友</s>	
-	<s name="npcrelation_3">配偶</s>
+	<s name="npcrelation_3">结亲</s>
 	<s name="npcfriendlytext">好感度：</s>
 	<s name="npcrelationtext">关系：</s>
 	<s name="npcrelationfail">咱俩关系还不太熟，不要走这么近。</s>
@@ -397,4 +397,7 @@
 	<s name="loginbox3desc">少侠，请明日再来！</s>
 	<s name="loginbox4desc">大侠坚毅之心，日月皆知，天地可鉴，现大侠每天都可获得神秘机缘之礼，切莫错过！</s>	
 	<s name="loginbox5desc">少侠，今日签到奖励已领，请明日再来！</s>
+	<s name="renationtname">名称     位置     关系</s>
+	<s name="totalattrtitle">总增加属性</s>
+	<s name="renationhintdesc">左右滑动翻页查看更多</s>	
 </strings>

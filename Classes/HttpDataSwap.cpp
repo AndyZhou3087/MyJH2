@@ -498,7 +498,7 @@ void HttpDataSwap::postMyMatchHeros()
 			}
 		}
 		if (ralation == NPC_COUPEL && it->second.relation.size() == 2)//关系数值1，2，3，(1,2),(1,3)
-			ralation = 5;
+			ralation = 6;
 		if (ralation > 0)
 		{
 			std::string fonestr = StringUtils::format("%s-%d;", nid.substr(1).c_str(), ralation);

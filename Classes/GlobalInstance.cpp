@@ -2046,6 +2046,11 @@ void GlobalInstance::parsePairFriendly(std::string fstr)
 				}
 				else if (ralation == NPC_COUPEL + 2)
 				{
+					s_f.relation.push_back(2);
+					s_f.relation.push_back(3);
+				}
+				else if (ralation == NPC_COUPEL + 3)
+				{
 					s_f.relation.push_back(1);
 					s_f.relation.push_back(2);
 				}

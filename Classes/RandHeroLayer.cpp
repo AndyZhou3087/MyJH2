@@ -434,6 +434,10 @@ void RandHeroLayer::create3RandHero(int tool)
 				randhero->setPotential(3);
 			}
 		}
+		else
+		{
+			
+		}
 		GlobalInstance::vec_rand3Heros.push_back(randhero);
 	}
 	

@@ -7,6 +7,7 @@
 #include "DataSave.h"
 #include "ChangeHeadLayer.h"
 #include "SoundManager.h"
+#include "RenationLayer.h"
 
 USING_NS_CC;
 
@@ -145,6 +146,10 @@ bool HeadInfoLayer::init()
 	head->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 	head->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
 
+	cocos2d::ui::Button* renationbtn = (cocos2d::ui::Button*)csbnode->getChildByName("renationbtn");
+	renationbtn->addTouchEventListener(CC_CALLBACK_2(HeadInfoLayer::onBtnClick, this));
+	renationbtn->setTag(2);
+
 	//ClippingNode* m_clippingNode = ClippingNode::create();
 	//m_clippingNode->setInverted(false);//设置底板可见
 	//m_clippingNode->setAlphaThreshold(0.5f);//设置透明度Alpha值为0
@@ -184,7 +189,7 @@ void HeadInfoLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 {
 	Node* node = (Node*)pSender;
 	int tag = node->getTag();
-	if (tag == 0)
+	if (tag == 0 || tag == 2)
 	{
 		CommonFuncs::BtnAction(pSender, type);
 	}
@@ -201,6 +206,13 @@ void HeadInfoLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			ChangeHeadLayer* layer = ChangeHeadLayer::create();
 			this->addChild(layer);
 			AnimationEffect::openAniEffect((Layer*)layer);
+		}
+			break;
+		case 2:
+		{
+			RenationLayer* layer = RenationLayer::create();
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
 		}
 			break;
 		default:

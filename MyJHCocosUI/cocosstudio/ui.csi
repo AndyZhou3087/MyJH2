@@ -460,6 +460,10 @@
       <FilePathData Path="ui/loginbtn.png" />
       <FilePathData Path="ui/more_bg.png" />
       <FilePathData Path="ui/loginrewardclose.png" />
+      <FilePathData Path="ui/renationbtn.png" />
+      <FilePathData Path="ui/renationclosebtn.png" />
+      <FilePathData Path="ui/renationitem.png" />
+      <FilePathData Path="ui/renationitem1.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

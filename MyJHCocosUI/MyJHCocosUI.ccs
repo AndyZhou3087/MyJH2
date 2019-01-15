@@ -101,6 +101,7 @@
           <Image Name="n028.png" />
           <Image Name="newpopbg.png" />
           <Image Name="poptitletie.png" />
+          <Image Name="renationbg.png" />
           <Image Name="selectequipbg.png" />
           <Image Name="shopbg.jpg" />
           <Image Name="smallbg.png" />
@@ -625,6 +626,7 @@
           <Image Name="recruitbtn_text.png" />
           <Image Name="refreshbtn_text.png" />
           <Image Name="refusetext.png" />
+          <Image Name="renatitontilte.png" />
           <Image Name="replacebtn_text.png" />
           <Image Name="resitemlv_text.png" />
           <Image Name="retry_text.png" />
@@ -1054,6 +1056,10 @@
           <Image Name="rank_1.png" />
           <Image Name="rank_2.png" />
           <Image Name="rank_3.png" />
+          <Image Name="renationbtn.png" />
+          <Image Name="renationclosebtn.png" />
+          <Image Name="renationitem.png" />
+          <Image Name="renationitem1.png" />
           <Image Name="resaddbtn.png" />
           <Image Name="resbox.png" />
           <Image Name="resbox_qu0.png" />
@@ -1258,6 +1264,8 @@
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
+        <Project Name="renationitemNode.csd" Type="Node" />
+        <Project Name="renationLayer.csd" Type="Layer" />
         <Project Name="resDescLayer.csd" Type="Scene" />
         <Project Name="rewardLayer.csd" Type="Layer" />
         <Project Name="selectEquipLayer.csd" Type="Scene" />
