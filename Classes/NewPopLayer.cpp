@@ -159,6 +159,7 @@ bool NewPopLayer::init(int unlockchapter)
 			{
 				okbtn->setPositionX(230);
 				cancelbtn->setVisible(true);
+				cancelbtn->setTag(-1000);
 				cancelbtn->setPositionX(480);
 			}
 		}
@@ -182,27 +183,35 @@ void NewPopLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		Node* node = (Node*)pSender;
-		int subtype = GlobalInstance::vec_notice[0].subtype;
+
 		if (node->getTag() < 0)//公告类型
 		{
-			if (subtype == 0)//纯公告
+			int subtype = GlobalInstance::vec_notice[0].subtype;
+
+			if (node->getTag() == -1)
 			{
-				GlobalInstance::vec_notice[0].status = 1;
-				HttpDataSwap::init(NULL)->updateMessageStatus(GlobalInstance::vec_notice[0].id, 1);
-				AnimationEffect::closeAniEffect((Layer*)this);
+				if (subtype == 0)//纯公告
+				{
+					GlobalInstance::vec_notice[0].status = 1;
+					HttpDataSwap::init(NULL)->updateMessageStatus(GlobalInstance::vec_notice[0].id, 1);
+					AnimationEffect::closeAniEffect((Layer*)this);
+				}
+				else if (subtype == 1 || subtype == 2)//更新
+				{
+					GlobalInstance::getInstance()->upgradeApp(GlobalInstance::upgradeurl);
+				}
 			}
-			else if(subtype == 1 || subtype == 2)//更新
+			else
 			{
-				GlobalInstance::getInstance()->upgradeApp(GlobalInstance::upgradeurl);
+				if (subtype == 2)
+				{
+					GlobalInstance::vec_notice[0].status = 1;
+					HttpDataSwap::init(NULL)->updateMessageStatus(GlobalInstance::vec_notice[0].id, 1);
+				}
 			}
 		}
 		else
 		{
-			if (subtype == 2)
-			{
-				GlobalInstance::vec_notice[0].status = 1;
-				HttpDataSwap::init(NULL)->updateMessageStatus(GlobalInstance::vec_notice[0].id, 1);
-			}
 			AnimationEffect::closeAniEffect((Layer*)this);
 		}
 	}
