@@ -169,7 +169,8 @@ void RenationLayer::createPage()
 				cocos2d::ui::Text* name = (cocos2d::ui::Text*)itemnode->getChildByName("name");
 				name->setString(GlobalInstance::map_AllResources[vec_npc[vecindex]].name);
 				cocos2d::ui::Text* addr = (cocos2d::ui::Text*)itemnode->getChildByName("addr");
-				addr->setString(GlobalInstance::map_AllResources[vec_npc[vecindex]].desc);
+				std::string addrkey = GlobalInstance::map_AllResources[vec_npc[vecindex]].desc;
+				addr->setString(GlobalInstance::map_AllResources[addrkey].name);
 				cocos2d::ui::Text* renation = (cocos2d::ui::Text*)itemnode->getChildByName("renation");
 
 				cocos2d::ui::Widget* renationitem = (cocos2d::ui::Widget*)itemnode->getChildByName("renationitem");
