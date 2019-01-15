@@ -90,8 +90,8 @@ bool LoginGetLayer::init()
 
 void LoginGetLayer::showRwd()
 {
-	int startx[] = { 360, 270 ,210 };
-	int offsetx[] = { 0, 180, 150 };
+	int startx[] = { 360, 270 ,160 };
+	int offsetx[] = { 0, 180, 200 };
 	int rewardsize = vec_rewards.size();
 
 	for (int i = 0; i < rewardsize; i++)
@@ -126,8 +126,11 @@ void LoginGetLayer::showRwd()
 		resbox->addTouchEventListener(CC_CALLBACK_2(LoginGetLayer::onclick, this));
 		resbox->setTouchEnabled(true);
 
-		resbox->setPositionX(startx[rewardsize - 1] + offsetx[rewardsize - 1] * i);
-		resbox->setPositionY(680);
+		resbox->setPosition(Vec2(360, 500));
+		resbox->setScale(0);
+		resbox->runAction(Spawn::create(MoveTo::create(0.3f, Vec2(startx[rewardsize - 1] + offsetx[rewardsize - 1] * i, 680)), ScaleTo::create(0.3f, 1), NULL));
+		//resbox->setPositionX(startx[rewardsize - 1] + offsetx[rewardsize - 1] * i);
+
 		this->addChild(resbox);
 
 		std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
@@ -170,13 +173,14 @@ void LoginGetLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		int tag = node->getTag();
 		Node* resnode = node->getChildByName("res");
 		CommonFuncs::changeGray(resnode);
+		node->runAction(Spawn::create(MoveTo::create(0.3f, Vec2(-70, 250)), ScaleTo::create(0.3f, 0.0f), NULL));
 		getcount++;
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_GETLOGINAWARD);
 		if (getcount == vec_rewards.size())
 		{
 			LoginRewardV2Layer * parent = (LoginRewardV2Layer *)this->getParent();
 			parent->changeLogin();
-			this->scheduleOnce(schedule_selector(LoginGetLayer::removeSelf), 0.5f);
+			this->scheduleOnce(schedule_selector(LoginGetLayer::removeSelf), 0.8f);
 		}
 	}
 }

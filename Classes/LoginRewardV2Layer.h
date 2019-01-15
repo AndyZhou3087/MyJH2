@@ -25,10 +25,15 @@ private:
 	void removeSelf();
 	void onFinish(int code);
 private:
-
+	cocos2d::ui::Text* desctext;
 	cocos2d::ui::Text* wordtext;
 	Node* csbnode;
 	bool isRetry;
+	std::vector<std::string> vec_words;
+	int showwordindex = 0;
+	void updateWords(float dt);
+
+	void showWords();
 };
 
 #endif

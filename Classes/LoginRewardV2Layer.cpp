@@ -14,6 +14,7 @@ USING_NS_CC;
 LoginRewardV2Layer::LoginRewardV2Layer()
 {
 	isRetry = false;
+	showwordindex = 0;
 }
 
 LoginRewardV2Layer::~LoginRewardV2Layer()
@@ -55,6 +56,7 @@ bool LoginRewardV2Layer::init()
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	wordtext = (cocos2d::ui::Text*)csbnode->getChildByName("wordtext");
+	wordtext->setString("");
 
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
 	closebtn->setTag(1001);
@@ -69,14 +71,22 @@ bool LoginRewardV2Layer::init()
 		if (i == 2)
 		{
 			std::string strkey = StringUtils::format("loginbox%ddesc", i);
-			wordtext->setString(ResourceLang::map_lang[strkey]);
+
+			//wordtext->setString(ResourceLang::map_lang[strkey]);
 			if (GlobalInstance::loginData.logindays > 7)
-				wordtext->setString(ResourceLang::map_lang["loginbox4desc"]);
+			{
+				vec_words.push_back(ResourceLang::map_lang["loginbox4desc"]);
+				//wordtext->setString(ResourceLang::map_lang["loginbox4desc"]);
+			}
+			else
+			{
+				vec_words.push_back(ResourceLang::map_lang[strkey]);
+			}
 		}
 	}
 
-	cocos2d::ui::Text* desctext = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
-	desctext->setString(ResourceLang::map_lang["loginrewarddesc"]);
+	desctext = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
+	desctext->setVisible(false);
 
 	getLoginData();
 
@@ -98,6 +108,14 @@ void LoginRewardV2Layer::getLoginData()
 	HttpDataSwap::init(this)->getLoginData();
 }
 
+void LoginRewardV2Layer::updateWords(float dt)
+{
+	if (showwordindex >= vec_words.size())
+		showwordindex = 0;
+	wordtext->setString(vec_words[showwordindex]);
+	showwordindex++;
+}
+
 void LoginRewardV2Layer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
@@ -108,15 +126,27 @@ void LoginRewardV2Layer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 		if (tag < 1000)
 		{
 			std::string strkey = StringUtils::format("loginbox%ddesc", tag);
-			wordtext->setString(ResourceLang::map_lang[strkey]);
+			//wordtext->setString(ResourceLang::map_lang[strkey]);
+
 			if (GlobalInstance::loginData.logindays > 7)
-				wordtext->setString(ResourceLang::map_lang["loginbox4desc"]);
+			{
+				if (vec_words.size() > 0)
+					vec_words[0] = ResourceLang::map_lang["loginbox4desc"];
+				//wordtext->setString(ResourceLang::map_lang["loginbox4desc"]);
+			}
+			else
+			{
+				if (vec_words.size() > 0)
+					vec_words[0] = ResourceLang::map_lang[strkey];
+			}
 
 			if (tag == 2)
 			{
 				if (GlobalInstance::loginData.isGeted)
 				{
-					wordtext->setString(ResourceLang::map_lang["loginbox5desc"]);
+					//wordtext->setString(ResourceLang::map_lang["loginbox5desc"]);
+					if (vec_words.size() > 0)
+						vec_words[0] = ResourceLang::map_lang["loginbox5desc"];
 				}
 				else
 				{
@@ -132,6 +162,7 @@ void LoginRewardV2Layer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 					}
 				}
 			}
+			showWords();
 		}
 		else if (tag == 1001)
 		{
@@ -172,9 +203,17 @@ void LoginRewardV2Layer::onFinish(int code)
 		}
 		else
 		{
-			wordtext->setString(ResourceLang::map_lang["loginbox5desc"]);
+			//wordtext->setString(ResourceLang::map_lang["loginbox5desc"]);
+			if (vec_words.size() > 0)
+				vec_words[0] = ResourceLang::map_lang["loginbox5desc"];
 			changeLogin();
 		}
+		vec_words.push_back(ResourceLang::map_lang["loginrewarddesc"]);
+
+		showWords();
+		desctext->setVisible(true);
+		std::string daysdesc = StringUtils::format(ResourceLang::map_lang["loginbox6desc"].c_str(), GlobalInstance::loginData.logindays);
+		desctext->setString(daysdesc);
 	}
 	else
 	{
@@ -182,4 +221,13 @@ void LoginRewardV2Layer::onFinish(int code)
 		this->addChild(layer);
 	}
 	isRetry = false;
+}
+
+void LoginRewardV2Layer::showWords()
+{
+	if (this->isScheduled(schedule_selector(LoginRewardV2Layer::updateWords)))
+		this->unschedule(schedule_selector(LoginRewardV2Layer::updateWords));
+	showwordindex = 0;
+	updateWords(0);
+	this->schedule(schedule_selector(LoginRewardV2Layer::updateWords), 2.0f);
 }

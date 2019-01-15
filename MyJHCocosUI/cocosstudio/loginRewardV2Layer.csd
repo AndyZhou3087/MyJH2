@@ -103,13 +103,13 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="1846679306" Tag="502" IconVisible="False" LeftMargin="60.0000" RightMargin="60.0000" TopMargin="900.5360" BottomMargin="329.4640" IsCustomSize="True" FontSize="23" LabelText="适合职业：侠客" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="desc" ActionTag="1846679306" Tag="502" IconVisible="False" LeftMargin="60.0000" RightMargin="60.0000" TopMargin="868.5358" BottomMargin="361.4642" IsCustomSize="True" FontSize="23" LabelText="适合职业：侠客" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
             <Size X="600.0000" Y="50.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="354.4640" />
+            <Position X="360.0000" Y="386.4642" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="0" G="0" B="0" />
-            <PrePosition X="0.5000" Y="0.2769" />
+            <PrePosition X="0.5000" Y="0.3019" />
             <PreSize X="0.8333" Y="0.0391" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />

@@ -679,6 +679,17 @@ void HttpDataSwap::getLoginAward()
 
 	url.append("&plat=");
 	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	url.append("&days=");
+	std::string daysstr = StringUtils::format("%d", GlobalInstance::loginData.logindays);
+	url.append(daysstr);
+
+	url.append("&sign=");
+	std::string md5ostr = GlobalInstance::getInstance()->UUID() + daysstr;
+
+	std::string signstr = md5(md5ostr + "key=zhoujian-87");
+	url.append(signstr);
+
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetLoginAwardCB, this));
 }
 
