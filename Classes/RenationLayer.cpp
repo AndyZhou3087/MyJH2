@@ -77,7 +77,7 @@ bool RenationLayer::init()
 	float totalattrval[] = { 0,0,0,0,0,0 };
 	std::map<std::string, NpcFriendly>::iterator it;
 
-	for (int i = 0; i < 6; i++)
+	for (int m = 0; m < 6; m++)
 	{
 		for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
 		{
@@ -86,15 +86,15 @@ bool RenationLayer::init()
 			{
 				if (it->second.relation[i] == NPC_FRIEND)
 				{
-					totalattrval[i] += GlobalInstance::map_npcrelation[nid].friendratio[i];
+					totalattrval[m] += GlobalInstance::map_npcrelation[nid].friendratio[m];
 				}
 				else if (it->second.relation[i] == NPC_MASTER)
 				{
-					totalattrval[i] += GlobalInstance::map_npcrelation[nid].masterratio[i];
+					totalattrval[m] += GlobalInstance::map_npcrelation[nid].masterratio[m];
 				}
 				else if (it->second.relation[i] == NPC_COUPEL)
 				{
-					totalattrval[i] += GlobalInstance::map_npcrelation[nid].conpelratio[i];
+					totalattrval[m] += GlobalInstance::map_npcrelation[nid].conpelratio[m];
 				}
 			}
 		}

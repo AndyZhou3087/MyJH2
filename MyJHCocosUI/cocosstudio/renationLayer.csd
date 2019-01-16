@@ -42,14 +42,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="tname" ActionTag="1166806172" Tag="190" IconVisible="False" LeftMargin="104.6957" RightMargin="393.3043" TopMargin="438.0541" BottomMargin="818.9459" FontSize="20" LabelText="名称     位置     关系" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="222.0000" Y="23.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="215.6957" Y="830.4459" />
+          <AbstractNodeData Name="tname" ActionTag="1166806172" Tag="190" IconVisible="False" LeftMargin="104.6957" RightMargin="373.3043" TopMargin="438.0541" BottomMargin="818.9459" FontSize="20" LabelText="名称     位置       关系" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="242.0000" Y="23.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="104.6957" Y="830.4459" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="47" G="37" B="25" />
-            <PrePosition X="0.2996" Y="0.6488" />
-            <PreSize X="0.3083" Y="0.0180" />
+            <PrePosition X="0.1454" Y="0.6488" />
+            <PreSize X="0.3361" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
@@ -300,7 +300,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_0" ActionTag="-1573684704" Tag="127" IconVisible="False" LeftMargin="372.4873" RightMargin="249.5127" TopMargin="807.2571" BottomMargin="453.7430" FontSize="17" LabelText="攻击力 +100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_0" ActionTag="-1573684704" Tag="127" IconVisible="False" LeftMargin="372.4873" RightMargin="249.5127" TopMargin="807.2570" BottomMargin="453.7430" FontSize="17" LabelText="攻击力 +100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
             <Size X="98.0000" Y="19.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="372.4873" Y="463.2430" />
@@ -312,7 +312,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_1" ActionTag="46508197" Tag="128" IconVisible="False" LeftMargin="497.8586" RightMargin="124.1414" TopMargin="807.2571" BottomMargin="453.7430" FontSize="17" LabelText="攻击力 +100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_1" ActionTag="46508197" Tag="128" IconVisible="False" LeftMargin="497.8586" RightMargin="124.1414" TopMargin="807.2570" BottomMargin="453.7430" FontSize="17" LabelText="攻击力 +100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
             <Size X="98.0000" Y="19.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="497.8586" Y="463.2430" />

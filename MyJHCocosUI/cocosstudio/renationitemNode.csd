@@ -40,10 +40,10 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="renation" ActionTag="-1645259103" Tag="195" IconVisible="False" LeftMargin="60.9341" RightMargin="-95.9341" TopMargin="-8.0000" BottomMargin="-10.0000" FontSize="16" LabelText="名称" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="renation" ActionTag="-1645259103" Tag="195" IconVisible="False" LeftMargin="79.9341" RightMargin="-114.9341" TopMargin="-8.0000" BottomMargin="-10.0000" FontSize="16" LabelText="名称" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="35.0000" Y="18.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="60.9341" Y="-1.0000" />
+            <Position X="79.9341" Y="-1.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="47" G="37" B="25" />
             <PrePosition />
