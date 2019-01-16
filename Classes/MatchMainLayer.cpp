@@ -206,7 +206,7 @@ bool MatchMainLayer::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_
 	beginTouchPoint = touch->getLocation();
 	for (int i = 0; i < 6; i++)
 	{
-		if (m_myCardHerosNode[i] != NULL)
+		if (GlobalInstance::myOnChallengeHeros[i] != NULL)
 		{
 			float x = m_myCardHerosNode[i]->getPositionX();
 			float y = m_myCardHerosNode[i]->getPositionY();

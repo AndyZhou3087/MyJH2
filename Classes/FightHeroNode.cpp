@@ -242,7 +242,7 @@ void FightHeroNode::update(float dt)
 								myhero->clearSkill(gf);
 								this->removeSufferSkillAnim(0);
 							}
-							nextRound(0);
+							this->resumeTimeSchedule();
 							break;
 						}
 					}
@@ -278,7 +278,7 @@ void FightHeroNode::update(float dt)
 								myhero->clearSkill(gf);
 								this->removeSufferSkillAnim(0);
 							}
-							nextRound(0);
+							this->resumeTimeSchedule();
 							break;
 						}
 					}
