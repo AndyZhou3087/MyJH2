@@ -128,7 +128,7 @@ std::string GlobalInstance::UUID()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getDeviceIDInKeychain();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "865421133526051-********************";
+	return "865421133526051-11******************";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
@@ -3039,12 +3039,13 @@ void GlobalInstance::cleanUserDefaultXmlData()
 	while (element != NULL)
 	{
 		std::string key = element->Name();
-		if (!(key.find("guide") != std::string::npos || key.find("UserProtocal") != std::string::npos || key.find("firstenter") != std::string::npos))
-		{
-			DataSave::getInstance()->deleteDataByKey(element->Name());
-		}
+		//DataSave::getInstance()->deleteDataByKey(element->Name());
+		UserDefault::getInstance()->deleteValueForKey(element->Name());
 		element = element->NextSiblingElement();
 	}
+
+	UserDefault::getInstance()->flush();
+
 	delete pDoc;
 }
 

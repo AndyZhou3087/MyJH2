@@ -39,6 +39,7 @@ private:
 	Node* loadingclicktext;
 	int storylines;
 	cocos2d::ui::ImageView* bg;
+	int clickcount;
 };
 
 #endif

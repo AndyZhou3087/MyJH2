@@ -11,6 +11,7 @@ StoryScene::StoryScene()
 	isShowOver = false;
 	showindex = 0;
 	wordcount = 0;
+	clickcount = 0;
 }
 
 StoryScene::~StoryScene()
@@ -123,6 +124,11 @@ void StoryScene::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventT
 
 		if (isShowOver)
 		{
+			clickcount++;
+
+			if (clickcount < 2)
+				return;
+
 			bg->setEnabled(false);
 			NewGuideLayer::setNewGuideInfo(FIRSTGUIDESTEP);
 			Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
@@ -131,30 +137,48 @@ void StoryScene::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventT
 		{
 			curshowlabel->unschedule("schedule_typecallback");
 			storylayer->unschedule(schedule_selector(StoryScene::delayShowText));
-			if (showindex >= storylines)
-				showindex = storylines - 1;
 
-			for (int i = 0; i <= showindex; i++)
+			int labelsize = vec_labels.size();
+			if (showindex < labelsize)
 			{
 				int index = 0;
-				while (vec_labels[i]->getLetter(index) != NULL)
+				while (vec_labels[showindex]->getLetter(index) != NULL)
 				{
-					vec_labels[i]->getLetter(index)->setScale(1);
+					vec_labels[showindex]->getLetter(index)->setScale(1);
 					index++;
 				}
+			}
+
+			for (unsigned int i = showindex + 1; i < vec_labels.size(); i++)
+			{
 				vec_labels[i]->setVisible(true);
 			}
-			showindex++;
-			wordcount = 0;
-			if (showindex >= storylines)
-			{
-				textShowOver();
-			}
-			else
-			{
-				bg->setEnabled(false);
-				storylayer->scheduleOnce(schedule_selector(StoryScene::delayShowText), 0.1f);
-			}
+			textShowOver();
+
+			//if (showindex >= storylines)
+			//	showindex = storylines - 1;
+
+			//for (int i = 0; i <= showindex; i++)
+			//{
+			//	int index = 0;
+			//	while (vec_labels[i]->getLetter(index) != NULL)
+			//	{
+			//		vec_labels[i]->getLetter(index)->setScale(1);
+			//		index++;
+			//	}
+			//	vec_labels[i]->setVisible(true);
+			//}
+			//showindex++;
+			//wordcount = 0;
+			//if (showindex >= storylines)
+			//{
+			//	textShowOver();
+			//}
+			//else
+			//{
+			//	bg->setEnabled(false);
+			//	storylayer->scheduleOnce(schedule_selector(StoryScene::delayShowText), 0.1f);
+			//}
 		}
 	}
 }

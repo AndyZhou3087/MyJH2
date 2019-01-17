@@ -260,7 +260,7 @@ public class Utils {
 					boolean isok = false;
 					if (type == 1&& !(key.startsWith("jhm") && getSubCount(key,"-") == 2))
 						isok = true;
-					else if (type == 0 && !(key.contains("guide") || key.contains("UserProtocal") || key.contains("firstenter")))
+					else if (type == 0)
 						isok = true;
 					if (isok)
 					{

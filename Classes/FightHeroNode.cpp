@@ -242,7 +242,7 @@ void FightHeroNode::update(float dt)
 								myhero->clearSkill(gf);
 								this->removeSufferSkillAnim(0);
 							}
-							this->resumeTimeSchedule();
+							nextRound(0);
 							break;
 						}
 					}
@@ -278,7 +278,7 @@ void FightHeroNode::update(float dt)
 								myhero->clearSkill(gf);
 								this->removeSufferSkillAnim(0);
 							}
-							this->resumeTimeSchedule();
+							nextRound(0);
 							break;
 						}
 					}
@@ -1501,7 +1501,7 @@ void FightHeroNode::showDeathAnim()
 
 void FightHeroNode::removeDeathAnim(float dt)
 {
-	this->removeChildByName("death");
+	this->getParent()->removeChildByName("death");
 }
 
 void FightHeroNode::HideMe(float dt)
@@ -1511,17 +1511,17 @@ void FightHeroNode::HideMe(float dt)
 
 void FightHeroNode::removeAtkOrHurtAnim(float dt)
 {
-	this->removeChildByName("atkhurt");
+	csbnode->removeChildByName("atkhurt");
 }
 
 void FightHeroNode::removePlaySkillAnim(float dt)
 {
-	this->removeChildByName("playskillani");
+	csbnode->removeChildByName("playskillani");
 }
 
 void FightHeroNode::removeSufferSkillAnim(float dt)
 {
-	this->removeChildByName("sufferskillani");
+	csbnode->removeChildByName("sufferskillani");
 }
 
 void FightHeroNode::showSkillAttrIcon(float dt)
