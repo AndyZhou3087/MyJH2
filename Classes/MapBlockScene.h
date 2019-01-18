@@ -79,7 +79,7 @@ public:
 
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
-
+	void onEnterTransitionDidFinish();
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -148,6 +148,8 @@ private:
 
 	void createEventMonsters();
 
+	void setBtnEnable(bool isval);
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;
@@ -193,6 +195,8 @@ private:
 
 	cocos2d::ui::Widget* keybtnArr[4];
 	cocos2d::ui::Widget* gocitybtn;
+	cocos2d::ui::Widget* mapbtn;
+	cocos2d::ui::Widget* mypackagebtn;
 
 	std::vector<MapBlock*> vec_normalBlocks;
 	std::vector<MapBlock*> vec_monsterBlocks;

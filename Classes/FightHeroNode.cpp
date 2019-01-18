@@ -297,7 +297,10 @@ void FightHeroNode::update(float dt)
 			}
 			else
 			{
-				this->runAction(Sequence::create(ScaleTo::create(0.22f, 1.2f), ScaleTo::create(0.08f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
+				if (this->isVisible())
+					this->runAction(Sequence::create(ScaleTo::create(0.22f, 1.2f), ScaleTo::create(0.08f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
+				else
+					nextRound(0);
 			}
 		}
 	}
@@ -426,6 +429,7 @@ void FightHeroNode::hurtAnimFinish()
 			else
 			{
 				pauseTimeSchedule();
+				isPlaySkillAnim = false;
 				((Hero*)m_Data)->setState(HS_DEAD);
 
 				((Hero*)m_Data)->setPos(0);
@@ -488,7 +492,7 @@ bool FightHeroNode::checkReviveSkill()
 		GongFa* gf = (GongFa*)hero->getEquipable(T_NG);
 		if (gf != NULL)
 		{
-			if (GlobalInstance::map_GF[gf->getId()].skill == SKILL_13)
+			if (GlobalInstance::map_GF[gf->getId()].skill == SKILL_13 && GlobalInstance::map_GF[gf->getId()].vec_skillbns[hero->getVocation()] == 1)
 			{
 				if (gf->getSkillCount() <= 1)
 				{
@@ -1367,7 +1371,7 @@ void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 
 		movey = -fabs(tany) + offsety * cos(angle * M_PI / 180);
 	}
-	if (tanz > 420)
+	//if (tanz > 420)
 		effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
 	auto action = CSLoader::createTimeline(effectname);
 	effectnode->runAction(action);
@@ -1449,7 +1453,7 @@ void FightHeroNode::attackedSkillEffect(int stype, int myHeroPos)
 			movey = fabs(tany) - offsety * cos(angle * M_PI / 180);
 		}
 
-		if (tanz > 420)
+		//if (tanz > 420)
 			effectnode->runAction(MoveTo::create(1.0f, Vec2(movex, movey)));
 	}
 	if (stype != SKILL_5)

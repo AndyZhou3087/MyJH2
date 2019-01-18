@@ -25,8 +25,6 @@ public:
 	static bool checkifNewerGuide(int index);
 	static void setNewerGuide(int index);
 	static void setNewGuideInfo(int step);//新手加成
-
-	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:
 	Layer* m_colorlayer;
 	int m_step;

@@ -139,7 +139,7 @@ bool RandHeroLayer::init()
 	{
 		heronode[i] = RandHeroNode::create();
 		heronode[i]->setPosition(140+i*220, 730);
-		heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
+		heronode[i]->setData(GlobalInstance::vec_rand3Heros[i], false);
 		this->addChild(heronode[i], 0, i);
 	}
 
@@ -165,8 +165,16 @@ void RandHeroLayer::delayShowNewerGuide(float dt)
 	{
 		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
 		{
-			if (NewGuideLayer::checkifNewerGuide(24))
+			if (NewGuideLayer::checkifNewerGuide(14))
 			{
+				cocos2d::ui::Button* colsebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
+				colsebtn->setEnabled(false);
+				showNewerGuide(14);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(24))
+			{
+				cocos2d::ui::Button* colsebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
+				colsebtn->setEnabled(true);
 				showNewerGuide(24);
 			}
 			else if (NewGuideLayer::checkifNewerGuide(26))
@@ -188,6 +196,10 @@ void RandHeroLayer::delayShowNewerGuide(float dt)
 void RandHeroLayer::showNewerGuide(int step)
 {
 	std::vector<Node*> nodes;
+	if (step == 14)
+	{
+		nodes.push_back(csbnode->getChildByName("srefreshbtn"));
+	}
 	if (step == 24)
 	{
 		nodes.push_back(heronode[0]->getChildByName("csbnode")->getChildByName("randheadbox"));
@@ -357,10 +369,13 @@ void RandHeroLayer::refresh3Hero(int i)
 		herocardcountlbl->setString(str);
 	}
 
+	bool israndanim = false;
+	if (i > 0)
+		israndanim = true;
 	create3RandHero(i);
-	for (int i = 0; i < 3; i++)
+	for (int m = 0; m < 3; m++)
 	{
-		heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
+		heronode[m]->setData(GlobalInstance::vec_rand3Heros[m], israndanim);
 	}
 	//记录刷新次数
 	Quest::setDailyTask(FRESH_PUBENLIST, 1);
@@ -392,7 +407,7 @@ void RandHeroLayer::updateUI(float dt)
 		create3RandHero();
 		for (int i = 0; i < 3; i++)
 		{
-			heronode[i]->setData(GlobalInstance::vec_rand3Heros[i]);
+			heronode[i]->setData(GlobalInstance::vec_rand3Heros[i], false);
 		}
 	}
 	else
@@ -415,6 +430,7 @@ void RandHeroLayer::updateUI(float dt)
 
 void RandHeroLayer::create3RandHero(int tool)
 {
+	bool isfirsttime = GlobalInstance::vec_rand3Heros.size() == 0 ? true : false;
 	delete3RandHero();
 	for (int i = 0; i < 3; i++)
 	{
@@ -425,18 +441,18 @@ void RandHeroLayer::create3RandHero(int tool)
 		{
 			randhero->setPotential(GlobalInstance::getInstance()->generateHeroPotentialByCoin());
 		}
-		//新手
-		if (NewGuideLayer::checkifNewerGuide(24))
+		else if (tool == 1)//第一次新手引导刷新
 		{
-			if (i == 0)
+			if (!NewGuideLayer::checkifNewerGuide(14) && NewGuideLayer::checkifNewerGuide(24) && i == 0)
 			{
 				randhero->setVocation(0);
 				randhero->setPotential(3);
 			}
-		}
-		else
-		{
-			
+			else if (isfirsttime)
+			{
+				int p = i == 2 ? 1 : i;
+				randhero->setPotential(p);
+			}
 		}
 		GlobalInstance::vec_rand3Heros.push_back(randhero);
 	}

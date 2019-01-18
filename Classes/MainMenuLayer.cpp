@@ -142,9 +142,6 @@ bool MainMenuLayer::init()
 
 	this->scheduleOnce(schedule_selector(MainMenuLayer::delayGetServerData), 1.2f);
 
-	this->scheduleOnce(schedule_selector(MainMenuLayer::delayShowNewerGuide), 1.1f);
-
-
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -163,27 +160,6 @@ void MainMenuLayer::delayGetServerData(float dt)
 {
 	isGetVipData = true;
 	HttpDataSwap::init(this)->vipIsOn();
-}
-
-void MainMenuLayer::delayShowNewerGuide(float dt)
-{
-	if (NewGuideLayer::checkifNewerGuide(14))
-	{
-		showNewerGuide(14);
-	}
-}
-
-void MainMenuLayer::showNewerGuide(int step)
-{
-	SettingLayer* layer = SettingLayer::create();
-	g_mainScene->addChild(layer, 0, "settinglayer");
-	AnimationEffect::openAniEffect((Layer*)layer);
-	//std::vector<Node*> nodes;
-	/*if (step == 14)
-	{
-		nodes.push_back(csbnode->getChildByName("setbtn"));
-	}*/
-	//g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void MainMenuLayer::onFinish(int code)
@@ -351,7 +327,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 {
 	Node* clicknode = (Node*)pSender;
 	int menuType = clicknode->getTag();
-	if ((menuType >= SETBTN && menuType <= SHOPBTN) || menuType == TIMEGIFTBTN || (menuType >= TIMEGIFTBTN_0 && menuType <= TIMEGIFTBTN_2))
+	if ((menuType >= MOREBTN && menuType <= SHOPBTN) || menuType == TIMEGIFTBTN || (menuType >= TIMEGIFTBTN_0 && menuType <= TIMEGIFTBTN_2))
 		CommonFuncs::BtnAction(pSender, type);
 	else if (type == ui::Widget::TouchEventType::ENDED)
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);

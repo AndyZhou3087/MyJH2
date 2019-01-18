@@ -51,6 +51,7 @@ private:
 	bool isfastcomposing;
 	MenuItemSprite* newguideboxitem;
 	cocos2d::ui::Widget* closebtn;
+	bool iscrollloading;
 };
 #endif
 

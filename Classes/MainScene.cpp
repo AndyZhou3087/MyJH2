@@ -268,7 +268,26 @@ void MainScene::checkBuildingOpen(float dt)
 
 void MainScene::delayShowNewerGuide(float dt)
 {
-	if (!NewGuideLayer::checkifNewerGuide(14))
+	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
+	{
+		if (NewGuideLayer::checkifNewerGuide(3))
+		{
+			showNewerGuide(3);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(4))
+		{
+			showNewerGuide(4);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(5))
+		{
+			showNewerGuide(5);
+		}
+	}
+	else if (NewGuideLayer::checkifNewerGuide(12))
+	{
+		showNewerGuide(12);
+	}
+	else if (!NewGuideLayer::checkifNewerGuide(12))
 	{
 		if (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
 		{
@@ -314,13 +333,6 @@ void MainScene::delayShowNewerGuide(float dt)
 				showNewerGuide(15);
 			}
 		}
-		else if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
-		{
-			if (NewGuideLayer::checkifNewerGuide(22))
-			{
-				showNewerGuide(22);
-			}
-		}
 		else if (NewGuideLayer::checkifNewerGuide(MIDELEGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(40))
@@ -352,7 +364,19 @@ void MainScene::showNewerGuide(int step)
 	scroll_3->setDirection(cocos2d::ui::ScrollView::Direction::NONE);
 
 	std::vector<Node*> nodes;
-	if (step == 15)
+
+
+	if (step == 3 || step == 4 || step == 5)
+	{
+
+	}
+	else if (step == 12)
+	{
+		scroll_3->jumpToPercentHorizontal(50);
+		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+	}
+	else if (step == 15)
 	{
 		scroll_3->jumpToPercentHorizontal(95);
 		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
@@ -642,8 +666,13 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				{
 					buildParent = scroll_1;
 				}
-				std::string str = StringUtils::format("unlockmain_%d", tag);
-				MovingLabel::showbyNode(buildParent, ResourceLang::map_lang[str], (Color4B)Color3B::WHITE, clicknode->getPosition());
+				
+				std::string strkey = StringUtils::format("unlockmain_text_%d_%d", tag, GlobalInstance::getInstance()->createRandomNum(2));
+				std::string contentstr = ResourceLang::map_lang[strkey];
+				contentstr.append("\n");
+				strkey = StringUtils::format("unlockmain_%d", tag);
+				contentstr.append(ResourceLang::map_lang[strkey]);
+				MovingLabel::showbyNode(buildParent, contentstr, (Color4B)Color3B::WHITE, clicknode->getPosition());
 			}
 			else
 			{

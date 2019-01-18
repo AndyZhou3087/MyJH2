@@ -5,6 +5,7 @@
 #include "Const.h"
 #include "AnimationEffect.h"
 #include "SoundManager.h"
+#include "GlobalInstance.h"
 
 RandHeroNode::RandHeroNode()
 {
@@ -78,24 +79,34 @@ void RandHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 	}
 }
 
-void RandHeroNode::setData(Hero* herodata)
+void RandHeroNode::setData(Hero* herodata, bool isRandAnim)
 {
-	std::string str = StringUtils::format("ui/h_%d_%d.png", herodata->getVocation(), herodata->getSex());
-	headimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+	m_herodata = herodata;
+	if (!isRandAnim)
+	{
+		std::string str = StringUtils::format("ui/h_%d_%d.png", herodata->getVocation(), herodata->getSex());
+		headimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	str = StringUtils::format("ui/herobox_%d.png", herodata->getPotential());
-	headbox->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+		str = StringUtils::format("ui/herobox_%d.png", herodata->getPotential());
+		headbox->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	str = StringUtils::format("vocation_%d", herodata->getVocation());
-	vocationlbl->setString(ResourceLang::map_lang[str]);
+		str = StringUtils::format("vocation_%d", herodata->getVocation());
+		vocationlbl->setString(ResourceLang::map_lang[str]);
 
-	str = StringUtils::format("potential_%d", herodata->getPotential());
-	potentiallbl->setString(ResourceLang::map_lang[str]);
+		str = StringUtils::format("potential_%d", herodata->getPotential());
+		potentiallbl->setString(ResourceLang::map_lang[str]);
 
-	potentialtextlbl->setColor(Color3B(POTENTIALCOLOR[herodata->getPotential()]));
-	potentiallbl->setColor(Color3B(POTENTIALCOLOR[herodata->getPotential()]));
+		potentialtextlbl->setColor(Color3B(POTENTIALCOLOR[herodata->getPotential()]));
+		potentiallbl->setColor(Color3B(POTENTIALCOLOR[herodata->getPotential()]));
 
-	namelbl->setString(herodata->getName());
+		namelbl->setString(herodata->getName());
+	}
+	else
+	{
+		namelbl->setString("");
+		this->schedule(schedule_selector(RandHeroNode::refreshAnim), 0.2f, 7, 0.0f);
+		this->scheduleOnce(schedule_selector(RandHeroNode::finishAnim), 1.8f);
+	}
 
 	if (herodata->getState() == HS_OWNED)
 		markRecruited(true);
@@ -108,4 +119,45 @@ void RandHeroNode::setData(Hero* herodata)
 void RandHeroNode::markRecruited(bool ismask)
 {
 	isrecruitedWidget->setVisible(ismask);
+}
+
+void RandHeroNode::refreshAnim(float dt)
+{
+	int v = GlobalInstance::getInstance()->createRandomNum(BASEHEROMAX);
+	std::string str = StringUtils::format("ui/h_%d_%d.png", v, 0);
+	headimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	int p = GlobalInstance::getInstance()->createRandomNum(5);
+	str = StringUtils::format("ui/herobox_%d.png", p);
+	headbox->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	str = StringUtils::format("vocation_%d", v);
+	vocationlbl->setString(ResourceLang::map_lang[str]);
+
+	str = StringUtils::format("potential_%d", p);
+	potentiallbl->setString(ResourceLang::map_lang[str]);
+
+	potentialtextlbl->setColor(Color3B(POTENTIALCOLOR[p]));
+	potentiallbl->setColor(Color3B(POTENTIALCOLOR[p]));
+
+}
+
+void RandHeroNode::finishAnim(float dt)
+{
+	std::string str = StringUtils::format("ui/h_%d_%d.png", m_herodata->getVocation(), m_herodata->getSex());
+	headimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	str = StringUtils::format("ui/herobox_%d.png", m_herodata->getPotential());
+	headbox->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	str = StringUtils::format("vocation_%d", m_herodata->getVocation());
+	vocationlbl->setString(ResourceLang::map_lang[str]);
+
+	str = StringUtils::format("potential_%d", m_herodata->getPotential());
+	potentiallbl->setString(ResourceLang::map_lang[str]);
+
+	potentialtextlbl->setColor(Color3B(POTENTIALCOLOR[m_herodata->getPotential()]));
+	potentiallbl->setColor(Color3B(POTENTIALCOLOR[m_herodata->getPotential()]));
+
+	namelbl->setString(m_herodata->getName());
 }

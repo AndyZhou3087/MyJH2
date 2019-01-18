@@ -146,21 +146,25 @@ void SelectMyHerosLayer::showNewerGuide(int step)
 	std::vector<Node*> nodes;
 	if (step == 47)
 	{
-		nodes.push_back(m_contentscroll->getChildByTag(0)->getChildByName("csbnode")->getChildByName("actionbtn"));
+		if (m_contentscroll->getChildByTag(0) != NULL)
+			nodes.push_back(m_contentscroll->getChildByTag(0)->getChildByName("csbnode")->getChildByName("actionbtn"));
 	}
 	else if (step == 48)
 	{
-		nodes.push_back(m_contentscroll->getChildByTag(1)->getChildByName("csbnode")->getChildByName("actionbtn"));
+		if (m_contentscroll->getChildByTag(1) != NULL)
+			nodes.push_back(m_contentscroll->getChildByTag(1)->getChildByName("csbnode")->getChildByName("actionbtn"));
 	}
 	else if (step == 49)
 	{
-		nodes.push_back(m_contentscroll->getChildByTag(2)->getChildByName("csbnode")->getChildByName("actionbtn"));
+		if (m_contentscroll->getChildByTag(2) != NULL)
+			nodes.push_back(m_contentscroll->getChildByTag(2)->getChildByName("csbnode")->getChildByName("actionbtn"));
 	}
 	else if (step == 50)
 	{
 		nodes.push_back(closebtn);
 	}
-	g_mainScene->showNewerGuideNode(step, nodes);
+	if (nodes.size() > 0)
+		g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void SelectMyHerosLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

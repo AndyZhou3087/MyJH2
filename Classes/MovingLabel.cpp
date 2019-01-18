@@ -69,7 +69,7 @@ bool MovingLabel::init(std::string text, Color4B color, Vec2 pos)
 	this->enableOutline(Color4B(0,0,0, 200), 1);
 	this->enableShadow();
 	this->setScale(0.0f);
-
+	this->setAlignment(TextHAlignment::CENTER);
 	return true;
 }
 

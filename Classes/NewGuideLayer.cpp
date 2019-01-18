@@ -27,21 +27,20 @@
 
 std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教应该就在前面了，咱们快去看看。", //0
 "", //1
-"小师妹：掌门师兄，传言果然是真的，十四天书现世，六大派和魔教为了争夺天书才打起来。", //2
-"魔教人物：小子！现在帮我们对付他们，老子给你黄金万两！",//3
-"昆仑派：少侠！魔教为非作歹，祸害江湖，我辈武林人士岂能与他们为伍，少侠快来助我们除掉这些武林败类！",//4
-"小师妹：掌门师兄，你可以选择一方进行帮助，都是为了十四天书，出手吧师兄！", //进入战斗界面//5
+"小师妹：掌门师兄，传言果然是真的，十四天书现世，六大派和魔教为了争夺天书打起来了。", //2
+"密探：\n报告帮主，十四天书在剑南山现世，正魔两派强者已赶往天书出世地抢夺天书。",//3
+"少帮主：\n父亲，我愿一同前去为夺书出力。",//4
+"帮主：\n好，速召集强者，我们出发！十四天书，决不能落入宵小之手！", //进入战斗界面//5
 "小师妹：掌门师兄，战斗过程为全自动，掌门只要根据角色的属性去分配好位置就可以了。",//6
 "小师妹：前排的密宗，防御力比较高，适合在前面抗伤害。",//7
 "小师妹：后面的刺客攻击力很高，但是很容易受伤，适合在后面进行攻击。",//8
 "小师妹：武当的属性比较平衡，什么位置都可以站。", //9
 "小师妹：道士会用道术进行多重攻击，还可以治疗队友。",//10
 //开始战斗--结束
-"小师妹：师兄，战斗结束了，天书现世，世道已经乱了，他们一会恢复过来，咱们就走不掉了，还是快撤吧！", //11
-"赏善罚恶使张三：天书现世，世道已经乱了，这些东西不是你该拿的，交出来吧！",//12
-"小师妹：师兄，咱们还是先回去吧，连赏善罚恶二使都来了，回去好好想想对策！",//跳回主场景//13
-//"",//14
-"小师妹：这里虽然不比师傅以前传给师兄的地方，但是好在这里人烟稀少，咱们可以好好经营一下，师兄先给门派起个响亮的名字吧！",//设置
+"小师妹：不好，妖人居然隐藏实力，帮主与妖人拼得两败俱伤，都不慎坠崖，天书也不知所踪，师兄切不可意气用事，趁更多人赶来之前，我们先行躲避，再寻天书的踪迹", //11
+"小师妹：师兄切莫悲伤，帮主虽恐遭不测，但我们不可放弃，天书亦决不能落入宵小之人手中。我们广纳豪杰，才好寻回老帮主和天书，客栈中经常会有江湖英雄停留，师兄可前往招募。",//12
+"",//13
+"小师妹：点击银两刷新，可以刷新可招募的英雄，最高可刷新出橙色品质的英雄哦！（英雄的品质由低到高依次为绿，蓝，紫，橙，红）",//
 //这里是否需要滑动引导
 //后山引导（改为条件引导）
 "小师妹：经营门派最重要的还是要先把基础设施完善起来，我们先去后山看看有什么资源吧!",//15
@@ -53,8 +52,8 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 "",
 
 //这里是否需要滑动引导
-"小师妹：师兄，客栈里会有形形色色的侠客在里面打尖，我们可以招募一些侠客到咱们的门下，先去客栈看看吧！",
-"小师妹：路过的侠客都会在客栈歇脚，掌门可以看看有没有合适的人招募到门下。",
+"",//22
+"点击新人招募可以招募到各种品质江湖侠客（品质从低到高依次为绿，蓝，粉，橙，红）",
 "小师妹：这里有三位英雄，现下正是发展门派之时，掌门师兄可依次招募进来。",//重复招募三次角色
 "",
 "",
@@ -148,8 +147,8 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 
 int voc[6] = { 6,4,11,3,8,1 };
 std::string gf[6][2] = { { "x014","w014" },{ "x004","w004" },{ "x035","w035" },{ "x016","w016" },{ "x023","w023" },{ "x006","w006" } };
-int stenNodesArr[71] = { 72,17,19,75,34,37,25,27,29,32,35,38,71,79,16,18,20,21,64,23,31,78,39,70,53,15,22,69,77,40,55,45,63,66,73,
-0,1,11,13,67,68,46,48,50,52,24,26,28,30,33,36,80,47,49,51,54,74,76,81,42,60,43,58,61,57,41,59,44,56,62,85 };
+int stenNodesArr[] = { 72,17,19,75,34,37,25,27,29,32,35,38,71,79,16,18,20,21,64,23,31,78,39,70,53,15,22,69,77,40,55,45,63,66,73,
+0,1,11,13,67,68,46,48,50,52,14,24,26,28,30,33,36,80,47,49,51,54,74,76,81,42,60,43,58,61,57,41,59,44,56,62,85 };
 
 NewGuideLayer* g_NewGuideLayer = NULL;
 NewGuideLayer::NewGuideLayer()
@@ -307,27 +306,37 @@ void NewGuideLayer::showNextGuide()
 	if (m_step == 0)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
+
 		if (g_MapBlockScene != NULL)
 		{
 			g_MapBlockScene->delayShowNewerGuide(0);
 		}
 	}
-	else if (m_step > 1 && m_step < 5)// || (m_step >= 11 && m_step < 13))
+	else if (m_step == 2)// || (m_step >= 11 && m_step < 13))
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		if (g_MapBlockScene != NULL)
 		{
-			g_MapBlockScene->delayShowNewerGuide(0);
+			g_MapBlockScene->showNewerGuideFight();
 		}
 	}
-	else if (m_step == 1)
+	else if (m_step >= 3 && m_step <= 4)
 	{
-		/*if (g_MapBlockScene != NULL && !g_MapBlockScene->getIsMoving())
+		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
+		if (g_mainScene != NULL)
 		{
-			this->removeFromParentAndCleanup(true);
-		}*/
+			g_mainScene->delayShowNewerGuide(0);
+		}
 	}
-	else if (m_step == 14 || m_step == 15 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 22 || m_step == 23
+	else if (m_step == 5)
+	{
+		MyRes::Add("r001", 10, MYPACKAGE);
+		Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
+	}
+	else if (m_step == 15 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 22 || m_step == 23
 		|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31 || m_step == 32 || m_step == 33 || m_step == 35 || m_step == 19
 		|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46
 		|| m_step == 52 || m_step == 53 || m_step == 54 || m_step == 55 || m_step == 56 || m_step == 57 || m_step == 59 || m_step == 63
@@ -352,6 +361,7 @@ void NewGuideLayer::showNextGuide()
 	else if (m_step == 10)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		if (g_MapBlockScene != NULL)
 		{
 			FightingLayer* fightlayer = (FightingLayer*)g_MapBlockScene->getChildByName("FightingLayer");
@@ -365,15 +375,30 @@ void NewGuideLayer::showNextGuide()
 	{
 		clearNewGuideData();
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		if (g_MapBlockScene != NULL)
 		{
 			//g_MapBlockScene->delayShowExit(0);
 			g_MapBlockScene->showNewerGuideGoBack();
 		}
 	}
+	else if (m_step == 12)
+	{
+		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
+		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(22))
+			{
+				if (g_mainScene != NULL)
+					g_mainScene->showNewerGuide(22);
+			}
+		}
+	}
 	else if (m_step == 20 || m_step == 21 || m_step == 82 || m_step == 83 || m_step == 84)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		if (g_mainScene != NULL)
 		{
 			HomeHillLayer* hill = (HomeHillLayer*)g_mainScene->getChildByName("7homehill");
@@ -387,14 +412,16 @@ void NewGuideLayer::showNextGuide()
 	else if (m_step == 39 || m_step == 44 || m_step == 68 || m_step == 76 || m_step == 85)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		if (g_mainScene != NULL)
 		{
 			g_mainScene->delayShowNewerGuide(0);
 		}
 	}
-	else if (m_step == 25 || m_step == 27 || m_step == 29)
+	else if (m_step == 14 || m_step == 25 || m_step == 27 || m_step == 29)
 	{
-		this->removeFromParentAndCleanup(true);
+		if (m_step != 14)
+			this->removeFromParentAndCleanup(true);
 		if (g_mainScene != NULL)
 		{
 			InnRoomLayer* hill = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
@@ -403,14 +430,22 @@ void NewGuideLayer::showNextGuide()
 				RandHeroLayer* randlayer = (RandHeroLayer*)hill->getChildByName("RandHeroLayer");
 				if (randlayer != NULL)
 				{
-					randlayer->delayShowNewerGuide(0);
+					if (m_step == 14)
+					{
+						randlayer->scheduleOnce(schedule_selector(RandHeroLayer::delayShowNewerGuide), 2.0f);
+						this->removeFromParentAndCleanup(true);
+					}
+					else
+						randlayer->delayShowNewerGuide(0);
 				}
 			}
 		}
+		g_NewGuideLayer = NULL;
 	}
 	else if (m_step == 30 || m_step == 38)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		if (g_mainScene != NULL)
 		{
 			InnRoomLayer* hill = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
@@ -423,6 +458,7 @@ void NewGuideLayer::showNextGuide()
 	else if (m_step == 34 || m_step == 37)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		if (g_mainScene != NULL)
 		{
 			HeroAttrLayer* randlayer = (HeroAttrLayer*)g_mainScene->getChildByTag(0);
@@ -447,6 +483,7 @@ void NewGuideLayer::showNextGuide()
 	else if (m_step == 42 || m_step == 58 || m_step == 60)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		if (g_mainScene != NULL)
 		{
 			TaskLayer* layer = (TaskLayer*)g_mainScene->getChildByName("9assemblyhall");
@@ -471,6 +508,7 @@ void NewGuideLayer::showNextGuide()
 	else if (m_step == 47 || m_step == 48 || m_step == 49)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		if (g_mainScene != NULL)
 		{
 			OutTownLayer* layer = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
@@ -487,6 +525,7 @@ void NewGuideLayer::showNextGuide()
 	else if (m_step == 50)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		if (g_mainScene != NULL)
 		{
 			OutTownLayer* layer = (OutTownLayer*)g_mainScene->getChildByName("0outtown");
@@ -499,6 +538,7 @@ void NewGuideLayer::showNextGuide()
 	else if (m_step == 64)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		//if (g_mainScene != NULL)
 		//{
 		//	HospitalLayer* layer = (HospitalLayer*)g_mainScene->getChildByName("1hospital");
@@ -512,6 +552,7 @@ void NewGuideLayer::showNextGuide()
 	else if (m_step == 67)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		if (g_mainScene != NULL)
 		{
 			MarketLayer* layer = (MarketLayer*)g_mainScene->getChildByName("5market");
@@ -524,6 +565,7 @@ void NewGuideLayer::showNextGuide()
 	else if (m_step == 90)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		if (g_mainScene != NULL)
 		{
 			StoreHouseLayer* layer = (StoreHouseLayer*)g_mainScene->getChildByName("3storehouse");
@@ -593,11 +635,8 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 				}
 				cnode->setPosition(m_pos);
 				cnode->setScale(scalex*1.5f, scaley*1.5f);
-				if (m_step == 14)
-				{
-					cnode->setScale(scalex*1.5f, scaley*2.5f);
-				}
-				else if (m_step == 0 || m_step == 1 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 19 || m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52 ||
+
+				if (m_step == 0 || m_step == 1 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 19 || m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52 ||
 					m_step == 38 || m_step == 47 || m_step == 48 || m_step == 49 || m_step == 51 || m_step == 71 || m_step == 75 || m_step == 81 || m_step == 87 || m_step == 90)
 				{
 					cnode->setScale(scalex*1.5f);
@@ -648,36 +687,24 @@ void NewGuideLayer::showWord(std::string wordstr)
 		Node* m_csbnode = CSLoader::createNode(ResourcePath::makePath("newGuideLayer.csb"));
 		this->addChild(m_csbnode, 1);
 
-		cocos2d::ui::Widget* textbox = (cocos2d::ui::Widget*)m_csbnode->getChildByName("guide_frame");
+		cocos2d::ui::Widget* textbox = (cocos2d::ui::Widget*)m_csbnode->getChildByName("node");
 
 		cocos2d::ui::ImageView* guide_people = (cocos2d::ui::ImageView*)textbox->getChildByName("guide_people");
+		guide_people->ignoreContentAdaptWithSize(true);
+
 		std::string str;
-		if (m_step == 3 || m_step == 4)
+		if (m_step == 3 || m_step == 4 || m_step == 5)
 		{
 			str = StringUtils::format("images/NPC%d.png", m_step - 2);
 			guide_people->loadTexture(str, cocos2d::ui::Widget::TextureResType::LOCAL);
-		}
-		else if (m_step == 12)
-		{
-			guide_people->loadTexture("images/NPC3.png", cocos2d::ui::Widget::TextureResType::LOCAL);
 		}
 		else
 		{
 			guide_people->loadTexture("images/xiaoshimei.png", cocos2d::ui::Widget::TextureResType::LOCAL);
 		}
 
-		for (int i = 0; i < 2; i++)
-		{
-			str = StringUtils::format("btn%d", i);
-			cocos2d::ui::Text* btn = (cocos2d::ui::Text*)textbox->getChildByName(str);
-			btn->addTouchEventListener(CC_CALLBACK_2(NewGuideLayer::onBtnClick, this));
-			str = StringUtils::format("guidebtn%d", i); 
-			btn->setString(ResourceLang::map_lang[str]);
-			if (m_step == 5)
-			{
-				btn->setVisible(true);
-			}
-		}
+		if (m_step == 22)
+			textbox->setVisible(false);
 
 		if (m_step == 0 || m_step == 1 || m_step == 8 || m_step == 10 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 18 || m_step == 23
 			|| m_step == 25 || m_step == 27 || m_step == 29 || m_step == 45 || m_step == 52 || m_step == 71 || m_step == 86)
@@ -690,41 +717,46 @@ void NewGuideLayer::showWord(std::string wordstr)
 		{
 			textbox->setPosition(Vec2(360, 650));
 		}
+		else if (m_step == 14)
+		{
+			textbox->setPosition(Vec2(360, 360));
+		}
 		else
 			textbox->setPosition(Vec2(360, 160));
 
-		cocos2d::ui::Text* wordlbl = (cocos2d::ui::Text*)textbox->getChildByName("guidetext");
-		wordlbl->setString(CommonFuncs::gbk2utf(descText[m_step].c_str()));
+		cocos2d::ui::Text* wordlbl = (cocos2d::ui::Text*)textbox->getChildByName("guide_frame")->getChildByName("guidetext");
+		wordlbl->setString("");
 		wordlbl->setVisible(false);
 
-		m_wordlbl = Label::createWithTTF(descText[m_step], FONT_NAME, 25);
+		m_wordlbl = Label::createWithTTF(CommonFuncs::gbk2utf(wordstr.c_str()), FONT_NAME, 23);
+		m_wordlbl->setLineSpacing(8);
 		m_wordlbl->setColor(Color3B(255, 255, 255));
-		m_wordlbl->setLineBreakWithoutSpace(true);
-		m_wordlbl->setMaxLineWidth(330);
+		m_wordlbl->setMaxLineWidth(540);
 		m_wordlbl->setAnchorPoint(Vec2(0, 1));
+		m_wordlbl->setVerticalAlignment(TextVAlignment::CENTER);
 		m_wordlbl->setPosition(wordlbl->getPosition());
-		textbox->addChild(m_wordlbl);
+		textbox->getChildByName("guide_frame")->addChild(m_wordlbl);
 
-		std::string utf8word = CommonFuncs::gbk2utf(wordstr.c_str());
-		m_wordlbl->setString(utf8word);
+		std::u32string utf32WordString;
+		StringUtils::UTF8ToUTF32(CommonFuncs::gbk2utf(wordstr.c_str()), utf32WordString);
 
 		std::vector<std::string> vec_resname;
 		for (int i = 0; i < 4; i++)
 		{
 			std::string nstr = StringUtils::format("newguidename%d", i);
-			vec_resname.push_back(CommonFuncs::gbk2utf(ResourceLang::map_lang[nstr].c_str()));
+			vec_resname.push_back(ResourceLang::map_lang[nstr]);
 		}
 		
-
 		for (unsigned int i = 0; i < vec_resname.size(); i++)
 		{
-			std::string resname = vec_resname[i];
-			std::size_t findpos = utf8word.find(resname);
+			std::u32string utf32name;
+			StringUtils::UTF8ToUTF32(vec_resname[i], utf32name);
+
+			std::size_t findpos = utf32WordString.find(utf32name);
 			if (findpos != std::string::npos)
 			{
-				int sindex = findpos / 3;
-				int len = resname.size() / 3;
-				for (int i = sindex; i < sindex + len; i++)
+				int sindex = findpos;
+				for (unsigned int i = sindex; i < sindex + utf32name.length(); i++)
 				{
 					m_wordlbl->getLetter(i)->setColor(Color3B(255, 214, 71));
 				}
@@ -755,23 +787,6 @@ void NewGuideLayer::showAnim(Vec2 pos)
 	sj->runAction(RepeatForever::create(animate));
 }
 
-void NewGuideLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
-{
-	//CommonFuncs::BtnAction(pSender, type);
-	if (type == ui::Widget::TouchEventType::ENDED)
-	{
-		if (m_step == 5)
-		{
-			DataSave::getInstance()->setIsNewerGuide(m_step, 0);
-		}
-		if (g_MapBlockScene != NULL)
-		{
-			g_MapBlockScene->showNewerGuideFight();
-		}
-		this->removeFromParentAndCleanup(true);
-	}
-}
-
 void NewGuideLayer::removeSelf(float dt)
 {
 	DataSave::getInstance()->setIsNewerGuide(m_step, 0);
@@ -787,17 +802,21 @@ void NewGuideLayer::clearNewGuideData()
 	for (int i = 0; i < 6; i++)
 	{
 		Hero* hero = GlobalInstance::myCardHeros[i];
-		delete hero;
-		GlobalInstance::myCardHeros[i] = NULL;
-		for (int j = 0; j < 2; j++)
+
+		if (hero != NULL)
 		{
-			GongFa* equ = (GongFa*)MyRes::getMyRes(gf[i][j], MYEQUIP);
-			if (equ != NULL)
+			int gftype[] = { T_WG, T_NG };
+
+			for (int i = 0; i < 2; i++)
 			{
-				MyRes::Use(equ, 1, MYEQUIP);
+				delete hero->getEquipable(gftype[i]);
+				hero->setEquipable(NULL, gftype[i]);
 			}
+			delete hero;
+			GlobalInstance::myCardHeros[i] = NULL;
 		}
 	}
+	MyRes::Use("r001", MyRes::getMyResCount("r001", MYPACKAGE), MYPACKAGE);
 }
 
 void NewGuideLayer::setNewGuideInfo(int step)
@@ -806,8 +825,6 @@ void NewGuideLayer::setNewGuideInfo(int step)
 	{
 		if (checkifNewerGuide(step))
 		{
-			clearNewGuideData();
-			MyRes::Add("r001", 10, MYPACKAGE);
 			for (int i = 0; i < 6; i++)
 			{
 				Hero* hero = new Hero();
@@ -815,27 +832,42 @@ void NewGuideLayer::setNewGuideInfo(int step)
 				std::string strname = StringUtils::format("newguideheroname_%d", i);
 				hero->setName(ResourceLang::map_lang[strname]);
 				hero->setPotential(4);
+				std::string heroid = StringUtils::format("%d%02d", GlobalInstance::getInstance()->getSysSecTime()+i, GlobalInstance::getInstance()->createRandomNum(100));
+
+				hero->setId(heroid);
+
 				hero->setVocation(voc[i]);
 				hero->setState(HS_TAKEON);
 				hero->setPos(i + 1);
+				hero->setChangeCount(4);
+
 				DynamicValueInt dal;
-				dal.setValue(GlobalInstance::vec_herosAttr[4].vec_exp[49]);
+				dal.setValue(GlobalInstance::vec_herosAttr[4].vec_exp[30]);
 				hero->setExp(dal);
-				hero->setHp(hero->getMaxHp());
+
 				GlobalInstance::myCardHeros[i] = hero;
+				int gftype[] = {T_NG, T_WG};
 				for (int j = 0; j < 2; j++)
 				{
-					GongFa* equ = (GongFa*)MyRes::getMyRes(gf[i][j], MYEQUIP);
-					if (equ == NULL)
-					{
-						MyRes::Add(gf[i][j], 1, MYEQUIP);
-						equ = (GongFa*)MyRes::getMyRes(gf[i][j], MYEQUIP);
-						equ->setWhos(hero->getName());
-						DynamicValueInt qul;
-						qul.setValue(4);
-						equ->setQU(qul);
-					}
+					GongFa* equ = new GongFa();
+					equ->setId(gf[i][j]);
+					equ->setType(gftype[j]);
+					DynamicValueInt dv;
+					dv.setValue(1);
+					equ->setCount(dv);
+					equ->setWhere(MYEQUIP);
+
+					DynamicValueInt dv1;
+					dv1.setValue(1);
+					equ->setQU(dv1);
+
+					DynamicValueInt dv2;
+					dv2.setValue(0);
+					equ->setExp(dv2);
+					hero->setEquipable(equ, gftype[j]);
 				}
+
+				hero->setHp(hero->getMaxHp());
 			}
 
 			for (int i = 0; i < step; i++)
@@ -846,16 +878,6 @@ void NewGuideLayer::setNewGuideInfo(int step)
 	}
 	else if (step == SECONDGUIDESTEP)
 	{
-		MyRes::vec_MyResources.clear();
-		GlobalInstance::vec_resCreators.clear();
-		DataSave::getInstance()->setMyRes(defaultres);
-		DataSave::getInstance()->setResCreatorData("0-0");
-		GlobalInstance::getInstance()->loadMyResData();
-		GlobalInstance::getInstance()->loadResCreatorData();
-		Building* m_buidingData = Building::map_buildingDatas["7homehill"];
-		m_buidingData->level.setValue(0);
-		GlobalInstance::getInstance()->saveTotalFarmers(0);
-
 		if (checkifNewerGuide(step))
 		{
 			for (int i = 15; i < 22; i++)

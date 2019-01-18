@@ -9,6 +9,11 @@
           <TTF Name="simhei.ttf" />
         </Folder>
         <Folder Name="images">
+          <Folder Name="newerguide">
+            <Image Name="guide_finger_0.png" />
+            <Image Name="guide_finger_1.png" />
+            <Image Name="guide_frame.png" />
+          </Folder>
           <Image Name="brownbox.png" />
           <Image Name="cardh_0_0.png" />
           <Image Name="cardh_0_1.png" />
@@ -1258,6 +1263,7 @@
         <Project Name="messageNode.csd" Type="Node" />
         <Project Name="morebtnNode.csd" Type="Node" />
         <Project Name="myHeroNode.csd" Type="Node" />
+        <Project Name="newGuideLayer.csd" Type="Layer" />
         <Project Name="newPopLayer.csd" Type="Layer" />
         <Project Name="npcgiveLayer.csd" Type="Layer" />
         <Project Name="npcLayer.csd" Type="Layer" />

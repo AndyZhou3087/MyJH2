@@ -127,7 +127,7 @@ bool InnRoomLayer::init(Building* buidingData)
 
 void InnRoomLayer::delayShowNewerGuide(float dt)
 {
-	if (!NewGuideLayer::checkifNewerGuide(14))
+	if (!NewGuideLayer::checkifNewerGuide(12))
 	{
 		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
 		{

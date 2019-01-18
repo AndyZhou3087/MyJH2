@@ -22,6 +22,7 @@ StoreHouseLayer::StoreHouseLayer()
 	lastCategoryindex = 0;
 	isfastcomposing = false;
 	newguideboxitem = NULL;
+	iscrollloading = false;
 }
 
 
@@ -255,6 +256,7 @@ void StoreHouseLayer::updateContent(int category)
 		countlbl->setPosition(Vec2(boxItem->getContentSize().width - 10, 10));
 		boxItem->addChild(countlbl);
 	}
+	iscrollloading = false;
 }
 
 void StoreHouseLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -271,6 +273,7 @@ void StoreHouseLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			isfastcomposing = true;
 			btnnode->setTag(1002);
 			actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("cancelbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			iscrollloading = true;
 			updateContent(lastCategoryindex);
 			if (map_cateRes[lastCategoryindex].size() > 0)
 				MovingLabel::show(ResourceLang::map_lang["decomposehint"]);
@@ -284,6 +287,7 @@ void StoreHouseLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		case 1002:
 		{
 			isfastcomposing = false;
+			iscrollloading = false;
 			btnnode->setTag(1000);
 			actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("fastdecompose_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			updateContent(lastCategoryindex);
@@ -312,6 +316,8 @@ void StoreHouseLayer::onclick(Ref* pSender)
 	ResBase* res = (ResBase*)node->getUserData();
 	if (isfastcomposing)
 	{
+		if (iscrollloading)
+			return;
 		decomposeCheck(res);
 	}
 	else

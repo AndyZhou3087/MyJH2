@@ -358,7 +358,8 @@ void LoadingScene::enterNewScene()
 		}
 		if (index == 0)
 		{
-			Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
+			//Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 		}
 		else if (index > 0)
 		{

@@ -231,11 +231,11 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	gocitybtn->setTag(BTN_GOCITY);
 	gocitybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
 
-	cocos2d::ui::Widget* mapbtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("mapbtn");
+	mapbtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("mapbtn");
 	mapbtn->setTag(BTN_MAP);
 	mapbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
 
-	cocos2d::ui::Widget* mypackagebtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("packagebtn");
+	mypackagebtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("packagebtn");
 	mypackagebtn->setTag(BTN_PACKAGE);
 	mypackagebtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
 
@@ -245,6 +245,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	{
 		cocos2d::ui::Widget* keybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName(keyname[i]);
 		keybtn->setTag(i + KEY_UP);
+		
 		keybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onArrowKey, this));
 		keybtnArr[i] = keybtn;
 	}
@@ -267,14 +268,38 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	this->scheduleOnce(schedule_selector(MapBlockScene::closeTaskTipNode), 10.0f);
 
-	this->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.1f);
-
     //记录位置
     DataSave::getInstance()->setExitScene(2);
 	DataSave::getInstance()->setMapScenePos(m_mapid, mycurRow*blockColCount + mycurCol);
 	DataSave::getInstance()->setHeroMapCarryCount(GlobalInstance::myOutMapCarry);
 
+	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
+		setBtnEnable(false);
+
 	return true;
+}
+
+void MapBlockScene::setBtnEnable(bool isval)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		keybtnArr[i]->setEnabled(isval);
+	}
+	gocitybtn->setEnabled(isval);
+	mapbtn->setEnabled(isval);
+	mypackagebtn->setEnabled(isval);
+}
+
+void MapBlockScene::onEnterTransitionDidFinish()
+{
+	Layer::onEnterTransitionDidFinish();
+	
+	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
+	{
+		if (g_MapBlockScene == NULL)
+			g_MapBlockScene = this;
+		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.1f);
+	}
 }
 
 void MapBlockScene::showNewerGuideFight()
@@ -298,26 +323,11 @@ void MapBlockScene::delayShowNewerGuide(float dt)
 		{
 			showNewerGuide(2);
 		}
-		else if (NewGuideLayer::checkifNewerGuide(3))
-		{
-			showNewerGuide(3);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(4))
-		{
-			showNewerGuide(4);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(5))
-		{
-			showNewerGuide(5);
-		}
 		else if (NewGuideLayer::checkifNewerGuide(11))
 		{
 			showNewerGuide(11);
 		}
-		/*else if (NewGuideLayer::checkifNewerGuide(12))
-		{
-			showNewerGuide(12);
-		}
+		/*
 		else if (NewGuideLayer::checkifNewerGuide(13))
 		{
 			showNewerGuide(13);
@@ -327,6 +337,7 @@ void MapBlockScene::delayShowNewerGuide(float dt)
 	{
 		showNewerGuide(86);
 	}
+	setBtnEnable(true);
 }
 
 void MapBlockScene::showNewerGuide(int step)
@@ -1108,23 +1119,10 @@ void MapBlockScene::doMyStatus()
 			{
 				if (m_mapid.compare("m0-0-0") == 0)
 				{
-					for (int i = 0; i < 2; i++)
-					{
-						if (NewGuideLayer::checkifNewerGuide(i))
-						{
-							DataSave::getInstance()->setIsNewerGuide(i, 0);
-							if (g_NewGuideLayer != NULL)
-							{
-								g_NewGuideLayer->removeFromParentAndCleanup(true);
-							}
-						}
-					}
 					delayShowNewerGuide(0);
 				}
 				else
-				{
 					showFightingLayer(vec_enemys);
-				}
 			}
 		}
 	}

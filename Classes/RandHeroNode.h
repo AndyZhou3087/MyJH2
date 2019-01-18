@@ -17,7 +17,11 @@ public:
 	static RandHeroNode* create();
 
 	void markRecruited(bool ismask);
-	void setData(Hero* herodata);
+	void setData(Hero* herodata, bool isRandAnim);
+
+	void refreshAnim(float dt);
+
+	void finishAnim(float dt);
 public:
 private:
 	cocos2d::ui::ImageView* headbox;
@@ -31,7 +35,7 @@ private:
 
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-
+	Hero* m_herodata;
 };
 #endif
 

@@ -73,7 +73,8 @@ bool GoBackLayer::init(int forwhere)
 	namelbl->setString(GlobalInstance::map_AllResources["t001"].name);
 
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desclbl");
-	desclbl->setString(GlobalInstance::map_AllResources["t001"].desc);
+	std::string desckey = StringUtils::format("gobackdesc%d", forwhere);
+	desclbl->setString(ResourceLang::map_lang[desckey]);
 
 	std::string str = StringUtils::format("1/%d", MyRes::getMyResCount("t001"));
 
