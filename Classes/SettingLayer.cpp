@@ -91,7 +91,8 @@ bool SettingLayer::init()
 	csbnode->addChild(m_editName);
 
 	cocos2d::ui::Text* verlbl = (cocos2d::ui::Text*)csbnode->getChildByName("versionlbl");
-	verlbl->setString(GlobalInstance::getInstance()->getVersionCode());
+	std::string vertxt = StringUtils::format("v%s", GlobalInstance::getInstance()->getVersionCode().c_str());
+	verlbl->setString(vertxt);
 
 	this->scheduleOnce(schedule_selector(SettingLayer::delayShowNewerGuide), newguidetime);
 
