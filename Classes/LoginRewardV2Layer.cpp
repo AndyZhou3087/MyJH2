@@ -184,6 +184,10 @@ void LoginRewardV2Layer::changeLogin()
 	loginbox->stopAllActions();
 	loginbox->setRotation(0);
 	CommonFuncs::changeGray(loginbox);
+
+	std::string daysdesc = StringUtils::format(ResourceLang::map_lang["loginbox6desc"].c_str(), GlobalInstance::loginData.logindays);
+	desctext->setVisible(true);
+	desctext->setString(daysdesc);
 }
 
 void LoginRewardV2Layer::onFinish(int code)
@@ -196,10 +200,14 @@ void LoginRewardV2Layer::onFinish(int code)
 			LoginGetLayer* layer = LoginGetLayer::create();
 			this->addChild(layer);
 		}
+		std::string daysdesc;
 		Node* loginbox = csbnode->getChildByName("loginbox2");
 		if (!GlobalInstance::loginData.isGeted)
 		{
 			loginbox->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 7), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -7), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
+			daysdesc = StringUtils::format(ResourceLang::map_lang["loginbox6desc"].c_str(), GlobalInstance::loginData.logindays - 1);
+			desctext->setVisible(true);
+			desctext->setString(daysdesc);
 		}
 		else
 		{
@@ -211,9 +219,6 @@ void LoginRewardV2Layer::onFinish(int code)
 		vec_words.push_back(ResourceLang::map_lang["loginrewarddesc"]);
 
 		showWords();
-		desctext->setVisible(true);
-		std::string daysdesc = StringUtils::format(ResourceLang::map_lang["loginbox6desc"].c_str(), GlobalInstance::loginData.logindays);
-		desctext->setString(daysdesc);
 	}
 	else
 	{
@@ -229,5 +234,5 @@ void LoginRewardV2Layer::showWords()
 		this->unschedule(schedule_selector(LoginRewardV2Layer::updateWords));
 	showwordindex = 0;
 	updateWords(0);
-	this->schedule(schedule_selector(LoginRewardV2Layer::updateWords), 2.0f);
+	this->schedule(schedule_selector(LoginRewardV2Layer::updateWords), 5.0f);
 }
