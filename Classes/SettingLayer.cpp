@@ -90,6 +90,9 @@ bool SettingLayer::init()
 	m_editName->setDelegate(this);
 	csbnode->addChild(m_editName);
 
+	cocos2d::ui::Text* verlbl = (cocos2d::ui::Text*)csbnode->getChildByName("versionlbl");
+	verlbl->setString(GlobalInstance::getInstance()->getVersionCode());
+
 	this->scheduleOnce(schedule_selector(SettingLayer::delayShowNewerGuide), newguidetime);
 
 	//layer 点击事件，屏蔽下层事件

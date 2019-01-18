@@ -237,6 +237,18 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="versionlbl" ActionTag="-1347259888" Tag="160" IconVisible="False" LeftMargin="600.5627" RightMargin="65.4373" TopMargin="859.1680" BottomMargin="391.8320" FontSize="25" LabelText="v2.0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="54.0000" Y="29.0000" />
+            <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+            <Position X="654.5627" Y="406.3320" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.9091" Y="0.3174" />
+            <PreSize X="0.0750" Y="0.0227" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
