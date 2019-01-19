@@ -107,7 +107,7 @@ void HttpDataSwap::postAllData()
 		//}
 		//writedoc.AddMember("myheros", dataArray, allocator);
 		//postdata = JsonWriter(writedoc);
-		//HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpPostAllDataCB, this), postdata);
+		HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpPostAllDataCB, this), postdata);
 	}
 }
 
