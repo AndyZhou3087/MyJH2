@@ -76,7 +76,7 @@ bool LoginGetLayer::init()
 	WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
 	this->addChild(wp, 0, "waitingprogress");
 	HttpDataSwap::init(this)->getLoginAward();
-
+	SoundManager::getInstance()->pauseBackMusic();
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -144,6 +144,13 @@ void LoginGetLayer::showRwd()
 		namelbl->setPosition(Vec2(resbox->getContentSize().width / 2, -10));
 		resbox->addChild(namelbl);
 
+		std::string countstr = StringUtils::format("x%d", count);
+		Label *countlbl = Label::createWithTTF(countstr, FONT_NAME, 23);
+		countlbl->setAnchorPoint(Vec2(1, 0));
+		countlbl->setColor(Color3B::WHITE);
+		countlbl->setPosition(Vec2(resbox->getContentSize().width - 10, 8));
+		resbox->addChild(countlbl);
+
 		CommonFuncs::playResBoxEffect(resbox, qu);
 
 		if (resid.compare("r006") == 0)
@@ -187,6 +194,8 @@ void LoginGetLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 void LoginGetLayer::removeSelf(float dt)
 {
+	SoundManager::getInstance()->resumeBackMusic();
+
 	AnimationEffect::closeAniEffect((Layer*)this);
 }
 
