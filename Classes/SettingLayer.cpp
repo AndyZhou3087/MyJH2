@@ -94,7 +94,6 @@ bool SettingLayer::init()
 	std::string vertxt = StringUtils::format("v%s", GlobalInstance::getInstance()->getVersionCode().c_str());
 	verlbl->setString(vertxt);
 
-	this->scheduleOnce(schedule_selector(SettingLayer::delayShowNewerGuide), newguidetime);
 
 	//layer 点击事件，屏蔽下层事件
 	auto listener = EventListenerTouchOneByOne::create();
@@ -106,24 +105,6 @@ bool SettingLayer::init()
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
-}
-
-void SettingLayer::delayShowNewerGuide(float dt)
-{
-	if (NewGuideLayer::checkifNewerGuide(14))
-	{
-		showNewerGuide(14);
-	}
-}
-
-void SettingLayer::showNewerGuide(int step)
-{
-	std::vector<Node*> nodes;
-	if (step == 14)
-	{
-		nodes.push_back(nameTextField);
-	}
-	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void SettingLayer::updateSoundStatus(int type)

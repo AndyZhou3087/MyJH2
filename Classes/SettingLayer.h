@@ -18,8 +18,6 @@ public:
 	virtual bool init();
 	CREATE_FUNC(SettingLayer);
 
-	void delayShowNewerGuide(float dt);
-	void showNewerGuide(int step);
 private:
 
 	/****************************

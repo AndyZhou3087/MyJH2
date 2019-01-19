@@ -91,14 +91,14 @@
             <PreSize X="0.3514" Y="0.1625" />
             <FileData Type="Normal" Path="images/loginbox3.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="wordtext" ActionTag="-258377585" Tag="501" IconVisible="False" LeftMargin="330.0989" RightMargin="109.9011" TopMargin="350.8371" BottomMargin="879.1629" IsCustomSize="True" FontSize="23" LabelText="适合职业：侠客" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-            <Size X="280.0000" Y="50.0000" />
+          <AbstractNodeData Name="wordtext" ActionTag="-258377585" Tag="501" IconVisible="False" LeftMargin="330.0995" RightMargin="109.9005" TopMargin="341.3375" BottomMargin="863.6625" IsCustomSize="True" FontSize="23" LabelText="" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="280.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="470.0989" Y="904.1629" />
+            <Position X="470.0995" Y="901.1625" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="0" G="0" B="0" />
-            <PrePosition X="0.6529" Y="0.7064" />
-            <PreSize X="0.3889" Y="0.0391" />
+            <PrePosition X="0.6529" Y="0.7040" />
+            <PreSize X="0.3889" Y="0.0586" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />

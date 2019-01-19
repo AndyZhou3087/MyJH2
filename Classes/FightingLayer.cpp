@@ -206,7 +206,7 @@ void FightingLayer::updateMapHero(int which)
 		g_MapBlockScene->updateHeroUI(which);
 		fightcount++;
 
-		if (fightcount > 10)
+		if (fightcount > 10 && !NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
 			m_escapebtn->setVisible(true);
 	}
 }
