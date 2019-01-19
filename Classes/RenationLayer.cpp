@@ -122,10 +122,26 @@ bool RenationLayer::init()
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
+		beginTouchPoint = touch->getLocation();
+
 		return true;
+	};
+	listener->onTouchMoved = [=](Touch *touch, Event *event)
+	{
+
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
+		auto endPoint = touch->getLocation();
+		if (fabs(endPoint.x - beginTouchPoint.x) >= 100 && (fabs(endPoint.y - beginTouchPoint.y) <= 20 || fabs(endPoint.y - beginTouchPoint.y) >= -20))
+		{
+			pageView->scrollToPage(pageView->getCurrentPageIndex() + 1);
+		}
+		else if (fabs(endPoint.x - beginTouchPoint.x) <= -100 && (fabs(endPoint.y - beginTouchPoint.y) <= 20 || fabs(endPoint.y - beginTouchPoint.y) >= -20))
+		{
+			pageView->scrollToPage(pageView->getCurrentPageIndex() - 1);
+		}
+
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -201,7 +217,6 @@ void RenationLayer::createPage()
 		}
 		pageView->addPage(layout);
 	}
-
 	this->addChild(pageView);
 }
 

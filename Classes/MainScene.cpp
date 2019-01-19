@@ -283,7 +283,7 @@ void MainScene::delayShowNewerGuide(float dt)
 			showNewerGuide(5);
 		}
 	}
-	else if (NewGuideLayer::checkifNewerGuide(12))
+	else if (NewGuideLayer::checkifNewerGuide(12) && NewGuideLayer::checkifNewerGuide(14))
 	{
 		showNewerGuide(12);
 	}
