@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cfg>
   <Monstors minc="6" maxc="6">
-    <m id="n001" minlv="20" maxlv="25" minqu="1" maxqu="2">15</m>
-    <m id="n002" minlv="20" maxlv="25" minqu="1" maxqu="2">15</m>
-    <m id="n013" minlv="20" maxlv="25" minqu="1" maxqu="2">15</m>
-    <m id="n007" minlv="20" maxlv="25" minqu="1" maxqu="2">15</m>
-    <m id="n008" minlv="20" maxlv="25" minqu="1" maxqu="2">15</m>
-    <m id="n009" minlv="20" maxlv="25" minqu="1" maxqu="2">25</m>
-    <ma id="q002" c="2" qu="0">3.00</ma>
-    <ma id="q001" c="2" qu="0">3.00</ma>
-    <ma id="q003" c="2" qu="0">3.00</ma>
-    <ma id="m001" c="2" qu="0">3.00</ma>
+    <m id="n001" minlv="15" maxlv="25" minqu="0" maxqu="2">15</m>
+    <m id="n002" minlv="15" maxlv="25" minqu="0" maxqu="2">15</m>
+    <m id="n013" minlv="15" maxlv="25" minqu="0" maxqu="2">15</m>
+    <m id="n007" minlv="15" maxlv="25" minqu="0" maxqu="2">15</m>
+    <m id="n008" minlv="15" maxlv="25" minqu="0" maxqu="2">15</m>
+    <m id="n009" minlv="15" maxlv="25" minqu="0" maxqu="2">25</m>
+    <ma id="q002" c="2" qu="0">5.00</ma>
+    <ma id="q001" c="2" qu="0">5.00</ma>
+    <ma id="q003" c="2" qu="0">5.00</ma>
+    <ma id="m001" c="2" qu="0">5.00</ma>
     <ma id="s001" c="2" qu="0">10.00</ma>
   </Monstors>
   <Cells rs="50" cs="50">
