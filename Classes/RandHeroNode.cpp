@@ -105,6 +105,7 @@ void RandHeroNode::setData(Hero* herodata, bool isRandAnim)
 	}
 	else
 	{
+		bgitem->setEnabled(false);
 		namelbl->setString("");
 		this->schedule(schedule_selector(RandHeroNode::refreshAnim), 0.2f, 7, 0.0f);
 		this->scheduleOnce(schedule_selector(RandHeroNode::finishAnim), 1.8f);
