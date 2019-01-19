@@ -36,6 +36,7 @@ private:
 private:
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	Hero* m_herodata;
+	cocos2d::ui::Widget* bgitem;
 };
 #endif
 

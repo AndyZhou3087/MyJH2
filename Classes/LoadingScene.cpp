@@ -169,7 +169,6 @@ void LoadingScene::loadData()
 	}
 	else
 	{
-		DataSave::getInstance()->setUserProtocal(true);
 		this->scheduleOnce(schedule_selector(LoadingScene::resetLoadData), 1.0f);
 	}
 }
@@ -179,6 +178,9 @@ void LoadingScene::resetLoadData(float dt)
 	GlobalInstance::isResetData = false;
 	GlobalInstance::getInstance()->resetData();
 	GlobalInstance::getInstance()->cleanUserDefaultXmlData();
+
+	DataSave::getInstance()->setUserProtocal(true);
+
 	HttpDataSwap::init(NULL)->postAllData();
 	parseCfgFiles();
 

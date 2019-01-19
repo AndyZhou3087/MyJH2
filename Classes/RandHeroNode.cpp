@@ -38,8 +38,9 @@ bool RandHeroNode::init()
 {
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("randHeroNode.csb"));
 	this->addChild(csbnode, 0, "csbnode");
-	cocos2d::ui::Widget* bg = (cocos2d::ui::Widget*)csbnode->getChildByName("randheadbox");
-	bg->addTouchEventListener(CC_CALLBACK_2(RandHeroNode::onClick, this));
+	bgitem = (cocos2d::ui::Widget*)csbnode->getChildByName("randheadbox");
+	bgitem->addTouchEventListener(CC_CALLBACK_2(RandHeroNode::onClick, this));
+	bgitem->setEnabled(false);
 
 	//头像框
 	headbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("hbox");
@@ -100,6 +101,7 @@ void RandHeroNode::setData(Hero* herodata, bool isRandAnim)
 		potentiallbl->setColor(Color3B(POTENTIALCOLOR[herodata->getPotential()]));
 
 		namelbl->setString(herodata->getName());
+		bgitem->setEnabled(true);
 	}
 	else
 	{
@@ -160,4 +162,5 @@ void RandHeroNode::finishAnim(float dt)
 	potentiallbl->setColor(Color3B(POTENTIALCOLOR[m_herodata->getPotential()]));
 
 	namelbl->setString(m_herodata->getName());
+	bgitem->setEnabled(true);
 }
