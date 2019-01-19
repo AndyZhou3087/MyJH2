@@ -300,7 +300,10 @@ void FightHeroNode::update(float dt)
 				if (this->isVisible())
 					this->runAction(Sequence::create(ScaleTo::create(0.22f, 1.2f), ScaleTo::create(0.08f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
 				else
+				{
+					isPlaySkillAnim = false;
 					nextRound(0);
+				}
 			}
 		}
 	}
