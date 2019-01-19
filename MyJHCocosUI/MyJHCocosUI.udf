@@ -25,16 +25,5 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="newGuideLayer.csd" />
-          <FilePathData Path="fightHeroNode.csd" />
-          <FilePathData Path="MainLayer.csd" />
-          <FilePathData Path="goBackLayer.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="goBackLayer.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

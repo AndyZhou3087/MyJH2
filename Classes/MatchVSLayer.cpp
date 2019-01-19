@@ -6,6 +6,7 @@
 #include "Equip.h"
 #include "GongFa.h"
 #include "FightingLayer.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -64,6 +65,9 @@ bool MatchVSLayer::init()
 	action->gotoFrameAndPlay(0, false);
 
 	this->scheduleOnce(schedule_selector(MatchVSLayer::delayShowFight), 2.5f);
+
+	int r = GlobalInstance::getInstance()->createRandomNum(5);
+	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_FIGHT_0 + r);
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)

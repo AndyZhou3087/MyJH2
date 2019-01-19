@@ -191,6 +191,7 @@ void FightingResultLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 			else
 			{
 				AnimationEffect::closeAniEffect(this);
+				SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_HOME);
 			}
 		}
 		else
@@ -210,7 +211,10 @@ void FightingResultLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 #endif				
 			}
 			else
+			{
 				AnimationEffect::closeAniEffect(this);
+				SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_HOME);
+			}
 		}
 	}
 }

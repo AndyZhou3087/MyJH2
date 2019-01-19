@@ -362,7 +362,15 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		}
 			break;
 		case 1004:
+		{
+			if (checkEmptyHeros())
+			{
+				MovingLabel::show(ResourceLang::map_lang["mymatchherosempty"]);
+				return;
+			}
+			HttpDataSwap::init(NULL)->postMyMatchHeros();
 			AnimationEffect::closeAniEffect(this);
+		}
 			break;
 		case 1005:
 			if (GlobalInstance::myMatchInfo.getrewardstate == 0)
