@@ -361,6 +361,35 @@ void MarketLayer::buyRes(int iterindex, int count)
 
 	map_cateRes[lastCategoryindex][iterindex].stockcount -= count;
 
+	if (lastCategoryindex != MKCATA_ALL)
+	{
+		for (unsigned int m = 0; m < map_cateRes[MKCATA_ALL].size(); m++)
+		{
+			if (map_cateRes[MKCATA_ALL][m].resid.compare(resid) == 0)
+			{
+				map_cateRes[MKCATA_ALL][m].stockcount -= count;
+			}
+		}
+	}
+	else
+	{	
+		std::map<int, std::vector<MK_RES>>::iterator it;
+
+		for (it = map_cateRes.begin(); it != map_cateRes.end(); it++)
+		{
+			if (it->first != MKCATA_ALL)
+			{
+				for (unsigned int m = 0; m < map_cateRes[it->first].size(); m++)
+				{
+					if (map_cateRes[it->first][m].resid.compare(resid) == 0)
+					{
+						map_cateRes[it->first][m].stockcount -= count;
+					}
+				}
+			}
+		}
+	}
+
 	if (GlobalInstance::map_AllResources[resid].coinval > 0)
 	{
 		int saleval = GlobalInstance::map_AllResources[resid].coinval;
@@ -382,19 +411,19 @@ void MarketLayer::saveStockRes()
 {
 	std::string str;
 
-	std::map<int, std::vector<MK_RES>>::iterator it;
+	//std::map<int, std::vector<MK_RES>>::iterator it;
 
-	for (it = map_cateRes.begin(); it != map_cateRes.end(); it++)
-	{
-		for (unsigned int m = 0; m < map_cateRes[it->first].size(); m++)
+	//for (it = map_cateRes.begin(); it != map_cateRes.end(); it++)
+	//{
+		for (unsigned int m = 0; m < map_cateRes[MKCATA_ALL].size(); m++)
 		{
-			if (map_cateRes[it->first][m].stockcount < map_cateRes[it->first][m].maxcount)
+			if (map_cateRes[MKCATA_ALL][m].stockcount < map_cateRes[MKCATA_ALL][m].maxcount)
 			{
-				std::string onestr = StringUtils::format("%s-%d;", map_cateRes[it->first][m].resid.c_str(), map_cateRes[it->first][m].stockcount);
+				std::string onestr = StringUtils::format("%s-%d;", map_cateRes[MKCATA_ALL][m].resid.c_str(), map_cateRes[MKCATA_ALL][m].stockcount);
 				str.append(onestr);
 			}
 		}
-	}
+	//}
 
 	if (str.length() > 0)
 	{
