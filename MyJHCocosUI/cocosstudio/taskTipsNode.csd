@@ -92,10 +92,10 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/maptask_title.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="hidebtn" ActionTag="1524960230" Tag="167" IconVisible="False" LeftMargin="-90.7052" RightMargin="-129.2948" TopMargin="-108.7560" BottomMargin="72.7560" TouchEnable="True" Scale9Enable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
-            <Size X="220.0000" Y="36.0000" />
+          <AbstractNodeData Name="hidebtn" ActionTag="1524960230" Tag="167" IconVisible="False" LeftMargin="-130.0000" RightMargin="-130.0000" TopMargin="-109.0000" BottomMargin="-109.0000" TouchEnable="True" Scale9Enable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+            <Size X="260.0000" Y="218.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="19.2948" Y="90.7560" />
+            <Position />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
