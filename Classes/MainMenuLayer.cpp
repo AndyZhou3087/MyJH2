@@ -64,6 +64,7 @@ bool MainMenuLayer::init()
 		if (i >= R001BTN && i <= R005BTN)
 		{
 			reslbl[i - R001BTN] = (cocos2d::ui::Text*)clickwidget->getChildByName("countlbl");
+			clickwidget->setVisible(false);
 		}
 		else if (i == ACHBTN)
 		{
