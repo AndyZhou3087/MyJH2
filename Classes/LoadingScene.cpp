@@ -124,12 +124,6 @@ bool LoadingScene::init()
 		point[i]->setVisible(false);
 	}
 
-	if (GlobalInstance::isResetData)
-	{
-		DataSave::getInstance()->setUserProtocal(true);
-	}
-
-
 	//未同意时弹出，同意后不再弹出
 	if (!DataSave::getInstance()->getUserProtocal())
 	{
@@ -175,6 +169,7 @@ void LoadingScene::loadData()
 	}
 	else
 	{
+		DataSave::getInstance()->setUserProtocal(true);
 		this->scheduleOnce(schedule_selector(LoadingScene::resetLoadData), 1.0f);
 	}
 }
