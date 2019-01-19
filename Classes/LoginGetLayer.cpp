@@ -107,7 +107,7 @@ void LoginGetLayer::showRwd()
 			if (vec_rewards[i].rid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
 				break;
 		}
-		if (t >= T_ARMOR && t <= T_NG)
+		if (t >= T_ARMOR && t <= T_FASHION)
 		{
 			boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
