@@ -407,11 +407,29 @@ void TaskLayer::loadData(int category)
 			{
 				CommonFuncs::changeGray(point);
 				CommonFuncs::changeGray(icon);
+				icon->setTag(0);
 			}
 			else
 			{
 				CommonFuncs::removeGray(point);
 				CommonFuncs::removeGray(icon);
+
+				if (Quest::map_PointReward[it->first] == 1)
+				{
+					icon->setTag(1);
+					point->stopAllActions();
+					point->setRotation(0);
+
+				}
+				else
+				{
+					if (icon->getTag() != 2)
+					{
+						icon->setTag(2);
+						point->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 7), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -7), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
+					}
+				}
+
 			}
 
 			str = StringUtils::format("%dpoint", it->first);
