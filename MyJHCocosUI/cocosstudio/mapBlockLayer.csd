@@ -267,27 +267,37 @@
             <FileData Type="Normal" Path="images/mapblockbottom.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="questbtn" ActionTag="173485613" Tag="41" IconVisible="False" LeftMargin="635.0964" RightMargin="50.9036" TopMargin="220.0370" BottomMargin="1031.9630" TouchEnable="True" LeftEage="11" RightEage="11" TopEage="9" BottomEage="9" Scale9OriginX="11" Scale9OriginY="9" Scale9Width="12" Scale9Height="10" ctype="ImageViewObjectData">
-            <Size X="34.0000" Y="28.0000" />
+          <AbstractNodeData Name="taskclick" ActionTag="-763139439" Tag="362" IconVisible="False" LeftMargin="619.7408" RightMargin="0.2592" TopMargin="212.9963" BottomMargin="1014.0037" TouchEnable="True" Scale9Enable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+            <Size X="100.0000" Y="53.0000" />
             <Children>
-              <AbstractNodeData Name="questbtn2" ActionTag="-1221336991" Tag="43" IconVisible="False" LeftMargin="34.7503" RightMargin="-50.7503" TopMargin="-7.0000" BottomMargin="-9.0000" TouchEnable="True" LeftEage="11" RightEage="11" TopEage="9" BottomEage="9" Scale9OriginX="11" Scale9OriginY="9" Scale9Width="28" Scale9Height="26" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="icon" ActionTag="173485613" Tag="41" IconVisible="False" LeftMargin="4.3036" RightMargin="61.6964" TopMargin="16.3801" BottomMargin="8.6199" LeftEage="11" RightEage="11" TopEage="9" BottomEage="9" Scale9OriginX="11" Scale9OriginY="9" Scale9Width="12" Scale9Height="10" ctype="ImageViewObjectData">
+                <Size X="34.0000" Y="28.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="21.3036" Y="22.6199" />
+                <Scale ScaleX="1.2000" ScaleY="1.2000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.2130" Y="0.4268" />
+                <PreSize X="0.3400" Y="0.5283" />
+                <FileData Type="MarkedSubImage" Path="mapui/maptask_btn.png" Plist="mapui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="icon1" ActionTag="-1221336991" Tag="43" IconVisible="False" LeftMargin="45.3550" RightMargin="4.6450" TopMargin="4.7140" BottomMargin="4.2860" LeftEage="11" RightEage="11" TopEage="9" BottomEage="9" Scale9OriginX="11" Scale9OriginY="9" Scale9Width="28" Scale9Height="26" ctype="ImageViewObjectData">
                 <Size X="50.0000" Y="44.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="59.7503" Y="13.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <Position X="70.3550" Y="26.2860" />
+                <Scale ScaleX="1.2000" ScaleY="1.2000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="1.7574" Y="0.4643" />
-                <PreSize X="1.4706" Y="1.5714" />
+                <PrePosition X="0.7036" Y="0.4960" />
+                <PreSize X="0.5000" Y="0.8302" />
                 <FileData Type="MarkedSubImage" Path="mapui/maptask_icon.png" Plist="mapui.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="652.0964" Y="1045.9630" />
+            <Position X="669.7408" Y="1040.5037" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.9057" Y="0.8172" />
-            <PreSize X="0.0472" Y="0.0219" />
-            <FileData Type="MarkedSubImage" Path="mapui/maptask_btn.png" Plist="mapui.plist" />
+            <PrePosition X="0.9302" Y="0.8129" />
+            <PreSize X="0.1389" Y="0.0414" />
+            <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="mapnamebox" ActionTag="-1996174396" Tag="168" IconVisible="False" LeftMargin="-15.0000" RightMargin="620.0000" TopMargin="213.1648" BottomMargin="1030.8352" Scale9Enable="True" LeftEage="20" RightEage="20" TopEage="11" BottomEage="11" Scale9OriginX="20" Scale9OriginY="11" Scale9Width="274" Scale9Height="14" ctype="ImageViewObjectData">
             <Size X="115.0000" Y="36.0000" />

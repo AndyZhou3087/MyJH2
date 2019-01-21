@@ -150,6 +150,8 @@ private:
 
 	void setBtnEnable(bool isval);
 
+	void changeTaskTipTextColor(int type);//0--主线，1--支线
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;
@@ -159,7 +161,7 @@ private:
 	cocos2d::ui::Text* foodcountlbl;
 	cocos2d::ui::Text* solivercountlbl;
 	cocos2d::ui::Text* sitelbl;
-	cocos2d::ui::ImageView* questbtn;
+	cocos2d::ui::ImageView* taskclick;
 	cocos2d::ui::Text* textmain;
 	cocos2d::ui::Text* textbranch;
 

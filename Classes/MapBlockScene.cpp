@@ -415,22 +415,19 @@ void MapBlockScene::loadTaskUI()
 	int langtype = GlobalInstance::getInstance()->getLang();
 	//添加任务提示框
 	m_tasknode = CSLoader::createNode(ResourcePath::makePath("taskTipsNode.csb"));
-	this->addChild(m_tasknode);
-	m_tasknode->setPosition(Vec2(589, 955));
+	m_csbnode->addChild(m_tasknode, -1);
+	m_tasknode->setPosition(Vec2(458, 992));
 
 	cocos2d::ui::ImageView* tasktitle = (cocos2d::ui::ImageView*)m_tasknode->getChildByName("title");
 	tasktitle->loadTexture(ResourcePath::makeTextImgPath("maptask_title", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::ImageView* hidebtn = (cocos2d::ui::ImageView*)m_tasknode->getChildByName("hidebtn");
-	hidebtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onTaskAction, this));
-	hidebtn->setTag(1);
-	questbtn = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("questbtn");
-	questbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onTaskAction, this));
-	questbtn->setTag(0);
-	questbtn->setVisible(false);
-	cocos2d::ui::ImageView* questbtn2 = (cocos2d::ui::ImageView*)questbtn->getChildByName("questbtn2");
-	questbtn2->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onTaskAction, this));
-	questbtn2->setTag(0);
+	cocos2d::ui::ImageView* bgclick = (cocos2d::ui::ImageView*)m_tasknode->getChildByName("bg");
+	bgclick->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onTaskAction, this));
+	bgclick->setTag(1);
+	taskclick = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("taskclick");
+	taskclick->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onTaskAction, this));
+	taskclick->setTag(0);
+	taskclick->setVisible(false);
 
 	textmain = (cocos2d::ui::Text*)m_tasknode->getChildByName("textmain");
 	textbranch = (cocos2d::ui::Text*)m_tasknode->getChildByName("textbranch");
@@ -443,10 +440,15 @@ void MapBlockScene::updateTaskInfo(float dt)
 	//主线
 	if (Quest::getMainQuest())
 	{
-		std::string mainid = GlobalInstance::myCurMainData.place.substr(0, GlobalInstance::myCurMainData.place.find_last_of("-"));
-		S_SubMap submap = GlobalInstance::map_mapsdata[mainid].map_sublist[GlobalInstance::myCurMainData.place];
-		std::string str = StringUtils::format(ResourceLang::map_lang["tasktips"].c_str(), GlobalInstance::myCurMainData.name.c_str(), GlobalInstance::map_AllResources[submap.id].name.c_str(), GlobalInstance::map_AllResources[GlobalInstance::myCurMainData.npcid].name.c_str());
-		textmain->setString(str);
+		if (textmain->getTag() != 1)
+		{
+			textmain->setTag(1);
+			std::string mainid = GlobalInstance::myCurMainData.place.substr(0, GlobalInstance::myCurMainData.place.find_last_of("-"));
+			S_SubMap submap = GlobalInstance::map_mapsdata[mainid].map_sublist[GlobalInstance::myCurMainData.place];
+			std::string str = StringUtils::format(ResourceLang::map_lang["tasktips"].c_str(), GlobalInstance::myCurMainData.name.c_str(), GlobalInstance::map_AllResources[submap.id].name.c_str(), GlobalInstance::map_AllResources[GlobalInstance::myCurMainData.npcid].name.c_str());
+			textmain->setString(str);
+			changeTaskTipTextColor(0);
+		}
 	}
 	else
 	{
@@ -464,10 +466,15 @@ void MapBlockScene::updateTaskInfo(float dt)
 	//支线
 	if (Quest::getBranchQuest())
 	{
-		std::string mainid = GlobalInstance::myCurBranchData.place.substr(0, GlobalInstance::myCurBranchData.place.find_last_of("-"));
-		S_SubMap submap = GlobalInstance::map_mapsdata[mainid].map_sublist[GlobalInstance::myCurBranchData.place];
-		std::string str = StringUtils::format(ResourceLang::map_lang["tasktips"].c_str(), GlobalInstance::myCurBranchData.name.c_str(), GlobalInstance::map_AllResources[submap.id].name.c_str(), GlobalInstance::map_AllResources[GlobalInstance::myCurBranchData.npcid].name.c_str());
-		textbranch->setString(str);
+		if (textbranch->getTag() != 1)
+		{
+			textbranch->setTag(1);
+			std::string mainid = GlobalInstance::myCurBranchData.place.substr(0, GlobalInstance::myCurBranchData.place.find_last_of("-"));
+			S_SubMap submap = GlobalInstance::map_mapsdata[mainid].map_sublist[GlobalInstance::myCurBranchData.place];
+			std::string str = StringUtils::format(ResourceLang::map_lang["tasktips"].c_str(), GlobalInstance::myCurBranchData.name.c_str(), GlobalInstance::map_AllResources[submap.id].name.c_str(), GlobalInstance::map_AllResources[GlobalInstance::myCurBranchData.npcid].name.c_str());
+			textbranch->setString(str);
+			changeTaskTipTextColor(1);
+		}
 	}
 	else
 	{
@@ -482,6 +489,57 @@ void MapBlockScene::updateTaskInfo(float dt)
 		{
 			textbranch->setTextColor(Color4B(255, 0, 0, 255));
 			textbranch->setString(ResourceLang::map_lang["finishtasktext"]);
+		}
+	}
+}
+
+void MapBlockScene::changeTaskTipTextColor(int type)
+{
+	Label* lbl;
+	std::string lbluft8str;
+	Color3B changecolor;
+
+	if (type == 0)
+	{
+		lbluft8str = textmain->getString();
+		lbl = (Label*)textmain->getVirtualRenderer();
+		changecolor = Color3B(255, 165, 0);
+	}
+	else
+	{
+		lbluft8str = textbranch->getString();
+		lbl = (Label*)textbranch->getVirtualRenderer();
+		changecolor = Color3B(16, 252, 16);
+	}
+
+	std::string prefkey[] = { "m", "n" };
+	std::map<std::string, AllResources>::iterator it;
+	for (it = GlobalInstance::map_AllResources.begin(); it != GlobalInstance::map_AllResources.end(); it++)
+	{
+		std::string strkey = it->first;
+
+		for (int i = 0; i < 2; i++)
+		{
+			if (strkey.compare(0, 1, prefkey[i]) == 0)
+			{
+				std::string namestr = GlobalInstance::map_AllResources[strkey].name;
+
+				std::u32string utf32nameString;
+				StringUtils::UTF8ToUTF32(namestr, utf32nameString);
+
+				std::u32string utf32lblString;
+				StringUtils::UTF8ToUTF32(lbluft8str, utf32lblString);
+
+				size_t findpos = utf32lblString.find(utf32nameString);
+				if (findpos != std::string::npos)
+				{
+					for (unsigned int m = findpos; m < (findpos + utf32nameString.length()); m++)
+					{
+						lbl->getLetter(m)->setColor(Color3B(255, 165, 0));
+					}
+					break;
+				}
+			}
 		}
 	}
 }
@@ -555,15 +613,17 @@ void MapBlockScene::onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		{
 		case 0:
 		{
-			questbtn->setVisible(false);
-			MoveTo* moveto = MoveTo::create(0.15f, Vec2(589, m_tasknode->getPositionY()));
+			//taskclick->setVisible(false);
+			taskclick->runAction(Sequence::create(MoveTo::create(0.05f, Vec2(730, taskclick->getPositionY())), Hide::create(), NULL));
+			MoveTo* moveto = MoveTo::create(0.15f, Vec2(458, m_tasknode->getPositionY()));
 			m_tasknode->runAction(moveto);
 		}
 			break;
 		case 1:
 		{
-			questbtn->setVisible(true);
-			MoveTo* moveto = MoveTo::create(0.15f, Vec2(860, m_tasknode->getPositionY()));
+			//taskclick->setVisible(true);
+			taskclick->runAction(Sequence::create(DelayTime::create(0.2f), Show::create(), MoveTo::create(0.05f, Vec2(670, taskclick->getPositionY())), NULL));
+			MoveTo* moveto = MoveTo::create(0.15f, Vec2(985, m_tasknode->getPositionY()));
 			m_tasknode->runAction(moveto);
 		}
 			break;
@@ -576,8 +636,8 @@ void MapBlockScene::onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 void MapBlockScene::closeTaskTipNode(float dt)
 {
 	m_tasknode->stopAllActions();
-	questbtn->setVisible(true);
-	MoveTo* moveto = MoveTo::create(0.15f, Vec2(860, m_tasknode->getPositionY()));
+	taskclick->setVisible(true);
+	MoveTo* moveto = MoveTo::create(0.15f, Vec2(985, m_tasknode->getPositionY()));
 	m_tasknode->runAction(moveto);
 }
 
