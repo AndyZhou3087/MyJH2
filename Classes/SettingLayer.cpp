@@ -17,6 +17,8 @@
 
 SettingLayer::SettingLayer()
 {
+	nicknamecount_coin.setValue(MODIFYNICKNAMECOUNT_COIN);
+	isAddModifyNameCount = false;
 }
 
 
@@ -45,9 +47,18 @@ bool SettingLayer::init()
 	backbtn->addTouchEventListener(CC_CALLBACK_2(SettingLayer::onBtnClick, this));
 
 	//随机名字
-	cocos2d::ui::Button* randnamebtn = (cocos2d::ui::Button*)csbnode->getChildByName("randnamebtn");
+	randnamebtn = (cocos2d::ui::Button*)csbnode->getChildByName("randnamebtn");
 	randnamebtn->setTag(1001);
 	randnamebtn->addTouchEventListener(CC_CALLBACK_2(SettingLayer::onBtnClick, this));
+
+	//昵称次数
+	addnicknamecountbtn = (cocos2d::ui::Button*)csbnode->getChildByName("addnamecountbtn");
+	addnicknamecountbtn->setTag(1003);
+	addnicknamecountbtn->addTouchEventListener(CC_CALLBACK_2(SettingLayer::onBtnClick, this));
+
+	nicknamebox = (cocos2d::ui::ImageView*)csbnode->getChildByName("nicknamebox");
+	nicknamebox->setTag(1004);
+	nicknamebox->addTouchEventListener(CC_CALLBACK_2(SettingLayer::onBtnClick, this));
 
 	//删除存档
 	cocos2d::ui::Button* cleandatabtn = (cocos2d::ui::Button*)csbnode->getChildByName("cleandatabtn");
@@ -94,6 +105,20 @@ bool SettingLayer::init()
 	std::string vertxt = StringUtils::format("v%s", GlobalInstance::getInstance()->getVersionCode().c_str());
 	verlbl->setString(vertxt);
 
+	if (GlobalInstance::getInstance()->getIsNichnameCountMax())
+	{
+		randnamebtn->setVisible(false);
+		addnicknamecountbtn->setVisible(true);
+		nicknamebox->setEnabled(true);
+		m_editName->setEnabled(false);
+	}
+	else
+	{
+		randnamebtn->setVisible(true);
+		addnicknamecountbtn->setVisible(false);
+		nicknamebox->setEnabled(false);
+		m_editName->setEnabled(true);
+	}
 
 	//layer 点击事件，屏蔽下层事件
 	auto listener = EventListenerTouchOneByOne::create();
@@ -204,10 +229,29 @@ void SettingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 			break;
+		case 1003:
+		{
+			showAddModifyNameCount();
+		}
+			break;
+		case 1004:
+		{
+			showAddModifyNameCount();
+		}
+		break;
 		default:
 			break;
 		}
 	}
+}
+
+void SettingLayer::showAddModifyNameCount()
+{
+	std::string str = StringUtils::format(ResourceLang::map_lang["nicknamecountmaxtext"].c_str(), nicknamecount_coin.getValue());
+	HintBoxLayer* layer = HintBoxLayer::create(str, 9);
+	layer->setUserData((void*)this);
+	this->addChild(layer);
+	AnimationEffect::openAniEffect((Layer*)layer);
 }
 
 
@@ -280,16 +324,38 @@ void SettingLayer::modifyName(int type, std::string utf8name)
 void SettingLayer::onFinish(int errcode)
 {
 	Director::getInstance()->getRunningScene()->removeChildByName("waitbox");
+
 	if (errcode == 0)
 	{	
-		MovingLabel::show(ResourceLang::map_lang["modifynicknamesucc"]);
-		mynickname = GlobalInstance::getInstance()->getMyNickName();
-		m_editName->setText(mynickname.c_str());
+		if (isAddModifyNameCount)
+		{
+			randnamebtn->setVisible(true);
+			addnicknamecountbtn->setVisible(false);
+			GlobalInstance::getInstance()->setIsNichnameCountMax(false);
+			m_editName->setEnabled(true);
+			nicknamebox->setEnabled(false);
+			MovingLabel::show(ResourceLang::map_lang["buynicknamecountmaxtext"]);
+
+			GlobalInstance::getInstance()->costMyCoinCount(nicknamecount_coin);
+		}
+		else
+		{
+			MovingLabel::show(ResourceLang::map_lang["modifynicknamesucc"]);
+			mynickname = GlobalInstance::getInstance()->getMyNickName();
+			m_editName->setText(mynickname.c_str());
+		}
 	}
 	else
 	{
 		if (errcode == 2)//1--player not exit;2--timesout;3--used;4--senstive
+		{
 			MovingLabel::show(ResourceLang::map_lang["modifynicknametimeslimit"]);
+			randnamebtn->setVisible(false);
+			addnicknamecountbtn->setVisible(true);
+			GlobalInstance::getInstance()->setIsNichnameCountMax(true);
+			m_editName->setEnabled(false);
+			nicknamebox->setEnabled(true);
+		}
 		else if (errcode == 3)
 			MovingLabel::show(ResourceLang::map_lang["nicknameused"]);
 		else if (errcode == 4)
@@ -298,4 +364,13 @@ void SettingLayer::onFinish(int errcode)
 			MovingLabel::show(ResourceLang::map_lang["modifynicknamefail"]);
 		m_editName->setText(mynickname.c_str());
 	}
+	isAddModifyNameCount = false;
+}
+
+void SettingLayer::modifyNameCount()
+{
+	WaitingProgress* waitbox = WaitingProgress::create(ResourceLang::map_lang["doingtext"]);
+	Director::getInstance()->getRunningScene()->addChild(waitbox, 1, "waitbox");
+	HttpDataSwap::init(this)->modifyName(2);
+	isAddModifyNameCount = true;
 }

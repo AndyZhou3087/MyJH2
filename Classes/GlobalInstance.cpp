@@ -2864,6 +2864,16 @@ int GlobalInstance::getResetSilverRefHeroCountTime()
 	return resetSilverRefHeroCountTime;
 }
 
+void GlobalInstance::setIsNichnameCountMax(bool val)
+{
+	DataSave::getInstance()->setIsNichnameCountMax(val);
+}
+
+bool GlobalInstance::getIsNichnameCountMax()
+{
+	return DataSave::getInstance()->getIsNichnameCountMax();
+}
+
 void GlobalInstance::recoveCardHeroMaxHp()
 {
 	for (int i = 0; i < 6; i++)

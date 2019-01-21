@@ -36,6 +36,8 @@
 
 #define USE_TRANSCENE 1
 
+#define MODIFYNICKNAMECOUNT_COIN 50
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #define UMENG
 #include "UMeng/Analytics/MobClickCpp.h"

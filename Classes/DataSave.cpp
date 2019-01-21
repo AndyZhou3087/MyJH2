@@ -435,6 +435,17 @@ void DataSave::setCheatCount(int val)
 	saveIntDataByKey("chartcount", val);
 }
 
+void DataSave::setIsNichnameCountMax(bool val)
+{
+	saveIntDataByKey("nicknamecountmax", val == true ? 1 : 0);
+}
+
+bool DataSave::getIsNichnameCountMax()
+{
+	int val = loadIntDataByKey("nicknamecountmax", 0);
+	return val == 1 ? true : false;
+}
+
 void DataSave::setLocalUUID(std::string val)
 {
 	saveStringDataByKey("puuid", val);

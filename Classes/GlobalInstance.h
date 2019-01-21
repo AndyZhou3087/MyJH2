@@ -692,6 +692,16 @@ public:
 	//upgrade
 	void upgradeApp(std::string url);
 
+	/****************************
+	修改昵称次数是否到上限
+	****************************/
+	void setIsNichnameCountMax(bool val);
+
+	/****************************
+	修改昵称次数是否到上限
+	****************************/
+	bool getIsNichnameCountMax();
+
 private:
 	static GlobalInstance* _Context;//类实例
 

@@ -17,6 +17,7 @@
 #include "GoBackLayer.h"
 #include "MyTransitionScene.h"
 #include "LoadingScene.h"
+#include "SettingLayer.h"
 
 USING_NS_CC;
 
@@ -88,6 +89,9 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 
 	cocos2d::ui::Text* content = (cocos2d::ui::Text*)csbnode->getChildByName("content");
 	content->setString(str);
+
+	Label* dlbl = (Label*)content->getVirtualRenderer();
+	dlbl->setLineSpacing(10);
 
 	if (forwhere == 4)
 	{
@@ -189,6 +193,14 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 				Director::getInstance()->replaceScene(TransitionFade::create(0.5f, LoadingScene::createScene()));
 				return;
+			}
+			else if (m_forwhere == 9)
+			{
+				SettingLayer* settinglayer = (SettingLayer*)this->getParent();
+				if (settinglayer != NULL)
+				{
+					settinglayer->modifyNameCount();
+				}
 			}
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;

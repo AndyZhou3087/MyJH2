@@ -168,7 +168,9 @@
 	<s name="modifynicknamefail">抱歉！修改帮派名号失败！请检查网络或者联系客服！</s>
 	<s name="nicknameempty">抱歉！帮派名号不能为空！</s>
 	<s name="doingtext">处理中...</s>
-	<s name="modifynicknametimeslimit">抱歉！修改帮派名号失败！修改次数已到上限！</s>	
+	<s name="modifynicknametimeslimit">抱歉！修改帮派名号失败！修改次数已到上限！</s>
+	<s name="nicknamecountmaxtext">修改帮派名号次数已到上限！是否花费%d元宝购买3次修改次数？</s>
+	<s name="buynicknamecountmaxtext">购买成功！增加3次修改[帮派名号]次数！</s>		
 	<s name="juhao">。</s>
 	<s name="event0_0">山崖之下云雾缭绕，似有奇宝。是否下去查看？</s>	
 	<s name="event0_1">使用轻功跃入崖底，竟真有宝藏。</s>	
@@ -412,5 +414,5 @@
 	<s name="totalattrtitle">总增加属性</s>
 	<s name="renationhintdesc">左右滑动翻页查看更多</s>
 	<s name="gobackdesc0">茅山秘术，使用后可回到掌门帮派</s>
-	<s name="gobackdesc1">茅山秘术，使用后可回到江湖地图</s>	
+	<s name="gobackdesc1">茅山秘术，使用后可回到江湖地图</s>
 </strings>
