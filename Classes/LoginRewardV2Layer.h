@@ -30,7 +30,7 @@ private:
 	Node* csbnode;
 	bool isRetry;
 	std::vector<std::string> vec_words;
-	int showwordindex = 0;
+	unsigned int showwordindex = 0;
 	void updateWords(float dt);
 
 	void showWords();

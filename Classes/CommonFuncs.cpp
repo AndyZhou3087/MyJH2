@@ -195,18 +195,20 @@ void CommonFuncs::playCommonLvUpAnim(Node* target, std::string textstr)
 	action->gotoFrameAndPlay(0, false);
 }
 
-void CommonFuncs::playResBoxEffect(cocos2d::Node* target, int qu)
+cocos2d::Node* CommonFuncs::playResBoxEffect(cocos2d::Node* target, int qu)
 {
 	if (qu >= 2)
 	{
 		std::string effectstr = StringUtils::format("effect/resbox%deffect.csb", qu);
 		auto effectnode = CSLoader::createNode(effectstr);
 		effectnode->setPosition(Vec2(target->getContentSize().width/2, target->getContentSize().height/2));
-		target->addChild(effectnode, 1, "qianghuachenggong");
+		target->addChild(effectnode, 1, "resboxeffect");
 		auto action = CSLoader::createTimeline(effectstr);
 		effectnode->runAction(action);
 		action->gotoFrameAndPlay(0, true);
+		return effectnode;
 	}
+	return NULL;
 }
 
 void CommonFuncs::dfsFolder(std::string folderPath, std::vector<std::string> &vec_ret, int depth)

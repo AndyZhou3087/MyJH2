@@ -1069,6 +1069,11 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		resstr = GlobalInstance::getInstance()->getResUIFrameName(res->getId(), qu);
 		lvtext->setString(lvstr);
+		Node* effectnode = CommonFuncs::playResBoxEffect(qubox->getParent(), qu);
+		if (effectnode != NULL && type >= T_ARMOR && type <= T_FASHION)
+		{
+			effectnode->setScale(0.84f);
+		}
 	}
 	else
 	{
@@ -1082,6 +1087,12 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 		qustr = "ui/heroattradd.png";
 		resstr = ResourcePath::makeTextImgPath(StringUtils::format("equiptext_%d", barindex), langtype);
 		lvtext->setVisible(false);
+
+		Node* effect = qubox->getParent()->getChildByName("resboxeffect");
+		if (effect != NULL)
+		{
+			effect->removeFromParentAndCleanup(true);
+		}
 	}
 	qubox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 	resimg->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
