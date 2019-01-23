@@ -188,7 +188,7 @@ void WinRewardLayer::updateScrollviewContent()
 				qu = GlobalInstance::map_GF[vec_res[m]->getId()].qu;
 				qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
-			else if (vec_res[m]->getType() == T_RENS || vec_res[m]->getType() == T_DAN || vec_res[m]->getType() == T_MIJI || vec_res[m]->getType() == T_BOX)
+			else if (vec_res[m]->getType() >= T_RENS && vec_res[m]->getType() <= T_BOX)
 			{
 				qu = atoi(vec_res[m]->getId().substr(1).c_str()) - 1;
 				qustr = StringUtils::format("ui/resbox_qu%d.png", qu);

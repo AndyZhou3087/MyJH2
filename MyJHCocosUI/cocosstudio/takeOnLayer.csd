@@ -324,7 +324,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="MarkedSubImage" Path="ui/equipstonebox.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="stone0" ActionTag="-1065392877" Tag="44" IconVisible="False" LeftMargin="-229.4474" RightMargin="183.4474" TopMargin="-147.9135" BottomMargin="101.9135" TouchEnable="True" Scale9Width="46" Scale9Height="46" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="stone0" ActionTag="-1065392877" Tag="44" IconVisible="False" LeftMargin="-229.4474" RightMargin="183.4474" TopMargin="-147.9135" BottomMargin="101.9135" Scale9Width="46" Scale9Height="46" ctype="ImageViewObjectData">
                 <Size X="46.0000" Y="46.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-206.4474" Y="124.9135" />
@@ -334,7 +334,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="Default" Path="Default/ImageFile.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="stone1" ActionTag="355902270" Tag="45" IconVisible="False" LeftMargin="-26.2372" RightMargin="-19.7628" TopMargin="-147.9135" BottomMargin="101.9135" TouchEnable="True" Scale9Width="46" Scale9Height="46" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="stone1" ActionTag="355902270" Tag="45" IconVisible="False" LeftMargin="-26.2372" RightMargin="-19.7628" TopMargin="-147.9135" BottomMargin="101.9135" Scale9Width="46" Scale9Height="46" ctype="ImageViewObjectData">
                 <Size X="46.0000" Y="46.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-3.2372" Y="124.9135" />
@@ -344,7 +344,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="Default" Path="Default/ImageFile.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="stone2" ActionTag="-1635716983" Tag="46" IconVisible="False" LeftMargin="176.9721" RightMargin="-222.9721" TopMargin="-147.9135" BottomMargin="101.9135" TouchEnable="True" Scale9Width="46" Scale9Height="46" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="stone2" ActionTag="-1635716983" Tag="46" IconVisible="False" LeftMargin="176.9721" RightMargin="-222.9721" TopMargin="-147.9135" BottomMargin="101.9135" Scale9Width="46" Scale9Height="46" ctype="ImageViewObjectData">
                 <Size X="46.0000" Y="46.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="199.9721" Y="124.9135" />

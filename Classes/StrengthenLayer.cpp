@@ -77,6 +77,8 @@ bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 	cocos2d::ui::ImageView* resbox_qu = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox_qu");
 	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
+	CommonFuncs::playResBoxEffect(resbox_qu, qu);
+
 	std::string str = GlobalInstance::getInstance()->getResUIFrameName(m_equip->getId(), qu);
 
 	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
@@ -88,6 +90,8 @@ bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 	if (m_equip->getLv().getValue() > 0)
 		namestr = StringUtils::format("+%d%s", m_equip->getLv().getValue(), namestr.c_str());
 	name->setString(namestr);
+
+	name->setTextColor(Color4B(POTENTIALCOLOR[qu]));
 
 	for (int i = 0; i < 3; i++)
 	{

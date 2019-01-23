@@ -153,7 +153,7 @@ void EventBusinessLayer::updateScrollviewContent()
 				qu = GlobalInstance::map_GF[resid].qu;
 				qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
-			else if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
+			else if (t >= T_RENS && t <= T_BOX)
 			{
 				qu = atoi(resid.substr(1).c_str()) - 1;
 				qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
@@ -167,6 +167,8 @@ void EventBusinessLayer::updateScrollviewContent()
 			boxItem->setTag(i * 10000 + m);
 
 			sv->addChild(boxItem);
+
+			CommonFuncs::playResBoxEffect(boxItem, qu);
 
 			std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 

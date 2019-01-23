@@ -140,7 +140,7 @@ bool TimeGiftLayer::init(ShopData* data)
 			if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
 				break;
 		}
-		if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
+		if (t >= T_RENS && t <= T_BOX)
 		{
 			qu = atoi(resid.substr(1).c_str()) - 1;
 			str = StringUtils::format("ui/resbox_qu%d.png", qu);

@@ -139,7 +139,7 @@ bool MessageDescLayer::init(int index)
 					qu = GlobalInstance::map_GF[resid].qu;
 					qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 				}
-				else if (k == T_RENS || k == T_DAN || k == T_MIJI || k == T_BOX)
+				else if (k >= T_RENS && k <= T_BOX)
 				{
 					qu = atoi(resid.substr(1).c_str()) - 1;
 					qustr = StringUtils::format("ui/resbox_qu%d.png", qu);

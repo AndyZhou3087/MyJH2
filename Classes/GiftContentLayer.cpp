@@ -162,27 +162,24 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 			if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
 				break;
 		}
-		if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
+		if (t >= T_WG && t <= T_NG)
+		{
+			qu = GlobalInstance::map_GF[resid].qu;
+			str = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}		
+		else if (t >= T_RENS && t <= T_BOX)
 		{
 			qu = atoi(resid.substr(1).c_str()) - 1;
 			str = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
-		else if (t >= T_WG && t <= T_NG)
-		{
-			qu = GlobalInstance::map_GF[resid].qu;
-			str = StringUtils::format("ui/resbox_qu%d.png", qu);
-		}
-
 
 		cocos2d::ui::ImageView* box = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::PLIST);
 		box->addTouchEventListener(CC_CALLBACK_2(GiftContentLayer::onResclick, this));
 		box->setName(resid);
 		box->setTouchEnabled(true);
 
-		if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
-		{
-			CommonFuncs::playResBoxEffect(box, qu);
-		}
+		CommonFuncs::playResBoxEffect(box, qu);
+
 		this->addChild(box);
 		box->setPosition(Vec2(startx[i], starty[i]));
 

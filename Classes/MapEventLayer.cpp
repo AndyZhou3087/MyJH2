@@ -769,12 +769,15 @@ void MapEventLayer::loadBoxUI(cocos2d::ui::ImageView* box, std::string resid)
 		qu = GlobalInstance::map_GF[resid].qu;
 		str = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
-	else if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
+	else if (t >= T_RENS && t <= T_BOX)
 	{
 		qu = atoi(resid.substr(1).c_str()) - 1;
 		str = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
 	box->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+
+	CommonFuncs::playResBoxEffect(box, qu);
+
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)box->getChildByName("icon");
 
 	str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);

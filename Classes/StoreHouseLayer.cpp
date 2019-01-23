@@ -179,7 +179,7 @@ void StoreHouseLayer::updateContent(int category)
 			qu = GlobalInstance::map_GF[map_cateRes[category][m]->getId()].qu;
 			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
-		else if (map_cateRes[category][m]->getType() == T_RENS || map_cateRes[category][m]->getType() == T_DAN || map_cateRes[category][m]->getType() == T_MIJI || map_cateRes[category][m]->getType() == T_BOX)
+		else if (map_cateRes[category][m]->getType() >= T_RENS && map_cateRes[category][m]->getType() <= T_BOX)
 		{
 			qu = atoi(map_cateRes[category][m]->getId().substr(1).c_str()) - 1;
 			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);

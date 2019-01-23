@@ -249,7 +249,7 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 			qu = GlobalInstance::map_GF[resid].qu;
 			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
-		else if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
+		else if (t >= T_RENS && t <= T_BOX)
 		{
 			qu = atoi(resid.substr(1).c_str()) - 1;
 			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);

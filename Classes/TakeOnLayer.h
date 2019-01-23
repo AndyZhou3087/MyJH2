@@ -28,6 +28,8 @@ public:
 
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
+
+	void openStoneHole();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onEquipclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

@@ -73,7 +73,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 		if (m_res->getId().compare(0, 1, RES_TYPES_CHAR[t]) == 0)
 			break;
 	}
-	if (t == T_RENS || t == T_DAN || t == T_MIJI || t == T_BOX)
+	if (t >= T_RENS && t <= T_BOX)
 	{
 		int qu = atoi(m_res->getId().substr(1).c_str()) - 1;
 		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);

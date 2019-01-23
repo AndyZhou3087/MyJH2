@@ -16,6 +16,7 @@
 #include "AnimationEffect.h"
 #include "NewGuideLayer.h"
 #include "MainScene.h"
+#include "OpenHolesLayer.h"
 
 static bool isChangeEquip = false;
 TakeOnLayer::TakeOnLayer()
@@ -457,20 +458,47 @@ void TakeOnLayer::onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	{
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		Node* node = (Node*)pSender;
-
-		if (m_equip->vec_stones[node->getTag()].length() > 1)
+		int tag = node->getTag();
+		if (tag >= m_equip->vec_stones.size())
 		{
-			SetInStoneLayer* layer = SetInStoneLayer::create(m_equip, node->getTag(), m_herodata);
-			this->addChild(layer,0, node->getTag());
+			OpenHolesLayer* layer = OpenHolesLayer::create(m_equip);
+			this->addChild(layer, 0, tag);
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 		else
 		{
-			SelectEquipLayer* layer = SelectEquipLayer::create(T_STONE, m_herodata);
-			this->addChild(layer, 0, node->getTag());
-			AnimationEffect::openAniEffect((Layer*)layer);
+			if (m_equip->vec_stones[node->getTag()].length() > 1)
+			{
+				SetInStoneLayer* layer = SetInStoneLayer::create(m_equip, node->getTag(), m_herodata);
+				this->addChild(layer, 0, tag);
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
+			else
+			{
+				SelectEquipLayer* layer = SelectEquipLayer::create(T_STONE, m_herodata);
+				this->addChild(layer, 0, node->getTag());
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
 		}
 	}
+}
+
+void TakeOnLayer::openStoneHole()
+{
+	m_equip->vec_stones.push_back("o");
+	int whichhole = m_equip->vec_stones.size() - 1;
+	std::string str = StringUtils::format("stone%d", whichhole);
+	cocos2d::ui::ImageView* stone = (cocos2d::ui::ImageView*)attrnode->getChildByName(str);
+	str = StringUtils::format("equipstonebox_%d", whichhole);
+	cocos2d::ui::ImageView* equipstonebox = (cocos2d::ui::ImageView*)attrnode->getChildByName(str);
+
+	str = StringUtils::format("stonedesc%d", whichhole);
+	cocos2d::ui::Text* stonedesc = (cocos2d::ui::Text*)attrnode->getChildByName(str);
+	stone->setVisible(false);
+	stonedesc->setVisible(true);
+	stonedesc->setString(ResourceLang::map_lang["nosetin"]);
+	equipstonebox->loadTexture("ui/equipstonebox.png", cocos2d::ui::Widget::TextureResType::PLIST);
+	MyRes::saveData();
 }
 
 void TakeOnLayer::setInStone(ResBase* stoneres, int which)
@@ -533,7 +561,7 @@ void TakeOnLayer::updateUI()
 	{
 		std::string str = StringUtils::format("stone%d", i);
 		cocos2d::ui::ImageView* stone = (cocos2d::ui::ImageView*)attrnode->getChildByName(str);
-
+		stone->ignoreContentAdaptWithSize(true);
 		str = StringUtils::format("equipstonebox_%d", i);
 		cocos2d::ui::ImageView* equipstonebox = (cocos2d::ui::ImageView*)attrnode->getChildByName(str);
 
@@ -546,7 +574,6 @@ void TakeOnLayer::updateUI()
 			{
 				str = StringUtils::format("ui/%s.png", m_equip->vec_stones[i].c_str());
 				stone->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
-				stone->ignoreContentAdaptWithSize(true);
 				stone->setVisible(true);
 
 				int intid = atoi(stoneid.substr(1).c_str()) - 1;
@@ -565,18 +592,20 @@ void TakeOnLayer::updateUI()
 				stonedesc->setString(ResourceLang::map_lang["nosetin"]);
 				equipstonebox->loadTexture("ui/equipstonebox.png", cocos2d::ui::Widget::TextureResType::PLIST);
 			}
-			stone->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onStoneclick, this));
-			stone->setTag(i);
-
-			equipstonebox->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onStoneclick, this));
-			equipstonebox->setTag(i);
+			//stone->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onStoneclick, this));
+			//stone->setTag(i);
 		}
 		else
 		{
-			stone->setVisible(false);
+			stone->loadTexture("ui/i002.png", cocos2d::ui::Widget::TextureResType::PLIST);
+			CommonFuncs::changeGray(stone);
+			//stone->setVisible(false);
 			stonedesc->setString(ResourceLang::map_lang["cannotsetin"]);
 			//equipstonebox->setVisible(false);
 		}
+
+		equipstonebox->addTouchEventListener(CC_CALLBACK_2(TakeOnLayer::onStoneclick, this));
+		equipstonebox->setTag(i);
 	}
 
 	updateAttr();

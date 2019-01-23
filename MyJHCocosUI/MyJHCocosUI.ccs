@@ -988,6 +988,8 @@
           <Image Name="heroitem.png" />
           <Image Name="herotag_0.png" />
           <Image Name="herotag_1.png" />
+          <Image Name="i002.png" />
+          <Image Name="i004.png" />
           <Image Name="k001.png" />
           <Image Name="loginbtn.png" />
           <Image Name="loginrewardclose.png" />
@@ -1305,6 +1307,7 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="openHolesLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

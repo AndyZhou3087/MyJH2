@@ -70,10 +70,10 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="-261635333" Tag="162" IconVisible="False" LeftMargin="-185.1654" RightMargin="127.1654" TopMargin="-65.1453" BottomMargin="33.1453" FontSize="28" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="name" ActionTag="-261635333" Tag="162" IconVisible="False" LeftMargin="-185.1654" RightMargin="127.1654" TopMargin="-66.1454" BottomMargin="34.1454" FontSize="28" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="58.0000" Y="32.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="-185.1654" Y="49.1453" />
+            <Position X="-185.1654" Y="50.1454" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
@@ -82,8 +82,8 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="554025305" Tag="161" IconVisible="False" LeftMargin="-185.1657" RightMargin="-114.8343" TopMargin="-24.3594" BottomMargin="-25.6406" IsCustomSize="True" FontSize="20" LabelText="木材" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="300.0000" Y="50.0000" />
+          <AbstractNodeData Name="desc" ActionTag="554025305" Tag="161" IconVisible="False" LeftMargin="-185.1657" RightMargin="-114.8343" TopMargin="-31.8594" BottomMargin="-33.1406" IsCustomSize="True" FontSize="19" LabelText="木材木材木材木材木材木材木材" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="300.0000" Y="65.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="-185.1657" Y="-0.6406" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -151,7 +151,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="clickimg" ActionTag="1766656291" Tag="379" IconVisible="False" LeftMargin="-320.0754" RightMargin="-129.9246" TopMargin="-82.0000" BottomMargin="-40.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="clickimg" ActionTag="1766656291" VisibleForFrame="False" Tag="379" IconVisible="False" LeftMargin="-320.0754" RightMargin="-129.9246" TopMargin="-82.0000" BottomMargin="-40.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
             <Size X="450.0000" Y="122.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-95.0754" Y="21.0000" />

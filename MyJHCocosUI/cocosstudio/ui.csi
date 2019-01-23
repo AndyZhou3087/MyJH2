@@ -465,6 +465,8 @@
       <FilePathData Path="ui/renationitem.png" />
       <FilePathData Path="ui/renationitem1.png" />
       <FilePathData Path="ui/addnicknamecountbtn.png" />
+      <FilePathData Path="ui/i002.png" />
+      <FilePathData Path="ui/i004.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
