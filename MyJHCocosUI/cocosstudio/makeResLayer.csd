@@ -215,72 +215,84 @@
             <OutlineColor A="255" R="23" G="96" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="makeresdescbox" ActionTag="-1312163622" Tag="220" IconVisible="False" LeftMargin="68.0000" RightMargin="68.0000" TopMargin="866.0000" BottomMargin="266.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="needresdesc" ActionTag="1020146095" Tag="34" IconVisible="False" LeftMargin="301.0001" RightMargin="300.9999" TopMargin="837.1730" BottomMargin="416.8270" FontSize="23" LabelText="所需木材10" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="118.0000" Y="26.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0001" Y="429.8270" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="0" B="0" />
+            <PrePosition X="0.5000" Y="0.3358" />
+            <PreSize X="0.1639" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="makeresdescbox" ActionTag="-1312163622" Tag="220" IconVisible="False" LeftMargin="68.0000" RightMargin="68.0000" TopMargin="875.9994" BottomMargin="256.0006" ctype="SpriteObjectData">
             <Size X="584.0000" Y="148.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="340.0000" />
+            <Position X="360.0000" Y="330.0006" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.2656" />
+            <PrePosition X="0.5000" Y="0.2578" />
             <PreSize X="0.8111" Y="0.1156" />
             <FileData Type="Normal" Path="images/makeresdescbox.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rnddesc0" ActionTag="1235919450" Tag="240" IconVisible="False" LeftMargin="125.0000" RightMargin="415.0000" TopMargin="884.5000" BottomMargin="364.5000" FontSize="27" LabelText="橙色几率50.5%" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="rnddesc0" ActionTag="1235919450" Tag="240" IconVisible="False" LeftMargin="125.0000" RightMargin="415.0000" TopMargin="894.4989" BottomMargin="354.5011" FontSize="27" LabelText="橙色几率50.5%" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="180.0000" Y="31.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="215.0000" Y="380.0000" />
+            <Position X="215.0000" Y="370.0011" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2986" Y="0.2969" />
+            <PrePosition X="0.2986" Y="0.2891" />
             <PreSize X="0.2500" Y="0.0242" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rnddesc1" ActionTag="-1285836033" Tag="241" IconVisible="False" LeftMargin="390.0000" RightMargin="150.0000" TopMargin="884.5000" BottomMargin="364.5000" FontSize="27" LabelText="橙色几率50.5%" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="rnddesc1" ActionTag="-1285836033" Tag="241" IconVisible="False" LeftMargin="390.0015" RightMargin="149.9985" TopMargin="894.4989" BottomMargin="354.5011" FontSize="27" LabelText="橙色几率50.5%" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="180.0000" Y="31.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="480.0000" Y="380.0000" />
+            <Position X="480.0015" Y="370.0011" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6667" Y="0.2969" />
+            <PrePosition X="0.6667" Y="0.2891" />
             <PreSize X="0.2500" Y="0.0242" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rnddesc2" ActionTag="-505104602" Tag="242" IconVisible="False" LeftMargin="125.0000" RightMargin="415.0000" TopMargin="925.5000" BottomMargin="323.5000" FontSize="27" LabelText="橙色几率50.5%" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="rnddesc2" ActionTag="-505104602" Tag="242" IconVisible="False" LeftMargin="125.0000" RightMargin="415.0000" TopMargin="935.4991" BottomMargin="313.5009" FontSize="27" LabelText="橙色几率50.5%" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="180.0000" Y="31.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="215.0000" Y="339.0000" />
+            <Position X="215.0000" Y="329.0009" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2986" Y="0.2648" />
+            <PrePosition X="0.2986" Y="0.2570" />
             <PreSize X="0.2500" Y="0.0242" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rnddesc3" ActionTag="401761246" Tag="243" IconVisible="False" LeftMargin="390.0000" RightMargin="150.0000" TopMargin="925.5000" BottomMargin="323.5000" FontSize="27" LabelText="橙色几率50.5%" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="rnddesc3" ActionTag="401761246" Tag="243" IconVisible="False" LeftMargin="390.0015" RightMargin="149.9985" TopMargin="935.4991" BottomMargin="313.5009" FontSize="27" LabelText="橙色几率50.5%" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="180.0000" Y="31.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="480.0000" Y="339.0000" />
+            <Position X="480.0015" Y="329.0009" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6667" Y="0.2648" />
+            <PrePosition X="0.6667" Y="0.2570" />
             <PreSize X="0.2500" Y="0.0242" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rnddesc4" ActionTag="317695860" Tag="244" IconVisible="False" LeftMargin="270.0000" RightMargin="270.0000" TopMargin="972.4692" BottomMargin="276.5308" FontSize="27" LabelText="橙色几率50.5%" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="rnddesc4" ActionTag="317695860" Tag="244" IconVisible="False" LeftMargin="270.0001" RightMargin="269.9999" TopMargin="982.4685" BottomMargin="266.5315" FontSize="27" LabelText="橙色几率50.5%" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="180.0000" Y="31.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="292.0308" />
+            <Position X="360.0001" Y="282.0315" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.2281" />
+            <PrePosition X="0.5000" Y="0.2203" />
             <PreSize X="0.2500" Y="0.0242" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
@@ -362,6 +374,18 @@
             <PreSize X="0.0583" Y="0.0203" />
             <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="tips" ActionTag="1818206903" Tag="33" IconVisible="False" LeftMargin="117.5000" RightMargin="117.5000" TopMargin="1037.6063" BottomMargin="216.3936" FontSize="23" LabelText="铁匠铺等级越高，打造高品质装备的成功率越高" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="485.0000" Y="26.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="229.3936" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.1792" />
+            <PreSize X="0.6736" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

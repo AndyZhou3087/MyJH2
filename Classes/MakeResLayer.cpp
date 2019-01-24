@@ -146,6 +146,9 @@ bool MakeResLayer::init(void* data, int actiontype)
 	needresstr = StringUtils::format(ResourceLang::map_lang["needresdesc"].c_str(), needresstr.c_str());
 	needresdesc->setString(needresstr);
 
+	cocos2d::ui::Text* tips = (cocos2d::ui::Text*)csbnode->getChildByName("tips");
+	tips->setString(ResourceLang::map_lang["makerestips"]);
+
 	//按钮1
 	cocos2d::ui::Widget* makebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("makebtn");
 	makebtn->setTag(1000);

@@ -633,7 +633,7 @@ std::string Hero::generateName()
 		std::string clsname = StringUtils::format("%s/Utils", ANDOIRJNICLS);
 		if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "readAssetStringByLine", "(Ljava/lang/String;I)Ljava/lang/String;"))
 		{
-			jstring para1 = methodInfo.env->NewStringUTF(heronamefile[i].c_str());
+			jstring para1 = methodInfo.env->NewStringUTF(namefile.c_str());
 			jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, para1, namerndindex);
 			ret = methodInfo.env->GetStringUTFChars(jstr, 0);
 		}

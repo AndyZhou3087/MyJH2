@@ -82,7 +82,35 @@ void HttpDataSwap::postAllData()
 	std::string signstr = md5(md5ostr + "key=zhoujian-87");
 	url.append(signstr);
 
-	std::string postdata = GlobalInstance::getInstance()->getUserDefaultXmlString();
+	std::string postdata;
+
+	std::string xmldata = GlobalInstance::getInstance()->getUserDefaultXmlString();
+
+	tinyxml2::XMLDocument *pDoc = new tinyxml2::XMLDocument();
+
+	int err = pDoc->Parse(xmldata.c_str());
+	if (err != 0)
+		delete pDoc;
+	else
+	{
+		rapidjson::Document writedoc;
+		writedoc.SetObject();
+		rapidjson::Document::AllocatorType& allocator = writedoc.GetAllocator();
+
+		tinyxml2::XMLElement *rootEle = pDoc->RootElement();
+
+		tinyxml2::XMLElement *element = rootEle->FirstChildElement();
+		while (element != NULL)
+		{
+			if (element->GetText() != NULL)
+				writedoc.AddMember(rapidjson::Value(element->Name(), allocator), rapidjson::Value(element->GetText(), allocator), allocator);
+			element = element->NextSiblingElement();
+		}
+
+		std::string jsondata = JsonWriter(writedoc);
+		postdata.append("&json=");
+		postdata.append(jsondata);
+	}
 
 	if (postdata.length() > 0)
 	{
@@ -109,6 +137,8 @@ void HttpDataSwap::postAllData()
 		//postdata = JsonWriter(writedoc);
 		HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpPostAllDataCB, this), postdata);
 	}
+
+
 }
 
 void HttpDataSwap::getAllData()
@@ -893,6 +923,21 @@ void HttpDataSwap::httpGetAllDataCB(std::string retdata, int code, std::string e
 						}
 					}
 					delete pDoc;
+				}
+				else if (doc.HasMember("json"))
+				{
+					rapidjson::Document doc;
+					std::string jsonstr;
+					if (JsonReader(jsonstr, doc))
+					{
+						for (rapidjson::Value::ConstMemberIterator iter = doc.MemberBegin(); iter != doc.MemberEnd(); ++iter)
+						{
+							UserDefault::getInstance()->setStringForKey(iter->name.GetString(), iter->value.GetString());
+							UserDefault::getInstance()->flush();
+						}
+					}
+					else
+						ret = DATA_ERR;
 				}
 				else
 					ret = DATA_ERR;
