@@ -28,12 +28,10 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="makeResLayer.csd" />
           <FilePathData Path="ui.csi" />
           <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="consumeResActionLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="makeResLayer.csd" />
+        <ActiveDocument Path="ui.csi" />
       </Value>
     </Item>
   </Properties>

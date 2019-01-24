@@ -1214,7 +1214,6 @@
           <Image Name="y014.png" />
           <Image Name="y015.png" />
         </Folder>
-        <Image Name="1.jpg" />
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />
         <Project Name="buyCoinLayer.csd" Type="Layer" />

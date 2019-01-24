@@ -7,9 +7,9 @@
 
 #define FONT_NAME "fonts/simhei.ttf"
 
-#define FIRSTNAMECOUNT 495
-#define LASTNAMECOUNT0 2306
-#define LASTNAMECOUNT1 4159
+#define MANNAMECOUNT 474
+#define FEMALENAMECOUNT 71
+
 #define HERO_RESETTIME 3600//英雄刷新时间
 #define RES_REFRESHTIME 60//资源刷新时间
 #define MARKET_RESETTIME 3600//市场刷新时间

@@ -225,9 +225,9 @@ public class Utils {
             //通过管理器打开文件并读取
             //BufferedReader bf = new BufferedReader(new  InputStreamReader(assetManager.open(filename)));
             DataInputStream dataInputStream = new DataInputStream(assetManager.open(filename));
-			dataInputStream.skip(line*14);
-			byte namebype[] = new byte[12];
-			if (dataInputStream.read(namebype, 0, 12) > 0)
+			dataInputStream.skip(line*17);
+			byte namebype[] = new byte[15];
+			if (dataInputStream.read(namebype, 0, 15) > 0)
 			{
 				String ss = new String(namebype);
 				result = ss.trim();

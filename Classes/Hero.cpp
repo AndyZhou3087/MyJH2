@@ -557,52 +557,107 @@ void Hero::generate()
 
 std::string Hero::generateName()
 {
-	int rfirst = GlobalInstance::getInstance()->createRandomNum(FIRSTNAMECOUNT);
-	int lastnamecount = LASTNAMECOUNT0;
-	std::string lastnamefile = "heroname/lastname0.txt";
+//	int rfirst = GlobalInstance::getInstance()->createRandomNum(FIRSTNAMECOUNT);
+//	int lastnamecount = LASTNAMECOUNT0;
+//	std::string lastnamefile = "heroname/lastname0.txt";
+//	if (m_vocation == 3)//女性名字
+//	{
+//		lastnamecount = LASTNAMECOUNT1;
+//		lastnamefile = "heroname/lastname1.txt";
+//	}
+//
+//	int rlast = GlobalInstance::getInstance()->GlobalInstance::createRandomNum(lastnamecount);
+//	std::string namestr;
+//	std::string heronamefile[] = { "heroname/firstname.txt" , lastnamefile };
+//	int randindex[] = { rfirst ,rlast };
+//	for (int i = 0; i < 2; i++)
+//	{
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)//android apk是压缩包无法通过fopen操作Asset文件，通过cocos的文件操作，需要读取整个文件，文件可能有1w行，所以改用java文件处理
+//		std::string ret;
+//		JniMethodInfo methodInfo;
+//		std::string clsname = StringUtils::format("%s/Utils", ANDOIRJNICLS);
+//		if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "readAssetStringByLine", "(Ljava/lang/String;I)Ljava/lang/String;"))
+//		{
+//			jstring para1 = methodInfo.env->NewStringUTF(heronamefile[i].c_str());
+//			jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, para1, randindex[i]);
+//			ret = methodInfo.env->GetStringUTFChars(jstr, 0);
+//		}
+//		CommonFuncs::trim(ret);
+//		namestr += ret;
+//#else
+//		std::string fileName = FileUtils::getInstance()->fullPathForFilename(ResourcePath::makePath(heronamefile[i]));
+//		if (fileName.length() > 0)
+//		{
+//			FILE *fp = fopen(fileName.c_str(), "rb");
+//			if (fp)
+//			{
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+//				fseek(fp, randindex[i] * 14, 0);//12个字节名字（4个中文），WIN32回车换行2个字节
+//#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+//				fseek(fp, randindex[i] * 13, 0);//12个字节名字（4个中文），IOS回车换行1个字节
+//#endif
+//				char szReadBuff[13] = { 0 };
+//				size_t readsize = fread(szReadBuff, 12, 1, fp);
+//				if (readsize > 0)
+//				{
+//					std::string name = StringUtils::format("%s", szReadBuff);
+//					CommonFuncs::trim(name);
+//					namestr += name;
+//				}
+//				fclose(fp);
+//				fp = NULL;
+//			}
+//
+//		}
+//#endif
+//	}
+
+	int namerndindex = 0;
+	std::string namefile;
+
 	if (m_vocation == 3)//女性名字
 	{
-		lastnamecount = LASTNAMECOUNT1;
-		lastnamefile = "heroname/lastname1.txt";
+		namerndindex = GlobalInstance::getInstance()->createRandomNum(FEMALENAMECOUNT);
+		namefile = "heroname/name1.txt";
+	}
+	else
+	{
+		namerndindex = GlobalInstance::getInstance()->createRandomNum(MANNAMECOUNT);
+		namefile = "heroname/name0.txt";
 	}
 
-	int rlast = GlobalInstance::getInstance()->GlobalInstance::createRandomNum(lastnamecount);
 	std::string namestr;
-	std::string heronamefile[] = { "heroname/firstname.txt" , lastnamefile };
-	int randindex[] = { rfirst ,rlast };
-	for (int i = 0; i < 2; i++)
-	{
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)//android apk是压缩包无法通过fopen操作Asset文件，通过cocos的文件操作，需要读取整个文件，文件可能有1w行，所有改用java文件处理
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)//android apk是压缩包无法通过fopen操作Asset文件，通过cocos的文件操作，需要读取整个文件，文件可能有1w行，所以改用java文件处理
 		std::string ret;
 		JniMethodInfo methodInfo;
 		std::string clsname = StringUtils::format("%s/Utils", ANDOIRJNICLS);
 		if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "readAssetStringByLine", "(Ljava/lang/String;I)Ljava/lang/String;"))
 		{
 			jstring para1 = methodInfo.env->NewStringUTF(heronamefile[i].c_str());
-			jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, para1, randindex[i]);
+			jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, para1, namerndindex);
 			ret = methodInfo.env->GetStringUTFChars(jstr, 0);
 		}
 		CommonFuncs::trim(ret);
 		namestr += ret;
 #else
-		std::string fileName = FileUtils::getInstance()->fullPathForFilename(ResourcePath::makePath(heronamefile[i]));
+		std::string fileName = FileUtils::getInstance()->fullPathForFilename(ResourcePath::makePath(namefile));
 		if (fileName.length() > 0)
 		{
 			FILE *fp = fopen(fileName.c_str(), "rb");
 			if (fp)
 			{
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-				fseek(fp, randindex[i] * 14, 0);//12个字节名字（4个中文），WIN32回车换行2个字节
+				fseek(fp, namerndindex * 17, 0);//15个字节名字（5个中文），WIN32回车换行2个字节
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-				fseek(fp, randindex[i] * 13, 0);//12个字节名字（4个中文），IOS回车换行1个字节
+				fseek(fp, randindex[i] * 16, 0);//15个字节名字（5个中文），IOS回车换行1个字节
 #endif
-				char szReadBuff[13] = { 0 };
-				size_t readsize = fread(szReadBuff, 12, 1, fp);
+				char szReadBuff[16] = { 0 };
+				size_t readsize = fread(szReadBuff, 15, 1, fp);
 				if (readsize > 0)
 				{
 					std::string name = StringUtils::format("%s", szReadBuff);
 					CommonFuncs::trim(name);
-					namestr += name;
+					namestr.append(name);
 				}
 				fclose(fp);
 				fp = NULL;
@@ -610,7 +665,6 @@ std::string Hero::generateName()
 
 		}
 #endif
-	}
 	return namestr;
 }
 
