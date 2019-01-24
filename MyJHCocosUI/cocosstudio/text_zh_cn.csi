@@ -308,6 +308,9 @@
       <FilePathData Path="text_zh_cn/main_morebtn_text.png" />
       <FilePathData Path="text_zh_cn/loginrewardtitlev2.png" />
       <FilePathData Path="text_zh_cn/renatitontilte.png" />
+      <FilePathData Path="ui/makerescountbox.png" />
+      <FilePathData Path="ui/makeresnamebox.png" />
+      <FilePathData Path="text_zh_cn/forge_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

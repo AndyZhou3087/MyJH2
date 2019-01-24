@@ -5,6 +5,7 @@
       <RootFolder Name=".">
         <Folder Name="fonts">
           <Fnt Name="crithurtnum.fnt" />
+          <Fnt Name="makerescount.fnt" />
           <Fnt Name="normalhurtnum.fnt" />
           <TTF Name="simhei.ttf" />
         </Folder>
@@ -72,6 +73,8 @@
           <Image Name="loginrewardperson.png" />
           <Image Name="logintable.png" />
           <Image Name="loginwordbox.png" />
+          <Image Name="makeresbgbox.png" />
+          <Image Name="makeresdescbox.png" />
           <Image Name="mapbg.jpg" />
           <Image Name="mapblockbottom.png" />
           <Image Name="mapblocktop.png" />
@@ -477,6 +480,7 @@
           <Image Name="eventbusinesstitle.png" />
           <Image Name="fastdecompose_text.png" />
           <Image Name="firebtn_text.png" />
+          <Image Name="forge_text.png" />
           <Image Name="getscore_text.png" />
           <Image Name="gocitybtn_text.png" />
           <Image Name="goout_text.png" />
@@ -1012,6 +1016,9 @@
           <Image Name="main_silver.png" />
           <Image Name="maincityhintbox.png" />
           <Image Name="maintask_icon.png" />
+          <Image Name="makeresbox.png" />
+          <Image Name="makerescountbox.png" />
+          <Image Name="makeresnamebox.png" />
           <Image Name="matchbox0.png" />
           <Image Name="matchbox1.png" />
           <Image Name="matchdoingbtn.png" />
@@ -1207,6 +1214,7 @@
           <Image Name="y014.png" />
           <Image Name="y015.png" />
         </Folder>
+        <Image Name="1.jpg" />
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />
         <Project Name="buyCoinLayer.csd" Type="Layer" />
@@ -1245,6 +1253,7 @@
         <Project Name="MainLayer.csd" Type="Layer" />
         <Project Name="mainMapLayer.csd" Type="Layer" />
         <Project Name="MainMenuLayer.csd" Type="Layer" />
+        <Project Name="makeResLayer.csd" Type="Layer" />
         <Project Name="makeResNode.csd" Type="Node" />
         <Project Name="mapBlockLayer.csd" Type="Layer" />
         <Project Name="mapEventLayer.csd" Type="Layer" />
@@ -1270,6 +1279,7 @@
         <Project Name="newPopLayer.csd" Type="Layer" />
         <Project Name="npcgiveLayer.csd" Type="Layer" />
         <Project Name="npcLayer.csd" Type="Layer" />
+        <Project Name="openHolesLayer.csd" Type="Layer" />
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
@@ -1307,7 +1317,6 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="openHolesLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -467,6 +467,7 @@
       <FilePathData Path="ui/addnicknamecountbtn.png" />
       <FilePathData Path="ui/i002.png" />
       <FilePathData Path="ui/i004.png" />
+      <FilePathData Path="ui/makeresbox.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

@@ -18,7 +18,6 @@
 #include "AnimationEffect.h"
 #include "NewGuideLayer.h"
 #include "MainScene.h"
-#include "SmithyLayer.h"
 #include "BuyCoinLayer.h"
 
 USING_NS_CC;
@@ -38,14 +37,14 @@ ConsumeResActionLayer::~ConsumeResActionLayer()
 			layer->delayShowNewerGuide(0);
 		}
 	}
-	else if (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(76))
-	{
-		SmithyLayer* layer = (SmithyLayer*)g_mainScene->getChildByName("2smithy");
-		if (layer != NULL)
-		{
-			layer->delayShowNewerGuide(0);
-		}
-	}
+	//else if (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(76))
+	//{
+	//	SmithyLayer* layer = (SmithyLayer*)g_mainScene->getChildByName("2smithy");
+	//	if (layer != NULL)
+	//	{
+	//		layer->delayShowNewerGuide(0);
+	//	}
+	//}
 }
 
 
@@ -345,7 +344,6 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 			break;
 		case 1001://直接升级，立即制作
 			{
-				Building* bdata = (Building*)m_data;
 				if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= costcoindv.getValue())
 				{
 					GlobalInstance::getInstance()->costMyCoinCount(costcoindv);

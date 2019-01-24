@@ -3,6 +3,7 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "ConsumeResActionLayer.h"
+#include "MakeResLayer.h"
 #include "MovingLabel.h"
 #include "DataSave.h"
 #include "MyRes.h"
@@ -391,7 +392,8 @@ void SmithyLayer::onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			return;
 
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		ConsumeResActionLayer* layer = ConsumeResActionLayer::create(clicknode->getUserData(), CA_MAKERES);
+		//ConsumeResActionLayer* layer = ConsumeResActionLayer::create(clicknode->getUserData(), CA_MAKERES);
+		MakeResLayer* layer = MakeResLayer::create(clicknode->getUserData(), CA_MAKERES);
 		this->addChild(layer);
 		AnimationEffect::openAniEffect((Layer*)layer);
 	}
