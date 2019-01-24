@@ -649,7 +649,7 @@ std::string Hero::generateName()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 				fseek(fp, namerndindex * 17, 0);//15个字节名字（5个中文），WIN32回车换行2个字节
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-				fseek(fp, randindex[i] * 16, 0);//15个字节名字（5个中文），IOS回车换行1个字节
+				fseek(fp, namerndindex * 16, 0);//15个字节名字（5个中文），IOS回车换行1个字节
 #endif
 				char szReadBuff[16] = { 0 };
 				size_t readsize = fread(szReadBuff, 15, 1, fp);
