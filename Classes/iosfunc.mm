@@ -97,7 +97,7 @@ const char* getUserDefaultXml(int type)
             {
                 isok = true;
             }
-            else if (type == 0 && !([key containsString:@"guide"] || [key containsString:@"UserProtocal"] || [key containsString:@"firstenter"]))
+            else if (type == 0)
             {
                 isok = true;
             }
