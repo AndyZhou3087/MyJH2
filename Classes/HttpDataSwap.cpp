@@ -108,7 +108,7 @@ void HttpDataSwap::postAllData()
 		}
 
 		std::string jsondata = JsonWriter(writedoc);
-		postdata.append("&json=");
+		postdata.append("json=");
 		postdata.append(jsondata);
 	}
 
