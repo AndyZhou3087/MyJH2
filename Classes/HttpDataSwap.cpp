@@ -921,6 +921,7 @@ void HttpDataSwap::httpGetAllDataCB(std::string retdata, int code, std::string e
 								UserDefault::getInstance()->setStringForKey(element->Name(), element->GetText());
 							element = element->NextSiblingElement();
 						}
+						UserDefault::getInstance()->flush();
 					}
 					delete pDoc;
 				}
@@ -933,8 +934,8 @@ void HttpDataSwap::httpGetAllDataCB(std::string retdata, int code, std::string e
 						for (rapidjson::Value::ConstMemberIterator iter = doc.MemberBegin(); iter != doc.MemberEnd(); ++iter)
 						{
 							UserDefault::getInstance()->setStringForKey(iter->name.GetString(), iter->value.GetString());
-							UserDefault::getInstance()->flush();
 						}
+						UserDefault::getInstance()->flush();
 					}
 					else
 						ret = DATA_ERR;
