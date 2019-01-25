@@ -928,7 +928,6 @@ void HttpDataSwap::httpGetAllDataCB(std::string retdata, int code, std::string e
 				}
 				else if (doc.HasMember("json"))
 				{
-					rapidjson::Document doc;
 					std::string jsonstr = doc["json"].GetString();
 					if (JsonReader(jsonstr, doc))
 					{
