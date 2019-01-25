@@ -143,15 +143,17 @@
 		7232D83220E63A0700299738 /* storeHouseLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7232D82B20E63A0600299738 /* storeHouseLayer.csb */; };
 		7232D83320E63A0700299738 /* makeResNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7232D82C20E63A0700299738 /* makeResNode.csb */; };
 		7232D83420E63A0700299738 /* resDescLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7232D82D20E63A0700299738 /* resDescLayer.csb */; };
+		723C870C21F99B9900A0518D /* MakeResLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 723C870721F99B9800A0518D /* MakeResLayer.cpp */; };
+		723C870D21F99B9900A0518D /* OpenHolesLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 723C870B21F99B9900A0518D /* OpenHolesLayer.cpp */; };
+		723C871021F99BC600A0518D /* makeResLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 723C870E21F99BC500A0518D /* makeResLayer.csb */; };
+		723C871121F99BC600A0518D /* openHolesLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 723C870F21F99BC500A0518D /* openHolesLayer.csb */; };
 		723FC5E821EDF16900F8414F /* LoginGetLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 723FC5DE21EDF16800F8414F /* LoginGetLayer.cpp */; };
 		723FC5E921EDF16900F8414F /* M1_5_BoxLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 723FC5DF21EDF16800F8414F /* M1_5_BoxLayer.cpp */; };
 		723FC5EA21EDF16900F8414F /* MoreBtnNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 723FC5E021EDF16800F8414F /* MoreBtnNode.cpp */; };
 		723FC5EB21EDF16900F8414F /* LoginRewardV2Layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 723FC5E121EDF16800F8414F /* LoginRewardV2Layer.cpp */; };
 		723FC5EC21EDF16900F8414F /* RenationLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 723FC5E521EDF16900F8414F /* RenationLayer.cpp */; };
-		723FC5ED21EDF16900F8414F /* LoginRewardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 723FC5E721EDF16900F8414F /* LoginRewardLayer.cpp */; };
 		723FC5F421EDF18B00F8414F /* morebtnNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 723FC5EE21EDF18900F8414F /* morebtnNode.csb */; };
 		723FC5F521EDF18B00F8414F /* renationitemNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 723FC5EF21EDF18A00F8414F /* renationitemNode.csb */; };
-		723FC5F621EDF18B00F8414F /* loginRewardLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 723FC5F021EDF18A00F8414F /* loginRewardLayer.csb */; };
 		723FC5F721EDF18B00F8414F /* m1_5_BoxLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 723FC5F121EDF18A00F8414F /* m1_5_BoxLayer.csb */; };
 		723FC5F821EDF18B00F8414F /* renationLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 723FC5F221EDF18A00F8414F /* renationLayer.csb */; };
 		723FC5F921EDF18B00F8414F /* loginRewardV2Layer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 723FC5F321EDF18A00F8414F /* loginRewardV2Layer.csb */; };
@@ -531,8 +533,13 @@
 		7232D82B20E63A0600299738 /* storeHouseLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = storeHouseLayer.csb; sourceTree = "<group>"; };
 		7232D82C20E63A0700299738 /* makeResNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = makeResNode.csb; sourceTree = "<group>"; };
 		7232D82D20E63A0700299738 /* resDescLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = resDescLayer.csb; sourceTree = "<group>"; };
+		723C870721F99B9800A0518D /* MakeResLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MakeResLayer.cpp; sourceTree = "<group>"; };
+		723C870921F99B9800A0518D /* MakeResLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeResLayer.h; sourceTree = "<group>"; };
+		723C870A21F99B9900A0518D /* OpenHolesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenHolesLayer.h; sourceTree = "<group>"; };
+		723C870B21F99B9900A0518D /* OpenHolesLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenHolesLayer.cpp; sourceTree = "<group>"; };
+		723C870E21F99BC500A0518D /* makeResLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = makeResLayer.csb; sourceTree = "<group>"; };
+		723C870F21F99BC500A0518D /* openHolesLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = openHolesLayer.csb; sourceTree = "<group>"; };
 		723FC5DB21EDF16700F8414F /* RenationLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenationLayer.h; sourceTree = "<group>"; };
-		723FC5DD21EDF16700F8414F /* LoginRewardLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRewardLayer.h; sourceTree = "<group>"; };
 		723FC5DE21EDF16800F8414F /* LoginGetLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoginGetLayer.cpp; sourceTree = "<group>"; };
 		723FC5DF21EDF16800F8414F /* M1_5_BoxLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = M1_5_BoxLayer.cpp; sourceTree = "<group>"; };
 		723FC5E021EDF16800F8414F /* MoreBtnNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoreBtnNode.cpp; sourceTree = "<group>"; };
@@ -542,10 +549,8 @@
 		723FC5E421EDF16900F8414F /* LoginGetLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginGetLayer.h; sourceTree = "<group>"; };
 		723FC5E521EDF16900F8414F /* RenationLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenationLayer.cpp; sourceTree = "<group>"; };
 		723FC5E621EDF16900F8414F /* M1_5_BoxLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M1_5_BoxLayer.h; sourceTree = "<group>"; };
-		723FC5E721EDF16900F8414F /* LoginRewardLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoginRewardLayer.cpp; sourceTree = "<group>"; };
 		723FC5EE21EDF18900F8414F /* morebtnNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = morebtnNode.csb; sourceTree = "<group>"; };
 		723FC5EF21EDF18A00F8414F /* renationitemNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = renationitemNode.csb; sourceTree = "<group>"; };
-		723FC5F021EDF18A00F8414F /* loginRewardLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = loginRewardLayer.csb; sourceTree = "<group>"; };
 		723FC5F121EDF18A00F8414F /* m1_5_BoxLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = m1_5_BoxLayer.csb; sourceTree = "<group>"; };
 		723FC5F221EDF18A00F8414F /* renationLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = renationLayer.csb; sourceTree = "<group>"; };
 		723FC5F321EDF18A00F8414F /* loginRewardV2Layer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = loginRewardV2Layer.csb; sourceTree = "<group>"; };
@@ -876,7 +881,8 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				723FC5F021EDF18A00F8414F /* loginRewardLayer.csb */,
+				723C870E21F99BC500A0518D /* makeResLayer.csb */,
+				723C870F21F99BC500A0518D /* openHolesLayer.csb */,
 				723FC5F321EDF18A00F8414F /* loginRewardV2Layer.csb */,
 				723FC5F121EDF18A00F8414F /* m1_5_BoxLayer.csb */,
 				723FC5EE21EDF18900F8414F /* morebtnNode.csb */,
@@ -1005,10 +1011,12 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				723C870721F99B9800A0518D /* MakeResLayer.cpp */,
+				723C870921F99B9800A0518D /* MakeResLayer.h */,
+				723C870B21F99B9900A0518D /* OpenHolesLayer.cpp */,
+				723C870A21F99B9900A0518D /* OpenHolesLayer.h */,
 				723FC5DE21EDF16800F8414F /* LoginGetLayer.cpp */,
 				723FC5E421EDF16900F8414F /* LoginGetLayer.h */,
-				723FC5E721EDF16900F8414F /* LoginRewardLayer.cpp */,
-				723FC5DD21EDF16700F8414F /* LoginRewardLayer.h */,
 				723FC5E121EDF16800F8414F /* LoginRewardV2Layer.cpp */,
 				723FC5E321EDF16900F8414F /* LoginRewardV2Layer.h */,
 				723FC5DF21EDF16800F8414F /* M1_5_BoxLayer.cpp */,
@@ -1413,6 +1421,7 @@
 				7282708B20F5B7EE00B07087 /* selectEquipLayer.csb in Resources */,
 				72DD1CB82139565F00832ADB /* shopNode.csb in Resources */,
 				72538DA6217093E3007D7062 /* timeGiftLayer.csb in Resources */,
+				723C871121F99BC600A0518D /* openHolesLayer.csb in Resources */,
 				7204533220D892640011D560 /* randHeroNode.csb in Resources */,
 				7232D83020E63A0700299738 /* marketResNode.csb in Resources */,
 				72A2BD0320F8BA1F0085B17D /* winRewardLayer.csb in Resources */,
@@ -1466,6 +1475,7 @@
 				72DD1CB62139565F00832ADB /* giftDescLayer.csb in Resources */,
 				7282708E20F5B7EE00B07087 /* taskMainDescLayer.csb in Resources */,
 				727CFC942160DBEE0004F5DC /* storyLayer.csb in Resources */,
+				723C871021F99BC600A0518D /* makeResLayer.csb in Resources */,
 				72BAB57D2130217600714493 /* gambleBoxLayer.csb in Resources */,
 				7204532520D892640011D560 /* loadingbg.jpg in Resources */,
 				72421DD021269C52008B1B57 /* eventBusinessLayer.csb in Resources */,
@@ -1479,7 +1489,6 @@
 				7204533B20D892640011D560 /* mainimg in Resources */,
 				7204533E20D892640011D560 /* ui.png in Resources */,
 				72C1A0EF2136917900246A17 /* newPopLayer.csb in Resources */,
-				723FC5F621EDF18B00F8414F /* loginRewardLayer.csb in Resources */,
 				7282708F20F5B7EE00B07087 /* equipDescLayer.csb in Resources */,
 				72F700A92178707500ED33F1 /* npcgiveLayer.csb in Resources */,
 				7206D261211D9FD9002D1BDE /* herowalk in Resources */,
@@ -1543,6 +1552,7 @@
 				720452DE20D892200011D560 /* RandHeroLayer.cpp in Sources */,
 				725BD2C0215BA24500B97454 /* UserProtocolLayer.cpp in Sources */,
 				720452F420D892200011D560 /* DataBase64.cpp in Sources */,
+				723C870D21F99B9900A0518D /* OpenHolesLayer.cpp in Sources */,
 				7282706520F5B7B200B07087 /* FightingLayer.cpp in Sources */,
 				7282706B20F5B7B200B07087 /* TaskTalkLayer.cpp in Sources */,
 				720452EA20D892200011D560 /* ResCreator.cpp in Sources */,
@@ -1616,10 +1626,10 @@
 				72FCFBED214FAF0E0020DEF3 /* IOSPurchase.mm in Sources */,
 				72421DD62126E4D6008B1B57 /* ChangeHeadLayer.cpp in Sources */,
 				72F700A72178703B00ED33F1 /* SaleGfLayer.cpp in Sources */,
-				723FC5ED21EDF16900F8414F /* LoginRewardLayer.cpp in Sources */,
 				720452DB20D892200011D560 /* DataSave.cpp in Sources */,
 				72538DA1217093C7007D7062 /* TimeGiftLayer.cpp in Sources */,
 				728A06B821E32772006B5197 /* MyActionProgressTimer.cpp in Sources */,
+				723C870C21F99B9900A0518D /* MakeResLayer.cpp in Sources */,
 				7256A75E2109748D000492EA /* HintBoxLayer.cpp in Sources */,
 				72A55FDE21D60FFF00D95DA8 /* BuyCoinLayer.cpp in Sources */,
 				7226FB3E2142214B00467283 /* SimplePopLayer.cpp in Sources */,

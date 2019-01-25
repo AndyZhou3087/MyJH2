@@ -1,4 +1,4 @@
-﻿#include "HttpDataSwap.h"
+#include "HttpDataSwap.h"
 #include "json.h"
 #include "GlobalInstance.h"
 #include "DataSave.h"
@@ -754,6 +754,7 @@ void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::strin
 void HttpDataSwap::httpPostAllDataCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
+    //log("%s", retdata.c_str());
 	if (code == 0)
 	{
 		rapidjson::Document doc;
