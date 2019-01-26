@@ -375,7 +375,7 @@
             <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="tips" ActionTag="1818206903" Tag="33" IconVisible="False" LeftMargin="117.5000" RightMargin="117.5000" TopMargin="1037.6063" BottomMargin="216.3936" FontSize="23" LabelText="铁匠铺等级越高，打造高品质装备的成功率越高" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="tips" ActionTag="1818206903" Tag="33" IconVisible="False" LeftMargin="117.5000" RightMargin="117.5000" TopMargin="1037.6064" BottomMargin="216.3936" FontSize="23" LabelText="铁匠铺等级越高，打造高品质装备的成功率越高" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="485.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="229.3936" />
@@ -386,6 +386,21 @@
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="closebtn" ActionTag="-384833534" Tag="35" IconVisible="False" LeftMargin="591.5500" RightMargin="62.4500" TopMargin="141.6890" BottomMargin="1072.3110" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="36" Scale9Height="44" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="66.0000" Y="66.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="624.5500" Y="1105.3110" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.8674" Y="0.8635" />
+            <PreSize X="0.0917" Y="0.0516" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/closebtn2.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/closebtn2.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/closebtn2.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

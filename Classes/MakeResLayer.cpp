@@ -165,6 +165,11 @@ bool MakeResLayer::init(void* data, int actiontype)
 	cocos2d::ui::ImageView* drlvupbtntxt = (cocos2d::ui::ImageView*)drmakebtn->getChildByName("text");
 	drlvupbtntxt->loadTexture(ResourcePath::makeTextImgPath(btn2_text, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+	//关闭按钮
+	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
+	closebtn->setTag(1002);
+	closebtn->addTouchEventListener(CC_CALLBACK_2(MakeResLayer::onBtnClick, this));
+
 	coincountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("countlbl");
 	std::string coinstr = StringUtils::format("x%d", costcoindv.getValue());
 	coincountlbl->setString(coinstr);
@@ -276,6 +281,9 @@ void MakeResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 					Director::getInstance()->getRunningScene()->addChild(layer, 100, "buycoinlayer");
 				}
 			}
+			break;
+		case 1002:
+			AnimationEffect::closeAniEffect(this);
 			break;
 		default:
 			break;
