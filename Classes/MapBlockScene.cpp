@@ -50,6 +50,7 @@ MapBlockScene::MapBlockScene()
 	mapIsAllOpen = false;
 	randStartPos = -1;
 	firstpostype = -1;
+	isNewerGuideMap = false;
 }
 
 
@@ -275,6 +276,11 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
 		setBtnEnable(false);
+
+	if (m_mapid.compare("m0-0-0") == 0)
+	{
+		isNewerGuideMap = true;
+	}
 
 	return true;
 }
@@ -648,7 +654,7 @@ void MapBlockScene::onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
 		m_longTouchNode = clicknode;
-		if (!isScheduled(schedule_selector(MapBlockScene::longTouchUpdate)))
+		if (!isScheduled(schedule_selector(MapBlockScene::longTouchUpdate)) && !isNewerGuideMap)
 			schedule(schedule_selector(MapBlockScene::longTouchUpdate), 0.45f);
 		if (!m_isLongPress)
 			go((MAP_KEYTYPE)clicknode->getTag());

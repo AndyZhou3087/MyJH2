@@ -204,6 +204,8 @@ private:
 	std::vector<MapBlock*> vec_monsterBlocks;
 
 	int firstpostype;
+
+	bool isNewerGuideMap;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif
