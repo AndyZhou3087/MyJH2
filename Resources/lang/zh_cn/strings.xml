@@ -171,7 +171,7 @@
 	<s name="doingtext">处理中...</s>
 	<s name="modifynicknametimeslimit">抱歉！修改帮派名号失败！修改次数已到上限！</s>
 	<s name="nicknamecountmaxtext">修改帮派名号次数已到上限！是否花费%d元宝购买5次修改次数？</s>
-	<s name="buynicknamecountmaxtext">购买成功！增加3次修改[帮派名号]次数！</s>
+	<s name="buynicknamecountmaxtext">购买成功！增加5次修改[帮派名号]次数！</s>
 	<s name="juhao">。</s>
 	<s name="event0_0">山崖之下云雾缭绕，似有奇宝。是否下去查看？</s>
 	<s name="event0_1">使用轻功跃入崖底，竟真有宝藏。</s>
