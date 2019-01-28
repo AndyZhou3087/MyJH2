@@ -4,6 +4,7 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "AnimationEffect.h"
+#include "Building.h"
 
 USING_NS_CC;
 
@@ -18,7 +19,7 @@ SimpleResPopLayer::~SimpleResPopLayer()
 }
 
 
-SimpleResPopLayer* SimpleResPopLayer::create(std::string resid, int forwhere)
+SimpleResPopLayer* SimpleResPopLayer::create(std::string resid, int forwhere)//0--普通提示；1--市场购买；2--强化用闯王山洞；3--礼包购买
 {
 	SimpleResPopLayer *pRet = new(std::nothrow)SimpleResPopLayer();
 	if (pRet && pRet->init(resid, forwhere))
@@ -41,6 +42,7 @@ bool SimpleResPopLayer::init(std::string resid, int forwhere)
 	{
 		return false;
 	}
+	m_resid = resid;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 120));
 	this->addChild(color,0,"colorLayer");
@@ -92,10 +94,21 @@ bool SimpleResPopLayer::init(std::string resid, int forwhere)
 	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	res->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
+	cocos2d::ui::ImageView* actionclick = (cocos2d::ui::ImageView*)csbnode->getChildByName("actionclick");
+	actionclick->addTouchEventListener(CC_CALLBACK_2(SimpleResPopLayer::onClick, this));
+	actionclick->setVisible(false);
+	cocos2d::ui::Text* clicktext = (cocos2d::ui::Text*)actionclick->getChildByName("text");
+	clicktext->setString(ResourceLang::map_lang["getwheretext"]);
+	clicktext->setSwallowTouches(false);
+
 	std::string str = GlobalInstance::map_AllResources[resid].desc;
 
 	if (forwhere == 1)
+	{
 		str.append(ResourceLang::map_lang["reswheregettext"]);
+		actionclick->setVisible(true);
+	}
+
 	else if (forwhere == 2)
 		str.append(ResourceLang::map_lang["reswheregettext1"]);
 
@@ -120,4 +133,47 @@ bool SimpleResPopLayer::init(std::string resid, int forwhere)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
+}
+
+void SimpleResPopLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		bool isfind = false;
+		int resinlv = 0;
+		Building* marketBuilding = Building::map_buildingDatas["5market"];
+		;
+		for (int v = 0; v < marketBuilding->maxlevel.getValue(); v++)
+		{
+			int vsize = marketBuilding->vec_exdata.size();
+	
+			for (unsigned int i = 0; i < marketBuilding->vec_exdata[v].size(); i++)
+			{
+				std::vector<std::string> vec_tmp;
+				CommonFuncs::split(marketBuilding->vec_exdata[v][i], vec_tmp, "-");
+
+				if (m_resid.compare(vec_tmp[0]) == 0)
+				{
+					resinlv = v;
+					isfind = true;
+					break;
+				}
+			}
+			if (isfind)
+				break;
+		}
+
+		if (isfind)
+		{
+			if (marketBuilding->level.getValue() >= resinlv)//市场等级够，直接弹出购买
+			{
+
+			}
+			else//弹升级界面
+			{
+
+			}
+		}
+	}
 }

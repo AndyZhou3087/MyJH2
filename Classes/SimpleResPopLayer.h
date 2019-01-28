@@ -15,6 +15,9 @@ public:
 
 	static SimpleResPopLayer* create(std::string resid, int forwhere = 0);
 	bool init(std::string resid, int forwhere = 0);
+	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+private:
+	std::string m_resid;
 };
 
 #endif

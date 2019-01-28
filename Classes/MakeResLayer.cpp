@@ -13,6 +13,7 @@
 #include "NewGuideLayer.h"
 #include "BuyCoinLayer.h"
 #include "CannotTouchLayer.h"
+#include "SimpleResPopLayer.h"
 
 USING_NS_CC;
 
@@ -104,31 +105,38 @@ bool MakeResLayer::init(void* data, int actiontype)
 	std::string resstr = StringUtils::format("ui/%s.png", resid.c_str());
 
 	equipres->loadTexture(ResourcePath::makePath(resstr), cocos2d::ui::Widget::TextureResType::PLIST);
-
+	equipres->addTouchEventListener(CC_CALLBACK_2(MakeResLayer::onResClick, this));
+	equipres->setUserData((void*)m_data);
 	//3个资源的展示
 	for (unsigned int i = 0; i < 3; i++)
 	{
+		std::string resnamestr = StringUtils::format("res%d", i);
+		cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbgnode->getChildByName(resnamestr);
+
+		std::string boxnamestr = StringUtils::format("makeresbox%d", i);
+		Node* makerescountbox = resbgnode->getChildByName(boxnamestr)->getChildByName("makerescountbox");
+
 		if (i < vec_res.size())
 		{
 			std::map<std::string, int> map_res = vec_res[i];
 			std::map<std::string, int>::iterator map_it = map_res.begin();
 
-			std::string resid = map_it->first;
-			std::string boxnamestr = StringUtils::format("makeresbox%d", i);
-			cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbgnode->getChildByName(boxnamestr)->getChildByName("res");
+			std::string rid = map_it->first;
 
-			std::string str = StringUtils::format("ui/%s.png", resid.c_str());
+			std::string str = StringUtils::format("ui/%s.png", rid.c_str());
 			res->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 
-			countlbl[i] = (cocos2d::ui::TextBMFont*)resbgnode->getChildByName(boxnamestr)->getChildByName("count");
+			res->addTouchEventListener(CC_CALLBACK_2(MakeResLayer::onResClick, this));
+			res->setUserData((void*)vec_res[i].begin()->first.c_str());
+			countlbl[i] = (cocos2d::ui::TextBMFont*)makerescountbox->getChildByName("count");
 
-			str = StringUtils::format("%d/%d", MyRes::getMyResCount(resid), map_res[resid]);
+			str = StringUtils::format("%d/%d", MyRes::getMyResCount(rid), map_res[rid]);
 
 			countlbl[i]->setString(str);
 
-			if (map_res[resid] > 0)
+			if (map_res[rid] > 0)
 			{
-				std::string onestr = StringUtils::format("%s%d", GlobalInstance::map_AllResources[resid].name.c_str(), map_res[resid]);
+				std::string onestr = StringUtils::format("%s%d", GlobalInstance::map_AllResources[rid].name.c_str(), map_res[rid]);
 				if (needresstr.length() > 0)
 					needresstr.append(ResourceLang::map_lang["dunhao"]);
 				needresstr.append(onestr);
@@ -136,9 +144,8 @@ bool MakeResLayer::init(void* data, int actiontype)
 		}
 		else
 		{
-			std::string boxnamestr = StringUtils::format("makeresbox%d", i);
-			cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)resbgnode->getChildByName(boxnamestr);
-			resbox->setVisible(false);
+			res->setVisible(false);
+			makerescountbox->setVisible(false);
 		}
 	}
 
@@ -270,8 +277,8 @@ void MakeResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= costcoindv.getValue())
 				{
 					GlobalInstance::getInstance()->costMyCoinCount(costcoindv);
-					//action();
-					showMakeAnim();
+					action();
+					//showMakeAnim();
 				}
 				else
 				{
@@ -291,6 +298,19 @@ void MakeResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 	}
 }
 
+void MakeResLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		Node* node = (Node*)pSender;
+ 		std::string rid = (const char*)node->getUserData();
+		SimpleResPopLayer* layer = SimpleResPopLayer::create(rid, 1);
+		this->addChild(layer);
+		AnimationEffect::openAniEffect(layer);
+	}
+}
+
 void MakeResLayer::showMakeAnim()
 {
 	CannotTouchLayer* layer = CannotTouchLayer::create();
@@ -300,10 +320,10 @@ void MakeResLayer::showMakeAnim()
 	cocos2d::ui::ImageView* equipres = (cocos2d::ui::ImageView*)resbgnode->getChildByName("equipres");
 	for (int i = 0; i < 3; i++)
 	{
-		std::string boxnamestr = StringUtils::format("makeresbox%d", i);
-		Node* resbox = resbgnode->getChildByName(boxnamestr);
+		std::string namestr = StringUtils::format("res%d", i);
+		Node* res = resbgnode->getChildByName(namestr);
 		ActionInterval* ac1 = Spawn::create(FadeOut::create(1.5f), EaseSineIn::create(MoveTo::create(1.0f, Vec2(equipres->getPosition()))), NULL);
-		resbox->runAction(Sequence::create(ac1, NULL));
+		res->runAction(Sequence::create(ac1, NULL));
 	}
 
 	equipres->runAction(Sequence::create(DelayTime::create(1.0f), EaseSineIn::create(RotateTo::create(2.0f, 720 * 2)), CallFuncN::create(CC_CALLBACK_0(MakeResLayer::finishMakeAnim, this)), NULL));

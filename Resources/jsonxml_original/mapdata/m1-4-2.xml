@@ -96,7 +96,7 @@
     <Cell c="2" r="18" p="4" w="1" m="6.png">
       <npcid>n117</npcid>
       <npcrnd>100</npcrnd>
-      <msatt5 id="n117" qu="2">1</msatt5>
+      <msatt5 id="n117" qu="2">30</msatt5>
     </Cell>
     <Cell c="2" r="19" p="-1" w="1" m="6.png" />
     <Cell c="2" r="20" p="-1" w="1" m="6.png" />
@@ -446,7 +446,7 @@
     <Cell c="14" r="2" p="4" w="1" m="6.png">
       <npcid>n007</npcid>
       <npcrnd>100</npcrnd>
-      <msatt5 id="n007" qu="2">20</msatt5>
+      <msatt5 id="n007" qu="2">25</msatt5>
     </Cell>
     <Cell c="14" r="3" p="-1" w="0" m="46.png" />
     <Cell c="14" r="4" p="-1" w="0" m="11.png" />

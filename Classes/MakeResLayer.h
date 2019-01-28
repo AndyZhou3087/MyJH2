@@ -24,6 +24,7 @@ public:
 	void showNewerGuide(int step);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	//更新UI,数值
 	void updateUI(float dt);
 

@@ -105,7 +105,7 @@
     <Cell c="6" r="7" p="-1" w="1" m="6.png" />
     <Cell c="6" r="8" p="-1" w="1" m="6.png" />
     <Cell c="6" r="9" p="5" w="1" m="6.png">
-      <msawd1 id="a001" qu="4" rnd="100.00">1</msawd1>
+      <msawd1 id="a001" qu="1" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="6" r="10" p="-1" w="1" m="6.png" />
     <Cell c="6" r="11" p="-1" w="1" m="6.png" />
@@ -135,7 +135,7 @@
     <Cell c="7" r="9" p="4" w="1" m="6.png">
       <npcid>n112</npcid>
       <npcrnd>100</npcrnd>
-      <msatt5 id="n112" qu="2">20</msatt5>
+      <msatt5 id="n112" qu="2">25</msatt5>
     </Cell>
     <Cell c="7" r="10" p="-1" w="1" m="6.png" />
     <Cell c="7" r="11" p="-1" w="1" m="6.png" />

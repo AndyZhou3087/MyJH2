@@ -507,7 +507,7 @@
     <Cell c="18" r="16" p="4" w="1" m="63.png">
       <npcid>n002</npcid>
       <npcrnd>100</npcrnd>
-      <msatt2 id="n002" qu="3">35</msatt2>
+      <msatt2 id="n002" qu="3">40</msatt2>
     </Cell>
     <Cell c="18" r="17" p="-1" w="0" m="63.png" d="17.png" />
     <Cell c="18" r="18" p="-1" w="0" m="64.png" />

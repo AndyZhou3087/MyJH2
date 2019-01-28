@@ -42,11 +42,11 @@
                 <FileData Type="Normal" Path="images/makeresbgbox.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="equipres" ActionTag="1764564518" Tag="245" IconVisible="False" LeftMargin="-54.5000" RightMargin="-54.5000" TopMargin="-54.5000" BottomMargin="-54.5000" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
-                <Size X="109.0000" Y="109.0000" />
+              <AbstractNodeData Name="equipres" ActionTag="1764564518" Tag="245" IconVisible="False" LeftMargin="-107.5000" RightMargin="-107.5000" TopMargin="-107.5000" BottomMargin="-107.5000" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+                <Size X="215.0000" Y="215.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position />
-                <Scale ScaleX="2.0000" ScaleY="2.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
                 <PreSize X="0.0000" Y="0.0000" />
@@ -57,6 +57,18 @@
                 <Children>
                   <AbstractNodeData Name="makerescountbox" ActionTag="-282353021" Tag="224" IconVisible="False" LeftMargin="52.5000" RightMargin="52.5000" TopMargin="148.5659" BottomMargin="5.4341" ctype="SpriteObjectData">
                     <Size X="86.0000" Y="37.0000" />
+                    <Children>
+                      <AbstractNodeData Name="count" ActionTag="695727863" Tag="226" IconVisible="False" LeftMargin="-13.0000" RightMargin="-13.0000" TopMargin="5.9999" BottomMargin="-0.9999" LabelText="90/9999" ctype="TextBMFontObjectData">
+                        <Size X="112.0000" Y="32.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="43.0000" Y="15.0001" />
+                        <Scale ScaleX="0.6800" ScaleY="0.6800" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.5000" Y="0.4054" />
+                        <PreSize X="1.3023" Y="0.8649" />
+                        <LabelBMFontFile_CNB Type="Normal" Path="fonts/makerescount.fnt" Plist="" />
+                      </AbstractNodeData>
+                    </Children>
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="95.5000" Y="23.9341" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -65,26 +77,6 @@
                     <PreSize X="0.4503" Y="0.1937" />
                     <FileData Type="MarkedSubImage" Path="ui/makerescountbox.png" Plist="text_zh_cn.plist" />
                     <BlendFunc Src="1" Dst="771" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="res" ActionTag="-639475456" Tag="225" IconVisible="False" LeftMargin="41.0000" RightMargin="41.0000" TopMargin="38.5000" BottomMargin="43.5000" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
-                    <Size X="109.0000" Y="109.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="95.5000" Y="98.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.5131" />
-                    <PreSize X="0.5707" Y="0.5707" />
-                    <FileData Type="MarkedSubImage" Path="ui/r004.png" Plist="ui.plist" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="count" ActionTag="695727863" Tag="226" IconVisible="False" LeftMargin="40.0000" RightMargin="39.0000" TopMargin="155.0000" BottomMargin="4.0000" LabelText="90/9999" ctype="TextBMFontObjectData">
-                    <Size X="112.0000" Y="32.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="96.0000" Y="20.0000" />
-                    <Scale ScaleX="0.6800" ScaleY="0.6800" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5026" Y="0.1047" />
-                    <PreSize X="0.5864" Y="0.1675" />
-                    <LabelBMFontFile_CNB Type="Normal" Path="fonts/makerescount.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -96,11 +88,33 @@
                 <FileData Type="MarkedSubImage" Path="ui/makeresbox.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
+              <AbstractNodeData Name="res0" ActionTag="-639475456" Tag="225" IconVisible="False" LeftMargin="-54.5000" RightMargin="-54.5000" TopMargin="-306.5000" BottomMargin="197.5000" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+                <Size X="109.0000" Y="109.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position Y="252.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/r004.png" Plist="ui.plist" />
+              </AbstractNodeData>
               <AbstractNodeData Name="makeresbox1" ActionTag="-55545779" Tag="227" IconVisible="False" LeftMargin="-320.5000" RightMargin="129.5000" TopMargin="17.5000" BottomMargin="-208.5000" ctype="SpriteObjectData">
                 <Size X="191.0000" Y="191.0000" />
                 <Children>
                   <AbstractNodeData Name="makerescountbox" ActionTag="2048144520" Tag="228" IconVisible="False" LeftMargin="52.5000" RightMargin="52.5000" TopMargin="148.5659" BottomMargin="5.4341" ctype="SpriteObjectData">
                     <Size X="86.0000" Y="37.0000" />
+                    <Children>
+                      <AbstractNodeData Name="count" ActionTag="1951205159" Tag="230" IconVisible="False" LeftMargin="-1.5000" RightMargin="-1.5000" TopMargin="5.9999" BottomMargin="-0.9999" LabelText="10/100" ctype="TextBMFontObjectData">
+                        <Size X="89.0000" Y="32.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="43.0000" Y="15.0001" />
+                        <Scale ScaleX="0.6800" ScaleY="0.6800" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.5000" Y="0.4054" />
+                        <PreSize X="1.0349" Y="0.8649" />
+                        <LabelBMFontFile_CNB Type="Normal" Path="fonts/makerescount.fnt" Plist="" />
+                      </AbstractNodeData>
+                    </Children>
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="95.5000" Y="23.9341" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -109,26 +123,6 @@
                     <PreSize X="0.4503" Y="0.1937" />
                     <FileData Type="MarkedSubImage" Path="ui/makerescountbox.png" Plist="text_zh_cn.plist" />
                     <BlendFunc Src="1" Dst="771" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="res" ActionTag="-152578255" Tag="229" IconVisible="False" LeftMargin="41.0000" RightMargin="41.0000" TopMargin="38.5000" BottomMargin="43.5000" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
-                    <Size X="109.0000" Y="109.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="95.5000" Y="98.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.5131" />
-                    <PreSize X="0.5707" Y="0.5707" />
-                    <FileData Type="MarkedSubImage" Path="ui/r004.png" Plist="ui.plist" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="count" ActionTag="1951205159" Tag="230" IconVisible="False" LeftMargin="51.5000" RightMargin="50.5000" TopMargin="155.0000" BottomMargin="4.0000" LabelText="10/100" ctype="TextBMFontObjectData">
-                    <Size X="89.0000" Y="32.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="96.0000" Y="20.0000" />
-                    <Scale ScaleX="0.6800" ScaleY="0.6800" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5026" Y="0.1047" />
-                    <PreSize X="0.4660" Y="0.1675" />
-                    <LabelBMFontFile_CNB Type="Normal" Path="fonts/makerescount.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -140,11 +134,33 @@
                 <FileData Type="MarkedSubImage" Path="ui/makeresbox.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
+              <AbstractNodeData Name="res1" ActionTag="-152578255" Tag="229" IconVisible="False" LeftMargin="-279.5000" RightMargin="170.5000" TopMargin="58.5000" BottomMargin="-167.5000" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+                <Size X="109.0000" Y="109.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="-225.0000" Y="-113.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/r004.png" Plist="ui.plist" />
+              </AbstractNodeData>
               <AbstractNodeData Name="makeresbox2" ActionTag="-1090983191" Tag="231" IconVisible="False" LeftMargin="134.5000" RightMargin="-325.5000" TopMargin="17.5000" BottomMargin="-208.5000" ctype="SpriteObjectData">
                 <Size X="191.0000" Y="191.0000" />
                 <Children>
                   <AbstractNodeData Name="makerescountbox" ActionTag="1987712987" Tag="232" IconVisible="False" LeftMargin="52.5000" RightMargin="52.5000" TopMargin="148.5659" BottomMargin="5.4341" ctype="SpriteObjectData">
                     <Size X="86.0000" Y="37.0000" />
+                    <Children>
+                      <AbstractNodeData Name="count" ActionTag="-1789760416" Tag="234" IconVisible="False" LeftMargin="16.5000" RightMargin="16.5000" TopMargin="6.0000" BottomMargin="-1.0000" LabelText="1/10" ctype="TextBMFontObjectData">
+                        <Size X="53.0000" Y="32.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="43.0000" Y="15.0000" />
+                        <Scale ScaleX="0.6800" ScaleY="0.6800" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.5000" Y="0.4054" />
+                        <PreSize X="0.6163" Y="0.8649" />
+                        <LabelBMFontFile_CNB Type="Normal" Path="fonts/makerescount.fnt" Plist="" />
+                      </AbstractNodeData>
+                    </Children>
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="95.5000" Y="23.9341" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -153,26 +169,6 @@
                     <PreSize X="0.4503" Y="0.1937" />
                     <FileData Type="MarkedSubImage" Path="ui/makerescountbox.png" Plist="text_zh_cn.plist" />
                     <BlendFunc Src="1" Dst="771" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="res" ActionTag="428309906" Tag="233" IconVisible="False" LeftMargin="41.0000" RightMargin="41.0000" TopMargin="38.5000" BottomMargin="43.5000" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
-                    <Size X="109.0000" Y="109.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="95.5000" Y="98.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.5131" />
-                    <PreSize X="0.5707" Y="0.5707" />
-                    <FileData Type="MarkedSubImage" Path="ui/r004.png" Plist="ui.plist" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="count" ActionTag="-1789760416" Tag="234" IconVisible="False" LeftMargin="69.5000" RightMargin="68.5000" TopMargin="155.0000" BottomMargin="4.0000" LabelText="1/10" ctype="TextBMFontObjectData">
-                    <Size X="53.0000" Y="32.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="96.0000" Y="20.0000" />
-                    <Scale ScaleX="0.6800" ScaleY="0.6800" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5026" Y="0.1047" />
-                    <PreSize X="0.2775" Y="0.1675" />
-                    <LabelBMFontFile_CNB Type="Normal" Path="fonts/makerescount.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -183,6 +179,16 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="MarkedSubImage" Path="ui/makeresbox.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="res2" ActionTag="428309906" Tag="233" IconVisible="False" LeftMargin="175.5000" RightMargin="-284.5000" TopMargin="58.5000" BottomMargin="-167.5000" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+                <Size X="109.0000" Y="109.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="230.0000" Y="-113.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/r004.png" Plist="ui.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint />

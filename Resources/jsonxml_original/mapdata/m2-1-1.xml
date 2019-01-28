@@ -446,12 +446,12 @@
     <Cell c="14" r="0" p="3" w="1" m="22.png">
       <npcid>n014</npcid>
       <npcrnd>100</npcrnd>
-      <msatt1 id="n006" qu="2">30</msatt1>
-      <msatt2 id="n007" qu="2">30</msatt2>
-      <msatt3 id="n008" qu="2">30</msatt3>
-      <msatt4 id="n009" qu="2">30</msatt4>
-      <msatt5 id="n014" qu="2">35</msatt5>
-      <msatt6 id="n010" qu="2">30</msatt6>
+      <msatt1 id="n006" qu="1">20</msatt1>
+      <msatt2 id="n007" qu="1">20</msatt2>
+      <msatt3 id="n008" qu="1">20</msatt3>
+      <msatt4 id="n009" qu="1">20</msatt4>
+      <msatt5 id="n014" qu="2">30</msatt5>
+      <msatt6 id="n010" qu="1">20</msatt6>
       <msawd1 id="d001" qu="0" rnd="25.00">1</msawd1>
       <msawd2 id="w007" qu="0" rnd="25.00">1</msawd2>
       <msawd3 id="w012" qu="0" rnd="25.00">1</msawd3>
@@ -857,7 +857,7 @@
     <Cell c="26" r="28" p="-1" w="0" m="73.png" />
     <Cell c="26" r="29" p="-1" w="0" m="55.png" />
     <Cell c="27" r="0" p="5" w="1" m="22.png">
-      <msawd1 id="a005" qu="4" rnd="100.00">1</msawd1>
+      <msawd1 id="a005" qu="2" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="27" r="1" p="-1" w="1" m="22.png" />
     <Cell c="27" r="2" p="-1" w="1" m="22.png" />

@@ -738,12 +738,12 @@
     <Cell c="14" r="14" p="3" w="1" m="107.png">
       <npcid>n042</npcid>
       <npcrnd>100</npcrnd>
-      <msatt1 id="n040" qu="1">60</msatt1>
-      <msatt2 id="n040" qu="1">60</msatt2>
-      <msatt3 id="n040" qu="1">60</msatt3>
-      <msatt4 id="n007" qu="1">60</msatt4>
+      <msatt1 id="n040" qu="2">60</msatt1>
+      <msatt2 id="n040" qu="2">60</msatt2>
+      <msatt3 id="n040" qu="2">60</msatt3>
+      <msatt4 id="n007" qu="2">60</msatt4>
       <msatt5 id="n042" qu="3">50</msatt5>
-      <msatt6 id="n007" qu="1">60</msatt6>
+      <msatt6 id="n007" qu="2">60</msatt6>
     </Cell>
     <Cell c="14" r="15" p="-1" w="1" m="107.png" />
     <Cell c="14" r="16" p="-1" w="1" m="107.png" />

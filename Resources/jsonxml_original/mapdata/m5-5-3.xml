@@ -1070,10 +1070,10 @@
     <Cell c="21" r="3" p="3" w="1" m="94.png">
       <npcid>n045</npcid>
       <npcrnd>100</npcrnd>
-      <msatt1 id="n044" qu="1">65</msatt1>
-      <msatt2 id="n044" qu="1">65</msatt2>
-      <msatt3 id="n044" qu="1">65</msatt3>
-      <msatt5 id="n045" qu="3">65</msatt5>
+      <msatt1 id="n044" qu="3">65</msatt1>
+      <msatt2 id="n044" qu="3">65</msatt2>
+      <msatt3 id="n044" qu="3">65</msatt3>
+      <msatt5 id="n045" qu="3">70</msatt5>
       <msawd1 id="s003" qu="0" rnd="1.00">1</msawd1>
       <msawd2 id="m003" qu="0" rnd="1.00">1</msawd2>
       <msawd3 id="a003" qu="1" rnd="5.00">1</msawd3>
@@ -1683,7 +1683,7 @@
     <Cell c="33" r="3" p="4" w="1" m="94.png">
       <npcid>n016</npcid>
       <npcrnd>100</npcrnd>
-      <msatt5 id="n016" qu="2">50</msatt5>
+      <msatt5 id="n016" qu="3">70</msatt5>
     </Cell>
     <Cell c="33" r="4" p="-1" w="1" m="94.png" />
     <Cell c="33" r="5" p="-1" w="1" m="94.png" />

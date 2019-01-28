@@ -427,4 +427,5 @@
 	<s name="makeresrnd_3">橙色品质概率%s</s>
 	<s name="makeresrnd_4">红色品质概率%s</s>
 	<s name="makerestips">铁匠铺等级越高，打造高品质装备的成功率越高</s>
+	<s name="getwheretext">获取途径</s>	
 </strings>
