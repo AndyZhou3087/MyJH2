@@ -393,17 +393,6 @@ void DataSave::setExitScene(int val)
 	saveIntDataByKey("ExitScene", val);
 }
 
-void DataSave::setMapScenePos(std::string mapid, int pos)
-{
-	std::string str = StringUtils::format("%s,%d", mapid.c_str(), pos);
-	saveStringDataByKey("ScenePos", str);
-}
-
-std::string DataSave::getMapScenePos()
-{
-	return loadStringDataByKey("ScenePos", "");
-}
-
 void DataSave::setHeroMapCarryCount(int val)
 {
 	saveIntDataByKey("mymapcarry", val);

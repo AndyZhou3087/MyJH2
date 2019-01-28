@@ -51,6 +51,7 @@ MapBlockScene::MapBlockScene()
 	randStartPos = -1;
 	firstpostype = -1;
 	isNewerGuideMap = false;
+	usefood = 1;
 }
 
 
@@ -130,6 +131,10 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	mapnamebox->setContentSize(Size(70 + (mapnamelbl->getFontSize() + 1) * u32strlen, mapnamebox->getContentSize().height));
 	mapnamelbl->setString(GlobalInstance::map_AllResources[mapname].name);
 
+	std::string mainid = mapname.substr(0, mapname.find_last_of("-"));
+	S_SubMap submap = GlobalInstance::map_mapsdata[mainid].map_sublist[mapname];
+	usefood = submap.pf;
+
 	Node* topnode = m_csbnode->getChildByName("mapblocktop");
 
 	carrycountlbl = (cocos2d::ui::Text*)topnode->getChildByName("carrycount");
@@ -158,20 +163,6 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	mycurCol = randStartPos % blockColCount;
 	mycurRow = randStartPos / blockColCount;
 	map_mapBlocks[randStartPos]->setPosIcon();
-
-	//地图引导过后是否有记录
-	if (!NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP) && DataSave::getInstance()->getExitScene() == 2)
-	{
-		std::string str = DataSave::getInstance()->getMapScenePos();
-		std::vector<std::string> vec_map;
-		CommonFuncs::split(str, vec_map, ",");
-		if (vec_map.size() > 1)
-		{
-			int myStartPos = atoi(vec_map[1].c_str());
-			mycurCol = myStartPos % blockColCount;
-			mycurRow = myStartPos / blockColCount;
-		}
-	}
 
 	std::map<int, MapBlock*>::iterator it;
 
@@ -269,9 +260,6 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	this->scheduleOnce(schedule_selector(MapBlockScene::closeTaskTipNode), 10.0f);
 
-    //记录位置
-    DataSave::getInstance()->setExitScene(2);
-	DataSave::getInstance()->setMapScenePos(m_mapid, mycurRow*blockColCount + mycurCol);
 	DataSave::getInstance()->setHeroMapCarryCount(GlobalInstance::myOutMapCarry);
 
 	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
@@ -731,7 +719,7 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	walkcount++;
 	monsterComeRnd += (5 + walkcount);
 
-	MyRes::Use("r001", 1, MYPACKAGE);
+	MyRes::Use("r001", usefood, MYPACKAGE);
 
 	if (mycurCol == randStartPos % blockColCount && mycurRow == randStartPos / blockColCount)
 	{

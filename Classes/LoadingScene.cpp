@@ -379,18 +379,10 @@ void LoadingScene::enterNewScene()
 			{
 				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 			}
-			else if (exitscene == 1)
+			else if (exitscene == 1 || exitscene == 2)
 			{
 				GlobalInstance::myOutMapCarry = DataSave::getInstance()->getHeroMapCarryCount();
 				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
-			}
-			else if (exitscene == 2)
-			{
-				GlobalInstance::myOutMapCarry = DataSave::getInstance()->getHeroMapCarryCount();
-				std::string str = DataSave::getInstance()->getMapScenePos();
-				std::vector<std::string> vec_map;
-				CommonFuncs::split(str, vec_map, ",");
-				Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene(vec_map[0], 1)));
 			}
 		}
 	}

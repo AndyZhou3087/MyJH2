@@ -371,11 +371,6 @@ public:
 	****************************/
 	void setExitScene(int val);
 
-	//地图内界面时保存地图id和位置
-	void setMapScenePos(std::string mapid, int pos);
-	//获取地图id和位置
-	std::string getMapScenePos();
-
 	//地图内界面时保存负重
 	void setHeroMapCarryCount(int val);
 	//获取地图负重

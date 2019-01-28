@@ -2365,6 +2365,9 @@ void GlobalInstance::parseMapJson()
 		v = jsonvalue["ph"];
 		s_submap.ph = atoi(v.GetString());
 
+		v = jsonvalue["pf"];
+		s_submap.pf = atoi(v.GetString());
+
 		v = jsonvalue["type"];
 		s_submap.bgtype = atoi(v.GetString());
 

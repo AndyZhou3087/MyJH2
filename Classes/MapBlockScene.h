@@ -206,6 +206,7 @@ private:
 	int firstpostype;
 
 	bool isNewerGuideMap;
+	int usefood;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

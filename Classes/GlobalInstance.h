@@ -26,6 +26,7 @@ typedef struct
 {
 	std::string id;
 	int ph;//小地图消耗的精力，体力
+	int pf;//没走一次消耗的食物
 	int bgtype;//背景图片类型
 	std::vector<std::string> vec_awd;//可能获得物品
 }S_SubMap;

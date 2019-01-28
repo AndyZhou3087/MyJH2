@@ -459,7 +459,8 @@ void TakeOnLayer::onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		Node* node = (Node*)pSender;
 		int tag = node->getTag();
-		if (tag >= m_equip->vec_stones.size())
+		int size = m_equip->vec_stones.size();
+		if (tag >= size)
 		{
 			OpenHolesLayer* layer = OpenHolesLayer::create(m_equip);
 			this->addChild(layer, 0, tag);
