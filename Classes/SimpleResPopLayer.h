@@ -13,11 +13,12 @@ public:
 	SimpleResPopLayer();
 	~SimpleResPopLayer();
 
-	static SimpleResPopLayer* create(std::string resid, int forwhere = 0);
-	bool init(std::string resid, int forwhere = 0);
+	static SimpleResPopLayer* create(std::string resid, int forwhere = 0, int needcount = 0);
+	bool init(std::string resid, int forwhere, int needcount);
 	void onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:
 	std::string m_resid;
+	int m_needcount;
 };
 
 #endif

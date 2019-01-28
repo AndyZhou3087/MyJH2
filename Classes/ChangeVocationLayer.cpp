@@ -264,7 +264,7 @@ void ChangeVocationLayer::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		SimpleResPopLayer* layer = SimpleResPopLayer::create(needresid, 1);
+		SimpleResPopLayer* layer = SimpleResPopLayer::create(needresid, 1, 1);
 		this->addChild(layer);
 		AnimationEffect::openAniEffect(layer);
 	}

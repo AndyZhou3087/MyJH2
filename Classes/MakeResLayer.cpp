@@ -107,6 +107,7 @@ bool MakeResLayer::init(void* data, int actiontype)
 	equipres->loadTexture(ResourcePath::makePath(resstr), cocos2d::ui::Widget::TextureResType::PLIST);
 	equipres->addTouchEventListener(CC_CALLBACK_2(MakeResLayer::onResClick, this));
 	equipres->setUserData((void*)m_data);
+	equipres->setTag(100);
 	//3个资源的展示
 	for (unsigned int i = 0; i < 3; i++)
 	{
@@ -125,7 +126,7 @@ bool MakeResLayer::init(void* data, int actiontype)
 
 			std::string str = StringUtils::format("ui/%s.png", rid.c_str());
 			res->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
-
+			res->setTag(i);
 			res->addTouchEventListener(CC_CALLBACK_2(MakeResLayer::onResClick, this));
 			res->setUserData((void*)vec_res[i].begin()->first.c_str());
 			countlbl[i] = (cocos2d::ui::TextBMFont*)makerescountbox->getChildByName("count");
@@ -305,7 +306,24 @@ void MakeResLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 	{
 		Node* node = (Node*)pSender;
  		std::string rid = (const char*)node->getUserData();
-		SimpleResPopLayer* layer = SimpleResPopLayer::create(rid, 1);
+		int tag = node->getTag();
+		int buyrescount = 0;
+		int forwhere = 0;
+		if (tag < 100)
+		{
+			std::map<std::string, int> map_res = vec_res[tag];
+			std::map<std::string, int>::iterator map_it = map_res.begin();
+
+			std::string rid = map_it->first;
+
+			buyrescount = map_res[rid];
+		}
+		if (buyrescount <= MyRes::getMyResCount(rid))
+			forwhere = 0;
+		else
+			forwhere = 1;
+
+		SimpleResPopLayer* layer = SimpleResPopLayer::create(rid, forwhere, buyrescount);
 		this->addChild(layer);
 		AnimationEffect::openAniEffect(layer);
 	}

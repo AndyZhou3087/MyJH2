@@ -4,6 +4,8 @@
 #include "Const.h"
 #include "AnimationEffect.h"
 #include "MyRes.h"
+#include "DataSave.h"
+#include "Building.h"
 
 USING_NS_CC;
 
@@ -186,11 +188,84 @@ void BuyResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 					}
 				}
 			}
+			else
+			{
+				for (unsigned int i = 0; i < m_vecres.size(); i++)
+				{
+					int qu = m_vecres[i].qu;
+					int st = GlobalInstance::getInstance()->generateStoneCount(qu);
+					MyRes::Add(m_vecres[i].rid, m_vecres[i].count, MYSTORAGE, qu, st);
+				}
+			}
+
+			setMarketData();
+
 			AnimationEffect::closeAniEffect(this);
 		}
 			break;
 		default:
 			break;
 		}
+	}
+}
+
+void BuyResLayer::setMarketData()
+{
+	std::map<std::string, int> map_marketres;
+	int lv = Building::map_buildingDatas["5market"]->level.getValue();
+	for (int v = 0; v <= Building::map_buildingDatas["5market"]->level.getValue(); v++)
+	{
+		int vsize = Building::map_buildingDatas["5market"]->vec_exdata.size();
+		if (v < vsize)
+		{
+			for (unsigned int i = 0; i < Building::map_buildingDatas["5market"]->vec_exdata[v].size(); i++)
+			{
+				std::vector<std::string> vec_tmp;
+				CommonFuncs::split(Building::map_buildingDatas["5market"]->vec_exdata[v][i], vec_tmp, "-");
+
+				std::string resid = vec_tmp[0];
+				int stockcount = atoi(vec_tmp[1].c_str());
+				map_marketres[resid] = stockcount;
+			}
+		}
+	}
+
+	std::string stockstr = DataSave::getInstance()->getMarketStock();
+	if (stockstr.length() > 0)
+	{
+		std::vector<std::string> vec_one;
+		CommonFuncs::split(stockstr, vec_one, ";");
+		for (unsigned int i = 0; i < vec_one.size(); i++)
+		{
+			std::vector<std::string> vec_tmp;
+			CommonFuncs::split(vec_one[i], vec_tmp, "-");
+			std::string resid = vec_tmp[0];
+			int stockcount = atoi(vec_tmp[1].c_str());
+			map_marketres[resid] = stockcount;
+		}
+	}
+
+
+	for (unsigned int i = 0; i < m_vecres.size(); i++)
+	{
+		std::string rid = m_vecres[i].rid;
+		map_marketres[rid] -= m_vecres[i].count;
+		if (map_marketres[rid] < 0)
+			map_marketres[rid] = 0;
+	}
+
+	std::string str;
+
+	std::map<std::string, int>::iterator it;
+
+	for (it = map_marketres.begin(); it != map_marketres.end(); it++)
+	{
+		std::string onestr = StringUtils::format("%s-%d;",it->first.c_str(), map_marketres[it->first]);
+		str.append(onestr);
+	}
+
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setMarketStock(str.substr(0, str.length() - 1));
 	}
 }

@@ -18,7 +18,7 @@ public:
 	bool init(std::vector<MSGAWDSDATA> vec_res);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-
+	void setMarketData();
 private:
 	DynamicValueInt needcoincount;
 	std::vector<MSGAWDSDATA> m_vecres;

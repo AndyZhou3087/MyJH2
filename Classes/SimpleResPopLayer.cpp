@@ -5,6 +5,9 @@
 #include "GlobalInstance.h"
 #include "AnimationEffect.h"
 #include "Building.h"
+#include "BuyResLayer.h"
+#include "MovingLabel.h"
+#include "MarketLayer.h"
 
 USING_NS_CC;
 
@@ -19,10 +22,10 @@ SimpleResPopLayer::~SimpleResPopLayer()
 }
 
 
-SimpleResPopLayer* SimpleResPopLayer::create(std::string resid, int forwhere)//0--普通提示；1--市场购买；2--强化用闯王山洞；3--礼包购买
+SimpleResPopLayer* SimpleResPopLayer::create(std::string resid, int forwhere, int needcount)//0--普通提示；1--市场购买；2--强化用闯王山洞；3--礼包购买
 {
 	SimpleResPopLayer *pRet = new(std::nothrow)SimpleResPopLayer();
-	if (pRet && pRet->init(resid, forwhere))
+	if (pRet && pRet->init(resid, forwhere, needcount))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -36,13 +39,14 @@ SimpleResPopLayer* SimpleResPopLayer::create(std::string resid, int forwhere)//0
 }
 
 // on "init" you need to initialize your instance
-bool SimpleResPopLayer::init(std::string resid, int forwhere)
+bool SimpleResPopLayer::init(std::string resid, int forwhere, int needcount)
 {
 	if (!Layer::init())
 	{
 		return false;
 	}
 	m_resid = resid;
+	m_needcount = needcount;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 120));
 	this->addChild(color,0,"colorLayer");
@@ -169,10 +173,28 @@ void SimpleResPopLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			if (marketBuilding->level.getValue() >= resinlv)//市场等级够，直接弹出购买
 			{
 
+				std::vector< MSGAWDSDATA> vec_res;
+				MSGAWDSDATA rdata;
+				rdata.rid = m_resid;
+				rdata.count = m_needcount;
+				rdata.qu = 0;
+				vec_res.push_back(rdata);
+				BuyResLayer* layer = BuyResLayer::create(vec_res);
+				g_mainScene->addChild(layer, 1000);
+				this->removeFromParentAndCleanup(true);
+
 			}
 			else//弹升级界面
 			{
-
+				std::string str = StringUtils::format(ResourceLang::map_lang["marketlvlow"].c_str(), GlobalInstance::map_AllResources[m_resid].name.c_str(), resinlv + 1);
+				MovingLabel::show(str);
+				this->removeFromParentAndCleanup(true);
+				if (g_mainScene != NULL)
+				{
+					MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
+					g_mainScene->addChild(layer, 1000, "5market");
+					AnimationEffect::openAniEffect(layer);
+				}
 			}
 		}
 	}
