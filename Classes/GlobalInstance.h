@@ -790,6 +790,8 @@ public:
 
 	static LoginData loginData;
 
+	static int punishment;//0--不做处理；-1--清除所有数据；-2--清除部分数据
+
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

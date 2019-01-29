@@ -98,6 +98,11 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 		okbtn->setPositionX(490);
 		cancelbtn->setPositionX(225);
 	}
+	else if (forwhere == 10)
+	{
+		okbtn->setPositionX(360);
+		cancelbtn->setVisible(false);
+	}
 
 	//фа╠ноб╡Ц╣Ц╩В
 	auto listener = EventListenerTouchOneByOne::create();

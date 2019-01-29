@@ -767,8 +767,8 @@ void MainScene::onFinish(int code)
 
 		if (GlobalInstance::getInstance()->getResetSilverRefHeroCountTime() == 0)
 		{
-			int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
-			GlobalInstance::getInstance()->setResetSilverRefHeroCountTime(zerotime - zerotime % (24 * 60 * 60));
+			int zerotime = GlobalInstance::servertime;
+			GlobalInstance::getInstance()->setResetSilverRefHeroCountTime(zerotime - zerotime % TWENTYFOURHOURSTOSEC);
 		}
 
 		costFoodsT = 0;
@@ -777,7 +777,7 @@ void MainScene::onFinish(int code)
 		this->schedule(schedule_selector(MainScene::updateTime), 1);
 
 		//议事厅每日更新
-		int t = (GlobalInstance::servertime + 8 * 60 * 60) / 60 / 60 / 24;
+		int t = GlobalInstance::servertime / TWENTYFOURHOURSTOSEC;
 		if (t > DataSave::getInstance()->getMyFreshDate())
 		{
 			Quest::resetDailyTask();

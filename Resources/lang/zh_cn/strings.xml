@@ -428,5 +428,9 @@
 	<s name="makeresrnd_4">红色品质概率%s</s>
 	<s name="makerestips">铁匠铺等级越高，打造高品质装备的成功率越高</s>
 	<s name="getwheretext">获取途径</s>
-	<s name="marketlvlow">「%s」%d级市场开放购买，请先升级市场！</s>		
+	<s name="marketlvlow">「%s」%d级市场开放购买，请先升级市场！</s>
+	<s name="marketlvlow">「%s」%d级市场开放购买，请先升级市场！</s>
+	<s name="punishment1">检测您的元宝数据异常，为维护游戏公平性，将您的元宝清零处理</s>
+	<s name="punishment2">检测到您在游戏中存在违规行为，为维护游戏公平性，将您的数据清零处理！</s>
+	<s name="punishment3">检测到您的数据存在异常，为维护游戏公平性，将您的数据清零处理！</s>			
 </strings>

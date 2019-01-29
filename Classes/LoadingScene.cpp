@@ -14,6 +14,7 @@
 #include "MovingLabel.h"
 #include "ErrorHintLayer.h"
 #include "StoryScene.h"
+#include "HintBoxLayer.h"
 #ifdef UMENG
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
@@ -162,14 +163,22 @@ void LoadingScene::loadData()
 	showTips();
 	showPointAnim(0);
 	this->schedule(schedule_selector(LoadingScene::showPointAnim), 1.5f);
-	if (!GlobalInstance::isResetData)
+
+	if (GlobalInstance::punishment == 0)
 	{
-		//先获取服务器数据
-		this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
+		if (!GlobalInstance::isResetData)
+		{
+			//先获取服务器数据
+			this->scheduleOnce(schedule_selector(LoadingScene::delayGetServerData), 0.1f);
+		}
+		else
+		{
+			this->scheduleOnce(schedule_selector(LoadingScene::resetLoadData), 1.0f);
+		}
 	}
 	else
 	{
-		this->scheduleOnce(schedule_selector(LoadingScene::resetLoadData), 1.0f);
+		this->scheduleOnce(schedule_selector(LoadingScene::punishmentAction), 1.0f);
 	}
 }
 
@@ -185,6 +194,80 @@ void LoadingScene::resetLoadData(float dt)
 	parseCfgFiles();
 
 	enterNewScene();
+}
+
+void LoadingScene::punishmentAction(float dt)
+{
+	std::string hintstr;
+	if (GlobalInstance::punishment == -1)
+	{
+		hintstr = ResourceLang::map_lang["punishment2"];
+	}
+	else if (GlobalInstance::punishment == -2)
+	{
+		hintstr = ResourceLang::map_lang["punishment3"];
+	}
+	HintBoxLayer* hint = HintBoxLayer::create(hintstr, 10);
+	this->addChild(hint, 10000, this->getTag());
+	AnimationEffect::openAniEffect(hint);
+
+	tinyxml2::XMLDocument *pDoc = new tinyxml2::XMLDocument();
+
+	std::string content = GlobalInstance::getInstance()->getUserDefaultXmlString(0);
+
+	int err = pDoc->Parse(content.c_str());
+	if (err != 0)
+	{
+		delete pDoc;
+	}
+	tinyxml2::XMLElement *rootEle = pDoc->RootElement();
+
+	tinyxml2::XMLElement *element = rootEle->FirstChildElement();
+	while (element != NULL)
+	{
+		std::string key = element->Name();
+		if (key.find("guide") == std::string::npos)
+		{
+			UserDefault::getInstance()->deleteValueForKey(element->Name());
+		}
+		element = element->NextSiblingElement();
+	}
+
+	if (GlobalInstance::punishment == -2)
+	{
+		std::vector<Hero*>::iterator it;
+		for (it = GlobalInstance::vec_myHeros.begin(); it != GlobalInstance::vec_myHeros.end();)
+		{
+			Hero* hero = *it;
+			if (hero->getPotential() >= 4)
+			{
+				it = GlobalInstance::vec_myHeros.erase(it);
+				break;
+			}
+			else
+			{
+				it++;
+			}
+		}
+		GlobalInstance::getInstance()->saveMyHeros();
+
+		GlobalInstance::getInstance()->saveResCreatorData();
+		GlobalInstance::getInstance()->saveTotalFarmers(GlobalInstance::getInstance()->getTotalFarmers());
+
+		DataSave::getInstance()->setBuildingLv("7homehill", Building::map_buildingDatas["7homehill"]->level.getValue());
+	}
+
+	GlobalInstance::punishment = 0;
+
+	UserDefault::getInstance()->flush();
+
+	GlobalInstance::getInstance()->resetData();
+	DataSave::getInstance()->setUserProtocal(true);
+	DataSave::getInstance()->setFirstEnter(false);
+
+	HttpDataSwap::init(NULL)->postAllData();
+	parseCfgFiles();
+	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 4.0f);
 }
 
 void LoadingScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

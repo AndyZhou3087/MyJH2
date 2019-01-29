@@ -105,6 +105,8 @@ std::string GlobalInstance::upgradeurl;
 
 LoginData GlobalInstance::loginData;
 
+int GlobalInstance::punishment = 0;
+
 GlobalInstance::GlobalInstance()
 {
 

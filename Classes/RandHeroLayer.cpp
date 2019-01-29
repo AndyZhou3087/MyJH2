@@ -418,10 +418,10 @@ void RandHeroLayer::updateUI(float dt)
 	m_timelbl->setString(timestr);
 	m_timebar->setPercent(lefttime*100/ HERO_RESETTIME);
 
-	int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
-	if (zerotime - GlobalInstance::getInstance()->getResetSilverRefHeroCountTime() >= 24 * 60 * 60)
+	int zerotime = GlobalInstance::servertime;
+	if (zerotime - GlobalInstance::getInstance()->getResetSilverRefHeroCountTime() >= TWENTYFOURHOURSTOSEC)
 	{
-		GlobalInstance::getInstance()->setResetSilverRefHeroCountTime(zerotime - zerotime % (24 * 60 * 60));
+		GlobalInstance::getInstance()->setResetSilverRefHeroCountTime(zerotime - zerotime % TWENTYFOURHOURSTOSEC);
 		GlobalInstance::getInstance()->setSilverRefHeroCount(0);
 		GlobalInstance::isNewHeroRefresh = true;
 	}

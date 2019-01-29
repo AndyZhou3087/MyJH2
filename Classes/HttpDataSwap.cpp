@@ -825,6 +825,10 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 				{
 					GlobalInstance::serverTimeGiftData.turn = iter->value.GetInt();
 				}
+				else if (strid.compare("updatecoin") == 0)
+				{
+					GlobalInstance::punishment = iter->value.GetInt();
+				}
 				else if (strid.compare(0, 3, "vip") == 0)
 				{
 					int val = iter->value.GetInt();

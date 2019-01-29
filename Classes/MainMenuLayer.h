@@ -53,6 +53,7 @@ private:
 
 	void onFinish(int code);
 
+	void doPunishment();
 public:
 	void changeHead();
 

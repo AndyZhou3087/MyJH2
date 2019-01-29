@@ -22,6 +22,8 @@
 #include "ShopLayer.h"
 #include "MovingLabel.h"
 #include "TimeGiftLayer.h"
+#include "HintBoxLayer.h"
+#include "LoadingScene.h"
 
 USING_NS_CC;
 
@@ -148,7 +150,8 @@ bool MainMenuLayer::init()
 	{
 		morebtnnode->runAction(Sequence::create(ScaleTo::create(0.2f, 0), Hide::create(), NULL));
 		cocos2d::ui::Button* morebtn = (cocos2d::ui::Button*)csbnode->getChildByName("morebtn");
-		morebtn->setBright(morebtnnode->isVisible());
+		if (morebtnnode->isVisible())
+			morebtn->setBright(morebtnnode->isVisible());
 		return true;
 	};
 	listener->setSwallowTouches(false);
@@ -207,6 +210,11 @@ void MainMenuLayer::onFinish(int code)
 			}
 
 			HttpDataSwap::init(this)->getMessageList(0);
+
+			if (GlobalInstance::punishment != 0)
+			{
+				doPunishment();
+			}
 		}
 		else
 		{
@@ -480,6 +488,23 @@ void MainMenuLayer::changeHead()
 	std::string str = StringUtils::format("ui/h_%d_0.png", DataSave::getInstance()->getHeadId());
 	head->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 	head->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());
+}
+
+void MainMenuLayer::doPunishment()
+{
+	if (GlobalInstance::punishment > 0)
+	{
+		DynamicValueInt dint;
+		dint.setValue(GlobalInstance::punishment - abs(GlobalInstance::getInstance()->getMyCoinCount().getValue()));
+		GlobalInstance::getInstance()->addMyCoinCount(dint);
+
+		HintBoxLayer* layer = HintBoxLayer::create(ResourceLang::map_lang["punishment1"], 10);
+		Director::getInstance()->getRunningScene()->addChild(layer, 100000);
+	}
+	else if (GlobalInstance::punishment < 0)
+	{
+		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, LoadingScene::createScene()));
+	}
 }
 
 void MainMenuLayer::onExit()

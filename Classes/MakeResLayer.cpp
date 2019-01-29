@@ -352,7 +352,7 @@ void MakeResLayer::finishMakeAnim()
 {
 	Node* resbgnode = csbnode->getChildByName("resbgnode");
 	cocos2d::ui::ImageView* equipres = (cocos2d::ui::ImageView*)resbgnode->getChildByName("equipres");
-	equipres->runAction(Sequence::create(ScaleTo::create(0.2f, 3), DelayTime::create(0.5f), CallFuncN::create(CC_CALLBACK_0(MakeResLayer::action, this)), NULL));
+	equipres->runAction(Sequence::create(ScaleTo::create(0.2f, 1.5f), DelayTime::create(0.5f), CallFuncN::create(CC_CALLBACK_0(MakeResLayer::action, this)), NULL));
 }
 
 void MakeResLayer::action()

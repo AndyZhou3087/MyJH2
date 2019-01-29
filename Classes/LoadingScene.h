@@ -38,6 +38,8 @@ public:
 
 	void resetLoadData(float dt);
 
+	void punishmentAction(float dt);
+
 private:
 	CREATE_FUNC(LoadingScene);
 
