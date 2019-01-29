@@ -23,9 +23,12 @@ private:
 	void removeSelf(float dt);
 	void onFinish(int code);
 	void showRwd();
+
+	void showRotation(Node* node);
 private:
 	std::vector<MSGAWDSDATA> vec_rewards;
 	int getcount;
+	Label *desclbl;
 };
 
 #endif

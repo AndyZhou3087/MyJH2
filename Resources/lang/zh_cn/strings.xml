@@ -411,6 +411,7 @@
 	<s name="loginbox4desc">大侠坚毅之心，日月皆知，天地可鉴，每天的神秘机缘之礼，大侠切莫错过！</s>
 	<s name="loginbox5desc">少侠，今日签到奖励已领，请明日再来！</s>
 	<s name="loginbox6desc">已连续签到%d天</s>
+	<s name="getloginrwdhint">点击物品领取</s>	
 	<s name="renationtname">名称     位置       关系</s>
 	<s name="totalattrtitle">总增加属性</s>
 	<s name="renationhintdesc">左右滑动翻页查看更多</s>
@@ -432,5 +433,5 @@
 	<s name="marketlvlow">「%s」%d级市场开放购买，请先升级市场！</s>
 	<s name="punishment1">检测您的元宝数据异常，为维护游戏公平性，将您的元宝清零处理</s>
 	<s name="punishment2">检测到您在游戏中存在违规行为，为维护游戏公平性，将您的数据清零处理！</s>
-	<s name="punishment3">检测到您的数据存在异常，为维护游戏公平性，将您的数据清零处理！</s>			
+	<s name="punishment3">检测到您的数据存在异常，为维护游戏公平性，将您的数据清零处理！</s>		
 </strings>

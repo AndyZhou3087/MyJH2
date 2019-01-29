@@ -17,6 +17,7 @@ USING_NS_CC;
 LoginGetLayer::LoginGetLayer()
 {
 	getcount = 0;
+	desclbl = NULL;
 }
 
 LoginGetLayer::~LoginGetLayer()
@@ -128,7 +129,7 @@ void LoginGetLayer::showRwd()
 
 		resbox->setPosition(Vec2(360, 500));
 		resbox->setScale(0);
-		resbox->runAction(Spawn::create(MoveTo::create(0.3f, Vec2(startx[rewardsize - 1] + offsetx[rewardsize - 1] * i, 680)), ScaleTo::create(0.3f, 1), NULL));
+		resbox->runAction(Spawn::create(MoveTo::create(0.3f, Vec2(startx[rewardsize - 1] + offsetx[rewardsize - 1] * i, 680)), ScaleTo::create(0.3f, 1), DelayTime::create(2 + i*0.5), CallFunc::create(CC_CALLBACK_0(LoginGetLayer::showRotation, this, resbox)),  NULL));
 		//resbox->setPositionX(startx[rewardsize - 1] + offsetx[rewardsize - 1] * i);
 
 		this->addChild(resbox);
@@ -170,13 +171,31 @@ void LoginGetLayer::showRwd()
 	}
 }
 
+void LoginGetLayer::showRotation(Node* node)
+{
+	node->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 5), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -5), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
+	
+	if (desclbl == NULL)
+	{
+		desclbl = Label::createWithTTF(ResourceLang::map_lang["getloginrwdhint"], FONT_NAME, 21);
+		desclbl->setColor(Color3B(255, 255, 255));
+		desclbl->setOpacity(128);
+		desclbl->setPosition(Vec2(360, 500));
+		this->addChild(desclbl);
+	}
+}
+
 void LoginGetLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	//CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		if (desclbl != NULL)
+			desclbl->setVisible(false);
 		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)pSender;
 		node->setTouchEnabled(false);
+		node->stopAllActions();
+		node->setRotation(0);
 		int tag = node->getTag();
 		Node* resnode = node->getChildByName("res");
 		CommonFuncs::changeGray(resnode);
