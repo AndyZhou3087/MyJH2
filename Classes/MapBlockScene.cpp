@@ -462,8 +462,19 @@ void MapBlockScene::updateTaskInfo(float dt)
 		else
 		{
 			textmain->setString(ResourceLang::map_lang["finishtasktext"]);
-			textbranch->setColor(Color3B::WHITE);
 			textmain->setTextColor(Color4B(255, 0, 0, 255));
+
+			std::u32string utf32lblString;
+			StringUtils::UTF8ToUTF32(textmain->getString(), utf32lblString);
+
+			for (unsigned int m = 0; m < utf32lblString.length(); m++)
+			{
+				Sprite* letter = textmain->getLetter(m);
+				if (letter != NULL)
+				{
+					letter->setColor(Color3B(255, 0, 0));
+				}
+			}
 		}
 	}
 
@@ -491,9 +502,21 @@ void MapBlockScene::updateTaskInfo(float dt)
 		}
 		else
 		{
+
 			textbranch->setString(ResourceLang::map_lang["finishtasktext"]);
-			textbranch->setColor(Color3B::WHITE);
 			textbranch->setTextColor(Color4B(255, 0, 0, 255));
+
+			std::u32string utf32lblString;
+			StringUtils::UTF8ToUTF32(textbranch->getString(), utf32lblString);
+
+			for (unsigned int m = 0; m < utf32lblString.length(); m++)
+			{
+				Sprite* letter = textbranch->getLetter(m);
+				if (letter != NULL)
+				{
+					letter->setColor(Color3B(255, 0, 0));
+				}
+			}
 
 		}
 	}

@@ -25,5 +25,16 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="simpleResPopLayer.csd" />
+          <FilePathData Path="mapBlockLayer.csd" />
+          <FilePathData Path="MainLayer.csd" />
+          <FilePathData Path="taskTipsNode.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="taskTipsNode.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>
