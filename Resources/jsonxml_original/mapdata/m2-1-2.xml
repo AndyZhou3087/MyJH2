@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cfg>
   <Monstors minc="2" maxc="5">
-    <m id="n001" minlv="20" maxlv="25" minqu="1" maxqu="2">20</m>
-    <m id="n002" minlv="20" maxlv="25" minqu="1" maxqu="2">20</m>
-    <m id="n003" minlv="20" maxlv="25" minqu="1" maxqu="2">20</m>
-    <m id="n004" minlv="20" maxlv="25" minqu="1" maxqu="2">20</m>
-    <m id="n005" minlv="20" maxlv="25" minqu="1" maxqu="2">10</m>
-    <m id="n011" minlv="20" maxlv="25" minqu="1" maxqu="2">10</m>
+    <m id="n001" minlv="20" maxlv="25" minqu="1" maxqu="1">20</m>
+    <m id="n002" minlv="20" maxlv="25" minqu="1" maxqu="1">20</m>
+    <m id="n003" minlv="20" maxlv="25" minqu="1" maxqu="1">20</m>
+    <m id="n004" minlv="20" maxlv="25" minqu="1" maxqu="1">20</m>
+    <m id="n005" minlv="20" maxlv="25" minqu="1" maxqu="1">10</m>
+    <m id="n011" minlv="20" maxlv="25" minqu="1" maxqu="1">10</m>
     <ma id="r001" c="10" qu="0">20.00</ma>
     <ma id="r002" c="10" qu="0">20.00</ma>
     <ma id="r003" c="10" qu="0">20.00</ma>
@@ -441,12 +441,12 @@
     <Cell c="14" r="3" p="3" w="1" m="43.png">
       <npcid>n109</npcid>
       <npcrnd>100</npcrnd>
-      <msatt1 id="n002" qu="2">30</msatt1>
-      <msatt2 id="n010" qu="2">30</msatt2>
-      <msatt3 id="n011" qu="2">30</msatt3>
-      <msatt4 id="n012" qu="2">30</msatt4>
-      <msatt5 id="n109" qu="2">35</msatt5>
-      <msatt6 id="n004" qu="2">30</msatt6>
+      <msatt1 id="n002" qu="2">20</msatt1>
+      <msatt2 id="n010" qu="2">20</msatt2>
+      <msatt3 id="n011" qu="2">20</msatt3>
+      <msatt4 id="n012" qu="2">25</msatt4>
+      <msatt5 id="n109" qu="2">25</msatt5>
+      <msatt6 id="n004" qu="2">25</msatt6>
       <msawd1 id="d001" qu="0" rnd="25.00">1</msawd1>
       <msawd2 id="w017" qu="0" rnd="25.00">1</msawd2>
       <msawd3 id="w025" qu="0" rnd="25.00">1</msawd3>

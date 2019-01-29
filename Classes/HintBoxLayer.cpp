@@ -98,7 +98,7 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 		okbtn->setPositionX(490);
 		cancelbtn->setPositionX(225);
 	}
-	else if (forwhere == 10)
+	else if (forwhere == 10 || forwhere == 11)
 	{
 		okbtn->setPositionX(360);
 		cancelbtn->setVisible(false);
@@ -112,7 +112,11 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		if (forwhere != 4)
+		if (forwhere == 4 || forwhere == 11)
+		{
+			return;
+		}
+		else
 			AnimationEffect::closeAniEffect((Layer*)this);
 	};
 	listener->setSwallowTouches(true);
@@ -206,6 +210,14 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				{
 					settinglayer->modifyNameCount();
 				}
+			}
+			else if (m_forwhere == 11)
+			{
+#if USE_TRANSCENE
+				Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAIN)));
+#else
+				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+#endif
 			}
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;

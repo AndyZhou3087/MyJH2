@@ -551,9 +551,9 @@
     <Cell c="13" r="10" p="4" w="1" m="94.png">
       <npcid>n030</npcid>
       <npcrnd>100</npcrnd>
-      <msatt1 id="n027" qu="3">40</msatt1>
+      <msatt1 id="n027" qu="2">40</msatt1>
       <msatt2 id="n027" qu="3">40</msatt2>
-      <msatt3 id="n027" qu="3">40</msatt3>
+      <msatt3 id="n027" qu="2">40</msatt3>
       <msatt4 id="n008" qu="3">40</msatt4>
       <msatt5 id="n030" qu="3">50</msatt5>
       <msatt6 id="n008" qu="3">40</msatt6>

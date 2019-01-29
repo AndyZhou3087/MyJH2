@@ -434,5 +434,6 @@
 	<s name="marketlvlow">「%s」%d级市场开放购买，请先升级市场！</s>
 	<s name="punishment1">检测您的数据异常，为维护游戏公平性，已将您的元宝调整</s>
 	<s name="punishment2">检测到您在游戏中存在违规行为，为维护游戏公平性，将您的数据清零处理！</s>
-	<s name="punishment3">检测到您的数据存在异常，为维护游戏公平性，将您的数据强行调整！</s>		
+	<s name="punishment3">检测到您的数据存在异常，为维护游戏公平性，将您的数据强行调整！</s>
+	<s name="nofooddeathhint">侠客因食物匮乏而重伤，无法继续探险，可前往医馆救治！</s>			
 </strings>
