@@ -49,10 +49,10 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="textmain" ActionTag="373962460" Tag="26" IconVisible="False" LeftMargin="-200.2852" RightMargin="-161.7148" TopMargin="-24.6844" BottomMargin="-2.3156" FontSize="24" LabelText="日月神手段：到神农镇后山找帮主" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="textmain" ActionTag="373962460" Tag="26" IconVisible="False" LeftMargin="-200.0000" RightMargin="-162.0000" TopMargin="-24.6844" BottomMargin="-2.3156" FontSize="24" LabelText="日月神手段：到神农镇后山找帮主" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="362.0000" Y="27.0000" />
             <AnchorPoint ScaleY="1.0000" />
-            <Position X="-200.2852" Y="24.6844" />
+            <Position X="-200.0000" Y="24.6844" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
@@ -73,10 +73,10 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="textbranch" ActionTag="-944560780" Tag="29" IconVisible="False" LeftMargin="-197.0291" RightMargin="-189.9709" TopMargin="28.5029" BottomMargin="-55.5029" FontSize="24" LabelText="任务任务任务任务任务任务任务任务" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="textbranch" ActionTag="-944560780" Tag="29" IconVisible="False" LeftMargin="-200.0000" RightMargin="-187.0000" TopMargin="28.5029" BottomMargin="-55.5029" FontSize="24" LabelText="任务任务任务任务任务任务任务任务" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="387.0000" Y="27.0000" />
             <AnchorPoint ScaleY="1.0000" />
-            <Position X="-197.0291" Y="-28.5029" />
+            <Position X="-200.0000" Y="-28.5029" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />

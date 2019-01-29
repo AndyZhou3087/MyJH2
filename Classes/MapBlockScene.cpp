@@ -450,8 +450,8 @@ void MapBlockScene::updateTaskInfo(float dt)
 		}
 		else
 		{
-			textmain->setTextColor(Color4B(255, 0, 0, 255));
 			textmain->setString(ResourceLang::map_lang["finishtasktext"]);
+			textmain->setTextColor(Color4B(255, 0, 0, 255));
 		}
 	}
 
@@ -479,8 +479,9 @@ void MapBlockScene::updateTaskInfo(float dt)
 		}
 		else
 		{
-			textbranch->setTextColor(Color4B(255, 0, 0, 255));
 			textbranch->setString(ResourceLang::map_lang["finishtasktext"]);
+			textbranch->setTextColor(Color4B(255, 0, 0, 255));
+
 		}
 	}
 }

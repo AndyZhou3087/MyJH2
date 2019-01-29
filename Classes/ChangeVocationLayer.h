@@ -28,11 +28,14 @@ public:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	void updateResCount(float dt);
 private:
 	Hero* m_herodata;
 	int m_forwhere;
 	std::string needresid;
 	Node* csbnode;
+	cocos2d::ui::Text* count_0;
 
 };
 

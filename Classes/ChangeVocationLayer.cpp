@@ -97,19 +97,13 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 
 	cocos2d::ui::Text* content = (cocos2d::ui::Text*)csbnode->getChildByName("content");
 
-	cocos2d::ui::Text* count_0 = (cocos2d::ui::Text*)csbnode->getChildByName("count_0");
-	std::string str = StringUtils::format("%d/1", MyRes::getMyResCount(needresid));
-	count_0->setString(str);
+	count_0 = (cocos2d::ui::Text*)csbnode->getChildByName("count_0");
 
-	if (MyRes::getMyResCount(needresid) >= 1)
-	{
-		count_0->setColor(Color3B(255, 255, 255));
-	}
-	else
-	{
-		count_0->setColor(Color3B(255, 0, 0));
-	}
+	updateResCount(0);
+	this->schedule(schedule_selector(ChangeVocationLayer::updateResCount), 1.0f);
 	
+	std::string str;
+
 	if (forwhere == 0)
 	{
 		int a;
@@ -267,6 +261,21 @@ void ChangeVocationLayer::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 		SimpleResPopLayer* layer = SimpleResPopLayer::create(needresid, 1, 1);
 		this->addChild(layer);
 		AnimationEffect::openAniEffect(layer);
+	}
+}
+
+void ChangeVocationLayer::updateResCount(float dt)
+{
+	std::string str = StringUtils::format("%d/1", MyRes::getMyResCount(needresid));
+	count_0->setString(str);
+
+	if (MyRes::getMyResCount(needresid) >= 1)
+	{
+		count_0->setColor(Color3B(255, 255, 255));
+	}
+	else
+	{
+		count_0->setColor(Color3B(255, 0, 0));
 	}
 }
 
