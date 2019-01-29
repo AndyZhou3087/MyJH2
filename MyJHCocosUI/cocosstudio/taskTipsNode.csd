@@ -37,10 +37,10 @@
             <FileData Type="MarkedSubImage" Path="mapui/maptask_icon.png" Plist="mapui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="textmain_0" ActionTag="-56868299" Tag="55" IconVisible="False" LeftMargin="-246.5010" RightMargin="211.5010" TopMargin="-24.5000" BottomMargin="-2.5000" FontSize="24" LabelText="主：" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="35.0000" Y="27.0000" />
+          <AbstractNodeData Name="textmain_0" ActionTag="-56868299" Tag="55" IconVisible="False" LeftMargin="-247.0010" RightMargin="211.0010" TopMargin="-24.4999" BottomMargin="-4.5001" FontSize="25" LabelText="主：" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="36.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-229.0010" Y="11.0000" />
+            <Position X="-229.0010" Y="9.9999" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="165" B="0" />
             <PrePosition />
@@ -61,10 +61,10 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="maptask_branch_4" ActionTag="-1850544250" Tag="56" IconVisible="False" LeftMargin="-246.5005" RightMargin="211.5005" TopMargin="28.5029" BottomMargin="-55.5029" FontSize="24" LabelText="支：" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="35.0000" Y="27.0000" />
+          <AbstractNodeData Name="maptask_branch_4" ActionTag="-1850544250" Tag="56" IconVisible="False" LeftMargin="-247.0005" RightMargin="211.0005" TopMargin="28.5029" BottomMargin="-57.5029" FontSize="25" LabelText="支：" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="36.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-229.0005" Y="-42.0029" />
+            <Position X="-229.0005" Y="-43.0029" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="16" G="252" B="16" />
             <PrePosition />
