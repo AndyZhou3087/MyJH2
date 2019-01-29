@@ -395,6 +395,11 @@ void FightHeroNode::atkAnimFinish()
 		FightingLayer* fighting = (FightingLayer*)this->getParent();
 		fighting->showAtk(this->getTag());
 	}
+	else
+	{
+		isPlaySkillAnim = false;
+		nextRound(0);
+	}
 }
 
 void FightHeroNode::hpAnim()

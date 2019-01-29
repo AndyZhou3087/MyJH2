@@ -385,8 +385,19 @@ void MapBlockScene::goBackMainHomeScene()
 		keybtnArr[i]->setEnabled(false);
 	}
 
-	HintBoxLayer* layer = HintBoxLayer::create(ResourceLang::map_lang["nofooddeathhint"], 11);
-	this->addChild(layer);
+	if (isNewerGuideMap)
+	{
+#if USE_TRANSCENE
+		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAIN)));
+#else
+		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+#endif
+	}
+	else
+	{
+		HintBoxLayer* layer = HintBoxLayer::create(ResourceLang::map_lang["nofooddeathhint"], 11);
+		this->addChild(layer);
+	}
 }
 
 void MapBlockScene::showNewerGuideGoBack()
