@@ -29,7 +29,11 @@ private:
 	Node* selectNode;
 	int selectindex;
 
+	cocos2d::ui::Text* rescount[2];
+
 	bool checkRes();
+
+	void updateResCount(float dt);
 };
 #endif
 

@@ -9,6 +9,7 @@
 #include "MovingLabel.h"
 #include "TakeOnLayer.h"
 #include "AnimationEffect.h"
+#include "SimpleResPopLayer.h"
 
 int openRnd[][5] = { {65,35,25,10,0}, { 80,45,35,25,10 } };
 
@@ -114,9 +115,9 @@ bool OpenHolesLayer::init(Equip* res_equip)
 		resname->setString(GlobalInstance::map_AllResources[restr].name);
 
 		str = StringUtils::format("rescount%d", i);
-		cocos2d::ui::Text* rescount = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+		rescount[i] = (cocos2d::ui::Text*)csbnode->getChildByName(str);
 		str = StringUtils::format("%d", MyRes::getMyResCount(restr));
-		rescount->setString(str);
+		rescount[i]->setString(str);
 	}
 
 	tipstext = (cocos2d::ui::Text*)csbnode->getChildByName("tipstext");
@@ -124,6 +125,9 @@ bool OpenHolesLayer::init(Equip* res_equip)
 	selectindex = 0;
 
 	updateUi();
+
+	this->schedule(schedule_selector(OpenHolesLayer::updateResCount), 1.0f);
+
 
 	//Ç¿»¯°´Å¥
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
@@ -157,6 +161,21 @@ void OpenHolesLayer::updateUi()
 	tipstext->setString(tipstr);
 }
 
+void OpenHolesLayer::updateResCount(float dt)
+{
+	for (int i = 0; i < 2; i++)
+	{
+		std::string restr;
+		if (i == 0)
+			restr = "i002";
+		else
+			restr = "i004";
+
+		std::string str = StringUtils::format("%d", MyRes::getMyResCount(restr));
+		rescount[i]->setString(str);
+	}
+}
+
 void OpenHolesLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
@@ -165,13 +184,13 @@ void OpenHolesLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		Node* node = (Node*)pSender;
 		int tag = node->getTag();
 
+		std::string resid;
+		if (selectindex == 0)
+			resid = "i002";
+		else
+			resid = "i004";
 		if (checkRes())
 		{
-			std::string resid;
-			if (selectindex == 0)
-				resid = "i002";
-			else
-				resid = "i004";
 			MyRes::Use(resid);
 
 			int r = GlobalInstance::getInstance()->createRandomNum(100) + 1;
@@ -186,6 +205,12 @@ void OpenHolesLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				MovingLabel::show(ResourceLang::map_lang["openholefail"]);
 			}
 			AnimationEffect::closeAniEffect(this);
+		}
+		else
+		{
+			SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 1, 1);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
 		}
 	}
 }
@@ -212,8 +237,18 @@ void OpenHolesLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 	{
 		Node* node = (Node*)pSender;
 		selectindex = node->getTag();
-		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		checkRes();
 		updateUi();
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		if (!checkRes())
+		{
+			std::string resid;
+			if (selectindex == 0)
+				resid = "i002";
+			else
+				resid = "i004";
+			SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 1, 1);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
 	}
 }
