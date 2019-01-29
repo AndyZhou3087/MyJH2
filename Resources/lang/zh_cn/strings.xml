@@ -80,7 +80,7 @@
 	<s name="suit2">套装效果2：</s>
 	<s name="nohas">未拥有</s>
 	<s name="noputon">未装备</s>
-	<s name="cannotsetin">不能镶嵌</s>
+	<s name="cannotsetin">未开孔</s>
 	<s name="nosetin">未镶嵌</s>
 	<s name="accmaintask">已接受任务</s>
 	<s name="closetext">离开</s>
@@ -402,6 +402,7 @@
 	<s name="tips_6">客栈里可招募的侠客品质由低到高依次为绿，蓝，紫，橙，红</s>
 	<s name="taskrew1text">奖励一：</s>
 	<s name="taskrew2text">奖励二：</s>
+	<s name="taskaddrdesc">地点：%s</s>	
 	<s name="resetdatatext">删除存档只会保留月卡，其他数据（包括元宝）将会清除，请慎重！</s>
 	<s name="m1_5_desc">闯王兵败后留下的大批宝藏，藏于洞中，然寻宝者络绎不绝，宝藏被寻宝者所瓜分，击败洞中的寻宝者，可以获得宝物。</s>		
 	<s name="loginrewarddesc">连续领取七天后，可获得神秘大礼！</s>
@@ -431,7 +432,7 @@
 	<s name="getwheretext">获取途径</s>
 	<s name="marketlvlow">「%s」%d级市场开放购买，请先升级市场！</s>
 	<s name="marketlvlow">「%s」%d级市场开放购买，请先升级市场！</s>
-	<s name="punishment1">检测您的元宝数据异常，为维护游戏公平性，将您的元宝清零处理</s>
+	<s name="punishment1">检测您的数据异常，为维护游戏公平性，已将您的元宝调整</s>
 	<s name="punishment2">检测到您在游戏中存在违规行为，为维护游戏公平性，将您的数据清零处理！</s>
-	<s name="punishment3">检测到您的数据存在异常，为维护游戏公平性，将您的数据清零处理！</s>		
+	<s name="punishment3">检测到您的数据存在异常，为维护游戏公平性，将您的数据强行调整！</s>		
 </strings>

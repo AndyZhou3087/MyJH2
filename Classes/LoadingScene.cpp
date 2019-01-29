@@ -267,7 +267,7 @@ void LoadingScene::punishmentAction(float dt)
 
 	HttpDataSwap::init(NULL)->postAllData();
 	parseCfgFiles();
-	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 4.0f);
+	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 5.0f);
 }
 
 void LoadingScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

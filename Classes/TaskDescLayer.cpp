@@ -68,8 +68,12 @@ bool TaskDescLayer::init(TaskData* data, int type)
 	cocos2d::ui::Text* name = (cocos2d::ui::Text*)m_csbnode->getChildByName("name");
 	name->setString(data->name);
 
+	std::string taskdesc = data->desc;
+
+	std::string addrdesc = StringUtils::format(ResourceLang::map_lang["taskaddrdesc"].c_str(), GlobalInstance::map_AllResources[data->place].name.c_str());
+	taskdesc.append(addrdesc);
 	cocos2d::ui::ScrollView* descscoll = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("descscoll");
-	Label* contentlbl = Label::createWithTTF(data->desc, FONT_NAME, 25);
+	Label* contentlbl = Label::createWithTTF(taskdesc, FONT_NAME, 25);
 	contentlbl->setAnchorPoint(Vec2(0, 1));
 	contentlbl->setColor(Color3B(255, 255, 255));
 	//contentlbl->setHorizontalAlignment(TextHAlignment::LEFT);
@@ -85,7 +89,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 	contentlbl->setPosition(Vec2(0, innerheight));
 
 	std::u32string utf32lblString;
-	StringUtils::UTF8ToUTF32(data->desc, utf32lblString);
+	StringUtils::UTF8ToUTF32(taskdesc, utf32lblString);
 
 	std::map<std::string, AllResources>::iterator it;
 	for (it = GlobalInstance::map_AllResources.begin(); it != GlobalInstance::map_AllResources.end(); it++)

@@ -37,10 +37,10 @@
             <FileData Type="MarkedSubImage" Path="mapui/maptask_icon.png" Plist="mapui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="textmain_0" ActionTag="-56868299" Tag="55" IconVisible="False" LeftMargin="-246.0010" RightMargin="210.0010" TopMargin="-25.6844" BottomMargin="-3.3156" FontSize="25" LabelText="主：" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="36.0000" Y="29.0000" />
+          <AbstractNodeData Name="textmain_0" ActionTag="-56868299" Tag="55" IconVisible="False" LeftMargin="-246.5010" RightMargin="211.5010" TopMargin="-23.6844" BottomMargin="-3.3156" FontSize="24" LabelText="主：" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="35.0000" Y="27.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-228.0010" Y="11.1844" />
+            <Position X="-229.0010" Y="10.1844" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="165" B="0" />
             <PrePosition />
@@ -49,10 +49,10 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="textmain" ActionTag="373962460" Tag="26" IconVisible="False" LeftMargin="-199.2852" RightMargin="-203.7148" TopMargin="-25.6844" BottomMargin="-3.3156" FontSize="25" LabelText="任务任务任务任务任务任务任务任务" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="403.0000" Y="29.0000" />
+          <AbstractNodeData Name="textmain" ActionTag="373962460" Tag="26" IconVisible="False" LeftMargin="-200.2852" RightMargin="-161.7148" TopMargin="-24.6844" BottomMargin="-2.3156" FontSize="24" LabelText="日月神手段：到神农镇后山找帮主" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="362.0000" Y="27.0000" />
             <AnchorPoint ScaleY="1.0000" />
-            <Position X="-199.2852" Y="25.6844" />
+            <Position X="-200.2852" Y="24.6844" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
@@ -61,10 +61,10 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="maptask_branch_4" ActionTag="-1850544250" Tag="56" IconVisible="False" LeftMargin="-246.0005" RightMargin="210.0005" TopMargin="27.5029" BottomMargin="-56.5029" FontSize="25" LabelText="支：" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="36.0000" Y="29.0000" />
+          <AbstractNodeData Name="maptask_branch_4" ActionTag="-1850544250" Tag="56" IconVisible="False" LeftMargin="-246.5005" RightMargin="211.5005" TopMargin="29.5029" BottomMargin="-56.5029" FontSize="24" LabelText="支：" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="35.0000" Y="27.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-228.0005" Y="-42.0029" />
+            <Position X="-229.0005" Y="-43.0029" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="16" G="252" B="16" />
             <PrePosition />
@@ -73,10 +73,10 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="textbranch" ActionTag="-944560780" Tag="29" IconVisible="False" LeftMargin="-196.0291" RightMargin="-206.9709" TopMargin="27.5029" BottomMargin="-56.5029" FontSize="25" LabelText="任务任务任务任务任务任务任务任务" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="403.0000" Y="29.0000" />
+          <AbstractNodeData Name="textbranch" ActionTag="-944560780" Tag="29" IconVisible="False" LeftMargin="-197.0291" RightMargin="-189.9709" TopMargin="28.5029" BottomMargin="-55.5029" FontSize="24" LabelText="任务任务任务任务任务任务任务任务" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="387.0000" Y="27.0000" />
             <AnchorPoint ScaleY="1.0000" />
-            <Position X="-196.0291" Y="-27.5029" />
+            <Position X="-197.0291" Y="-28.5029" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />

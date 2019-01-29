@@ -529,7 +529,7 @@ void MapBlockScene::changeTaskTipTextColor(int type)
 				{
 					for (unsigned int m = findpos; m < (findpos + utf32nameString.length()); m++)
 					{
-						lbl->getLetter(m)->setColor(Color3B(255, 165, 0));
+						lbl->getLetter(m)->setColor(changecolor);
 					}
 					break;
 				}
