@@ -56,6 +56,8 @@ private:
 	bool m_isLongPress;
 	int m_longTouchTag;
 
+	int clicksrollviewindex;
+
 	bool clickflag;
 	Vec2 beginTouchPoint;
 };

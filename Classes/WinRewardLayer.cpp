@@ -15,6 +15,7 @@ WinRewardLayer::WinRewardLayer()
 {
 	m_isLongPress = false;
 	m_longTouchTag = -1;
+	clicksrollviewindex = -1;
 }
 
 
@@ -134,7 +135,8 @@ void WinRewardLayer::updateScrollviewContent()
 	for (unsigned int i = 0; i < 2; i++)
 	{
 		cocos2d::ui::ScrollView* sv = vec_scrollview[i];
-		sv->removeAllChildrenWithCleanup(true);
+		if (!(m_isLongPress && i == clicksrollviewindex))
+			sv->removeAllChildrenWithCleanup(true);
 
 		std::vector<ResBase*> vec_res;
 		if (i == 0)
@@ -194,36 +196,51 @@ void WinRewardLayer::updateScrollviewContent()
 				qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
 
-			cocos2d::ui::ImageView* boxItem = cocos2d::ui::ImageView::create(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
-			boxItem->addTouchEventListener(CC_CALLBACK_2(WinRewardLayer::onclick, this));
-			boxItem->setTouchEnabled(true);
+			if (m_isLongPress && i == clicksrollviewindex)
+			{
+				int tag = i * 10000 + m;
+				std::string itemname = StringUtils::format("boxitem%d", tag);
+				if (sv->getChildByName(itemname) != NULL)
+				{
+					Label* countlbl = (Label*)sv->getChildByName(itemname)->getChildByName("lbl");
+					std::string countstr = StringUtils::format("%d", vec_res[m]->getCount().getValue());
+					countlbl->setString(countstr);
+				}
+			}
+			else
+			{
+				cocos2d::ui::ImageView* boxItem = cocos2d::ui::ImageView::create(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
+				boxItem->addTouchEventListener(CC_CALLBACK_2(WinRewardLayer::onclick, this));
+				boxItem->setTouchEnabled(true);
 
-			boxItem->setPosition(Vec2(boxItem->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
+				boxItem->setPosition(Vec2(boxItem->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
 
-			boxItem->setUserData((void*)vec_res[m]);
-			boxItem->setTag(i * 10000 + m);
+				int tag = i * 10000 + m;
+				boxItem->setUserData((void*)vec_res[m]);
+				boxItem->setTag(tag);
+				std::string itemname = StringUtils::format("boxitem%d", tag);
+				sv->addChild(boxItem, 0, itemname);
 
-			sv->addChild(boxItem);
+				std::string resid = vec_res[m]->getId();
 
-			std::string resid = vec_res[m]->getId();
+				std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 
-			std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
+				Sprite * res = Sprite::createWithSpriteFrameName(str);
+				res->setPosition(Vec2(boxItem->getContentSize().width / 2, boxItem->getContentSize().height / 2));
+				boxItem->addChild(res);
 
-			Sprite * res = Sprite::createWithSpriteFrameName(str);
-			res->setPosition(Vec2(boxItem->getContentSize().width / 2, boxItem->getContentSize().height / 2));
-			boxItem->addChild(res);
+				Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 23);
+				namelbl->setColor(Color3B(34, 74, 79));
+				namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -10));
+				boxItem->addChild(namelbl);
 
-			Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 23);
-			namelbl->setColor(Color3B(34, 74, 79));
-			namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -10));
-			boxItem->addChild(namelbl);
-
-			std::string countstr = StringUtils::format("%d", vec_res[m]->getCount().getValue());
-			Label *countlbl = Label::createWithTTF(countstr, FONT_NAME, 23);
-			countlbl->setAnchorPoint(Vec2(1, 0));
-			countlbl->setColor(Color3B::WHITE);
-			countlbl->setPosition(Vec2(boxItem->getContentSize().width - 10, 10));
-			boxItem->addChild(countlbl);
+				std::string countstr = StringUtils::format("%d", vec_res[m]->getCount().getValue());
+				Label *countlbl = Label::createWithTTF(countstr, FONT_NAME, 23);
+				countlbl->setAnchorPoint(Vec2(1, 0));
+				countlbl->setColor(Color3B::WHITE);
+				countlbl->setPosition(Vec2(boxItem->getContentSize().width - 10, 10));
+				boxItem->addChild(countlbl, 0, "lbl");
+			}
 		}
 	}
 
@@ -436,43 +453,61 @@ void WinRewardLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	{
 		clickflag = true;
 		beginTouchPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+
+		m_longTouchTag = clicknode->getTag();
+
+		if (!isScheduled(schedule_selector(WinRewardLayer::longTouchUpdate)))
+			schedule(schedule_selector(WinRewardLayer::longTouchUpdate), 0.1f);
 	}
 	else if (type == ui::Widget::TouchEventType::MOVED)
 	{
 		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
 
 		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
+		{
 			clickflag = false;
+			cancelLongTouch();
+		}
+	}
+
+	else if (type == ui::Widget::TouchEventType::CANCELED)
+	{
+		cancelLongTouch();
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		if (!clickflag)
+		{
+			cancelLongTouch();
 			return;
-
-		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-
-		if (tag / 10000 == 0)//点击的是两个scrollview的 0--掉落，1--背包
-		{
-			int addcount = 0;
-			ResBase* res = (ResBase*)clicknode->getUserData();
-
-			if (res->getId().compare("r006") != 0 && res->getId().compare("r012") != 0)
-				addcount = 1;
-
-			if (getMyCarryCount() + addcount > GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/)
-			{
-				MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
-				return;
-			}
-
-			reduceDropRes(res, 1, tag % 10000);
 		}
-		else if (tag / 10000 == 1)
-		{
-			ResBase* res = (ResBase*)clicknode->getUserData();
-			addDropRes(res);
-		}
-		updateScrollviewContent();
+
+		cancelLongTouch();
+		longTouchAction(clicknode->getTag());
+
+		//SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		//if (tag / 10000 == 0)//点击的是两个scrollview的 0--掉落，1--背包
+		//{
+		//	int addcount = 0;
+		//	ResBase* res = (ResBase*)clicknode->getUserData();
+
+		//	if (res->getId().compare("r006") != 0 && res->getId().compare("r012") != 0)
+		//		addcount = 1;
+
+		//	if (getMyCarryCount() + addcount > GlobalInstance::myOutMapCarry/*GlobalInstance::getInstance()->getTotalCarry()*/)
+		//	{
+		//		MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
+		//		return;
+		//	}
+
+		//	reduceDropRes(res, 1, tag % 10000);
+		//}
+		//else if (tag / 10000 == 1)
+		//{
+		//	ResBase* res = (ResBase*)clicknode->getUserData();
+		//	addDropRes(res);
+		//}
+		//updateScrollviewContent();
 	}
 }
 
@@ -480,6 +515,8 @@ void WinRewardLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 void WinRewardLayer::longTouchAction(int tag)
 {
 	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+
+	clicksrollviewindex = tag / 10000;
 	if (tag / 10000 == 0)//点击的是两个scrollview的 0--掉落，1--背包
 	{
 		ResBase* res = vec_dropdownres[tag % 10000];//clicknode->getUserData();
@@ -532,6 +569,7 @@ void WinRewardLayer::cancelLongTouch()
 	m_isLongPress = false;
 	m_longTouchTag = -1;
 	unschedule(schedule_selector(WinRewardLayer::longTouchUpdate));
+	clicksrollviewindex = -1;
 }
 
 void WinRewardLayer::delayClose(float dt)
@@ -600,7 +638,19 @@ void WinRewardLayer::addDropRes(ResBase* res)
 			vec_dropdownres.push_back(nres);
 		}
 	}
+
+	if (type >= T_ARMOR && type <= T_NG)
+	{
+		cancelLongTouch();
+	}
+	else
+	{
+		if (MyRes::getMyResCount(res->getId(), MYPACKAGE) <= 1)
+			cancelLongTouch();
+	}
+
 	MyRes::Use(res, 1, MYPACKAGE);
+
 	loadMyPackageRes();
 	m_allgetbtn->setEnabled(true);
 }
@@ -615,6 +665,7 @@ void WinRewardLayer::reduceDropRes(ResBase* res, int count, int iteindex)
 	if ((type >= T_ARMOR && type <= T_FASHION) || (type >= T_WG && type <= T_NG))
 	{
 		releaseDropRes(iteindex);
+		cancelLongTouch();
 	}
 	else
 	{
@@ -627,6 +678,7 @@ void WinRewardLayer::reduceDropRes(ResBase* res, int count, int iteindex)
 		else
 		{
 			releaseDropRes(iteindex);
+			cancelLongTouch();
 		}
 	}
 
