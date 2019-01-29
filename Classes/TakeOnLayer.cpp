@@ -490,6 +490,7 @@ void TakeOnLayer::openStoneHole()
 	int whichhole = m_equip->vec_stones.size() - 1;
 	std::string str = StringUtils::format("stone%d", whichhole);
 	cocos2d::ui::ImageView* stone = (cocos2d::ui::ImageView*)attrnode->getChildByName(str);
+	CommonFuncs::removeGray(stone);
 	str = StringUtils::format("equipstonebox_%d", whichhole);
 	cocos2d::ui::ImageView* equipstonebox = (cocos2d::ui::ImageView*)attrnode->getChildByName(str);
 
