@@ -28,12 +28,13 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="simpleResPopLayer.csd" />
-          <FilePathData Path="mapBlockLayer.csd" />
+          <FilePathData Path="text_zh_cn.csi" />
+          <FilePathData Path="ui.csi" />
           <FilePathData Path="MainLayer.csd" />
-          <FilePathData Path="taskTipsNode.csd" />
+          <FilePathData Path="gfLibraryInfoLayer.csd" />
+          <FilePathData Path="simpleLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="taskTipsNode.csd" />
+        <ActiveDocument Path="MainLayer.csd" />
       </Value>
     </Item>
   </Properties>

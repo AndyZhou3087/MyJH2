@@ -23,6 +23,7 @@
 #include "ErrorHintLayer.h"
 #include "CommonFuncs.h"
 #include "MatchMainLayer.h"
+#include "LibraryLayer.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -717,6 +718,10 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				else if (buildname.compare("9assemblyhall") == 0)
 				{
 					layer = TaskLayer::create();
+				}
+				else if (buildname.compare("Alibrary") == 0)
+				{
+					layer = LibraryLayer::create();
 				}
 				if (layer != NULL)
 				{

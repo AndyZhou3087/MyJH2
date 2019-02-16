@@ -117,7 +117,7 @@
 	<s name="traintipstext">当前训练还未结束，还需要%02d:%02d:%02d。结束后无法获得训练经验，是否确认取消？</s>
 	<s name="makerestitle">装备制作</s>
 	<s name="makesucc">制作成功！</s>
-	<s name="makeresdesc">「%s」</s>
+	<s name="resmname">「%s」</s>
 	<s name="lvupsucc">%s升级->%d成功！</s>
 	<s name="nofoodhint">食物不足扣除所有角色20%生命值</s>
 	<s name="powermaxtext">已满</s>
@@ -435,5 +435,15 @@
 	<s name="punishment1">检测您的数据异常，为维护游戏公平性，已将您的元宝调整</s>
 	<s name="punishment2">检测到您在游戏中存在违规行为，为维护游戏公平性，将您的数据清零处理！</s>
 	<s name="punishment3">检测到您的数据存在异常，为维护游戏公平性，将您的数据强行调整！</s>
-	<s name="nofooddeathhint">侠客因食物匮乏而重伤，无法继续探险，可前往医馆救治！</s>			
+	<s name="nofooddeathhint">侠客因食物匮乏而重伤，无法继续探险，可前往医馆救治！</s>
+	<s name="libraryinfostatus">可用状态：</s>
+	<s name="libraryinfogetwhere">获取途径：</s>
+	<s name="libraryinfogetwhere0">完成%s主线任务</s>
+	<s name="libraryinfowhere">「%s：%s」</s>
+	<s name="libraryinfogetwhere1">战胜%s</s>
+	<s name="libraryinfogetwhere2">地图探索「神秘商人」可获得</s>
+	<s name="libraryinfostatus0">未获得</s>
+	<s name="ortext">或</s>		
+	<s name="libraryinfostatus1">已装备</s>
+	<s name="libraryinfostatus1">已拥有</s>		
 </strings>

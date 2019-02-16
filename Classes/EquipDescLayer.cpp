@@ -171,7 +171,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 
 		cocos2d::ui::Text* skilldesclbl = (cocos2d::ui::Text*)csbnode->getChildByName("skilldesc");
 		Label* dlbl = (Label*)skilldesclbl->getVirtualRenderer();
-		dlbl->setLineSpacing(10);
+		dlbl->setLineSpacing(5);
 
 		std::string allskilldesc = StringUtils::format(ResourceLang::map_lang["gfkilldesc"].c_str(), GlobalInstance::map_GF[gf->getId()].skillrnd);
 		
