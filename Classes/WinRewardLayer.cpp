@@ -213,7 +213,7 @@ void WinRewardLayer::updateScrollviewContent()
 				boxItem->addTouchEventListener(CC_CALLBACK_2(WinRewardLayer::onclick, this));
 				boxItem->setTouchEnabled(true);
 
-				boxItem->setPosition(Vec2(boxItem->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
+				boxItem->setPosition(Vec2(boxItem->getContentSize().width / 2 + 20 + m % 4 * itemheight, innerheight - itemheight / 2 - m / 4 * itemheight + 5));
 
 				int tag = i * 10000 + m;
 				boxItem->setUserData((void*)vec_res[m]);

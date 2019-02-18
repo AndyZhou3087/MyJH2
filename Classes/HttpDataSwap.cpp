@@ -853,10 +853,10 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 
 			}
 
-			//if (doc.HasMember("isreceipt"))
-			//{
-			//	GlobalInstance::isServerReceipt = atoi(getJsonValueStr(doc["isreceipt"]).c_str()) == 1 ? true : false;
-			//}
+			if (doc.HasMember("isreceipt"))
+			{
+				GlobalInstance::isServerReceipt = atoi(getJsonValueStr(doc["isreceipt"]).c_str()) == 1 ? true : false;
+			}
 		}
 		else
 		{

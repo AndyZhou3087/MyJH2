@@ -138,7 +138,7 @@ void MyPackageLayer::updateScrollviewContent()
 			CC_CALLBACK_1(MyPackageLayer::onclick, this));
 		boxItem->setUserData((void*)vec_res[m]);
 
-		boxItem->setPosition(Vec2(qubox->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
+		boxItem->setPosition(Vec2(qubox->getContentSize().width / 2 + 20 + m % 4 * itemheight, innerheight - itemheight / 2 - m / 4 * itemheight + 5));
 
 		MyMenu* menu = MyMenu::create();
 		menu->addChild(boxItem);

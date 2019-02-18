@@ -19,6 +19,46 @@
                 <PreSize X="1.0000" Y="0.7125" />
                 <FileData Type="Normal" Path="mainimg/main_sky.jpg" Plist="" />
               </AbstractNodeData>
+              <AbstractNodeData Name="main_11_s" ActionTag="-729997948" Tag="1282" IconVisible="False" LeftMargin="343.0000" RightMargin="1903.0000" TopMargin="484.5000" BottomMargin="524.5000" LeftEage="106" RightEage="106" TopEage="101" BottomEage="101" Scale9OriginX="106" Scale9OriginY="101" Scale9Width="22" Scale9Height="69" ctype="ImageViewObjectData">
+                <Size X="234.0000" Y="271.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="460.0000" Y="660.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.1855" Y="0.5156" />
+                <PreSize X="0.0944" Y="0.2117" />
+                <FileData Type="Normal" Path="mainimg/main_11_s.png" Plist="" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="main_11_pic" ActionTag="1196906588" Tag="1283" IconVisible="False" LeftMargin="343.0000" RightMargin="1903.0000" TopMargin="484.5000" BottomMargin="524.5000" LeftEage="106" RightEage="106" TopEage="101" BottomEage="101" Scale9OriginX="106" Scale9OriginY="101" Scale9Width="22" Scale9Height="69" ctype="ImageViewObjectData">
+                <Size X="234.0000" Y="271.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="460.0000" Y="660.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.1855" Y="0.5156" />
+                <PreSize X="0.0944" Y="0.2117" />
+                <FileData Type="Normal" Path="mainimg/main_11_n.png" Plist="" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="main_11_t" ActionTag="2019611531" Tag="1285" IconVisible="False" LeftMargin="528.5000" RightMargin="1908.5000" TopMargin="494.5000" BottomMargin="634.5000" LeftEage="14" RightEage="14" TopEage="50" BottomEage="50" Scale9OriginX="14" Scale9OriginY="50" Scale9Width="15" Scale9Height="51" ctype="ImageViewObjectData">
+                <Size X="43.0000" Y="151.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="550.0000" Y="710.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.2218" Y="0.5547" />
+                <PreSize X="0.0173" Y="0.1180" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/main_11_t.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="main_11_n" ActionTag="-874675888" Tag="1284" IconVisible="False" LeftMargin="367.5000" RightMargin="1907.5000" TopMargin="480.0000" BottomMargin="560.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                <Size X="205.0000" Y="240.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="470.0000" Y="680.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.1895" Y="0.5313" />
+                <PreSize X="0.0827" Y="0.1875" />
+                <FileData Type="Normal" Path="mainimg/main_blank_c.png" Plist="" />
+              </AbstractNodeData>
               <AbstractNodeData Name="main_10_s" ActionTag="1339701642" Tag="7" IconVisible="False" LeftMargin="587.0518" RightMargin="1558.9482" TopMargin="383.0007" BottomMargin="578.9993" LeftEage="106" RightEage="106" TopEage="101" BottomEage="101" Scale9OriginX="106" Scale9OriginY="101" Scale9Width="122" Scale9Height="116" ctype="ImageViewObjectData">
                 <Size X="334.0000" Y="318.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -383,10 +423,10 @@
                 <PreSize X="0.0177" Y="0.1187" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/main_05_t.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="main_05_n" ActionTag="-623690263" Tag="118" IconVisible="False" LeftMargin="1.8665" RightMargin="2128.1335" TopMargin="703.2373" BottomMargin="186.7627" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="main_05_n" ActionTag="-623690263" Tag="118" IconVisible="False" LeftMargin="1.8665" RightMargin="2128.1335" TopMargin="703.2400" BottomMargin="186.7600" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
                 <Size X="350.0000" Y="390.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="176.8665" Y="381.7627" />
+                <Position X="176.8665" Y="381.7600" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.0713" Y="0.2983" />
@@ -444,14 +484,14 @@
                 <PreSize X="0.0847" Y="0.2734" />
                 <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="main_04_n_1" ActionTag="1591138879" Tag="117" IconVisible="False" LeftMargin="491.5562" RightMargin="1688.4438" TopMargin="645.3096" BottomMargin="424.6904" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
-                <Size X="300.0000" Y="210.0000" />
+              <AbstractNodeData Name="main_04_n_1" ActionTag="1591138879" Tag="117" IconVisible="False" LeftMargin="572.5600" RightMargin="1687.4399" TopMargin="645.3096" BottomMargin="424.6904" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                <Size X="220.0000" Y="210.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="641.5562" Y="529.6904" />
+                <Position X="682.5600" Y="529.6904" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.2587" Y="0.4138" />
-                <PreSize X="0.1210" Y="0.1641" />
+                <PrePosition X="0.2752" Y="0.4138" />
+                <PreSize X="0.0887" Y="0.1641" />
                 <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="main_03_s" ActionTag="-1510553537" Alpha="238" Tag="32" IconVisible="False" LeftMargin="315.9496" RightMargin="1616.0504" TopMargin="834.0001" BottomMargin="43.9999" LeftEage="183" RightEage="183" TopEage="170" BottomEage="170" Scale9OriginX="183" Scale9OriginY="170" Scale9Width="182" Scale9Height="62" ctype="ImageViewObjectData">

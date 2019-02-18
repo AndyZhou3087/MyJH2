@@ -63,6 +63,9 @@
           <Image Name="hfull_8_1.png" />
           <Image Name="hfull_9_0.png" />
           <Image Name="hfull_9_1.png" />
+          <Image Name="libraryngitem.png" />
+          <Image Name="librarytop.png" />
+          <Image Name="librarywgitem.png" />
           <Image Name="loadingbar.png" />
           <Image Name="loadingpoint.png" />
           <Image Name="loadingtext.png" />
@@ -145,6 +148,8 @@
           <Image Name="main_09_s.png" />
           <Image Name="main_10_n.png" />
           <Image Name="main_10_s.png" />
+          <Image Name="main_11_n.png" />
+          <Image Name="main_11_s.png" />
           <Image Name="main_back_b.jpg" />
           <Image Name="main_back_f.jpg" />
           <Image Name="main_bg_l.png" />
@@ -500,6 +505,11 @@
           <Image Name="innroolv_text.png" />
           <Image Name="innroomtitle.png" />
           <Image Name="isrecruited_text.png" />
+          <Image Name="libraryngtext.png" />
+          <Image Name="libraryngtitle.png" />
+          <Image Name="librarytitle.png" />
+          <Image Name="librarywgtext.png" />
+          <Image Name="librarywgtitle.png" />
           <Image Name="loginrewardtitle.png" />
           <Image Name="loginrewardtitlev2.png" />
           <Image Name="lvupbtn_text.png" />
@@ -562,6 +572,7 @@
           <Image Name="main_08_t.png" />
           <Image Name="main_09_t.png" />
           <Image Name="main_10_t.png" />
+          <Image Name="main_11_t.png" />
           <Image Name="main_achbtn_text.png" />
           <Image Name="main_loginbtn_text.png" />
           <Image Name="main_mailbtn_text.png" />
@@ -1316,6 +1327,8 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="libraryLayer.csd" Type="Layer" />
+        <Project Name="gfLibraryInfoLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -163,7 +163,7 @@ void EventBusinessLayer::updateScrollviewContent()
 			boxItem->addTouchEventListener(CC_CALLBACK_2(EventBusinessLayer::onclick, this));
 			boxItem->setTouchEnabled(true);
 
-			boxItem->setPosition(Vec2(boxItem->getContentSize().width / 2 + 20 + m % 4 * 160, innerheight - itemheight / 2 - m / 4 * itemheight));
+			boxItem->setPosition(Vec2(boxItem->getContentSize().width / 2 + 20 + m % 4 * itemheight, innerheight - itemheight / 2 - m / 4 * itemheight + 5));
 			boxItem->setTag(i * 10000 + m);
 
 			sv->addChild(boxItem);

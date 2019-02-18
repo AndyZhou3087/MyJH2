@@ -75,7 +75,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.1253" />
                     <PreSize X="0.4503" Y="0.1937" />
-                    <FileData Type="MarkedSubImage" Path="ui/makerescountbox.png" Plist="text_zh_cn.plist" />
+                    <FileData Type="MarkedSubImage" Path="ui/makerescountbox.png" Plist="ui.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>
@@ -121,7 +121,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.1253" />
                     <PreSize X="0.4503" Y="0.1937" />
-                    <FileData Type="MarkedSubImage" Path="ui/makerescountbox.png" Plist="text_zh_cn.plist" />
+                    <FileData Type="MarkedSubImage" Path="ui/makerescountbox.png" Plist="ui.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>
@@ -167,7 +167,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.1253" />
                     <PreSize X="0.4503" Y="0.1937" />
-                    <FileData Type="MarkedSubImage" Path="ui/makerescountbox.png" Plist="text_zh_cn.plist" />
+                    <FileData Type="MarkedSubImage" Path="ui/makerescountbox.png" Plist="ui.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>
@@ -206,7 +206,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.3789" />
             <PreSize X="0.3708" Y="0.0508" />
-            <FileData Type="MarkedSubImage" Path="ui/makeresnamebox.png" Plist="text_zh_cn.plist" />
+            <FileData Type="MarkedSubImage" Path="ui/makeresnamebox.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="equipname" ActionTag="-618498421" Tag="239" IconVisible="False" LeftMargin="284.5000" RightMargin="284.5000" TopMargin="776.5000" BottomMargin="460.5000" FontSize="38" LabelText="七星宝刀" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
