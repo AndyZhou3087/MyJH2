@@ -375,6 +375,7 @@
           <Image Name="heroatkspeedbarbg.png" />
           <Image Name="hurticon.png" />
           <Image Name="mapbtn.png" />
+          <Image Name="mapbtnbg.png" />
           <Image Name="mapdescbox.png" />
           <Image Name="mapdownbtn.png" />
           <Image Name="mapleftbtn.png" />
@@ -1243,6 +1244,7 @@
         <Project Name="fightResultLayer.csd" Type="Layer" />
         <Project Name="gambleBoxLayer.csd" Type="Layer" />
         <Project Name="gfDescLayer.csd" Type="Layer" />
+        <Project Name="gfLibraryInfoLayer.csd" Type="Layer" />
         <Project Name="giftDescLayer.csd" Type="Layer" />
         <Project Name="goBackLayer.csd" Type="Layer" />
         <Project Name="headInfoLayer.csd" Type="Layer" />
@@ -1253,6 +1255,7 @@
         <Project Name="hospitalLayer.csd" Type="Layer" />
         <Project Name="innRoomLayer.csd" Type="Layer" />
         <Project Name="LevelForm.csd" Type="Layer" />
+        <Project Name="libraryLayer.csd" Type="Layer" />
         <Image Name="loadingbg.jpg" />
         <Image Name="loadingclicktext.png" />
         <Project Name="LoadingLayer.csd" Type="Layer" />
@@ -1327,8 +1330,6 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="libraryLayer.csd" Type="Layer" />
-        <Project Name="gfLibraryInfoLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

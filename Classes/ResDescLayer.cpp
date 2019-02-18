@@ -198,11 +198,6 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 			btntextstr = "usebtn_text";
 			status = S_CAN_USE;
 		}
-		else if (res->getType() == T_VSION)
-		{
-			std::string visonstr = StringUtils::format("%s%d", ResourceLang::map_lang["lvtexts"].c_str(), res->getCount().getValue());
-			coutlbl->setString(visonstr);
-		}
 		else if (/*res->getType() == T_HEROCARD || */res->getType() == T_ARMCARD)
 		{
 			btntextstr = "usecard_Text";

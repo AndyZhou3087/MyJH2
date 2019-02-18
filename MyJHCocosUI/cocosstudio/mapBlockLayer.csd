@@ -257,6 +257,63 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
+              <AbstractNodeData Name="visionbtn" ActionTag="-1900130150" Tag="90" IconVisible="False" LeftMargin="603.7938" RightMargin="7.2062" TopMargin="139.4776" BottomMargin="9.5224" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="79" Scale9Height="87" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="109.0000" Y="109.0000" />
+                <Children>
+                  <AbstractNodeData Name="icon" ActionTag="-261693211" Tag="92" IconVisible="False" LeftMargin="10.5001" RightMargin="13.4999" TopMargin="8.5000" BottomMargin="15.5000" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+                    <Size X="85.0000" Y="85.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="53.0001" Y="58.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4862" Y="0.5321" />
+                    <PreSize X="0.7798" Y="0.7798" />
+                    <FileData Type="MarkedSubImage" Path="ui/v001.png" Plist="ui.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="text" ActionTag="-333978463" Tag="91" IconVisible="False" LeftMargin="27.0009" RightMargin="25.9991" TopMargin="77.0000" BottomMargin="-2.0000" LeftEage="18" RightEage="18" TopEage="10" BottomEage="10" Scale9OriginX="18" Scale9OriginY="10" Scale9Width="20" Scale9Height="14" ctype="ImageViewObjectData">
+                    <Size X="56.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="55.0009" Y="15.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5046" Y="0.1376" />
+                    <PreSize X="0.5138" Y="0.3119" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/mappackbtn_text.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="coutbox" ActionTag="-1168335922" Tag="94" IconVisible="False" LeftMargin="-3.5782" RightMargin="72.5782" TopMargin="-6.1609" BottomMargin="83.1609" Scale9Enable="True" LeftEage="28" RightEage="28" TopEage="5" BottomEage="5" Scale9OriginX="28" Scale9OriginY="5" Scale9Width="30" Scale9Height="27" ctype="ImageViewObjectData">
+                    <Size X="40.0000" Y="32.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="16.4218" Y="99.1609" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1507" Y="0.9097" />
+                    <PreSize X="0.3670" Y="0.2936" />
+                    <FileData Type="MarkedSubImage" Path="ui/makerescountbox.png" Plist="ui.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="countlbl" ActionTag="348542833" Tag="95" IconVisible="False" LeftMargin="-2.7457" RightMargin="75.7457" TopMargin="-2.5000" BottomMargin="79.5000" LabelText="45" ctype="TextBMFontObjectData">
+                    <Size X="36.0000" Y="32.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="15.2543" Y="95.5000" />
+                    <Scale ScaleX="0.7000" ScaleY="0.7000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1399" Y="0.8761" />
+                    <PreSize X="0.3303" Y="0.2936" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="fonts/makerescount.fnt" Plist="" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="658.2938" Y="64.0224" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.9143" Y="0.2481" />
+                <PreSize X="0.1514" Y="0.4225" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="MarkedSubImage" Path="mapui/mapbtnbg.png" Plist="mapui.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="mapui/mapbtnbg.png" Plist="mapui.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="mapui/mapbtnbg.png" Plist="mapui.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint />
             <Position />

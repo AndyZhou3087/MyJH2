@@ -26,6 +26,7 @@
 #include "Utility.h"
 #include "NpcLayer.h"
 #include "MyTransitionScene.h"
+#include "SimpleResPopLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -42,7 +43,7 @@ MapBlockScene::MapBlockScene()
 	m_longTouchNode = NULL;
 	walkcount = 0;
 	monsterComeRnd = DEFAULTRND;
-	fogscale = 5.0f;
+	fogscale = 5;
 	m_fightbgtype = 0;
 	m_walkDirection = 0;
 	m_lastWalkDirection = 0;
@@ -145,7 +146,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	int vsionLv = MyRes::getMyResCount("v001", MYSTORAGE);
 
-	fogscale += vsionLv;
+	//fogscale += vsionLv;
 
 	resetBlockData();
 
@@ -214,9 +215,6 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	setMyPos();
 
-	updateLabel(0);
-	this->schedule(schedule_selector(MapBlockScene::updateLabel), 1.0f);
-
 	Node* bottomnode = m_csbnode->getChildByName("mapblockbottom");
 
 	gocitybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("gocitybtn");
@@ -230,6 +228,15 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	mypackagebtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("packagebtn");
 	mypackagebtn->setTag(BTN_PACKAGE);
 	mypackagebtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+
+	cocos2d::ui::Widget* visionbtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("visionbtn");
+	visionbtn->setTag(BTN_VISION);
+	visionbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+
+	visioncountlbl = (cocos2d::ui::TextBMFont*)visionbtn->getChildByName("countlbl");
+
+	updateLabel(0);
+	this->schedule(schedule_selector(MapBlockScene::updateLabel), 0.5f);
 
 	std::string keyname[] = {"upbtn", "downbtn", "leftbtn", "rightbtn"};
 
@@ -591,7 +598,8 @@ void MapBlockScene::updateLabel(float dt)
 	{
 		carrycountlbl->setTextColor(Color4B(255, 255, 255, 255));
 	}
-
+	std::string countstr = StringUtils::format("%d", MyRes::getMyResCount("v001"));
+	visioncountlbl->setString(countstr);
 }
 
 void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -622,6 +630,35 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			MyPackageLayer* layer = MyPackageLayer::create();
 			this->addChild(layer);
 			AnimationEffect::openAniEffect((Layer*)layer);
+		}
+		break;
+		case BTN_VISION:
+		{
+			if (MyRes::getMyResCount("v001") <= 0)
+			{
+				SimpleResPopLayer* layer = SimpleResPopLayer::create("v001", 1, 5);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
+			}
+			else if (fogscale == 10)
+			{
+				MovingLabel::show(ResourceLang::map_lang["vsionmax"]);
+			}
+			else
+			{
+				MyRes::Use("v001");
+				fogscale += 1;
+				_mylight->setScale(fogscale);
+				if (_fogrender != NULL)
+				{
+					std::string fogname = StringUtils::format("fog%d", mycurRow*blockColCount + mycurCol);
+					_fogrender->removeChildByName(fogname);
+					_fogrender->begin();
+					addFogBlock(mycurRow, mycurCol);
+					_fogrender->end();
+					Director::getInstance()->getRenderer()->render();
+				}
+			}
 		}
 		break;
 		default:
@@ -1088,8 +1125,9 @@ void MapBlockScene::addFogBlock(int row, int col)
 	sp->setBlendFunc({ GL_ZERO, GL_ONE_MINUS_SRC_ALPHA });
 	sp->setAnchorPoint(Vec2(0.5, 0.5));
 	sp->setPosition(Vec2(col*MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, row*MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2));
+	std::string spname = StringUtils::format("fog%d", row*blockColCount + col);
 	sp->setScale(fogscale);
-	_fogrender->addChild(sp);
+	_fogrender->addChild(sp, 0, spname);
 	sp->visit();
 }
 

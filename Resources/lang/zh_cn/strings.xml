@@ -155,7 +155,7 @@
 	<s name="wglvtips">点击材料可增加经验值</s>
 	<s name="wgmostlv">等级已达到最高级</s>
 	<s name="tboxdesc">打开宝箱有一定概率获得%s</s>
-	<s name="vsionmax">视野已到最高等级，无需再购买！</s>
+	<s name="vsionmax">视野已到最大范围！</s>
 	<s name="datawaitingtext">数据加载中...</s>
 	<s name="msgawdsucc">领取成功！请到仓库中查看！</s>
 	<s name="acounttext">账号：</s>

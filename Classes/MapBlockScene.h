@@ -28,7 +28,8 @@ typedef enum
 {
 	BTN_MAP = 2000,
 	BTN_GOCITY,
-	BTN_PACKAGE
+	BTN_PACKAGE,
+	BTN_VISION
 }MAPBTNTYPE;
 
 typedef enum
@@ -186,7 +187,7 @@ private:
 	RenderTexture* _fogrender;
 	RenderTexture* _myrender;
 	Sprite* _mylight;
-	float fogscale;
+	int fogscale;
 
 	int m_fightbgtype;
 	
@@ -207,6 +208,8 @@ private:
 
 	bool isNewerGuideMap;
 	int usefood;
+
+	cocos2d::ui::TextBMFont* visioncountlbl;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

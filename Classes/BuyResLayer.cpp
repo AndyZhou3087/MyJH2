@@ -6,6 +6,8 @@
 #include "MyRes.h"
 #include "DataSave.h"
 #include "Building.h"
+#include "MovingLabel.h"
+#include "BuyCoinLayer.h"
 
 USING_NS_CC;
 
@@ -128,7 +130,7 @@ bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res)
 			namelbl->setString(GlobalInstance::map_AllResources[resid].name);
 			std::string countstr = StringUtils::format("%d/%d", MyRes::getMyResCount(resid, MYSTORAGE), count);
 			countlbl->setString(countstr);
-			needcoincount.setValue(needcoincount.getValue() + (count - MyRes::getMyResCount(resid, MYSTORAGE))*GlobalInstance::map_AllResources[resid].silverval / 10);
+			needcoincount.setValue(needcoincount.getValue() + count*GlobalInstance::map_AllResources[resid].silverval / 10);
 		}
 		else
 		{
@@ -169,6 +171,16 @@ void BuyResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			break;
 		case 1:
 		{
+
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() < needcoincount.getValue())
+			{
+				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+
+				Layer* layer = BuyCoinLayer::create(needcoincount.getValue() - GlobalInstance::getInstance()->getMyCoinCount().getValue());
+				Director::getInstance()->getRunningScene()->addChild(layer, 10000, "buycoinlayer");
+				return;
+			}
+
 			if (m_vecres.size() == 1 && m_vecres[0].rid.compare("p001") == 0)//ÌåÁ¦Ò©Ë®
 			{
 				for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
@@ -197,7 +209,7 @@ void BuyResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 					MyRes::Add(m_vecres[i].rid, m_vecres[i].count, MYSTORAGE, qu, st);
 				}
 			}
-
+			GlobalInstance::getInstance()->costMyCoinCount(needcoincount);
 			setMarketData();
 
 			AnimationEffect::closeAniEffect(this);

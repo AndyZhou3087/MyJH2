@@ -180,7 +180,7 @@ void SimpleResPopLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				rdata.qu = 0;
 				vec_res.push_back(rdata);
 				BuyResLayer* layer = BuyResLayer::create(vec_res);
-				g_mainScene->addChild(layer, 1000);
+				Director::getInstance()->getRunningScene()->addChild(layer, 1000);
 				this->removeFromParentAndCleanup(true);
 
 			}
