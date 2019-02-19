@@ -1622,8 +1622,9 @@ void MapBlockScene::openAllMap()
 	std::string str = StringUtils::format("-1;%d", randStartPos);
 	DataSave::getInstance()->setMapVisibleArea(m_mapid, str);*/
 
-	std::string mainid = m_mapid.substr(0, m_mapid.find_last_of("-"));
-	int finishOrder = DataSave::getInstance()->getMapOrderCount(mainid);
+	int index = m_mapid.find_last_of("-");
+	std::string mainid = m_mapid.substr(0, index);
+	int finishOrder = atoi(m_mapid.substr(index+1, 1).c_str());
 	DataSave::getInstance()->setMapOrderCount(mainid, finishOrder + 1);
 }
 
