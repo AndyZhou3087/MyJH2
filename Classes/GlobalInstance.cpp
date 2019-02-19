@@ -254,6 +254,7 @@ int GlobalInstance::createRandomNum(int val)
 void GlobalInstance::loadInitData()
 {
 	refreshHeroTime = DataSave::getInstance()->getRefreshHeroTime();
+	resetSilverRefHeroCountTime = DataSave::getInstance()->getResetSilverRefHeroCountTime();
 
 	int langtype = DataSave::getInstance()->getLocalLang();
 	GlobalInstance::getInstance()->setLang(langtype);

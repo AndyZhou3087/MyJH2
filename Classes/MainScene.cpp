@@ -772,7 +772,7 @@ void MainScene::onFinish(int code)
 
 		if (GlobalInstance::getInstance()->getResetSilverRefHeroCountTime() == 0)
 		{
-			int zerotime = GlobalInstance::servertime;
+			int zerotime = GlobalInstance::servertime + 8*60*60;
 			GlobalInstance::getInstance()->setResetSilverRefHeroCountTime(zerotime - zerotime % TWENTYFOURHOURSTOSEC);
 		}
 
@@ -781,8 +781,9 @@ void MainScene::onFinish(int code)
 		updateTime(0);
 		this->schedule(schedule_selector(MainScene::updateTime), 1);
 
+		int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
 		//议事厅每日更新
-		int t = GlobalInstance::servertime / TWENTYFOURHOURSTOSEC;
+		int t = zerotime / TWENTYFOURHOURSTOSEC;
 		if (t > DataSave::getInstance()->getMyFreshDate())
 		{
 			Quest::resetDailyTask();

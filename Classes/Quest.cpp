@@ -692,7 +692,9 @@ void Quest::resetDailyTask()
 	DataSave::getInstance()->setMyDailyPoint(0);
 	GlobalInstance::getInstance()->loadDailyTaskData();
 	DataSave::getInstance()->setMyDailyTaskData("");
-	int t = GlobalInstance::servertime / TWENTYFOURHOURSTOSEC;
+
+	int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
+	int t = zerotime / TWENTYFOURHOURSTOSEC;
 	DataSave::getInstance()->setMyFreshDate(t);
 	std::string str = DataSave::getInstance()->getDailyTypeCount();
 	if (str.length()>0)
