@@ -406,7 +406,6 @@ public:
 	****************************/
 	std::string getNpcFriendly();
 
-
 	/****************************
 	修改昵称次数是否到上限
 	****************************/
@@ -426,6 +425,11 @@ public:
 	uuid
 	****************************/
 	std::string getLocalUUID();
+
+	/****************************
+	设置招募的英雄个数
+	****************************/
+	void setMyHeroCount(std::string str);
 
 	void deleteDataByKey(std::string key);
 

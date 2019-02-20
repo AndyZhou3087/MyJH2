@@ -445,6 +445,11 @@ std::string DataSave::getLocalUUID()
 	return loadStringDataByKey("puuid");
 }
 
+void DataSave::setMyHeroCount(std::string str)
+{
+	saveStringDataByKey("herocount", str);
+}
+
 void DataSave::deleteDataByKey(std::string key)
 {
 	removeEleByKey(key);
