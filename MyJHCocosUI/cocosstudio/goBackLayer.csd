@@ -84,18 +84,18 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="actionbtn" ActionTag="1006279388" Tag="36" IconVisible="False" LeftMargin="393.1964" RightMargin="122.8036" TopMargin="815.3974" BottomMargin="380.6026" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="gocitybtn" ActionTag="1006279388" Tag="36" IconVisible="False" LeftMargin="393.1964" RightMargin="122.8036" TopMargin="815.3974" BottomMargin="380.6026" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
-              <AbstractNodeData Name="text" ActionTag="1234723358" Tag="37" IconVisible="False" LeftMargin="62.5216" RightMargin="63.4784" TopMargin="19.7404" BottomMargin="24.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="28" Scale9Height="14" ctype="ImageViewObjectData">
-                <Size X="78.0000" Y="40.0000" />
+              <AbstractNodeData Name="text" ActionTag="1234723358" Tag="37" IconVisible="False" LeftMargin="49.5216" RightMargin="50.4784" TopMargin="21.7404" BottomMargin="26.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="54" Scale9Height="10" ctype="ImageViewObjectData">
+                <Size X="104.0000" Y="36.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="101.5216" Y="44.2596" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4977" Y="0.5269" />
-                <PreSize X="0.3824" Y="0.4762" />
-                <FileData Type="MarkedSubImage" Path="text_zh_cn/lvupbtn_text.png" Plist="text_zh_cn.plist" />
+                <PreSize X="0.5098" Y="0.4286" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/goback_home_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -111,18 +111,18 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="cancelbtn" ActionTag="1591278761" Tag="40" IconVisible="False" LeftMargin="133.5035" RightMargin="382.4965" TopMargin="815.3974" BottomMargin="380.6026" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="gomapbtn" ActionTag="1591278761" Tag="40" IconVisible="False" LeftMargin="133.5035" RightMargin="382.4965" TopMargin="815.3974" BottomMargin="380.6026" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
-              <AbstractNodeData Name="text" ActionTag="1623209583" Tag="41" IconVisible="False" LeftMargin="62.5216" RightMargin="63.4784" TopMargin="19.7404" BottomMargin="24.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="28" Scale9Height="14" ctype="ImageViewObjectData">
-                <Size X="78.0000" Y="40.0000" />
+              <AbstractNodeData Name="text" ActionTag="1623209583" Tag="41" IconVisible="False" LeftMargin="51.5216" RightMargin="52.4784" TopMargin="21.7404" BottomMargin="26.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="50" Scale9Height="10" ctype="ImageViewObjectData">
+                <Size X="100.0000" Y="36.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="101.5216" Y="44.2596" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4977" Y="0.5269" />
-                <PreSize X="0.3824" Y="0.4762" />
-                <FileData Type="MarkedSubImage" Path="text_zh_cn/lvupbtn_text.png" Plist="text_zh_cn.plist" />
+                <PreSize X="0.4902" Y="0.4286" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/goback_map_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -135,6 +135,21 @@
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
             <PressedFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
             <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="closebtn" ActionTag="1910944511" Tag="85" IconVisible="False" LeftMargin="562.6069" RightMargin="91.3931" TopMargin="340.4622" BottomMargin="873.5378" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="36" Scale9Height="44" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="66.0000" Y="66.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="595.6069" Y="906.5378" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.8272" Y="0.7082" />
+            <PreSize X="0.0917" Y="0.0516" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/closebtn2.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/closebtn2.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/closebtn2.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>

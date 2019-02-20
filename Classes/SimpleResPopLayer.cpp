@@ -172,7 +172,6 @@ void SimpleResPopLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		{
 			if (marketBuilding->level.getValue() >= resinlv)//市场等级够，直接弹出购买
 			{
-
 				std::vector< MSGAWDSDATA> vec_res;
 				MSGAWDSDATA rdata;
 				rdata.rid = m_resid;

@@ -14,24 +14,23 @@ public:
 	GoBackLayer();
 	~GoBackLayer();
 
-	static GoBackLayer* create(int forwhere = 0);//默认0为回城
+	static GoBackLayer* create();
 	virtual void onExit();
-	bool init(int forwhere = 0);
+	bool init();
 
 	//引导
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
 
 	//消耗元宝回城
-	void costCoinGoback();
+	void costCoinGoback(int gotype);
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 private:
-	int m_forwhere;
-	cocos2d::ui::Button* actionbtn;
-	cocos2d::ui::Button* cancelbtn;
+	cocos2d::ui::Button* gocitybtn;
+	cocos2d::ui::Button* gomapbtn;
 	DynamicValueInt gobackcoin;
 };
 

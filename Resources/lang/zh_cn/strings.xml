@@ -416,8 +416,6 @@
 	<s name="renationtname">名称     位置       关系</s>
 	<s name="totalattrtitle">总增加属性</s>
 	<s name="renationhintdesc">左右滑动翻页查看更多</s>
-	<s name="gobackdesc0">茅山秘术，使用后可回到掌门帮派</s>
-	<s name="gobackdesc1">茅山秘术，使用后可回到江湖地图</s>
 	<s name="openholestitle">装备开孔</s>
 	<s name="openholesdesc">请选择开孔道具:</s>
 	<s name="openholestips">开孔成功率%d%%</s>
@@ -445,5 +443,6 @@
 	<s name="libraryinfostatus0">未获得</s>
 	<s name="ortext">或</s>		
 	<s name="libraryinfostatus1">已装备</s>
-	<s name="libraryinfostatus1">已拥有</s>		
+	<s name="libraryinfostatus1">已拥有</s>
+	<s name="usetorchdesc">点击地图位置投掷火把</s>			
 </strings>

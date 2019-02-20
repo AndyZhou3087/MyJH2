@@ -38,6 +38,7 @@ bool MapBlock::init(int row, int col, std::string boardName)
 	Row = row;
 	Col = col;
 	std::string filename = StringUtils::format("mapui/boardblock_%s", boardName.c_str());
+
 	if (Sprite::initWithSpriteFrameName(filename))
 	{
 		setAnchorPoint(Vec2(0, 0));

@@ -32,6 +32,7 @@ MapBlockScene* g_MapBlockScene = NULL;
 
 #define DEFAULTRND 10
 #define HEROOFFSET_Y 20
+#define TORCHSCALE 5
 std::string walkname[] = {"walk_up", "walk_d", "walk_l", "walk_l"};
 std::string standname[] = { "stand_up", "stand_d", "stand_l", "stand_l" };
 MapBlockScene::MapBlockScene()
@@ -53,6 +54,9 @@ MapBlockScene::MapBlockScene()
 	firstpostype = -1;
 	isNewerGuideMap = false;
 	usefood = 1;
+	isUsingTorch = false;
+	isDraging = false;
+	isBlockClickCancel = false;
 }
 
 
@@ -221,20 +225,21 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	gocitybtn->setTag(BTN_GOCITY);
 	gocitybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
 
-	mapbtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("mapbtn");
-	mapbtn->setTag(BTN_MAP);
-	mapbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
-
 	mypackagebtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("packagebtn");
 	mypackagebtn->setTag(BTN_PACKAGE);
 	mypackagebtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
 
-	cocos2d::ui::Widget* visionbtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("visionbtn");
+	torchbtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("torchbtn");
+	torchbtn->setTag(BTN_TORCH);
+	torchbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+
+	visionbtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("visionbtn");
 	visionbtn->setTag(BTN_VISION);
 	visionbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
 
 	visioncountlbl = (cocos2d::ui::TextBMFont*)visionbtn->getChildByName("countlbl");
-
+	torchcountlbl = (cocos2d::ui::TextBMFont*)torchbtn->getChildByName("countlbl");
+	
 	updateLabel(0);
 	this->schedule(schedule_selector(MapBlockScene::updateLabel), 0.5f);
 
@@ -287,8 +292,9 @@ void MapBlockScene::setBtnEnable(bool isval)
 		keybtnArr[i]->setEnabled(isval);
 	}
 	gocitybtn->setEnabled(isval);
-	mapbtn->setEnabled(isval);
+	torchbtn->setEnabled(isval);
 	mypackagebtn->setEnabled(isval);
+	visionbtn->setEnabled(isval);
 }
 
 void MapBlockScene::onEnterTransitionDidFinish()
@@ -600,6 +606,9 @@ void MapBlockScene::updateLabel(float dt)
 	}
 	std::string countstr = StringUtils::format("%d", MyRes::getMyResCount("v001"));
 	visioncountlbl->setString(countstr);
+
+	countstr = StringUtils::format("%d", MyRes::getMyResCount("z001"));
+	torchcountlbl->setString(countstr);
 }
 
 void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -618,11 +627,19 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 			break;
-		case BTN_MAP:
+		case BTN_TORCH:
 		{
-			GoBackLayer* layer = GoBackLayer::create(1);
-			this->addChild(layer);
-			AnimationEffect::openAniEffect((Layer*)layer);
+			if (MyRes::getMyResCount("z001") <= 0)
+			{
+				SimpleResPopLayer* layer = SimpleResPopLayer::create("z001", 1, 5);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["usetorchdesc"]);
+				isUsingTorch = true;
+			}
 		}
 			break;
 		case BTN_PACKAGE:
@@ -654,7 +671,7 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					std::string fogname = StringUtils::format("fog%d", mycurRow*blockColCount + mycurCol);
 					_fogrender->removeChildByName(fogname);
 					_fogrender->begin();
-					addFogBlock(mycurRow, mycurCol);
+					addFogBlock(mycurRow, mycurCol, fogscale);
 					_fogrender->end();
 					Director::getInstance()->getRenderer()->render();
 				}
@@ -948,6 +965,7 @@ void MapBlockScene::createMap()
 	scrollView->setMaxScale(2);
 	scrollView->setBounceable(true);
 	scrollView->setDelegate(this);
+	scrollView->setSwallowTouches(false);
 
 	float offsetx = m_mapscrollcontainer->getContentSize().width / 2 - scrollView->getViewSize().width / 2;
 	float offsety = m_mapscrollcontainer->getContentSize().height / 2 - scrollView->getViewSize().height / 2;
@@ -957,11 +975,28 @@ void MapBlockScene::createMap()
 
 void MapBlockScene::scrollViewDidScroll(ScrollView* view)
 {
+	if (isUsingTorch)
+		isDraging = true;
+
+	if(isBlockClickCancel)
+	{
+		isDraging = false;
+		isBlockClickCancel = false;
+	}
+	log("zhou scrollViewDidScroll");
 	return;
 }
 
 void MapBlockScene::scrollViewDidZoom(ScrollView* view)
 {
+	if (isUsingTorch)
+		isDraging = true;
+
+	if (isBlockClickCancel)
+	{
+		isDraging = false;
+		isBlockClickCancel = false;
+	}
 	log("zhou scrollViewDidZoom = %.2f", scrollView->getZoomScale());
 	ajustMyPos();
 	return;
@@ -987,7 +1022,6 @@ void MapBlockScene::setMyPos()
 	else
 	{
 		isMoving = true;
-	
 		myposHero->setToSetupPose();
 		spTrackEntry* spentry = myposHero->setAnimation(0, walkname[m_walkDirection], true);//true是指循环播放walk动作
 		if (spentry) {//如果指定的name 找不到，setAnimation失败，就会导致 spAnimationState_apply 崩溃，所以加个判断
@@ -1100,7 +1134,7 @@ void MapBlockScene::createFog()
 	{
 		if (map_mapBlocks[it->first]->getIsCanSee())
 		{
-			addFogBlock(it->first / blockColCount, it->first%blockColCount);
+			addFogBlock(it->first / blockColCount, it->first%blockColCount, fogscale);
 		}
 	}
 	_fogrender->end();
@@ -1112,24 +1146,44 @@ void MapBlockScene::updateFog(float dt)
 	if (!map_mapBlocks[mycurRow*blockColCount + mycurCol]->getIsCanSee() && _fogrender != NULL)
 	{
 		_fogrender->begin();
-		addFogBlock(mycurRow, mycurCol);
+		addFogBlock(mycurRow, mycurCol, fogscale);
 		_fogrender->end();
 		Director::getInstance()->getRenderer()->render();
 		map_mapBlocks[mycurRow*blockColCount + mycurCol]->setIsCanSee(true);
 	}
 }
 
-void MapBlockScene::addFogBlock(int row, int col)
+void MapBlockScene::addFogBlock(int row, int col, int scale)
 {
 	Sprite * sp = Sprite::createWithSpriteFrameName("mapui/fog.png");
 	sp->setBlendFunc({ GL_ZERO, GL_ONE_MINUS_SRC_ALPHA });
 	sp->setAnchorPoint(Vec2(0.5, 0.5));
 	sp->setPosition(Vec2(col*MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, row*MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2));
 	std::string spname = StringUtils::format("fog%d", row*blockColCount + col);
-	sp->setScale(fogscale);
+	sp->setScale(scale);
 	_fogrender->addChild(sp, 0, spname);
 	sp->visit();
 }
+
+void MapBlockScene::showThrowTorchParticle(int row, int col)
+{
+	ParticleSystemQuad* particleSystem = ParticleSystemQuad::create("hr.plist");
+	particleSystem->setPosition(myposHero->getPosition());
+	m_mapscrollcontainer->addChild(particleSystem, 1000000);
+	Vec2 destPos = Vec2(col*MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, row*MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2);
+	Spawn* movebig = Spawn::create(MoveBy::create(1.0f, Vec2((destPos.x - myposHero->getPositionX())/2, (destPos.y - myposHero->getPositionY())/2)), ScaleTo::create(1, 2.0f), NULL);
+	Spawn* movenormal = Spawn::create(MoveTo::create(1.0f, Vec2(destPos.x, destPos.y)), ScaleTo::create(1, 1.0f), NULL);
+	particleSystem->runAction(Sequence::create(movebig, movenormal, CallFunc::create(CC_CALLBACK_0(MapBlockScene::torchLight, this, row, col)), FadeOut::create(2.0f), RemoveSelf::create(), NULL));
+}
+
+void MapBlockScene::torchLight(int row, int col)
+{
+	_fogrender->begin();
+	addFogBlock(row, col, TORCHSCALE);
+	_fogrender->end();
+	Director::getInstance()->getRenderer()->render();
+}
+
 
 void MapBlockScene::resetBlockData()
 {
@@ -1666,7 +1720,33 @@ void MapBlockScene::delayShowFightResult(float dt)
 	}
 	isMoving = false;
 }
-
+void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::BEGAN)
+	{
+		isBlockClickCancel = false;
+	}
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		if (!isUsingTorch)
+			return;
+		if (isDraging)
+		{
+			isDraging = false;
+			return;
+		}
+		Node* node = (Node*)pSender;
+		int tag = node->getTag();
+		showThrowTorchParticle(tag / blockColCount, tag%blockColCount);
+		isUsingTorch = false;
+		MyRes::Use("z001", 1);
+	}
+	else if (type == ui::Widget::TouchEventType::CANCELED)
+	{
+		isDraging = false;
+		isBlockClickCancel = true;
+	}
+}
 
 void MapBlockScene::parseMapXml(std::string mapname)
 {
@@ -1755,6 +1835,16 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						
 					mb->setWalkable(walkable);
 					map_mapBlocks[rc] = mb;
+
+					cocos2d::ui::ImageView* blockclick = cocos2d::ui::ImageView::create("mapui/blankdot.png", cocos2d::ui::Widget::TextureResType::PLIST);
+					blockclick->setScale(72);
+					blockclick->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBlockClick, this));
+					blockclick->setAnchorPoint(Vec2(0, 0));
+					blockclick->setPosition(mb->getPosition());
+					blockclick->setTouchEnabled(true);
+					blockclick->setSwallowTouches(false);
+					blockclick->setTag(rc);
+					m_mapscrollcontainer->addChild(blockclick, zorder);
 					if (postype == POS_START)
 					{
 						mb->setWalkable(true);

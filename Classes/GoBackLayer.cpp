@@ -28,10 +28,10 @@ GoBackLayer::~GoBackLayer()
 }
 
 
-GoBackLayer* GoBackLayer::create(int forwhere)
+GoBackLayer* GoBackLayer::create()
 {
 	GoBackLayer *pRet = new(std::nothrow)GoBackLayer();
-	if (pRet && pRet->init(forwhere))
+	if (pRet && pRet->init())
 	{
 		pRet->autorelease();
 		return pRet;
@@ -45,14 +45,13 @@ GoBackLayer* GoBackLayer::create(int forwhere)
 }
 
 // on "init" you need to initialize your instance
-bool GoBackLayer::init(int forwhere)
+bool GoBackLayer::init()
 {
 	if (!Layer::init())
 	{
 		return false;
 	}
 
-	m_forwhere = forwhere;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color, 0, "colorLayer");
 
@@ -73,8 +72,8 @@ bool GoBackLayer::init(int forwhere)
 	namelbl->setString(GlobalInstance::map_AllResources["t001"].name);
 
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desclbl");
-	std::string desckey = StringUtils::format("gobackdesc%d", forwhere);
-	desclbl->setString(ResourceLang::map_lang[desckey]);
+
+	desclbl->setString(GlobalInstance::map_AllResources["t001"].desc);
 
 	std::string str = StringUtils::format("1/%d", MyRes::getMyResCount("t001"));
 
@@ -86,19 +85,24 @@ bool GoBackLayer::init(int forwhere)
 	}
 
 	//°´Å¥
-	actionbtn = (cocos2d::ui::Button*)csbnode->getChildByName("actionbtn");
-	actionbtn->addTouchEventListener(CC_CALLBACK_2(GoBackLayer::onBtnClick, this));
-	actionbtn->setTag(1);
+	gocitybtn = (cocos2d::ui::Button*)csbnode->getChildByName("gocitybtn");
+	gocitybtn->addTouchEventListener(CC_CALLBACK_2(GoBackLayer::onBtnClick, this));
+	gocitybtn->setTag(1);
 
-	cocos2d::ui::ImageView* actionbtntext = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
-	actionbtntext->loadTexture(ResourcePath::makeTextImgPath("usebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	cocos2d::ui::ImageView* gocitybtntext = (cocos2d::ui::ImageView*)gocitybtn->getChildByName("text");
+	gocitybtntext->loadTexture(ResourcePath::makeTextImgPath("goback_home_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cancelbtn = (cocos2d::ui::Button*)csbnode->getChildByName("cancelbtn");
-	cancelbtn->addTouchEventListener(CC_CALLBACK_2(GoBackLayer::onBtnClick, this));
-	cancelbtn->setTag(0);
+	gomapbtn = (cocos2d::ui::Button*)csbnode->getChildByName("gomapbtn");
+	gomapbtn->addTouchEventListener(CC_CALLBACK_2(GoBackLayer::onBtnClick, this));
+	gomapbtn->setTag(2);
 
-	cocos2d::ui::ImageView* cancelbtntext = (cocos2d::ui::ImageView*)cancelbtn->getChildByName("text");
-	cancelbtntext->loadTexture(ResourcePath::makeTextImgPath("cancelbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	cocos2d::ui::ImageView* gomapbtntext = (cocos2d::ui::ImageView*)gomapbtn->getChildByName("text");
+	gomapbtntext->loadTexture(ResourcePath::makeTextImgPath("goback_map_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+
+	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
+	closebtn->addTouchEventListener(CC_CALLBACK_2(GoBackLayer::onBtnClick, this));
+	closebtn->setTag(0);
 
 	this->scheduleOnce(schedule_selector(GoBackLayer::delayShowNewerGuide), newguidetime);
 
@@ -107,6 +111,11 @@ bool GoBackLayer::init(int forwhere)
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
 		return true;
+	};
+
+	listener->onTouchEnded = [=](Touch *touch, Event *event)
+	{
+		AnimationEffect::closeAniEffect((Layer*)this);
 	};
 
 	listener->setSwallowTouches(true);
@@ -127,7 +136,7 @@ void GoBackLayer::showNewerGuide(int step)
 	std::vector<Node*> nodes;
 	if (step == 87)
 	{
-		nodes.push_back(actionbtn);
+		nodes.push_back(gocitybtn);
 	}
 	g_MapBlockScene->showNewerGuideNode(step, nodes);
 }
@@ -140,34 +149,28 @@ void GoBackLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		Node* node = (Node*)pSender;
 		int tag = node->getTag();
 
-		if (tag == 1)
+		if (tag > 0)
 		{
+			int t_type = TO_MAIN;
+			if (tag == 2)
+				t_type = TO_MAP;
+
 			if (MyRes::getMyResCount("t001") >= 1)
 			{
 				MyRes::Use("t001");
-				if (m_forwhere == 0)
-				{
+
 #if USE_TRANSCENE
-					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAIN)));
+				Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(t_type)));
 #else
-					Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
-#endif
-					
-				}
-				else
-				{
-#if USE_TRANSCENE
-					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAP)));
-#else
-					Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
-#endif
-				}
+				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+#endif	
 			}
 			else
 			{
 				int coin = GlobalInstance::map_AllResources["t001"].coinval;
 				std::string s = StringUtils::format(ResourceLang::map_lang["gobakccostcoin"].c_str(), coin);
 				HintBoxLayer* hint = HintBoxLayer::create(s, 6);
+				hint->setTag(t_type);
 				this->addChild(hint);
 				AnimationEffect::openAniEffect((Layer*)hint);
 			}
@@ -179,7 +182,7 @@ void GoBackLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	}
 }
 
-void GoBackLayer::costCoinGoback()
+void GoBackLayer::costCoinGoback(int gotype)
 {
 	if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= gobackcoin.getValue())
 	{
@@ -187,22 +190,12 @@ void GoBackLayer::costCoinGoback()
 		dal.setValue(gobackcoin.getValue());
 		GlobalInstance::getInstance()->costMyCoinCount(dal);
 
-		if (m_forwhere == 0)
-		{
 #if USE_TRANSCENE
-			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAIN)));
+		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(gotype)));
 #else
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 #endif
-		}
-		else
-		{
-#if USE_TRANSCENE
-			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAP)));
-#else
-			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
-#endif
-		}
+
 	}
 	else
 	{

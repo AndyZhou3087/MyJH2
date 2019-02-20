@@ -471,6 +471,7 @@
       <FilePathData Path="text_zh_cn/librarytitle.png" />
       <FilePathData Path="ui/makerescountbox.png" />
       <FilePathData Path="ui/makeresnamebox.png" />
+      <FilePathData Path="ui/z001.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

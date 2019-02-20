@@ -26,9 +26,9 @@ typedef enum
 
 typedef enum
 {
-	BTN_MAP = 2000,
-	BTN_GOCITY,
+	BTN_GOCITY = 2000,
 	BTN_PACKAGE,
+	BTN_TORCH,
 	BTN_VISION
 }MAPBTNTYPE;
 
@@ -84,7 +84,7 @@ private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-
+	void onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void updateLabel(float dt);
 
 	void parseMapXml(std::string mapname);
@@ -108,7 +108,7 @@ private:
 
 	void updateFog(float dt);
 
-	void addFogBlock(int row, int col);
+	void addFogBlock(int row, int col, int scale);
 
 	void resetBlockData();
 	
@@ -152,6 +152,10 @@ private:
 	void setBtnEnable(bool isval);
 
 	void changeTaskTipTextColor(int type);//0--主线，1--支线
+
+	void showThrowTorchParticle(int row, int col);
+
+	void torchLight(int row, int col);
 
 private:
 	Node* m_csbnode;
@@ -198,8 +202,9 @@ private:
 
 	cocos2d::ui::Widget* keybtnArr[4];
 	cocos2d::ui::Widget* gocitybtn;
-	cocos2d::ui::Widget* mapbtn;
+	cocos2d::ui::Widget* torchbtn;
 	cocos2d::ui::Widget* mypackagebtn;
+	cocos2d::ui::Widget* visionbtn;
 
 	std::vector<MapBlock*> vec_normalBlocks;
 	std::vector<MapBlock*> vec_monsterBlocks;
@@ -210,6 +215,10 @@ private:
 	int usefood;
 
 	cocos2d::ui::TextBMFont* visioncountlbl;
+	cocos2d::ui::TextBMFont* torchcountlbl;
+	bool isUsingTorch;
+	bool isDraging;
+	bool isBlockClickCancel;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

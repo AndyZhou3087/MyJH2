@@ -314,6 +314,10 @@
       <FilePathData Path="text_zh_cn/main_11_t.png" />
       <FilePathData Path="text_zh_cn/libraryngtitle.png" />
       <FilePathData Path="text_zh_cn/librarywgtitle.png" />
+      <FilePathData Path="text_zh_cn/maptorchbtn_text.png" />
+      <FilePathData Path="text_zh_cn/mapvisionbtn_text.png" />
+      <FilePathData Path="text_zh_cn/goback_home_text.png" />
+      <FilePathData Path="text_zh_cn/goback_map_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

@@ -37,6 +37,7 @@ typedef enum
 	T_TLMED,//体力药水
 	T_HEROCARD,//抽英雄卷
 	T_ARMCARD,//抽武器卷
+	T_MAPPROP,//地图上的道具
 	T_OTHER
 }RESTYPE;
 class ResBase

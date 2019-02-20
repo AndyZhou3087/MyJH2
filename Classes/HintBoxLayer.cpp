@@ -191,7 +191,7 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				GoBackLayer* golayer = (GoBackLayer*)this->getParent();
 				if (golayer != NULL)
 				{
-					golayer->costCoinGoback();
+					golayer->costCoinGoback(this->getTag());
 				}
 				return;
 			}

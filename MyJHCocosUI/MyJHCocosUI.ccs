@@ -488,6 +488,8 @@
           <Image Name="firebtn_text.png" />
           <Image Name="forge_text.png" />
           <Image Name="getscore_text.png" />
+          <Image Name="goback_home_text.png" />
+          <Image Name="goback_map_text.png" />
           <Image Name="gocitybtn_text.png" />
           <Image Name="goout_text.png" />
           <Image Name="halltitle.png" />
@@ -600,6 +602,8 @@
           <Image Name="mapeventtext_lk.png" />
           <Image Name="mappackbtn_text.png" />
           <Image Name="maptask_title.png" />
+          <Image Name="maptorchbtn_text.png" />
+          <Image Name="mapvisionbtn_text.png" />
           <Image Name="marketcata0_text_n.png" />
           <Image Name="marketcata0_text_s.png" />
           <Image Name="marketcata1_text_n.png" />
@@ -1225,6 +1229,7 @@
           <Image Name="y013.png" />
           <Image Name="y014.png" />
           <Image Name="y015.png" />
+          <Image Name="z001.png" />
         </Folder>
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />
