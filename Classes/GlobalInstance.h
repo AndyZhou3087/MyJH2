@@ -703,6 +703,11 @@ public:
 	****************************/
 	bool getIsNichnameCountMax();
 
+	/****************************
+	获取建筑物等级
+	****************************/
+	void loadBuildingsLv();
+
 private:
 	static GlobalInstance* _Context;//类实例
 

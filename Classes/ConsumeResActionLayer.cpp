@@ -123,7 +123,7 @@ bool ConsumeResActionLayer::init(void* data, int actiontype)
 		btn1_text = "lvupbtn_text";
 		btn2_text = "drlvupbtn_text";
 		titlestr = ResourceLang::map_lang["lvrescreatortitle"];
-		int homehilllv = DataSave::getInstance()->getBuildingLv("7homehill");
+		int homehilllv = Building::map_buildingDatas["7homehill"]->level.getValue();
 		ResCreator* rdata = (ResCreator*)m_data;
 		std::string rdataname = rdata->getName();
 		titlestr = StringUtils::format(titlestr.c_str(), GlobalInstance::map_AllResources[rdata->getName()].name.c_str(), rdata->getMaxCap(rdata->getLv().getValue() + 1).getValue());
@@ -371,7 +371,15 @@ void ConsumeResActionLayer::action()
 	{
 		Building* bdata = (Building*)m_data;
 		bdata->level.setValue(bdata->level.getValue() + 1);
-		DataSave::getInstance()->setBuildingLv(bdata->name, bdata->level.getValue());
+
+		std::string str;
+		std::map<std::string, Building*>::iterator it;
+		for (it = Building::map_buildingDatas.begin(); it != Building::map_buildingDatas.end(); it++)
+		{
+			std::string lvstr = StringUtils::format("%d-", Building::map_buildingDatas[it->first]->level.getValue());
+			str.append(lvstr);
+		}
+		DataSave::getInstance()->setBuildingsLv(str.substr(0, str.length() - 1));
 
 		if (bdata->name.compare("6innroom") == 0)
 		{

@@ -254,7 +254,8 @@ void LoadingScene::punishmentAction(float dt)
 		GlobalInstance::getInstance()->saveResCreatorData();
 		GlobalInstance::getInstance()->saveTotalFarmers(GlobalInstance::getInstance()->getTotalFarmers());
 
-		DataSave::getInstance()->setBuildingLv("7homehill", Building::map_buildingDatas["7homehill"]->level.getValue());
+		std::string keephillstr = StringUtils::format("0-0-0-0-0-0-0-%d-0-0-0", Building::map_buildingDatas["7homehill"]->level.getValue());
+		DataSave::getInstance()->setBuildingsLv(keephillstr);
 	}
 
 	GlobalInstance::punishment = 0;
@@ -265,8 +266,10 @@ void LoadingScene::punishmentAction(float dt)
 	DataSave::getInstance()->setUserProtocal(true);
 	DataSave::getInstance()->setFirstEnter(false);
 
-	HttpDataSwap::init(NULL)->postAllData();
 	parseCfgFiles();
+
+	HttpDataSwap::init(NULL)->postAllData();
+
 	this->scheduleOnce(schedule_selector(LoadingScene::showNextScene), 5.0f);
 }
 
@@ -306,6 +309,35 @@ void LoadingScene::showPointAnim(float dt)
 	}
 
 	showTips();
+}
+
+void LoadingScene::optimizeSaveData()
+{
+	if (DataSave::getInstance()->getMyHeroCount().length() <= 0)
+	{
+		int herocount = GlobalInstance::vec_myHeros.size();
+		int deathherocount = 0;
+		for (int i = 0; i < herocount; i++)
+		{
+			if (GlobalInstance::vec_myHeros[i]->getState() == HS_DEAD)
+				deathherocount++;
+		}
+
+		std::string cstr = StringUtils::format("%d-%d", herocount - deathherocount, deathherocount);
+		DataSave::getInstance()->setMyHeroCount(cstr);
+	}
+	if (DataSave::getInstance()->getBuildingsLv().length() <= 0)
+	{
+		std::string str;
+		std::map<std::string, Building*>::iterator it;
+		for (it = Building::map_buildingDatas.begin(); it != Building::map_buildingDatas.end(); it++)
+		{
+			std::string lvstr = StringUtils::format("%d-", DataSave::getInstance()->getBuildingLv(it->first));
+			str.append(lvstr);
+			DataSave::getInstance()->deleteDataByKey(it->first);
+		}
+		DataSave::getInstance()->setBuildingsLv(str.substr(0, str.length() - 1));
+	}
 }
 
 void LoadingScene::parseCfgFiles()
@@ -375,6 +407,10 @@ void LoadingScene::parseCfgFiles()
 
 	//本地英雄加上ID兼容上一个版本
 	addHeroId();
+
+	optimizeSaveData();
+
+	GlobalInstance::getInstance()->loadBuildingsLv();
 }
 
 void LoadingScene::delayLoadLocalData(float dt)

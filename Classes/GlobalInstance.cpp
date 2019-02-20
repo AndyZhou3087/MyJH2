@@ -283,6 +283,8 @@ void GlobalInstance::loadInitData()
 	serverTimeGiftData.isopen = false;
 	serverTimeGiftData.lefttime = 0;
 	serverTimeGiftData.turn = 0;
+
+
 }
 
 void GlobalInstance::saveMyHeros()
@@ -334,7 +336,6 @@ void GlobalInstance::saveHeroByIndex(int index)
 
 void GlobalInstance::loadMyHeros()
 {
-	int deathherocount = 0;
 	for (int i = 0; i < 50; i++)
 	{
 		std::string herokey = StringUtils::format("hero%d", i);
@@ -365,9 +366,6 @@ void GlobalInstance::loadMyHeros()
 					hero->setPos(pos);
 					if (pos > 0 && state != HS_DEAD)
 						GlobalInstance::myCardHeros[pos - 1] = hero;
-
-					if (state == HS_DEAD)
-						deathherocount++;
 
 					for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
 					{
@@ -403,10 +401,6 @@ void GlobalInstance::loadMyHeros()
 				GlobalInstance::vec_myHeros.push_back(hero);
 		}
 	}
-
-	int herocount = GlobalInstance::vec_myHeros.size();
-	std::string cstr = StringUtils::format("%d-%d", herocount - deathherocount, deathherocount);
-	DataSave::getInstance()->setMyHeroCount(cstr);
 }
 
 void GlobalInstance::saveRand3Heros()
@@ -2646,7 +2640,7 @@ int GlobalInstance::generateStoneCount(int qu)
 
 int GlobalInstance::generateHeroPotential()
 {
-	int innroomlv = DataSave::getInstance()->getBuildingLv("6innroom");
+	int innroomlv = Building::map_buildingDatas["6innroom"]->level.getValue();
 	if (innroomlv < 10)
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(100);
@@ -2685,7 +2679,7 @@ int GlobalInstance::generateHeroPotential()
 
 int GlobalInstance::generateHeroPotentialByCoin()
 {
-	int innroomlv = DataSave::getInstance()->getBuildingLv("6innroom");
+	int innroomlv = Building::map_buildingDatas["6innroom"]->level.getValue();
 	if (innroomlv < 10)
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(100);
@@ -2917,6 +2911,25 @@ void GlobalInstance::recoveCardHeroMaxHp()
 			else
 				GlobalInstance::myCardHeros[i]->setHp(GlobalInstance::myCardHeros[i]->getMaxHp());
 		}
+	}
+}
+
+void GlobalInstance::loadBuildingsLv()
+{
+	std::vector<int> vec_lv;
+	std::string str = DataSave::getInstance()->getBuildingsLv();
+	std::vector<std::string> vec_strs;
+	CommonFuncs::split(str, vec_strs, "-");
+	for (unsigned int i = 0; i < vec_strs.size(); i++)
+	{
+		vec_lv.push_back(atoi(vec_strs[i].c_str()));
+	}
+	int index = 0;
+	std::map<std::string, Building*>::iterator it;
+	for (it = Building::map_buildingDatas.begin(); it != Building::map_buildingDatas.end(); it++)
+	{
+		Building::map_buildingDatas[it->first]->level.setValue(vec_lv[index]);
+		index++;
 	}
 }
 

@@ -211,15 +211,9 @@ public:
 	/****************************
 	获取建筑物等级
 	@para 建筑物名称
+	@deprecated
 	****************************/
 	int getBuildingLv(std::string buildingname);
-
-	/****************************
-	保存建筑物等级
-	@para 建筑物名称
-	@para 建筑物等级
-	****************************/
-	void setBuildingLv(std::string buildingname, int val);
 
 	/****************************
 	获取我的银两
@@ -427,9 +421,26 @@ public:
 	std::string getLocalUUID();
 
 	/****************************
-	设置招募的英雄个数
+	设置英雄个数数据
 	****************************/
 	void setMyHeroCount(std::string str);
+
+	/****************************
+	设置招募的英雄个数
+	****************************/
+	std::string getMyHeroCount();
+
+	/****************************
+	获取建筑物等级
+	****************************/
+	std::string getBuildingsLv();
+
+	/****************************
+	保存建筑物等级
+	@para 建筑物等级
+	****************************/
+	void setBuildingsLv(std::string str);
+
 
 	void deleteDataByKey(std::string key);
 

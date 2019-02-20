@@ -41,8 +41,6 @@ void Building::parseData()
 			value = jsonvalue["maxlevel"];
 			data->maxlevel.setValue(atoi(value.GetString()));
 
-			data->level.setValue(DataSave::getInstance()->getBuildingLv(data->name));
-
 			if (jsonvalue.HasMember("lvres"))
 			{
 				value = jsonvalue["lvres"];

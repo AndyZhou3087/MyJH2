@@ -57,6 +57,8 @@ private:
 	void showTips();
 
 	void cfgFileEncryp();
+
+	void optimizeSaveData();
 private:
 	bool isGetPlayerId;
 	Node *m_loadingbar;

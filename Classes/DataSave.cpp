@@ -231,11 +231,6 @@ int DataSave::getBuildingLv(std::string buildingname)
 	return loadIntDataByKey(buildingname, 0);
 }
 
-void DataSave::setBuildingLv(std::string buildingname, int val)
-{
-	saveIntDataByKey(buildingname, val);
-}
-
 int DataSave::getMySoliverCount()
 {
 	return loadIntDataByKey("soliver", 10000);
@@ -448,6 +443,21 @@ std::string DataSave::getLocalUUID()
 void DataSave::setMyHeroCount(std::string str)
 {
 	saveStringDataByKey("herocount", str);
+}
+
+std::string DataSave::getMyHeroCount()
+{
+	return loadStringDataByKey("herocount");
+}
+
+std::string DataSave::getBuildingsLv()
+{
+	return loadStringDataByKey("bslv");
+}
+
+void DataSave::setBuildingsLv(std::string str)
+{
+	saveStringDataByKey("bslv", str);
 }
 
 void DataSave::deleteDataByKey(std::string key)
