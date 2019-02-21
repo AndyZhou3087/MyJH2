@@ -40,6 +40,8 @@
 
 #define MODIFYNICKNAMECOUNT_COIN 50
 
+#define QUMAX 5
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #define UMENG
 #include "UMeng/Analytics/MobClickCpp.h"

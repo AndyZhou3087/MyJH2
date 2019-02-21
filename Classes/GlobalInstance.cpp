@@ -297,16 +297,34 @@ void GlobalInstance::loadInitData()
 
 void GlobalInstance::saveMyHeros()
 {
+	int qus[QUMAX] = { 0 };
 	int herocount = GlobalInstance::vec_myHeros.size();
 	int deathherocount = 0;
 	for (int i = 0; i < herocount; i++)
 	{
 		if (GlobalInstance::vec_myHeros[i]->getState() == HS_DEAD)
 			deathherocount++;
+		qus[GlobalInstance::vec_myHeros[i]->getPotential()]++;
 		saveHeroByIndex(i);
 	}
 
 	std::string cstr = StringUtils::format("%d-%d", herocount - deathherocount, deathherocount);
+
+	for (int i = 0; i < QUMAX; i++)
+	{
+		std::string pstr = StringUtils::format("-%d", qus[i]);
+		cstr.append(pstr);
+	}
+
+	for (int i = 0; i < 6; i++)
+	{
+		Hero* hero = GlobalInstance::myCardHeros[i];
+		if (hero != NULL)
+		{
+			std::string hstr = StringUtils::format(";%s-%d-%d-%d-%d", hero->getName().c_str(), hero->getLevel(), hero->getVocation(), hero->getPotential(), hero->getPos());
+			cstr.append(hstr);
+		}
+	}
 	DataSave::getInstance()->setMyHeroCount(cstr);
 }
 
@@ -321,15 +339,34 @@ void GlobalInstance::saveHero(Hero* hero)
 		}
 	}
 
+	int qus[QUMAX] = { 0 };
 	int herocount = GlobalInstance::vec_myHeros.size();
 	int deathherocount = 0;
 	for (int i = 0; i < herocount; i++)
 	{
 		if (GlobalInstance::vec_myHeros[i]->getState() == HS_DEAD)
 			deathherocount++;
+		qus[GlobalInstance::vec_myHeros[i]->getPotential()]++;
 	}
 
 	std::string cstr = StringUtils::format("%d-%d", herocount - deathherocount, deathherocount);
+
+	for (int i = 0; i < QUMAX; i++)
+	{
+		std::string pstr = StringUtils::format("-%d", qus[i]);
+		cstr.append(pstr);
+	}
+
+	for (int i = 0; i < 6; i++)
+	{
+		Hero* hero = GlobalInstance::myCardHeros[i];
+		if (hero != NULL)
+		{
+			std::string hstr = StringUtils::format(";%s-%d-%d-%d-%d", hero->getName().c_str(), hero->getLevel(), hero->getVocation(), hero->getPotential(), hero->getPos());
+			cstr.append(hstr);
+		}
+	}
+
 	DataSave::getInstance()->setMyHeroCount(cstr);
 }
 
