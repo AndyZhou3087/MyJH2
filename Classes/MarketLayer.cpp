@@ -396,6 +396,7 @@ void MarketLayer::buyRes(int iterindex, int count)
 		DynamicValueInt dval;
 		dval.setValue(count * saleval);
 		GlobalInstance::getInstance()->costMyCoinCount(dval);
+		GlobalInstance::getInstance()->setPosCostCoin(3, dval.getValue());
 	}
 	else
 	{

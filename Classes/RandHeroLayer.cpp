@@ -361,6 +361,7 @@ void RandHeroLayer::refresh3Hero(int i)
 		DynamicValueInt dval;
 		dval.setValue(refreshHeroCoin.getValue());
 		GlobalInstance::getInstance()->costMyCoinCount(dval);
+		GlobalInstance::getInstance()->setPosCostCoin(2, dval.getValue());
 	}
 	else if (i == 3)
 	{

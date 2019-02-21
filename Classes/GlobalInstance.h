@@ -713,6 +713,8 @@ public:
 	****************************/
 	void saveNewerGuide(int index, bool val);
 
+	void setPosCostCoin(int forwhere, int addval);
+
 private:
 	static GlobalInstance* _Context;//类实例
 
@@ -803,6 +805,9 @@ public:
 	static int punishment;//0--不做处理；-1--清除所有数据；-2--清除部分数据
 
 	static std::vector<int> vec_newerguides;
+
+	static std::vector<int> vec_costCoins;
+
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

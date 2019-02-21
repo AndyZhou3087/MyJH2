@@ -280,6 +280,7 @@ void MakeResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 					GlobalInstance::getInstance()->costMyCoinCount(costcoindv);
 					action();
 					//showMakeAnim();
+					GlobalInstance::getInstance()->setPosCostCoin(5, costcoindv.getValue());
 				}
 				else
 				{

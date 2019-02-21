@@ -321,7 +321,7 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 	{
 		switch (tag)
 		{
-		case 1000://升级，制作
+		case 1000://升级
 			if (checkResIsEnough())//资源足够
 			{	//std::vector<std::map<std::string, int>> lvupres = m_building->lvupres[m_building->level.getValue()];
 				//减掉资源
@@ -342,13 +342,19 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 				MovingLabel::show(ResourceLang::map_lang["reslack"]);
 			}
 			break;
-		case 1001://直接升级，立即制作
+		case 1001://直接升级
 			{
 				if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= costcoindv.getValue())
 				{
 					GlobalInstance::getInstance()->costMyCoinCount(costcoindv);
 					action();
-					AnimationEffect::closeAniEffect((Layer*)this);
+					AnimationEffect::closeAniEffect(this);
+					int costcointype = 1;
+					if (m_actiontype == CA_BUILDINGLVUP)
+						costcointype = 1;
+					else if (m_actiontype == CA_RESCREATORLVUP || m_actiontype == CA_EMPLOYFARMER)
+						costcointype = 6;
+					GlobalInstance::getInstance()->setPosCostCoin(costcointype, costcoindv.getValue());
 				}
 				else
 				{
@@ -426,7 +432,6 @@ void ConsumeResActionLayer::action()
 		dict["lv"] = lvstr;
 		umeng::MobClickCpp::event(bdata->name.c_str(), &dict);
 #endif
-
 	}
 	else if (m_actiontype == CA_EMPLOYFARMER)
 	{

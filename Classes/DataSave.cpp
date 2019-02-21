@@ -464,6 +464,26 @@ void DataSave::setNewerGuides(std::string str)
 	saveStringDataByKey("newergd", str);
 }
 
+void DataSave::setTCostCoin(int val)
+{
+	saveIntDataByKey("costcs", val);
+}
+
+int DataSave::getTCostCoin()
+{
+	return loadIntDataByKey("costcs");
+}
+
+void DataSave::setPosCostCoin(std::string str)
+{
+	saveStringDataByKey("pcostc", str);
+}
+
+std::string DataSave::getPosCostCoin()
+{
+	return loadStringDataByKey("pcostc");
+}
+
 void DataSave::deleteDataByKey(std::string key)
 {
 	removeEleByKey(key);

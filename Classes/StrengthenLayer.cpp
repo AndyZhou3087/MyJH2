@@ -214,6 +214,7 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			DynamicValueInt dvl;
 			dvl.setValue(coincount.getValue());
 			GlobalInstance::getInstance()->costMyCoinCount(dvl);
+			GlobalInstance::getInstance()->setPosCostCoin(4, dvl.getValue());
 		}
 
 		//记录每日任务

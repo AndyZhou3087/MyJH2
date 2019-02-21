@@ -446,6 +446,18 @@ public:
 	****************************/
 	void setNewerGuides(std::string str);
 
+	//消耗总元宝数
+	void setTCostCoin(int val);
+
+	//获取消耗的总元宝数
+	int getTCostCoin();
+
+	//在某处消耗元宝数
+	void setPosCostCoin(std::string str);
+
+	//获取在某处消耗的元宝数
+	std::string getPosCostCoin();
+
 	void deleteDataByKey(std::string key);
 
 private:

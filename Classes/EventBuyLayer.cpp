@@ -209,7 +209,10 @@ void EventBuyLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				DynamicValueInt dv;
 				dv.setValue(buycount * saleval);
 				if (iscoinsale)
+				{
 					GlobalInstance::getInstance()->costMyCoinCount(dv);
+					GlobalInstance::getInstance()->setPosCostCoin(7, dv.getValue());
+				}
 				else
 					GlobalInstance::getInstance()->costMySoliverCount(dv);
 

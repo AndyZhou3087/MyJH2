@@ -109,6 +109,8 @@ int GlobalInstance::punishment = 0;
 
 std::vector<int> GlobalInstance::vec_newerguides;
 
+std::vector<int> GlobalInstance::vec_costCoins;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -293,6 +295,27 @@ void GlobalInstance::loadInitData()
 		vec_newerguides.push_back(1);
 	}
 
+	vec_costCoins.clear();
+	for (int i = 0; i < 8; i++)
+	{
+		vec_costCoins.push_back(0);
+	}
+
+	vec_costCoins[0] = DataSave::getInstance()->getTCostCoin();
+	std::string str = DataSave::getInstance()->getPosCostCoin();
+
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_ret;
+		CommonFuncs::split(str, vec_ret, "-");
+		for (unsigned int i = 0; i < vec_ret.size(); i++)
+		{
+			if (i < vec_costCoins.size() - 1)
+			{
+				vec_costCoins[i + 1] = atoi(vec_ret[i].c_str());
+			}
+		}
+	}
 }
 
 void GlobalInstance::saveMyHeros()
@@ -2618,6 +2641,10 @@ void GlobalInstance::costMyCoinCount(DynamicValueInt val)
 	Quest::setAchieveTypeCount(ACHIEVE_GOLD, val.getValue());
 	GlobalInstance::myCoinCount.setValue(GlobalInstance::myCoinCount.getValue() - abs(val.getValue()));
 	DataSave::getInstance()->setMyCoinCount(GlobalInstance::myCoinCount.getValue());
+
+	vec_costCoins[0] += abs(val.getValue());
+	DataSave::getInstance()->setTCostCoin(vec_costCoins[0]);
+
 }
 
 int GlobalInstance::generateStoneCount(int qu)
@@ -2988,6 +3015,21 @@ void GlobalInstance::saveNewerGuide(int index, bool val)
 		str.append(pstr);
 	}
 	DataSave::getInstance()->setNewerGuides(str);
+}
+
+void GlobalInstance::setPosCostCoin(int forwhere, int addval)
+{
+	vec_costCoins[forwhere] += addval;
+	std::string str;
+
+	for (unsigned int i = 1; i < vec_costCoins.size(); i++)
+	{
+		if (str.length() > 0)
+			str.append("-");
+		std::string pstr = StringUtils::format("%d", vec_costCoins[i]);
+		str.append(pstr);
+	}
+	DataSave::getInstance()->setPosCostCoin(str);
 }
 
 void GlobalInstance::resetData()
