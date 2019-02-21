@@ -366,6 +366,24 @@ typedef struct
 	std::string rwds;
 }LoginData;
 
+typedef enum
+{
+	COSTCOIN_BUILDINGLVUP = 1,
+	COSTCOIN_RANDHEROS,
+	COSTCOIN_MARKETBUYRES,
+	COSTCOIN_STRENTH,
+	COSTCOIN_MAKERES,
+	COSTCOIN_HILL,
+	COSTCOIN_EVENTBUISNESS
+}COSTCOIN_ANALYSIS;
+
+typedef enum
+{
+	COSTPROP_TORCH = 0,//火把
+	COSTPROP_VISION,//视野
+	COSTPROP_GOHOME//回城
+}COSTPROPS_ANALYSIS;
+
 class GlobalInstance
 {
 public:
@@ -715,6 +733,8 @@ public:
 
 	void setPosCostCoin(int forwhere, int addval);
 
+	void usePropsCount(int idindex, int useval);
+
 private:
 	static GlobalInstance* _Context;//类实例
 
@@ -807,6 +827,8 @@ public:
 	static std::vector<int> vec_newerguides;
 
 	static std::vector<int> vec_costCoins;
+
+	static std::vector<int> vec_costprops;
 
 private:
 	static int refreshHeroTime;

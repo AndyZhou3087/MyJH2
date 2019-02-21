@@ -458,6 +458,12 @@ public:
 	//获取在某处消耗的元宝数
 	std::string getPosCostCoin();
 
+	//消耗道具数
+	void setPropsCount(std::string str);
+
+	//获取消耗道具数
+	std::string getPropsCount();
+
 	void deleteDataByKey(std::string key);
 
 private:

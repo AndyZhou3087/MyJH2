@@ -164,6 +164,7 @@ void GoBackLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 #else
 				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 #endif	
+				GlobalInstance::getInstance()->usePropsCount(COSTPROP_GOHOME, 1);
 			}
 			else
 			{
@@ -195,7 +196,7 @@ void GoBackLayer::costCoinGoback(int gotype)
 #else
 		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 #endif
-
+		GlobalInstance::getInstance()->usePropsCount(COSTPROP_GOHOME, 1);
 	}
 	else
 	{

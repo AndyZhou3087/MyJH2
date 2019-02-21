@@ -211,7 +211,7 @@ void EventBuyLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				if (iscoinsale)
 				{
 					GlobalInstance::getInstance()->costMyCoinCount(dv);
-					GlobalInstance::getInstance()->setPosCostCoin(7, dv.getValue());
+					GlobalInstance::getInstance()->setPosCostCoin(COSTCOIN_EVENTBUISNESS, dv.getValue());
 				}
 				else
 					GlobalInstance::getInstance()->costMySoliverCount(dv);

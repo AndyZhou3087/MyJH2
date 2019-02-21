@@ -675,6 +675,7 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					_fogrender->end();
 					Director::getInstance()->getRenderer()->render();
 				}
+				GlobalInstance::getInstance()->usePropsCount(COSTPROP_VISION, 1);
 			}
 		}
 		break;
@@ -1743,6 +1744,7 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		showThrowTorchParticle(tag / blockColCount, tag%blockColCount);
 		isUsingTorch = false;
 		MyRes::Use("z001", 1);
+		GlobalInstance::getInstance()->usePropsCount(COSTPROP_TORCH, 1);
 	}
 	else if (type == ui::Widget::TouchEventType::CANCELED)
 	{

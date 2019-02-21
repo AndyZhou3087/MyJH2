@@ -111,6 +111,8 @@ std::vector<int> GlobalInstance::vec_newerguides;
 
 std::vector<int> GlobalInstance::vec_costCoins;
 
+std::vector<int> GlobalInstance::vec_costprops;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -301,6 +303,12 @@ void GlobalInstance::loadInitData()
 		vec_costCoins.push_back(0);
 	}
 
+	vec_costprops.clear();
+	for (int i = 0; i < 3; i++)
+	{
+		vec_costprops.push_back(0);
+	}
+
 	vec_costCoins[0] = DataSave::getInstance()->getTCostCoin();
 	std::string str = DataSave::getInstance()->getPosCostCoin();
 
@@ -313,6 +321,21 @@ void GlobalInstance::loadInitData()
 			if (i < vec_costCoins.size() - 1)
 			{
 				vec_costCoins[i + 1] = atoi(vec_ret[i].c_str());
+			}
+		}
+	}
+
+	str = DataSave::getInstance()->getPropsCount();
+	
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_ret;
+		CommonFuncs::split(str, vec_ret, "-");
+		for (unsigned int i = 0; i < vec_ret.size(); i++)
+		{
+			if (i < vec_costprops.size())
+			{
+				vec_costprops[i] = atoi(vec_ret[i].c_str());
 			}
 		}
 	}
@@ -3030,6 +3053,20 @@ void GlobalInstance::setPosCostCoin(int forwhere, int addval)
 		str.append(pstr);
 	}
 	DataSave::getInstance()->setPosCostCoin(str);
+}
+
+void GlobalInstance::usePropsCount(int idindex, int useval)
+{
+	vec_costprops[idindex] += useval;
+	std::string str;
+	for (unsigned int i = 0; i < vec_costprops.size(); i++)
+	{
+		if (str.length() > 0)
+			str.append("-");
+		std::string pstr = StringUtils::format("%d", vec_costprops[i]);
+		str.append(pstr);
+	}
+	DataSave::getInstance()->setPropsCount(str);
 }
 
 void GlobalInstance::resetData()

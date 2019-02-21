@@ -484,6 +484,16 @@ std::string DataSave::getPosCostCoin()
 	return loadStringDataByKey("pcostc");
 }
 
+void DataSave::setPropsCount(std::string str)
+{
+	saveStringDataByKey("costprops", str);
+}
+
+std::string DataSave::getPropsCount()
+{
+	return loadStringDataByKey("costprops");
+}
+
 void DataSave::deleteDataByKey(std::string key)
 {
 	removeEleByKey(key);

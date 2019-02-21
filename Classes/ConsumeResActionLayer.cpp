@@ -349,11 +349,11 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 					GlobalInstance::getInstance()->costMyCoinCount(costcoindv);
 					action();
 					AnimationEffect::closeAniEffect(this);
-					int costcointype = 1;
+					int costcointype = COSTCOIN_BUILDINGLVUP;
 					if (m_actiontype == CA_BUILDINGLVUP)
-						costcointype = 1;
+						costcointype = COSTCOIN_BUILDINGLVUP;
 					else if (m_actiontype == CA_RESCREATORLVUP || m_actiontype == CA_EMPLOYFARMER)
-						costcointype = 6;
+						costcointype = COSTCOIN_HILL;
 					GlobalInstance::getInstance()->setPosCostCoin(costcointype, costcoindv.getValue());
 				}
 				else
