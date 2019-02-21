@@ -15,6 +15,8 @@
 #include "MainScene.h"
 #include "HintBoxLayer.h"
 #include "SaleGfLayer.h"
+#include "SmithyLayer.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -25,7 +27,14 @@ EquipDescLayer::EquipDescLayer()
 
 EquipDescLayer::~EquipDescLayer()
 {
-
+	if (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(76))
+	{
+		SmithyLayer* layer = (SmithyLayer*)g_mainScene->getChildByName("2smithy");
+		if (layer != NULL)
+		{
+			layer->delayShowNewerGuide(0);
+		}
+	}
 }
 
 

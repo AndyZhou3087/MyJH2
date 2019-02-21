@@ -24,14 +24,6 @@ MakeResLayer::MakeResLayer()
 
 MakeResLayer::~MakeResLayer()
 {
-	if (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(76))
-	{
-		SmithyLayer* layer = (SmithyLayer*)g_mainScene->getChildByName("2smithy");
-		if (layer != NULL)
-		{
-			layer->delayShowNewerGuide(0);
-		}
-	}
 }
 
 

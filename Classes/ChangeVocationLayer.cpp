@@ -204,6 +204,9 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				if (MyRes::getMyResCount(needresid) < 1)
 				{
 					MovingLabel::show(ResourceLang::map_lang["reslack"]);
+					SimpleResPopLayer* layer = SimpleResPopLayer::create(needresid, 1, 1);
+					this->addChild(layer);
+					AnimationEffect::openAniEffect(layer);
 					return;
 				}
 				else
@@ -233,6 +236,9 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				if (MyRes::getMyResCount(needresid) < 1)
 				{
 					MovingLabel::show(ResourceLang::map_lang["reslack"]);
+					SimpleResPopLayer* layer = SimpleResPopLayer::create(needresid, 1, 1);
+					this->addChild(layer);
+					AnimationEffect::openAniEffect(layer);
 					return;
 				}
 				else
