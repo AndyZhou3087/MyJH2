@@ -555,7 +555,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
 					if (NewGuideLayer::checkifNewerGuide(64) && !NewGuideLayer::checkifNewerGuide(63))
 					{
-						DataSave::getInstance()->setIsNewerGuide(64, 0);
+						GlobalInstance::getInstance()->saveNewerGuide(64, false);
 					}
 				}
 			}

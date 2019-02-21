@@ -708,6 +708,11 @@ public:
 	****************************/
 	void loadBuildingsLv();
 
+	/****************************
+	保存新手引导数据
+	****************************/
+	void saveNewerGuide(int index, bool val);
+
 private:
 	static GlobalInstance* _Context;//类实例
 
@@ -797,6 +802,7 @@ public:
 
 	static int punishment;//0--不做处理；-1--清除所有数据；-2--清除部分数据
 
+	static std::vector<int> vec_newerguides;
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

@@ -295,7 +295,7 @@ void NewGuideLayer::showNextGuide()
 {
 	if (m_step != 64)
 	{
-		DataSave::getInstance()->setIsNewerGuide(m_step, 0);
+		GlobalInstance::getInstance()->saveNewerGuide(m_step, false);
 	}
 
 	if (g_mainScene != NULL)
@@ -579,12 +579,7 @@ void NewGuideLayer::showNextGuide()
 
 bool NewGuideLayer::checkifNewerGuide(int index)
 {
-	return DataSave::getInstance()->getIsNewerGuide(index);
-}
-
-void NewGuideLayer::setNewerGuide(int index)
-{
-	DataSave::getInstance()->setIsNewerGuide(index, false);
+	return GlobalInstance::vec_newerguides[index];
 }
 
 void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
@@ -789,7 +784,7 @@ void NewGuideLayer::showAnim(Vec2 pos)
 
 void NewGuideLayer::removeSelf(float dt)
 {
-	DataSave::getInstance()->setIsNewerGuide(m_step, 0);
+	GlobalInstance::getInstance()->saveNewerGuide(m_step, false);
 	this->removeFromParentAndCleanup(true);
 	if (g_mainScene != NULL)
 	{
@@ -872,7 +867,7 @@ void NewGuideLayer::setNewGuideInfo(int step)
 
 			for (int i = 0; i < step; i++)
 			{
-				DataSave::getInstance()->setIsNewerGuide(i, 1);
+				GlobalInstance::getInstance()->saveNewerGuide(i, true);
 			}
 		}
 	}
@@ -882,11 +877,11 @@ void NewGuideLayer::setNewGuideInfo(int step)
 		{
 			for (int i = 15; i < 22; i++)
 			{
-				DataSave::getInstance()->setIsNewerGuide(i, 1);
+				GlobalInstance::getInstance()->saveNewerGuide(i, true);
 			}
 			for (int j = 82; j < 86; j++)
 			{
-				DataSave::getInstance()->setIsNewerGuide(j, 1);
+				GlobalInstance::getInstance()->saveNewerGuide(j, true);
 			}
 		}
 	}
@@ -927,9 +922,9 @@ void NewGuideLayer::setNewGuideInfo(int step)
 		{
 			for (int i = 22; i < step; i++)
 			{
-				DataSave::getInstance()->setIsNewerGuide(i, 1);
+				GlobalInstance::getInstance()->saveNewerGuide(i, true);
 			}
-			DataSave::getInstance()->setIsNewerGuide(93, 1);
+			GlobalInstance::getInstance()->saveNewerGuide(93, true);
 		}
 	}
 	else if (step == MIDELEGUIDESTEP)
@@ -949,7 +944,7 @@ void NewGuideLayer::setNewGuideInfo(int step)
 		{
 			for (int i = THRIDGUIDESTEP + 1; i < step; i++)
 			{
-				DataSave::getInstance()->setIsNewerGuide(i, 1);
+				GlobalInstance::getInstance()->saveNewerGuide(i, true);
 			}
 		}
 	}
@@ -969,7 +964,7 @@ void NewGuideLayer::setNewGuideInfo(int step)
 		{
 			for (int i = MIDELEGUIDESTEP + 1; i < step; i++)
 			{
-				DataSave::getInstance()->setIsNewerGuide(i, 1);
+				GlobalInstance::getInstance()->saveNewerGuide(i, true);
 			}
 		}
 	}
@@ -988,7 +983,7 @@ void NewGuideLayer::setNewGuideInfo(int step)
 		{
 			for (int i = FOURTHGUIDESTEP + 1; i < step; i++)
 			{
-				DataSave::getInstance()->setIsNewerGuide(i, 1);
+				GlobalInstance::getInstance()->saveNewerGuide(i, true);
 			}
 		}
 	}*/

@@ -308,12 +308,6 @@ bool DataSave::getIsNewerGuide(int index)
 	return val == 1 ? true : false;
 }
 
-void DataSave::setIsNewerGuide(int index, bool val)
-{
-	std::string key = StringUtils::format("guide%d", index);
-	saveIntDataByKey(key, (int)val);
-}
-
 void DataSave::setSilverRefHeroCount(int val)
 {
 	saveIntDataByKey("silverrefhero", val);
@@ -458,6 +452,16 @@ std::string DataSave::getBuildingsLv()
 void DataSave::setBuildingsLv(std::string str)
 {
 	saveStringDataByKey("bslv", str);
+}
+
+std::string DataSave::getNewerGuides()
+{
+	return loadStringDataByKey("newergd");
+}
+
+void DataSave::setNewerGuides(std::string str)
+{
+	saveStringDataByKey("newergd", str);
 }
 
 void DataSave::deleteDataByKey(std::string key)

@@ -23,7 +23,6 @@ public:
 	virtual void onExit();
 	static NewGuideLayer* create(int step, std::vector<Node*> stencilNodes);
 	static bool checkifNewerGuide(int index);
-	static void setNewerGuide(int index);
 	static void setNewGuideInfo(int step);//新手加成
 private:
 	Layer* m_colorlayer;

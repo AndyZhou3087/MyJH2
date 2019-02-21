@@ -107,6 +107,8 @@ LoginData GlobalInstance::loginData;
 
 int GlobalInstance::punishment = 0;
 
+std::vector<int> GlobalInstance::vec_newerguides;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -284,6 +286,12 @@ void GlobalInstance::loadInitData()
 	serverTimeGiftData.lefttime = 0;
 	serverTimeGiftData.turn = 0;
 
+	vec_newerguides.clear();
+
+	for (int i = 0; i < 94; i++)
+	{
+		vec_newerguides.push_back(1);
+	}
 
 }
 
@@ -2931,6 +2939,18 @@ void GlobalInstance::loadBuildingsLv()
 		Building::map_buildingDatas[it->first]->level.setValue(vec_lv[index]);
 		index++;
 	}
+}
+
+void GlobalInstance::saveNewerGuide(int index, bool val)
+{
+	GlobalInstance::vec_newerguides[index] = val;
+	std::string str;
+	for (unsigned int i = 0; i < GlobalInstance::vec_newerguides.size(); i++)
+	{
+		std::string pstr = StringUtils::format("%d", GlobalInstance::vec_newerguides[i]);
+		str.append(pstr);
+	}
+	DataSave::getInstance()->setNewerGuides(str);
 }
 
 void GlobalInstance::resetData()

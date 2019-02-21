@@ -332,11 +332,45 @@ void LoadingScene::optimizeSaveData()
 		std::map<std::string, Building*>::iterator it;
 		for (it = Building::map_buildingDatas.begin(); it != Building::map_buildingDatas.end(); it++)
 		{
-			std::string lvstr = StringUtils::format("%d-", DataSave::getInstance()->getBuildingLv(it->first));
+			int blv = DataSave::getInstance()->getBuildingLv(it->first);
+			Building::map_buildingDatas[it->first]->level.setValue(blv);
+			std::string lvstr = StringUtils::format("%d-", blv);
 			str.append(lvstr);
 			DataSave::getInstance()->deleteDataByKey(it->first);
 		}
 		DataSave::getInstance()->setBuildingsLv(str.substr(0, str.length() - 1));
+	}
+	else
+	{
+		GlobalInstance::getInstance()->loadBuildingsLv();
+	}
+
+	std::string gstr = DataSave::getInstance()->getNewerGuides();
+	unsigned int gsize = GlobalInstance::vec_newerguides.size();
+	if (gstr.length() <= 0)
+	{
+		std::string str;
+		for (unsigned int i = 0; i < gsize; i++)
+		{
+			GlobalInstance::vec_newerguides[i] = DataSave::getInstance()->getIsNewerGuide(i);
+
+			std::string nstr = StringUtils::format("%d", GlobalInstance::vec_newerguides[i]);
+			str.append(nstr);
+		}
+		DataSave::getInstance()->setNewerGuides(str);
+		for (int i = 0; i < 94; i++)
+		{
+			std::string nstr = StringUtils::format("guide%d", i);
+			DataSave::getInstance()->deleteDataByKey(nstr);
+		}
+	}
+	else
+	{
+		for (unsigned int i = 0; i < gstr.length(); i++)
+		{
+			if (i <= gsize - 1)
+				GlobalInstance::vec_newerguides[i] = atoi(gstr.substr(i, 1).c_str());
+		}
 	}
 }
 
@@ -409,8 +443,6 @@ void LoadingScene::parseCfgFiles()
 	addHeroId();
 
 	optimizeSaveData();
-
-	GlobalInstance::getInstance()->loadBuildingsLv();
 }
 
 void LoadingScene::delayLoadLocalData(float dt)
@@ -468,7 +500,7 @@ void LoadingScene::enterNewScene()
 	{
 		if (!NewGuideLayer::checkifNewerGuide(10) && NewGuideLayer::checkifNewerGuide(11))
 		{
-			DataSave::getInstance()->setIsNewerGuide(11, 0);
+			GlobalInstance::getInstance()->saveNewerGuide(11, false);
 		}
 		int index = -1;
 		int STEPS[] = { FIRSTGUIDESTEP, SECONDGUIDESTEP, THRIDGUIDESTEP, MIDELEGUIDESTEP, FOURTHGUIDESTEP };

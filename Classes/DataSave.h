@@ -311,11 +311,6 @@ public:
 	bool getIsNewerGuide(int index);
 
 	/****************************
-	设置是否有新手引导
-	****************************/
-	void setIsNewerGuide(int index, bool val);
-
-	/****************************
 	是否同意隐私策略
 	****************************/
 	bool getUserProtocal();
@@ -441,6 +436,15 @@ public:
 	****************************/
 	void setBuildingsLv(std::string str);
 
+	/****************************
+	获取新手引导
+	****************************/
+	std::string getNewerGuides();
+
+	/****************************
+	设置新手引导
+	****************************/
+	void setNewerGuides(std::string str);
 
 	void deleteDataByKey(std::string key);
 
