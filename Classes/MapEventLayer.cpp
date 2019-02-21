@@ -1,7 +1,6 @@
 ﻿#include "MapEventLayer.h"
 #include "Resource.h"
 #include "CommonFuncs.h"
-
 #include "MyRes.h"
 #include "EventBusinessLayer.h"
 #include "AnimationEffect.h"

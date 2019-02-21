@@ -1232,8 +1232,11 @@ void MapBlockScene::doMyStatus()
 			mapblock->map_eventrnd[rnd_it->first] = 0;
 			mapblock->removeEventIcon();
 		}
-
-		if (ret == 0 || ret == 1 || ret == 2 || ret == 3 || ret == 4 || /*ret == 5 ||*去掉bet*/ ret == 6)//其它事件美术没有准备好，会崩溃，有图后打开这里
+#if MAP_BET
+		if (ret <= POS_BUSINESS)//其它事件美术没有准备好，会崩溃，有图后打开这里
+#else
+		if (ret <= POS_BUSINESS && ret != POS_BET)
+#endif
 		{
 			MapEventLayer* mlayer = MapEventLayer::create(ret);
 			this->addChild(mlayer);
@@ -1872,8 +1875,13 @@ void MapBlockScene::parseMapXml(std::string mapname)
 
 							if (mb->map_eventrnd.size() == 1 && mb->map_eventrnd[mb->map_eventrnd.begin()->first] >= 100)
 							{
-								if (mb->map_eventrnd.begin()->first != 5)//去掉bet
+							#if MAP_BET
+								mb->setEventIcon(mb->map_eventrnd.begin()->first);
+							#else
+								if (mb->map_eventrnd.begin()->first != POS_BET)//去掉bet
 									mb->setEventIcon(mb->map_eventrnd.begin()->first);
+							#endif
+									
 							}
 						}
 						else if (ename.compare("npcid") == 0)

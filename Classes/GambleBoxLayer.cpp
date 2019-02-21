@@ -2,7 +2,6 @@
 #include "Resource.h"
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
-#include "Const.h"
 #include "MovingLabel.h"
 #include "AnimationEffect.h"
 #include "MapEventLayer.h"

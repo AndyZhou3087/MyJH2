@@ -59,7 +59,6 @@ private:
 #endif
 	void eventFight();
 	void getSliverByEventW();
-	void doThiefEvent();
 
 private:
 	Node* eventnode_1;

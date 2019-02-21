@@ -34,7 +34,7 @@
 
 #define TIPSCOUNT 7
 
-#define MAP_BET 0
+#define MAP_BET 1
 
 #define USE_TRANSCENE 1
 

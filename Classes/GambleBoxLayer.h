@@ -1,10 +1,10 @@
-#pragma once
 #ifndef __GambleBoxLayer_H__
 #define __GambleBoxLayer_H__
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
+#include "Const.h"
 
 USING_NS_CC;
 #if MAP_BET
