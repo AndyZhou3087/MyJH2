@@ -258,7 +258,7 @@ public class Utils {
 				if (vaulestr != null && vaulestr.trim().length() > 0 && key.startsWith("jh"))
 				{
 					boolean isok = false;
-					if (type == 1&& !(key.startsWith("jhm") && getSubCount(key,"-") == 2))
+					if (type == 1&& !(key.startsWith("jhm") && getSubCount(key,"-") == 3))
 						isok = true;
 					else if (type == 0)
 						isok = true;

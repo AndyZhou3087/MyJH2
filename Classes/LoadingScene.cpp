@@ -226,7 +226,7 @@ void LoadingScene::punishmentAction(float dt)
 	while (element != NULL)
 	{
 		std::string key = element->Name();
-		if (key.find("guide") == std::string::npos)
+		if (key.find("newergd") == std::string::npos)
 		{
 			UserDefault::getInstance()->deleteValueForKey(element->Name());
 		}
