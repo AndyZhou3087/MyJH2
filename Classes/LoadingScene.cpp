@@ -326,7 +326,7 @@ void LoadingScene::optimizeSaveData()
 		}
 
 		std::string cstr = StringUtils::format("%d-%d", herocount - deathherocount, deathherocount);
-		DataSave::getInstance()->setMyHeroCount(cstr);
+
 
 		for (int i = 0; i < QUMAX; i++)
 		{
@@ -343,6 +343,7 @@ void LoadingScene::optimizeSaveData()
 				cstr.append(hstr);
 			}
 		}
+		DataSave::getInstance()->setMyHeroCount(cstr);
 	}
 	if (DataSave::getInstance()->getBuildingsLv().length() <= 0)
 	{
