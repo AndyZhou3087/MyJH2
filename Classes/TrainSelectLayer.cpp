@@ -16,6 +16,7 @@
 #include "AnimationEffect.h"
 #include "SoundManager.h"
 #include "BuyCoinLayer.h"
+#include "MarketLayer.h"
 
 USING_NS_CC;
 
@@ -173,21 +174,28 @@ void TrainSelectLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 			}
 			else
 			{
+				std::string str;
 				if (MyRes::getMyResCount("r001") < vec_res[lastSelectIndex]["r001"] && MyRes::getMyResCount("c001") < vec_res[lastSelectIndex]["c001"])
 				{
 					std::string astr = StringUtils::format("%s,%s", GlobalInstance::map_AllResources["r001"].name.c_str(), GlobalInstance::map_AllResources["c001"].name.c_str());
-					std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), astr.c_str());
-					MovingLabel::show(str);
+					str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), astr.c_str());
 				}
 				else if (MyRes::getMyResCount("r001") < vec_res[lastSelectIndex]["r001"])
 				{
-					std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources["r001"].name.c_str());
-					MovingLabel::show(str);
+					str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources["r001"].name.c_str());
 				}
 				else
 				{
-					std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources["c001"].name.c_str());
-					MovingLabel::show(str);
+					str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources["c001"].name.c_str());
+				}
+
+				str.append(ResourceLang::map_lang["reswheregettext"]);
+				MovingLabel::show(str);
+				if (g_mainScene != NULL)
+				{
+					MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
+					g_mainScene->addChild(layer, 1000, "5market");
+					AnimationEffect::openAniEffect(layer);
 				}
 			}
 			break;

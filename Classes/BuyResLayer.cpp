@@ -138,6 +138,8 @@ bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res)
 		}
 	}
 
+	needcoincount.setValue(needcoincount.getValue() * 14 / 10);
+
 	cocos2d::ui::Text* countlbl = (cocos2d::ui::Text*)csbnode->getChildByName("cnumbl");
 	std::string str = StringUtils::format("%d", needcoincount.getValue());
 	countlbl->setString(str);
