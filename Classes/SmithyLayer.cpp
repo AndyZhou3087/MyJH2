@@ -142,7 +142,7 @@ void SmithyLayer::showNewerGuide(int step)
 	std::vector<Node*> nodes;
 	if (step == 74)
 	{
-		nodes.push_back(m_contentscroll->getChildByName(map_cateRes[lastCategoryindex][0])->getChildByName("resitem"));
+		nodes.push_back(m_contentscroll->getChildByName(map_cateRes[lastCategoryindex][0])->getChildByName("csbnode")->getChildByName("resitem"));
 	}
 	else if (step == 76)
 	{
