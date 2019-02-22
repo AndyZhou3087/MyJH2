@@ -200,7 +200,9 @@
     <Cell c="6" r="18" p="-1" w="1" m="66.png" />
     <Cell c="6" r="19" p="-1" w="1" m="66.png" />
     <Cell c="6" r="20" p="-1" w="1" m="66.png" />
-    <Cell c="6" r="21" p="-1" w="1" m="66.png" />
+    <Cell c="6" r="21" p="-1" w="1" m="66.png">
+      <event>0;0;50;0;0;0;0</event>
+    </Cell>
     <Cell c="6" r="22" p="-1" w="0" m="66.png" d="3.png" />
     <Cell c="6" r="23" p="-1" w="0" m="66.png" d="3.png" />
     <Cell c="6" r="24" p="-1" w="0" m="66.png" d="3.png" />
