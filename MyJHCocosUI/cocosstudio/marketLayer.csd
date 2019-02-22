@@ -199,13 +199,13 @@
             <FileData Type="MarkedSubImage" Path="ui/timeiconbox.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="timelbl" ActionTag="1519346882" Tag="94" IconVisible="False" LeftMargin="311.0000" RightMargin="311.0000" TopMargin="1141.0000" BottomMargin="113.0000" FontSize="23" LabelText="01:00:00" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="timelbl" ActionTag="1519346882" Tag="94" IconVisible="False" LeftMargin="311.0000" RightMargin="311.0000" TopMargin="1140.0000" BottomMargin="114.0000" FontSize="23" LabelText="01:00:00" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="98.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="126.0000" />
+            <Position X="360.0000" Y="127.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.0984" />
+            <PrePosition X="0.5000" Y="0.0992" />
             <PreSize X="0.1361" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />

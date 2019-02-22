@@ -224,7 +224,7 @@
             <FileData Type="MarkedSubImage" Path="ui/main_silver.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="snumbl" ActionTag="-1240888529" Tag="138" IconVisible="False" LeftMargin="194.9132" RightMargin="484.0869" TopMargin="1132.6942" BottomMargin="117.3058" FontSize="26" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="snumbl" ActionTag="-1240888529" Tag="138" IconVisible="False" LeftMargin="194.9132" RightMargin="484.0868" TopMargin="1132.6942" BottomMargin="117.3058" FontSize="26" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="41.0000" Y="30.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="194.9132" Y="132.3058" />
@@ -236,7 +236,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="crefreshbtn" ActionTag="-1824188371" Tag="78" IconVisible="False" LeftMargin="432.1342" RightMargin="83.8658" TopMargin="1037.1189" BottomMargin="158.8810" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="crefreshbtn" ActionTag="-1824188371" Tag="78" IconVisible="False" LeftMargin="432.1342" RightMargin="83.8658" TopMargin="1037.1190" BottomMargin="158.8810" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="745179716" Tag="79" IconVisible="False" LeftMargin="27.2415" RightMargin="22.7585" TopMargin="19.4025" BottomMargin="24.5975" LeftEage="51" RightEage="51" TopEage="13" BottomEage="13" Scale9OriginX="51" Scale9OriginY="13" Scale9Width="52" Scale9Height="14" ctype="ImageViewObjectData">
@@ -330,19 +330,19 @@
             <FileData Type="MarkedSubImage" Path="ui/timeiconbox.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="timelbl" ActionTag="-2057086658" Tag="163" IconVisible="False" LeftMargin="311.0001" RightMargin="310.9999" TopMargin="765.0000" BottomMargin="489.0000" FontSize="23" LabelText="06:50:50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="timelbl" ActionTag="-2057086658" Tag="163" IconVisible="False" LeftMargin="311.0001" RightMargin="310.9999" TopMargin="764.0004" BottomMargin="489.9996" FontSize="23" LabelText="06:50:50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="98.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0001" Y="502.0000" />
+            <Position X="360.0001" Y="502.9996" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.3922" />
+            <PrePosition X="0.5000" Y="0.3930" />
             <PreSize X="0.1361" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="usecardbtn" ActionTag="553796004" Tag="129" IconVisible="False" LeftMargin="257.9998" RightMargin="258.0002" TopMargin="855.6121" BottomMargin="340.3880" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="usecardbtn" ActionTag="553796004" Tag="129" IconVisible="False" LeftMargin="257.9998" RightMargin="258.0002" TopMargin="855.6120" BottomMargin="340.3880" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-1749064565" Tag="130" IconVisible="False" LeftMargin="24.5216" RightMargin="25.4784" TopMargin="20.2404" BottomMargin="24.7596" LeftEage="51" RightEage="51" TopEage="13" BottomEage="13" Scale9OriginX="51" Scale9OriginY="13" Scale9Width="52" Scale9Height="13" ctype="ImageViewObjectData">
