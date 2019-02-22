@@ -242,18 +242,6 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="buydesc" ActionTag="-2057949236" Tag="103" IconVisible="False" LeftMargin="292.7783" RightMargin="131.2217" TopMargin="869.4700" BottomMargin="386.5301" FontSize="21" LabelText="升级市场可以用更低的价格购买" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="296.0000" Y="24.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="440.7783" Y="398.5301" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="0" B="0" />
-            <PrePosition X="0.6122" Y="0.3114" />
-            <PreSize X="0.4111" Y="0.0188" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="0" G="0" B="0" />
-          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

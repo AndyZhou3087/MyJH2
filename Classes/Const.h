@@ -73,6 +73,6 @@ const static float ODDS[] = { 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 96
 //区分资源类型的字符
 const static std::string RES_TYPES_CHAR[] = { "r","a","e","g","f","w","x", "q", "c", "s" ,"d","m","i","b","y","v","t","p","u","k","z"};
 
-const static std::string defaultres = "r001-500-1;r002-500-1;r003-500-1;r004-500-1;t001-10-1;r005-500-1;r009-10-1;p001-5-1;w001-1-1-0-0-;x001-1-1-0-0-";
+const static std::string defaultres = "r001-500-1;r002-500-1;r003-500-1;r004-500-1;t001-10-1;r005-500-1;r009-10-1;p001-5-1;v001-2-1;z001-2-1;w001-1-1-0-0-;x001-1-1-0-0-";
 
 #endif // _H_CONST_H_

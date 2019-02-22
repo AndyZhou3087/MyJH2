@@ -95,8 +95,17 @@ bool EventBuyLayer::init(FOURProperty fproper)
 
 	//名字
 	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
-	namelbl->setString(GlobalInstance::map_AllResources[resid].name);
-	namelbl->setTextColor(Color4B(POTENTIALCOLOR[qu]));
+
+	if (t > T_RES_0)
+		namelbl->setTextColor(Color4B(POTENTIALCOLOR[qu]));
+
+	std::string namestr = GlobalInstance::map_AllResources[resid].name;
+	if (t >= T_ARMOR && t <= T_NG)
+	{
+		std::string st = StringUtils::format("potential_%d", qu);
+		namestr = StringUtils::format(ResourceLang::map_lang["libraryinfoequipname"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str(), ResourceLang::map_lang[st].c_str());
+	}
+	namelbl->setString(namestr);
 
 	//描述
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");

@@ -1172,8 +1172,8 @@ void MapBlockScene::showThrowTorchParticle(int row, int col)
 	particleSystem->setPosition(myposHero->getPosition());
 	m_mapscrollcontainer->addChild(particleSystem, 1000000);
 	Vec2 destPos = Vec2(col*MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, row*MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2);
-	Spawn* movebig = Spawn::create(MoveBy::create(1.0f, Vec2((destPos.x - myposHero->getPositionX())/2, (destPos.y - myposHero->getPositionY())/2)), ScaleTo::create(1, 2.0f), NULL);
-	Spawn* movenormal = Spawn::create(MoveTo::create(1.0f, Vec2(destPos.x, destPos.y)), ScaleTo::create(1, 1.0f), NULL);
+	Spawn* movebig = Spawn::create(MoveBy::create(0.75f, Vec2((destPos.x - myposHero->getPositionX())/2, (destPos.y - myposHero->getPositionY())/2)), ScaleTo::create(0.75f, 2.0f), NULL);
+	Spawn* movenormal = Spawn::create(MoveTo::create(0.75f, Vec2(destPos.x, destPos.y)), ScaleTo::create(0.75f, 1.0f), NULL);
 	particleSystem->runAction(Sequence::create(movebig, movenormal, CallFunc::create(CC_CALLBACK_0(MapBlockScene::torchLight, this, row, col)), FadeOut::create(2.0f), RemoveSelf::create(), NULL));
 }
 
