@@ -416,7 +416,7 @@ int MarketResNode::getResInMarketLv()
 	Building* buildingdata = Building::map_buildingDatas["5market"];
 	for (int v = 0; v < buildingdata->maxlevel.getValue(); v++)
 	{
-		int vsize = Building::map_buildingDatas["5market"]->vec_exdata.size();
+		int vsize = buildingdata->vec_exdata.size();
 
 		for (unsigned int i = 0; i < buildingdata->vec_exdata[v].size(); i++)
 		{

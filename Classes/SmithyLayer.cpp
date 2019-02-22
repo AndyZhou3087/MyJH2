@@ -3,7 +3,6 @@
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "ConsumeResActionLayer.h"
-#include "MakeResLayer.h"
 #include "MovingLabel.h"
 #include "DataSave.h"
 #include "MyRes.h"
@@ -13,6 +12,7 @@
 #include "NewGuideLayer.h"
 #include "MainScene.h"
 #include "EquipDescLayer.h"
+#include "MakeResNode.h"
 
 USING_NS_CC;
 
@@ -185,7 +185,8 @@ void SmithyLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 void SmithyLayer::loadData()
 {
 	map_cateRes.clear();
-	for (int v = 0; v <= m_buidingData->level.getValue(); v++)
+	int showlv = m_buidingData->maxlevel.getValue();//m_buidingData->level.getValue()
+	for (int v = 0; v <= showlv; v++)
 	{
 		int vsiez = m_buidingData->vec_exdata.size();
 		if (v < vsiez)
@@ -247,40 +248,15 @@ void SmithyLayer::updateContent(int category)
 	
 	for (int i = 0; i < size; i++)
 	{
-		Node* itemnode = CSLoader::createNode(ResourcePath::makePath("makeResNode.csb"));
+		MakeResNode* itemnode = MakeResNode::create(map_cateRes[category][i]);
 
 		itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
 		itemnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
 
 		//itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 		m_contentscroll->addChild(itemnode, 0, map_cateRes[category][i]);
-
-		cocos2d::ui::Widget* itembg= (cocos2d::ui::Widget*)itemnode->getChildByName("resitem");
-		itembg->addTouchEventListener(CC_CALLBACK_2(SmithyLayer::onItemClick, this));
-		itembg->setUserData((void*)map_cateRes[category][i].c_str());
-		itembg->setSwallowTouches(false);
-
-		cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)itemnode->getChildByName("res");
-		std::string resstr = StringUtils::format("ui/%s.png", map_cateRes[category][i].c_str());
-		resimg->loadTexture(ResourcePath::makePath(resstr), cocos2d::ui::Widget::TextureResType::PLIST);
-
-		cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)itemnode->getChildByName("name");
-		namelbl->setString(GlobalInstance::map_AllResources[map_cateRes[category][i]].name);
-
-		cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)itemnode->getChildByName("desc");
-		desclbl->setString(GlobalInstance::map_AllResources[map_cateRes[category][i]].desc);
-
-		cocos2d::ui::Text* hascount = (cocos2d::ui::Text*)itemnode->getChildByName("hascount");
-
-		int count = MyRes::getEquipableCount(map_cateRes[category][i]);
-		if (count > 0)
-		{
-			hascount->setVisible(true);
-			std::string countstr = StringUtils::format(ResourceLang::map_lang["hasequipcount"].c_str(), count);
-			hascount->setString(countstr);
-		}
-		else
-			hascount->setVisible(false);
+		if (itemnode->getResInSmithyLv() > m_buidingData->level.getValue())
+			itemnode->setEnable(false);
 	}
 }
 
@@ -305,8 +281,14 @@ void SmithyLayer::lvup()
 	std::string str = StringUtils::format("%d%s", m_buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
 	lvUIlbl->setString(str);
 
-	loadData();
-	updateContent(lastCategoryindex);
+	//loadData();
+	//updateContent(lastCategoryindex);
+	for (unsigned int i = 0; i < map_cateRes[lastCategoryindex].size(); i++)
+	{
+		MakeResNode* itemnode = (MakeResNode*)m_contentscroll->getChildByName(map_cateRes[lastCategoryindex][i]);
+		if (itemnode->getResInSmithyLv() <= m_buidingData->level.getValue())
+			itemnode->setEnable(true);
+	}
 }
 
 void SmithyLayer::makeRes(std::string resid)
@@ -357,10 +339,8 @@ void SmithyLayer::makeRes(std::string resid)
 		desc = StringUtils::format("%s%s", ResourceLang::map_lang["makesucc"].c_str(), resstr.c_str());
 	MovingLabel::show(desc);
 
-	cocos2d::ui::Text* hascount = (cocos2d::ui::Text*)m_contentscroll->getChildByName(resid)->getChildByName("hascount");
-	hascount->setVisible(true);
-	std::string countstr = StringUtils::format(ResourceLang::map_lang["hasequipcount"].c_str(), MyRes::getEquipableCount(resid));
-	hascount->setString(countstr);
+	MakeResNode* itemnode = (MakeResNode*)m_contentscroll->getChildByName(resid);
+	itemnode->updateMyOwnCountUI();
 
 	if (!(retres->getType() >= T_ARMOR && retres->getType() <= T_NG))
 	{
@@ -369,32 +349,4 @@ void SmithyLayer::makeRes(std::string resid)
 	EquipDescLayer* layer = EquipDescLayer::create(retres, 1);
 	this->addChild(layer);
 	AnimationEffect::openAniEffect(layer);
-}
-
-void SmithyLayer::onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
-{
-	Node* clicknode = (Node*)pSender;
-	if (type == ui::Widget::TouchEventType::BEGAN)
-	{
-		clickflag = true;
-		beginTouchPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
-	}
-	else if (type == ui::Widget::TouchEventType::MOVED)
-	{
-		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
-
-		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
-			clickflag = false;
-	}
-	else if (type == ui::Widget::TouchEventType::ENDED)
-	{
-		if (!clickflag)
-			return;
-
-		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		//ConsumeResActionLayer* layer = ConsumeResActionLayer::create(clicknode->getUserData(), CA_MAKERES);
-		MakeResLayer* layer = MakeResLayer::create(clicknode->getUserData(), CA_MAKERES);
-		this->addChild(layer);
-		AnimationEffect::openAniEffect((Layer*)layer);
-	}
 }

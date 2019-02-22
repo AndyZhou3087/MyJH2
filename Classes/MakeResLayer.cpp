@@ -27,10 +27,10 @@ MakeResLayer::~MakeResLayer()
 }
 
 
-MakeResLayer* MakeResLayer::create(void* data, int actiontype)
+MakeResLayer* MakeResLayer::create(void* data)
 {
 	MakeResLayer *pRet = new(std::nothrow)MakeResLayer();
-	if (pRet && pRet->init(data, actiontype))
+	if (pRet && pRet->init(data))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -44,7 +44,7 @@ MakeResLayer* MakeResLayer::create(void* data, int actiontype)
 }
 
 // on "init" you need to initialize your instance
-bool MakeResLayer::init(void* data, int actiontype)
+bool MakeResLayer::init(void* data)
 {
     if ( !Layer::init() )
     {
@@ -52,7 +52,7 @@ bool MakeResLayer::init(void* data, int actiontype)
     }
 
 	m_data = data;
-	m_actiontype = actiontype;
+
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color,0,"colorLayer");
     

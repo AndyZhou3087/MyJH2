@@ -14,11 +14,10 @@ public:
 	~MakeResLayer();
 	/****************************************
 	@para:data 需要传递的数据
-	@para:actiontype CACTIONTYPE
 	*************************************/
-	static MakeResLayer* create(void* data, int actiontype);
+	static MakeResLayer* create(void* data);
 	virtual void onExit();
-    bool init(void* building, int actiontype);
+    bool init(void* building);
 
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
@@ -44,7 +43,6 @@ private:
 	cocos2d::ui::TextBMFont* countlbl[3];//资源数量LABEL
 	cocos2d::ui::Text* coincountlbl;//需要的元宝数
 	void* m_data;//需要传递的数据
-	int m_actiontype;//CACTIONTYPE
 	std::vector<std::map<std::string, int>> vec_res;//需要的资源的数据
 	DynamicValueInt costcoindv;//立即动作需要的元宝数
 	Node* csbnode;
