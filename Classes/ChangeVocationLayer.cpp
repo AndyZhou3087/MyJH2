@@ -204,10 +204,13 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				if (MyRes::getMyResCount(needresid) < 1)
 				{
 					MovingLabel::show(ResourceLang::map_lang["reslack"]);
+
+					if (NewGuideLayer::checkifNewerGuide(66))
+						return;
+
 					SimpleResPopLayer* layer = SimpleResPopLayer::create(needresid, 1, 1);
 					this->addChild(layer);
 					AnimationEffect::openAniEffect(layer);
-					return;
 				}
 				else
 				{
@@ -263,6 +266,9 @@ void ChangeVocationLayer::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		if (NewGuideLayer::checkifNewerGuide(66))
+			return;
+
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		SimpleResPopLayer* layer = SimpleResPopLayer::create(needresid, 1, 1);
 		this->addChild(layer);
