@@ -250,20 +250,40 @@ void MainScene::checkBuildingOpen(float dt)
 	{
 		this->unschedule(schedule_selector(MainScene::checkBuildingOpen));
 		Node* textnode = scroll_3->getChildByName("main_05_t");
-		textnode->setVisible(true);
+		if (textnode != NULL)
+			textnode->setVisible(true);
 		Node* cnode = scroll_3->getChildByName("main_05_c");
 		if (cnode != NULL)
-		{
 			cnode->setVisible(false);
-		}
 
 		textnode = scroll_1->getChildByName("main_09_t");
-		textnode->setVisible(true);
+		if (textnode != NULL)
+			textnode->setVisible(true);
+
 		cnode = scroll_1->getChildByName("main_09_c");
 		if (cnode != NULL)
-		{
 			cnode->setVisible(false);
-		}
+
+	}
+	if (GlobalInstance::getInstance()->getHerosLevelCount(10) > 0)
+	{
+		Node* textnode = scroll_2->getChildByName("main_06_t");
+		if (textnode != NULL)
+			textnode->setVisible(true);
+
+		Node* cnode = scroll_2->getChildByName("main_06_c");
+		if (cnode != NULL)
+			cnode->setVisible(false);
+	}
+	if (GlobalInstance::getInstance()->getHerosLevelCount(15) > 0)
+	{
+		Node* textnode = scroll_3->getChildByName("main_03_t");
+		if (textnode != NULL)
+			textnode->setVisible(true);
+
+		Node* cnode = scroll_3->getChildByName("main_03_c");
+		if (cnode != NULL)
+			cnode->setVisible(false);
 	}
 }
 

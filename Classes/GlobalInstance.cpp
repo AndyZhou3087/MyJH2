@@ -2519,7 +2519,7 @@ int GlobalInstance::getHerosChangeLevelCount()
 	for (unsigned int i = 0; i < vec_myHeros.size(); i++)
 	{
 		Hero* hero = vec_myHeros[i];
-		if (hero->getLevel() + 1 == 10)
+		if (hero->getLevel() + 1 >= 10)
 		{
 			count++;
 			break;
