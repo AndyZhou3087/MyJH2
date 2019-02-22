@@ -128,7 +128,7 @@ bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res)
 			res->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 			namelbl->setString(GlobalInstance::map_AllResources[resid].name);
-			std::string countstr = StringUtils::format("%d/%d", MyRes::getMyResCount(resid, MYSTORAGE), count);
+			std::string countstr = StringUtils::format("x%d", count);
 			countlbl->setString(countstr);
 			needcoincount.setValue(needcoincount.getValue() + count*GlobalInstance::map_AllResources[resid].silverval / 10);
 		}

@@ -197,7 +197,7 @@ void CommonFuncs::playCommonLvUpAnim(Node* target, std::string textstr)
 
 cocos2d::Node* CommonFuncs::playResBoxEffect(cocos2d::Node* target, int qu)
 {
-	if (qu >= 2)
+	if (qu >= 3)
 	{
 		std::string effectstr = StringUtils::format("effect/resbox%deffect.csb", qu);
 		auto effectnode = CSLoader::createNode(effectstr);

@@ -28,7 +28,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="okbtn" ActionTag="1892598522" Tag="187" IconVisible="False" LeftMargin="122.9963" RightMargin="393.0037" TopMargin="775.9980" BottomMargin="420.0019" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="okbtn" ActionTag="1892598522" Tag="187" IconVisible="False" LeftMargin="122.9963" RightMargin="393.0037" TopMargin="775.9981" BottomMargin="420.0019" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-1125696203" Tag="188" IconVisible="False" LeftMargin="64.5216" RightMargin="65.4784" TopMargin="21.2404" BottomMargin="25.7596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="24" Scale9Height="11" ctype="ImageViewObjectData">
@@ -55,7 +55,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="cancelbtn" ActionTag="474445176" Tag="189" IconVisible="False" LeftMargin="387.9966" RightMargin="128.0034" TopMargin="775.9980" BottomMargin="420.0019" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="cancelbtn" ActionTag="474445176" Tag="189" IconVisible="False" LeftMargin="387.9966" RightMargin="128.0034" TopMargin="775.9981" BottomMargin="420.0019" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-1140941507" Tag="190" IconVisible="False" LeftMargin="70.2415" RightMargin="65.7585" TopMargin="21.4025" BottomMargin="26.5975" LeftEage="22" RightEage="22" TopEage="13" BottomEage="13" Scale9OriginX="22" Scale9OriginY="13" Scale9Width="24" Scale9Height="10" ctype="ImageViewObjectData">
@@ -112,7 +112,7 @@
                 <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
                 <Position X="113.6258" Y="16.8576" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="0" B="0" />
+                <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.9090" Y="0.1349" />
                 <PreSize X="0.2800" Y="0.2000" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
@@ -158,7 +158,7 @@
                 <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
                 <Position X="113.6258" Y="16.8576" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="0" B="0" />
+                <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.9090" Y="0.1349" />
                 <PreSize X="0.2800" Y="0.2000" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
@@ -204,7 +204,7 @@
                 <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
                 <Position X="113.6258" Y="16.8576" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="0" B="0" />
+                <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.9090" Y="0.1349" />
                 <PreSize X="0.2800" Y="0.2000" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
