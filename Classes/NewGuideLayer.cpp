@@ -345,10 +345,12 @@ void NewGuideLayer::showNextGuide()
 		|| m_step == 88 || m_step == 89 || m_step == 91 || m_step == 92 || m_step == 93)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 	}
 	else if (m_step > 5 && m_step <= 9)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
 		if (g_MapBlockScene != NULL)
 		{
 			FightingLayer* fightlayer = (FightingLayer*)g_MapBlockScene->getChildByName("FightingLayer");
@@ -421,7 +423,9 @@ void NewGuideLayer::showNextGuide()
 	else if (m_step == 14 || m_step == 25 || m_step == 27 || m_step == 29)
 	{
 		if (m_step != 14)
+		{
 			this->removeFromParentAndCleanup(true);
+		}
 		if (g_mainScene != NULL)
 		{
 			InnRoomLayer* hill = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
@@ -433,7 +437,9 @@ void NewGuideLayer::showNextGuide()
 					if (m_step == 14)
 					{
 						randlayer->scheduleOnce(schedule_selector(RandHeroLayer::delayShowNewerGuide), 2.0f);
-						this->removeFromParentAndCleanup(true);
+						{
+							this->removeFromParentAndCleanup(true);
+						}
 					}
 					else
 						randlayer->delayShowNewerGuide(0);
@@ -786,6 +792,7 @@ void NewGuideLayer::removeSelf(float dt)
 {
 	GlobalInstance::getInstance()->saveNewerGuide(m_step, false);
 	this->removeFromParentAndCleanup(true);
+	g_NewGuideLayer = NULL;
 	if (g_mainScene != NULL)
 	{
 		g_mainScene->setScrollGliding();

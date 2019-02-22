@@ -170,14 +170,16 @@ void MainMenuLayer::onFinish(int code)
 {
 	if (code == SUCCESS)
 	{
-		if (NewGuideLayer::checkifNewerGuide(14) || NewGuideLayer::checkifNewerGuide(15) || NewGuideLayer::checkifNewerGuide(22) || NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(45)
-			|| (NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP) && NewGuideLayer::checkifNewerGuide(55) && Quest::isMainQuestFinish(1)) || (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
-			|| ((NewGuideLayer::checkifNewerGuide(66) || (NewGuideLayer::checkifNewerGuide(69) && !NewGuideLayer::checkifNewerGuide(67))) && GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0)
-			|| (NewGuideLayer::checkifNewerGuide(73) && GlobalInstance::getInstance()->getHerosLevelCount(15) > 0) || (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(77))
-			|| (GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15)) || (GlobalInstance::getInstance()->getLittleHerosPower(10) && NewGuideLayer::checkifNewerGuide(88)))
-		{
+		//if (NewGuideLayer::checkifNewerGuide(14) || NewGuideLayer::checkifNewerGuide(15) || NewGuideLayer::checkifNewerGuide(22) || NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP+1) || NewGuideLayer::checkifNewerGuide(45)
+		//	|| (NewGuideLayer::checkifNewerGuide(FIFTHGUIDESTEP) && NewGuideLayer::checkifNewerGuide(55) && Quest::isMainQuestFinish(1)) || (NewGuideLayer::checkifNewerGuide(63) && GlobalInstance::getInstance()->getMyHerosDeadCount() > 0)
+		//	|| ((NewGuideLayer::checkifNewerGuide(66) || (NewGuideLayer::checkifNewerGuide(69) && !NewGuideLayer::checkifNewerGuide(67))) && GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0)
+		//	|| (NewGuideLayer::checkifNewerGuide(73) && GlobalInstance::getInstance()->getHerosLevelCount(15) > 0) || (!NewGuideLayer::checkifNewerGuide(75) && NewGuideLayer::checkifNewerGuide(77))
+		//	|| (GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15)) || (GlobalInstance::getInstance()->getLittleHerosPower(10) && NewGuideLayer::checkifNewerGuide(88)))
+		//{
+		//	return;
+		//}
+		if (g_NewGuideLayer != NULL)
 			return;
-		}
 
 		if (isGetVipData)
 		{

@@ -63,6 +63,11 @@ void HttpDataSwap::postAllData()
 
 	url.append(mycoinstr);
 
+	std::string mycostcoinstr = StringUtils::format("%d", GlobalInstance::vec_costCoins[0]);
+	url.append("&costcoin=");
+
+	url.append(mycostcoinstr);
+
 	url.append("&pkg=");
 	url.append(GlobalInstance::getInstance()->getPackageName());
 
