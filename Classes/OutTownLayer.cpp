@@ -120,7 +120,7 @@ bool OutTownLayer::init()
 
 	cocos2d::ui::Text* versionname = (cocos2d::ui::Text*)csbnode->getChildByName("v001box")->getChildByName("namelbl");
 
-	std::string vstr = StringUtils::format(ResourceLang::map_lang["vision"].c_str(), MyRes::getMyResCount("v001") + 2);
+	std::string vstr = StringUtils::format(ResourceLang::map_lang["vision"].c_str(), MyRes::getMyResCount("v001"));
 	versionname->setString(vstr);
 
 	cocos2d::ui::Text* gocityname = (cocos2d::ui::Text*)csbnode->getChildByName("t001box")->getChildByName("namelbl");

@@ -249,7 +249,7 @@
 	<s name="hospitalhintdesc">没有角色重伤需要治疗</s>
 	<s name="innroomhintdesc">客栈等级越高，招募高品质侠客的概率越高</s>
 	<s name="gocitycard">回城卷轴：%d</s>
-	<s name="tomartketbuy1">去市场升级</s>
+	<s name="tomartketbuy1">去市场购买</s>
 	<s name="tomartketbuy2">去市场购买</s>
 	<s name="confirmdecompose">是否确认分解%s级%s？</s>
 	<s name="confirmdecompose1">%s级%s镶嵌有宝石，是否确认分解？</s>

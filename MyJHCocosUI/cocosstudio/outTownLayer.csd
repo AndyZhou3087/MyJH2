@@ -103,13 +103,13 @@
           <AbstractNodeData Name="v001box" ActionTag="-558264668" Tag="89" IconVisible="False" LeftMargin="149.9996" RightMargin="424.0004" TopMargin="830.8840" BottomMargin="303.1160" TouchEnable="True" LeftEage="19" RightEage="19" TopEage="17" BottomEage="17" Scale9OriginX="19" Scale9OriginY="17" Scale9Width="108" Scale9Height="112" ctype="ImageViewObjectData">
             <Size X="146.0000" Y="146.0000" />
             <Children>
-              <AbstractNodeData Name="r" ActionTag="-602867631" Tag="90" IconVisible="False" LeftMargin="13.5006" RightMargin="23.4994" TopMargin="14.5000" BottomMargin="22.5000" ctype="SpriteObjectData">
+              <AbstractNodeData Name="r" ActionTag="-602867631" Tag="90" IconVisible="False" LeftMargin="13.5006" RightMargin="23.4994" TopMargin="17.2113" BottomMargin="19.7887" ctype="SpriteObjectData">
                 <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="68.0006" Y="77.0000" />
+                <Position X="68.0006" Y="74.2887" />
                 <Scale ScaleX="1.3000" ScaleY="1.3000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4658" Y="0.5274" />
+                <PrePosition X="0.4658" Y="0.5088" />
                 <PreSize X="0.7466" Y="0.7466" />
                 <FileData Type="MarkedSubImage" Path="ui/v001.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
@@ -316,26 +316,26 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="tomartketbuy1" ActionTag="902151739" Tag="636" IconVisible="False" LeftMargin="440.1554" RightMargin="159.8446" TopMargin="892.0305" BottomMargin="357.9695" TouchEnable="True" FontSize="23" LabelText="去市场升级" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="120.0000" Y="30.0000" />
+          <AbstractNodeData Name="tomartketbuy1" ActionTag="902151739" Tag="636" IconVisible="False" LeftMargin="440.6554" RightMargin="160.3446" TopMargin="892.0305" BottomMargin="357.9695" TouchEnable="True" FontSize="23" LabelText="去市场购买" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="119.0000" Y="30.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="500.1554" Y="372.9695" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="241" B="121" />
             <PrePosition X="0.6947" Y="0.2914" />
-            <PreSize X="0.1667" Y="0.0234" />
+            <PreSize X="0.1653" Y="0.0234" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="198" G="138" B="38" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="tomartketbuy2" ActionTag="-684638268" Tag="637" IconVisible="False" LeftMargin="440.1554" RightMargin="159.8446" TopMargin="991.0304" BottomMargin="258.9696" TouchEnable="True" FontSize="23" LabelText="去市场升级" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="120.0000" Y="30.0000" />
+          <AbstractNodeData Name="tomartketbuy2" ActionTag="-684638268" Tag="637" IconVisible="False" LeftMargin="440.6554" RightMargin="160.3446" TopMargin="991.0304" BottomMargin="258.9696" TouchEnable="True" FontSize="23" LabelText="去市场购买" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="119.0000" Y="30.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="500.1554" Y="273.9696" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="241" B="121" />
             <PrePosition X="0.6947" Y="0.2140" />
-            <PreSize X="0.1667" Y="0.0234" />
+            <PreSize X="0.1653" Y="0.0234" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="198" G="136" B="38" />
             <ShadowColor A="255" R="110" G="110" B="110" />

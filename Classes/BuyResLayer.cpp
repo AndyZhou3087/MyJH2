@@ -151,10 +151,7 @@ bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res)
 	{
 		return true;
 	};
-	listener->onTouchEnded = [=](Touch *touch, Event *event)
-	{
-		AnimationEffect::closeAniEffect(this);
-	};
+
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
