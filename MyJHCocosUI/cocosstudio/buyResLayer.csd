@@ -231,16 +231,28 @@
             <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="cnumbl" ActionTag="-1453318098" Tag="1875" IconVisible="False" LeftMargin="230.9638" RightMargin="450.0362" TopMargin="868.1056" BottomMargin="385.8944" FontSize="26" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="cnumbl" ActionTag="-1453318098" Tag="1875" IconVisible="False" LeftMargin="225.9640" RightMargin="455.0360" TopMargin="868.1057" BottomMargin="385.8943" FontSize="26" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="39.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="230.9638" Y="398.8944" />
+            <Position X="225.9640" Y="398.8943" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3208" Y="0.3116" />
+            <PrePosition X="0.3138" Y="0.3116" />
             <PreSize X="0.0542" Y="0.0203" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="buydesc" ActionTag="-2057949236" Tag="103" IconVisible="False" LeftMargin="292.7783" RightMargin="131.2217" TopMargin="869.4700" BottomMargin="386.5301" FontSize="21" LabelText="升级市场可以用更低的价格购买" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="296.0000" Y="24.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="440.7783" Y="398.5301" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="0" B="0" />
+            <PrePosition X="0.6122" Y="0.3114" />
+            <PreSize X="0.4111" Y="0.0188" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

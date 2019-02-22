@@ -187,7 +187,7 @@ void EventBuyLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			}
 			else
 			{
-				saleval = GlobalInstance::map_AllResources[m_fproper.sid].silverval;
+				saleval = GlobalInstance::map_AllResources[m_fproper.sid].silverval*9/10;
 				myrich.setValue(GlobalInstance::getInstance()->getMySoliverCount().getValue());
 			}
 
@@ -326,7 +326,7 @@ void EventBuyLayer::updateData()
 	}
 	else
 	{
-		saleval = GlobalInstance::map_AllResources[resid].silverval;
+		saleval = GlobalInstance::map_AllResources[resid].silverval*9/10;
 		myrich.setValue(GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	}
 

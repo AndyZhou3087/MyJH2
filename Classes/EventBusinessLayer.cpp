@@ -208,12 +208,13 @@ void EventBusinessLayer::loadScrollviewData()
 
 	int rcount = GlobalInstance::getInstance()->createRandomNum(5) + 8;
 
+	MapEventLayer::loadEventData("shopevent");
+	MapEventLayer::loadPrData();
+
 	for (int i = 0; i < rcount; i++)
 	{
-		FOURProperty fprop;
-		fprop.sid = parentlayer->getDataIdByPr();
-		fprop.intPara1 = parentlayer->getResCountRand(fprop.sid);
-		std::string resid = fprop.sid;
+		std::string resid = MapEventLayer::getDataIdByPr();
+		int m_count = MapEventLayer::getResCountRand(resid);
 		int qu = 0;
 		int t = 0;
 		for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
@@ -223,12 +224,20 @@ void EventBusinessLayer::loadScrollviewData()
 		}
 		if (t >= T_ARMOR && t <= T_FASHION)
 		{
-			qu = parentlayer->getEquipQuRand(resid);
+			qu = MapEventLayer::getEquipQuRand(resid);
 		}
 		else if (t >= T_WG && t <= T_NG)
 		{
 			qu = GlobalInstance::map_GF[resid].qu;
 		}
+		else if (t >= T_RENS && t <= T_BOX)
+		{
+			qu = atoi(resid.substr(1).c_str()) - 1;
+		}
+
+		FOURProperty fprop;
+		fprop.sid = resid;
+		fprop.intPara1 = m_count;
 		fprop.intPara2 = qu;
 		vec_buyres.push_back(fprop);
 	}
