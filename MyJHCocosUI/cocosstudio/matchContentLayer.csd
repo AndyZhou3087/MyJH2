@@ -42,36 +42,36 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="fightretline_2" ActionTag="1537571894" Tag="28" IconVisible="False" LeftMargin="102.5171" RightMargin="439.4829" TopMargin="357.4293" BottomMargin="889.5707" ctype="SpriteObjectData">
+          <AbstractNodeData Name="fightretline_2" ActionTag="1537571894" Tag="28" IconVisible="False" LeftMargin="61.0000" RightMargin="481.0000" TopMargin="357.4293" BottomMargin="889.5707" ctype="SpriteObjectData">
             <Size X="178.0000" Y="33.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="191.5171" Y="906.0707" />
+            <Position X="150.0000" Y="906.0707" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2660" Y="0.7079" />
+            <PrePosition X="0.2083" Y="0.7079" />
             <PreSize X="0.2472" Y="0.0258" />
             <FileData Type="MarkedSubImage" Path="ui/fightretline.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="fightretline_2_0" ActionTag="-629443478" Tag="29" IconVisible="False" LeftMargin="441.5174" RightMargin="100.4826" TopMargin="357.4293" BottomMargin="889.5707" FlipX="True" ctype="SpriteObjectData">
+          <AbstractNodeData Name="fightretline_2_0" ActionTag="-629443478" Tag="29" IconVisible="False" LeftMargin="491.0000" RightMargin="51.0000" TopMargin="357.4293" BottomMargin="889.5707" FlipX="True" ctype="SpriteObjectData">
             <Size X="178.0000" Y="33.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="530.5174" Y="906.0707" />
+            <Position X="580.0000" Y="906.0707" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7368" Y="0.7079" />
+            <PrePosition X="0.8056" Y="0.7079" />
             <PreSize X="0.2472" Y="0.0258" />
             <FileData Type="MarkedSubImage" Path="ui/fightretline.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="-1041882435" Tag="30" IconVisible="False" LeftMargin="309.9222" RightMargin="303.0778" TopMargin="356.1046" BottomMargin="883.8954" FontSize="35" LabelText="小虾米" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="107.0000" Y="40.0000" />
+          <AbstractNodeData Name="name" ActionTag="-1041882435" Tag="30" IconVisible="False" LeftMargin="240.4222" RightMargin="233.5778" TopMargin="356.1046" BottomMargin="883.8954" FontSize="35" LabelText="小虾米小虾米小" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="246.0000" Y="40.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="363.4222" Y="903.8954" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="89" G="63" B="44" />
             <PrePosition X="0.5048" Y="0.7062" />
-            <PreSize X="0.1486" Y="0.0313" />
+            <PreSize X="0.3417" Y="0.0313" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />

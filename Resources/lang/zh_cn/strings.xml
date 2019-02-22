@@ -449,5 +449,7 @@
 	<s name="ortext">或</s>		
 	<s name="libraryinfostatus1">已装备</s>
 	<s name="libraryinfostatus1">已拥有</s>
-	<s name="usetorchdesc">点击地图位置投掷火把</s>			
+	<s name="libraryinfoequipname">%s·%s</s>
+	<s name="usetorchdesc">点击地图位置投掷火把</s>
+	<s name="marketopenlvtext">市场%d级\n开放购买</s>			
 </strings>

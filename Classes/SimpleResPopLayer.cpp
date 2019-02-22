@@ -147,11 +147,8 @@ void SimpleResPopLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		bool isfind = false;
 		int resinlv = 0;
 		Building* marketBuilding = Building::map_buildingDatas["5market"];
-		;
 		for (int v = 0; v < marketBuilding->maxlevel.getValue(); v++)
 		{
-			int vsize = marketBuilding->vec_exdata.size();
-	
 			for (unsigned int i = 0; i < marketBuilding->vec_exdata[v].size(); i++)
 			{
 				std::vector<std::string> vec_tmp;

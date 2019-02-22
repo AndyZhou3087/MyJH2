@@ -46,7 +46,7 @@ bool MarketResNode::init(std::string resid, int rescount)
 {
 	m_resid = resid;
 	totalrescount = rescount; 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("marketResNode.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("marketResNode.csb"));
 	this->addChild(csbnode, 0, "csbnode");
 
 	cocos2d::ui::Widget* clickimg = (cocos2d::ui::Widget*)csbnode->getChildByName("clickimg");
@@ -99,9 +99,15 @@ bool MarketResNode::init(std::string resid, int rescount)
 
 	rescountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("rescount");
 
+	openlvtext = (cocos2d::ui::Text*)csbnode->getChildByName("openlvtext");
+	openlvtext->setVisible(false);
+	std::string openlvstr = StringUtils::format(ResourceLang::map_lang["marketopenlvtext"].c_str(), getResInMarketLv() + 1);
+	openlvstr = CommonFuncs::replace_all(openlvstr, "\\n", "\n");
+	openlvtext->setString(openlvstr);
+
 	updateData();
 	//按钮
-	cocos2d::ui::Widget* actbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
+	actbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actbtn->setTag(1000);
 	actbtn->addTouchEventListener(CC_CALLBACK_2(MarketResNode::onBtnClick, this));
 	actbtn->setSwallowTouches(false);
@@ -113,11 +119,11 @@ bool MarketResNode::init(std::string resid, int rescount)
 	actbtntxt->loadTexture(ResourcePath::makeTextImgPath("buybtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//加号按钮
-	cocos2d::ui::Widget* addbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("addbtn");
+	addbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("addbtn");
 	addbtn->addTouchEventListener(CC_CALLBACK_2(MarketResNode::onAddBtnClick, this));
 	addbtn->setTag(1001);
 	//减号按钮
-	cocos2d::ui::Widget* subbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("subbtn");
+	subbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("subbtn");
 	subbtn->addTouchEventListener(CC_CALLBACK_2(MarketResNode::onSubBtnClick, this));
 	subbtn->setTag(1002);
 	return true;
@@ -333,6 +339,29 @@ void MarketResNode::reset(int maxcount)
 	updateData();
 }
 
+void MarketResNode::setEnable(bool val)
+{
+	if (val)
+	{
+		for (int i = 0; i < csbnode->getChildrenCount(); i++)
+		{
+			CommonFuncs::removeGray(csbnode->getChildren().at(i));
+		}
+	}
+	else
+	{
+		for (int i = 0; i < csbnode->getChildrenCount(); i++)
+		{
+			CommonFuncs::changeGray(csbnode->getChildren().at(i));
+		}
+	}
+	rescountlbl->setVisible(val);
+	actbtn->setVisible(val);
+	addbtn->setVisible(val);
+	subbtn->setVisible(val);
+	openlvtext->setVisible(!val);
+}
+
 void MarketResNode::updateData()
 {	
 	int saleval = 0;
@@ -380,4 +409,25 @@ bool MarketResNode::checkResIsFull()
 		}
 	}
 	return false;
+}
+
+int MarketResNode::getResInMarketLv()
+{
+	Building* buildingdata = Building::map_buildingDatas["5market"];
+	for (int v = 0; v < buildingdata->maxlevel.getValue(); v++)
+	{
+		int vsize = Building::map_buildingDatas["5market"]->vec_exdata.size();
+
+		for (unsigned int i = 0; i < buildingdata->vec_exdata[v].size(); i++)
+		{
+			std::vector<std::string> vec_tmp;
+			CommonFuncs::split(buildingdata->vec_exdata[v][i], vec_tmp, "-");
+
+			if (m_resid.compare(vec_tmp[0]) == 0)
+			{
+				return v;
+			}
+		}
+	}
+	return 0;
 }

@@ -76,11 +76,10 @@ bool GfLibraryInfoLayer::init(std::string gfid)
 	namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	namelbl->setTextColor(Color4B(POTENTIALCOLOR[s]));
 
-	cocos2d::ui::Text* quatext = (cocos2d::ui::Text*)csbnode->getChildByName("quatext");
 	std::string st = StringUtils::format("potential_%d", s);
-	str = ResourceLang::map_lang[st];
-	quatext->setString(str);
-	quatext->setTextColor(Color4B(POTENTIALCOLOR[s]));
+
+	std::string namestr = StringUtils::format(ResourceLang::map_lang["libraryinfoequipname"].c_str(), GlobalInstance::map_AllResources[gfid].name.c_str(), ResourceLang::map_lang[st].c_str());
+	namelbl->setString(namestr);
 
 	Node* contentnode = csbnode->getChildByName("contentnode");
 
@@ -317,9 +316,6 @@ void GfLibraryInfoLayer::getGfAttr(std::string gfid)
 		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), vec_attrval[i]);
 		attrlblArr[i]->setString(str);
 	}
-
-	std::string namestr = GlobalInstance::map_AllResources[gfid].name;
-	namelbl->setString(namestr);
 }
 
 void GfLibraryInfoLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

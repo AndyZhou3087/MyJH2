@@ -82,7 +82,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="554025305" Tag="161" IconVisible="False" LeftMargin="-185.1657" RightMargin="-114.8343" TopMargin="-31.8594" BottomMargin="-33.1406" IsCustomSize="True" FontSize="19" LabelText="木材木材木材木材木材木材木材" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="desc" ActionTag="554025305" Tag="161" IconVisible="False" LeftMargin="-185.1657" RightMargin="-114.8343" TopMargin="-31.8594" BottomMargin="-33.1406" IsCustomSize="True" FontSize="19" LabelText="木材木材木材木材木材木材木材木材木材" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="300.0000" Y="65.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="-185.1657" Y="-0.6406" />
@@ -160,6 +160,18 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="openlvtext" ActionTag="-1457164479" Tag="15" IconVisible="False" LeftMargin="155.3299" RightMargin="-251.3299" TopMargin="-43.3594" BottomMargin="-8.6406" FontSize="23" LabelText="市场10级&#xA;开放购买" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="96.0000" Y="52.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="203.3299" Y="17.3594" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="0" B="0" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

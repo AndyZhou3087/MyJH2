@@ -41,6 +41,8 @@ public:
 
 	void resetStockRes();
 
+	void delayShowUI(float dt);
+
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
 

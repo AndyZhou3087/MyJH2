@@ -12,6 +12,7 @@
 #include "AnimationEffect.h"
 #include "NewGuideLayer.h"
 #include "MainScene.h"
+#include "WaitingProgress.h"
 
 USING_NS_CC;
 
@@ -124,13 +125,14 @@ bool MarketLayer::init(Building* buidingData)
 			lastCategoryindex = 1;
 		}
 	}
-	loadData();
-	updateContent(lastCategoryindex);
+
+	WaitingProgress* waitbox = WaitingProgress::create(ResourceLang::map_lang["doingtext"]);
+	this->addChild(waitbox, 1,"waitbox");
+
+	this->scheduleOnce(schedule_selector(MarketLayer::delayShowUI), 0.5f);
 
 	updateUI(0);
 	this->schedule(schedule_selector(MarketLayer::updateUI), 1.0f);
-
-	this->scheduleOnce(schedule_selector(MarketLayer::delayShowNewerGuide), 0.3f);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -141,6 +143,15 @@ bool MarketLayer::init(Building* buidingData)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void MarketLayer::delayShowUI(float dt)
+{
+	loadData();
+	updateContent(lastCategoryindex);
+
+	this->removeChildByName("waitbox");
+	this->scheduleOnce(schedule_selector(MarketLayer::delayShowNewerGuide), 0.3f);
 }
 
 void MarketLayer::delayShowNewerGuide(float dt)
@@ -223,7 +234,8 @@ void MarketLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 void MarketLayer::loadData()
 {
 	map_cateRes.clear();
-	for (int v = 0; v <= m_buidingData->level.getValue(); v++)
+	int showlv = m_buidingData->maxlevel.getValue();//m_buidingData->level.getValue();
+	for (int v = 0; v <= showlv; v++)
 	{
 		int vsize = m_buidingData->vec_exdata.size();
 		if (v < vsize)
@@ -321,13 +333,15 @@ void MarketLayer::updateContent(int category)
 
 	for (int i = 0; i < size; i++)
 	{
-		Node* itemnode = MarketResNode::create(vec_Res[i].resid, vec_Res[i].stockcount);
+		MarketResNode* itemnode = MarketResNode::create(vec_Res[i].resid, vec_Res[i].stockcount);
 
 		itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
 
 		itemnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
 		//itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 		m_contentscroll->addChild(itemnode, 0 , i);
+		if (itemnode->getResInMarketLv() > m_buidingData->level.getValue())
+			itemnode->setEnable(false);
 	}
 }
 
@@ -336,8 +350,14 @@ void MarketLayer::lvup()
 	std::string str = StringUtils::format("%d%s", m_buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
 	lvUIlbl->setString(str);
 
-	loadData();
-	updateContent(lastCategoryindex);
+	for (unsigned int i = 0; i < map_cateRes[lastCategoryindex].size(); i++)
+	{
+		MarketResNode* itemnode = (MarketResNode*)m_contentscroll->getChildByTag(i);
+		if (itemnode->getResInMarketLv() <= m_buidingData->level.getValue())
+			itemnode->setEnable(true);
+	}
+	//loadData();
+	//updateContent(lastCategoryindex);
 }
 
 void MarketLayer::buyRes(int iterindex, int count)

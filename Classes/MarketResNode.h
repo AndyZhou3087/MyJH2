@@ -16,7 +16,12 @@ public:
 	static MarketResNode* create(std::string resid, int rescount);
 
 	void reset(int maxcount);
+
+	void setEnable(bool val);
+
+	int getResInMarketLv();
 private:
+	Node* csbnode;
 	cocos2d::ui::Text* totalpricelbl;
 	cocos2d::ui::ImageView* priceicon;
 	cocos2d::ui::Text* rescountlbl;
@@ -29,7 +34,10 @@ private:
 
 	bool clickflag;
 	Vec2 beginTouchPoint;
-
+	cocos2d::ui::Widget* actbtn;
+	cocos2d::ui::Text* openlvtext;
+	cocos2d::ui::Widget* addbtn;
+	cocos2d::ui::Widget* subbtn;
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
