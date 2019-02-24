@@ -31,7 +31,6 @@ void MovingLabel::show(std::string text, Color4B color, Vec2 pos, Node* parent)
 		queue_labels.push(label);
 		if (parent == NULL)
 		{
-			if (g_mainScene != NULL)
 			Director::getInstance()->getRunningScene()->addChild(label, 100000);
 		}
 		else
