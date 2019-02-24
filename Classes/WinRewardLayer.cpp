@@ -62,9 +62,6 @@ bool WinRewardLayer::init(std::vector<FOURProperty> reward_res)
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("winRewardLayer.csb"));
 	this->addChild(csbnode);
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	//标题

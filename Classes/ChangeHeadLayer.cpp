@@ -46,9 +46,6 @@ bool ChangeHeadLayer::init()
 		return false;
 	}
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("changeHeadLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();

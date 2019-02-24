@@ -64,9 +64,6 @@ bool MapEventLayer::init(int eventindex)
 
 	LayerColor* color = LayerColor::create(Color4B(0, 0, 0, 255));
 	this->addChild(color,0,"colorLayer");
-    
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	//读取event数据
 	loadEventData("event");

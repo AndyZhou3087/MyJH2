@@ -42,9 +42,6 @@ bool FighterAttrLayer::init(Npc* npcdata)
 		return false;
 	}
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	csbnode = CSLoader::createNode(ResourcePath::makePath("fighterAttrLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();

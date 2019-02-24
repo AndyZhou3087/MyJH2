@@ -57,9 +57,6 @@ bool SimpleResPopLayer::init(std::string resid, int forwhere, int needcount)
 	cocos2d::ui::ImageView* smallbg = (cocos2d::ui::ImageView*)csbnode->getChildByName("smallbg");
 	smallbg->setSwallowTouches(true);
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	std::string resboxstr;
 	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox");
 	int qu = 0;

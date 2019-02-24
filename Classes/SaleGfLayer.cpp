@@ -53,9 +53,6 @@ bool SaleGfLayer::init(ResBase* res)
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color, 0, "colorLayer");
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("resDescLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();

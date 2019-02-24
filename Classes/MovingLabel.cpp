@@ -2,6 +2,7 @@
 #include "Const.h"
 #include "GlobalInstance.h"
 #include "Resource.h"
+#include "MainScene.h"
 
 std::queue<MovingLabel*> MovingLabel::queue_labels;
 Node* MovingLabel::lastRunningScene = NULL;
@@ -29,7 +30,11 @@ void MovingLabel::show(std::string text, Color4B color, Vec2 pos, Node* parent)
 		MovingLabel* label = MovingLabel::create(text, color, pos);
 		queue_labels.push(label);
 		if (parent == NULL)
-			Director::getInstance()->getRunningScene()->addChild(label, 100000);
+		{
+			if (g_mainScene != NULL)
+			//Director::getInstance()->getRunningScene()->addChild(label, 100000);
+				g_mainScene->addChild(label, 100000);
+		}
 		else
 			parent->addChild(label, 100000);
 

@@ -36,9 +36,6 @@ bool AchieveLayer::init()
 	Node* m_csbnode = CSLoader::createNode(ResourcePath::makePath("achieveLayer.csb"));
 	this->addChild(m_csbnode);
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	//БъЬт

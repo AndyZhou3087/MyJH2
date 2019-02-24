@@ -45,9 +45,6 @@ bool SimplePopLayer::init(std::string content)
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 120));
 	this->addChild(color,0,"colorLayer");
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	content = CommonFuncs::replace_all(content, "\\n", "\n");
 	Label* contentlbl = Label::createWithTTF(content, FONT_NAME, 25);
 	contentlbl->setColor(Color3B(255, 255, 255));

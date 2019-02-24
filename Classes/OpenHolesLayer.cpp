@@ -55,9 +55,6 @@ bool OpenHolesLayer::init(Equip* res_equip)
 	csbnode = CSLoader::createNode(ResourcePath::makePath("openHolesLayer.csb"));
 	this->addChild(csbnode);
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	m_equip = res_equip;

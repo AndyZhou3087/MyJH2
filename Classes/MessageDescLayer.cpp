@@ -56,9 +56,6 @@ bool MessageDescLayer::init(int index)
 
 	cocos2d::ui::Widget* awdnode = (cocos2d::ui::Widget*)m_csbnode->getChildByName("awdnode");
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	std::string actiontextstr;

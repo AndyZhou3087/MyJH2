@@ -53,10 +53,6 @@ bool LoginGetLayer::init()
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 230));
 	this->addChild(color,0,"colorLayer");
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-
 	std::vector<std::string> vec_str;
 	CommonFuncs::split(GlobalInstance::loginData.rwds, vec_str, ",");
 	for (unsigned int n = 0; n < vec_str.size(); n++)

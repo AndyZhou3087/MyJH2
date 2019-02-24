@@ -64,9 +64,6 @@ bool MainScene::init()
     {
         return false;
     }
-    
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	int langtype = GlobalInstance::getInstance()->getLang();
 

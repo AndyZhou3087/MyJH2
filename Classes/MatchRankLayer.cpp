@@ -47,9 +47,6 @@ bool MatchRankLayer::init()
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 160));
 	this->addChild(color, 0, "colorLayer");
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("matchRankLayer.csb"));

@@ -62,9 +62,6 @@ bool NpcLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color, 0, "colorLayer");
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	csbnode = CSLoader::createNode(ResourcePath::makePath("npcLayer.csb"));
 	this->addChild(csbnode);
 	langtype = GlobalInstance::getInstance()->getLang();

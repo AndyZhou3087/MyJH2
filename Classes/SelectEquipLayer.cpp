@@ -57,9 +57,6 @@ bool SelectEquipLayer::init(int restype, Hero* herodata)
 	Node *csbnode = CSLoader::createNode(ResourcePath::makePath("selectEquipLayer.csb"));
 	this->addChild(csbnode);
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	m_restype = restype;
 
 	//cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)m_csbnode->getChildByName("closebtn");

@@ -103,14 +103,14 @@
             <FileData Type="Normal" Path="loadingclicktext.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="tips" ActionTag="1102590692" Tag="100" IconVisible="False" LeftMargin="73.9443" RightMargin="77.0557" TopMargin="1238.0000" BottomMargin="18.0000" FontSize="21" LabelText="客栈里可招募的侠客品质由低到高依次为绿，蓝，紫，橙，红" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-            <Size X="569.0000" Y="24.0000" />
+          <AbstractNodeData Name="tips" ActionTag="1102590692" Tag="100" IconVisible="False" LeftMargin="46.9443" RightMargin="50.0557" TopMargin="1227.0000" BottomMargin="27.0000" FontSize="23" LabelText="客栈里可招募的侠客品质由低到高依次为绿，蓝，紫，橙，红" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="623.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="358.4443" Y="30.0000" />
+            <Position X="358.4443" Y="40.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4978" Y="0.0234" />
-            <PreSize X="0.7903" Y="0.0188" />
+            <PrePosition X="0.4978" Y="0.0313" />
+            <PreSize X="0.8653" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />

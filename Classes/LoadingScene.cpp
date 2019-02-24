@@ -59,9 +59,6 @@ bool LoadingScene::init()
     {
         return false;
     }
-    
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("LoadingLayer.csb"));
 	this->addChild(csbnode);
@@ -160,9 +157,11 @@ void LoadingScene::loadData()
 	m_loadingtext->setVisible(true);
 	m_loadingbar->setVisible(true);
 	m_loadingbar->runAction(RepeatForever::create(RotateTo::create(0.8f, 720)));
-	showTips();
+	showTips(0);
 	showPointAnim(0);
 	this->schedule(schedule_selector(LoadingScene::showPointAnim), 1.5f);
+
+	this->schedule(schedule_selector(LoadingScene::showTips), 3.0f);
 
 	if (GlobalInstance::punishment == 0)
 	{
@@ -307,8 +306,6 @@ void LoadingScene::showPointAnim(float dt)
 	{
 		point[i]->runAction(Sequence::create(DelayTime::create(0.4f*i), Show::create(), DelayTime::create(1.2f - 0.4f*i), Hide::create(), NULL));
 	}
-
-	showTips();
 }
 
 void LoadingScene::optimizeSaveData()
@@ -651,7 +648,7 @@ void LoadingScene::onExit()
 	Layer::onExit();
 }
 
-void LoadingScene::showTips()
+void LoadingScene::showTips(float dt)
 {
 	int r = GlobalInstance::getInstance()->createRandomNum(TIPSCOUNT);
 	std::string keystr = StringUtils::format("tips_%d", r);

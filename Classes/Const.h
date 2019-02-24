@@ -32,7 +32,7 @@
 #define COINREFRESH_HERO_NUM 50//元宝刷新招募英雄
 #define SILVERREFRESH_HERO_NUM 100//银两刷新招募英雄
 
-#define TIPSCOUNT 7
+#define TIPSCOUNT 8
 
 #define MAP_BET 1
 

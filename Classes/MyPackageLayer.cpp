@@ -48,9 +48,6 @@ bool MyPackageLayer::init()
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("simpleLayer.csb"));
 	this->addChild(csbnode);
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	//标题

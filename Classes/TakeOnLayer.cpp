@@ -74,9 +74,6 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 
 	Node* infonode = csbnode->getChildByName("infonode");
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	langtype = GlobalInstance::getInstance()->getLang();
 
 	m_equip = res_equip;

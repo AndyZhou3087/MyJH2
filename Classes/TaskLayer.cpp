@@ -52,9 +52,6 @@ bool TaskLayer::init()
 	m_csbnode = CSLoader::createNode(ResourcePath::makePath("taskLayer.csb"));
 	this->addChild(m_csbnode);
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	langtype = GlobalInstance::getInstance()->getLang();
 
 	//»ý·Ö

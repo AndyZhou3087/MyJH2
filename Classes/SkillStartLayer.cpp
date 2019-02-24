@@ -45,9 +45,6 @@ bool SkillStartLayer::init(int herovacation, int skilltype)
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 128));
 	this->addChild(color,0,"colorLayer");
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	std::string startskillstr;
 	if (herovacation % 4 == 2 || herovacation % 4 == 3 || herovacation == 8)
 	{

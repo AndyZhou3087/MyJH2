@@ -49,9 +49,6 @@ bool GfLibraryLayer::init(int type)
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("simpleLayer.csb"));
 	this->addChild(csbnode);
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	std::string titlestr;

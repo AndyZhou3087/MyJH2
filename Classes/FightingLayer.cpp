@@ -65,7 +65,6 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 	//this->addChild(color,0,"colorLayer");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	std::string fbg = StringUtils::format("fightbg%d.jpg", bgtype);
 	Node* bg = Sprite::create(ResourcePath::makeImagePath(fbg));

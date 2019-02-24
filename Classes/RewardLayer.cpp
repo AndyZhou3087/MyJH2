@@ -48,9 +48,6 @@ bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere, int t
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color,0,"colorLayer");
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	ParticleSystemQuad *particle = ParticleSystemQuad::create(ResourcePath::makePath("effect/slsb/zhandoushengli/sl_xuanzhanguang.plist"));
 	particle->setPosition(Vec2(360, 800));
 	this->addChild(particle);

@@ -51,9 +51,6 @@ bool HomeHillLayer::init(Building* buidingData)
 	m_buidingData = buidingData;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color,0,"colorLayer");
-    
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	csbnode = CSLoader::createNode(ResourcePath::makePath("homeHillLayer.csb"));
 	this->addChild(csbnode);

@@ -62,9 +62,6 @@ bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 	csbnode = CSLoader::createNode(ResourcePath::makePath("strengthenLayer.csb"));
 	this->addChild(csbnode);
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	langtype = GlobalInstance::getInstance()->getLang();
 
 	m_equip = res_equip;

@@ -44,9 +44,6 @@ bool StoreHouseLayer::init()
 	m_csbnode = CSLoader::createNode(ResourcePath::makePath("storeHouseLayer.csb"));
 	this->addChild(m_csbnode);
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	langtype = GlobalInstance::getInstance()->getLang();
 
 	//标题

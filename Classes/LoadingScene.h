@@ -54,7 +54,7 @@ private:
 
 	void addHeroId();
 
-	void showTips();
+	void showTips(float dt);
 
 	void cfgFileEncryp();
 

@@ -47,9 +47,6 @@ bool MainMenuLayer::init()
     {
         return false;
     }
-    
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	int langtype = GlobalInstance::getInstance()->getLang();
 
@@ -501,7 +498,9 @@ void MainMenuLayer::doPunishment()
 		GlobalInstance::getInstance()->addMyCoinCount(dint);
 
 		HintBoxLayer* layer = HintBoxLayer::create(ResourceLang::map_lang["punishment1"], 10);
-		Director::getInstance()->getRunningScene()->addChild(layer, 100000);
+		
+		if (g_mainScene != NULL)
+			g_mainScene->addChild(layer, 100000);
 	}
 	else if (GlobalInstance::punishment < 0)
 	{

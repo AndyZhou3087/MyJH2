@@ -41,9 +41,6 @@ bool StoryScene::init()
     {
         return false;
     }
-    
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("storyLayer.csb"));
 	this->addChild(csbnode);
