@@ -879,8 +879,11 @@ void MainScene::updateTime(float dt)
 				if (addcount != 0)
 				{
 					MyRes::Add(rescreator->getName(), addcount);
-					std::string showtext = StringUtils::format(formatstr.c_str(), GlobalInstance::map_AllResources[rescreator->getName()].name.c_str(), addcount);
-					MovingLabel::show(showtext);
+					if (g_mainScene != NULL)
+					{
+						std::string showtext = StringUtils::format(formatstr.c_str(), GlobalInstance::map_AllResources[rescreator->getName()].name.c_str(), addcount);
+						MovingLabel::show(showtext);
+					}
 				}
 
 			}

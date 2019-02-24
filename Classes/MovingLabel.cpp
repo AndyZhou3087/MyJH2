@@ -32,8 +32,7 @@ void MovingLabel::show(std::string text, Color4B color, Vec2 pos, Node* parent)
 		if (parent == NULL)
 		{
 			if (g_mainScene != NULL)
-			//Director::getInstance()->getRunningScene()->addChild(label, 100000);
-				g_mainScene->addChild(label, 100000);
+			Director::getInstance()->getRunningScene()->addChild(label, 100000);
 		}
 		else
 			parent->addChild(label, 100000);
