@@ -152,7 +152,7 @@
          */
         NSString* receiptstr = [receipt base64EncodedStringWithOptions:0];
         //1.创建url
-        NSString *urlStr=[NSString stringWithFormat:@"https://www.stormnet.cn/jhapi/jh_iospaycheck?is_sandbox=%d",issand];
+        NSString *urlStr = [NSString stringWithFormat:@"https://www.stormnet.cn/jhapi/jh_iospaycheck?is_sandbox=%d",issand];
         
         //注意:如果网址中含中文是无法解析的,需要stringByAddingPercentEncodingWithAllowedCharacters:进行编码,另外,解码用stringByRemovingPercentEncoding
         urlStr =[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -163,7 +163,7 @@
         [request setHTTPMethod:@"POST"];
         
         NSString *args = [NSString stringWithFormat:@"{\"receipt-data\":\"%@\"}",receiptstr];
-        
+
         request.HTTPBody = [args dataUsingEncoding:NSUTF8StringEncoding];
         //3.创建会话（这里使用了一个全局会话）并且启动任务
         NSURLSession *session=[NSURLSession sharedSession];
