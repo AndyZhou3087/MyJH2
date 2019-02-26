@@ -5,17 +5,23 @@
 #include "AnimationEffect.h"
 #include "MyRes.h"
 #include "ShopLayer.h"
+#include "ResDescLayer.h"
+#include "EquipDescLayer.h"
 
 USING_NS_CC;
 
 FirstChargeLayer::FirstChargeLayer()
 {
-
+	clickres = NULL;
 }
 
 FirstChargeLayer::~FirstChargeLayer()
 {
-
+	if (clickres != NULL)
+	{
+		delete clickres;
+		clickres = NULL;
+	}
 }
 
 
@@ -70,7 +76,6 @@ bool FirstChargeLayer::init(ShopData* data)
 	cocos2d::ui::ImageView* descimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("desc");
 	descimg->loadTexture(ResourcePath::makeTextImgPath("firstchargedesc", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	std::vector<MSGAWDSDATA> vec_rewards;
 	for (unsigned int i = 0; i < data->res.size(); i++)
 	{
 		MSGAWDSDATA msgdata;
@@ -91,6 +96,9 @@ bool FirstChargeLayer::init(ShopData* data)
 	{
 		std::string str = StringUtils::format("resbox_%d", i);
 		cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName(str);
+		resbox->addTouchEventListener(CC_CALLBACK_2(FirstChargeLayer::onBtnClick, this));
+		resbox->setTag(i);
+		resbox->setUserData((void*)&vec_rewards[i]);
 
 		cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
 
@@ -145,15 +153,75 @@ bool FirstChargeLayer::init(ShopData* data)
 
 void FirstChargeLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	CommonFuncs::BtnAction(pSender, type);
+	Node* node = (Node*)pSender;
+	int tag = node->getTag();
+	if (tag >= 1000)
+		CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Node* node = (Node*)pSender;
-		int tag = node->getTag();
-		if (tag == 1001)
-			removeSelf();
+		if (tag >= 1000)
+		{
+			if (tag == 1001)
+				removeSelf();
+			else
+				ShopLayer::beginPay(this->getTag());
+		}
 		else
-			ShopLayer::beginPay(this->getTag());
+		{
+			MSGAWDSDATA* data = (MSGAWDSDATA*)node->getUserData();
+			if (clickres != NULL)
+			{
+				delete clickres;
+				clickres = NULL;
+			}
+			std::string resid = data->rid;
+
+			int t = -1;
+			for (int k = 0; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)
+			{
+				if (resid.compare(0, 1, RES_TYPES_CHAR[k]) == 0)
+				{
+					t = k;
+					break;
+				}
+			}
+
+			if (t >= T_ARMOR && t <= T_FASHION)
+			{
+				clickres = new Equip();
+			}
+			else if (t >= T_WG && t <= T_NG)
+			{
+				clickres = new GongFa();
+			}
+			else
+			{
+				clickres = new ResBase();
+			}
+
+			clickres->setId(resid);
+			clickres->setType(t);
+
+			DynamicValueInt dvcount;
+			dvcount.setValue(data->count);
+			clickres->setCount(dvcount);
+
+			DynamicValueInt dv;
+			dv.setValue(data->qu);
+			clickres->setQU(dv);
+
+			Layer* layer = NULL;
+			if (t >= T_ARMOR && t <= T_NG)
+			{
+				layer = EquipDescLayer::create(clickres, 1);
+			}
+			else
+			{
+				layer = ResDescLayer::create(clickres, 2);
+			}
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
 	}
 }
 

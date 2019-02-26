@@ -21,7 +21,8 @@ private:
 	void removeSelf();
 
 private:
-
+	std::vector<MSGAWDSDATA> vec_rewards;
+	ResBase* clickres;
 };
 
 #endif
