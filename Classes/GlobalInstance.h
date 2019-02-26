@@ -831,6 +831,8 @@ public:
 
 	static std::vector<int> vec_costprops;
 
+	static bool isBuyFirstCharge;
+
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

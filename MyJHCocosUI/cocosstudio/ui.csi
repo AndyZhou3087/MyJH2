@@ -485,6 +485,7 @@
       <FilePathData Path="ui/f006-3.png" />
       <FilePathData Path="ui/g005-3.png" />
       <FilePathData Path="ui/resbox_qu5.png" />
+      <FilePathData Path="ui/firstcharge.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

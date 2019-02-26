@@ -684,6 +684,38 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="firstchargebtn" ActionTag="1958564595" Tag="238" IconVisible="False" LeftMargin="11.5625" RightMargin="562.4375" TopMargin="356.4383" BottomMargin="777.5617" TouchEnable="True" LeftEage="48" RightEage="48" TopEage="48" BottomEage="48" Scale9OriginX="48" Scale9OriginY="48" Scale9Width="50" Scale9Height="50" ctype="ImageViewObjectData">
+            <Size X="146.0000" Y="146.0000" />
+            <Children>
+              <AbstractNodeData Name="icon" ActionTag="-68984931" Tag="239" IconVisible="False" LeftMargin="22.5000" RightMargin="20.5000" TopMargin="22.5000" BottomMargin="28.5000" LeftEage="35" RightEage="35" TopEage="13" BottomEage="13" Scale9OriginX="35" Scale9OriginY="13" Scale9Width="33" Scale9Height="69" ctype="ImageViewObjectData">
+                <Size X="103.0000" Y="95.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="74.0000" Y="76.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5068" Y="0.5205" />
+                <PreSize X="0.7055" Y="0.6507" />
+                <FileData Type="MarkedSubImage" Path="ui/firstcharge.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="text" ActionTag="-1743380234" Tag="241" IconVisible="False" LeftMargin="3.5000" RightMargin="1.5000" TopMargin="95.0000" BottomMargin="9.0000" LeftEage="46" RightEage="46" TopEage="13" BottomEage="13" Scale9OriginX="46" Scale9OriginY="13" Scale9Width="49" Scale9Height="16" ctype="ImageViewObjectData">
+                <Size X="141.0000" Y="42.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="74.0000" Y="30.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5068" Y="0.2055" />
+                <PreSize X="0.9658" Y="0.2877" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/firstchargegiftbtn_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="84.5625" Y="850.5617" />
+            <Scale ScaleX="0.6000" ScaleY="0.6000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1174" Y="0.6645" />
+            <PreSize X="0.2028" Y="0.1141" />
+            <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

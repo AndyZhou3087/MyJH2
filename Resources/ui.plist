@@ -2647,7 +2647,7 @@
 			<key>ui/w020.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{3639,1704},{109,109}}</string>
+				<string>{{3639,1703},{109,109}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -3021,7 +3021,7 @@
 			<key>ui/x018.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{3639,1815},{109,109}}</string>
+				<string>{{3639,1814},{109,109}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -3417,7 +3417,7 @@
 			<key>ui/dailytask_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{3637,1926},{109,109}}</string>
+				<string>{{3637,1925},{109,109}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -4550,7 +4550,7 @@
 			<key>ui/r013.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{3553,2037},{109,109}}</string>
+				<string>{{3553,2036},{109,109}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -4594,7 +4594,7 @@
 			<key>ui/npc_fight.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{3731,1508},{96,96}}</string>
+				<string>{{3731,1605},{96,96}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -4605,7 +4605,7 @@
 			<key>ui/npc_friend0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{3731,1606},{96,96}}</string>
+				<string>{{3997,2116},{96,96}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -4616,7 +4616,7 @@
 			<key>ui/npc_friend1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{3997,2116},{96,96}}</string>
+				<string>{{3997,2214},{96,96}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -4627,7 +4627,7 @@
 			<key>ui/npc_give.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{3997,2214},{96,96}}</string>
+				<string>{{1765,1518},{96,96}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -4671,7 +4671,7 @@
 			<key>ui/npc_talk.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1765,1518},{96,96}}</string>
+				<string>{{1863,1585},{96,96}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -4726,7 +4726,7 @@
 			<key>ui/npc_marry1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1863,1585},{96,96}}</string>
+				<string>{{1765,1616},{96,96}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -5316,6 +5316,17 @@
 				<false />
 				<key>sourceSize</key>
 				<string>{125,125}</string>
+			</dict>
+			<key>ui/firstcharge.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{3731,1508},{103,95}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{103,95}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>

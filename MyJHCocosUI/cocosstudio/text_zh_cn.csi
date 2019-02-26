@@ -326,6 +326,10 @@
       <FilePathData Path="text_zh_cn/libequipcata1_text_s.png" />
       <FilePathData Path="text_zh_cn/libqu5text_0.png" />
       <FilePathData Path="text_zh_cn/libqu5text_1.png" />
+      <FilePathData Path="text_zh_cn/firstchargebtn_text.png" />
+      <FilePathData Path="text_zh_cn/firstchargedesc.png" />
+      <FilePathData Path="text_zh_cn/firstchargetitle.png" />
+      <FilePathData Path="text_zh_cn/firstchargegiftbtn_text.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

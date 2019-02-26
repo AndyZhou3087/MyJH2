@@ -31,7 +31,8 @@ typedef enum
 	TIMEGIFTBTN,//限时礼包
 	TIMEGIFTBTN_0,
 	TIMEGIFTBTN_1,
-	TIMEGIFTBTN_2
+	TIMEGIFTBTN_2,
+	FIRSTCHARGEBTN//首充礼包
 }MENUTYPE;
 class MainMenuLayer : public cocos2d::Layer, public HTTPDataDelegateProtocol
 {
@@ -65,7 +66,7 @@ private:
 	cocos2d::ui::Widget* mailredpoint;//邮件小红点
 	cocos2d::ui::Widget* timegiftbtn;
 	cocos2d::ui::Text* timegiftlefttime;//限时礼包剩下时间
-
+	cocos2d::ui::Widget* firstchargebtn;
 	cocos2d::ui::ImageView* head;//头像
 	Node* csbnode;
 	cocos2d::ui::Text* vipstrArr[2];

@@ -24,6 +24,7 @@
 #include "TimeGiftLayer.h"
 #include "HintBoxLayer.h"
 #include "LoadingScene.h"
+#include "FirstChargeLayer.h"
 
 USING_NS_CC;
 
@@ -96,14 +97,14 @@ bool MainMenuLayer::init()
 			tgiftname[i - TIMEGIFTBTN_0] = (cocos2d::ui::Text*)clickwidget->getChildByName("name");
 		}
 
-		if (i >= MOREBTN && i <= SHOPBTN)
+		else if (i >= MOREBTN && i <= SHOPBTN)
 		{
 			cocos2d::ui::ImageView* textimg =  (cocos2d::ui::ImageView*)clickwidget->getChildByName("text");
 			std::string textname = StringUtils::format("main_%s_text", name.c_str());
 			textimg->loadTexture(ResourcePath::makeTextImgPath(textname, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 
-		if (i >= VIP1BTN && i <= VIP2BTN)
+		else if (i >= VIP1BTN && i <= VIP2BTN)
 		{
 			cocos2d::ui::Text* text = (cocos2d::ui::Text*)clickwidget->getChildByName("text");
 			int days = 0;
@@ -123,6 +124,14 @@ bool MainMenuLayer::init()
 			{
 				text->setVisible(false);
 			}
+		}
+
+		else if (i == FIRSTCHARGEBTN)
+		{
+			firstchargebtn = clickwidget;
+			cocos2d::ui::ImageView* textimg = (cocos2d::ui::ImageView*)clickwidget->getChildByName("text");
+			textimg->loadTexture(ResourcePath::makeTextImgPath("firstchargegiftbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			clickwidget->setVisible(false);
 		}
 	}
 
@@ -175,27 +184,21 @@ void MainMenuLayer::onFinish(int code)
 		//{
 		//	return;
 		//}
-		if (g_NewGuideLayer != NULL)
-			return;
 
-		if (isGetVipData)
+		if (isGetVipData && this->getChildByName("GiftContentLayer") == NULL && g_NewGuideLayer == NULL)
 		{
-			if (this->getChildByName("GiftContentLayer") == NULL)
+			if (GlobalInstance::vec_buyVipIds.size() > 0)
 			{
-				if (GlobalInstance::vec_buyVipIds.size() > 0)
+				for (unsigned int m = 0; m < GlobalInstance::vec_buyVipIds.size(); m++)
 				{
-
-					for (unsigned int m = 0; m < GlobalInstance::vec_buyVipIds.size(); m++)
+					for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
 					{
-						for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+						if (GlobalInstance::vec_shopdata[i].icon.compare(GlobalInstance::vec_buyVipIds[m]) == 0)
 						{
-							if (GlobalInstance::vec_shopdata[i].icon.compare(GlobalInstance::vec_buyVipIds[m]) == 0)
-							{
-								GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i, 2);
-								this->addChild(layer, 0, "GiftContentLayer");
-								AnimationEffect::openAniEffect((Layer*)layer);
-								break;
-							}
+							GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i, 2);
+							this->addChild(layer, 0, "GiftContentLayer");
+							AnimationEffect::openAniEffect((Layer*)layer);
+							break;
 						}
 					}
 				}
@@ -208,16 +211,18 @@ void MainMenuLayer::onFinish(int code)
 				timegiftlefttime->setString(timestr);
 			}
 
+			firstchargebtn->setVisible(!GlobalInstance::isBuyFirstCharge);
+
 			HttpDataSwap::init(this)->getMessageList(0);
 
-			if (GlobalInstance::punishment != 0)
+			if (GlobalInstance::punishment != 0 && g_NewGuideLayer == NULL)
 			{
 				doPunishment();
 			}
 		}
 		else
 		{
-			if (GlobalInstance::vec_notice.size() > 0 && GlobalInstance::vec_notice[0].status < 1 && GlobalInstance::vec_notice[0].subtype <= 2)
+			if (GlobalInstance::vec_notice.size() > 0 && GlobalInstance::vec_notice[0].status < 1 && GlobalInstance::vec_notice[0].subtype <= 2 && g_NewGuideLayer == NULL)
 			{
 				NewPopLayer* unlock = NewPopLayer::create();
 				this->addChild(unlock);
@@ -328,6 +333,11 @@ void MainMenuLayer::updateUI(float dt)
 	if (achcount <= 0)
 	{
 		achredpoint->setVisible(false);
+	}
+
+	if (GlobalInstance::isBuyFirstCharge)
+	{
+		firstchargebtn->setVisible(false);
 	}
 }
 
@@ -470,7 +480,23 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				{
 					TimeGiftLayer* layer = TimeGiftLayer::create(&GlobalInstance::vec_shopdata[i]);
 					this->addChild(layer, 0, i);
-					AnimationEffect::openAniEffect((Layer*)layer);
+					AnimationEffect::openAniEffect(layer);
+					break;
+				}
+			}
+		}
+			break;
+		case FIRSTCHARGEBTN:
+		{
+			std::string giftname = "firstcharge";
+			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+			{
+				if (GlobalInstance::vec_shopdata[i].icon.compare(giftname) == 0)
+				{
+					FirstChargeLayer* layer = FirstChargeLayer::create(&GlobalInstance::vec_shopdata[i]);
+					layer->setTag(i);
+					Director::getInstance()->getRunningScene()->addChild(layer, 0, giftname);
+					AnimationEffect::openAniEffect(layer);
 					break;
 				}
 			}

@@ -37,6 +37,8 @@
           <Image Name="event4.jpg" />
           <Image Name="event5.jpg" />
           <Image Name="event6.jpg" />
+          <Image Name="firstchargebg.png" />
+          <Image Name="firstchargebox.png" />
           <Image Name="heroattrbottom.png" />
           <Image Name="herobg.jpg" />
           <Image Name="hfull_0_0.png" />
@@ -489,6 +491,10 @@
           <Image Name="eventbusinesstitle.png" />
           <Image Name="fastdecompose_text.png" />
           <Image Name="firebtn_text.png" />
+          <Image Name="firstchargebtn_text.png" />
+          <Image Name="firstchargedesc.png" />
+          <Image Name="firstchargegiftbtn_text.png" />
+          <Image Name="firstchargetitle.png" />
           <Image Name="forge_text.png" />
           <Image Name="getscore_text.png" />
           <Image Name="goback_home_text.png" />
@@ -964,6 +970,7 @@
           <Image Name="f005-3.png" />
           <Image Name="f006-3.png" />
           <Image Name="fightretline.png" />
+          <Image Name="firstcharge.png" />
           <Image Name="friendly_bar_0.png" />
           <Image Name="friendly_bar_1.png" />
           <Image Name="friendly_bg.png" />
@@ -1361,6 +1368,7 @@
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
         <Project Name="equipLibraryInfoLayer.csd" Type="Layer" />
+        <Project Name="firstchargeLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

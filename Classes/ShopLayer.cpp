@@ -230,7 +230,9 @@ void ShopLayer::setMessage(PYARET ret)
 			}
 			Node* buycoinlayer = Director::getInstance()->getRunningScene()->getChildByName("buycoinlayer");
 			if (buycoinlayer != NULL)
-				Director::getInstance()->getRunningScene()->removeChildByName("buycoinlayer");
+			{
+				AnimationEffect::closeAniEffect((Layer*)buycoinlayer);
+			}
 		}
 		else if (type == GIFT)//礼包
 		{
@@ -260,6 +262,12 @@ void ShopLayer::setMessage(PYARET ret)
 				}
 				else
 					MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
+
+				if (GlobalInstance::vec_shopdata[payindex].icon.compare("firstcharge") == 0)//首充礼包
+				{
+					GlobalInstance::isBuyFirstCharge = true;
+					AnimationEffect::closeAniEffect((Layer*)Director::getInstance()->getRunningScene()->getChildByName("firstcharge"));
+				}
 			}
 		}
 		else if (type == VIP)//月卡

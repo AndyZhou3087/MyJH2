@@ -113,6 +113,8 @@ std::vector<int> GlobalInstance::vec_costCoins;
 
 std::vector<int> GlobalInstance::vec_costprops;
 
+bool GlobalInstance::isBuyFirstCharge = false;
+
 GlobalInstance::GlobalInstance()
 {
 

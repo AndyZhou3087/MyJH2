@@ -834,6 +834,14 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 				{
 					GlobalInstance::punishment = iter->value.GetInt();
 				}
+				else if (doc.HasMember("isreceipt"))
+				{
+					GlobalInstance::isServerReceipt = atoi(getJsonValueStr(doc["isreceipt"]).c_str()) == 1 ? true : false;
+				}
+				else if (doc.HasMember("isfcharge"))
+				{
+					GlobalInstance::isBuyFirstCharge = atoi(getJsonValueStr(doc["isfcharge"]).c_str()) == 1 ? true : false;
+				}
 				else if (strid.compare(0, 3, "vip") == 0)
 				{
 					int val = iter->value.GetInt();
@@ -856,11 +864,6 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 					}
 				}
 
-			}
-
-			if (doc.HasMember("isreceipt"))
-			{
-				GlobalInstance::isServerReceipt = atoi(getJsonValueStr(doc["isreceipt"]).c_str()) == 1 ? true : false;
 			}
 		}
 		else
