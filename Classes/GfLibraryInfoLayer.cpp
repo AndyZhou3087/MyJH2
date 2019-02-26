@@ -152,13 +152,29 @@ bool GfLibraryInfoLayer::init(std::string gfid)
 	statustext->setString(ResourceLang::map_lang["libraryinfostatus"]);
 
 	cocos2d::ui::Text* status = (cocos2d::ui::Text*)contentnode->getChildByName("status");
-	if (MyRes::getEquipableCount(gfid) <= 0 && MyRes::getEquipableCount(gfid, MYEQUIP) <= 0)
+	int haswhere = 0;
+	std::string whostr;
+
+	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
+	{
+		if (MyRes::vec_MyResources[i]->getId().compare(gfid) == 0)
+		{
+			Equipable* equip = (Equipable*)MyRes::vec_MyResources[i];
+			haswhere = MyRes::vec_MyResources[i]->getWhere();
+			whostr = equip->getWhos();
+			break;
+		}
+	}
+
+	if (haswhere <= 0)
 	{
 		status->setString(ResourceLang::map_lang["libraryinfostatus0"]);
 	}
-	else if (MyRes::getEquipableCount(gfid, MYEQUIP) > 0)
+	else if (haswhere == MYEQUIP)
 	{
-		status->setString(ResourceLang::map_lang["libraryinfostatus1"]);
+		std::string estr = ResourceLang::map_lang["libraryinfostatus1"];
+		estr.append(whostr);
+		status->setString(estr);
 		status->setTextColor(Color4B(0, 255, 0, 255));
 	}
 	else

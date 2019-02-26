@@ -59,6 +59,7 @@ typedef struct
 	float avoid;//闪避率
 	float crit;//暴击率
 	float speed;//攻击速度
+	int type;//类型；0--刀，剑...
 }EquipData;
 
 typedef struct

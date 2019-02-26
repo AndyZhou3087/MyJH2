@@ -1368,6 +1368,9 @@ void GlobalInstance::loadEquipData()
 			v = jsonvalue["speed"];
 			data.speed = atof(v.GetString());
 
+			v = jsonvalue["subtype"];
+			data.type = atoi(v.GetString());
+
 			v = jsonvalue["bns"];
 			for (unsigned int m = 0; m < v.Size(); m++)
 			{
@@ -2823,7 +2826,7 @@ std::string GlobalInstance::getResUIFrameName(std::string resid, int qu)
 		{
 			str = StringUtils::format("ui/%s-2.png", resid.c_str());
 		}
-		else if (qu == 4)
+		else if (qu >= 4)
 		{
 			str = StringUtils::format("ui/%s-3.png", resid.c_str());
 		}

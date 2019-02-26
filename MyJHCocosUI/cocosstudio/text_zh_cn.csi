@@ -318,6 +318,14 @@
       <FilePathData Path="text_zh_cn/mapvisionbtn_text.png" />
       <FilePathData Path="text_zh_cn/goback_home_text.png" />
       <FilePathData Path="text_zh_cn/goback_map_text.png" />
+      <FilePathData Path="text_zh_cn/libraryequiptext.png" />
+      <FilePathData Path="text_zh_cn/libraryequiptitle.png" />
+      <FilePathData Path="text_zh_cn/libequipcata0_text_n.png" />
+      <FilePathData Path="text_zh_cn/libequipcata0_text_s.png" />
+      <FilePathData Path="text_zh_cn/libequipcata1_text_n.png" />
+      <FilePathData Path="text_zh_cn/libequipcata1_text_s.png" />
+      <FilePathData Path="text_zh_cn/libqu5text_0.png" />
+      <FilePathData Path="text_zh_cn/libqu5text_1.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

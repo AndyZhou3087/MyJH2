@@ -448,10 +448,13 @@
 	<s name="libraryinfogetwhere2">地图探索「神秘商人」可获得</s>
 	<s name="libraryinfostatus0">未获得</s>
 	<s name="ortext">或</s>		
-	<s name="libraryinfostatus1">已装备</s>
-	<s name="libraryinfostatus1">已拥有</s>
+	<s name="libraryinfostatus1">已装备=></s>
+	<s name="libraryinfostatus2">已拥有</s>
 	<s name="libraryinfoequipname">%s·%s</s>
 	<s name="usetorchdesc">点击地图位置投掷火把</s>
 	<s name="marketopenlvtext">市场%d级\n开放购买</s>
-	<s name="smithyopenlvtext">铁匠铺%d级可制作</s>				
+	<s name="smithyopenlvtext">铁匠铺%d级可制作</s>
+	<s name="waitingequip">绝世神兵暂未开放，敬请期待！</s>
+	<s name="libraryequiphint">神兵保甲只收录橙色及以上品质</s>
+	<s name="libraryequipgetwhere">四级宝箱或者15级铁匠铺制作</s>					
 </strings>

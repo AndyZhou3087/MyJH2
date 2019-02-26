@@ -63,6 +63,9 @@
           <Image Name="hfull_8_1.png" />
           <Image Name="hfull_9_0.png" />
           <Image Name="hfull_9_1.png" />
+          <Image Name="libraryequipbox.png" />
+          <Image Name="libraryequipitem.png" />
+          <Image Name="libraryequiptextbox.png" />
           <Image Name="libraryngitem.png" />
           <Image Name="librarytop.png" />
           <Image Name="librarywgitem.png" />
@@ -508,6 +511,14 @@
           <Image Name="innroolv_text.png" />
           <Image Name="innroomtitle.png" />
           <Image Name="isrecruited_text.png" />
+          <Image Name="libequipcata0_text_n.png" />
+          <Image Name="libequipcata0_text_s.png" />
+          <Image Name="libequipcata1_text_n.png" />
+          <Image Name="libequipcata1_text_s.png" />
+          <Image Name="libqu5text_0.png" />
+          <Image Name="libqu5text_1.png" />
+          <Image Name="libraryequiptext.png" />
+          <Image Name="libraryequiptitle.png" />
           <Image Name="libraryngtext.png" />
           <Image Name="libraryngtitle.png" />
           <Image Name="librarytitle.png" />
@@ -847,6 +858,14 @@
           <Image Name="a028.png" />
           <Image Name="a028-2.png" />
           <Image Name="a028-3.png" />
+          <Image Name="a029-3.png" />
+          <Image Name="a030-3.png" />
+          <Image Name="a031-3.png" />
+          <Image Name="a032-3.png" />
+          <Image Name="a033-3.png" />
+          <Image Name="a034-3.png" />
+          <Image Name="a035-3.png" />
+          <Image Name="a036-3.png" />
           <Image Name="actionbtn_blue.png" />
           <Image Name="actionbtn_yellow.png" />
           <Image Name="addnicknamecountbtn.png" />
@@ -918,6 +937,7 @@
           <Image Name="e004.png" />
           <Image Name="e004-2.png" />
           <Image Name="e004-3.png" />
+          <Image Name="e005-3.png" />
           <Image Name="equipbox_0.png" />
           <Image Name="equipbox_1.png" />
           <Image Name="equipbox_2.png" />
@@ -941,6 +961,8 @@
           <Image Name="f004.png" />
           <Image Name="f004-2.png" />
           <Image Name="f004-3.png" />
+          <Image Name="f005-3.png" />
+          <Image Name="f006-3.png" />
           <Image Name="fightretline.png" />
           <Image Name="friendly_bar_0.png" />
           <Image Name="friendly_bar_1.png" />
@@ -957,6 +979,7 @@
           <Image Name="g004.png" />
           <Image Name="g004-2.png" />
           <Image Name="g004-3.png" />
+          <Image Name="g005-3.png" />
           <Image Name="gd0.png" />
           <Image Name="gd1.png" />
           <Image Name="gd2.png" />
@@ -1098,6 +1121,7 @@
           <Image Name="resbox_qu2.png" />
           <Image Name="resbox_qu3.png" />
           <Image Name="resbox_qu4.png" />
+          <Image Name="resbox_qu5.png" />
           <Image Name="resitem.png" />
           <Image Name="ressunbtn.png" />
           <Image Name="s001.png" />
@@ -1260,6 +1284,7 @@
         <Project Name="hospitalLayer.csd" Type="Layer" />
         <Project Name="innRoomLayer.csd" Type="Layer" />
         <Project Name="LevelForm.csd" Type="Layer" />
+        <Project Name="libraryequipLayer.csd" Type="Layer" />
         <Project Name="libraryLayer.csd" Type="Layer" />
         <Image Name="loadingbg.jpg" />
         <Image Name="loadingclicktext.png" />
@@ -1335,6 +1360,7 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="equipLibraryInfoLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

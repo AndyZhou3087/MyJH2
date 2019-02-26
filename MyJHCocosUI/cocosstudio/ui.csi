@@ -472,6 +472,19 @@
       <FilePathData Path="ui/makerescountbox.png" />
       <FilePathData Path="ui/makeresnamebox.png" />
       <FilePathData Path="ui/z001.png" />
+      <FilePathData Path="ui/a029-3.png" />
+      <FilePathData Path="ui/a030-3.png" />
+      <FilePathData Path="ui/a031-3.png" />
+      <FilePathData Path="ui/a032-3.png" />
+      <FilePathData Path="ui/a033-3.png" />
+      <FilePathData Path="ui/a034-3.png" />
+      <FilePathData Path="ui/a035-3.png" />
+      <FilePathData Path="ui/a036-3.png" />
+      <FilePathData Path="ui/e005-3.png" />
+      <FilePathData Path="ui/f005-3.png" />
+      <FilePathData Path="ui/f006-3.png" />
+      <FilePathData Path="ui/g005-3.png" />
+      <FilePathData Path="ui/resbox_qu5.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
