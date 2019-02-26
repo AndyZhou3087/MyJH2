@@ -63,7 +63,7 @@ bool LibraryLayer::init()
 	cocos2d::ui::ImageView* backbtntxt = (cocos2d::ui::ImageView*)backbtn->getChildByName("text");
 	backbtntxt->loadTexture(ResourcePath::makeTextImgPath("backbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	//神兵保甲按钮
+	//神兵宝甲按钮
 	cocos2d::ui::Widget* equipimg = (cocos2d::ui::Widget*)csbnode->getChildByName("equipitem");
 	equipimg->setTag(0);
 	equipimg->addTouchEventListener(CC_CALLBACK_2(LibraryLayer::onBtnClick, this));
@@ -108,7 +108,7 @@ void LibraryLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		int tag = clicknode->getTag();
 		switch (tag)
 		{
-		case 0://神兵保甲
+		case 0://神兵宝甲
 		{
 			EquipLibraryLayer* layer = EquipLibraryLayer::create();
 			this->addChild(layer);

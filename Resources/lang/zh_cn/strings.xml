@@ -455,6 +455,6 @@
 	<s name="marketopenlvtext">市场%d级\n开放购买</s>
 	<s name="smithyopenlvtext">铁匠铺%d级可制作</s>
 	<s name="waitingequip">绝世神兵暂未开放，敬请期待！</s>
-	<s name="libraryequiphint">神兵保甲只收录橙色及以上品质</s>
+	<s name="libraryequiphint">神兵宝甲只收录橙色及以上品质</s>
 	<s name="libraryequipgetwhere">四级宝箱或者15级铁匠铺制作</s>					
 </strings>

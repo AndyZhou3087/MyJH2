@@ -48,13 +48,13 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="closebtn" ActionTag="-658875002" Tag="98" IconVisible="False" LeftMargin="560.5532" RightMargin="93.4468" TopMargin="203.6841" BottomMargin="1010.3159" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="36" Scale9Height="44" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="closebtn" ActionTag="-658875002" Tag="98" IconVisible="False" LeftMargin="560.5532" RightMargin="93.4468" TopMargin="254.6854" BottomMargin="959.3146" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="36" Scale9Height="44" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="66.0000" Y="66.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="593.5532" Y="1043.3159" />
+            <Position X="593.5532" Y="992.3146" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.8244" Y="0.8151" />
+            <PrePosition X="0.8244" Y="0.7752" />
             <PreSize X="0.0917" Y="0.0516" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/closebtn2.png" Plist="ui.plist" />
