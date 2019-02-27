@@ -809,7 +809,11 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	walkcount++;
 	monsterComeRnd += (5 + walkcount);
 
-	MyRes::Use("r001", usefood, MYPACKAGE);
+	int usefoodcount = usefood;
+	int mypackagefood = MyRes::getMyResCount("r001", MYPACKAGE);
+	if (usefood >= mypackagefood)
+		usefoodcount = mypackagefood;
+	MyRes::Use("r001", usefoodcount, MYPACKAGE);
 
 	if (mycurCol == randStartPos % blockColCount && mycurRow == randStartPos / blockColCount)
 	{
