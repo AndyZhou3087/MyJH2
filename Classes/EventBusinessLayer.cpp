@@ -6,7 +6,7 @@
 #include "GlobalInstance.h"
 #include "MyRes.h"
 #include "MapEventLayer.h"
-#include "EventBuyLayer.h"
+#include "BuySingleResLayer.h"
 #include "AnimationEffect.h"
 #include "SimpleResPopLayer.h"
 
@@ -107,7 +107,7 @@ void EventBusinessLayer::updateScrollviewContent()
 		cocos2d::ui::ScrollView* sv = vec_scrollview[i];
 		sv->removeAllChildrenWithCleanup(true);
 
-		std::vector<FOURProperty> vec_res;
+		std::vector<MSGAWDSDATA> vec_res;
 		if (i == 0)
 		{
 			std::sort(vec_buyres.begin(), vec_buyres.end(), sortBuyResByType);
@@ -130,7 +130,7 @@ void EventBusinessLayer::updateScrollviewContent()
 
 		for (unsigned int m = 0; m < vec_res.size(); m++)
 		{
-			std::string resid = vec_res[m].sid;
+			std::string resid = vec_res[m].rid;
 			int qu = 0;
 			std::string qustr = "ui/resbox.png";
 
@@ -142,7 +142,7 @@ void EventBusinessLayer::updateScrollviewContent()
 			}
 			if (t >= T_ARMOR && t <= T_FASHION)
 			{
-				qu = vec_res[m].intPara2;
+				qu = vec_res[m].qu;
 				qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
 			else if (t >= T_WG && t <= T_NG)
@@ -178,7 +178,7 @@ void EventBusinessLayer::updateScrollviewContent()
 			namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -10));
 			boxItem->addChild(namelbl);
 
-			std::string countstr = StringUtils::format("%d", vec_res[m].intPara1);
+			std::string countstr = StringUtils::format("%d", vec_res[m].count);
 			Label *countlbl = Label::createWithTTF(countstr, FONT_NAME, 23);
 			countlbl->setAnchorPoint(Vec2(1, 0));
 			countlbl->setColor(Color3B::WHITE);
@@ -232,10 +232,10 @@ void EventBusinessLayer::loadScrollviewData()
 			qu = atoi(resid.substr(1).c_str()) - 1;
 		}
 
-		FOURProperty fprop;
-		fprop.sid = resid;
-		fprop.intPara1 = m_count;
-		fprop.intPara2 = qu;
+		MSGAWDSDATA fprop;
+		fprop.rid = resid;
+		fprop.count = m_count;
+		fprop.qu = qu;
 		vec_buyres.push_back(fprop);
 	}
 	loadMyPackageRes();
@@ -249,10 +249,10 @@ void EventBusinessLayer::loadMyPackageRes()
 		ResBase* res = MyRes::vec_MyResources[i];
 		if (res->getWhere() == MYPACKAGE)
 		{
-			FOURProperty fprop;
-			fprop.sid = res->getId();
-			fprop.intPara1 = res->getCount().getValue();
-			fprop.intPara2 = res->getQU().getValue();
+			MSGAWDSDATA fprop;
+			fprop.rid = res->getId();
+			fprop.count = res->getCount().getValue();
+			fprop.qu = res->getQU().getValue();
 			vec_mypackagres.push_back(fprop);
 		}
 	}
@@ -263,24 +263,24 @@ void EventBusinessLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		this->getParent()->removeFromParentAndCleanup(true);
+		AnimationEffect::closeAniEffect(this);
 	}
 }
 
-void EventBusinessLayer::buyRes(FOURProperty res)
+void EventBusinessLayer::buyRes(MSGAWDSDATA res)
 {
 	for (unsigned int i = 0; i < vec_buyres.size(); i++)
 	{
-		std::string resid = vec_buyres[i].sid;
-		if (resid.compare(res.sid) == 0)
+		std::string resid = vec_buyres[i].rid;
+		if (resid.compare(res.rid) == 0)
 		{
-			if (vec_buyres[i].intPara1 <= res.intPara1)
+			if (vec_buyres[i].count <= res.count)
 				vec_buyres.erase(vec_buyres.begin() + i);
 			else
-				vec_buyres[i].intPara1 -= res.intPara1;
+				vec_buyres[i].count -= res.count;
 
 			
-			MyRes::Add(resid, res.intPara1, MYPACKAGE, res.intPara2, GlobalInstance::getInstance()->generateStoneCount(res.intPara2));
+			MyRes::Add(resid, res.count, MYPACKAGE, res.qu, GlobalInstance::getInstance()->generateStoneCount(res.qu));
 			break;
 		}
 	}
@@ -325,22 +325,22 @@ void EventBusinessLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 
 		if (tag / 10000 == 0)
 		{
-			EventBuyLayer* layer = EventBuyLayer::create(vec_buyres[tag]);
+			BuySingleResLayer* layer = BuySingleResLayer::create(vec_buyres[tag]);
 			this->addChild(layer);
 			AnimationEffect::openAniEffect(layer);
 		}
 		else
 		{
-			SimpleResPopLayer* layer = SimpleResPopLayer::create(vec_mypackagres[tag% 10000].sid);
+			SimpleResPopLayer* layer = SimpleResPopLayer::create(vec_mypackagres[tag% 10000].rid);
 			this->addChild(layer);
 			AnimationEffect::openAniEffect(layer);
 		}
 	}
 }
 
-bool EventBusinessLayer::sortBuyResByType(FOURProperty a, FOURProperty b)
+bool EventBusinessLayer::sortBuyResByType(MSGAWDSDATA a, MSGAWDSDATA b)
 {
-	if (a.intPara1 > b.intPara1)
+	if (a.count > b.count)
 		return true;
 	else 
 		return false;

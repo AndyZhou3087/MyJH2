@@ -39,6 +39,12 @@ typedef enum
 	MAP_S_FIGHT
 }MAP_STATUS;
 
+typedef struct
+{
+	int maid;
+	int blockindex;
+}MAZE_POS;
+
 class MapBlockScene :public Layer, public ScrollViewDelegate
 {
 public:
@@ -78,6 +84,8 @@ public:
 
 	void eventFight();
 
+	void removeMazeStone(int blockindex);
+
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
 	void onEnterTransitionDidFinish();
@@ -98,7 +106,7 @@ private:
 
 	void stopMoving();
 
-	bool checkRoad(MAP_KEYTYPE keyArrow);
+	int checkRoad(MAP_KEYTYPE keyArrow);
 
 	virtual void scrollViewDidScroll(ScrollView* view);
 
@@ -157,10 +165,14 @@ private:
 
 	void torchLight(int row, int col);
 
+	void mazeHeroDelayTranse(float dt);
+
+	void ajustMazeStatus();
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;
-
+	cocos2d::ui::Text* mapnamelbl;
 	spine::SkeletonAnimation* myposHero;
 	cocos2d::ui::Text* carrycountlbl;
 	cocos2d::ui::Text* foodcountlbl;
@@ -219,6 +231,9 @@ private:
 	bool isUsingTorch;
 	bool isDraging;
 	bool isBlockClickCancel;
+	bool isMaze;
+	std::vector<MAZE_POS> vec_mazetranspoints;
+	int max_mazepos;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

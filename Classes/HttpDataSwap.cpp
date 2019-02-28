@@ -834,13 +834,13 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 				{
 					GlobalInstance::punishment = iter->value.GetInt();
 				}
-				else if (doc.HasMember("isreceipt"))
+				else if (strid.compare("isreceipt"))
 				{
 					GlobalInstance::isServerReceipt = atoi(getJsonValueStr(doc["isreceipt"]).c_str()) == 1 ? true : false;
 				}
-				else if (doc.HasMember("isfcharge"))
+				else if (strid.compare("fpayg"))
 				{
-					GlobalInstance::isBuyFirstCharge = atoi(getJsonValueStr(doc["isfcharge"]).c_str()) == 1 ? true : false;
+					GlobalInstance::isBuyFirstCharge = atoi(getJsonValueStr(doc["fpayg"]).c_str()) == 1 ? true : false;
 				}
 				else if (strid.compare(0, 3, "vip") == 0)
 				{

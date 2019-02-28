@@ -22,10 +22,10 @@ BuyResLayer::~BuyResLayer()
 }
 
 
-BuyResLayer* BuyResLayer::create(std::vector<MSGAWDSDATA> vec_rewards)
+BuyResLayer* BuyResLayer::create(std::vector<MSGAWDSDATA> vec_rewards, int putwhere)
 {
 	BuyResLayer *pRet = new(std::nothrow)BuyResLayer();
-	if (pRet && pRet->init(vec_rewards))
+	if (pRet && pRet->init(vec_rewards, putwhere))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -39,13 +39,13 @@ BuyResLayer* BuyResLayer::create(std::vector<MSGAWDSDATA> vec_rewards)
 }
 
 // on "init" you need to initialize your instance
-bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res)
+bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 {
 	if (!Layer::init())
 	{
 		return false;
 	}
-
+	m_putwhere = putwhere;
 	m_vecres = vec_res;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 128));
 	this->addChild(color,0,"colorLayer");
@@ -148,6 +148,10 @@ bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res)
 	{
 		return true;
 	};
+	listener->onTouchEnded = [=](Touch *touch, Event *event)
+	{
+		AnimationEffect::closeAniEffect((Layer*)this);
+	};
 
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -202,7 +206,7 @@ void BuyResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 				{
 					int qu = m_vecres[i].qu;
 					int st = GlobalInstance::getInstance()->generateStoneCount(qu);
-					MyRes::Add(m_vecres[i].rid, m_vecres[i].count, MYSTORAGE, qu, st);
+					MyRes::Add(m_vecres[i].rid, m_vecres[i].count, m_putwhere, qu, st);
 				}
 			}
 			GlobalInstance::getInstance()->costMyCoinCount(needcoincount);
@@ -257,9 +261,12 @@ void BuyResLayer::setMarketData()
 	for (unsigned int i = 0; i < m_vecres.size(); i++)
 	{
 		std::string rid = m_vecres[i].rid;
-		map_marketres[rid] -= m_vecres[i].count;
-		if (map_marketres[rid] < 0)
-			map_marketres[rid] = 0;
+		if (map_marketres.find(rid) != map_marketres.end())
+		{
+			map_marketres[rid] -= m_vecres[i].count;
+			if (map_marketres[rid] < 0)
+				map_marketres[rid] = 0;
+		}
 	}
 
 	std::string str;

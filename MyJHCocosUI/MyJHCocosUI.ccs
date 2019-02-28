@@ -1261,6 +1261,7 @@
           <Image Name="y014.png" />
           <Image Name="y015.png" />
           <Image Name="z001.png" />
+          <Image Name="z002.png" />
         </Folder>
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />
@@ -1271,13 +1272,15 @@
         <Project Name="changeVocationLayer.csd" Type="Layer" />
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
         <Project Name="equipDescLayer.csd" Type="Layer" />
+        <Project Name="equipLibraryInfoLayer.csd" Type="Layer" />
         <Project Name="errorHintLayer.csd" Type="Layer" />
         <Project Name="eventBusinessLayer.csd" Type="Layer" />
-        <Project Name="eventBuyLayer.csd" Type="Layer" />
+        <Project Name="buySingleResLayer.csd" Type="Layer" />
         <Project Name="fighterAttrLayer.csd" Type="Layer" />
         <Project Name="fightHeroNode.csd" Type="Node" />
         <Project Name="fightLayer.csd" Type="Layer" />
         <Project Name="fightResultLayer.csd" Type="Layer" />
+        <Project Name="firstchargeLayer.csd" Type="Layer" />
         <Project Name="gambleBoxLayer.csd" Type="Layer" />
         <Project Name="gfDescLayer.csd" Type="Layer" />
         <Project Name="gfLibraryInfoLayer.csd" Type="Layer" />
@@ -1363,12 +1366,11 @@
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <Project Name="transitionLayer.csd" Type="Layer" />
         <PlistInfo Name="ui.csi" Type="Plist" />
+        <Project Name="usePropLayer.csd" Type="Layer" />
         <Project Name="UserProtocolLayer.csd" Type="Layer" />
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="equipLibraryInfoLayer.csd" Type="Layer" />
-        <Project Name="firstchargeLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -1305,7 +1305,7 @@
 			<key>ui/equipbox_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1333,1518},{106,106}}</string>
+				<string>{{1444,1518},{106,106}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -1316,7 +1316,7 @@
 			<key>ui/equipbox_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1441,1518},{106,106}}</string>
+				<string>{{1552,1518},{106,106}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -1349,7 +1349,7 @@
 			<key>ui/equipbox_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1549,1518},{106,106}}</string>
+				<string>{{1660,1518},{106,106}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -1360,7 +1360,7 @@
 			<key>ui/equipbox_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1657,1518},{106,106}}</string>
+				<string>{{1768,1518},{106,106}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -4627,7 +4627,7 @@
 			<key>ui/npc_give.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1765,1518},{96,96}}</string>
+				<string>{{1876,1585},{96,96}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -4671,7 +4671,7 @@
 			<key>ui/npc_talk.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1863,1585},{96,96}}</string>
+				<string>{{1974,1610},{96,96}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -4726,7 +4726,7 @@
 			<key>ui/npc_marry1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1765,1616},{96,96}}</string>
+				<string>{{2072,1680},{96,96}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -5327,6 +5327,17 @@
 				<false />
 				<key>sourceSize</key>
 				<string>{103,95}</string>
+			</dict>
+			<key>ui/z002.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1333,1518},{109,109}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{109,109}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>

@@ -5,8 +5,9 @@
 #include "AnimationEffect.h"
 #include "MyRes.h"
 #include "ShopLayer.h"
-#include "ResDescLayer.h"
+#include "SimpleResPopLayer.h"
 #include "EquipDescLayer.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -168,12 +169,8 @@ void FirstChargeLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 		}
 		else
 		{
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 			MSGAWDSDATA* data = (MSGAWDSDATA*)node->getUserData();
-			if (clickres != NULL)
-			{
-				delete clickres;
-				clickres = NULL;
-			}
 			std::string resid = data->rid;
 
 			int t = -1;
@@ -186,41 +183,41 @@ void FirstChargeLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 				}
 			}
 
-			if (t >= T_ARMOR && t <= T_FASHION)
-			{
-				clickres = new Equip();
-			}
-			else if (t >= T_WG && t <= T_NG)
-			{
-				clickres = new GongFa();
-			}
-			else
-			{
-				clickres = new ResBase();
-			}
-
-			clickres->setId(resid);
-			clickres->setType(t);
-
-			DynamicValueInt dvcount;
-			dvcount.setValue(data->count);
-			clickres->setCount(dvcount);
-
-			DynamicValueInt dv;
-			dv.setValue(data->qu);
-			clickres->setQU(dv);
-
-			Layer* layer = NULL;
 			if (t >= T_ARMOR && t <= T_NG)
 			{
-				layer = EquipDescLayer::create(clickres, 1);
+				if (clickres != NULL)
+				{
+					delete clickres;
+					clickres = NULL;
+				}
+
+				if (t >= T_ARMOR && t <= T_FASHION)
+					clickres = new Equip();
+				else
+					clickres = new GongFa();
+
+
+				clickres->setId(resid);
+				clickres->setType(t);
+
+				DynamicValueInt dvcount;
+				dvcount.setValue(data->count);
+				clickres->setCount(dvcount);
+
+				DynamicValueInt dv;
+				dv.setValue(data->qu);
+				clickres->setQU(dv);
+
+				Layer* layer = EquipDescLayer::create(clickres, 1);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
 			}
 			else
 			{
-				layer = ResDescLayer::create(clickres, 2);
+				SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 3);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
 			}
-			this->addChild(layer);
-			AnimationEffect::openAniEffect(layer);
 		}
 	}
 }

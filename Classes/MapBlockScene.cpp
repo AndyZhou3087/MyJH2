@@ -27,6 +27,9 @@
 #include "NpcLayer.h"
 #include "MyTransitionScene.h"
 #include "SimpleResPopLayer.h"
+#include "UsePropLayer.h"
+#include "MazeTransitionScene.h"
+#include "BuySingleResLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -57,6 +60,7 @@ MapBlockScene::MapBlockScene()
 	isUsingTorch = false;
 	isDraging = false;
 	isBlockClickCancel = false;
+	isMaze = false;
 }
 
 
@@ -122,23 +126,35 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 {
 	m_mapid = mapname;
 
+	if (m_mapid.compare(0, 2, "mg") == 0)
+		isMaze = true;
+	
 	m_fightbgtype = bgtype;
 
 	m_csbnode = CSLoader::createNode(ResourcePath::makePath("mapBlockLayer.csb"));
 	this->addChild(m_csbnode);
 
+	std::string mapdisplayname = GlobalInstance::map_AllResources[mapname].name;
+	if (isMaze)
+	{
+		mapdisplayname = ResourceLang::map_lang["mazename"];
+		mapdisplayname.append(mapname);
+	}
 	std::u32string utf32String;
-	StringUtils::UTF8ToUTF32(GlobalInstance::map_AllResources[mapname].name, utf32String);
+	StringUtils::UTF8ToUTF32(mapdisplayname, utf32String);
 
 	int u32strlen = utf32String.length();
 	cocos2d::ui::ImageView* mapnamebox = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("mapnamebox");
-	cocos2d::ui::Text* mapnamelbl = (cocos2d::ui::Text*)m_csbnode->getChildByName("mapname");
+	mapnamelbl = (cocos2d::ui::Text*)m_csbnode->getChildByName("mapname");
 	mapnamebox->setContentSize(Size(70 + (mapnamelbl->getFontSize() + 1) * u32strlen, mapnamebox->getContentSize().height));
-	mapnamelbl->setString(GlobalInstance::map_AllResources[mapname].name);
+	mapnamelbl->setString(mapdisplayname);
 
 	std::string mainid = mapname.substr(0, mapname.find_last_of("-"));
-	S_SubMap submap = GlobalInstance::map_mapsdata[mainid].map_sublist[mapname];
-	usefood = submap.pf;
+	if (GlobalInstance::map_mapsdata.find(mainid) != GlobalInstance::map_mapsdata.end())
+	{
+		S_SubMap submap = GlobalInstance::map_mapsdata[mainid].map_sublist[mapname];
+		usefood = submap.pf;
+	}
 
 	Node* topnode = m_csbnode->getChildByName("mapblocktop");
 
@@ -158,63 +174,108 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	createFog();
 
-	int count = vec_startpos.size();
-
-	if (randStartPos < 0)
+	if (isMaze)
 	{
-		int startposindex = GlobalInstance::getInstance()->createRandomNum(count);
-		randStartPos = vec_startpos[startposindex];
+		MAZE_POS mdata;
+		max_mazepos = 1;
+		for (unsigned int i = 0; i < vec_mazetranspoints.size(); i++)
+		{
+			int m = vec_mazetranspoints[i].maid;
+			if (m > max_mazepos)
+				max_mazepos = m;
+		}
+		for (unsigned int i = 0; i < vec_mazetranspoints.size(); i++)
+		{
+			int m = vec_mazetranspoints[i].maid;
+			int b = vec_mazetranspoints[i].blockindex;
+			if (m >= max_mazepos)
+			{
+				mdata.maid = m;
+				mdata.blockindex = b;
+				vec_mazetranspoints.erase(vec_mazetranspoints.begin() + i);
+				break;
+			}
+		}
+		std::random_shuffle(vec_mazetranspoints.begin(), vec_mazetranspoints.end());
+
+		vec_mazetranspoints.push_back(mdata);
+
+		randStartPos = vec_mazetranspoints[0].blockindex;
+
+		scrollView->setMinScale(1);
+		scrollView->setMaxScale(1);
+	}
+	else
+	{
+		int count = vec_startpos.size();
+
+		if (randStartPos < 0)
+		{
+			int startposindex = GlobalInstance::getInstance()->createRandomNum(count);
+			randStartPos = vec_startpos[startposindex];
+		}
 	}
 	mycurCol = randStartPos % blockColCount;
 	mycurRow = randStartPos / blockColCount;
 	map_mapBlocks[randStartPos]->setPosIcon();
 
-	std::map<int, MapBlock*>::iterator it;
-
-	for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+	if (!isMaze)
 	{
-		MapBlock* block = map_mapBlocks[it->first];
-		if (block->getPosType() == POS_NOTHING && block->getWalkable() && block->map_eventrnd.size() <= 0)
-			vec_normalBlocks.push_back(block);
-	}
+		std::map<int, MapBlock*>::iterator it;
 
-	std::random_shuffle(vec_normalBlocks.begin(), vec_normalBlocks.end());
+		for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+		{
+			MapBlock* block = map_mapBlocks[it->first];
+			if (block->getPosType() == POS_NOTHING && block->getWalkable() && block->map_eventrnd.size() <= 0)
+				vec_normalBlocks.push_back(block);
+		}
 
-	int tcount = vec_normalBlocks.size()/18;
+		std::random_shuffle(vec_normalBlocks.begin(), vec_normalBlocks.end());
 
-	int mcount = 0;
-	std::vector<MapBlock*>::iterator mit;
+		int tcount = vec_normalBlocks.size() / 18;
 
-	for (mit = vec_normalBlocks.begin(); mit != vec_normalBlocks.end();)
-	{
+		int mcount = 0;
+		std::vector<MapBlock*>::iterator mit;
 
-		if (mcount >= tcount)
-			break;
+		for (mit = vec_normalBlocks.begin(); mit != vec_normalBlocks.end();)
+		{
 
-		bool ret = true;
+			if (mcount >= tcount)
+				break;
+
+			bool ret = true;
+
+			for (unsigned int i = 0; i < vec_monsterBlocks.size(); i++)
+			{
+				int off = abs((*mit)->Row - vec_monsterBlocks[i]->Row) + abs((*mit)->Col - vec_monsterBlocks[i]->Col);
+				if (off <= 3)
+				{
+					ret = false;
+					break;
+				}
+			}
+			if (ret)
+			{
+				vec_monsterBlocks.push_back(*mit);
+				mcount++;
+			}
+			mit = vec_normalBlocks.erase(mit);
+
+		}
 
 		for (unsigned int i = 0; i < vec_monsterBlocks.size(); i++)
 		{
-			int off = abs((*mit)->Row - vec_monsterBlocks[i]->Row) + abs((*mit)->Col - vec_monsterBlocks[i]->Col);
-			if (off <= 3)
-			{
-				ret = false;
-				break;
-			}
+			vec_monsterBlocks[i]->setPosType(POS_MONSTER);
+			vec_monsterBlocks[i]->setPosIcon();
 		}
-		if (ret)
+
+		//迷宫地图记下的位置
+		if (GlobalInstance::eventstartmappos >= 0)
 		{
-			vec_monsterBlocks.push_back(*mit);
-			count++;
+			mycurCol = GlobalInstance::eventstartmappos % blockColCount;
+			mycurRow = GlobalInstance::eventstartmappos / blockColCount;
+			GlobalInstance::eventstartmappos = 0;
 		}
-		mit = vec_normalBlocks.erase(mit);
-
-	}
-
-	for (unsigned int i = 0; i < vec_monsterBlocks.size(); i++)
-	{
-		vec_monsterBlocks[i]->setPosType(POS_MONSTER);
-		vec_monsterBlocks[i]->setPosIcon();
 	}
 
 	setMyPos();
@@ -232,10 +293,12 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	torchbtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("torchbtn");
 	torchbtn->setTag(BTN_TORCH);
 	torchbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+	torchbtn->setVisible(!isMaze);
 
 	visionbtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("visionbtn");
 	visionbtn->setTag(BTN_VISION);
 	visionbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+	visionbtn->setVisible(!isMaze);
 
 	visioncountlbl = (cocos2d::ui::TextBMFont*)visionbtn->getChildByName("countlbl");
 	torchcountlbl = (cocos2d::ui::TextBMFont*)torchbtn->getChildByName("countlbl");
@@ -393,10 +456,7 @@ bool MapBlockScene::getIsMoving()
 void MapBlockScene::goBackMainHomeScene()
 {
 	cacelLongTouch();
-	for (int i = 0; i < 4; i++)
-	{
-		keybtnArr[i]->setEnabled(false);
-	}
+	setBtnEnable(false);
 
 	if (isNewerGuideMap)
 	{
@@ -770,9 +830,23 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	if (isMoving)
 		return;
 
-	if (!checkRoad(keyArrow))
+	m_walkDirection = keyArrow - KEY_UP;
+
+	int checkret = checkRoad(keyArrow);
+	if (checkret <= 0)
 	{
 		myposHero->setAnimation(0, standname[m_walkDirection], false);
+		if (checkret == -1)
+		{
+			MovingLabel::show(ResourceLang::map_lang["noroad"]);
+		}
+		else if (checkret <= -10000)
+		{
+			MovingLabel::show(ResourceLang::map_lang["mazestone"]);
+			UsePropLayer* layer = UsePropLayer::create("z002", 1);
+			layer->setTag(-checkret - 10000);
+			this->addChild(layer, 10);
+		}
 		return;
 	}
 
@@ -803,11 +877,7 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 		break;
 	}
 
-	m_walkDirection = keyArrow - KEY_UP;
-
 	setMyPos();
-	walkcount++;
-	monsterComeRnd += (5 + walkcount);
 
 	int usefoodcount = usefood;
 	int mypackagefood = MyRes::getMyResCount("r001", MYPACKAGE);
@@ -815,15 +885,80 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 		usefoodcount = mypackagefood;
 	MyRes::Use("r001", usefoodcount, MYPACKAGE);
 
-	if (mycurCol == randStartPos % blockColCount && mycurRow == randStartPos / blockColCount)
+	if (isMaze)
 	{
-		cacelLongTouch();
-		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowExit), 0.45f);
+		int index = 0;
+		int bindex = mycurRow*blockColCount + mycurCol;
+		if (map_mapBlocks[bindex]->getPosType() == POS_MAZETRANS)
+		{
+			cacelLongTouch();
+			setBtnEnable(false);
+
+			for (unsigned int i = 0; i < vec_mazetranspoints.size(); i++)
+			{
+				int b = vec_mazetranspoints[i].blockindex;
+				if (b == bindex)
+				{
+					index = i;
+					break;
+				}
+			}
+			if (index == vec_mazetranspoints.size() - 1)
+			{
+				GlobalInstance::mazerouteindex++;
+				if (GlobalInstance::mazerouteindex == GlobalInstance::vec_mazeroute.size())//回到当前地图
+				{
+					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MazeTransitionScene::createScene(0, TO_OUT)));
+				}
+				else//继续下一个
+				{
+					int r = atoi(m_mapid.substr(2, m_mapid.find_first_of("-") - 2).c_str());
+					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MazeTransitionScene::createScene(r, TO_ENTER)));
+				}
+			}
+			else
+			{
+				if (index == vec_mazetranspoints.size() - 2)//不是进入下一个
+				{
+					index = 0;
+				}
+				else
+				{
+					index++;
+				}
+				mycurRow = vec_mazetranspoints[index].blockindex / blockColCount;
+				mycurCol = vec_mazetranspoints[index].blockindex%blockColCount;
+
+				this->scheduleOnce(schedule_selector(MapBlockScene::mazeHeroDelayTranse), 0.5f);
+			}
+		}
+		else
+		{
+			checkFood();
+		}
 	}
 	else
 	{
-		checkFood();
+		walkcount++;
+		monsterComeRnd += (5 + walkcount);
+
+		if (mycurCol == randStartPos % blockColCount && mycurRow == randStartPos / blockColCount)
+		{
+			cacelLongTouch();
+			this->scheduleOnce(schedule_selector(MapBlockScene::delayShowExit), 0.45f);
+		}
+		else
+		{
+			checkFood();
+		}
 	}
+}
+
+void MapBlockScene::removeMazeStone(int blockindex)
+{
+	map_mapBlocks[blockindex]->removeBuild();
+	map_mapBlocks[blockindex]->setWalkable(true);
+	map_mapBlocks[blockindex]->setPosIconVisable(true);
 }
 
 void MapBlockScene::delayShowExit(float dt)
@@ -836,6 +971,12 @@ void MapBlockScene::delayShowExit(float dt)
 
 void MapBlockScene::stopMoving()
 {
+	if (isMaze)
+	{
+		myposHero->setVisible(true);
+		_mylight->setVisible(true);
+	}
+
 	doMyStatus();
 	isMoving = false;
 	if (m_isLongPress) 
@@ -857,6 +998,18 @@ void MapBlockScene::checkFood()
 	{
 		if (foodcount % 5 == 0)
 			MovingLabel::show(ResourceLang::map_lang["lackfoodhint"]);
+
+		if (isMaze && (foodcount == 10 || foodcount == 1))
+		{
+			std::vector< MSGAWDSDATA> vec_res;
+			MSGAWDSDATA rdata;
+			rdata.rid = "r001";
+			rdata.count = GlobalInstance::GlobalInstance::myOutMapCarry - foodcount;
+			rdata.qu = 0;
+			vec_res.push_back(rdata);
+			BuySingleResLayer* layer = BuySingleResLayer::create(rdata);
+			this->addChild(layer, 100);
+		}
 	}
 	else if (foodcount <= 0)
 	{
@@ -902,7 +1055,7 @@ bool MapBlockScene::checklive()
 	return true;
 }
 
-bool MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
+int MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
 {
 	int bindex = 0;
 	switch (keyArrow)
@@ -911,21 +1064,21 @@ bool MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
 		{
 			bindex = (mycurRow + 1)*blockColCount + mycurCol;
 			if (mycurRow >= blockRowCount - 1)
-				return false;
+				return 0;
 		}
 		break;
 		case KEY_DOWN:
 		{
 			bindex = (mycurRow - 1)*blockColCount + mycurCol;
 			if (mycurRow <= 0)
-				return false;
+				return 0;
 		}
 		break;
 		case KEY_LEFT:
 		{
 			bindex = (mycurRow)*blockColCount + mycurCol - 1;
 			if (mycurCol <= 0)
-				return false;
+				return 0;
 			myposHero->getSkeleton()->flipX = 0;
 		}
 		break;
@@ -933,7 +1086,7 @@ bool MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
 		{
 			bindex = (mycurRow)*blockColCount + mycurCol + 1;
 			if (mycurCol >= blockColCount - 1)
-				return false;
+				return 0;
 			myposHero->getSkeleton()->flipX = 1;
 		}
 		break;
@@ -942,10 +1095,12 @@ bool MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
 	}
 	if (!map_mapBlocks[bindex]->getWalkable())
 	{
-		MovingLabel::show(ResourceLang::map_lang["noroad"]);
-		return false;
+		std::string bname = map_mapBlocks[bindex]->getBuildName();
+		if (isMaze && (bname.compare("8.png") == 0 || bname.compare("51.png") == 0))
+			return -(10000 + bindex);
+		return -1;
 	}
-	return true;
+	return 1;
 }
 
 void MapBlockScene::createMap()
@@ -1007,6 +1162,20 @@ void MapBlockScene::scrollViewDidZoom(ScrollView* view)
 	return;
 }
 
+void MapBlockScene::mazeHeroDelayTranse(float dt)
+{
+	myposHero->setVisible(false);
+	_mylight->setVisible(false);
+	setMyPos();
+
+	mapnamelbl->runAction(Sequence::create(DelayTime::create(0.6f), CallFunc::create(CC_CALLBACK_0(MapBlockScene::ajustMazeStatus, this)), NULL));
+}
+
+void MapBlockScene::ajustMazeStatus()
+{
+	ajustMyPos();
+	setBtnEnable(true);
+}
 
 void MapBlockScene::setMyPos()
 {
@@ -1243,6 +1412,8 @@ void MapBlockScene::doMyStatus()
 		if (ret <= POS_BUSINESS && ret != POS_BET)
 #endif
 		{
+			GlobalInstance::eventfrommapid = m_mapid;
+			GlobalInstance::eventstartmappos = mycr;
 			MapEventLayer* mlayer = MapEventLayer::create(ret);
 			this->addChild(mlayer);
 			AnimationEffect::openAniEffect((Layer*)mlayer);
@@ -1893,6 +2064,13 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						else if (ename.compare("npcid") == 0)
 						{
 							mb->setPosNpcID(e0->GetText());
+							if (postype == POS_MAZETRANS)
+							{
+								MAZE_POS madata;
+								madata.maid = atoi(e0->GetText());
+								madata.blockindex = rc;
+								vec_mazetranspoints.push_back(madata);
+							}
 						}
 						else if (ename.compare("npcrnd") == 0)
 						{
@@ -1981,6 +2159,10 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						else
 						{
 							mb->setPosType(-1);
+						}
+						if (isMaze && (mb->getBuildName().compare("8.png") == 0 || mb->getBuildName().compare("51.png") == 0))
+						{
+							mb->setPosIconVisable(false);
 						}
 					}
 				}

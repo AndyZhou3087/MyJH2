@@ -123,7 +123,9 @@ void StoreHouseLayer::showNewerGuide(int step)
 	{
 		nodes.push_back(closebtn);
 	}
-	g_mainScene->showNewerGuideNode(step, nodes);
+
+	if (nodes.size() > 0)
+		g_mainScene->showNewerGuideNode(step, nodes);
 }
 
 void StoreHouseLayer::updateContent(int category)

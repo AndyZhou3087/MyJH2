@@ -40,7 +40,8 @@ typedef enum
 	POS_NPC,
 	POS_BOSS,
 	POS_TBOSS,
-	POS_BOX//宝箱
+	POS_BOX,//宝箱
+	POS_MAZETRANS
 }POSTYPE;
 
 class MapBlock : public Sprite
@@ -61,11 +62,18 @@ public:
 	void setPosIcon();
 	void removePosIcon();
 
+	void setPosIconVisable(bool val);
+
 	void setEventIcon(int eventtype);
 	void removeEventIcon();
+	void removeBuild();
+
+	std::string getBuildName();
+
+private:
+	std::string m_buildname;
 
 public:
-	std::string m_buildname;
 	std::map<int, int> map_eventrnd;//7个事件概率
 	FOURProperty npcs[6];//6个怪物数据
 	std::vector<FOURProperty> vec_RewardsRes;//获得的物品

@@ -833,6 +833,10 @@ public:
 
 	static bool isBuyFirstCharge;
 
+	static std::vector<int> vec_mazeroute;
+	static int mazerouteindex;
+	static std::string eventfrommapid;
+	static int eventstartmappos;
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

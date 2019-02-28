@@ -456,5 +456,8 @@
 	<s name="smithyopenlvtext">铁匠铺%d级可制作</s>
 	<s name="waitingequip">绝世神兵暂未开放，敬请期待！</s>
 	<s name="libraryequiphint">神兵宝甲只收录橙色及以上品质</s>
-	<s name="libraryequipgetwhere">四级宝箱或者15级铁匠铺制作</s>					
+	<s name="libraryequipgetwhere">四级宝箱或者15级铁匠铺制作</s>
+	<s name="mazetext_0">只听轰隆一声巨响，xxx进入一个神秘世界</s>
+	<s name="mazestone">坚硬的石头！无法通过</s>
+	<s name="mazename">迷宫</s>	
 </strings>

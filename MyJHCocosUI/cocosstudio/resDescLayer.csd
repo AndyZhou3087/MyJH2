@@ -124,7 +124,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="closebtn" ActionTag="613568636" VisibleForFrame="False" Tag="142" IconVisible="False" LeftMargin="137.0971" RightMargin="378.9030" TopMargin="798.2622" BottomMargin="397.7378" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="closebtn" ActionTag="613568636" VisibleForFrame="False" Tag="142" IconVisible="False" LeftMargin="137.0971" RightMargin="378.9029" TopMargin="798.2622" BottomMargin="397.7378" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="1529148387" Tag="143" IconVisible="False" LeftMargin="62.5216" RightMargin="63.4784" TopMargin="19.7404" BottomMargin="24.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="28" Scale9Height="14" ctype="ImageViewObjectData">

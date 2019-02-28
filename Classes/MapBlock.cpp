@@ -37,6 +37,7 @@ bool MapBlock::init(int row, int col, std::string boardName)
 {
 	Row = row;
 	Col = col;
+
 	std::string filename = StringUtils::format("mapui/boardblock_%s", boardName.c_str());
 
 	if (Sprite::initWithSpriteFrameName(filename))
@@ -58,8 +59,14 @@ void MapBlock::setBuilding(std::string buildname)
 		Sprite* buildblock = Sprite::createWithSpriteFrameName(filename);
 		buildblock->setAnchorPoint(Vec2(0, 1));
 		buildblock->setPosition(Vec2(Col*MAPBLOCKWIDTH, (Row + 1)*MAPBLOCKHEIGHT));
-		this->getParent()->addChild(buildblock, this->getLocalZOrder() + 10000);
+		std::string name = StringUtils::format("build%d", this->getLocalZOrder());
+		this->getParent()->addChild(buildblock, this->getLocalZOrder() + 10000, name);
 	}
+}
+
+std::string MapBlock::getBuildName()
+{
+	return m_buildname;
 }
 
 void MapBlock::setPosIcon()
@@ -67,7 +74,7 @@ void MapBlock::setPosIcon()
 	std::string posiconname = StringUtils::format("mappos/postype%d.csb", m_postype);
 	auto posicon = CSLoader::createNode(posiconname);
 
-	if (m_buildname.compare("26") == 0 || m_buildname.compare("27") == 0)//特殊处理草-可以占在草里，不这样，桥上有问题
+	if (m_buildname.compare("26.png") == 0 || m_buildname.compare("27.png") == 0)//特殊处理草-可以占在草里，不这样，桥上有问题
 	{
 		posicon->setPosition(Vec2(this->getContentSize().width / 2, this->getContentSize().height / 2 - 10));
 		this->addChild(posicon, 0, "posicon");
@@ -86,12 +93,30 @@ void MapBlock::setPosIcon()
 
 void MapBlock::removePosIcon()
 {
-	if (m_buildname.compare("26") == 0 || m_buildname.compare("27") == 0)//特殊处理草-可以占在草里，不这样，桥上有问题
+	if (m_buildname.compare("26.png") == 0 || m_buildname.compare("27.png") == 0)//特殊处理草-可以占在草里，不这样，桥上有问题
 		this->removeChildByName("posicon");
 	else
 	{
 		std::string posname = StringUtils::format("posicon%d", this->getLocalZOrder());
 		this->getParent()->removeChildByName(posname);
+	}
+}
+
+void MapBlock::setPosIconVisable(bool val)
+{
+	if (m_buildname.compare("26.png") == 0 || m_buildname.compare("27.png") == 0)//特殊处理草-可以占在草里，不这样，桥上有问题
+	{
+		Node* posnode = this->getChildByName("posicon");
+		if (posnode != NULL)
+			posnode->setVisible(val);
+	}
+	else
+	{
+		std::string posname = StringUtils::format("posicon%d", this->getLocalZOrder());
+
+		Node* posnode = this->getParent()->getChildByName(posname);
+		if (posnode != NULL)
+			posnode->setVisible(val);
 	}
 }
 
@@ -113,4 +138,10 @@ void MapBlock::setEventIcon(int eventtype)
 void MapBlock::removeEventIcon()
 {
 	this->removeChildByName("eventicon");
+}
+
+void MapBlock::removeBuild()
+{
+	std::string name = StringUtils::format("build%d", this->getLocalZOrder());
+	this->getParent()->removeChildByName(name);
 }

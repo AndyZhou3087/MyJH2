@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
-#include "MapBlock.h"
+#include "GlobalInstance.h"
 USING_NS_CC;
 
 class EventBusinessLayer :public Layer
@@ -16,7 +16,7 @@ public:
 
 	static EventBusinessLayer* create();
 
-	void buyRes(FOURProperty res);
+	void buyRes(MSGAWDSDATA res);
 
 private:
 
@@ -31,7 +31,7 @@ private:
 
 	void loadMyPackageRes();
 
-	static bool sortBuyResByType(FOURProperty a, FOURProperty b);
+	static bool sortBuyResByType(MSGAWDSDATA a, MSGAWDSDATA b);
 
 	void delayShowUI(float dt);
 
@@ -43,8 +43,8 @@ private:
 	cocos2d::ui::Text* mycoinlbl;
 	cocos2d::ui::Text* mysilverlbl;
 
-	std::vector<FOURProperty> vec_buyres;
-	std::vector<FOURProperty> vec_mypackagres;
+	std::vector<MSGAWDSDATA> vec_buyres;
+	std::vector<MSGAWDSDATA> vec_mypackagres;
 
 	bool clickflag;
 	Vec2 beginTouchPoint;

@@ -14,14 +14,16 @@ public:
 	BuyResLayer();
 	~BuyResLayer();
 
-	static BuyResLayer* create(std::vector<MSGAWDSDATA> vec_res);
-	bool init(std::vector<MSGAWDSDATA> vec_res);
+	static BuyResLayer* create(std::vector<MSGAWDSDATA> vec_res, int putwhere = MYSTORAGE);
+	bool init(std::vector<MSGAWDSDATA> vec_res, int putwhere = MYSTORAGE);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void setMarketData();
 private:
 	DynamicValueInt needcoincount;
 	std::vector<MSGAWDSDATA> m_vecres;
+
+	int m_putwhere;
 };
 
 #endif

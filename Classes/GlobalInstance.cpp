@@ -115,6 +115,13 @@ std::vector<int> GlobalInstance::vec_costprops;
 
 bool GlobalInstance::isBuyFirstCharge = false;
 
+std::vector<int> GlobalInstance::vec_mazeroute;
+
+int GlobalInstance::mazerouteindex = 0;
+
+std::string GlobalInstance::eventfrommapid;
+int GlobalInstance::eventstartmappos = -1;
+
 GlobalInstance::GlobalInstance()
 {
 

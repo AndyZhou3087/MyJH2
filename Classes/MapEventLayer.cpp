@@ -11,6 +11,7 @@
 #endif
 #include "MovingLabel.h"
 #include "BuyCoinLayer.h"
+#include "MazeTransitionScene.h"
 
 #define BETPRO 450
 
@@ -256,6 +257,21 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					eventnode_3->setVisible(false);
 					boxEventNode();
 				}
+				else if (r <= 10)//进入迷宫
+				{
+					GlobalInstance::vec_mazeroute.clear();
+					GlobalInstance::mazerouteindex = 0;
+
+					int rz = 0;
+					int c = rz + 1;
+					for (int i = 1; i < mazes[rz]; i++)
+					{
+						GlobalInstance::vec_mazeroute.push_back(i);
+					}
+					std::random_shuffle(GlobalInstance::vec_mazeroute.begin(), GlobalInstance::vec_mazeroute.end());
+					GlobalInstance::vec_mazeroute.push_back(mazes[rz]);
+					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MazeTransitionScene::createScene(c, TO_ENTER)));
+				}
 				else if (r <= 5)
 				{
 					eventnode_1->setVisible(false);
@@ -274,8 +290,9 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			else if (m_eventindex == POS_BUSINESS)
 			{
 				Layer* layer = EventBusinessLayer::create();
-				this->addChild(layer);
-				AnimationEffect::openAniEffect((Layer*)layer);
+				g_MapBlockScene->addChild(layer, 100, "buisinesslayer");
+				AnimationEffect::openAniEffect(layer);
+				AnimationEffect::closeAniEffect(this);
 			}
 			else if (m_eventindex == POS_ELDER)
 			{
