@@ -249,15 +249,15 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case 1:
 			if (m_eventindex == MAP_JUMP || m_eventindex == POS_CAVE)
 			{
-				int r = GlobalInstance::getInstance()->createRandomNum(10) + 1;
-				if (r <= 1)
+				int r = GlobalInstance::getInstance()->createRandomNum(100);
+				if (r < 10)
 				{
 					eventnode_1->setVisible(false);
 					eventnode_2->setVisible(true);
 					eventnode_3->setVisible(false);
 					boxEventNode();
 				}
-				else if (r <= 10)//进入迷宫
+				else if (r < 30)//进入迷宫
 				{
 					GlobalInstance::vec_mazeroute.clear();
 					GlobalInstance::mazerouteindex = 0;
@@ -272,7 +272,7 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					GlobalInstance::vec_mazeroute.push_back(mazes[rz]);
 					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MazeTransitionScene::createScene(c, TO_ENTER)));
 				}
-				else if (r <= 5)
+				else if (r < 55)
 				{
 					eventnode_1->setVisible(false);
 					eventnode_2->setVisible(false);
