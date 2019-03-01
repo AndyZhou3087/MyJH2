@@ -25,5 +25,15 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="gfLibraryInfoLayer.csd" />
+          <FilePathData Path="equipLibraryInfoLayer.csd" />
+          <FilePathData Path="buySingleResLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="buySingleResLayer.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>

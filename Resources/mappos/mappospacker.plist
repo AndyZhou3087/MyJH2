@@ -95,7 +95,7 @@
 			<key>mappos/posbox/baog.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,719},{45,60}}</string>
+				<string>{{62,935},{45,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -106,11 +106,11 @@
 			<key>mappos/posbox/heidk.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,818},{57,25}}</string>
+				<string>{{62,995},{57,25}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{57,25}</string>
 			</dict>
@@ -128,7 +128,7 @@
 			<key>mappos/posevent/sd.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,648},{61,71}}</string>
+				<string>{{62,864},{61,71}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -139,13 +139,101 @@
 			<key>mappos/posevent/sz.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,779},{39,39}}</string>
+				<string>{{107,935},{39,39}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{39,39}</string>
+			</dict>
+			<key>mappos/postrans/trans1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,648},{62,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{62,72}</string>
+			</dict>
+			<key>mappos/postrans/trans2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,720},{62,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{62,72}</string>
+			</dict>
+			<key>mappos/postrans/trans3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,792},{62,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{62,72}</string>
+			</dict>
+			<key>mappos/postrans/trans4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,864},{62,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{62,72}</string>
+			</dict>
+			<key>mappos/postrans/trans5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,936},{62,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{62,72}</string>
+			</dict>
+			<key>mappos/postrans/trans6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{62,648},{62,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{62,72}</string>
+			</dict>
+			<key>mappos/postrans/trans7.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{62,720},{62,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{62,72}</string>
+			</dict>
+			<key>mappos/postrans/trans8.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{62,792},{62,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{62,72}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -157,12 +245,12 @@
 			<key>realTextureFileName</key>
 			<string>mappospacker.png</string>
 			<key>size</key>
-			<string>{128,1024}</string>
+			<string>{256,1024}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>128</integer>
+			<integer>256</integer>
 			<key>height</key>
 			<integer>1024</integer>
 		</dict>
