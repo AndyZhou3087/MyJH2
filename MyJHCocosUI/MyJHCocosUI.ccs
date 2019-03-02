@@ -30,6 +30,9 @@
           <Image Name="cardherobox_3.png" />
           <Image Name="cardherobox_4.png" />
           <Image Name="carryoutbox.png" />
+          <Image Name="changevocbg .png" />
+          <Image Name="changevocbox .png" />
+          <Image Name="changevocdescbox.png" />
           <Image Name="event0.jpg" />
           <Image Name="event1.jpg" />
           <Image Name="event2.jpg" />
@@ -450,6 +453,12 @@
           <Image Name="achieve_title.png" />
           <Image Name="agreetext.png" />
           <Image Name="allgetbtn_text.png" />
+          <Image Name="attr0_text.png" />
+          <Image Name="attr1_text.png" />
+          <Image Name="attr2_text.png" />
+          <Image Name="attr3_text.png" />
+          <Image Name="attr4_text.png" />
+          <Image Name="attr5_text.png" />
           <Image Name="backbtn_text.png" />
           <Image Name="break_text.png" />
           <Image Name="bufpreskill10text.png" />
@@ -465,6 +474,17 @@
           <Image Name="carryout_text.png" />
           <Image Name="changebtn_text.png" />
           <Image Name="changequene_text.png" />
+          <Image Name="changevocbreakafter_text.png" />
+          <Image Name="changevocbtn_text10.png" />
+          <Image Name="changevocbtn_text11.png" />
+          <Image Name="changevocbtn_text4.png" />
+          <Image Name="changevocbtn_text5.png" />
+          <Image Name="changevocbtn_text6.png" />
+          <Image Name="changevocbtn_text7.png" />
+          <Image Name="changevocbtn_text8.png" />
+          <Image Name="changevocbtn_text9.png" />
+          <Image Name="changevocbtnbreak_text.png" />
+          <Image Name="changevocneed_text.png" />
           <Image Name="cleandata_text.png" />
           <Image Name="cleanread_text.png" />
           <Image Name="closebtn_text.png" />
@@ -876,6 +896,7 @@
           <Image Name="actionbtn_yellow.png" />
           <Image Name="addnicknamecountbtn.png" />
           <Image Name="arrowglv.png" />
+          <Image Name="attrvalblock.png" />
           <Image Name="b001.png" />
           <Image Name="b002.png" />
           <Image Name="b003.png" />
@@ -906,6 +927,8 @@
           <Image Name="carryoutboxtop.png" />
           <Image Name="catabtn_n.png" />
           <Image Name="catabtn_s.png" />
+          <Image Name="changevocbreakarrow.png" />
+          <Image Name="changevocbtn.png" />
           <Image Name="closebtn.png" />
           <Image Name="closebtn2.png" />
           <Image Name="d001.png" />
@@ -1170,6 +1193,14 @@
           <Image Name="v001.png" />
           <Image Name="vip0.png" />
           <Image Name="vip1.png" />
+          <Image Name="voc10icon.png" />
+          <Image Name="voc11icon.png" />
+          <Image Name="voc4icon.png" />
+          <Image Name="voc5icon.png" />
+          <Image Name="voc6icon.png" />
+          <Image Name="voc7icon.png" />
+          <Image Name="voc8icon.png" />
+          <Image Name="voc9icon.png" />
           <Image Name="w001.png" />
           <Image Name="w002.png" />
           <Image Name="w003.png" />
@@ -1267,6 +1298,7 @@
         <Project Name="achieveNode.csd" Type="Node" />
         <Project Name="buyCoinLayer.csd" Type="Layer" />
         <Project Name="buyResLayer.csd" Type="Layer" />
+        <Project Name="buySingleResLayer.csd" Type="Layer" />
         <Project Name="cardHeroNode.csd" Type="Node" />
         <Project Name="changeHeadLayer.csd" Type="Layer" />
         <Project Name="changeVocationLayer.csd" Type="Layer" />
@@ -1275,7 +1307,6 @@
         <Project Name="equipLibraryInfoLayer.csd" Type="Layer" />
         <Project Name="errorHintLayer.csd" Type="Layer" />
         <Project Name="eventBusinessLayer.csd" Type="Layer" />
-        <Project Name="buySingleResLayer.csd" Type="Layer" />
         <Project Name="fighterAttrLayer.csd" Type="Layer" />
         <Project Name="fightHeroNode.csd" Type="Node" />
         <Project Name="fightLayer.csd" Type="Layer" />

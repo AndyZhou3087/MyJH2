@@ -35,7 +35,7 @@ private:
 	int m_forwhere;
 	std::string needresid;
 	Node* csbnode;
-	cocos2d::ui::Text* count_0;
+	cocos2d::ui::Text* count[2];
 
 };
 

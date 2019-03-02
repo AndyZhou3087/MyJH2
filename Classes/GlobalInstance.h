@@ -19,6 +19,7 @@ typedef struct
 	std::vector<float> vec_avoid;//闪避
 	std::vector<float> vec_crit;//暴击
 	std::vector<float> vec_atkspeed;//攻击速度
+	std::vector<int> vec_attrbias;//属性偏向
 }S_HeroAttr;
 
 //小地图数据

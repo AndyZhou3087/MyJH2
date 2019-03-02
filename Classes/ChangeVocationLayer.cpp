@@ -18,7 +18,10 @@ USING_NS_CC;
 
 ChangeVocationLayer::ChangeVocationLayer()
 {
-
+	for (int i = 0; i < 2; i++)
+	{
+		count[i] = NULL;
+	}
 }
 
 ChangeVocationLayer::~ChangeVocationLayer()
@@ -55,95 +58,128 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 	m_forwhere = forwhere;
 
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
-	this->addChild(color,0,"colorLayer");
+	this->addChild(color, 0, "colorLayer");
 
 	csbnode = CSLoader::createNode(ResourcePath::makePath("changeVocationLayer.csb"));
 	this->addChild(csbnode);
+
+	cocos2d::ui::ImageView* bg = (cocos2d::ui::ImageView*)csbnode->getChildByName("bg");
+
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	int c = (herodata->getLevel() + 1) / 10;
 	needresid = StringUtils::format("d%03d", c);
 
-	//name
-	cocos2d::ui::Text* name = (cocos2d::ui::Text*)csbnode->getChildByName("name");
-	name->setString(herodata->getName());
+	//关闭按钮
+	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
+	closebtn->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onBtnClick, this));
+	closebtn->setTag(1000);
 
-	//按钮1
-	cocos2d::ui::Button* accbtn1 = (cocos2d::ui::Button*)csbnode->getChildByName("accbtn1");
-	accbtn1->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onBtnClick, this));
-	accbtn1->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
+	Node* vnode[2];
+	for (int i = 0; i < 2; i++)
+	{
+		std::string str = StringUtils::format("v%dnode", i+1);
+		vnode[i] = csbnode->getChildByName(str);
+	}
 
-	//按钮2
-	cocos2d::ui::Button* accbtn2 = (cocos2d::ui::Button*)csbnode->getChildByName("accbtn2");
-	accbtn2->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onBtnClick, this));
-	accbtn2->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
-
-	//按钮3
-	cocos2d::ui::Button* accbtn3 = (cocos2d::ui::Button*)csbnode->getChildByName("accbtn3");
-	accbtn3->setTag(0);
-	accbtn3->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onBtnClick, this));
-	accbtn3->setTitleText(ResourceLang::map_lang["changeclosetext"]);
-	accbtn3->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
-
-	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox")->getChildByName("res");
-	std::string respath = StringUtils::format("ui/%s.png", needresid.c_str());
-	res->loadTexture(respath, cocos2d::ui::Widget::TextureResType::PLIST);
-	res->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onImgClick, this));
-
-	cocos2d::ui::Text* rewardlabel = (cocos2d::ui::Text*)csbnode->getChildByName("rewardlabel");
-
-	cocos2d::ui::Text* content = (cocos2d::ui::Text*)csbnode->getChildByName("content");
-
-	count_0 = (cocos2d::ui::Text*)csbnode->getChildByName("count_0");
-
-	updateResCount(0);
-	this->schedule(schedule_selector(ChangeVocationLayer::updateResCount), 1.0f);
-	
-	std::string str;
-
+	int index = 1;
 	if (forwhere == 0)
 	{
-		int a;
-		int b;
-		S_HeroAttr aatt;
-		S_HeroAttr batt;
-		for (unsigned int i = 0; i < GlobalInstance::vec_herosAttr.size(); i++)
-		{
-			if (i == herodata->getVocation() + 4)
-			{
-				a = i;
-				aatt = GlobalInstance::vec_herosAttr[i];
-			}
-			if (i == herodata->getVocation() + 8)
-			{
-				b = i;
-				batt = GlobalInstance::vec_herosAttr[i];
-			}
-		}
-		str = StringUtils::format(ResourceLang::map_lang["changetext1"].c_str(), GlobalInstance::map_AllResources[aatt.id].name.c_str());
-		accbtn1->setTitleText(str);
-		accbtn1->setTag(a);
-
-		str = StringUtils::format(ResourceLang::map_lang["changetext1"].c_str(), GlobalInstance::map_AllResources[batt.id].name.c_str());
-		accbtn2->setTitleText(str);
-		accbtn2->setTag(b);
-		
-		str = StringUtils::format("%s:%s\n\n%s:%s", GlobalInstance::map_AllResources[aatt.id].name.c_str(), GlobalInstance::map_AllResources[aatt.id].desc.c_str(), GlobalInstance::map_AllResources[batt.id].name.c_str(), GlobalInstance::map_AllResources[batt.id].desc.c_str());
-		content->setString(str);
-		rewardlabel->setString(ResourceLang::map_lang["changecondition"]);
+		index = 2;
+		vnode[0]->setPositionY(850);
+		bg->setContentSize(Size(bg->getContentSize().width, 960));
+		closebtn->setPositionY(1075);
 	}
 	else
 	{
-		content->setString(ResourceLang::map_lang["changesuretext"]);
-		rewardlabel->setString(ResourceLang::map_lang["breakcondition"]);
+		//vnode[0]->setPositionY(700);
+		//vnode[1]->setVisible(false);
+		//bg->setContentSize(Size(bg->getContentSize().width, 680));
+		//closebtn->setPositionY(935);
 
-		accbtn1->setTitleText(ResourceLang::map_lang["breaktext"]);
-		accbtn1->setTag(1);
-		accbtn2->setTitleText(ResourceLang::map_lang["changeclosetext"]);
-		accbtn2->setTag(0);
-
-		accbtn3->setVisible(false);
+		vnode[0]->setPositionY(640);
+		vnode[1]->setVisible(false);
+		bg->setContentSize(Size(bg->getContentSize().width, 550));
+		closebtn->setPositionY(870);
 	}
+	for (int i = 0; i < index; i++)
+	{
+		cocos2d::ui::ImageView* vocationicon = (cocos2d::ui::ImageView*)vnode[i]->getChildByName("v");
+
+		std::string vstr;
+		int showvoc = 0;
+		std::string btnstr;
+		if (forwhere == 0)
+		{
+			showvoc = herodata->getVocation() + 4 * (i + 1);
+			btnstr = StringUtils::format("changevocbtn_text%d", showvoc);
+		}
+		else
+		{
+			showvoc = herodata->getVocation();
+			btnstr = "changevocbtnbreak_text";
+		}
+		vstr = StringUtils::format("ui/voc%dicon.png", showvoc);
+
+		vocationicon->loadTexture(vstr, cocos2d::ui::Widget::TextureResType::PLIST);
+
+		cocos2d::ui::Text* desc = (cocos2d::ui::Text*)vnode[i]->getChildByName("desc");
+		std::string hstr = StringUtils::format("h%03d", showvoc + 1);
+		desc->setString(GlobalInstance::map_AllResources[hstr].desc);
+
+		for (int m = 0; m < 6; m++)
+		{
+			std::string attrtextname = StringUtils::format("attrtext_%d", m);
+			cocos2d::ui::ImageView* attrtex = (cocos2d::ui::ImageView*)vnode[i]->getChildByName(attrtextname);
+
+			attrtextname = StringUtils::format("attr%d_text", m);
+			attrtex->loadTexture(ResourcePath::makeTextImgPath(attrtextname, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		}
+		//if (forwhere == 0)
+		{
+			for (int m = 0; m < 6; m++)
+			{
+				for (int n = 0; n < 6; n++)
+				{
+					std::string attrname = StringUtils::format("attrvalblock%d_%d", m, n);
+					Node* attrnode = vnode[i]->getChildByName(attrname);
+					if (n + 1 > GlobalInstance::GlobalInstance::vec_herosAttr[showvoc].vec_attrbias[m])
+					{
+						attrnode->setVisible(false);
+					}
+				}
+			}
+		}
+
+			
+		cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)vnode[i]->getChildByName("resbox")->getChildByName("res");
+		std::string respath = StringUtils::format("ui/%s.png", needresid.c_str());
+		res->loadTexture(respath, cocos2d::ui::Widget::TextureResType::PLIST);
+		res->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onImgClick, this));
+
+		cocos2d::ui::ImageView* changevocneed_text = (cocos2d::ui::ImageView*)vnode[i]->getChildByName("resbox")->getChildByName("changevocneed_text");
+		changevocneed_text->loadTexture(ResourcePath::makeTextImgPath("changevocneed_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+		count[i] = (cocos2d::ui::Text*)vnode[i]->getChildByName("resbox")->getChildByName("count");
+
+		cocos2d::ui::Button* actionbtn = (cocos2d::ui::Button*)vnode[i]->getChildByName("actionbtn");
+		actionbtn->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onBtnClick, this));
+		actionbtn->setTag(1000 + i + 1);
+
+		cocos2d::ui::ImageView* actionbtntext = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
+		actionbtntext->ignoreContentAdaptWithSize(true);
+		actionbtntext->loadTexture(ResourcePath::makeTextImgPath(btnstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+		//if (forwhere == 1)
+		//{
+		//	changevocneed_text->setPosition(Vec2(-210, -290));
+		//	actionbtn->setPositionY(-290);
+		//}
+	}
+
+	updateResCount(0);
+	this->schedule(schedule_selector(ChangeVocationLayer::updateResCount), 1.0f);
+
 
 	this->scheduleOnce(schedule_selector(ChangeVocationLayer::delayShowNewerGuide), newguidetime);
 
@@ -180,8 +216,8 @@ void ChangeVocationLayer::showNewerGuide(int step)
 	{
 		for (int i = 0; i < 2; i++)
 		{
-			std::string str = StringUtils::format("accbtn%d", i + 1);
-			nodes.push_back(csbnode->getChildByName(str));
+			std::string str = StringUtils::format("v%dnode", i+1);
+			nodes.push_back(csbnode->getChildByName(str)->getChildByName("actionbtn"));
 		}
 	}
 	g_mainScene->showNewerGuideNode(step, nodes);
@@ -189,14 +225,18 @@ void ChangeVocationLayer::showNewerGuide(int step)
 
 void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	Node* clicknode = (Node*)pSender;
-	int tag = clicknode->getTag();
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		if (m_forwhere == 0)
+		Node* clicknode = (Node*)pSender;
+		int tag = clicknode->getTag();
+		if (tag == 1000)
 		{
-			if (tag != 0)
+			AnimationEffect::closeAniEffect(this);
+		}
+		else
+		{
+			if (m_forwhere == 0)//转职
 			{
 				if (MyRes::getMyResCount(needresid) < 1)
 				{
@@ -212,26 +252,20 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				else
 				{
 					MyRes::Use(needresid);
+					SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BREAKUPSUCC);
+					m_herodata->setChangeCount(m_herodata->getChangeCount() + 1);
+					m_herodata->setVocation(m_herodata->getVocation() + tag%1000 * 4);
+					GlobalInstance::getInstance()->saveHero(m_herodata);
+					HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
+					if (attlay != NULL)
+					{
+						attlay->changeHeroVocImg();
+					}
+					CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_zzcg");
+					AnimationEffect::closeAniEffect(this);
 				}
 			}
-			if (tag == m_herodata->getVocation() + 4 || tag == m_herodata->getVocation() + 8)
-			{
-				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BREAKUPSUCC);
-				m_herodata->setChangeCount(m_herodata->getChangeCount() + 1);
-				m_herodata->setVocation(tag);
-				GlobalInstance::getInstance()->saveHero(m_herodata);
-				HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
-				if (attlay != NULL)
-				{
-					attlay->changeButton();
-				}
-				CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_zzcg");
-			}
-			AnimationEffect::closeAniEffect((Layer*)this);
-		}
-		else
-		{
-			if (tag != 0)
+			else//突破
 			{
 				if (MyRes::getMyResCount(needresid) < 1)
 				{
@@ -239,7 +273,6 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 					SimpleResPopLayer* layer = SimpleResPopLayer::create(needresid, 1, 1);
 					this->addChild(layer);
 					AnimationEffect::openAniEffect(layer);
-					return;
 				}
 				else
 				{
@@ -252,9 +285,9 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 						attlay->changeButton();
 					}
 					CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_tpcg");
+					AnimationEffect::closeAniEffect(this);
 				}
 			}
-			AnimationEffect::closeAniEffect((Layer*)this);
 		}
 	}
 }
@@ -276,15 +309,22 @@ void ChangeVocationLayer::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 void ChangeVocationLayer::updateResCount(float dt)
 {
 	std::string str = StringUtils::format("%d/1", MyRes::getMyResCount(needresid));
-	count_0->setString(str);
 
-	if (MyRes::getMyResCount(needresid) >= 1)
+	for (int i = 0; i < 2; i++)
 	{
-		count_0->setColor(Color3B(255, 255, 255));
-	}
-	else
-	{
-		count_0->setColor(Color3B(255, 0, 0));
+		if (count[i] != NULL)
+		{
+			count[i]->setString(str);
+
+			if (MyRes::getMyResCount(needresid) >= 1)
+			{
+				count[i]->setColor(Color3B(255, 255, 255));
+			}
+			else
+			{
+				count[i]->setColor(Color3B(255, 0, 0));
+			}
+		}
 	}
 }
 

@@ -602,6 +602,11 @@ void GlobalInstance::loadHerosAttrData()
 			{
 				data.vec_atkspeed.push_back(v[m].GetDouble());
 			}
+			v = jsonvalue["attr"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_attrbias.push_back(v[m].GetInt());
+			}
 
 			vec_herosAttr.push_back(data);
 		}

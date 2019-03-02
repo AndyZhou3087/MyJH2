@@ -102,15 +102,6 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 	cantclick->setSwallowTouches(true);
 	cantclick->setVisible(false);
 
-	//英雄全身图
-	herofullimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("hfull");
-	herofullimg->ignoreContentAdaptWithSize(true);
-	std::string fullimgstr = StringUtils::format("hfull_%d_%d.png", herodata->getVocation(), herodata->getSex());
-	herofullimg->loadTexture(ResourcePath::makeImagePath(fullimgstr), cocos2d::ui::Widget::TextureResType::LOCAL);
-	herofullimg->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onHeroFullClick, this));
-	herofullimg->setEnabled(false);
-	herofullimg->setVisible(false);
-
 	cocos2d::ui::Button* hintbtn = (cocos2d::ui::Button*)csbnode->getChildByName("hintbtn");
 	hintbtn->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onHeroHintClick, this));
 	hintbtn->setSwallowTouches(true);
@@ -312,14 +303,15 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 
 	for (unsigned int i = 0; i < vec_norheros.size(); i++)
 	{
-		auto imageView = cocos2d::ui::ImageView::create();
+		cocos2d::ui::ImageView* imageView = cocos2d::ui::ImageView::create();
+		imageView->ignoreContentAdaptWithSize(true);
 		std::string fullimgstr = StringUtils::format("hfull_%d_%d.png", vec_norheros[i]->getVocation(), vec_norheros[i]->getSex());
 		imageView->loadTexture(ResourcePath::makeImagePath(fullimgstr), cocos2d::ui::Widget::TextureResType::LOCAL);
 		auto layout = cocos2d::ui::Layout::create();
 		layout->setContentSize(pageView->getContentSize());
 
 		imageView->setPosition(Vec2(layout->getContentSize().width / 2, layout->getContentSize().height / 2));
-		layout->addChild(imageView);
+		layout->addChild(imageView, 0, "fullimg");
 
 		pageView->addPage(layout);
 		if (herodata->getName().compare(vec_norheros[i]->getName()) == 0)
@@ -403,7 +395,6 @@ void HeroAttrLayer::delayShowNewerGuide(float dt)
 			}
 		}
 	}
-	herofullimg->setEnabled(true);
 }
 
 void HeroAttrLayer::showNewerGuide(int step)
@@ -790,10 +781,10 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				addexplbl->stopAllActions();
 				addexplbl->setOpacity(255);
 				equipnode->setVisible(true);
-				/*if (m_fromwhere == 0)
+				if (m_fromwhere == 0)
 				{
 					pageView->setEnabled(true);
-				}*/
+				}
 			}
 			else
 			{
@@ -936,6 +927,14 @@ void HeroAttrLayer::changeButton()
 		txtimg->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		btnArr[1]->setEnabled(false);
 	}
+}
+
+void HeroAttrLayer::changeHeroVocImg()
+{
+	changeButton();
+	cocos2d::ui::ImageView* herofullimg = (cocos2d::ui::ImageView*)pageView->getItem(pageView->getCurrentPageIndex())->getChildByName("fullimg");
+	std::string fullimgstr = StringUtils::format("hfull_%d_%d.png", m_heroData->getVocation(), m_heroData->getSex());
+	herofullimg->loadTexture(ResourcePath::makeImagePath(fullimgstr), cocos2d::ui::Widget::TextureResType::LOCAL);
 }
 
 void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -1252,8 +1251,6 @@ void HeroAttrLayer::updateVocationUI()
 {
 	std::string attrstr = StringUtils::format("vocation_%d", m_heroData->getVocation());
 	vocation->setString(ResourceLang::map_lang[attrstr]);
-	attrstr = StringUtils::format("hfull_%d_%d.png", m_heroData->getVocation(), m_heroData->getSex());
-	herofullimg->loadTexture(ResourcePath::makeImagePath(attrstr), cocos2d::ui::Widget::TextureResType::LOCAL);
 }
 
 void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

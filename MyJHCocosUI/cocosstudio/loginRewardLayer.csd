@@ -61,7 +61,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.7821" />
             <PreSize X="0.2083" Y="0.0453" />
-            <FileData Type="MarkedSubImage" Path="text_zh_cn/loginrewardtitle.png" Plist="ui.plist" />
+            <FileData Type="MarkedSubImage" Path="text_zh_cn/loginrewardtitle.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="day1" ActionTag="1504836748" Tag="142" IconVisible="True" LeftMargin="119.9995" RightMargin="600.0005" TopMargin="508.9999" BottomMargin="771.0001" ctype="SingleNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
@@ -100,11 +100,11 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4998" Y="0.5142" />
                     <PreSize X="0.5526" Y="0.6042" />
-                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="ui.plist" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="0.0000" Y="-90.0000" />
+                <Position Y="-90.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -207,11 +207,11 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4998" Y="0.5142" />
                     <PreSize X="0.5526" Y="0.6042" />
-                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="ui.plist" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="0.0000" Y="-90.0000" />
+                <Position Y="-90.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -314,11 +314,11 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4998" Y="0.5142" />
                     <PreSize X="0.5526" Y="0.6042" />
-                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="ui.plist" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="0.0000" Y="-90.0000" />
+                <Position Y="-90.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -421,11 +421,11 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4998" Y="0.5142" />
                     <PreSize X="0.5526" Y="0.6042" />
-                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="ui.plist" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="0.0000" Y="-90.0000" />
+                <Position Y="-90.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -528,11 +528,11 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4998" Y="0.5142" />
                     <PreSize X="0.5526" Y="0.6042" />
-                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="ui.plist" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="0.0000" Y="-90.0000" />
+                <Position Y="-90.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -635,11 +635,11 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4998" Y="0.5142" />
                     <PreSize X="0.5526" Y="0.6042" />
-                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="ui.plist" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="0.0000" Y="-90.0000" />
+                <Position Y="-90.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -742,11 +742,11 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4998" Y="0.5142" />
                     <PreSize X="0.5526" Y="0.6042" />
-                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="ui.plist" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="0.0000" Y="-90.0000" />
+                <Position Y="-90.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -849,11 +849,11 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.4998" Y="0.5142" />
                     <PreSize X="0.5526" Y="0.6042" />
-                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="ui.plist" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/msggeting_text.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="0.0000" Y="-90.0000" />
+                <Position Y="-90.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />

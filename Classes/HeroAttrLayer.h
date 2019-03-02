@@ -34,6 +34,8 @@ public:
 
 	void changeButton();
 
+	void changeHeroVocImg();
+
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
 
@@ -142,9 +144,6 @@ private:
 
 	//职业
 	cocos2d::ui::Text* vocation;
-
-	//全身像
-	cocos2d::ui::ImageView* herofullimg;
 
 	cocos2d::ui::ImageView* heroattrqu;
 

@@ -452,8 +452,6 @@
       <FilePathData Path="ui/matchreward_1.png" />
       <FilePathData Path="ui/matchruleicon.png" />
       <FilePathData Path="ui/loginrewarditem.png" />
-      <FilePathData Path="text_zh_cn/loginrewardtitle.png" />
-      <FilePathData Path="text_zh_cn/msggeting_text.png" />
       <FilePathData Path="ui/m1-5_box.png" />
       <FilePathData Path="ui/morebtn_n.png" />
       <FilePathData Path="ui/morebtn_s.png" />
@@ -468,7 +466,6 @@
       <FilePathData Path="ui/i002.png" />
       <FilePathData Path="ui/i004.png" />
       <FilePathData Path="ui/makeresbox.png" />
-      <FilePathData Path="text_zh_cn/librarytitle.png" />
       <FilePathData Path="ui/makerescountbox.png" />
       <FilePathData Path="ui/makeresnamebox.png" />
       <FilePathData Path="ui/z001.png" />
@@ -487,6 +484,17 @@
       <FilePathData Path="ui/resbox_qu5.png" />
       <FilePathData Path="ui/firstcharge.png" />
       <FilePathData Path="ui/z002.png" />
+      <FilePathData Path="ui/voc10icon.png" />
+      <FilePathData Path="ui/voc11icon.png" />
+      <FilePathData Path="ui/voc4icon.png" />
+      <FilePathData Path="ui/voc5icon.png" />
+      <FilePathData Path="ui/voc6icon.png" />
+      <FilePathData Path="ui/voc7icon.png" />
+      <FilePathData Path="ui/voc8icon.png" />
+      <FilePathData Path="ui/voc9icon.png" />
+      <FilePathData Path="ui/attrvalblock.png" />
+      <FilePathData Path="ui/changevocbtn.png" />
+      <FilePathData Path="ui/changevocbreakarrow.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

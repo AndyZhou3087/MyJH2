@@ -330,7 +330,27 @@
       <FilePathData Path="text_zh_cn/firstchargedesc.png" />
       <FilePathData Path="text_zh_cn/firstchargetitle.png" />
       <FilePathData Path="text_zh_cn/firstchargegiftbtn_text.png" />
+      <FilePathData Path="text_zh_cn/attr0_text.png" />
+      <FilePathData Path="text_zh_cn/attr1_text.png" />
+      <FilePathData Path="text_zh_cn/attr2_text.png" />
+      <FilePathData Path="text_zh_cn/attr3_text.png" />
+      <FilePathData Path="text_zh_cn/attr4_text.png" />
+      <FilePathData Path="text_zh_cn/attr5_text.png" />
+      <FilePathData Path="text_zh_cn/changevocbtn_text10.png" />
+      <FilePathData Path="text_zh_cn/changevocbtn_text11.png" />
+      <FilePathData Path="text_zh_cn/changevocbtn_text4.png" />
+      <FilePathData Path="text_zh_cn/changevocbtn_text5.png" />
+      <FilePathData Path="text_zh_cn/changevocbtn_text6.png" />
+      <FilePathData Path="text_zh_cn/changevocbtn_text7.png" />
+      <FilePathData Path="text_zh_cn/changevocbtn_text8.png" />
+      <FilePathData Path="text_zh_cn/changevocbtn_text9.png" />
+      <FilePathData Path="text_zh_cn/librarytitle.png" />
+      <FilePathData Path="text_zh_cn/loginrewardtitle.png" />
+      <FilePathData Path="text_zh_cn/msggeting_text.png" />
+      <FilePathData Path="text_zh_cn/changevocneed_text.png" />
+      <FilePathData Path="text_zh_cn/changevocbtnbreak_text.png" />
+      <FilePathData Path="text_zh_cn/changevocbreakafter_text.png" />
     </ImageFiles>
-    <MaxSize Width="1024" Height="2048" />
+    <MaxSize Width="2048" Height="2048" />
   </Content>
 </PlistInfoProjectFile>
