@@ -666,12 +666,15 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 		{
 			//stencilNodes[i]->setTouchEnabled(false);
 			std::string str = "ui/catabtn_n.png";
+			float scaley = 1.0f;
 			if (m_step == 72)
 			{
-				str = "ui/taskbtn.png";
+				str = "ui/changevocbtn.png";
+				scaley = 2.0f;
 			}
 			Sprite* cnode = Sprite::createWithSpriteFrameName(str);
 			cnode->setPosition(stencilNodes[i]->getParent()->convertToWorldSpace(stencilNodes[i]->getPosition()));
+			cnode->setScaleY(scaley);
 			cnode->runAction(Blink::create(3.0f, 3));
 			stencil->addChild(cnode);
 		}
@@ -714,9 +717,16 @@ void NewGuideLayer::showWord(std::string wordstr)
 		{
 			textbox->setPosition(Vec2(360, 530));
 		}
-		else if (m_step == 63 || m_step == 72 || m_step == 88 || m_step == 93)
+		else if (m_step == 63 || m_step == 88 || m_step == 93)
 		{
 			textbox->setPosition(Vec2(360, 650));
+		}
+		else if (m_step == 72)
+		{
+			textbox->setPosition(Vec2(360, 100));
+			Node* xsm = textbox->getChildByName("guide_people");
+			xsm->setPositionX(-190); 
+			xsm->setRotationSkewY(180);
 		}
 		else if (m_step == 14)
 		{

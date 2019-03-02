@@ -22,7 +22,8 @@ InnRoomLayer::~InnRoomLayer()
 {
 	if ((GlobalInstance::getInstance()->getHerosChangeLevelCount() > 0 && NewGuideLayer::checkifNewerGuide(66)) || (GlobalInstance::getInstance()->getHerosLevelCount(15) > 0 && NewGuideLayer::checkifNewerGuide(73)))
 	{
-		g_mainScene->delayShowNewerGuide(0);
+		if(g_mainScene != NULL)
+			g_mainScene->delayShowNewerGuide(0);
 	}
 }
 
