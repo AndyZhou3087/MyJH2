@@ -295,11 +295,13 @@
     <Cell c="9" r="15" p="-1" w="0" m="129.png" d="40.png" />
     <Cell c="9" r="16" p="-1" w="1" m="129.png" />
     <Cell c="9" r="17" p="-1" w="0" m="129.png" d="8.png" />
-    <Cell c="9" r="18" p="-1" w="0" m="129.png" d="51.png" />
-    <Cell c="9" r="19" p="-1" w="0" m="129.png" d="51.png" />
-    <Cell c="9" r="20" p="-1" w="0" m="129.png" d="51.png" />
-    <Cell c="9" r="21" p="-1" w="0" m="129.png" d="51.png" />
-    <Cell c="9" r="22" p="-1" w="0" m="129.png" d="51.png" />
+    <Cell c="9" r="18" p="-1" w="0" m="129.png" />
+    <Cell c="9" r="19" p="-1" w="0" m="129.png" />
+    <Cell c="9" r="20" p="5" w="0" m="129.png" d="51.png">
+      <msawd1 id="r006" qu="0" rnd="0.00">100</msawd1>
+    </Cell>
+    <Cell c="9" r="21" p="-1" w="0" m="129.png" />
+    <Cell c="9" r="22" p="-1" w="0" m="129.png" />
     <Cell c="9" r="23" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="9" r="24" p="-1" w="1" m="129.png" />
     <Cell c="9" r="25" p="-1" w="1" m="129.png" />
@@ -544,7 +546,9 @@
     <Cell c="17" r="22" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="17" r="23" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="17" r="24" p="-1" w="0" m="129.png" d="51.png" />
-    <Cell c="17" r="25" p="-1" w="0" m="129.png" d="51.png" />
+    <Cell c="17" r="25" p="5" w="0" m="129.png" d="51.png">
+      <msawd1 id="z002" qu="0" rnd="100.00">10</msawd1>
+    </Cell>
     <Cell c="17" r="26" p="-1" w="0" m="129.png" d="30.png" />
     <Cell c="17" r="27" p="-1" w="0" m="135.png" />
     <Cell c="17" r="28" p="-1" w="0" m="123.png" />
@@ -587,7 +591,7 @@
     <Cell c="19" r="5" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="19" r="6" p="-1" w="1" m="129.png" />
     <Cell c="19" r="7" p="5" w="0" m="129.png" d="51.png">
-      <msawd1 id="z002" qu="0" rnd="100.00">2</msawd1>
+      <msawd1 id="z002" qu="0" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="19" r="8" p="5" w="0" m="129.png" d="51.png">
       <msawd1 id="r006" qu="0" rnd="100.00">500</msawd1>
@@ -630,7 +634,13 @@
     <Cell c="20" r="14" p="-1" w="0" m="123.png" />
     <Cell c="20" r="15" p="-1" w="0" m="129.png" d="40.png" />
     <Cell c="20" r="16" p="-1" w="1" m="129.png" />
-    <Cell c="20" r="17" p="5" w="1" m="129.png" />
+    <Cell c="20" r="17" p="5" w="1" m="129.png">
+      <msawd1 id="r001" qu="0" rnd="20.00">100</msawd1>
+      <msawd2 id="r002" qu="0" rnd="20.00">100</msawd2>
+      <msawd3 id="r003" qu="0" rnd="20.00">100</msawd3>
+      <msawd4 id="r004" qu="0" rnd="20.00">100</msawd4>
+      <msawd5 id="r005" qu="0" rnd="20.00">100</msawd5>
+    </Cell>
     <Cell c="20" r="18" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="20" r="19" p="-1" w="1" m="129.png" />
     <Cell c="20" r="20" p="-1" w="1" m="129.png" />
@@ -660,7 +670,9 @@
     <Cell c="21" r="14" p="-1" w="0" m="123.png" />
     <Cell c="21" r="15" p="-1" w="0" m="129.png" d="40.png" />
     <Cell c="21" r="16" p="-1" w="1" m="129.png" />
-    <Cell c="21" r="17" p="5" w="1" m="129.png" />
+    <Cell c="21" r="17" p="5" w="1" m="129.png">
+      <msawd1 id="r006" qu="0" rnd="0.00">100</msawd1>
+    </Cell>
     <Cell c="21" r="18" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="21" r="19" p="-1" w="1" m="129.png" />
     <Cell c="21" r="20" p="-1" w="1" m="129.png" />

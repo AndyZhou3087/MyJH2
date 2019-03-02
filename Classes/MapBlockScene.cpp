@@ -1173,7 +1173,7 @@ void MapBlockScene::mazeHeroDelayTranse(float dt)
 
 void MapBlockScene::ajustMazeStatus()
 {
-	ajustMyPos();
+	ajustMyPos(false);
 	setBtnEnable(true);
 }
 
@@ -1222,7 +1222,7 @@ void MapBlockScene::updateMyRender(float dt)
 	Director::getInstance()->getRenderer()->render();
 }
 
-void MapBlockScene::ajustMyPos()
+void MapBlockScene::ajustMyPos(bool isanim)
 {
 	float offsetx = myposHero->getPosition().x * scrollView->getZoomScale() - scrollView->getViewSize().width / 2;
 	float offsety = myposHero->getPosition().y * scrollView->getZoomScale() - scrollView->getViewSize().height / 2;
@@ -1237,8 +1237,10 @@ void MapBlockScene::ajustMyPos()
 	if (offsety > m_mapscrollcontainer->getContentSize().height * scrollView->getZoomScale() - scrollView->getViewSize().height)
 		offsety = m_mapscrollcontainer->getContentSize().height * scrollView->getZoomScale() - scrollView->getViewSize().height;
 
-
-	scrollView->setContentOffsetInDuration(Vec2(-offsetx, -offsety), 0.5f);
+	if (isanim)
+		scrollView->setContentOffsetInDuration(Vec2(-offsetx, -offsety), 0.5f);
+	else
+		scrollView->setContentOffset(Vec2(-offsetx, -offsety));
 }
 
 FightHeroNode* MapBlockScene::getFightHeroNode(int index)

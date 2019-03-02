@@ -102,7 +102,7 @@ private:
 	void setMyPos();
 
 	//视线移动到角色中心
-	void ajustMyPos();
+	void ajustMyPos(bool isanim = true);
 
 	void stopMoving();
 
