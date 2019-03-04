@@ -59,7 +59,10 @@ bool MazeTransitionScene::init(int mazechapter, int type)
 	}
 
 	Label *lbl = Label::createWithTTF(ResourceLang::map_lang["mazetext_0"], FONT_NAME, 25);
+	lbl->setLineSpacing(8);
 	lbl->setColor(Color3B(255, 255, 255));
+	lbl->setMaxLineWidth(540);
+	lbl->setHorizontalAlignment(TextHAlignment::CENTER);
 	lbl->setPosition(Vec2(360, 640));
 	this->addChild(lbl);
     

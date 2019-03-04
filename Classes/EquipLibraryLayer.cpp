@@ -168,7 +168,7 @@ void EquipLibraryLayer::updateCata(int category)
 			}
 		}
 	}
-	int scrollSizeH[] = {610,770};
+	int scrollSizeH[] = {610 + 70,770 + 70};
 	scrollview->setContentSize(Size(scrollview->getContentSize().width, scrollSizeH[category]));
 	if (category == 0)
 	{
