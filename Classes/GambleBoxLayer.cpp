@@ -99,6 +99,7 @@ bool GambleBoxLayer::init(int isWin, int diceid, int cost)
 		GlobalInstance::getInstance()->addMyCoinCount(dvl);
 	}
 
+	GlobalInstance::getInstance()->usePropsCount(COSTPROP_GAMES, 1);
 
 	//фа╠ноб╡Ц╣Ц╩В
 	auto listener = EventListenerTouchOneByOne::create();
