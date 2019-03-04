@@ -56,6 +56,10 @@ public:
 
 	void getLoginAward();
 
+	void addNews(std::string content, int type = 2);
+
+	void getNews();
+
 private:
 	HTTPDataDelegateProtocol *m_pDelegateProtocol;//接口对象
 	HttpDataSwap();
@@ -103,6 +107,10 @@ private:
 	void httpGetLoginDataCB(std::string retdata, int code, std::string extdata);
 
 	void httpGetLoginAwardCB(std::string retdata, int code, std::string extdata);
+
+	void httpAddNewsCB(std::string retdata, int code, std::string extdata);
+
+	void httpGetNewsCB(std::string retdata, int code, std::string extdata);
 };
 
 class HTTPDataDelegateProtocol

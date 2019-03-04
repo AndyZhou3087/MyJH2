@@ -271,6 +271,9 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					std::random_shuffle(GlobalInstance::vec_mazeroute.begin(), GlobalInstance::vec_mazeroute.end());
 					GlobalInstance::vec_mazeroute.push_back(mazes[rz]);
 					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MazeTransitionScene::createScene(c, TO_ENTER)));
+
+					std::string contentstr = StringUtils::format(ResourceLang::map_lang["newtemplet7"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str());
+					MainScene::addNews(contentstr, 2);
 				}
 				else if (r < 55)
 				{
@@ -387,6 +390,40 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				}
 				else
 					MyRes::Add(resid, count, MYPACKAGE, qu, stonesCount);
+			}
+
+			std::string namestr;
+
+			std::string templetstr = "";
+
+			if (m_eventindex == POS_ELDER)
+				templetstr = "newtemplet3";
+			else if (m_eventindex == MAP_JUMP)
+				templetstr = "newtemplet4";
+			else if (m_eventindex == POS_WOMAN)
+				templetstr = "newtemplet5";
+			else if (m_eventindex == POS_CAVE)
+				templetstr = "newtemplet6";
+			for (unsigned int i = 0; i < vec_eventrewards.size(); i++)
+			{
+				if (namestr.length() > 0)
+				{
+					namestr.append(ResourceLang::map_lang["dunhao"]);
+				}
+				std::vector<std::string> vec_rewards = vec_eventrewards[i];
+				std::string resid = vec_rewards[0];
+				int count = atoi(vec_rewards[1].c_str());
+				int qu = atoi(vec_rewards[2].c_str());
+				if (qu >= 4)
+				{
+					std::string st = StringUtils::format("potential_%d", qu);
+					namestr = StringUtils::format(ResourceLang::map_lang["libraryinfoequipname"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str(), ResourceLang::map_lang[st].c_str());
+				}
+			}
+			if (namestr.length() > 0)
+			{
+				std::string contentstr = StringUtils::format(ResourceLang::map_lang[templetstr].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str(), namestr.c_str());
+				MainScene::addNews(contentstr, 2);
 			}
 			//this->removeFromParentAndCleanup(true);
 			AnimationEffect::closeAniEffect((Layer*)this);

@@ -661,6 +661,17 @@
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="2480" Height="1280" />
           </AbstractNodeData>
+          <AbstractNodeData Name="newsbg" ActionTag="463848369" Tag="772" IconVisible="False" LeftMargin="99.5000" RightMargin="19.5000" TopMargin="113.0000" BottomMargin="1113.0000" ctype="SpriteObjectData">
+            <Size X="601.0000" Y="54.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="400.0000" Y="1140.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5556" Y="0.8906" />
+            <PreSize X="0.8347" Y="0.0422" />
+            <FileData Type="MarkedSubImage" Path="ui/newsbg.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

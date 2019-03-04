@@ -838,6 +838,10 @@ public:
 	static int mazerouteindex;
 	static std::string eventfrommapid;
 	static int eventstartmappos;
+
+	static std::vector<std::string> vec_news;
+
+	static int getNewsTime;
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

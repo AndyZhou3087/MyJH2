@@ -1552,6 +1552,27 @@ void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 		RewardLayer* layer = RewardLayer::create(vec_rewards, MYSTORAGE, 2);
 		this->addChild(layer);
 		AnimationEffect::openAniEffect(layer);
+
+		std::string namestr;
+		for (unsigned int i = 0; i < vec_rewards.size(); i++)
+		{
+			if (namestr.length() > 0)
+			{
+				namestr.append(ResourceLang::map_lang["dunhao"]);
+			}
+			int qu = vec_rewards[i].qu;
+			if (qu >= 4)
+			{
+				std::string resid = vec_rewards[i].rid;
+				std::string st = StringUtils::format("potential_%d", qu);
+				namestr = StringUtils::format(ResourceLang::map_lang["libraryinfoequipname"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str(), ResourceLang::map_lang[st].c_str());
+			}
+		}
+		if (namestr.length() > 0)
+		{
+			std::string contentstr = StringUtils::format(ResourceLang::map_lang["newtemplet1"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str(), namestr.c_str());
+			MainScene::addNews(contentstr, 2);
+		}
 	}
 	else
 	{

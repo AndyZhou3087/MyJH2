@@ -457,7 +457,19 @@
 	<s name="waitingequip">绝世神兵暂未开放，敬请期待！</s>
 	<s name="libraryequiphint">神兵宝甲只收录橙色及以上品质</s>
 	<s name="libraryequipgetwhere">四级宝箱或者15级铁匠铺制作</s>
-	<s name="mazetext_0">只听轰隆一声巨响，xxx进入一个神秘世界</s>
+	<s name="mazetext_0">你一脚踩空，急速下坠中不知身在何处，等醒来时已经身处一个神奇的世界...</s>
 	<s name="mazestone">坚硬的石头！无法通过</s>
-	<s name="mazename">迷宫</s>	
+	<s name="mazename">迷宫</s>
+	<s name="newtemplet0">{%s}帮派上下不辞辛勤劳苦，锻造七七四十九天，终于打造出传说中的[%s]，还有谁敢一战！</s>
+	<s name="newtemplet1">帮派{%s}携帮内大侠遨游四海，纵览八方，无意中寻得[%s]，真是让人万分羡慕。</s>
+	<s name="newtemplet2">帮派{%s}实力突飞猛进，财力雄厚，在神秘商店处购买到[%s]，江湖又将掀起腥风血雨。</s>
+	<s name="newtemplet3">帮派{%s}带领众人野外巡视，宣扬惩恶扬善，帮助“孤寡老人”渡过难关，本是无心之举，竟感化老人，以[%s]之礼相赠,真是惊呆旁人。</s>
+	<s name="newtemplet4">帮派{%s}于绝情崖采集草药，不慎失足坠崖，大难不死后发现山崖下前人遗留重宝，一番搜寻后将[%s]]收入囊中。</s>
+	<s name="newtemplet5">帮派{%s}帮主饮酒归来，偶遇绿林之人强抢民女，一招便将小贼解决，民女感恩戴德，拿出祖传秘籍[%s]感谢其相救之恩。</s>
+	<s name="newtemplet6">帮派{%s}发现神秘山洞，洞中隐隐可见幽光，一看便是某位江湖大侠的衣冠冢，躲过无数机关后，[%s]终于重现武林。</s>
+	<s name="newtemplet7">只听轰隆一声巨响，原来是{%s}帮派无意中进入了未知的世界，一番探索后不知将会遇到怎么样的奇遇。</s>
+	<s name="newfindstr0">{</s>	
+	<s name="newfindstr1">}</s>	
+	<s name="newfindstr2">[</s>	
+	<s name="newfindstr3">]</s>		
 </strings>

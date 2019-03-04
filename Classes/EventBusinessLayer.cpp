@@ -285,6 +285,15 @@ void EventBusinessLayer::buyRes(MSGAWDSDATA res)
 		}
 	}
 
+	if (res.qu >= 4)
+	{
+		std::string st = StringUtils::format("potential_%d", res.qu);
+		std::string namestr = StringUtils::format(ResourceLang::map_lang["libraryinfoequipname"].c_str(), GlobalInstance::map_AllResources[res.rid].name.c_str(), ResourceLang::map_lang[st].c_str());
+
+		std::string contentstr = StringUtils::format(ResourceLang::map_lang["newtemplet2"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str(), namestr.c_str());
+		MainScene::addNews(contentstr, 2);
+	}
+
 	updateRichLabel(0);
 
 	loadMyPackageRes();

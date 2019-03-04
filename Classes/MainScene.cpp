@@ -24,6 +24,7 @@
 #include "CommonFuncs.h"
 #include "MatchMainLayer.h"
 #include "LibraryLayer.h"
+#include "FlowWorld.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -35,6 +36,7 @@ MainScene::MainScene()
 	tasktip = NULL;
 	hostip = NULL;
 	traintip = NULL;
+	httpgettype = 0;
 }
 
 MainScene::~MainScene()
@@ -72,6 +74,9 @@ bool MainScene::init()
 
 	g_MainMenuLayer = MainMenuLayer::create();
 	this->addChild(g_MainMenuLayer);
+
+	newsbg = (Sprite*)csbnode->getChildByName("newsbg");
+	newsbg->setVisible(false);
 
 	scroll_3 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_3");
 	scroll_3->setScrollBarEnabled(false);
@@ -767,56 +772,77 @@ void MainScene::onExit()
 
 void MainScene::onFinish(int code)
 {
-	ErrorHintLayer* networkerrLayer = (ErrorHintLayer*)this->getChildByName("networkerrorlayer");
-
-	if (code == SUCCESS)
+	if (httpgettype == 0)
 	{
-		if (networkerrLayer != NULL)
-			networkerrLayer->removeFromParentAndCleanup(true);
+		ErrorHintLayer* networkerrLayer = (ErrorHintLayer*)this->getChildByName("networkerrorlayer");
 
-		if (GlobalInstance::getInstance()->getRefreshHeroTime() == 0)
+		if (code == SUCCESS)
 		{
-			GlobalInstance::getInstance()->saveRefreshHeroTime(GlobalInstance::servertime);
+			if (networkerrLayer != NULL)
+				networkerrLayer->removeFromParentAndCleanup(true);
+
+			if (GlobalInstance::getInstance()->getRefreshHeroTime() == 0)
+			{
+				GlobalInstance::getInstance()->saveRefreshHeroTime(GlobalInstance::servertime);
+			}
+			if (GlobalInstance::getInstance()->getRefreshResTime() == 0)
+			{
+				GlobalInstance::getInstance()->saveRefreshResTime(GlobalInstance::servertime);
+			}
+			if (GlobalInstance::getInstance()->getRefreshMarketTime() == 0)
+			{
+				GlobalInstance::getInstance()->saveRefreshMarketTime(GlobalInstance::servertime);
+			}
+
+			if (GlobalInstance::getInstance()->getResetSilverRefHeroCountTime() == 0)
+			{
+				int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
+				GlobalInstance::getInstance()->setResetSilverRefHeroCountTime(zerotime - zerotime % TWENTYFOURHOURSTOSEC);
+			}
+
+			costFoodsT = 0;
+
+			updateTime(0);
+			this->schedule(schedule_selector(MainScene::updateTime), 1);
+
+			int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
+			//议事厅每日更新
+			int t = zerotime / TWENTYFOURHOURSTOSEC;
+			if (t > DataSave::getInstance()->getMyFreshDate())
+			{
+				Quest::resetDailyTask();
+			}
+			if (GlobalInstance::servertime - GlobalInstance::getNewsTime >= 5 * 60)
+			{
+				GlobalInstance::getNewsTime = GlobalInstance::servertime;
+				httpgettype = 1;
+				HttpDataSwap::init(this)->getNews();
+			}
 		}
-		if (GlobalInstance::getInstance()->getRefreshResTime() == 0)
+		else
 		{
-			GlobalInstance::getInstance()->saveRefreshResTime(GlobalInstance::servertime);
-		}
-		if (GlobalInstance::getInstance()->getRefreshMarketTime() == 0)
-		{
-			GlobalInstance::getInstance()->saveRefreshMarketTime(GlobalInstance::servertime);
-		}
-
-		if (GlobalInstance::getInstance()->getResetSilverRefHeroCountTime() == 0)
-		{
-			int zerotime = GlobalInstance::servertime + 8*60*60;
-			GlobalInstance::getInstance()->setResetSilverRefHeroCountTime(zerotime - zerotime % TWENTYFOURHOURSTOSEC);
-		}
-
-		costFoodsT = 0;
-
-		updateTime(0);
-		this->schedule(schedule_selector(MainScene::updateTime), 1);
-
-		int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
-		//议事厅每日更新
-		int t = zerotime / TWENTYFOURHOURSTOSEC;
-		if (t > DataSave::getInstance()->getMyFreshDate())
-		{
-			Quest::resetDailyTask();
+			if (networkerrLayer == NULL)
+			{
+				ErrorHintLayer* layer = ErrorHintLayer::create(0);
+				this->addChild(layer, 1000, "networkerrorlayer");
+			}
+			else
+			{
+				networkerrLayer->resetBtn();
+			}
 		}
 	}
 	else
 	{
-		if (networkerrLayer == NULL)
+		if (code == SUCCESS)
 		{
-			ErrorHintLayer* layer = ErrorHintLayer::create(0);
-			this->addChild(layer, 1000, "networkerrorlayer");
+			if (GlobalInstance::vec_news.size() > 0)
+			{
+				newsbg->setVisible(true);
+				this->addChild(FlowWorld::getIntance()->createFW(newsbg));
+			}
 		}
-		else
-		{
-			networkerrLayer->resetBtn();
-		}
+		httpgettype = 0;
 	}
 }
 
@@ -1027,4 +1053,9 @@ void MainScene::cheatAction(int type)
 		Director::getInstance()->getRunningScene()->addChild(layer, 10000);
 		AnimationEffect::openAniEffect(layer);
 	}
+}
+
+void MainScene::addNews(std::string content, int type)
+{
+	HttpDataSwap::init(NULL)->addNews(content);
 }

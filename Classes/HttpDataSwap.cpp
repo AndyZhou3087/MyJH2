@@ -728,6 +728,67 @@ void HttpDataSwap::getLoginAward()
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetLoginAwardCB, this));
 }
 
+void HttpDataSwap::addNews(std::string content, int type)
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_addannouncement?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	url.append("&type=");
+	std::string typestr = StringUtils::format("%d", type);
+	url.append(typestr);
+
+	url.append("&content=");
+	url.append(content);
+
+	url.append("&sign=");
+	std::string md5ostr = GlobalInstance::getInstance()->UUID() + typestr + content;
+
+	std::string signstr = md5(md5ostr + "key=zhoujian-87");
+	url.append(signstr);
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpAddNewsCB, this));
+}
+
+void HttpDataSwap::getNews()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_getannouncement?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetNewsCB, this));
+}
+
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
@@ -1470,6 +1531,64 @@ void HttpDataSwap::httpGetLoginAwardCB(std::string retdata, int code, std::strin
 		{
 			rapidjson::Value& retv = doc["ret"];
 			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpAddNewsCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpGetNewsCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+
+			if (doc.HasMember("data"))
+			{
+				//GlobalInstance::vec_news.clear();
+				rapidjson::Value& mydatav = doc["data"];
+
+				for (unsigned int m = 0; m < mydatav.Size(); m++)
+				{
+					rapidjson::Value& myc = mydatav[m]["content"];
+					GlobalInstance::vec_news.push_back(myc.GetString());
+				}
+			}
 		}
 		else
 		{

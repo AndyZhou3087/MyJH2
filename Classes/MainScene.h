@@ -54,6 +54,8 @@ public:
 
 	static void cheatAction(int type);
 
+	static void addNews(std::string content, int type);
+
 public:
 	cocos2d::ui::Widget* traintip;
 
@@ -84,6 +86,8 @@ private:
 
 	cocos2d::ui::Widget* tasktip;
 	cocos2d::ui::Widget* hostip;
+	Sprite* newsbg;
+	int httpgettype;
 };
 extern MainScene* g_mainScene;
 #endif

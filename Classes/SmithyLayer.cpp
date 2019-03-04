@@ -346,4 +346,13 @@ void SmithyLayer::makeRes(std::string resid)
 	EquipDescLayer* layer = EquipDescLayer::create(retres, 1);
 	this->addChild(layer);
 	AnimationEffect::openAniEffect(layer);
+
+	//if (qu >= 3)
+	{
+		std::string st = StringUtils::format("potential_%d", qu);
+		std::string namestr = StringUtils::format(ResourceLang::map_lang["libraryinfoequipname"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str(), ResourceLang::map_lang[st].c_str());
+
+		std::string contentstr = StringUtils::format(ResourceLang::map_lang["newtemplet0"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str(), namestr.c_str());
+		MainScene::addNews(contentstr, 2);
+	}
 }

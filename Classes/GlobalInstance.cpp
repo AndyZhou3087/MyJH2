@@ -122,6 +122,10 @@ int GlobalInstance::mazerouteindex = 0;
 std::string GlobalInstance::eventfrommapid;
 int GlobalInstance::eventstartmappos = -1;
 
+std::vector<std::string> GlobalInstance::vec_news;
+
+int GlobalInstance::getNewsTime = 0;
+
 GlobalInstance::GlobalInstance()
 {
 
