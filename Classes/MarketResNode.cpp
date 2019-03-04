@@ -75,6 +75,12 @@ bool MarketResNode::init(std::string resid, int rescount)
 	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
 	namelbl->setString(GlobalInstance::map_AllResources[resid].name);
 
+	priceicon = (cocos2d::ui::ImageView*)csbnode->getChildByName("priceicon");
+	priceicon->ignoreContentAdaptWithSize(true);
+
+	if (GlobalInstance::map_AllResources[resid].coinval > 0)
+		priceicon->loadTexture(ResourcePath::makePath("ui/main_coin.png"), cocos2d::ui::Widget::TextureResType::PLIST);
+
 	if (resid.compare("r014") >= 0 && resid.compare("r018") <= 0)
 	{
 		int intid = atoi(resid.substr(1).c_str());
@@ -91,11 +97,6 @@ bool MarketResNode::init(std::string resid, int rescount)
 
 	totalpricelbl = (cocos2d::ui::Text*)csbnode->getChildByName("totalprice");
 
-	priceicon = (cocos2d::ui::ImageView*)csbnode->getChildByName("priceicon");
-	priceicon->ignoreContentAdaptWithSize(true);
-
-	if (GlobalInstance::map_AllResources[resid].coinval > 0)
-		priceicon->loadTexture(ResourcePath::makePath("ui/main_coin.png"), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	rescountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("rescount");
 

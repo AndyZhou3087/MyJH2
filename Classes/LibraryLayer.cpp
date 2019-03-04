@@ -110,7 +110,7 @@ void LibraryLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		{
 		case 0://神兵宝甲
 		{
-			EquipLibraryLayer* layer = EquipLibraryLayer::create();
+			EquipLibraryLayer* layer = EquipLibraryLayer::create(0);
 			this->addChild(layer);
 			AnimationEffect::openAniEffect(layer);
 		}

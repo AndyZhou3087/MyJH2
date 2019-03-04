@@ -27,10 +27,10 @@ EquipLibraryLayer::~EquipLibraryLayer()
 	}
 }
 
-EquipLibraryLayer* EquipLibraryLayer::create()
+EquipLibraryLayer* EquipLibraryLayer::create(int category)
 {
 	EquipLibraryLayer *pRet = new(std::nothrow)EquipLibraryLayer();
-	if (pRet && pRet->init())
+	if (pRet && pRet->init(category))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -43,13 +43,13 @@ EquipLibraryLayer* EquipLibraryLayer::create()
 	}
 }
 
-bool EquipLibraryLayer::init()
+bool EquipLibraryLayer::init(int category)
 {
 	if (!Layer::init())
 	{
 		return false;
 	}
-
+	lastCategoryindex = category;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color,0,"colorLayer");
 

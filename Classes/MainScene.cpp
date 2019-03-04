@@ -25,6 +25,7 @@
 #include "MatchMainLayer.h"
 #include "LibraryLayer.h"
 #include "FlowWorld.h"
+#include "LibraryLayer2.h"
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -743,7 +744,7 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				}
 				else if (buildname.compare("Alibrary") == 0)
 				{
-					layer = LibraryLayer::create();
+					layer = LibraryLayer2::create();
 				}
 				if (layer != NULL)
 				{

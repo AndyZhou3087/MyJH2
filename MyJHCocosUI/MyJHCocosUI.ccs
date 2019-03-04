@@ -68,11 +68,20 @@
           <Image Name="hfull_8_1.png" />
           <Image Name="hfull_9_0.png" />
           <Image Name="hfull_9_1.png" />
+          <Image Name="libraryarm_n.png" />
+          <Image Name="libraryarm_s.png" />
+          <Image Name="librarybg.jpg" />
+          <Image Name="libraryequip_n.png" />
+          <Image Name="libraryequip_s.png" />
           <Image Name="libraryequipbox.png" />
           <Image Name="libraryequipitem.png" />
           <Image Name="libraryequiptextbox.png" />
+          <Image Name="libraryng_n.png" />
+          <Image Name="libraryng_s.png" />
           <Image Name="libraryngitem.png" />
           <Image Name="librarytop.png" />
+          <Image Name="librarywg_n.png" />
+          <Image Name="librarywg_s.png" />
           <Image Name="librarywgitem.png" />
           <Image Name="loadingbar.png" />
           <Image Name="loadingpoint.png" />
@@ -543,11 +552,15 @@
           <Image Name="libequipcata1_text_s.png" />
           <Image Name="libqu5text_0.png" />
           <Image Name="libqu5text_1.png" />
+          <Image Name="libraryarm_text.png" />
+          <Image Name="libraryequip_text.png" />
           <Image Name="libraryequiptext.png" />
           <Image Name="libraryequiptitle.png" />
+          <Image Name="libraryng_text.png" />
           <Image Name="libraryngtext.png" />
           <Image Name="libraryngtitle.png" />
           <Image Name="librarytitle.png" />
+          <Image Name="librarywg_text.png" />
           <Image Name="librarywgtext.png" />
           <Image Name="librarywgtitle.png" />
           <Image Name="loginrewardtitle.png" />
@@ -895,7 +908,6 @@
           <Image Name="actionbtn_blue.png" />
           <Image Name="actionbtn_yellow.png" />
           <Image Name="addnicknamecountbtn.png" />
-          <Image Name="newsbg.png" />
           <Image Name="arrowglv.png" />
           <Image Name="attrvalblock.png" />
           <Image Name="b001.png" />
@@ -1065,6 +1077,7 @@
           <Image Name="i002.png" />
           <Image Name="i004.png" />
           <Image Name="k001.png" />
+          <Image Name="librarytextbg.png" />
           <Image Name="loginbtn.png" />
           <Image Name="loginrewardclose.png" />
           <Image Name="loginrewarditem.png" />
@@ -1103,6 +1116,7 @@
           <Image Name="morebtn_n.png" />
           <Image Name="morebtn_s.png" />
           <Image Name="myheroitem.png" />
+          <Image Name="newsbg.png" />
           <Image Name="ninegrid.png" />
           <Image Name="normal9bg.png" />
           <Image Name="npc_fight.png" />
@@ -1304,6 +1318,7 @@
         <Project Name="changeHeadLayer.csd" Type="Layer" />
         <Project Name="changeVocationLayer.csd" Type="Layer" />
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
+        <Image Name="e.png" />
         <Project Name="equipDescLayer.csd" Type="Layer" />
         <Project Name="equipLibraryInfoLayer.csd" Type="Layer" />
         <Project Name="errorHintLayer.csd" Type="Layer" />
@@ -1328,6 +1343,7 @@
         <Project Name="LevelForm.csd" Type="Layer" />
         <Project Name="libraryequipLayer.csd" Type="Layer" />
         <Project Name="libraryLayer.csd" Type="Layer" />
+        <Project Name="libraryLayer2.csd" Type="Layer" />
         <Image Name="loadingbg.jpg" />
         <Image Name="loadingclicktext.png" />
         <Project Name="LoadingLayer.csd" Type="Layer" />

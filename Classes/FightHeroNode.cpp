@@ -337,53 +337,60 @@ void FightHeroNode::resumeTimeSchedule()
 
 void FightHeroNode::hurt(float hp, int stat)//stat -1:不显示普攻动画
 {
-	if (m_Data != NULL && this->isVisible())
+	if (m_Data != NULL)
 	{
-		if (hp < m_Data->getDf())
-			hp -= 0.1 * hp;
-		else
-			hp -= m_Data->getDf()*(1 + dfbns/100);
-
-		if (hp > 0 || stat == 2)
+		if (this->isVisible())
 		{
-			hurtup = hp;
+			if (hp < m_Data->getDf())
+				hp -= 0.1 * hp;
+			else
+				hp -= m_Data->getDf()*(1 + dfbns / 100);
 
-			std::string hurtstr = StringUtils::format("-%d", (int)hurtup);
-			if (stat == 1)//暴击
+			if (hp > 0 || stat == 2)
 			{
-				numfnt->setFntFile("fonts/crithurtnum.fnt");
-				int langtype = GlobalInstance::getInstance()->getLang();
-				statusimg->loadTexture(ResourcePath::makeTextImgPath("crit_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-				numfnt->setScale(5);
-				numfnt->runAction(Sequence::create(Show::create(), EaseRateAction::create(ScaleTo::create(0.15f, 0.6f), 5), EaseRateAction::create(ScaleTo::create(0.1f, 1),5), DelayTime::create(0.15f), Hide::create(), NULL));
-				critnumbg->runAction(Sequence::create(Show::create(), EaseRateAction::create(ScaleTo::create(0.15f, 0.6f), 5), EaseRateAction::create(ScaleTo::create(0.1f, 1),5), DelayTime::create(0.15f), Hide::create(), NULL));
-				showAtkOrHurtAnim(1);
-			}
-			else if (stat == 2)//闪避
-			{
-				hurtup = 0;
-				int langtype = GlobalInstance::getInstance()->getLang();
-				statusimg->loadTexture(ResourcePath::makeTextImgPath("dodge_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			}
-			else//普通攻击
-			{
-				numfnt->setFntFile("fonts/normalhurtnum.fnt");
-				statusimg->loadTexture("ui/blank.png", cocos2d::ui::Widget::TextureResType::PLIST);
-				numfnt->runAction(Sequence::create(Show::create(), MoveBy::create(0.3f, Vec2(0, 10)), DelayTime::create(0.1f), Hide::create(), MoveBy::create(0.02f, Vec2(0, -10)), NULL));
-				if (stat == 0)
+				hurtup = hp;
+
+				std::string hurtstr = StringUtils::format("-%d", (int)hurtup);
+				if (stat == 1)//暴击
+				{
+					numfnt->setFntFile("fonts/crithurtnum.fnt");
+					int langtype = GlobalInstance::getInstance()->getLang();
+					statusimg->loadTexture(ResourcePath::makeTextImgPath("crit_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+					numfnt->setScale(5);
+					numfnt->runAction(Sequence::create(Show::create(), EaseRateAction::create(ScaleTo::create(0.15f, 0.6f), 5), EaseRateAction::create(ScaleTo::create(0.1f, 1), 5), DelayTime::create(0.15f), Hide::create(), NULL));
+					critnumbg->runAction(Sequence::create(Show::create(), EaseRateAction::create(ScaleTo::create(0.15f, 0.6f), 5), EaseRateAction::create(ScaleTo::create(0.1f, 1), 5), DelayTime::create(0.15f), Hide::create(), NULL));
 					showAtkOrHurtAnim(1);
+				}
+				else if (stat == 2)//闪避
+				{
+					hurtup = 0;
+					int langtype = GlobalInstance::getInstance()->getLang();
+					statusimg->loadTexture(ResourcePath::makeTextImgPath("dodge_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+				}
+				else//普通攻击
+				{
+					numfnt->setFntFile("fonts/normalhurtnum.fnt");
+					statusimg->loadTexture("ui/blank.png", cocos2d::ui::Widget::TextureResType::PLIST);
+					numfnt->runAction(Sequence::create(Show::create(), MoveBy::create(0.3f, Vec2(0, 10)), DelayTime::create(0.1f), Hide::create(), MoveBy::create(0.02f, Vec2(0, -10)), NULL));
+					if (stat == 0)
+						showAtkOrHurtAnim(1);
+				}
+				if (hurtup > 0)
+				{
+					numfnt->setString(hurtstr);
+				}
+				ActionInterval* ac1 = Spawn::create(Show::create(), FadeIn::create(0.1f), EaseSineIn::create(ScaleTo::create(0.15f, 1)), NULL);
+				statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), NULL));
+
 			}
-			if (hurtup > 0)
+			else
 			{
-				numfnt->setString(hurtstr);
+				hurtAnimFinish();
 			}
-			ActionInterval* ac1 = Spawn::create(Show::create(), FadeIn::create(0.1f), EaseSineIn::create(ScaleTo::create(0.15f, 1)), NULL);
-			statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), NULL));
-		
 		}
 		else
 		{
-			hurtAnimFinish();
+			nextRound(0);
 		}
 	}
 } 

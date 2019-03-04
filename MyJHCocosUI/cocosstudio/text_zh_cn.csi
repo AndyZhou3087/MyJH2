@@ -350,6 +350,10 @@
       <FilePathData Path="text_zh_cn/changevocneed_text.png" />
       <FilePathData Path="text_zh_cn/changevocbtnbreak_text.png" />
       <FilePathData Path="text_zh_cn/changevocbreakafter_text.png" />
+      <FilePathData Path="text_zh_cn/libraryarm_text.png" />
+      <FilePathData Path="text_zh_cn/libraryequip_text.png" />
+      <FilePathData Path="text_zh_cn/libraryng_text.png" />
+      <FilePathData Path="text_zh_cn/librarywg_text.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

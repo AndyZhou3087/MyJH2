@@ -107,8 +107,8 @@ bool MainMapScene::init()
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 		mapname->setVisible(true);
-//#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-//		mapname->setVisible(true);
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+		mapname->setVisible(true);
 #else
 		if (c <= 5 && c <= GlobalInstance::getInstance()->getUnlockChapter())
 		{

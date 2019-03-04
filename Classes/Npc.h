@@ -62,6 +62,7 @@ public:
 	std::vector<int> vec_whosufferskill;//施放给谁
 	int m_lv;
 	float m_hp;
+	float m_lastmaxhp;
 };
 
 #endif

@@ -18,9 +18,9 @@ public:
 	EquipLibraryLayer();
 	~EquipLibraryLayer();
 
-	virtual bool init();
+	virtual bool init(int category);
 
-	static EquipLibraryLayer* create();
+	static EquipLibraryLayer* create(int category);
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

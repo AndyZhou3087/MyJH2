@@ -22,6 +22,7 @@ Hero::Hero()
 	m_pos = 0;
 	m_onchallengepos = 0;
 	m_hp = INT32_MIN;
+	m_lastmaxhp = -1;
 	m_trainhour = 0;
 	m_traintime = 0;
 	m_power.setValue(100);
@@ -56,6 +57,7 @@ Hero::Hero(Hero* hero)
 	m_pos = 0;
 	m_onchallengepos = 0;
 	m_hp = hero->getHp();
+	m_lastmaxhp = hero->getMaxHp();
 	m_trainhour = hero->getTrainHour();
 	m_traintime = hero->getTrainTime();
 	m_power = hero->getPower();
@@ -370,6 +372,11 @@ float Hero::getMaxHp()
 		}
 	}
 
+	if (herohp != m_lastmaxhp)
+	{
+		m_lastmaxhp = herohp;
+		m_hp = herohp;
+	}
 	if (m_hp > herohp)
 		m_hp = herohp;
 	return herohp;
