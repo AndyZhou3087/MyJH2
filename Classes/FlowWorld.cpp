@@ -53,8 +53,51 @@ FlowWorld* FlowWorld::createFW(Sprite* sp)
 	cliper->addChild(shap);
 	sp->addChild(cliper);
 
+	changeTextColor(newstr);
+
+	schedule(schedule_selector(FlowWorld::scrollText));//实现公告文字滚动
+	return this;
+}
+
+void FlowWorld::scrollText(float)
+{
+	if (_news->getPosition().x < (-1 * _news->getContentSize().width))
+	{
+		if (GlobalInstance::vec_news.size() > 0)
+		{
+			std::string newstr = GlobalInstance::vec_news[0];
+			GlobalInstance::vec_news.erase(GlobalInstance::vec_news.begin());
+			nextWord(newstr);
+		}
+		else
+		{
+			_newsBg->setVisible(false);
+			this->removeFromParentAndCleanup(true);
+		}
+	}
+	else
+	{
+		 _news->setPositionX(_news->getPositionX() - 2);
+	}
+}
+
+void FlowWorld::nextWord(std::string str)
+{
 	std::u32string utf32lblString;
-	StringUtils::UTF8ToUTF32(newstr, utf32lblString);
+	StringUtils::UTF8ToUTF32(_news->getString(), utf32lblString);
+	for (unsigned int i = 0; i < utf32lblString.length(); i++)
+	{
+		_news->getLetter(i)->setColor(Color3B(255, 255, 255));
+	}
+	_news->setPositionX(720);
+	_news->setString(str);
+	changeTextColor(str);
+}
+
+void FlowWorld::changeTextColor(std::string str)
+{
+	std::u32string utf32lblString;
+	StringUtils::UTF8ToUTF32(str, utf32lblString);
 	std::size_t findpos[4] = { 0 };
 	for (unsigned int i = 0; i < utf32lblString.length(); i++)
 	{
@@ -82,31 +125,5 @@ FlowWorld* FlowWorld::createFW(Sprite* sp)
 		{
 			_news->getLetter(m)->setColor(Color3B(230, 35, 35));
 		}
-	}
-
-	schedule(schedule_selector(FlowWorld::scrollText));//实现公告文字滚动
-	return this;
-}
-
-void FlowWorld::scrollText(float)
-{
-	if (_news->getPosition().x < (-1 * _news->getContentSize().width))
-	{
-		if (GlobalInstance::vec_news.size() > 0)
-		{
-			std::string newstr = GlobalInstance::vec_news[0];
-			GlobalInstance::vec_news.erase(GlobalInstance::vec_news.begin());
-			_news->setPositionX(720);
-			_news->setString(newstr);
-		}
-		else
-		{
-			_newsBg->setVisible(false);
-			this->removeFromParentAndCleanup(true);
-		}
-	}
-	else
-	{
-		 _news->setPositionX(_news->getPositionX() - 2);
 	}
 }

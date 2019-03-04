@@ -22,8 +22,12 @@ public:
 
 	FlowWorld();
 	~FlowWorld();
+private:
 
+	void nextWord(std::string str);
 	void scrollText(float);
+
+	void changeTextColor(std::string str);
 
 	CREATE_FUNC(FlowWorld);
 };

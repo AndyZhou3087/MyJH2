@@ -204,6 +204,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 		scrollView->setMinScale(1);
 		scrollView->setMaxScale(1);
+		scrollView->setTouchEnabled(false);
 	}
 	else
 	{
