@@ -30,6 +30,7 @@
 #include "UsePropLayer.h"
 #include "MazeTransitionScene.h"
 #include "BuySingleResLayer.h"
+#include "MazeDescLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -370,6 +371,12 @@ void MapBlockScene::onEnterTransitionDidFinish()
 		if (g_MapBlockScene == NULL)
 			g_MapBlockScene = this;
 		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.1f);
+	}
+
+	if (isMaze && GlobalInstance::mazerouteindex == 0)
+	{
+		MazeDescLayer* layer = MazeDescLayer::create();
+		this->addChild(layer, 10000);
 	}
 }
 
@@ -904,6 +911,7 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 					break;
 				}
 			}
+
 			if (index == vec_mazetranspoints.size() - 1)
 			{
 				GlobalInstance::mazerouteindex++;

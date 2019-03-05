@@ -1077,6 +1077,7 @@
           <Image Name="i002.png" />
           <Image Name="i004.png" />
           <Image Name="k001.png" />
+          <Image Name="librarybackbtn.png" />
           <Image Name="librarytextbg.png" />
           <Image Name="loginbtn.png" />
           <Image Name="loginrewardclose.png" />
@@ -1371,6 +1372,7 @@
         <Project Name="matchRuleLayer.csd" Type="Layer" />
         <Project Name="matchVSLayer.csd" Type="Layer" />
         <Project Name="materialDescNode.csd" Type="Node" />
+        <Project Name="mazedescLayer.csd" Type="Layer" />
         <Project Name="messageDescLayer.csd" Type="Layer" />
         <Project Name="messageLayer.csd" Type="Layer" />
         <Project Name="messageNode.csd" Type="Node" />

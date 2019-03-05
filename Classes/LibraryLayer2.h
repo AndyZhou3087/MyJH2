@@ -17,6 +17,8 @@ public:
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	void onBackClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:
 	int m_startClickX;
 	int m_startClickY;

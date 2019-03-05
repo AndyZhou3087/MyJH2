@@ -6,7 +6,7 @@
       <ObjectData Name="Layer" Tag="786" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
-          <AbstractNodeData Name="ScrollView" ActionTag="1064571911" Tag="787" IconVisible="False" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="ScrollView" ActionTag="1064571911" Tag="787" IconVisible="False" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
             <Size X="720.0000" Y="1280.0000" />
             <Children>
               <AbstractNodeData Name="librarybg" ActionTag="-1454128937" Tag="788" IconVisible="False" ctype="SpriteObjectData">
@@ -204,6 +204,16 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="1440" Height="1280" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="backclick" ActionTag="-860494520" Tag="127" IconVisible="False" LeftMargin="573.7461" RightMargin="16.2539" TopMargin="21.5499" BottomMargin="1127.4501" TouchEnable="True" LeftEage="63" RightEage="63" TopEage="66" BottomEage="66" Scale9OriginX="63" Scale9OriginY="66" Scale9Width="65" Scale9Height="70" ctype="ImageViewObjectData">
+            <Size X="130.0000" Y="131.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="638.7461" Y="1192.9501" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.8871" Y="0.9320" />
+            <PreSize X="0.1806" Y="0.1023" />
+            <FileData Type="MarkedSubImage" Path="ui/librarybackbtn.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

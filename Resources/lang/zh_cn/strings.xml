@@ -462,6 +462,9 @@
 	<s name="mazetext_0">你一脚踩空，急速下坠中不知身在何处，等醒来时已经身处一个神奇的世界...</s>
 	<s name="mazestone">坚硬的石头！无法通过</s>
 	<s name="mazename">迷宫</s>
+	<s name="mazedesc">目标：找到并打败地图的最终BOSS获得奖励</s>
+	<s name="mazetranserdesc">传送阵可以传送到不同的地点</s>
+	<s name="mazestonedesc">传送阵可以传送到不同的地点</s>		
 	<s name="newtemplet0">{%s}帮派上下不辞辛勤劳苦，锻造七七四十九天，终于打造出传说中的[%s]，还有谁敢一战！</s>
 	<s name="newtemplet1">帮派{%s}携帮内大侠遨游四海，纵览八方，无意中寻得[%s]，真是让人万分羡慕。</s>
 	<s name="newtemplet2">帮派{%s}实力突飞猛进，财力雄厚，在神秘商店处购买到[%s]，江湖又将掀起腥风血雨。</s>

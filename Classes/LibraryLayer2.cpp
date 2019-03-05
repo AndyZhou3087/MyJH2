@@ -6,6 +6,7 @@
 #include "AnimationEffect.h"
 #include "GfLibraryLayer.h"
 #include "EquipLibraryLayer.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -50,6 +51,9 @@ bool LibraryLayer2::init()
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("libraryLayer2.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
+
+	cocos2d::ui::Widget* backClick = (cocos2d::ui::Widget*)csbnode->getChildByName("backclick");
+	backClick->addTouchEventListener(CC_CALLBACK_2(LibraryLayer2::onBackClick, this));
 
 	cocos2d::ui::ScrollView* ScrollView = (cocos2d::ui::ScrollView*)csbnode->getChildByName("ScrollView");
 	ScrollView->setScrollBarEnabled(false);
@@ -118,6 +122,7 @@ void LibraryLayer2::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case ui::Widget::TouchEventType::ENDED:
 		{
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 			Node* clicknode = (Node*)pSender;
 			int tag = clicknode->getTag();
 			switch (tag)
@@ -163,6 +168,15 @@ void LibraryLayer2::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 			break;
 		}
+	}
+}
+
+void LibraryLayer2::onBackClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		AnimationEffect::closeAniEffect(this);
 	}
 }
 

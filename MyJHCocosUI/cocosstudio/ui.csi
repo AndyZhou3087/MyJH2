@@ -497,6 +497,7 @@
       <FilePathData Path="ui/changevocbreakarrow.png" />
       <FilePathData Path="ui/newsbg.png" />
       <FilePathData Path="ui/librarytextbg.png" />
+      <FilePathData Path="ui/librarybackbtn.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
