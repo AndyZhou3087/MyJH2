@@ -93,6 +93,7 @@ void MazeTransitionScene::loadfinish(int mazechapter, int type)
 	else
 	{
 		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MapBlockScene::createScene(GlobalInstance::eventfrommapid, GlobalInstance::map_mapsdata[GlobalInstance::eventfrommapid].map_sublist[mapid].bgtype)));
+		
 	}
 
 }

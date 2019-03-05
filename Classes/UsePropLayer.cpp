@@ -115,8 +115,6 @@ bool UsePropLayer::init(std::string strid, int rcount)
 	std::string countstr = StringUtils::format("%d", MyRes::getMyResCount(resid));
 	countlbl->setString(countstr);
 
-
-
 	desclbl->setString(GlobalInstance::map_AllResources[resid].desc);
 
 	cocos2d::ui::ImageView* useicon = (cocos2d::ui::ImageView*)csbnode->getChildByName("icon");
@@ -187,6 +185,11 @@ void UsePropLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			else
 			{
 				MyRes::Use(m_resid, needcoincount.getValue());
+				AnimationEffect::closeAniEffect(this);
+				if (g_MapBlockScene != NULL)
+				{
+					g_MapBlockScene->removeMazeStone(this->getTag());
+				}
 			}
 		}
 		else

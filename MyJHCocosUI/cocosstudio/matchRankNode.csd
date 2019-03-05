@@ -36,8 +36,8 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/h_1_0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="2067373338" Tag="18" IconVisible="False" LeftMargin="-49.0004" RightMargin="-57.9996" TopMargin="-54.2963" BottomMargin="14.2963" FontSize="35" LabelText="小虾米" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="107.0000" Y="40.0000" />
+          <AbstractNodeData Name="name" ActionTag="2067373338" Tag="18" IconVisible="False" LeftMargin="-49.0004" RightMargin="-42.9996" TopMargin="-52.0019" BottomMargin="18.0019" FontSize="30" LabelText="小虾米" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="92.0000" Y="34.0000" />
             <AnchorPoint ScaleY="0.6176" />
             <Position X="-49.0004" Y="39.0003" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -96,7 +96,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="actionbtn" ActionTag="-953088813" Tag="81" IconVisible="False" LeftMargin="105.3915" RightMargin="-305.3915" TopMargin="-30.2234" BottomMargin="-49.7766" TouchEnable="True" LeftEage="47" RightEage="47" TopEage="26" BottomEage="26" Scale9OriginX="47" Scale9OriginY="26" Scale9Width="50" Scale9Height="28" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="actionbtn" ActionTag="-953088813" Tag="81" IconVisible="False" LeftMargin="105.3914" RightMargin="-305.3914" TopMargin="-26.2227" BottomMargin="-53.7773" TouchEnable="True" LeftEage="47" RightEage="47" TopEage="26" BottomEage="26" Scale9OriginX="47" Scale9OriginY="26" Scale9Width="50" Scale9Height="28" ctype="ImageViewObjectData">
             <Size X="200.0000" Y="80.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="60284931" Tag="25" IconVisible="False" LeftMargin="29.0000" RightMargin="39.0000" TopMargin="6.5000" BottomMargin="32.5000" LeftEage="27" RightEage="27" TopEage="15" BottomEage="15" Scale9OriginX="27" Scale9OriginY="15" Scale9Width="78" Scale9Height="11" ctype="ImageViewObjectData">
@@ -111,7 +111,7 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="205.3915" Y="-9.7766" />
+            <Position X="205.3914" Y="-13.7773" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />

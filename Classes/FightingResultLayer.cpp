@@ -81,6 +81,11 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp,
 		{
 			wscore = WINSCORE;
 			GlobalInstance::myMatchInfo.matchscore += wscore;
+			GlobalInstance::myMatchInfo.wincount++;
+		}
+		else
+		{
+			GlobalInstance::myMatchInfo.lostcount++;
 		}
 		std::string str = StringUtils::format("+%d", wscore);
 		winscore->setString(str);

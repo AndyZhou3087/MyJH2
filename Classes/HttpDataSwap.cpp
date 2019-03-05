@@ -1297,6 +1297,10 @@ void HttpDataSwap::httpGetMyMatchRankingCB(std::string retdata, int code, std::s
 					myd = mydatav[m]["matchscore"];
 					data.matchscore = atoi(myd.GetString());
 
+					data.wincount = atoi(getJsonValueStr(mydatav[m]["wincount"]).c_str());
+
+					data.lostcount = atoi(getJsonValueStr(mydatav[m]["lostcount"]).c_str());
+
 					for (int i = 0; i < 6; i++)
 					{
 						std::string herokey = StringUtils::format("hero%d", i);
@@ -1382,6 +1386,11 @@ void HttpDataSwap::httpGetMyMatchHerosCB(std::string retdata, int code, std::str
 				GlobalInstance::myMatchInfo.matchscore = atoi(myd.GetString());
 				myd = mydatav["awardindex"];
 				GlobalInstance::myMatchInfo.awardindex = atoi(myd.GetString());
+
+				GlobalInstance::myMatchInfo.wincount = atoi(getJsonValueStr(mydatav["wincount"]).c_str());
+
+				GlobalInstance::myMatchInfo.lostcount = atoi(getJsonValueStr(mydatav["lostcount"]).c_str());
+
 				GlobalInstance::myMatchInfo.map_myheros.clear();
 				for (int i = 0; i < 6; i++)
 				{
@@ -1402,6 +1411,7 @@ void HttpDataSwap::httpGetMyMatchHerosCB(std::string retdata, int code, std::str
 				rapidjson::Value& v = doc["matchaward"];
 				GlobalInstance::myMatchInfo.rewardstr = v.GetString();
 			}
+			
 			if (ret == 2)
 				ret = SUCCESS;
 

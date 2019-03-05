@@ -352,6 +352,8 @@
 	<s name="matchlvtext_1">段位：</s>
 	<s name="matchexptext">积分</s>
 	<s name="matchexptext_1">积分：</s>
+	<s name="matchwintext">胜率</s>
+	<s name="matchwintext_1">胜率：</s>
 	<s name="mymatchrank">我的排名</s>
 	<s name="notrank">未上榜</s>
 	<s name="matchlvname_0">乡野义士</s>

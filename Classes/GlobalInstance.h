@@ -343,6 +343,8 @@ typedef struct
 	std::string pairnickname;
 	std::map<std::string, NpcFriendly> map_pairfriendly;
 	int pairscore;
+	int wincount;
+	int lostcount;
 }MyMatchInfo;
 
 typedef struct
@@ -353,6 +355,8 @@ typedef struct
 	int matchscore;
 	std::map<std::string, std::string> map_otherheros;
 	std::string friendly;
+	int wincount;
+	int lostcount;
 }MyRankData;
 
 typedef struct

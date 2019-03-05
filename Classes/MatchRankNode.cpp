@@ -86,6 +86,8 @@ bool MatchRankNode::init(MyRankData herodata, int type)
 		mydata.nickname = GlobalInstance::getInstance()->getMyNickName();
 		mydata.rank = GlobalInstance::myRankInfo.myrank;
 		mydata.map_otherheros = GlobalInstance::myMatchInfo.map_myheros;
+		mydata.wincount = GlobalInstance::myMatchInfo.wincount;
+		mydata.lostcount = GlobalInstance::myMatchInfo.lostcount;
 		m_herodata = mydata;
 
 		ranktext->setVisible(false);

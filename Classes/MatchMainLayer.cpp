@@ -156,6 +156,11 @@ bool MatchMainLayer::init()
 	nextlvtext = (cocos2d::ui::Text*)csbnode->getChildByName("nextlvtext");
 	nextlvtext->setString("");
 
+	cocos2d::ui::Text* matchwintext = (cocos2d::ui::Text*)csbnode->getChildByName("matchwintext");
+	matchwintext->setString(ResourceLang::map_lang["matchwintext"]);
+
+	matchwin = (cocos2d::ui::Text*)csbnode->getChildByName("matchwin");
+
 	rewardtext = (cocos2d::ui::Text*)csbnode->getChildByName("rewardtext");
 	rewardtext->setString(ResourceLang::map_lang["matchrewardtext"]);
 
@@ -479,6 +484,13 @@ void MatchMainLayer::updateScore(float dt)
 	}
 	std::string str = StringUtils::format("%d", GlobalInstance::myMatchInfo.matchscore);
 	matchexp->setString(str);
+
+	int totalcount = GlobalInstance::myMatchInfo.wincount + GlobalInstance::myMatchInfo.lostcount;
+	if (totalcount == 0)
+		str = "100.00%";
+	else
+		str = StringUtils::format("%.2f%%", GlobalInstance::myMatchInfo.wincount*100.0f / totalcount);
+	matchwin->setString(str);
 }
 
 void MatchMainLayer::updateUI()

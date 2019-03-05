@@ -87,50 +87,74 @@
             <FileData Type="MarkedSubImage" Path="mapui/winsepbox.png" Plist="mapui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="pointtext" ActionTag="-264102357" Tag="32" IconVisible="False" LeftMargin="126.6623" RightMargin="533.3377" TopMargin="426.2455" BottomMargin="824.7545" FontSize="24" LabelText="积分：" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="pointtext" ActionTag="-264102357" Tag="32" IconVisible="False" LeftMargin="93.6619" RightMargin="566.3381" TopMargin="426.2455" BottomMargin="824.7545" FontSize="24" LabelText="积分：" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="60.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="156.6623" Y="839.2545" />
+            <Position X="123.6619" Y="839.2545" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2176" Y="0.6557" />
+            <PrePosition X="0.1718" Y="0.6557" />
             <PreSize X="0.0833" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="136" G="94" B="64" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="point" ActionTag="-1556661006" Tag="33" IconVisible="False" LeftMargin="197.6623" RightMargin="471.3377" TopMargin="426.2455" BottomMargin="824.7545" FontSize="24" LabelText="5000" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="point" ActionTag="-1556661006" Tag="33" IconVisible="False" LeftMargin="164.6619" RightMargin="504.3381" TopMargin="426.2455" BottomMargin="824.7545" FontSize="24" LabelText="5000" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="51.0000" Y="29.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="197.6623" Y="839.2545" />
+            <Position X="164.6619" Y="839.2545" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2745" Y="0.6557" />
+            <PrePosition X="0.2287" Y="0.6557" />
             <PreSize X="0.0708" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="136" G="94" B="64" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lvtext" ActionTag="1474296122" Tag="34" IconVisible="False" LeftMargin="422.6624" RightMargin="237.3376" TopMargin="426.2455" BottomMargin="824.7545" FontSize="24" LabelText="段位：" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="lvtext" ActionTag="1474296122" Tag="34" IconVisible="False" LeftMargin="261.6715" RightMargin="398.3285" TopMargin="426.2455" BottomMargin="824.7545" FontSize="24" LabelText="段位：" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="60.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="452.6624" Y="839.2545" />
+            <Position X="291.6715" Y="839.2545" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6287" Y="0.6557" />
+            <PrePosition X="0.4051" Y="0.6557" />
             <PreSize X="0.0833" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="136" G="94" B="64" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lv" ActionTag="-1006004710" Tag="35" IconVisible="False" LeftMargin="493.6624" RightMargin="102.3376" TopMargin="426.2455" BottomMargin="824.7545" FontSize="24" LabelText="易方达系啊" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="124.0000" Y="29.0000" />
+          <AbstractNodeData Name="lv" ActionTag="-1006004710" Tag="35" IconVisible="False" LeftMargin="332.6710" RightMargin="288.3290" TopMargin="426.2455" BottomMargin="824.7545" FontSize="24" LabelText="易方达系" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="99.0000" Y="29.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="493.6624" Y="839.2545" />
+            <Position X="332.6710" Y="839.2545" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6856" Y="0.6557" />
-            <PreSize X="0.1722" Y="0.0227" />
+            <PrePosition X="0.4620" Y="0.6557" />
+            <PreSize X="0.1375" Y="0.0227" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="136" G="94" B="64" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="wincounttext" ActionTag="1562398767" Tag="929" IconVisible="False" LeftMargin="493.0491" RightMargin="166.9509" TopMargin="426.2450" BottomMargin="824.7550" FontSize="24" LabelText="胜率：" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="60.0000" Y="29.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="523.0491" Y="839.2550" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.7265" Y="0.6557" />
+            <PreSize X="0.0833" Y="0.0227" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="136" G="94" B="64" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="wincount" ActionTag="200981627" Tag="930" IconVisible="False" LeftMargin="556.1224" RightMargin="75.8776" TopMargin="427.2454" BottomMargin="823.7546" FontSize="24" LabelText="100.00%" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="88.0000" Y="29.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="556.1224" Y="838.2546" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.7724" Y="0.6549" />
+            <PreSize X="0.1222" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="136" G="94" B="64" />
             <ShadowColor A="255" R="110" G="110" B="110" />

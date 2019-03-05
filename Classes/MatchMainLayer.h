@@ -49,6 +49,7 @@ private:
 	cocos2d::ui::Text* matchexp;
 	cocos2d::ui::Text* needexp;
 	cocos2d::ui::Text* nextlvtext;
+	cocos2d::ui::Text* matchwin;
 	cocos2d::ui::Text* endtime;
 	cocos2d::ui::Text* rewardtext;
 	cocos2d::ui::Text* endtimetxt;

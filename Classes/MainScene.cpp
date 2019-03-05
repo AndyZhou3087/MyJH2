@@ -38,6 +38,10 @@ MainScene::MainScene()
 	hostip = NULL;
 	traintip = NULL;
 	httpgettype = 0;
+
+	int z002count = MyRes::getMyResCount("z002");
+	if (z002count > 0)
+		MyRes::Use("z002", z002count);
 }
 
 MainScene::~MainScene()

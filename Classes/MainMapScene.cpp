@@ -9,11 +9,16 @@
 #include "DataSave.h"
 #include "MyTransitionScene.h"
 #include "M1_5_BoxLayer.h"
+#include "MyRes.h"
 
 MainMapScene* g_MainMapScene = NULL;
 MainMapScene::MainMapScene()
 {
 	m_isDraging = false;
+
+	int z002count = MyRes::getMyResCount("z002");
+	if (z002count > 0)
+		MyRes::Use("z002", z002count);
 }
 
 

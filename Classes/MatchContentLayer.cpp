@@ -73,6 +73,19 @@ bool MatchContentLayer::init(MyRankData herodata)
 	str = StringUtils::format("matchlvname_%d", GlobalInstance::getInstance()->getMatchLvByScroe(herodata.matchscore));
 	lv->setString(ResourceLang::map_lang[str]);
 
+	cocos2d::ui::Text* wincounttext = (cocos2d::ui::Text*)csbnode->getChildByName("wincounttext");
+	wincounttext->setString(ResourceLang::map_lang["matchwintext_1"]);
+
+	cocos2d::ui::Text* wincount = (cocos2d::ui::Text*)csbnode->getChildByName("wincount");
+	std::string wincountstr;
+
+	int totalcount = herodata.wincount + herodata.lostcount;
+	if (totalcount == 0)
+		wincountstr = "100.00%";
+	else
+		wincountstr = StringUtils::format("%.2f%%", herodata.wincount*100.0f / totalcount);
+	wincount->setString(wincountstr);
+
 	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(MatchContentLayer::onBtnClick, this));
 
