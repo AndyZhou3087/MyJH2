@@ -139,7 +139,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	if (isMaze)
 	{
 		mapdisplayname = ResourceLang::map_lang["mazename"];
-		mapdisplayname.append(mapname);
+		//mapdisplayname.append(mapname);
 	}
 	std::u32string utf32String;
 	StringUtils::UTF8ToUTF32(mapdisplayname, utf32String);

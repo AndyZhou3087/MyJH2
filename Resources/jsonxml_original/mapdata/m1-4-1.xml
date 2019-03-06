@@ -319,7 +319,9 @@
     <Cell c="9" r="27" p="-1" w="0" m="52.png" />
     <Cell c="9" r="28" p="-1" w="0" m="59.png" />
     <Cell c="9" r="29" p="-1" w="1" m="21.png" />
-    <Cell c="10" r="0" p="-1" w="1" m="6.png" />
+    <Cell c="10" r="0" p="-1" w="1" m="6.png">
+      <event>100;0;0;0;0;0;0</event>
+    </Cell>
     <Cell c="10" r="1" p="-1" w="1" m="6.png" />
     <Cell c="10" r="2" p="-1" w="1" m="6.png" />
     <Cell c="10" r="3" p="-1" w="1" m="6.png" />
@@ -328,7 +330,7 @@
     <Cell c="10" r="6" p="-1" w="1" m="6.png" />
     <Cell c="10" r="7" p="-1" w="1" m="6.png" d="27.png" />
     <Cell c="10" r="8" p="-1" w="1" m="6.png">
-      <event>0;0;100;0;0;0;0</event>
+      <event>0;0;50;0;0;0;0</event>
     </Cell>
     <Cell c="10" r="9" p="-1" w="1" m="6.png" />
     <Cell c="10" r="10" p="-1" w="1" m="6.png" d="27.png" />
@@ -395,7 +397,9 @@
     <Cell c="12" r="11" p="-1" w="1" m="6.png" />
     <Cell c="12" r="12" p="-1" w="1" m="6.png" />
     <Cell c="12" r="13" p="-1" w="1" m="6.png" />
-    <Cell c="12" r="14" p="-1" w="1" m="6.png" />
+    <Cell c="12" r="14" p="-1" w="1" m="6.png">
+      <event>0;0;0;0;0;100;0</event>
+    </Cell>
     <Cell c="12" r="15" p="-1" w="1" m="6.png" />
     <Cell c="12" r="16" p="-1" w="1" m="6.png" />
     <Cell c="12" r="17" p="-1" w="1" m="6.png" />
@@ -452,7 +456,7 @@
     <Cell c="14" r="8" p="-1" w="1" m="6.png" />
     <Cell c="14" r="9" p="-1" w="1" m="6.png" />
     <Cell c="14" r="10" p="-1" w="1" m="6.png">
-      <event>0;0;0;0;100;0;0</event>
+      <event>0;0;0;0;0;0;50</event>
     </Cell>
     <Cell c="14" r="11" p="-1" w="1" m="6.png" />
     <Cell c="14" r="12" p="-1" w="1" m="6.png" />
@@ -508,7 +512,7 @@
     <Cell c="16" r="2" p="-1" w="1" m="6.png" />
     <Cell c="16" r="3" p="-1" w="1" m="6.png" />
     <Cell c="16" r="4" p="-1" w="1" m="6.png">
-      <event>0;0;0;100;0;0;0</event>
+      <event>0;0;0;50;0;0;0</event>
     </Cell>
     <Cell c="16" r="5" p="-1" w="1" m="6.png" />
     <Cell c="16" r="6" p="-1" w="1" m="6.png" />
@@ -873,9 +877,7 @@
     <Cell c="27" r="14" p="-1" w="0" m="55.png" />
     <Cell c="27" r="15" p="-1" w="0" m="48.png" />
     <Cell c="27" r="16" p="-1" w="1" m="6.png" />
-    <Cell c="27" r="17" p="-1" w="1" m="6.png">
-      <event>0;0;0;0;0;0;100</event>
-    </Cell>
+    <Cell c="27" r="17" p="-1" w="1" m="6.png" />
     <Cell c="27" r="18" p="-1" w="0" m="6.png" />
     <Cell c="27" r="19" p="-1" w="0" m="6.png" />
     <Cell c="27" r="20" p="-1" w="0" m="6.png" />

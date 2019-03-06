@@ -13,7 +13,9 @@
     <ma id="s002" c="2" qu="0">10.00</ma>
   </Monstors>
   <Cells rs="20" cs="20">
-    <Cell c="0" r="0" p="-1" w="1" m="89.png" />
+    <Cell c="0" r="0" p="-1" w="1" m="89.png">
+      <event>100;0;0;0;0;0;0</event>
+    </Cell>
     <Cell c="0" r="1" p="4" w="1" m="88.png">
       <npcid>n007</npcid>
       <npcrnd>100</npcrnd>

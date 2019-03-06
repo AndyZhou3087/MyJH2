@@ -542,7 +542,7 @@
     <Cell c="14" r="28" p="-1" w="1" m="22.png" />
     <Cell c="14" r="29" p="-1" w="1" m="22.png" />
     <Cell c="14" r="30" p="-1" w="1" m="22.png">
-      <event>0;0;50;0;0;0;0</event>
+      <event>0;0;100;0;0;0;0</event>
     </Cell>
     <Cell c="14" r="31" p="-1" w="0" m="22.png" d="5.png" />
     <Cell c="14" r="32" p="-1" w="1" m="22.png" />
