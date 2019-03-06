@@ -210,7 +210,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="cleandatabtn" ActionTag="1011680193" Tag="140" IconVisible="False" LeftMargin="258.0000" RightMargin="258.0000" TopMargin="783.0000" BottomMargin="413.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="cleandatabtn" ActionTag="1011680193" Tag="140" IconVisible="False" LeftMargin="257.9999" RightMargin="258.0001" TopMargin="771.9999" BottomMargin="424.0001" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-523754555" Tag="141" IconVisible="False" LeftMargin="28.0216" RightMargin="28.9784" TopMargin="20.7404" BottomMargin="25.2596" LeftEage="23" RightEage="23" TopEage="13" BottomEage="13" Scale9OriginX="23" Scale9OriginY="13" Scale9Width="101" Scale9Height="12" ctype="ImageViewObjectData">
@@ -225,10 +225,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="455.0000" />
+            <Position X="359.9999" Y="466.0001" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.3555" />
+            <PrePosition X="0.5000" Y="0.3641" />
             <PreSize X="0.2833" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
@@ -237,13 +237,13 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="versionlbl" ActionTag="-1347259888" Tag="160" IconVisible="False" LeftMargin="600.5627" RightMargin="65.4373" TopMargin="859.1680" BottomMargin="391.8320" FontSize="25" LabelText="v2.0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="versionlbl" ActionTag="-1347259888" Tag="160" IconVisible="False" LeftMargin="603.5626" RightMargin="62.4374" TopMargin="859.1680" BottomMargin="391.8320" FontSize="25" LabelText="v2.0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="54.0000" Y="29.0000" />
             <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
-            <Position X="654.5627" Y="406.3320" />
+            <Position X="657.5626" Y="406.3320" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="121" G="78" B="46" />
-            <PrePosition X="0.9091" Y="0.3174" />
+            <PrePosition X="0.9133" Y="0.3174" />
             <PreSize X="0.0750" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
@@ -262,6 +262,18 @@
             <PressedFileData Type="MarkedSubImage" Path="ui/addnicknamecountbtn.png" Plist="ui.plist" />
             <NormalFileData Type="MarkedSubImage" Path="ui/addnicknamecountbtn.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="copyrighttext" ActionTag="-404458114" Tag="150" IconVisible="False" LeftMargin="60.0000" RightMargin="192.0000" TopMargin="864.0000" BottomMargin="398.0000" FontSize="18" LabelText="Copyright © 2018-2019 深圳市枫深科技有限公司版权所有" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="468.0000" Y="18.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="60.0000" Y="407.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.0833" Y="0.3180" />
+            <PreSize X="0.6500" Y="0.0141" />
+            <FontResource Type="Default" Path="" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>

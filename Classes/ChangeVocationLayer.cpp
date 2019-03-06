@@ -86,9 +86,9 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 	if (forwhere == 0)
 	{
 		index = 2;
-		vnode[0]->setPositionY(850);
-		bg->setContentSize(Size(bg->getContentSize().width, 960));
-		closebtn->setPositionY(1075);
+		vnode[0]->setPositionY(895);
+		bg->setContentSize(Size(bg->getContentSize().width, 1130));
+		closebtn->setPositionY(1160);
 	}
 	else
 	{
@@ -99,8 +99,8 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 
 		vnode[0]->setPositionY(640);
 		vnode[1]->setVisible(false);
-		bg->setContentSize(Size(bg->getContentSize().width, 550));
-		closebtn->setPositionY(870);
+		bg->setContentSize(Size(bg->getContentSize().width, 620));
+		closebtn->setPositionY(905);
 	}
 	for (int i = 0; i < index; i++)
 	{

@@ -105,6 +105,15 @@ bool SettingLayer::init()
 	std::string vertxt = StringUtils::format("v%s", GlobalInstance::getInstance()->getVersionCode().c_str());
 	verlbl->setString(vertxt);
 
+	cocos2d::ui::Text* copyrightlbl = (cocos2d::ui::Text*)csbnode->getChildByName("copyrighttext");
+	copyrightlbl->setString(ResourceLang::map_lang["copyright"]);
+	
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	copyrightlbl->setVisible(true);
+#else
+	copyrightlbl->setVisible(false);
+#endif
+
 	if (GlobalInstance::getInstance()->getIsNichnameCountMax())
 	{
 		randnamebtn->setVisible(false);
