@@ -261,7 +261,6 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				{
 					GlobalInstance::vec_mazeroute.clear();
 					GlobalInstance::mazerouteindex = 0;
-
 					int rz = 0;
 					int c = rz + 1;
 					for (int i = 1; i < mazes[rz]; i++)

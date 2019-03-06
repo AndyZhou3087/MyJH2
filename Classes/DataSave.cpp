@@ -233,7 +233,7 @@ int DataSave::getBuildingLv(std::string buildingname)
 
 int DataSave::getMySoliverCount()
 {
-	return loadIntDataByKey("soliver", 10000);
+	return loadIntDataByKey("soliver", 20000);
 }
 
 void DataSave::setMySoliverCount(int val)

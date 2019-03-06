@@ -36,6 +36,8 @@ int equiptype[] = { T_ARMOR, T_EQUIP, T_WG, T_NG, T_HANDARMOR, T_FASHION };
 #define S003EXP 15000
 #define S004EXP 50000
 
+int recuitCostsilver[] = { 1000, 2500, 5000, 10000, 20000 };
+
 HeroAttrLayer::HeroAttrLayer()
 {
 	isMovingAction = false;
@@ -742,37 +744,19 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			int herosize = GlobalInstance::vec_myHeros.size();
 			if (herosize < (10 + Building::map_buildingDatas["6innroom"]->level.getValue()))
 			{
-				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_RECRUITSUCC);
-				m_heroData->setState(HS_OWNED);
-				//加入到我的英雄列表
-				Hero* myhero = new Hero(m_heroData);
+				std::string st = StringUtils::format("potential_%d", m_heroData->getPotential());
 
-				std::string heroid = StringUtils::format("%d%02d", GlobalInstance::getInstance()->getSysSecTime(), GlobalInstance::getInstance()->createRandomNum(100));
-
-				myhero->setId(heroid);
-
-				GlobalInstance::vec_myHeros.push_back(myhero);
-				//保存数据
-				GlobalInstance::getInstance()->saveMyHeros();
-				GlobalInstance::getInstance()->saveRand3Heros();
-				InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-				RandHeroNode* heroNode = (RandHeroNode*)this->getParent()->getChildByTag(this->getTag());
-				heroNode->markRecruited(true);
-				innroomLayer->refreshMyHerosUi();
-				clicknode->setEnabled(false);
-				//MovingLabel::show(ResourceLang::map_lang["recruitsucc"]);
-
-				CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_zmcg");
-
-				AnimationEffect::closeAniEffect((Layer*)this);
-
-				break;
+				std::string str = StringUtils::format(ResourceLang::map_lang["silverrecuithero"].c_str(), recuitCostsilver[m_heroData->getPotential()], ResourceLang::map_lang[st].c_str(), m_heroData->getName().c_str());
+				str = CommonFuncs::replace_all(str, "\\n", "\n");
+				HintBoxLayer* hlayer = HintBoxLayer::create(str, 12);
+				this->addChild(hlayer);
 			}
 			else
 			{
 				MovingLabel::show(ResourceLang::map_lang["myheromax"]);
 			}
 		}
+		break;
 		case ATTR_BACKBTN:
 			if (lvnode->isVisible())
 			{
@@ -794,6 +778,44 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		default:
 			break;
 		}
+	}
+}
+
+void HeroAttrLayer::recruitHero()
+{
+	if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= recuitCostsilver[m_heroData->getPotential()])
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_RECRUITSUCC);
+		m_heroData->setState(HS_OWNED);
+		//加入到我的英雄列表
+		Hero* myhero = new Hero(m_heroData);
+
+		std::string heroid = StringUtils::format("%d%02d", GlobalInstance::getInstance()->getSysSecTime(), GlobalInstance::getInstance()->createRandomNum(100));
+
+		myhero->setId(heroid);
+
+		GlobalInstance::vec_myHeros.push_back(myhero);
+		//保存数据
+		GlobalInstance::getInstance()->saveMyHeros();
+		GlobalInstance::getInstance()->saveRand3Heros();
+		InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+		RandHeroNode* heroNode = (RandHeroNode*)this->getParent()->getChildByTag(this->getTag());
+		heroNode->markRecruited(true);
+		innroomLayer->refreshMyHerosUi();
+		btnArr[3]->setEnabled(false);
+
+		DynamicValueInt constdv;
+		constdv.setValue(recuitCostsilver[m_heroData->getPotential()]);
+		GlobalInstance::getInstance()->costMySoliverCount(constdv);
+
+		CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_zmcg");
+
+		AnimationEffect::closeAniEffect(this);
+
+	}
+	else
+	{
+		MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
 	}
 }
 

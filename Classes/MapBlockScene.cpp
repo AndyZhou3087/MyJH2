@@ -274,9 +274,16 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 		//迷宫地图记下的位置
 		if (GlobalInstance::eventstartmappos >= 0)
 		{
+			MapBlock* startymapblock = map_mapBlocks[GlobalInstance::eventstartmappos];
+			std::map<int, int>::iterator rnd_it;
+			for (rnd_it = startymapblock->map_eventrnd.begin(); rnd_it != startymapblock->map_eventrnd.end(); rnd_it++)
+			{
+				startymapblock->map_eventrnd[rnd_it->first] = 0;
+			}
+
 			mycurCol = GlobalInstance::eventstartmappos % blockColCount;
 			mycurRow = GlobalInstance::eventstartmappos / blockColCount;
-			GlobalInstance::eventstartmappos = 0;
+			GlobalInstance::eventstartmappos = -1;
 		}
 	}
 
@@ -1426,6 +1433,7 @@ void MapBlockScene::doMyStatus()
 		{
 			GlobalInstance::eventfrommapid = m_mapid;
 			GlobalInstance::eventstartmappos = mycr;
+
 			MapEventLayer* mlayer = MapEventLayer::create(ret);
 			this->addChild(mlayer);
 			AnimationEffect::openAniEffect((Layer*)mlayer);
@@ -2184,6 +2192,7 @@ void MapBlockScene::parseMapXml(std::string mapname)
 							if (r >= mb->getPosNpcRnd())
 								showPosIcon = false;
 						}
+
 						if (showPosIcon)
 						{
 							mb->setPosType(postype);

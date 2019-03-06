@@ -35,6 +35,8 @@ private:
 
 	void updateData();
 
+	void updateCoinTextColor(float dt);
+
 	void longTouchUpdate(float delay);
 	void cancelLongTouch();
 

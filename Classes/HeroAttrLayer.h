@@ -41,6 +41,8 @@ public:
 
 	void fireHero();
 
+	void recruitHero();
+
 private:
 
 	/************************************
@@ -103,6 +105,7 @@ private:
 	void modifyName(std::string utf8name = "");
 
 	void updateHeroNameAction(std::string newname);
+
 private:
 	Node* lvnode;
 	//

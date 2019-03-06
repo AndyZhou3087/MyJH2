@@ -249,6 +249,8 @@ bool BuySingleResLayer::init(MSGAWDSDATA fproper)
 
 	updateData();
 
+	updateCoinTextColor(0);
+	this->schedule(schedule_selector(BuySingleResLayer::updateCoinTextColor), 1.0f);
 	//按钮
 	cocos2d::ui::Widget* buybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("buybtn");
 	buybtn->setTag(100);
@@ -469,15 +471,6 @@ void BuySingleResLayer::updateData()
 		myrich.setValue(GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	}
 
-	if (myrich.getValue() < buycount * saleval)
-	{
-		totalpricelbl->setColor(Color3B(255, 0, 0));
-	}
-	else
-	{
-		totalpricelbl->setColor(Color3B(255, 191, 0));
-	}
-
 	std::string salestr = StringUtils::format("%d", buycount * saleval);
 	totalpricelbl->setString(salestr);
 
@@ -529,5 +522,31 @@ void BuySingleResLayer::getAttr(std::string gfid, int type)
 		std::string str = StringUtils::format("addattrtext_%d", i);
 		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), vec_attrval[i]);
 		attrlblArr[i]->setString(str);
+	}
+}
+
+void BuySingleResLayer::updateCoinTextColor(float dt)
+{
+	int saleval = 0;
+	DynamicValueInt myrich;
+	std::string resid = m_fproper.rid;
+	if (GlobalInstance::map_AllResources[resid].coinval > 0)
+	{
+		saleval = GlobalInstance::map_AllResources[resid].coinval;
+		myrich.setValue(GlobalInstance::getInstance()->getMyCoinCount().getValue());
+	}
+	else
+	{
+		saleval = GlobalInstance::map_AllResources[resid].silverval * 9 / 10;
+		myrich.setValue(GlobalInstance::getInstance()->getMySoliverCount().getValue());
+	}
+
+	if (myrich.getValue() < buycount * saleval)
+	{
+		totalpricelbl->setColor(Color3B(255, 0, 0));
+	}
+	else
+	{
+		totalpricelbl->setColor(Color3B(255, 191, 0));
 	}
 }

@@ -15,20 +15,3 @@ public class PayAction {
 		context = act;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

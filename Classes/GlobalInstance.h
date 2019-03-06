@@ -850,6 +850,7 @@ public:
 	static std::vector<std::string> vec_news;
 
 	static int getNewsTime;
+
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

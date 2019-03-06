@@ -347,7 +347,7 @@ void SmithyLayer::makeRes(std::string resid)
 	this->addChild(layer);
 	AnimationEffect::openAniEffect(layer);
 
-	//if (qu >= 3)
+	if (qu >= 3)
 	{
 		std::string st = StringUtils::format("potential_%d", qu);
 		std::string namestr = StringUtils::format(ResourceLang::map_lang["libraryinfoequipname"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str(), ResourceLang::map_lang[st].c_str());

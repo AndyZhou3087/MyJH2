@@ -216,6 +216,14 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 #endif
 			}
+			else if (m_forwhere == 12)
+			{
+				HeroAttrLayer* heroattrlayer = (HeroAttrLayer*)this->getParent();
+				if (heroattrlayer != NULL)
+				{
+					heroattrlayer->recruitHero();
+				}
+			}
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
 		case -1:
