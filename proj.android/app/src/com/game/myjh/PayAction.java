@@ -5,13 +5,15 @@ import android.app.Activity;
 
 public class PayAction {
 	static Activity context;
-	public static void pay(String payCode, String goodsDesc, int price/*分为单位*/)
+	public static void pay(String payName, int price/*分为单位*/)
 	{
-	    JNI.sendMessage(-1);
+		WXPay.pay(payName, price);
+	    //JNI.sendMessage(-1);
 	}
 
 	public static void init(Activity act)
 	{
 		context = act;
+		WXPay.init(act);
 	}
 }

@@ -24,7 +24,6 @@ THE SOFTWARE.
 ****************************************************************************/
 package com.game.myjh;
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ClipData;
@@ -36,15 +35,16 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.annotation.RequiresApi;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
-import com.game.myjh.R;
 import com.umeng.analytics.UMGameAnalytics;
 import com.umeng.analytics.game.UMGameAgent;
 import com.umeng.common.UMCocosConfigure;
@@ -62,6 +62,9 @@ public class AppActivity extends Cocos2dxActivity implements DownloadApkTask.onD
     private ProgressDialog updateProgressDialog = null;
 
     private static String upgardeUrl = null;
+
+    public static HandlerThread handlerThread;
+    public static THandler handler;
 
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -84,9 +87,15 @@ public class AppActivity extends Cocos2dxActivity implements DownloadApkTask.onD
         }
 
         m_self = this;
+
+        handlerThread = new HandlerThread("handle_thread");
+        handlerThread.start();
+        handler = new THandler(handlerThread.getLooper());
+
         // DO OTHER INITIALIZATION BELOW
         Utils.init(this);
         initUmeng();
+        PayAction.init(this);
     }
 
     public static void copyToClipboard(final String content)
@@ -257,5 +266,56 @@ public class AppActivity extends Cocos2dxActivity implements DownloadApkTask.onD
             intent.setDataAndType(Uri.parse("file://" + destFilePath), "application/vnd.android.package-archive");
         }
         m_self.startActivity(intent);
+    }
+
+    public static class THandler extends Handler
+
+    {
+        public THandler()
+        {
+
+        }
+
+        public THandler(Looper looper)
+        {
+            super(looper);
+        }
+
+        @Override
+        public void handleMessage(Message msg)
+        {
+            if (!Thread.currentThread().isInterrupted())
+            {
+                switch(msg.what)
+                {
+                    case -1:
+                        Toast.makeText(m_self, "网络不可用，请检查您的网络设置", Toast.LENGTH_SHORT).show();
+                        JNI.sendMessage(-1);
+                        break;
+                    case -2:
+                        Toast.makeText(m_self, "下单失败！！", Toast.LENGTH_SHORT).show();
+                        JNI.sendMessage(-1);
+                        break;
+                    case -3:
+                        Toast.makeText(m_self, "调取支付插件失败！！", Toast.LENGTH_SHORT).show();
+                        JNI.sendMessage(-1);
+                        break;
+                    case 0:
+                        Toast.makeText(m_self, "支付成功！！", Toast.LENGTH_SHORT).show();
+                        JNI.sendMessage(0);
+                        break;
+                    case 1:
+                        Toast.makeText(m_self, "支付失败！！", Toast.LENGTH_SHORT).show();
+                        JNI.sendMessage(-1);
+                        break;
+                    case 2:
+                        Toast.makeText(m_self, "支付取消！！", Toast.LENGTH_SHORT).show();
+                        JNI.sendMessage(-1);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }

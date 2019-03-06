@@ -128,6 +128,10 @@
           <Image Name="n027.png" />
           <Image Name="n028.png" />
           <Image Name="newpopbg.png" />
+          <Image Name="payback.png" />
+          <Image Name="paybg.jpg" />
+          <Image Name="payqqbtn.png" />
+          <Image Name="paywxbtn.png" />
           <Image Name="poptitletie.png" />
           <Image Name="renationbg.png" />
           <Image Name="selectequipbg.png" />
@@ -1384,6 +1388,7 @@
         <Project Name="npcLayer.csd" Type="Layer" />
         <Project Name="openHolesLayer.csd" Type="Layer" />
         <Project Name="outTownLayer.csd" Type="Layer" />
+        <Project Name="paySelectLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
         <Project Name="renationitemNode.csd" Type="Node" />

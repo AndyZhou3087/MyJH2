@@ -8,8 +8,8 @@ android {
         applicationId "com.fengs.myjh"
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
-        versionCode 6
-        versionName "1.0.6"
+        versionCode 10
+        versionName "2.0.0"
 
         externalNativeBuild {
             if (PROP_BUILD_TYPE == 'ndk-build') {
@@ -127,5 +127,6 @@ dependencies {
     implementation project(':libcocos2dx')
     implementation files('libs/umeng-common-1.5.3.jar')
     implementation files('libs/umeng-analytics-7.5.3.jar')
-    implementation 'com.android.support:appcompat-v7:24.+'
+    implementation 'com.android.support:appcompat-v7:28.+'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 }
