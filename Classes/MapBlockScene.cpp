@@ -26,7 +26,7 @@
 #include "Utility.h"
 #include "NpcLayer.h"
 #include "MyTransitionScene.h"
-#include "SimpleResPopLayer.h"
+#include "BuyResLayer.h"
 #include "UsePropLayer.h"
 #include "MazeTransitionScene.h"
 #include "BuySingleResLayer.h"
@@ -706,7 +706,13 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 			if (MyRes::getMyResCount("z001") <= 0)
 			{
-				SimpleResPopLayer* layer = SimpleResPopLayer::create("z001", 1, 5);
+				std::vector< MSGAWDSDATA> vec_res;
+				MSGAWDSDATA rdata;
+				rdata.rid = "z001";
+				rdata.count = 5;
+				rdata.qu = 0;
+				vec_res.push_back(rdata);
+				BuyResLayer* layer = BuyResLayer::create(vec_res);
 				this->addChild(layer);
 				AnimationEffect::openAniEffect(layer);
 			}
@@ -728,7 +734,13 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 			if (MyRes::getMyResCount("v001") <= 0)
 			{
-				SimpleResPopLayer* layer = SimpleResPopLayer::create("v001", 1, 5);
+				std::vector< MSGAWDSDATA> vec_res;
+				MSGAWDSDATA rdata;
+				rdata.rid = "v001";
+				rdata.count = 5;
+				rdata.qu = 0;
+				vec_res.push_back(rdata);
+				BuyResLayer* layer = BuyResLayer::create(vec_res);
 				this->addChild(layer);
 				AnimationEffect::openAniEffect(layer);
 			}

@@ -7,7 +7,11 @@
 #include "GongFa.h"
 #include "MD5.h"
 
-#define HTTPURL "https://www.stormnet.cn/jhapi/"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#define HTTPURL "https://other.fonseng.com/jhapi/"
+#else
+#define HTTPURL "https://www.fonseng.com/jhapi/"
+#endif
 
 
 HttpDataSwap::HttpDataSwap()

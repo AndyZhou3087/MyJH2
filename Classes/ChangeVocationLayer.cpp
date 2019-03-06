@@ -12,7 +12,7 @@
 #include "SoundManager.h"
 #include "NewGuideLayer.h"
 #include "MainScene.h"
-#include "SimpleResPopLayer.h"
+#include "BuyResLayer.h"
 
 USING_NS_CC;
 
@@ -92,15 +92,19 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 	}
 	else
 	{
-		//vnode[0]->setPositionY(700);
-		//vnode[1]->setVisible(false);
-		//bg->setContentSize(Size(bg->getContentSize().width, 680));
-		//closebtn->setPositionY(935);
-
-		vnode[0]->setPositionY(640);
+		vnode[0]->setPositionY(685);
+		cocos2d::ui::ImageView* vbox = (cocos2d::ui::ImageView*)vnode[0]->getChildByName("box");
+		vbox->setContentSize(Size(vbox->getContentSize().width, 580));
+		vbox->setPosition(Vec2(0, -45));
 		vnode[1]->setVisible(false);
-		bg->setContentSize(Size(bg->getContentSize().width, 620));
-		closebtn->setPositionY(905);
+		bg->setContentSize(Size(bg->getContentSize().width, 720));
+		bg->setPosition(Vec2(360, 640));
+		closebtn->setPositionY(960);
+
+		//vnode[0]->setPositionY(640);
+		//vnode[1]->setVisible(false);
+		//bg->setContentSize(Size(bg->getContentSize().width, 620));
+		//closebtn->setPositionY(905);
 	}
 	for (int i = 0; i < index; i++)
 	{
@@ -135,7 +139,28 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 			attrtextname = StringUtils::format("attr%d_text", m);
 			attrtex->loadTexture(ResourcePath::makeTextImgPath(attrtextname, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
-		//if (forwhere == 0)
+
+		Node* breakarrow;
+		cocos2d::ui::Text* attrvallbl1[6];
+		Node* attrtext2[6];
+		cocos2d::ui::Text* attrvallbl2[6];
+		if (i == 0)
+		{
+			breakarrow = vnode[i]->getChildByName("breakarrow");
+			for (int m = 0; m < 6; m++)
+			{
+				std::string namekey = StringUtils::format("attrvallbl_%d", m);
+				attrvallbl1[m]= (cocos2d::ui::Text*)vnode[i]->getChildByName(namekey);
+
+				namekey = StringUtils::format("attrtext_%d_0", m);
+				attrtext2[m] = vnode[i]->getChildByName(namekey);
+
+				namekey = StringUtils::format("attrvallbl_%d_0", m);
+				attrvallbl2[m] = (cocos2d::ui::Text*)vnode[i]->getChildByName(namekey);
+			}
+		}
+
+		if (forwhere == 0)
 		{
 			for (int m = 0; m < 6; m++)
 			{
@@ -149,18 +174,81 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 					}
 				}
 			}
+
+			if (i == 0)
+			{
+				breakarrow->setVisible(false);
+				for (int m = 0; m < 6; m++)
+				{
+					attrvallbl1[m]->setVisible(false);
+					attrtext2[m]->setVisible(false);
+					attrvallbl2[m]->setVisible(false);
+				}
+			}
+
+		}
+		else
+		{
+			for (int m = 0; m < 6; m++)
+			{
+				for (int n = 0; n < 6; n++)
+				{
+					std::string attrname = StringUtils::format("attrvalblock%d_%d", m, n);
+					Node* attrnode = vnode[i]->getChildByName(attrname);
+					attrnode->setVisible(false);
+				}
+			}
+
+			std::string str1;
+			std::string str2;
+			for (int m = 0; m < 6; m++)
+			{
+				if (m == 0)
+				{
+					str1 = StringUtils::format("%.0f", m_herodata->getMaxHp());
+					str2 = StringUtils::format("%.0f", m_herodata->getMaxHpBy(m_herodata->getChangeCount() + 1));
+				}
+				else if (m == 1)
+				{
+					str1 = StringUtils::format("%.0f", m_herodata->getAtk());
+					str2 = StringUtils::format("%.0f", m_herodata->getAtkBy(m_herodata->getChangeCount() + 1));
+				}
+				else if (m == 2)
+				{
+					str1 = StringUtils::format("%.0f", m_herodata->getDf());
+					str2 = StringUtils::format("%.0f", m_herodata->getDfBy(m_herodata->getChangeCount() + 1));
+				}
+				else if (m == 3)
+				{
+					str1 = StringUtils::format("%.3f", m_herodata->getAtkSpeed());
+					str2 = StringUtils::format("%.3f", m_herodata->getAtkSpeedBy(m_herodata->getChangeCount() + 1));
+				}
+				else if (m == 4)
+				{
+					str1 = StringUtils::format("%.3f%%", m_herodata->getCrit());
+					str2 = StringUtils::format("%.3f%%", m_herodata->getCritBy(m_herodata->getChangeCount() + 1));
+				}
+				else if (m == 5)
+				{
+					str1 = StringUtils::format("%.3f%%", m_herodata->getDodge());
+					str2 = StringUtils::format("%.3f%%", m_herodata->getDodgeBy(m_herodata->getChangeCount() + 1));
+				}
+
+				attrvallbl1[m]->setString(str1);
+				attrvallbl2[m]->setString(str2);
+			}
 		}
 
-			
-		cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)vnode[i]->getChildByName("resbox")->getChildByName("res");
+		Node* resbox = vnode[i]->getChildByName("resbox");
+		cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
 		std::string respath = StringUtils::format("ui/%s.png", needresid.c_str());
 		res->loadTexture(respath, cocos2d::ui::Widget::TextureResType::PLIST);
 		res->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onImgClick, this));
 
-		cocos2d::ui::ImageView* changevocneed_text = (cocos2d::ui::ImageView*)vnode[i]->getChildByName("resbox")->getChildByName("changevocneed_text");
+		cocos2d::ui::ImageView* changevocneed_text = (cocos2d::ui::ImageView*)resbox->getChildByName("changevocneed_text");
 		changevocneed_text->loadTexture(ResourcePath::makeTextImgPath("changevocneed_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-		count[i] = (cocos2d::ui::Text*)vnode[i]->getChildByName("resbox")->getChildByName("count");
+		count[i] = (cocos2d::ui::Text*)resbox->getChildByName("count");
 
 		cocos2d::ui::Button* actionbtn = (cocos2d::ui::Button*)vnode[i]->getChildByName("actionbtn");
 		actionbtn->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onBtnClick, this));
@@ -170,11 +258,11 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 		actionbtntext->ignoreContentAdaptWithSize(true);
 		actionbtntext->loadTexture(ResourcePath::makeTextImgPath(btnstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-		//if (forwhere == 1)
-		//{
-		//	changevocneed_text->setPosition(Vec2(-210, -290));
-		//	actionbtn->setPositionY(-290);
-		//}
+		if (forwhere == 1)
+		{
+			resbox->setPosition(Vec2(-160, -260));
+			actionbtn->setPositionY(-260);
+		}
 	}
 
 	updateResCount(0);
@@ -245,7 +333,13 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 					if (NewGuideLayer::checkifNewerGuide(66))
 						return;
 
-					SimpleResPopLayer* layer = SimpleResPopLayer::create(needresid, 1, 1);
+					std::vector< MSGAWDSDATA> vec_res;
+					MSGAWDSDATA rdata;
+					rdata.rid = needresid;
+					rdata.count = 1;
+					rdata.qu = 0;
+					vec_res.push_back(rdata);
+					BuyResLayer* layer = BuyResLayer::create(vec_res);
 					this->addChild(layer);
 					AnimationEffect::openAniEffect(layer);
 				}
@@ -270,7 +364,13 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				if (MyRes::getMyResCount(needresid) < 1)
 				{
 					MovingLabel::show(ResourceLang::map_lang["reslack"]);
-					SimpleResPopLayer* layer = SimpleResPopLayer::create(needresid, 1, 1);
+					std::vector< MSGAWDSDATA> vec_res;
+					MSGAWDSDATA rdata;
+					rdata.rid = needresid;
+					rdata.count = 1;
+					rdata.qu = 0;
+					vec_res.push_back(rdata);
+					BuyResLayer* layer = BuyResLayer::create(vec_res);
 					this->addChild(layer);
 					AnimationEffect::openAniEffect(layer);
 				}
@@ -300,7 +400,13 @@ void ChangeVocationLayer::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 			return;
 
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		SimpleResPopLayer* layer = SimpleResPopLayer::create(needresid, 1, 1);
+		std::vector< MSGAWDSDATA> vec_res;
+		MSGAWDSDATA rdata;
+		rdata.rid = needresid;
+		rdata.count = 1;
+		rdata.qu = 0;
+		vec_res.push_back(rdata);
+		BuyResLayer* layer = BuyResLayer::create(vec_res);
 		this->addChild(layer);
 		AnimationEffect::openAniEffect(layer);
 	}

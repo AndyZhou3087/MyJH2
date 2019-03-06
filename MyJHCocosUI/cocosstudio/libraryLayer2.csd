@@ -205,14 +205,14 @@
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="1440" Height="1280" />
           </AbstractNodeData>
-          <AbstractNodeData Name="backclick" ActionTag="-860494520" Tag="127" IconVisible="False" LeftMargin="573.7461" RightMargin="16.2539" TopMargin="21.5499" BottomMargin="1127.4501" TouchEnable="True" LeftEage="63" RightEage="63" TopEage="66" BottomEage="66" Scale9OriginX="63" Scale9OriginY="66" Scale9Width="65" Scale9Height="70" ctype="ImageViewObjectData">
-            <Size X="130.0000" Y="131.0000" />
+          <AbstractNodeData Name="backclick" ActionTag="-860494520" Tag="127" IconVisible="False" LeftMargin="602.7471" RightMargin="13.2529" TopMargin="19.0475" BottomMargin="1148.9525" TouchEnable="True" LeftEage="63" RightEage="63" TopEage="66" BottomEage="66" Scale9OriginX="41" Scale9OriginY="46" Scale9Width="22" Scale9Height="20" ctype="ImageViewObjectData">
+            <Size X="104.0000" Y="112.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="638.7461" Y="1192.9501" />
+            <Position X="654.7471" Y="1204.9525" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.8871" Y="0.9320" />
-            <PreSize X="0.1806" Y="0.1023" />
+            <PrePosition X="0.9094" Y="0.9414" />
+            <PreSize X="0.1444" Y="0.0875" />
             <FileData Type="MarkedSubImage" Path="ui/librarybackbtn.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>

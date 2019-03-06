@@ -70,6 +70,24 @@ public:
 	//闪避
 	float getDodge();
 
+	//攻击
+	float getAtkBy(int breakcount);
+
+	//防御
+	float getDfBy(int breakcount);
+
+	//血量
+	float getMaxHpBy(int breakcount);
+
+	//攻击速度
+	float getAtkSpeedBy(int breakcount);
+
+	//暴击
+	float getCritBy(int breakcount);
+
+	//闪避
+	float getDodgeBy(int breakcount);
+
 	//随机生成一个英雄
 	void generate();
 

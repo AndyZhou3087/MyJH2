@@ -58,7 +58,7 @@ bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 	smallbg->setSwallowTouches(true);
 
 	cocos2d::ui::Text* title = (cocos2d::ui::Text*)csbnode->getChildByName("title");
-	title->setString(ResourceLang::map_lang["reslack"]);
+	title->setString(ResourceLang::map_lang["buytext"]);
 
 	//°´Å¥1
 	cocos2d::ui::Widget* okbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("okbtn");
@@ -141,6 +141,11 @@ bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 	std::string str = StringUtils::format("%d", needcoincount.getValue());
 	countlbl->setString(str);
 
+	std::string descstr = GlobalInstance::map_AllResources[vec_res[0].rid].desc;
+
+	descstr.append(ResourceLang::map_lang["reswheregettext"]);
+	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
+	desclbl->setString(descstr);
 
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();

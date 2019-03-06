@@ -9,7 +9,7 @@
 #include "MovingLabel.h"
 #include "TakeOnLayer.h"
 #include "AnimationEffect.h"
-#include "SimpleResPopLayer.h"
+#include "BuyResLayer.h"
 
 int openRnd[][5] = { {65,35,25,10,0}, { 80,45,35,25,10 } };
 
@@ -205,7 +205,13 @@ void OpenHolesLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		}
 		else
 		{
-			SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 1, 1);
+			std::vector< MSGAWDSDATA> vec_res;
+			MSGAWDSDATA rdata;
+			rdata.rid = resid;
+			rdata.count = 1;
+			rdata.qu = 0;
+			vec_res.push_back(rdata);
+			BuyResLayer* layer = BuyResLayer::create(vec_res);
 			this->addChild(layer);
 			AnimationEffect::openAniEffect(layer);
 		}
@@ -243,7 +249,13 @@ void OpenHolesLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				resid = "i002";
 			else
 				resid = "i004";
-			SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 1, 1);
+			std::vector< MSGAWDSDATA> vec_res;
+			MSGAWDSDATA rdata;
+			rdata.rid = resid;
+			rdata.count = 1;
+			rdata.qu = 0;
+			vec_res.push_back(rdata);
+			BuyResLayer* layer = BuyResLayer::create(vec_res);
 			this->addChild(layer);
 			AnimationEffect::openAniEffect(layer);
 		}

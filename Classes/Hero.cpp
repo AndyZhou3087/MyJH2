@@ -80,7 +80,7 @@ float Hero::getHp()
 {
 	if (m_hp < -100)
 	{
-		m_hp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[0] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
+		m_hp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[0] * POTENTIAL_BNS[m_potential] * BREAK_BNS[m_changecount];
 	}
 	else if (m_hp < 0)
 	{
@@ -124,7 +124,7 @@ void Hero::checkLevelQuest(int lv)
 	{
 		Quest::setDailyTask(UPGRADE_HERO, lv - m_lastlevel);
 		Quest::setAchieveTypeCount(UPGRADE_HERO, lv - m_lastlevel);
-		float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[lv] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(lv + 1) / 10];
+		float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[lv] * POTENTIAL_BNS[m_potential] * BREAK_BNS[m_changecount];
 		m_hp = herohp;
 	}
 
@@ -183,7 +183,7 @@ void Hero::setExpLimit(int vexp)
 
 float Hero::getAtk()
 {
-	float heroatk = GlobalInstance::vec_herosAttr[m_vocation].vec_atk[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
+	float heroatk = GlobalInstance::vec_herosAttr[m_vocation].vec_atk[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[m_changecount];
 	
 	for (int i = 0; i < 6; i++)
 	{
@@ -236,7 +236,7 @@ float Hero::getAtk()
 }
 float Hero::getDf()
 {
-	float herodf = GlobalInstance::vec_herosAttr[m_vocation].vec_df[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
+	float herodf = GlobalInstance::vec_herosAttr[m_vocation].vec_df[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[m_changecount];
 	
 	for (int i = 0; i < 6; i++)
 	{
@@ -305,7 +305,7 @@ float Hero::getDf()
 }
 float Hero::getMaxHp()
 {
-	float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
+	float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[m_changecount];
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -383,7 +383,7 @@ float Hero::getMaxHp()
 }
 float Hero::getAtkSpeed()
 {
-	float heroatkspeed = GlobalInstance::vec_herosAttr[m_vocation].vec_atkspeed[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
+	float heroatkspeed = GlobalInstance::vec_herosAttr[m_vocation].vec_atkspeed[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[m_changecount];
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -438,7 +438,7 @@ float Hero::getAtkSpeed()
 }
 float Hero::getCrit()
 {
-	float herocrit = GlobalInstance::vec_herosAttr[m_vocation].vec_crit[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
+	float herocrit = GlobalInstance::vec_herosAttr[m_vocation].vec_crit[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[m_changecount];
 	for (int i = 0; i < 6; i++)
 	{
 		if (takeOnEquip[i] != NULL)
@@ -491,7 +491,7 @@ float Hero::getCrit()
 }
 float Hero::getDodge()
 {
-	float herododge = GlobalInstance::vec_herosAttr[m_vocation].vec_avoid[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[(getLevel() + 1) / 10];
+	float herododge = GlobalInstance::vec_herosAttr[m_vocation].vec_avoid[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[m_changecount];
 	for (int i = 0; i < 6; i++)
 	{
 		if (takeOnEquip[i] != NULL)
@@ -535,6 +535,360 @@ float Hero::getDodge()
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
 				herododge += herododge*GlobalInstance::map_npcrelation[nid].conpelratio[3];
+			}
+		}
+	}
+
+	return herododge;
+}
+
+float Hero::getAtkBy(int breakcount)
+{
+	float heroatk = GlobalInstance::vec_herosAttr[m_vocation].vec_atk[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[breakcount];
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (takeOnEquip[i] != NULL)
+		{
+			float herobns;
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+			}
+			heroatk += (takeOnEquip[i]->getAtk()*herobns);
+		}
+	}
+	std::map<std::string, NpcFriendly> map_friendly;
+	std::map<std::string, NpcFriendly>::iterator it;
+	if (m_ftype == 0)
+	{
+		map_friendly = GlobalInstance::map_myfriendly;
+	}
+	else if (m_ftype == 1)
+	{
+		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+	}
+
+	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			if (it->second.relation[i] == NPC_FRIEND)
+			{
+				heroatk += heroatk * GlobalInstance::map_npcrelation[nid].friendratio[1];
+			}
+			else if (it->second.relation[i] == NPC_MASTER)
+			{
+				heroatk += heroatk * GlobalInstance::map_npcrelation[nid].masterratio[1];
+			}
+			else if (it->second.relation[i] == NPC_COUPEL)
+			{
+				heroatk += heroatk * GlobalInstance::map_npcrelation[nid].conpelratio[1];
+			}
+		}
+	}
+
+	return heroatk;
+}
+float Hero::getDfBy(int breakcount)
+{
+	float herodf = GlobalInstance::vec_herosAttr[m_vocation].vec_df[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[breakcount];
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (takeOnEquip[i] != NULL)
+		{
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+				Equip* equip = (Equip*)takeOnEquip[i];
+				herodf += (equip->getDf()*herobns);
+				if (GlobalInstance::map_EquipSuit.find(equip->getId()) != GlobalInstance::map_EquipSuit.end() && GlobalInstance::map_EquipSuit[equip->getId()].vec_suit.size() >= 3)
+				{
+					std::string suitid = GlobalInstance::map_EquipSuit[equip->getId()].vec_suit[2];
+					int t = 0;
+					for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+					{
+						if (suitid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+							break;
+					}
+					if (t >= T_ARMOR && t <= T_FASHION)
+					{
+						if (getEquipable(t) != NULL)
+							herodf += equip->getSuitDf();
+					}
+				}
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				float herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+				herodf += takeOnEquip[i]->getDf()*herobns;
+			}
+		}
+	}
+	std::map<std::string, NpcFriendly> map_friendly;
+	std::map<std::string, NpcFriendly>::iterator it;
+	if (m_ftype == 0)
+	{
+		map_friendly = GlobalInstance::map_myfriendly;
+	}
+	else if (m_ftype == 1)
+	{
+		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+	}
+
+	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			if (it->second.relation[i] == NPC_FRIEND)
+			{
+				herodf += herodf * GlobalInstance::map_npcrelation[nid].friendratio[2];
+			}
+			else if (it->second.relation[i] == NPC_MASTER)
+			{
+				herodf += herodf * GlobalInstance::map_npcrelation[nid].masterratio[2];
+			}
+			else if (it->second.relation[i] == NPC_COUPEL)
+			{
+				herodf += herodf * GlobalInstance::map_npcrelation[nid].conpelratio[2];
+			}
+		}
+	}
+
+	return herodf;
+}
+float Hero::getMaxHpBy(int breakcount)
+{
+	float herohp = GlobalInstance::vec_herosAttr[m_vocation].vec_maxhp[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[breakcount];
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (takeOnEquip[i] != NULL)
+		{
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				float herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+				Equip* equip = (Equip*)takeOnEquip[i];
+				herohp += (equip->getHp()*herobns);
+				if (GlobalInstance::map_EquipSuit.find(equip->getId()) != GlobalInstance::map_EquipSuit.end() && GlobalInstance::map_EquipSuit[equip->getId()].vec_suit.size() >= 2)
+				{
+					std::string suitid = GlobalInstance::map_EquipSuit[equip->getId()].vec_suit[1];
+					int t = 0;
+					for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+					{
+						if (suitid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+							break;
+					}
+					if (t >= T_ARMOR && t <= T_FASHION)
+					{
+						if (getEquipable(t) != NULL)
+							herohp += equip->getSuitHp();
+					}
+				}
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				float herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+				herohp += takeOnEquip[i]->getHp() * herobns;
+			}
+		}
+	}
+
+	std::map<std::string, NpcFriendly> map_friendly;
+	std::map<std::string, NpcFriendly>::iterator it;
+
+	if (m_ftype == 0)
+	{
+		map_friendly = GlobalInstance::map_myfriendly;
+	}
+	else if (m_ftype == 1)
+	{
+		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+	}
+
+	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			if (it->second.relation[i] == NPC_FRIEND)
+			{
+				herohp += herohp * GlobalInstance::map_npcrelation[nid].friendratio[0];
+			}
+			else if (it->second.relation[i] == NPC_MASTER)
+			{
+				herohp += herohp * GlobalInstance::map_npcrelation[nid].masterratio[0];
+			}
+			else if (it->second.relation[i] == NPC_COUPEL)
+			{
+				herohp += herohp * GlobalInstance::map_npcrelation[nid].conpelratio[0];
+			}
+		}
+	}
+	return herohp;
+}
+float Hero::getAtkSpeedBy(int breakcount)
+{
+	float heroatkspeed = GlobalInstance::vec_herosAttr[m_vocation].vec_atkspeed[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[breakcount];
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (takeOnEquip[i] != NULL)
+		{
+			float herobns;
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+			}
+			heroatkspeed += (takeOnEquip[i]->getAtkSpeed()*herobns);
+		}
+	}
+
+	std::map<std::string, NpcFriendly> map_friendly;
+
+	std::map<std::string, NpcFriendly>::iterator it;
+	if (m_ftype == 0)
+	{
+		map_friendly = GlobalInstance::map_myfriendly;
+	}
+	else if (m_ftype == 1)
+	{
+		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+	}
+
+	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			if (it->second.relation[i] == NPC_FRIEND)
+			{
+				heroatkspeed += heroatkspeed * GlobalInstance::map_npcrelation[nid].friendratio[5];
+			}
+			else if (it->second.relation[i] == NPC_MASTER)
+			{
+				heroatkspeed += heroatkspeed * GlobalInstance::map_npcrelation[nid].masterratio[5];
+			}
+			else if (it->second.relation[i] == NPC_COUPEL)
+			{
+				heroatkspeed += heroatkspeed * GlobalInstance::map_npcrelation[nid].conpelratio[5];
+			}
+		}
+	}
+
+	return heroatkspeed > 3.0f ? 3.0f : heroatkspeed;
+}
+float Hero::getCritBy(int breakcount)
+{
+	float herocrit = GlobalInstance::vec_herosAttr[m_vocation].vec_crit[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[breakcount];
+	for (int i = 0; i < 6; i++)
+	{
+		if (takeOnEquip[i] != NULL)
+		{
+			float herobns;
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+			}
+			herocrit += (takeOnEquip[i]->getCrit()*herobns);
+		}
+	}
+
+	std::map<std::string, NpcFriendly> map_friendly;
+	std::map<std::string, NpcFriendly>::iterator it;
+	if (m_ftype == 0)
+	{
+		map_friendly = GlobalInstance::map_myfriendly;
+	}
+	else if (m_ftype == 1)
+	{
+		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+	}
+
+	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			if (it->second.relation[i] == NPC_FRIEND)
+			{
+				herocrit += herocrit * GlobalInstance::map_npcrelation[nid].friendratio[4];
+			}
+			else if (it->second.relation[i] == NPC_MASTER)
+			{
+				herocrit += herocrit * GlobalInstance::map_npcrelation[nid].masterratio[4];
+			}
+			else if (it->second.relation[i] == NPC_COUPEL)
+			{
+				herocrit += herocrit * GlobalInstance::map_npcrelation[nid].conpelratio[4];
+			}
+		}
+	}
+
+	return herocrit;
+}
+
+float Hero::getDodgeBy(int breakcount)
+{
+	float herododge = GlobalInstance::vec_herosAttr[m_vocation].vec_avoid[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[breakcount];
+	for (int i = 0; i < 6; i++)
+	{
+		if (takeOnEquip[i] != NULL)
+		{
+			float herobns;
+			if (takeOnEquip[i]->getType() >= T_ARMOR && takeOnEquip[i]->getType() <= T_FASHION)
+			{
+				herobns = GlobalInstance::map_Equip[takeOnEquip[i]->getId()].vec_bns[m_vocation];
+			}
+			else if (takeOnEquip[i]->getType() >= T_WG && takeOnEquip[i]->getType() <= T_NG)
+			{
+				herobns = GlobalInstance::map_GF[takeOnEquip[i]->getId()].vec_herobns[m_vocation];
+			}
+			herododge += (takeOnEquip[i]->getDodge()*herobns);
+		}
+	}
+	std::map<std::string, NpcFriendly> map_friendly;
+	std::map<std::string, NpcFriendly>::iterator it;
+	if (m_ftype == 0)
+	{
+		map_friendly = GlobalInstance::map_myfriendly;
+	}
+	else if (m_ftype == 1)
+	{
+		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+	}
+
+	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
+	{
+		std::string nid = it->first;
+		for (unsigned int i = 0; i < it->second.relation.size(); i++)
+		{
+			if (it->second.relation[i] == NPC_FRIEND)
+			{
+				herododge += herododge * GlobalInstance::map_npcrelation[nid].friendratio[3];
+			}
+			else if (it->second.relation[i] == NPC_MASTER)
+			{
+				herododge += herododge * GlobalInstance::map_npcrelation[nid].masterratio[3];
+			}
+			else if (it->second.relation[i] == NPC_COUPEL)
+			{
+				herododge += herododge * GlobalInstance::map_npcrelation[nid].conpelratio[3];
 			}
 		}
 	}
