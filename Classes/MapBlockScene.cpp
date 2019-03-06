@@ -234,7 +234,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 		std::random_shuffle(vec_normalBlocks.begin(), vec_normalBlocks.end());
 
-		int tcount = vec_normalBlocks.size() / 18;
+		int tcount = vec_normalBlocks.size() / 5;
 
 		int mcount = 0;
 		std::vector<MapBlock*>::iterator mit;
