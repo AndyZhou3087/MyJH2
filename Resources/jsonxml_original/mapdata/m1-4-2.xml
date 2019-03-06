@@ -859,7 +859,9 @@
     <Cell c="27" r="2" p="-1" w="0" m="55.png" />
     <Cell c="27" r="3" p="-1" w="0" m="55.png" />
     <Cell c="27" r="4" p="-1" w="1" m="50.png" />
-    <Cell c="27" r="5" p="-1" w="1" m="57.png" />
+    <Cell c="27" r="5" p="-1" w="1" m="57.png" d="26.png">
+      <event>100;0;0;0;0;0;0</event>
+    </Cell>
     <Cell c="27" r="6" p="-1" w="1" m="6.png" />
     <Cell c="27" r="7" p="-1" w="1" m="6.png" />
     <Cell c="27" r="8" p="-1" w="1" m="6.png" />

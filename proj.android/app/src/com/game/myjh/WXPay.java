@@ -18,7 +18,7 @@ import android.os.Message;
 
 public class WXPay {
 	static Activity context;
-	static String HTTPURL = "https://www.stormnet.cn/api/"; 
+	static String HTTPURL = "https://other.fonseng.com/jhapi/";
 	private static ProgressDialog mProgressDialog = null;
 	private static Runnable progressThread;
 	static public IWXAPI wxapi;
@@ -54,7 +54,7 @@ public class WXPay {
 		
 		StringBuffer strb = new StringBuffer();
 		strb.append(HTTPURL);
-		strb.append("wx_wxprepay?");
+		strb.append("jh_wxprepay?");
 		strb.append("playerid=");
 		strb.append(Utils.UUID());
 		strb.append("&vercode=");

@@ -42,10 +42,10 @@
 
 #define QUMAX 5
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-#define UMENG
-#include "UMeng/Analytics/MobClickCpp.h"
-#endif
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+//#define UMENG
+//#include "UMeng/Analytics/MobClickCpp.h"
+//#endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #define encrypt_jsonxml 1 //加密

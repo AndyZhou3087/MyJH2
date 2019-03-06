@@ -125,8 +125,6 @@ android.applicationVariants.all { variant ->
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':libcocos2dx')
-    implementation files('libs/umeng-common-1.5.3.jar')
-    implementation files('libs/umeng-analytics-7.5.3.jar')
     implementation 'com.android.support:appcompat-v7:28.+'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 }

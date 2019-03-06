@@ -41,9 +41,7 @@
     <Cell c="1" r="3" p="-1" w="1" m="107.png" />
     <Cell c="1" r="4" p="-1" w="1" m="107.png" />
     <Cell c="1" r="5" p="-1" w="1" m="107.png" />
-    <Cell c="1" r="6" p="-1" w="1" m="6.png" d="1.png">
-      <event>0;100;0;0;0;0;0</event>
-    </Cell>
+    <Cell c="1" r="6" p="-1" w="0" m="6.png" d="1.png" />
     <Cell c="1" r="7" p="-1" w="0" m="6.png" />
     <Cell c="1" r="8" p="-1" w="0" m="6.png" d="1.png" />
     <Cell c="1" r="9" p="-1" w="0" m="6.png" />

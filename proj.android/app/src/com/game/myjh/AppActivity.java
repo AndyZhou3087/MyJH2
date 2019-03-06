@@ -45,11 +45,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
-import com.umeng.analytics.UMGameAnalytics;
-import com.umeng.analytics.game.UMGameAgent;
-import com.umeng.common.UMCocosConfigure;
-import com.umeng.commonsdk.UMConfigure;
-
 import org.cocos2dx.lib.Cocos2dxActivity;
 
 import java.io.File;
@@ -94,7 +89,7 @@ public class AppActivity extends Cocos2dxActivity implements DownloadApkTask.onD
 
         // DO OTHER INITIALIZATION BELOW
         Utils.init(this);
-        initUmeng();
+
         PayAction.init(this);
     }
 
@@ -110,14 +105,6 @@ public class AppActivity extends Cocos2dxActivity implements DownloadApkTask.onD
                 cm.setPrimaryClip(myClip);
             }
         });
-    }
-
-    public static void initUmeng()
-    {
-        UMGameAnalytics.init(m_self);
-        //UMConfigure.setLogEnabled(true);
-        UMCocosConfigure.init(m_self, null, Utils.getChannelID(), UMConfigure.DEVICE_TYPE_PHONE,
-                null);
     }
 
     public static void upgradeApk(final String url) {
@@ -211,14 +198,12 @@ public class AppActivity extends Cocos2dxActivity implements DownloadApkTask.onD
     public void onResume() {
         super.onResume();
         // 集成游戏统计分析,初始化 Session
-        UMGameAgent.onResume(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         // //集成游戏统计分析, 结束 Session
-        UMGameAgent.onPause(this);
     }
 
     @Override
