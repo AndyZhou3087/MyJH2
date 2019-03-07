@@ -158,7 +158,11 @@ bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere, int t
 				GlobalInstance::getInstance()->addMyCoinCount(dvint);
 			}
 			else
+			{
+				if (resid.compare("z002") == 0)
+					forwhere = MYPACKAGE;
 				MyRes::Add(resid, count, forwhere, qu, GlobalInstance::getInstance()->generateStoneCount(qu));
+			}
 		}
 		else
 		{

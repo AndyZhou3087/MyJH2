@@ -21,7 +21,8 @@ private:
 private:
 	DynamicValueInt needcoincount;
 	std::vector<MSGAWDSDATA> m_vecres;
-
+	Node* csbnode;
+	void updateSelect(int index);
 	int m_putwhere;
 	Node* select;
 };

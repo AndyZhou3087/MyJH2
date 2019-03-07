@@ -965,7 +965,7 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 				if (GlobalInstance::mazerouteindex == GlobalInstance::vec_mazeroute.size())//回到当前地图
 				{
 					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MazeTransitionScene::createScene(0, TO_OUT)));
-					MyRes::Use("z002", MyRes::getMyResCount("z002"));
+					MyRes::Use("z002", MyRes::getMyResCount("z002"), MYPACKAGE);
 				}
 				else//继续下一个
 				{
@@ -1060,13 +1060,18 @@ void MapBlockScene::checkFood()
 		if (isMaze && (foodcount == 10 || foodcount == 1))
 		{
 			std::vector< MSGAWDSDATA> vec_res;
-			MSGAWDSDATA rdata;
-			rdata.rid = "r001";
-			rdata.count = GlobalInstance::GlobalInstance::myOutMapCarry - foodcount;
-			rdata.qu = 0;
-			vec_res.push_back(rdata);
-			BuySingleResLayer* layer = BuySingleResLayer::create(rdata);
-			this->addChild(layer, 100);
+			int count[] = { 50, 100, 200 };
+			for (unsigned int i = 0; i < 3; i++)
+			{
+				MSGAWDSDATA rdata;
+				rdata.rid = "r001";
+				rdata.count = count[i];
+				rdata.qu = 0;
+				vec_res.push_back(rdata);
+			}
+			BuySelectLayer* layer = BuySelectLayer::create(vec_res);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
 		}
 	}
 	else if (foodcount <= 0)

@@ -50,7 +50,7 @@ bool BuySelectLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 128));
 	this->addChild(color,0,"colorLayer");
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("buySelectLayer.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("buySelectLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
@@ -63,10 +63,11 @@ bool BuySelectLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 	//按钮1
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(BuySelectLayer::onBtnClick, this));
-	actionbtn->setTag(1);
+	actionbtn->setTag(1000);
 	//按钮1文字
 	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
 	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("mapeventtext_6_1", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	actionbtntxt->ignoreContentAdaptWithSize(true);
 
 	int startx[] = { 360, 270 ,210 };
 	int offsetx[] = { 0, 180, 150 };
@@ -114,13 +115,15 @@ bool BuySelectLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 
 			resbox->setPositionX(startx[rewardsize - 1] + offsetx[rewardsize - 1] * i);
 			resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
+			resbox->setTag(i);
+			resbox->addTouchEventListener(CC_CALLBACK_2(BuySelectLayer::onBtnClick, this));
+
 			std::string resstr = StringUtils::format("ui/%s.png", resid.c_str());
 			res->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 			namelbl->setString(GlobalInstance::map_AllResources[resid].name);
 			std::string countstr = StringUtils::format("%d", count);
 			countlbl->setString(countstr);
-			needcoincount.setValue(needcoincount.getValue() + count*GlobalInstance::map_AllResources[resid].silverval / 10);
 		}
 		else
 		{
@@ -130,9 +133,7 @@ bool BuySelectLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 
 	select = csbnode->getChildByName("select");
 
-	cocos2d::ui::Text* countlbl = (cocos2d::ui::Text*)csbnode->getChildByName("countlbl");
-	std::string str = StringUtils::format("%d", needcoincount.getValue());
-	countlbl->setString(str);
+	updateSelect(0);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -150,20 +151,32 @@ bool BuySelectLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 	return true;
 }
 
+void BuySelectLayer::updateSelect(int index)
+{
+	std::string resboxstr = StringUtils::format("resbox%d", index);
+	Node* resbox = csbnode->getChildByName(resboxstr);
+	select->setPosition(resbox->getPosition());
+
+	std::string resid = m_vecres[index].rid;
+	int count = m_vecres[index].count;
+
+	needcoincount.setValue(count * GlobalInstance::map_AllResources[resid].silverval / 10);
+
+	cocos2d::ui::Text* countlbl = (cocos2d::ui::Text*)csbnode->getChildByName("countlbl");
+	std::string str = StringUtils::format("%d", needcoincount.getValue());
+	countlbl->setString(str);
+}
+
 void BuySelectLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		Node* node = (Node*)pSender;
-		switch (node->getTag())
-		{
-		case 0:
-			AnimationEffect::closeAniEffect(this);
-			break;
-		case 1:
-		{
+		int tag = node->getTag();
 
+		if (tag == 1000)
+		{
 			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() < needcoincount.getValue())
 			{
 				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
@@ -185,9 +198,9 @@ void BuySelectLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 
 			AnimationEffect::closeAniEffect(this);
 		}
-			break;
-		default:
-			break;
+		else
+		{
+			updateSelect(tag);
 		}
 	}
 }

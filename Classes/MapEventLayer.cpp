@@ -274,7 +274,7 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					GlobalInstance::vec_mazeroute.push_back(mazes[rz]);
 					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MazeTransitionScene::createScene(c, TO_ENTER)));
 
-					MyRes::Add("z002", 10);
+					MyRes::Add("z002", 10, MYPACKAGE);
 					std::string contentstr = StringUtils::format(ResourceLang::map_lang["newtemplet7"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str());
 					MainScene::addNews(contentstr, 2);
 				}
