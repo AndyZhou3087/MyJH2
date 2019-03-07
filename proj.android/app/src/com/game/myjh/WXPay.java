@@ -14,6 +14,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Message;
+import android.util.Log;
 
 
 public class WXPay {
@@ -74,6 +75,7 @@ public class WXPay {
 		strb.append(Utils.UUID() + ":" + payName);
 		
 		HttpUtil hp = new HttpUtil(strb.toString());
+		Log.d("", "http str = " + strb.toString());
 		String ret = hp.getSimpleString();
 		if (ret == null)
 		{

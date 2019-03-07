@@ -1323,7 +1323,6 @@
         <Project Name="changeHeadLayer.csd" Type="Layer" />
         <Project Name="changeVocationLayer.csd" Type="Layer" />
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
-        <Image Name="e.png" />
         <Project Name="equipDescLayer.csd" Type="Layer" />
         <Project Name="equipLibraryInfoLayer.csd" Type="Layer" />
         <Project Name="errorHintLayer.csd" Type="Layer" />
@@ -1426,6 +1425,7 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="buySelectLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

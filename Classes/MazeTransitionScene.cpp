@@ -57,8 +57,15 @@ bool MazeTransitionScene::init(int mazechapter, int type)
 	{
 		return false;
 	}
+	int r = GlobalInstance::mazerouteindex;
+	if (r > 2)
+		r = 2;
+	std::string keystr = StringUtils::format("mazetext_%d", r);
 
-	Label *lbl = Label::createWithTTF(ResourceLang::map_lang["mazetext_0"], FONT_NAME, 25);
+	if (type == TO_OUT)
+		keystr = StringUtils::format("mazetext_%d", 3);
+
+	Label *lbl = Label::createWithTTF(ResourceLang::map_lang[keystr], FONT_NAME, 25);
 	lbl->setLineSpacing(8);
 	lbl->setColor(Color3B(255, 255, 255));
 	lbl->setMaxLineWidth(540);

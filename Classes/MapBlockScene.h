@@ -93,6 +93,7 @@ private:
 	void onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void onUsePropClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void updateLabel(float dt);
 
 	void parseMapXml(std::string mapname);
@@ -234,6 +235,7 @@ private:
 	bool isMaze;
 	std::vector<MAZE_POS> vec_mazetranspoints;
 	int max_mazepos;
+	cocos2d::ui::ImageView* buildfocus;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

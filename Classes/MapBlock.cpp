@@ -145,3 +145,12 @@ void MapBlock::removeBuild()
 	std::string name = StringUtils::format("build%d", this->getLocalZOrder());
 	this->getParent()->removeChildByName(name);
 }
+
+void MapBlock::focusBuild()
+{
+	//(bname.compare("8.png") == 0 || bname.compare("51.png") == 0))
+	std::string buildname = StringUtils::format("mapui/focusbuildblock_%s", m_buildname.c_str());
+	Sprite* buildfocus = Sprite::createWithSpriteFrameName(buildname);
+	buildfocus->setPosition(Vec2(MAPBLOCKWIDTH/2 + Col*MAPBLOCKWIDTH, MAPBLOCKHEIGHT/2 + Row*MAPBLOCKHEIGHT));
+	this->getParent()->addChild(buildfocus, this->getLocalZOrder() + 10000);
+}

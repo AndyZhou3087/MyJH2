@@ -118,7 +118,7 @@ bool MazeDescLayer::init()
 			CC_CALLBACK_1(MazeDescLayer::onclick, this));
 		//boxItem->setUserData((void*)vec_res[m]);
 
-		boxItem->setPosition(Vec2(170 + m % 4 * 125, 800-m/4*130));
+		boxItem->setPosition(Vec2(170 + m % 4 * 125, 830-m/4*140));
 		boxItem->setScale(0.8f);
 		MyMenu* menu = MyMenu::create();
 		menu->addChild(boxItem);
@@ -133,9 +133,9 @@ bool MazeDescLayer::init()
 		res->setPosition(Vec2(boxItem->getContentSize().width / 2, boxItem->getContentSize().height / 2));
 		boxItem->addChild(res);
 
-		Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 23);
+		Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 28);
 		namelbl->setColor(Color3B(255, 255, 255));
-		namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -10));
+		namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -18));
 		boxItem->addChild(namelbl);
 	}
 

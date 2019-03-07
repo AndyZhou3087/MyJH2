@@ -31,6 +31,7 @@
 #include "MazeTransitionScene.h"
 #include "BuySingleResLayer.h"
 #include "MazeDescLayer.h"
+#include "BuySelectLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -62,6 +63,7 @@ MapBlockScene::MapBlockScene()
 	isDraging = false;
 	isBlockClickCancel = false;
 	isMaze = false;
+	buildfocus = NULL;
 }
 
 
@@ -205,7 +207,29 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 		scrollView->setMinScale(1);
 		scrollView->setMaxScale(1);
-		scrollView->setTouchEnabled(false);
+		//scrollView->setTouchEnabled(false);
+
+		buildfocus = cocos2d::ui::ImageView::create("mapui/focusbuildblock_8.png", cocos2d::ui::Widget::TextureResType::PLIST);
+		buildfocus->ignoreContentAdaptWithSize(true);
+		buildfocus->setPosition(Vec2(0, 0));
+		buildfocus->setTouchEnabled(true);
+		buildfocus->setVisible(false);
+		buildfocus->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onUsePropClick, this));
+		scrollView->addChild(buildfocus, 19998);
+
+		//cocos2d::ui::ImageView* z002box = cocos2d::ui::ImageView::create("mapui/mapzbox.png", cocos2d::ui::Widget::TextureResType::PLIST);
+		//z002box->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onUsePropClick, this));
+		//z002box->setPosition(Vec2(buildfocus->getContentSize().width, buildfocus->getContentSize().height));
+		//buildfocus->addChild(z002box);
+
+		cocos2d::ui::ImageView* z002 = cocos2d::ui::ImageView::create("ui/z002.png", cocos2d::ui::Widget::TextureResType::PLIST);
+		z002->setTouchEnabled(true);
+		//z002->setPosition(Vec2(z002box->getContentSize().width / 2, z002box->getContentSize().height / 2 + 8));
+		z002->setScale(0.6f);
+		//z002box->addChild(z002);
+		z002->setPosition(Vec2(buildfocus->getContentSize().width - 15, buildfocus->getContentSize().height - 15));
+		z002->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onUsePropClick, this));
+		buildfocus->addChild(z002, 0, "z002");
 	}
 	else
 	{
@@ -859,6 +883,9 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 
 	m_walkDirection = keyArrow - KEY_UP;
 
+	if (buildfocus != NULL)
+		buildfocus->setVisible(false);
+
 	int checkret = checkRoad(keyArrow);
 	if (checkret <= 0)
 	{
@@ -870,9 +897,10 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 		else if (checkret <= -10000)
 		{
 			MovingLabel::show(ResourceLang::map_lang["mazestone"]);
-			UsePropLayer* layer = UsePropLayer::create("z002", 1);
-			layer->setTag(-checkret - 10000);
-			this->addChild(layer, 10);
+			
+			//UsePropLayer* layer = UsePropLayer::create("z002", 1);
+			//layer->setTag(-checkret - 10000);
+			//this->addChild(layer, 10);
 		}
 		return;
 	}
@@ -988,6 +1016,7 @@ void MapBlockScene::removeMazeStone(int blockindex)
 	map_mapBlocks[blockindex]->removeBuild();
 	map_mapBlocks[blockindex]->setWalkable(true);
 	map_mapBlocks[blockindex]->setPosIconVisable(true);
+	buildfocus->setVisible(false);
 }
 
 void MapBlockScene::delayShowExit(float dt)
@@ -1126,7 +1155,17 @@ int MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
 	{
 		std::string bname = map_mapBlocks[bindex]->getBuildName();
 		if (isMaze && (bname.compare("8.png") == 0 || bname.compare("51.png") == 0))
+		{
+			std::string buildname = StringUtils::format("mapui/focusbuildblock_%s", bname.c_str());
+			buildfocus->loadTexture(buildname, cocos2d::ui::Widget::TextureResType::PLIST);
+
+			buildfocus->setPosition(Vec2(bindex % blockColCount * MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, MAPBLOCKHEIGHT / 2 + bindex / blockColCount * MAPBLOCKHEIGHT));
+			buildfocus->setVisible(true);
+			buildfocus->setTag(bindex);
+			buildfocus->getChildByName("z002")->setTag(bindex);
+			//map_mapBlocks[bindex]->focusBuild();
 			return -(10000 + bindex);
+		}
 		return -1;
 	}
 	return 1;
@@ -1960,7 +1999,7 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		if (!isUsingTorch)
+		if (!isUsingTorch && !isMaze)
 			return;
 		if (isDraging)
 		{
@@ -1969,15 +2008,75 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		}
 		Node* node = (Node*)pSender;
 		int tag = node->getTag();
-		showThrowTorchParticle(tag / blockColCount, tag%blockColCount);
-		isUsingTorch = false;
-		MyRes::Use("z001", 1);
-		GlobalInstance::getInstance()->usePropsCount(COSTPROP_TORCH, 1);
+		if (!isMaze)
+		{
+			showThrowTorchParticle(tag / blockColCount, tag%blockColCount);
+			isUsingTorch = false;
+			MyRes::Use("z001", 1);
+			GlobalInstance::getInstance()->usePropsCount(COSTPROP_TORCH, 1);
+		}
+		else
+		{
+			int col = tag % blockColCount;
+			int row = tag / blockColCount;
+			std::string bname = map_mapBlocks[tag]->getBuildName();
+			if ((mycurRow >= row - 1 && mycurRow <= row + 1) && (mycurCol >= col - 1 && mycurCol <= col + 1) &&  (bname.compare("8.png") == 0 || bname.compare("51.png") == 0))
+			{
+				std::string buildname = StringUtils::format("mapui/focusbuildblock_%s", bname.c_str());
+				buildfocus->setPosition(Vec2(col * MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, MAPBLOCKHEIGHT / 2 + row * MAPBLOCKHEIGHT));
+				buildfocus->loadTexture(buildname, cocos2d::ui::Widget::TextureResType::PLIST);
+				buildfocus->setVisible(true);
+				buildfocus->setTag(tag);
+				buildfocus->getChildByName("z002")->setTag(tag);
+			}
+			else
+			{
+				buildfocus->setVisible(false);
+			}
+		}
 	}
 	else if (type == ui::Widget::TouchEventType::CANCELED)
 	{
 		isDraging = false;
 		isBlockClickCancel = true;
+	}
+}
+
+void MapBlockScene::onUsePropClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		Node* node = (Node*)pSender;
+
+		int cwhere = MYPACKAGE;
+		int count = MyRes::getMyResCount("z002", MYPACKAGE);
+		if (count <= 0)
+		{
+			cwhere = MYSTORAGE;
+			count = MyRes::getMyResCount("z002", MYSTORAGE);
+		}
+		if (count <= 0)
+		{
+			std::vector< MSGAWDSDATA> vec_res;
+			int count[] = { 5, 10, 20 };
+			for (unsigned int i = 0; i < 3; i++)
+			{
+				MSGAWDSDATA rdata;
+				rdata.rid = "z002";
+				rdata.count = count[i];
+				rdata.qu = 0;
+				vec_res.push_back(rdata);
+			}
+			BuySelectLayer* layer = BuySelectLayer::create(vec_res);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
+		else
+		{
+			int tag = node->getTag();
+			removeMazeStone(tag);
+			MyRes::Use("z002", 1, cwhere);
+		}
 	}
 }
 
@@ -2075,7 +2174,7 @@ void MapBlockScene::parseMapXml(std::string mapname)
 					blockclick->setAnchorPoint(Vec2(0, 0));
 					blockclick->setPosition(mb->getPosition());
 					blockclick->setTouchEnabled(true);
-					blockclick->setSwallowTouches(false);
+					blockclick->setSwallowTouches(isMaze);
 					blockclick->setTag(rc);
 					m_mapscrollcontainer->addChild(blockclick, zorder);
 					if (postype == POS_START)

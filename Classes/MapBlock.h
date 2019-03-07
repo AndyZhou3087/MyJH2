@@ -68,6 +68,8 @@ public:
 	void removeEventIcon();
 	void removeBuild();
 
+	void focusBuild();
+
 	std::string getBuildName();
 
 private:

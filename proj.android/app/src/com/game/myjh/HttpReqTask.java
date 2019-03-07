@@ -19,7 +19,7 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-class HttpReqTask extends AsyncTask<Object, Object, HttpURLConnection>
+public class HttpReqTask extends AsyncTask<Object, Object, HttpURLConnection>
 {
     private static final int HTTP_TIMEOUT_MS = 30000;
     private static final String HTTP_ORIGIN = "";
