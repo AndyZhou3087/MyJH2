@@ -77,9 +77,33 @@ bool MazeDescLayer::init()
 	cocos2d::ui::Text* desc_2 = (cocos2d::ui::Text*)csbnode->getChildByName("desc_2");
 	desc_2->setString(ResourceLang::map_lang["mazestonedesc"]);
 
-	std::string vec_res[] = {"r006-0","r012-0","z002-0","q001-0","q002-0","p001-0","i002-0","i004-0","s004-0","e003-4","g003-4","f003-4"};
+	cocos2d::ui::Text* desc_3 = (cocos2d::ui::Text*)csbnode->getChildByName("desc_3");
+	desc_3->setString(ResourceLang::map_lang["mazedesc1"]);
 
-	for (unsigned int m = 0; m < sizeof(vec_res)/sizeof(vec_res[0]); m++)
+	std::string vec_res_0[] = {"r006-0","r012-0","q001-0","q002-0","s003-0","i002-0","d002-0","m003-0"};
+	std::string vec_res_1[] = {"r006-0","r012-0","z002-0","q001-0","q002-0","p001-0","i002-0","i004-0","s004-0","e003-4","g003-4","f003-4"};
+
+	int startx = 830;
+	std::vector<std::string> vec_res;
+	int c = atoi(GlobalInstance::eventfrommapid.substr(1, GlobalInstance::eventfrommapid.find("-") - 1).c_str());
+	if (c == 1)
+	{
+		for (int m = 0; m < sizeof(vec_res_0) / sizeof(vec_res_0[0]); m++)
+		{
+			vec_res.push_back(vec_res_0[m]);
+		}
+		startx = 830;
+	}
+	else
+	{
+		desc_3->setVisible(false);
+		for (int m = 0; m < sizeof(vec_res_1) / sizeof(vec_res_1[0]); m++)
+		{
+			vec_res.push_back(vec_res_1[m]);
+		}
+	}
+
+	for (unsigned int m = 0; m < vec_res.size(); m++)
 	{
 		std::string qustr = "ui/resbox.png";
 		std::vector<std::string> vec_one;
@@ -118,7 +142,7 @@ bool MazeDescLayer::init()
 			CC_CALLBACK_1(MazeDescLayer::onclick, this));
 		//boxItem->setUserData((void*)vec_res[m]);
 
-		boxItem->setPosition(Vec2(170 + m % 4 * 125, 830-m/4*140));
+		boxItem->setPosition(Vec2(170 + m % 4 * 125, startx -m/4*140));
 		boxItem->setScale(0.8f);
 		MyMenu* menu = MyMenu::create();
 		menu->addChild(boxItem);

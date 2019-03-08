@@ -185,6 +185,40 @@ bool NpcLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	scrollView->setScrollBarEnabled(false);
 	scrollView->setBounceEnabled(true);
 
+	if (GlobalInstance::eventstartmappos > -1)
+	{
+		text0->setVisible(false);
+		for (int i = 0; i < 5; i++)
+		{
+			std::string namestr = StringUtils::format("friendly_bg_%d", i);
+			csbnode->getChildByName(namestr)->setVisible(false);
+
+			namestr = StringUtils::format("friendlybar_%d", i);
+			csbnode->getChildByName(namestr)->setVisible(false);
+			friendlycount->setVisible(false);
+			text1->setVisible(false);
+			relationship->setVisible(false);
+			hinttext->setVisible(false);
+
+			std::string btnstr[6] = { "talkbtn","givebtn","friendbtn","masterbtn","marrybtn","fightbtn" };
+			for (int i = 0; i < 6; i++)
+			{
+				cocos2d::ui::ImageView* npcbtn = (cocos2d::ui::ImageView*)csbnode->getChildByName(btnstr[i]);
+				if (i == 0)
+				{
+					npcbtn->setPositionX(250);
+				}
+				else if (i == 5)
+				{
+					npcbtn->setPositionX(480);
+				}	
+				else
+				{
+					npcbtn->setVisible(false);
+				}
+			}
+		}
+	}
 
 	//фа╠ноб╡Ц╣Ц╩В
 	auto listener = EventListenerTouchOneByOne::create();

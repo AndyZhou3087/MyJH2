@@ -465,7 +465,8 @@
 	<s name="mazetext_3">迷宫也不过如此，我还是出来了...</s>
 	<s name="mazestone">坚硬的石头！点击鹤嘴锄敲碎</s>
 	<s name="mazename">迷宫</s>
-	<s name="mazedesc">目标：找到并打败最终BOSS可获得奖励</s>
+	<s name="mazedesc">寻找出口，逃出生天，挑战BOSS可获得奖励：</s>
+	<s name="mazedesc1">章节数越大，迷宫的难度越大，奖励也更高哦！</s>
 	<s name="mazetranserdesc">传送阵可以传送到不同的地点</s>
 	<s name="mazestonedesc">石头下会隐藏宝贝，千万不要错过</s>		
 	<s name="newtemplet0">{%s}上下不辞辛勤劳苦，锻造七七四十九天，终于打造出传说中的[%s]，还有谁敢一战！</s>
@@ -475,7 +476,7 @@
 	<s name="newtemplet4">{%s}于绝情崖采集草药，不慎失足坠崖，大难不死后发现山崖下前人遗留重宝，一番搜寻后将[%s]]收入囊中。</s>
 	<s name="newtemplet5">{%s}帮主饮酒归来，偶遇绿林之人强抢民女，一招便将小贼解决，民女感恩戴德，拿出祖传秘籍[%s]感谢其相救之恩。</s>
 	<s name="newtemplet6">{%s}发现神秘山洞，洞中隐隐可见幽光，一看便是某位江湖大侠的衣冠冢，躲过无数机关后，[%s]终于重现武林。</s>
-	<s name="newtemplet7">只听轰隆一声巨响，原来是{%s}无意中进入了未知的世界，一番探索后不知将会遇到怎么样的奇遇。</s>
+	<s name="newtemplet7">只听轰隆一声巨响，原来是{%s}无意中进入了未知的世界，一番探索后不知将会遇到怎样的奇遇。</s>
 	<s name="newfindstr0">{</s>	
 	<s name="newfindstr1">}</s>	
 	<s name="newfindstr2">[</s>	
