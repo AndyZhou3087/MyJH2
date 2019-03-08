@@ -1405,7 +1405,7 @@ void HeroAttrLayer::modifyName(std::string utf8name)
 	}
 	else
 	{
-		MovingLabel::show(ResourceLang::map_lang["nicknameempty"]);
+		MovingLabel::show(ResourceLang::map_lang["heronameempty"]);
 	}
 }
 
@@ -1415,14 +1415,14 @@ void HeroAttrLayer::onFinish(int errcode)
 	if (errcode == 0)
 	{
 		updateHeroNameAction(m_editName->getText());
-		MovingLabel::show(ResourceLang::map_lang["modifynicknamesucc"]);
+		MovingLabel::show(ResourceLang::map_lang["modifyheronamesucc"]);
 	}
 	else
 	{
 		if (errcode == 2)//1--player not exit;2--timesout;3--used;4--senstive
 			MovingLabel::show(ResourceLang::map_lang["senstiveword"]);
 		else
-			MovingLabel::show(ResourceLang::map_lang["modifynicknamefail"]);
+			MovingLabel::show(ResourceLang::map_lang["modifyheronamefail"]);
 
 		m_editName->setText(m_heroData->getName().c_str());
 	}

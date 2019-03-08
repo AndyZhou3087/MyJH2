@@ -169,6 +169,9 @@
 	<s name="modifynicknamesucc">帮派名号修改成功！</s>
 	<s name="modifynicknamefail">抱歉！修改帮派名号失败！请检查网络或者联系客服！</s>
 	<s name="nicknameempty">抱歉！帮派名号不能为空！</s>
+	<s name="modifyheronamesucc">侠客名称修改成功！</s>
+	<s name="modifyheronamefail">抱歉！修改侠客名称失败！请检查网络或者联系客服！</s>
+	<s name="heronameempty">抱歉！侠客名称不能为空！</s>
 	<s name="doingtext">处理中...</s>
 	<s name="modifynicknametimeslimit">抱歉！修改帮派名号失败！修改次数已到上限！</s>
 	<s name="nicknamecountmaxtext">修改帮派名号次数已到上限！是否花费%d元宝购买5次修改次数？</s>
