@@ -64,7 +64,7 @@ bool ShopLayer::init()
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
-	//°´Å¥
+	//ï¿½ï¿½Å¥
 	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(ShopLayer::onBtnClick, this));
 
@@ -124,7 +124,7 @@ bool ShopLayer::init()
 
 	updateCoinLable(0);
 	this->schedule(schedule_selector(ShopLayer::updateCoinLable), 0.1f);
-	//ÆÁ±ÎÏÂ²ãµã»÷
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Â²ï¿½ï¿½ï¿½
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -199,12 +199,12 @@ void ShopLayer::beginPay(int index)
 
 	JniMethodInfo methodInfo;
 	char p_str[32] = { 0 };
-	sprintf(p_str, "%s", GlobalInstance::vec_shopdata[m_payindex].name.c_str());
+	sprintf(p_str, "%s", GlobalInstance::vec_shopdata[payindex].name.c_str());
 	std::string clsname = StringUtils::format("%s/PayAction", ANDOIRJNICLS);
 	if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "pay", "(Ljava/lang/String;I)V"))
 	{
 		jstring str1 = methodInfo.env->NewStringUTF(p_str);
-		methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1, GlobalInstance::vec_shopdata[m_payindex].price * 100);
+		methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1, GlobalInstance::vec_shopdata[payindex].price * 100);
 	}
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	buy(GlobalInstance::vec_shopdata[payindex].paycode.c_str());
@@ -217,7 +217,7 @@ void ShopLayer::setMessage(PYARET ret)
 	if (ret == PAY_SUCC && payindex >= 0)
 	{
 		int type = GlobalInstance::vec_shopdata[payindex].type;
-		if (type == COIN)//Ôª±¦
+		if (type == COIN)//Ôªï¿½ï¿½
 		{
 			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata[payindex].res.size(); i++)
 			{
@@ -237,7 +237,7 @@ void ShopLayer::setMessage(PYARET ret)
 				AnimationEffect::closeAniEffect((Layer*)buycoinlayer);
 			}
 		}
-		else if (type == GIFT)//Àñ°ü
+		else if (type == GIFT)//ï¿½ï¿½ï¿½
 		{
 			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata[payindex].res.size(); i++)
 			{
@@ -266,14 +266,14 @@ void ShopLayer::setMessage(PYARET ret)
 				else
 					MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
 
-				if (GlobalInstance::vec_shopdata[payindex].icon.compare("firstcharge") == 0)//Ê×³äÀñ°ü
+				if (GlobalInstance::vec_shopdata[payindex].icon.compare("firstcharge") == 0)//ï¿½×³ï¿½ï¿½ï¿½ï¿½
 				{
 					GlobalInstance::isBuyFirstCharge = true;
 					AnimationEffect::closeAniEffect((Layer*)Director::getInstance()->getRunningScene()->getChildByName("firstcharge"));
 				}
 			}
 		}
-		else if (type == VIP)//ÔÂ¿¨
+		else if (type == VIP)//ï¿½Â¿ï¿½
 		{
 			showVipReward(&GlobalInstance::vec_shopdata[payindex], payindex);
 		}
