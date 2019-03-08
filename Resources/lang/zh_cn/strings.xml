@@ -470,7 +470,7 @@
 	<s name="mazestone">坚硬的石头！点击鹤嘴锄敲碎</s>
 	<s name="mazename">迷宫</s>
 	<s name="mazedesc">寻找出口，逃出生天，挑战BOSS可获得奖励：</s>
-	<s name="mazedesc1">章节数越大，迷宫的难度越大，奖励也更高哦！</s>
+	<s name="mazedesc1">越往后，迷宫的难度越大，奖励也更高哦！</s>
 	<s name="mazetranserdesc">传送阵可以传送到不同的地点</s>
 	<s name="mazestonedesc">石头下会隐藏宝贝，千万不要错过</s>		
 	<s name="newtemplet0">{%s}上下不辞辛勤劳苦，锻造七七四十九天，终于打造出传说中的[%s]，还有谁敢一战！</s>
