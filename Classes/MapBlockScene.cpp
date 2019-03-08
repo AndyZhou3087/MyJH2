@@ -400,6 +400,11 @@ void MapBlockScene::updateZ002Count(float dt)
 {
 	std::string zcountstr = StringUtils::format("%d", MyRes::getMyResCount("z002", MYPACKAGE) + MyRes::getMyResCount("z002", MYSTORAGE));
 	z002countlbl_1->setString(zcountstr);
+
+	if (buildfocus->isVisible())
+	{
+		z002countlbl->setString(zcountstr);
+	}
 }
 
 void MapBlockScene::setBtnEnable(bool isval)
@@ -1104,7 +1109,7 @@ void MapBlockScene::checkFood()
 				rdata.qu = 0;
 				vec_res.push_back(rdata);
 			}
-			BuySelectLayer* layer = BuySelectLayer::create(vec_res);
+			BuySelectLayer* layer = BuySelectLayer::create(vec_res, MYPACKAGE);
 			this->addChild(layer);
 			AnimationEffect::openAniEffect(layer);
 		}

@@ -69,6 +69,14 @@ bool BuySelectLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("mapeventtext_6_1", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	actionbtntxt->ignoreContentAdaptWithSize(true);
 
+	//°´Å¥2
+	cocos2d::ui::Widget* cancelbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("cancelbtn");
+	cancelbtn->addTouchEventListener(CC_CALLBACK_2(BuySelectLayer::onBtnClick, this));
+	cancelbtn->setTag(1001);
+	//°´Å¥2ÎÄ×Ö
+	cocos2d::ui::ImageView* cancelbtntxt = (cocos2d::ui::ImageView*)cancelbtn->getChildByName("text");
+	cancelbtntxt->loadTexture(ResourcePath::makeTextImgPath("cancelbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
 	int startx[] = { 360, 270 ,210 };
 	int offsetx[] = { 0, 180, 150 };
 	int rewardsize = vec_res.size();
@@ -141,10 +149,6 @@ bool BuySelectLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 	{
 		return true;
 	};
-	listener->onTouchEnded = [=](Touch *touch, Event *event)
-	{
-		AnimationEffect::closeAniEffect((Layer*)this);
-	};
 
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -153,6 +157,7 @@ bool BuySelectLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 
 void BuySelectLayer::updateSelect(int index)
 {
+	selctindex = index;
 	std::string resboxstr = StringUtils::format("resbox%d", index);
 	Node* resbox = csbnode->getChildByName(resboxstr);
 	select->setPosition(resbox->getPosition());
@@ -186,16 +191,16 @@ void BuySelectLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				return;
 			}
 
-
-			for (unsigned int i = 0; i < m_vecres.size(); i++)
-			{
-				int qu = m_vecres[i].qu;
-				int st = GlobalInstance::getInstance()->generateStoneCount(qu);
-				MyRes::Add(m_vecres[i].rid, m_vecres[i].count, m_putwhere, qu, st);
-			}
+			int qu = m_vecres[selctindex].qu;
+			int st = GlobalInstance::getInstance()->generateStoneCount(qu);
+			MyRes::Add(m_vecres[selctindex].rid, m_vecres[selctindex].count, m_putwhere, qu, st);
 
 			GlobalInstance::getInstance()->costMyCoinCount(needcoincount);
 
+			AnimationEffect::closeAniEffect(this);
+		}
+		else if (tag == 1001)
+		{
 			AnimationEffect::closeAniEffect(this);
 		}
 		else

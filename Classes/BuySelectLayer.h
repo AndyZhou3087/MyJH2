@@ -25,6 +25,7 @@ private:
 	void updateSelect(int index);
 	int m_putwhere;
 	Node* select;
+	int selctindex;
 };
 
 #endif
