@@ -1,4 +1,4 @@
-﻿#include "MainScene.h"
+#include "MainScene.h"
 #include "Resource.h"
 #include "MainMenuLayer.h"
 #include "GlobalInstance.h"

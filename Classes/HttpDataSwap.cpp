@@ -1,4 +1,4 @@
-﻿#include "HttpDataSwap.h"
+#include "HttpDataSwap.h"
 #include "json.h"
 #include "GlobalInstance.h"
 #include "DataSave.h"
@@ -760,11 +760,11 @@ void HttpDataSwap::addNews(std::string content, int type)
 	url.append("&content=");
 	url.append(content);
 
-	url.append("&sign=");
-	std::string md5ostr = GlobalInstance::getInstance()->UUID() + typestr + content;
-
-	std::string signstr = md5(md5ostr + "key=zhoujian-87");
-	url.append(signstr);
+//    url.append("&sign=");
+//    std::string md5ostr = GlobalInstance::getInstance()->UUID() + typestr;
+//
+//    std::string signstr = md5(md5ostr + "key=zhoujian-87");
+//    url.append(signstr);
 
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpAddNewsCB, this));
 }
