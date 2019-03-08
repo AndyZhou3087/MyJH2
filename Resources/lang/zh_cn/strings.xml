@@ -463,7 +463,7 @@
 	<s name="mazetext_1">你踩中地上的八卦阵，突然无法动弹，一阵恍惚后，眼前的景象才慢慢清晰...</s>
 	<s name="mazetext_2">你走遍了每一个角落，终于发现了八卦阵的秘密。正确的八卦阵带你来到一个新的地点，离终点又近了一步...</s>
 	<s name="mazetext_3">迷宫也不过如此，我还是出来了...</s>
-	<s name="mazestone">坚硬的石头！无法通过</s>
+	<s name="mazestone">坚硬的石头！点击鹤嘴锄敲碎</s>
 	<s name="mazename">迷宫</s>
 	<s name="mazedesc">目标：找到并打败最终BOSS可获得奖励</s>
 	<s name="mazetranserdesc">传送阵可以传送到不同的地点</s>

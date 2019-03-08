@@ -19,7 +19,7 @@ USING_NS_CC;
 
 SelectSubMapLayer::SelectSubMapLayer()
 {
-
+	isentermap = false;
 }
 
 SelectSubMapLayer::~SelectSubMapLayer()
@@ -224,6 +224,9 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 		if (!clickflag)
 			return;
 
+		if (isentermap)
+			return;
+
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 
 
@@ -272,6 +275,7 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 			}
 			clicknode->setEnabled(false);
 
+			isentermap = true;
 			GlobalInstance::eventfrommapid = "";
 			GlobalInstance::eventstartmappos = -1;
 			Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene(mapid, GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].bgtype)));

@@ -354,7 +354,7 @@
             <FileData Type="Normal" Path="images/mapblockbottom.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="taskclick" ActionTag="-763139439" Tag="362" IconVisible="False" LeftMargin="619.7408" RightMargin="0.2592" TopMargin="212.9963" BottomMargin="1014.0037" TouchEnable="True" Scale9Enable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="taskclick" ActionTag="-763139439" VisibleForFrame="False" Tag="362" IconVisible="False" LeftMargin="619.7408" RightMargin="0.2592" TopMargin="212.9963" BottomMargin="1014.0037" TouchEnable="True" Scale9Enable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
             <Size X="100.0000" Y="53.0000" />
             <Children>
               <AbstractNodeData Name="icon" ActionTag="173485613" Tag="41" IconVisible="False" LeftMargin="4.3036" RightMargin="61.6964" TopMargin="16.3801" BottomMargin="8.6199" LeftEage="11" RightEage="11" TopEage="9" BottomEage="9" Scale9OriginX="11" Scale9OriginY="9" Scale9Width="12" Scale9Height="10" ctype="ImageViewObjectData">
@@ -407,6 +407,50 @@
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="71" G="61" B="40" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="z002node" ActionTag="-1201921568" VisibleForFrame="False" Tag="707" IconVisible="True" LeftMargin="665.0000" RightMargin="55.0000" TopMargin="255.0000" BottomMargin="1025.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <Children>
+              <AbstractNodeData Name="box" ActionTag="-574180226" Alpha="202" Tag="708" IconVisible="False" LeftMargin="-58.0000" RightMargin="-58.0000" TopMargin="-32.5000" BottomMargin="-32.5000" Scale9Enable="True" LeftEage="88" RightEage="88" TopEage="21" BottomEage="21" Scale9OriginX="88" Scale9OriginY="21" Scale9Width="91" Scale9Height="23" ctype="ImageViewObjectData">
+                <Size X="116.0000" Y="65.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/makeresnamebox.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="coutlbl" ActionTag="1348533557" Tag="706" IconVisible="False" LeftMargin="9.9996" RightMargin="-39.9996" TopMargin="-16.0001" BottomMargin="-15.9999" FontSize="28" LabelText="30" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                <Size X="30.0000" Y="32.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="24.9996" Y="0.0001" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="0" G="0" B="0" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="23" G="96" B="0" />
+                <ShadowColor A="255" R="0" G="0" B="0" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="z002_2" ActionTag="-613803458" Tag="705" IconVisible="False" LeftMargin="-71.3027" RightMargin="-37.6973" TopMargin="-73.7496" BottomMargin="-35.2504" ctype="SpriteObjectData">
+                <Size X="109.0000" Y="109.0000" />
+                <AnchorPoint ScaleX="0.7000" ScaleY="0.2500" />
+                <Position X="4.9973" Y="-8.0004" />
+                <Scale ScaleX="0.7000" ScaleY="0.7000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/z002.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint />
+            <Position X="665.0000" Y="1025.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9236" Y="0.8008" />
+            <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

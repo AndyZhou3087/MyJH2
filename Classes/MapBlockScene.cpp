@@ -226,10 +226,16 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 		z002->setTouchEnabled(true);
 		//z002->setPosition(Vec2(z002box->getContentSize().width / 2, z002box->getContentSize().height / 2 + 8));
 		z002->setScale(0.6f);
+		z002->setAnchorPoint(Vec2(0.7f, 0.25f));
 		//z002box->addChild(z002);
-		z002->setPosition(Vec2(buildfocus->getContentSize().width - 15, buildfocus->getContentSize().height - 15));
+		z002->setPosition(Vec2(buildfocus->getContentSize().width, buildfocus->getContentSize().height - 20));
 		z002->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onUsePropClick, this));
 		buildfocus->addChild(z002, 0, "z002");
+
+		z002countlbl = Label::createWithTTF("", FONT_NAME, 23);
+		z002countlbl->setColor(Color3B(34, 74, 79));
+		z002countlbl->setPosition(Vec2(buildfocus->getContentSize().width + 5, buildfocus->getContentSize().height));
+		buildfocus->addChild(z002countlbl);
 	}
 	else
 	{
@@ -361,12 +367,21 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	//scheduleUpdate();
 
-	loadTaskUI();
+	if (!isMaze)
+	{
+		loadTaskUI();
+		this->scheduleOnce(schedule_selector(MapBlockScene::closeTaskTipNode), 10.0f);
+	}
+	else
+	{
+		Node* z002node = m_csbnode->getChildByName("z002node");
+		z002node->setVisible(true);
+		z002countlbl_1 = (cocos2d::ui::Text*)m_csbnode->getChildByName("z002node")->getChildByName("coutlbl");
+		this->schedule(schedule_selector(MapBlockScene::updateZ002Count), 1.0f);
+	}
 
 	int r = GlobalInstance::getInstance()->createRandomNum(5);
 	SoundManager::getInstance()->playBackMusic(SoundManager::MUSIC_ID_SUBMAP_0 + r);
-
-	this->scheduleOnce(schedule_selector(MapBlockScene::closeTaskTipNode), 10.0f);
 
 	DataSave::getInstance()->setHeroMapCarryCount(GlobalInstance::myOutMapCarry);
 
@@ -379,6 +394,12 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	}
 
 	return true;
+}
+
+void MapBlockScene::updateZ002Count(float dt)
+{
+	std::string zcountstr = StringUtils::format("%d", MyRes::getMyResCount("z002", MYPACKAGE) + MyRes::getMyResCount("z002", MYSTORAGE));
+	z002countlbl_1->setString(zcountstr);
 }
 
 void MapBlockScene::setBtnEnable(bool isval)
@@ -1013,10 +1034,24 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 
 void MapBlockScene::removeMazeStone(int blockindex)
 {
+	buildfocus->setEnabled(false);
+	//map_mapBlocks[blockindex]->removeBuild();
+	//map_mapBlocks[blockindex]->setWalkable(true);
+	//map_mapBlocks[blockindex]->setPosIconVisable(true);
+	Node* z002 = buildfocus->getChildByName("z002");
+	z002->runAction(Sequence::create(RotateTo::create(0.1f, 80), RotateTo::create(0.1f, -20), DelayTime::create(0.2f), CallFunc::create(CC_CALLBACK_0(MapBlockScene::removeMazeStoneAfterAnim, this, blockindex)), NULL));
+	//buildfocus->setVisible(false);
+}
+
+void MapBlockScene::removeMazeStoneAfterAnim(int blockindex)
+{
+	buildfocus->setVisible(false);
+	buildfocus->setEnabled(true);
 	map_mapBlocks[blockindex]->removeBuild();
 	map_mapBlocks[blockindex]->setWalkable(true);
 	map_mapBlocks[blockindex]->setPosIconVisable(true);
-	buildfocus->setVisible(false);
+	Node* z002 = buildfocus->getChildByName("z002");
+	z002->setRotation(0);
 }
 
 void MapBlockScene::delayShowExit(float dt)
@@ -1166,8 +1201,11 @@ int MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
 
 			buildfocus->setPosition(Vec2(bindex % blockColCount * MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, MAPBLOCKHEIGHT / 2 + bindex / blockColCount * MAPBLOCKHEIGHT));
 			buildfocus->setVisible(true);
+
 			buildfocus->setTag(bindex);
 			buildfocus->getChildByName("z002")->setTag(bindex);
+			std::string zcountstr = StringUtils::format("%d", MyRes::getMyResCount("z002", MYPACKAGE) + MyRes::getMyResCount("z002", MYSTORAGE));
+			z002countlbl->setString(zcountstr);
 			//map_mapBlocks[bindex]->focusBuild();
 			return -(10000 + bindex);
 		}
@@ -2033,6 +2071,8 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 				buildfocus->setVisible(true);
 				buildfocus->setTag(tag);
 				buildfocus->getChildByName("z002")->setTag(tag);
+				std::string zcountstr = StringUtils::format("%d", MyRes::getMyResCount("z002", MYPACKAGE) + MyRes::getMyResCount("z002", MYSTORAGE));
+				z002countlbl->setString(zcountstr);
 			}
 			else
 			{

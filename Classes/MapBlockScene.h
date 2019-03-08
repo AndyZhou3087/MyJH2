@@ -86,6 +86,8 @@ public:
 
 	void removeMazeStone(int blockindex);
 
+	void removeMazeStoneAfterAnim(int blockindex);
+
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
 	void onEnterTransitionDidFinish();
@@ -170,6 +172,8 @@ private:
 
 	void ajustMazeStatus();
 
+	void updateZ002Count(float dt);
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;
@@ -236,6 +240,8 @@ private:
 	std::vector<MAZE_POS> vec_mazetranspoints;
 	int max_mazepos;
 	cocos2d::ui::ImageView* buildfocus;
+	Label* z002countlbl;
+	cocos2d::ui::Text* z002countlbl_1;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

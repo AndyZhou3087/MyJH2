@@ -843,8 +843,11 @@ void MainScene::onFinish(int code)
 		{
 			if (GlobalInstance::vec_news.size() > 0)
 			{
-				newsbg->setVisible(true);
-				this->addChild(FlowWorld::getIntance()->createFW(newsbg));
+				if (!newsbg->isVisible())
+				{
+					newsbg->setVisible(true);
+					this->addChild(FlowWorld::getIntance()->createFW(newsbg));
+				}
 			}
 		}
 		httpgettype = 0;

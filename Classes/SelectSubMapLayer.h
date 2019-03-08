@@ -27,6 +27,7 @@ private:
 	Vec2 beginTouchPoint;
 	std::vector<Node*> nodes;
 	int m_step;
+	bool isentermap;
 };
 
 #endif
