@@ -194,18 +194,18 @@ void ShopLayer::beginPay(int index)
 	setMessage(PAY_SUCC);
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 
-	PaySelectLayer* layer = PaySelectLayer::create(payindex);
-	Director::getInstance()->getRunningScene()->addChild(layer, 1);
+	//PaySelectLayer* layer = PaySelectLayer::create(payindex);
+	//Director::getInstance()->getRunningScene()->addChild(layer, 1);
 
-	//JniMethodInfo methodInfo;
-	//char p_str[32] = { 0 };
-	//sprintf(p_str, "%s", GlobalInstance::vec_shopdata[m_payindex].name.c_str());
-	//std::string clsname = StringUtils::format("%s/PayAction", ANDOIRJNICLS);
-	//if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "pay", "(Ljava/lang/String;I)V"))
-	//{
-	//	jstring str1 = methodInfo.env->NewStringUTF(p_str);
-	//	methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1, GlobalInstance::vec_shopdata[m_payindex].price * 100);
-	//}
+	JniMethodInfo methodInfo;
+	char p_str[32] = { 0 };
+	sprintf(p_str, "%s", GlobalInstance::vec_shopdata[m_payindex].name.c_str());
+	std::string clsname = StringUtils::format("%s/PayAction", ANDOIRJNICLS);
+	if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "pay", "(Ljava/lang/String;I)V"))
+	{
+		jstring str1 = methodInfo.env->NewStringUTF(p_str);
+		methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1, GlobalInstance::vec_shopdata[m_payindex].price * 100);
+	}
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	buy(GlobalInstance::vec_shopdata[payindex].paycode.c_str());
 #endif

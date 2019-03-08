@@ -26,6 +26,9 @@
 #include "LibraryLayer.h"
 #include "FlowWorld.h"
 #include "LibraryLayer2.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#include "iosfunc.h"
+#endif
 
 USING_NS_CC;
 MainScene* g_mainScene = NULL;
@@ -1068,5 +1071,9 @@ void MainScene::cheatAction(int type)
 
 void MainScene::addNews(std::string content, int type)
 {
-	HttpDataSwap::init(NULL)->addNews(content);
+	std::string utf8str = content;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	utf8str = gbkToUTF8(content.c_str());
+#endif
+	HttpDataSwap::init(NULL)->addNews(utf8str);
 }
