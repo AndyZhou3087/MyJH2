@@ -496,12 +496,12 @@ std::string DataSave::getPropsCount()
 
 void DataSave::setMazeEventCount(std::string str)
 {
-	saveStringDataByKey("mazeevent", str);
+	saveStringDataByKey("maze", str);
 }
 
 std::string DataSave::getMazeEventCount()
 {
-	return loadStringDataByKey("mazeevent");
+	return loadStringDataByKey("maze");
 }
 
 void DataSave::deleteDataByKey(std::string key)

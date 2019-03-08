@@ -137,11 +137,11 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 
 		int finishOrder = DataSave::getInstance()->getMapOrderCount(m_mainmapid);
 
-		//if (i > finishOrder)
-		//{
-		//	for (int k = 0; k < subnode->getChildren().size(); k++)
-		//		CommonFuncs::changeGray(subnode->getChildren().at(k));
-		//}
+		if (i > finishOrder)
+		{
+			for (int k = 0; k < subnode->getChildren().size(); k++)
+				CommonFuncs::changeGray(subnode->getChildren().at(k));
+		}
 
 		if ((GlobalInstance::myCurMainData.place.compare(it->first) == 0 && GlobalInstance::myCurMainData.isfinish == QUEST_ACC) || (GlobalInstance::myCurBranchData.place.compare(it->first) == 0 && GlobalInstance::myCurBranchData.isfinish == QUEST_ACC))
 		{
@@ -229,16 +229,15 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 
-
 		int finishOrder = DataSave::getInstance()->getMapOrderCount(m_mainmapid);
 
-		//if (clicknode->getTag() - 1 > finishOrder)
-		//{
-		//	std::string premapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag() - 1);
-		//	std::string str = StringUtils::format(ResourceLang::map_lang["maporderhint"].c_str(), GlobalInstance::map_AllResources[premapid].name.c_str());
-		//	MovingLabel::show(str);
-		//	return;
-		//}
+		if (clicknode->getTag() - 1 > finishOrder)
+		{
+			std::string premapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag() - 1);
+			std::string str = StringUtils::format(ResourceLang::map_lang["maporderhint"].c_str(), GlobalInstance::map_AllResources[premapid].name.c_str());
+			MovingLabel::show(str);
+			return;
+		}
 
 		std::string mapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag());
 		showCloudAnim(clicknode->getParent()->getParent(), clicknode->getParent()->getPosition());

@@ -83,7 +83,7 @@ bool MazeDescLayer::init()
 	std::string vec_res_0[] = {"r006-0","r012-0","q001-0","q002-0","s003-0","i002-0","d002-0","m003-0"};
 	std::string vec_res_1[] = {"r006-0","r012-0","z002-0","q001-0","q002-0","p001-0","i002-0","i004-0","s004-0","e003-4","g003-4","f003-4"};
 
-	int startx = 830;
+	int startx = 845;
 	std::vector<std::string> vec_res;
 	int c = atoi(GlobalInstance::eventfrommapid.substr(1, GlobalInstance::eventfrommapid.find("-") - 1).c_str());
 	if (c == 1)
@@ -92,7 +92,7 @@ bool MazeDescLayer::init()
 		{
 			vec_res.push_back(vec_res_0[m]);
 		}
-		startx = 830;
+		startx = 845;
 	}
 	else
 	{
