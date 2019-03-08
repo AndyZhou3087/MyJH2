@@ -421,8 +421,8 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="MarkedSubImage" Path="ui/makeresnamebox.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="coutlbl" ActionTag="1348533557" Tag="706" IconVisible="False" LeftMargin="9.9996" RightMargin="-39.9996" TopMargin="-16.0001" BottomMargin="-15.9999" FontSize="28" LabelText="30" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-                <Size X="30.0000" Y="32.0000" />
+              <AbstractNodeData Name="coutlbl" ActionTag="1348533557" Tag="706" IconVisible="False" LeftMargin="24.9996" RightMargin="-24.9996" TopMargin="-0.0001" BottomMargin="0.0001" FontSize="28" LabelText="" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                <Size X="0.0000" Y="0.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="24.9996" Y="0.0001" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
