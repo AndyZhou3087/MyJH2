@@ -114,7 +114,17 @@
     <Cell c="8" r="4" p="-1" w="1" m="65.png" />
     <Cell c="8" r="5" p="-1" w="0" m="65.png" d="8.png" />
     <Cell c="8" r="6" p="-1" w="0" m="65.png" d="8.png" />
-    <Cell c="8" r="7" p="-1" w="1" m="65.png" />
+    <Cell c="8" r="7" p="3" w="1" m="65.png">
+      <npcid>n057</npcid>
+      <npcrnd>100</npcrnd>
+      <msatt2 id="n057" qu="3">20</msatt2>
+      <msawd1 id="i002" qu="0" rnd="10.00">1</msawd1>
+      <msawd2 id="d002" qu="0" rnd="10.00">1</msawd2>
+      <msawd3 id="m003" qu="0" rnd="10.00">5</msawd3>
+      <msawd4 id="s003" qu="0" rnd="20.00">5</msawd4>
+      <msawd5 id="q001" qu="0" rnd="25.00">5</msawd5>
+      <msawd6 id="q002" qu="0" rnd="25.00">5</msawd6>
+    </Cell>
     <Cell c="8" r="8" p="-1" w="1" m="63.png" />
     <Cell c="8" r="9" p="-1" w="1" m="63.png" />
     <Cell c="8" r="10" p="-1" w="0" m="65.png" d="8.png" />
