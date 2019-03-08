@@ -77,5 +77,5 @@ const static std::string defaultres = "r001-500-1;r002-500-1;r003-500-1;r004-500
 
 //迷宫地图个数
 const static int mazes[] = {2, 5 };
-const static int mazesfightbg[] = {1, 3 };
+const static int mazesfightbg[] = {2, 3 };
 #endif // _H_CONST_H_
