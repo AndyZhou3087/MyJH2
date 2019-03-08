@@ -99,7 +99,8 @@ void MazeTransitionScene::loadfinish(int mazechapter, int type)
 	}
 	else
 	{
-		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MapBlockScene::createScene(GlobalInstance::eventfrommapid, GlobalInstance::map_mapsdata[GlobalInstance::eventfrommapid].map_sublist[mapid].bgtype)));	
+		std::string mainmapid = GlobalInstance::eventfrommapid.substr(0, GlobalInstance::eventfrommapid.find_last_of("-"));
+		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MapBlockScene::createScene(GlobalInstance::eventfrommapid, GlobalInstance::map_mapsdata[mainmapid].map_sublist[GlobalInstance::eventfrommapid].bgtype)));
 	}
 }
 
