@@ -962,15 +962,18 @@ void MainScene::updateTime(float dt)
 				int lastLevel = trainhero->getLevel();
 				trainhero->setExpLimit(trainhero->getTrainHour() / 3600 * bexp);
 				int curLevel = trainhero->getLevel();
-				if (lastLevel <= curLevel - 1)
-				{
-					CommonFuncs::playCommonLvUpAnim(this, "texiao_sjcg");
-				}
+				//if (lastLevel <= curLevel - 1)
+				//{
+				//	CommonFuncs::playCommonLvUpAnim(this, "texiao_sjcg");
+				//}
+
 				trainhero->setTrainHour(0);
 				trainhero->setTrainTime(0);
 				trainhero->setState(HS_OWNED);
 
 				traintip->setVisible(true);
+				std::string showstr = StringUtils::format(ResourceLang::map_lang["trainfinishtext"].c_str(), trainhero->getName().c_str());
+				MovingLabel::show(showstr);
 			}
 		}
 	}

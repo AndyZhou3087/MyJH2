@@ -247,13 +247,21 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 		bool isphok = true;
 
 		std::string nohpherostr;
+		int nohpcount = 0;
 		for (int i=0;i<6;i++)
 		{
 			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getPower().getValue() < needph)
 			{
+				nohpcount++;
 				if (nohpherostr.length() > 0)
 					nohpherostr.append(ResourceLang::map_lang["dunhao"]);
-				nohpherostr.append(GlobalInstance::myCardHeros[i]->getName());
+				if (nohpcount <= 3)
+					nohpherostr.append(GlobalInstance::myCardHeros[i]->getName());
+				else
+				{
+					nohpherostr.append("...");
+					break;
+				}
 				isphok = false;
 			}
 		}
