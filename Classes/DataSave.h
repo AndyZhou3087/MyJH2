@@ -464,6 +464,12 @@ public:
 	//获取消耗道具数
 	std::string getPropsCount();
 
+	//统计迷宫数据
+	void setMazeEventCount(std::string str);
+
+	//获取迷宫数据
+	std::string getMazeEventCount();
+
 	void deleteDataByKey(std::string key);
 
 private:

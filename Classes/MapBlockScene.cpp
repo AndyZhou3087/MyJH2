@@ -324,6 +324,12 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	gocitybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("gocitybtn");
 	gocitybtn->setTag(BTN_GOCITY);
 	gocitybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+	gocitybtn->setVisible(!isMaze);
+
+	cocos2d::ui::Widget* exitmazebtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("exitmazebtn");
+	exitmazebtn->setTag(BTN_EXITMAZE);
+	exitmazebtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+	exitmazebtn->setVisible(isMaze);
 
 	mypackagebtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("packagebtn");
 	mypackagebtn->setTag(BTN_PACKAGE);
@@ -816,10 +822,24 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			}
 		}
 		break;
+		case BTN_EXITMAZE:
+		{
+			std::string str = StringUtils::format(ResourceLang::map_lang["exitmaze"].c_str(), 30);
+			HintBoxLayer* hlayer = HintBoxLayer::create(str, 13);
+			this->addChild(hlayer);
+		}
+			break;
 		default:
 			break;
 		}
 	}
+}
+
+void MapBlockScene::ExitMaze()
+{
+	std::string mainmapid = GlobalInstance::eventfrommapid.substr(0, GlobalInstance::eventfrommapid.find_last_of("-"));
+	Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MapBlockScene::createScene(GlobalInstance::eventfrommapid, GlobalInstance::map_mapsdata[mainmapid].map_sublist[GlobalInstance::eventfrommapid].bgtype)));
+	GlobalInstance::getInstance()->setMazeEventData(0, 1);
 }
 
 void MapBlockScene::onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

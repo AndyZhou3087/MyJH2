@@ -283,6 +283,7 @@
       <FilePathData Path="mapui/maptask_icon.png" />
       <FilePathData Path="mapui/mapnamebox.png" />
       <FilePathData Path="mapui/mapbtnbg.png" />
+      <FilePathData Path="mapui/exitmazebtn.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

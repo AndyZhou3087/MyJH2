@@ -494,6 +494,16 @@ std::string DataSave::getPropsCount()
 	return loadStringDataByKey("costprops");
 }
 
+void DataSave::setMazeEventCount(std::string str)
+{
+	saveStringDataByKey("mazeevent", str);
+}
+
+std::string DataSave::getMazeEventCount()
+{
+	return loadStringDataByKey("mazeevent");
+}
+
 void DataSave::deleteDataByKey(std::string key)
 {
 	removeEleByKey(key);

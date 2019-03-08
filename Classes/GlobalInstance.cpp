@@ -126,6 +126,8 @@ std::vector<std::string> GlobalInstance::vec_news;
 
 int GlobalInstance::getNewsTime = 0;
 
+int GlobalInstance::mazeEventData[2] = { 0,0 };
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -349,6 +351,20 @@ void GlobalInstance::loadInitData()
 			if (i < vec_costprops.size())
 			{
 				vec_costprops[i] = atoi(vec_ret[i].c_str());
+			}
+		}
+	}
+	str = DataSave::getInstance()->getMazeEventCount();
+
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_ret;
+		CommonFuncs::split(str, vec_ret, "-");
+		for (unsigned int i = 0; i < vec_ret.size(); i++)
+		{
+			if (i < 2)
+			{
+				mazeEventData[i] = atoi(vec_ret[i].c_str());
 			}
 		}
 	}
@@ -3088,6 +3104,14 @@ void GlobalInstance::usePropsCount(int idindex, int useval)
 		str.append(pstr);
 	}
 	DataSave::getInstance()->setPropsCount(str);
+}
+
+void GlobalInstance::setMazeEventData(int entercount, int useexitcount)
+{
+	mazeEventData[0] += entercount;
+	mazeEventData[1] += useexitcount;
+	std::string str = StringUtils::format("%d-%d", mazeEventData[0], mazeEventData[1]);
+	DataSave::getInstance()->setMazeEventCount(str);
 }
 
 void GlobalInstance::resetData()

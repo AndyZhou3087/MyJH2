@@ -387,6 +387,7 @@
           <Image Name="critnumbg.png" />
           <Image Name="escapeicon.png" />
           <Image Name="eventshopcountbox.png" />
+          <Image Name="exitmazebtn.png" />
           <Image Name="fightingedge.png" />
           <Image Name="fightspeedx1.png" />
           <Image Name="fightspeedx2.png" />
@@ -522,6 +523,7 @@
           <Image Name="equiptext_5.png" />
           <Image Name="escapebtn_text.png" />
           <Image Name="eventbusinesstitle.png" />
+          <Image Name="exitmazebtn_text.png" />
           <Image Name="fastdecompose_text.png" />
           <Image Name="firebtn_text.png" />
           <Image Name="firstchargebtn_text.png" />

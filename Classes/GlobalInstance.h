@@ -745,6 +745,8 @@ public:
 
 	void usePropsCount(int idindex, int useval);
 
+	void setMazeEventData(int entercount, int useexitcount);
+
 private:
 	static GlobalInstance* _Context;//类实例
 
@@ -850,6 +852,8 @@ public:
 	static std::vector<std::string> vec_news;
 
 	static int getNewsTime;
+
+	static int mazeEventData[2];
 
 private:
 	static int refreshHeroTime;

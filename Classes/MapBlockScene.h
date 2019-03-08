@@ -29,7 +29,8 @@ typedef enum
 	BTN_GOCITY = 2000,
 	BTN_PACKAGE,
 	BTN_TORCH,
-	BTN_VISION
+	BTN_VISION,
+	BTN_EXITMAZE
 }MAPBTNTYPE;
 
 typedef enum
@@ -87,6 +88,8 @@ public:
 	void removeMazeStone(int blockindex);
 
 	void removeMazeStoneAfterAnim(int blockindex);
+
+	void ExitMaze();
 
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);

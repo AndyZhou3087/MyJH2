@@ -72,6 +72,7 @@ void FlowWorld::scrollText(float)
 		else
 		{
 			_newsBg->setVisible(false);
+			_newsBg->removeAllChildrenWithCleanup(true);
 			this->removeFromParentAndCleanup(true);
 		}
 	}

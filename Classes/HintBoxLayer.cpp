@@ -18,6 +18,7 @@
 #include "MyTransitionScene.h"
 #include "LoadingScene.h"
 #include "SettingLayer.h"
+#include "BuyCoinLayer.h"
 
 USING_NS_CC;
 
@@ -222,6 +223,26 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				if (heroattrlayer != NULL)
 				{
 					heroattrlayer->recruitHero();
+				}
+			}
+			else if (m_forwhere == 13)
+			{
+				if (g_MapBlockScene != NULL)
+				{
+					int constcoin = 30;
+					if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= constcoin)
+					{
+						DynamicValueInt dv;
+						dv.setValue(constcoin);
+						GlobalInstance::getInstance()->costMyCoinCount(dv);
+						g_MapBlockScene->ExitMaze();
+					}
+					else
+					{
+						Layer* layer = BuyCoinLayer::create(constcoin - GlobalInstance::getInstance()->getMyCoinCount().getValue());
+						Director::getInstance()->getRunningScene()->addChild(layer, 10000, "buycoinlayer");
+						return;
+					}
 				}
 			}
 			AnimationEffect::closeAniEffect((Layer*)this);

@@ -344,6 +344,33 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
+              <AbstractNodeData Name="exitmazebtn" ActionTag="-1978154755" Tag="802" IconVisible="False" LeftMargin="21.0700" RightMargin="595.9300" TopMargin="22.2400" BottomMargin="132.7600" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="73" Scale9Height="81" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="103.0000" Y="103.0000" />
+                <Children>
+                  <AbstractNodeData Name="text" ActionTag="-578169234" Tag="803" IconVisible="False" RightMargin="1.0000" TopMargin="73.5002" BottomMargin="0.4998" LeftEage="18" RightEage="18" TopEage="10" BottomEage="10" Scale9OriginX="18" Scale9OriginY="10" Scale9Width="66" Scale9Height="9" ctype="ImageViewObjectData">
+                    <Size X="102.0000" Y="29.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="51.0000" Y="14.9998" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4951" Y="0.1456" />
+                    <PreSize X="0.9903" Y="0.2816" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/exitmazebtn_text.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="72.5700" Y="184.2600" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.1008" Y="0.7142" />
+                <PreSize X="0.1431" Y="0.3992" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="MarkedSubImage" Path="mapui/exitmazebtn.png" Plist="mapui.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="mapui/exitmazebtn.png" Plist="mapui.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="mapui/exitmazebtn.png" Plist="mapui.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint />
             <Position />

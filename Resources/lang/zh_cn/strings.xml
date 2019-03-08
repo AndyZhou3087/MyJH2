@@ -489,4 +489,5 @@
 	<s name="copyright">Copyright © 2018-2019 深圳市枫深科技有限公司版权所有</s>
 	<s name="rmbprice">¥%d.00</s>
 	<s name="buytext">购买</s>
+	<s name="exitmaze">出口即在眼前，大侠切勿放弃，大侠确定要退出（花费%d元宝）吗？</s>
 </strings>

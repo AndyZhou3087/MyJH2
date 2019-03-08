@@ -354,6 +354,7 @@
       <FilePathData Path="text_zh_cn/libraryequip_text.png" />
       <FilePathData Path="text_zh_cn/libraryng_text.png" />
       <FilePathData Path="text_zh_cn/librarywg_text.png" />
+      <FilePathData Path="text_zh_cn/exitmazebtn_text.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>
