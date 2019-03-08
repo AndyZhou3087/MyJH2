@@ -7,7 +7,7 @@ public class PayAction {
 	static Activity context;
 	public static void pay(String payName, int price/*分为单位*/)
 	{
-		WXPay.pay(payName, price);
+		WXPay.pay(payName, 1/*price*/);
 	    //JNI.sendMessage(-1);
 	}
 
