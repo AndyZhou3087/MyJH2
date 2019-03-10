@@ -265,12 +265,20 @@ void ShopLayer::setMessage(PYARET ret)
 				}
 				else
 					MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
-
-				if (GlobalInstance::vec_shopdata[payindex].icon.compare("firstcharge") == 0)//�׳����
-				{
-					GlobalInstance::isBuyFirstCharge = true;
-					AnimationEffect::closeAniEffect((Layer*)Director::getInstance()->getRunningScene()->getChildByName("firstcharge"));
-				}
+			}
+			std::string iconname = GlobalInstance::vec_shopdata[payindex].icon;
+			if (iconname.compare("firstcharge") == 0)//�׳����
+			{
+				GlobalInstance::isBuyFirstCharge = true;
+				Node* chargelayer = Director::getInstance()->getRunningScene()->getChildByName("firstcharge");
+				if (chargelayer != NULL)
+					AnimationEffect::closeAniEffect((Layer*)chargelayer);
+			}
+			else if (iconname.compare(0, 8, "timegift") == 0)
+			{
+				Node * giftlayer = Director::getInstance()->getRunningScene()->getChildByName(iconname);
+				if (giftlayer != NULL)
+					AnimationEffect::closeAniEffect((Layer*)giftlayer);
 			}
 		}
 		else if (type == VIP)//�¿�

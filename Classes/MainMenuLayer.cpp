@@ -461,7 +461,8 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				if (GlobalInstance::vec_shopdata[i].icon.compare(timegiftname) == 0)
 				{
 					TimeGiftLayer* layer = TimeGiftLayer::create(&GlobalInstance::vec_shopdata[i]);
-					this->addChild(layer, 0, i);
+					layer->setName(timegiftname);
+					Director::getInstance()->getRunningScene()->addChild(layer, 0, i);
 					AnimationEffect::openAniEffect((Layer*)layer);
 					break;
 				}
@@ -479,7 +480,8 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				if (GlobalInstance::vec_shopdata[i].icon.compare(timegiftname) == 0)
 				{
 					TimeGiftLayer* layer = TimeGiftLayer::create(&GlobalInstance::vec_shopdata[i]);
-					this->addChild(layer, 0, i);
+					layer->setName(timegiftname);
+					Director::getInstance()->getRunningScene()->addChild(layer, 0, i);
 					AnimationEffect::openAniEffect(layer);
 					break;
 				}
