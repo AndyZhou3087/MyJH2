@@ -899,11 +899,11 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 				{
 					GlobalInstance::punishment = iter->value.GetInt();
 				}
-				else if (strid.compare("isreceipt"))
+				else if (strid.compare("isreceipt") == 0)
 				{
 					GlobalInstance::isServerReceipt = atoi(getJsonValueStr(doc["isreceipt"]).c_str()) == 1 ? true : false;
 				}
-				else if (strid.compare("fpayg"))
+				else if (strid.compare("fpayg") == 0)
 				{
 					GlobalInstance::isBuyFirstCharge = atoi(getJsonValueStr(doc["fpayg"]).c_str()) == 1 ? true : false;
 				}
