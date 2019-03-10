@@ -131,6 +131,11 @@ bool TimeGiftLayer::init(ShopData* data)
 		int count = atoi(vec_res[1].c_str());
 		int qu = 0;
 
+		if (vec_res.size() > 2)
+		{
+			qu = atoi(vec_res[2].c_str());
+		}
+
 		int t = 0;
 		for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
 		{
@@ -140,6 +145,10 @@ bool TimeGiftLayer::init(ShopData* data)
 		if (t >= T_RENS && t <= T_BOX)
 		{
 			qu = atoi(resid.substr(1).c_str()) - 1;
+			str = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
+		else if (t >= T_ARMOR && t <= T_FASHION)
+		{
 			str = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
 		else if (t >= T_WG && t <= T_NG)
@@ -171,10 +180,6 @@ bool TimeGiftLayer::init(ShopData* data)
 
 		CommonFuncs::playResBoxEffect(box, qu);
 
-		if (vec_res.size() > 2)
-		{
-			qu = atoi(vec_res[2].c_str());
-		}
 		str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 		Sprite* res = Sprite::createWithSpriteFrameName(str);
 		box->addChild(res);
