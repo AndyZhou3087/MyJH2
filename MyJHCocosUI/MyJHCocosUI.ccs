@@ -809,6 +809,10 @@
           <Image Name="usebtn_text.png" />
           <Image Name="usecard_Text.png" />
           <Image Name="usertitle.png" />
+          <Image Name="vocfit_text0.png" />
+          <Image Name="vocfit_text1.png" />
+          <Image Name="vocfit_text2.png" />
+          <Image Name="vocfit_text3.png" />
           <Image Name="watchline_text.png" />
           <Image Name="wgcurtext.png" />
           <Image Name="wglv_text.png" />
@@ -914,6 +918,8 @@
           <Image Name="actionbtn_blue.png" />
           <Image Name="actionbtn_yellow.png" />
           <Image Name="addnicknamecountbtn.png" />
+          <Image Name="armcata.png" />
+          <Image Name="armcate_zhe.png" />
           <Image Name="arrowglv.png" />
           <Image Name="attrvalblock.png" />
           <Image Name="b001.png" />
@@ -1320,6 +1326,7 @@
         <Project Name="achieveNode.csd" Type="Node" />
         <Project Name="buyCoinLayer.csd" Type="Layer" />
         <Project Name="buyResLayer.csd" Type="Layer" />
+        <Project Name="buySelectLayer.csd" Type="Layer" />
         <Project Name="buySingleResLayer.csd" Type="Layer" />
         <Project Name="cardHeroNode.csd" Type="Node" />
         <Project Name="changeHeadLayer.csd" Type="Layer" />
@@ -1427,7 +1434,6 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="buySelectLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

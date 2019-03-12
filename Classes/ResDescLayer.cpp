@@ -381,7 +381,8 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 				for (it = GlobalInstance::map_Equip.begin(); it != GlobalInstance::map_Equip.end(); it++)
 				{
-					vec_equipres.push_back(it->first);
+					if (GlobalInstance::map_Equip[it->first].type < 100)
+						vec_equipres.push_back(it->first);
 				}
 
 				int r = GlobalInstance::getInstance()->createRandomNum(vec_equipres.size());

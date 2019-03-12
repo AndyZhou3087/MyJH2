@@ -195,6 +195,9 @@ void BuySelectLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			int st = GlobalInstance::getInstance()->generateStoneCount(qu);
 			MyRes::Add(m_vecres[selctindex].rid, m_vecres[selctindex].count, m_putwhere, qu, st);
 
+			if (m_vecres[selctindex].rid.compare("z002") == 0)
+				GlobalInstance::getInstance()->setMazeEventData(0, 0, needcoincount.getValue());
+
 			GlobalInstance::getInstance()->costMyCoinCount(needcoincount);
 
 			AnimationEffect::closeAniEffect(this);

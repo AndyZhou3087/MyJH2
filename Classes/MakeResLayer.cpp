@@ -349,9 +349,15 @@ void MakeResLayer::action()
 {
 	AnimationEffect::closeAniEffect((Layer*)this);
 	std::string rid = (char*)m_data;
-	SmithyLayer* smithyLayer = (SmithyLayer*)this->getParent();
-	smithyLayer->makeRes(rid);
-	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_MAKERES);
+	if (g_mainScene != NULL)
+	{
+		SmithyLayer* smithyLayer = (SmithyLayer*)g_mainScene->getChildByName("2smithy");
+		if (smithyLayer != NULL)
+		{
+			smithyLayer->makeRes(rid);
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_MAKERES);
+		}
+	}
 }
 
 void MakeResLayer::updateUI(float dt)

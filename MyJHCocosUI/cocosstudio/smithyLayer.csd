@@ -285,6 +285,534 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="armcontentscroll" ActionTag="-707283759" Tag="369" IconVisible="False" LeftMargin="35.0000" RightMargin="35.0000" TopMargin="205.0000" BottomMargin="175.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+            <Size X="650.0000" Y="900.0000" />
+            <Children>
+              <AbstractNodeData Name="cataclick0" ActionTag="-249115378" Tag="373" IconVisible="False" LeftMargin="0.0001" RightMargin="-0.0001" TopMargin="2.4998" BottomMargin="832.5002" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                <Size X="650.0000" Y="75.0000" />
+                <Children>
+                  <AbstractNodeData Name="armcata" ActionTag="-1476288557" Tag="371" IconVisible="False" LeftMargin="79.5271" RightMargin="-36.5271" TopMargin="33.0000" BottomMargin="8.0000" ctype="SpriteObjectData">
+                    <Size X="607.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="383.0271" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5893" Y="0.3333" />
+                    <PreSize X="0.9338" Y="0.4533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcata.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocicon" ActionTag="343901616" Tag="372" IconVisible="False" LeftMargin="7.1242" RightMargin="489.8758" TopMargin="-39.2095" BottomMargin="-38.7905" ctype="SpriteObjectData">
+                    <Size X="153.0000" Y="153.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="83.6242" Y="37.7095" />
+                    <Scale ScaleX="0.4500" ScaleY="0.4500" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1287" Y="0.5028" />
+                    <PreSize X="0.2354" Y="2.0400" />
+                    <FileData Type="MarkedSubImage" Path="ui/voc4icon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="armcate_zhe" ActionTag="2047859141" Tag="370" IconVisible="False" LeftMargin="15.5000" RightMargin="605.5000" TopMargin="40.5000" BottomMargin="15.5000" ctype="SpriteObjectData">
+                    <Size X="29.0000" Y="19.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="30.0000" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.0462" Y="0.3333" />
+                    <PreSize X="0.0446" Y="0.2533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcate_zhe.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fittext" ActionTag="200049487" Tag="422" IconVisible="False" LeftMargin="434.0000" RightMargin="84.0000" TopMargin="27.4999" BottomMargin="2.5001" LeftEage="31" RightEage="31" TopEage="8" BottomEage="8" Scale9OriginX="31" Scale9OriginY="8" Scale9Width="70" Scale9Height="29" ctype="ImageViewObjectData">
+                    <Size X="132.0000" Y="45.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="500.0000" Y="25.0001" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.7692" Y="0.3333" />
+                    <PreSize X="0.2031" Y="0.6000" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/vocfit_text0.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="325.0001" Y="870.0002" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.9560" />
+                <PreSize X="1.0000" Y="0.0824" />
+                <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="catac0" ActionTag="1033814522" Tag="374" IconVisible="True" LeftMargin="325.0000" RightMargin="325.0000" TopMargin="140.0000" BottomMargin="770.0000" ctype="SingleNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <AnchorPoint />
+                <Position X="325.0000" Y="770.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.8462" />
+                <PreSize X="0.0000" Y="0.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="cataclick1" ActionTag="-908646883" Tag="375" IconVisible="False" LeftMargin="0.0001" RightMargin="-0.0001" TopMargin="112.4998" BottomMargin="722.5002" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                <Size X="650.0000" Y="75.0000" />
+                <Children>
+                  <AbstractNodeData Name="armcata" ActionTag="1644569364" Tag="376" IconVisible="False" LeftMargin="79.5271" RightMargin="-36.5271" TopMargin="33.0000" BottomMargin="8.0000" ctype="SpriteObjectData">
+                    <Size X="607.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="383.0271" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5893" Y="0.3333" />
+                    <PreSize X="0.9338" Y="0.4533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcata.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocicon" ActionTag="-2117758987" Tag="377" IconVisible="False" LeftMargin="7.1242" RightMargin="489.8758" TopMargin="-39.2095" BottomMargin="-38.7905" ctype="SpriteObjectData">
+                    <Size X="153.0000" Y="153.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="83.6242" Y="37.7095" />
+                    <Scale ScaleX="0.4500" ScaleY="0.4500" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1287" Y="0.5028" />
+                    <PreSize X="0.2354" Y="2.0400" />
+                    <FileData Type="MarkedSubImage" Path="ui/voc8icon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="armcate_zhe" ActionTag="353645273" Tag="378" IconVisible="False" LeftMargin="15.5000" RightMargin="605.5000" TopMargin="40.5000" BottomMargin="15.5000" ctype="SpriteObjectData">
+                    <Size X="29.0000" Y="19.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="30.0000" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.0462" Y="0.3333" />
+                    <PreSize X="0.0446" Y="0.2533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcate_zhe.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fittext" ActionTag="-183084893" Tag="421" IconVisible="False" LeftMargin="434.0000" RightMargin="84.0000" TopMargin="27.5000" BottomMargin="2.5000" LeftEage="31" RightEage="31" TopEage="8" BottomEage="8" Scale9OriginX="31" Scale9OriginY="8" Scale9Width="70" Scale9Height="29" ctype="ImageViewObjectData">
+                    <Size X="132.0000" Y="45.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="500.0000" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.7692" Y="0.3333" />
+                    <PreSize X="0.2031" Y="0.6000" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/vocfit_text0.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="325.0001" Y="760.0002" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.8352" />
+                <PreSize X="1.0000" Y="0.0824" />
+                <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="catac1" ActionTag="-703909784" Tag="379" IconVisible="True" LeftMargin="325.0002" RightMargin="324.9998" TopMargin="250.0000" BottomMargin="660.0000" ctype="SingleNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <AnchorPoint />
+                <Position X="325.0002" Y="660.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.7253" />
+                <PreSize X="0.0000" Y="0.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="cataclick2" ActionTag="1847098557" Tag="380" IconVisible="False" TopMargin="222.4999" BottomMargin="612.5001" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                <Size X="650.0000" Y="75.0000" />
+                <Children>
+                  <AbstractNodeData Name="armcata" ActionTag="109327307" Tag="381" IconVisible="False" LeftMargin="79.5271" RightMargin="-36.5271" TopMargin="33.0000" BottomMargin="8.0000" ctype="SpriteObjectData">
+                    <Size X="607.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="383.0271" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5893" Y="0.3333" />
+                    <PreSize X="0.9338" Y="0.4533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcata.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocicon" ActionTag="1203670761" Tag="382" IconVisible="False" LeftMargin="7.1242" RightMargin="489.8758" TopMargin="-39.2095" BottomMargin="-38.7905" ctype="SpriteObjectData">
+                    <Size X="153.0000" Y="153.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="83.6242" Y="37.7095" />
+                    <Scale ScaleX="0.4500" ScaleY="0.4500" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1287" Y="0.5028" />
+                    <PreSize X="0.2354" Y="2.0400" />
+                    <FileData Type="MarkedSubImage" Path="ui/voc5icon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="armcate_zhe" ActionTag="-595060928" Tag="383" IconVisible="False" LeftMargin="15.5000" RightMargin="605.5000" TopMargin="40.5000" BottomMargin="15.5000" ctype="SpriteObjectData">
+                    <Size X="29.0000" Y="19.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="30.0000" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.0462" Y="0.3333" />
+                    <PreSize X="0.0446" Y="0.2533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcate_zhe.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fittext" ActionTag="1446172195" Tag="420" IconVisible="False" LeftMargin="434.0000" RightMargin="84.0000" TopMargin="27.5002" BottomMargin="2.4998" LeftEage="31" RightEage="31" TopEage="8" BottomEage="8" Scale9OriginX="31" Scale9OriginY="8" Scale9Width="70" Scale9Height="29" ctype="ImageViewObjectData">
+                    <Size X="132.0000" Y="45.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="500.0000" Y="24.9998" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.7692" Y="0.3333" />
+                    <PreSize X="0.2031" Y="0.6000" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/vocfit_text0.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="325.0000" Y="650.0001" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.7143" />
+                <PreSize X="1.0000" Y="0.0824" />
+                <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="catac2" ActionTag="50438659" Tag="384" IconVisible="True" LeftMargin="325.0000" RightMargin="325.0000" TopMargin="360.0000" BottomMargin="550.0000" ctype="SingleNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <AnchorPoint />
+                <Position X="325.0000" Y="550.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.6044" />
+                <PreSize X="0.0000" Y="0.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="cataclick3" ActionTag="-1807995059" Tag="385" IconVisible="False" LeftMargin="4.0001" RightMargin="-4.0001" TopMargin="332.4999" BottomMargin="502.5001" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                <Size X="650.0000" Y="75.0000" />
+                <Children>
+                  <AbstractNodeData Name="armcata" ActionTag="-2033926969" Tag="386" IconVisible="False" LeftMargin="79.5271" RightMargin="-36.5271" TopMargin="33.0000" BottomMargin="8.0000" ctype="SpriteObjectData">
+                    <Size X="607.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="383.0271" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5893" Y="0.3333" />
+                    <PreSize X="0.9338" Y="0.4533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcata.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocicon" ActionTag="2132934417" Tag="387" IconVisible="False" LeftMargin="7.1242" RightMargin="489.8758" TopMargin="-39.2095" BottomMargin="-38.7905" ctype="SpriteObjectData">
+                    <Size X="153.0000" Y="153.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="83.6242" Y="37.7095" />
+                    <Scale ScaleX="0.4500" ScaleY="0.4500" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1287" Y="0.5028" />
+                    <PreSize X="0.2354" Y="2.0400" />
+                    <FileData Type="MarkedSubImage" Path="ui/voc9icon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="armcate_zhe" ActionTag="1023764595" Tag="388" IconVisible="False" LeftMargin="15.5000" RightMargin="605.5000" TopMargin="40.5000" BottomMargin="15.5000" ctype="SpriteObjectData">
+                    <Size X="29.0000" Y="19.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="30.0000" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.0462" Y="0.3333" />
+                    <PreSize X="0.0446" Y="0.2533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcate_zhe.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fittext" ActionTag="-320873502" Tag="419" IconVisible="False" LeftMargin="434.0000" RightMargin="84.0000" TopMargin="27.5000" BottomMargin="2.5000" LeftEage="31" RightEage="31" TopEage="8" BottomEage="8" Scale9OriginX="31" Scale9OriginY="8" Scale9Width="70" Scale9Height="29" ctype="ImageViewObjectData">
+                    <Size X="132.0000" Y="45.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="500.0000" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.7692" Y="0.3333" />
+                    <PreSize X="0.2031" Y="0.6000" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/vocfit_text0.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="329.0001" Y="540.0001" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5062" Y="0.5934" />
+                <PreSize X="1.0000" Y="0.0824" />
+                <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="catac3" ActionTag="120054778" Tag="389" IconVisible="True" LeftMargin="329.0002" RightMargin="320.9998" TopMargin="470.0000" BottomMargin="440.0000" ctype="SingleNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <AnchorPoint />
+                <Position X="329.0002" Y="440.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5062" Y="0.4835" />
+                <PreSize X="0.0000" Y="0.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="cataclick4" ActionTag="1938775002" Tag="390" IconVisible="False" LeftMargin="4.0001" RightMargin="-4.0001" TopMargin="442.4999" BottomMargin="392.5001" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                <Size X="650.0000" Y="75.0000" />
+                <Children>
+                  <AbstractNodeData Name="armcata" ActionTag="-1177593384" Tag="391" IconVisible="False" LeftMargin="79.5271" RightMargin="-36.5271" TopMargin="33.0000" BottomMargin="8.0000" ctype="SpriteObjectData">
+                    <Size X="607.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="383.0271" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5893" Y="0.3333" />
+                    <PreSize X="0.9338" Y="0.4533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcata.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocicon" ActionTag="-2108726423" Tag="392" IconVisible="False" LeftMargin="7.1242" RightMargin="489.8758" TopMargin="-39.2095" BottomMargin="-38.7905" ctype="SpriteObjectData">
+                    <Size X="153.0000" Y="153.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="83.6242" Y="37.7095" />
+                    <Scale ScaleX="0.4500" ScaleY="0.4500" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1287" Y="0.5028" />
+                    <PreSize X="0.2354" Y="2.0400" />
+                    <FileData Type="MarkedSubImage" Path="ui/voc6icon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="armcate_zhe" ActionTag="-1319201192" Tag="393" IconVisible="False" LeftMargin="15.5000" RightMargin="605.5000" TopMargin="40.5000" BottomMargin="15.5000" ctype="SpriteObjectData">
+                    <Size X="29.0000" Y="19.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="30.0000" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.0462" Y="0.3333" />
+                    <PreSize X="0.0446" Y="0.2533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcate_zhe.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fittext" ActionTag="331283973" Tag="418" IconVisible="False" LeftMargin="434.0000" RightMargin="84.0000" TopMargin="27.5002" BottomMargin="2.4998" LeftEage="31" RightEage="31" TopEage="8" BottomEage="8" Scale9OriginX="31" Scale9OriginY="8" Scale9Width="70" Scale9Height="29" ctype="ImageViewObjectData">
+                    <Size X="132.0000" Y="45.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="500.0000" Y="24.9998" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.7692" Y="0.3333" />
+                    <PreSize X="0.2031" Y="0.6000" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/vocfit_text0.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="329.0001" Y="430.0001" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5062" Y="0.4725" />
+                <PreSize X="1.0000" Y="0.0824" />
+                <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="catac4" ActionTag="-1299151336" Tag="394" IconVisible="True" LeftMargin="329.0002" RightMargin="320.9998" TopMargin="580.0000" BottomMargin="330.0000" ctype="SingleNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <AnchorPoint />
+                <Position X="329.0002" Y="330.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5062" Y="0.3626" />
+                <PreSize X="0.0000" Y="0.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="cataclick5" ActionTag="-1205480280" Tag="395" IconVisible="False" LeftMargin="0.0073" RightMargin="-0.0073" TopMargin="552.5000" BottomMargin="282.5000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                <Size X="650.0000" Y="75.0000" />
+                <Children>
+                  <AbstractNodeData Name="armcata" ActionTag="-1564254473" Tag="396" IconVisible="False" LeftMargin="79.5271" RightMargin="-36.5271" TopMargin="33.0000" BottomMargin="8.0000" ctype="SpriteObjectData">
+                    <Size X="607.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="383.0271" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5893" Y="0.3333" />
+                    <PreSize X="0.9338" Y="0.4533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcata.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocicon" ActionTag="1310208626" Tag="397" IconVisible="False" LeftMargin="7.1242" RightMargin="489.8758" TopMargin="-39.2095" BottomMargin="-38.7905" ctype="SpriteObjectData">
+                    <Size X="153.0000" Y="153.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="83.6242" Y="37.7095" />
+                    <Scale ScaleX="0.4500" ScaleY="0.4500" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1287" Y="0.5028" />
+                    <PreSize X="0.2354" Y="2.0400" />
+                    <FileData Type="MarkedSubImage" Path="ui/voc10icon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="armcate_zhe" ActionTag="-60661262" Tag="398" IconVisible="False" LeftMargin="15.5000" RightMargin="605.5000" TopMargin="40.5000" BottomMargin="15.5000" ctype="SpriteObjectData">
+                    <Size X="29.0000" Y="19.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="30.0000" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.0462" Y="0.3333" />
+                    <PreSize X="0.0446" Y="0.2533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcate_zhe.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fittext" ActionTag="1318818487" Tag="417" IconVisible="False" LeftMargin="434.0001" RightMargin="83.9999" TopMargin="27.5002" BottomMargin="2.4998" LeftEage="31" RightEage="31" TopEage="8" BottomEage="8" Scale9OriginX="31" Scale9OriginY="8" Scale9Width="70" Scale9Height="29" ctype="ImageViewObjectData">
+                    <Size X="132.0000" Y="45.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="500.0001" Y="24.9998" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.7692" Y="0.3333" />
+                    <PreSize X="0.2031" Y="0.6000" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/vocfit_text0.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="325.0073" Y="320.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.3516" />
+                <PreSize X="1.0000" Y="0.0824" />
+                <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="catac5" ActionTag="-232846716" Tag="399" IconVisible="True" LeftMargin="325.0073" RightMargin="324.9927" TopMargin="690.0000" BottomMargin="220.0000" ctype="SingleNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <AnchorPoint />
+                <Position X="325.0073" Y="220.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.2418" />
+                <PreSize X="0.0000" Y="0.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="cataclick6" ActionTag="-1417703849" Tag="400" IconVisible="False" LeftMargin="0.0073" RightMargin="-0.0073" TopMargin="662.5000" BottomMargin="172.5000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                <Size X="650.0000" Y="75.0000" />
+                <Children>
+                  <AbstractNodeData Name="armcata" ActionTag="1688631188" Tag="401" IconVisible="False" LeftMargin="79.5271" RightMargin="-36.5271" TopMargin="33.0000" BottomMargin="8.0000" ctype="SpriteObjectData">
+                    <Size X="607.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="383.0271" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5893" Y="0.3333" />
+                    <PreSize X="0.9338" Y="0.4533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcata.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocicon" ActionTag="981181540" Tag="402" IconVisible="False" LeftMargin="7.1242" RightMargin="489.8758" TopMargin="-39.2095" BottomMargin="-38.7905" ctype="SpriteObjectData">
+                    <Size X="153.0000" Y="153.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="83.6242" Y="37.7095" />
+                    <Scale ScaleX="0.4500" ScaleY="0.4500" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1287" Y="0.5028" />
+                    <PreSize X="0.2354" Y="2.0400" />
+                    <FileData Type="MarkedSubImage" Path="ui/voc7icon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="armcate_zhe" ActionTag="1742709427" Tag="403" IconVisible="False" LeftMargin="15.5000" RightMargin="605.5000" TopMargin="40.5000" BottomMargin="15.5000" ctype="SpriteObjectData">
+                    <Size X="29.0000" Y="19.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="30.0000" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.0462" Y="0.3333" />
+                    <PreSize X="0.0446" Y="0.2533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcate_zhe.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fittext" ActionTag="2085576621" Tag="415" IconVisible="False" LeftMargin="434.0001" RightMargin="83.9999" TopMargin="27.5000" BottomMargin="2.5000" LeftEage="31" RightEage="31" TopEage="8" BottomEage="8" Scale9OriginX="31" Scale9OriginY="8" Scale9Width="70" Scale9Height="29" ctype="ImageViewObjectData">
+                    <Size X="132.0000" Y="45.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="500.0001" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.7692" Y="0.3333" />
+                    <PreSize X="0.2031" Y="0.6000" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/vocfit_text0.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="325.0073" Y="210.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.2308" />
+                <PreSize X="1.0000" Y="0.0824" />
+                <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="catac6" ActionTag="-2136215029" Tag="404" IconVisible="True" LeftMargin="325.0073" RightMargin="324.9927" TopMargin="800.0000" BottomMargin="110.0000" ctype="SingleNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <AnchorPoint />
+                <Position X="325.0073" Y="110.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.1209" />
+                <PreSize X="0.0000" Y="0.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="cataclick7" ActionTag="-497583669" Tag="405" IconVisible="False" LeftMargin="0.0073" RightMargin="-0.0073" TopMargin="772.5000" BottomMargin="62.5000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                <Size X="650.0000" Y="75.0000" />
+                <Children>
+                  <AbstractNodeData Name="armcata" ActionTag="1005509576" Tag="406" IconVisible="False" LeftMargin="79.5271" RightMargin="-36.5271" TopMargin="33.0000" BottomMargin="8.0000" ctype="SpriteObjectData">
+                    <Size X="607.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="383.0271" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5893" Y="0.3333" />
+                    <PreSize X="0.9338" Y="0.4533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcata.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocicon" ActionTag="667258952" Tag="407" IconVisible="False" LeftMargin="7.1242" RightMargin="489.8758" TopMargin="-39.2095" BottomMargin="-38.7905" ctype="SpriteObjectData">
+                    <Size X="153.0000" Y="153.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="83.6242" Y="37.7095" />
+                    <Scale ScaleX="0.4500" ScaleY="0.4500" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1287" Y="0.5028" />
+                    <PreSize X="0.2354" Y="2.0400" />
+                    <FileData Type="MarkedSubImage" Path="ui/voc11icon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="armcate_zhe" ActionTag="565275722" Tag="408" IconVisible="False" LeftMargin="15.5000" RightMargin="605.5000" TopMargin="40.5000" BottomMargin="15.5000" ctype="SpriteObjectData">
+                    <Size X="29.0000" Y="19.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="30.0000" Y="25.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.0462" Y="0.3333" />
+                    <PreSize X="0.0446" Y="0.2533" />
+                    <FileData Type="MarkedSubImage" Path="ui/armcate_zhe.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fittext" ActionTag="-717688778" Tag="416" IconVisible="False" LeftMargin="434.0001" RightMargin="83.9999" TopMargin="27.5001" BottomMargin="2.4999" LeftEage="31" RightEage="31" TopEage="8" BottomEage="8" Scale9OriginX="31" Scale9OriginY="8" Scale9Width="70" Scale9Height="29" ctype="ImageViewObjectData">
+                    <Size X="132.0000" Y="45.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="500.0001" Y="24.9999" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.7692" Y="0.3333" />
+                    <PreSize X="0.2031" Y="0.6000" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/vocfit_text0.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="325.0073" Y="100.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.1099" />
+                <PreSize X="1.0000" Y="0.0824" />
+                <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="catac7" ActionTag="1084295439" Tag="409" IconVisible="True" LeftMargin="325.0073" RightMargin="324.9927" TopMargin="910.0000" ctype="SingleNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <AnchorPoint />
+                <Position X="325.0073" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" />
+                <PreSize X="0.0000" Y="0.0000" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleY="1.0000" />
+            <Position X="35.0000" Y="1075.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0486" Y="0.8398" />
+            <PreSize X="0.9028" Y="0.7031" />
+            <SingleColor A="255" R="255" G="150" B="100" />
+            <FirstColor A="255" R="255" G="150" B="100" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
+            <InnerNodeSize Width="650" Height="910" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

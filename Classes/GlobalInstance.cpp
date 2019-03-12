@@ -126,7 +126,7 @@ std::vector<std::string> GlobalInstance::vec_news;
 
 int GlobalInstance::getNewsTime = 0;
 
-int GlobalInstance::mazeEventData[2] = { 0,0 };
+int GlobalInstance::mazeEventData[3] = { 0 };
 
 GlobalInstance::GlobalInstance()
 {
@@ -362,7 +362,7 @@ void GlobalInstance::loadInitData()
 		CommonFuncs::split(str, vec_ret, "-");
 		for (unsigned int i = 0; i < vec_ret.size(); i++)
 		{
-			if (i < 2)
+			if (i < 3)
 			{
 				mazeEventData[i] = atoi(vec_ret[i].c_str());
 			}
@@ -1665,6 +1665,7 @@ void GlobalInstance::loadMyResData()
 	std::string str = DataSave::getInstance()->getMyRes();
 	if (str.length() > 0)
 	{
+		int i001count = 0;
 		std::vector<std::string> vec_tmp;
 		CommonFuncs::split(str, vec_tmp, ";");
 		for (unsigned int i = 0; i < vec_tmp.size(); i++)
@@ -1688,6 +1689,13 @@ void GlobalInstance::loadMyResData()
 			if (m >= T_ARMOR && m <= T_FASHION)
 			{
 				Equip* res = new Equip();
+
+				//兼容装备招募券会抽到神兵宝甲（神兵宝甲只能是红色）
+				if (GlobalInstance::map_Equip[rid].type >= 100)
+				{
+					int r = GlobalInstance::getInstance()->createRandomNum(28);
+					rid = StringUtils::format("a%03d", r);
+				}
 				res->setId(rid);
 				res->setType(m);
 				DynamicValueInt dv;
@@ -1733,15 +1741,28 @@ void GlobalInstance::loadMyResData()
 			}
 			else if (m > -1)
 			{
-				ResBase* res = new ResBase();
-				res->setId(rid);
-				res->setType(m);
-				DynamicValueInt dv;
-				dv.setValue(atoi(vec_one[1].c_str()));
-				res->setCount(dv);
-				res->setWhere(atoi(vec_one[2].c_str()));
-				MyRes::vec_MyResources.push_back(res);
+				if (rid.compare("i001") == 0)//兼容i001异常问题
+				{
+					i001count += atoi(vec_one[1].c_str());
+				}
+				else
+				{
+					ResBase* res = new ResBase();
+					res->setId(rid);
+					res->setType(m);
+					DynamicValueInt dv;
+					dv.setValue(atoi(vec_one[1].c_str()));
+					res->setCount(dv);
+					res->setWhere(atoi(vec_one[2].c_str()));
+					MyRes::vec_MyResources.push_back(res);
+				}
 			}
+		}
+
+		//兼容i001异常问题
+		if (i001count > 0)
+		{
+			MyRes::Add("i002", i001count);
 		}
 	}
 }
@@ -3106,11 +3127,12 @@ void GlobalInstance::usePropsCount(int idindex, int useval)
 	DataSave::getInstance()->setPropsCount(str);
 }
 
-void GlobalInstance::setMazeEventData(int entercount, int useexitcount)
+void GlobalInstance::setMazeEventData(int entercount, int useexitcount, int usecoin)
 {
 	mazeEventData[0] += entercount;
 	mazeEventData[1] += useexitcount;
-	std::string str = StringUtils::format("%d-%d", mazeEventData[0], mazeEventData[1]);
+	mazeEventData[2] += usecoin;
+	std::string str = StringUtils::format("%d-%d-%d", mazeEventData[0], mazeEventData[1], mazeEventData[2]);
 	DataSave::getInstance()->setMazeEventCount(str);
 }
 

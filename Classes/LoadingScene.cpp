@@ -402,8 +402,6 @@ void LoadingScene::parseCfgFiles()
 
 	GlobalInstance::getInstance()->loadAllResourcesData();
 
-	GlobalInstance::getInstance()->loadMyResData();
-
 	GlobalInstance::getInstance()->parseSuitJson();
 	GlobalInstance::getInstance()->loadEquipData();
 
@@ -411,6 +409,8 @@ void LoadingScene::parseCfgFiles()
 
 	//英雄基础属性
 	GlobalInstance::getInstance()->loadHerosAttrData();
+
+	GlobalInstance::getInstance()->loadMyResData();
 
 	//读取本地英雄
 	GlobalInstance::getInstance()->loadMyHeros();

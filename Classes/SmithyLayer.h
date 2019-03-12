@@ -38,20 +38,29 @@ public:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void onArmsCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:
 	Building* m_buidingData;//建筑物数据
 	cocos2d::ui::ScrollView* m_contentscroll;
+	cocos2d::ui::ScrollView* m_armcontentscroll;//武器滚动
 
 	void loadData();
+
+	void updateArmContent(int armcategory);
+
+	void loadArmCataUi();
 
 private:
 	std::vector<cocos2d::ui::Button*> vec_categoryBtn;
 	std::map<int, std::vector<std::string>> map_cateRes;
+	std::map<int, std::vector<std::string>> map_catearms;
 	int lastCategoryindex;
 	int langtype;
 	cocos2d::ui::Text* lvUIlbl;
 	cocos2d::ui::Text* hintlbl;
 	cocos2d::ui::Widget* closebtn;
+	cocos2d::ui::Widget* armcataclick[8];
+	Node* armcatacontent[8];
 
 	bool clickflag;
 	Vec2 beginTouchPoint;

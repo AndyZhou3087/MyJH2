@@ -88,6 +88,11 @@ bool SmithyLayer::init(Building* buidingData)
 	m_contentscroll->setScrollBarEnabled(false);
 	m_contentscroll->setBounceEnabled(true);
 
+	m_armcontentscroll = (cocos2d::ui::ScrollView*)csbnode->getChildByName("armcontentscroll");
+
+	m_armcontentscroll->setScrollBarEnabled(false);
+	m_armcontentscroll->setBounceEnabled(true);
+
 	hintlbl = (cocos2d::ui::Text*)csbnode->getChildByName("hintdesc");
 	if (buidingData->level.getValue() >= buidingData->maxlevel.getValue() - 1)
 		hintlbl->setString("");
@@ -104,6 +109,23 @@ bool SmithyLayer::init(Building* buidingData)
 		vec_categoryBtn.push_back(btn);
 	}
 	loadData();
+
+	for (int i = 0; i < 8; i++)
+	{
+		std::string name = StringUtils::format("cataclick%d", i);
+		armcataclick[i] = (cocos2d::ui::Widget*)m_armcontentscroll->getChildByName(name);
+		armcataclick[i]->setTag(i);
+		armcataclick[i]->addTouchEventListener(CC_CALLBACK_2(SmithyLayer::onArmsCategory, this));
+
+		name = StringUtils::format("catac%d", i);
+		armcatacontent[i] = m_armcontentscroll->getChildByName(name);
+
+		cocos2d::ui::ImageView* fittext = (cocos2d::ui::ImageView*)armcataclick[i]->getChildByName("fittext");
+		name = StringUtils::format("vocfit_text%d", i / 2);
+		fittext->loadTexture(ResourcePath::makeTextImgPath(name, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+	loadArmCataUi();
+
 	updateContent(lastCategoryindex);
 
 	this->scheduleOnce(schedule_selector(SmithyLayer::delayShowNewerGuide), newguidetime);
@@ -139,7 +161,7 @@ void SmithyLayer::showNewerGuide(int step)
 	std::vector<Node*> nodes;
 	if (step == 74)
 	{
-		nodes.push_back(m_contentscroll->getChildByName(map_cateRes[lastCategoryindex][0])->getChildByName("csbnode")->getChildByName("resitem"));
+		nodes.push_back(armcatacontent[0]->getChildByName(map_catearms[0][0])->getChildByName("csbnode")->getChildByName("resitem"));
 	}
 	else if (step == 76)
 	{
@@ -204,6 +226,14 @@ void SmithyLayer::loadData()
 			}
 		}
 	}
+
+	for (unsigned int i = 0; i < map_cateRes[SMCATA_1].size(); i++)
+	{
+		std::string armstrid = map_cateRes[SMCATA_1][i];
+		int subtype = GlobalInstance::map_Equip[armstrid].type - 1;
+		if (subtype < 100)
+			map_catearms[subtype].push_back(armstrid);
+	}
 }
 
 void SmithyLayer::updateContent(int category)
@@ -226,37 +256,186 @@ void SmithyLayer::updateContent(int category)
 		}
 	}
 
-	m_contentscroll->removeAllChildrenWithCleanup(true);
-	m_contentscroll->jumpToTop();
-
-	int itemheight = 140;
-
-	int size = map_cateRes[category].size();
-	int innerheight = itemheight * size;
-	int contentheight = m_contentscroll->getContentSize().height;
-	if (innerheight < contentheight)
-		innerheight = contentheight;
-	m_contentscroll->setInnerContainerSize(Size(650, innerheight));
-
-	if (size > 0)
-		hintlbl->setPositionY(155);
-	else
-		hintlbl->setPositionY(720);
-	
-	for (int i = 0; i < size; i++)
+	if (category != 1)
 	{
-		MakeResNode* itemnode = MakeResNode::create(map_cateRes[category][i]);
+		m_contentscroll->setVisible(true);
+		m_armcontentscroll->setVisible(false);
 
-		itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
-		itemnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
+		m_contentscroll->removeAllChildrenWithCleanup(true);
+		m_contentscroll->jumpToTop();
 
-		//itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
-		m_contentscroll->addChild(itemnode, 0, map_cateRes[category][i]);
-		if (itemnode->getResInSmithyLv() > m_buidingData->level.getValue())
-			itemnode->setEnable(false);
+		int itemheight = 140;
+
+		int size = map_cateRes[category].size();
+		int innerheight = itemheight * size;
+		int contentheight = m_contentscroll->getContentSize().height;
+		if (innerheight < contentheight)
+			innerheight = contentheight;
+		m_contentscroll->setInnerContainerSize(Size(650, innerheight));
+
+		if (size > 0)
+			hintlbl->setPositionY(155);
+		else
+			hintlbl->setPositionY(720);
+
+		for (int i = 0; i < size; i++)
+		{
+			MakeResNode* itemnode = MakeResNode::create(map_cateRes[category][i]);
+
+			itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
+			itemnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i * 0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
+
+			//itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
+			m_contentscroll->addChild(itemnode, 0, map_cateRes[category][i]);
+			if (itemnode->getResInSmithyLv() > m_buidingData->level.getValue())
+				itemnode->setEnable(false);
+		}
+	}
+	else
+	{
+		m_contentscroll->setVisible(false);
+		m_armcontentscroll->setVisible(true);
+		m_armcontentscroll->jumpToTop();
+		updateArmContent(-1);
 	}
 }
 
+void SmithyLayer::updateArmContent(int armcategory)
+{
+	if (armcategory < 0)
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			armcatacontent[i]->setVisible(true);
+		}
+	}
+	else
+	{
+		armcatacontent[armcategory]->setVisible(!armcatacontent[armcategory]->isVisible());
+		armcatacontent[armcategory]->setPositionY(armcataclick[armcategory]->getPositionY() - 100);
+		armcataclick[armcategory]->getChildByName("armcate_zhe")->setRotation(!armcatacontent[armcategory]->isVisible() * (-90));
+	}
+
+	int scrollheight = 100 * 8;
+	for (int i = 0; i < 8; i++)
+	{
+		if (armcatacontent[i]->isVisible())
+		{
+			scrollheight += map_catearms[i].size() * 120;
+		}
+	}
+
+	float per = m_armcontentscroll->getScrolledPercentVertical();
+	m_armcontentscroll->setInnerContainerSize(Size(m_armcontentscroll->getContentSize().width, scrollheight));
+	m_armcontentscroll->jumpToPercentVertical(per);
+
+	if (armcategory < 0)
+	{
+		if (armcategory == -1)
+		{
+			armcataclick[0]->setPositionY(m_armcontentscroll->getInnerContainerSize().height - 40);
+			armcatacontent[0]->setPositionY(armcataclick[0]->getPositionY() - 100);
+			for (int i = 0; i < 8; i++)
+			{
+				if (i > 0)
+				{
+					int size = map_catearms[i - 1].size();
+					armcataclick[i]->setPositionY(armcataclick[i - 1]->getPositionY() - 100 - 120 * size);
+					armcatacontent[i]->setPositionY(armcataclick[i]->getPositionY() - 100);
+				}
+			}
+		}
+
+		std::vector<Node*> vec_item;
+		for (int i = 0; i < 8; i++)
+		{
+			if (armcatacontent[i]->isVisible())
+			{
+				for (unsigned int n = 0; n < map_catearms[i].size(); n++)
+				{
+					Node* node = armcatacontent[i]->getChildByName(map_catearms[i][n]);
+					vec_item.push_back(node);
+				}
+			}
+		}
+
+		for (unsigned int i = 0;i< vec_item.size();i++)
+		{
+			vec_item[i]->setPositionX(720);
+			vec_item[i]->runAction(EaseSineIn::create(MoveTo::create(0.15f + i * 0.07f, Vec2(50, vec_item[i]->getPositionY()))));
+		}
+	}
+	else
+	{
+		armcataclick[0]->setPositionY(m_armcontentscroll->getInnerContainerSize().height - 40);
+		armcatacontent[0]->setPositionY(armcataclick[0]->getPositionY() - 100);
+
+		//int size = map_catearms[armcategory].size();
+
+		for (int i = 0; i < 8; i++)
+		{
+			if (i > 0)
+			{
+				Vec2 pos1;
+				if (armcatacontent[i - 1]->isVisible())
+				{
+					int size = map_catearms[i - 1].size();
+					pos1 = Vec2(armcataclick[i]->getPositionX(), armcataclick[i - 1]->getPositionY() - 100 - 120 * size);
+					//armcataclick[i]->setPosition(pos1);
+
+					//Vec2 pos2 = Vec2(armcatacontent[i]->getPositionX(), armcataclick[i]->getPositionY() - 100);
+					//armcatacontent[i]->setPosition(pos2);
+				}
+				else
+				{
+					pos1 = Vec2(armcataclick[i]->getPositionX(), armcataclick[i - 1]->getPositionY() - 100);
+					//armcataclick[i]->setPosition(pos1);
+					//Vec2 pos2 = Vec2(armcatacontent[i]->getPositionX(), armcataclick[i]->getPositionY() - 100);
+					//armcatacontent[i]->setPosition(pos2);
+				}
+				armcataclick[i]->setPosition(pos1);
+
+				Vec2 pos2 = Vec2(armcatacontent[i]->getPositionX(), armcataclick[i]->getPositionY() - 100);
+				armcatacontent[i]->setPosition(pos2);
+			}
+		}
+
+		std::vector<Node*> vec_item;
+		if (armcatacontent[armcategory]->isVisible())
+		{
+			for (unsigned int n = 0; n < map_catearms[armcategory].size(); n++)
+			{
+				Node* node = armcatacontent[armcategory]->getChildByName(map_catearms[armcategory][n]);
+				vec_item.push_back(node);
+			}
+		}
+
+		for (unsigned int i = 0; i < vec_item.size(); i++)
+		{
+			vec_item[i]->setPositionX(720);
+			vec_item[i]->runAction(EaseSineIn::create(MoveTo::create(0.15f + i * 0.07f, Vec2(50, vec_item[i]->getPositionY()))));
+		}
+	}
+}
+
+void SmithyLayer::loadArmCataUi()
+{
+	for (int i = 0; i < 8; i++)
+	{
+		int size = map_catearms[i].size();
+		for (int n = 0; n < size; n++)
+		{
+			MakeResNode* itemnode = MakeResNode::create(map_catearms[i][n]);
+			itemnode->setScale(0.8f);
+			itemnode->setPosition(Vec2(50, -n*120));
+
+			armcatacontent[i]->addChild(itemnode, 0, map_catearms[i][n]);
+			if (itemnode->getResInSmithyLv() > m_buidingData->level.getValue())
+				itemnode->setEnable(false);
+			armcatacontent[i]->setVisible(false);
+		}
+	}
+}
 
 void SmithyLayer::onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
@@ -273,6 +452,16 @@ void SmithyLayer::onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 	}
 }
 
+void SmithyLayer::onArmsCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		Node* node = (Node*)pSender;
+		updateArmContent(node->getTag());
+	}
+}
+
 void SmithyLayer::lvup()
 {
 	std::string str = StringUtils::format("%d%s", m_buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
@@ -282,9 +471,27 @@ void SmithyLayer::lvup()
 	//updateContent(lastCategoryindex);
 	for (unsigned int i = 0; i < map_cateRes[lastCategoryindex].size(); i++)
 	{
-		MakeResNode* itemnode = (MakeResNode*)m_contentscroll->getChildByName(map_cateRes[lastCategoryindex][i]);
-		if (itemnode->getResInSmithyLv() <= m_buidingData->level.getValue())
-			itemnode->setEnable(true);
+		MakeResNode* itemnode;
+		
+		if (lastCategoryindex == 1)
+		{
+			for (int n = 0; n < 8; n++)
+			{
+				for (unsigned int m = 0; m < map_catearms[n].size(); m++)
+				{
+					itemnode = (MakeResNode*)armcatacontent[n]->getChildByName(map_catearms[n][m]);
+					if (itemnode->getResInSmithyLv() <= m_buidingData->level.getValue())
+						itemnode->setEnable(true);
+				}
+			}
+		}
+		else
+		{
+			itemnode = (MakeResNode*)m_contentscroll->getChildByName(map_cateRes[lastCategoryindex][i]);
+			if (itemnode->getResInSmithyLv() <= m_buidingData->level.getValue())
+				itemnode->setEnable(true);
+		}
+
 	}
 }
 
@@ -336,7 +543,31 @@ void SmithyLayer::makeRes(std::string resid)
 		desc = StringUtils::format("%s%s", ResourceLang::map_lang["makesucc"].c_str(), resstr.c_str());
 	MovingLabel::show(desc);
 
-	MakeResNode* itemnode = (MakeResNode*)m_contentscroll->getChildByName(resid);
+	MakeResNode* itemnode;
+
+
+	if (lastCategoryindex == 1)
+	{
+		bool isfind = false;
+		for (int n = 0; n < 8; n++)
+		{
+			for (unsigned int m = 0; m < map_catearms[n].size(); m++)
+			{
+				if (map_catearms[n][m].compare(resid) == 0)
+				{
+					itemnode = (MakeResNode*)armcatacontent[n]->getChildByName(map_catearms[n][m]);
+					isfind = true;
+					break;
+				}
+			}
+			if (isfind)
+				break;
+		}
+	}
+	else
+	{
+		itemnode = (MakeResNode*)m_contentscroll->getChildByName(resid);
+	}
 	itemnode->updateMyOwnCountUI();
 
 	if (!(retres->getType() >= T_ARMOR && retres->getType() <= T_NG))

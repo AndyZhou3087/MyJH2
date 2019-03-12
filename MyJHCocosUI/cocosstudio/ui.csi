@@ -498,6 +498,8 @@
       <FilePathData Path="ui/newsbg.png" />
       <FilePathData Path="ui/librarytextbg.png" />
       <FilePathData Path="ui/librarybackbtn.png" />
+      <FilePathData Path="ui/armcata.png" />
+      <FilePathData Path="ui/armcate_zhe.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

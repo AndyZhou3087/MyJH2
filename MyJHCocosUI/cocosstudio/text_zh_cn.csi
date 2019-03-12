@@ -355,6 +355,10 @@
       <FilePathData Path="text_zh_cn/libraryng_text.png" />
       <FilePathData Path="text_zh_cn/librarywg_text.png" />
       <FilePathData Path="text_zh_cn/exitmazebtn_text.png" />
+      <FilePathData Path="text_zh_cn/vocfit_text0.png" />
+      <FilePathData Path="text_zh_cn/vocfit_text1.png" />
+      <FilePathData Path="text_zh_cn/vocfit_text2.png" />
+      <FilePathData Path="text_zh_cn/vocfit_text3.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

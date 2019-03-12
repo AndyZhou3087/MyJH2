@@ -1011,7 +1011,7 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 				if (GlobalInstance::mazerouteindex == GlobalInstance::vec_mazeroute.size())//回到当前地图
 				{
 					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MazeTransitionScene::createScene(0, TO_OUT)));
-					MyRes::Use("z002", MyRes::getMyResCount("z002"), MYPACKAGE);
+					MyRes::Use("z002", MyRes::getMyResCount("z002", MYPACKAGE), MYPACKAGE);
 				}
 				else//继续下一个
 				{

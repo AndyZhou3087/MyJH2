@@ -745,7 +745,7 @@ public:
 
 	void usePropsCount(int idindex, int useval);
 
-	void setMazeEventData(int entercount, int useexitcount);
+	void setMazeEventData(int entercount, int useexitcount, int usecoin = 0);
 
 private:
 	static GlobalInstance* _Context;//类实例
@@ -853,7 +853,7 @@ public:
 
 	static int getNewsTime;
 
-	static int mazeEventData[2];
+	static int mazeEventData[3];
 
 private:
 	static int refreshHeroTime;
