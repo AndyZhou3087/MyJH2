@@ -70,7 +70,7 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 	smallbg->setSwallowTouches(true);
 
 	//°´Å¥1
-	cocos2d::ui::Widget* okbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("okbtn");
+	okbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("okbtn");
 	okbtn->addTouchEventListener(CC_CALLBACK_2(HintBoxLayer::onBtnClick, this));
 	okbtn->setTag(1);
 	//°´Å¥1ÎÄ×Ö
@@ -101,6 +101,10 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 		okbtn->setPositionX(360);
 		cancelbtn->setVisible(false);
 	}
+	else if (m_forwhere == 12)//ÕÐÄ¼
+	{
+		this->scheduleOnce(schedule_selector(HintBoxLayer::delayShowNewerGuide), 0.31f);
+	}
 
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
@@ -115,7 +119,7 @@ bool HintBoxLayer::init(std::string str, int forwhere)
 			return;
 		}
 		else
-			AnimationEffect::closeAniEffect((Layer*)this);
+			AnimationEffect::closeAniEffect(this);
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -258,4 +262,27 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			break;
 		}
 	}
+}
+
+void HintBoxLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(25) && NewGuideLayer::checkifNewerGuide(88))
+	{
+		showNewerGuide(88);
+	}
+	else if (!NewGuideLayer::checkifNewerGuide(27) && NewGuideLayer::checkifNewerGuide(89))
+	{
+		showNewerGuide(89);
+	}
+	else if (!NewGuideLayer::checkifNewerGuide(29) && NewGuideLayer::checkifNewerGuide(90))
+	{
+		showNewerGuide(90);
+	}
+}
+
+void HintBoxLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	nodes.push_back(okbtn);
+	g_mainScene->showNewerGuideNode(step, nodes);
 }

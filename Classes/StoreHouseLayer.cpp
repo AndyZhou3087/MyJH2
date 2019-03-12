@@ -13,7 +13,6 @@
 #include "Quest.h"
 #include "AnimationEffect.h"
 #include "HintBoxLayer.h"
-#include "NewGuideLayer.h"
 #include "MainScene.h"
 #include "NewGuideLayer.h"
 
@@ -79,8 +78,6 @@ bool StoreHouseLayer::init()
 	}
 	updateContent(0);
 
-	this->scheduleOnce(schedule_selector(StoreHouseLayer::delayShowNewerGuide), newguidetime);
-
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -94,39 +91,6 @@ bool StoreHouseLayer::init()
 	return true;
 }
 
-void StoreHouseLayer::delayShowNewerGuide(float dt)
-{
-	if (!NewGuideLayer::checkifNewerGuide(88))
-	{
-		if (NewGuideLayer::checkifNewerGuide(89))
-		{
-			showNewerGuide(89);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(91))
-		{
-			showNewerGuide(91);
-		}
-	}
-}
-
-void StoreHouseLayer::showNewerGuide(int step)
-{
-	std::vector<Node*> nodes;
-	if (step == 89)
-	{
-		if (newguideboxitem != NULL)
-		{
-			nodes.push_back(newguideboxitem);
-		}
-	}
-	else if (step == 91)
-	{
-		nodes.push_back(closebtn);
-	}
-
-	if (nodes.size() > 0)
-		g_mainScene->showNewerGuideNode(step, nodes);
-}
 
 void StoreHouseLayer::updateContent(int category)
 {
@@ -209,25 +173,25 @@ void StoreHouseLayer::updateContent(int category)
 
 		std::string resid = map_cateRes[category][m]->getId();
 
-		//引导体力药水
-		if (!NewGuideLayer::checkifNewerGuide(88) && NewGuideLayer::checkifNewerGuide(89))
-		{
-			if (map_cateRes[category][m]->getId().compare("p001") == 0)
-			{
-				newguideboxitem = boxItem;
-				int posh = innerheight - m / 4 * itemheight + 5;
-				int vsizeh = contentheight;
-				if (posh > vsizeh)
-				{
-					float per = (1 - (float)(posh - vsizeh) / (innerheight - vsizeh)) * 100;
-					scrollview->jumpToPercentVertical(per);
-				}
-				else
-				{
-					scrollview->jumpToBottom();
-				}
-			}
-		}
+		////引导体力药水
+		//if (!NewGuideLayer::checkifNewerGuide(88) && NewGuideLayer::checkifNewerGuide(89))
+		//{
+		//	if (map_cateRes[category][m]->getId().compare("p001") == 0)
+		//	{
+		//		newguideboxitem = boxItem;
+		//		int posh = innerheight - m / 4 * itemheight + 5;
+		//		int vsizeh = contentheight;
+		//		if (posh > vsizeh)
+		//		{
+		//			float per = (1 - (float)(posh - vsizeh) / (innerheight - vsizeh)) * 100;
+		//			scrollview->jumpToPercentVertical(per);
+		//		}
+		//		else
+		//		{
+		//			scrollview->jumpToBottom();
+		//		}
+		//	}
+		//}
 
 		std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 

@@ -346,13 +346,6 @@ void MainScene::delayShowNewerGuide(float dt)
 				showNewerGuide(77);
 			}
 		}
-		else if (GlobalInstance::getInstance()->getLittleHerosPower(10) && NewGuideLayer::checkifNewerGuide(88))
-		{
-			if (NewGuideLayer::checkifNewerGuide(88))
-			{
-				showNewerGuide(88);
-			}
-		}
 		/*else if (GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15))
 		{
 			showNewerGuide(15);

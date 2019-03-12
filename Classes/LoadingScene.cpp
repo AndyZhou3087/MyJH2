@@ -387,6 +387,17 @@ void LoadingScene::optimizeSaveData()
 			if (i <= gsize - 1)
 				GlobalInstance::vec_newerguides[i] = atoi(gstr.substr(i, 1).c_str());
 		}
+
+		if (gstr.length() > 90)
+		{
+			if (GlobalInstance::vec_newerguides[30] == 0)//招募完毕后（2.0.0加入了招募需要银两的提示框）
+			{
+				for (int i = 88; i <= 90; i++)
+				{
+					GlobalInstance::vec_newerguides[i] = 0;
+				}
+			}
+		}
 	}
 }
 

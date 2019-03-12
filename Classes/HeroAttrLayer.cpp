@@ -714,18 +714,18 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		case ATTR_CHANGEBTN:
 			if ((m_heroData->getLevel() + 1) % 10 == 0 && (m_heroData->getVocation() < 4 || (m_heroData->getLevel() + 1) / 10 == m_heroData->getChangeCount() + 1))
 			{
+				int forwhere = 0;
 				if (m_heroData->getLevel() + 1 == 10)
 				{
-					ChangeVocationLayer* clayer = ChangeVocationLayer::create(m_heroData);
-					this->addChild(clayer);
-					AnimationEffect::openAniEffect((Layer*)clayer);
+					forwhere = 0;
 				}
 				else
 				{
-					ChangeVocationLayer* clayer = ChangeVocationLayer::create(m_heroData, 1);
-					this->addChild(clayer);
-					AnimationEffect::openAniEffect((Layer*)clayer);
+					forwhere = 1;
 				}
+				ChangeVocationLayer* clayer = ChangeVocationLayer::create(m_heroData, forwhere);
+				this->addChild(clayer);
+				AnimationEffect::openAniEffect(clayer);
 			}
 			else
 			{
@@ -750,6 +750,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				str = CommonFuncs::replace_all(str, "\\n", "\n");
 				HintBoxLayer* hlayer = HintBoxLayer::create(str, 12);
 				this->addChild(hlayer);
+				AnimationEffect::openAniEffect(hlayer);
 			}
 			else
 			{
