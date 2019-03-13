@@ -1,4 +1,4 @@
-package com.game.myjh.wxapi;
+package com.fengs.myjh.wxapi;
 
 import java.util.Timer;
 import java.util.TimerTask;

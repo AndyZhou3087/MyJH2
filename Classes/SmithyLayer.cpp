@@ -324,8 +324,16 @@ void SmithyLayer::updateArmContent(int armcategory)
 			scrollheight += map_catearms[i].size() * 120;
 		}
 	}
+	float per = 0.0f;
+	if (fabs(m_armcontentscroll->getContentSize().height - m_armcontentscroll->getInnerContainerSize().height) < 1)
+	{
+		per = 0.0f;
+	}
+	else
+	{
+		per = m_armcontentscroll->getScrolledPercentVertical();
+	}
 
-	float per = m_armcontentscroll->getScrolledPercentVertical();
 	m_armcontentscroll->setInnerContainerSize(Size(m_armcontentscroll->getContentSize().width, scrollheight));
 	m_armcontentscroll->jumpToPercentVertical(per);
 

@@ -37,8 +37,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.game.myjh.wxapi.WXEntryActivity"
+            android:name="com.fengs.myjh.wxapi.WXEntryActivity"
             android:label="@string/app_name"
+
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:exported="true"
             android:taskAffinity="net.sourceforge.simcpux"
