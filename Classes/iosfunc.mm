@@ -116,7 +116,14 @@ const char* getUserDefaultXml(int type)
 void openAppUri(const char* url)
 {
     NSString *urlStr = [NSString stringWithFormat:@"%s", url];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0) {
+        //设备系统为IOS 10.0或者以上的
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr] options:@{} completionHandler:nil];
+    }else{
+        //设备系统为IOS 10.0以下的
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+    }
+
 }
 
 bool isIphoneX()
