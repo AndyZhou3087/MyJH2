@@ -64,6 +64,7 @@ MapBlockScene::MapBlockScene()
 	isBlockClickCancel = false;
 	isMaze = false;
 	buildfocus = NULL;
+	mapAllOpenFog = NULL;
 }
 
 
@@ -348,6 +349,23 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	visioncountlbl = (cocos2d::ui::TextBMFont*)visionbtn->getChildByName("countlbl");
 	torchcountlbl = (cocos2d::ui::TextBMFont*)torchbtn->getChildByName("countlbl");
 	
+	propbox = m_csbnode->getChildByName("propbox");
+	propbox->setVisible(!isMaze);
+
+	cocos2d::ui::Widget* allopenbtn = (cocos2d::ui::Widget*)propbox->getChildByName("allopenbtn");
+	allopenbtn->setTag(BTN_ALLOPEN);
+	allopenbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+
+	cocos2d::ui::Widget* transbtn = (cocos2d::ui::Widget*)propbox->getChildByName("transerbtn");
+	transbtn->setTag(BTN_TRANS);
+	transbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+
+	cocos2d::ui::Widget* hideclick = (cocos2d::ui::Widget*)m_csbnode->getChildByName("hideclick");
+	hideclick->setTag(BTN_HIDE);
+	hideclick->setScale(true);
+	hideclick->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+	hideclick->setVisible(!isMaze);
+
 	updateLabel(0);
 	this->schedule(schedule_selector(MapBlockScene::updateLabel), 0.5f);
 
@@ -827,6 +845,37 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			std::string str = StringUtils::format(ResourceLang::map_lang["exitmaze"].c_str(), 30);
 			HintBoxLayer* hlayer = HintBoxLayer::create(str, 13);
 			this->addChild(hlayer);
+			AnimationEffect::openAniEffect(hlayer);
+		}
+			break;
+		case BTN_HIDE:
+		{
+			Node* hideicon = clicknode->getChildByName("hideicon");
+			float angl = hideicon->getRotation();
+			if (angl < 0)
+			{
+				hideicon->setRotation(90);
+				propbox->runAction(MoveBy::create(0.25f, Vec2(0,-400)));
+			}
+			else
+			{
+				hideicon->setRotation(-90);
+				propbox->runAction(MoveBy::create(0.25f, Vec2(0, 400)));
+			}
+		}
+			break;
+		case BTN_ALLOPEN:
+		{
+			if (mapIsAllOpen)
+			{
+				std::string str = StringUtils::format(ResourceLang::map_lang["isopenall"].c_str(), GlobalInstance::map_AllResources[m_mapid].name.c_str());
+				MovingLabel::show(str);
+				return;
+			}
+
+			UsePropLayer* layer = UsePropLayer::create("z003", 1);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
 		}
 			break;
 		default:
@@ -840,6 +889,16 @@ void MapBlockScene::ExitMaze()
 	std::string mainmapid = GlobalInstance::eventfrommapid.substr(0, GlobalInstance::eventfrommapid.find_last_of("-"));
 	Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MapBlockScene::createScene(GlobalInstance::eventfrommapid, GlobalInstance::map_mapsdata[mainmapid].map_sublist[GlobalInstance::eventfrommapid].bgtype)));
 	GlobalInstance::getInstance()->setMazeEventData(0, 1);
+}
+
+void MapBlockScene::useAllOpen()
+{
+	openAllMap();
+}
+
+void MapBlockScene::useTranser()
+{
+
 }
 
 void MapBlockScene::onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -1415,7 +1474,7 @@ void MapBlockScene::createFog()
 
 	if (vec_cfg.size() >= 2)
 	{
-		randStartPos = atoi(vec_cfg[1].c_str());
+		//randStartPos = atoi(vec_cfg[1].c_str());
 
 		if (vec_cfg[0].compare("-1") == 0)
 		{
@@ -1948,7 +2007,7 @@ void MapBlockScene::showFightResult(int result)
 		{
 			map_mapBlocks[bindex]->removePosIcon();
 			map_mapBlocks[bindex]->setPosType(POS_NOTHING);
-			openAllMap();
+			setMapOrderData();
 		}
 		else if (map_mapBlocks[bindex]->getPosType() == POS_TBOSS)
 		{
@@ -2000,25 +2059,68 @@ void MapBlockScene::showUnlockChapter()
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 	}
-	//地图全开
-	openAllMap();
+	setMapOrderData();
 }
 
-void MapBlockScene::openAllMap()
+void MapBlockScene::setMapOrderData()
 {
-	/*if (_fogrender != NULL)
-	{
-		_fogrender->removeFromParentAndCleanup(true);
-		_fogrender = NULL;
-	}
-	mapIsAllOpen = true;
-	std::string str = StringUtils::format("-1;%d", randStartPos);
-	DataSave::getInstance()->setMapVisibleArea(m_mapid, str);*/
-
 	int index = m_mapid.find_last_of("-");
 	std::string mainid = m_mapid.substr(0, index);
 	int finishOrder = atoi(m_mapid.substr(index+1, 1).c_str());
 	DataSave::getInstance()->setMapOrderCount(mainid, finishOrder + 1);
+}
+
+void MapBlockScene::openAllMap()
+{
+	mapFogScale = 1.0f;
+
+	if (_fogrender != NULL)
+	{
+		this->schedule(schedule_selector(MapBlockScene::allOpenAnim));
+	}
+	mapIsAllOpen = true;
+	std::string str = StringUtils::format("-1;%d", randStartPos);
+	DataSave::getInstance()->setMapVisibleArea(m_mapid, str);
+
+	std::map<int, MapBlock*>::iterator it;
+
+	for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+	{
+		MapBlock* block = map_mapBlocks[it->first];
+		if (block->getWalkable())
+			block->setIsCanSee(true);
+	}
+}
+
+void MapBlockScene::allOpenAnim(float dt)
+{
+	if (_fogrender != NULL)
+	{
+		_fogrender->begin();
+
+		if (mapAllOpenFog == NULL)
+		{
+			mapAllOpenFog = Sprite::createWithSpriteFrameName("mapui/fog.png");
+			mapAllOpenFog->setBlendFunc({ GL_ZERO, GL_ONE_MINUS_SRC_ALPHA });
+			mapAllOpenFog->setAnchorPoint(Vec2(0.5, 0.5));
+			mapAllOpenFog->setPosition(Vec2(mycurCol*MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, mycurRow*MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2));
+			_fogrender->addChild(mapAllOpenFog, 0, "allopenfog");
+		}
+		mapAllOpenFog->setScale(mapFogScale);
+
+		mapAllOpenFog->visit();
+		_fogrender->end();
+		Director::getInstance()->getRenderer()->render();
+		mapFogScale += 0.8f;
+
+		int maxscale = MAX(mycurRow, blockRowCount - mycurRow);
+		if (mapFogScale > maxscale*2.5f)
+		{
+			this->unschedule(schedule_selector(MapBlockScene::allOpenAnim));
+			_fogrender->removeFromParentAndCleanup(true);
+			_fogrender = NULL;
+		}
+	}
 }
 
 int MapBlockScene::getWinExp()

@@ -284,6 +284,7 @@
       <FilePathData Path="mapui/mapnamebox.png" />
       <FilePathData Path="mapui/mapbtnbg.png" />
       <FilePathData Path="mapui/exitmazebtn.png" />
+      <FilePathData Path="mapui/mappropbox.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

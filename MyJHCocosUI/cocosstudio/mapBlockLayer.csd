@@ -113,6 +113,92 @@
             <FileData Type="Normal" Path="images/mapblocktop.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="propbox" ActionTag="301168422" Tag="185" IconVisible="False" RightMargin="620.0000" TopMargin="668.0000" BottomMargin="242.0000" Scale9Enable="True" LeftEage="19" RightEage="19" TopEage="36" BottomEage="36" Scale9OriginX="19" Scale9OriginY="36" Scale9Width="8" Scale9Height="98" ctype="ImageViewObjectData">
+            <Size X="100.0000" Y="370.0000" />
+            <Children>
+              <AbstractNodeData Name="allopenbtn" ActionTag="405311884" Tag="201" IconVisible="False" LeftMargin="-4.5000" RightMargin="-4.5000" TopMargin="75.5000" BottomMargin="185.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="79" Scale9Height="87" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="109.0000" Y="109.0000" />
+                <Children>
+                  <AbstractNodeData Name="icon" ActionTag="561968810" Tag="202" IconVisible="False" LeftMargin="-8.9999" RightMargin="-6.0001" TopMargin="-9.5000" BottomMargin="-2.5000" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="54" Scale9Height="51" ctype="ImageViewObjectData">
+                    <Size X="124.0000" Y="121.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="53.0001" Y="58.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4862" Y="0.5321" />
+                    <PreSize X="1.1376" Y="1.1101" />
+                    <FileData Type="MarkedSubImage" Path="ui/z003.png" Plist="ui.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="text" ActionTag="1517745403" Tag="203" IconVisible="False" LeftMargin="9.0009" RightMargin="7.9991" TopMargin="80.0000" BottomMargin="1.0000" LeftEage="18" RightEage="18" TopEage="10" BottomEage="10" Scale9OriginX="18" Scale9OriginY="10" Scale9Width="56" Scale9Height="8" ctype="ImageViewObjectData">
+                    <Size X="92.0000" Y="28.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="55.0009" Y="15.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5046" Y="0.1376" />
+                    <PreSize X="0.8440" Y="0.2569" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/allmapopen_text.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="50.0000" Y="240.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.6486" />
+                <PreSize X="1.0900" Y="0.2946" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="MarkedSubImage" Path="mapui/mapbtnbg.png" Plist="mapui.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="mapui/mapbtnbg.png" Plist="mapui.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="mapui/mapbtnbg.png" Plist="mapui.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="transerbtn" ActionTag="-232763012" Tag="46" IconVisible="False" LeftMargin="-4.5000" RightMargin="-4.5000" TopMargin="210.5000" BottomMargin="50.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="79" Scale9Height="87" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="109.0000" Y="109.0000" />
+                <Children>
+                  <AbstractNodeData Name="icon" ActionTag="347684265" Tag="47" IconVisible="False" LeftMargin="-8.9999" RightMargin="-6.0001" TopMargin="-9.5000" BottomMargin="-2.5000" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="54" Scale9Height="51" ctype="ImageViewObjectData">
+                    <Size X="124.0000" Y="121.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="53.0001" Y="58.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4862" Y="0.5321" />
+                    <PreSize X="1.1376" Y="1.1101" />
+                    <FileData Type="MarkedSubImage" Path="ui/z004.png" Plist="ui.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="text" ActionTag="-369561941" Tag="48" IconVisible="False" LeftMargin="9.0009" RightMargin="7.9991" TopMargin="80.0000" BottomMargin="1.0000" LeftEage="18" RightEage="18" TopEage="10" BottomEage="10" Scale9OriginX="18" Scale9OriginY="10" Scale9Width="56" Scale9Height="8" ctype="ImageViewObjectData">
+                    <Size X="92.0000" Y="28.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="55.0009" Y="15.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5046" Y="0.1376" />
+                    <PreSize X="0.8440" Y="0.2569" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/maptrans_text.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="50.0000" Y="105.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.2838" />
+                <PreSize X="1.0900" Y="0.2946" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="MarkedSubImage" Path="mapui/mapbtnbg.png" Plist="mapui.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="mapui/mapbtnbg.png" Plist="mapui.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="mapui/mapbtnbg.png" Plist="mapui.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" />
+            <Position X="50.0000" Y="242.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0694" Y="0.1891" />
+            <PreSize X="0.1389" Y="0.2891" />
+            <FileData Type="MarkedSubImage" Path="mapui/mappropbox.png" Plist="mapui.plist" />
+          </AbstractNodeData>
           <AbstractNodeData Name="mapblockbottom" ActionTag="1793173216" Tag="270" IconVisible="False" TopMargin="1022.0000" ctype="SpriteObjectData">
             <Size X="720.0000" Y="258.0000" />
             <Children>
@@ -478,6 +564,28 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.9236" Y="0.8008" />
             <PreSize X="0.0000" Y="0.0000" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="hideclick" ActionTag="1226040871" Tag="49" IconVisible="False" LeftMargin="2.0000" RightMargin="622.0000" TopMargin="1000.0000" BottomMargin="240.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+            <Size X="96.0000" Y="40.0000" />
+            <Children>
+              <AbstractNodeData Name="hideicon" ActionTag="-161991356" Tag="196" RotationSkewX="-90.0000" RotationSkewY="-90.0000" IconVisible="False" LeftMargin="33.0000" RightMargin="29.0000" TopMargin="1.0000" BottomMargin="11.0000" LeftEage="11" RightEage="11" TopEage="9" BottomEage="9" Scale9OriginX="11" Scale9OriginY="9" Scale9Width="12" Scale9Height="10" ctype="ImageViewObjectData">
+                <Size X="34.0000" Y="28.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="50.0000" Y="25.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5208" Y="0.6250" />
+                <PreSize X="0.3542" Y="0.7000" />
+                <FileData Type="MarkedSubImage" Path="mapui/maptask_btn.png" Plist="mapui.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="50.0000" Y="260.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.0694" Y="0.2031" />
+            <PreSize X="0.1333" Y="0.0313" />
+            <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

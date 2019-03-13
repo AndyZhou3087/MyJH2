@@ -500,6 +500,8 @@
       <FilePathData Path="ui/librarybackbtn.png" />
       <FilePathData Path="ui/armcata.png" />
       <FilePathData Path="ui/armcate_zhe.png" />
+      <FilePathData Path="ui/z003.png" />
+      <FilePathData Path="ui/z004.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

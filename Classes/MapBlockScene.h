@@ -30,7 +30,10 @@ typedef enum
 	BTN_PACKAGE,
 	BTN_TORCH,
 	BTN_VISION,
-	BTN_EXITMAZE
+	BTN_EXITMAZE,
+	BTN_ALLOPEN,
+	BTN_TRANS,
+	BTN_HIDE
 }MAPBTNTYPE;
 
 typedef enum
@@ -90,6 +93,10 @@ public:
 	void removeMazeStoneAfterAnim(int blockindex);
 
 	void ExitMaze();
+
+	void useAllOpen();
+
+	void useTranser();
 
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
@@ -157,6 +164,8 @@ private:
 
 	void delayShowFightResult(float dt);
 
+	void setMapOrderData();
+
 	void openAllMap();
 
 	void closeTaskTipNode(float dt);
@@ -176,6 +185,8 @@ private:
 	void ajustMazeStatus();
 
 	void updateZ002Count(float dt);
+
+	void allOpenAnim(float dt);
 
 private:
 	Node* m_csbnode;
@@ -245,6 +256,11 @@ private:
 	cocos2d::ui::ImageView* buildfocus;
 	Label* z002countlbl;
 	cocos2d::ui::Text* z002countlbl_1;
+	Node* propbox;
+
+	float mapFogScale;
+
+	Sprite* mapAllOpenFog;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

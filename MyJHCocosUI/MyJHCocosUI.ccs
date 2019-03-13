@@ -407,6 +407,7 @@
           <Image Name="mapnamebox0.png" />
           <Image Name="mapnamebox1.png" />
           <Image Name="mappackbtn.png" />
+          <Image Name="mappropbox.png" />
           <Image Name="maprightbtn.png" />
           <Image Name="maptask_branch.png" />
           <Image Name="maptask_btn.png" />
@@ -467,6 +468,7 @@
           <Image Name="achieve_title.png" />
           <Image Name="agreetext.png" />
           <Image Name="allgetbtn_text.png" />
+          <Image Name="allmapopen_text.png" />
           <Image Name="attr0_text.png" />
           <Image Name="attr1_text.png" />
           <Image Name="attr2_text.png" />
@@ -659,6 +661,7 @@
           <Image Name="mappackbtn_text.png" />
           <Image Name="maptask_title.png" />
           <Image Name="maptorchbtn_text.png" />
+          <Image Name="maptrans_text.png" />
           <Image Name="mapvisionbtn_text.png" />
           <Image Name="marketcata0_text_n.png" />
           <Image Name="marketcata0_text_s.png" />
@@ -1321,6 +1324,8 @@
           <Image Name="y015.png" />
           <Image Name="z001.png" />
           <Image Name="z002.png" />
+          <Image Name="z003.png" />
+          <Image Name="z004.png" />
         </Folder>
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />

@@ -111,8 +111,12 @@ bool UsePropLayer::init(std::string strid, int rcount)
 	std::string resstr = StringUtils::format("ui/%s.png", resid.c_str());
 	res->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
+	int mcount = 0;
+	if (MyRes::getMyResCount(resid) <= 0)
+		mcount = rcount;
+
 	namelbl->setString(GlobalInstance::map_AllResources[resid].name);
-	std::string countstr = StringUtils::format("%d", MyRes::getMyResCount(resid));
+	std::string countstr = StringUtils::format("%d", mcount);
 	countlbl->setString(countstr);
 
 	desclbl->setString(GlobalInstance::map_AllResources[resid].desc);
@@ -176,25 +180,30 @@ void UsePropLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				{
 					GlobalInstance::getInstance()->costMyCoinCount(needcoincount);
 					AnimationEffect::closeAniEffect(this);
-					if (g_MapBlockScene != NULL)
-					{
-						g_MapBlockScene->removeMazeStone(this->getTag());
-					}
+					doResult();
 				}
 			}
 			else
 			{
 				MyRes::Use(m_resid, needcoincount.getValue());
 				AnimationEffect::closeAniEffect(this);
-				if (g_MapBlockScene != NULL)
-				{
-					g_MapBlockScene->removeMazeStone(this->getTag());
-				}
+				doResult();
 			}
 		}
 		else
 		{
 			AnimationEffect::closeAniEffect(this);
 		}
+	}
+}
+
+void UsePropLayer::doResult()
+{
+	if (g_MapBlockScene != NULL)
+	{
+		if (m_resid.compare("z002") == 0)
+			g_MapBlockScene->removeMazeStone(this->getTag());
+		else if (m_resid.compare("z003") == 0)
+			g_MapBlockScene->useAllOpen();
 	}
 }

@@ -359,6 +359,8 @@
       <FilePathData Path="text_zh_cn/vocfit_text1.png" />
       <FilePathData Path="text_zh_cn/vocfit_text2.png" />
       <FilePathData Path="text_zh_cn/vocfit_text3.png" />
+      <FilePathData Path="text_zh_cn/allmapopen_text.png" />
+      <FilePathData Path="text_zh_cn/maptrans_text.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>
