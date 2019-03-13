@@ -49,6 +49,12 @@ typedef struct
 	int blockindex;
 }MAZE_POS;
 
+typedef enum
+{
+	MAP_USEINGTORCH = 0,//使用火把中
+	MAP_USEINGTRANSER//使用传送卷轴
+}MAP_USINGPROP;
+
 class MapBlockScene :public Layer, public ScrollViewDelegate
 {
 public:
@@ -180,13 +186,19 @@ private:
 
 	void torchLight(int row, int col);
 
-	void mazeHeroDelayTranse(float dt);
+	void heroDelayTranse(float dt);
 
-	void ajustMazeStatus();
+	void ajustStatus();
 
 	void updateZ002Count(float dt);
 
 	void allOpenAnim(float dt);
+
+	int checkCanTrans(int blockindex);
+
+	void showTransFoodDesc(int foodcount);
+
+	void delaySetMyPos(float dt);
 
 private:
 	Node* m_csbnode;
@@ -247,7 +259,7 @@ private:
 
 	cocos2d::ui::TextBMFont* visioncountlbl;
 	cocos2d::ui::TextBMFont* torchcountlbl;
-	bool isUsingTorch;
+	int usingprop;//正在使用的道具
 	bool isDraging;
 	bool isBlockClickCancel;
 	bool isMaze;

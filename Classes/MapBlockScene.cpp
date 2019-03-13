@@ -59,7 +59,7 @@ MapBlockScene::MapBlockScene()
 	firstpostype = -1;
 	isNewerGuideMap = false;
 	usefood = 1;
-	isUsingTorch = false;
+	usingprop = -1;
 	isDraging = false;
 	isBlockClickCancel = false;
 	isMaze = false;
@@ -793,7 +793,7 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			else
 			{
 				MovingLabel::show(ResourceLang::map_lang["usetorchdesc"]);
-				isUsingTorch = true;
+				usingprop = MAP_USEINGTORCH;
 			}
 		}
 			break;
@@ -866,6 +866,12 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case BTN_ALLOPEN:
 		{
+			if (usingprop >= MAP_USEINGTORCH)
+			{
+				MovingLabel::show(ResourceLang::map_lang["mapusingprop"]);
+				return;
+			}
+
 			if (mapIsAllOpen)
 			{
 				std::string str = StringUtils::format(ResourceLang::map_lang["isopenall"].c_str(), GlobalInstance::map_AllResources[m_mapid].name.c_str());
@@ -874,6 +880,18 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			}
 
 			UsePropLayer* layer = UsePropLayer::create("z003", 1);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
+		break;
+		case BTN_TRANS:
+		{
+			if (usingprop >= MAP_USEINGTORCH)
+			{
+				MovingLabel::show(ResourceLang::map_lang["mapusingprop"]);
+				return;
+			}
+			UsePropLayer* layer = UsePropLayer::create("z004", 1);
 			this->addChild(layer);
 			AnimationEffect::openAniEffect(layer);
 		}
@@ -894,11 +912,13 @@ void MapBlockScene::ExitMaze()
 void MapBlockScene::useAllOpen()
 {
 	openAllMap();
+	GlobalInstance::getInstance()->usePropsCount(COSTPROP_MAPALLOPEN, 1);
 }
 
 void MapBlockScene::useTranser()
 {
-
+	MovingLabel::show(ResourceLang::map_lang["usetranserdesc"]);
+	usingprop = MAP_USEINGTRANSER;
 }
 
 void MapBlockScene::onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -1091,7 +1111,7 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 				mycurRow = vec_mazetranspoints[index].blockindex / blockColCount;
 				mycurCol = vec_mazetranspoints[index].blockindex%blockColCount;
 
-				this->scheduleOnce(schedule_selector(MapBlockScene::mazeHeroDelayTranse), 0.5f);
+				this->scheduleOnce(schedule_selector(MapBlockScene::heroDelayTranse), 0.5f);
 			}
 		}
 		else
@@ -1148,11 +1168,8 @@ void MapBlockScene::delayShowExit(float dt)
 
 void MapBlockScene::stopMoving()
 {
-	if (isMaze)
-	{
-		myposHero->setVisible(true);
-		_mylight->setVisible(true);
-	}
+	myposHero->setVisible(true);
+	_mylight->setVisible(true);
 
 	doMyStatus();
 	isMoving = false;
@@ -1330,7 +1347,7 @@ void MapBlockScene::createMap()
 
 void MapBlockScene::scrollViewDidScroll(ScrollView* view)
 {
-	if (isUsingTorch)
+	if (usingprop > -1)
 		isDraging = true;
 
 	if(isBlockClickCancel)
@@ -1344,7 +1361,7 @@ void MapBlockScene::scrollViewDidScroll(ScrollView* view)
 
 void MapBlockScene::scrollViewDidZoom(ScrollView* view)
 {
-	if (isUsingTorch)
+	if (usingprop > -1)
 		isDraging = true;
 
 	if (isBlockClickCancel)
@@ -1357,18 +1374,36 @@ void MapBlockScene::scrollViewDidZoom(ScrollView* view)
 	return;
 }
 
-void MapBlockScene::mazeHeroDelayTranse(float dt)
+void MapBlockScene::heroDelayTranse(float dt)
+{
+	float delay = 0.0f;
+	if (isMaze)
+	{
+		delay = 0.6f;
+		myposHero->setVisible(false);
+		_mylight->setVisible(false);
+		setMyPos();
+	}
+	else
+	{
+		delay = 1.1f;
+		ajustMyPos(true);
+		this->scheduleOnce(schedule_selector(MapBlockScene::delaySetMyPos), 0.5f);
+	}
+
+	mapnamelbl->runAction(Sequence::create(DelayTime::create(delay), CallFunc::create(CC_CALLBACK_0(MapBlockScene::ajustStatus, this)), NULL));
+}
+
+void MapBlockScene::delaySetMyPos(float dt)
 {
 	myposHero->setVisible(false);
 	_mylight->setVisible(false);
 	setMyPos();
-
-	mapnamelbl->runAction(Sequence::create(DelayTime::create(0.6f), CallFunc::create(CC_CALLBACK_0(MapBlockScene::ajustMazeStatus, this)), NULL));
 }
 
-void MapBlockScene::ajustMazeStatus()
+void MapBlockScene::ajustStatus()
 {
-	ajustMyPos(false);
+	ajustMyPos(!isMaze);
 	setBtnEnable(true);
 }
 
@@ -1549,10 +1584,13 @@ void MapBlockScene::showThrowTorchParticle(int row, int col)
 
 void MapBlockScene::torchLight(int row, int col)
 {
-	_fogrender->begin();
-	addFogBlock(row, col, TORCHSCALE);
-	_fogrender->end();
-	Director::getInstance()->getRenderer()->render();
+	if (_fogrender != NULL)
+	{
+		_fogrender->begin();
+		addFogBlock(row, col, TORCHSCALE);
+		_fogrender->end();
+		Director::getInstance()->getRenderer()->render();
+	}
 }
 
 
@@ -2169,7 +2207,7 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		if (!isUsingTorch && !isMaze)
+		if (usingprop == -1 && !isMaze)
 			return;
 		if (isDraging)
 		{
@@ -2180,10 +2218,60 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		int tag = node->getTag();
 		if (!isMaze)
 		{
-			showThrowTorchParticle(tag / blockColCount, tag%blockColCount);
-			isUsingTorch = false;
-			MyRes::Use("z001", 1);
-			GlobalInstance::getInstance()->usePropsCount(COSTPROP_TORCH, 1);
+			if (usingprop == MAP_USEINGTORCH)
+			{
+				showThrowTorchParticle(tag / blockColCount, tag%blockColCount);
+				MyRes::Use("z001", 1);
+				GlobalInstance::getInstance()->usePropsCount(COSTPROP_TORCH, 1);
+				usingprop = -1;
+			}
+			else if (usingprop == MAP_USEINGTRANSER)
+			{
+				int b = checkCanTrans(tag);
+				if (b >= 0)//可传送
+				{
+					int c = b % blockColCount;
+					int r = b / blockColCount;
+					int needfood = abs(c - mycurCol) + abs(r - mycurRow) - 1;
+					if (MyRes::getMyResCount("r001", MYPACKAGE) >= needfood*2/5)
+					{
+						setBtnEnable(false);
+
+						mycurCol = b % blockColCount;
+						mycurRow = b / blockColCount;
+						this->scheduleOnce(schedule_selector(MapBlockScene::heroDelayTranse), 0.2f);
+						GlobalInstance::getInstance()->usePropsCount(COSTPROP_TRANSER, 1);
+						usingprop = -1;
+						MyRes::Use("r001", needfood, MYPACKAGE);
+
+						sitelbl->runAction(Sequence::create(DelayTime::create(2.0f), CallFunc::create(CC_CALLBACK_0(MapBlockScene::showTransFoodDesc, this, needfood)), NULL));
+					}
+					else
+					{
+						MovingLabel::show(ResourceLang::map_lang["nofoodtransdesc"]);
+
+						std::vector< MSGAWDSDATA> vec_res;
+						int count[] = { 50, 100, 200 };
+						for (unsigned int i = 0; i < 3; i++)
+						{
+							MSGAWDSDATA rdata;
+							rdata.rid = "r001";
+							rdata.count = count[i];
+							rdata.qu = 0;
+							vec_res.push_back(rdata);
+						}
+
+						BuySelectLayer* layer = BuySelectLayer::create(vec_res, MYPACKAGE);
+						this->addChild(layer);
+						AnimationEffect::openAniEffect(layer);
+					}
+				}
+				else
+				{
+					MovingLabel::show(ResourceLang::map_lang["cannottransdesc"]);
+				}
+			}
+
 		}
 		else
 		{
@@ -2212,6 +2300,52 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		isDraging = false;
 		isBlockClickCancel = true;
 	}
+}
+
+void MapBlockScene::showTransFoodDesc(int foodcount)
+{
+	std::string str = StringUtils::format(ResourceLang::map_lang["transfooddesc"].c_str(), foodcount * 2 / 5, foodcount * 3 / 5);
+	MovingLabel::show(str);
+}
+
+int MapBlockScene::checkCanTrans(int blockindex)
+{
+	int col = blockindex % blockColCount;
+	int row = blockindex / blockColCount;
+
+	if (map_mapBlocks[blockindex]->getWalkable())
+	{
+		return blockindex;
+	}
+
+	for (int i = 1; i <= 2; i++)
+	{
+		int r0 = row - i;
+		if (r0 < 0)
+			r0 = 0;
+		int r1 = row + i;
+		if (r1 >= blockRowCount)
+			r1 = blockRowCount - 1;
+
+		int c0 = col - i;
+		if (c0 < 0)
+			c0 = 0;
+		int c1 = col + i;
+		if (c1 >= blockColCount)
+			c1 = blockColCount - 1;
+		for (int n = r0; n <= r1; n++)
+		{
+			for (int m = c0; m <= c1; m++)
+			{
+				int b = n * blockColCount + m;
+				if (map_mapBlocks[b]->getWalkable())
+				{
+					return b;
+				}
+			}
+		}
+	}
+	return -1;
 }
 
 void MapBlockScene::onUsePropClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

@@ -319,7 +319,7 @@ void GlobalInstance::loadInitData()
 	}
 
 	vec_costprops.clear();
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < COSTPROP_END; i++)
 	{
 		vec_costprops.push_back(0);
 	}

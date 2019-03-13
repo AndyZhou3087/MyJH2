@@ -205,5 +205,7 @@ void UsePropLayer::doResult()
 			g_MapBlockScene->removeMazeStone(this->getTag());
 		else if (m_resid.compare("z003") == 0)
 			g_MapBlockScene->useAllOpen();
+		else if (m_resid.compare("z004") == 0)
+			g_MapBlockScene->useTranser();
 	}
 }

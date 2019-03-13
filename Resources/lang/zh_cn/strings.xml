@@ -490,5 +490,10 @@
 	<s name="rmbprice">¥%d.00</s>
 	<s name="buytext">购买</s>
 	<s name="exitmaze">出口即在眼前，大侠切勿放弃，大侠确定要现在退出（花费%d元宝）吗？</s>
-	<s name="isopenall">「%s」地图已是视野全开状态，无需使用！</s>	
+	<s name="isopenall">「%s」地图已是视野全开状态，无需使用！</s>
+	<s name="usetranserdesc">点击地图位置选择目的传送地点</s>
+	<s name="cannottransdesc">此区域无法行走，请更换传送地点</s>
+	<s name="nofoodtransdesc">食物不足，无法传送</s>
+	<s name="transfooddesc">此次传送消耗食物x%d(节省%d)</s>
+	<s name="mapusingprop">请先使用完道具</s>		
 </strings>
