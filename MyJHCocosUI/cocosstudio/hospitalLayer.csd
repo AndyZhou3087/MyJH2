@@ -109,14 +109,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scrollview" ActionTag="-1589782516" Tag="70" IconVisible="False" LeftMargin="39.9984" RightMargin="40.0016" TopMargin="153.0272" BottomMargin="66.9728" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
-            <Size X="640.0000" Y="1060.0000" />
-            <AnchorPoint />
-            <Position X="39.9984" Y="66.9728" />
+          <AbstractNodeData Name="scrollview" ActionTag="-1589782516" Tag="70" IconVisible="False" LeftMargin="39.9984" RightMargin="40.0016" TopMargin="150.0000" BottomMargin="90.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+            <Size X="640.0000" Y="1040.0000" />
+            <AnchorPoint ScaleY="1.0000" />
+            <Position X="39.9984" Y="1130.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0556" Y="0.0523" />
-            <PreSize X="0.8889" Y="0.8281" />
+            <PrePosition X="0.0556" Y="0.8828" />
+            <PreSize X="0.8889" Y="0.8125" />
             <SingleColor A="255" R="255" G="150" B="100" />
             <FirstColor A="255" R="255" G="150" B="100" />
             <EndColor A="255" R="255" G="255" B="255" />
@@ -131,6 +131,30 @@
             <CColor A="255" R="125" G="80" B="47" />
             <PrePosition X="0.5000" Y="0.5625" />
             <PreSize X="0.1111" Y="0.0227" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="hintdesc_0" ActionTag="-417525069" Tag="62" IconVisible="False" LeftMargin="164.4998" RightMargin="164.5002" TopMargin="1202.1594" BottomMargin="48.8406" FontSize="25" LabelText="疗伤优惠：100银币/次，剩余  次。" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="391.0000" Y="29.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="359.9998" Y="63.3406" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="125" G="80" B="47" />
+            <PrePosition X="0.5000" Y="0.0495" />
+            <PreSize X="0.5431" Y="0.0227" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="reivecountlbl" ActionTag="988517435" Tag="63" IconVisible="False" LeftMargin="497.5000" RightMargin="207.5000" TopMargin="1202.5000" BottomMargin="48.5000" FontSize="25" LabelText="0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="15.0000" Y="29.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="505.0000" Y="63.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="0" G="128" B="0" />
+            <PrePosition X="0.7014" Y="0.0492" />
+            <PreSize X="0.0208" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />

@@ -504,6 +504,16 @@ std::string DataSave::getMazeEventCount()
 	return loadStringDataByKey("maze");
 }
 
+void DataSave::setReviveHeroCount(int count)
+{
+	saveIntDataByKey("rheroc", count);
+}
+
+int DataSave::getReviveHeroCount()
+{
+	return loadIntDataByKey("rheroc", 0);
+}
+
 void DataSave::deleteDataByKey(std::string key)
 {
 	removeEleByKey(key);

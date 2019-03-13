@@ -10,6 +10,7 @@
 #include "AnimationEffect.h"
 #include "NewGuideLayer.h"
 #include "MainScene.h"
+#include "DataSave.h"
 
 HospitalLayer::HospitalLayer()
 {
@@ -58,6 +59,14 @@ bool HospitalLayer::init()
 
 	hintdesc = (cocos2d::ui::Text*)m_csbnode->getChildByName("hintdesc");
 	hintdesc->setString("");
+
+	hintdesc = (cocos2d::ui::Text*)m_csbnode->getChildByName("hintdesc");
+	hintdesc->setString("");
+
+	revivecounttext = (cocos2d::ui::Text*)m_csbnode->getChildByName("hintdesc_0");
+	revivecounttext->setString(ResourceLang::map_lang["hospitalrevivedesc"]);
+
+	revivecountlbl = (cocos2d::ui::Text*)m_csbnode->getChildByName("reivecountlbl");
 
 	updateContent();
 
@@ -136,6 +145,21 @@ void HospitalLayer::updateContent()
 	scrollview->removeAllChildrenWithCleanup(true);
 	vec_deadheros.clear();
 	vec_deadNodes.clear();
+
+	int rheroc = DataSave::getInstance()->getReviveHeroCount();
+	if (rheroc >= 20)
+	{
+		scrollview->setContentSize(Size(scrollview->getContentSize().width, 1060));
+		revivecounttext->setVisible(false);
+		revivecountlbl->setVisible(false);
+	}
+	else
+	{
+		scrollview->setContentSize(Size(scrollview->getContentSize().width, 1040));
+		std::string countstr = StringUtils::format("%d", 20 - rheroc);
+		revivecountlbl->setString(countstr);
+	}
+
 	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 	{
 		Hero* hero = GlobalInstance::vec_myHeros[i];

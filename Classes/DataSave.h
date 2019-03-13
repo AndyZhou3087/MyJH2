@@ -470,6 +470,12 @@ public:
 	//获取迷宫数据
 	std::string getMazeEventCount();
 
+	//保存复活英雄次数，前20次固定100
+	void setReviveHeroCount(int count);
+
+	//获取复活英雄次数，前20次固定100
+	int getReviveHeroCount();
+
 	void deleteDataByKey(std::string key);
 
 private:

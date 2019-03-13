@@ -31,6 +31,8 @@ private:
 	cocos2d::ui::Text* cointext;
 	cocos2d::ui::Text* silvertext;
 	cocos2d::ui::Text* hintdesc;
+	cocos2d::ui::Text* revivecountlbl;
+	cocos2d::ui::Text* revivecounttext;
 	std::vector<MyHeroNode*> vec_deadNodes;
 	int dcount;
 	cocos2d::ui::Widget* closebtn;

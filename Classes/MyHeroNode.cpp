@@ -95,7 +95,8 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 
 	silver = (cocos2d::ui::Widget*)csbnode->getChildByName("silver");
 	count = (cocos2d::ui::Text*)silver->getChildByName("count");
-	std::string s = StringUtils::format("%d", (herodata->getLevel() + 1) * RSILVERCOUNT);
+
+	std::string s = StringUtils::format("%d", DataSave::getInstance()->getReviveHeroCount() < 20 ? 100: (herodata->getLevel() + 1) * RSILVERCOUNT);
 	count->setString(s);
 
 	langtype = GlobalInstance::getInstance()->getLang();
@@ -532,11 +533,19 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			else if (m_showtype == HS_DEAD)
 			{
 				DynamicValueInt dval = GlobalInstance::getInstance()->getMySoliverCount();
-				if (dval.getValue() >= (m_heroData->getLevel() + 1) * RSILVERCOUNT)
-				{
-					DynamicValueInt dva;
+
+				int rheroc = DataSave::getInstance()->getReviveHeroCount();
+				DynamicValueInt dva;
+				if (rheroc < 20)
+					dva.setValue(100);
+				else
 					dva.setValue((m_heroData->getLevel() + 1) * RSILVERCOUNT);
+
+				if (dval.getValue() >= dva.getValue())
+				{
 					GlobalInstance::getInstance()->costMySoliverCount(dva);
+
+					DataSave::getInstance()->setReviveHeroCount(rheroc + 1);
 
 					m_heroData->setState(HS_OWNED);
 					m_heroData->setHp(m_heroData->getMaxHp());
