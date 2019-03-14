@@ -502,6 +502,7 @@
       <FilePathData Path="ui/armcate_zhe.png" />
       <FilePathData Path="ui/z003.png" />
       <FilePathData Path="ui/z004.png" />
+      <FilePathData Path="ui/movinglblbg.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

@@ -1132,6 +1132,7 @@
           <Image Name="more_bg.png" />
           <Image Name="morebtn_n.png" />
           <Image Name="morebtn_s.png" />
+          <Image Name="movinglblbg.png" />
           <Image Name="myheroitem.png" />
           <Image Name="newsbg.png" />
           <Image Name="ninegrid.png" />
