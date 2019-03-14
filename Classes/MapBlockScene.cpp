@@ -202,6 +202,28 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 		}
 		std::random_shuffle(vec_mazetranspoints.begin(), vec_mazetranspoints.end());
 
+		int randcount = 0;
+		if (vec_mazetranspoints.size() >= 4)
+			randcount = 4;
+		else
+			randcount = vec_mazetranspoints.size();
+
+		int r1 = GlobalInstance::getInstance()->createRandomNum(randcount) + 1;
+
+		for (unsigned int i = 0; i < vec_mazetranspoints.size(); i++)
+		{
+			if (vec_mazetranspoints[i].maid == r1)
+			{
+				int swapmaid = vec_mazetranspoints[0].maid;
+				int swapb = vec_mazetranspoints[0].blockindex;
+				vec_mazetranspoints[0].maid = vec_mazetranspoints[i].maid;
+				vec_mazetranspoints[0].blockindex = vec_mazetranspoints[i].blockindex;
+				vec_mazetranspoints[i].maid = swapmaid;
+				vec_mazetranspoints[i].blockindex = swapb;
+				break;
+			}
+		}
+
 		vec_mazetranspoints.push_back(mdata);
 
 		randStartPos = vec_mazetranspoints[0].blockindex;
