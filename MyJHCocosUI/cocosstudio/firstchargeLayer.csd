@@ -26,7 +26,7 @@
             <PreSize X="0.6097" Y="0.2422" />
             <FileData Type="Normal" Path="images/firstchargebox.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="title" ActionTag="-2001388318" Tag="172" IconVisible="False" LeftMargin="196.5008" RightMargin="196.4991" TopMargin="296.9972" BottomMargin="901.0028" LeftEage="107" RightEage="107" TopEage="27" BottomEage="27" Scale9OriginX="107" Scale9OriginY="27" Scale9Width="113" Scale9Height="28" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="title" ActionTag="-2001388318" Tag="172" IconVisible="False" LeftMargin="196.5008" RightMargin="196.4992" TopMargin="296.9972" BottomMargin="901.0028" LeftEage="107" RightEage="107" TopEage="27" BottomEage="27" Scale9OriginX="107" Scale9OriginY="27" Scale9Width="113" Scale9Height="28" ctype="ImageViewObjectData">
             <Size X="327.0000" Y="82.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0008" Y="942.0028" />

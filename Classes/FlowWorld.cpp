@@ -78,7 +78,7 @@ void FlowWorld::scrollText(float)
 	}
 	else
 	{
-		 _news->setPositionX(_news->getPositionX() - 3);
+		 _news->setPositionX(_news->getPositionX() - 2);
 	}
 }
 
