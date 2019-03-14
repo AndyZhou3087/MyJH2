@@ -66,13 +66,25 @@ MovingLabel* MovingLabel::create(std::string text, Color4B color, Vec2 pos)
 
 bool MovingLabel::init(std::string text, Color4B color, Vec2 pos)
 {
-	Label::initWithTTF(text, FONT_NAME, 25);
-	setPosition(pos);
-	this->setTextColor(color);
-	this->enableOutline(Color4B(0,0,0, 200), 1);
-	this->enableShadow();
-	this->setScale(0.0f);
-	this->setAlignment(TextHAlignment::CENTER);
+	if (!Sprite::initWithFile(ResourcePath::makeImagePath("blankdot.png")))
+		return false;
+
+	mlbl = Label::createWithTTF(text, FONT_NAME, 25);
+
+	mlbl->setTextColor(color);
+	//mlbl->enableOutline(Color4B(255,255,255, 200), 1);
+	//mlbl->enableShadow();
+
+	mlbl->setAlignment(TextHAlignment::CENTER);
+	this->addChild(mlbl, 1);
+	cocos2d::ui::ImageView* bg = cocos2d::ui::ImageView::create("ui/movinglblbg.png", cocos2d::ui::Widget::TextureResType::PLIST);
+	bg->setScale9Enabled(true);
+	bg->setContentSize(Size(mlbl->getContentSize().width + 60, mlbl->getContentSize().height + 12));
+	this->addChild(bg, 0);
+
+	this->setPosition(pos);
+	this->setScale(0.7f);
+	this->setVisible(false);
 	return true;
 }
 
@@ -85,17 +97,16 @@ void MovingLabel::showAction()
 
 	changeTextColor();
 
-	FiniteTimeAction* scales = Sequence::create(ScaleTo::create(0.2f, 1.2f), ScaleTo::create(0.1f, 1.0f), NULL);
-	FiniteTimeAction* s1 = Sequence::create(Spawn::create(MoveBy::create(0.3f, Vec2(0, -15)), FadeTo::create(0.3f, 200), NULL), CallFunc::create(CC_CALLBACK_0(MovingLabel::showNext, this)), NULL);
+	this->setVisible(true);
+	FiniteTimeAction* scales = Spawn::create(ScaleTo::create(0.2f, 1.0f), MoveBy::create(0.2f, Vec2(0, 60)), NULL);
+	FiniteTimeAction* s1 = Sequence::create(scales, DelayTime::create(0.7f), Hide::create(), CallFunc::create(CC_CALLBACK_0(MovingLabel::showNext, this)), NULL);
 
-	FiniteTimeAction* moveandout = Spawn::create(MoveBy::create(1.0f, Vec2(0, -50)), FadeTo::create(1.0f, 0), NULL);
-
-	this->runAction(Sequence::create(scales, s1, moveandout, CallFunc::create(CC_CALLBACK_0(MovingLabel::removeSelf, this)), NULL));
+	this->runAction(Sequence::create(s1, CallFunc::create(CC_CALLBACK_0(MovingLabel::removeSelf, this)), NULL));
 }
 
 void MovingLabel::changeTextColor()
 {
-	std::string lbltext = this->getString();
+	std::string lbltext = mlbl->getString();
 
 	std::u32string utf32lblString;
 	StringUtils::UTF8ToUTF32(lbltext, utf32lblString);
@@ -136,7 +147,7 @@ void MovingLabel::changeTextColor()
 				findpos = utf32lblString.length() - 2 + findpos;
 				for (unsigned int m = findpos; m < (findpos + utf32QuString.length()); m++)
 				{
-					this->getLetter(m)->setColor(POTENTIALCOLOR[i]);
+					mlbl->getLetter(m)->setColor(POTENTIALCOLOR[i]);
 				}
 				break;
 			}

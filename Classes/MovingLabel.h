@@ -5,14 +5,14 @@
 #include "cocostudio/CocoStudio.h"
 USING_NS_CC;
 
-class MovingLabel :public Label
+class MovingLabel :public Sprite
 {
 public:
 	MovingLabel();
 	~MovingLabel();
 
 
-	static void show(std::string text, Color4B color = Color4B(Color3B::WHITE), Vec2 pos = Vec2(360, 640), Node* parent = NULL);
+	static void show(std::string text, Color4B color = Color4B(Color3B(255, 229, 188)), Vec2 pos = Vec2(360, 640), Node* parent = NULL);
 	static void showbyNode(Node* node, std::string text, Color4B color = Color4B(Color3B::WHITE), Vec2 pos = Vec2(0, 0));
 
 private:
@@ -27,7 +27,7 @@ private:
 private:
 	static std::queue<MovingLabel*> queue_labels;
 	bool ismoving;
-
+	Label* mlbl;
 	static Node* lastRunningScene;
 };
 #endif
