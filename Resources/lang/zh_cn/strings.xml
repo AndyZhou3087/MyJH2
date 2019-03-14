@@ -496,5 +496,6 @@
 	<s name="cannottransdesc">此区域无法行走，请更换传送地点</s>
 	<s name="nofoodtransdesc">食物不足，无法传送</s>
 	<s name="transfooddesc">此次传送消耗食物x%d(节省%d)</s>
-	<s name="mapusingprop">请先使用完道具</s>		
+	<s name="mapusingprop">请先使用完道具</s>
+	<s name="taskbtnrestext">（%d%s）</s>	
 </strings>

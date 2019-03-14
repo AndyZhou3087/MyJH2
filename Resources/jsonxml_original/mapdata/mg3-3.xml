@@ -1129,8 +1129,8 @@
     <Cell c="27" r="11" p="-1" w="0" m="46.png" />
     <Cell c="27" r="12" p="-1" w="0" m="44.png" d="8.png" />
     <Cell c="27" r="13" p="-1" w="0" m="11.png" d="8.png" />
-    <Cell c="27" r="14" p="-1" w="1" m="11.png" d="8.png" />
-    <Cell c="27" r="15" p="-1" w="1" m="44.png" d="8.png" />
+    <Cell c="27" r="14" p="-1" w="0" m="11.png" d="8.png" />
+    <Cell c="27" r="15" p="-1" w="0" m="44.png" d="8.png" />
     <Cell c="27" r="16" p="-1" w="1" m="11.png" />
     <Cell c="27" r="17" p="-1" w="1" m="11.png" />
     <Cell c="27" r="18" p="-1" w="1" m="65.png" />
@@ -1487,7 +1487,7 @@
     <Cell c="36" r="9" p="-1" w="0" m="65.png" />
     <Cell c="36" r="10" p="-1" w="0" m="47.png" />
     <Cell c="36" r="11" p="-1" w="0" m="46.png" />
-    <Cell c="36" r="12" p="6" w="0" m="65.png">
+    <Cell c="36" r="12" p="6" w="1" m="65.png">
       <npcid>6</npcid>
     </Cell>
     <Cell c="36" r="13" p="-1" w="1" m="65.png" />

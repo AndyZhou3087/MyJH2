@@ -119,13 +119,30 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 	closebtn->setTitleText(ResourceLang::map_lang["closetext"]);
 	closebtn->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 
+	std::string btn1str = data->need1desc;
 	givebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("accbtn");
 	givebtn->setPosition(Vec2(357, 429));
 	givebtn->setTag(data->type[0]);
 	givebtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtnClick, this));
-	givebtn->setTitleText(data->need1desc);
+
 	givebtn->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
 
+	std::string btn1resstr;
+	for (unsigned int i = 0; i < data->need1.size(); i++)
+	{
+		std::map<std::string, int> one_res = data->need1[i];
+		std::map<std::string, int>::iterator oneit = one_res.begin();
+		std::string cresid = oneit->first;
+		int crescount = oneit->second;
+		if (btn1resstr.length() > 0)
+			btn1resstr.append(ResourceLang::map_lang["dunhao"]);
+		std::string onestr = StringUtils::format(ResourceLang::map_lang["taskbtnrestext"].c_str(), crescount, GlobalInstance::map_AllResources[cresid].name.c_str());
+		btn1resstr.append(onestr);
+	}
+	btn1str.append(btn1resstr);
+	givebtn->setTitleText(btn1str);
+
+	std::string btn2str = data->need2desc;
 	fightbtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("getbtn");
 	fightbtn->setVisible(true);
 	fightbtn->setPosition(Vec2(357, 280));
@@ -134,8 +151,23 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 		fightbtn->setTag(data->type[1]);
 	}
 	fightbtn->addTouchEventListener(CC_CALLBACK_2(TaskTalkLayer::onBtn2Click, this));
-	fightbtn->setTitleText(data->need2desc);
+
 	fightbtn->getTitleLabel()->enableShadow(Color4B(43, 30, 20, 255), Size(1, -2));
+
+	std::string btn2resstr;
+	for (unsigned int i = 0; i < data->need2.size(); i++)
+	{
+		std::map<std::string, int> one_res = data->need2[i];
+		std::map<std::string, int>::iterator oneit = one_res.begin();
+		std::string cresid = oneit->first;
+		int crescount = oneit->second;
+		if (btn2resstr.length() > 0)
+			btn2resstr.append(ResourceLang::map_lang["dunhao"]);
+		std::string onestr = StringUtils::format(ResourceLang::map_lang["taskbtnrestext"].c_str(), crescount, GlobalInstance::map_AllResources[cresid].name.c_str());
+		btn2resstr.append(onestr);
+	}
+	btn2str.append(btn2resstr);
+	fightbtn->setTitleText(btn2str);
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("ScrollView");
 	scrollView->setScrollBarEnabled(false);
@@ -438,9 +470,18 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 		}
 		else
 		{
-			if (MyRes::getMyResCount(cresid, MYPACKAGE) + MyRes::getMyResCount(cresid, MYSTORAGE) < oneit->second)
+			if (cresid.compare("r001") == 0)
 			{
-				isEnough = false;
+				if (MyRes::getMyResCount(cresid, MYPACKAGE) + MyRes::getMyResCount(cresid, MYSTORAGE) - oneit->second < 100)
+					isEnough = false;
+			}
+			else
+			{
+				if (MyRes::getMyResCount(cresid, MYPACKAGE) + MyRes::getMyResCount(cresid, MYSTORAGE) < oneit->second)
+					isEnough = false;
+			}
+			if (!isEnough)
+			{
 				MovingLabel::show(ResourceLang::map_lang["reslack"]);
 				break;
 			}
@@ -456,14 +497,14 @@ void TaskTalkLayer::questGive(std::string bwords, std::vector<std::map<std::stri
 			std::string cresid = oneit->first;
 			if (m_type == 0)
 			{
-				if (Quest::checkResQuestData(cresid, oneit->second, m_npcid))
+				if (Quest::checkResQuestData(cresid, oneit->second, m_npcid, need))
 				{
 					isfinish = true;
 				}
 			}
 			else
 			{
-				if (Quest::checkResBranchQuestData(cresid, oneit->second, m_npcid))
+				if (Quest::checkResBranchQuestData(cresid, oneit->second, m_npcid, need))
 				{
 					isfinish = true;
 				}

@@ -158,15 +158,15 @@ bool Quest::getMainQuestMap(std::string mapid)
 	}
 }
 
-bool Quest::checkResQuestData(std::string resid, int count, std::string npcid)
+bool Quest::checkResQuestData(std::string resid, int count, std::string npcid, std::vector<std::map<std::string, int>> need)
 {
 	if (!getMainQuestNpc(npcid))
 	{
 		return false;
 	}
-	for (unsigned int i = 0; i < GlobalInstance::myCurMainData.need1.size(); i++)
+	for (unsigned int i = 0; i < need.size(); i++)
 	{
-		std::map<std::string, int> one_res = GlobalInstance::myCurMainData.need1[i];
+		std::map<std::string, int> one_res = need[i];
 		std::map<std::string, int>::iterator oneit = one_res.begin();
 		std::string cresid = oneit->first;
 		if (resid.compare(cresid) == 0)
@@ -192,30 +192,38 @@ bool Quest::checkResQuestData(std::string resid, int count, std::string npcid)
 			}
 			else
 			{
-				//先判断背包里的数量是否足够，再判断仓库数量
-				int pcount = MyRes::getMyResCount(cresid, MYPACKAGE);
-				int scount = MyRes::getMyResCount(cresid, MYSTORAGE);
-				if (pcount >= count)
+				//先判断仓库里的数量是否足够，再判断背包数量
+
+				int where1 = MYPACKAGE;
+				int where2 = MYSTORAGE;
+				if (cresid.compare("r001") == 0)
 				{
-					ResBase* res = MyRes::getMyRes(resid, MYPACKAGE);
+					where1 = MYSTORAGE;
+					where2 = MYPACKAGE;
+				}
+				int count1 = MyRes::getMyResCount(cresid, where1);
+				int count2 = MyRes::getMyResCount(cresid, where2);
+				if (count1 >= count)
+				{
+					ResBase* res = MyRes::getMyRes(resid, where1);
 					if (res != NULL)
 					{
-						MyRes::Use(res, count, MYPACKAGE);
+						MyRes::Use(res, count, where1);
 					}
 				}
 				else
 				{
-					ResBase* res = MyRes::getMyRes(resid, MYPACKAGE);
-					if (res != NULL && pcount > 0)
+					ResBase* res = MyRes::getMyRes(resid, where1);
+					if (res != NULL && count1 > 0)
 					{
-						MyRes::Use(res, pcount, MYPACKAGE);
+						MyRes::Use(res, count1, where1);
 					}
-					if (scount >= count - pcount)
+					if (count2 >= count - count1)
 					{
-						ResBase* res = MyRes::getMyRes(resid, MYSTORAGE);
+						ResBase* res = MyRes::getMyRes(resid, where2);
 						if (res != NULL)
 						{
-							MyRes::Use(res, count - pcount, MYSTORAGE);
+							MyRes::Use(res, count - count1, where2);
 						}
 					}
 				}	
@@ -224,7 +232,7 @@ bool Quest::checkResQuestData(std::string resid, int count, std::string npcid)
 	}
 
 	//判断是否给予完成
-	if (getResCountFinish())
+	if (getResCountFinish(need))
 	{
 		std::string curstr;
 		std::map<std::string, int>::iterator it;
@@ -246,16 +254,16 @@ bool Quest::checkResQuestData(std::string resid, int count, std::string npcid)
 	}
 }
 
-bool Quest::getResCountFinish()
+bool Quest::getResCountFinish(std::vector<std::map<std::string, int>> need)
 {
 	if (GlobalInstance::myCurMainData.isfinish == QUEST_TASK)
 	{
 		return false;
 	}
 	int fcount = 0;
-	for (unsigned int i = 0; i < GlobalInstance::myCurMainData.need1.size(); i++)
+	for (unsigned int i = 0; i < need.size(); i++)
 	{
-		std::map<std::string, int> one_res = GlobalInstance::myCurMainData.need1[i];
+		std::map<std::string, int> one_res = need[i];
 		std::map<std::string, int>::iterator oneit = one_res.begin();
 		std::string cresid = oneit->first;
 		if (map_NpcQuestRes[cresid] >= one_res[cresid])
@@ -264,7 +272,7 @@ bool Quest::getResCountFinish()
 		}
 	}
 
-	if (fcount == GlobalInstance::myCurMainData.need1.size())
+	if (fcount == need.size())
 	{
 		return true;
 	}
@@ -447,15 +455,15 @@ bool Quest::getBranchQuestMap(std::string mapid)
 	}
 }
 
-bool Quest::checkResBranchQuestData(std::string resid, int count, std::string npcid)
+bool Quest::checkResBranchQuestData(std::string resid, int count, std::string npcid, std::vector<std::map<std::string, int>> need)
 {
 	if (!getBranchQuestNpc(npcid))
 	{
 		return false;
 	}
-	for (unsigned int i = 0; i < GlobalInstance::myCurBranchData.need1.size(); i++)
+	for (unsigned int i = 0; i < need.size(); i++)
 	{
-		std::map<std::string, int> one_res = GlobalInstance::myCurBranchData.need1[i];
+		std::map<std::string, int> one_res = need[i];
 		std::map<std::string, int>::iterator oneit = one_res.begin();
 		std::string cresid = oneit->first;
 		if (resid.compare(cresid) == 0)
@@ -481,13 +489,45 @@ bool Quest::checkResBranchQuestData(std::string resid, int count, std::string np
 			}
 			else
 			{
-				MyRes::Use(resid, count, MYSTORAGE);
+				int where1 = MYPACKAGE;
+				int where2 = MYSTORAGE;
+				if (cresid.compare("r001") == 0)
+				{
+					where1 = MYSTORAGE;
+					where2 = MYPACKAGE;
+				}
+				int count1 = MyRes::getMyResCount(cresid, where1);
+				int count2 = MyRes::getMyResCount(cresid, where2);
+				if (count1 >= count)
+				{
+					ResBase* res = MyRes::getMyRes(resid, where1);
+					if (res != NULL)
+					{
+						MyRes::Use(res, count, where1);
+					}
+				}
+				else
+				{
+					ResBase* res = MyRes::getMyRes(resid, where1);
+					if (res != NULL && count1 > 0)
+					{
+						MyRes::Use(res, count1, where1);
+					}
+					if (count2 >= count - count1)
+					{
+						ResBase* res = MyRes::getMyRes(resid, where2);
+						if (res != NULL)
+						{
+							MyRes::Use(res, count - count1, where2);
+						}
+					}
+				}
 			}
 		}
 	}
 
 	//判断是否给予完成
-	if (getResBranchFinish())
+	if (getResBranchFinish(need))
 	{
 		std::string curstr;
 		std::map<std::string, int>::iterator it;
@@ -508,16 +548,16 @@ bool Quest::checkResBranchQuestData(std::string resid, int count, std::string np
 	}
 }
 
-bool Quest::getResBranchFinish()
+bool Quest::getResBranchFinish(std::vector<std::map<std::string, int>> need)
 {
 	if (GlobalInstance::myCurBranchData.isfinish == QUEST_TASK)
 	{
 		return false;
 	}
 	int fcount = 0;
-	for (unsigned int i = 0; i < GlobalInstance::myCurBranchData.need1.size(); i++)
+	for (unsigned int i = 0; i < need.size(); i++)
 	{
-		std::map<std::string, int> one_res = GlobalInstance::myCurBranchData.need1[i];
+		std::map<std::string, int> one_res = need[i];
 		std::map<std::string, int>::iterator oneit = one_res.begin();
 		std::string cresid = oneit->first;
 		if (map_NpcBranchQuestRes[cresid] >= one_res[cresid])
@@ -526,7 +566,7 @@ bool Quest::getResBranchFinish()
 		}
 	}
 
-	if (fcount == GlobalInstance::myCurBranchData.need1.size())
+	if (fcount == need.size())
 	{
 		return true;
 	}

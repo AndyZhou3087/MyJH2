@@ -45,10 +45,10 @@ public:
 	static bool getMainQuestMap(std::string mapid);
 
 	//判断条件1情况下消耗的物品id和数量
-	static bool checkResQuestData(std::string resid, int count, std::string npcid);
+	static bool checkResQuestData(std::string resid, int count, std::string npcid, std::vector<std::map<std::string, int>> need);
 
 	//判断消耗的物品数量是否达标
-	static bool getResCountFinish();
+	static bool getResCountFinish(std::vector<std::map<std::string, int>> need);
 
 	static void saveMainData();
 
@@ -89,10 +89,10 @@ public:
 	static bool getBranchQuestMap(std::string mapid);
 
 	//判断赠送物品情况下消耗的物品id和数量
-	static bool checkResBranchQuestData(std::string resid, int count, std::string npcid);
+	static bool checkResBranchQuestData(std::string resid, int count, std::string npcid, std::vector<std::map<std::string, int>> need);
 
 	//判断消耗的物品数量是否达标
-	static bool getResBranchFinish();
+	static bool getResBranchFinish(std::vector<std::map<std::string, int>> need);
 
 	static void saveBranchData();
 

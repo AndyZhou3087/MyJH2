@@ -3177,11 +3177,7 @@ void GlobalInstance::resetData()
 
 	vec_TaskMain.clear();
 
-	memset(&myCurMainData, 0x00, sizeof(myCurMainData));
-
 	vec_TaskBranch.clear();
-
-	memset(&myCurBranchData, 0x00, sizeof(myCurBranchData));
 
 	map_DTdata.clear();
 

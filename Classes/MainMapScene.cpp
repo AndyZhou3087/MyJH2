@@ -83,7 +83,7 @@ bool MainMapScene::init()
 		std::string mname = mapname->getName();
 		int c = atoi(mname.substr(1, mname.find_first_of("-") - 1).c_str());
 
-		std::string mapnameid = GlobalInstance::myCurMainData.place.substr(0, 4);
+		std::string mapnameid = GlobalInstance::myCurMainData.place.substr(0, GlobalInstance::myCurMainData.place.find_last_of("-"));
 		if ((mapnameid.compare(mname) == 0 && GlobalInstance::myCurMainData.isfinish == QUEST_ACC) || (GlobalInstance::myCurMainData.isfinish == QUEST_TASK && mname.compare("m0-1") == 0))
 		{
 			Sprite* taskicon = Sprite::createWithSpriteFrameName("ui/maintask_icon.png");
