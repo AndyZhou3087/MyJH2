@@ -40,8 +40,7 @@
 	<s name="reslack">资源不足！</s>
 	<s name="maxlv">已升到最高等级！</s>
 	<s name="employ5farmertext">招募5名新的工人</s>
-	<s name="needfoodtext">需要食物%d</s>
-	<s name="lackfoodtext">需要食物%d</s>
+	<s name="lackfoodhint">食物即将用尽</s>
 	<s name="myheromax">无法容纳更多的侠客，请升级客栈</s>
 	<s name="lvrescreatortitle">升级%s最大储备到%d</s>
 	<s name="carrytext">负重：</s>

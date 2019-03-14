@@ -917,7 +917,7 @@ void HeroAttrLayer::addHeroExp(int tag)
 			changeButton();
 		}
 		std::string s = StringUtils::format(ResourceLang::map_lang["winexp"].c_str(), count);
-		MovingLabel::show(s, Color4B(0, 128, 0, 255), Vec2(360, 320));
+		MovingLabel::show(s, Color4B(0, 255, 0, 255), Vec2(360, 320));
 		GlobalInstance::getInstance()->saveHero(m_heroData);
 	}
 	else

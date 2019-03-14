@@ -1242,7 +1242,7 @@ void MapBlockScene::checkFood()
 	}
 	else if (foodcount <= 0)
 	{
-		MovingLabel::show(ResourceLang::map_lang["nofoodhint"], Color4B(Color3B(204,4,4)));
+		MovingLabel::show(ResourceLang::map_lang["nofoodhint"], Color4B(Color3B(255,0,0)));
 
 		for (int i = 0; i < 6; i++)
 		{
