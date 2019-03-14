@@ -248,6 +248,7 @@ private:
 	cocos2d::ui::Widget* torchbtn;
 	cocos2d::ui::Widget* mypackagebtn;
 	cocos2d::ui::Widget* visionbtn;
+	cocos2d::ui::Widget* transbtn;
 
 	std::vector<MapBlock*> vec_normalBlocks;
 	std::vector<MapBlock*> vec_monsterBlocks;

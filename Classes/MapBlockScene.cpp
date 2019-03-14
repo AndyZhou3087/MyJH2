@@ -356,7 +356,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	allopenbtn->setTag(BTN_ALLOPEN);
 	allopenbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
 
-	cocos2d::ui::Widget* transbtn = (cocos2d::ui::Widget*)propbox->getChildByName("transerbtn");
+	transbtn = (cocos2d::ui::Widget*)propbox->getChildByName("transerbtn");
 	transbtn->setTag(BTN_TRANS);
 	transbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
 
@@ -778,6 +778,12 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case BTN_TORCH:
 		{
+			if (usingprop >= MAP_USEINGTORCH)
+			{
+				MovingLabel::show(ResourceLang::map_lang["mapusingprop"]);
+				return;
+			}
+
 			if (MyRes::getMyResCount("z001") <= 0)
 			{
 				std::vector< MSGAWDSDATA> vec_res;
@@ -794,6 +800,10 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			{
 				MovingLabel::show(ResourceLang::map_lang["usetorchdesc"]);
 				usingprop = MAP_USEINGTORCH;
+
+				Node* focus = torchbtn->getChildByName("focus");
+				focus->setVisible(true);
+				focus->runAction(RepeatForever::create(Sequence::create(FadeOut::create(0.8f), FadeIn::create(0.8f), NULL)));
 			}
 		}
 			break;
@@ -866,12 +876,6 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case BTN_ALLOPEN:
 		{
-			if (usingprop >= MAP_USEINGTORCH)
-			{
-				MovingLabel::show(ResourceLang::map_lang["mapusingprop"]);
-				return;
-			}
-
 			if (mapIsAllOpen)
 			{
 				std::string str = StringUtils::format(ResourceLang::map_lang["isopenall"].c_str(), GlobalInstance::map_AllResources[m_mapid].name.c_str());
@@ -917,6 +921,10 @@ void MapBlockScene::useAllOpen()
 
 void MapBlockScene::useTranser()
 {
+	Node* focus = transbtn->getChildByName("focus");
+	focus->setVisible(true);
+	focus->runAction(RepeatForever::create(Sequence::create(FadeOut::create(0.8f), FadeIn::create(0.8f), NULL)));
+
 	MovingLabel::show(ResourceLang::map_lang["usetranserdesc"]);
 	usingprop = MAP_USEINGTRANSER;
 }
@@ -2224,6 +2232,10 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 				MyRes::Use("z001", 1);
 				GlobalInstance::getInstance()->usePropsCount(COSTPROP_TORCH, 1);
 				usingprop = -1;
+
+				Node* focus = torchbtn->getChildByName("focus");
+				focus->stopAllActions();
+				focus->setVisible(false);
 			}
 			else if (usingprop == MAP_USEINGTRANSER)
 			{
@@ -2245,6 +2257,9 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 						MyRes::Use("r001", needfood, MYPACKAGE);
 
 						sitelbl->runAction(Sequence::create(DelayTime::create(2.0f), CallFunc::create(CC_CALLBACK_0(MapBlockScene::showTransFoodDesc, this, needfood)), NULL));
+						Node* focus = transbtn->getChildByName("focus");
+						focus->stopAllActions();
+						focus->setVisible(false);
 					}
 					else
 					{

@@ -57,7 +57,7 @@ bool LibraryLayer2::init()
 
 	cocos2d::ui::ScrollView* ScrollView = (cocos2d::ui::ScrollView*)csbnode->getChildByName("ScrollView");
 	ScrollView->setScrollBarEnabled(false);
-	ScrollView->jumpToRight();
+	ScrollView->jumpToPercentHorizontal(55);
 	for (int i = 0; i <= 3; i++)
 	{
 		std::string name = StringUtils::format("click_%d_n", i);
