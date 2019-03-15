@@ -418,8 +418,8 @@ void LoadingScene::optimizeSaveData()
 				}
 			}
 		}
-		GlobalInstance::getInstance()->saveMyTaskMainData();
 		DataSave::getInstance()->deleteDataByKey("MainTask");
+		GlobalInstance::getInstance()->saveMyTaskMainData();
 	}
 
 	std::string btaskstr = UserDefault::getInstance()->getStringForKey("jhBranchTask", "");
@@ -439,8 +439,8 @@ void LoadingScene::optimizeSaveData()
 				}
 			}
 		}
-		GlobalInstance::getInstance()->saveMyTaskBranchData();
 		DataSave::getInstance()->deleteDataByKey("BranchTask");
+		GlobalInstance::getInstance()->saveMyTaskBranchData();
 	}
 }
 
