@@ -999,15 +999,18 @@ void MapBlockScene::onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
 		m_longTouchNode = clicknode;
-		if (!isScheduled(schedule_selector(MapBlockScene::longTouchUpdate)) && !isNewerGuideMap)
-			schedule(schedule_selector(MapBlockScene::longTouchUpdate), 0.45f);
-		if (!m_isLongPress)
-			go((MAP_KEYTYPE)clicknode->getTag());
+		if (!isNewerGuideMap)
+		{
+			if (!isScheduled(schedule_selector(MapBlockScene::longTouchUpdate)))
+				schedule(schedule_selector(MapBlockScene::longTouchUpdate), 0.45f);
+			if (!m_isLongPress)
+				go((MAP_KEYTYPE)clicknode->getTag());
+		}
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		//if (!m_isLongPress)
-		//	go((MAP_KEYTYPE)clicknode->getTag());
+		if (isNewerGuideMap)
+			go((MAP_KEYTYPE)clicknode->getTag());
 		cacelLongTouch();
 	}
 	else if (type == ui::Widget::TouchEventType::CANCELED)
