@@ -262,7 +262,7 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					eventnode_3->setVisible(false);
 					boxEventNode();
 				}
-				else if (r < 100)//进入迷宫
+				else if (r < 30)//进入迷宫
 				{
 					GlobalInstance::vec_mazeroute.clear();
 					GlobalInstance::mazerouteindex = 0;

@@ -124,7 +124,6 @@ bool MainMapScene::init()
 			mapname->setVisible(false);
 		}
 #endif
-		mapname->setVisible(true);
 	}
 	std::map<std::string, std::vector<Node*>>::iterator it;
 	for (it = map_taskicon.begin(); it != map_taskicon.end(); it++)
