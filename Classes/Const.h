@@ -76,6 +76,6 @@ const static std::string RES_TYPES_CHAR[] = { "r","a","e","g","f","w","x", "q", 
 const static std::string defaultres = "r001-500-1;r002-500-1;r003-500-1;r004-500-1;t001-10-1;r005-500-1;r009-10-1;p001-5-1;v001-2-1;z001-2-1;w001-1-1-0-0-;x001-1-1-0-0-";
 
 //迷宫地图个数
-const static int mazes[] = {2, 5, 3 };
-const static int mazesfightbg[] = {2, 3, 2};
+const static int mazes[] = {2, 5, 3, 3, 5};
+const static int mazesfightbg[] = {2, 3, 2, 2, 3};
 #endif // _H_CONST_H_

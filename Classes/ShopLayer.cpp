@@ -64,7 +64,6 @@ bool ShopLayer::init()
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
-	//��ť
 	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(ShopLayer::onBtnClick, this));
 
@@ -124,7 +123,7 @@ bool ShopLayer::init()
 
 	updateCoinLable(0);
 	this->schedule(schedule_selector(ShopLayer::updateCoinLable), 0.1f);
-	//�����²���
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -217,7 +216,7 @@ void ShopLayer::setMessage(PYARET ret)
 	if (ret == PAY_SUCC && payindex >= 0)
 	{
 		int type = GlobalInstance::vec_shopdata[payindex].type;
-		if (type == COIN)//Ԫ��
+		if (type == COIN)
 		{
 			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata[payindex].res.size(); i++)
 			{
@@ -237,7 +236,7 @@ void ShopLayer::setMessage(PYARET ret)
 				AnimationEffect::closeAniEffect((Layer*)buycoinlayer);
 			}
 		}
-		else if (type == GIFT)//���
+		else if (type == GIFT)
 		{
 			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata[payindex].res.size(); i++)
 			{
@@ -267,7 +266,7 @@ void ShopLayer::setMessage(PYARET ret)
 					MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
 			}
 			std::string iconname = GlobalInstance::vec_shopdata[payindex].icon;
-			if (iconname.compare("firstcharge") == 0)//�׳����
+			if (iconname.compare("firstcharge") == 0)
 			{
 				GlobalInstance::isBuyFirstCharge = true;
 				Node* chargelayer = Director::getInstance()->getRunningScene()->getChildByName("firstcharge");
@@ -281,7 +280,7 @@ void ShopLayer::setMessage(PYARET ret)
 					AnimationEffect::closeAniEffect((Layer*)giftlayer);
 			}
 		}
-		else if (type == VIP)//�¿�
+		else if (type == VIP)
 		{
 			showVipReward(&GlobalInstance::vec_shopdata[payindex], payindex);
 		}

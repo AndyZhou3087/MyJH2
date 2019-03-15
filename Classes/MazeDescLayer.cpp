@@ -80,27 +80,33 @@ bool MazeDescLayer::init()
 	cocos2d::ui::Text* desc_3 = (cocos2d::ui::Text*)csbnode->getChildByName("desc_3");
 	desc_3->setString(ResourceLang::map_lang["mazedesc1"]);
 
-	std::string vec_res_0[] = {"r006-0","r012-0","q001-0","q002-0","s003-0","i002-0","d002-0","m003-0"};
-	std::string vec_res_1[] = {"r006-0","r012-0","z002-0","q001-0","q002-0","p001-0","i002-0","i004-0","s004-0","e003-4","g003-4","f003-4"};
-
+	std::string vec_res_str[][12] = { { "r006-0","r012-0","q001-0","q002-0","s003-0","i002-0","d002-0","m003-0", "", "", "", "" },
+									{ "r006-0","r012-0","z002-0","q001-0","q002-0","p001-0","i002-0","i004-0","s004-0","e002-4","g002-4","f002-4"},
+									{ "r006-0","r012-0","z002-0","q001-0","q002-0","p001-0","i002-0","i004-0","s004-0","e002-4","g002-4","f002-4" },
+									{ "r006-0","r012-0","z002-0","q001-0","q002-0","p001-0","i002-0","i004-0","s004-0","e003-4","g003-4","f003-4" },
+									{ "r006-0","r012-0","z002-0","q001-0","q002-0","p001-0","i002-0","i004-0","s004-0","e004-4","g004-4","f004-4" } };
 	int startx = 845;
 	std::vector<std::string> vec_res;
 	int c = atoi(GlobalInstance::eventfrommapid.substr(1, GlobalInstance::eventfrommapid.find("-") - 1).c_str());
-	if (c == 1)
+	if (c <= 5)
 	{
-		for (int m = 0; m < sizeof(vec_res_0) / sizeof(vec_res_0[0]); m++)
+		for (int m = 0; m < 12; m++)
 		{
-			vec_res.push_back(vec_res_0[m]);
+			if (vec_res_str[c-1][m].length() > 0)
+				vec_res.push_back(vec_res_str[c - 1][m]);
 		}
 		startx = 845;
 	}
 	else
 	{
-		desc_3->setVisible(false);
-		for (int m = 0; m < sizeof(vec_res_1) / sizeof(vec_res_1[0]); m++)
+		for (int m = 0; m < 12; m++)
 		{
-			vec_res.push_back(vec_res_1[m]);
+			vec_res.push_back(vec_res_str[4][m]);
 		}
+	}
+	if (c > 1)
+	{
+		desc_3->setVisible(false);
 	}
 
 	for (unsigned int m = 0; m < vec_res.size(); m++)

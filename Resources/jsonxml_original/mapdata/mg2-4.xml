@@ -106,7 +106,7 @@
     <Cell c="4" r="10" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="4" r="11" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="4" r="12" p="5" w="1" m="129.png">
-      <msawd1 id="r012" qu="0" rnd="100.00">50</msawd1>
+      <msawd1 id="r012" qu="0" rnd="50.00">50</msawd1>
     </Cell>
     <Cell c="4" r="13" p="5" w="1" m="129.png">
       <msawd1 id="r001" qu="0" rnd="0.00">100</msawd1>

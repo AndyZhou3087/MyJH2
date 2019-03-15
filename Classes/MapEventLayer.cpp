@@ -263,9 +263,9 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					GlobalInstance::mazerouteindex = 0;
 
 					int c = atoi(GlobalInstance::eventfrommapid.substr(1, 1).c_str());
-					if (c > 1)
+					if (c > 5)
 					{
-						c = GlobalInstance::getInstance()->createRandomNum(2) + 2;
+						c = 5;
 					}
 					int rz = c - 1;
 					for (int i = 1; i < mazes[rz]; i++)
