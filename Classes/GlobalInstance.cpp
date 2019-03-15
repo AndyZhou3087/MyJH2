@@ -970,7 +970,7 @@ void GlobalInstance::loadMyTaskMainData()
 	std::string str = DataSave::getInstance()->getMyMainTask();
 	if (str.length() <= 0)
 	{
-		str = UserDefault::getInstance()->getStringForKey("jhMainTask", "");
+		str = DataSave::getInstance()->getMyOldMainTask();
 	}
 
 	if (str.length() > 0)
@@ -1185,7 +1185,7 @@ void GlobalInstance::loadMyTaskBranchData()
 
 	if (str.length() <= 0)
 	{
-		str = UserDefault::getInstance()->getStringForKey("jhBranchTask", "");
+		str = DataSave::getInstance()->getMyOldBranchTask();
 	}
 
 	if (str.length() > 0)

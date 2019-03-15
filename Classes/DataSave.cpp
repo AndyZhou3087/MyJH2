@@ -113,6 +113,11 @@ std::string DataSave::getMyBranchTask()
 	return loadStringDataByKey("branchtask", "");//id-状态
 }
 
+std::string DataSave::getMyOldBranchTask()
+{
+	return loadStringDataByKey("BranchTask", "");//id-状态
+}
+
 void DataSave::setMyMainTask(std::string strval)
 {
 	saveStringDataByKey("maintask", strval);
@@ -121,6 +126,11 @@ void DataSave::setMyMainTask(std::string strval)
 std::string DataSave::getMyMainTask()
 {
 	return loadStringDataByKey("maintask", "");//id-状态-type
+}
+
+std::string DataSave::getMyOldMainTask()
+{
+	return loadStringDataByKey("MainTask", "");//id-状态-type
 }
 
 void DataSave::setMyAchieveData(std::string strval)

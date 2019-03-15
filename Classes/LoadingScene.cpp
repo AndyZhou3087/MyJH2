@@ -401,7 +401,7 @@ void LoadingScene::optimizeSaveData()
 	}
 	//任务bug,做兼容
 
-	std::string mtaskstr = UserDefault::getInstance()->getStringForKey("jhMainTask", "");
+	std::string mtaskstr = DataSave::getInstance()->getMyOldMainTask();
 	if (mtaskstr.length() > 0)
 	{
 		for (unsigned i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
@@ -422,7 +422,7 @@ void LoadingScene::optimizeSaveData()
 		GlobalInstance::getInstance()->saveMyTaskMainData();
 	}
 
-	std::string btaskstr = UserDefault::getInstance()->getStringForKey("jhBranchTask", "");
+	std::string btaskstr = DataSave::getInstance()->getMyOldBranchTask();
 	if (btaskstr.length() > 0)
 	{
 		for (unsigned i = 0; i < GlobalInstance::vec_TaskBranch.size(); i++)
