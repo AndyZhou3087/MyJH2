@@ -497,6 +497,5 @@
 	<s name="transfooddesc">此次传送消耗食物x%d(节省%d)</s>
 	<s name="mapusingprop">请先使用完道具</s>
 	<s name="taskbtnrestext">（%d%s）</s>
-	<s name="exitmazetext">欲取宝物石断路,无缘回走却无门。</s>
-	
+	<s name="exitmazetext">这迷宫弄得我晕头转向，都分不清东西南北，还是出去透透气再从长计议！</s>
 </strings>
