@@ -37,10 +37,10 @@
             <FileData Type="MarkedSubImage" Path="mapui/maptask_icon.png" Plist="mapui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="textmain_0" ActionTag="-56868299" Tag="55" IconVisible="False" LeftMargin="-247.0010" RightMargin="211.0010" TopMargin="-24.4999" BottomMargin="-4.5001" FontSize="25" LabelText="主：" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="textmain_0" ActionTag="-56868299" Tag="55" IconVisible="False" LeftMargin="-247.0010" RightMargin="211.0010" TopMargin="-25.4999" BottomMargin="-3.5001" FontSize="25" LabelText="主：" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="36.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-229.0010" Y="9.9999" />
+            <Position X="-229.0010" Y="10.9999" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="165" B="0" />
             <PrePosition />

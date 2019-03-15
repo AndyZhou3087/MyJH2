@@ -714,13 +714,15 @@ void MapBlockScene::changeTaskTipTextColor(int type)
 
 	if (type == 0)
 	{
-		lbluft8str = textmain->getString();
+		std::string lblstr = textmain->getString();
+		lbluft8str = lblstr.substr(lblstr.find_last_of(":"));
 		lbl = (Label*)textmain->getVirtualRenderer();
 		changecolor = Color3B(255, 165, 0);
 	}
 	else
 	{
-		lbluft8str = textbranch->getString();
+		std::string lblstr = textbranch->getString();
+		lbluft8str = lblstr.substr(lblstr.find_last_of(":"));
 		lbl = (Label*)textbranch->getVirtualRenderer();
 		changecolor = Color3B(16, 252, 16);
 	}
