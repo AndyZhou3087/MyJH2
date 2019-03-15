@@ -1,4 +1,4 @@
-﻿#include "MapBlockScene.h"
+#include "MapBlockScene.h"
 #include "Resource.h"
 #include "MyRes.h"
 #include "CommonFuncs.h"
@@ -468,11 +468,9 @@ void MapBlockScene::setBtnEnable(bool isval)
 void MapBlockScene::onEnterTransitionDidFinish()
 {
 	Layer::onEnterTransitionDidFinish();
-	
+    
 	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
 	{
-		if (g_MapBlockScene == NULL)
-			g_MapBlockScene = this;
 		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.1f);
 	}
 
@@ -490,6 +488,9 @@ void MapBlockScene::showNewerGuideFight()
 
 void MapBlockScene::delayShowNewerGuide(float dt)
 {
+    if (g_MapBlockScene == NULL)
+        g_MapBlockScene = this;
+    
 	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
 	{
 		if (NewGuideLayer::checkifNewerGuide(0))

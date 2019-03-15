@@ -1,4 +1,4 @@
-﻿/********************************************************************
+/********************************************************************
 *地图界面
 *********************************************************************/
 #ifndef _MAPBLOCK_SCENE_H_
@@ -106,7 +106,7 @@ public:
 
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
-	void onEnterTransitionDidFinish();
+	virtual void onEnterTransitionDidFinish();
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
