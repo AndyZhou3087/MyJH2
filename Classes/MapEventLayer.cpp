@@ -29,11 +29,16 @@ MapEventLayer::MapEventLayer()
 	isWin = -1;
 	hdcount = 0;
 	betCostCoin.setValue(BETCOSTCOIN);
+	isEnterMaze = false;
 }
 
 MapEventLayer::~MapEventLayer()
 {
-	
+	if (!isEnterMaze)
+	{
+		GlobalInstance::eventfrommapid = "";
+		GlobalInstance::eventstartmappos = -1;
+	}
 }
 
 
@@ -261,6 +266,8 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				{
 					GlobalInstance::vec_mazeroute.clear();
 					GlobalInstance::mazerouteindex = 0;
+
+					isEnterMaze = true;
 
 					int c = atoi(GlobalInstance::eventfrommapid.substr(1, 1).c_str());
 					if (c > 5)

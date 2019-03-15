@@ -88,6 +88,7 @@ private:
 	DynamicValueInt betCostCoin;
 
 	static std::map<std::string, EventData> map_eventdata;
+	bool isEnterMaze;
 };
 
 #endif
