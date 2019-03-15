@@ -98,8 +98,6 @@ public:
 
 	void removeMazeStoneAfterAnim(int blockindex);
 
-	void ExitMaze();
-
 	void useAllOpen();
 
 	void useTranser();

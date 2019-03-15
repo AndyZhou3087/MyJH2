@@ -496,5 +496,7 @@
 	<s name="nofoodtransdesc">食物不足，无法传送</s>
 	<s name="transfooddesc">此次传送消耗食物x%d(节省%d)</s>
 	<s name="mapusingprop">请先使用完道具</s>
-	<s name="taskbtnrestext">（%d%s）</s>	
+	<s name="taskbtnrestext">（%d%s）</s>
+	<s name="exitmazetext">欲取宝物石断路,无缘回走却无门。</s>
+	
 </strings>

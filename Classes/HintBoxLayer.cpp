@@ -19,6 +19,7 @@
 #include "LoadingScene.h"
 #include "SettingLayer.h"
 #include "BuyCoinLayer.h"
+#include "MazeTransitionScene.h"
 
 USING_NS_CC;
 
@@ -239,7 +240,8 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 						DynamicValueInt dv;
 						dv.setValue(constcoin);
 						GlobalInstance::getInstance()->costMyCoinCount(dv);
-						g_MapBlockScene->ExitMaze();
+						Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MazeTransitionScene::createScene(0, TO_EXIT)));
+						return;
 					}
 					else
 					{
