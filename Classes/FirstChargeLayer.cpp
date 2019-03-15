@@ -139,6 +139,7 @@ bool FirstChargeLayer::init(ShopData* data)
 		std::string countstr = StringUtils::format("%d", vec_rewards[i].count);
 		countlbl->setString(countstr);
 
+		Node* effectnode = CommonFuncs::playResBoxEffect(resbox, qu);
 	}
 
 	//фа╠ноб╡Ц╣Ц╩В
