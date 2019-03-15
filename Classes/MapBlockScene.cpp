@@ -714,18 +714,19 @@ void MapBlockScene::changeTaskTipTextColor(int type)
 
 	if (type == 0)
 	{
-		std::string lblstr = textmain->getString();
-		lbluft8str = lblstr.substr(lblstr.find_last_of(":"));
+		lbluft8str = textmain->getString();
 		lbl = (Label*)textmain->getVirtualRenderer();
 		changecolor = Color3B(255, 165, 0);
 	}
 	else
 	{
-		std::string lblstr = textbranch->getString();
-		lbluft8str = lblstr.substr(lblstr.find_last_of(":"));
+		lbluft8str = textbranch->getString();
 		lbl = (Label*)textbranch->getVirtualRenderer();
 		changecolor = Color3B(16, 252, 16);
 	}
+
+	std::u32string utf32enMaohaoString;
+	StringUtils::UTF8ToUTF32(":", utf32enMaohaoString);
 
 	std::string prefkey[] = { "m", "n" };
 	std::map<std::string, AllResources>::iterator it;
@@ -738,14 +739,18 @@ void MapBlockScene::changeTaskTipTextColor(int type)
 			if (strkey.compare(0, 1, prefkey[i]) == 0)
 			{
 				std::string namestr = GlobalInstance::map_AllResources[strkey].name;
-
+				
 				std::u32string utf32nameString;
 				StringUtils::UTF8ToUTF32(namestr, utf32nameString);
 
 				std::u32string utf32lblString;
 				StringUtils::UTF8ToUTF32(lbluft8str, utf32lblString);
 
-				size_t findpos = utf32lblString.find(utf32nameString);
+				size_t f1 = utf32lblString.find(utf32enMaohaoString);
+				if (f1 == std::string::npos)
+					f1 = 0;
+
+				size_t findpos = utf32lblString.find(utf32nameString, f1);
 				if (findpos != std::string::npos)
 				{
 					for (unsigned int m = findpos; m < (findpos + utf32nameString.length()); m++)
