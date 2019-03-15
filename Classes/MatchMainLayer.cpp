@@ -17,7 +17,7 @@
 #include "MatchRewardLayer.h"
 #include "RewardLayer.h"
 #include "MatchRankLayer.h"
-
+#include "Equip.h"
 
 USING_NS_CC;
 
@@ -619,6 +619,58 @@ void MatchMainLayer::bindHeroData()
 			}
 		}
 	}
+
+	for (int i = 0; i < 6; i++)
+	{
+		std::string herokey = StringUtils::format("hero%d", i);
+		std::string herodata;
+		if (GlobalInstance::myOnChallengeHeros[i] != NULL)
+		{
+			Hero* hero = GlobalInstance::myOnChallengeHeros[i];
+			herodata = StringUtils::format("%s-%d-%d-%d-%d-%s-%d;", hero->getName().c_str(), hero->getExp().getValue(), hero->getVocation(), hero->getPotential(), hero->getSex(), hero->getId().c_str(), hero->getChangeCount());
+
+			std::string equipstr;
+
+			for (int k = T_ARMOR; k <= T_NG; k++)
+			{
+				ResBase* eqres = hero->getEquipable(k);
+				if (eqres != NULL)
+				{
+					std::string onestr;
+					if (eqres->getType() >= T_ARMOR && eqres->getType() <= T_FASHION)
+					{
+						Equip* eres = (Equip*)eqres;
+						std::string stonestr;
+						int estonesize = eres->vec_stones.size();
+						for (int i = 0; i < estonesize; i++)
+						{
+							if (i < estonesize - 1)
+							{
+								stonestr.append(eres->vec_stones[i] + ",");
+							}
+							else
+								stonestr.append(eres->vec_stones[i]);
+						}
+						onestr = StringUtils::format("%s-%d-%d-%s#", eres->getId().c_str(), eres->getQU().getValue(), eres->getLv().getValue(), stonestr.c_str());
+					}
+					else if (eqres->getType() >= T_WG && eqres->getType() <= T_NG)
+					{
+						GongFa* gres = (GongFa*)eqres;
+
+						onestr = StringUtils::format("%s-%d-%d#", gres->getId().c_str(), gres->getQU().getValue(), gres->getExp().getValue());
+					}
+					equipstr.append(onestr);
+				}
+			}
+
+			if (equipstr.length() > 0)
+			{
+				equipstr = equipstr.substr(0, equipstr.length() - 1);
+			}
+			herodata.append(equipstr);
+		}
+		GlobalInstance::myMatchInfo.map_myheros[herokey] = herodata;
+	}
 }
 
 void MatchMainLayer::onFinish(int code)
@@ -635,6 +687,7 @@ void MatchMainLayer::onFinish(int code)
 			if (networkerrLayer != NULL)
 				networkerrLayer->removeFromParentAndCleanup(true);
 			updateUI();
+			bindHeroData();
 		}
 		else if (httptag == 1)
 		{
