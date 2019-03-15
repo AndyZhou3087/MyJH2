@@ -936,13 +936,6 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	}
 }
 
-void MapBlockScene::ExitMaze()
-{
-	std::string mainmapid = GlobalInstance::eventfrommapid.substr(0, GlobalInstance::eventfrommapid.find_last_of("-"));
-	Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MapBlockScene::createScene(GlobalInstance::eventfrommapid, GlobalInstance::map_mapsdata[mainmapid].map_sublist[GlobalInstance::eventfrommapid].bgtype)));
-	GlobalInstance::getInstance()->setMazeEventData(0, 1);
-}
-
 void MapBlockScene::useAllOpen()
 {
 	openAllMap();

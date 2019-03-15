@@ -12,7 +12,8 @@ USING_NS_CC;
 typedef enum
 {
 	TO_ENTER,
-	TO_OUT
+	TO_OUT,
+	TO_EXIT
 }MAZE_TYPE;
 
 class MazeTransitionScene :public Layer

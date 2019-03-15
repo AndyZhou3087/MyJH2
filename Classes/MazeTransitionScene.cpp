@@ -64,6 +64,8 @@ bool MazeTransitionScene::init(int mazechapter, int type)
 
 	if (type == TO_OUT)
 		keystr = StringUtils::format("mazetext_%d", 3);
+	else if (type == TO_EXIT)
+		keystr = "exitmazetext";
 
 	Label *lbl = Label::createWithTTF(ResourceLang::map_lang[keystr], FONT_NAME, 25);
 	lbl->setLineSpacing(8);
@@ -97,10 +99,16 @@ void MazeTransitionScene::loadfinish(int mazechapter, int type)
 		resetMazeMap(mapid);
 		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MapBlockScene::createScene(mapid, mazesfightbg[mazechapter-1])));
 	}
+	else if (type == TO_OUT)
+	{
+		std::string mainmapid = GlobalInstance::eventfrommapid.substr(0, GlobalInstance::eventfrommapid.find_last_of("-"));
+		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MapBlockScene::createScene(GlobalInstance::eventfrommapid, GlobalInstance::map_mapsdata[mainmapid].map_sublist[GlobalInstance::eventfrommapid].bgtype)));
+	}
 	else
 	{
 		std::string mainmapid = GlobalInstance::eventfrommapid.substr(0, GlobalInstance::eventfrommapid.find_last_of("-"));
 		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MapBlockScene::createScene(GlobalInstance::eventfrommapid, GlobalInstance::map_mapsdata[mainmapid].map_sublist[GlobalInstance::eventfrommapid].bgtype)));
+		GlobalInstance::getInstance()->setMazeEventData(0, 1);
 	}
 }
 
