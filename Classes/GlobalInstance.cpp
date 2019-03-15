@@ -968,6 +968,11 @@ void GlobalInstance::loadTaskMainData()
 void GlobalInstance::loadMyTaskMainData()
 {
 	std::string str = DataSave::getInstance()->getMyMainTask();
+	if (str.length() <= 0)
+	{
+		str = UserDefault::getInstance()->getStringForKey("jhMainTask", "");
+	}
+
 	if (str.length() > 0)
 	{
 		std::vector<std::string> vec_tmp;
@@ -988,7 +993,6 @@ void GlobalInstance::loadMyTaskMainData()
 		if (vec_TaskMain[vec_tmp.size()-1].isfinish == QUEST_ACC)
 		{
 			myCurMainData = vec_TaskMain[vec_tmp.size()-1];
-			Quest::initCurBranchNeedData();
 		}
 		else if (vec_TaskMain[vec_tmp.size() - 1].isfinish >= QUEST_FINISH)
 		{
@@ -1178,6 +1182,12 @@ void GlobalInstance::loadTaskBranchData()
 void GlobalInstance::loadMyTaskBranchData()
 {
 	std::string str = DataSave::getInstance()->getMyBranchTask();
+
+	if (str.length() <= 0)
+	{
+		str = UserDefault::getInstance()->getStringForKey("jhBranchTask", "");
+	}
+
 	if (str.length() > 0)
 	{
 		std::vector<std::string> vec_tmp;
@@ -1209,7 +1219,6 @@ void GlobalInstance::loadMyTaskBranchData()
 				myCurBranchData = vec_TaskBranch[vec_tmp.size() - 1];
 			}
 		}
-
 	}
 	else
 	{

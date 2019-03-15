@@ -399,6 +399,49 @@ void LoadingScene::optimizeSaveData()
 			}
 		}
 	}
+	//任务bug,做兼容
+
+	std::string mtaskstr = UserDefault::getInstance()->getStringForKey("jhMainTask", "");
+	if (mtaskstr.length() > 0)
+	{
+		for (unsigned i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
+		{
+			if (GlobalInstance::vec_TaskMain[i].finishtype > 0)
+			{
+				for (unsigned int j = 0; j < GlobalInstance::vec_TaskMain[i].type.size(); j++)
+				{
+					if (GlobalInstance::vec_TaskMain[i].finishtype == GlobalInstance::vec_TaskMain[i].type[j])
+					{
+						GlobalInstance::vec_TaskMain[i].finishtype = j + 1;
+						break;
+					}
+				}
+			}
+		}
+		GlobalInstance::getInstance()->saveMyTaskMainData();
+		DataSave::getInstance()->deleteDataByKey("MainTask");
+	}
+
+	std::string btaskstr = UserDefault::getInstance()->getStringForKey("jhBranchTask", "");
+	if (btaskstr.length() > 0)
+	{
+		for (unsigned i = 0; i < GlobalInstance::vec_TaskBranch.size(); i++)
+		{
+			if (GlobalInstance::vec_TaskBranch[i].finishtype > 0)
+			{
+				for (unsigned int j = 0; j < GlobalInstance::vec_TaskBranch[i].type.size(); j++)
+				{
+					if (GlobalInstance::vec_TaskBranch[i].finishtype == GlobalInstance::vec_TaskBranch[i].type[j])
+					{
+						GlobalInstance::vec_TaskBranch[i].finishtype = j + 1;
+						break;
+					}
+				}
+			}
+		}
+		GlobalInstance::getInstance()->saveMyTaskBranchData();
+		DataSave::getInstance()->deleteDataByKey("BranchTask");
+	}
 }
 
 void LoadingScene::parseCfgFiles()

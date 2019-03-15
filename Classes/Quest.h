@@ -29,9 +29,6 @@ public:
 	//初始化已完成的任务
 	static bool initFinishTaskData();
 
-	//初始化当前任务已完成的物品
-	static void initCurNeedData();
-
 	//添加已完成任务
 	static void AddFinishQuest(TaskData data);
 
@@ -47,16 +44,9 @@ public:
 	//判断条件1情况下消耗的物品id和数量
 	static bool checkResQuestData(std::string resid, int count, std::string npcid, std::vector<std::map<std::string, int>> need);
 
-	//判断消耗的物品数量是否达标
-	static bool getResCountFinish(std::vector<std::map<std::string, int>> need);
-
 	static void saveMainData();
 
-	static void finishQuest();
-
-	static void finishTaskMain(int ftype);
-
-	static int getTypeBtn(int id, int ftype);
+	static void finishTaskMain();
 
 	//判断是否接受主线任务
 	static bool getMainQuest();
@@ -73,9 +63,6 @@ public:
 	//初始化已完成的任务
 	static bool initFinishTaskBranchData();
 
-	//初始化当前任务已完成的物品
-	static void initCurBranchNeedData();
-
 	//添加已完成任务
 	static void AddFinishBranchQuest(TaskData data);
 
@@ -91,16 +78,9 @@ public:
 	//判断赠送物品情况下消耗的物品id和数量
 	static bool checkResBranchQuestData(std::string resid, int count, std::string npcid, std::vector<std::map<std::string, int>> need);
 
-	//判断消耗的物品数量是否达标
-	static bool getResBranchFinish(std::vector<std::map<std::string, int>> need);
-
 	static void saveBranchData();
 
-	static void finishBranchQuest();
-
-	static void finishTaskBranch(int ftype);
-
-	static int getTypeBranchBtn(int id, int ftype);
+	static void finishTaskBranch();
 
 	//判断是否接受支线任务
 	static bool getBranchQuest();
@@ -136,12 +116,7 @@ public:
 public:
 	static std::vector<TaskData> myFinishMainQuest;
 
-	static std::map<std::string, int> map_NpcQuestRes;
-
 	static std::vector<TaskData> myFinishBranchQuest;
-
-	//支线任务npc物品
-	static std::map<std::string, int> map_NpcBranchQuestRes;
 
 	//每日任务type-count
 	static std::map<int, int> map_DailyTypeCount;

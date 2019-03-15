@@ -205,20 +205,10 @@ bool TaskDescLayer::init(TaskData* data, int type)
 	if (data->finishtype > 0)
 	{
 		rewardlabel->setString(ResourceLang::map_lang["taskrewardtip3"]);
-		for (unsigned int i = 0; i < m_data->type.size(); i++)
-		{
-			if (m_data->finishtype == m_data->type[i])
-			{
-				if (i == 0)
-				{
-					rewards = m_data->reward1;
-				}
-				else
-				{
-					rewards = m_data->reward2;
-				}
-			}
-		}
+		if (data->finishtype == 1)
+			rewards = m_data->reward1;
+		else
+			rewards = m_data->reward2;
 	}
 	else 
 	{
@@ -452,20 +442,15 @@ void TaskDescLayer::getRewards()
 	Quest::setFinishTaskState(m_type, m_data);
 	std::vector<MSGAWDSDATA> vec_rewards;
 	std::vector<std::vector<std::string>> m_rewards;
-	for (unsigned int i = 0; i < m_data->type.size(); i++)
+
+	if (m_data->finishtype > 0)
 	{
-		if (m_data->finishtype == m_data->type[i])
-		{
-			if (i == 0)
-			{
-				m_rewards = m_data->reward1;
-			}
-			else
-			{
-				m_rewards = m_data->reward2;
-			}
-		}
+		if (m_data->finishtype == 1)
+			m_rewards = m_data->reward1;
+		else
+			m_rewards = m_data->reward2;
 	}
+
 	for (unsigned int i = 0; i < m_rewards.size(); i++)
 	{
 		std::vector<std::string> one_res = m_rewards[i];

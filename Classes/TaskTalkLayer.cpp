@@ -371,6 +371,10 @@ void TaskTalkLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		isGo = data->isFight1;
 		std::string bwords = data->bossword1;
 
+		if (m_type == 0)
+			GlobalInstance::myCurMainData.finishtype = 1;
+		else
+			GlobalInstance::myCurBranchData.finishtype = 1;
 		switch (tag)
 		{
 		case QUEST_GIVE: //
@@ -406,7 +410,10 @@ void TaskTalkLayer::onBtn2Click(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 
 		isGo = data->isFight2;
 		std::string bwords = data->bossword2;
-
+		if (m_type == 0)
+			GlobalInstance::myCurMainData.finishtype = 2;
+		else
+			GlobalInstance::myCurBranchData.finishtype = 2;
 		switch (tag)
 		{
 		case QUEST_GIVE: //
@@ -580,11 +587,11 @@ void TaskTalkLayer::questTakeGoods(std::string bwords, std::vector<std::map<std:
 
 	if (m_type == 0)
 	{
-		Quest::finishTaskMain(QUEST_TAKEMY);
+		Quest::finishTaskMain();
 	}
 	else
 	{
-		Quest::finishTaskBranch(QUEST_TAKEMY);
+		Quest::finishTaskBranch();
 	}
 }
 
@@ -599,11 +606,11 @@ void TaskTalkLayer::questNotFight(std::string bwords)
 	givebtn->setVisible(false);
 	if (m_type == 0)
 	{
-		Quest::finishTaskMain(QUEST_NOTFIGHT);
+		Quest::finishTaskMain();
 	}
 	else
 	{
-		Quest::finishTaskBranch(QUEST_NOTFIGHT);
+		Quest::finishTaskBranch();
 	}
 }
 

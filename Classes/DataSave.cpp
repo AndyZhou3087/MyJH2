@@ -105,42 +105,22 @@ std::string DataSave::getMyRes()
 
 void DataSave::setMyBranchTask(std::string strval)
 {
-	saveStringDataByKey("BranchTask", strval);
+	saveStringDataByKey("branchtask", strval);
 }
 
 std::string DataSave::getMyBranchTask()
 {
-	return loadStringDataByKey("BranchTask", "");//id-状态
+	return loadStringDataByKey("branchtask", "");//id-状态
 }
 
 void DataSave::setMyMainTask(std::string strval)
 {
-	saveStringDataByKey("MainTask", strval);
+	saveStringDataByKey("maintask", strval);
 }
 
 std::string DataSave::getMyMainTask()
 {
-	return loadStringDataByKey("MainTask", "");//id-状态-type
-}
-
-void DataSave::setMyCurTaskNeed(std::string strval)
-{
-	saveStringDataByKey("CurTaskNeed", strval);
-}
-
-std::string DataSave::getMyCurTaskNeed()
-{
-	return loadStringDataByKey("CurTaskNeed", "");//id-count
-}
-
-void DataSave::setMyCurBranchNeed(std::string strval)
-{
-	saveStringDataByKey("CurBranchNeed", strval);
-}
-
-std::string DataSave::getMyCurBranchNeed()
-{
-	return loadStringDataByKey("CurBranchNeed", "");//id-count
+	return loadStringDataByKey("maintask", "");//id-状态-type
 }
 
 void DataSave::setMyAchieveData(std::string strval)
