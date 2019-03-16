@@ -82,7 +82,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox_2" ActionTag="-796973554" Tag="1753" IconVisible="False" LeftMargin="447.4997" RightMargin="147.5003" TopMargin="531.5007" BottomMargin="623.4993" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox_2" ActionTag="-796973554" Tag="1753" IconVisible="False" LeftMargin="447.5007" RightMargin="147.4993" TopMargin="507.4973" BottomMargin="647.5027" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <Children>
               <AbstractNodeData Name="res" ActionTag="-1469462572" Tag="1754" IconVisible="False" LeftMargin="7.1254" RightMargin="8.8746" TopMargin="7.6421" BottomMargin="8.3579" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="27" Scale9Height="27" ctype="ImageViewObjectData">
@@ -121,14 +121,14 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="509.9997" Y="685.9993" />
+            <Position X="510.0007" Y="710.0027" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7083" Y="0.5359" />
+            <PrePosition X="0.7083" Y="0.5547" />
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox_1" ActionTag="-1865287503" Tag="1757" IconVisible="False" LeftMargin="297.5000" RightMargin="297.5000" TopMargin="531.5007" BottomMargin="623.4993" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox_1" ActionTag="-1865287503" Tag="1757" IconVisible="False" LeftMargin="297.5014" RightMargin="297.4986" TopMargin="507.4973" BottomMargin="647.5027" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <Children>
               <AbstractNodeData Name="res" ActionTag="2005329469" Tag="1758" IconVisible="False" LeftMargin="7.1254" RightMargin="8.8746" TopMargin="7.6421" BottomMargin="8.3579" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="27" Scale9Height="27" ctype="ImageViewObjectData">
@@ -167,14 +167,14 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="685.9993" />
+            <Position X="360.0014" Y="710.0027" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.5359" />
+            <PrePosition X="0.5000" Y="0.5547" />
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox_0" ActionTag="877769095" Tag="1761" IconVisible="False" LeftMargin="147.5000" RightMargin="447.5000" TopMargin="531.5007" BottomMargin="623.4993" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox_0" ActionTag="877769095" Tag="1761" IconVisible="False" LeftMargin="147.5000" RightMargin="447.5000" TopMargin="507.4973" BottomMargin="647.5027" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <Children>
               <AbstractNodeData Name="res" ActionTag="563860423" Tag="1762" IconVisible="False" LeftMargin="7.1254" RightMargin="8.8746" TopMargin="7.6421" BottomMargin="8.3579" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="27" Scale9Height="27" ctype="ImageViewObjectData">
@@ -213,10 +213,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="210.0000" Y="685.9993" />
+            <Position X="210.0000" Y="710.0027" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2917" Y="0.5359" />
+            <PrePosition X="0.2917" Y="0.5547" />
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
@@ -231,7 +231,7 @@
             <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="cnumbl" ActionTag="-1453318098" Tag="1875" IconVisible="False" LeftMargin="225.9639" RightMargin="455.0361" TopMargin="873.1060" BottomMargin="380.8941" FontSize="26" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="cnumbl" ActionTag="-1453318098" Tag="1875" IconVisible="False" LeftMargin="225.9639" RightMargin="455.0361" TopMargin="873.1059" BottomMargin="380.8941" FontSize="26" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="39.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="225.9639" Y="393.8941" />
@@ -242,14 +242,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="539355035" Tag="450" IconVisible="False" LeftMargin="317.6661" RightMargin="315.3339" TopMargin="737.0582" BottomMargin="518.9418" FontSize="21" LabelText="描述描述" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="87.0000" Y="24.0000" />
+          <AbstractNodeData Name="desc" ActionTag="539355035" Tag="450" IconVisible="False" LeftMargin="111.1661" RightMargin="108.8339" TopMargin="713.0582" BottomMargin="516.9418" IsCustomSize="True" FontSize="21" LabelText="描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="500.0000" Y="50.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="361.1661" Y="530.9418" />
+            <Position X="361.1661" Y="541.9418" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5016" Y="0.4148" />
-            <PreSize X="0.1208" Y="0.0188" />
+            <PrePosition X="0.5016" Y="0.4234" />
+            <PreSize X="0.6944" Y="0.0391" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />

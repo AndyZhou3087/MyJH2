@@ -289,14 +289,13 @@ void ShopLayer::setMessage(PYARET ret)
 			HttpDataSwap::init(NULL)->paySuccNotice(GlobalInstance::vec_shopdata[payindex].icon, GlobalInstance::vec_shopdata[payindex].price);
 
 		HttpDataSwap::init(NULL)->postAllData();
-
+		payindex = -1;
 #ifdef UMENG
 		umeng::MobClickCpp::event(GlobalInstance::vec_shopdata[payindex].icon.c_str());
 #endif
 	}
 	//std::string str = StringUtils::format("buy_%d", (int)ret);
 	//MovingLabel::show(ResourceLang::map_lang[str]);
-	payindex = -1;
 	isPaying = false;
 }
 

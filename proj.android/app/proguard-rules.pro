@@ -23,6 +23,7 @@
 #-dontwarn com.chukong.**
 
 -keep public class com.game.** { *; }
+-keep public class com.fengs.myjh.** { *; }
 #-dontwarn com.game.**
 -keep class com.tencent.mm.opensdk.** { *; }
 -keep class com.tencent.wxop.** { *; }

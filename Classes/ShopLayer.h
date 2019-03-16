@@ -11,8 +11,8 @@ USING_NS_CC;
 
 typedef enum
 {
-	PAY_SUCC = 0,
-	PAY_FAIL
+	PAY_FAIL = -1,
+	PAY_SUCC = 0
 }PYARET;
 
 class ShopLayer : public cocos2d::Layer, public HTTPDataDelegateProtocol
