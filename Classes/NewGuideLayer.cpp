@@ -902,6 +902,12 @@ void NewGuideLayer::setNewGuideInfo(int step)
 		}
 		GlobalInstance::vec_myHeros.clear();
 		GlobalInstance::vec_rand3Heros.clear();
+
+		for (int i = 0; i < 6; i++)
+		{
+			GlobalInstance::myCardHeros[i] = NULL;
+		}
+
 		for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
 		{
 			ResBase* res = MyRes::vec_MyResources[i];
@@ -923,11 +929,26 @@ void NewGuideLayer::setNewGuideInfo(int step)
 
 		if (checkifNewerGuide(step))
 		{
-			for (int i = 22; i < step; i++)
+			for (int i = 12; i <= 14; i++)
+			{
+				GlobalInstance::getInstance()->saveNewerGuide(i, true);
+			}
+			for (int i = 22; i <= step; i++)
+			{
+				GlobalInstance::getInstance()->saveNewerGuide(i, true);
+			}
+			for (int i = 88; i <= 90; i++)
 			{
 				GlobalInstance::getInstance()->saveNewerGuide(i, true);
 			}
 			GlobalInstance::getInstance()->saveNewerGuide(93, true);
+
+			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() < 20000)
+			{
+				DynamicValueInt dv;
+				dv.setValue(20000 - abs(GlobalInstance::getInstance()->getMySoliverCount().getValue()));
+				GlobalInstance::getInstance()->addMySoliverCount(dv);
+			}
 		}
 	}
 	else if (step == MIDELEGUIDESTEP)
@@ -945,7 +966,7 @@ void NewGuideLayer::setNewGuideInfo(int step)
 
 		if (checkifNewerGuide(step))
 		{
-			for (int i = THRIDGUIDESTEP + 1; i < step; i++)
+			for (int i = THRIDGUIDESTEP + 1; i <= step; i++)
 			{
 				GlobalInstance::getInstance()->saveNewerGuide(i, true);
 			}
@@ -965,7 +986,7 @@ void NewGuideLayer::setNewGuideInfo(int step)
 
 		if (checkifNewerGuide(step))
 		{
-			for (int i = MIDELEGUIDESTEP + 1; i < step; i++)
+			for (int i = MIDELEGUIDESTEP + 1; i <= step; i++)
 			{
 				GlobalInstance::getInstance()->saveNewerGuide(i, true);
 			}
