@@ -10,6 +10,7 @@ MapBlock::MapBlock()
 {
 	m_postype = -1;
 	m_iscansee = false;
+	m_posnpcrnd = 1;
 }
 
 

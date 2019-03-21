@@ -328,15 +328,22 @@ std::string DataSave::getNpcFriendly()
 	return loadStringDataByKey("friendly", "");//npcid-好友度-关系
 }
 
-bool DataSave::getMapBoxRewards(std::string key)
+bool DataSave::getOldMapBoxRewards(std::string key)
 {
 	int val = loadIntDataByKey(key, 0);
 	return val == 1 ? true : false;
 }
 
-void DataSave::setMapBoxRewards(std::string key, bool val)
+int DataSave::getMapBoxRewards(std::string mapid, int bid)
 {
-	saveIntDataByKey(key, val == true ? 1 : 0);
+	std::string key = StringUtils::format("br%s-%d", mapid.c_str(), bid);
+	return loadIntDataByKey(key, 0);
+}
+
+void DataSave::setMapBoxRewards(std::string mapid, int bid, int val)
+{
+	std::string key = StringUtils::format("br%s-%d", mapid.c_str(), bid);
+	saveIntDataByKey(key, val);
 }
 
 int DataSave::getMapOrderCount(std::string mapid)

@@ -198,6 +198,8 @@ private:
 
 	void delaySetMyPos(float dt);
 
+	static bool sortByBoxPos(MapBlock* a, MapBlock *b);
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;
@@ -272,6 +274,7 @@ private:
 	float mapFogScale;
 
 	Sprite* mapAllOpenFog;
+	std::vector<MapBlock*> vec_boxblock;//宝箱地图块
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

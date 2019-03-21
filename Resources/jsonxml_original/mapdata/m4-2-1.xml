@@ -12,7 +12,9 @@
     <ma id="r006" c="100" qu="0">20.00</ma>
   </Monstors>
   <Cells rs="40" cs="40">
-    <Cell c="0" r="0" p="5" w="1" m="66.png" />
+    <Cell c="0" r="0" p="5" w="1" m="66.png" >
+      <npcid>1</npcid>
+    </Cell>
     <Cell c="0" r="1" p="-1" w="1" m="66.png" />
     <Cell c="0" r="2" p="-1" w="1" m="66.png" />
     <Cell c="0" r="3" p="-1" w="1" m="66.png" />
@@ -1595,7 +1597,9 @@
     <Cell c="38" r="37" p="-1" w="0" m="6.png" />
     <Cell c="38" r="38" p="-1" w="0" m="6.png" d="1.png" />
     <Cell c="38" r="39" p="-1" w="0" m="6.png" />
-    <Cell c="39" r="0" p="5" w="1" m="66.png" />
+    <Cell c="39" r="0" p="5" w="1" m="66.png" >
+      <npcid>2</npcid>
+    </Cell>
     <Cell c="39" r="1" p="-1" w="1" m="66.png" />
     <Cell c="39" r="2" p="-1" w="1" m="66.png" />
     <Cell c="39" r="3" p="-1" w="1" m="66.png" />

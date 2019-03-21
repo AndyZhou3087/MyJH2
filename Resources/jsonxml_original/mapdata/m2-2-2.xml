@@ -56,7 +56,9 @@
     <Cell c="0" r="38" p="-1" w="0" m="4.png" />
     <Cell c="0" r="39" p="-1" w="0" m="45.png" />
     <Cell c="1" r="0" p="-1" w="0" m="46.png" />
-    <Cell c="1" r="1" p="5" w="1" m="44.png" />
+    <Cell c="1" r="1" p="5" w="1" m="44.png" >
+      <npcid>1</npcid>
+    </Cell>
     <Cell c="1" r="2" p="-1" w="1" m="44.png" />
     <Cell c="1" r="3" p="-1" w="1" m="11.png" />
     <Cell c="1" r="4" p="-1" w="1" m="11.png" />
@@ -287,7 +289,9 @@
     <Cell c="6" r="29" p="-1" w="1" m="44.png" />
     <Cell c="6" r="30" p="-1" w="1" m="44.png" />
     <Cell c="6" r="31" p="-1" w="1" m="44.png" />
-    <Cell c="6" r="32" p="5" w="1" m="44.png" />
+    <Cell c="6" r="32" p="5" w="1" m="44.png" >
+      <npcid>5</npcid>
+    </Cell>
     <Cell c="6" r="33" p="-1" w="1" m="43.png" />
     <Cell c="6" r="34" p="-1" w="1" m="43.png" />
     <Cell c="6" r="35" p="-1" w="0" m="44.png" />
@@ -1252,7 +1256,9 @@
     <Cell c="30" r="26" p="-1" w="1" m="11.png" />
     <Cell c="30" r="27" p="-1" w="1" m="11.png" />
     <Cell c="30" r="28" p="-1" w="1" m="11.png" />
-    <Cell c="30" r="29" p="5" w="1" m="11.png" />
+    <Cell c="30" r="29" p="5" w="1" m="11.png" >
+      <npcid>4</npcid>
+    </Cell>
     <Cell c="30" r="30" p="4" w="1" m="11.png">
       <npcid>n122</npcid>
       <npcrnd>100</npcrnd>
@@ -1568,6 +1574,7 @@
     <Cell c="38" r="1" p="-1" w="0" m="11.png" />
     <Cell c="38" r="2" p="-1" w="0" m="11.png" />
     <Cell c="38" r="3" p="5" w="1" m="11.png">
+      <npcid>2</npcid>
       <msawd1 id="a017" qu="4" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="38" r="4" p="-1" w="0" m="22.png" d="5.png" />
@@ -1589,7 +1596,9 @@
     </Cell>
     <Cell c="38" r="17" p="-1" w="0" m="11.png" />
     <Cell c="38" r="18" p="-1" w="0" m="44.png" />
-    <Cell c="38" r="19" p="5" w="1" m="44.png" />
+    <Cell c="38" r="19" p="5" w="1" m="44.png" >
+      <npcid>3</npcid>
+    </Cell>
     <Cell c="38" r="20" p="-1" w="0" m="46.png" />
     <Cell c="38" r="21" p="-1" w="1" m="11.png" />
     <Cell c="38" r="22" p="-1" w="1" m="44.png" />

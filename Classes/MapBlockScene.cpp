@@ -1713,13 +1713,16 @@ void MapBlockScene::doMyStatus()
 		}
 		else if (mapblock->getPosType() == POS_BOX)
 		{
-			std::string str = StringUtils::format("%s-%d", m_mapid.c_str(), mycurRow*blockColCount + mycurCol);
-			if (!DataSave::getInstance()->getMapBoxRewards(str))
-			{
-				status = MAP_S_EVENT;
-				createBoxRewards(mapblock);
-				DataSave::getInstance()->setMapBoxRewards(str, true);
-			}
+			int mid = atoi(mapblock->getPosNpcID().c_str());
+			int count = DataSave::getInstance()->getMapBoxRewards(m_mapid, mid);
+
+			status = MAP_S_EVENT;
+			createBoxRewards(mapblock);
+
+			mapblock->setPosType(POS_NOTHING);
+			mapblock->removePosIcon();
+
+			DataSave::getInstance()->setMapBoxRewards(m_mapid, mid, count + 1);
 		}
 		if (vec_enemys.size() > 0)
 		{
@@ -1846,8 +1849,6 @@ void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 	{
 		MovingLabel::show(ResourceLang::map_lang["nothingbox"]);
 	}
-
-	mbolck->removePosIcon();
 }
 
 void MapBlockScene::createRndMonsters()
@@ -2514,6 +2515,7 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						
 					mb->setWalkable(walkable);
 					map_mapBlocks[rc] = mb;
+					mb->setTag(rc);
 
 					cocos2d::ui::ImageView* blockclick = cocos2d::ui::ImageView::create("mapui/blankdot.png", cocos2d::ui::Widget::TextureResType::PLIST);
 					blockclick->setScale(72);
@@ -2528,6 +2530,11 @@ void MapBlockScene::parseMapXml(std::string mapname)
 					{
 						mb->setWalkable(true);
 						vec_startpos.push_back(rc);
+					}
+					else if (postype == POS_BOX)
+					{
+						//v2.01版本之前是用行列计算宝箱位置，领取后不可领取，后期修改位置会重复领取，现在加入序号
+						vec_boxblock.push_back(mb);
 					}
 
 					tinyxml2::XMLElement* e0 = element->FirstChildElement();
@@ -2638,17 +2645,16 @@ void MapBlockScene::parseMapXml(std::string mapname)
 					if (postype > POS_START)//起点有多个，只会显示一个，不在这里设置
 					{
 						bool showPosIcon = true;
-						if (postype == POS_BOX)
-						{
-							std::string str = StringUtils::format("%s-%d", m_mapid.c_str(), rc);
-							if (DataSave::getInstance()->getMapBoxRewards(str))
-								showPosIcon = false;
-						}
 						if (postype == POS_NPC || postype == POS_BOSS || postype == POS_TBOSS)
 						{
 							int r = GlobalInstance::getInstance()->createRandomNum(100);
 							if (r >= mb->getPosNpcRnd())
 								showPosIcon = false;
+						}
+
+						if (postype == POS_BOX)//宝箱在后面处理
+						{
+							showPosIcon = false;
 						}
 
 						if (showPosIcon)
@@ -2658,7 +2664,8 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						}
 						else
 						{
-							mb->setPosType(-1);
+							if (postype != POS_BOX)
+								mb->setPosType(-1);
 						}
 						if (isMaze && (mb->getBuildName().compare("8.png") == 0 || mb->getBuildName().compare("51.png") == 0))
 						{
@@ -2672,4 +2679,41 @@ void MapBlockScene::parseMapXml(std::string mapname)
 		dataele = dataele->NextSiblingElement();
 	}
 	delete pDoc;
+
+	//宝箱位置， 加上ID
+	std::sort(vec_boxblock.begin(), vec_boxblock.end(), sortByBoxPos);
+
+	int count = 0;
+	std::vector<MapBlock*>::iterator it;
+	for (it = vec_boxblock.begin(); it != vec_boxblock.end();)
+	{
+		MapBlock* mblock = *it;
+
+		int mid = atoi(mblock->getPosNpcID().c_str());
+		std::string key = StringUtils::format("%s-%d", m_mapid.c_str(), mblock->getTag());
+		if (DataSave::getInstance()->getOldMapBoxRewards(key))
+		{
+			DataSave::getInstance()->deleteDataByKey(key);
+			DataSave::getInstance()->setMapBoxRewards(m_mapid, mid, 1);
+		}
+
+		if (DataSave::getInstance()->getMapBoxRewards(m_mapid, mid) < mblock->getPosNpcRnd())
+		{
+			mblock->setPosIcon();
+			it++;
+		}
+		else
+		{
+			mblock->setPosType(-1);
+			it = vec_boxblock.erase(it);
+		}
+		count++;
+	}
+}
+
+bool MapBlockScene::sortByBoxPos(MapBlock* a, MapBlock *b)
+{
+	if (a->getTag() < b->getTag())
+		return true;
+	return false;
 }

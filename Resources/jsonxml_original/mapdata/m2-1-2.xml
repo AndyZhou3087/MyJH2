@@ -71,7 +71,9 @@
     <Cell c="1" r="23" p="-1" w="0" m="11.png" />
     <Cell c="1" r="24" p="-1" w="0" m="11.png" d="0.png" />
     <Cell c="1" r="25" p="-1" w="0" m="44.png" />
-    <Cell c="1" r="26" p="5" w="1" m="44.png" />
+    <Cell c="1" r="26" p="5" w="1" m="44.png" >
+      <npcid>3</npcid>
+    </Cell>
     <Cell c="1" r="27" p="-1" w="0" m="44.png" d="10.png" />
     <Cell c="1" r="28" p="-1" w="0" m="44.png" />
     <Cell c="1" r="29" p="-1" w="0" m="47.png" />
@@ -133,7 +135,9 @@
     <Cell c="3" r="25" p="-1" w="0" m="44.png" />
     <Cell c="3" r="26" p="-1" w="1" m="44.png" />
     <Cell c="3" r="27" p="-1" w="1" m="11.png" />
-    <Cell c="3" r="28" p="5" w="1" m="11.png" />
+    <Cell c="3" r="28" p="5" w="1" m="11.png" >
+      <npcid>5</npcid>
+    </Cell>
     <Cell c="3" r="29" p="-1" w="0" m="47.png" />
     <Cell c="4" r="0" p="-1" w="0" m="46.png" />
     <Cell c="4" r="1" p="-1" w="1" m="11.png" />
@@ -142,7 +146,9 @@
     <Cell c="4" r="4" p="-1" w="0" m="55.png" />
     <Cell c="4" r="5" p="-1" w="0" m="55.png" />
     <Cell c="4" r="6" p="-1" w="0" m="55.png" />
-    <Cell c="4" r="7" p="5" w="1" m="11.png" />
+    <Cell c="4" r="7" p="5" w="1" m="11.png" >
+      <npcid>2</npcid>
+    </Cell>
     <Cell c="4" r="8" p="-1" w="1" m="44.png" />
     <Cell c="4" r="9" p="-1" w="1" m="44.png" />
     <Cell c="4" r="10" p="-1" w="1" m="11.png" />
@@ -665,7 +671,9 @@
     <Cell c="20" r="28" p="-1" w="1" m="11.png" />
     <Cell c="20" r="29" p="-1" w="0" m="47.png" />
     <Cell c="21" r="0" p="-1" w="0" m="46.png" />
-    <Cell c="21" r="1" p="5" w="1" m="11.png" />
+    <Cell c="21" r="1" p="5" w="1" m="11.png" >
+      <npcid>1</npcid>
+    </Cell>
     <Cell c="21" r="2" p="-1" w="1" m="43.png" />
     <Cell c="21" r="3" p="-1" w="1" m="11.png" />
     <Cell c="21" r="4" p="-1" w="1" m="11.png" />
@@ -751,6 +759,7 @@
     <Cell c="23" r="24" p="-1" w="0" m="47.png" />
     <Cell c="23" r="25" p="-1" w="1" m="11.png" />
     <Cell c="23" r="26" p="5" w="1" m="11.png">
+      <npcid>4</npcid>
       <msawd1 id="r012" qu="0" rnd="100.00">100</msawd1>
     </Cell>
     <Cell c="23" r="27" p="-1" w="0" m="46.png" />

@@ -331,9 +331,13 @@ public:
 	int getResetSilverRefHeroCountTime();
 
 	//获取地图中的宝箱是否领取1已领取，0未领取
-	bool getMapBoxRewards(std::string key);
+	bool getOldMapBoxRewards(std::string key);
+
+	int getMapBoxRewards(std::string mapid, int bid);
+
 	//保存地图宝箱
-	void setMapBoxRewards(std::string key, bool val);
+	void setMapBoxRewards(std::string mapid, int bid, int val);
+
 
 	//每个地图完成到哪个
 	int getMapOrderCount(std::string mapid);
