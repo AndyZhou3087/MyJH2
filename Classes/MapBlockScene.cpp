@@ -178,6 +178,8 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	createFog();
 
+	setBlockRange();
+
 	if (isMaze)
 	{
 		MAZE_POS mdata;
@@ -1187,7 +1189,8 @@ void MapBlockScene::removeMazeStoneAfterAnim(int blockindex)
 	buildfocus->setEnabled(true);
 	map_mapBlocks[blockindex]->removeBuild();
 	map_mapBlocks[blockindex]->setWalkable(true);
-	map_mapBlocks[blockindex]->setPosIconVisable(true);
+	if (map_mapBlocks[blockindex]->getPosType() > POS_START)
+		map_mapBlocks[blockindex]->setPosIconVisable(true);
 	Node* z002 = buildfocus->getChildByName("z002");
 	z002->setRotation(0);
 }
@@ -2534,7 +2537,25 @@ void MapBlockScene::parseMapXml(std::string mapname)
 					else if (postype == POS_BOX)
 					{
 						//v2.01版本之前是用行列计算宝箱位置，领取后不可领取，后期修改位置会重复领取，现在加入序号
+						mb->setPosType(postype);
 						vec_boxblock.push_back(mb);
+					}
+					if (postype > POS_START && postype < POS_MAZETRANS)
+					{
+						int posrange = -1;
+						element->QueryIntAttribute("prs1", &posrange);
+						if (posrange >= 0)
+							mb->range_start.push_back((blockRowCount - 1 - posrange/ blockColCount)*blockColCount + posrange % blockColCount);
+						element->QueryIntAttribute("pre1", &posrange);
+						if (posrange >= 0)
+							mb->range_end.push_back((blockRowCount - 1 - posrange / blockColCount)*blockColCount + posrange % blockColCount);
+
+						element->QueryIntAttribute("prs2", &posrange);
+						if (posrange >= 0)
+							mb->range_start.push_back((blockRowCount - 1 - posrange / blockColCount)*blockColCount + posrange % blockColCount);
+						element->QueryIntAttribute("pre2", &posrange);
+						if (posrange >= 0)
+							mb->range_end.push_back((blockRowCount - 1 - posrange / blockColCount)*blockColCount + posrange % blockColCount);
 					}
 
 					tinyxml2::XMLElement* e0 = element->FirstChildElement();
@@ -2642,32 +2663,27 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						e0 = e0->NextSiblingElement();
 					}
 
-					if (postype > POS_START)//起点有多个，只会显示一个，不在这里设置
+					if (postype >= POS_NPC && postype <= POS_TBOSS || postype == POS_MAZETRANS)//起点有多个，只会显示一个，不在这里设置
 					{
 						bool showPosIcon = true;
-						if (postype == POS_NPC || postype == POS_BOSS || postype == POS_TBOSS)
-						{
-							int r = GlobalInstance::getInstance()->createRandomNum(100);
-							if (r >= mb->getPosNpcRnd())
-								showPosIcon = false;
-						}
-
-						if (postype == POS_BOX)//宝箱在后面处理
-						{
+						int r = GlobalInstance::getInstance()->createRandomNum(100);
+						if (r >= mb->getPosNpcRnd())
 							showPosIcon = false;
-						}
 
 						if (showPosIcon)
 						{
 							mb->setPosType(postype);
-							mb->setPosIcon();
+
+							if (mb->range_start.size() <= 0)//需要随机出现时不在这里显示
+								mb->setPosIcon();
+							else
+								map_rangeblocks[postype].push_back(mb);
 						}
 						else
 						{
-							if (postype != POS_BOX)
-								mb->setPosType(-1);
+							mb->setPosType(-1);
 						}
-						if (isMaze && (mb->getBuildName().compare("8.png") == 0 || mb->getBuildName().compare("51.png") == 0))
+						if (isMaze && showPosIcon && (mb->getBuildName().compare("8.png") == 0 || mb->getBuildName().compare("51.png") == 0))
 						{
 							mb->setPosIconVisable(false);
 						}
@@ -2699,7 +2715,18 @@ void MapBlockScene::parseMapXml(std::string mapname)
 
 		if (DataSave::getInstance()->getMapBoxRewards(m_mapid, mid) < mblock->getPosNpcRnd())
 		{
-			mblock->setPosIcon();
+			if (mblock->range_start.size() <= 0)//需要随机出现时不在这里显示
+			{
+				mblock->setPosIcon();
+
+				if (isMaze && (mblock->getBuildName().compare("8.png") == 0 || mblock->getBuildName().compare("51.png") == 0))
+				{
+					mblock->setPosIconVisable(false);
+				}
+			}
+			else
+				map_rangeblocks[POS_BOX].push_back(mblock);
+
 			it++;
 		}
 		else
@@ -2716,4 +2743,107 @@ bool MapBlockScene::sortByBoxPos(MapBlock* a, MapBlock *b)
 	if (a->getTag() < b->getTag())
 		return true;
 	return false;
+}
+
+void MapBlockScene::setBlockRange()
+{
+
+	std::map<int, std::vector<MapBlock*>>::iterator rit;
+
+	for (rit = map_rangeblocks.begin(); rit != map_rangeblocks.end();)
+	{
+		for (unsigned int n = 0; n < rit->second.size(); n++)
+		{
+			MapBlock* mblock = rit->second.at(n);
+			int rindex = GlobalInstance::getInstance()->createRandomNum(mblock->range_start.size());
+			int s = mblock->range_start[rindex];
+			int e = mblock->range_end[rindex];
+			int r1 = s / blockColCount;
+			int c1 = s % blockColCount;
+			int r2 = e / blockColCount;
+			int c2 = e % blockColCount;
+
+			if (r1 > r2)
+			{
+				int swap = r1;
+				r1 = r2;
+				r2 = swap;
+			}
+			if (c1 > c2)
+			{
+				int swap = c1;
+				c1 = c2;
+				c2 = swap;
+			}
+			//int rnd_r = GlobalInstance::getInstance()->createRandomNum(abs(r2 - r1) + 1);
+			//if (r2 - r1 < 0)
+			//	rnd_r = r1 - rnd_r;
+			//else
+			//	rnd_r = r1 + rnd_r;
+
+			//int rnd_c = GlobalInstance::getInstance()->createRandomNum(abs(c2 - c1) + 1);
+			//if (c2 - c1 < 0)
+			//	rnd_c = c1 - rnd_c;
+			//else
+			//	rnd_c = c1 + rnd_c;
+
+			//int rc = rnd_r * blockColCount + rnd_c;
+
+			std::vector<MapBlock*> normalblock;
+			normalblock.push_back(mblock);
+			for (int i = r1; i <= r2; i++)
+			{
+				for (int m = c1; m <= c2; m++)
+				{
+					int rc = i * blockColCount + m;
+					if (map_mapBlocks[rc]->getPosType() == POS_NOTHING && map_mapBlocks[rc]->getWalkable() && map_mapBlocks[rc]->map_eventrnd.size() <= 0)
+					{
+						normalblock.push_back(map_mapBlocks[rc]);
+					}
+				}
+			}
+
+			int rselect = GlobalInstance::getInstance()->createRandomNum(normalblock.size());
+			if (normalblock[rselect]->getTag() == mblock->getTag())
+			{
+				mblock->setPosIcon();
+			}
+			else
+			{
+				int postype = mblock->getPosType();
+				mblock->removePosIcon();
+				mblock->setPosType(-1);
+
+				bool issee = mblock->getIsCanSee();
+				mblock->setIsCanSee(normalblock[rselect]->getIsCanSee());
+				std::string npcid = mblock->getPosNpcID();
+				mblock->setPosNpcID("");
+				int npcrnd = mblock->getPosNpcRnd();
+				mblock->setPosNpcRnd(0);
+
+				normalblock[rselect]->setPosType(postype);
+				normalblock[rselect]->setIsCanSee(issee);
+				normalblock[rselect]->setPosNpcID(npcid);
+				normalblock[rselect]->setPosNpcRnd(npcrnd);
+				normalblock[rselect]->vec_RewardsRes = mblock->vec_RewardsRes;
+				normalblock[rselect]->vec_choiceDatas = mblock->vec_choiceDatas;
+				for (unsigned int m = 0; m < 6; m++)
+				{
+					FOURProperty propty = mblock->npcs[m];
+					if (propty.sid.length() > 0)
+					{
+						normalblock[rselect]->npcs[m] = propty;
+					}
+					FOURProperty epropty;
+					mblock->npcs[m] = epropty;
+				}
+				normalblock[rselect]->setPosIcon();
+
+				mblock->vec_RewardsRes.clear();
+				mblock->vec_choiceDatas.clear();
+			}
+
+		}
+		rit++;
+	}
 }

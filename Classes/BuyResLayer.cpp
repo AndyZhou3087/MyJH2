@@ -144,7 +144,12 @@ bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 	std::string descstr = GlobalInstance::map_AllResources[vec_res[0].rid].desc;
 
 	descstr.append(ResourceLang::map_lang["reswheregettext"]);
+	
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
+
+	Label* descRenderLable = (Label*)desclbl->getVirtualRenderer();
+	descRenderLable->setLineSpacing(10);
+
 	desclbl->setString(descstr);
 
 	//фа╠ноб╡Ц╣Ц╩В

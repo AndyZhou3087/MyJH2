@@ -86,6 +86,8 @@ public:
 	static std::vector<FOURProperty> vec_randMonstersRes;
 	static int randMonstersMinCount;
 	static int randMonstersMaxCount;
+	std::vector<int> range_start;
+	std::vector<int> range_end;
 };
 
 #endif

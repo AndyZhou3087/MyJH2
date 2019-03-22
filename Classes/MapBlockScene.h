@@ -200,6 +200,8 @@ private:
 
 	static bool sortByBoxPos(MapBlock* a, MapBlock *b);
 
+	void setBlockRange();
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;
@@ -275,6 +277,7 @@ private:
 
 	Sprite* mapAllOpenFog;
 	std::vector<MapBlock*> vec_boxblock;//宝箱地图块
+	std::map<int, std::vector<MapBlock*>> map_rangeblocks;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif
