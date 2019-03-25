@@ -3461,13 +3461,13 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{46,170}</string>
+                <string>{170,46}</string>
                 <key>spriteSourceSize</key>
-                <string>{46,170}</string>
+                <string>{170,46}</string>
                 <key>textureRect</key>
-                <string>{{1726,220},{46,170}}</string>
+                <string>{{1726,220},{170,46}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>mapui/maprightbtn.png</key>
             <dict>
@@ -4338,7 +4338,7 @@
             <key>size</key>
             <string>{1796,1908}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e6c30e66e291377df0ea067ac031feb8:9ad40ce5de30dec2d355bf50bbd3813c:18ad7141ecb3d4d1fd1c0b194edad30b$</string>
+            <string>$TexturePacker:SmartUpdate:ed216481e102eddc7c814ae4d25aeeb9:f5a8018805101cb9b90d0bb019116a1d:18ad7141ecb3d4d1fd1c0b194edad30b$</string>
             <key>textureFileName</key>
             <string>mapui.png</string>
         </dict>

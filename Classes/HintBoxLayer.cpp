@@ -228,6 +228,8 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				if (heroattrlayer != NULL)
 				{
 					heroattrlayer->recruitHero();
+
+					return;
 				}
 			}
 			else if (m_forwhere == 13)

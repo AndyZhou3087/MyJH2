@@ -101,6 +101,7 @@ bool LibraryLayer2::init()
 			m_isDraging = true;
 		}
 	};
+
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;

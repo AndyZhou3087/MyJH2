@@ -503,6 +503,21 @@
       <FilePathData Path="ui/z003.png" />
       <FilePathData Path="ui/z004.png" />
       <FilePathData Path="ui/movinglblbg.png" />
+      <FilePathData Path="ui/hh_barbg.png" />
+      <FilePathData Path="ui/hh_capbar.png" />
+      <FilePathData Path="ui/hh_capbarbg.png" />
+      <FilePathData Path="ui/hh_resbg.png" />
+      <FilePathData Path="ui/hh_reslvbtn.png" />
+      <FilePathData Path="ui/hh_addbtn.png" />
+      <FilePathData Path="ui/hh_subbtn.png" />
+      <FilePathData Path="ui/hh_capbar1.png" />
+      <FilePathData Path="ui/hh_capbar2.png" />
+      <FilePathData Path="ui/hh_maxfmbar1.png" />
+      <FilePathData Path="ui/hh_maxfmbar2.png" />
+      <FilePathData Path="ui/hh_fmcount_box.png" />
+      <FilePathData Path="ui/hh_fm_iconbox.png" />
+      <FilePathData Path="ui/hh_fm_nodebox.png" />
+      <FilePathData Path="ui/hh_fmicon.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

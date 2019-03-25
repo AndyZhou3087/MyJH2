@@ -20,6 +20,7 @@
 #include "NewGuideLayer.h"
 #include "DataSave.h"
 #include "MatchMainLayer.h"
+#include "BuyResLayer.h"
 
 #define RSILVERCOUNT 100
 
@@ -566,6 +567,21 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					{
 						GlobalInstance::getInstance()->saveNewerGuide(64, false);
 					}
+					int needsilver = dva.getValue() - dval.getValue();
+					int count = needsilver / 1000;
+					int s = needsilver % 1000;
+					if (s != 0)
+						count += 1;
+					MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
+					std::vector< MSGAWDSDATA> vec_res;
+					MSGAWDSDATA rdata;
+					rdata.rid = "r013";
+					rdata.count = count;
+					rdata.qu = 0;
+					vec_res.push_back(rdata);
+					BuyResLayer* layer = BuyResLayer::create(vec_res);
+					this->addChild(layer);
+					AnimationEffect::openAniEffect(layer);
 				}
 			}
 			else if (m_showtype == HS_TRAINING)

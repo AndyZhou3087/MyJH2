@@ -23,6 +23,7 @@
 #include "HintBoxLayer.h"
 #include "Const.h"
 #include "WaitingProgress.h"
+#include "BuyResLayer.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -816,7 +817,21 @@ void HeroAttrLayer::recruitHero()
 	}
 	else
 	{
+		int needsilver = recuitCostsilver[m_heroData->getPotential()] - GlobalInstance::getInstance()->getMySoliverCount().getValue();
+		int count = needsilver/1000;
+		int s = needsilver%1000;
+		if (s != 0)
+			count += 1;
 		MovingLabel::show(ResourceLang::map_lang["nomoresilver"]);
+		std::vector< MSGAWDSDATA> vec_res;
+		MSGAWDSDATA rdata;
+		rdata.rid = "r013";
+		rdata.count = count;
+		rdata.qu = 0;
+		vec_res.push_back(rdata);
+		BuyResLayer* layer = BuyResLayer::create(vec_res);
+		this->addChild(layer);
+		AnimationEffect::openAniEffect(layer);
 	}
 }
 

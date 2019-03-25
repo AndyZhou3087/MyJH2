@@ -26,6 +26,7 @@
 #include "LibraryLayer.h"
 #include "FlowWorld.h"
 #include "LibraryLayer2.h"
+#include "HomeHillLayer2.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -732,7 +733,8 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				}
 				else if (buildname.compare("7homehill") == 0)
 				{
-					layer = HomeHillLayer::create(Building::map_buildingDatas[buildname]);
+					//layer = HomeHillLayer::create(Building::map_buildingDatas[buildname]);
+					layer = HomeHillLayer2::create(Building::map_buildingDatas[buildname]);
 				}
 				else if (buildname.compare("8pkground") == 0)
 				{
@@ -860,7 +862,8 @@ void MainScene::updateTime(float dt)
 		for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
 		{
 			ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
-			if (rescreator->getFarmersCount().getValue() >= 0 && rescreator->getLv().getValue() >= 0)
+			//if (rescreator->getFarmersCount().getValue() >= 0 && rescreator->getLv().getValue() >= 0)
+			if (rescreator->getFarmersCount().getValue() >= 0)
 			{
 				int addcount = 0;//需要增加的数量
 				if (rescreator->getName().compare("r001") == 0)
@@ -912,6 +915,14 @@ void MainScene::updateTime(float dt)
 					if (g_mainScene != NULL)
 					{
 						std::string showtext = StringUtils::format(formatstr.c_str(), GlobalInstance::map_AllResources[rescreator->getName()].name.c_str(), addcount);
+						MovingLabel::show(showtext);
+					}
+				}
+				else
+				{
+					if (MyRes::getMyResCount("r001") <= 0 && rescreator->getName().compare("r001") != 0 && rescreator->getFarmersCount().getValue() > 0)//食物不足时，提示不产出
+					{
+						std::string showtext = StringUtils::format(ResourceLang::map_lang["canntoutput"].c_str(), GlobalInstance::map_AllResources[rescreator->getName()].name.c_str());
 						MovingLabel::show(showtext);
 					}
 				}

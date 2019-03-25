@@ -216,7 +216,15 @@ void BuyResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 				{
 					int qu = m_vecres[i].qu;
 					int st = GlobalInstance::getInstance()->generateStoneCount(qu);
-					MyRes::Add(m_vecres[i].rid, m_vecres[i].count, m_putwhere, qu, st);
+
+					if (m_vecres[i].rid.compare("r013") == 0)
+					{
+						DynamicValueInt intdv;
+						intdv.setValue(m_vecres[i].count*1000);
+						GlobalInstance::getInstance()->addMySoliverCount(intdv);
+					}
+					else
+						MyRes::Add(m_vecres[i].rid, m_vecres[i].count, m_putwhere, qu, st);
 				}
 			}
 			GlobalInstance::getInstance()->costMyCoinCount(needcoincount);

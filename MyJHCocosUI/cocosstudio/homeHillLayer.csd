@@ -140,7 +140,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="contentscroll" ActionTag="-2094316307" Tag="148" IconVisible="False" LeftMargin="34.9974" RightMargin="35.0026" TopMargin="150.0004" BottomMargin="189.9997" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="contentscroll" ActionTag="-2094316307" Tag="148" IconVisible="False" LeftMargin="34.9974" RightMargin="35.0026" TopMargin="150.0002" BottomMargin="189.9997" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="650.0000" Y="940.0000" />
             <AnchorPoint />
             <Position X="34.9974" Y="189.9997" />

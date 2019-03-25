@@ -25,16 +25,5 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="resDescLayer.csd" />
-          <FilePathData Path="buySelectLayer.csd" />
-          <FilePathData Path="buySingleResLayer.csd" />
-          <FilePathData Path="changeHeadLayer.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="resDescLayer.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

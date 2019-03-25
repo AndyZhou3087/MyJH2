@@ -361,6 +361,25 @@
       <FilePathData Path="text_zh_cn/vocfit_text3.png" />
       <FilePathData Path="text_zh_cn/allmapopen_text.png" />
       <FilePathData Path="text_zh_cn/maptrans_text.png" />
+      <FilePathData Path="text_zh_cn/hh_r1_text.png" />
+      <FilePathData Path="text_zh_cn/hh_r2_text.png" />
+      <FilePathData Path="text_zh_cn/hh_r3_text.png" />
+      <FilePathData Path="text_zh_cn/hh_r4_text.png" />
+      <FilePathData Path="text_zh_cn/hh_r5_text.png" />
+      <FilePathData Path="text_zh_cn/hh_info_output_text.png" />
+      <FilePathData Path="text_zh_cn/hh_info_store_text.png" />
+      <FilePathData Path="text_zh_cn/hh_info_r001text.png" />
+      <FilePathData Path="text_zh_cn/hh_info_r002text.png" />
+      <FilePathData Path="text_zh_cn/hh_info_r003text.png" />
+      <FilePathData Path="text_zh_cn/hh_info_r004text.png" />
+      <FilePathData Path="text_zh_cn/hh_info_r005text.png" />
+      <FilePathData Path="text_zh_cn/hh_output_text.png" />
+      <FilePathData Path="text_zh_cn/hh_soutput_text.png" />
+      <FilePathData Path="text_zh_cn/hh_cap_text.png" />
+      <FilePathData Path="text_zh_cn/hh_reslvbtn_text.png" />
+      <FilePathData Path="text_zh_cn/hh_info_maxfm_text.png" />
+      <FilePathData Path="text_zh_cn/hh_noworkfm_text.png" />
+      <FilePathData Path="text_zh_cn/hh_addfm_text.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

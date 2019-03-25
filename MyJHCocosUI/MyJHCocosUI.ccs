@@ -9,6 +9,25 @@
           <Fnt Name="normalhurtnum.fnt" />
           <TTF Name="simhei.ttf" />
         </Folder>
+        <Folder Name="homehill">
+          <Image Name="hh_bench.png" />
+          <Image Name="hh_f0.png" />
+          <Image Name="hh_f1.png" />
+          <Image Name="hh_f2.png" />
+          <Image Name="hh_f3.png" />
+          <Image Name="hhinfobg.png" />
+          <Image Name="hhr1build_n.png" />
+          <Image Name="hhr1build_s.png" />
+          <Image Name="hhr2build_n.png" />
+          <Image Name="hhr2build_s.png" />
+          <Image Name="hhr3build_n.png" />
+          <Image Name="hhr3build_s.png" />
+          <Image Name="hhr4build_n.png" />
+          <Image Name="hhr4build_s.png" />
+          <Image Name="hhr5build_n.png" />
+          <Image Name="hhr5build_s.png" />
+          <Image Name="homehillbg.jpg" />
+        </Folder>
         <Folder Name="images">
           <Folder Name="newerguide">
             <Image Name="guide_finger_0.png" />
@@ -548,6 +567,25 @@
           <Image Name="herocancel_text.png" />
           <Image Name="herofight_text.png" />
           <Image Name="herofire_text.png" />
+          <Image Name="hh_addfm_text.png" />
+          <Image Name="hh_cap_text.png" />
+          <Image Name="hh_info_maxfm_text.png" />
+          <Image Name="hh_info_output_text.png" />
+          <Image Name="hh_info_r001text.png" />
+          <Image Name="hh_info_r002text.png" />
+          <Image Name="hh_info_r003text.png" />
+          <Image Name="hh_info_r004text.png" />
+          <Image Name="hh_info_r005text.png" />
+          <Image Name="hh_info_store_text.png" />
+          <Image Name="hh_noworkfm_text.png" />
+          <Image Name="hh_output_text.png" />
+          <Image Name="hh_r1_text.png" />
+          <Image Name="hh_r2_text.png" />
+          <Image Name="hh_r3_text.png" />
+          <Image Name="hh_r4_text.png" />
+          <Image Name="hh_r5_text.png" />
+          <Image Name="hh_reslvbtn_text.png" />
+          <Image Name="hh_soutput_text.png" />
           <Image Name="hilllv_text.png" />
           <Image Name="hillrecruit.png" />
           <Image Name="homehilltitle.png" />
@@ -1090,6 +1128,21 @@
           <Image Name="heroitem.png" />
           <Image Name="herotag_0.png" />
           <Image Name="herotag_1.png" />
+          <Image Name="hh_addbtn.png" />
+          <Image Name="hh_barbg.png" />
+          <Image Name="hh_capbar.png" />
+          <Image Name="hh_capbar1.png" />
+          <Image Name="hh_capbar2.png" />
+          <Image Name="hh_capbarbg.png" />
+          <Image Name="hh_fm_iconbox.png" />
+          <Image Name="hh_fm_nodebox.png" />
+          <Image Name="hh_fmcount_box.png" />
+          <Image Name="hh_fmicon.png" />
+          <Image Name="hh_maxfmbar1.png" />
+          <Image Name="hh_maxfmbar2.png" />
+          <Image Name="hh_resbg.png" />
+          <Image Name="hh_reslvbtn.png" />
+          <Image Name="hh_subbtn.png" />
           <Image Name="i002.png" />
           <Image Name="i004.png" />
           <Image Name="k001.png" />
@@ -1355,9 +1408,13 @@
         <Project Name="goBackLayer.csd" Type="Layer" />
         <Project Name="headInfoLayer.csd" Type="Layer" />
         <Project Name="heroAttrLayer.csd" Type="Layer" />
+        <Image Name="hh.jpg" />
+        <Project Name="hhreslvlayer.csd" Type="Layer" />
         <Project Name="hillResNode.csd" Type="Node" />
         <Project Name="hitBoxLayer.csd" Type="Layer" />
         <Project Name="homeHillLayer.csd" Type="Layer" />
+        <Project Name="homehillLayer2.csd" Type="Layer" />
+        <Project Name="homeResNode2.csd" Type="Node" />
         <Project Name="hospitalLayer.csd" Type="Layer" />
         <Project Name="innRoomLayer.csd" Type="Layer" />
         <Project Name="LevelForm.csd" Type="Layer" />
@@ -1430,6 +1487,7 @@
         <Project Name="taskMainDescLayer.csd" Type="Layer" />
         <Project Name="taskMainNode.csd" Type="Node" />
         <Project Name="taskTipsNode.csd" Type="Node" />
+        <Project Name="testhhPosLayer.csd" Type="Layer" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <Project Name="timeGiftLayer.csd" Type="Layer" />
         <Project Name="trainLayer.csd" Type="Layer" />

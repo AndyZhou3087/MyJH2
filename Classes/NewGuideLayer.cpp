@@ -10,7 +10,7 @@
 #include "Equipable.h"
 #include "FightingLayer.h"
 #include "MainScene.h"
-#include "HomeHillLayer.h"
+#include "HomeHillLayer2.h"
 #include "InnRoomLayer.h"
 #include "RandHeroLayer.h"
 #include "HeroAttrLayer.h"
@@ -402,10 +402,10 @@ void NewGuideLayer::showNextGuide()
 		g_NewGuideLayer = NULL;
 		if (g_mainScene != NULL)
 		{
-			HomeHillLayer* hill = (HomeHillLayer*)g_mainScene->getChildByName("7homehill");
+			HomeHillLayer2* hill = (HomeHillLayer2*)g_mainScene->getChildByName("7homehill");
 			if (hill != NULL)
 			{
-				hill->scheduleOnce(schedule_selector(HomeHillLayer::delayShowNewerGuide), 0.1f);
+				hill->scheduleOnce(schedule_selector(HomeHillLayer2::delayShowNewerGuide), 0.1f);
 				//hill->delayShowNewerGuide(0);
 			}
 		}
@@ -714,7 +714,7 @@ void NewGuideLayer::showWord(std::string wordstr)
 			xsm->setPositionX(-190); 
 			xsm->setRotationSkewY(180);
 		}
-		else if (m_step == 14)
+		else if (m_step == 14 || m_step == 85)
 		{
 			textbox->setPosition(Vec2(360, 360));
 		}

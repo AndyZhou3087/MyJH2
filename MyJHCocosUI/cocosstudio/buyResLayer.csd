@@ -242,14 +242,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="539355035" Tag="450" IconVisible="False" LeftMargin="111.1661" RightMargin="108.8339" TopMargin="713.0582" BottomMargin="516.9418" IsCustomSize="True" FontSize="21" LabelText="描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="500.0000" Y="50.0000" />
+          <AbstractNodeData Name="desc" ActionTag="539355035" Tag="450" IconVisible="False" LeftMargin="111.1661" RightMargin="108.8339" TopMargin="708.0582" BottomMargin="511.9418" IsCustomSize="True" FontSize="21" LabelText="描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="500.0000" Y="60.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="361.1661" Y="541.9418" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5016" Y="0.4234" />
-            <PreSize X="0.6944" Y="0.0391" />
+            <PreSize X="0.6944" Y="0.0469" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />

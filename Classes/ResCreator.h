@@ -18,8 +18,10 @@ public:
 	CC_SYNTHESIZE(DynamicValueInt, m_lv, Lv);//等级
 	CC_SYNTHESIZE(std::string, m_name, Name);//名称ID
 public:
-	//最大的工人数量
+	//当前等级最大的工人数量
 	DynamicValueInt getMaxFarmersCount();
+
+	DynamicValueInt getMaxFarmersCountByLv(int lv);
 
 	//最大容量
 	DynamicValueInt getMaxCap(int lv);
