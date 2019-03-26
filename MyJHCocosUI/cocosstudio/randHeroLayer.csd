@@ -263,14 +263,15 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="cnumbl" ActionTag="-866948703" Tag="137" IconVisible="False" LeftMargin="543.8235" RightMargin="137.1765" TopMargin="1130.6152" BottomMargin="123.3848" FontSize="26" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="39.0000" Y="26.0000" />
+          <AbstractNodeData Name="cnumbl" ActionTag="-866948703" Tag="137" IconVisible="False" LeftMargin="543.8235" RightMargin="135.1765" TopMargin="1130.6152" BottomMargin="119.3848" FontSize="26" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="41.0000" Y="30.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="543.8235" Y="136.3848" />
+            <Position X="543.8235" Y="134.3848" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7553" Y="0.1066" />
-            <PreSize X="0.0542" Y="0.0203" />
+            <PrePosition X="0.7553" Y="0.1050" />
+            <PreSize X="0.0569" Y="0.0234" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
@@ -285,62 +286,41 @@
             <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="timebargb" ActionTag="-1679566337" Tag="137" IconVisible="False" LeftMargin="296.0000" RightMargin="296.0000" TopMargin="761.9999" BottomMargin="488.0001" ctype="SpriteObjectData">
-            <Size X="128.0000" Y="30.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="503.0001" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.3930" />
-            <PreSize X="0.1778" Y="0.0234" />
-            <FileData Type="MarkedSubImage" Path="ui/timebargb.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="timebar" ActionTag="-655845600" Tag="139" IconVisible="False" LeftMargin="296.0000" RightMargin="296.0000" TopMargin="762.0000" BottomMargin="488.0000" ProgressInfo="100" ctype="LoadingBarObjectData">
-            <Size X="128.0000" Y="30.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="503.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.3930" />
-            <PreSize X="0.1778" Y="0.0234" />
-            <ImageFileData Type="MarkedSubImage" Path="ui/timebar.png" Plist="ui.plist" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="timeiconbox" ActionTag="740459032" Tag="136" IconVisible="False" LeftMargin="269.8028" RightMargin="414.1972" TopMargin="759.0002" BottomMargin="484.9998" ctype="SpriteObjectData">
-            <Size X="36.0000" Y="36.0000" />
+          <AbstractNodeData Name="autofreshherobox" ActionTag="-1588795070" Tag="56" IconVisible="False" LeftMargin="202.9998" RightMargin="203.0002" TopMargin="733.5000" BottomMargin="487.5000" ctype="SpriteObjectData">
+            <Size X="314.0000" Y="59.0000" />
             <Children>
-              <AbstractNodeData Name="timeicon" ActionTag="1145400376" Tag="138" IconVisible="False" LeftMargin="9.0000" RightMargin="9.0000" TopMargin="4.0000" BottomMargin="4.0000" ctype="SpriteObjectData">
-                <Size X="18.0000" Y="28.0000" />
+              <AbstractNodeData Name="text" ActionTag="-1922209330" Tag="57" IconVisible="False" LeftMargin="60.7254" RightMargin="163.2746" TopMargin="18.8804" BottomMargin="18.1196" ctype="SpriteObjectData">
+                <Size X="90.0000" Y="22.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="18.0000" Y="18.0000" />
+                <Position X="105.7254" Y="29.1196" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.5000" />
-                <PreSize X="0.5000" Y="0.7778" />
-                <FileData Type="MarkedSubImage" Path="ui/timeicon.png" Plist="ui.plist" />
+                <PrePosition X="0.3367" Y="0.4936" />
+                <PreSize X="0.2866" Y="0.3729" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/autorefreshhero_text.png" Plist="text_zh_cn.plist" />
                 <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="timelbl" ActionTag="-2057086658" Tag="163" IconVisible="False" LeftMargin="155.2997" RightMargin="60.7003" TopMargin="18.0000" BottomMargin="15.0000" FontSize="23" LabelText="06:50:50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="98.0000" Y="26.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="204.2997" Y="28.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="233" G="160" B="28" />
+                <PrePosition X="0.6506" Y="0.4746" />
+                <PreSize X="0.3121" Y="0.4407" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="80" G="38" B="12" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="287.8028" Y="502.9998" />
+            <Position X="359.9998" Y="517.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3997" Y="0.3930" />
-            <PreSize X="0.0500" Y="0.0281" />
-            <FileData Type="MarkedSubImage" Path="ui/timeiconbox.png" Plist="ui.plist" />
+            <PrePosition X="0.5000" Y="0.4039" />
+            <PreSize X="0.4361" Y="0.0461" />
+            <FileData Type="MarkedSubImage" Path="ui/autofreshherobox.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="timelbl" ActionTag="-2057086658" Tag="163" IconVisible="False" LeftMargin="311.0001" RightMargin="310.9999" TopMargin="764.0004" BottomMargin="489.9996" FontSize="23" LabelText="06:50:50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="98.0000" Y="26.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0001" Y="502.9996" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.3930" />
-            <PreSize X="0.1361" Y="0.0203" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
           <AbstractNodeData Name="usecardbtn" ActionTag="553796004" Tag="129" IconVisible="False" LeftMargin="257.9998" RightMargin="258.0002" TopMargin="855.6120" BottomMargin="340.3880" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />

@@ -84,11 +84,37 @@
           </AbstractNodeData>
           <AbstractNodeData Name="userpro" ActionTag="-1605686106" Alpha="126" Tag="109" IconVisible="False" TopMargin="1168.8000" BottomMargin="1.2000" TouchEnable="True" Scale9Enable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="24" Scale9Height="24" ctype="ImageViewObjectData">
             <Size X="720.0000" Y="110.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="56.2000" />
+            <Children>
+              <AbstractNodeData Name="checkbox" ActionTag="-1852793854" Tag="12" IconVisible="False" LeftMargin="105.9996" RightMargin="590.0004" TopMargin="58.0002" BottomMargin="27.9998" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
+                <Size X="24.0000" Y="24.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="117.9996" Y="39.9998" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.1639" Y="0.3636" />
+                <PreSize X="0.0333" Y="0.2182" />
+                <NormalBackFileData Type="Normal" Path="images/protocalbox.png" Plist="" />
+                <PressedBackFileData Type="Normal" Path="images/protocalbox.png" Plist="" />
+                <DisableBackFileData Type="Normal" Path="images/protocalbox.png" Plist="" />
+                <NodeNormalFileData Type="Normal" Path="images/protocalsel.png" Plist="" />
+                <NodeDisableFileData Type="Normal" Path="images/protocalsel.png" Plist="" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="textclick" ActionTag="-314002661" Tag="22" IconVisible="False" LeftMargin="135.0000" RightMargin="135.0000" TopMargin="51.7263" BottomMargin="26.2737" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                <Size X="450.0000" Y="32.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="360.0000" Y="42.2737" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.3843" />
+                <PreSize X="0.6250" Y="0.2909" />
+                <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint />
+            <Position Y="1.2000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.0439" />
+            <PrePosition Y="0.0009" />
             <PreSize X="1.0000" Y="0.0859" />
             <FileData Type="MarkedSubImage" Path="ui/headclip.png" Plist="ui.plist" />
           </AbstractNodeData>
@@ -103,14 +129,14 @@
             <FileData Type="Normal" Path="loadingclicktext.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="tips" ActionTag="1102590692" Tag="100" IconVisible="False" LeftMargin="46.9443" RightMargin="50.0557" TopMargin="1227.0000" BottomMargin="27.0000" FontSize="23" LabelText="客栈里可招募的侠客品质由低到高依次为绿，蓝，紫，橙，红" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-            <Size X="623.0000" Y="26.0000" />
+          <AbstractNodeData Name="tips" ActionTag="1102590692" Tag="100" IconVisible="False" LeftMargin="132.4443" RightMargin="135.5557" TopMargin="1227.0000" BottomMargin="27.0000" FontSize="23" LabelText="我已阅读并同意《游戏用户协议和隐私策略》" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="452.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="358.4443" Y="40.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4978" Y="0.0313" />
-            <PreSize X="0.8653" Y="0.0203" />
+            <PreSize X="0.6278" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />

@@ -303,9 +303,9 @@
 	<s name="newguidename2">少帮主</s>
 	<s name="newguidename3">帮主</s>
 	<s name="usertile">隐私策略</s>
-	<s name="usertips0">请详细阅读《游戏用户协议和隐私策略》后方可进入游戏</s>
+	<s name="usertips0">我已阅读并同意《游戏用户协议和隐私策略》</s>
 	<s name="usertips1">《游戏用户协议和隐私策略》</s>
-	<s name="usertipshint">请点击下方用户隐私协议并同意</s>
+	<s name="usertipshint">请同意下方用户隐私协议</s>
 	<s name="refuseusertext">拒绝用户协议将无法进入游戏！确定要拒绝吗？</s>
 	<s name="networkerror">网络异常，与服务器断开连接，请检查网络设置！</s>
 	<s name="dataerr0">检测到您在游戏中存在违规行为，为维护游戏公平性，将您的数据清零处理！</s>
@@ -500,5 +500,6 @@
 	<s name="exitmazetext">这迷宫弄得我晕头转向，都分不清东西南北，还是出去透透气再从长计议！</s>
 	<s name="addfarmerdesc">招募后闲置工人数</s>
 	<s name="canntoutput">食物不足！%s停止产出</s>
-	<s name="fireheroaddrs">返还百年人参x%d</s>		
+	<s name="fireheroaddrs">返还百年人参x%d</s>
+	<s name="silverprotecthint">银两小于%d，无法使用银两刷新</s>			
 </strings>

@@ -64,7 +64,7 @@ bool RandHeroLayer::init()
 
 	csbnode = CSLoader::createNode(ResourcePath::makePath("randHeroLayer.csb"));
 	this->addChild(csbnode);
-	int langtype = GlobalInstance::getInstance()->getLang();
+	langtype = GlobalInstance::getInstance()->getLang();
 
 	//标题
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
@@ -86,9 +86,10 @@ bool RandHeroLayer::init()
 
 		if (tag == BTN_S_REFRESH)
 		{
+			silverrefreshbtn = btn;
 			//银子刷新按钮文字
-			cocos2d::ui::ImageView* srefreshbtntxt = (cocos2d::ui::ImageView*)btn->getChildByName("text");
-			srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("srefresh_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			srefreshbtntxt = (cocos2d::ui::ImageView*)btn->getChildByName("text");
+			srefreshbtntxt->ignoreContentAdaptWithSize(true);
 		}
 		else if (tag == BTN_C_REFRESH)
 		{
@@ -112,6 +113,7 @@ bool RandHeroLayer::init()
 		}
 	}
 
+	silvericon = csbnode->getChildByName("sicon");
 
 	refreshsilverlbl = (cocos2d::ui::Text*)csbnode->getChildByName("snumbl");
 	std::string lblstr = StringUtils::format("%d", refreshHeroSilver.getValue() + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
@@ -124,10 +126,9 @@ bool RandHeroLayer::init()
 	lblstr = StringUtils::format("%d", MyRes::getMyResCount("u001"));
 	herocardcountlbl->setString(lblstr);
 
-	m_timebar = (cocos2d::ui::LoadingBar*)csbnode->getChildByName("timebar");
-	m_timebar->setPercent(100);
+	freefreshherobox = csbnode->getChildByName("autofreshherobox");
 
-	m_timelbl = (cocos2d::ui::Text*)csbnode->getChildByName("timelbl");
+	m_timelbl = (cocos2d::ui::Text*)freefreshherobox->getChildByName("timelbl");
 
 	if (GlobalInstance::vec_rand3Heros.size() <= 0)
 		create3RandHero();
@@ -229,8 +230,20 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	{
 		switch (tag)
 		{
+		case BNT_F_REFRESH://银子刷新
+			{
+				if (checkIsTopPotentail(4) < 0)
+					refresh3Hero(4);
+			}
+			break;
 		case BTN_S_REFRESH://银子刷新
-			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= refreshHeroSilver.getValue() + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100)
+
+			if (GlobalInstance::getInstance()->getMySoliverCount().getValue() < 5000)
+			{
+				std::string  str = StringUtils::format(ResourceLang::map_lang["silverprotecthint"].c_str(), 5000);
+				MovingLabel::show(str);
+			}
+			else if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= refreshHeroSilver.getValue() + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100)
 			{
 				if (checkIsTopPotentail(1) < 0)
 					refresh3Hero(1);
@@ -366,6 +379,11 @@ void RandHeroLayer::refresh3Hero(int i)
 		std::string str = StringUtils::format("%d", MyRes::getMyResCount("u001"));
 		herocardcountlbl->setString(str);
 	}
+	else if (i == 4)//免费刷新
+	{
+		silverrefreshbtn->setEnabled(false);
+		GlobalInstance::getInstance()->saveRefreshHeroTime(GlobalInstance::servertime);
+	}
 
 	bool israndanim = false;
 	if (i > 0)
@@ -396,25 +414,36 @@ void RandHeroLayer::updateUI(float dt)
 	int pasttime = GlobalInstance::servertime - refreshtime;
 	if (pasttime >= HERO_RESETTIME)
 	{
-		int t = GlobalInstance::servertime % HERO_RESETTIME;
+		//int t = GlobalInstance::servertime % HERO_RESETTIME;
 
-		refreshtime = GlobalInstance::servertime - t;
-		GlobalInstance::getInstance()->saveRefreshHeroTime(refreshtime);
+		//refreshtime = GlobalInstance::servertime - t;
+		//GlobalInstance::getInstance()->saveRefreshHeroTime(refreshtime);
 
-		lefttime = HERO_RESETTIME - t;
-		create3RandHero();
-		for (int i = 0; i < 3; i++)
-		{
-			heronode[i]->setData(GlobalInstance::vec_rand3Heros[i], false);
-		}
+		//lefttime = HERO_RESETTIME - t;
+		//create3RandHero();
+		//for (int i = 0; i < 3; i++)
+		//{
+		//	heronode[i]->setData(GlobalInstance::vec_rand3Heros[i], false);
+		//}
+
+		freefreshherobox->setVisible(false);
+		silvericon->setVisible(false);
+		refreshsilverlbl->setVisible(false);
+		srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("freerefreshhero_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		silverrefreshbtn->setTag(BNT_F_REFRESH);
 	}
 	else
 	{
+		freefreshherobox->setVisible(true);
+		silvericon->setVisible(true);
+		refreshsilverlbl->setVisible(true);
+		silverrefreshbtn->setTag(BTN_S_REFRESH);
+		silverrefreshbtn->setEnabled(true);
+		srefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("srefresh_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		lefttime = HERO_RESETTIME - pasttime;
+		std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
+		m_timelbl->setString(timestr);
 	}
-	std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
-	m_timelbl->setString(timestr);
-	m_timebar->setPercent(lefttime*100/ HERO_RESETTIME);
 
 	int zerotime = GlobalInstance::servertime + 8*60*60;
 	if (zerotime - GlobalInstance::getInstance()->getResetSilverRefHeroCountTime() >= TWENTYFOURHOURSTOSEC)

@@ -9,7 +9,8 @@ USING_NS_CC;
 
 typedef enum
 {
-	BTN_S_REFRESH = 1000,//银子刷新
+	BNT_F_REFRESH = 1000,//免费刷新
+	BTN_S_REFRESH,//银子刷新
 	BTN_C_REFRESH,//元宝刷新
 	BTN_USECARD,//使用卷轴
 	BTN_ADD_SILVERBOX,//增加银子
@@ -54,7 +55,12 @@ private:
 	cocos2d::ui::Text* refreshcoinlbl;//金币刷新LABEL
 	cocos2d::ui::Text* herocardcountlbl;//卷轴个数LABEL
 	RandHeroNode* heronode[3];//3个随机的英雄UI
-	cocos2d::ui::LoadingBar* m_timebar;
+	Node* freefreshherobox;
+	Node* silvericon;
+	cocos2d::ui::ImageView* srefreshbtntxt;
+	cocos2d::ui::Widget* silverrefreshbtn;
+	int langtype;
+
 	cocos2d::ui::Text* m_timelbl;
 	Node* csbnode;
 	DynamicValueInt refreshHeroCoin;

@@ -15,6 +15,7 @@
 #include "ErrorHintLayer.h"
 #include "StoryScene.h"
 #include "HintBoxLayer.h"
+#include "SoundManager.h"
 #ifdef UMENG
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
@@ -67,8 +68,12 @@ bool LoadingScene::init()
 	m_loadingbar->setVisible(false);
 
 	m_userpro = (cocos2d::ui::ImageView*)csbnode->getChildByName("userpro");
-	m_userpro->addTouchEventListener(CC_CALLBACK_2(LoadingScene::onBtnClick, this));
-	m_userpro->setTag(0);
+	//m_userpro->addTouchEventListener(CC_CALLBACK_2(LoadingScene::onBtnClick, this));
+	//m_userpro->setTag(0);
+
+	cocos2d::ui::ImageView* textclick = (cocos2d::ui::ImageView*)m_userpro->getChildByName("textclick");
+	textclick->addTouchEventListener(CC_CALLBACK_2(LoadingScene::onBtnClick, this));
+	textclick->setTag(0);
 
 	m_loadingbg = (cocos2d::ui::ImageView*)csbnode->getChildByName("loadingbg");
 	m_loadingbg->addTouchEventListener(CC_CALLBACK_2(LoadingScene::onBtnClick, this));
@@ -83,6 +88,9 @@ bool LoadingScene::init()
 
 	tipslbl = (cocos2d::ui::Text*)csbnode->getChildByName("tips");
 	tipslbl->setVisible(false);
+
+	cocos2d::ui::CheckBox* checkBox = (cocos2d::ui::CheckBox*)m_userpro->getChildByName("checkbox");
+	checkBox->addEventListener(CC_CALLBACK_2(LoadingScene::checkBoxCallback, this));
 
 	//解析语言xml
 	int langtype = DataSave::getInstance()->getLocalLang();
@@ -115,6 +123,9 @@ bool LoadingScene::init()
 		}
 	}
 
+	checkBox->setPositionY(m_wordlbl->getPositionY() - 2);
+	textclick->setPositionY(m_wordlbl->getPositionY());
+
 	for (int i = 0; i < 3; i++)
 	{
 		std::string pointstr = StringUtils::format("loadingpoint%d", i);
@@ -125,26 +136,30 @@ bool LoadingScene::init()
 	//未同意时弹出，同意后不再弹出
 	if (!DataSave::getInstance()->getUserProtocal())
 	{
-		Layer *userProlayer = UserProtocolLayer::create();
-		this->addChild(userProlayer, 0, "UserProtocolLayer");
-		AnimationEffect::openAniEffect(userProlayer);
-	}
-	else
-	{
-		m_userpro->setVisible(false);
-		m_wordlbl->setVisible(false);
-	}
-	//IOS第一次安装会有联网权限提示
-	if (DataSave::getInstance()->getFirstEnter())
-	{
+		//Layer *userProlayer = UserProtocolLayer::create();
+		//this->addChild(userProlayer, 0, "UserProtocolLayer");
+		//AnimationEffect::openAniEffect(userProlayer);
 		m_loadingbg->setEnabled(true);
 		m_loadingclicktext->setVisible(true);
 		m_loadingclicktext->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
 	}
 	else
 	{
+		m_userpro->setVisible(false);
+		m_wordlbl->setVisible(false);
 		loadData();
 	}
+	//IOS第一次安装会有联网权限提示
+	//if (DataSave::getInstance()->getFirstEnter())
+	//{
+	//	m_loadingbg->setEnabled(true);
+	//	m_loadingclicktext->setVisible(true);
+	//	m_loadingclicktext->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
+	//}
+	//else
+	//{
+	//	loadData();
+	//}
 
     return true;
 }
@@ -564,6 +579,7 @@ void LoadingScene::enterNewScene()
 {
 	if (DataSave::getInstance()->getFirstEnter())
 	{
+		DataSave::getInstance()->setUserProtocal(true);
 		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, StoryScene::createScene()));
 	}
 	else
@@ -722,5 +738,26 @@ void LoadingScene::cfgFileEncryp()
 
 		std::string filecontent = FileUtils::getInstance()->getStringFromFile(filemame);
 		CommonFuncs::encryptToFile(filecontent, filemame.substr(filemame.find("/") + 1));
+	}
+}
+
+void LoadingScene::checkBoxCallback(cocos2d::Ref* pSender, cocos2d::ui::CheckBox::EventType type)
+{
+	switch (type)
+	{
+	case cocos2d::ui::CheckBox::EventType::SELECTED://选中
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		DataSave::getInstance()->setUserProtocal(true);
+	}
+	break;
+	case cocos2d::ui::CheckBox::EventType::UNSELECTED://不选中
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		DataSave::getInstance()->setUserProtocal(false);
+	}
+	break;
+	default:
+		break;
 	}
 }

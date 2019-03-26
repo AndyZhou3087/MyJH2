@@ -59,8 +59,9 @@ bool UserProtocolLayer::init()
 	agreebtn->setTag(1);
 	agreebtn->addTouchEventListener(CC_CALLBACK_2(UserProtocolLayer::onBtnClick, this));
 	cocos2d::ui::ImageView* agreetext = (cocos2d::ui::ImageView*)agreebtn->getChildByName("text");
-	agreetext->loadTexture(ResourcePath::makeTextImgPath("agreetext", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-	agreetext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("agreetext", langtype))->getContentSize());
+	agreetext->ignoreContentAdaptWithSize(true);
+	agreetext->loadTexture(ResourcePath::makeTextImgPath("closebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	agreebtn->setPositionX(360);
 
 	cocos2d::ui::Button* refusebtn = (cocos2d::ui::Button*)m_csbnode->getChildByName("refusebtn");
 	refusebtn->setTag(0);
@@ -68,6 +69,8 @@ bool UserProtocolLayer::init()
 	cocos2d::ui::ImageView* refusetext = (cocos2d::ui::ImageView*)refusebtn->getChildByName("text");
 	refusetext->loadTexture(ResourcePath::makeTextImgPath("refusetext", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	refusetext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("refusetext", langtype))->getContentSize());
+
+	refusebtn->setVisible(false);
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("scrollView");
 
@@ -114,7 +117,7 @@ void UserProtocolLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::T
 			break;
 		case 1:
 		{
-			DataSave::getInstance()->setUserProtocal(tag);
+			//DataSave::getInstance()->setUserProtocal(tag);
 			AnimationEffect::closeAniEffect((Layer*)this);
 		}
 			break;

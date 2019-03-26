@@ -381,6 +381,8 @@
       <FilePathData Path="text_zh_cn/hh_noworkfm_text.png" />
       <FilePathData Path="text_zh_cn/hh_addfm_text.png" />
       <FilePathData Path="text_zh_cn/matchfight_text.png" />
+      <FilePathData Path="text_zh_cn/autorefreshhero_text.png" />
+      <FilePathData Path="text_zh_cn/freerefreshhero_text.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

@@ -152,6 +152,8 @@
           <Image Name="payqqbtn.png" />
           <Image Name="paywxbtn.png" />
           <Image Name="poptitletie.png" />
+          <Image Name="protocalbox.png" />
+          <Image Name="protocalsel.png" />
           <Image Name="renationbg.png" />
           <Image Name="selectequipbg.png" />
           <Image Name="shopbg.jpg" />
@@ -495,6 +497,7 @@
           <Image Name="attr3_text.png" />
           <Image Name="attr4_text.png" />
           <Image Name="attr5_text.png" />
+          <Image Name="autorefreshhero_text.png" />
           <Image Name="backbtn_text.png" />
           <Image Name="break_text.png" />
           <Image Name="bufpreskill10text.png" />
@@ -553,6 +556,7 @@
           <Image Name="firstchargegiftbtn_text.png" />
           <Image Name="firstchargetitle.png" />
           <Image Name="forge_text.png" />
+          <Image Name="freerefreshhero_text.png" />
           <Image Name="getscore_text.png" />
           <Image Name="goback_home_text.png" />
           <Image Name="goback_map_text.png" />
@@ -965,6 +969,7 @@
           <Image Name="armcate_zhe.png" />
           <Image Name="arrowglv.png" />
           <Image Name="attrvalblock.png" />
+          <Image Name="autofreshherobox.png" />
           <Image Name="b001.png" />
           <Image Name="b002.png" />
           <Image Name="b003.png" />
