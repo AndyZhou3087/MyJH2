@@ -289,16 +289,15 @@
           <AbstractNodeData Name="autofreshherobox" ActionTag="-1588795070" Tag="56" IconVisible="False" LeftMargin="202.9998" RightMargin="203.0002" TopMargin="733.5000" BottomMargin="487.5000" ctype="SpriteObjectData">
             <Size X="314.0000" Y="59.0000" />
             <Children>
-              <AbstractNodeData Name="text" ActionTag="-1922209330" Tag="57" IconVisible="False" LeftMargin="60.7254" RightMargin="163.2746" TopMargin="18.8804" BottomMargin="18.1196" ctype="SpriteObjectData">
+              <AbstractNodeData Name="text" ActionTag="-838920833" Tag="45" IconVisible="False" LeftMargin="61.0000" RightMargin="163.0000" TopMargin="18.9999" BottomMargin="18.0001" LeftEage="29" RightEage="29" TopEage="7" BottomEage="7" Scale9OriginX="29" Scale9OriginY="7" Scale9Width="32" Scale9Height="8" ctype="ImageViewObjectData">
                 <Size X="90.0000" Y="22.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="105.7254" Y="29.1196" />
+                <Position X="106.0000" Y="29.0001" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3367" Y="0.4936" />
+                <PrePosition X="0.3376" Y="0.4915" />
                 <PreSize X="0.2866" Y="0.3729" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/autorefreshhero_text.png" Plist="text_zh_cn.plist" />
-                <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="timelbl" ActionTag="-2057086658" Tag="163" IconVisible="False" LeftMargin="155.2997" RightMargin="60.7003" TopMargin="18.0000" BottomMargin="15.0000" FontSize="23" LabelText="06:50:50" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="98.0000" Y="26.0000" />

@@ -130,6 +130,9 @@ bool RandHeroLayer::init()
 
 	m_timelbl = (cocos2d::ui::Text*)freefreshherobox->getChildByName("timelbl");
 
+	cocos2d::ui::ImageView* freereftext = (cocos2d::ui::ImageView*)freefreshherobox->getChildByName("text");
+	freereftext->loadTexture(ResourcePath::makeTextImgPath("autorefreshhero_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
 	if (GlobalInstance::vec_rand3Heros.size() <= 0)
 		create3RandHero();
 
