@@ -303,6 +303,16 @@ MyHeroNode* InnRoomLayer::getMyHeroNode(int index)
 
 void InnRoomLayer::fireHero(int index)
 {
+	Hero* firehero = GlobalInstance::vec_myHeros[index];
+	int allexp = firehero->getExp().getValue();
+	int exp = firehero->getExp().getValue() * 30 / 100;
+	int count = exp / 5000;
+	if (count > 0)
+	{
+		std::string str = StringUtils::format(ResourceLang::map_lang["fireheroaddrs"].c_str(), count);
+		MovingLabel::show(str);
+	}
+
 	GlobalInstance::getInstance()->fireHero(index);
 
 	//std::vector<Hero*> vec_hero;

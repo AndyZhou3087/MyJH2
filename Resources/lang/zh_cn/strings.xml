@@ -499,5 +499,6 @@
 	<s name="taskbtnrestext">（%d%s）</s>
 	<s name="exitmazetext">这迷宫弄得我晕头转向，都分不清东西南北，还是出去透透气再从长计议！</s>
 	<s name="addfarmerdesc">招募后闲置工人数</s>
-	<s name="canntoutput">食物不足！%s停止产出</s>	
+	<s name="canntoutput">食物不足！%s停止产出</s>
+	<s name="fireheroaddrs">返还百年人参x%d</s>		
 </strings>
