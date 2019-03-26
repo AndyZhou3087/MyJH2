@@ -423,13 +423,13 @@ void RandHeroLayer::updateUI(float dt)
 		GlobalInstance::getInstance()->setSilverRefHeroCount(0);
 		GlobalInstance::isNewHeroRefresh = true;
 	}
-
 }
 
 void RandHeroLayer::create3RandHero(int tool)
 {
 	bool isfirsttime = GlobalInstance::vec_rand3Heros.size() == 0 ? true : false;
 	delete3RandHero();
+
 	for (int i = 0; i < 3; i++)
 	{
 		Hero* randhero = new Hero();

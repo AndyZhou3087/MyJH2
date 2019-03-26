@@ -37,7 +37,7 @@ int equiptype[] = { T_ARMOR, T_EQUIP, T_WG, T_NG, T_HANDARMOR, T_FASHION };
 #define S003EXP 15000
 #define S004EXP 50000
 
-int recuitCostsilver[] = { 1000, 2500, 5000, 10000, 20000 };
+int recuitCostsilver[] = { 500, 1000, 2000, 3000, 10000 };
 
 HeroAttrLayer::HeroAttrLayer()
 {

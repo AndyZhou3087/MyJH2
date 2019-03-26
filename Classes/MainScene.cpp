@@ -808,16 +808,6 @@ void MainScene::onFinish(int code)
 			updateTime(0);
 			this->schedule(schedule_selector(MainScene::updateTime), 1);
 
-			int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
-			//议事厅每日更新
-			int t = zerotime / TWENTYFOURHOURSTOSEC;
-			if (t > DataSave::getInstance()->getMyFreshDate())
-			{
-				Quest::resetDailyTask();
-				GlobalInstance::timeMarketStr = "";
-				GlobalInstance::map_timeMartData.clear();
-				DataSave::getInstance()->deleteDataByKey("timemarket");
-			}
 			if (GlobalInstance::servertime - GlobalInstance::getNewsTime >= 5 * 60)
 			{
 				GlobalInstance::getNewsTime = GlobalInstance::servertime;
@@ -986,6 +976,17 @@ void MainScene::updateTime(float dt)
 				MovingLabel::show(showstr);
 			}
 		}
+	}
+
+	int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
+	//议事厅每日更新
+	int t = zerotime / TWENTYFOURHOURSTOSEC;
+	if (t > DataSave::getInstance()->getMyFreshDate())
+	{
+		Quest::resetDailyTask();
+		GlobalInstance::timeMarketStr = "";
+		GlobalInstance::map_timeMartData.clear();
+		DataSave::getInstance()->deleteDataByKey("timemarket");
 	}
 }
 

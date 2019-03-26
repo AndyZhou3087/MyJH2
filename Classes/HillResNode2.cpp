@@ -101,10 +101,10 @@ void HillResNode2::updateData(float dt)
 	std::string str = StringUtils::format("%d/%d", dtemp.getValue(), m_resCreator->getMaxCap(m_resCreator->getLv().getValue()).getValue());
 	maxcap->setString(str);
 	
-	if (dtemp.getValue() >= m_resCreator->getMaxCap(m_resCreator->getLv().getValue()).getValue())
-		maxcap->setTextColor(Color4B(255, 0, 0, 255));
-	else
-		maxcap->setTextColor(Color4B(255, 255, 255, 255));
+	//if (dtemp.getValue() >= m_resCreator->getMaxCap(m_resCreator->getLv().getValue()).getValue())
+	//	maxcap->setTextColor(Color4B(255, 0, 0, 255));
+	//else
+	//	maxcap->setTextColor(Color4B(255, 255, 255, 255));
 
 	int outcount = 0;
 	if (m_resCreator->getName().compare("r001") == 0)
