@@ -54,7 +54,7 @@ bool HomeHillLayer2::init(Building* buidingData)
 
 	m_buidingData = buidingData;
 
-	csbnode = CSLoader::createNode(ResourcePath::makePath("homeHillLayer2.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("homehillLayer2.csb"));
 	this->addChild(csbnode);
 
 	//资源滚动控件
