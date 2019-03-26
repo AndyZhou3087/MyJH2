@@ -195,9 +195,31 @@ void CommonFuncs::playCommonLvUpAnim(Node* target, std::string textstr)
 	action->gotoFrameAndPlay(0, false);
 }
 
-cocos2d::Node* CommonFuncs::playResBoxEffect(cocos2d::Node* target, int qu)
+cocos2d::Node* CommonFuncs::playResBoxEffect(cocos2d::Node* target, int type, int qu, int lv)
 {
-	if (qu >= 3)
+	bool ishow = false;
+	if (type >= T_ARMOR && type <= T_FASHION)
+	{
+		if (qu == 1 && lv >= 15)
+			ishow = true;
+		else if (qu == 2 && lv >= 14)
+			ishow = true;
+		else if (qu == 3 && lv >= 9)
+			ishow = true;
+		else if (qu == 4)
+			ishow = true;
+	}
+	else if (type >= T_WG && type <= T_NG)
+	{
+		if (lv >= 19)
+			ishow = true;
+	}
+	else
+	{
+		if (qu == 3)
+			ishow = true;
+	}
+	if (ishow)
 	{
 		std::string effectstr = StringUtils::format("effect/resbox%deffect.csb", qu);
 		auto effectnode = CSLoader::createNode(effectstr);

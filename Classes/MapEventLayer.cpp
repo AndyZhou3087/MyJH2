@@ -845,7 +845,7 @@ void MapEventLayer::loadBoxUI(cocos2d::ui::ImageView* box, std::string resid)
 	}
 	box->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
-	CommonFuncs::playResBoxEffect(box, qu);
+	CommonFuncs::playResBoxEffect(box, t, qu, 0);
 
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)box->getChildByName("icon");
 

@@ -73,13 +73,13 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 	{
 		int qu = atoi(m_res->getId().substr(1).c_str()) - 1;
 		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
-		CommonFuncs::playResBoxEffect(resbox, qu);
+		CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 	}
 	else if (t >= T_HEROCARD && t <= T_ARMCARD)
 	{
 		int qu = 3;
 		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
-		CommonFuncs::playResBoxEffect(resbox, qu);
+		CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 	}
 	resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 

@@ -166,7 +166,7 @@
             <OutlineColor A="255" R="15" G="95" B="115" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="clickimg" Visible="False" ActionTag="-1397023422" Tag="228" IconVisible="False" LeftMargin="-266.0763" RightMargin="-133.9237" TopMargin="-70.0000" BottomMargin="-70.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="clickimg" ActionTag="-1397023422" Tag="228" IconVisible="False" LeftMargin="-266.0763" RightMargin="-133.9237" TopMargin="-70.0000" BottomMargin="-70.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
             <Size X="400.0000" Y="140.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-66.0763" />

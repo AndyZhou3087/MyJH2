@@ -64,7 +64,7 @@ bool SaleGfLayer::init(ResBase* res)
 
 	int s = GlobalInstance::map_GF[m_res->getId()].qu;
 	std::string qustr = StringUtils::format("ui/resbox_qu%d.png", s);
-	CommonFuncs::playResBoxEffect(resbox, s);
+	CommonFuncs::playResBoxEffect(resbox, res->getType(), s, ((Equipable*)res)->getLv().getValue());
 	resbox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");

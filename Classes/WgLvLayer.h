@@ -89,6 +89,8 @@ private:
 
 	bool m_isLongPress;
 	Node* m_longTouchNode;
+	cocos2d::ui::ImageView* resbox;
+	Node* boxeffectnode;
 };
 
 #endif

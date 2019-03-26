@@ -48,9 +48,9 @@ bool MatchRankNode::init(MyRankData herodata, int type)
 	cocos2d::ui::ImageView* itembg = (cocos2d::ui::ImageView*)csbnode->getChildByName("itembg");
 
 	cocos2d::ui::ImageView* clickimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("clickimg");
-	itembg->addTouchEventListener(CC_CALLBACK_2(MatchRankNode::onBtnClick, this));
-	itembg->setTag(1000);
-	itembg->setSwallowTouches(false);
+	clickimg->addTouchEventListener(CC_CALLBACK_2(MatchRankNode::onBtnClick, this));
+	clickimg->setTag(1000);
+	clickimg->setSwallowTouches(false);
 
 	cocos2d::ui::ImageView* herobox = (cocos2d::ui::ImageView*)csbnode->getChildByName("herobox");
 	cocos2d::ui::ImageView* heroimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("heroimg");

@@ -155,7 +155,7 @@ bool MazeDescLayer::init()
 		menu->setPosition(Vec2(0, 0));
 		csbnode->addChild(menu);
 
-		Node* effectnode = CommonFuncs::playResBoxEffect(boxItem, qu);
+		Node* effectnode = CommonFuncs::playResBoxEffect(boxItem, t, qu, 0);
 
 		std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 

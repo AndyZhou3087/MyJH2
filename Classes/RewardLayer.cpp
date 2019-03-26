@@ -135,7 +135,7 @@ bool RewardLayer::init(std::vector<MSGAWDSDATA> vec_rewards, int forwhere, int t
 				}
 			}
 
-			CommonFuncs::playResBoxEffect(resbox, qu);
+			CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
 			resbox->setPositionX(startx[rewardsize-1] + offsetx[rewardsize-1]*i);
 			resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);

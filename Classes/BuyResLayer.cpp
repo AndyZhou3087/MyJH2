@@ -117,7 +117,7 @@ bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
 
-			CommonFuncs::playResBoxEffect(resbox, qu);
+			CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
 			resbox->setPositionX(startx[rewardsize - 1] + offsetx[rewardsize - 1] * i);
 			resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);

@@ -148,7 +148,7 @@ void LoginGetLayer::showRwd()
 		countlbl->setPosition(Vec2(resbox->getContentSize().width - 10, 8));
 		resbox->addChild(countlbl);
 
-		CommonFuncs::playResBoxEffect(resbox, qu);
+		CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
 		if (resid.compare("r006") == 0)
 		{

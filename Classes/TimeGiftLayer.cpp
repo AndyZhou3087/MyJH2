@@ -178,7 +178,7 @@ bool TimeGiftLayer::init(ShopData* data)
 		int y = starty[(ressize - 1) / 3] - offsety[(ressize - 1) / 3] * (i / 3);
 		box->setPosition(Vec2(x, y));
 
-		CommonFuncs::playResBoxEffect(box, qu);
+		CommonFuncs::playResBoxEffect(box, t, qu, 0);
 
 		str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 		Sprite* res = Sprite::createWithSpriteFrameName(str);

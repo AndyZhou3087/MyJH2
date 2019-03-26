@@ -67,7 +67,7 @@ bool OpenHolesLayer::init(Equip* res_equip)
 	cocos2d::ui::ImageView* resbox_qu = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox_qu");
 	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
-	CommonFuncs::playResBoxEffect(resbox_qu, qu);
+	CommonFuncs::playResBoxEffect(resbox_qu, m_equip->getType(), qu, m_equip->getLv().getValue());
 
 	std::string str = GlobalInstance::getInstance()->getResUIFrameName(m_equip->getId(), qu);
 

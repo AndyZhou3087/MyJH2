@@ -27,6 +27,8 @@ private:
 	Node *csbnode;
 	int m_forwhere;
 	DynamicValueInt coincount;
+	Node* boxeffectnode;
+	cocos2d::ui::ImageView* resbox_qu;
 };
 #endif
 

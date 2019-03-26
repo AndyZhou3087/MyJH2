@@ -111,6 +111,7 @@ bool FirstChargeLayer::init(ShopData* data)
 		int qu = vec_rewards[i].qu;
 		std::string resid = vec_rewards[i].rid;
 		int count = vec_rewards[i].count;
+		int lv = 0;
 		for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
 		{
 			if (vec_rewards[i].rid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
@@ -122,6 +123,7 @@ bool FirstChargeLayer::init(ShopData* data)
 		}
 		else if (t >= T_WG && t <= T_NG)
 		{
+			lv = 20;
 			qu = GlobalInstance::map_GF[resid].qu;
 			boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
@@ -139,7 +141,7 @@ bool FirstChargeLayer::init(ShopData* data)
 		std::string countstr = StringUtils::format("%d", vec_rewards[i].count);
 		countlbl->setString(countstr);
 
-		Node* effectnode = CommonFuncs::playResBoxEffect(resbox, qu);
+		Node* effectnode = CommonFuncs::playResBoxEffect(resbox, t, qu, lv);
 	}
 
 	//фа╠ноб╡Ц╣Ц╩В

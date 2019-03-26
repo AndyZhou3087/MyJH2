@@ -105,7 +105,7 @@ bool UsePropLayer::init(std::string strid, int rcount)
 		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
 
-	CommonFuncs::playResBoxEffect(resbox, qu);
+	CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
 	resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 	std::string resstr = StringUtils::format("ui/%s.png", resid.c_str());

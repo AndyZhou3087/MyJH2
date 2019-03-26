@@ -175,7 +175,7 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 		box->setName(resid);
 		box->setTouchEnabled(true);
 
-		CommonFuncs::playResBoxEffect(box, qu);
+		CommonFuncs::playResBoxEffect(box, t, qu, 0);
 
 		this->addChild(box);
 		box->setPosition(Vec2(startx[i], starty[i]));

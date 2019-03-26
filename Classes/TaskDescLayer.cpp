@@ -276,7 +276,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 		box->setPosition(Vec2(80 + i % 3 * 170, innerheight - box->getContentSize().height/2 - i / 3 * 165));
 		scrollView->addChild(box);
 
-		CommonFuncs::playResBoxEffect(box, qu);
+		CommonFuncs::playResBoxEffect(box, t, qu, 0);
 
 		std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 

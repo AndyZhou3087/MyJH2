@@ -62,7 +62,8 @@ bool GfLibraryInfoLayer::init(std::string gfid)
 	int s = GlobalInstance::map_GF[gfid].qu;
 	std::string qustr = StringUtils::format("ui/resbox_qu%d.png", s);
 
-	CommonFuncs::playResBoxEffect(resbox_qu, s);
+	int t = gfid.compare(0, 1, "w") == 0 ? T_WG : T_NG;
+	CommonFuncs::playResBoxEffect(resbox_qu, t, s, 0);
 	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");

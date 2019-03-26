@@ -97,7 +97,7 @@ bool BuySingleResLayer::init(MSGAWDSDATA fproper)
 
 	resbox->loadTexture(ResourcePath::makePath(qustr), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	CommonFuncs::playResBoxEffect(resbox, qu);
+	CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
 	std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 

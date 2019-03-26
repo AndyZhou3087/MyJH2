@@ -60,7 +60,7 @@ bool EquipLibraryInfoLayer::init(ResBase* res)
 	int s = m_res->getQU().getValue();
 	std::string qustr = StringUtils::format("ui/resbox_qu%d.png", s);
 
-	CommonFuncs::playResBoxEffect(resbox_qu, s);
+	CommonFuncs::playResBoxEffect(resbox_qu, m_res->getType(), s, m_res->getLv().getValue());
 	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");

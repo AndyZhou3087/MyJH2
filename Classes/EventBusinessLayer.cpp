@@ -165,7 +165,7 @@ void EventBusinessLayer::updateScrollviewContent()
 
 			sv->addChild(boxItem);
 
-			CommonFuncs::playResBoxEffect(boxItem, qu);
+			CommonFuncs::playResBoxEffect(boxItem, t, qu, 0);
 
 			std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 

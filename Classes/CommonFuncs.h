@@ -68,7 +68,7 @@ public:
 	/****************************
 	资源边框特效，紫色以上
 	****************************/
-	static cocos2d::Node* playResBoxEffect(cocos2d::Node* target, int qu);
+	static cocos2d::Node* playResBoxEffect(cocos2d::Node* target, int type, int qu, int lv);
 
 	/****************************
 	文件目录遍历

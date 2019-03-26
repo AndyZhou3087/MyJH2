@@ -116,11 +116,17 @@ bool MatchRewardLayer::init()
 				{
 					resbox->setPositionX(startx[rewardsize - 1] + offsetx[rewardsize - 1] * n);
 
-					int t = 0;
 					std::string resid = vec_matchlv[i][n][0];
 					int count = atoi(vec_matchlv[i][n][1].c_str());
 					int qu = atoi(vec_matchlv[i][n][2].c_str());
-					CommonFuncs::playResBoxEffect(resbox, qu);
+					int t = 0;
+					for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+					{
+						if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+							break;
+					}
+
+					CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
 					std::string resstr = StringUtils::format("ui/%s.png", resid.c_str());
 					res->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);

@@ -87,7 +87,7 @@ bool SimpleResPopLayer::init(std::string resid, int forwhere, int needcount)
 		qu = 3;
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
-	CommonFuncs::playResBoxEffect(resbox, qu);
+	CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
 	resbox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 

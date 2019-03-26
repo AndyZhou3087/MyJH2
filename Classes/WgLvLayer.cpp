@@ -25,6 +25,7 @@ WgLvLayer::WgLvLayer()
 {
 	m_isLongPress = false;
 	m_longTouchNode = NULL;
+	boxeffectnode = NULL;
 }
 
 WgLvLayer::~WgLvLayer()
@@ -78,9 +79,12 @@ bool WgLvLayer::init(ResBase* res)
 
 	int qu = GlobalInstance::map_GF[m_res->getId()].qu;
 	//Æ·ÖÊbox
-	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox");
+	resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox");
 	std::string str = StringUtils::format("ui/resbox_qu%d.png", qu);
 	resbox->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	if (boxeffectnode == NULL)
+		CommonFuncs::playResBoxEffect(resbox, m_res->getType(), qu, m_res->getLv().getValue());
 
 	//iconÍ¼±ê
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)csbnode->getChildByName("icon");
@@ -341,7 +345,11 @@ void WgLvLayer::updataAtrrUI()
 	float percent = (m_res->getExp().getValue() - curlvexp)*100.0f / (nextlvexp - curlvexp);
 
 	if (mycurlv > myprelv)
+	{
 		expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, 100), DelayTime::create(0.05f), LoadingBarProgressFromTo::create(0.2f, 0, percent), NULL));
+		if (boxeffectnode == NULL)
+			CommonFuncs::playResBoxEffect(resbox, m_res->getType(), m_res->getQU().getValue(), m_res->getLv().getValue());
+	}
 	else
 		expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));
 
