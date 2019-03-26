@@ -2130,10 +2130,10 @@ bool GlobalInstance::compareHighEquip(int type, Hero* herodata)
 	return false;
 }
 
-std::string GlobalInstance::compareFitEquip(int type, Hero* herodata)
+Equipable* GlobalInstance::compareFitEquip(int type, Hero* herodata)
 {
 	float avecount = 0;
-	std::string resid;
+	Equipable* ret_equipable = NULL;
 	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
 	{
 		bool isfit = false;
@@ -2181,12 +2181,12 @@ std::string GlobalInstance::compareFitEquip(int type, Hero* herodata)
 				if (procount > avecount)
 				{
 					avecount = procount;
-					resid = m_res->getId();
+					ret_equipable = m_res;
 				}
 			}
 		}
 	}
-	return resid;
+	return ret_equipable;
 }
 
 int GlobalInstance::getMatchLvByScroe(int m_lv)

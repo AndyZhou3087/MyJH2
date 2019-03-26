@@ -85,7 +85,8 @@ bool SelectEquipLayer::init(int restype, Hero* herodata)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-	this->schedule(schedule_selector(SelectEquipLayer::updateLv), 1);
+	updateUI(0);
+	this->schedule(schedule_selector(SelectEquipLayer::updateUI), 1);
 
 	return true;
 }
@@ -221,15 +222,9 @@ void SelectEquipLayer::updateContent()
 
 		Sprite * redpoint = Sprite::createWithSpriteFrameName("ui/main_btn_redpoint.png");
 		redpoint->setPosition(Vec2(boxItem->getContentSize().width - 20, boxItem->getContentSize().height - 20));
-		boxItem->addChild(redpoint);
+		boxItem->addChild(redpoint, 0, "redpoint");
 		redpoint->setVisible(false);
-		if (GlobalInstance::getInstance()->compareFitEquip(vec_res[m]->getType(), m_herodata).length() > 0)
-		{
-			if (vec_res[m]->getId().compare(GlobalInstance::getInstance()->compareFitEquip(vec_res[m]->getType(), m_herodata)) == 0)
-			{
-				redpoint->setVisible(true);
-			}
-		}
+
 	}
 }
 
@@ -288,7 +283,7 @@ void SelectEquipLayer::loadData()
 	}
 }
 
-void SelectEquipLayer::updateLv(float dt)
+void SelectEquipLayer::updateUI(float dt)
 {
 	if (m_clickindex >= 0)
 	{
@@ -312,6 +307,40 @@ void SelectEquipLayer::updateLv(float dt)
 			{
 				namestr = StringUtils::format("+%d%s", lv, namestr.c_str());
 				namelbl->setString(namestr);
+			}
+		}
+	}
+
+	for (unsigned int m = 0; m < vec_res.size(); m++)
+	{
+		Node* redpoint = scrollview->getChildByTag(m)->getChildByName("item")->getChildByName("redpoint");
+		redpoint->setVisible(false);
+
+		Equipable* ret_e = GlobalInstance::getInstance()->compareFitEquip(vec_res[m]->getType(), m_herodata);
+		if (ret_e != NULL)
+		{
+			int etype = vec_res[m]->getType();
+			bool isfind = false;
+			if (etype >= T_ARMOR && etype <= T_FASHION)
+			{
+				Equip* equip = (Equip*)(vec_res[m]);
+				Equip* myequip = (Equip*)(ret_e);
+
+				if (equip->getLv().getValue() == myequip->getLv().getValue() && equip->getQU().getValue() == myequip->getQU().getValue() && equip->vec_stones == myequip->vec_stones)
+				{
+					isfind = true;
+				}
+			}
+			else if (etype >= T_WG && etype <= T_NG)
+			{
+				GongFa* gf = (GongFa*)vec_res[m];
+				GongFa* mygf = (GongFa*)ret_e;
+				if (gf->getExp().getValue() == mygf->getExp().getValue() && gf->getQU().getValue() == gf->getQU().getValue())
+					isfind = true;
+			}
+			if (isfind)
+			{
+				redpoint->setVisible(true);
 			}
 		}
 	}

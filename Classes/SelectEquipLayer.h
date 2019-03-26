@@ -28,7 +28,7 @@ private:
 	void loadData();
 	void updateContent();
 
-	void updateLv(float dt);
+	void updateUI(float dt);
 private:
 	int m_restype;
 	std::vector<ResBase*> vec_res;
