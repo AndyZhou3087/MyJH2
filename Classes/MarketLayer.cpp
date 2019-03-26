@@ -126,6 +126,8 @@ bool MarketLayer::init(Building* buidingData)
 	WaitingProgress* waitbox = WaitingProgress::create(ResourceLang::map_lang["doingtext"]);
 	this->addChild(waitbox, 1,"waitbox");
 
+	loadTimeMarket();
+
 	this->scheduleOnce(schedule_selector(MarketLayer::delayShowUI), 0.5f);
 
 	updateUI(0);
@@ -261,6 +263,7 @@ void MarketLayer::loadData()
 			}
 		}
 	}
+
 	std::string stockstr = DataSave::getInstance()->getMarketStock();
 	if (stockstr.length() > 0)
 	{
@@ -284,6 +287,26 @@ void MarketLayer::loadData()
 						map_cateRes[it->first][m].stockcount = stockcount;
 					}
 				}
+			}
+		}
+	}
+
+	std::map<int, std::vector<MK_RES>>::iterator mit;
+	for (mit = map_cateRes.begin(); mit != map_cateRes.end(); mit++)
+	{
+		for (unsigned int i = 0; i < mit->second.size(); i++)
+		{
+			MK_RES mkres = mit->second[i];
+
+			if (GlobalInstance::map_timeMartData.find(mkres.resid) != GlobalInstance::map_timeMartData.end())
+			{
+				MK_RES mkres0 = mit->second[0];
+				int scount = GlobalInstance::map_timeMartData[mkres.resid].buycount;
+				mkres.maxcount = GlobalInstance::map_timeMartData[mkres.resid].totalcount;
+				mkres.stockcount = mkres.maxcount - scount;
+
+				mit->second[0] = mkres;
+				mit->second[i] = mkres0;
 			}
 		}
 	}
@@ -352,7 +375,26 @@ void MarketLayer::lvup()
 		MarketResNode* itemnode = (MarketResNode*)m_contentscroll->getChildByTag(i);
 		if (itemnode->getResInMarketLv() <= m_buidingData->level.getValue())
 			itemnode->setEnable(true);
+
+		std::string resid = map_cateRes[lastCategoryindex][i].resid;
+		if (GlobalInstance::map_timeMartData.find(resid) != GlobalInstance::map_timeMartData.end() && getResInMarketLv(resid) == m_buidingData->level.getValue())
+		{
+			int curlv = m_buidingData->level.getValue();
+			for (unsigned int i = 0; i < m_buidingData->vec_exdata[curlv].size(); i++)
+			{
+				std::vector<std::string> vec_tmp;
+				CommonFuncs::split(m_buidingData->vec_exdata[curlv][i], vec_tmp, "-");
+				if (vec_tmp[0].compare(resid) == 0)
+				{
+					itemnode->reset(atoi(vec_tmp[1].c_str()));
+					break;
+				}
+			}
+
+
+		}
 	}
+	loadTimeMarket();
 	//loadData();
 	//updateContent(lastCategoryindex);
 }
@@ -422,7 +464,24 @@ void MarketLayer::buyRes(int iterindex, int count)
 		dval.setValue(count * saleval);
 		GlobalInstance::getInstance()->costMySoliverCount(dval);
 	}
-	saveStockRes();
+
+	if (GlobalInstance::map_timeMartData.find(resid) != GlobalInstance::map_timeMartData.end())
+	{
+		GlobalInstance::map_timeMartData[resid].buycount += count;
+		std::string savestr;
+
+		std::map<std::string, TimeMartData>::iterator it;
+		for (it = GlobalInstance::map_timeMartData.begin(); it != GlobalInstance::map_timeMartData.end(); it++)
+		{
+			if (savestr.length() > 0)
+				savestr.append(";");
+			std::string onestr = StringUtils::format("%s-%d", it->second.rid.c_str(), it->second.buycount);
+			savestr.append(onestr);
+		}
+		DataSave::getInstance()->setTimeMarket(savestr);
+	}
+	else
+		saveStockRes();
 }
 
 void MarketLayer::saveStockRes()
@@ -487,7 +546,7 @@ void MarketLayer::resetStockRes()
 	{
 		for (unsigned int m = 0; m < map_cateRes[it->first].size(); m++)
 		{
-			if (map_cateRes[it->first][m].stockcount != map_cateRes[it->first][m].maxcount)
+			if (map_cateRes[it->first][m].stockcount != map_cateRes[it->first][m].maxcount && GlobalInstance::map_timeMartData.find(map_cateRes[it->first][m].resid) == GlobalInstance::map_timeMartData.end())
 			{
 				map_cateRes[it->first][m].stockcount = map_cateRes[it->first][m].maxcount;
 			}
@@ -504,7 +563,8 @@ void MarketLayer::resetStockRes()
 	for (unsigned int i = 0; i < vec_Res.size(); i++)
 	{
 		MarketResNode* marketnode = (MarketResNode*)m_contentscroll->getChildByTag(i);
-		marketnode->reset(vec_Res[i].maxcount);
+		if (GlobalInstance::map_timeMartData.find(vec_Res[i].resid) == GlobalInstance::map_timeMartData.end())
+			marketnode->reset(vec_Res[i].maxcount);
 	}
 	DataSave::getInstance()->setMarketStock("");
 	//updateContent();
@@ -530,5 +590,71 @@ void MarketLayer::onCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		lastCategoryindex = node->getTag();
 
 		updateContent(node->getTag());
+	}
+}
+
+int MarketLayer::getResInMarketLv(std::string resid)
+{
+	Building* buildingdata = Building::map_buildingDatas["5market"];
+	for (int v = 0; v < buildingdata->maxlevel.getValue(); v++)
+	{
+		int vsize = buildingdata->vec_exdata.size();
+
+		for (unsigned int i = 0; i < buildingdata->vec_exdata[v].size(); i++)
+		{
+			std::vector<std::string> vec_tmp;
+			CommonFuncs::split(buildingdata->vec_exdata[v][i], vec_tmp, "-");
+
+			if (resid.compare(vec_tmp[0]) == 0)
+			{
+				return v;
+			}
+		}
+	}
+	return 0;
+}
+
+void MarketLayer::loadTimeMarket()
+{
+	GlobalInstance::map_timeMartData.clear();
+
+	std::string tmpstr = GlobalInstance::timeMarketStr;
+	if (tmpstr.length() > 0)
+	{
+		std::vector<std::string> vec_ret;
+		CommonFuncs::split(tmpstr, vec_ret, ";");
+		for (unsigned int i = 0; i < vec_ret.size(); i++)
+		{
+			std::vector<std::string> vec_onetmp;
+			CommonFuncs::split(vec_ret[i], vec_onetmp, "-");
+			if (vec_onetmp.size() >= 2 )
+			{
+				TimeMartData td;
+				td.rid = vec_onetmp[0];
+				td.buycount = 0;
+				td.totalcount = atoi(vec_onetmp[1].c_str());
+				if (getResInMarketLv(td.rid) > m_buidingData->level.getValue())
+					GlobalInstance::map_timeMartData[td.rid] = td;
+			}
+		}
+
+		std::string tmpstr = DataSave::getInstance()->getTimeMarket();
+		if (tmpstr.length() > 0)
+		{
+			std::vector<std::string> vec_ret;
+			CommonFuncs::split(tmpstr, vec_ret, ";");
+			for (unsigned int i = 0; i < vec_ret.size(); i++)
+			{
+				std::vector<std::string> vec_onetmp;
+				CommonFuncs::split(vec_ret[i], vec_onetmp, "-");
+				if (vec_onetmp.size() >= 2)
+				{
+					std::string rid = vec_onetmp[0];
+					int buycount = atoi(vec_onetmp[1].c_str());
+					if (GlobalInstance::map_timeMartData.find(rid) != GlobalInstance::map_timeMartData.end())
+						GlobalInstance::map_timeMartData[rid].buycount = buycount;
+				}
+			}
+		}
 	}
 }

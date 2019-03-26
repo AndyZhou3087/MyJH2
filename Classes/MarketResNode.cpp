@@ -16,7 +16,7 @@ MarketResNode::MarketResNode()
 {
 	m_isLongPress = false;
 	m_longTouchNode = NULL;
-
+	isEnable = true;
 	buycount = 1;
 }
 
@@ -127,6 +127,13 @@ bool MarketResNode::init(std::string resid, int rescount)
 	subbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("subbtn");
 	subbtn->addTouchEventListener(CC_CALLBACK_2(MarketResNode::onSubBtnClick, this));
 	subbtn->setTag(1002);
+
+	timelbl = (cocos2d::ui::Text*)csbnode->getChildByName("timelbl");
+
+	inmarktLv = getResInMarketLv();
+
+	this->schedule(schedule_selector(MarketResNode::updateTime), 1.0f);
+
 	return true;
 }
 
@@ -342,6 +349,7 @@ void MarketResNode::reset(int maxcount)
 
 void MarketResNode::setEnable(bool val)
 {
+	isEnable = val;
 	if (val)
 	{
 		for (int i = 0; i < csbnode->getChildrenCount(); i++)
@@ -431,4 +439,35 @@ int MarketResNode::getResInMarketLv()
 		}
 	}
 	return 0;
+}
+
+void MarketResNode::updateTime(float dt)
+{
+	Building* buildingdata = Building::map_buildingDatas["5market"];
+	if (inmarktLv > buildingdata->level.getValue())
+	{
+		if (GlobalInstance::map_timeMartData.find(m_resid) != GlobalInstance::map_timeMartData.end())
+		{
+			timelbl->setVisible(true);
+			int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
+			int lefttime = 86400 - zerotime % TWENTYFOURHOURSTOSEC;
+			std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
+			timelbl->setString(timestr);
+			if (!isEnable)
+				setEnable(true);
+		}
+		else
+		{
+			timelbl->setVisible(false);
+			if (isEnable)
+				setEnable(false);
+		}
+	}
+	else
+	{
+		timelbl->setVisible(false);
+		if (!isEnable)
+			setEnable(true);
+	}
+
 }

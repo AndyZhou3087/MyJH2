@@ -598,7 +598,7 @@ void HttpDataSwap::getMatchRankHeros()
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMyMatchRankingCB, this));
 }
 
-void HttpDataSwap::getMatchPairData()
+void HttpDataSwap::getMatchPairData(std::string playerid)
 {
 	std::string url;
 	url.append(HTTPURL);
@@ -616,6 +616,12 @@ void HttpDataSwap::getMatchPairData()
 
 	url.append("&plat=");
 	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	if (playerid.length() > 0)
+	{
+		url.append("&mplayerid=");
+		url.append(playerid);
+	}
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetMatchPairDataCB, this));
 }
 
@@ -906,6 +912,10 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 				else if (strid.compare("fpayg") == 0)
 				{
 					GlobalInstance::isBuyFirstCharge = atoi(getJsonValueStr(doc["fpayg"]).c_str()) == 1 ? true : false;
+				}
+				else if (strid.compare("tmpmarket") == 0)
+				{
+					GlobalInstance::timeMarketStr = getJsonValueStr(doc["tmpmarket"]);
 				}
 				else if (strid.compare(0, 3, "vip") == 0)
 				{

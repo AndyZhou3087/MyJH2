@@ -22,6 +22,8 @@ public:
 	void showFightResult(int ret);
 
 	void delayShowFightResultLayer(float dt);
+
+	void getMatchVsPairData(std::string playerid="");//playerid:空字串，任意匹配
 private:
 	bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
 	void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event);
@@ -39,6 +41,7 @@ private:
 	bool checkEmptyHeros();
 
 	void bindHeroData();
+
 private:
 	CardHeroNode* m_myCardHerosNode[6];
 	cocos2d::ui::Button* matchbtn;

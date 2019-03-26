@@ -38,6 +38,9 @@ private:
 	cocos2d::ui::Text* openlvtext;
 	cocos2d::ui::Widget* addbtn;
 	cocos2d::ui::Widget* subbtn;
+	bool isEnable;
+	int inmarktLv;
+	cocos2d::ui::Text* timelbl;
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -51,6 +54,8 @@ private:
 
 	void addCount();
 	void subCount();
+
+	void updateTime(float dt);
 };
 #endif
 

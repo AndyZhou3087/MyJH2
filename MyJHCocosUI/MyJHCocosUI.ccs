@@ -716,6 +716,7 @@
           <Image Name="markettitle.png" />
           <Image Name="matchbtn_text.png" />
           <Image Name="matchdoing_text.png" />
+          <Image Name="matchfight_text.png" />
           <Image Name="matchfighttitle.png" />
           <Image Name="matchrulebtn_text.png" />
           <Image Name="matchsave_text.png" />

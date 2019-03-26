@@ -44,7 +44,7 @@ public:
 
 	void getMyMatchHeros();
 
-	void getMatchPairData();
+	void getMatchPairData(std::string player ="");
 
 	void sendMatchResult(int score);
 

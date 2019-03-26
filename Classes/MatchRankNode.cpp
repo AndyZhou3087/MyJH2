@@ -7,6 +7,8 @@
 #include "SoundManager.h"
 #include "DataSave.h"
 #include "MatchContentLayer.h"
+#include "WaitingProgress.h"
+#include "MatchMainLayer.h"
 
 MatchRankNode::MatchRankNode()
 {
@@ -44,6 +46,12 @@ bool MatchRankNode::init(MyRankData herodata, int type)
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	cocos2d::ui::ImageView* itembg = (cocos2d::ui::ImageView*)csbnode->getChildByName("itembg");
+
+	cocos2d::ui::ImageView* clickimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("clickimg");
+	itembg->addTouchEventListener(CC_CALLBACK_2(MatchRankNode::onBtnClick, this));
+	itembg->setTag(1000);
+	itembg->setSwallowTouches(false);
+
 	cocos2d::ui::ImageView* herobox = (cocos2d::ui::ImageView*)csbnode->getChildByName("herobox");
 	cocos2d::ui::ImageView* heroimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("heroimg");
 
@@ -72,6 +80,7 @@ bool MatchRankNode::init(MyRankData herodata, int type)
 	//°´Å¥
 	cocos2d::ui::ImageView* actbtn = (cocos2d::ui::ImageView*)csbnode->getChildByName("actionbtn");
 	actbtn->addTouchEventListener(CC_CALLBACK_2(MatchRankNode::onBtnClick, this));
+	actbtn->setTag(1000);
 	actbtn->setSwallowTouches(false);
 
 	//°´Å¥ÎÄ×Ö
@@ -138,6 +147,11 @@ bool MatchRankNode::init(MyRankData herodata, int type)
 			str = StringUtils::format("%d", herodata.rank + 1);
 			ranktext->setString(str);
 		}
+		if (GlobalInstance::myRankInfo.myrank <= 10 && herodata.rank < 10)
+		{
+			actbtntxt->loadTexture(ResourcePath::makeTextImgPath("matchfight_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			actbtn->setTag(1001);
+		}
 	}
 
 	return true;
@@ -189,6 +203,7 @@ std::string MatchRankNode::getFirstHeroPotential()
 void MatchRankNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	Node* clicknode = (Node*)pSender;
+	
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
@@ -208,8 +223,23 @@ void MatchRankNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		if (!clickflag)
 			return;
 
-		MatchContentLayer* layer = MatchContentLayer::create(m_herodata);
-		g_mainScene->addChild(layer);
-		AnimationEffect::openAniEffect((Layer*)layer);
+		if (clicknode->getTag() == 1000)
+		{
+			MatchContentLayer* layer = MatchContentLayer::create(m_herodata);
+			g_mainScene->addChild(layer);
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
+		else
+		{
+			if (g_mainScene != NULL)
+			{
+				MatchMainLayer* mlayer = (MatchMainLayer*)g_mainScene->getChildByName("8pkground");
+				if (mlayer != NULL)
+				{
+					mlayer->getMatchVsPairData(m_herodata.playerid);
+
+				}
+			}
+		}
 	}
 }

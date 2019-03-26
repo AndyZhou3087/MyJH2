@@ -511,6 +511,16 @@ int DataSave::getReviveHeroCount()
 	return loadIntDataByKey("rheroc", 0);
 }
 
+std::string DataSave::getTimeMarket()
+{
+	return loadStringDataByKey("timemarket");
+}
+
+void DataSave::setTimeMarket(std::string str)
+{
+	saveStringDataByKey("timemarket", str);
+}
+
 void DataSave::deleteDataByKey(std::string key)
 {
 	removeEleByKey(key);

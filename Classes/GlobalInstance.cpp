@@ -128,6 +128,9 @@ int GlobalInstance::getNewsTime = 0;
 
 int GlobalInstance::mazeEventData[3] = { 0 };
 
+std::string GlobalInstance::timeMarketStr;
+std::map<std::string, TimeMartData> GlobalInstance::map_timeMartData;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -304,6 +307,8 @@ void GlobalInstance::loadInitData()
 	serverTimeGiftData.isopen = false;
 	serverTimeGiftData.lefttime = 0;
 	serverTimeGiftData.turn = 0;
+
+	map_timeMartData.clear();
 
 	vec_newerguides.clear();
 
@@ -3259,6 +3264,7 @@ void GlobalInstance::resetData()
 
 	loginData.logindays = 0;
 	loginData.isGeted = false;
+	map_timeMartData.clear();
 }
 
 std::string GlobalInstance::getUserDefaultXmlString(int type)

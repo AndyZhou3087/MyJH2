@@ -395,6 +395,13 @@ typedef enum
 	COSTPROP_END
 }COSTPROPS_ANALYSIS;
 
+typedef struct
+{
+	std::string rid;
+	int buycount;
+	int totalcount;
+}TimeMartData;
+
 class GlobalInstance
 {
 public:
@@ -856,6 +863,9 @@ public:
 
 	static int mazeEventData[3];
 
+	static std::map<std::string, TimeMartData> map_timeMartData;
+
+	static std::string timeMarketStr;
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

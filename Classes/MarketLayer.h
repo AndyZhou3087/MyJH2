@@ -60,6 +60,9 @@ private:
 
 	void updateUI(float dt);
 
+	void loadTimeMarket();
+
+	int getResInMarketLv(std::string resid);
 private:
 	std::map<int, std::vector<MK_RES>> map_cateRes;
 	cocos2d::ui::Text* lvUIlbl;

@@ -411,7 +411,7 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		case 1006:
 		{
 			MatchRankLayer* layer = MatchRankLayer::create();
-			this->addChild(layer, 1000);
+			this->addChild(layer, 1000, "matchranklayer");
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 			break;
@@ -673,10 +673,23 @@ void MatchMainLayer::bindHeroData()
 	}
 }
 
+void MatchMainLayer::getMatchVsPairData(std::string playerid)
+{
+	if (checkEmptyHeros())
+	{
+		MovingLabel::show(ResourceLang::map_lang["mymatchherosempty"]);
+		return;
+	}
+	WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+	this->addChild(wp, 0, "waitingprogress");
+
+	httptag = 3;
+	HttpDataSwap::init(this)->getMatchPairData(playerid);
+}
+
 void MatchMainLayer::onFinish(int code)
 {
-	if (httptag == 0)
-		this->removeChildByName("waitingprogress");
+	this->removeChildByName("waitingprogress");
 
 	ErrorHintLayer* networkerrLayer = (ErrorHintLayer*)this->getChildByName("networkerrorlayer");
 
@@ -695,12 +708,14 @@ void MatchMainLayer::onFinish(int code)
 		}
 		else if (httptag == 2)
 		{
-			httptag = 3;
-			HttpDataSwap::init(this)->getMatchPairData();
+			getMatchVsPairData();
 		}
 		else if (httptag == 3)
 		{
 			//需要重新设置GlobalInstance::myOnChallengeHeros的数据
+
+			this->removeChildByName("matchranklayer");
+
 			bindHeroData();
 			MatchVSLayer* layer = MatchVSLayer::create();
 			this->addChild(layer, 100);

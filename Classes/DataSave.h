@@ -467,6 +467,11 @@ public:
 	//保存复活英雄次数，前20次固定100
 	void setReviveHeroCount(int count);
 
+	//限时市场购买
+	std::string getTimeMarket();
+
+	void setTimeMarket(std::string val);
+
 	//获取复活英雄次数，前20次固定100
 	int getReviveHeroCount();
 

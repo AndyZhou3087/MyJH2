@@ -814,6 +814,9 @@ void MainScene::onFinish(int code)
 			if (t > DataSave::getInstance()->getMyFreshDate())
 			{
 				Quest::resetDailyTask();
+				GlobalInstance::timeMarketStr = "";
+				GlobalInstance::map_timeMartData.clear();
+				DataSave::getInstance()->deleteDataByKey("timemarket");
 			}
 			if (GlobalInstance::servertime - GlobalInstance::getNewsTime >= 5 * 60)
 			{
