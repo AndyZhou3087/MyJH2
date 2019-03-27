@@ -84,7 +84,7 @@ bool WgLvLayer::init(ResBase* res)
 	resbox->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	if (boxeffectnode == NULL)
-		CommonFuncs::playResBoxEffect(resbox, m_res->getType(), qu, m_res->getLv().getValue());
+		boxeffectnode = CommonFuncs::playResBoxEffect(resbox, m_res->getType(), qu, m_res->getLv().getValue());
 
 	//iconÍ¼±ê
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)csbnode->getChildByName("icon");
@@ -348,7 +348,7 @@ void WgLvLayer::updataAtrrUI()
 	{
 		expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, 100), DelayTime::create(0.05f), LoadingBarProgressFromTo::create(0.2f, 0, percent), NULL));
 		if (boxeffectnode == NULL)
-			CommonFuncs::playResBoxEffect(resbox, m_res->getType(), m_res->getQU().getValue(), m_res->getLv().getValue());
+			boxeffectnode = CommonFuncs::playResBoxEffect(resbox, m_res->getType(), m_res->getQU().getValue(), m_res->getLv().getValue());
 	}
 	else
 		expbar->runAction(Sequence::create(LoadingBarProgressTo::create(0.2f, percent), NULL));

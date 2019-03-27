@@ -23,6 +23,7 @@ TakeOnLayer::TakeOnLayer()
 {
 	nohasEquip = NULL;
 	redpoint = NULL;
+	boxeffectnode = NULL;
 }
 
 
@@ -97,9 +98,12 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 
 	name->setString(namestr);
 
-	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)infonode->getChildByName("resbox");
+	resbox = (cocos2d::ui::ImageView*)infonode->getChildByName("resbox");
 	str = StringUtils::format("ui/resbox_qu%d.png", qu);
 	resbox->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+
+	if (boxeffectnode == NULL)
+		boxeffectnode = CommonFuncs::playResBoxEffect(resbox, m_equip->getType(), m_equip->getQU().getValue(), m_equip->getLv().getValue());
 
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)infonode->getChildByName("res");
 	str = GlobalInstance::getInstance()->getResUIFrameName(m_equip->getId(), qu);
@@ -685,4 +689,7 @@ void TakeOnLayer::updateAttr()
 		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), attrval[i]);
 		attrlbl->setString(str);
 	}
+
+	if (boxeffectnode == NULL)
+		boxeffectnode = CommonFuncs::playResBoxEffect(resbox, m_equip->getType(), m_equip->getQU().getValue(), m_equip->getLv().getValue());
 }

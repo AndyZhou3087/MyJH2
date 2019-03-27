@@ -76,7 +76,7 @@ bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	if (boxeffectnode == NULL)
-		CommonFuncs::playResBoxEffect(resbox_qu, m_equip->getType(), qu, m_equip->getLv().getValue());
+		boxeffectnode = CommonFuncs::playResBoxEffect(resbox_qu, m_equip->getType(), qu, m_equip->getLv().getValue());
 
 	std::string str = GlobalInstance::getInstance()->getResUIFrameName(m_equip->getId(), qu);
 
@@ -237,7 +237,7 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_ziti");
 
 			if (boxeffectnode == NULL)
-				CommonFuncs::playResBoxEffect(resbox_qu, m_equip->getType(), m_equip->getQU().getValue(), m_equip->getLv().getValue());
+				boxeffectnode = CommonFuncs::playResBoxEffect(resbox_qu, m_equip->getType(), m_equip->getQU().getValue(), m_equip->getLv().getValue());
 		}
 		else
 		{

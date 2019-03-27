@@ -47,6 +47,7 @@ HeroAttrLayer::HeroAttrLayer()
 	isCanClickFullHero = true;
 	redtip = NULL;
 	pageMoveClickIndex = 0;
+	effectnode = NULL;
 }
 
 HeroAttrLayer::~HeroAttrLayer()
@@ -1103,7 +1104,7 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		resstr = GlobalInstance::getInstance()->getResUIFrameName(res->getId(), qu);
 		lvtext->setString(lvstr);
-		Node* effectnode = CommonFuncs::playResBoxEffect(qubox->getParent(), type, qu, ((Equipable*)res)->getLv().getValue());
+		effectnode = CommonFuncs::playResBoxEffect(qubox->getParent(), type, qu, ((Equipable*)res)->getLv().getValue());
 		if (effectnode != NULL && type >= T_ARMOR && type <= T_FASHION)
 		{
 			effectnode->setScale(0.84f);
@@ -1276,6 +1277,13 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 					lvstr = StringUtils::format("lv.%d", lv + 1);
 				}
 				lvtext->setString(lvstr);
+
+				if (effectnode == NULL)
+					effectnode = CommonFuncs::playResBoxEffect(node, eres->getType(), eres->getQU().getValue(), eres->getLv().getValue());
+				if (effectnode != NULL && eres->getType() >= T_ARMOR && eres->getType() <= T_FASHION)
+				{
+					effectnode->setScale(0.84f);
+				}
 			}
 			else
 			{

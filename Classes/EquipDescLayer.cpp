@@ -116,7 +116,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	}
 	
 	if (boxeffect == NULL)
-		CommonFuncs::playResBoxEffect(resbox_qu, t, s, m_res->getLv().getValue());
+		boxeffect = CommonFuncs::playResBoxEffect(resbox_qu, t, s, m_res->getLv().getValue());
 	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
@@ -508,7 +508,7 @@ void EquipDescLayer::updateAttr()
 		}
 
 		if (boxeffect == NULL)
-			CommonFuncs::playResBoxEffect(resbox_qu, m_res->getType(), m_res->getQU().getValue(), m_res->getLv().getValue());
+			boxeffect = CommonFuncs::playResBoxEffect(resbox_qu, m_res->getType(), m_res->getQU().getValue(), m_res->getLv().getValue());
 	}
 }
 

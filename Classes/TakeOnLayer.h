@@ -51,7 +51,8 @@ private:
 	cocos2d::ui::Text* name;
 	cocos2d::ui::Widget* redpoint;
 	cocos2d::ui::Widget* takeoffpoint;
-
+	cocos2d::ui::ImageView* resbox;
+	Node* boxeffectnode;
 	Node* attrnode;
 };
 #endif
