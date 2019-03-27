@@ -216,7 +216,7 @@ cocos2d::Node* CommonFuncs::playResBoxEffect(cocos2d::Node* target, int type, in
 	}
 	else
 	{
-		if (qu == 3)
+		if (qu >= 3)
 			ishow = true;
 	}
 	if (ishow)
