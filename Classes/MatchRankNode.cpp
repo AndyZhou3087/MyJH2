@@ -236,7 +236,7 @@ void MatchRankNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		}
 		else
 		{
-			if (GlobalInstance::myRankInfo.myrank <= 10)
+			if (GlobalInstance::myRankInfo.myrank <= 10 && GlobalInstance::myRankInfo.myrank >= 0)
 			{
 				if (g_mainScene != NULL)
 				{
