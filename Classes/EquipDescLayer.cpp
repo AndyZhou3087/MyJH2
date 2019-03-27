@@ -23,6 +23,7 @@ USING_NS_CC;
 EquipDescLayer::EquipDescLayer()
 {
 	salepoint = NULL;
+	boxeffect = NULL;
 }
 
 EquipDescLayer::~EquipDescLayer()
@@ -89,7 +90,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 	cocos2d::ui::Widget* smallbg = (cocos2d::ui::Widget*)csbnode->getChildByName("smallbg");
 	smallbg->setSwallowTouches(true);
 
-	cocos2d::ui::ImageView* resbox_qu = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox_qu");
+	resbox_qu = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox_qu");
 
 	std::string qustr;
 	int s = m_res->getQU().getValue();
@@ -113,8 +114,9 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		s = atoi(m_res->getId().substr(1).c_str()) - 1;
 		qustr = StringUtils::format("ui/resbox_qu%d.png", s);
 	}
-
-	CommonFuncs::playResBoxEffect(resbox_qu, t, s, m_res->getLv().getValue());
+	
+	if (boxeffect == NULL)
+		CommonFuncs::playResBoxEffect(resbox_qu, t, s, m_res->getLv().getValue());
 	resbox_qu->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
@@ -504,6 +506,9 @@ void EquipDescLayer::updateAttr()
 		{
 			salepoint->setVisible(true);
 		}
+
+		if (boxeffect == NULL)
+			CommonFuncs::playResBoxEffect(resbox_qu, m_res->getType(), m_res->getQU().getValue(), m_res->getLv().getValue());
 	}
 }
 

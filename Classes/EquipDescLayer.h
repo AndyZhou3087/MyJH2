@@ -42,6 +42,8 @@ private:
 	Node* csbnode;
 	cocos2d::ui::Widget* redpoint;
 	cocos2d::ui::Widget* salepoint;
+	cocos2d::ui::ImageView* resbox_qu;
+	Node* boxeffect;
 };
 
 #endif
