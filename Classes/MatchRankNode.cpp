@@ -147,10 +147,15 @@ bool MatchRankNode::init(MyRankData herodata, int type)
 			str = StringUtils::format("%d", herodata.rank + 1);
 			ranktext->setString(str);
 		}
-		if (GlobalInstance::myRankInfo.myrank <= 10 && herodata.rank < 10)
+		if (herodata.rank < 10)
 		{
 			actbtntxt->loadTexture(ResourcePath::makeTextImgPath("matchfight_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			actbtn->setTag(1001);
+		}
+
+		if (herodata.playerid.compare(GlobalInstance::getInstance()->UUID()) == 0)
+		{
+			actbtn->setVisible(false);
 		}
 	}
 
@@ -231,14 +236,21 @@ void MatchRankNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		}
 		else
 		{
-			if (g_mainScene != NULL)
+			if (GlobalInstance::myRankInfo.myrank <= 10)
 			{
-				MatchMainLayer* mlayer = (MatchMainLayer*)g_mainScene->getChildByName("8pkground");
-				if (mlayer != NULL)
+				if (g_mainScene != NULL)
 				{
-					mlayer->getMatchVsPairData(m_herodata.playerid);
+					MatchMainLayer* mlayer = (MatchMainLayer*)g_mainScene->getChildByName("8pkground");
+					if (mlayer != NULL)
+					{
+						mlayer->getMatchVsPairData(m_herodata.playerid);
 
+					}
 				}
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["matchfightlimit"]);
 			}
 		}
 	}
