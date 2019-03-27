@@ -202,9 +202,9 @@ cocos2d::Node* CommonFuncs::playResBoxEffect(cocos2d::Node* target, int type, in
 	{
 		if (qu == 1 && lv >= 15)
 			ishow = true;
-		else if (qu == 2 && lv >= 14)
+		else if (qu == 2 && lv >= 13)
 			ishow = true;
-		else if (qu == 3 && lv >= 9)
+		else if (qu == 3 && lv >= 10)
 			ishow = true;
 		else if (qu == 4)
 			ishow = true;
