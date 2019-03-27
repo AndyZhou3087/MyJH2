@@ -99,7 +99,7 @@ void MovingLabel::showAction()
 
 	this->setVisible(true);
 	FiniteTimeAction* scales = Spawn::create(ScaleTo::create(0.2f, 1.0f), MoveBy::create(0.2f, Vec2(0, 60)), NULL);
-	FiniteTimeAction* s1 = Sequence::create(scales, DelayTime::create(0.7f), Hide::create(), CallFunc::create(CC_CALLBACK_0(MovingLabel::showNext, this)), NULL);
+	FiniteTimeAction* s1 = Sequence::create(scales, DelayTime::create(1.0f), Hide::create(), CallFunc::create(CC_CALLBACK_0(MovingLabel::showNext, this)), NULL);
 
 	this->runAction(Sequence::create(s1, CallFunc::create(CC_CALLBACK_0(MovingLabel::removeSelf, this)), NULL));
 }
