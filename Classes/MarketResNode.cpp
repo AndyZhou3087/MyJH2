@@ -130,6 +130,9 @@ bool MarketResNode::init(std::string resid, int rescount)
 
 	timelbl = (cocos2d::ui::Text*)csbnode->getChildByName("timelbl");
 
+	tagnode = csbnode->getChildByName("tag");
+	tagnode->setVisible(false);
+
 	inmarktLv = getResInMarketLv();
 
 	this->schedule(schedule_selector(MarketResNode::updateTime), 1.0f);
@@ -449,6 +452,7 @@ void MarketResNode::updateTime(float dt)
 		if (GlobalInstance::map_timeMartData.find(m_resid) != GlobalInstance::map_timeMartData.end())
 		{
 			timelbl->setVisible(true);
+			tagnode->setVisible(true);
 			int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
 			int lefttime = 86400 - zerotime % TWENTYFOURHOURSTOSEC;
 			std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
@@ -459,6 +463,7 @@ void MarketResNode::updateTime(float dt)
 		else
 		{
 			timelbl->setVisible(false);
+			tagnode->setVisible(false);
 			if (isEnable)
 				setEnable(false);
 		}

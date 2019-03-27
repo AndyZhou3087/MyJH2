@@ -41,6 +41,7 @@ private:
 	bool isEnable;
 	int inmarktLv;
 	cocos2d::ui::Text* timelbl;
+	Node* tagnode;
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
