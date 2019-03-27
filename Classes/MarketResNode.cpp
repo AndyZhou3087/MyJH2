@@ -471,6 +471,7 @@ void MarketResNode::updateTime(float dt)
 	else
 	{
 		timelbl->setVisible(false);
+		tagnode->setVisible(false);
 		if (!isEnable)
 			setEnable(true);
 	}
