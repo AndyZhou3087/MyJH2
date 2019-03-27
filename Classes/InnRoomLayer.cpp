@@ -10,6 +10,7 @@
 #include "MainScene.h"
 #include "NewGuideLayer.h"
 #include "Const.h"
+#include "MyRes.h"
 
 USING_NS_CC;
 
@@ -311,6 +312,7 @@ void InnRoomLayer::fireHero(int index)
 	{
 		std::string str = StringUtils::format(ResourceLang::map_lang["fireheroaddrs"].c_str(), count);
 		MovingLabel::show(str);
+		MyRes::Add("s002", count);
 	}
 
 	GlobalInstance::getInstance()->fireHero(index);
