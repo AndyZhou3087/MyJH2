@@ -150,7 +150,7 @@ void MarketLayer::delayShowUI(float dt)
 	updateContent(lastCategoryindex);
 
 	this->removeChildByName("waitbox");
-	this->scheduleOnce(schedule_selector(MarketLayer::delayShowNewerGuide), 0.3f);
+	this->scheduleOnce(schedule_selector(MarketLayer::delayShowNewerGuide), 0.5f);
 }
 
 void MarketLayer::delayShowNewerGuide(float dt)
