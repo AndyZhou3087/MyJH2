@@ -299,8 +299,10 @@
     <Cell c="9" r="7" p="-1" w="1" m="6.png" />
     <Cell c="9" r="8" p="-1" w="1" m="6.png" d="27.png" />
     <Cell c="9" r="9" p="-1" w="1" m="6.png" />
-    <Cell c="9" r="10" p="5" w="1" m="6.png" >
+    <Cell c="9" r="10" p="5" w="1" prs1="183" pre1="430" m="6.png">
       <npcid>3</npcid>
+      <npcrnd>3</npcrnd>
+      <msawd1 id="r006" qu="0" rnd="100.00">1000</msawd1>
     </Cell>
     <Cell c="9" r="11" p="-1" w="1" m="6.png" d="27.png" />
     <Cell c="9" r="12" p="-1" w="1" m="6.png" />
@@ -355,7 +357,7 @@
     <Cell c="10" r="29" p="-1" w="1" m="21.png" />
     <Cell c="11" r="0" p="-1" w="1" m="6.png" />
     <Cell c="11" r="1" p="-1" w="1" m="6.png" />
-    <Cell c="11" r="2" p="5" w="1" m="6.png" >
+    <Cell c="11" r="2" p="5" w="1" m="6.png">
       <npcid>1</npcid>
     </Cell>
     <Cell c="11" r="3" p="-1" w="1" m="6.png" />
@@ -434,7 +436,7 @@
     <Cell c="13" r="16" p="-1" w="1" m="6.png" />
     <Cell c="13" r="17" p="-1" w="1" m="6.png" />
     <Cell c="13" r="18" p="-1" w="1" m="6.png" />
-    <Cell c="13" r="19" p="5" w="1" m="6.png" >
+    <Cell c="13" r="19" p="5" w="1" m="6.png">
       <npcid>4</npcid>
     </Cell>
     <Cell c="13" r="20" p="-1" w="1" m="6.png" />
@@ -759,7 +761,7 @@
     <Cell c="24" r="3" p="-1" w="1" m="6.png" />
     <Cell c="24" r="4" p="-1" w="1" m="6.png" />
     <Cell c="24" r="5" p="-1" w="1" m="6.png" />
-    <Cell c="24" r="6" p="5" w="1" m="6.png" >
+    <Cell c="24" r="6" p="5" w="1" m="6.png">
       <npcid>2</npcid>
     </Cell>
     <Cell c="24" r="7" p="-1" w="1" m="6.png" />
@@ -852,7 +854,7 @@
     <Cell c="26" r="27" p="-1" w="1" m="6.png" />
     <Cell c="26" r="28" p="-1" w="1" m="6.png" />
     <Cell c="26" r="29" p="0" w="1" m="21.png" />
-    <Cell c="27" r="0" p="3" w="1" m="6.png">
+    <Cell c="27" r="0" p="3" w="1" prs1="10" pre1="117" m="6.png">
       <npcid>n014</npcid>
       <npcrnd>100</npcrnd>
       <msatt1 id="n001" qu="1">10</msatt1>

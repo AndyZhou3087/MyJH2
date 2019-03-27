@@ -271,10 +271,10 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 			int startposindex = GlobalInstance::getInstance()->createRandomNum(count);
 			randStartPos = vec_startpos[startposindex];
 		}
+		map_mapBlocks[randStartPos]->setPosIcon();
 	}
 	mycurCol = randStartPos % blockColCount;
 	mycurRow = randStartPos / blockColCount;
-	map_mapBlocks[randStartPos]->setPosIcon();
 
 	if (!isMaze)
 	{
@@ -2593,6 +2593,7 @@ void MapBlockScene::parseMapXml(std::string mapname)
 							mb->setPosNpcID(e0->GetText());
 							if (postype == POS_MAZETRANS)
 							{
+								mb->setPosNpcRnd(100);
 								MAZE_POS madata;
 								madata.maid = atoi(e0->GetText());
 								madata.blockindex = rc;

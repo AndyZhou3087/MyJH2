@@ -14,7 +14,7 @@
   </Monstors>
   <Cells rs="25" cs="25">
     <Cell c="0" r="0" p="-1" w="1" m="89.png" d="26.png">
-      <event>0;0;0;0;0;0;50</event>
+      <event>50;0;0;0;0;0;0</event>
     </Cell>
     <Cell c="0" r="1" p="-1" w="1" m="88.png" />
     <Cell c="0" r="2" p="-1" w="1" m="88.png" />
@@ -295,7 +295,7 @@
     <Cell c="10" r="20" p="-1" w="1" m="94.png" />
     <Cell c="10" r="21" p="-1" w="1" m="94.png" />
     <Cell c="10" r="22" p="-1" w="0" m="84.png" />
-    <Cell c="10" r="23" p="5" w="1" m="94.png" >
+    <Cell c="10" r="23" p="5" w="1" m="94.png">
       <npcid>2</npcid>
     </Cell>
     <Cell c="10" r="24" p="-1" w="0" m="84.png" />

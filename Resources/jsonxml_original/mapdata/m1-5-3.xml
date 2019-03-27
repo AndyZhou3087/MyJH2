@@ -413,7 +413,7 @@
     <Cell c="7" r="46" p="-1" w="1" m="94.png" />
     <Cell c="7" r="47" p="-1" w="1" m="94.png" />
     <Cell c="7" r="48" p="-1" w="1" m="94.png" />
-    <Cell c="7" r="49" p="3" w="1" m="94.png">
+    <Cell c="7" r="49" p="3" w="1" prs1="2000" pre1="2484" m="94.png">
       <npcid>n012</npcid>
       <npcrnd>100</npcrnd>
       <msatt1 id="n001" qu="2">75</msatt1>
