@@ -13,9 +13,9 @@ public:
 	MatchRankNode();
 	~MatchRankNode();
 
-	bool init(MyRankData herodata, int type = 0);//0表示其他排行榜数据
+	bool init(MyRankData herodata, int index = 0, int type = 0);//0表示其他排行榜数据
 
-	static MatchRankNode* create(MyRankData herodata, int type = 0);
+	static MatchRankNode* create(MyRankData herodata, int index = 0, int type = 0);
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

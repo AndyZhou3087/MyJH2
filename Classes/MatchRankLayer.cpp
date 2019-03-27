@@ -105,12 +105,21 @@ void MatchRankLayer::loadMyRankHeros()
 		innerheight = contentheight;
 	scrollView->setInnerContainerSize(Size(scrollView->getContentSize().width, innerheight));
 
+	bool isinrank = false;
 	for (int i = 0; i < size; i++)
 	{
-		MatchRankNode* node = MatchRankNode::create(GlobalInstance::myRankInfo.vec_rankData[i]);
+		MatchRankNode* node = MatchRankNode::create(GlobalInstance::myRankInfo.vec_rankData[i], i);
 		scrollView->addChild(node);
 		node->setPosition(Vec2(324, innerheight - i * itemheight - itemheight / 2));
+		if (GlobalInstance::myRankInfo.vec_rankData[i].playerid.compare(GlobalInstance::getInstance()->UUID()) == 0)
+		{
+			isinrank = true;
+			GlobalInstance::myRankInfo.myrank = i;
+		}
 	}
+
+	if (!isinrank)
+		GlobalInstance::myRankInfo.myrank = -1;
 }
 
 void MatchRankLayer::onFinish(int code)
@@ -121,12 +130,14 @@ void MatchRankLayer::onFinish(int code)
 		this->removeChildByName("waitbox");
 		text->setVisible(true);
 
+		loadMyRankHeros();
+
 		MyRankData data;
-		mynode = MatchRankNode::create(data, 1);
+		mynode = MatchRankNode::create(data, 0, 1);
 		this->addChild(mynode);
 		mynode->setPosition(Vec2(352, 120));
 
-		loadMyRankHeros();
+
 
 		text->setVisible(false);
 	}

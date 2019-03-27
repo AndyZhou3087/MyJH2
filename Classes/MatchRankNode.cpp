@@ -21,10 +21,10 @@ MatchRankNode::~MatchRankNode()
 
 }
 
-MatchRankNode* MatchRankNode::create(MyRankData herodata, int type)
+MatchRankNode* MatchRankNode::create(MyRankData herodata, int index, int type)
 {
 	MatchRankNode *pRet = new(std::nothrow)MatchRankNode();
-	if (pRet && pRet->init(herodata, type))
+	if (pRet && pRet->init(herodata, index, type))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -37,7 +37,7 @@ MatchRankNode* MatchRankNode::create(MyRankData herodata, int type)
 	}
 }
 
-bool MatchRankNode::init(MyRankData herodata, int type)
+bool MatchRankNode::init(MyRankData herodata, int index, int type)
 {
 	m_herodata = herodata;
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("matchRankNode.csb"));
