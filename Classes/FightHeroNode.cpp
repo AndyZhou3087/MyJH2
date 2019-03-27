@@ -1309,7 +1309,10 @@ void FightHeroNode::attackShakeAnim()
 
 void FightHeroNode::playSkillEffect(int stype)
 {
-	this->setLocalZOrder(12);
+	if (stype == 1)
+		this->setLocalZOrder(-1);
+	else
+		this->setLocalZOrder(12);
 
 	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
 	auto effectnode = CSLoader::createNode(effectname);
@@ -1325,6 +1328,7 @@ void FightHeroNode::playSkillEffect(int stype)
 
 void FightHeroNode::playMoreSkillEffectCB(int stype, int enemyindex)
 {
+
 	this->setLocalZOrder(12);
 	std::string effectname = StringUtils::format("effect/skill_%d_0.csb", stype);
 
@@ -1480,7 +1484,7 @@ void FightHeroNode::resetZorder(float dt)
 	for (int i = 0; i < 12; i++)
 	{
 		FightHeroNode* myheronode = (FightHeroNode*)this->getParent()->getChildByTag(i);
-		if (myheronode != NULL)
+		if (myheronode != NULL && !myheronode->isPlaySkillAnim)
 			myheronode->setLocalZOrder(i);
 	}
 }

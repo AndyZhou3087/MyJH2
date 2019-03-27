@@ -69,10 +69,10 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 	std::string fbg = StringUtils::format("fightbg%d.jpg", bgtype);
 	Node* bg = Sprite::create(ResourcePath::makeImagePath(fbg));
 	bg->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
-	this->addChild(bg);
+	this->addChild(bg, -2);
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("fightLayer.csb"));
-	this->addChild(csbnode);
+	this->addChild(csbnode, -2);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	//°´Å¥
@@ -393,7 +393,10 @@ void FightingLayer::heroFight(int fightertag)
 		}
 
 		if (atindex < 0)
+		{	
+			this->runAction(Sequence::create(DelayTime::create(1.0f), CallFunc::create(CC_CALLBACK_0(FightingLayer::resumeAtkSchedule, this)), NULL));
 			return;
+		}
 
 		int atnodetag = atindex;
 
