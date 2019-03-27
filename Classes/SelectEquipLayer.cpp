@@ -317,7 +317,7 @@ void SelectEquipLayer::updateUI(float dt)
 		redpoint->setVisible(false);
 
 		Equipable* ret_e = GlobalInstance::getInstance()->compareFitEquip(vec_res[m]->getType(), m_herodata);
-		if (ret_e != NULL)
+		if (ret_e != NULL && ret_e->getId().compare(vec_res[m]->getId()) == 0)
 		{
 			int etype = vec_res[m]->getType();
 			bool isfind = false;
