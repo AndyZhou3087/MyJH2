@@ -205,7 +205,6 @@ bool MainScene::init()
 	cocos2d::ui::Text* hinttext = (cocos2d::ui::Text*)maincityhintbox->getChildByName("text");
 	hinttext->setString(ResourceLang::map_lang["newherohint"]);
 
-	DataSave::getInstance()->setFirstEnter(false);
     //记录位置
     DataSave::getInstance()->setExitScene(0);
 

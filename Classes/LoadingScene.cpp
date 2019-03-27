@@ -133,8 +133,7 @@ bool LoadingScene::init()
 		point[i]->setVisible(false);
 	}
 
-	//未同意时弹出，同意后不再弹出
-	if (!DataSave::getInstance()->getUserProtocal())
+	if (DataSave::getInstance()->getFirstEnter())
 	{
 		//Layer *userProlayer = UserProtocolLayer::create();
 		//this->addChild(userProlayer, 0, "UserProtocolLayer");
@@ -142,6 +141,7 @@ bool LoadingScene::init()
 		m_loadingbg->setEnabled(true);
 		m_loadingclicktext->setVisible(true);
 		m_loadingclicktext->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
+		DataSave::getInstance()->setUserProtocal(true);
 	}
 	else
 	{
@@ -579,7 +579,6 @@ void LoadingScene::enterNewScene()
 {
 	if (DataSave::getInstance()->getFirstEnter())
 	{
-		DataSave::getInstance()->setUserProtocal(true);
 		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, StoryScene::createScene()));
 	}
 	else

@@ -4,6 +4,7 @@
 #include "Const.h"
 #include "MapBlockScene.h"
 #include "NewGuideLayer.h"
+#include "DataSave.h"
 
 StoryScene* storylayer = NULL;
 StoryScene::StoryScene()
@@ -75,6 +76,7 @@ bool StoryScene::init()
 	bg->setEnabled(false);
 	this->scheduleOnce(schedule_selector(StoryScene::delayShowText), 0.5f);
 
+	DataSave::getInstance()->setFirstEnter(false);
     return true;
 }
 
