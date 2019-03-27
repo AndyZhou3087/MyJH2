@@ -26,7 +26,7 @@
 #include "LibraryLayer.h"
 #include "FlowWorld.h"
 #include "LibraryLayer2.h"
-#include "HomeHillLayer2.h"
+#include "HomeHillLayer.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -733,8 +733,8 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				}
 				else if (buildname.compare("7homehill") == 0)
 				{
-					//layer = HomeHillLayer::create(Building::map_buildingDatas[buildname]);
-					layer = HomeHillLayer2::create(Building::map_buildingDatas[buildname]);
+					layer = HomeHillLayer::create(Building::map_buildingDatas[buildname]);
+					//layer = HomeHillLayer2::create(Building::map_buildingDatas[buildname]);
 				}
 				else if (buildname.compare("8pkground") == 0)
 				{
