@@ -69,10 +69,10 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 	std::string fbg = StringUtils::format("fightbg%d.jpg", bgtype);
 	Node* bg = Sprite::create(ResourcePath::makeImagePath(fbg));
 	bg->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
-	this->addChild(bg, -2);
+	this->addChild(bg);
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("fightLayer.csb"));
-	this->addChild(csbnode, -2);
+	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	//°´Å¥
@@ -95,7 +95,7 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 			if (enemyHeros[i]->getId().length() > 10)
 				datatype = F_HERO;
 			fightHeroNode->setData(m_enemyHeros[i], datatype, FS_FIGHTING);
-			addChild(fightHeroNode, i, 6 + i);
+			addChild(fightHeroNode, i + 1, 6 + i);
 		}
 	}
 
@@ -107,7 +107,7 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 			fightHeroNode->setPosition(145 + i % 3 * 215, 460 - i / 3 * 260);
 			m_myHeros[i]->setFightRound(0);
 			fightHeroNode->setData(m_myHeros[i], F_HERO, FS_FIGHTING);
-			addChild(fightHeroNode, 6 + i, i);
+			addChild(fightHeroNode, 6 + i + 1, i);
 		}
 	}
 
