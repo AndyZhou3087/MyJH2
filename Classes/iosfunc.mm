@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AdSupport/AdSupport.h>
 #import "iosfunc.h"
 #import "JHKeychain.h"
 #import <sys/utsname.h>
@@ -124,6 +125,11 @@ void openAppUri(const char* url)
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
     }
 
+}
+const char * getiOSIDFA()
+{
+    NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    return [idfa UTF8String];
 }
 
 bool isIphoneX()
