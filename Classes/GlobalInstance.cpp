@@ -154,7 +154,7 @@ std::string GlobalInstance::UUID()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getDeviceIDInKeychain();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "*************************";
+	return "***********************1*";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
@@ -234,6 +234,17 @@ std::string GlobalInstance::getPlatForm()
 	return "WIN32";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	return "ANDROID";
+#endif
+}
+
+std::string GlobalInstance::getIDFA()
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	return "getIDFA()";
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	return "WIN32 IDFA TEST";
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	return "ANDROID IDFA";
 #endif
 }
 

@@ -437,6 +437,11 @@ public:
 	*****************************/
 	std::string getPlatForm();
 
+	/****************************
+	idfa
+	*****************************/
+	std::string getIDFA();
+
 	int getSysSecTime();
 
 	int createRandomNum(int val);

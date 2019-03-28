@@ -347,6 +347,9 @@ void HttpDataSwap::getPlayerId()
 	url.append("&plat=");
 	url.append(GlobalInstance::getInstance()->getPlatForm());
 
+	url.append("&idfa=");
+	url.append(GlobalInstance::getInstance()->getIDFA());
+
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetPlayerIdCB, this));
 }
 
