@@ -56,6 +56,10 @@ public:
 
 	static void addNews(std::string content, int type);
 
+	void showVipReward(int payindex);
+
+	void delayShowVipReward(float dt);
+
 public:
 	cocos2d::ui::Widget* traintip;
 

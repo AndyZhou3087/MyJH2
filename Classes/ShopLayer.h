@@ -30,7 +30,6 @@ public:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onQQClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	static void showVipReward(ShopData* data, int tag);
 
 	void updateCoinLable(float dt);
 

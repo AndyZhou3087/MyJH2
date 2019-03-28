@@ -27,6 +27,7 @@
 #include "FlowWorld.h"
 #include "LibraryLayer2.h"
 #include "HomeHillLayer.h"
+#include "GiftContentLayer.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -1083,4 +1084,20 @@ void MainScene::addNews(std::string content, int type)
 	utf8str = gbkToUTF8(content.c_str());
 #endif
 	HttpDataSwap::init(NULL)->addNews(utf8str);
+}
+
+void MainScene::showVipReward(int payindex)
+{
+	this->setTag(payindex);
+	this->scheduleOnce(schedule_selector(MainScene::delayShowVipReward), 0.5f);
+}
+
+void MainScene::delayShowVipReward(float dt)
+{
+	int payindex = this->getTag();
+	GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[payindex], payindex, 1);
+	if (g_mainScene != NULL)
+	{
+		g_mainScene->addChild(layer, 10, "viprewardlayer");
+	}
 }

@@ -282,7 +282,8 @@ void ShopLayer::setMessage(PYARET ret)
 		}
 		else if (type == VIP)
 		{
-			showVipReward(&GlobalInstance::vec_shopdata[payindex], payindex);
+			if (g_mainScene != NULL)
+				g_mainScene->showVipReward(payindex);
 		}
 
 		if (type != VIP)
@@ -297,13 +298,4 @@ void ShopLayer::setMessage(PYARET ret)
 	//std::string str = StringUtils::format("buy_%d", (int)ret);
 	//MovingLabel::show(ResourceLang::map_lang[str]);
 	isPaying = false;
-}
-
-void ShopLayer::showVipReward(ShopData* data, int tag)
-{
-	GiftContentLayer* layer = GiftContentLayer::create(data, tag, 1);
-	if (g_mainScene != NULL)
-	{
-		g_mainScene->addChild(layer, 10, "viprewardlayer");
-	}
 }
