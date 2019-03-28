@@ -240,7 +240,7 @@ std::string GlobalInstance::getPlatForm()
 std::string GlobalInstance::getIDFA()
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	return "getIDFA()";
+	return getIDFA();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	return "WIN32 IDFA TEST";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
