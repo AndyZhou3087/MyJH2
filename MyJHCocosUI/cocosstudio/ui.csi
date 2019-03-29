@@ -519,6 +519,8 @@
       <FilePathData Path="ui/hh_fm_nodebox.png" />
       <FilePathData Path="ui/hh_fmicon.png" />
       <FilePathData Path="ui/autofreshherobox.png" />
+      <FilePathData Path="ui/matchfightawdbox.png" />
+      <FilePathData Path="ui/matchfightawdbox1.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

@@ -117,6 +117,7 @@
           <Image Name="mapbg.jpg" />
           <Image Name="mapblockbottom.png" />
           <Image Name="mapblocktop.png" />
+          <Image Name="matchfightawdbg.png" />
           <Image Name="materialbox.png" />
           <Image Name="n001.png" />
           <Image Name="n002.png" />
@@ -722,6 +723,7 @@
           <Image Name="matchbtn_text.png" />
           <Image Name="matchdoing_text.png" />
           <Image Name="matchfight_text.png" />
+          <Image Name="matchfightawd_text.png" />
           <Image Name="matchfighttitle.png" />
           <Image Name="matchrulebtn_text.png" />
           <Image Name="matchsave_text.png" />
@@ -1182,6 +1184,8 @@
           <Image Name="matchbox0.png" />
           <Image Name="matchbox1.png" />
           <Image Name="matchdoingbtn.png" />
+          <Image Name="matchfightawdbox.png" />
+          <Image Name="matchfightawdbox1.png" />
           <Image Name="matchreward_0.png" />
           <Image Name="matchreward_1.png" />
           <Image Name="matchreward_bg.png" />
@@ -1506,6 +1510,7 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="matchfightSuccAwdLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

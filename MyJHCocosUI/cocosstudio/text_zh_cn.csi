@@ -384,6 +384,7 @@
       <FilePathData Path="text_zh_cn/autorefreshhero_text.png" />
       <FilePathData Path="text_zh_cn/freerefreshhero_text.png" />
       <FilePathData Path="text_zh_cn/marketag0_text.png" />
+      <FilePathData Path="text_zh_cn/matchfightawd_text.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

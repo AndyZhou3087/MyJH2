@@ -18,6 +18,7 @@
 #include "RewardLayer.h"
 #include "MatchRankLayer.h"
 #include "Equip.h"
+#include "MacthFightSucAwdLayer.h"
 
 USING_NS_CC;
 
@@ -582,6 +583,9 @@ void MatchMainLayer::delayShowFightResultLayer(float dt)
 			GlobalInstance::matchPairHeros[i] = NULL;
 		}
 	}
+
+	if (fightret == 1)
+		this->scheduleOnce(schedule_selector(MatchMainLayer::showFightSuccAwdLayer), 0.5f);
 }
 
 CardHeroNode* MatchMainLayer::getMyCardHeroNode(int index)
@@ -759,4 +763,10 @@ void MatchMainLayer::onFinish(int code)
 		
 		MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
 	}
+}
+
+void MatchMainLayer::showFightSuccAwdLayer(float dt)
+{
+	MacthFightSucAwdLayer* layer = MacthFightSucAwdLayer::create();
+	this->addChild(layer, 2000);
 }

@@ -23,6 +23,8 @@ public:
 
 	void delayShowFightResultLayer(float dt);
 
+	void showFightSuccAwdLayer(float dt);
+
 	void getMatchVsPairData(std::string playerid="");//playerid:空字串，任意匹配
 private:
 	bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
