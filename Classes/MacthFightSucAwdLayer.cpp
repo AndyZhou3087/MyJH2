@@ -8,8 +8,8 @@
 #include "DataSave.h"
 #include "AnimationEffect.h"
 
-std::string awds[] = {"r001-10","r006-10", "a001-1-4"};
-int rnd[] = { 10, 50, 100 };
+std::string awds[] = {"s002-2","m002-2", "r006-1000", "r012-20","q001-5", "q002-5", "q003-5","i002-1", "r001-100", "r002-100", "r003-100","r004-100", "r005-100", "r007-10","r008-10", "r009-10" };
+int rnd[] = { 5,10,20,40,45,50,55,60,65,70,75,80,85,90,95,100 };
 
 MacthFightSucAwdLayer::MacthFightSucAwdLayer()
 {
