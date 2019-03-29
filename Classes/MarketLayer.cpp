@@ -294,19 +294,20 @@ void MarketLayer::loadData()
 	std::map<int, std::vector<MK_RES>>::iterator mit;
 	for (mit = map_cateRes.begin(); mit != map_cateRes.end(); mit++)
 	{
-		for (unsigned int i = 0; i < mit->second.size(); i++)
+		int count = 0;
+		for (unsigned int i = count; i < mit->second.size(); i++)
 		{
 			MK_RES mkres = mit->second[i];
 
 			if (GlobalInstance::map_timeMartData.find(mkres.resid) != GlobalInstance::map_timeMartData.end())
 			{
-				MK_RES mkres0 = mit->second[0];
 				int scount = GlobalInstance::map_timeMartData[mkres.resid].buycount;
 				mkres.maxcount = GlobalInstance::map_timeMartData[mkres.resid].totalcount;
 				mkres.stockcount = mkres.maxcount - scount;
 
-				mit->second[0] = mkres;
-				mit->second[i] = mkres0;
+				mit->second.erase(mit->second.begin() + i);
+				mit->second.insert(mit->second.begin() + count, mkres);
+				count++;
 			}
 		}
 	}
