@@ -52,6 +52,10 @@ bool MainMenuLayer::init()
         return false;
     }
 
+	wellmorebtnnode = WellMoreBtnNode::create();
+	this->addChild(wellmorebtnnode);
+	wellmorebtnnode->setVisible(false);
+
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	csbnode = CSLoader::createNode(ResourcePath::makePath("MainMenuLayer.csb"));
@@ -138,6 +142,10 @@ bool MainMenuLayer::init()
 			textimg->loadTexture(ResourcePath::makeTextImgPath("firstchargegiftbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			clickwidget->setVisible(false);
 		}
+		else if (i == WELLBTN)
+		{
+			wellmorebtnnode->setPosition(clickwidget->getPosition());
+		}
 	}
 
 	cocos2d::ui::Widget* headimgbox = (cocos2d::ui::Widget*)csbnode->getChildByName("headimgbox");
@@ -159,10 +167,19 @@ bool MainMenuLayer::init()
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
-		morebtnnode->runAction(Sequence::create(ScaleTo::create(0.2f, 0), Hide::create(), NULL));
 		cocos2d::ui::Button* morebtn = (cocos2d::ui::Button*)csbnode->getChildByName("morebtn");
 		if (morebtnnode->isVisible())
+		{
+			morebtnnode->runAction(Sequence::create(ScaleTo::create(0.2f, 0), Hide::create(), NULL));
 			morebtn->setBright(morebtnnode->isVisible());
+		}
+
+		cocos2d::ui::Button* wellbtn = (cocos2d::ui::Button*)csbnode->getChildByName("wellbtn");
+		if (wellmorebtnnode->isVisible())
+		{
+			wellmorebtnnode->runAction(Sequence::create(ScaleTo::create(0.2f, 0, 1), Hide::create(), NULL));
+		}
+
 		return true;
 	};
 	listener->setSwallowTouches(false);
@@ -512,6 +529,15 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		}
 			break;
 		case WELLBTN:
+		{
+			cocos2d::ui::Button* wellmorebtn = (cocos2d::ui::Button*)pSender;
+			if (wellmorebtnnode->isVisible())
+				wellmorebtnnode->runAction(Sequence::create(ScaleTo::create(0.2f, 0, 1), Hide::create(), NULL));
+			else
+				wellmorebtnnode->runAction(Sequence::create(Show::create(), ScaleTo::create(0.2f, 1, 1), NULL));
+
+			wellmorebtn->setBright(wellmorebtnnode->isVisible());
+		}
 			break;
 		case HEROBTN:
 		{
@@ -530,7 +556,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		case OUTBTN:
 		{
 			Layer* layer = OutTownLayer::create();
-			g_mainScene->addChild(layer);
+			g_mainScene->addChild(layer,0,"0outtown");
 			AnimationEffect::openAniEffect(layer);
 		}
 			break;

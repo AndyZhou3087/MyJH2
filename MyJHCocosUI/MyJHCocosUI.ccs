@@ -163,6 +163,10 @@
           <Image Name="tansitionimg1.jpg" />
           <Image Name="tansitionprogressbar.png" />
           <Image Name="tansitionprogressbg.png" />
+          <Image Name="wellgiftbg.jpg" />
+          <Image Name="wellgiftcontent.png" />
+          <Image Name="wellgifttie.png" />
+          <Image Name="wellgifttie1.png" />
           <Image Name="wintitle.png" />
           <Image Name="xiaoshimei.png" />
         </Folder>
@@ -686,10 +690,12 @@
           <Image Name="main_morebtn_text.png" />
           <Image Name="main_outbtn_text.png" />
           <Image Name="main_rankbtn_text.png" />
+          <Image Name="main_rebatebtn_text.png" />
           <Image Name="main_renationbtn_text.png" />
           <Image Name="main_setbtn_text.png" />
           <Image Name="main_shopbtn_text.png" />
           <Image Name="main_wellbtn_text.png" />
+          <Image Name="main_wellcardbtn_text.png" />
           <Image Name="makeresbtn_text.png" />
           <Image Name="mapbtn_text.png" />
           <Image Name="mapeventtext_0_0.png" />
@@ -869,6 +875,10 @@
           <Image Name="vocfit_text2.png" />
           <Image Name="vocfit_text3.png" />
           <Image Name="watchline_text.png" />
+          <Image Name="welltitle.png" />
+          <Image Name="wellvip1name_txt.png" />
+          <Image Name="wellvip2name_txt.png" />
+          <Image Name="wellvip3name_txt.png" />
           <Image Name="wgcurtext.png" />
           <Image Name="wglv_text.png" />
           <Image Name="wgnexttext.png" />
@@ -1180,11 +1190,14 @@
           <Image Name="main_menu_box.png" />
           <Image Name="main_outbtn.png" />
           <Image Name="main_rankbtn.png" />
+          <Image Name="main_rebatebtn.png" />
           <Image Name="main_renationbtn.png" />
           <Image Name="main_setbtn.png" />
           <Image Name="main_shopbtn.png" />
           <Image Name="main_silver.png" />
           <Image Name="main_wellbtn.png" />
+          <Image Name="main_wellcardbtn.png" />
+          <Image Name="main_wellmorebtn_bg.png" />
           <Image Name="maincityhintbox.png" />
           <Image Name="maintask_icon.png" />
           <Image Name="makeresbox.png" />
@@ -1345,6 +1358,10 @@
           <Image Name="w036.png" />
           <Image Name="waitingbg.png" />
           <Image Name="waitingprogress.png" />
+          <Image Name="wellgiftpricetag.png" />
+          <Image Name="wellvip1.png" />
+          <Image Name="wellvip2.png" />
+          <Image Name="wellvip3.png" />
           <Image Name="wglvframe.png" />
           <Image Name="x001.png" />
           <Image Name="x002.png" />
@@ -1518,6 +1535,9 @@
         <Project Name="usePropLayer.csd" Type="Layer" />
         <Project Name="UserProtocolLayer.csd" Type="Layer" />
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
+        <Image Name="w.png" />
+        <Project Name="wellGiftLayer.csd" Type="Layer" />
+        <Project Name="wellmorebtnnode.csd" Type="Node" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
       </RootFolder>

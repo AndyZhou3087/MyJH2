@@ -389,6 +389,12 @@
       <FilePathData Path="text_zh_cn/main_outbtn_text.png" />
       <FilePathData Path="text_zh_cn/main_renationbtn_text.png" />
       <FilePathData Path="text_zh_cn/herotitle.png" />
+      <FilePathData Path="text_zh_cn/main_rebatebtn_text.png" />
+      <FilePathData Path="text_zh_cn/main_wellcardbtn_text.png" />
+      <FilePathData Path="text_zh_cn/welltitle.png" />
+      <FilePathData Path="text_zh_cn/wellvip1name_txt.png" />
+      <FilePathData Path="text_zh_cn/wellvip2name_txt.png" />
+      <FilePathData Path="text_zh_cn/wellvip3name_txt.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

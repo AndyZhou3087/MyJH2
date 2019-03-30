@@ -6,6 +6,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "HttpDataSwap.h"
 #include "MoreBtnNode.h"
+#include "WellMoreBtnNode.h"
 
 USING_NS_CC;
 //主界面按钮
@@ -78,6 +79,7 @@ private:
 	cocos2d::ui::Text* tgiftname[3];
 	bool isGetVipData;
 	MoreBtnNode* morebtnnode;
+	WellMoreBtnNode* wellmorebtnnode;
 };
 extern MainMenuLayer* g_MainMenuLayer;
 #endif

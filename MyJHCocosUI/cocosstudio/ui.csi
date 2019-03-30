@@ -526,6 +526,13 @@
       <FilePathData Path="ui/main_renationbtn.png" />
       <FilePathData Path="ui/main_wellbtn.png" />
       <FilePathData Path="text_zh_cn/main_wellbtn_text.png" />
+      <FilePathData Path="ui/main_rebatebtn.png" />
+      <FilePathData Path="ui/main_wellcardbtn.png" />
+      <FilePathData Path="ui/main_wellmorebtn_bg.png" />
+      <FilePathData Path="ui/wellgiftpricetag.png" />
+      <FilePathData Path="ui/wellvip1.png" />
+      <FilePathData Path="ui/wellvip2.png" />
+      <FilePathData Path="ui/wellvip3.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

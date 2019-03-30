@@ -443,13 +443,15 @@ void MainScene::showNewerGuide(int step)
 	}
 	else if (step == 45)
 	{
-		scroll_3->setEnabled(true);
+		//scroll_3->setEnabled(true);
 
-		scroll_3->jumpToPercentHorizontal(80);
-		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
-		scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+		//scroll_3->jumpToPercentHorizontal(80);
+		//scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
+		//scroll_2->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 
-		cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_01_n");//出城
+		//cocos2d::ui::ImageView* node = (cocos2d::ui::ImageView*)scroll_3->getChildByName("main_01_n");//出城
+		//nodes.push_back(node);
+		Node* node = g_MainMenuLayer->getChildByName("csbnode")->getChildByName("outbtn");
 		nodes.push_back(node);
 	}
 	else if (step == 63)
