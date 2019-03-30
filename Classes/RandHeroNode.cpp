@@ -6,6 +6,7 @@
 #include "AnimationEffect.h"
 #include "SoundManager.h"
 #include "GlobalInstance.h"
+#include "MovingLabel.h"
 
 RandHeroNode::RandHeroNode()
 {
@@ -74,9 +75,30 @@ void RandHeroNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		Layer* layer = HeroAttrLayer::create((Hero*)this->getUserData());
-		this->getParent()->addChild(layer, 0, this->getTag());
-		AnimationEffect::openAniEffect((Layer*)layer);
+
+		if (m_herodata != NULL)
+		{
+			bool isfind = false;
+			for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+			{
+				if (GlobalInstance::vec_myHeros[i]->getName().compare(m_herodata->getName()) == 0)
+				{
+					isfind = true;
+					break;
+				}
+			}
+			if (!isfind && m_herodata->getState() == HS_OWNED)
+			{
+				std::string str = StringUtils::format(ResourceLang::map_lang["hadfired"].c_str(), m_herodata->getName().c_str());
+				MovingLabel::show(str);
+			}
+			else
+			{
+				Layer* layer = HeroAttrLayer::create((Hero*)this->getUserData());
+				this->getParent()->addChild(layer, 0, this->getTag());
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
+		}
 	}
 }
 

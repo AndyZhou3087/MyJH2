@@ -62,7 +62,8 @@ bool InnRoomLayer::init(Building* buidingData)
 	int langtype = GlobalInstance::getInstance()->getLang();
 	//标题
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
-	titleimg->loadTexture(ResourcePath::makeTextImgPath("innroomtitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	titleimg->ignoreContentAdaptWithSize(true);
+	titleimg->loadTexture(ResourcePath::makeTextImgPath("herotitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//等级
 	lvUIlbl = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
@@ -130,11 +131,11 @@ void InnRoomLayer::delayShowNewerGuide(float dt)
 	{
 		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
 		{
-			if (NewGuideLayer::checkifNewerGuide(23))
+/*			if (NewGuideLayer::checkifNewerGuide(23))
 			{
 				showNewerGuide(23);
 			}
-			else if (NewGuideLayer::checkifNewerGuide(31))
+			else */if (NewGuideLayer::checkifNewerGuide(31))
 			{
 				showNewerGuide(31);
 			}

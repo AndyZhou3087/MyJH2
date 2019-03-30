@@ -320,10 +320,19 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 		}
 
+		createRndMonsters();
+
 		for (unsigned int i = 0; i < vec_monsterBlocks.size(); i++)
 		{
 			vec_monsterBlocks[i]->setPosType(POS_MONSTER);
-			vec_monsterBlocks[i]->setPosIcon();
+
+			int mbindex = vec_monsterBlocks[i]->getTag();
+			if (map_allRndMonsters[mbindex].size() > 0)
+			{
+				std::string firstmid = map_allRndMonsters[mbindex].at(0)->getId();
+				vec_monsterBlocks[i]->setPosNpcID(firstmid);
+				vec_monsterBlocks[i]->setPosIcon();
+			}
 		}
 
 		//迷宫地图记下的位置
@@ -1710,7 +1719,7 @@ void MapBlockScene::doMyStatus()
 		}
 		else if (mapblock->getPosType() == POS_MONSTER)
 		{
-			createRndMonsters();
+			configRndMonstersAndRewards(mapblock->getTag());
 			mapblock->setPosType(POS_NOTHING);
 			mapblock->removePosIcon();
 		}
@@ -1856,6 +1865,53 @@ void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 
 void MapBlockScene::createRndMonsters()
 {
+	vector<int> monstersrnd;
+
+	int rrnd = 0;
+	for (unsigned int m = 0; m < MapBlock::vec_randMonsters.size(); m++)
+	{
+		FOURProperty propty = MapBlock::vec_randMonsters[m];
+		rrnd += propty.floatPara3;
+		monstersrnd.push_back(rrnd);
+	}
+
+	for (unsigned int i = 0; i < vec_monsterBlocks.size(); i++)
+	{
+		int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
+		for (int i = 0; i < rndcount; i++)
+		{
+			int r1 = GlobalInstance::getInstance()->createRandomNum(100);
+			for (unsigned int m = 0; m < MapBlock::vec_randMonsters.size(); m++)
+			{
+				FOURProperty propty = MapBlock::vec_randMonsters[m];
+				if (r1 < monstersrnd[m])
+				{
+					int minlv = propty.intPara1 / 1000;
+					int maxlv = propty.intPara1 % 1000;
+					int minqu = propty.intPara2 / 1000;
+					int maxqu = propty.intPara2 % 1000;
+					int rlv = minlv + GlobalInstance::getInstance()->createRandomNum(maxlv - minlv + 1);
+					int rqu = minqu + GlobalInstance::getInstance()->createRandomNum(maxqu - minqu + 1);
+
+					Npc* enemyhero = new Npc();
+					std::string sid = propty.sid;
+					enemyhero->setId(sid);
+					enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
+					enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
+					enemyhero->setPotential(rqu);
+					enemyhero->setLevel(rlv);
+					enemyhero->setHp(enemyhero->getMaxHp());
+					map_allRndMonsters[vec_monsterBlocks[i]->getTag()].push_back(enemyhero);
+					break;
+				}
+			}
+		}
+	}
+	
+}
+
+void MapBlockScene::configRndMonstersAndRewards(int mbindex)
+{
 	//int r = 100;
 	//
 	//if (walkcount > 1)
@@ -1907,38 +1963,8 @@ void MapBlockScene::createRndMonsters()
 	//	}
 	//}
 
-	int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
-	for (int i = 0; i < rndcount; i++)
-	{
-		int r1 = GlobalInstance::getInstance()->createRandomNum(100);
-		int rnd = 0;
-		for (unsigned int m = 0; m < MapBlock::vec_randMonsters.size(); m++)
-		{
-			FOURProperty propty = MapBlock::vec_randMonsters[m];
-			rnd += propty.floatPara3;
-			if (r1 < rnd)
-			{
-				int minlv = propty.intPara1 / 1000;
-				int maxlv = propty.intPara1 % 1000;
-				int minqu = propty.intPara2 / 1000;
-				int maxqu = propty.intPara2 % 1000;
-				int rlv = minlv + GlobalInstance::getInstance()->createRandomNum(maxlv - minlv + 1);
-				int rqu = minqu + GlobalInstance::getInstance()->createRandomNum(maxqu - minqu + 1);
 
-				Npc* enemyhero = new Npc();
-				std::string sid = MapBlock::vec_randMonsters[m].sid;
-				enemyhero->setId(sid);
-				enemyhero->setName(GlobalInstance::map_AllResources[sid].name);
-				enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
-				enemyhero->setPotential(rqu);
-				enemyhero->setLevel(rlv);
-				enemyhero->setHp(enemyhero->getMaxHp());
-				vec_enemys.push_back(enemyhero);
-				break;
-			}
-		}
-
-	}
+	vec_enemys = map_allRndMonsters[mbindex];
 
 	for (unsigned int i = 0; i < MapBlock::vec_randMonstersRes.size(); i++)
 	{
@@ -1959,16 +1985,24 @@ void MapBlockScene::eventFight()
 
 void MapBlockScene::createEventMonsters()
 {
+	vector<int> monstersrnd;
+
+	int rrnd = 0;
+	for (unsigned int m = 0; m < MapBlock::vec_randMonsters.size(); m++)
+	{
+		FOURProperty propty = MapBlock::vec_randMonsters[m];
+		rrnd += propty.floatPara3;
+		monstersrnd.push_back(rrnd);
+	}
+
 	int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
 	for (int i = 0; i < rndcount; i++)
 	{
 		int r1 = GlobalInstance::getInstance()->createRandomNum(100);
-		int rnd = 0;
 		for (unsigned int m = 0; m < MapBlock::vec_randMonsters.size(); m++)
 		{
 			FOURProperty propty = MapBlock::vec_randMonsters[m];
-			rnd += propty.floatPara3;
-			if (r1 < rnd)
+			if (r1 < monstersrnd[m])
 			{
 				int minlv = propty.intPara1 / 1000;
 				int maxlv = propty.intPara1 % 1000;

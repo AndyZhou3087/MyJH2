@@ -25,6 +25,9 @@
 #include "HintBoxLayer.h"
 #include "LoadingScene.h"
 #include "FirstChargeLayer.h"
+#include "RenationLayer.h"
+#include "OutTownLayer.h"
+#include "InnRoomLayer.h"
 
 USING_NS_CC;
 
@@ -52,7 +55,7 @@ bool MainMenuLayer::init()
 	int langtype = GlobalInstance::getInstance()->getLang();
 
 	csbnode = CSLoader::createNode(ResourcePath::makePath("MainMenuLayer.csb"));
-	this->addChild(csbnode);
+	this->addChild(csbnode, 0, "csbnode");
 
 	for (int i = 0; i < csbnode->getChildrenCount(); i++)
 	{
@@ -106,6 +109,8 @@ bool MainMenuLayer::init()
 
 		else if (i >= VIP1BTN && i <= VIP2BTN)
 		{
+			clickwidget->setVisible(false);
+
 			cocos2d::ui::Text* text = (cocos2d::ui::Text*)clickwidget->getChildByName("text");
 			int days = 0;
 			if (i == VIP1BTN)
@@ -212,6 +217,8 @@ void MainMenuLayer::onFinish(int code)
 			}
 
 			firstchargebtn->setVisible(!GlobalInstance::isBuyFirstCharge);
+			if (!timegiftbtn->isVisible())
+				firstchargebtn->setPosition(timegiftbtn->getPosition());
 
 			HttpDataSwap::init(this)->getMessageList(0);
 
@@ -345,7 +352,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 {
 	Node* clicknode = (Node*)pSender;
 	int menuType = clicknode->getTag();
-	if ((menuType >= MOREBTN && menuType <= SHOPBTN) || menuType == TIMEGIFTBTN || (menuType >= TIMEGIFTBTN_0 && menuType <= TIMEGIFTBTN_2))
+	if ((menuType >= MOREBTN && menuType <= SHOPBTN) || menuType == TIMEGIFTBTN || (menuType >= TIMEGIFTBTN_0 && menuType <= TIMEGIFTBTN_2) || (menuType >= FIRSTCHARGEBTN && menuType <= OUTBTN))
 		CommonFuncs::BtnAction(pSender, type);
 	else if (type == ui::Widget::TouchEventType::ENDED)
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
@@ -502,6 +509,29 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					break;
 				}
 			}
+		}
+			break;
+		case WELLBTN:
+			break;
+		case HEROBTN:
+		{
+			InnRoomLayer *layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
+			g_mainScene->addChild(layer, 0, "6innroom");
+			AnimationEffect::openAniEffect(layer);
+		}
+			break;
+		case RANATIONBTN:
+		{
+			RenationLayer* layer = RenationLayer::create();
+			g_mainScene->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
+			break;
+		case OUTBTN:
+		{
+			Layer* layer = OutTownLayer::create();
+			g_mainScene->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
 		}
 			break;
 		default:

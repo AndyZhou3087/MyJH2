@@ -17,6 +17,7 @@ typedef enum
 	BTN_ADD_SILVER,//增加银子
 	BTN_ADD_COINBOX,//增加元宝
 	BTN_ADD_COIN,//增加元宝
+	BTN_LVUP,//客栈升级
 	BTN_CLOSE//关闭按钮
 }BTNTYPE;
 class RandHeroLayer : public cocos2d::Layer
@@ -30,7 +31,7 @@ public:
 
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
-
+	void lvup();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	//更新UI,数值
@@ -57,8 +58,11 @@ private:
 	RandHeroNode* heronode[3];//3个随机的英雄UI
 	Node* freefreshherobox;
 	Node* silvericon;
+	cocos2d::ui::Text* lvUIText;
 	cocos2d::ui::ImageView* srefreshbtntxt;
 	cocos2d::ui::Widget* silverrefreshbtn;
+	cocos2d::ui::Widget* coinrefreshbtn;
+	cocos2d::ui::Widget* cardrefreshbtn;
 	int langtype;
 
 	cocos2d::ui::Text* m_timelbl;

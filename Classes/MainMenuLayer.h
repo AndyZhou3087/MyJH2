@@ -32,7 +32,11 @@ typedef enum
 	TIMEGIFTBTN_0,
 	TIMEGIFTBTN_1,
 	TIMEGIFTBTN_2,
-	FIRSTCHARGEBTN//首充礼包
+	FIRSTCHARGEBTN,//首充礼包
+	WELLBTN,//福利
+	HEROBTN,//侠客
+	RANATIONBTN,//江湖知己
+	OUTBTN//出城
 }MENUTYPE;
 class MainMenuLayer : public cocos2d::Layer, public HTTPDataDelegateProtocol
 {

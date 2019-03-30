@@ -572,6 +572,7 @@
           <Image Name="herocancel_text.png" />
           <Image Name="herofight_text.png" />
           <Image Name="herofire_text.png" />
+          <Image Name="herotitle.png" />
           <Image Name="hh_addfm_text.png" />
           <Image Name="hh_cap_text.png" />
           <Image Name="hh_info_maxfm_text.png" />
@@ -679,12 +680,16 @@
           <Image Name="main_10_t.png" />
           <Image Name="main_11_t.png" />
           <Image Name="main_achbtn_text.png" />
+          <Image Name="main_herobtn_text.png" />
           <Image Name="main_loginbtn_text.png" />
           <Image Name="main_mailbtn_text.png" />
           <Image Name="main_morebtn_text.png" />
+          <Image Name="main_outbtn_text.png" />
           <Image Name="main_rankbtn_text.png" />
+          <Image Name="main_renationbtn_text.png" />
           <Image Name="main_setbtn_text.png" />
           <Image Name="main_shopbtn_text.png" />
+          <Image Name="main_wellbtn_text.png" />
           <Image Name="makeresbtn_text.png" />
           <Image Name="mapbtn_text.png" />
           <Image Name="mapeventtext_0_0.png" />
@@ -1170,12 +1175,16 @@
           <Image Name="main_btn_redpoint.png" />
           <Image Name="main_coin.png" />
           <Image Name="main_coin_box.png" />
+          <Image Name="main_herobtn.png" />
           <Image Name="main_mailbtn.png" />
           <Image Name="main_menu_box.png" />
+          <Image Name="main_outbtn.png" />
           <Image Name="main_rankbtn.png" />
+          <Image Name="main_renationbtn.png" />
           <Image Name="main_setbtn.png" />
           <Image Name="main_shopbtn.png" />
           <Image Name="main_silver.png" />
+          <Image Name="main_wellbtn.png" />
           <Image Name="maincityhintbox.png" />
           <Image Name="maintask_icon.png" />
           <Image Name="makeresbox.png" />
@@ -1451,6 +1460,7 @@
         <Project Name="marketRefreshLayer.csd" Type="Layer" />
         <Project Name="marketResNode.csd" Type="Node" />
         <Project Name="matchContentLayer.csd" Type="Layer" />
+        <Project Name="matchfightSuccAwdLayer.csd" Type="Layer" />
         <Project Name="matchHeroNode.csd" Type="Node" />
         <Project Name="matchMainLayer.csd" Type="Layer" />
         <Project Name="matchRankLayer.csd" Type="Layer" />
@@ -1510,7 +1520,6 @@
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="matchfightSuccAwdLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

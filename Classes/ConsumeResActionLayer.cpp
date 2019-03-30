@@ -19,6 +19,7 @@
 #include "NewGuideLayer.h"
 #include "MainScene.h"
 #include "BuyCoinLayer.h"
+#include "RandHeroLayer.h"
 
 USING_NS_CC;
 
@@ -386,8 +387,8 @@ void ConsumeResActionLayer::action()
 
 		if (bdata->name.compare("6innroom") == 0)
 		{
-			InnRoomLayer* innroomLayer = (InnRoomLayer*)this->getParent();
-			innroomLayer->lvup();
+			RandHeroLayer* randHeroLayer = (RandHeroLayer*)g_mainScene->getChildByName("RandHeroLayer");
+			randHeroLayer->lvup();
 		}
 		else if (bdata->name.compare("7homehill") == 0)
 		{

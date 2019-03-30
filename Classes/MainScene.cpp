@@ -28,6 +28,7 @@
 #include "LibraryLayer2.h"
 #include "HomeHillLayer.h"
 #include "GiftContentLayer.h"
+#include "RandHeroLayer.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -358,6 +359,12 @@ void MainScene::delayShowNewerGuide(float dt)
 				showNewerGuide(15);
 			}
 		}
+
+		else if (!NewGuideLayer::checkifNewerGuide(30) && NewGuideLayer::checkifNewerGuide(23))
+		{
+			showNewerGuide(23);
+		}
+
 		else if (NewGuideLayer::checkifNewerGuide(MIDELEGUIDESTEP))
 		{
 			if (NewGuideLayer::checkifNewerGuide(40))
@@ -515,6 +522,12 @@ void MainScene::showNewerGuide(int step)
 		node->setSwallowTouches(false);
 		nodes.push_back(node);
 	}
+	else if (step == 23)
+	{
+		Node* node = g_MainMenuLayer->getChildByName("csbnode")->getChildByName("herobtn");
+		nodes.push_back(node);
+	}
+
 	showNewerGuideNode(step, nodes);
 }
 
@@ -729,7 +742,9 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				}
 				else if (buildname.compare("6innroom") == 0)
 				{
-					layer = InnRoomLayer::create(Building::map_buildingDatas[buildname]);
+					buildname = "RandHeroLayer";
+					//layer = InnRoomLayer::create(Building::map_buildingDatas[buildname]);
+					layer = RandHeroLayer::create();
 				}
 				else if (buildname.compare("7homehill") == 0)
 				{

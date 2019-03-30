@@ -40,7 +40,7 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 "小师妹：不好，妖人居然隐藏实力，帮主与妖人拼得两败俱伤，都不慎坠崖，天书也不知所踪，师兄切不可意气用事，趁更多人赶来之前，我们先行躲避，再寻天书的踪迹", //11
 "小师妹：师兄切莫悲伤，帮主虽恐遭不测，但我们不可放弃，天书亦决不能落入宵小之人手中。我们广纳豪杰，才好寻回老帮主和天书，客栈中经常会有江湖侠客停留，师兄可前往招募。",//12
 "",//13
-"小师妹：点击银两刷新，可以刷新可招募的侠客，最高可刷新出橙色品质的侠客哦！（侠客的品质由低到高依次为绿，蓝，紫，橙，红）",//14
+"小师妹：点击刷新按钮，可以刷新可招募的侠客，最高可刷新出橙色品质的侠客哦！（侠客的品质由低到高依次为绿，蓝，紫，橙，红）",//14
 //这里是否需要滑动引导
 //后山引导（改为条件引导）
 "小师妹：经营门派最重要的还是要先把基础设施完善起来，我们先去后山看看有什么资源吧!",//15
@@ -53,7 +53,7 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 
 //这里是否需要滑动引导
 "",//22
-"点击新人招募可以招募到各种品质江湖侠客（品质从低到高依次为绿，蓝，紫，橙，红）",//23
+"",//23
 "小师妹：这里有三位侠客，现下正是发展门派之时，掌门师兄可依次招募进来。",//重复招募三次角色24
 "",//25
 "",//26
@@ -427,27 +427,30 @@ void NewGuideLayer::showNextGuide()
 		}
 		if (g_mainScene != NULL)
 		{
-			InnRoomLayer* hill = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-			if (hill != NULL)
+			RandHeroLayer* randlayer = (RandHeroLayer*)g_mainScene->getChildByName("RandHeroLayer");
+			if (randlayer != NULL)
 			{
-				RandHeroLayer* randlayer = (RandHeroLayer*)hill->getChildByName("RandHeroLayer");
-				if (randlayer != NULL)
+				if (m_step == 14)
 				{
-					if (m_step == 14)
+					randlayer->scheduleOnce(schedule_selector(RandHeroLayer::delayShowNewerGuide), 2.0f);
 					{
-						randlayer->scheduleOnce(schedule_selector(RandHeroLayer::delayShowNewerGuide), 2.0f);
-						{
-							this->removeFromParentAndCleanup(true);
-						}
+						this->removeFromParentAndCleanup(true);
 					}
-					else
-						randlayer->delayShowNewerGuide(0);
 				}
+				else
+					randlayer->delayShowNewerGuide(0);
 			}
 		}
 		g_NewGuideLayer = NULL;
 	}
-	else if (m_step == 30 || m_step == 38)
+	else if (m_step == 30)
+	{
+		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
+		if (g_mainScene != NULL)
+			g_mainScene->delayShowNewerGuide(0);
+	}
+	else if (m_step == 23 || m_step == 38)
 	{
 		this->removeFromParentAndCleanup(true);
 		g_NewGuideLayer = NULL;
@@ -714,7 +717,7 @@ void NewGuideLayer::showWord(std::string wordstr)
 			xsm->setPositionX(-190); 
 			xsm->setRotationSkewY(180);
 		}
-		else if (m_step == 14 || m_step == 85)
+		else if (m_step == 85)
 		{
 			textbox->setPosition(Vec2(360, 360));
 		}

@@ -129,44 +129,41 @@ bool HomeHillLayer::init(Building* buidingData)
 
 void HomeHillLayer::delayShowNewerGuide(float dt)
 {
-	if (!NewGuideLayer::checkifNewerGuide(14))
+	/*if (GlobalInstance::getInstance()->getUnlockHomehillCondition() && !NewGuideLayer::checkifNewerGuide(15))
+	{*/
+	if (!NewGuideLayer::checkifNewerGuide(15))
 	{
-		/*if (GlobalInstance::getInstance()->getUnlockHomehillCondition() && !NewGuideLayer::checkifNewerGuide(15))
-		{*/
-		if (!NewGuideLayer::checkifNewerGuide(15))
+		if (NewGuideLayer::checkifNewerGuide(16))
 		{
-			if (NewGuideLayer::checkifNewerGuide(16))
-			{
-				showNewerGuide(16);
-			}
-			else if (NewGuideLayer::checkifNewerGuide(18))
-			{
-				showNewerGuide(18);
-			}
-			else if (NewGuideLayer::checkifNewerGuide(20))
-			{
-				showNewerGuide(20);
-			}
-			else if (NewGuideLayer::checkifNewerGuide(21))
-			{
-				showNewerGuide(21);
-			}
-			else if (NewGuideLayer::checkifNewerGuide(82))
-			{
-				showNewerGuide(82);
-			}
-			else if (NewGuideLayer::checkifNewerGuide(83))
-			{
-				showNewerGuide(83);
-			}
-			else if (NewGuideLayer::checkifNewerGuide(84))
-			{
-				showNewerGuide(84);
-			}
-			else if (NewGuideLayer::checkifNewerGuide(85))
-			{
-				showNewerGuide(85);
-			}
+			showNewerGuide(16);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(18))
+		{
+			showNewerGuide(18);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(20))
+		{
+			showNewerGuide(20);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(21))
+		{
+			showNewerGuide(21);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(82))
+		{
+			showNewerGuide(82);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(83))
+		{
+			showNewerGuide(83);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(84))
+		{
+			showNewerGuide(84);
+		}
+		else if (NewGuideLayer::checkifNewerGuide(85))
+		{
+			showNewerGuide(85);
 		}
 	}
 }

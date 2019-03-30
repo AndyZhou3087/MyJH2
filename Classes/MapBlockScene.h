@@ -148,6 +148,8 @@ private:
 
 	void createRndMonsters();
 
+	void configRndMonstersAndRewards(int mbindex);
+
 	void creatNpcOrBoss(MapBlock* mbolck);
 
 	void createBoxRewards(MapBlock* mbolck);
@@ -231,6 +233,7 @@ private:
 	int walkcount;
 	int monsterComeRnd;
 
+	std::map<int, std::vector<Npc*>> map_allRndMonsters;
 	std::vector<Npc*> vec_enemys;
 	std::vector<FOURProperty> vec_winrewards;
 	RenderTexture* _fogrender;

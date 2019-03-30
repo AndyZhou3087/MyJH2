@@ -521,6 +521,11 @@
       <FilePathData Path="ui/autofreshherobox.png" />
       <FilePathData Path="ui/matchfightawdbox.png" />
       <FilePathData Path="ui/matchfightawdbox1.png" />
+      <FilePathData Path="ui/main_herobtn.png" />
+      <FilePathData Path="ui/main_outbtn.png" />
+      <FilePathData Path="ui/main_renationbtn.png" />
+      <FilePathData Path="ui/main_wellbtn.png" />
+      <FilePathData Path="text_zh_cn/main_wellbtn_text.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

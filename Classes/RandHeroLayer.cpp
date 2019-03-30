@@ -18,6 +18,7 @@
 #include "HeroAttrLayer.h"
 #include "InnRoomLayer.h"
 #include "BuyCoinLayer.h"
+#include "ConsumeResActionLayer.h"
 
 USING_NS_CC;
 
@@ -71,12 +72,12 @@ bool RandHeroLayer::init()
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("innroomtitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//等级
-	cocos2d::ui::Text* lvUIText = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
+	lvUIText = (cocos2d::ui::Text*)csbnode->getChildByName("lv");
 	std::string str = StringUtils::format("%d%s", Building::map_buildingDatas["6innroom"]->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
 	lvUIText->setString(str);
 
 
-	std::string btnname[] = { "srefreshbtn", "crefreshbtn", "usecardbtn", "silverbox", "addbtn1", "coinbox", "addbtn2","closebtn"};//与BTNTYPE对应
+	std::string btnname[] = { "srefreshbtn", "crefreshbtn", "usecardbtn", "silverbox", "addbtn1", "coinbox", "addbtn2", "lvupbtn", "closebtn"};//与BTNTYPE对应
 	for (int i = 0; i < sizeof(btnname) / sizeof(btnname[0]); i++)
 	{
 		int tag = i + BTN_S_REFRESH;
@@ -90,18 +91,25 @@ bool RandHeroLayer::init()
 			//银子刷新按钮文字
 			srefreshbtntxt = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			srefreshbtntxt->ignoreContentAdaptWithSize(true);
+
+			silvericon = btn->getChildByName("sicon");
+			refreshsilverlbl = (cocos2d::ui::Text*)btn->getChildByName("snumbl");
 		}
 		else if (tag == BTN_C_REFRESH)
 		{
+			coinrefreshbtn = btn;
 			//元宝刷新按钮文字
 			cocos2d::ui::ImageView* crefreshbtntxt = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			crefreshbtntxt->loadTexture(ResourcePath::makeTextImgPath("crefresh_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			refreshcoinlbl = (cocos2d::ui::Text*)btn->getChildByName("cnumbl");
 		}
 		else if (tag == BTN_USECARD)
 		{
+			cardrefreshbtn = btn;
 			//使用卷轴按钮文字
 			cocos2d::ui::ImageView* usecardbtntxt = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			usecardbtntxt->loadTexture(ResourcePath::makeTextImgPath("usecard_Text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			herocardcountlbl = (cocos2d::ui::Text*)btn->getChildByName("cardnumbl");
 		}
 		else if (tag == BTN_ADD_SILVERBOX)
 		{
@@ -113,18 +121,19 @@ bool RandHeroLayer::init()
 		}
 	}
 
-	silvericon = csbnode->getChildByName("sicon");
-
-	refreshsilverlbl = (cocos2d::ui::Text*)csbnode->getChildByName("snumbl");
 	std::string lblstr = StringUtils::format("%d", refreshHeroSilver.getValue() + GlobalInstance::getInstance()->getSilverRefHeroCount() * 100);
 	refreshsilverlbl->setString(lblstr);
-	refreshcoinlbl = (cocos2d::ui::Text*)csbnode->getChildByName("cnumbl");
+
 	lblstr = StringUtils::format("%d", COINREFRESH_HERO_NUM);
 	refreshcoinlbl->setString(lblstr);
 
-	herocardcountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("cardnumbl");
-	lblstr = StringUtils::format("%d", MyRes::getMyResCount("u001"));
+	int count = MyRes::getMyResCount("u001");
+
+	lblstr = StringUtils::format("%d", count);
 	herocardcountlbl->setString(lblstr);
+
+	cardrefreshbtn->setVisible(count > 0);
+	coinrefreshbtn->setVisible(count <= 0);
 
 	freefreshherobox = csbnode->getChildByName("autofreshherobox");
 
@@ -139,10 +148,13 @@ bool RandHeroLayer::init()
 	for (int i = 0; i < 3; i++)
 	{
 		heronode[i] = RandHeroNode::create();
-		heronode[i]->setPosition(140+i*220, 730);
+		heronode[i]->setPosition(140+i*220, 740);
 		heronode[i]->setData(GlobalInstance::vec_rand3Heros[i], false);
 		this->addChild(heronode[i], 0, i);
 	}
+
+	cocos2d::ui::Text* hintdesc = (cocos2d::ui::Text*)csbnode->getChildByName("hintdesc");
+	hintdesc->setString(ResourceLang::map_lang["innroomhintdesc"]);
 
 	updateUI(0);
 	this->schedule(schedule_selector(RandHeroLayer::updateUI), 1.0f);
@@ -162,7 +174,8 @@ bool RandHeroLayer::init()
 
 void RandHeroLayer::delayShowNewerGuide(float dt)
 {
-	if (!NewGuideLayer::checkifNewerGuide(23))
+	//if (!NewGuideLayer::checkifNewerGuide(23))
+	if (!NewGuideLayer::checkifNewerGuide(12))
 	{
 		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
 		{
@@ -325,6 +338,21 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 			break;
+		case BTN_LVUP:
+		{
+			Building* bdata = Building::map_buildingDatas["6innroom"];
+			if (bdata->level.getValue() < bdata->maxlevel.getValue() - 1)
+			{
+				ConsumeResActionLayer* layer = ConsumeResActionLayer::create(bdata, CA_BUILDINGLVUP);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["maxlv"]);
+			}
+		}
+			break;
 		case BTN_CLOSE://关闭
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
@@ -379,8 +407,12 @@ void RandHeroLayer::refresh3Hero(int i)
 	else if (i == 3)
 	{
 		MyRes::Use("u001");
-		std::string str = StringUtils::format("%d", MyRes::getMyResCount("u001"));
+		int count = MyRes::getMyResCount("u001");
+		std::string str = StringUtils::format("%d", count);
 		herocardcountlbl->setString(str);
+
+		cardrefreshbtn->setVisible(count > 0);
+		coinrefreshbtn->setVisible(count <= 0);
 	}
 	else if (i == 4)//免费刷新
 	{
@@ -455,6 +487,13 @@ void RandHeroLayer::updateUI(float dt)
 		GlobalInstance::getInstance()->setSilverRefHeroCount(0);
 		GlobalInstance::isNewHeroRefresh = true;
 	}
+}
+
+void RandHeroLayer::lvup()
+{
+	Building* bdata = Building::map_buildingDatas["6innroom"];
+	std::string str = StringUtils::format("%d%s", bdata->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
+	lvUIText->setString(str);
 }
 
 void RandHeroLayer::create3RandHero(int tool)

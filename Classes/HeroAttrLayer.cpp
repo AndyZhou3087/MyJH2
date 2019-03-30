@@ -801,10 +801,10 @@ void HeroAttrLayer::recruitHero()
 		//保存数据
 		GlobalInstance::getInstance()->saveMyHeros();
 		GlobalInstance::getInstance()->saveRand3Heros();
-		InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+		//InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
 		RandHeroNode* heroNode = (RandHeroNode*)this->getParent()->getChildByTag(this->getTag());
 		heroNode->markRecruited(true);
-		innroomLayer->refreshMyHerosUi();
+		//innroomLayer->refreshMyHerosUi();
 		btnArr[3]->setEnabled(false);
 
 		DynamicValueInt constdv;

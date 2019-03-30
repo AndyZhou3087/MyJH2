@@ -43,7 +43,7 @@ bool RenationLayer::init()
 		return false;
 	}
 
-	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 128));
+	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 220));
 	this->addChild(color,0,"colorLayer");
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("renationLayer.csb"));
