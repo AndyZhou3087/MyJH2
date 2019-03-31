@@ -5,6 +5,8 @@
 #define _MAPBLOCK_H_
 #include "cocos2d.h"
 #include "json.h"
+#include "ui/CocosGUI.h"
+#include "cocostudio/CocoStudio.h"
 USING_NS_CC;
 
 /*************

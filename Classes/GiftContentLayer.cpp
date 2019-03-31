@@ -70,6 +70,7 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 	buybtntext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("mapeventtext_6_1", langtype))->getContentSize());
 
 	cocos2d::ui::ImageView* title = (cocos2d::ui::ImageView*)csbnode->getChildByName("title");
+	title->ignoreContentAdaptWithSize(true);
 	std::string str = StringUtils::format("text_%s", data->icon.c_str());
 	title->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
@@ -104,7 +105,7 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 	else if (data->type == VIP)
 	{
 		str = StringUtils::format("shoptext_%d", m_data->type);
-		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), m_data->name.c_str());
+		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), VIPDAYS[m_tag], m_data->name.c_str());
 		desc->setString(str);
 
 		HttpDataSwap::init(this)->vipIsOn();

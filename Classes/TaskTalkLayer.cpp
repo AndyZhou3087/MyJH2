@@ -87,7 +87,7 @@ bool TaskTalkLayer::init(std::string npcid, std::vector<Npc*> vec_enemys, int ty
 
 	//npcÍ·Ïñ
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
-	std::string str = StringUtils::format("mapui/%s.png", GlobalInstance::map_Npcs[data->npcid].icon.c_str());
+	std::string str = StringUtils::format("ui/%s.png", GlobalInstance::map_Npcs[data->npcid].icon.c_str());
 	/*icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 	icon->setContentSize(Sprite::createWithSpriteFrameName(str)->getContentSize());*/
 	icon->setVisible(false);

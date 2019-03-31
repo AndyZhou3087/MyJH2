@@ -330,7 +330,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 			if (map_allRndMonsters[mbindex].size() > 0)
 			{
 				std::string firstmid = map_allRndMonsters[mbindex].at(0)->getId();
-				vec_monsterBlocks[i]->setPosNpcID(firstmid);
+				vec_monsterBlocks[i]->setPosNpcID(GlobalInstance::map_Npcs[firstmid].icon);
 				vec_monsterBlocks[i]->setPosIcon();
 			}
 		}
@@ -1875,7 +1875,7 @@ void MapBlockScene::createRndMonsters()
 		monstersrnd.push_back(rrnd);
 	}
 
-	for (unsigned int i = 0; i < vec_monsterBlocks.size(); i++)
+	for (unsigned int n = 0; n < vec_monsterBlocks.size(); n++)
 	{
 		int rndcount = MapBlock::randMonstersMinCount + GlobalInstance::getInstance()->createRandomNum(MapBlock::randMonstersMaxCount - MapBlock::randMonstersMinCount + 1);
 		for (int i = 0; i < rndcount; i++)
@@ -1901,7 +1901,7 @@ void MapBlockScene::createRndMonsters()
 					enemyhero->setPotential(rqu);
 					enemyhero->setLevel(rlv);
 					enemyhero->setHp(enemyhero->getMaxHp());
-					map_allRndMonsters[vec_monsterBlocks[i]->getTag()].push_back(enemyhero);
+					map_allRndMonsters[vec_monsterBlocks[n]->getTag()].push_back(enemyhero);
 					break;
 				}
 			}

@@ -4,32 +4,10 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>mappos/posboss/pboss1.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{0,0},{72,72}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{72,72}</string>
-			</dict>
-			<key>mappos/posboss/pboss2.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{0,72},{72,72}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{72,72}</string>
-			</dict>
 			<key>mappos/posnpc/posth1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,144},{72,72}}</string>
+				<string>{{0,239},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -40,7 +18,7 @@
 			<key>mappos/posnpc/posth2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,216},{72,72}}</string>
+				<string>{{0,311},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -51,7 +29,7 @@
 			<key>mappos/posnpc/posth3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,288},{72,72}}</string>
+				<string>{{0,383},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -62,7 +40,7 @@
 			<key>mappos/posstart/posqd1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,360},{72,72}}</string>
+				<string>{{0,455},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -73,18 +51,7 @@
 			<key>mappos/posstart/posqd2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,432},{72,72}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{72,72}</string>
-			</dict>
-			<key>mappos/postboss/tsboss.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{0,504},{72,72}}</string>
+				<string>{{0,527},{72,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -95,7 +62,7 @@
 			<key>mappos/posbox/baog.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{62,935},{45,60}}</string>
+				<string>{{62,814},{45,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -106,7 +73,7 @@
 			<key>mappos/posbox/heidk.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{62,995},{57,25}}</string>
+				<string>{{72,982},{57,25}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -114,21 +81,10 @@
 				<key>sourceSize</key>
 				<string>{57,25}</string>
 			</dict>
-			<key>mappos/posmonster/pnpc.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{0,576},{72,72}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{72,72}</string>
-			</dict>
 			<key>mappos/posevent/sd.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{62,864},{61,71}}</string>
+				<string>{{62,743},{61,71}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -139,7 +95,7 @@
 			<key>mappos/posevent/sz.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{107,935},{39,39}}</string>
+				<string>{{72,943},{39,39}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -150,7 +106,7 @@
 			<key>mappos/postrans/trans1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,648},{62,72}}</string>
+				<string>{{0,599},{62,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -161,7 +117,7 @@
 			<key>mappos/postrans/trans2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,720},{62,72}}</string>
+				<string>{{0,671},{62,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -172,7 +128,7 @@
 			<key>mappos/postrans/trans3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,792},{62,72}}</string>
+				<string>{{0,743},{62,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -183,7 +139,7 @@
 			<key>mappos/postrans/trans4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,864},{62,72}}</string>
+				<string>{{0,815},{62,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -194,7 +150,7 @@
 			<key>mappos/postrans/trans5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,936},{62,72}}</string>
+				<string>{{0,887},{62,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -205,18 +161,18 @@
 			<key>mappos/postrans/trans6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{62,648},{62,72}}</string>
+				<string>{{0,959},{62,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{62,72}</string>
 			</dict>
 			<key>mappos/postrans/trans7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{62,720},{62,72}}</string>
+				<string>{{62,599},{62,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -227,13 +183,46 @@
 			<key>mappos/postrans/trans8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{62,792},{62,72}}</string>
+				<string>{{62,671},{62,72}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{62,72}</string>
+			</dict>
+			<key>mappos/posmonster/posshade.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{62,874},{69,30}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{69,30}</string>
+			</dict>
+			<key>mappos/posboss/pboss.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,144},{89,95}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{89,95}</string>
+			</dict>
+			<key>mappos/postboss/ptboss.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{127,144}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{127,144}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>

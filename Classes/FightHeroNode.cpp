@@ -154,7 +154,7 @@ void FightHeroNode::setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE 
 		}
 		else if (datatype == F_NPC)
 		{
-			str = StringUtils::format("mapui/%s.png", GlobalInstance::map_Npcs[data->getId()].icon.c_str());
+			str = StringUtils::format("ui/%s.png", GlobalInstance::map_Npcs[data->getId()].icon.c_str());
 			headimg->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 		int v = m_Data->getVocation();

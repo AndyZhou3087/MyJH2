@@ -73,7 +73,14 @@ std::string MapBlock::getBuildName()
 void MapBlock::setPosIcon()
 {
 	std::string posiconname = StringUtils::format("mappos/postype%d.csb", m_postype);
-	auto posicon = CSLoader::createNode(posiconname);
+	Node* posicon = CSLoader::createNode(posiconname);
+
+	if (m_postype == 1)
+	{
+		cocos2d::ui::ImageView* nicon = (cocos2d::ui::ImageView*)posicon->getChildByName("nicon");
+		std::string niconstr = StringUtils::format("ui/p%s.png", m_posnpcid.c_str());
+		nicon->loadTexture(niconstr, cocos2d::ui::Widget::TextureResType::PLIST);
+	}
 
 	if (m_buildname.compare("26.png") == 0 || m_buildname.compare("27.png") == 0)//特殊处理草-可以占在草里，不这样，桥上有问题
 	{
