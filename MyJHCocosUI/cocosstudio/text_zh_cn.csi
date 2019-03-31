@@ -395,6 +395,7 @@
       <FilePathData Path="text_zh_cn/wellvip1name_txt.png" />
       <FilePathData Path="text_zh_cn/wellvip2name_txt.png" />
       <FilePathData Path="text_zh_cn/wellvip3name_txt.png" />
+      <FilePathData Path="text_zh_cn/text_vip2.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

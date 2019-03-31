@@ -81,14 +81,14 @@
             <PreSize X="0.5000" Y="0.1547" />
             <FileData Type="Normal" Path="images/wellgifttie1.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="-1018053135" Tag="416" IconVisible="False" LeftMargin="220.9225" RightMargin="209.0775" TopMargin="316.2582" BottomMargin="883.7418" IsCustomSize="True" FontSize="25" LabelText="购买后立即获得以下物品" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="290.0000" Y="80.0000" />
+          <AbstractNodeData Name="desc" ActionTag="-1018053135" Tag="416" IconVisible="False" LeftMargin="205.0000" RightMargin="205.0000" TopMargin="340.0000" BottomMargin="880.0000" IsCustomSize="True" FontSize="23" LabelText="购买后获得36天普通月卡权利，每天登录获得以下物品：" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="310.0000" Y="60.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="365.9225" Y="923.7418" />
+            <Position X="360.0000" Y="910.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="80" G="38" B="13" />
-            <PrePosition X="0.5082" Y="0.7217" />
-            <PreSize X="0.4028" Y="0.0625" />
+            <PrePosition X="0.5000" Y="0.7109" />
+            <PreSize X="0.4306" Y="0.0469" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
@@ -201,7 +201,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="vip2leftday" ActionTag="521181020" Tag="462" RotationSkewY="0.0000" IconVisible="False" LeftMargin="309.5000" RightMargin="309.5000" TopMargin="1015.0200" BottomMargin="243.9800" FontSize="18" LabelText="剩余128天数" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="vip3leftday" ActionTag="521181020" Tag="462" RotationSkewY="0.0000" IconVisible="False" LeftMargin="309.5000" RightMargin="309.5000" TopMargin="1015.0200" BottomMargin="243.9800" FontSize="18" LabelText="剩余128天数" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="101.0000" Y="21.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="254.4800" />
@@ -213,7 +213,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="vip3leftday" ActionTag="1321479192" Tag="463" RotationSkewY="0.0000" IconVisible="False" LeftMargin="542.5000" RightMargin="76.5000" TopMargin="1015.0200" BottomMargin="243.9800" FontSize="18" LabelText="剩余128天数" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="vip2leftday" ActionTag="1321479192" Tag="463" RotationSkewY="0.0000" IconVisible="False" LeftMargin="542.5000" RightMargin="76.5000" TopMargin="1015.0200" BottomMargin="243.9800" FontSize="18" LabelText="剩余128天数" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="101.0000" Y="21.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="593.0000" Y="254.4800" />

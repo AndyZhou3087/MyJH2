@@ -21,15 +21,19 @@ private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onFinish(int code);
 
-	void getVipReward();
 	void onResclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	void selectVip(ShopData* data);
+	void updateUI(float dt);
 private:
 	cocos2d::ui::Text* desc;
+	cocos2d::ui::Text* leftdayslbl[3];
+	cocos2d::ui::Widget* vipclick[3];
+	Vec2 vipclickoripos[3];
 	cocos2d::ui::ImageView* box[6];
 	int langtype;
 	bool isgetingvip;//是否正在领取月卡
+	int selectvip;
 };
 
 #endif

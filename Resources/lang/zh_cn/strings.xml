@@ -233,7 +233,7 @@
 	<s name="officalQQ">官方客服QQ群：</s>
 	<s name="shoppricetext">￥%d</s>
 	<s name="shoptext_1">购买后立即获得以下物品：</s>
-	<s name="shoptext_2">购买后会获得30天的%s权利，每天登录游戏能获得以下物品：</s>
+	<s name="shoptext_2">购买后获得%d天%s权利，每天登录获得以下物品：</s>
 	<s name="buy_0">购买成功！</s>
 	<s name="buy_1">购买失败！</s>
 	<s name="lefttimetext">剩余%d天</s>
@@ -398,7 +398,7 @@
 	<s name="nosilvertohelp">路边有一老人似乎摔伤了，但是老大爷看你穿的破破烂烂，对你抛出一个不屑的眼神。</s>
 	<s name="homehillhintdesc">工人采集资源会影响食材产量，升级资源可提高储备容量</s>
 	<s name="buycoindesc">购买成功即可获得：</s>
-	<s name="getmonthlywaiting">正在领取月卡...</s>
+	<s name="getmonthlywaiting">正在领取...</s>
 	<s name="outtownplaceholder">请输入数量</s>
 	<s name="inputfooderr">食物数量不能为负数！</s>
 	<s name="inputfoodouter">食物数量超过最大负重！</s>

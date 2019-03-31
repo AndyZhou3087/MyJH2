@@ -17,9 +17,11 @@
 USING_NS_CC;
 
 std::string vipname[] = {"vip0", "vip1", "vip2"};
+
 WellGiftLayer::WellGiftLayer()
 {
 	isgetingvip = false;
+	selectvip = 3;
 }
 
 WellGiftLayer::~WellGiftLayer()
@@ -121,12 +123,13 @@ bool WellGiftLayer::init()
 		buybtntext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("mapeventtext_6_1", langtype))->getContentSize());
 
 		name = StringUtils::format("vip%dclick", i);
-		cocos2d::ui::Widget* vipclick = (cocos2d::ui::Widget*)csbnode->getChildByName(name);
-		vipclick->addTouchEventListener(CC_CALLBACK_2(WellGiftLayer::onBtnClick, this));
-		vipclick->setTag(2000 + i);
-		vipclick->setUserData((void*)shopdata);
+		vipclick[i-1] = (cocos2d::ui::Widget*)csbnode->getChildByName(name);
+		vipclick[i-1]->addTouchEventListener(CC_CALLBACK_2(WellGiftLayer::onBtnClick, this));
+		vipclick[i-1]->setTag(2000 + i);
+		vipclick[i-1]->setUserData((void*)shopdata);
+		vipclickoripos[i - 1] = vipclick[i - 1]->getPosition();
 
-		cocos2d::ui::Text* price = (cocos2d::ui::Text*)vipclick->getChildByName("price");
+		cocos2d::ui::Text* price = (cocos2d::ui::Text*)vipclick[i-1]->getChildByName("price");
 		std::string str = StringUtils::format(ResourceLang::map_lang["shoppricetext"].c_str(), shopdata->price);
 		Label* lbl = (Label*)price->getVirtualRenderer();
 		lbl->enableBold();
@@ -134,37 +137,19 @@ bool WellGiftLayer::init()
 
 		if (i == 3)
 			selectVip(shopdata);
+
+		name = StringUtils::format("vip%dleftday", i);
+		leftdayslbl[i-1] = (cocos2d::ui::Text*)csbnode->getChildByName(name);
+		leftdayslbl[i - 1]->setVisible(false);
+		leftdayslbl[i - 1]->setString("");
+		leftdayslbl[i - 1]->setUserData((void*)shopdata);
 	}
 
-/*	if (m_type == 1)
-	{
-		int id = atoi(data->icon.substr(3, 1).c_str());
-		std::string vipid = StringUtils::format("vip%d", id + 2);
-		HttpDataSwap::init(NULL)->paySuccNotice(vipid, data->price);
-		buybtn->setVisible(false);
-		price->setVisible(false);
-	}
-	else if (m_type == 2)
-	{
-		buybtn->setVisible(false);
-		price->setVisible(false);
-	}
+	WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+	this->addChild(wp, 0, "waitingprogress");
+	HttpDataSwap::init(this)->vipIsOn();
 
-	if (data->type == GIFT)
-	{
-		str = StringUtils::format("shoptext_%d", data->type);
-		desc->setString(ResourceLang::map_lang[str]);
-	}
-	else if (data->type == VIP)
-	{
-		str = StringUtils::format("shoptext_%d", m_data->type);
-		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), m_data->name.c_str());
-		desc->setString(str);
-
-		HttpDataSwap::init(this)->vipIsOn();
-
-	}*/
-
+	this->schedule(schedule_selector(WellGiftLayer::updateUI), 1);
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -242,6 +227,8 @@ void WellGiftLayer::selectVip(ShopData* data)
 			int y = starty[(ressize - 1) / 3] - offsety[(ressize - 1) / 3] * (i / 3);
 			box[i]->setPosition(Vec2(x, y));
 
+			box[i]->removeChildByName("resboxeffect");
+
 			CommonFuncs::playResBoxEffect(box[i], t, qu, 0);
 
 			str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
@@ -261,8 +248,19 @@ void WellGiftLayer::selectVip(ShopData* data)
 		}
 	}
 	std::string str = StringUtils::format("shoptext_%d", data->type);
-	str = StringUtils::format(ResourceLang::map_lang[str].c_str(), data->name.c_str());
+	str = StringUtils::format(ResourceLang::map_lang[str].c_str(), VIPDAYS[selectvip-1], data->name.c_str());
 	desc->setString(str);
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (i + 1 != selectvip)
+		{
+			vipclick[i]->stopAllActions();
+			vipclick[i]->setPosition(vipclickoripos[i]);
+		}
+		else
+			vipclick[i]->runAction(RepeatForever::create(Sequence::create(MoveBy::create(0.3f, Vec2(0, 5)), MoveBy::create(0.6f, Vec2(0, -5)), MoveBy::create(0.5f, Vec2(0, 0)), NULL)));
+	}
 }
 
 void WellGiftLayer::onResclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -291,105 +289,57 @@ void WellGiftLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		}
 		else if (tag > 1000 && tag < 2000)
 		{
-			//isgetingvip = true;
-			//WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["getmonthlywaiting"]);
-			//this->addChild(wp, 0, "waitingprogress");
-
-			//int id = atoi(m_data->icon.substr(3, 1).c_str());
-			//std::string vipid = StringUtils::format("vip%d", id + 2);
-
-			//HttpDataSwap::init(this)->getMonthlyReward(vipid);
+			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+			{
+				if (GlobalInstance::vec_shopdata[i].icon.compare(vipname[tag%1000-1]) == 0)
+				{
+					ShopLayer::beginPay(i);
+					break;
+				}
+			}
 		}
 		else if (tag > 2000)
 		{
+			int stag = tag % 2000;
+			if (selectvip == stag)
+				return;
+			selectvip = stag;
 			selectVip((ShopData*)node->getUserData());
 		}
 	}
 }
 
-
-void WellGiftLayer::getVipReward()
-{
-	//for (unsigned int i = 0; i < m_data->res.size(); i++)
-	//{
-	//	std::vector<std::string> vec_res = m_data->res[i];
-	//	std::string resid = vec_res[0];
-	//	int count = atoi(vec_res[1].c_str());
-	//	int qu = 0;
-	//	if (vec_res.size() > 2)
-	//	{
-	//		qu = atoi(vec_res[2].c_str());
-	//	}
-	//	int stonescount = GlobalInstance::getInstance()->generateStoneCount(qu);
-
-	//	if (resid.compare("r006") == 0)
-	//	{
-	//		DynamicValueInt dvint;
-	//		dvint.setValue(count);
-	//		GlobalInstance::getInstance()->addMySoliverCount(dvint);
-	//	}
-	//	else if (resid.compare("r012") == 0)
-	//	{
-	//		DynamicValueInt dvint;
-	//		dvint.setValue(count);
-	//		GlobalInstance::getInstance()->addMyCoinCount(dvint);
-	//	}
-	//	else
-	//	{
-	//		MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
-	//	}
-	//}
-}
-
 void WellGiftLayer::onFinish(int code)
 {
-	//if (!isgetingvip)
-	//{
-	//	if (code == 0)
-	//	{
-	//		if (GlobalInstance::map_buyVipDays.size() > 0)
-	//		{
-	//			if (m_type != 0)
-	//			{
-	//				buybtn->setVisible(true);
-	//				buybtn->setTag(1);
-	//				buybtntext->loadTexture(ResourcePath::makeTextImgPath("msgallget_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-	//				buybtntext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("msgallget_text", langtype))->getContentSize());
-	//				buybtntext->setScale(0.7f);
-	//			}
-	//			//price->setVisible(false);
-	//			std::map<std::string, int>::iterator it;
-	//			for (it = GlobalInstance::map_buyVipDays.begin(); it != GlobalInstance::map_buyVipDays.end(); ++it)
-	//			{
-	//				if (m_data->icon.compare(it->first) == 0)
-	//				{
-	//					lefttime->setVisible(true);
-	//					std::string str = StringUtils::format(ResourceLang::map_lang["lefttimetext"].c_str(), it->second);
-	//					lefttime->setString(str);
-	//					break;
-	//				}
-	//			}
-	//		}
-	//	}
-	//	else
-	//	{
-	//		MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
-	//	}
-	//}
-	//else
-	//{
-	//	isgetingvip = false;
-	//	this->removeChildByName("waitingprogress");
+	this->removeChildByName("waitingprogress");
+	if (code == 0)
+	{
+		updateUI(0);
+	}
+	else
+	{
+		MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
+	}
+}
 
-	//	if (code == 0)
-	//	{
-	//		getVipReward();
-	//		AnimationEffect::closeAniEffect(this);
-	//	}
-	//	else
-	//	{
-	//		MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
-	//	}
-
-	//}
+void WellGiftLayer::updateUI(float dt)
+{
+	if (GlobalInstance::map_buyVipDays.size() > 0)
+	{
+		std::map<std::string, int>::iterator it;
+		for (it = GlobalInstance::map_buyVipDays.begin(); it != GlobalInstance::map_buyVipDays.end(); ++it)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				ShopData* mdata = (ShopData*)leftdayslbl[i]->getUserData();
+				if (mdata->icon.compare(it->first) == 0)
+				{
+					leftdayslbl[i]->setVisible(true);
+					std::string str = StringUtils::format(ResourceLang::map_lang["lefttimetext"].c_str(), it->second);
+					leftdayslbl[i]->setString(str);
+					break;
+				}
+			}
+		}
+	}
 }
