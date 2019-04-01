@@ -423,7 +423,7 @@ void MainScene::showNewerGuide(int step)
 		text->setVisible(true);
 		nodes.push_back(node);
 	}
-	else if (step == 22 || step == 69 || step == 77)
+	else if (step == 22)
 	{
 		scroll_3->jumpToPercentHorizontal(50);
 		scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
@@ -524,7 +524,7 @@ void MainScene::showNewerGuide(int step)
 		node->setSwallowTouches(false);
 		nodes.push_back(node);
 	}
-	else if (step == 23)
+	else if (step == 23 || step == 69 || step == 77)
 	{
 		Node* node = g_MainMenuLayer->getChildByName("csbnode")->getChildByName("herobtn");
 		nodes.push_back(node);
