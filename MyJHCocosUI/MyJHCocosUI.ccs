@@ -7,6 +7,7 @@
           <Fnt Name="crithurtnum.fnt" />
           <Fnt Name="makerescount.fnt" />
           <Fnt Name="normalhurtnum.fnt" />
+          <Fnt Name="rebatpricenum.fnt" />
           <TTF Name="simhei.ttf" />
         </Folder>
         <Folder Name="homehill">
@@ -155,6 +156,8 @@
           <Image Name="poptitletie.png" />
           <Image Name="protocalbox.png" />
           <Image Name="protocalsel.png" />
+          <Image Name="rebatebg.png" />
+          <Image Name="rebatebottom.png" />
           <Image Name="renationbg.png" />
           <Image Name="selectequipbg.png" />
           <Image Name="shopbg.jpg" />
@@ -724,6 +727,12 @@
           <Image Name="powericon_text.png" />
           <Image Name="ranking_text.png" />
           <Image Name="ranktitle_text.png" />
+          <Image Name="rebatgetbtn_text.png" />
+          <Image Name="rebatgetedbtn_text.png" />
+          <Image Name="rebatnumyuan_text.png" />
+          <Image Name="rebatreward_text.png" />
+          <Image Name="rebattitle.png" />
+          <Image Name="rebattotalbuy_text.png" />
           <Image Name="recruit_text.png" />
           <Image Name="recruitbtn_text.png" />
           <Image Name="refreshbtn_text.png" />
@@ -1276,6 +1285,12 @@
           <Image Name="rank_1.png" />
           <Image Name="rank_2.png" />
           <Image Name="rank_3.png" />
+          <Image Name="rebateawditem.png" />
+          <Image Name="rebateawdselect.png" />
+          <Image Name="rebategetbtn_n.png" />
+          <Image Name="rebategetbtn_d.png" />
+          <Image Name="rebatpricebar.png" />
+          <Image Name="rebatpricebarbg.png" />
           <Image Name="renationbtn.png" />
           <Image Name="renationclosebtn.png" />
           <Image Name="renationitem.png" />
@@ -1436,6 +1451,7 @@
           <Image Name="z003.png" />
           <Image Name="z004.png" />
         </Folder>
+        <Image Name="1111.png" />
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />
         <Project Name="buyCoinLayer.csd" Type="Layer" />
@@ -1518,6 +1534,7 @@
         <Project Name="paySelectLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
+        <Project Name="rebatLayer.csd" Type="Layer" />
         <Project Name="renationitemNode.csd" Type="Node" />
         <Project Name="renationLayer.csd" Type="Layer" />
         <Project Name="resDescLayer.csd" Type="Scene" />
@@ -1557,6 +1574,7 @@
         <Project Name="wellmorebtnnode.csd" Type="Node" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="rebateawdnode.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>

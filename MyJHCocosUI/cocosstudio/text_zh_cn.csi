@@ -396,6 +396,12 @@
       <FilePathData Path="text_zh_cn/wellvip2name_txt.png" />
       <FilePathData Path="text_zh_cn/wellvip3name_txt.png" />
       <FilePathData Path="text_zh_cn/text_vip2.png" />
+      <FilePathData Path="text_zh_cn/rebatgetbtn_text.png" />
+      <FilePathData Path="text_zh_cn/rebatgetedbtn_text.png" />
+      <FilePathData Path="text_zh_cn/rebatnumyuan_text.png" />
+      <FilePathData Path="text_zh_cn/rebatreward_text.png" />
+      <FilePathData Path="text_zh_cn/rebattitle.png" />
+      <FilePathData Path="text_zh_cn/rebattotalbuy_text.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

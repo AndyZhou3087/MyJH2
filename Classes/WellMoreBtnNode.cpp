@@ -6,6 +6,7 @@
 #include "SoundManager.h"
 #include "AnimationEffect.h"
 #include "WellGiftLayer.h"
+#include "RebatLayer.h"
 
 WellMoreBtnNode::WellMoreBtnNode()
 {
@@ -71,16 +72,16 @@ void WellMoreBtnNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		{
 		case REBATEBTN:
 		{
-			//SettingLayer* layer = SettingLayer::create();
-			//g_mainScene->addChild(layer, 0, "settinglayer");
-			//AnimationEffect::openAniEffect((Layer*)layer);
+			RebatLayer* layer = RebatLayer::create();
+			g_mainScene->addChild(layer, 0, "rebatlayer");
+			AnimationEffect::openAniEffect(layer);
 		}
 			break;
 		case WELLCARDBTN:
 		{
 			WellGiftLayer* layer = WellGiftLayer::create();
 			g_mainScene->addChild(layer, 0, "wellgiftlayer");
-			AnimationEffect::openAniEffect((Layer*)layer);
+			AnimationEffect::openAniEffect(layer);
 		}
 			break;
 		default:

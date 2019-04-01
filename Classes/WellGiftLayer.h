@@ -32,7 +32,6 @@ private:
 	Vec2 vipclickoripos[3];
 	cocos2d::ui::ImageView* box[6];
 	int langtype;
-	bool isgetingvip;//是否正在领取月卡
 	int selectvip;
 };
 

@@ -20,7 +20,6 @@ std::string vipname[] = {"vip0", "vip1", "vip2"};
 
 WellGiftLayer::WellGiftLayer()
 {
-	isgetingvip = false;
 	selectvip = 3;
 }
 

@@ -133,6 +133,8 @@ std::map<std::string, TimeMartData> GlobalInstance::map_timeMartData;
 
 bool GlobalInstance::ishasmazeentry = false;
 
+int GlobalInstance::totalPayAmout = 0;
+
 GlobalInstance::GlobalInstance()
 {
 

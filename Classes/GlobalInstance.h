@@ -872,6 +872,7 @@ public:
 
 	static std::string timeMarketStr;
 	static bool ishasmazeentry;
+	static int totalPayAmout;
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;
