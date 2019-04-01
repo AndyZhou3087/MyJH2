@@ -6,7 +6,7 @@
       <ObjectData Name="Node" Tag="313" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="bg" ActionTag="-1002293887" Tag="314" IconVisible="False" RightMargin="-279.0000" TopMargin="-32.5000" BottomMargin="-32.5000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="bg" ActionTag="1749929692" Tag="372" IconVisible="False" RightMargin="-279.0000" TopMargin="-32.5000" BottomMargin="-32.5000" TouchEnable="True" LeftEage="92" RightEage="92" TopEage="21" BottomEage="21" Scale9OriginX="92" Scale9OriginY="21" Scale9Width="95" Scale9Height="23" ctype="ImageViewObjectData">
             <Size X="279.0000" Y="65.0000" />
             <Children>
               <AbstractNodeData Name="rebatebtn" ActionTag="-1867215258" Tag="317" IconVisible="False" LeftMargin="53.1291" RightMargin="153.8709" TopMargin="-3.8529" BottomMargin="-2.1471" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="42" Scale9Height="49" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
@@ -71,7 +71,6 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/main_wellmorebtn_bg.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
         </Children>
       </ObjectData>
