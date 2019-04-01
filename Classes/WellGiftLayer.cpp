@@ -13,6 +13,7 @@
 #include "WaitingProgress.h"
 #include "SoundManager.h"
 #include "SimpleResPopLayer.h"
+#include "EquipDescLayer.h"
 
 USING_NS_CC;
 
@@ -215,6 +216,7 @@ void WellGiftLayer::selectVip(ShopData* data)
 			}
 			box[i]->setVisible(true);
 			box[i]->setName(resid);
+			box[i]->setTag(qu * 1000 + t);
 			box[i]->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 			int index = 0;
 			if (i < row * 3)
@@ -269,9 +271,20 @@ void WellGiftLayer::onResclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		cocos2d::ui::ImageView* clickres = (cocos2d::ui::ImageView*)pSender;
 		std::string resid = clickres->getName();
-		SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 3);
-		this->addChild(layer);
-		AnimationEffect::openAniEffect(layer);
+		int t = clickres->getTag() % 1000;
+
+		if (t >= T_ARMOR && t <= T_NG)
+		{
+			Layer* layer = EquipDescLayer::create(resid, clickres->getTag() / 1000, 1);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
+		else
+		{
+			SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 3);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
 	}
 }
 

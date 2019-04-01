@@ -20,10 +20,12 @@
 
 USING_NS_CC;
 
+ResBase* EquipDescLayer::IdEquipable = NULL;
 EquipDescLayer::EquipDescLayer()
 {
 	salepoint = NULL;
 	boxeffect = NULL;
+	IdEquipable = NULL;
 }
 
 EquipDescLayer::~EquipDescLayer()
@@ -36,8 +38,41 @@ EquipDescLayer::~EquipDescLayer()
 			layer->delayShowNewerGuide(0);
 		}
 	}
+	if (IdEquipable != NULL)
+	{
+		delete IdEquipable;
+		IdEquipable = NULL;
+	}
 }
 
+EquipDescLayer* EquipDescLayer::create(std::string resid, int qu, int fromwhere)
+{
+
+	int t = -1;
+	for (int k = 0; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)
+	{
+		if (resid.compare(0, 1, RES_TYPES_CHAR[k]) == 0)
+		{
+			t = k;
+			break;
+		}
+	}
+	if (t >= T_ARMOR && t <= T_FASHION)
+		IdEquipable = new Equip();
+	else
+		IdEquipable = new GongFa();
+	IdEquipable->setId(resid);
+	IdEquipable->setType(t);
+
+	DynamicValueInt dvcount;
+	dvcount.setValue(1);
+	IdEquipable->setCount(dvcount);
+
+	DynamicValueInt dv;
+	dv.setValue(qu);
+	IdEquipable->setQU(dv);
+	return create(IdEquipable, fromwhere);
+}
 
 EquipDescLayer* EquipDescLayer::create(ResBase* res, int fromwhere)
 {

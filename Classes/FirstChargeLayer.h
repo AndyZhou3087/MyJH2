@@ -22,7 +22,6 @@ private:
 
 private:
 	std::vector<MSGAWDSDATA> vec_rewards;
-	ResBase* clickres;
 };
 
 #endif

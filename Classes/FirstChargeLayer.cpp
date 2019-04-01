@@ -13,16 +13,10 @@ USING_NS_CC;
 
 FirstChargeLayer::FirstChargeLayer()
 {
-	clickres = NULL;
 }
 
 FirstChargeLayer::~FirstChargeLayer()
 {
-	if (clickres != NULL)
-	{
-		delete clickres;
-		clickres = NULL;
-	}
 }
 
 
@@ -188,30 +182,7 @@ void FirstChargeLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 
 			if (t >= T_ARMOR && t <= T_NG)
 			{
-				if (clickres != NULL)
-				{
-					delete clickres;
-					clickres = NULL;
-				}
-
-				if (t >= T_ARMOR && t <= T_FASHION)
-					clickres = new Equip();
-				else
-					clickres = new GongFa();
-
-
-				clickres->setId(resid);
-				clickres->setType(t);
-
-				DynamicValueInt dvcount;
-				dvcount.setValue(data->count);
-				clickres->setCount(dvcount);
-
-				DynamicValueInt dv;
-				dv.setValue(data->qu);
-				clickres->setQU(dv);
-
-				Layer* layer = EquipDescLayer::create(clickres, 1);
+				Layer* layer = EquipDescLayer::create(resid, data->qu, 1);
 				this->addChild(layer);
 				AnimationEffect::openAniEffect(layer);
 			}

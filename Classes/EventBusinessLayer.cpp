@@ -9,6 +9,7 @@
 #include "BuySingleResLayer.h"
 #include "AnimationEffect.h"
 #include "SimpleResPopLayer.h"
+#include "EquipDescLayer.h"
 
 EventBusinessLayer::EventBusinessLayer()
 {
@@ -340,9 +341,29 @@ void EventBusinessLayer::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		}
 		else
 		{
-			SimpleResPopLayer* layer = SimpleResPopLayer::create(vec_mypackagres[tag% 10000].rid);
-			this->addChild(layer);
-			AnimationEffect::openAniEffect(layer);
+			std::string resid = vec_mypackagres[tag % 10000].rid;
+			int t = -1;
+			for (int k = 0; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)
+			{
+				if (resid.compare(0, 1, RES_TYPES_CHAR[k]) == 0)
+				{
+					t = k;
+					break;
+				}
+			}
+
+			if (t >= T_ARMOR && t <= T_NG)
+			{
+				Layer* layer = EquipDescLayer::create(resid, vec_mypackagres[tag % 10000].qu, 1);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
+			}
+			else
+			{
+				SimpleResPopLayer* layer = SimpleResPopLayer::create(resid);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
+			}
 		}
 	}
 }

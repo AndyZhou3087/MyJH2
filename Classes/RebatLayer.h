@@ -21,8 +21,6 @@ private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onFinish(int code);
 
-	void onResclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-
 private:
 	cocos2d::ui::ScrollView* scrollview;
 

@@ -28,7 +28,7 @@
             <FileData Type="MarkedSubImage" Path="ui/rebateawdselect.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox0" ActionTag="-1242331111" Tag="389" IconVisible="False" LeftMargin="-227.5000" RightMargin="142.5000" TopMargin="-45.4998" BottomMargin="-39.5002" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox0" ActionTag="-1242331111" Tag="389" IconVisible="False" LeftMargin="-227.5000" RightMargin="142.5000" TopMargin="-45.4998" BottomMargin="-39.5002" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="85.0000" Y="85.0000" />
             <Children>
               <AbstractNodeData Name="res" ActionTag="-1451601153" Tag="390" IconVisible="False" LeftMargin="5.0000" RightMargin="5.0000" TopMargin="5.0000" BottomMargin="5.0000" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
@@ -62,7 +62,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/resbox_qu0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox1" ActionTag="771941563" Tag="392" IconVisible="False" LeftMargin="-133.0792" RightMargin="48.0792" TopMargin="-45.4998" BottomMargin="-39.5002" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox1" ActionTag="771941563" Tag="392" IconVisible="False" LeftMargin="-133.0792" RightMargin="48.0792" TopMargin="-45.4998" BottomMargin="-39.5002" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="85.0000" Y="85.0000" />
             <Children>
               <AbstractNodeData Name="res" ActionTag="1586345578" Tag="393" IconVisible="False" LeftMargin="5.0000" RightMargin="5.0000" TopMargin="5.0000" BottomMargin="5.0000" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
@@ -96,7 +96,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="ui/resbox_qu0.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox2" ActionTag="-701879194" Tag="395" IconVisible="False" LeftMargin="-38.6584" RightMargin="-46.3416" TopMargin="-45.4998" BottomMargin="-39.5002" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox2" ActionTag="-701879194" Tag="395" IconVisible="False" LeftMargin="-38.6584" RightMargin="-46.3416" TopMargin="-45.4998" BottomMargin="-39.5002" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="85.0000" Y="85.0000" />
             <Children>
               <AbstractNodeData Name="res" ActionTag="1836751646" Tag="396" IconVisible="False" LeftMargin="5.0000" RightMargin="5.0000" TopMargin="5.0000" BottomMargin="5.0000" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">

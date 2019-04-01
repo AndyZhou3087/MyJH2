@@ -9,6 +9,7 @@
 #include "ShopLayer.h"
 #include "SoundManager.h"
 #include "SimpleResPopLayer.h"
+#include "EquipDescLayer.h"
 
 USING_NS_CC;
 
@@ -165,6 +166,7 @@ bool TimeGiftLayer::init(ShopData* data)
 		cocos2d::ui::ImageView* box = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::PLIST);
 		box->addTouchEventListener(CC_CALLBACK_2(TimeGiftLayer::onResclick, this));
 		box->setName(resid);
+		box->setTag(qu * 1000 + t);
 		box->setTouchEnabled(true);
 		this->addChild(box);
 
@@ -240,8 +242,20 @@ void TimeGiftLayer::onResclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		cocos2d::ui::ImageView* clickres = (cocos2d::ui::ImageView*)pSender;
 		std::string resid = clickres->getName();
-		SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 3);
-		this->addChild(layer);
-		AnimationEffect::openAniEffect(layer);
+
+		int t = clickres->getTag()%1000;
+
+		if (t >= T_ARMOR && t <= T_NG)
+		{
+			Layer* layer = EquipDescLayer::create(resid, clickres->getTag()/1000, 1);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
+		else
+		{
+			SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 3);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
 	}
 }

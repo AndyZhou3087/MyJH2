@@ -135,6 +135,8 @@ bool GlobalInstance::ishasmazeentry = false;
 
 int GlobalInstance::totalPayAmout = 0;
 
+std::vector<bool> GlobalInstance::vec_rebateisget;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -387,6 +389,20 @@ void GlobalInstance::loadInitData()
 				mazeEventData[i] = atoi(vec_ret[i].c_str());
 			}
 		}
+	}
+
+	vec_rebateisget.clear();
+
+	for (int i = 0; i < 8; i++)
+	{
+		vec_rebateisget.push_back(false);
+	}
+	str = DataSave::getInstance()->getRebateAwds();
+
+	if (str.length() > 0)
+	{
+		for (unsigned int i = 0; i < str.size(); i++)
+			GlobalInstance::vec_rebateisget[i] = atoi(str.substr(i, 1).c_str()) == 1?true:false;
 	}
 }
 
@@ -3165,6 +3181,26 @@ void GlobalInstance::setMazeEventData(int entercount, int useexitcount, int usec
 	DataSave::getInstance()->setMazeEventCount(str);
 }
 
+bool GlobalInstance::getIsGetRebateAwds(int index)
+{
+	return GlobalInstance::vec_rebateisget[index];
+}
+
+void GlobalInstance::setIsGetRebateAwds(int index, bool val)
+{
+	vec_rebateisget[index] = val;
+	std::string str;
+	for (unsigned int i = 0; i < vec_rebateisget.size(); i++)
+	{
+		std::string onestr = StringUtils::format("%d", vec_rebateisget[i]?1:0);
+		str.append(onestr);
+	}
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setRebateAwds(str);
+	}
+}
+
 void GlobalInstance::resetData()
 {
 	MyRes::deleteAllRes();
@@ -3280,6 +3316,7 @@ void GlobalInstance::resetData()
 	loginData.logindays = 0;
 	loginData.isGeted = false;
 	map_timeMartData.clear();
+	vec_rebateisget.clear();
 }
 
 std::string GlobalInstance::getUserDefaultXmlString(int type)

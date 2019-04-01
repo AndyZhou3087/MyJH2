@@ -521,6 +521,16 @@ void DataSave::setTimeMarket(std::string str)
 	saveStringDataByKey("timemarket", str);
 }
 
+std::string DataSave::getRebateAwds()
+{
+	return loadStringDataByKey("payrebate");
+}
+
+void DataSave::setRebateAwds(std::string val)
+{
+	saveStringDataByKey("payrebate", val);
+}
+
 void DataSave::deleteDataByKey(std::string key)
 {
 	removeEleByKey(key);

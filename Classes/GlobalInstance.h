@@ -760,6 +760,11 @@ public:
 
 	void setMazeEventData(int entercount, int useexitcount, int usecoin = 0);
 
+	bool getIsGetRebateAwds(int index);
+
+	void setIsGetRebateAwds(int index, bool val);
+
+
 private:
 	static GlobalInstance* _Context;//类实例
 
@@ -887,6 +892,7 @@ private:
 
 	static int silverRefHeroCount;
 	static int resetSilverRefHeroCountTime;
+	static std::vector<bool> vec_rebateisget;
 
 };
 #endif

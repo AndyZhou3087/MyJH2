@@ -14,6 +14,7 @@
 #include "BuyCoinLayer.h"
 #include "CannotTouchLayer.h"
 #include "SimpleResPopLayer.h"
+#include "EquipDescLayer.h"
 
 USING_NS_CC;
 
@@ -295,7 +296,7 @@ void MakeResLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		Node* node = (Node*)pSender;
- 		std::string rid = (const char*)node->getUserData();
+ 		std::string resid = (const char*)node->getUserData();
 		int tag = node->getTag();
 		int buyrescount = 0;
 		int forwhere = 0;
@@ -308,14 +309,43 @@ void MakeResLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 			buyrescount = map_res[rid];
 		}
-		if (buyrescount <= MyRes::getMyResCount(rid))
+		if (buyrescount <= MyRes::getMyResCount(resid))
 			forwhere = 0;
 		else
 			forwhere = 1;
 
-		SimpleResPopLayer* layer = SimpleResPopLayer::create(rid, forwhere, buyrescount);
-		this->addChild(layer);
-		AnimationEffect::openAniEffect(layer);
+		if (tag == 100)
+		{
+
+			int t = -1;
+			for (int k = 0; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)
+			{
+				if (resid.compare(0, 1, RES_TYPES_CHAR[k]) == 0)
+				{
+					t = k;
+					break;
+				}
+			}
+
+			if (t >= T_ARMOR && t <= T_NG)
+			{
+				Layer* layer = EquipDescLayer::create(resid, 3, 1);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
+			}
+			else
+			{
+				SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, forwhere, buyrescount);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
+			}
+		}
+		else
+		{
+			SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, forwhere, buyrescount);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
 	}
 }
 

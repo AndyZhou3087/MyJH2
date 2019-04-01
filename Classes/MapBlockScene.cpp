@@ -2739,7 +2739,7 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						e0 = e0->NextSiblingElement();
 					}
 
-					if (postype >= POS_NPC && postype <= POS_TBOSS || postype == POS_MAZETRANS || postype == POS_MAZEENTRY)//起点有多个，只会显示一个，不在这里设置
+					if ((postype >= POS_NPC && postype <= POS_TBOSS) || postype == POS_MAZETRANS || postype == POS_MAZEENTRY)//起点有多个，只会显示一个，不在这里设置
 					{
 						bool showPosIcon = true;
 						int r = GlobalInstance::getInstance()->createRandomNum(100);

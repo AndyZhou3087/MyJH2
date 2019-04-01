@@ -475,6 +475,11 @@ public:
 	//获取复活英雄次数，前20次固定100
 	int getReviveHeroCount();
 
+	//限时市场购买
+	std::string getRebateAwds();
+
+	void setRebateAwds(std::string val);
+
 	void deleteDataByKey(std::string key);
 
 private:

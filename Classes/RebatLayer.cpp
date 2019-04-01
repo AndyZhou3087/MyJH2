@@ -11,7 +11,6 @@
 #include "MyRes.h"
 #include "WaitingProgress.h"
 #include "SoundManager.h"
-#include "SimpleResPopLayer.h"
 #include "RebateAwdNode.h"
 
 USING_NS_CC;
@@ -19,7 +18,7 @@ USING_NS_CC;
 
 int rebatprice[] = {0, 100019,100099, 100199, 100499, 100999, 101999, 104999, 1009999 };
 
-std::string awds = {"i002-5,r006-10000,z003-2;y003-2,b004-2,r006-20000;f003-1-4,g003-1-4,e003-1-4;q001-300,q002-300,b004-5;f004-1-4,i004-20,b004-20;g004-1-4,e004-1-4;x036-1,i004-20;m004-50,i004-50"};
+std::string rebateawds = {"i002-5,r006-10000,z003-2;y003-2,b004-2,r006-20000;f003-1-4,g003-1-4,e003-1-4;q001-300,q002-300,b004-5;f004-1-4,i004-20,b004-20;g004-1-4,e004-1-4;x036-1,i004-20;m004-50,i004-50"};
 
 RebatLayer::RebatLayer()
 {
@@ -79,7 +78,7 @@ bool RebatLayer::init()
 	scrollview = (cocos2d::ui::ScrollView*)csbnode->getChildByName("ScrollView");
 
 	std::vector<std::string> vec_ads;
-	CommonFuncs::split(awds, vec_ads, ";");
+	CommonFuncs::split(rebateawds, vec_ads, ";");
 	for (int i = 1; i <= 8; i++)
 	{
 		std::string name = StringUtils::format("price%dfnt", i);
@@ -103,14 +102,12 @@ bool RebatLayer::init()
 			incount = i;
 	}
 
-	 GlobalInstance::totalPayAmout - rebatprice[incount] % 100000;
-
 	for (int i = 0; i < 8; i++)
 	{
 
 		RebateAwdNode* nodeitem = RebateAwdNode::create(vec_ads[i]);
 		nodeitem->setPosition(Vec2(400, 1100 - 145 * i));
-		scrollview->addChild(nodeitem);
+		scrollview->addChild(nodeitem, 0, i);
 
 		std::string barbgname = StringUtils::format("price%dbg", i);
 		Node* barbg = scrollview->getChildByName(barbgname);
@@ -126,6 +123,8 @@ bool RebatLayer::init()
 		if (i < incount)
 		{
 			progressTimer->setPercentage(100);
+			
+			nodeitem->setSelect();
 		}
 		else if (i == incount)
 			progressTimer->setPercentage((GlobalInstance::totalPayAmout - rebatprice[incount] % 100000) * 100 / (rebatprice[incount + 1] - rebatprice[incount]));
@@ -138,7 +137,7 @@ bool RebatLayer::init()
 	//this->addChild(wp, 0, "waitingprogress");
 	//HttpDataSwap::init(this)->vipIsOn();
 
-	//фа╠ноб╡Ц╣Ц╩В
+	//О©╫О©╫О©╫О©╫О©╫б╡О©╫О©╫О©╫
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -151,18 +150,6 @@ bool RebatLayer::init()
 }
 
 
-void RebatLayer::onResclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
-{
-	if (type == ui::Widget::TouchEventType::ENDED)
-	{
-		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		cocos2d::ui::ImageView* clickres = (cocos2d::ui::ImageView*)pSender;
-		std::string resid = clickres->getName();
-		SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 3);
-		this->addChild(layer);
-		AnimationEffect::openAniEffect(layer);
-	}
-}
 
 void RebatLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {

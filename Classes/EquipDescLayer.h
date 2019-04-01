@@ -23,6 +23,7 @@ public:
 	~EquipDescLayer();
 	virtual void onEnterTransitionDidFinish();
 	static EquipDescLayer* create(ResBase* res, int fromwhere);
+	static EquipDescLayer* create(std::string resid,int qu, int fromwhere);
 	virtual void onExit();
 	bool init(ResBase* res, int fromwhere);
 	void updateAttr();
@@ -44,6 +45,7 @@ private:
 	cocos2d::ui::Widget* salepoint;
 	cocos2d::ui::ImageView* resbox_qu;
 	Node* boxeffect;
+	static ResBase* IdEquipable;
 };
 
 #endif
