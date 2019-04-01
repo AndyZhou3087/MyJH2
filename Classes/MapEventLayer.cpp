@@ -29,16 +29,10 @@ MapEventLayer::MapEventLayer()
 	isWin = -1;
 	hdcount = 0;
 	betCostCoin.setValue(BETCOSTCOIN);
-	isEnterMaze = false;
 }
 
 MapEventLayer::~MapEventLayer()
 {
-	if (!isEnterMaze)
-	{
-		GlobalInstance::eventfrommapid = "";
-		GlobalInstance::eventstartmappos = -1;
-	}
 }
 
 
@@ -262,34 +256,7 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					eventnode_3->setVisible(false);
 					boxEventNode();
 				}
-				else if (r < 30)//进入迷宫
-				{
-					GlobalInstance::vec_mazeroute.clear();
-					GlobalInstance::mazerouteindex = 0;
-
-					isEnterMaze = true;
-
-					int c = atoi(GlobalInstance::eventfrommapid.substr(1, 1).c_str());
-					if (c > 5)
-					{
-						c = 5;
-					}
-					int rz = c - 1;
-					for (int i = 1; i < mazes[rz]; i++)
-					{
-						GlobalInstance::vec_mazeroute.push_back(i);
-					}
-					std::random_shuffle(GlobalInstance::vec_mazeroute.begin(), GlobalInstance::vec_mazeroute.end());
-					GlobalInstance::vec_mazeroute.push_back(mazes[rz]);
-					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MazeTransitionScene::createScene(c, TO_ENTER)));
-
-					GlobalInstance::getInstance()->setMazeEventData(1, 0);
-
-					MyRes::Add("z002", 10, MYPACKAGE);
-					std::string contentstr = StringUtils::format(ResourceLang::map_lang["newtemplet7"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str());
-					MainScene::addNews(contentstr, 2);
-				}
-				else if (r < 55)
+				else if (r < 45)
 				{
 					eventnode_1->setVisible(false);
 					eventnode_2->setVisible(false);

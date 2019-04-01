@@ -505,5 +505,6 @@
 	<s name="matchfightlimit">排名达到前11名方可挑战！</s>
 	<s name="matchfightawddesc">点击选择宝箱领取奖励</s>
 	<s name="matchfightawddesc1">点击任意空白位置关闭</s>
-	<s name="hadfired">[%s]已被解雇！</s>		
+	<s name="hadfired">[%s]已被解雇！</s>
+	<s name="mazeisopen">迷宫大门缓缓开启，祝大侠好运！</s>		
 </strings>

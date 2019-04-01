@@ -272,6 +272,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 			randStartPos = vec_startpos[startposindex];
 		}
 		map_mapBlocks[randStartPos]->setPosIcon();
+
 	}
 	mycurCol = randStartPos % blockColCount;
 	mycurRow = randStartPos / blockColCount;
@@ -348,6 +349,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 			mycurCol = GlobalInstance::eventstartmappos % blockColCount;
 			mycurRow = GlobalInstance::eventstartmappos / blockColCount;
 			GlobalInstance::eventstartmappos = -1;
+			GlobalInstance::ishasmazeentry = false;
 		}
 	}
 
@@ -490,6 +492,16 @@ void MapBlockScene::onEnterTransitionDidFinish()
 		MazeDescLayer* layer = MazeDescLayer::create();
 		this->addChild(layer, 10000);
 	}
+
+	if (GlobalInstance::ishasmazeentry)
+	{
+		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowMazeHint), 1.0f);
+	}
+}
+
+void MapBlockScene::delayShowMazeHint(float dt)
+{
+	MovingLabel::show(ResourceLang::map_lang["mazeisopen"]);
 }
 
 void MapBlockScene::showNewerGuideFight()
@@ -1694,7 +1706,6 @@ void MapBlockScene::doMyStatus()
 #endif
 		{
 			GlobalInstance::eventfrommapid = m_mapid;
-			GlobalInstance::eventstartmappos = mycr;
 
 			MapEventLayer* mlayer = MapEventLayer::create(ret);
 			this->addChild(mlayer);
@@ -1736,6 +1747,36 @@ void MapBlockScene::doMyStatus()
 
 			DataSave::getInstance()->setMapBoxRewards(m_mapid, mid, count + 1);
 		}
+
+		else if (mapblock->getPosType() == POS_MAZEENTRY)//进入迷宫
+		{
+			GlobalInstance::vec_mazeroute.clear();
+			GlobalInstance::mazerouteindex = 0;
+
+			GlobalInstance::eventstartmappos = mycr;
+
+			int c = atoi(GlobalInstance::eventfrommapid.substr(1, 1).c_str());
+			if (c > 5)
+			{
+				c = 5;
+			}
+			int rz = c - 1;
+			for (int i = 1; i < mazes[rz]; i++)
+			{
+				GlobalInstance::vec_mazeroute.push_back(i);
+			}
+			std::random_shuffle(GlobalInstance::vec_mazeroute.begin(), GlobalInstance::vec_mazeroute.end());
+			GlobalInstance::vec_mazeroute.push_back(mazes[rz]);
+			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MazeTransitionScene::createScene(c, TO_ENTER)));
+
+			GlobalInstance::getInstance()->setMazeEventData(1, 0);
+
+			MyRes::Add("z002", 10, MYPACKAGE);
+			std::string contentstr = StringUtils::format(ResourceLang::map_lang["newtemplet7"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str());
+			MainScene::addNews(contentstr, 2);
+			return;
+		}
+
 		if (vec_enemys.size() > 0)
 		{
 			cacelLongTouch();
@@ -2574,7 +2615,7 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						mb->setPosType(postype);
 						vec_boxblock.push_back(mb);
 					}
-					if (postype > POS_START && postype < POS_MAZETRANS)
+					if ((postype > POS_START && postype < POS_MAZETRANS) || postype == POS_MAZEENTRY)
 					{
 						int posrange = -1;
 						element->QueryIntAttribute("prs1", &posrange);
@@ -2698,12 +2739,15 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						e0 = e0->NextSiblingElement();
 					}
 
-					if (postype >= POS_NPC && postype <= POS_TBOSS || postype == POS_MAZETRANS)//起点有多个，只会显示一个，不在这里设置
+					if (postype >= POS_NPC && postype <= POS_TBOSS || postype == POS_MAZETRANS || postype == POS_MAZEENTRY)//起点有多个，只会显示一个，不在这里设置
 					{
 						bool showPosIcon = true;
 						int r = GlobalInstance::getInstance()->createRandomNum(100);
 						if (r >= mb->getPosNpcRnd())
 							showPosIcon = false;
+
+						if (postype == POS_MAZEENTRY && GlobalInstance::ishasmazeentry)
+							showPosIcon = true;
 
 						if (showPosIcon)
 						{

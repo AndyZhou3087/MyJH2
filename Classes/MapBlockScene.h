@@ -204,6 +204,8 @@ private:
 
 	void setBlockRange();
 
+	void delayShowMazeHint(float dt);
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;
@@ -269,6 +271,7 @@ private:
 	bool isDraging;
 	bool isBlockClickCancel;
 	bool isMaze;
+
 	std::vector<MAZE_POS> vec_mazetranspoints;
 	int max_mazepos;
 	cocos2d::ui::ImageView* buildfocus;

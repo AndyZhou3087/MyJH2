@@ -871,6 +871,7 @@ public:
 	static std::map<std::string, TimeMartData> map_timeMartData;
 
 	static std::string timeMarketStr;
+	static bool ishasmazeentry;
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

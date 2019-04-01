@@ -43,7 +43,8 @@ typedef enum
 	POS_BOSS,
 	POS_TBOSS,
 	POS_BOX,//宝箱
-	POS_MAZETRANS
+	POS_MAZETRANS,
+	POS_MAZEENTRY
 }POSTYPE;
 
 class MapBlock : public Sprite

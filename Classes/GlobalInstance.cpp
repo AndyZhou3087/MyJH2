@@ -131,6 +131,8 @@ int GlobalInstance::mazeEventData[3] = { 0 };
 std::string GlobalInstance::timeMarketStr;
 std::map<std::string, TimeMartData> GlobalInstance::map_timeMartData;
 
+bool GlobalInstance::ishasmazeentry = false;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -174,7 +176,7 @@ std::string GlobalInstance::getVersionCode()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getvercode();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "1.0.6";
+	return "2.0.3";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
