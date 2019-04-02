@@ -528,7 +528,7 @@
             <PreSize X="0.2028" Y="0.1141" />
             <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="timegiftbtn" ActionTag="1154158273" Tag="64" IconVisible="False" LeftMargin="42.8625" RightMargin="595.1376" TopMargin="286.5562" BottomMargin="911.4438" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="52" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="timegiftbtn" ActionTag="1154158273" Tag="64" IconVisible="False" LeftMargin="42.8625" RightMargin="595.1375" TopMargin="286.5562" BottomMargin="911.4438" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="52" Scale9Height="60" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="82.0000" Y="82.0000" />
             <Children>
               <AbstractNodeData Name="box" ActionTag="1011831484" Tag="65" IconVisible="False" LeftMargin="-5.5000" RightMargin="-15.5000" TopMargin="64.0001" BottomMargin="-8.0001" LeftEage="18" RightEage="18" TopEage="10" BottomEage="10" Scale9OriginX="18" Scale9OriginY="10" Scale9Width="67" Scale9Height="6" ctype="ImageViewObjectData">
@@ -750,6 +750,17 @@
                 <PrePosition X="0.4565" Y="0.1829" />
                 <PreSize X="0.6304" Y="0.4146" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/main_herobtn_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="redpoint" ActionTag="795086980" Tag="167" IconVisible="False" LeftMargin="51.0005" RightMargin="16.9995" TopMargin="1.9999" BottomMargin="56.0001" ctype="SpriteObjectData">
+                <Size X="24.0000" Y="24.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="63.0005" Y="68.0001" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.6848" Y="0.8293" />
+                <PreSize X="0.2609" Y="0.2927" />
+                <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

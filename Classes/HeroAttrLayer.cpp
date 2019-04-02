@@ -816,7 +816,7 @@ void HeroAttrLayer::recruitHero()
 		CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_zmcg");
 
 		AnimationEffect::closeAniEffect(this);
-
+		GlobalInstance::isHasNewhero = true;
 	}
 	else
 	{

@@ -285,7 +285,7 @@
     </Cell>
     <Cell c="12" r="9" p="-1" w="1" m="129.png" />
     <Cell c="12" r="10" p="5" w="0" m="129.png" d="51.png">
-      <npcid>12/npcid>
+      <npcid>12</npcid>
       <msawd1 id="z002" qu="0" rnd="0.00">2</msawd1>
     </Cell>
     <Cell c="12" r="11" p="-1" w="1" m="129.png" />

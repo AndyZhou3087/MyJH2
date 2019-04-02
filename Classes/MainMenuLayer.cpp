@@ -146,6 +146,11 @@ bool MainMenuLayer::init()
 		{
 			wellmorebtnnode->setPosition(clickwidget->getPosition());
 		}
+		else if (i == HEROBTN)
+		{
+			heroredpoint = (cocos2d::ui::Widget*)clickwidget->getChildByName("redpoint");
+			heroredpoint->setVisible(false);
+		}
 	}
 
 	cocos2d::ui::Widget* headimgbox = (cocos2d::ui::Widget*)csbnode->getChildByName("headimgbox");
@@ -350,19 +355,17 @@ void MainMenuLayer::updateUI(float dt)
 		if (data.state == DAILY_FINISHED)
 		{
 			achcount++;
-			achredpoint->setVisible(true);
 			break;
 		}
 	}
-	if (achcount <= 0)
-	{
-		achredpoint->setVisible(false);
-	}
+
+	achredpoint->setVisible(achcount>0);
 
 	if (GlobalInstance::isBuyFirstCharge)
 	{
 		firstchargebtn->setVisible(false);
 	}
+	heroredpoint->setVisible(GlobalInstance::isHasNewhero);
 }
 
 void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -544,6 +547,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			InnRoomLayer *layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
 			g_mainScene->addChild(layer, 0, "6innroom");
 			AnimationEffect::openAniEffect(layer);
+			GlobalInstance::isHasNewhero = false;
 		}
 			break;
 		case RANATIONBTN:

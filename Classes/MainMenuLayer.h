@@ -69,6 +69,7 @@ private:
 	cocos2d::ui::Text* mycoinlbl;//金币数量LABEL
 	cocos2d::ui::Widget* achredpoint;//成就小红点
 	cocos2d::ui::Widget* mailredpoint;//邮件小红点
+	cocos2d::ui::Widget* heroredpoint;//侠客小红点
 	cocos2d::ui::Widget* timegiftbtn;
 	cocos2d::ui::Text* timegiftlefttime;//限时礼包剩下时间
 	cocos2d::ui::Widget* firstchargebtn;

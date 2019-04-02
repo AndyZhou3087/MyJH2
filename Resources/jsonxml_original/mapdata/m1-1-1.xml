@@ -107,7 +107,7 @@
     <Cell c="6" r="3" p="-1" w="1" m="6.png" />
     <Cell c="6" r="4" p="-1" w="1" m="6.png" />
     <Cell c="6" r="5" p="-1" w="1" m="6.png" />
-    <Cell c="6" r="6" p="7" w="1" prs1="73" pre1="121" m="6.png" />
+    <Cell c="6" r="6" p="-1" w="1" m="6.png" />
     <Cell c="6" r="7" p="-1" w="1" m="6.png" />
     <Cell c="6" r="8" p="-1" w="1" m="6.png" />
     <Cell c="6" r="9" p="5" w="1" m="6.png">
@@ -119,7 +119,7 @@
     <Cell c="6" r="11" p="-1" w="1" m="6.png" />
     <Cell c="6" r="12" p="-1" w="1" m="6.png" />
     <Cell c="6" r="13" p="0" w="1" m="6.png" />
-    <Cell c="7" r="0" p="3" w="1" prs1="14" pre1="38" m="11.png">
+    <Cell c="7" r="0" p="3" w="1" prs1="14" pre1="26" m="11.png">
       <npcid>n014</npcid>
       <npcrnd>100</npcrnd>
       <msatt1 id="n001" qu="0">1</msatt1>

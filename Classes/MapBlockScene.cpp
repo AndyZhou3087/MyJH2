@@ -350,6 +350,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 			mycurRow = GlobalInstance::eventstartmappos / blockColCount;
 			GlobalInstance::eventstartmappos = -1;
 			GlobalInstance::ishasmazeentry = false;
+			GlobalInstance::showz002hinttextcount = 0;
 		}
 	}
 
@@ -1078,7 +1079,11 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 		}
 		else if (checkret <= -10000)
 		{
-			MovingLabel::show(ResourceLang::map_lang["mazestone"]);
+			if (GlobalInstance::showz002hinttextcount < 3)
+			{
+				MovingLabel::show(ResourceLang::map_lang["mazestone"]);
+				GlobalInstance::showz002hinttextcount++;
+			}
 			
 			//UsePropLayer* layer = UsePropLayer::create("z002", 1);
 			//layer->setTag(-checkret - 10000);

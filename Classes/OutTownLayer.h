@@ -47,6 +47,8 @@ private:
 
 	void editBoxReturn(cocos2d::ui::EditBox *editBox);
 
+	void updatelbl(float dt);
+
 private:
 	CardHeroNode* m_myCardHerosNode[6];
 	cocos2d::ui::Text* carrylbl;
@@ -61,6 +63,8 @@ private:
 	cocos2d::ui::Widget* changebtn;
 
 	cocos2d::ui::EditBox* m_editCount;
+	cocos2d::ui::Text* versionname;
+	cocos2d::ui::Text* gocityname;
 };
 
 #endif

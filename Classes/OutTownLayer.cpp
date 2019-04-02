@@ -115,15 +115,9 @@ bool OutTownLayer::init()
 	cocos2d::ui::Text* foodname = (cocos2d::ui::Text*)csbnode->getChildByName("r001box")->getChildByName("namelbl");
 	foodname->setString(GlobalInstance::map_AllResources["r001"].name);
 
-	cocos2d::ui::Text* versionname = (cocos2d::ui::Text*)csbnode->getChildByName("v001box")->getChildByName("namelbl");
+	versionname = (cocos2d::ui::Text*)csbnode->getChildByName("v001box")->getChildByName("namelbl");
 
-	std::string vstr = StringUtils::format(ResourceLang::map_lang["vision"].c_str(), MyRes::getMyResCount("v001"));
-	versionname->setString(vstr);
-
-	cocos2d::ui::Text* gocityname = (cocos2d::ui::Text*)csbnode->getChildByName("t001box")->getChildByName("namelbl");
-
-	std::string gstr = StringUtils::format(ResourceLang::map_lang["gocitycard"].c_str(), MyRes::getMyResCount("t001"));
-	gocityname->setString(gstr);
+	gocityname = (cocos2d::ui::Text*)csbnode->getChildByName("t001box")->getChildByName("namelbl");
 
 	cocos2d::ui::Text* carrytextlbl = (cocos2d::ui::Text*)csbnode->getChildByName("carrytextlbl");
 	carrytextlbl->setString(ResourceLang::map_lang["carrytext"]);
@@ -196,6 +190,9 @@ bool OutTownLayer::init()
 	m_editCount->setDelegate(this);
 	csbnode->addChild(m_editCount);
 
+	updatelbl(0);
+
+	this->schedule(schedule_selector(OutTownLayer::updatelbl), 1.0f);
 
 	this->scheduleOnce(schedule_selector(OutTownLayer::delayShowNewerGuide), newguidetime);
 
@@ -569,12 +566,20 @@ void OutTownLayer::onGoBuyText(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		}
 		else
 		{
-			this->removeFromParentAndCleanup(true);
 			MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
 			g_mainScene->addChild(layer, 0, "5market");
 			AnimationEffect::openAniEffect(layer);
 		}
 	}
+}
+
+void OutTownLayer::updatelbl(float dt)
+{
+	std::string vstr = StringUtils::format(ResourceLang::map_lang["vision"].c_str(), MyRes::getMyResCount("v001"));
+	versionname->setString(vstr);
+
+	std::string gstr = StringUtils::format(ResourceLang::map_lang["gocitycard"].c_str(), MyRes::getMyResCount("t001"));
+	gocityname->setString(gstr);
 }
 
 void OutTownLayer::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)

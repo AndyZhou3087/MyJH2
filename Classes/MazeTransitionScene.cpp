@@ -57,6 +57,11 @@ bool MazeTransitionScene::init(int mazechapter, int type)
 	{
 		return false;
 	}
+
+	m_mazechapter = mazechapter;
+
+	m_type = type;
+
 	int r = GlobalInstance::mazerouteindex;
 	if (r > 2)
 		r = 2;
@@ -75,8 +80,6 @@ bool MazeTransitionScene::init(int mazechapter, int type)
 	lbl->setPosition(Vec2(360, 640));
 	this->addChild(lbl);
     
-	this->runAction(Sequence::create(DelayTime::create(2.0f), CallFunc::create(CC_CALLBACK_0(MazeTransitionScene::loadfinish, this, mazechapter, type)), NULL));
-
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -87,6 +90,12 @@ bool MazeTransitionScene::init(int mazechapter, int type)
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 	return true;
+}
+
+void MazeTransitionScene::onEnterTransitionDidFinish()
+{
+	Layer::onEnterTransitionDidFinish();
+	this->runAction(Sequence::create(DelayTime::create(2.0f), CallFunc::create(CC_CALLBACK_0(MazeTransitionScene::loadfinish, this, m_mazechapter, m_type)), NULL));
 }
 
 void MazeTransitionScene::loadfinish(int mazechapter, int type)

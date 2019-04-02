@@ -962,6 +962,7 @@
           <Image Name="b002.png" />
           <Image Name="b003.png" />
           <Image Name="b004.png" />
+          <Image Name="b005.png" />
           <Image Name="bet_0.png" />
           <Image Name="bet_1.png" />
           <Image Name="bet_select.png" />
@@ -1535,6 +1536,7 @@
         <Project Name="paySelectLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
+        <Project Name="rebateawdnode.csd" Type="Node" />
         <Project Name="rebatLayer.csd" Type="Layer" />
         <Project Name="renationitemNode.csd" Type="Node" />
         <Project Name="renationLayer.csd" Type="Layer" />
@@ -1575,7 +1577,6 @@
         <Project Name="wellmorebtnnode.csd" Type="Node" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="rebateawdnode.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -137,6 +137,9 @@ int GlobalInstance::totalPayAmout = 0;
 
 std::vector<bool> GlobalInstance::vec_rebateisget;
 
+bool GlobalInstance::isHasNewhero = false;
+int GlobalInstance::showz002hinttextcount = 0;
+
 GlobalInstance::GlobalInstance()
 {
 

@@ -23,7 +23,7 @@ public:
 	~MazeTransitionScene();
 
 	virtual bool init(int mazechapter, int type);
-
+	virtual void onEnterTransitionDidFinish();
 	static Scene* createScene(int mazechapter, int type);
 
 	virtual void onExit();
@@ -35,6 +35,8 @@ private:
 
 	void resetMazeMap(std::string mapid);
 private:
+	int m_mazechapter;
+	int m_type;
 };
 #endif
 
