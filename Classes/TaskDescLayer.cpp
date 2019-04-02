@@ -67,7 +67,8 @@ bool TaskDescLayer::init(TaskData* data, int type)
 
 	std::string taskdesc = data->desc;
 
-	std::string addrdesc = StringUtils::format(ResourceLang::map_lang["taskaddrdesc"].c_str(), GlobalInstance::map_AllResources[data->place].name.c_str());
+	std::string mainmapid = data->place.substr(0, data->place.find_last_of("-"));
+	std::string addrdesc = StringUtils::format(ResourceLang::map_lang["taskaddrdesc"].c_str(), GlobalInstance::map_AllResources[mainmapid].name.c_str(), GlobalInstance::map_AllResources[data->place].name.c_str());
 	taskdesc.append(addrdesc);
 	cocos2d::ui::ScrollView* descscoll = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("descscoll");
 	Label* contentlbl = Label::createWithTTF(taskdesc, FONT_NAME, 25);
@@ -93,7 +94,7 @@ bool TaskDescLayer::init(TaskData* data, int type)
 	{
 		std::vector<std::string> _vec;
 		CommonFuncs::split(it->first, _vec, "-");
-		if (it->first.compare(0, 1, "m") == 0 && _vec.size() == 3)
+		if (it->first.compare(0, 1, "m") == 0 && _vec.size() >= 2)
 		{
 			std::string resname = GlobalInstance::map_AllResources[it->first].name;
 

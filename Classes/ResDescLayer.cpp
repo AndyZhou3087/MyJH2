@@ -77,7 +77,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 	}
 	else if (t >= T_HEROCARD && t <= T_ARMCARD)
 	{
-		int qu = 3;
+		int qu = atoi(m_res->getId().substr(1).c_str()) + 2;
 		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 	}
@@ -110,7 +110,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 
 	if (m_fromwhere == 1)
 	{
-		int r = GlobalInstance::getInstance()->createRandomNum(100);
+		int r = GlobalInstance::getInstance()->createRandomNum(1000);
 
 		int index = 0;
 		for (unsigned int i = 0; i < GlobalInstance::map_TBoxs[res->getId()].vec_rnd.size(); i++)
@@ -302,11 +302,19 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 				std::vector<MSGAWDSDATA> vec_rewards;
 
-				int awdszie = GlobalInstance::map_TBoxs[m_res->getId()].vec_awds.size();
+				int r = GlobalInstance::getInstance()->createRandomNum(1000);
 
-				int r = GlobalInstance::getInstance()->createRandomNum(awdszie);
+				int index = 0;
+				for (unsigned int i = 0; i < GlobalInstance::map_TBoxs[m_res->getId()].vec_rnd.size(); i++)
+				{
+					if (r < GlobalInstance::map_TBoxs[m_res->getId()].vec_rnd[i])
+					{
+						index = i;
+						break;
+					}
+				}
 
-				std::string awd = GlobalInstance::map_TBoxs[m_res->getId()].vec_awds[r];
+				std::string awd = GlobalInstance::map_TBoxs[m_res->getId()].vec_awds[index];
 				std::vector<std::string> vec_tmp;
 				CommonFuncs::split(awd, vec_tmp, "-");
 

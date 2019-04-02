@@ -149,7 +149,7 @@ void StoreHouseLayer::updateContent(int category)
 		}
 		else if (map_cateRes[category][m]->getType() >= T_HEROCARD && map_cateRes[category][m]->getType() <= T_ARMCARD)
 		{
-			qu = 3;
+			qu = atoi(map_cateRes[category][m]->getId().substr(1).c_str()) + 2;
 			qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
 

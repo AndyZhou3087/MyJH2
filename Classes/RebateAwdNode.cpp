@@ -106,6 +106,11 @@ bool RebateAwdNode::init(std::string awdstr)
 				qu = atoi(resid.substr(1).c_str()) - 1;
 				qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
+			else if (t >= T_HEROCARD && t <= T_ARMCARD)
+			{
+				qu = atoi(resid.substr(1).c_str()) + 2;
+				qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
 			resbox->setTag(i*1000+t);
 			resbox->loadTexture(ResourcePath::makePath(qustr), cocos2d::ui::Widget::TextureResType::PLIST);
 

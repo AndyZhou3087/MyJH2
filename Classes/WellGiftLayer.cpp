@@ -211,7 +211,7 @@ void WellGiftLayer::selectVip(ShopData* data)
 			}
 			else if (t >= T_HEROCARD && t <= T_ARMCARD)
 			{
-				qu = 3;
+				qu = atoi(resid.substr(1).c_str()) + 2;
 				str = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
 			box[i]->setVisible(true);

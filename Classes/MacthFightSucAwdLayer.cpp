@@ -143,7 +143,7 @@ void MacthFightSucAwdLayer::delayShowResAnim(float dt)
 	}
 	else if (t >= T_HEROCARD && t <= T_ARMCARD)
 	{
-		qu = 3;
+		qu = atoi(resid.substr(1).c_str()) + 2;
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
 
