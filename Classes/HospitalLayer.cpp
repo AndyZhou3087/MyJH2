@@ -50,12 +50,8 @@ bool HospitalLayer::init()
 	scrollview->setBounceEnabled(true);
 
 	cointext = (cocos2d::ui::Text*)m_csbnode->getChildByName("cointext");
-	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
-	cointext->setString(str);
 
 	silvertext = (cocos2d::ui::Text*)m_csbnode->getChildByName("silvertext");
-	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
-	silvertext->setString(str);
 
 	hintdesc = (cocos2d::ui::Text*)m_csbnode->getChildByName("hintdesc");
 	hintdesc->setString("");
@@ -70,6 +66,8 @@ bool HospitalLayer::init()
 
 	updateContent();
 
+	updateUI(0);
+	this->schedule(schedule_selector(HospitalLayer::updateUI), 1.0f);
 	//this->scheduleOnce(schedule_selector(HospitalLayer::delayShowNewerGuide), newguidetime);
 
 	auto listener = EventListenerTouchOneByOne::create();
@@ -212,4 +210,13 @@ void HospitalLayer::updateContent()
 void HospitalLayer::todoNewGuide()
 {
 	delayShowNewerGuide(0);
+}
+
+void HospitalLayer::updateUI(float dt)
+{
+	std::string str = StringUtils::format("%d", GlobalInstance::getInstance()->getMyCoinCount().getValue());
+	cointext->setString(str);
+
+	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
+	silvertext->setString(str);
 }

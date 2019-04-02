@@ -58,6 +58,11 @@ bool MacthFightSucAwdLayer::init()
 	resbox = (cocos2d::ui::ImageView*)animnode->getChildByName("resbox");
 	res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
 
+	awdname = (cocos2d::ui::Text*)resbox->getChildByName("name");
+	countlbl = (cocos2d::ui::Text*)resbox->getChildByName("countlbl");
+	awdname->setVisible(false);
+	countlbl->setVisible(false);
+
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
@@ -113,12 +118,15 @@ void MacthFightSucAwdLayer::delayShowResAnim(float dt)
 	std::string resid;
 	int count = 0;
 	CommonFuncs::split(awds[index], vec_ret, "-");
-	{
-		resid = vec_ret[0];
-		count = atoi(vec_ret[1].c_str());
-		if (vec_ret.size() >= 3)
-			qu = atoi(vec_ret[2].c_str());
-	};
+
+	resid = vec_ret[0];
+	count = atoi(vec_ret[1].c_str());
+	if (vec_ret.size() >= 3)
+		qu = atoi(vec_ret[2].c_str());
+
+	awdname->setString(GlobalInstance::map_AllResources[resid].name);
+	std::string countstr = StringUtils::format("%d", count);
+	countlbl->setString(countstr);
 
 	MyRes::Add(resid, count, MYSTORAGE, qu, GlobalInstance::getInstance()->generateStoneCount(qu));
 
@@ -159,6 +167,8 @@ void MacthFightSucAwdLayer::delayShowResAnim(float dt)
 	box[this->getTag()]->runAction(Sequence::create(DelayTime::create(0.5f), FadeTo::create(0.02f, 200), FadeTo::create(0.02f, 100), CallFunc::create(CC_CALLBACK_0(MacthFightSucAwdLayer::finishAnim, this)), NULL));
 	
 	CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
+
+	this->scheduleOnce(schedule_selector(MacthFightSucAwdLayer::showNameAndCount), 0.7f);
 }
 
 
@@ -166,4 +176,10 @@ void MacthFightSucAwdLayer::finishAnim()
 {
 	iscancolse = true;
 	desc->setString(ResourceLang::map_lang["matchfightawddesc1"]);
+}
+
+void MacthFightSucAwdLayer::showNameAndCount(float dt)
+{
+	awdname->setVisible(true);
+	countlbl->setVisible(true);
 }

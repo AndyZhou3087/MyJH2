@@ -22,6 +22,8 @@ private:
 	void delayShowResAnim(float dt);
 
 	void finishAnim();
+
+	void showNameAndCount(float dt);
 private:
 	cocos2d::ui::ImageView* box[3];
 
@@ -29,6 +31,9 @@ private:
 	cocos2d::ui::ImageView* res;
 	Node* animnode;
 	cocos2d::ui::Text* desc;
+
+	cocos2d::ui::Text* awdname;
+	cocos2d::ui::Text* countlbl;
 	bool iscancolse;
 
 };

@@ -127,7 +127,15 @@ bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 			namelbl->setString(GlobalInstance::map_AllResources[resid].name);
 			std::string countstr = StringUtils::format("x%d", count);
 			countlbl->setString(countstr);
-			needcoincount.setValue(needcoincount.getValue() + count*GlobalInstance::map_AllResources[resid].silverval / 10);
+
+			if (GlobalInstance::map_AllResources[resid].coinval > 0)
+			{
+				needcoincount.setValue(needcoincount.getValue() + count * GlobalInstance::map_AllResources[resid].coinval);
+			}
+			else
+			{
+				needcoincount.setValue(needcoincount.getValue() + count * GlobalInstance::map_AllResources[resid].silverval / 10);
+			}
 		}
 		else
 		{
@@ -135,7 +143,7 @@ bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 		}
 	}
 
-	needcoincount.setValue(needcoincount.getValue() * 14 / 10);
+	needcoincount.setValue(needcoincount.getValue() * 12 / 10);
 
 	cocos2d::ui::Text* countlbl = (cocos2d::ui::Text*)csbnode->getChildByName("cnumbl");
 	std::string str = StringUtils::format("%d", needcoincount.getValue());

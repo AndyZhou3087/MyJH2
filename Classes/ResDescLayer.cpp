@@ -173,21 +173,22 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 			btntextstr = "usebtn_text";
 			status = S_CAN_USE;
 
-			std::string resname;
+			//std::string resname;
 
-			int awdszie = GlobalInstance::map_TBoxs[res->getId()].vec_awds.size();
-			for (int i = 0; i < awdszie; i++)
-			{
-				std::string awd = GlobalInstance::map_TBoxs[res->getId()].vec_awds[i];
-				std::vector<std::string> vec_tmp;
-				CommonFuncs::split(awd, vec_tmp, "-");
+			//int awdszie = GlobalInstance::map_TBoxs[res->getId()].vec_awds.size();
+			//for (int i = 0; i < awdszie; i++)
+			//{
+			//	std::string awd = GlobalInstance::map_TBoxs[res->getId()].vec_awds[i];
+			//	std::vector<std::string> vec_tmp;
+			//	CommonFuncs::split(awd, vec_tmp, "-");
 
-				resname.append(GlobalInstance::map_AllResources[vec_tmp[0]].name);
-				if (i < awdszie - 1)
-					resname.append(ResourceLang::map_lang["dunhao"]);
+			//	resname.append(GlobalInstance::map_AllResources[vec_tmp[0]].name);
+			//	if (i < awdszie - 1)
+			//		resname.append(ResourceLang::map_lang["dunhao"]);
 
-			}
-			descstr = StringUtils::format(ResourceLang::map_lang["tboxdesc"].c_str(), resname.c_str());
+			//}
+			//descstr = StringUtils::format(ResourceLang::map_lang["tboxdesc"].c_str(), resname.c_str());
+			descstr = GlobalInstance::map_AllResources[res->getId()].desc;
 		}
 		else if (res->getType() == T_TLMED)
 		{

@@ -2999,10 +2999,6 @@ void GlobalInstance::parseTBoxJson()
 			for (unsigned int m = 0; m < v.Size(); m++)
 			{
 				int rnd = v[m].GetInt();
-				for (unsigned int n = 0; n < data.vec_rnd.size(); n++)
-				{
-					rnd += data.vec_rnd[n];
-				}
 				data.vec_rnd.push_back(rnd);
 			}
 			map_TBoxs[data.id] = data;

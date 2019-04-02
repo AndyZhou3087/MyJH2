@@ -288,7 +288,7 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 
 			GlobalInstance::ishasmazeentry = GlobalInstance::getInstance()->createRandomNum(100) < 50?true:false;
 			
-			Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene(mapid, GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].bgtype)));
+			Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MapBlockScene::createScene(mapid, GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].bgtype)));
 		}
 		else
 		{

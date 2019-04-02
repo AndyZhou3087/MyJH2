@@ -132,7 +132,7 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Node* node = (Node*)pSender;
+		cocos2d::ui::Button* node = (cocos2d::ui::Button*)pSender;
 		int tag = node->getTag();
 		switch (tag)
 		{
@@ -182,6 +182,7 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				StoreHouseLayer* storelayer = (StoreHouseLayer*)g_mainScene->getChildByName("3storehouse");
 				if (storelayer != NULL)
 				{
+					node->setEnabled(false);
 					storelayer->decompose((ResBase*)this->getUserData());
 					AnimationEffect::closeAniEffect((Layer*)this);
 					if (storelayer->getChildByTag(1111) != NULL)
@@ -253,7 +254,8 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 					}
 				}
 			}
-			AnimationEffect::closeAniEffect((Layer*)this);
+			node->setEnabled(false);
+			AnimationEffect::closeAniEffect(this);
 			break;
 		case -1:
 #if USE_TRANSCENE

@@ -563,22 +563,22 @@
                 <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="actionbtn" ActionTag="1342952072" Tag="153" IconVisible="False" LeftMargin="48.5000" RightMargin="-301.5000" TopMargin="176.5000" BottomMargin="-223.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="223" Scale9Height="25" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                <Size X="253.0000" Y="47.0000" />
+              <AbstractNodeData Name="actionbtn" ActionTag="1342952072" Tag="153" IconVisible="False" LeftMargin="48.5001" RightMargin="-301.5001" TopMargin="164.4999" BottomMargin="-235.4999" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="223" Scale9Height="49" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="253.0000" Y="71.0000" />
                 <Children>
-                  <AbstractNodeData Name="text" ActionTag="-345577991" Tag="154" IconVisible="False" LeftMargin="23.7415" RightMargin="68.2585" TopMargin="-21.0975" BottomMargin="21.0975" LeftEage="24" RightEage="24" TopEage="13" BottomEage="13" Scale9OriginX="24" Scale9OriginY="13" Scale9Width="113" Scale9Height="21" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="text" ActionTag="-345577991" Tag="154" IconVisible="False" LeftMargin="23.7415" RightMargin="68.2585" TopMargin="2.9025" BottomMargin="21.0975" LeftEage="24" RightEage="24" TopEage="13" BottomEage="13" Scale9OriginX="24" Scale9OriginY="13" Scale9Width="113" Scale9Height="21" ctype="ImageViewObjectData">
                     <Size X="161.0000" Y="47.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="104.2415" Y="44.5975" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4120" Y="0.9489" />
-                    <PreSize X="0.6364" Y="1.0000" />
+                    <PrePosition X="0.4120" Y="0.6281" />
+                    <PreSize X="0.6364" Y="0.6620" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/changevocbtn_text4.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="175.0000" Y="-200.0000" />
+                <Position X="175.0001" Y="-199.9999" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -1372,17 +1372,17 @@
                 <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="actionbtn" ActionTag="2068467961" Tag="299" IconVisible="False" LeftMargin="48.5000" RightMargin="-301.5000" TopMargin="176.5000" BottomMargin="-223.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="223" Scale9Height="25" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                <Size X="253.0000" Y="47.0000" />
+              <AbstractNodeData Name="actionbtn" ActionTag="2068467961" Tag="299" IconVisible="False" LeftMargin="48.5000" RightMargin="-301.5000" TopMargin="164.5000" BottomMargin="-235.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="223" Scale9Height="49" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="253.0000" Y="71.0000" />
                 <Children>
-                  <AbstractNodeData Name="text" ActionTag="-794098621" Tag="300" IconVisible="False" LeftMargin="23.7415" RightMargin="68.2585" TopMargin="-21.0975" BottomMargin="21.0975" LeftEage="24" RightEage="24" TopEage="13" BottomEage="13" Scale9OriginX="24" Scale9OriginY="13" Scale9Width="113" Scale9Height="21" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="text" ActionTag="-794098621" Tag="300" IconVisible="False" LeftMargin="23.7415" RightMargin="68.2585" TopMargin="2.9025" BottomMargin="21.0975" LeftEage="24" RightEage="24" TopEage="13" BottomEage="13" Scale9OriginX="24" Scale9OriginY="13" Scale9Width="113" Scale9Height="21" ctype="ImageViewObjectData">
                     <Size X="161.0000" Y="47.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="104.2415" Y="44.5975" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4120" Y="0.9489" />
-                    <PreSize X="0.6364" Y="1.0000" />
+                    <PrePosition X="0.4120" Y="0.6281" />
+                    <PreSize X="0.6364" Y="0.6620" />
                     <FileData Type="MarkedSubImage" Path="text_zh_cn/changevocbtn_text4.png" Plist="text_zh_cn.plist" />
                   </AbstractNodeData>
                 </Children>

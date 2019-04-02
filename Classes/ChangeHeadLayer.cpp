@@ -114,12 +114,12 @@ bool ChangeHeadLayer::init()
 		//stencil->addChild(cnode);
 		//m_clippingNode->setStencil(stencil);
 
-		std::string s = StringUtils::format("vocation_%d", i + 4);
-		str = ResourceLang::map_lang[s];
-		Label *namelbl = Label::createWithTTF(str, FONT_NAME, 22);
-		namelbl->setColor(Color3B(255, 255, 255));
-		namelbl->setPosition(Vec2(headbox->getContentSize().width / 2, -20));
-		headbox->addChild(namelbl);
+		//std::string s = StringUtils::format("vocation_%d", i + 4);
+		//str = ResourceLang::map_lang[s];
+		//Label *namelbl = Label::createWithTTF(str, FONT_NAME, 22);
+		//namelbl->setColor(Color3B(255, 255, 255));
+		//namelbl->setPosition(Vec2(headbox->getContentSize().width / 2, -20));
+		//headbox->addChild(namelbl);
 	}
 
 	//фа╠ноб╡Ц╣Ц╩В

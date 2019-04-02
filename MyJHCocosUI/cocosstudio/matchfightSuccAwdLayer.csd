@@ -146,6 +146,30 @@
                     <PreSize X="0.8720" Y="0.8720" />
                     <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="name" ActionTag="-2082630169" Tag="195" IconVisible="False" LeftMargin="36.5000" RightMargin="36.5000" TopMargin="-26.5000" BottomMargin="122.5000" FontSize="25" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                    <Size X="52.0000" Y="29.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="62.5000" Y="137.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="1.0960" />
+                    <PreSize X="0.4160" Y="0.2320" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="80" G="38" B="12" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="countlbl" ActionTag="1456739647" Tag="194" IconVisible="False" LeftMargin="77.6259" RightMargin="12.3741" TopMargin="94.6424" BottomMargin="5.3576" FontSize="22" LabelText="100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                    <Size X="35.0000" Y="25.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="112.6259" Y="17.8576" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.9010" Y="0.1429" />
+                    <PreSize X="0.2800" Y="0.2000" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="80" G="38" B="12" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="15.0000" Y="8.0000" />
