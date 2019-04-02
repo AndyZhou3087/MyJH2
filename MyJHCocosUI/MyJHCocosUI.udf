@@ -25,23 +25,5 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="ui.csi" />
-          <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="rebatLayer.csd" />
-          <FilePathData Path="wellGiftLayer.csd" />
-          <FilePathData Path="storeHouseLayer.csd" />
-          <FilePathData Path="rebateawdnode.csd" />
-          <FilePathData Path="makeResLayer.csd" />
-          <FilePathData Path="randHeroLayer.csd" />
-          <FilePathData Path="MainMenuLayer.csd" />
-          <FilePathData Path="libraryequipLayer.csd" />
-          <FilePathData Path="libraryLayer.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="libraryequipLayer.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

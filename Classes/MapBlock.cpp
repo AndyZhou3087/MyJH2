@@ -78,6 +78,7 @@ void MapBlock::setPosIcon()
 	if (m_postype == 1)
 	{
 		cocos2d::ui::ImageView* nicon = (cocos2d::ui::ImageView*)posicon->getChildByName("nicon");
+		nicon->ignoreContentAdaptWithSize(true);
 		std::string niconstr = StringUtils::format("ui/p%s.png", m_posnpcid.c_str());
 		nicon->loadTexture(niconstr, cocos2d::ui::Widget::TextureResType::PLIST);
 	}

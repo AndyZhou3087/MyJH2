@@ -62,7 +62,7 @@ bool EquipLibraryLayer::init(int category)
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
 	titleimg->ignoreContentAdaptWithSize(true);
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("libraryequiptitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-	titleimg->setScale(0.8f);
+	titleimg->setScale(0.85f);
 
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
 	closebtn->setTag(1000);
