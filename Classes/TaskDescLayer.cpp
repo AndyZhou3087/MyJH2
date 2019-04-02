@@ -89,29 +89,41 @@ bool TaskDescLayer::init(TaskData* data, int type)
 	std::u32string utf32lblString;
 	StringUtils::UTF8ToUTF32(taskdesc, utf32lblString);
 
-	std::map<std::string, AllResources>::iterator it;
-	for (it = GlobalInstance::map_AllResources.begin(); it != GlobalInstance::map_AllResources.end(); it++)
+	std::u32string findu32str;
+	StringUtils::UTF8ToUTF32(ResourceLang::map_lang["taskaddrfindstr"], findu32str);
+
+	std::size_t findpos = utf32lblString.rfind(findu32str);
+	if (findpos != std::string::npos)
 	{
-		std::vector<std::string> _vec;
-		CommonFuncs::split(it->first, _vec, "-");
-		if (it->first.compare(0, 1, "m") == 0 && _vec.size() >= 2)
+		for (std::size_t i = findpos + findu32str.length(); i < utf32lblString.length(); i++)
 		{
-			std::string resname = GlobalInstance::map_AllResources[it->first].name;
-
-			std::u32string utf32ResString;
-			StringUtils::UTF8ToUTF32(resname, utf32ResString);
-
-			std::size_t findpos = utf32lblString.rfind(utf32ResString);
-			if (findpos != std::string::npos)
-			{
-				for (std::size_t i = findpos; i < (findpos + utf32ResString.length()); i++)
-				{
-					contentlbl->getLetter(i)->setColor(Color3B(255, 61, 61));
-				}
-				break;
-			}
+			contentlbl->getLetter(i)->setColor(Color3B(255, 61, 61));
 		}
 	}
+
+	//std::map<std::string, AllResources>::iterator it;
+	//for (it = GlobalInstance::map_AllResources.begin(); it != GlobalInstance::map_AllResources.end(); it++)
+	//{
+	//	std::vector<std::string> _vec;
+	//	CommonFuncs::split(it->first, _vec, "-");
+	//	if (it->first.compare(0, 1, "m") == 0 && _vec.size() >= 2)
+	//	{
+	//		std::string resname = GlobalInstance::map_AllResources[it->first].name;
+
+	//		std::u32string utf32ResString;
+	//		StringUtils::UTF8ToUTF32(resname, utf32ResString);
+
+	//		std::size_t findpos = utf32lblString.rfind(utf32ResString);
+	//		if (findpos != std::string::npos)
+	//		{
+	//			for (std::size_t i = findpos; i < (findpos + utf32ResString.length()); i++)
+	//			{
+	//				contentlbl->getLetter(i)->setColor(Color3B(255, 61, 61));
+	//			}
+	//			break;
+	//		}
+	//	}
+	//}
 
 	//npcÍ·Ïñ
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("icon");
