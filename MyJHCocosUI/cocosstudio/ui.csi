@@ -595,6 +595,7 @@
       <FilePathData Path="ui/rebateawdselect.png" />
       <FilePathData Path="ui/rebategetbtn_n.png" />
       <FilePathData Path="ui/rebategetbtn_d.png" />
+      <FilePathData Path="ui/u002.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

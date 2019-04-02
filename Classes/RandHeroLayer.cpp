@@ -127,12 +127,27 @@ bool RandHeroLayer::init()
 	lblstr = StringUtils::format("%d", COINREFRESH_HERO_NUM);
 	refreshcoinlbl->setString(lblstr);
 
-	int count = MyRes::getMyResCount("u001");
-
-	lblstr = StringUtils::format("%d", count);
-	herocardcountlbl->setString(lblstr);
+	int count1 = MyRes::getMyResCount("u001");
+	int count2 = MyRes::getMyResCount("u002");
+	int count = count1 + count2;
 
 	cardrefreshbtn->setVisible(count > 0);
+
+	cocos2d::ui::ImageView* cardicon = (cocos2d::ui::ImageView*)cardrefreshbtn->getChildByName("cardicon");
+	if (count2 > 0)
+	{
+		cardicon->loadTexture("ui/u002.png", cocos2d::ui::Widget::TextureResType::PLIST);
+		lblstr = StringUtils::format("%d", count2);
+		herocardcountlbl->setString(lblstr);
+	}
+	else if (count1 > 0)
+	{
+		cardicon->loadTexture("ui/u001.png", cocos2d::ui::Widget::TextureResType::PLIST);
+		lblstr = StringUtils::format("%d", count1);
+		herocardcountlbl->setString(lblstr);
+	}
+	cardicon->setScale(0.4f);
+
 	coinrefreshbtn->setVisible(count <= 0);
 
 	freefreshherobox = csbnode->getChildByName("autofreshherobox");
@@ -284,7 +299,12 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case BTN_USECARD:
 		{
-			if (MyRes::getMyResCount("u001") > 0)
+			if (MyRes::getMyResCount("u002") > 0)
+			{
+				if (checkIsTopPotentail(5) < 0)
+					refresh3Hero(5);
+			}
+			else if (MyRes::getMyResCount("u001") > 0)
 			{
 				if (checkIsTopPotentail(3) < 0)
 					refresh3Hero(3);
@@ -306,12 +326,6 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 				//InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
 				//innroomLayer->refreshMyHerosUi();
-			}
-			else
-			{
-				std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources["u001"].name.c_str());
-				str.append(ResourceLang::map_lang["herocardhint"]);
-				MovingLabel::show(str);
 			}
 		}
 			break;
@@ -413,11 +427,39 @@ void RandHeroLayer::refresh3Hero(int i)
 
 		cardrefreshbtn->setVisible(count > 0);
 		coinrefreshbtn->setVisible(count <= 0);
+
 	}
 	else if (i == 4)//免费刷新
 	{
 		silverrefreshbtn->setEnabled(false);
 		GlobalInstance::getInstance()->saveRefreshHeroTime(GlobalInstance::servertime);
+	}
+	else if (i == 5)
+	{
+		MyRes::Use("u002");
+		int count1 = MyRes::getMyResCount("u001");
+		int count2 = MyRes::getMyResCount("u002");
+		int count = count1 + count2;
+
+		cardrefreshbtn->setVisible(count > 0);
+
+		std::string lblstr;
+		cocos2d::ui::ImageView* cardicon = (cocos2d::ui::ImageView*)cardrefreshbtn->getChildByName("cardicon");
+		if (count2 > 0)
+		{
+			cardicon->loadTexture("ui/u002.png", cocos2d::ui::Widget::TextureResType::PLIST);
+			lblstr = StringUtils::format("%d", count2);
+			herocardcountlbl->setString(lblstr);
+		}
+		else if (count1 > 0)
+		{
+			cardicon->loadTexture("ui/u001.png", cocos2d::ui::Widget::TextureResType::PLIST);
+			lblstr = StringUtils::format("%d", count1);
+			herocardcountlbl->setString(lblstr);
+		}
+		cardicon->setScale(0.4f);
+
+		coinrefreshbtn->setVisible(count <= 0);
 	}
 
 	bool israndanim = false;
@@ -530,6 +572,11 @@ void RandHeroLayer::create3RandHero(int tool)
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(3);
 		GlobalInstance::vec_rand3Heros[r]->setPotential(3);
+	}
+	else if (tool == 5)
+	{
+		int r = GlobalInstance::getInstance()->createRandomNum(3);
+		GlobalInstance::vec_rand3Heros[r]->setPotential(4);
 	}
 	GlobalInstance::getInstance()->saveRand3Heros();
 }

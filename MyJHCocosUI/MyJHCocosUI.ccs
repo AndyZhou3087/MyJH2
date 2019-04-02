@@ -1287,8 +1287,8 @@
           <Image Name="rank_3.png" />
           <Image Name="rebateawditem.png" />
           <Image Name="rebateawdselect.png" />
-          <Image Name="rebategetbtn_n.png" />
           <Image Name="rebategetbtn_d.png" />
+          <Image Name="rebategetbtn_n.png" />
           <Image Name="rebatpricebar.png" />
           <Image Name="rebatpricebarbg.png" />
           <Image Name="renationbtn.png" />
@@ -1341,6 +1341,7 @@
           <Image Name="trainning_2.png" />
           <Image Name="trainning_3.png" />
           <Image Name="u001.png" />
+          <Image Name="u002.png" />
           <Image Name="v001.png" />
           <Image Name="vip0.png" />
           <Image Name="vip1.png" />

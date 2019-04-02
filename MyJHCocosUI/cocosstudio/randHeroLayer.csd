@@ -334,16 +334,15 @@
                 <PreSize X="0.7549" Y="0.4643" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/usecard_Text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="cardicon" ActionTag="-1719093934" Tag="131" IconVisible="False" LeftMargin="22.0512" RightMargin="72.9488" TopMargin="50.6511" BottomMargin="-75.6511" ctype="SpriteObjectData">
+              <AbstractNodeData Name="cardicon" ActionTag="1751090776" Tag="542" IconVisible="False" LeftMargin="22.0500" RightMargin="72.9500" TopMargin="50.6500" BottomMargin="-75.6500" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
                 <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="76.5512" Y="-21.1511" />
+                <Position X="76.5500" Y="-21.1500" />
                 <Scale ScaleX="0.4000" ScaleY="0.4000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3753" Y="-0.2518" />
+                <PrePosition X="0.3752" Y="-0.2518" />
                 <PreSize X="0.5343" Y="1.2976" />
                 <FileData Type="MarkedSubImage" Path="ui/u001.png" Plist="ui.plist" />
-                <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
               <AbstractNodeData Name="cardnumbl" ActionTag="445637660" Tag="132" IconVisible="False" LeftMargin="112.7449" RightMargin="50.2551" TopMargin="95.2585" BottomMargin="-41.2585" FontSize="26" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="41.0000" Y="30.0000" />
@@ -371,7 +370,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lvupbtn" ActionTag="381094927" Tag="217" IconVisible="False" LeftMargin="257.9996" RightMargin="258.0004" TopMargin="1062.9996" BottomMargin="133.0003" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="lvupbtn" ActionTag="381094927" Tag="217" IconVisible="False" LeftMargin="257.9996" RightMargin="258.0004" TopMargin="1062.9998" BottomMargin="133.0003" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-1223442501" Tag="218" IconVisible="False" LeftMargin="27.2415" RightMargin="22.7585" TopMargin="19.4025" BottomMargin="24.5975" LeftEage="51" RightEage="51" TopEage="13" BottomEage="13" Scale9OriginX="51" Scale9OriginY="13" Scale9Width="52" Scale9Height="14" ctype="ImageViewObjectData">
