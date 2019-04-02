@@ -45,6 +45,7 @@ bool RebateAwdNode::init(std::string awdstr)
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(RebateAwdNode::onClick, this));
 	actionbtn->setTag(1000);
 	actionbtn->setVisible(false);
+	actionbtn->setSwallowTouches(false);
 
 	getbtntext = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
 	getbtntext->ignoreContentAdaptWithSize(true);
@@ -62,7 +63,7 @@ bool RebateAwdNode::init(std::string awdstr)
 		std::string name = StringUtils::format("resbox%d", i);
 		cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName(name);
 		resbox->addTouchEventListener(CC_CALLBACK_2(RebateAwdNode::onClick, this));
-
+		resbox->setSwallowTouches(false);
 		if (i < vec_awd.size())
 		{
 			cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
