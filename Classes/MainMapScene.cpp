@@ -123,6 +123,7 @@ bool MainMapScene::init()
 		{
 			mapname->setVisible(false);
 		}
+		mapname->setVisible(true);
 #endif
 	}
 	std::map<std::string, std::vector<Node*>>::iterator it;
