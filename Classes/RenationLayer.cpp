@@ -97,13 +97,12 @@ bool RenationLayer::init()
 		}
 	}
 
-	int tmp[] = {0,1,2,5,4,3};
 	for (int i = 0; i < 6; i++)
 	{
 		std::string str = StringUtils::format("attrtext_%d", i); 
 		cocos2d::ui::Text* totalattr = (cocos2d::ui::Text*)csbnode->getChildByName(str);
-		std::string strkey = StringUtils::format("addattrtext_%d", tmp[i]);
-		str = StringUtils::format(ResourceLang::map_lang[strkey].c_str(), totalattrval[i]);
+		std::string strkey = StringUtils::format("renationaddattrvalue_%d", i);
+		str = StringUtils::format(ResourceLang::map_lang[strkey].c_str(), totalattrval[i]*100);
 		totalattr->setString(str);
 
 		str = StringUtils::format("renationitem_%d", i);
@@ -221,7 +220,7 @@ void RenationLayer::updateNpcAddAttr(std::string npcid)
 {
 	npcname->setString(GlobalInstance::map_AllResources[npcid].name);
 
-	std::string valueformat[] = {"+%.0f", "+%.0f", "+%.0f", "+%.3f%%", "+%.3f%%", "+%.3f"};
+	std::string valueformat[] = {"+%.2f%%", "+%.2f%%", "+%.2f%%", "+%.3f%%", "+%.3f%%", "+%.3f"};
 	float attrval[] = { 0,0,0,0,0,0 };
 	if (GlobalInstance::map_myfriendly.find(npcid) != GlobalInstance::map_myfriendly.end())
 	{
@@ -243,7 +242,7 @@ void RenationLayer::updateNpcAddAttr(std::string npcid)
 				}
 			}
 
-			std::string str = StringUtils::format(valueformat[m].c_str(), attrval[m]);
+			std::string str = StringUtils::format(valueformat[m].c_str(), attrval[m]*100);
 			npcattrlbl[m]->setString(str);
 		}
 	}

@@ -198,20 +198,19 @@ void CommonFuncs::playCommonLvUpAnim(Node* target, std::string textstr)
 cocos2d::Node* CommonFuncs::playResBoxEffect(cocos2d::Node* target, int type, int qu, int lv)
 {
 	bool ishow = false;
-	if (type >= T_ARMOR && type <= T_FASHION)
+	if (type >= T_ARMOR && type <= T_NG)
 	{
-		if (qu == 1 && lv >= 15)
+		int slv = lv;
+		if (type >= T_WG && type <= T_NG)
+			slv = lv + 1;
+
+		if (qu == 1 && slv >= 15)
 			ishow = true;
-		else if (qu == 2 && lv >= 13)
+		else if (qu == 2 && slv >= 13)
 			ishow = true;
-		else if (qu == 3 && lv >= 10)
+		else if (qu == 3 && slv >= 10)
 			ishow = true;
 		else if (qu == 4)
-			ishow = true;
-	}
-	else if (type >= T_WG && type <= T_NG)
-	{
-		if (lv >= 19)
 			ishow = true;
 	}
 	else

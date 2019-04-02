@@ -81,14 +81,14 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="value" ActionTag="1589613459" Tag="139" IconVisible="False" LeftMargin="156.2036" RightMargin="88.7964" TopMargin="3.5012" BottomMargin="-0.5012" FontSize="18" LabelText="+0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="21.0000" Y="21.0000" />
+              <AbstractNodeData Name="value" ActionTag="1589613459" Tag="139" IconVisible="False" LeftMargin="156.2036" RightMargin="52.7964" TopMargin="3.5012" BottomMargin="-0.5012" FontSize="18" LabelText="+0.00%" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="57.0000" Y="21.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="156.2036" Y="9.9988" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="47" G="37" B="25" />
                 <PrePosition X="0.5872" Y="0.4166" />
-                <PreSize X="0.0789" Y="0.8750" />
+                <PreSize X="0.2143" Y="0.8750" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
@@ -118,14 +118,14 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="value" ActionTag="-541433056" Tag="138" IconVisible="False" LeftMargin="156.2036" RightMargin="88.7964" TopMargin="3.5000" BottomMargin="-0.5000" FontSize="18" LabelText="+0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="21.0000" Y="21.0000" />
+              <AbstractNodeData Name="value" ActionTag="-541433056" Tag="138" IconVisible="False" LeftMargin="156.2036" RightMargin="52.7964" TopMargin="3.5000" BottomMargin="-0.5000" FontSize="18" LabelText="+0.00%" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="57.0000" Y="21.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="156.2036" Y="10.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="47" G="37" B="25" />
                 <PrePosition X="0.5872" Y="0.4167" />
-                <PreSize X="0.0789" Y="0.8750" />
+                <PreSize X="0.2143" Y="0.8750" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
@@ -155,14 +155,14 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="value" ActionTag="-1247518359" Tag="137" IconVisible="False" LeftMargin="156.2036" RightMargin="88.7964" TopMargin="3.4894" BottomMargin="-0.4894" FontSize="18" LabelText="+0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="21.0000" Y="21.0000" />
+              <AbstractNodeData Name="value" ActionTag="-1247518359" Tag="137" IconVisible="False" LeftMargin="156.2036" RightMargin="52.7964" TopMargin="3.4894" BottomMargin="-0.4894" FontSize="18" LabelText="+0.00%" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="57.0000" Y="21.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="156.2036" Y="10.0106" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="47" G="37" B="25" />
                 <PrePosition X="0.5872" Y="0.4171" />
-                <PreSize X="0.0789" Y="0.8750" />
+                <PreSize X="0.2143" Y="0.8750" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
@@ -192,14 +192,14 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="value" ActionTag="-614861884" Tag="136" IconVisible="False" LeftMargin="156.2036" RightMargin="88.7964" TopMargin="3.5000" BottomMargin="-0.5000" FontSize="18" LabelText="+0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="21.0000" Y="21.0000" />
+              <AbstractNodeData Name="value" ActionTag="-614861884" Tag="136" IconVisible="False" LeftMargin="156.2036" RightMargin="43.7964" TopMargin="3.5000" BottomMargin="-0.5000" FontSize="18" LabelText="+0.000%" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="66.0000" Y="21.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="156.2036" Y="10.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="47" G="37" B="25" />
                 <PrePosition X="0.5872" Y="0.4167" />
-                <PreSize X="0.0789" Y="0.8750" />
+                <PreSize X="0.2481" Y="0.8750" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
@@ -229,14 +229,14 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="value" ActionTag="-58015673" Tag="135" IconVisible="False" LeftMargin="156.2036" RightMargin="88.7964" TopMargin="3.5000" BottomMargin="-0.5000" FontSize="18" LabelText="+0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="21.0000" Y="21.0000" />
+              <AbstractNodeData Name="value" ActionTag="-58015673" Tag="135" IconVisible="False" LeftMargin="156.2036" RightMargin="43.7964" TopMargin="3.5000" BottomMargin="-0.5000" FontSize="18" LabelText="+0.000%" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="66.0000" Y="21.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="156.2036" Y="10.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="47" G="37" B="25" />
                 <PrePosition X="0.5872" Y="0.4167" />
-                <PreSize X="0.0789" Y="0.8750" />
+                <PreSize X="0.2481" Y="0.8750" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
@@ -266,14 +266,14 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="value" ActionTag="2134767200" Tag="134" IconVisible="False" LeftMargin="156.2408" RightMargin="88.7592" TopMargin="3.5000" BottomMargin="-0.5000" FontSize="18" LabelText="+0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="21.0000" Y="21.0000" />
+              <AbstractNodeData Name="value" ActionTag="2134767200" Tag="134" IconVisible="False" LeftMargin="156.2408" RightMargin="43.7592" TopMargin="3.5000" BottomMargin="-0.5000" FontSize="18" LabelText="+0.000%" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="66.0000" Y="21.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="156.2408" Y="10.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="47" G="37" B="25" />
                 <PrePosition X="0.5874" Y="0.4167" />
-                <PreSize X="0.0789" Y="0.8750" />
+                <PreSize X="0.2481" Y="0.8750" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />

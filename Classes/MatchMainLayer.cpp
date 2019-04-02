@@ -19,6 +19,7 @@
 #include "MatchRankLayer.h"
 #include "Equip.h"
 #include "MacthFightSucAwdLayer.h"
+#include "MyRes.h"
 
 USING_NS_CC;
 
@@ -27,27 +28,18 @@ MatchMainLayer::MatchMainLayer()
 	clickHero = -1;
 	httptag = 0;
 
-	for (int i = 0; i < 6; i++)
-	{
-		if (GlobalInstance::myOnChallengeHeros[i] != NULL)
-		{
-			for (int k = T_ARMOR; k <= T_NG; k++)
-			{
-				Equipable* eres = GlobalInstance::myOnChallengeHeros[i]->getEquipable(k);
-				if (eres != NULL && eres->getWhos().length() <= 0)
-				{
-					delete eres;
-					eres = NULL;
-				}
-			}
-			delete GlobalInstance::myOnChallengeHeros[i];
-			GlobalInstance::myOnChallengeHeros[i] = NULL;
-		}
-	}
 }
 
 MatchMainLayer::~MatchMainLayer()
 {
+	for (int i = 0; i < 6; i++)
+	{
+		if (GlobalInstance::myOnChallengeHeros[i] != NULL)
+		{
+			delete GlobalInstance::myOnChallengeHeros[i];
+			GlobalInstance::myOnChallengeHeros[i] = NULL;
+		}
+	}
 }
 
 
@@ -530,10 +522,12 @@ void MatchMainLayer::updateUI()
 					dvint.setValue(myownhero->getExp().getValue());
 					hero->setExp(dvint);
 
+					MyRes::vec_MyResources;
 					hero->setState(HS_ONCHALLENGE);
 					hero->setOnchallengepos(index + 1);
 					GlobalInstance::myOnChallengeHeros[index] = hero;
 					GlobalInstance::vec_myHeros[i]->setOnchallengepos(index + 1);
+					MyRes::vec_MyResources;
 					m_myCardHerosNode[index]->setData(GlobalInstance::vec_myHeros[i]);
 
 				}

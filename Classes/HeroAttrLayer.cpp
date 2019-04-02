@@ -47,7 +47,9 @@ HeroAttrLayer::HeroAttrLayer()
 	isCanClickFullHero = true;
 	redtip = NULL;
 	pageMoveClickIndex = 0;
-	effectnode = NULL;
+
+	for (int i=0;i<6;i++)
+		effectnode[i] = NULL;
 }
 
 HeroAttrLayer::~HeroAttrLayer()
@@ -1104,10 +1106,14 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		resstr = GlobalInstance::getInstance()->getResUIFrameName(res->getId(), qu);
 		lvtext->setString(lvstr);
-		effectnode = CommonFuncs::playResBoxEffect(qubox->getParent(), type, qu, ((Equipable*)res)->getLv().getValue());
-		if (effectnode != NULL && type >= T_ARMOR && type <= T_FASHION)
+		if (effectnode[barindex] == NULL)
+			effectnode[barindex] = CommonFuncs::playResBoxEffect(qubox->getParent(), type, qu, ((Equipable*)res)->getLv().getValue());
+		if (effectnode[barindex] != NULL)
 		{
-			effectnode->setScale(0.84f);
+			if(type >= T_ARMOR && type <= T_FASHION)
+				effectnode[barindex]->setScale(0.84f);
+			else
+				effectnode[barindex]->setScale(1.0f);
 		}
 	}
 	else
@@ -1123,10 +1129,10 @@ void HeroAttrLayer::updateEquipUi(ResBase* res, int barindex)
 		resstr = ResourcePath::makeTextImgPath(StringUtils::format("equiptext_%d", barindex), langtype);
 		lvtext->setVisible(false);
 
-		Node* effect = qubox->getParent()->getChildByName("resboxeffect");
-		if (effect != NULL)
+		if (effectnode[barindex] != NULL)
 		{
-			effect->removeFromParentAndCleanup(true);
+			effectnode[barindex]->removeFromParentAndCleanup(true);
+			effectnode[barindex] = NULL;
 		}
 	}
 	qubox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
@@ -1278,11 +1284,14 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 				}
 				lvtext->setString(lvstr);
 
-				if (effectnode == NULL)
-					effectnode = CommonFuncs::playResBoxEffect(node, eres->getType(), eres->getQU().getValue(), eres->getLv().getValue());
-				if (effectnode != NULL && eres->getType() >= T_ARMOR && eres->getType() <= T_FASHION)
+				if (effectnode[i] == NULL)
+					effectnode[i] = CommonFuncs::playResBoxEffect(node, eres->getType(), eres->getQU().getValue(), eres->getLv().getValue());
+				if (effectnode[i] != NULL)
 				{
-					effectnode->setScale(0.84f);
+					if (eres->getType() >= T_ARMOR && eres->getType() <= T_FASHION)
+						effectnode[i]->setScale(0.84f);
+					else
+						effectnode[i]->setScale(1.0f);
 				}
 			}
 			else

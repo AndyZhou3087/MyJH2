@@ -291,6 +291,7 @@ void ShopLayer::setMessage(PYARET ret)
 
 		HttpDataSwap::init(NULL)->postAllData();
 		payindex = -1;
+		GlobalInstance::totalPayAmout += GlobalInstance::vec_shopdata[payindex].price;
 #ifdef UMENG
 		umeng::MobClickCpp::event(GlobalInstance::vec_shopdata[payindex].icon.c_str());
 #endif

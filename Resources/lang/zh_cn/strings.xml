@@ -427,6 +427,12 @@
 	<s name="getloginrwdhint">点击物品领取</s>	
 	<s name="renationtname">名称     位置       关系</s>
 	<s name="totalattrtitle">总增加属性</s>
+	<s name="renationaddattrvalue_0">生命值 +%.2f%%</s>
+	<s name="renationaddattrvalue_1">攻击力 +%.2f%%</s>
+	<s name="renationaddattrvalue_2">防御力 +%.2f%%</s>
+	<s name="renationaddattrvalue_3">闪避几率 +%.3f%%</s>
+	<s name="renationaddattrvalue_4">暴击几率 +%.3f%%</s>
+	<s name="renationaddattrvalue_5">攻击速度 +%.3f</s>
 	<s name="renationhintdesc">左右滑动翻页查看更多</s>
 	<s name="openholestitle">装备开孔</s>
 	<s name="openholesdesc">请选择开孔道具:</s>

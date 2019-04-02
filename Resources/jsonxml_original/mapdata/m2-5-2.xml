@@ -13,7 +13,7 @@
     <ma id="s002" c="2" qu="0">10.00</ma>
   </Monstors>
   <Cells rs="25" cs="25">
-    <Cell c="0" r="0" p="-1" w="1" m="89.png" />
+    <Cell c="0" r="0" p="7" w="1" prs1="1" pre1="302" prs2="22" pre2="323" m="89.png" />
     <Cell c="0" r="1" p="-1" w="1" m="88.png" />
     <Cell c="0" r="2" p="-1" w="1" m="88.png" />
     <Cell c="0" r="3" p="-1" w="1" m="88.png" />

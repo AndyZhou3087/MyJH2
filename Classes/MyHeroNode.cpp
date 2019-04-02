@@ -580,7 +580,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					rdata.qu = 0;
 					vec_res.push_back(rdata);
 					BuyResLayer* layer = BuyResLayer::create(vec_res);
-					this->addChild(layer);
+					g_mainScene->addChild(layer);
 					AnimationEffect::openAniEffect(layer);
 				}
 			}

@@ -43,9 +43,7 @@
     <Cell c="0" r="28" p="-1" w="0" m="77.png" />
     <Cell c="0" r="29" p="-1" w="0" m="67.png" />
     <Cell c="1" r="0" p="-1" w="0" m="72.png" />
-    <Cell c="1" r="1" p="-1" w="1" m="44.png" d="26.png">
-      <event>0;50;0;0;0;0;0</event>
-    </Cell>
+    <Cell c="1" r="1" p="-1" w="1" m="44.png" />
     <Cell c="1" r="2" p="-1" w="1" m="44.png" />
     <Cell c="1" r="3" p="-1" w="1" m="44.png" />
     <Cell c="1" r="4" p="-1" w="1" m="44.png" />
@@ -56,7 +54,7 @@
     <Cell c="1" r="9" p="-1" w="1" m="44.png" />
     <Cell c="1" r="10" p="-1" w="1" m="44.png" />
     <Cell c="1" r="11" p="-1" w="1" m="44.png" />
-    <Cell c="1" r="12" p="-1" w="1" m="44.png" />
+    <Cell c="1" r="12" p="7" w="1" prs1="271" pre1="668" prs2="321" pre2="688" m="44.png" />
     <Cell c="1" r="13" p="-1" w="1" m="44.png" />
     <Cell c="1" r="14" p="-1" w="1" m="44.png" />
     <Cell c="1" r="15" p="-1" w="1" m="44.png" />

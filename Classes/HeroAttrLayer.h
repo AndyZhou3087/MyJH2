@@ -185,7 +185,7 @@ private:
 
 	Point beginTouchPoint;
 	int pageMoveClickIndex;
-	Node* effectnode;
+	Node* effectnode[6];
 
 	cocos2d::ui::Widget* redpointArr[6];
 };

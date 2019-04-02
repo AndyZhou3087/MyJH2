@@ -1705,8 +1705,6 @@ void MapBlockScene::doMyStatus()
 		if (ret <= POS_BUSINESS && ret != POS_BET)
 #endif
 		{
-			GlobalInstance::eventfrommapid = m_mapid;
-
 			MapEventLayer* mlayer = MapEventLayer::create(ret);
 			this->addChild(mlayer);
 			AnimationEffect::openAniEffect((Layer*)mlayer);
@@ -1752,8 +1750,11 @@ void MapBlockScene::doMyStatus()
 		{
 			GlobalInstance::vec_mazeroute.clear();
 			GlobalInstance::mazerouteindex = 0;
+			GlobalInstance::ishasmazeentry = false;
 
 			GlobalInstance::eventstartmappos = mycr;
+
+			GlobalInstance::eventfrommapid = m_mapid;
 
 			int c = atoi(GlobalInstance::eventfrommapid.substr(1, 1).c_str());
 			if (c > 5)
