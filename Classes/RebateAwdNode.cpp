@@ -157,8 +157,30 @@ void RebateAwdNode::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			selectnode->setVisible(false);
 			getbtntext->loadTexture(ResourcePath::makeTextImgPath("rebatgetedbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			GlobalInstance::getInstance()->setIsGetRebateAwds(this->getTag(), true);
-			for (unsigned int i = 0;i < vec_resdata.size(); i++)
-				MyRes::Add(vec_resdata[i].rid, vec_resdata[i].count, MYSTORAGE, vec_resdata[i].qu, GlobalInstance::getInstance()->generateStoneCount(vec_resdata[i].qu));
+			for (unsigned int i = 0; i < vec_resdata.size(); i++)
+			{
+				std::string awdresid = vec_resdata[i].rid;
+				int awdcount = vec_resdata[i].count;
+				int awdqu = vec_resdata[i].qu;
+
+				int stc = GlobalInstance::getInstance()->generateStoneCount(awdqu);
+
+				if (awdresid.compare("r006") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(awdcount);
+					GlobalInstance::getInstance()->addMySoliverCount(dvint);
+				}
+				else if (awdresid.compare("r012") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(awdcount);
+					GlobalInstance::getInstance()->addMyCoinCount(dvint);
+				}
+				else
+					MyRes::Add(awdresid, awdcount, MYSTORAGE, awdqu, stc);
+
+			}
 		}
 		else
 		{
