@@ -62,6 +62,7 @@ bool EquipLibraryLayer::init(int category)
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
 	titleimg->ignoreContentAdaptWithSize(true);
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("libraryequiptitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	titleimg->setScale(0.8f);
 
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
 	closebtn->setTag(1000);
@@ -168,7 +169,7 @@ void EquipLibraryLayer::updateCata(int category)
 			}
 		}
 	}
-	int scrollSizeH[] = {610 + 70,770 + 70};
+	int scrollSizeH[] = { 1020, 1020 };//{610 + 70,770 + 70};
 	scrollview->setContentSize(Size(scrollview->getContentSize().width, scrollSizeH[category]));
 	if (category == 0)
 	{

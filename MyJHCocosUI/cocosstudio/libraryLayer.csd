@@ -75,17 +75,17 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="equipitem" ActionTag="-178317115" Tag="12" IconVisible="False" LeftMargin="27.0002" RightMargin="6.9998" TopMargin="178.9886" BottomMargin="823.0114" TouchEnable="True" LeftEage="226" RightEage="226" TopEage="91" BottomEage="91" Scale9OriginX="226" Scale9OriginY="91" Scale9Width="234" Scale9Height="96" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="equipitem" ActionTag="-178317115" Tag="12" IconVisible="False" LeftMargin="27.0002" RightMargin="6.9998" TopMargin="178.9885" BottomMargin="823.0114" TouchEnable="True" LeftEage="226" RightEage="226" TopEage="91" BottomEage="91" Scale9OriginX="226" Scale9OriginY="91" Scale9Width="234" Scale9Height="96" ctype="ImageViewObjectData">
             <Size X="686.0000" Y="278.0000" />
             <Children>
-              <AbstractNodeData Name="text" ActionTag="1529565062" Tag="13" IconVisible="False" LeftMargin="119.0000" RightMargin="325.0000" TopMargin="102.0000" BottomMargin="104.0000" LeftEage="80" RightEage="80" TopEage="24" BottomEage="24" Scale9OriginX="80" Scale9OriginY="24" Scale9Width="82" Scale9Height="24" ctype="ImageViewObjectData">
-                <Size X="242.0000" Y="72.0000" />
+              <AbstractNodeData Name="text" ActionTag="1529565062" Tag="13" IconVisible="False" LeftMargin="111.9987" RightMargin="290.0013" TopMargin="101.5005" BottomMargin="103.4995" LeftEage="80" RightEage="80" TopEage="24" BottomEage="24" Scale9OriginX="80" Scale9OriginY="24" Scale9Width="124" Scale9Height="25" ctype="ImageViewObjectData">
+                <Size X="284.0000" Y="73.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="240.0000" Y="140.0000" />
+                <Position X="253.9987" Y="139.9995" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3499" Y="0.5036" />
-                <PreSize X="0.3528" Y="0.2590" />
+                <PrePosition X="0.3703" Y="0.5036" />
+                <PreSize X="0.4140" Y="0.2626" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/libraryequiptext.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
             </Children>

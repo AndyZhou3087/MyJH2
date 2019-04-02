@@ -25,7 +25,7 @@
 #include "MatchMainLayer.h"
 #include "LibraryLayer.h"
 #include "FlowWorld.h"
-#include "LibraryLayer2.h"
+//#include "LibraryLayer2.h"
 #include "HomeHillLayer.h"
 #include "GiftContentLayer.h"
 #include "RandHeroLayer.h"
@@ -763,7 +763,7 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				}
 				else if (buildname.compare("Alibrary") == 0)
 				{
-					layer = LibraryLayer2::create();
+					layer = LibraryLayer::create();
 				}
 				if (layer != NULL)
 				{

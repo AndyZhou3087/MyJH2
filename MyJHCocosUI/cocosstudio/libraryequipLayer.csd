@@ -38,24 +38,24 @@
             <FileData Type="MarkedSubImage" Path="ui/buildingtitlebox.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="titleimg" ActionTag="-226901528" Tag="26" IconVisible="False" LeftMargin="293.0001" RightMargin="292.9999" TopMargin="27.0000" BottomMargin="1219.0000" LeftEage="25" RightEage="25" TopEage="12" BottomEage="12" Scale9OriginX="25" Scale9OriginY="12" Scale9Width="84" Scale9Height="10" ctype="ImageViewObjectData">
-            <Size X="134.0000" Y="34.0000" />
+          <AbstractNodeData Name="titleimg" ActionTag="-226901528" Tag="26" IconVisible="False" LeftMargin="268.0001" RightMargin="267.9999" TopMargin="26.0000" BottomMargin="1218.0000" LeftEage="25" RightEage="25" TopEage="12" BottomEage="12" Scale9OriginX="25" Scale9OriginY="12" Scale9Width="134" Scale9Height="12" ctype="ImageViewObjectData">
+            <Size X="184.0000" Y="36.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0001" Y="1236.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <Scale ScaleX="0.8500" ScaleY="0.8500" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.9656" />
-            <PreSize X="0.1861" Y="0.0266" />
+            <PreSize X="0.2556" Y="0.0281" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/libraryequiptitle.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="contentscroll" ActionTag="-1659307660" Tag="24" IconVisible="False" LeftMargin="35.0004" RightMargin="34.9996" TopMargin="392.0012" BottomMargin="67.9988" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
-            <Size X="650.0000" Y="820.0000" />
+          <AbstractNodeData Name="contentscroll" ActionTag="-1659307660" Tag="24" IconVisible="False" LeftMargin="35.0004" RightMargin="34.9996" TopMargin="192.0012" BottomMargin="67.9988" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+            <Size X="650.0000" Y="1020.0000" />
             <AnchorPoint />
             <Position X="35.0004" Y="67.9988" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0486" Y="0.0531" />
-            <PreSize X="0.9028" Y="0.6406" />
+            <PreSize X="0.9028" Y="0.7969" />
             <SingleColor A="255" R="255" G="150" B="100" />
             <FirstColor A="255" R="255" G="150" B="100" />
             <EndColor A="255" R="255" G="255" B="255" />
@@ -77,13 +77,13 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="catanode" ActionTag="-959877836" VisibleForFrame="False" Tag="98" IconVisible="True" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="146.0000" BottomMargin="1134.0000" ctype="SingleNodeObjectData">
+          <AbstractNodeData Name="catanode" ActionTag="-959877836" Tag="98" IconVisible="True" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="146.0000" BottomMargin="1134.0000" ctype="SingleNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
             <Children>
               <AbstractNodeData Name="btn0" ActionTag="-219496947" Tag="99" IconVisible="False" LeftMargin="-280.0000" RightMargin="60.0000" TopMargin="-34.0000" BottomMargin="-34.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="122" Scale9Height="46" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="220.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="text" ActionTag="1272200442" Tag="100" IconVisible="False" LeftMargin="66.0000" RightMargin="66.0000" TopMargin="10.0004" BottomMargin="13.9996" LeftEage="20" RightEage="20" TopEage="10" BottomEage="10" Scale9OriginX="20" Scale9OriginY="10" Scale9Width="48" Scale9Height="24" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="text" ActionTag="1272200442" Tag="100" IconVisible="False" LeftMargin="66.0000" RightMargin="66.0000" TopMargin="10.0004" BottomMargin="13.9996" LeftEage="20" RightEage="20" TopEage="10" BottomEage="10" Scale9OriginX="20" Scale9OriginY="10" Scale9Width="47" Scale9Height="20" ctype="ImageViewObjectData">
                     <Size X="88.0000" Y="44.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="110.0000" Y="35.9996" />
@@ -142,7 +142,7 @@
             <PrePosition X="0.5000" Y="0.8859" />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="equipbox" ActionTag="-750188071" Tag="110" IconVisible="False" LeftMargin="37.5005" RightMargin="37.4995" TopMargin="156.0000" BottomMargin="904.0000" Scale9Enable="True" LeftEage="212" RightEage="212" TopEage="105" BottomEage="105" Scale9OriginX="212" Scale9OriginY="105" Scale9Width="221" Scale9Height="109" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="equipbox" ActionTag="-750188071" VisibleForFrame="False" Tag="110" IconVisible="False" LeftMargin="37.5005" RightMargin="37.4995" TopMargin="156.0000" BottomMargin="904.0000" Scale9Enable="True" LeftEage="212" RightEage="212" TopEage="105" BottomEage="105" Scale9OriginX="212" Scale9OriginY="105" Scale9Width="221" Scale9Height="109" ctype="ImageViewObjectData">
             <Size X="645.0000" Y="220.0000" />
             <AnchorPoint ScaleY="1.0000" />
             <Position X="37.5005" Y="1124.0000" />
@@ -152,7 +152,7 @@
             <PreSize X="0.8958" Y="0.1719" />
             <FileData Type="Normal" Path="images/libraryequipbox.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="equiptextbox" ActionTag="-37170245" Tag="111" IconVisible="False" LeftMargin="227.4999" RightMargin="227.5001" TopMargin="120.5000" BottomMargin="1094.5000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="equiptextbox" ActionTag="-37170245" VisibleForFrame="False" Tag="111" IconVisible="False" LeftMargin="227.4999" RightMargin="227.5001" TopMargin="120.5000" BottomMargin="1094.5000" ctype="SpriteObjectData">
             <Size X="265.0000" Y="65.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="359.9999" Y="1127.0000" />
@@ -163,7 +163,7 @@
             <FileData Type="Normal" Path="images/libraryequiptextbox.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="catatitletext" ActionTag="-352907415" Tag="112" IconVisible="False" LeftMargin="293.5000" RightMargin="293.5000" TopMargin="136.0000" BottomMargin="1110.0000" LeftEage="43" RightEage="43" TopEage="11" BottomEage="11" Scale9OriginX="43" Scale9OriginY="11" Scale9Width="47" Scale9Height="12" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="catatitletext" ActionTag="-352907415" VisibleForFrame="False" Tag="112" IconVisible="False" LeftMargin="293.5000" RightMargin="293.5000" TopMargin="136.0000" BottomMargin="1110.0000" LeftEage="43" RightEage="43" TopEage="11" BottomEage="11" Scale9OriginX="43" Scale9OriginY="11" Scale9Width="47" Scale9Height="12" ctype="ImageViewObjectData">
             <Size X="133.0000" Y="34.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="1127.0000" />
