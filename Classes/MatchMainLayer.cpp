@@ -19,7 +19,6 @@
 #include "MatchRankLayer.h"
 #include "Equip.h"
 #include "MacthFightSucAwdLayer.h"
-#include "MyRes.h"
 
 USING_NS_CC;
 
@@ -522,12 +521,11 @@ void MatchMainLayer::updateUI()
 					dvint.setValue(myownhero->getExp().getValue());
 					hero->setExp(dvint);
 
-					MyRes::vec_MyResources;
 					hero->setState(HS_ONCHALLENGE);
 					hero->setOnchallengepos(index + 1);
 					GlobalInstance::myOnChallengeHeros[index] = hero;
 					GlobalInstance::vec_myHeros[i]->setOnchallengepos(index + 1);
-					MyRes::vec_MyResources;
+
 					m_myCardHerosNode[index]->setData(GlobalInstance::vec_myHeros[i]);
 
 				}
