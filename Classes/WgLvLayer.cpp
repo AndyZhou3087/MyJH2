@@ -13,6 +13,7 @@
 #include "StoreHouseLayer.h"
 #include "LoadingBarProgressTimer.h"
 #include "MainScene.h"
+#include "Quest.h"
 
 USING_NS_CC;
 
@@ -262,6 +263,7 @@ void WgLvLayer::addGfExp(int gftag)
 	std::string str = StringUtils::format("m00%d", tag);
 	if (MyRes::getMyResCount(str) >= 1)
 	{
+		int lastlv = m_res->getLv().getValue();
 		MyRes::Use(str);
 		DynamicValueInt dal;
 		dal.setValue(m_res->getExp().getValue() + count);
@@ -279,6 +281,12 @@ void WgLvLayer::addGfExp(int gftag)
 		goodarr[tag - 1]->setString(str);
 		updataAtrrUI();
 		MyRes::saveData();
+
+		if (m_res->getLv().getValue() > lastlv)
+		{
+			Quest::setDailyTask(STRENG_WG, 1);
+			Quest::setAchieveTypeCount(STRENG_WG, 1);
+		}
 
 		EquipDescLayer* layer = (EquipDescLayer*)this->getParent();
 		if (layer != NULL)

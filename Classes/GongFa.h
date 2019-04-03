@@ -39,11 +39,5 @@ public:
 
 	//闪避
 	float getDodge();
-
-private:
-	int m_lastlevel;//上一等级
-
-private:
-	void checkLevelQuest(int lv);
 };
 #endif
