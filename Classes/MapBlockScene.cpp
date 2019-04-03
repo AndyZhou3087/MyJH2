@@ -2146,13 +2146,13 @@ void MapBlockScene::showFightResult(int result)
 	MapBlock* mapblock = map_mapBlocks[mycr];
 	if (result == 1)//胜利
 	{
-		if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(mapblock->getPosNpcID()))
+		if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(mapblock->getPosNpcID()) && (mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS || mapblock->getPosType() == POS_NPC))
 		{
 			Quest::finishTaskMain();
 			//showUnlockChapter();
 
 		}
-		else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(mapblock->getPosNpcID()))
+		else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(mapblock->getPosNpcID()) && (mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS || mapblock->getPosType() == POS_NPC))
 		{
 			Quest::finishTaskBranch();
 		}
