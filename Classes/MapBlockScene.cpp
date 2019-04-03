@@ -290,7 +290,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 		std::random_shuffle(vec_normalBlocks.begin(), vec_normalBlocks.end());
 
-		int tcount = vec_normalBlocks.size() / 5;
+		int tcount = vec_normalBlocks.size() / 4;
 
 		int mcount = 0;
 		std::vector<MapBlock*>::iterator mit;
@@ -306,7 +306,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 			for (unsigned int i = 0; i < vec_monsterBlocks.size(); i++)
 			{
 				int off = abs((*mit)->Row - vec_monsterBlocks[i]->Row) + abs((*mit)->Col - vec_monsterBlocks[i]->Col);
-				if (off <= 3)
+				if (off <= 4)
 				{
 					ret = false;
 					break;
