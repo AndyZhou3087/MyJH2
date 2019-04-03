@@ -3359,8 +3359,8 @@ void GlobalInstance::cleanUserDefaultXmlData()
 	while (element != NULL)
 	{
 		std::string key = element->Name();
-		//DataSave::getInstance()->deleteDataByKey(element->Name());
-		UserDefault::getInstance()->deleteValueForKey(element->Name());
+		if (key.compare("jhpayrebate") != 0)
+			UserDefault::getInstance()->deleteValueForKey(element->Name());
 		element = element->NextSiblingElement();
 	}
 

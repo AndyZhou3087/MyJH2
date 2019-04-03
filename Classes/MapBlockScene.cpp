@@ -1790,12 +1790,12 @@ void MapBlockScene::doMyStatus()
 			bool isTask = false;
 			int mycr = mycurRow*blockColCount + mycurCol;
 			MapBlock* mapblock = map_mapBlocks[mycr];
-			if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(mapblock->getPosNpcID()))
+			if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(mapblock->getPosNpcID()) && (mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS || mapblock->getPosType() == POS_NPC))
 			{
 				isTask = true;
 				this->addChild(TaskTalkLayer::create(mapblock->getPosNpcID(), vec_enemys));
 			}
-			else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(mapblock->getPosNpcID()))
+			else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(mapblock->getPosNpcID()) && (mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS || mapblock->getPosType() == POS_NPC))
 			{
 				isTask = true;
 				this->addChild(TaskTalkLayer::create(mapblock->getPosNpcID(), vec_enemys, 1));

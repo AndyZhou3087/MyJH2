@@ -242,7 +242,8 @@ void LoadingScene::punishmentAction(float dt)
 		std::string key = element->Name();
 		if (key.find("newergd") == std::string::npos)
 		{
-			UserDefault::getInstance()->deleteValueForKey(element->Name());
+			if (key.compare("jhpayrebate") != 0)
+				UserDefault::getInstance()->deleteValueForKey(element->Name());
 		}
 		element = element->NextSiblingElement();
 	}
