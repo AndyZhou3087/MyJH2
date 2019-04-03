@@ -98,7 +98,7 @@ bool RebatLayer::init()
 
 	for (int i = 0; i < sizeof(rebatprice) / sizeof(rebatprice[0]); i++)
 	{
-		if (GlobalInstance::totalPayAmout >= rebatprice[i]%100000)
+		if (GlobalInstance::totalPayAmout.getValue() >= rebatprice[i]%100000)
 			incount = i;
 	}
 
@@ -127,7 +127,7 @@ bool RebatLayer::init()
 			nodeitem->setSelect();
 		}
 		else if (i == incount)
-			progressTimer->setPercentage((GlobalInstance::totalPayAmout - rebatprice[incount] % 100000) * 100 / (rebatprice[incount + 1] - rebatprice[incount]));
+			progressTimer->setPercentage((GlobalInstance::totalPayAmout.getValue() - rebatprice[incount] % 100000) * 100 / (rebatprice[incount + 1] - rebatprice[incount]));
 
 		progressTimer->setPosition(barbg->getPosition());
 		scrollview->addChild(progressTimer);

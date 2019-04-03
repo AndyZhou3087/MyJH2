@@ -289,7 +289,7 @@ void ShopLayer::setMessage(PYARET ret)
 		if (type != VIP)
 			HttpDataSwap::init(NULL)->paySuccNotice(GlobalInstance::vec_shopdata[payindex].icon, GlobalInstance::vec_shopdata[payindex].price);
 
-		GlobalInstance::totalPayAmout += GlobalInstance::vec_shopdata[payindex].price;
+		GlobalInstance::totalPayAmout.setValue(GlobalInstance::totalPayAmout.getValue() + GlobalInstance::vec_shopdata[payindex].price);
 
 		HttpDataSwap::init(NULL)->postAllData();
 		payindex = -1;

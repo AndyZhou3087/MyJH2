@@ -133,7 +133,7 @@ std::map<std::string, TimeMartData> GlobalInstance::map_timeMartData;
 
 bool GlobalInstance::ishasmazeentry = false;
 
-int GlobalInstance::totalPayAmout = 0;
+DynamicValueInt GlobalInstance::totalPayAmout;
 
 std::vector<bool> GlobalInstance::vec_rebateisget;
 

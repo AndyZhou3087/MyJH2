@@ -922,7 +922,7 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 				}
 				else if(strid.compare("payamount") == 0)
 				{
-					GlobalInstance::totalPayAmout = atoi(getJsonValueStr(doc["payamount"]).c_str())/100;
+					GlobalInstance::totalPayAmout.setValue(atoi(getJsonValueStr(doc["payamount"]).c_str())/100);
 				}
 				else if (strid.compare(0, 3, "vip") == 0)
 				{

@@ -877,7 +877,7 @@ public:
 
 	static std::string timeMarketStr;
 	static bool ishasmazeentry;
-	static int totalPayAmout;
+	static DynamicValueInt totalPayAmout;
 
 	static bool isHasNewhero;
 	static int showz002hinttextcount;
