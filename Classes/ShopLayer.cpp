@@ -292,10 +292,11 @@ void ShopLayer::setMessage(PYARET ret)
 		GlobalInstance::totalPayAmout.setValue(GlobalInstance::totalPayAmout.getValue() + GlobalInstance::vec_shopdata[payindex].price);
 
 		HttpDataSwap::init(NULL)->postAllData();
-		payindex = -1;
+
 #ifdef UMENG
 		umeng::MobClickCpp::event(GlobalInstance::vec_shopdata[payindex].icon.c_str());
 #endif
+		payindex = -1;
 	}
 	//std::string str = StringUtils::format("buy_%d", (int)ret);
 	//MovingLabel::show(ResourceLang::map_lang[str]);
