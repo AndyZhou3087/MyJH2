@@ -1122,12 +1122,12 @@
     <Cell c="21" r="48" p="-1" w="1" m="107.png" />
     <Cell c="21" r="49" p="-1" w="1" m="107.png" />
     <Cell c="22" r="0" p="3" w="1" m="107.png">
-      <npcid>n056</npcid>
+      <npcid>n057</npcid>
       <npcrnd>100</npcrnd>
       <msatt1 id="n007" qu="2">65</msatt1>
       <msatt2 id="n007" qu="2">65</msatt2>
       <msatt3 id="n007" qu="2">65</msatt3>
-      <msatt5 id="n056" qu="3">65</msatt5>
+      <msatt5 id="n057" qu="3">65</msatt5>
       <msawd1 id="s002" qu="0" rnd="5.00">1</msawd1>
       <msawd2 id="r007" qu="0" rnd="5.00">10</msawd2>
       <msawd3 id="r009" qu="0" rnd="5.00">10</msawd3>

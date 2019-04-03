@@ -163,7 +163,7 @@ std::string GlobalInstance::UUID()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getDeviceIDInKeychain();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "ffffffff-95bf-1f4b-ffff-ffffef05ac4a";
+	return "********************";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
