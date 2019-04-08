@@ -402,6 +402,7 @@
       <FilePathData Path="text_zh_cn/rebatreward_text.png" />
       <FilePathData Path="text_zh_cn/rebattitle.png" />
       <FilePathData Path="text_zh_cn/rebattotalbuy_text.png" />
+      <FilePathData Path="text_zh_cn/newherotitle.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

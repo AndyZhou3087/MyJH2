@@ -24,6 +24,7 @@
 #include "Const.h"
 #include "WaitingProgress.h"
 #include "BuyResLayer.h"
+#include "PopNewHeroLayer.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -817,6 +818,13 @@ void HeroAttrLayer::recruitHero()
 
 		AnimationEffect::closeAniEffect(this);
 		GlobalInstance::isHasNewhero = true;
+
+		if (g_mainScene != NULL && m_heroData->getPotential() >= 3)
+		{
+			PopNewHeroLayer* player = PopNewHeroLayer::create(m_heroData);
+			g_mainScene->addChild(player);
+			AnimationEffect::openAniEffect(player);
+		}
 	}
 	else
 	{

@@ -128,7 +128,20 @@ void MacthFightSucAwdLayer::delayShowResAnim(float dt)
 	std::string countstr = StringUtils::format("%d", count);
 	countlbl->setString(countstr);
 
-	MyRes::Add(resid, count, MYSTORAGE, qu, GlobalInstance::getInstance()->generateStoneCount(qu));
+	if (resid.compare("r006") == 0)
+	{
+		DynamicValueInt dvint;
+		dvint.setValue(count);
+		GlobalInstance::getInstance()->addMySoliverCount(dvint);
+	}
+	else if (resid.compare("r012") == 0)
+	{
+		DynamicValueInt dvint;
+		dvint.setValue(count);
+		GlobalInstance::getInstance()->addMyCoinCount(dvint);
+	}
+	else
+		MyRes::Add(resid, count, MYSTORAGE, qu, GlobalInstance::getInstance()->generateStoneCount(qu));
 
 	for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
 	{

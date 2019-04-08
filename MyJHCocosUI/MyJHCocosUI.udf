@@ -25,14 +25,5 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="ui.csi" />
-          <FilePathData Path="text_zh_cn.csi" />
-        </OpenedDocuments>
-        <ActiveDocument Path="text_zh_cn.csi" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

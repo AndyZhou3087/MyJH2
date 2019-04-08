@@ -421,10 +421,6 @@ void NewGuideLayer::showNextGuide()
 	}
 	else if (m_step == 14 || m_step == 88 || m_step == 89 || m_step == 90)
 	{
-		if (m_step != 14)
-		{
-			this->removeFromParentAndCleanup(true);
-		}
 		if (g_mainScene != NULL)
 		{
 			RandHeroLayer* randlayer = (RandHeroLayer*)g_mainScene->getChildByName("RandHeroLayer");
@@ -433,15 +429,18 @@ void NewGuideLayer::showNextGuide()
 				if (m_step == 14)
 				{
 					randlayer->scheduleOnce(schedule_selector(RandHeroLayer::delayShowNewerGuide), 2.0f);
-					{
-						this->removeFromParentAndCleanup(true);
-					}
 				}
-				else
-					randlayer->delayShowNewerGuide(0);
+				else if (m_step != 88)
+				{
+					randlayer->scheduleOnce(schedule_selector(RandHeroLayer::delayShowNewerGuide), 0.2f);
+				}
 			}
 		}
-		g_NewGuideLayer = NULL;
+		if (g_NewGuideLayer != NULL)
+		{
+			this->removeFromParentAndCleanup(true);
+			g_NewGuideLayer = NULL;
+		}
 	}
 	else if (m_step == 30)
 	{

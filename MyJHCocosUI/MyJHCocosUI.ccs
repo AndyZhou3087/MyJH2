@@ -148,6 +148,7 @@
           <Image Name="n026.png" />
           <Image Name="n027.png" />
           <Image Name="n028.png" />
+          <Image Name="newherolight.png" />
           <Image Name="newpopbg.png" />
           <Image Name="payback.png" />
           <Image Name="paybg.jpg" />
@@ -706,6 +707,7 @@
           <Image Name="msggeted_text.png" />
           <Image Name="msggeting_text.png" />
           <Image Name="mypackagetitle.png" />
+          <Image Name="newherotitle.png" />
           <Image Name="nexttime_text.png" />
           <Image Name="npcgive_text.png" />
           <Image Name="npctext_0.png" />
@@ -1577,6 +1579,7 @@
         <Project Name="wellmorebtnnode.csd" Type="Node" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="popNewHeroLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>
