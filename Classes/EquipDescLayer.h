@@ -28,12 +28,19 @@ public:
 	bool init(ResBase* res, int fromwhere);
 	void updateAttr();
 
+	void updateStoneUI();
+
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
 
+	void openStoneHole();
+	void setInStone(ResBase* stoneres, int which);
+	void setOutStone(std::string stoneid, int which);
+	void chageStone(ResBase* stoneres, int which);
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-
+	void onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 private:
 	int status;
 	Equipable* m_res;
@@ -46,6 +53,7 @@ private:
 	cocos2d::ui::ImageView* resbox_qu;
 	Node* boxeffect;
 	static ResBase* IdEquipable;
+	Node* stoneAttrnode;
 };
 
 #endif

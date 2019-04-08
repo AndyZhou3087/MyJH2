@@ -463,7 +463,7 @@ void TakeOnLayer::onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		int size = m_equip->vec_stones.size();
 		if (tag >= size)
 		{
-			OpenHolesLayer* layer = OpenHolesLayer::create(m_equip);
+			OpenHolesLayer* layer = OpenHolesLayer::create(m_equip, 0);
 			this->addChild(layer, 0, tag);
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}

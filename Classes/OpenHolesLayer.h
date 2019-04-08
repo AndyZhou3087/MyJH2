@@ -14,9 +14,9 @@ public:
 
 	~OpenHolesLayer();
 
-	virtual bool init(Equip* res_equip);
+	virtual bool init(Equip* res_equip, int forwhere);
 
-	static OpenHolesLayer* create(Equip* res_equip);
+	static OpenHolesLayer* create(Equip* res_equip, int forwhere);//0--takeon界面；1--仓库详细界面
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -26,6 +26,7 @@ private:
 	Node* csbnode;
 	Equip* m_equip;
 	cocos2d::ui::Text* tipstext;
+	int m_forwher;
 	Node* selectNode;
 	int selectindex;
 

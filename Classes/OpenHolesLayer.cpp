@@ -10,6 +10,7 @@
 #include "TakeOnLayer.h"
 #include "AnimationEffect.h"
 #include "BuyResLayer.h"
+#include "EquipDescLayer.h"
 
 int openRnd[][5] = { {65,35,25,10,0}, { 80,45,35,25,10 } };
 
@@ -25,11 +26,11 @@ OpenHolesLayer::~OpenHolesLayer()
 }
 
 
-OpenHolesLayer* OpenHolesLayer::create(Equip* res_equip)
+OpenHolesLayer* OpenHolesLayer::create(Equip* res_equip, int forwhere)
 {
 	OpenHolesLayer *pRet = new(std::nothrow)OpenHolesLayer();
 
-	if (pRet && pRet->init(res_equip))
+	if (pRet && pRet->init(res_equip, forwhere))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -42,7 +43,7 @@ OpenHolesLayer* OpenHolesLayer::create(Equip* res_equip)
 	}
 }
 
-bool OpenHolesLayer::init(Equip* res_equip)
+bool OpenHolesLayer::init(Equip* res_equip, int forwhere)
 {
 	if (!Layer::init())
 	{
@@ -56,7 +57,7 @@ bool OpenHolesLayer::init(Equip* res_equip)
 	this->addChild(csbnode);
 
 	int langtype = GlobalInstance::getInstance()->getLang();
-
+	m_forwher = forwhere;
 	m_equip = res_equip;
 
 	cocos2d::ui::Text* title = (cocos2d::ui::Text*)csbnode->getChildByName("titlename");
@@ -193,8 +194,16 @@ void OpenHolesLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			int r = GlobalInstance::getInstance()->createRandomNum(100) + 1;
 			if (r <= openRnd[selectindex][m_equip->getQU().getValue()])
 			{
-				TakeOnLayer* parent = (TakeOnLayer*)this->getParent();
-				parent->openStoneHole();
+				if (m_forwher == 0)
+				{
+					TakeOnLayer* parent = (TakeOnLayer*)this->getParent();
+					parent->openStoneHole();
+				}
+				else if (m_forwher == 1)
+				{
+					EquipDescLayer* parent = (EquipDescLayer*)this->getParent();
+					parent->openStoneHole();
+				}
 				MovingLabel::show(ResourceLang::map_lang["openholesucc"]);
 			}
 			else

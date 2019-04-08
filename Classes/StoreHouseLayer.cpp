@@ -432,8 +432,13 @@ void StoreHouseLayer::decompose(ResBase* res)
 		Equip* resequip = (Equip*)res;
 		for (unsigned int n = 0; n < resequip->vec_stones.size(); n++)
 		{
-			if (resequip->vec_stones[n].length() >= 3)//有镶嵌宝石
+			std::string stoneid = resequip->vec_stones[n];
+			if (stoneid.length() >= 3)//有镶嵌宝石
 			{
+				if (str.length() > 0)
+					str.append(ResourceLang::map_lang["dunhao"]);
+				std::string resstr = StringUtils::format("%sx%d ", GlobalInstance::map_AllResources[stoneid].name.c_str(), 1);
+				str.append(resstr);
 				MyRes::Add(resequip->vec_stones[n]);
 			}
 		}
@@ -441,7 +446,6 @@ void StoreHouseLayer::decompose(ResBase* res)
 	}
 	if (size > 0)
 	{
-		std::string resstr;
 		for (int i = 0; i < size; i++)
 		{
 			std::map<std::string, int> one_res = GlobalInstance::map_AllResources[resid].vec_needres[i];
@@ -471,9 +475,9 @@ void StoreHouseLayer::decompose(ResBase* res)
 			}
 			if (addcount > 0)
 			{
-				if (resstr.length() > 0)
-					resstr.append(ResourceLang::map_lang["dunhao"]);
-				resstr = StringUtils::format("%sx%d ", GlobalInstance::map_AllResources[cresid].name.c_str(), addcount);
+				if (str.length() > 0)
+					str.append(ResourceLang::map_lang["dunhao"]);
+				std::string resstr = StringUtils::format("%sx%d ", GlobalInstance::map_AllResources[cresid].name.c_str(), addcount);
 				str.append(resstr);
 			}
 		}

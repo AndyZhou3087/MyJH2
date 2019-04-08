@@ -2176,7 +2176,7 @@ Equipable* GlobalInstance::compareFitEquip(int type, Hero* herodata)
 		{
 			continue;
 		}
-		if (type == res->getType())
+		if (type == res->getType() && herodata != NULL)
 		{
 			Equipable* m_res = (Equipable*)res;
 			if (type >= T_WG && type <= T_NG)

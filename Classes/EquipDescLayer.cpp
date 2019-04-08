@@ -17,6 +17,11 @@
 #include "SaleGfLayer.h"
 #include "SmithyLayer.h"
 #include "MainScene.h"
+#include "SoundManager.h"
+#include "OpenHolesLayer.h"
+#include "SetInStoneLayer.h"
+#include "SelectEquipLayer.h"
+#include "Quest.h"
 
 USING_NS_CC;
 
@@ -26,6 +31,7 @@ EquipDescLayer::EquipDescLayer()
 	salepoint = NULL;
 	boxeffect = NULL;
 	IdEquipable = NULL;
+	stoneAttrnode = NULL;
 }
 
 EquipDescLayer::~EquipDescLayer()
@@ -118,7 +124,10 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 		salebtnbtntxt->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("text_sale", langtype))->getContentSize());
 	}
 	else
+	{
 		csbnode = CSLoader::createNode(ResourcePath::makePath("equipDescLayer.csb"));
+		stoneAttrnode = csbnode->getChildByName("attrnode");
+	}
 
 	this->addChild(csbnode);
 
@@ -358,7 +367,7 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 void EquipDescLayer::onEnterTransitionDidFinish()
 {
 	Layer::onEnterTransitionDidFinish();
-	updateAttr();
+	updateStoneUI();
 }
 
 void EquipDescLayer::delayShowNewerGuide(float dt)
@@ -545,6 +554,160 @@ void EquipDescLayer::updateAttr()
 		if (boxeffect == NULL)
 			boxeffect = CommonFuncs::playResBoxEffect(resbox_qu, m_res->getType(), m_res->getQU().getValue(), m_res->getLv().getValue());
 	}
+}
+
+void EquipDescLayer::updateStoneUI()
+{
+	if (stoneAttrnode != NULL)
+	{
+		Equip* myequip = (Equip*)m_res;
+		std::string stonedescstr[] = { "addattrtext_1","addattrtext_2","addattrtext_0","addattrtext_5","addattrtext_4" };
+		for (unsigned int i = 0; i < 3; i++)
+		{
+			std::string str = StringUtils::format("stone%d", i);
+			cocos2d::ui::ImageView* stone = (cocos2d::ui::ImageView*)stoneAttrnode->getChildByName(str);
+			stone->ignoreContentAdaptWithSize(true);
+			str = StringUtils::format("equipstonebox_%d", i);
+			cocos2d::ui::ImageView* equipstonebox = (cocos2d::ui::ImageView*)stoneAttrnode->getChildByName(str);
+
+			str = StringUtils::format("stonedesc%d", i);
+			cocos2d::ui::Text* stonedesc = (cocos2d::ui::Text*)stoneAttrnode->getChildByName(str);
+			if (i < myequip->vec_stones.size())
+			{
+				std::string stoneid = myequip->vec_stones[i];
+				if (stoneid.length() > 1)
+				{
+					str = StringUtils::format("ui/%s.png", myequip->vec_stones[i].c_str());
+					stone->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+					stone->setVisible(true);
+
+					int intid = atoi(stoneid.substr(1).c_str()) - 1;
+					int intv = intid / 3;
+					std::string ss = ResourceLang::map_lang[stonedescstr[intv]];
+					str = StringUtils::format(ss.c_str(), STONE_BNS[intv][intid % 3]);
+
+					stonedesc->setString(str);
+
+					equipstonebox->loadTexture("ui/resbox.png", cocos2d::ui::Widget::TextureResType::PLIST);
+				}
+				else
+				{
+					stone->setVisible(false);
+					stonedesc->setVisible(true);
+					stonedesc->setString(ResourceLang::map_lang["nosetin"]);
+					equipstonebox->loadTexture("ui/equipstonebox.png", cocos2d::ui::Widget::TextureResType::PLIST);
+				}
+			}
+			else
+			{
+				stone->loadTexture("ui/i002.png", cocos2d::ui::Widget::TextureResType::PLIST);
+				CommonFuncs::changeGray(stone);
+				//stone->setVisible(false);
+				stonedesc->setString(ResourceLang::map_lang["cannotsetin"]);
+				//equipstonebox->setVisible(false);
+			}
+
+			equipstonebox->addTouchEventListener(CC_CALLBACK_2(EquipDescLayer::onStoneclick, this));
+			equipstonebox->setTag(i);
+		}
+
+		StoreHouseLayer* mlayer = (StoreHouseLayer*)g_mainScene->getChildByName("3storehouse");
+		if (mlayer != NULL)
+		{
+			mlayer->updateUI();
+		}
+	}
+
+	updateAttr();
+	MyRes::saveData();
+}
+
+void EquipDescLayer::onStoneclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		Node* node = (Node*)pSender;
+		int tag = node->getTag();
+		Equip* myequip = (Equip*)m_res;
+		int size = myequip->vec_stones.size();
+		if (tag >= size)
+		{
+			OpenHolesLayer* layer = OpenHolesLayer::create(myequip, 1);
+			this->addChild(layer, 0, tag);
+			AnimationEffect::openAniEffect(layer);
+		}
+		else
+		{
+			if (myequip->vec_stones[node->getTag()].length() > 1)
+			{
+				SetInStoneLayer* layer = SetInStoneLayer::create(myequip, node->getTag(), NULL);
+				this->addChild(layer, 0, tag);
+				AnimationEffect::openAniEffect(layer);
+			}
+			else
+			{
+				SelectEquipLayer* layer = SelectEquipLayer::create(T_STONE, NULL);
+				this->addChild(layer, 0, node->getTag());
+				AnimationEffect::openAniEffect((Layer*)layer);
+			}
+		}
+	}
+}
+
+void EquipDescLayer::openStoneHole()
+{
+	Equip* myequip = (Equip*)m_res;
+	myequip->vec_stones.push_back("o");
+	int whichhole = myequip->vec_stones.size() - 1;
+	std::string str = StringUtils::format("stone%d", whichhole);
+	cocos2d::ui::ImageView* stone = (cocos2d::ui::ImageView*)stoneAttrnode->getChildByName(str);
+	CommonFuncs::removeGray(stone);
+	str = StringUtils::format("equipstonebox_%d", whichhole);
+	cocos2d::ui::ImageView* equipstonebox = (cocos2d::ui::ImageView*)stoneAttrnode->getChildByName(str);
+
+	str = StringUtils::format("stonedesc%d", whichhole);
+	cocos2d::ui::Text* stonedesc = (cocos2d::ui::Text*)stoneAttrnode->getChildByName(str);
+	stone->setVisible(false);
+	stonedesc->setVisible(true);
+	stonedesc->setString(ResourceLang::map_lang["nosetin"]);
+	equipstonebox->loadTexture("ui/equipstonebox.png", cocos2d::ui::Widget::TextureResType::PLIST);
+	MyRes::saveData();
+}
+
+void EquipDescLayer::setInStone(ResBase* stoneres, int which)
+{
+	Equip* myequip = (Equip*)m_res;
+	Quest::setDailyTask(SET_GEM, 1);
+	Quest::setAchieveTypeCount(SET_GEM, 1);
+	std::string stoneid = stoneres->getId();
+	MyRes::Use(stoneid);
+	MyRes::Add(stoneid, 1, MYEQUIP);
+	myequip->vec_stones[which] = stoneid;
+	updateStoneUI();
+}
+
+void EquipDescLayer::setOutStone(std::string stoneid, int which)
+{
+	Equip* myequip = (Equip*)m_res;
+	MyRes::Add(stoneid);
+	MyRes::Use(stoneid, 1, MYEQUIP);
+	myequip->vec_stones[which] = "o";
+	updateStoneUI();
+}
+
+void EquipDescLayer::chageStone(ResBase* stoneres, int which)
+{
+	Equip* myequip = (Equip*)m_res;
+	std::string laststone = myequip->vec_stones[which];
+	MyRes::Add(laststone);
+	MyRes::Use(laststone, 1, MYEQUIP);
+
+	std::string stoneid = stoneres->getId();
+	MyRes::Use(stoneid);
+	MyRes::Add(stoneid, 1, MYEQUIP);
+	myequip->vec_stones[which] = stoneid;
+	updateStoneUI();
 }
 
 void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

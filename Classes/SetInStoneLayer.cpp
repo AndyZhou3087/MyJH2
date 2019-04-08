@@ -7,6 +7,7 @@
 #include "TakeOnLayer.h"
 #include "SelectEquipLayer.h"
 #include "AnimationEffect.h"
+#include "EquipDescLayer.h"
 
 USING_NS_CC;
 
@@ -153,14 +154,30 @@ void SetInStoneLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		{
 			if (isChangeStone)
 			{
-				TakeOnLayer* takeOnLayer = (TakeOnLayer*)this->getParent()->getParent()->getParent();
-				takeOnLayer->chageStone(m_res, this->getTag());
+				if (m_herodata == NULL)
+				{
+					EquipDescLayer* player = (EquipDescLayer*)this->getParent()->getParent()->getParent();
+					player->chageStone(m_res, this->getTag());
+				}
+				else
+				{
+					TakeOnLayer* player = (TakeOnLayer*)this->getParent()->getParent()->getParent();
+					player->chageStone(m_res, this->getTag());
+				}
 				this->getParent()->getParent()->removeFromParentAndCleanup(true);
 			}
 			else
 			{
-				TakeOnLayer* takeOnLayer = (TakeOnLayer*)this->getParent()->getParent();
-				takeOnLayer->setInStone(m_res, this->getTag());
+				if (m_herodata == NULL)
+				{
+					EquipDescLayer* pLayer = (EquipDescLayer*)this->getParent()->getParent();
+					pLayer->setInStone(m_res, this->getTag());
+				}
+				else
+				{
+					TakeOnLayer* pLayer = (TakeOnLayer*)this->getParent()->getParent();
+					pLayer->setInStone(m_res, this->getTag());
+				}
 				this->getParent()->removeFromParentAndCleanup(true);
 			}
 			break;
@@ -168,8 +185,16 @@ void SetInStoneLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		case 1001:
 		{
 			Equip* equip = (Equip*)m_res;
-			TakeOnLayer* takeOnLayer = (TakeOnLayer*)this->getParent();
-			takeOnLayer->setOutStone(equip->vec_stones[this->getTag()], this->getTag());
+			if (m_herodata == NULL)
+			{
+				EquipDescLayer* pLayer = (EquipDescLayer*)this->getParent();
+				pLayer->setOutStone(equip->vec_stones[this->getTag()], this->getTag());
+			}
+			else
+			{
+				TakeOnLayer* pLayer = (TakeOnLayer*)this->getParent();
+				pLayer->setOutStone(equip->vec_stones[this->getTag()], this->getTag());
+			}
 			AnimationEffect::closeAniEffect((Layer*)this);
 		}
 		break;
