@@ -497,7 +497,7 @@ void StoreHouseLayer::decompose(ResBase* res)
 						std::string restr = StringUtils::format("q00%d", i + 1);
 
 						if (strenthstr.length() > 0)
-							str.append(ResourceLang::map_lang["dunhao"]);
+							strenthstr.append(ResourceLang::map_lang["dunhao"]);
 
 						std::string addstr = StringUtils::format("%sx%d ", GlobalInstance::map_AllResources[restr].name.c_str(), scount);
 						strenthstr.append(addstr);

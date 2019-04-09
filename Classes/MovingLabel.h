@@ -26,7 +26,6 @@ private:
 	void changeTextColor();
 private:
 	static std::queue<MovingLabel*> queue_labels;
-	bool ismoving;
 	Label* mlbl;
 	static Node* lastRunningScene;
 };

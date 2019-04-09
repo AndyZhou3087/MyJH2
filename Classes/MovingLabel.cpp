@@ -9,7 +9,7 @@ Node* MovingLabel::lastRunningScene = NULL;
 
 MovingLabel::MovingLabel()
 {
-	ismoving = false;
+
 }
 
 MovingLabel::~MovingLabel()
@@ -27,6 +27,9 @@ void MovingLabel::show(std::string text, Color4B color, Vec2 pos, Node* parent)
 
 	if (queue_labels.size() <= 5)
 	{
+		if (queue_labels.size() > 0 && queue_labels.back()->mlbl->getString().compare(text) == 0)
+			return;
+
 		MovingLabel* label = MovingLabel::create(text, color, pos);
 		queue_labels.push(label);
 		if (parent == NULL)
@@ -90,16 +93,12 @@ bool MovingLabel::init(std::string text, Color4B color, Vec2 pos)
 
 void MovingLabel::showAction()
 {
-	if (ismoving)
-		return;
-
-	ismoving = true;
 
 	changeTextColor();
 
 	this->setVisible(true);
 	FiniteTimeAction* scales = Spawn::create(ScaleTo::create(0.2f, 1.0f), MoveBy::create(0.2f, Vec2(0, 60)), NULL);
-	FiniteTimeAction* s1 = Sequence::create(scales, DelayTime::create(1.0f), Hide::create(), CallFunc::create(CC_CALLBACK_0(MovingLabel::showNext, this)), NULL);
+	FiniteTimeAction* s1 = Sequence::create(scales, DelayTime::create(1.6f), Hide::create(), CallFunc::create(CC_CALLBACK_0(MovingLabel::showNext, this)), NULL);
 
 	this->runAction(Sequence::create(s1, CallFunc::create(CC_CALLBACK_0(MovingLabel::removeSelf, this)), NULL));
 }
