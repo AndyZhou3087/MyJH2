@@ -531,7 +531,9 @@
           <Image Name="goback_map_text.png" />
           <Image Name="gocitybtn_text.png" />
           <Image Name="goout_text.png" />
+          <Image Name="growup_text.png" />
           <Image Name="halltitle.png" />
+          <Image Name="heal_text.png" />
           <Image Name="heroattrqu_0.png" />
           <Image Name="heroattrqu_1.png" />
           <Image Name="heroattrqu_2.png" />
@@ -1536,6 +1538,7 @@
         <Project Name="openHolesLayer.csd" Type="Layer" />
         <Project Name="outTownLayer.csd" Type="Layer" />
         <Project Name="paySelectLayer.csd" Type="Layer" />
+        <Project Name="popNewHeroLayer.csd" Type="Layer" />
         <Project Name="randHeroLayer.csd" Type="Scene" />
         <Project Name="randHeroNode.csd" Type="Node" />
         <Project Name="rebateawdnode.csd" Type="Node" />
@@ -1579,7 +1582,6 @@
         <Project Name="wellmorebtnnode.csd" Type="Node" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="popNewHeroLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

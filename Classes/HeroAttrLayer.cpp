@@ -746,8 +746,14 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case ATTR_RECRUITBTN:
 		{
+			int liveherocount = 0;
 			int herosize = GlobalInstance::vec_myHeros.size();
-			if (herosize < (10 + Building::map_buildingDatas["6innroom"]->level.getValue()))
+			for (int i = 0; i < herosize; i++)
+			{
+				if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD)
+					liveherocount++;
+			}
+			if (liveherocount < (10 + Building::map_buildingDatas["6innroom"]->level.getValue()))
 			{
 				std::string st = StringUtils::format("potential_%d", m_heroData->getPotential());
 
@@ -993,6 +999,12 @@ void HeroAttrLayer::onEquipClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		cocos2d::ui::Button* clicknode = (cocos2d::ui::Button*)pSender;
 		clickindex = clicknode->getTag();
+
+		if (m_heroData->getState() == HS_DEAD)
+		{
+			MovingLabel::show(ResourceLang::map_lang["herodeathonequip"]);
+			return;
+		}
 
 		Layer* layer;
 		ResBase* res = m_heroData->getEquipable(equiptype[clickindex]);

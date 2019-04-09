@@ -605,6 +605,7 @@ public:
 	void heroSortByLv();
 
 	static bool larger_heroLvCB(Hero* a, Hero* b);
+	static bool sort_heroDeathCB(Hero* a, Hero* b);
 
 	std::string getMyID();
 	std::string getMyNickName();

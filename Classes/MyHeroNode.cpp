@@ -35,10 +35,10 @@ MyHeroNode::~MyHeroNode()
 
 }
 
-MyHeroNode* MyHeroNode::create(Hero* herodata, int showtype)
+MyHeroNode* MyHeroNode::create(Hero* herodata, int showtype, int forwhere)
 {
 	MyHeroNode *pRet = new(std::nothrow)MyHeroNode();
-	if (pRet && pRet->init(herodata, showtype))
+	if (pRet && pRet->init(herodata, showtype, forwhere))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -51,7 +51,7 @@ MyHeroNode* MyHeroNode::create(Hero* herodata, int showtype)
 	}
 }
 
-bool MyHeroNode::init(Hero* herodata, int showtype)
+bool MyHeroNode::init(Hero* herodata, int showtype, int forwhere)
 {
 
 	m_heroData = herodata;
@@ -134,6 +134,7 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 	{
 		hpdesc->setVisible(false);
 		statetag->setVisible(false);
+
 		actbtntxt->loadTexture(ResourcePath::makeTextImgPath("cure_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		silver->setVisible(true);
 	}
@@ -145,7 +146,17 @@ bool MyHeroNode::init(Hero* herodata, int showtype)
 		}
 		else if (m_heroData->getState() == HS_OWNED || m_heroData->getState() == HS_TAKEON)
 		{
+			actbtntxt->loadTexture(ResourcePath::makeTextImgPath("growup_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			actbtn->loadTexture("ui/actionbtn_yellow.png", cocos2d::ui::Widget::TextureResType::PLIST);
+		}
+		else if (m_heroData->getState() == HS_DEAD)
+		{
+			arrowglv->setVisible(false);
+			actbtntxt->loadTexture(ResourcePath::makeTextImgPath("heal_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			CommonFuncs::changeGray(headimg);
+
+			CommonFuncs::changeGray(csbnode->getChildByName("itembg"));
+			clickimg->setEnabled(false);
 		}
 	}
 	else if (m_showtype == HS_TRAINING)
@@ -300,9 +311,12 @@ void MyHeroNode::updateTime(float dt)
 
 	if (!arrowglv->isVisible() && ((m_heroData->getLevel() + 1) / 10) == m_heroData->getChangeCount() && GlobalInstance::getInstance()->getCanUpgradeCount("s00") && (m_heroData->getLevel() + 1) < 50)
 	{
-		arrowglv->stopAllActions();
-		arrowglv->setVisible(true);
-		arrowglv->runAction(RepeatForever::create(Sequence::create(FadeOut::create(0.5f), FadeIn::create(0.5f), NULL)));
+		if (m_heroData->getState() != HS_DEAD)
+		{
+			arrowglv->stopAllActions();
+			arrowglv->setVisible(true);
+			arrowglv->runAction(RepeatForever::create(Sequence::create(FadeOut::create(0.5f), FadeIn::create(0.5f), NULL)));
+		}
 	}
 	else if (arrowglv->isVisible() && (((m_heroData->getLevel() + 1) / 10) != m_heroData->getChangeCount() || !GlobalInstance::getInstance()->getCanUpgradeCount("s00") || (m_heroData->getLevel() + 1) == 50))
 	{
@@ -378,24 +392,39 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					return;
 				}
 
-				if (m_heroData->getPotential() >= 2)
+				if (m_heroData->getState() == HS_DEAD)
 				{
-					InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-					if (innroomLayer != NULL)
-					{
-						std::string potentialstr = StringUtils::format("potential_%d", m_heroData->getPotential());
-						std::string hintstr = StringUtils::format(ResourceLang::map_lang["firecomfirmtext"].c_str(), ResourceLang::map_lang[potentialstr].c_str());
-						HintBoxLayer* hint = HintBoxLayer::create(hintstr, 2);
-						innroomLayer->addChild(hint, 0, this->getTag());
-						AnimationEffect::openAniEffect((Layer*)hint);
-					}
+					Layer* layer = HospitalLayer::create();
+					g_mainScene->addChild(layer, 0, "1hospital");
+					AnimationEffect::openAniEffect(layer);
 				}
 				else
 				{
-					InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
-					if (innroomLayer != NULL)
-						innroomLayer->fireHero(this->getTag());
+					Layer* layer = HeroAttrLayer::create(m_heroData, 0, 1);
+					layer->setName("heroattrlayer");
+					g_mainScene->addChild(layer, 0, this->getTag());
+					AnimationEffect::openAniEffect((Layer*)layer);
+
 				}
+
+				//if (m_heroData->getPotential() >= 2)
+				//{
+				//	InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+				//	if (innroomLayer != NULL)
+				//	{
+				//		std::string potentialstr = StringUtils::format("potential_%d", m_heroData->getPotential());
+				//		std::string hintstr = StringUtils::format(ResourceLang::map_lang["firecomfirmtext"].c_str(), ResourceLang::map_lang[potentialstr].c_str());
+				//		HintBoxLayer* hint = HintBoxLayer::create(hintstr, 2);
+				//		innroomLayer->addChild(hint, 0, this->getTag());
+				//		AnimationEffect::openAniEffect((Layer*)hint);
+				//	}
+				//}
+				//else
+				//{
+				//	InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+				//	if (innroomLayer != NULL)
+				//		innroomLayer->fireHero(this->getTag());
+				//}
 			}
 			else if (m_showtype == HS_TAKEON)
 			{
@@ -533,6 +562,20 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			}
 			else if (m_showtype == HS_DEAD)
 			{
+				int liveherocount = 0;
+				int herosize = GlobalInstance::vec_myHeros.size();
+				for (int i = 0; i < herosize; i++)
+				{
+					if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD)
+						liveherocount++;
+				}
+
+				if (liveherocount >= (10 + Building::map_buildingDatas["6innroom"]->level.getValue()))
+				{
+					MovingLabel::show(ResourceLang::map_lang["myheromax"]);
+					return;
+				}
+
 				DynamicValueInt dval = GlobalInstance::getInstance()->getMySoliverCount();
 
 				int rheroc = DataSave::getInstance()->getReviveHeroCount();
@@ -558,6 +601,9 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 						{
 							hospitalLayer->updateContent();
 						}
+						InnRoomLayer* innroomLayer = (InnRoomLayer*)g_mainScene->getChildByName("6innroom");
+						if (innroomLayer != NULL)
+							innroomLayer->refreshMyHerosUi();
 					}
 				}
 				else

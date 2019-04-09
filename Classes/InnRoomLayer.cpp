@@ -245,7 +245,7 @@ void InnRoomLayer::refreshMyHerosUi()
 	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 	{
 		Hero* herodata = GlobalInstance::vec_myHeros[i];
-		if (herodata->getState() != HS_DEAD)
+		//if (herodata->getState() != HS_DEAD)
 			count++;
 	}
 
@@ -261,14 +261,14 @@ void InnRoomLayer::refreshMyHerosUi()
 	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 	{
 		Hero* herodata = GlobalInstance::vec_myHeros[i];
-		if (herodata->getState() != HS_DEAD)
-		{
-			MyHeroNode* heronode = MyHeroNode::create(herodata);
+		//if (herodata->getState() != HS_DEAD)
+		//{
+			MyHeroNode* heronode = MyHeroNode::create(herodata, HS_OWNED, 1);
 			heronode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - c * itemheight - itemheight / 2));
 			heronode->runAction(EaseSineIn::create(MoveBy::create(0.15f + c*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
 			m_contentscroll->addChild(heronode, 0, i);
 			c++;
-		}
+		//}
 	}
 }
 void InnRoomLayer::lvup()

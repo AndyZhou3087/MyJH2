@@ -12,9 +12,9 @@ public:
 	MyHeroNode();
 	~MyHeroNode();
 
-	bool init(Hero* herodata, int showtype = HS_OWNED);
+	bool init(Hero* herodata, int showtype = HS_OWNED, int forwhere = 0);//0-默认；1--客栈
 
-	static MyHeroNode* create(Hero* herodata, int showtype = HS_OWNED);
+	static MyHeroNode* create(Hero* herodata, int showtype = HS_OWNED, int forwhere = 0);
 	void updateData();
 
 	void changeBtnContent();

@@ -3009,6 +3009,8 @@ void GlobalInstance::parseTBoxJson()
 void GlobalInstance::heroSortByLv()
 {
 	std::sort(vec_myHeros.begin(), vec_myHeros.end(), larger_heroLvCB);
+	std::sort(vec_myHeros.begin(), vec_myHeros.end(), sort_heroDeathCB);
+	
 
 	for (int m = 0; m < 6; m++)
 	{
@@ -3027,6 +3029,14 @@ void GlobalInstance::heroSortByLv()
 bool GlobalInstance::larger_heroLvCB(Hero* a, Hero* b)
 {
 	if (a->getLevel() > b->getLevel())
+		return true;
+	else
+		return false;
+}
+
+bool GlobalInstance::sort_heroDeathCB(Hero* a, Hero* b)
+{
+	if (a->getState() == HS_DEAD && b->getState() != HS_DEAD)
 		return true;
 	else
 		return false;
