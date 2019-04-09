@@ -481,6 +481,36 @@ void StoreHouseLayer::decompose(ResBase* res)
 				str.append(resstr);
 			}
 		}
+
+		if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
+		{
+			Equip* resequip = (Equip*)res;
+
+			std::string strenthstr;
+			if (resequip->getLv().getValue() > 0)
+			{
+				int scount = resequip->getLv().getValue() / 2;
+				if (scount > 0)
+				{
+					for (int i = 0; i < 3; i++)
+					{
+						std::string restr = StringUtils::format("q00%d", i + 1);
+
+						if (strenthstr.length() > 0)
+							str.append(ResourceLang::map_lang["dunhao"]);
+
+						std::string addstr = StringUtils::format("%sx%d ", GlobalInstance::map_AllResources[restr].name.c_str(), scount);
+						strenthstr.append(addstr);
+					}
+				}
+			}
+			if (strenthstr.length() > 0)
+			{
+				str.append("\n");
+				str.append(strenthstr);
+			}
+		}
+
 		MyRes::Use(res, 1);
 
 		std::string showstr = StringUtils::format(ResourceLang::map_lang["decomposesucc"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str(), str.c_str());
