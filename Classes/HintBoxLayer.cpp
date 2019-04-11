@@ -217,11 +217,18 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			}
 			else if (m_forwhere == 11)
 			{
+
+				if (g_MapBlockScene != NULL)
+				{
+					if (!g_MapBlockScene->checkShowStarUi(0))
+					{
 #if USE_TRANSCENE
-				Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAIN)));
+						Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAIN)));
 #else
-				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+						Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 #endif
+					}
+				}
 			}
 			else if (m_forwhere == 12)
 			{

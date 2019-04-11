@@ -30,6 +30,8 @@ typedef struct
 	int pf;//没走一次消耗的食物
 	int bgtype;//背景图片类型
 	std::vector<std::string> vec_awd;//可能获得物品
+	std::vector<std::string> vec_starc;//3星条件
+	std::vector<std::string> vec_f3starawds;//首次获得3星奖励
 }S_SubMap;
 
 //大地图数据
@@ -402,6 +404,38 @@ typedef struct
 	int totalcount;
 }TimeMartData;
 
+typedef struct
+{
+	int sid;
+	int needcount;
+	int finishcount;
+}S_StarData;
+
+typedef struct
+{
+	std::vector<int> vec_starnum;
+	std::vector<std::vector<std::string>> vec_adws;
+	std::vector<int> vec_getstate;
+}S_ChapterStarAwd;
+
+typedef enum
+{
+	SA_FINISH_MAINTASK = 1,
+	SA_FINISH_BRANCHTASK,
+	SA_GETALLBOX,
+	SA_FIGHTSUCC,
+	SA_EVENT,
+	SA_BUSIBUY,
+	SA_ENTERMAZE,
+	SA_NODEATH,
+	SA_GOSTEP,
+	SA_BEFRIEND,
+	SA_BEMASTER,
+	SA_BECOMPLE,
+	SA_USEALLOPEN,
+	SA_USETORCH
+}STAR_TYPE;
+
 class GlobalInstance
 {
 public:
@@ -690,8 +724,14 @@ public:
 	void saveNpcFriendly();
 
 	/****************************
+	读取每章节星级奖励
+	****************************/
+	void loadChapterStarAwds();
+
+	/****************************
 	装备武功比较是否有更高级
 	****************************/
+
 	bool compareHighEquip(int type, Hero* herodata);
 
 	/****************************
@@ -882,6 +922,14 @@ public:
 
 	static bool isHasNewhero;
 	static int showz002hinttextcount;
+
+	static std::vector<S_StarData> vec_stardata;
+
+	static std::vector<S_ChapterStarAwd> vec_chaperstarawds;
+	
+	static int curMapFinishStars;
+
+	static int takeoutherocount;
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

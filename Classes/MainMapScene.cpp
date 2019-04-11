@@ -178,6 +178,11 @@ bool MainMapScene::init()
 	return true;
 }
 
+void MainMapScene::onEnterTransitionDidFinish()
+{
+	Layer::onEnterTransitionDidFinish();
+}
+
 void MainMapScene::showNewerGuide(int step, Node* node)
 {
 	std::vector<Node*> nodes;

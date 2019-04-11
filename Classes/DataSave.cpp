@@ -531,6 +531,30 @@ void DataSave::setRebateAwds(std::string val)
 	saveStringDataByKey("payrebate", val);
 }
 
+std::string DataSave::getFinishStar(std::string mapid)
+{
+	std::string key = StringUtils::format("star%s", mapid.c_str());
+	return loadStringDataByKey(key);
+}
+
+void DataSave::setFinishStar(std::string mapid, std::string val)
+{
+	std::string key = StringUtils::format("star%s", mapid.c_str());
+	saveStringDataByKey(key, val);
+}
+
+std::string DataSave::getChapterStarAwd(int chapter)
+{
+	std::string key = StringUtils::format("cstarawd%d", chapter);
+	return loadStringDataByKey(key);
+}
+
+void DataSave::setChapterStarAwd(int chapter, std::string val)
+{
+	std::string key = StringUtils::format("cstarawd%d", chapter);
+	saveStringDataByKey(key, val);
+}
+
 void DataSave::deleteDataByKey(std::string key)
 {
 	removeEleByKey(key);

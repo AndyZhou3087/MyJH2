@@ -149,18 +149,28 @@ void GoBackLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		if (tag > 0)
 		{
 			int t_type = TO_MAIN;
+			int chwere = 2;
 			if (tag == 2)
+			{
 				t_type = TO_MAP;
+				chwere = 3;
+			}
 
 			if (MyRes::getMyResCount("t001") >= 1)
 			{
 				MyRes::Use("t001");
 
+				if (!g_MapBlockScene->checkShowStarUi(chwere))
+				{
 #if USE_TRANSCENE
 				Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(t_type)));
 #else
-				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+				if (t_type == TO_MAIN)
+					Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+				else
+					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MainMapScene::createScene()));
 #endif	
+				}
 				GlobalInstance::getInstance()->usePropsCount(COSTPROP_GOHOME, 1);
 			}
 			else
@@ -187,12 +197,22 @@ void GoBackLayer::costCoinGoback(int gotype)
 		DynamicValueInt dal;
 		dal.setValue(gobackcoin.getValue());
 		GlobalInstance::getInstance()->costMyCoinCount(dal);
+		int chwere = 2;
+		if (gotype == TO_MAP)
+			chwere = 3;
 
+		if (!g_MapBlockScene->checkShowStarUi(chwere))
+		{
 #if USE_TRANSCENE
-		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(gotype)));
+			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(gotype)));
 #else
-		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
-#endif
+			if (gotype == TO_MAIN)
+				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+			else
+				Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MainMapScene::createScene()));
+#endif	
+		}
+
 		GlobalInstance::getInstance()->usePropsCount(COSTPROP_GOHOME, 1);
 	}
 	else

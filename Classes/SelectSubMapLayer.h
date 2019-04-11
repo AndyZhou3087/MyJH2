@@ -19,8 +19,11 @@ public:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void onAwdBoxClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	void showCloudAnim(Node* target, Vec2 pos);
+
+	void showCStarAwdUI();
 private:
 	std::string m_mainmapid;
 	bool clickflag;
@@ -28,6 +31,9 @@ private:
 	std::vector<Node*> nodes;
 	int m_step;
 	bool isentermap;
+	int curchapter;
+	int mychapterstar;
+	Node* starAwdNode;
 };
 
 #endif

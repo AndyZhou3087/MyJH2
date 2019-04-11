@@ -102,6 +102,12 @@ public:
 
 	void useTranser();
 
+	void calcStar(int ctype);
+
+	void checkotherstar();
+
+	bool checkShowStarUi(int cwhere);//cwhere 0--无食物死亡；1--战斗死亡；2--回主城；3--回地图
+
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
 	virtual void onEnterTransitionDidFinish();
@@ -206,6 +212,8 @@ private:
 
 	void delayShowMazeHint(float dt);
 
+	void delayShowStarResult(float dt);
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;
@@ -260,6 +268,8 @@ private:
 	std::vector<MapBlock*> vec_normalBlocks;
 	std::vector<MapBlock*> vec_monsterBlocks;
 
+	std::vector<MapBlock*> vec_npcOrBossBlocks;
+
 	int firstpostype;
 
 	bool isNewerGuideMap;
@@ -284,6 +294,7 @@ private:
 	Sprite* mapAllOpenFog;
 	std::vector<MapBlock*> vec_boxblock;//宝箱地图块
 	std::map<int, std::vector<MapBlock*>> map_rangeblocks;
+	int totalBoxcount;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

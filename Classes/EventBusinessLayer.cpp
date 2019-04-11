@@ -10,6 +10,7 @@
 #include "AnimationEffect.h"
 #include "SimpleResPopLayer.h"
 #include "EquipDescLayer.h"
+#include "MapBlockScene.h"
 
 EventBusinessLayer::EventBusinessLayer()
 {
@@ -299,6 +300,8 @@ void EventBusinessLayer::buyRes(MSGAWDSDATA res)
 
 	loadMyPackageRes();
 	updateScrollviewContent();
+
+	g_MapBlockScene->calcStar(SA_BUSIBUY);
 }
 
 void EventBusinessLayer::updateRichLabel(float dt)

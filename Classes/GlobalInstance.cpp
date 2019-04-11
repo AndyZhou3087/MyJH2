@@ -140,6 +140,14 @@ std::vector<bool> GlobalInstance::vec_rebateisget;
 bool GlobalInstance::isHasNewhero = false;
 int GlobalInstance::showz002hinttextcount = 0;
 
+std::vector<S_StarData> GlobalInstance::vec_stardata;
+
+int GlobalInstance::curMapFinishStars = 0;
+
+int GlobalInstance::takeoutherocount = 0;
+
+std::vector<S_ChapterStarAwd> GlobalInstance::vec_chaperstarawds;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -2061,6 +2069,52 @@ void GlobalInstance::saveNpcFriendly()
 	}
 }
 
+void GlobalInstance::loadChapterStarAwds()
+{
+	rapidjson::Document rsdoc = ReadJsonFile(ResourcePath::makePath("json/chapterstar.json"));
+	rapidjson::Value& rsallData = rsdoc["mr"];
+	for (unsigned int i = 0; i < rsallData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = rsallData[i];
+		if (jsonvalue.IsObject())
+		{
+			S_ChapterStarAwd data;
+			rapidjson::Value& v = jsonvalue["stars"];
+
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_starnum.push_back(v[m].GetInt());
+				data.vec_getstate.push_back(0);
+			}
+
+			v = jsonvalue["awds"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				std::vector<std::string> vec_str;
+				for (unsigned int n = 0; n < v[m].Size(); n++)
+				{
+					vec_str.push_back(v[m][n].GetString());
+				}
+				data.vec_adws.push_back(vec_str);
+			}
+
+			v = jsonvalue["id"];
+			int chapter = atoi(v.GetString());
+			std::string savestr = DataSave::getInstance()->getChapterStarAwd(chapter);
+			if (savestr.length() >= 3)
+			{
+				for (int t = 0; t < 3; t++)
+				{
+					int state = atoi(savestr.substr(t, 1).c_str());
+					data.vec_getstate[t] = state;
+				}
+			}
+
+			vec_chaperstarawds.push_back(data);
+		}
+	}
+}
+
 bool GlobalInstance::compareHighEquip(int type, Hero* herodata)
 {
 	Equipable* myequip = herodata->getEquipable(type);
@@ -2597,6 +2651,23 @@ void GlobalInstance::parseMapJson()
 			for (unsigned int i = 0; i < v.Size(); i++)
 			{
 				s_submap.vec_awd.push_back(v[i].GetString());
+			}
+		}
+
+		if (jsonvalue.HasMember("starc"))
+		{
+			v = jsonvalue["starc"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				s_submap.vec_starc.push_back(v[i].GetString());
+			}
+		}
+		if (jsonvalue.HasMember("fstar3awd"))
+		{
+			v = jsonvalue["fstar3awd"];
+			for (unsigned int i = 0; i < v.Size(); i++)
+			{
+				s_submap.vec_f3starawds.push_back(v[i].GetString());
 			}
 		}
 
@@ -3326,6 +3397,9 @@ void GlobalInstance::resetData()
 	loginData.isGeted = false;
 	map_timeMartData.clear();
 	vec_rebateisget.clear();
+	vec_stardata.clear();
+
+	curMapFinishStars = 0;
 }
 
 std::string GlobalInstance::getUserDefaultXmlString(int type)

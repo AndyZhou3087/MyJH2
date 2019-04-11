@@ -60,6 +60,10 @@
           <Image Name="event4.jpg" />
           <Image Name="event5.jpg" />
           <Image Name="event6.jpg" />
+          <Image Name="f3awdbg.png" />
+          <Image Name="f3awdf1.png" />
+          <Image Name="f3awdf2.png" />
+          <Image Name="f3awdlight.png" />
           <Image Name="firstchargebg.png" />
           <Image Name="firstchargebox.png" />
           <Image Name="heroattrbottom.png" />
@@ -527,6 +531,7 @@
           <Image Name="forge_text.png" />
           <Image Name="freerefreshhero_text.png" />
           <Image Name="getscore_text.png" />
+          <Image Name="goawaybtn_text.png" />
           <Image Name="goback_home_text.png" />
           <Image Name="goback_map_text.png" />
           <Image Name="gocitybtn_text.png" />
@@ -763,6 +768,10 @@
           <Image Name="smithylv_text.png" />
           <Image Name="smithytilte.png" />
           <Image Name="srefresh_text.png" />
+          <Image Name="starscore1_text.png" />
+          <Image Name="starscore2_text.png" />
+          <Image Name="starscore3_text.png" />
+          <Image Name="starscorebest_text.png" />
           <Image Name="startskill1text_0.png" />
           <Image Name="startskill1text_1.png" />
           <Image Name="startskill1text_2.png" />
@@ -997,6 +1006,18 @@
           <Image Name="changevocbtn.png" />
           <Image Name="closebtn.png" />
           <Image Name="closebtn2.png" />
+          <Image Name="cstarbox1_n.png" />
+          <Image Name="cstarbox1_p.png" />
+          <Image Name="cstarbox1_s.png" />
+          <Image Name="cstarbox2_n.png" />
+          <Image Name="cstarbox2_p.png" />
+          <Image Name="cstarbox2_s.png" />
+          <Image Name="cstarbox3_n.png" />
+          <Image Name="cstarbox3_p.png" />
+          <Image Name="cstarbox3_s.png" />
+          <Image Name="cstarcountbox.png" />
+          <Image Name="cstarprogressbar.png" />
+          <Image Name="cstarprogressbarbg.png" />
           <Image Name="d001.png" />
           <Image Name="d002.png" />
           <Image Name="d003.png" />
@@ -1178,6 +1199,10 @@
           <Image Name="makeresbox.png" />
           <Image Name="makerescountbox.png" />
           <Image Name="makeresnamebox.png" />
+          <Image Name="mapnodestarbg.png" />
+          <Image Name="mapnodestarbox.png" />
+          <Image Name="mapstagestar.png" />
+          <Image Name="mapstagestarbg.png" />
           <Image Name="matchbox0.png" />
           <Image Name="matchbox1.png" />
           <Image Name="matchdoingbtn.png" />
@@ -1320,6 +1345,12 @@
           <Image Name="shopitem.png" />
           <Image Name="shopitembg.png" />
           <Image Name="smallstar.png" />
+          <Image Name="stageaddrbox.png" />
+          <Image Name="stagebox.png" />
+          <Image Name="stagebox1.png" />
+          <Image Name="stagetop.png" />
+          <Image Name="starflow1.png" />
+          <Image Name="starflow2.png" />
           <Image Name="strentharrow.png" />
           <Image Name="strenthicon.png" />
           <Image Name="t001.png" />
@@ -1476,6 +1507,8 @@
         <Project Name="fightHeroNode.csd" Type="Node" />
         <Project Name="fightLayer.csd" Type="Layer" />
         <Project Name="fightResultLayer.csd" Type="Layer" />
+        <Project Name="first3starawdLayer.csd" Type="Layer" />
+        <PlistParticleFile Name="first3starp.plist" />
         <Project Name="firstchargeLayer.csd" Type="Layer" />
         <Project Name="gambleBoxLayer.csd" Type="Layer" />
         <Project Name="gfDescLayer.csd" Type="Layer" />
@@ -1557,6 +1590,8 @@
         <Project Name="simpleLayer.csd" Type="Layer" />
         <Project Name="simpleResPopLayer.csd" Type="Layer" />
         <Project Name="smithyLayer.csd" Type="Layer" />
+        <Project Name="starDescLayer.csd" Type="Layer" />
+        <Project Name="stargresultLayer.csd" Type="Layer" />
         <Project Name="storeHouseLayer.csd" Type="Layer" />
         <Image Name="storybg.jpg" />
         <Project Name="storyLayer.csd" Type="Layer" />

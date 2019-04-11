@@ -62,6 +62,83 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="MarkedSubImage" Path="mapui/maptask_icon.png" Plist="mapui.plist" />
           </AbstractNodeData>
+          <AbstractNodeData Name="starbox" ActionTag="-1382703424" Tag="89" IconVisible="False" LeftMargin="-308.9966" RightMargin="113.9966" TopMargin="-74.2621" BottomMargin="21.2621" ctype="SpriteObjectData">
+            <Size X="195.0000" Y="53.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-211.4966" Y="47.7621" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/mapnodestarbox.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="starbg_0" ActionTag="-1330124930" Tag="95" IconVisible="False" LeftMargin="-286.9300" RightMargin="259.9300" TopMargin="-64.2195" BottomMargin="35.2195" ctype="SpriteObjectData">
+            <Size X="27.0000" Y="29.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-273.4300" Y="49.7195" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/mapnodestarbg.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="starbg_1" ActionTag="2054994208" Tag="94" IconVisible="False" LeftMargin="-210.6941" RightMargin="183.6941" TopMargin="-64.2196" BottomMargin="35.2196" ctype="SpriteObjectData">
+            <Size X="27.0000" Y="29.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-197.1941" Y="49.7196" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/mapnodestarbg.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="starbg_2" ActionTag="-189144273" Tag="93" IconVisible="False" LeftMargin="-248.8096" RightMargin="221.8096" TopMargin="-64.2195" BottomMargin="35.2195" ctype="SpriteObjectData">
+            <Size X="27.0000" Y="29.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-235.3096" Y="49.7195" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/mapnodestarbg.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="star0" ActionTag="-1237662888" Tag="92" IconVisible="False" LeftMargin="-297.4298" RightMargin="249.4298" TopMargin="-73.0000" BottomMargin="27.0000" ctype="SpriteObjectData">
+            <Size X="48.0000" Y="46.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-273.4298" Y="50.0000" />
+            <Scale ScaleX="0.6500" ScaleY="0.6500" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/mapstagestar.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="star1" ActionTag="1754087941" Tag="91" IconVisible="False" LeftMargin="-259.3099" RightMargin="211.3099" TopMargin="-73.0000" BottomMargin="27.0000" ctype="SpriteObjectData">
+            <Size X="48.0000" Y="46.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-235.3099" Y="50.0000" />
+            <Scale ScaleX="0.6500" ScaleY="0.6500" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/mapstagestar.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="star2" ActionTag="1499613892" Tag="90" IconVisible="False" LeftMargin="-221.1900" RightMargin="173.1900" TopMargin="-73.0000" BottomMargin="27.0000" ctype="SpriteObjectData">
+            <Size X="48.0000" Y="46.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-197.1900" Y="50.0000" />
+            <Scale ScaleX="0.6500" ScaleY="0.6500" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/mapstagestar.png" Plist="ui.plist" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

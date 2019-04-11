@@ -14,6 +14,8 @@
 #include "MyRes.h"
 #include "ResDescLayer.h"
 #include "AnimationEffect.h"
+#include "StarDescLayer.h"
+#include "StarFrist3AwdLayer.h"
 
 USING_NS_CC;
 
@@ -69,8 +71,8 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 	backbtn->addTouchEventListener(CC_CALLBACK_2(SelectSubMapLayer::onBtnClick, this));
 
 	//按钮文字
-	cocos2d::ui::ImageView* backbtntxt = (cocos2d::ui::ImageView*)backbtn->getChildByName("text");
-	backbtntxt->loadTexture(ResourcePath::makeTextImgPath("backbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	//cocos2d::ui::ImageView* backbtntxt = (cocos2d::ui::ImageView*)backbtn->getChildByName("text");
+	//backbtntxt->loadTexture(ResourcePath::makeTextImgPath("backbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scrollview");
 	scrollView->setScrollBarEnabled(false);
@@ -80,15 +82,18 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 
 	int size = GlobalInstance::map_mapsdata[mainmapid].map_sublist.size();
 
-	if (size > 5)
-	{
-		morearrow->setVisible(true);
-		morearrow->runAction(RepeatForever::create(Blink::create(1, 8)));
-	}
-	else
-	{
-		morearrow->setVisible(false);
-	}
+	//if (size > 5)
+	//{
+	//	morearrow->setVisible(true);
+	//	morearrow->runAction(RepeatForever::create(Blink::create(1, 8)));
+	//}
+	//else
+	//{
+	//	morearrow->setVisible(false);
+	//}
+	morearrow->setVisible(false);
+
+	starAwdNode = csbnode->getChildByName("starnode");
 
 	int itemheight = 170;
 	int innerheight = itemheight * size;
@@ -159,11 +164,31 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 		}
 
 		i++;
+
+		std::vector<std::string> vec_finishstar;
+
+		CommonFuncs::split(DataSave::getInstance()->getFinishStar(it->first), vec_finishstar, ",");
+
+		for (unsigned int n = 0; n < 3; n++)
+		{
+			std::string starname = StringUtils::format("star%d", n);
+			Node* star = subnode->getChildByName(starname);
+
+			if (n < vec_finishstar.size())
+			{
+				star->setVisible(true);
+			}
+			else
+			{
+				star->setVisible(false);
+			}
+		}
 	}
 
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 	desclbl->setString(GlobalInstance::map_AllResources[mainmapid].desc);
 
+	showCStarAwdUI();
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -242,80 +267,87 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 		std::string mapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag());
 		showCloudAnim(clicknode->getParent()->getParent(), clicknode->getParent()->getPosition());
 
-		int needph = GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].ph;
-		bool isphok = true;
+		GlobalInstance::eventfrommapid = "";
+		GlobalInstance::eventstartmappos = -1;
 
-		std::string nohpherostr;
-		int nohpcount = 0;
-		for (int i=0;i<6;i++)
+		if (m_mainmapid.compare("m1-5") == 0)
 		{
-			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getPower().getValue() < needph)
+			int needph = GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].ph;
+			bool isphok = true;
+
+			std::string nohpherostr;
+			int nohpcount = 0;
+			for (int i = 0; i < 6; i++)
 			{
-				nohpcount++;
-				if (nohpherostr.length() > 0)
-					nohpherostr.append(ResourceLang::map_lang["dunhao"]);
-				if (nohpcount <= 3)
-					nohpherostr.append(GlobalInstance::myCardHeros[i]->getName());
+				if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getPower().getValue() < needph)
+				{
+					nohpcount++;
+					if (nohpherostr.length() > 0)
+						nohpherostr.append(ResourceLang::map_lang["dunhao"]);
+					if (nohpcount <= 3)
+						nohpherostr.append(GlobalInstance::myCardHeros[i]->getName());
+					else
+					{
+						nohpherostr.append("...");
+						break;
+					}
+					isphok = false;
+				}
+			}
+			if (isphok)
+			{
+
+				DynamicValueInt dv;
+				for (int i = 0; i < 6; i++)
+				{
+					if (GlobalInstance::myCardHeros[i] != NULL)
+					{
+						if (GlobalInstance::myCardHeros[i]->getPower().getValue() >= 100)
+							GlobalInstance::myCardHeros[i]->setPowerTime(GlobalInstance::servertime);
+
+						dv.setValue(GlobalInstance::myCardHeros[i]->getPower().getValue() - needph);
+						GlobalInstance::myCardHeros[i]->setPower(dv);
+						GlobalInstance::getInstance()->saveHero(GlobalInstance::myCardHeros[i]);
+					}
+				}
+
+				clicknode->setEnabled(false);
+
+				isentermap = true;
+				GlobalInstance::ishasmazeentry = false;
+				Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MapBlockScene::createScene(mapid, GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].bgtype)));
+
+			}
+			else
+			{
+				nohpherostr = nohpherostr.substr(0, nohpherostr.length());
+				nohpherostr.append(ResourceLang::map_lang["nomorehp"]);
+				MovingLabel::show(nohpherostr);
+
+				if (MyRes::getMyResCount("p001", MYSTORAGE) > 0)
+				{
+					ResDescLayer* layer = ResDescLayer::create(MyRes::getMyRes("p001", MYSTORAGE), 0);
+					this->addChild(layer, 0, 1111);
+					AnimationEffect::openAniEffect((Layer*)layer);
+				}
 				else
 				{
-					nohpherostr.append("...");
-					break;
-				}
-				isphok = false;
-			}
-		}
-		if (isphok)
-		{
-
-			DynamicValueInt dv;
-			for (int i = 0; i<6; i++)
-			{
-				if (GlobalInstance::myCardHeros[i] != NULL)
-				{
-					if (GlobalInstance::myCardHeros[i]->getPower().getValue() >= 100)
-						GlobalInstance::myCardHeros[i]->setPowerTime(GlobalInstance::servertime);
-
-					dv.setValue(GlobalInstance::myCardHeros[i]->getPower().getValue() - needph);
-					GlobalInstance::myCardHeros[i]->setPower(dv);
-					GlobalInstance::getInstance()->saveHero(GlobalInstance::myCardHeros[i]);
+					std::vector< MSGAWDSDATA> vec_res;
+					MSGAWDSDATA rdata;
+					rdata.rid = "p001";
+					rdata.count = 1;
+					rdata.qu = 0;
+					vec_res.push_back(rdata);
+					BuyResLayer* layer = BuyResLayer::create(vec_res);
+					this->addChild(layer);
 				}
 			}
-			clicknode->setEnabled(false);
-
-			isentermap = true;
-			GlobalInstance::eventfrommapid = "";
-			GlobalInstance::eventstartmappos = -1;
-
-			if (m_mainmapid.compare("m1-5") == 0)
-				GlobalInstance::ishasmazeentry = false;
-			else
-				GlobalInstance::ishasmazeentry = GlobalInstance::getInstance()->createRandomNum(100) < 50 ? true : false;
-			
-			Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MapBlockScene::createScene(mapid, GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].bgtype)));
 		}
 		else
 		{
-			nohpherostr = nohpherostr.substr(0, nohpherostr.length());
-			nohpherostr.append(ResourceLang::map_lang["nomorehp"]);
-			MovingLabel::show(nohpherostr);
-
-			if (MyRes::getMyResCount("p001", MYSTORAGE) > 0)
-			{
-				ResDescLayer* layer = ResDescLayer::create(MyRes::getMyRes("p001", MYSTORAGE), 0);
-				this->addChild(layer, 0, 1111);
-				AnimationEffect::openAniEffect((Layer*)layer);
-			}
-			else
-			{
-				std::vector< MSGAWDSDATA> vec_res;
-				MSGAWDSDATA rdata;
-				rdata.rid = "p001";
-				rdata.count = 1;
-				rdata.qu = 0;
-				vec_res.push_back(rdata);
-				BuyResLayer* layer = BuyResLayer::create(vec_res);
-				this->addChild(layer);
-			}
+			StarDescLayer* layer = StarDescLayer::create(mapid);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
 		}
 	}
 }
@@ -332,4 +364,121 @@ void SelectSubMapLayer::showCloudAnim(Node* target, Vec2 pos)
 	cloud2->setPosition(pos);
 	target->addChild(cloud2);
 	cloud2->runAction(Spawn::create(MoveBy::create(1.0f, Vec2(-150, 0)), FadeOut::create(1.5f), NULL));
+}
+
+void SelectSubMapLayer::showCStarAwdUI()
+{
+	mychapterstar = 0;
+
+	curchapter = atoi(m_mainmapid.substr(1, m_mainmapid.find_first_of("-") - 1).c_str());
+
+	std::string findstr = StringUtils::format("jhstarm%d", curchapter);
+
+	tinyxml2::XMLDocument *pDoc = new tinyxml2::XMLDocument();
+
+	std::string content = GlobalInstance::getInstance()->getUserDefaultXmlString(1);
+
+	int err = pDoc->Parse(content.c_str());
+	if (err != 0)
+	{
+		delete pDoc;
+	}
+	tinyxml2::XMLElement *rootEle = pDoc->RootElement();
+
+	tinyxml2::XMLElement *element = rootEle->FirstChildElement();
+	while (element != NULL)
+	{
+		std::string key = element->Name();
+		
+		if (key.find(findstr) != std::string::npos)
+		{
+			if (element->GetText() != NULL)
+			{
+				std::string textstr = element->GetText();
+				std::vector<std::string> vec_tmp;
+				CommonFuncs::split(textstr, vec_tmp, ",");
+				mychapterstar += vec_tmp.size();
+			}
+		}
+		element = element->NextSiblingElement();
+	}
+
+	int totalstars = GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_starnum[2];
+	for (int i = 0; i < 3; i++)
+	{
+		std::string ukey = StringUtils::format("box%d", i);
+		cocos2d::ui::ImageView* box = (cocos2d::ui::ImageView*)starAwdNode->getChildByName(ukey);
+
+
+		int starcount = GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_starnum[i];
+		int state = GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_getstate[i];
+		if (mychapterstar >= starcount)
+		{
+			std::string boxstr;
+			if (state == 0)
+			{
+				boxstr = StringUtils::format("ui/cstarbox%d_s.png", curchapter);
+				box->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 7), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -7), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
+			}
+			else if (state == 1)
+			{
+				boxstr = StringUtils::format("ui/cstarbox%d_p.png", curchapter);
+			}
+			box->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
+		}
+		ukey = StringUtils::format("c%d", i);
+
+		box->setTag(i);
+		box->addTouchEventListener(CC_CALLBACK_2(SelectSubMapLayer::onAwdBoxClick, this));
+
+		cocos2d::ui::Text* starcountlbl = (cocos2d::ui::Text*)starAwdNode->getChildByName(ukey);
+
+		std::string countstr = StringUtils::format("%d", starcount);
+		starcountlbl->setString(countstr);
+	}
+
+	cocos2d::ui::LoadingBar* bar = (cocos2d::ui::LoadingBar*)starAwdNode->getChildByName("bar");
+	bar->setPercent(mychapterstar*100 / totalstars);
+}
+
+void SelectSubMapLayer::onAwdBoxClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		cocos2d::ui::ImageView* clicknode = (cocos2d::ui::ImageView*)pSender;
+
+		int boxindex = clicknode->getTag();
+		int state = GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_getstate[boxindex];
+		if (state == 0)
+		{
+			if (mychapterstar < GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_starnum[boxindex])
+			{
+				MovingLabel::show(ResourceLang::map_lang["cnostar"], Color4B(Color3B(255, 229, 188)), Vec2(360, 300));
+			}
+			else
+			{
+				GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_getstate[boxindex] = 1;
+				clicknode->stopAllActions();
+				clicknode->setRotation(0);
+				std::string boxstr = StringUtils::format("ui/cstarbox%d_p.png", curchapter);
+				clicknode->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
+				StarFrist3AwdLayer* layer = StarFrist3AwdLayer::create(GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_adws[boxindex][0]);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
+				std::string savestr;
+
+				for (int i = 0; i < 3; i++)
+				{
+					std::string onestr = StringUtils::format("%d", GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_getstate[i]);
+					savestr.append(onestr);
+				}
+				DataSave::getInstance()->setChapterStarAwd(curchapter, savestr);
+			}
+		}
+		else if (state == 1)
+		{
+			MovingLabel::show(ResourceLang::map_lang["cstarawdgeted"], Color4B(Color3B(255, 229, 188)), Vec2(360, 300));
+		}
+	}
 }

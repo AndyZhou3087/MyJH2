@@ -525,6 +525,9 @@ void LoadingScene::parseCfgFiles()
 	//加载好友数据
 	GlobalInstance::getInstance()->loadNpcFriendly();
 
+	//加载每章节星奖奖励数据
+	GlobalInstance::getInstance()->loadChapterStarAwds();
+
 	//本地英雄加上ID兼容上一个版本
 	addHeroId();
 

@@ -597,6 +597,28 @@
       <FilePathData Path="ui/rebategetbtn_d.png" />
       <FilePathData Path="ui/u002.png" />
       <FilePathData Path="ui/b005.png" />
+      <FilePathData Path="ui/stageaddrbox.png" />
+      <FilePathData Path="ui/stagebox.png" />
+      <FilePathData Path="ui/stagebox1.png" />
+      <FilePathData Path="ui/stagetop.png" />
+      <FilePathData Path="ui/mapstagestar.png" />
+      <FilePathData Path="ui/mapstagestarbg.png" />
+      <FilePathData Path="ui/starflow1.png" />
+      <FilePathData Path="ui/starflow2.png" />
+      <FilePathData Path="ui/mapnodestarbg.png" />
+      <FilePathData Path="ui/mapnodestarbox.png" />
+      <FilePathData Path="ui/cstarbox1_n.png" />
+      <FilePathData Path="ui/cstarbox1_p.png" />
+      <FilePathData Path="ui/cstarbox1_s.png" />
+      <FilePathData Path="ui/cstarbox2_n.png" />
+      <FilePathData Path="ui/cstarbox2_p.png" />
+      <FilePathData Path="ui/cstarbox2_s.png" />
+      <FilePathData Path="ui/cstarbox3_n.png" />
+      <FilePathData Path="ui/cstarbox3_p.png" />
+      <FilePathData Path="ui/cstarbox3_s.png" />
+      <FilePathData Path="ui/cstarcountbox.png" />
+      <FilePathData Path="ui/cstarprogressbar.png" />
+      <FilePathData Path="ui/cstarprogressbarbg.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

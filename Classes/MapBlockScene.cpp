@@ -32,6 +32,8 @@
 #include "BuySingleResLayer.h"
 #include "MazeDescLayer.h"
 #include "BuySelectLayer.h"
+#include "StarResultLayer.h"
+#include "CannotTouchLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -65,6 +67,8 @@ MapBlockScene::MapBlockScene()
 	isMaze = false;
 	buildfocus = NULL;
 	mapAllOpenFog = NULL;
+
+	totalBoxcount = 0;
 }
 
 
@@ -1195,6 +1199,8 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 		{
 			checkFood();
 		}
+
+		calcStar(SA_GOSTEP);
 	}
 }
 
@@ -1713,6 +1719,7 @@ void MapBlockScene::doMyStatus()
 			MapEventLayer* mlayer = MapEventLayer::create(ret);
 			this->addChild(mlayer);
 			AnimationEffect::openAniEffect((Layer*)mlayer);
+			calcStar(SA_EVENT);
 		}
 		else
 		{
@@ -1780,6 +1787,7 @@ void MapBlockScene::doMyStatus()
 			MyRes::Add("z002", 10, MYPACKAGE);
 			std::string contentstr = StringUtils::format(ResourceLang::map_lang["newtemplet7"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str());
 			MainScene::addNews(contentstr, 2);
+			calcStar(SA_ENTERMAZE);
 			return;
 		}
 
@@ -2151,12 +2159,17 @@ void MapBlockScene::showFightResult(int result)
 			Quest::finishTaskMain();
 			//showUnlockChapter();
 
+			calcStar(SA_FINISH_MAINTASK);
 		}
 		else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(mapblock->getPosNpcID()) && (mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS || mapblock->getPosType() == POS_NPC))
 		{
 			Quest::finishTaskBranch();
+			calcStar(SA_FINISH_BRANCHTASK);
 		}
 		Quest::setAchieveTypeCount(ACHIEVE_FIGHT, 1, mapblock->getPosNpcID());
+
+		if (GlobalInstance::npcmasterfinish != 1)
+			calcStar(SA_FIGHTSUCC);
 
 		isMoving = true;
 		int bindex = (mycurRow)*blockColCount + mycurCol;
@@ -2304,6 +2317,7 @@ void MapBlockScene::delayShowFightResult(float dt)
 	int winexp = 0;
 	if (count > 0)
 		winexp = getWinExp() / count;
+
 	FightingResultLayer* FRlayer = FightingResultLayer::create(vec_winrewards, winexp);
 	this->addChild(FRlayer);
 	AnimationEffect::openAniEffect((Layer*)FRlayer);
@@ -2317,7 +2331,21 @@ void MapBlockScene::delayShowFightResult(float dt)
 		}
 	}
 	isMoving = false;
+
+	if (winexp <= 0)
+	{
+		CannotTouchLayer* notTouchLayer = CannotTouchLayer::create();
+		this->addChild(notTouchLayer, 1, "cannottouchlayer");
+		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowStarResult), 0.5f);
+	}
 }
+
+void MapBlockScene::delayShowStarResult(float dt)
+{
+	checkShowStarUi(1);
+	this->removeChildByName("cannottouchlayer");
+}
+
 void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	if (type == ui::Widget::TouchEventType::BEGAN)
@@ -2347,6 +2375,8 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 				Node* focus = torchbtn->getChildByName("focus");
 				focus->stopAllActions();
 				focus->setVisible(false);
+
+				calcStar(SA_USETORCH);
 			}
 			else if (usingprop == MAP_USEINGTRANSER)
 			{
@@ -2617,9 +2647,14 @@ void MapBlockScene::parseMapXml(std::string mapname)
 					}
 					else if (postype == POS_BOX)
 					{
+						totalBoxcount++;
 						//v2.01版本之前是用行列计算宝箱位置，领取后不可领取，后期修改位置会重复领取，现在加入序号
 						mb->setPosType(postype);
 						vec_boxblock.push_back(mb);
+					}
+					else if (postype >= POS_NPC && postype <= POS_TBOSS)
+					{
+						vec_npcOrBossBlocks.push_back(mb);
 					}
 					if ((postype > POS_START && postype < POS_MAZETRANS) || postype == POS_MAZEENTRY)
 					{
@@ -2931,4 +2966,144 @@ void MapBlockScene::setBlockRange()
 		}
 		rit++;
 	}
+}
+
+void MapBlockScene::calcStar(int ctype)
+{
+	if (!isMaze && !isNewerGuideMap)
+	{
+		bool isfind = false;
+		for (unsigned int i = 0; i < GlobalInstance::vec_stardata.size(); i++)
+		{
+			if (GlobalInstance::vec_stardata[i].sid == ctype)
+			{
+				GlobalInstance::vec_stardata[i].finishcount++;
+				if (GlobalInstance::vec_stardata[i].finishcount == GlobalInstance::vec_stardata[i].needcount)
+				{
+					std::string str = DataSave::getInstance()->getFinishStar(m_mapid);
+					if (str.length() > 0)
+						str.append(",");
+					std::string  fstr = StringUtils::format("%d", ctype);
+					str.append(fstr);
+					DataSave::getInstance()->setFinishStar(m_mapid, str);
+				}
+				break;
+			}
+		}
+	}
+}
+
+void MapBlockScene::checkotherstar() 
+{
+	if (!isMaze && !isNewerGuideMap)
+	{
+		int boxcount = 0;
+		tinyxml2::XMLDocument *pDoc = new tinyxml2::XMLDocument();
+
+		std::string content = GlobalInstance::getInstance()->getUserDefaultXmlString(1);
+
+		int err = pDoc->Parse(content.c_str());
+		if (err != 0)
+		{
+			delete pDoc;
+		}
+		tinyxml2::XMLElement *rootEle = pDoc->RootElement();
+
+		tinyxml2::XMLElement *element = rootEle->FirstChildElement();
+		while (element != NULL)
+		{
+			std::string key = element->Name();
+
+			if (key.find("jhbrm") != std::string::npos)
+			{
+				boxcount++;
+			}
+			element = element->NextSiblingElement();
+		}
+
+		if (boxcount >= totalBoxcount)
+		{
+			calcStar(SA_GETALLBOX);
+		}
+
+		int liveherocount = 0;
+
+		for (int i = 0; i < 6; i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
+				liveherocount++;
+		}
+		if (GlobalInstance::takeoutherocount == liveherocount)
+		{
+			calcStar(SA_NODEATH);
+		}
+
+		std::string str = DataSave::getInstance()->getMapVisibleArea(m_mapid);
+
+		std::vector<std::string> vec_cfg;
+		CommonFuncs::split(str, vec_cfg, ";");
+
+
+		if (vec_cfg.size() >= 2)
+		{
+			if (vec_cfg[0].compare("-1") == 0)
+			{
+				calcStar(SA_USEALLOPEN);
+			}
+		}
+
+		for (unsigned int i = 0; i < vec_npcOrBossBlocks.size(); i++)
+		{
+			std::string npcid = vec_npcOrBossBlocks[i]->getPosNpcID();
+
+			std::map<std::string, NpcFriendly>::iterator it;
+
+			for (it = GlobalInstance::map_myfriendly.begin(); it != GlobalInstance::map_myfriendly.end(); ++it)
+			{
+				std::string nid = it->first;
+				if (npcid.compare(nid) == 0)
+				{
+					for (unsigned int i = 0; i < it->second.relation.size(); i++)
+					{
+						if (it->second.relation[i] == NPC_FRIEND)
+						{
+							calcStar(SA_BEFRIEND);
+						}
+						else if (it->second.relation[i] == NPC_MASTER)
+						{
+							calcStar(SA_BEMASTER);
+						}
+						else if (it->second.relation[i] == NPC_COUPEL)
+						{
+							calcStar(SA_BECOMPLE);
+						}
+					}
+				}
+			}
+
+		}
+	}
+}
+
+bool MapBlockScene::checkShowStarUi(int cwhere)
+{
+	checkotherstar();
+
+	int star = 0;
+	for (unsigned int i = 0; i < GlobalInstance::vec_stardata.size(); i++)
+	{
+		if (GlobalInstance::vec_stardata[i].finishcount >= GlobalInstance::vec_stardata[i].needcount)
+		{
+			star++;
+		}
+	}
+	if (star > GlobalInstance::curMapFinishStars)
+	{
+		StarResultLayer* layer = StarResultLayer::create(m_mapid, cwhere);
+		this->addChild(layer, 1);
+		AnimationEffect::openAniEffect(layer);
+
+		return true;
+	}
+	return false;
 }

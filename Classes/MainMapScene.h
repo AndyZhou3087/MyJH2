@@ -19,7 +19,7 @@ public:
 	virtual bool init();
 
 	virtual void onExit();
-
+	virtual void onEnterTransitionDidFinish();
 	static cocos2d::Scene* createScene();
 
 	void showNewerGuide(int step, Node* node);
@@ -27,6 +27,7 @@ public:
 
 private:
 	CREATE_FUNC(MainMapScene);
+
 	/****************************
 	点击地名
 	*****************************/

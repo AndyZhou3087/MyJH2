@@ -9,12 +9,12 @@ Node* MovingLabel::lastRunningScene = NULL;
 
 MovingLabel::MovingLabel()
 {
-
+	mlbl = NULL;
 }
 
 MovingLabel::~MovingLabel()
 {
-
+	mlbl = NULL;
 }
 
 void MovingLabel::show(std::string text, Color4B color, Vec2 pos, Node* parent)
@@ -27,7 +27,7 @@ void MovingLabel::show(std::string text, Color4B color, Vec2 pos, Node* parent)
 
 	if (queue_labels.size() <= 5)
 	{
-		if (queue_labels.size() > 0 && queue_labels.back()->mlbl->getString().compare(text) == 0)
+		if (queue_labels.size() > 0 && queue_labels.back()->mlbl != NULL && queue_labels.back()->mlbl->getString().compare(text) == 0)
 			return;
 
 		MovingLabel* label = MovingLabel::create(text, color, pos);
