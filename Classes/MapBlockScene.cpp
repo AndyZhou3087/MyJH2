@@ -69,6 +69,10 @@ MapBlockScene::MapBlockScene()
 	mapAllOpenFog = NULL;
 
 	totalBoxcount = 0;
+
+	astarrouting = NULL;
+
+	iscfgmazeentry = false;
 }
 
 
@@ -76,6 +80,12 @@ MapBlockScene::~MapBlockScene()
 {
 	GlobalInstance::getInstance()->recoveCardHeroMaxHp();
 	g_MapBlockScene = NULL;
+
+	if (astarrouting != NULL)
+	{
+		delete astarrouting;
+		astarrouting = NULL;
+	}
 
 }
 
@@ -171,6 +181,8 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	solivercountlbl = (cocos2d::ui::Text*)topnode->getChildByName("solivercountlbl");
 
 	sitelbl = (cocos2d::ui::Text*)topnode->getChildByName("site");
+
+	sitetext = (cocos2d::ui::Text*)topnode->getChildByName("sitetext");
 
 	int vsionLv = MyRes::getMyResCount("v001", MYSTORAGE);
 
@@ -457,6 +469,8 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 		isNewerGuideMap = true;
 	}
 
+	astarrouting = new AstarRouting(blockColCount, blockRowCount);
+
 	return true;
 }
 
@@ -498,7 +512,7 @@ void MapBlockScene::onEnterTransitionDidFinish()
 		this->addChild(layer, 10000);
 	}
 
-	if (GlobalInstance::ishasmazeentry)
+	if (GlobalInstance::ishasmazeentry && iscfgmazeentry)
 	{
 		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowMazeHint), 1.0f);
 	}
@@ -1724,12 +1738,18 @@ void MapBlockScene::doMyStatus()
 		else
 		{
 			status = MAP_S_NOTING;
+			sitetext->stopAllActions();
 		}
 	}
 	else
 	{
 		vec_enemys.clear();
 		vec_winrewards.clear();
+
+		if (mapblock->getPosType() != POS_NOTHING)
+		{
+			sitetext->stopAllActions();
+		}
 		if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS)
 		{
 			if (mapblock->getPosType() == POS_BOSS)
@@ -2351,8 +2371,9 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		if (usingprop == -1 && !isMaze)
-			return;
+		//if (usingprop == -1 && !isMaze)
+		//	return;
+
 		if (isDraging)
 		{
 			isDraging = false;
@@ -2424,6 +2445,10 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 					MovingLabel::show(ResourceLang::map_lang["cannottransdesc"]);
 				}
 			}
+			else
+			{
+				astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(tag % blockColCount, tag/blockColCount));
+			}
 
 		}
 		else
@@ -2445,6 +2470,7 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			else
 			{
 				buildfocus->setVisible(false);
+				astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(tag % blockColCount, tag / blockColCount));
 			}
 		}
 	}
@@ -2784,8 +2810,12 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						if (r >= mb->getPosNpcRnd())
 							showPosIcon = false;
 
-						if (postype == POS_MAZEENTRY && GlobalInstance::ishasmazeentry)
-							showPosIcon = true;
+						if (postype == POS_MAZEENTRY)
+						{
+							iscfgmazeentry = true;
+							if (GlobalInstance::ishasmazeentry)
+								showPosIcon = true;
+						}
 
 						if (showPosIcon)
 						{
@@ -3119,4 +3149,46 @@ bool MapBlockScene::checkShowStarUi(int cwhere)
 		return true;
 	}
 	return false;
+}
+
+bool MapBlockScene::isValidAtWallColRow(Vec2& colrow)
+{
+	if (colrow.x < 0 || colrow.y < 0 ||
+		colrow.x >= blockColCount ||
+		colrow.y >= blockRowCount) {
+		return false;
+	}
+	else
+	{
+		if (map_mapBlocks[colrow.y * blockColCount + colrow.x]->getWalkable())
+			return true;
+		else
+			return false;
+	}
+}
+
+void MapBlockScene::goToDest(int row, int col)
+{
+	if (row > mycurRow && mycurCol == col)
+	{
+		//上；
+		go(KEY_UP);
+	}
+	else if (row < mycurRow && mycurCol == col)
+	{
+		go(KEY_DOWN);
+	}
+	else if (row == mycurRow && col < mycurCol)
+	{
+		go(KEY_LEFT);
+	}
+	else if (row == mycurRow && col > mycurCol)
+	{
+		go(KEY_RIGHT);
+	}
+}
+
+Node* MapBlockScene::getRoutingAnimNode()
+{
+	return sitetext;
 }

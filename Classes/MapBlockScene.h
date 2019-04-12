@@ -12,6 +12,7 @@
 #include "MapBlock.h"
 #include "FightHeroNode.h"
 #include "GlobalInstance.h"
+#include "AstarRouting.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -107,6 +108,12 @@ public:
 	void checkotherstar();
 
 	bool checkShowStarUi(int cwhere);//cwhere 0--无食物死亡；1--战斗死亡；2--回主城；3--回地图
+
+	bool isValidAtWallColRow(Vec2& colrow);
+
+	void goToDest(int row, int col);
+
+	Node* getRoutingAnimNode();
 
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
@@ -223,6 +230,7 @@ private:
 	cocos2d::ui::Text* foodcountlbl;
 	cocos2d::ui::Text* solivercountlbl;
 	cocos2d::ui::Text* sitelbl;
+	cocos2d::ui::Text* sitetext;
 	cocos2d::ui::ImageView* taskclick;
 	cocos2d::ui::Text* textmain;
 	cocos2d::ui::Text* textbranch;
@@ -295,6 +303,9 @@ private:
 	std::vector<MapBlock*> vec_boxblock;//宝箱地图块
 	std::map<int, std::vector<MapBlock*>> map_rangeblocks;
 	int totalBoxcount;
+	AstarRouting* astarrouting;
+
+	bool iscfgmazeentry;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif
