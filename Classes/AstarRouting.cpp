@@ -189,12 +189,12 @@ ssize_t AstarRouting::getStepIndex(const ShortestPathStep* step,const cocos2d::V
 
 int AstarRouting::moveCostFromCurrentToNextStep(ShortestPathStep* current, ShortestPathStep* next)
 {
-	//auto offent = next->getPosition() - current->getPosition();
-	//if(offent.x == 0 || offent.y == 0)
-	//	return 10;
-	//else 
-	//	return 14;
-	return 0;
+	auto offent = next->getPos() - current->getPos();
+	if(offent.x == 0 || offent.y == 0)
+		return 10;
+	else 
+		return 14;
+	//return 0;
 
 //	return ((current->getPosition().x != next->getPosition().x )
 //		&&(current->getPosition().y != next->getPosition().y))? 14 : 10;
