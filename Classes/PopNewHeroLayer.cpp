@@ -58,6 +58,7 @@ bool PopNewHeroLayer::init(Hero* hero)
 
 	//名字
 	namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
+	namelbl->setString(hero->getName());
 
 	//职业
 	vocationtextlbl = (cocos2d::ui::Text*)csbnode->getChildByName("vocationtext");
