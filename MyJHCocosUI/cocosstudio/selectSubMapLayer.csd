@@ -116,8 +116,8 @@
               </AbstractNodeData>
               <AbstractNodeData Name="bar" ActionTag="-1799841587" Tag="108" IconVisible="False" LeftMargin="-306.5000" RightMargin="-306.5000" TopMargin="-10.0000" BottomMargin="-10.0000" ProgressInfo="100" ctype="LoadingBarObjectData">
                 <Size X="613.0000" Y="20.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="-306.5000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />

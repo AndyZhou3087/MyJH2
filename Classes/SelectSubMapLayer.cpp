@@ -402,43 +402,73 @@ void SelectSubMapLayer::showCStarAwdUI()
 		}
 		element = element->NextSiblingElement();
 	}
+	cocos2d::ui::LoadingBar* bar = (cocos2d::ui::LoadingBar*)starAwdNode->getChildByName("bar");
+	int sectionstarposx[3] = {0};
+
+	int starinindex = 0;
 
 	int totalstars = GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_starnum[2];
 	for (int i = 0; i < 3; i++)
 	{
 		std::string ukey = StringUtils::format("box%d", i);
-		cocos2d::ui::ImageView* box = (cocos2d::ui::ImageView*)starAwdNode->getChildByName(ukey);
+		box[i] = (cocos2d::ui::ImageView*)starAwdNode->getChildByName(ukey);
 
 
 		int starcount = GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_starnum[i];
 		int state = GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_getstate[i];
 		if (mychapterstar >= starcount)
 		{
+			starinindex = i + 1;
 			std::string boxstr;
 			if (state == 0)
 			{
 				boxstr = StringUtils::format("ui/cstarbox%d_s.png", curchapter);
-				box->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 7), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -7), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
+				box[i]->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 7), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -7), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
 			}
 			else if (state == 1)
 			{
 				boxstr = StringUtils::format("ui/cstarbox%d_p.png", curchapter);
 			}
-			box->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
+			box[i]->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 		ukey = StringUtils::format("c%d", i);
 
-		box->setTag(i);
-		box->addTouchEventListener(CC_CALLBACK_2(SelectSubMapLayer::onAwdBoxClick, this));
+		box[i]->setTag(i);
+		box[i]->addTouchEventListener(CC_CALLBACK_2(SelectSubMapLayer::onAwdBoxClick, this));
 
 		cocos2d::ui::Text* starcountlbl = (cocos2d::ui::Text*)starAwdNode->getChildByName(ukey);
 
 		std::string countstr = StringUtils::format("%d", starcount);
 		starcountlbl->setString(countstr);
+
+		int lastposx = 0;
+		if (i == 0)
+			lastposx = bar->getPositionX();
+		else
+			lastposx = box[i - 1]->getPositionX();
+		sectionstarposx[i] = (box[i]->getPositionX() - lastposx);
 	}
 
-	cocos2d::ui::LoadingBar* bar = (cocos2d::ui::LoadingBar*)starAwdNode->getChildByName("bar");
-	bar->setPercent(mychapterstar*100 / totalstars);
+	if (starinindex >= 3)
+		starinindex = 2;
+
+	if (starinindex == 0)
+	{
+		float posx = mychapterstar * sectionstarposx[0] / GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_starnum[0];
+		bar->setPercent(posx*100 / bar->getContentSize().width);
+	}
+	else
+	{
+		int p0 = GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_starnum[starinindex] - GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_starnum[starinindex - 1];
+		int p1 = mychapterstar - GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_starnum[starinindex - 1];
+
+		float p = p1* sectionstarposx[starinindex] / p0;
+		for (int t = 0; t < starinindex; t++)
+		{
+			p += sectionstarposx[t];
+		}
+		bar->setPercent(p*100 / bar->getContentSize().width);
+	}
 }
 
 void SelectSubMapLayer::onAwdBoxClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

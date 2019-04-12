@@ -2158,13 +2158,10 @@ void MapBlockScene::showFightResult(int result)
 		{
 			Quest::finishTaskMain();
 			//showUnlockChapter();
-
-			calcStar(SA_FINISH_MAINTASK);
 		}
 		else if (Quest::getBranchQuestMap(m_mapid) && Quest::getBranchQuestNpc(mapblock->getPosNpcID()) && (mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS || mapblock->getPosType() == POS_NPC))
 		{
 			Quest::finishTaskBranch();
-			calcStar(SA_FINISH_BRANCHTASK);
 		}
 		Quest::setAchieveTypeCount(ACHIEVE_FIGHT, 1, mapblock->getPosNpcID());
 
@@ -3038,6 +3035,23 @@ void MapBlockScene::checkotherstar()
 			calcStar(SA_NODEATH);
 		}
 
+		for (unsigned int i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
+		{
+			if (GlobalInstance::vec_TaskMain[i].place.compare(m_mapid) == 0 && GlobalInstance::vec_TaskMain[i].isfinish >= QUEST_FINISH)
+			{
+				calcStar(SA_FINISH_MAINTASK);
+				break;
+			}
+		}
+		for (unsigned int i = 0; i < GlobalInstance::vec_TaskBranch.size(); i++)
+		{
+			if (GlobalInstance::vec_TaskBranch[i].place.compare(m_mapid) == 0 && GlobalInstance::vec_TaskBranch[i].isfinish >= QUEST_FINISH)
+			{
+				calcStar(SA_FINISH_BRANCHTASK);
+				break;
+			}
+		}
+
 		std::string str = DataSave::getInstance()->getMapVisibleArea(m_mapid);
 
 		std::vector<std::string> vec_cfg;
@@ -3080,7 +3094,6 @@ void MapBlockScene::checkotherstar()
 					}
 				}
 			}
-
 		}
 	}
 }

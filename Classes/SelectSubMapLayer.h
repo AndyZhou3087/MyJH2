@@ -34,6 +34,7 @@ private:
 	int curchapter;
 	int mychapterstar;
 	Node* starAwdNode;
+	cocos2d::ui::ImageView* box[3];
 };
 
 #endif
