@@ -61,7 +61,7 @@ void MapBlock::setBuilding(std::string buildname)
 		buildblock->setAnchorPoint(Vec2(0, 1));
 		buildblock->setPosition(Vec2(Col*MAPBLOCKWIDTH, (Row + 1)*MAPBLOCKHEIGHT));
 		std::string name = StringUtils::format("build%d", this->getLocalZOrder());
-		this->getParent()->addChild(buildblock, this->getLocalZOrder() + 10000, name);
+		this->getParent()->addChild(buildblock, this->getLocalZOrder() + 10001, name);
 	}
 }
 
@@ -92,7 +92,7 @@ void MapBlock::setPosIcon()
 	{
 		posicon->setPosition(Vec2(Col*MAPBLOCKWIDTH + MAPBLOCKWIDTH/2, Row*MAPBLOCKHEIGHT + MAPBLOCKHEIGHT/2));
 		std::string posname = StringUtils::format("posicon%d", this->getLocalZOrder());
-		this->getParent()->addChild(posicon, this->getLocalZOrder() + 10001, posname);
+		this->getParent()->addChild(posicon, this->getLocalZOrder() + 10002, posname);
 	}
 
 	auto action = CSLoader::createTimeline(posiconname);

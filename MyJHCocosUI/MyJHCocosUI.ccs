@@ -1199,6 +1199,7 @@
           <Image Name="makeresbox.png" />
           <Image Name="makerescountbox.png" />
           <Image Name="makeresnamebox.png" />
+          <Image Name="mapbottompropbg.png" />
           <Image Name="mapnodestarbg.png" />
           <Image Name="mapnodestarbox.png" />
           <Image Name="mapstagestar.png" />
@@ -1335,6 +1336,8 @@
           <Image Name="resbox_qu5.png" />
           <Image Name="resitem.png" />
           <Image Name="ressunbtn.png" />
+          <Image Name="routblock.png" />
+          <Image Name="routdesticon.png" />
           <Image Name="s001.png" />
           <Image Name="s002.png" />
           <Image Name="s003.png" />

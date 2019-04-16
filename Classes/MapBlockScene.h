@@ -28,13 +28,12 @@ typedef enum
 typedef enum
 {
 	BTN_GOCITY = 2000,
-	BTN_PACKAGE,
-	BTN_TORCH,
-	BTN_VISION,
 	BTN_EXITMAZE,
-	BTN_ALLOPEN,
+	BTN_TORCH,
 	BTN_TRANS,
-	BTN_HIDE
+	BTN_ALLOPEN,
+	BTN_VISION,
+	BTN_PACKAGE
 }MAPBTNTYPE;
 
 typedef enum
@@ -115,11 +114,18 @@ public:
 
 	Node* getRoutingAnimNode();
 
+	void showRouting(std::vector<Vec2> vec_routs);
+
+	void removeCurRouting(int row, int col);
+
+	void removeAllRoutingBlock();
+
+	void showBuySelectFood();
+
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
 	virtual void onEnterTransitionDidFinish();
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onTaskAction(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onUsePropClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -207,7 +213,7 @@ private:
 
 	void allOpenAnim(float dt);
 
-	int checkCanTrans(int blockindex);
+	int checkNearestIndex(int blockindex, int gridrowcol);
 
 	void showTransFoodDesc(int foodcount);
 
@@ -266,7 +272,6 @@ private:
 
 	bool mapIsAllOpen;
 
-	cocos2d::ui::Widget* keybtnArr[4];
 	cocos2d::ui::Widget* gocitybtn;
 	cocos2d::ui::Widget* torchbtn;
 	cocos2d::ui::Widget* mypackagebtn;
@@ -295,7 +300,6 @@ private:
 	cocos2d::ui::ImageView* buildfocus;
 	Label* z002countlbl;
 	cocos2d::ui::Text* z002countlbl_1;
-	Node* propbox;
 
 	float mapFogScale;
 
@@ -306,6 +310,12 @@ private:
 	AstarRouting* astarrouting;
 
 	bool iscfgmazeentry;
+	int m_startClickX;
+	int m_startClickY;
+	std::vector<Vec2> m_vecrouts;
+
+	public:
+		bool isMovingRouting;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

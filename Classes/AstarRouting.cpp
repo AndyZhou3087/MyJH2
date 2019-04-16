@@ -1,5 +1,9 @@
 #include "AstarRouting.h"
 #include "MapBlockScene.h"
+#include "MyRes.h"
+#include "MovingLabel.h"
+#include "Resource.h"
+#include "BuySelectLayer.h"
 USING_NS_CC;
 
 AstarRouting::ShortestPathStep::ShortestPathStep() :
@@ -69,10 +73,10 @@ void AstarRouting::moveToPosByAStar(const cocos2d::Vec2 &frowcolrow, const cocos
 	{
 		return;
 	}
-	if (!g_MapBlockScene->isValidAtWallColRow(toTiled))
-	{
-		return;
-	}
+	//if (!g_MapBlockScene->isValidAtWallColRow(toTiled))
+	//{
+	//	return;
+	//}
 
 	_openStepList.clear();
 	_closeStepList.clear();
@@ -128,9 +132,8 @@ void AstarRouting::moveToPosByAStar(const cocos2d::Vec2 &frowcolrow, const cocos
 			}
 		}
 
-
 	}while(_openStepList.size()>0);
-
+	
 }
 
 cocos2d::PointArray *AstarRouting::WakabledAdjacentTiledColRow(const cocos2d::Vec2 &colrow)
@@ -220,16 +223,35 @@ void AstarRouting::constructPathStartMoveFromStep(ShortestPathStep* step)
 		step = step->getParent();
 	} while (step);
 
+	std::vector<Vec2> vec_steps;
 
-	move();
+	for (int i = 0; i < _shortPathList.size(); i++)
+	{
+		vec_steps.push_back(_shortPathList.at(i)->getPos());
+	}
+
+	if (MyRes::getMyResCount("r001", MYPACKAGE) < vec_steps.size())
+	{
+		MovingLabel::show(ResourceLang::map_lang["routnofood"]);
+		g_MapBlockScene->showBuySelectFood();
+	}
+	else
+	{
+		g_MapBlockScene->showRouting(vec_steps);
+
+		move();
+	}
 
 }
 
 void AstarRouting::move()
 {
 	if (_shortPathList.size() == 0) {
+
+		g_MapBlockScene->isMovingRouting = false;
 		return;
 	}
+	g_MapBlockScene->isMovingRouting = true;
 	ShortestPathStep *tostep = _shortPathList.at(0);
 	g_MapBlockScene->goToDest((int)tostep->getPos().y, (int)tostep->getPos().x);
 	_shortPathList.erase(0);

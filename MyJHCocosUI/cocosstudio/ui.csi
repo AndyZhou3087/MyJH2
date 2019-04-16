@@ -619,6 +619,9 @@
       <FilePathData Path="ui/cstarcountbox.png" />
       <FilePathData Path="ui/cstarprogressbar.png" />
       <FilePathData Path="ui/cstarprogressbarbg.png" />
+      <FilePathData Path="ui/routblock.png" />
+      <FilePathData Path="ui/routdesticon.png" />
+      <FilePathData Path="ui/mapbottompropbg.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

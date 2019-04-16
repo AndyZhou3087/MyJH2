@@ -73,6 +73,8 @@ MapBlockScene::MapBlockScene()
 	astarrouting = NULL;
 
 	iscfgmazeentry = false;
+
+	isMovingRouting = false;
 }
 
 
@@ -400,37 +402,19 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	visioncountlbl = (cocos2d::ui::TextBMFont*)visionbtn->getChildByName("countlbl");
 	torchcountlbl = (cocos2d::ui::TextBMFont*)torchbtn->getChildByName("countlbl");
-	
-	propbox = m_csbnode->getChildByName("propbox");
-	propbox->setVisible(!isMaze);
 
-	cocos2d::ui::Widget* allopenbtn = (cocos2d::ui::Widget*)propbox->getChildByName("allopenbtn");
+	cocos2d::ui::Widget* allopenbtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("allopenbtn");
 	allopenbtn->setTag(BTN_ALLOPEN);
 	allopenbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+	allopenbtn->setVisible(!isMaze);
 
-	transbtn = (cocos2d::ui::Widget*)propbox->getChildByName("transerbtn");
+	transbtn = (cocos2d::ui::Widget*)bottomnode->getChildByName("transerbtn");
 	transbtn->setTag(BTN_TRANS);
 	transbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
-
-	cocos2d::ui::Widget* hideclick = (cocos2d::ui::Widget*)m_csbnode->getChildByName("hideclick");
-	hideclick->setTag(BTN_HIDE);
-	hideclick->setScale(true);
-	hideclick->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
-	hideclick->setVisible(!isMaze);
+	transbtn->setVisible(!isMaze);
 
 	updateLabel(0);
 	this->schedule(schedule_selector(MapBlockScene::updateLabel), 0.5f);
-
-	std::string keyname[] = {"upbtn", "downbtn", "leftbtn", "rightbtn"};
-
-	for (int i = 0; i < 4; i++)
-	{
-		cocos2d::ui::Widget* keybtn = (cocos2d::ui::Widget*)bottomnode->getChildByName(keyname[i]);
-		keybtn->setTag(i + KEY_UP);
-		
-		keybtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onArrowKey, this));
-		keybtnArr[i] = keybtn;
-	}
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -446,7 +430,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	if (!isMaze)
 	{
 		loadTaskUI();
-		this->scheduleOnce(schedule_selector(MapBlockScene::closeTaskTipNode), 10.0f);
+		this->scheduleOnce(schedule_selector(MapBlockScene::closeTaskTipNode), 7.0f);
 	}
 	else
 	{
@@ -471,6 +455,24 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	astarrouting = new AstarRouting(blockColCount, blockRowCount);
 
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = [=](Touch *touch, Event *event)
+	{
+		isDraging = false;
+		m_startClickX = touch->getLocation().x;
+		m_startClickY = touch->getLocation().y;
+		return true;
+	};
+
+	listener->onTouchMoved = [=](Touch *touch, Event *event)
+	{
+		if (fabsf(m_startClickX - touch->getLocation().x) > CLICKOFFSETP || fabsf(m_startClickY - touch->getLocation().y) > CLICKOFFSETP)
+		{
+			isDraging = true;
+		}
+	};
+	listener->setSwallowTouches(true);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
 }
 
@@ -487,10 +489,6 @@ void MapBlockScene::updateZ002Count(float dt)
 
 void MapBlockScene::setBtnEnable(bool isval)
 {
-	for (int i = 0; i < 4; i++)
-	{
-		keybtnArr[i]->setEnabled(isval);
-	}
 	gocitybtn->setEnabled(isval);
 	torchbtn->setEnabled(isval);
 	mypackagebtn->setEnabled(isval);
@@ -567,19 +565,7 @@ void MapBlockScene::delayShowNewerGuide(float dt)
 void MapBlockScene::showNewerGuide(int step)
 {
 	std::vector<Node*> nodes;
-	if (step == 0 || step == 1)
-	{
-		nodes.push_back(keybtnArr[0]);
-	}
-	else if ((step >= 2 && step <= 5) || step == 12)
-	{
-
-	}
-	else if (step == 11 || step == 13)
-	{
-		nodes.push_back(keybtnArr[2]); 
-	}
-	else if (step == 86)
+	if (step == 86)
 	{
 		nodes.push_back(gocitybtn);
 	}
@@ -930,22 +916,6 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			AnimationEffect::openAniEffect(hlayer);
 		}
 			break;
-		case BTN_HIDE:
-		{
-			Node* hideicon = clicknode->getChildByName("hideicon");
-			float angl = hideicon->getRotation();
-			if (angl < 0)
-			{
-				hideicon->setRotation(90);
-				propbox->runAction(MoveBy::create(0.25f, Vec2(0,-400)));
-			}
-			else
-			{
-				hideicon->setRotation(-90);
-				propbox->runAction(MoveBy::create(0.25f, Vec2(0, 400)));
-			}
-		}
-			break;
 		case BTN_ALLOPEN:
 		{
 			if (mapIsAllOpen)
@@ -1032,33 +1002,6 @@ void MapBlockScene::closeTaskTipNode(float dt)
 	taskclick->setVisible(true);
 	MoveTo* moveto = MoveTo::create(0.15f, Vec2(985, m_tasknode->getPositionY()));
 	m_tasknode->runAction(moveto);
-}
-
-void MapBlockScene::onArrowKey(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
-{
-	CommonFuncs::BtnAction(pSender, type);
-	Node* clicknode = (Node*)pSender;
-	if (type == ui::Widget::TouchEventType::BEGAN)
-	{
-		m_longTouchNode = clicknode;
-		if (!isNewerGuideMap)
-		{
-			if (!isScheduled(schedule_selector(MapBlockScene::longTouchUpdate)))
-				schedule(schedule_selector(MapBlockScene::longTouchUpdate), 0.45f);
-			if (!m_isLongPress)
-				go((MAP_KEYTYPE)clicknode->getTag());
-		}
-	}
-	else if (type == ui::Widget::TouchEventType::ENDED)
-	{
-		if (isNewerGuideMap)
-			go((MAP_KEYTYPE)clicknode->getTag());
-		cacelLongTouch();
-	}
-	else if (type == ui::Widget::TouchEventType::CANCELED)
-	{
-		cacelLongTouch();
-	}
 }
 
 void MapBlockScene::longTouchUpdate(float delay)
@@ -1254,6 +1197,8 @@ void MapBlockScene::stopMoving()
 	myposHero->setVisible(true);
 	_mylight->setVisible(true);
 
+	removeCurRouting(mycurRow, mycurCol);
+
 	doMyStatus();
 	isMoving = false;
 	if (m_isLongPress) 
@@ -1265,6 +1210,7 @@ void MapBlockScene::stopMoving()
 		myposHero->setAnimation(0, standname[m_walkDirection], false);
 		//myposHero->clearTracks();
 	}
+
 }
 
 void MapBlockScene::checkFood()
@@ -1278,19 +1224,7 @@ void MapBlockScene::checkFood()
 
 		if (isMaze && (foodcount == 10 || foodcount == 1))
 		{
-			std::vector< MSGAWDSDATA> vec_res;
-			int count[] = { 50, 100, 200 };
-			for (unsigned int i = 0; i < 3; i++)
-			{
-				MSGAWDSDATA rdata;
-				rdata.rid = "r001";
-				rdata.count = count[i];
-				rdata.qu = 0;
-				vec_res.push_back(rdata);
-			}
-			BuySelectLayer* layer = BuySelectLayer::create(vec_res, MYPACKAGE);
-			this->addChild(layer);
-			AnimationEffect::openAniEffect(layer);
+			showBuySelectFood();
 		}
 	}
 	else if (foodcount <= 0)
@@ -1401,8 +1335,8 @@ int MapBlockScene::checkRoad(MAP_KEYTYPE keyArrow)
 void MapBlockScene::createMap()
 {
 	scrollView = ScrollView::create();
-	scrollView->setViewSize(Size(720, 825));
-	scrollView->setPosition(0, 242);
+	scrollView->setViewSize(Size(720, 1067));
+	scrollView->setPosition(0, 0);
 	m_csbnode->addChild(scrollView, -1);
 
 	int mapW = blockColCount * MAPBLOCKWIDTH;
@@ -1430,8 +1364,7 @@ void MapBlockScene::createMap()
 
 void MapBlockScene::scrollViewDidScroll(ScrollView* view)
 {
-	if (usingprop > -1)
-		isDraging = true;
+	//isDraging = true;
 
 	if(isBlockClickCancel)
 	{
@@ -1444,8 +1377,7 @@ void MapBlockScene::scrollViewDidScroll(ScrollView* view)
 
 void MapBlockScene::scrollViewDidZoom(ScrollView* view)
 {
-	if (usingprop > -1)
-		isDraging = true;
+	//isDraging = true;
 
 	if (isBlockClickCancel)
 	{
@@ -1500,7 +1432,7 @@ void MapBlockScene::setMyPos()
 
 		myposHero->setPosition(Vec2(px, py + HEROOFFSET_Y));
 		myposHero->setTimeScale(2);
-		m_mapscrollcontainer->addChild(myposHero, 19999);
+		m_mapscrollcontainer->addChild(myposHero, 39999);
 		myposHero->setAnimation(0, standname[m_walkDirection], false);
 
 		createMyRender();
@@ -1739,6 +1671,7 @@ void MapBlockScene::doMyStatus()
 		{
 			status = MAP_S_NOTING;
 			sitetext->stopAllActions();
+			removeAllRoutingBlock();
 		}
 	}
 	else
@@ -1749,6 +1682,7 @@ void MapBlockScene::doMyStatus()
 		if (mapblock->getPosType() != POS_NOTHING)
 		{
 			sitetext->stopAllActions();
+			removeAllRoutingBlock();
 		}
 		if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS)
 		{
@@ -2398,7 +2332,7 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			}
 			else if (usingprop == MAP_USEINGTRANSER)
 			{
-				int b = checkCanTrans(tag);
+				int b = checkNearestIndex(tag, 3);
 				if (b >= 0)//可传送
 				{
 					int c = b % blockColCount;
@@ -2447,7 +2381,19 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			}
 			else
 			{
-				astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(tag % blockColCount, tag/blockColCount));
+				int descblockindex = checkNearestIndex(tag, 6);
+				if (descblockindex < 0)
+					MovingLabel::show(ResourceLang::map_lang["norouting"]);
+				else
+				{
+					if (isMovingRouting)
+					{
+						sitetext->stopAllActions();
+						removeAllRoutingBlock();
+						return;
+					}
+					astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(descblockindex % blockColCount, descblockindex / blockColCount));
+				}
 			}
 
 		}
@@ -2470,7 +2416,19 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			else
 			{
 				buildfocus->setVisible(false);
-				astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(tag % blockColCount, tag / blockColCount));
+				int descblockindex = checkNearestIndex(tag, 6);
+				if (descblockindex < 0)
+					MovingLabel::show(ResourceLang::map_lang["norouting"]);
+				else
+				{
+					if (isMovingRouting)
+					{
+						sitetext->stopAllActions();
+						removeAllRoutingBlock();
+						return;
+					}
+					astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(descblockindex % blockColCount, descblockindex / blockColCount));
+				}
 			}
 		}
 	}
@@ -2487,7 +2445,7 @@ void MapBlockScene::showTransFoodDesc(int foodcount)
 	MovingLabel::show(str);
 }
 
-int MapBlockScene::checkCanTrans(int blockindex)
+int MapBlockScene::checkNearestIndex(int blockindex, int gridrowcol)
 {
 	int col = blockindex % blockColCount;
 	int row = blockindex / blockColCount;
@@ -2497,7 +2455,7 @@ int MapBlockScene::checkCanTrans(int blockindex)
 		return blockindex;
 	}
 
-	for (int i = 1; i <= 2; i++)
+	for (int i = 1; i <= (gridrowcol+1)/2; i++)
 	{
 		int r0 = row - i;
 		if (r0 < 0)
@@ -3191,4 +3149,98 @@ void MapBlockScene::goToDest(int row, int col)
 Node* MapBlockScene::getRoutingAnimNode()
 {
 	return sitetext;
+}
+
+void MapBlockScene::showRouting(std::vector<Vec2> vec_routs)
+{
+	//Vec2 mycurpos = Vec2(mycurCol, mycurRow);
+	//vec_routs.insert(vec_routs.begin(), mycurpos);
+	m_vecrouts = vec_routs;
+	for (unsigned int i = 0; i < vec_routs.size(); i++)
+	{
+		int c = (int)vec_routs[i].x;
+		int r = (int)vec_routs[i].y;
+		Sprite* routblock = Sprite::createWithSpriteFrameName("ui/routblock.png");
+		int bindex = r * blockColCount + c;
+		routblock->setAnchorPoint(Vec2(0, 1));
+		routblock->setPosition(Vec2(c*MAPBLOCKWIDTH, (r + 1)*MAPBLOCKHEIGHT));
+		std::string routname = StringUtils::format("routblock%d", bindex);
+
+		int zorder = map_mapBlocks[bindex]->getLocalZOrder() + 10000;
+		if (!mapIsAllOpen && !map_mapBlocks[bindex]->getIsCanSee() && c > fogscale / 2 && r > fogscale / 2)
+			zorder = 30000;
+		map_mapBlocks[bindex]->getParent()->addChild(routblock, zorder, routname);
+		routblock->setVisible(false);
+		if (i == vec_routs.size() - 1)
+		{
+			Sprite* rdesc = Sprite::createWithSpriteFrameName("ui/routdesticon.png");
+			rdesc->setAnchorPoint(Vec2(0.5f, 0));
+			rdesc->setPosition(Vec2(MAPBLOCKWIDTH/2, MAPBLOCKWIDTH/2));
+			routblock->addChild(rdesc);
+			rdesc->runAction(RepeatForever::create(Sequence::create(MoveBy::create(0.3f, Vec2(0, 5)), MoveBy::create(0.6f, Vec2(0, -5)), MoveBy::create(0.5f, Vec2(0, 0)), NULL)));
+		}
+
+		routblock->runAction(Sequence::create(DelayTime::create(0.02f* i), Show::create(), NULL));
+	}
+}
+
+void MapBlockScene::removeCurRouting(int row, int col)
+{
+	int bindex = row * blockColCount + col;
+	std::string routname = StringUtils::format("routblock%d", bindex);
+	Node* rnode = map_mapBlocks[bindex]->getParent()->getChildByName(routname);
+
+	if (rnode != NULL)
+		map_mapBlocks[bindex]->getParent()->removeChildByName(routname);
+
+	
+	for (unsigned int i = 0; i < m_vecrouts.size(); i++)
+	{
+		int c = (int)m_vecrouts[i].x;
+		int r = (int)m_vecrouts[i].y;
+		int bindex = r * blockColCount + c;
+
+		std::string routname = StringUtils::format("routblock%d", bindex);
+		Node* rnode = map_mapBlocks[bindex]->getParent()->getChildByName(routname);
+		if (rnode != NULL)
+		{
+			int zorder = map_mapBlocks[bindex]->getLocalZOrder() + 10000;
+			if (!mapIsAllOpen && !map_mapBlocks[bindex]->getIsCanSee() && c > fogscale / 2 && r > fogscale / 2)
+				zorder = 30000;
+			rnode->setLocalZOrder(zorder);
+		}
+	}
+}
+
+void MapBlockScene::removeAllRoutingBlock()
+{
+	isMovingRouting = false;
+	for (unsigned int i = 0; i < m_vecrouts.size(); i++)
+	{
+		int c = (int)m_vecrouts[i].x;
+		int r = (int)m_vecrouts[i].y;
+		int bindex = r * blockColCount + c;
+
+		std::string routname = StringUtils::format("routblock%d", bindex);
+		Node* rnode = map_mapBlocks[bindex]->getParent()->getChildByName(routname);
+		if (rnode != NULL)
+			map_mapBlocks[bindex]->getParent()->removeChildByName(routname);
+	}
+}
+
+void MapBlockScene::showBuySelectFood()
+{
+	std::vector< MSGAWDSDATA> vec_res;
+	int count[] = { 50, 100, 200 };
+	for (unsigned int i = 0; i < 3; i++)
+	{
+		MSGAWDSDATA rdata;
+		rdata.rid = "r001";
+		rdata.count = count[i];
+		rdata.qu = 0;
+		vec_res.push_back(rdata);
+	}
+	BuySelectLayer* layer = BuySelectLayer::create(vec_res, MYPACKAGE);
+	this->addChild(layer);
+	AnimationEffect::openAniEffect(layer);
 }
