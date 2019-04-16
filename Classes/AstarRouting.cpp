@@ -249,6 +249,7 @@ void AstarRouting::move()
 	if (_shortPathList.size() == 0) {
 
 		g_MapBlockScene->isMovingRouting = false;
+		g_MapBlockScene->checkMazeStoneHint();
 		return;
 	}
 	g_MapBlockScene->isMovingRouting = true;

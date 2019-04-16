@@ -122,6 +122,8 @@ public:
 
 	void showBuySelectFood();
 
+	void checkMazeStoneHint();
+
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
 	virtual void onEnterTransitionDidFinish();

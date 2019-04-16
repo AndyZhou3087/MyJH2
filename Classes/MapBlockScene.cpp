@@ -2390,6 +2390,7 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 					{
 						sitetext->stopAllActions();
 						removeAllRoutingBlock();
+						checkMazeStoneHint();
 						return;
 					}
 					astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(descblockindex % blockColCount, descblockindex / blockColCount));
@@ -2425,6 +2426,7 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 					{
 						sitetext->stopAllActions();
 						removeAllRoutingBlock();
+						checkMazeStoneHint();
 						return;
 					}
 					astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(descblockindex % blockColCount, descblockindex / blockColCount));
@@ -3243,4 +3245,35 @@ void MapBlockScene::showBuySelectFood()
 	BuySelectLayer* layer = BuySelectLayer::create(vec_res, MYPACKAGE);
 	this->addChild(layer);
 	AnimationEffect::openAniEffect(layer);
+}
+
+void MapBlockScene::checkMazeStoneHint()
+{
+	int checkret = 0;
+
+	std::vector<int> vec_;
+
+	for (int i = m_walkDirection + KEY_UP; i <= KEY_RIGHT; i++)
+	{
+		vec_.push_back(i);
+	}
+
+	for (int i = KEY_UP; i < m_walkDirection + KEY_UP; i++)
+	{
+		vec_.push_back(i);
+	}
+
+	for (unsigned int i = 0; i < vec_.size(); i++)
+	{
+		checkret = checkRoad((MAP_KEYTYPE)vec_[i]);
+		if (checkret <= -10000)
+		{
+			if (GlobalInstance::showz002hinttextcount < 3)
+			{
+				MovingLabel::show(ResourceLang::map_lang["mazestone"]);
+				GlobalInstance::showz002hinttextcount++;
+			}
+			break;
+		}
+	}
 }
