@@ -1539,9 +1539,12 @@ void MapBlockScene::createFog()
 			int i = 0;
 			for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
 			{
-				int val = atoi(vec_tmp[i].c_str());
-				map_mapBlocks[it->first]->setIsCanSee(val == 1 ? true : false);
-				i++;
+				if (i < vec_tmp.size())
+				{
+					int val = atoi(vec_tmp[i].c_str());
+					map_mapBlocks[it->first]->setIsCanSee(val == 1 ? true : false);
+					i++;
+				}
 			}
 		}
 	}
@@ -3249,31 +3252,71 @@ void MapBlockScene::showBuySelectFood()
 
 void MapBlockScene::checkMazeStoneHint()
 {
-	int checkret = 0;
 
-	std::vector<int> vec_;
-
-	for (int i = m_walkDirection + KEY_UP; i <= KEY_RIGHT; i++)
+	if (isMaze)
 	{
-		vec_.push_back(i);
-	}
+		int checkret = 0;
 
-	for (int i = KEY_UP; i < m_walkDirection + KEY_UP; i++)
-	{
-		vec_.push_back(i);
-	}
+		std::vector<int> vec_;
 
-	for (unsigned int i = 0; i < vec_.size(); i++)
-	{
-		checkret = checkRoad((MAP_KEYTYPE)vec_[i]);
-		if (checkret <= -10000)
+		for (int i = m_walkDirection + KEY_UP; i <= KEY_RIGHT; i++)
 		{
-			if (GlobalInstance::showz002hinttextcount < 3)
+			vec_.push_back(i);
+		}
+
+		for (int i = KEY_UP; i < m_walkDirection + KEY_UP; i++)
+		{
+			vec_.push_back(i);
+		}
+
+		int bindex = 0;
+
+		for (unsigned int i = 0; i < vec_.size(); i++)
+		{
+			switch (vec_[i])
 			{
-				MovingLabel::show(ResourceLang::map_lang["mazestone"]);
-				GlobalInstance::showz002hinttextcount++;
+				case KEY_UP:
+					bindex = (mycurRow + 1)*blockColCount + mycurCol;
+					break;
+				case KEY_DOWN:
+					bindex = (mycurRow - 1)*blockColCount + mycurCol;
+					break;
+				case KEY_LEFT:
+					bindex = (mycurRow)*blockColCount + mycurCol - 1;
+					break;
+				case KEY_RIGHT:
+					bindex = (mycurRow)*blockColCount + mycurCol + 1;
+					break;
+				default:
+					break;
 			}
-			break;
+
+			if (!map_mapBlocks[bindex]->getWalkable())
+			{
+				std::string bname = map_mapBlocks[bindex]->getBuildName();
+				if (isMaze && (bname.compare("8.png") == 0 || bname.compare("51.png") == 0))
+				{
+					std::string buildname = StringUtils::format("mapui/focusbuildblock_%s", bname.c_str());
+					buildfocus->loadTexture(buildname, cocos2d::ui::Widget::TextureResType::PLIST);
+
+					buildfocus->setPosition(Vec2(bindex % blockColCount * MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2, MAPBLOCKHEIGHT / 2 + bindex / blockColCount * MAPBLOCKHEIGHT));
+					buildfocus->setVisible(true);
+
+					buildfocus->setTag(bindex);
+					buildfocus->getChildByName("z002")->setTag(bindex);
+					std::string zcountstr = StringUtils::format("%d", MyRes::getMyResCount("z002", MYPACKAGE) + MyRes::getMyResCount("z002", MYSTORAGE));
+					z002countlbl->setString(zcountstr);
+					//map_mapBlocks[bindex]->focusBuild();
+
+					if (GlobalInstance::showz002hinttextcount < 3)
+					{
+						MovingLabel::show(ResourceLang::map_lang["mazestone"]);
+						GlobalInstance::showz002hinttextcount++;
+					}
+					break;
+				}
+			}
+
 		}
 	}
 }
