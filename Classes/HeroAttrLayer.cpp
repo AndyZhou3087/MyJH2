@@ -600,6 +600,15 @@ void HeroAttrLayer::JumpSceneCallback(cocos2d::Ref* pScene, cocos2d::ui::PageVie
 		equipnode->runAction(MoveTo::create(0.3f, Vec2(360, 490)));*/
 		cantclick->setVisible(false);
 
+		for (int i = 0; i < equipnode->getChildrenCount(); i++)
+		{
+			if (effectnode[i] != NULL)
+			{
+				effectnode[i]->removeFromParentAndCleanup(true);
+				effectnode[i] = NULL;
+			}
+		}
+
 		m_heroData = vec_norheros[defaultindex];
 
 		loadHeroUI();
