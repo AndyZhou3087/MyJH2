@@ -318,6 +318,7 @@ private:
 
 	public:
 		bool isMovingRouting;
+		bool isRoutingBreakOff;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

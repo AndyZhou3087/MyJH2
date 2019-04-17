@@ -75,6 +75,8 @@ MapBlockScene::MapBlockScene()
 	iscfgmazeentry = false;
 
 	isMovingRouting = false;
+
+	isRoutingBreakOff = false;
 }
 
 
@@ -1669,12 +1671,13 @@ void MapBlockScene::doMyStatus()
 			this->addChild(mlayer);
 			AnimationEffect::openAniEffect((Layer*)mlayer);
 			calcStar(SA_EVENT);
+			isRoutingBreakOff = true;
+			sitetext->stopAllActions();
+			removeAllRoutingBlock();
 		}
 		else
 		{
 			status = MAP_S_NOTING;
-			sitetext->stopAllActions();
-			removeAllRoutingBlock();
 		}
 	}
 	else
@@ -1686,6 +1689,7 @@ void MapBlockScene::doMyStatus()
 		{
 			sitetext->stopAllActions();
 			removeAllRoutingBlock();
+			isRoutingBreakOff = true;
 		}
 		if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS)
 		{
@@ -2391,11 +2395,13 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 				{
 					if (isMovingRouting)
 					{
+						isRoutingBreakOff = true;
 						sitetext->stopAllActions();
 						removeAllRoutingBlock();
 						checkMazeStoneHint();
 						return;
 					}
+					isRoutingBreakOff = false;
 					astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(descblockindex % blockColCount, descblockindex / blockColCount));
 				}
 			}
@@ -2427,11 +2433,13 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 				{
 					if (isMovingRouting)
 					{
+						isRoutingBreakOff = true;
 						sitetext->stopAllActions();
 						removeAllRoutingBlock();
 						checkMazeStoneHint();
 						return;
 					}
+					isRoutingBreakOff = false;
 					astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(descblockindex % blockColCount, descblockindex / blockColCount));
 				}
 			}
