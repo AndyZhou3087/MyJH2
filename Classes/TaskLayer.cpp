@@ -37,6 +37,10 @@ TaskLayer::~TaskLayer()
 	//{
 	//	g_mainScene->setScrollGliding();
 	//}
+	if (!NewGuideLayer::checkifNewerGuide(62) && NewGuideLayer::checkifNewerGuide(23))
+	{
+		g_mainScene->scheduleOnce(schedule_selector(MainScene::delayShowNewerGuide), 0.3f);
+	}
 }
 
 bool TaskLayer::init()

@@ -20,6 +20,7 @@ USING_NS_CC;
 GoBackLayer::GoBackLayer()
 {
 	gobackcoin.setValue(GlobalInstance::map_AllResources["t001"].coinval);
+	isHasNewerGuide = false;
 }
 
 GoBackLayer::~GoBackLayer()
@@ -124,6 +125,7 @@ void GoBackLayer::delayShowNewerGuide(float dt)
 {
 	if (!NewGuideLayer::checkifNewerGuide(86) && NewGuideLayer::checkifNewerGuide(87))
 	{
+		isHasNewerGuide = true;
 		showNewerGuide(87);
 	}
 }
@@ -160,6 +162,19 @@ void GoBackLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			{
 				MyRes::Use("t001");
 
+				if (isHasNewerGuide)
+				{
+					g_MapBlockScene->checkotherstar();
+#if USE_TRANSCENE
+					Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(t_type)));
+#else
+					if (t_type == TO_MAIN)
+						Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
+					else
+						Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MainMapScene::createScene()));
+#endif
+					return;
+				}
 				if (!g_MapBlockScene->checkShowStarUi(chwere))
 				{
 #if USE_TRANSCENE

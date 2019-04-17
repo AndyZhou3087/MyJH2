@@ -508,7 +508,7 @@ void HeroAttrLayer::loadHeroUI()
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("firebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			btn->setPositionX(128);
-			if (herostate == HS_READY || herostate == HS_TAKEON || herostate == HS_TRAINING)
+			if (herostate == HS_READY || herostate == HS_TRAINING)
 			{
 				btn->setVisible(false);
 			}
@@ -526,12 +526,8 @@ void HeroAttrLayer::loadHeroUI()
 			{
 				btn->setVisible(false);
 			}
-			else if (herostate == HS_OWNED || herostate == HS_TAKEON)
+			else if (herostate == HS_OWNED)
 			{
-				if (herostate == HS_TAKEON)
-				{
-					btn->setPositionX(220);
-				}
 				//前4种职业等级10可转职，后面可突破
 				if ((m_heroData->getLevel() + 1) % 10 == 0 && (m_heroData->getVocation() < 4 || (m_heroData->getLevel() + 1) / 10 == m_heroData->getChangeCount() + 1))
 				{
@@ -569,11 +565,11 @@ void HeroAttrLayer::loadHeroUI()
 			cocos2d::ui::ImageView* txtimg = (cocos2d::ui::ImageView*)btn->getChildByName("text");
 			txtimg->loadTexture(ResourcePath::makeTextImgPath("backbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			btn->setPositionX(500);
-			if (herostate == HS_READY || herostate == HS_TAKEON)
+			if (herostate == HS_READY)
 			{
 				btn->setPositionX(500);
 			}
-			else if (herostate == HS_OWNED)
+			else if (herostate == HS_OWNED || herostate == HS_TAKEON)
 			{
 				btn->setPositionX(600);
 			}

@@ -23,19 +23,19 @@
 #include "SelectMyHerosLayer.h"
 #include "StoreHouseLayer.h"
 #include "Building.h"
+#include "PlotStoryScene.h"
 
-
-std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教应该就在前面了，咱们快去看看。", //0
+std::string descText[] = { "", //0
 "", //1
 "小师妹：掌门师兄，传言果然是真的，十四天书现世，六大派和魔教为了争夺天书打起来了。", //2
 "密探：\n报告帮主，十四天书在剑南山现世，正魔两派强者已赶往天书出世地抢夺天书。",//3
 "少帮主：\n父亲，我愿一同前去为夺书出力。",//4
 "帮主：\n好，速召集强者，我们出发！十四天书，决不能落入宵小之手！", //进入战斗界面//5
-"小师妹：掌门师兄，战斗过程为全自动，掌门只要根据角色的属性去分配好位置就可以了。",//6
-"小师妹：前排的罗汉，防御力比较高，适合在前面抗伤害。",//7
-"小师妹：后面的刺客攻击力很高，但是很容易受伤，适合在后面进行攻击。",//8
-"小师妹：剑客的属性比较平衡，什么位置都可以站。", //9
-"小师妹：道士会用道术进行多重攻击，还可以治疗队友。",//10
+"",//6 星级界面
+"",//7 缩放引导
+"",//8 找到BOSS高亮引导
+"小师妹：掌门师兄，战斗过程为全自动，掌门只要根据角色的属性去分配好位置就可以了。（前排适合防御力比较高的在前面抗伤害，后排适合输出和治疗职业）", //9
+"小师妹：掌门师兄，战斗过程为全自动，掌门只要根据角色的属性去分配好位置就可以了。（前排适合防御力比较高的在前面抗伤害，后排适合输出和治疗职业）",//10
 //开始战斗--结束
 "小师妹：不好，妖人居然隐藏实力，帮主与妖人拼得两败俱伤，都不慎坠崖，天书也不知所踪，师兄切不可意气用事，趁更多人赶来之前，我们先行躲避，再寻天书的踪迹", //11
 "小师妹：师兄切莫悲伤，帮主虽恐遭不测，但我们不可放弃，天书亦决不能落入宵小之人手中。我们广纳豪杰，才好寻回老帮主和天书，客栈中经常会有江湖侠客停留，师兄可前往招募。",//12
@@ -53,14 +53,14 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 
 //这里是否需要滑动引导
 "",//22
-"",//23
+"小师妹：我们的侠客在这里，来看看他们的属性为他们戴上装备吧！",//23
 "小师妹：这里有三位侠客，现下正是发展门派之时，掌门师兄可依次招募进来。",//重复招募三次角色24
 "",//25
 "",//26
 "",//27
 "",//28
 "",//29
-"小师妹：侠客已经招募好了，掌门快去看看三位侠客的属性吧!",//第一次招募必须有侠客30
+"",//第一次招募必须有侠客30
 "小师妹：点击侠客头像就可以查看详细属性了，掌门快看看属性吧！",//点击第一个侠客英雄31
 "小师妹：每个侠客都有不同的武功，搭配合理的武功才可以触发技能，快去给侠客们装备武功吧！",//装备内功32
 "",//33
@@ -106,7 +106,7 @@ std::string descText[] = { "小师妹：掌门师兄，六大派掌门和魔教�
 "小师妹：角色到了十级要进行转职了，转职需要九转金丹，掌门师兄去市场看看吧！",//66
 "小师妹：市场每隔一段时间都会刷新物品数量，一次买空后只能等下次刷新了哦，看到九转金丹了，快买来试一试吧！",//67
 "",//68
-"小师妹：现在有九转金丹了，每个职业都可以转成不同的职业，快去客栈给角色进行转职吧!",//69
+"小师妹：现在有九转金丹了，每个职业都可以转成不同的职业，快去给角色进行转职吧!",//69
 "",//70
 "",//71
 "小师妹：掌门师兄快看，这位侠客可以转职成这两个角色，掌门师兄快选一个吧！",//72
@@ -312,14 +312,15 @@ void NewGuideLayer::showNextGuide()
 			g_MapBlockScene->delayShowNewerGuide(0);
 		}
 	}
+	else if (m_step == 1)
+	{
+		this->removeFromParentAndCleanup(true);
+		g_NewGuideLayer = NULL;
+	}
 	else if (m_step == 2)// || (m_step >= 11 && m_step < 13))
 	{
 		this->removeFromParentAndCleanup(true);
 		g_NewGuideLayer = NULL;
-		if (g_MapBlockScene != NULL)
-		{
-			g_MapBlockScene->showNewerGuideFight();
-		}
 	}
 	else if (m_step >= 3 && m_step <= 4)
 	{
@@ -332,8 +333,10 @@ void NewGuideLayer::showNextGuide()
 	}
 	else if (m_step == 5)
 	{
-		MyRes::Add("r001", 10, MYPACKAGE);
-		Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
+		//MyRes::Add("r001", 10, MYPACKAGE);
+		//Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
+
+		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, PlotStoryScene::createScene(0)));
 	}
 	else if (m_step == 15 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 22 || m_step == 23
 		|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31 || m_step == 32 || m_step == 33 || m_step == 35 || m_step == 19
@@ -346,20 +349,7 @@ void NewGuideLayer::showNextGuide()
 		this->removeFromParentAndCleanup(true);
 		g_NewGuideLayer = NULL;
 	}
-	else if (m_step > 5 && m_step <= 9)
-	{
-		this->removeFromParentAndCleanup(true);
-		g_NewGuideLayer = NULL;
-		if (g_MapBlockScene != NULL)
-		{
-			FightingLayer* fightlayer = (FightingLayer*)g_MapBlockScene->getChildByName("FightingLayer");
-			if (fightlayer != NULL)
-			{
-				fightlayer->checkNewGuide();
-			}
-		}
-	}
-	else if (m_step == 10)
+	else if (m_step == 9)
 	{
 		this->removeFromParentAndCleanup(true);
 		g_NewGuideLayer = NULL;
@@ -374,14 +364,8 @@ void NewGuideLayer::showNextGuide()
 	}
 	else if (m_step == 11)
 	{
-		clearNewGuideData();
 		this->removeFromParentAndCleanup(true);
 		g_NewGuideLayer = NULL;
-		if (g_MapBlockScene != NULL)
-		{
-			//g_MapBlockScene->delayShowExit(0);
-			g_MapBlockScene->showNewerGuideGoBack();
-		}
 	}
 	else if (m_step == 12)
 	{
@@ -590,6 +574,9 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 		{
 			opacity = 160;
 		}
+		if (m_step == 1)
+			opacity = 0;
+
 		m_colorlayer = LayerColor::create(Color4B(0, 0, 0, opacity));
 		this->addChild(m_colorlayer);
 
@@ -636,7 +623,8 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 			m_clippingNode->end();
 			Director::getInstance()->getRenderer()->render();
 
-			showAnim(m_pos);
+			if(m_step != 9)
+				showAnim(m_pos);
 		}
 	}
 	else
@@ -698,7 +686,7 @@ void NewGuideLayer::showWord(std::string wordstr)
 		if (m_step == 22)
 			textbox->setVisible(false);
 
-		if (m_step == 0 || m_step == 1 || m_step == 8 || m_step == 10 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 18 || m_step == 23
+		if (m_step == 0 || m_step == 1 || m_step == 8 || m_step == 10 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 18
 			|| m_step == 25 || m_step == 27 || m_step == 29 || m_step == 45 || m_step == 52 || m_step == 71 || m_step == 86)
 			textbox->setPosition(Vec2(360, 430));
 		else if (m_step == 73)
@@ -708,6 +696,14 @@ void NewGuideLayer::showWord(std::string wordstr)
 		else if (m_step == 63 || m_step == 93)
 		{
 			textbox->setPosition(Vec2(360, 650));
+		}
+		else if (m_step == 23)
+		{
+			textbox->setPosition(Vec2(360, 200));
+		}
+		else if (m_step == 9)
+		{
+			textbox->setPosition(Vec2(360, 100));
 		}
 		else if (m_step == 72)
 		{
@@ -801,79 +797,12 @@ void NewGuideLayer::removeSelf(float dt)
 	}
 }
 
-void NewGuideLayer::clearNewGuideData()
-{
-	for (int i = 0; i < 6; i++)
-	{
-		Hero* hero = GlobalInstance::myCardHeros[i];
-
-		if (hero != NULL)
-		{
-			int gftype[] = { T_WG, T_NG };
-
-			for (int i = 0; i < 2; i++)
-			{
-				delete hero->getEquipable(gftype[i]);
-				hero->setEquipable(NULL, gftype[i]);
-			}
-			delete hero;
-			GlobalInstance::myCardHeros[i] = NULL;
-		}
-	}
-	MyRes::Use("r001", MyRes::getMyResCount("r001", MYPACKAGE), MYPACKAGE);
-}
-
 void NewGuideLayer::setNewGuideInfo(int step)
 {
 	if (step == FIRSTGUIDESTEP)
 	{
 		if (checkifNewerGuide(step))
 		{
-			for (int i = 0; i < 6; i++)
-			{
-				Hero* hero = new Hero();
-				hero->generate();
-				std::string strname = StringUtils::format("newguideheroname_%d", i);
-				hero->setName(ResourceLang::map_lang[strname]);
-				hero->setPotential(4);
-				std::string heroid = StringUtils::format("%d%02d", GlobalInstance::getInstance()->getSysSecTime()+i, GlobalInstance::getInstance()->createRandomNum(100));
-
-				hero->setId(heroid);
-
-				hero->setVocation(voc[i]);
-				hero->setState(HS_TAKEON);
-				hero->setPos(i + 1);
-				hero->setChangeCount(4);
-
-				DynamicValueInt dal;
-				dal.setValue(GlobalInstance::vec_herosAttr[4].vec_exp[30]);
-				hero->setExp(dal);
-
-				GlobalInstance::myCardHeros[i] = hero;
-				int gftype[] = {T_NG, T_WG};
-				for (int j = 0; j < 2; j++)
-				{
-					GongFa* equ = new GongFa();
-					equ->setId(gf[i][j]);
-					equ->setType(gftype[j]);
-					DynamicValueInt dv;
-					dv.setValue(1);
-					equ->setCount(dv);
-					equ->setWhere(MYEQUIP);
-
-					DynamicValueInt dv1;
-					dv1.setValue(1);
-					equ->setQU(dv1);
-
-					DynamicValueInt dv2;
-					dv2.setValue(0);
-					equ->setExp(dv2);
-					hero->setEquipable(equ, gftype[j]);
-				}
-
-				hero->setHp(hero->getMaxHp());
-			}
-
 			for (int i = 0; i < step; i++)
 			{
 				GlobalInstance::getInstance()->saveNewerGuide(i, true);

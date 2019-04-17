@@ -4,6 +4,7 @@
 #include "MovingLabel.h"
 #include "Resource.h"
 #include "BuySelectLayer.h"
+#include "CannotTouchLayer.h"
 USING_NS_CC;
 
 AstarRouting::ShortestPathStep::ShortestPathStep() :
@@ -237,6 +238,15 @@ void AstarRouting::constructPathStartMoveFromStep(ShortestPathStep* step)
 	}
 	else
 	{
+		if (g_MapBlockScene->isNewerGuideMap)
+		{
+			if (g_MapBlockScene->getChildByName("cannottouchlayer") == NULL)
+			{
+				CannotTouchLayer* notTouchLayer = CannotTouchLayer::create();
+				g_MapBlockScene->addChild(notTouchLayer, 1, "cannottouchlayer");
+			}
+		}
+
 		g_MapBlockScene->showRouting(vec_steps);
 
 		move();
@@ -251,6 +261,10 @@ void AstarRouting::move()
 		g_MapBlockScene->isMovingRouting = false;
 		g_MapBlockScene->checkMazeStoneHint();
 		return;
+	}
+	if (_shortPathList.size() == 1)
+	{
+		g_MapBlockScene->isNewerGuideMap = false;
 	}
 	g_MapBlockScene->isMovingRouting = true;
 	ShortestPathStep *tostep = _shortPathList.at(0);

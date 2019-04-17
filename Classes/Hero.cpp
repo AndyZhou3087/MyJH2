@@ -1097,13 +1097,6 @@ GongFa* Hero::checkSkillWg()
 		/*******测试技能end*********/
 		if (gf != NULL && GlobalInstance::map_GF[gf->getId()].vec_skillbns[getVocation()] == 1)
 		{
-			//新手引导100%放技能
-			if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
-			{
-				gf->setSkillCount(GlobalInstance::map_GF[gf->getId()].skilleff2);
-				return gf;
-			}
-
 			//if (i == 0)
 			//{
 			//	/*******测试技能start*********/

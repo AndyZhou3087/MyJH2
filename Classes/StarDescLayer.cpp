@@ -9,6 +9,7 @@
 #include "ResDescLayer.h"
 #include "BuyResLayer.h"
 #include "DataSave.h"
+#include "NewGuideLayer.h"
 
 USING_NS_CC;
 
@@ -201,13 +202,14 @@ bool StarDescLayer::init(std::string mapid)
 	closebtn->addTouchEventListener(CC_CALLBACK_2(StarDescLayer::onBtnClick, this));
 	closebtn->setTag(1001);
 	//按钮1
-	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
+	actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
 	actionbtn->addTouchEventListener(CC_CALLBACK_2(StarDescLayer::onBtnClick, this));
 	actionbtn->setTag(1000);
 	//按钮1文字
 	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
 	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("goawaybtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+	this->scheduleOnce(schedule_selector(StarDescLayer::delayShowNewerGuide), newguidetime);
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -318,5 +320,30 @@ void StarDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		default:
 			break;
 		}
+	}
+}
+
+void StarDescLayer::delayShowNewerGuide(float dt)
+{
+	if (!NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
+	{
+		if (NewGuideLayer::checkifNewerGuide(6))
+		{
+			showNewerGuide(6);
+		}
+	}
+}
+
+void StarDescLayer::showNewerGuide(int step)
+{
+	std::vector<Node*> nodes;
+	if (step == 6)
+	{
+		nodes.push_back(actionbtn);
+	}
+	if (g_NewGuideLayer == NULL)
+	{
+		g_NewGuideLayer = NewGuideLayer::create(step, nodes);
+		this->addChild(g_NewGuideLayer, 10);
 	}
 }

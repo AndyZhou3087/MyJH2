@@ -79,8 +79,6 @@ public:
 
 	void delayShowExit(float dt);
 
-	void goBackMainHomeScene();
-
 	//延迟新手引导
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
@@ -124,6 +122,8 @@ public:
 
 	void checkMazeStoneHint();
 
+	void zoomGuideEnd();
+
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
 	virtual void onEnterTransitionDidFinish();
@@ -159,11 +159,6 @@ private:
 	void resetBlockData();
 	
 	void doMyStatus();
-
-	//长按，1S以上算长按
-	void longTouchUpdate(float delay);
-
-	void cacelLongTouch();
 
 	void go(MAP_KEYTYPE keyArrow);
 
@@ -229,6 +224,8 @@ private:
 
 	void delayShowStarResult(float dt);
 
+	void showBossGuideAnim(Vec2 pos);
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;
@@ -252,8 +249,7 @@ private:
 	int mycurCol;
 	int mycurRow;
 	bool isMoving;
-	bool m_isLongPress;
-	Node* m_longTouchNode;
+
 	int randStartPos;
 	std::string m_mapid;
 	int walkcount;
@@ -287,7 +283,7 @@ private:
 
 	int firstpostype;
 
-	bool isNewerGuideMap;
+
 	int usefood;
 
 	cocos2d::ui::TextBMFont* visioncountlbl;
@@ -319,6 +315,7 @@ private:
 	public:
 		bool isMovingRouting;
 		bool isRoutingBreakOff;
+		bool isNewerGuideMap;
 };
 extern MapBlockScene* g_MapBlockScene;
 #endif

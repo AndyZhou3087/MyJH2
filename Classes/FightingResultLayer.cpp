@@ -200,7 +200,7 @@ void FightingResultLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 		{
 			if (m_onstate == 0)
 			{
-				if (NewGuideLayer::checkifNewerGuide(11))
+				if (NewGuideLayer::checkifNewerGuide(86))
 				{
 					AnimationEffect::closeAniEffect(this);
 					g_MapBlockScene->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.3f);

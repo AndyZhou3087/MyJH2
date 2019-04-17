@@ -532,5 +532,7 @@
 	<s name="cstarawdgeted">奖励已领取了哦~~</s>
 	<s name="cnostar">还未收集到足够的星级评分，继续努力</s>
 	<s name="norouting">未找到合适路径！</s>
-	<s name="routnofood">食物不足！无法行走到目的位置</s>								
+	<s name="routnofood">食物不足！无法行走到目的位置</s>
+	<s name="clickcontinue">点击屏幕继续</s>
+	<s name="zoomguidetext">两指滑动可缩放地图</s>									
 </strings>

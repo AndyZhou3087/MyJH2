@@ -32,6 +32,7 @@ private:
 	cocos2d::ui::Button* gocitybtn;
 	cocos2d::ui::Button* gomapbtn;
 	DynamicValueInt gobackcoin;
+	bool isHasNewerGuide;
 };
 
 #endif

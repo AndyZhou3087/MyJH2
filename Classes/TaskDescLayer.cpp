@@ -397,7 +397,7 @@ void TaskDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		switch (tag)
 		{
 		case 0:
-			AnimationEffect::closeAniEffect((Layer*)this);
+			AnimationEffect::closeAniEffect(this);
 			break;
 		case 1: //接受任务
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_TAKEMISSION);
@@ -405,12 +405,18 @@ void TaskDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			accbtn->setTouchEnabled(false);
 			accpTask();
 			g_mainScene->updateTaskIcon();
-			AnimationEffect::closeAniEffect((Layer*)this);
+			AnimationEffect::closeAniEffect(this);
 			break;
 		case 2: //完成后领取奖励
+		{
 			node->setVisible(false);
 			getRewards();
-			AnimationEffect::closeAniEffect((Layer*)this);
+			AnimationEffect::closeAniEffect(this);
+
+			TaskLayer* tlayer = (TaskLayer*)g_mainScene->getChildByName("9assemblyhall");
+
+			tlayer->scheduleOnce(schedule_selector(TaskLayer::delayShowNewerGuide), newguidetime);
+		}
 			break;
 		default:
 			break;

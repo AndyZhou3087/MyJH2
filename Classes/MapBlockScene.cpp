@@ -34,6 +34,7 @@
 #include "BuySelectLayer.h"
 #include "StarResultLayer.h"
 #include "CannotTouchLayer.h"
+#include "MapZoomGuideLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -47,8 +48,6 @@ MapBlockScene::MapBlockScene()
 	myposHero = NULL;
 	isMoving = false;
 
-	m_isLongPress = false;
-	m_longTouchNode = NULL;
 	walkcount = 0;
 	monsterComeRnd = DEFAULTRND;
 	fogscale = 5;
@@ -428,11 +427,24 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	}
 
 	//scheduleUpdate();
+	if (NewGuideLayer::checkifNewerGuide(1))
+	{
+		isNewerGuideMap = true;
+	}
 
 	if (!isMaze)
 	{
 		loadTaskUI();
-		this->scheduleOnce(schedule_selector(MapBlockScene::closeTaskTipNode), 7.0f);
+		if (isNewerGuideMap)
+		{
+			m_tasknode->stopAllActions();
+			m_tasknode->setPosition(Vec2(985, m_tasknode->getPositionY()));
+			taskclick->setVisible(true);
+		}
+		else
+		{
+			this->scheduleOnce(schedule_selector(MapBlockScene::closeTaskTipNode), 7.0f);
+		}
 	}
 	else
 	{
@@ -447,13 +459,7 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	DataSave::getInstance()->setHeroMapCarryCount(GlobalInstance::myOutMapCarry);
 
-	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
-		setBtnEnable(false);
 
-	if (m_mapid.compare("m0-0-0") == 0)
-	{
-		isNewerGuideMap = true;
-	}
 
 	astarrouting = new AstarRouting(blockColCount, blockRowCount);
 
@@ -500,11 +506,6 @@ void MapBlockScene::setBtnEnable(bool isval)
 void MapBlockScene::onEnterTransitionDidFinish()
 {
 	Layer::onEnterTransitionDidFinish();
-    
-	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
-	{
-		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.1f);
-	}
 
 	if (isMaze && GlobalInstance::mazerouteindex == 0)
 	{
@@ -515,6 +516,12 @@ void MapBlockScene::onEnterTransitionDidFinish()
 	if (GlobalInstance::ishasmazeentry && iscfgmazeentry)
 	{
 		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowMazeHint), 1.0f);
+	}
+
+	if (NewGuideLayer::checkifNewerGuide(0))
+	{
+		MapZoomGuideLayer* layer = MapZoomGuideLayer::create();
+		this->addChild(layer);
 	}
 }
 
@@ -530,43 +537,38 @@ void MapBlockScene::showNewerGuideFight()
 
 void MapBlockScene::delayShowNewerGuide(float dt)
 {
-    if (g_MapBlockScene == NULL)
-        g_MapBlockScene = this;
-    
-	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
+	if (NewGuideLayer::checkifNewerGuide(1))
 	{
-		if (NewGuideLayer::checkifNewerGuide(0))
-		{
-			showNewerGuide(0);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(1))
-		{
-			showNewerGuide(1);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(2))
-		{
-			showNewerGuide(2);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(11))
-		{
-			showNewerGuide(11);
-		}
-		/*
-		else if (NewGuideLayer::checkifNewerGuide(13))
-		{
-			showNewerGuide(13);
-		}*/
+		showNewerGuide(1);
 	}
+
 	else if (getFirstFightBoss() && NewGuideLayer::checkifNewerGuide(86))
 	{
 		showNewerGuide(86);
 	}
 	setBtnEnable(true);
+	this->removeChildByName("cannottouchlayer");
 }
 
 void MapBlockScene::showNewerGuide(int step)
 {
 	std::vector<Node*> nodes;
+	if (step == 1)
+	{
+		//find boss
+		std::map<int, MapBlock*>::iterator it;
+
+		for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+		{
+			MapBlock* block = map_mapBlocks[it->first];
+			if (block->getPosType() == POS_BOSS)
+			{
+				showBossGuideAnim(block->getPosition());
+				nodes.push_back(block);
+				break;
+			}
+		}
+	}
 	if (step == 86)
 	{
 		nodes.push_back(gocitybtn);
@@ -595,12 +597,11 @@ bool MapBlockScene::getIsMoving()
 	return isMoving;
 }
 
-void MapBlockScene::goBackMainHomeScene()
+void MapBlockScene::showNewerGuideGoBack()
 {
-	cacelLongTouch();
 	setBtnEnable(false);
 
-	if (isNewerGuideMap)
+	if (NewGuideLayer::checkifNewerGuide(2))
 	{
 #if USE_TRANSCENE
 		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAIN)));
@@ -608,16 +609,6 @@ void MapBlockScene::goBackMainHomeScene()
 		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 #endif
 	}
-	else
-	{
-		HintBoxLayer* layer = HintBoxLayer::create(ResourceLang::map_lang["nofooddeathhint"], 11);
-		this->addChild(layer);
-	}
-}
-
-void MapBlockScene::showNewerGuideGoBack()
-{
-	goBackMainHomeScene();
 }
 
 void MapBlockScene::showFightingLayer(std::vector<Npc*> enemys)
@@ -1006,22 +997,6 @@ void MapBlockScene::closeTaskTipNode(float dt)
 	m_tasknode->runAction(moveto);
 }
 
-void MapBlockScene::longTouchUpdate(float delay)
-{
-	m_isLongPress = true;
-	if (m_longTouchNode != NULL) {
-		go((MAP_KEYTYPE)m_longTouchNode->getTag());
-		unschedule(schedule_selector(MapBlockScene::longTouchUpdate));
-	}
-}
-
-void MapBlockScene::cacelLongTouch()
-{
-	unschedule(schedule_selector(MapBlockScene::longTouchUpdate));
-	m_longTouchNode = NULL;
-	m_isLongPress = false;
-}
-
 void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 {
 	if (isMoving)
@@ -1096,7 +1071,6 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 		int bindex = mycurRow*blockColCount + mycurCol;
 		if (map_mapBlocks[bindex]->getPosType() == POS_MAZETRANS)
 		{
-			cacelLongTouch();
 			setBtnEnable(false);
 
 			for (unsigned int i = 0; i < vec_mazetranspoints.size(); i++)
@@ -1151,7 +1125,6 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 
 		if (mycurCol == randStartPos % blockColCount && mycurRow == randStartPos / blockColCount)
 		{
-			cacelLongTouch();
 			this->scheduleOnce(schedule_selector(MapBlockScene::delayShowExit), 0.45f);
 		}
 		else
@@ -1201,18 +1174,11 @@ void MapBlockScene::stopMoving()
 
 	removeCurRouting(mycurRow, mycurCol);
 
-	doMyStatus();
+	if (!isNewerGuideMap)
+		doMyStatus();
 	isMoving = false;
-	if (m_isLongPress) 
-	{
-		go((MAP_KEYTYPE)m_longTouchNode->getTag());
-	}
-	else
-	{
-		myposHero->setAnimation(0, standname[m_walkDirection], false);
-		//myposHero->clearTracks();
-	}
 
+	myposHero->setAnimation(0, standname[m_walkDirection], false);
 }
 
 void MapBlockScene::checkFood()
@@ -1253,7 +1219,8 @@ void MapBlockScene::checkFood()
 		}
 		if (!checklive())
 		{
-			goBackMainHomeScene();
+			HintBoxLayer* layer = HintBoxLayer::create(ResourceLang::map_lang["nofooddeathhint"], 11);
+			this->addChild(layer);
 		}
 	}
 }
@@ -1754,7 +1721,6 @@ void MapBlockScene::doMyStatus()
 
 		if (vec_enemys.size() > 0)
 		{
-			cacelLongTouch();
 			//先判断任务
 			bool isTask = false;
 			int mycr = mycurRow*blockColCount + mycurCol;
@@ -1778,18 +1744,9 @@ void MapBlockScene::doMyStatus()
 			}
 			if (!isTask)
 			{
-				if (m_mapid.compare("m0-0-0") == 0)
-				{
-					delayShowNewerGuide(0);
-				}
-				else
-					showFightingLayer(vec_enemys);
+				showFightingLayer(vec_enemys);
 			}
 		}
-	}
-	if (status != MAP_S_NOTING)
-	{
-		cacelLongTouch();
 	}
 }
 
@@ -3263,6 +3220,10 @@ void MapBlockScene::removeAllRoutingBlock()
 				map_mapBlocks[bindex]->getParent()->removeChildByName(rdescname);
 		}
 	}
+
+
+	map_mapBlocks[0]->getParent()->removeChildByName("bossquan");
+	g_MapBlockScene->removeChildByName("cannottouchlayer");
 }
 
 void MapBlockScene::showBuySelectFood()
@@ -3351,4 +3312,37 @@ void MapBlockScene::checkMazeStoneHint()
 
 		}
 	}
+}
+
+void MapBlockScene::zoomGuideEnd()
+{
+	scrollView->setZoomScale(0.71f);
+
+	if (NewGuideLayer::checkifNewerGuide(1))
+	{
+		CannotTouchLayer* notTouchLayer = CannotTouchLayer::create();
+		this->addChild(notTouchLayer, 1, "cannottouchlayer");
+		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.5f);
+	}
+}
+
+void MapBlockScene::showBossGuideAnim(Vec2 pos)
+{
+	auto quan = Sprite::create("images/bossguide/1.png");
+	quan->setAnchorPoint(Vec2(0.5, 0.5));
+	quan->setPosition(pos.x+ MAPBLOCKWIDTH/2, pos.y+ MAPBLOCKWIDTH/2);
+	map_mapBlocks[0]->getParent()->addChild(quan, 40000, "bossquan");
+
+	//创建帧动画序列，名词形式
+	auto animation = Animation::create();
+	for (int i = 1; i <= 20; i++)
+	{
+		std::string str = StringUtils::format("images/bossguide/%d.png", i);
+		animation->addSpriteFrameWithFile(str);
+	}
+	//设置帧动画属性
+	animation->setDelayPerUnit(0.1f);//每一帧停留的时间
+	animation->setRestoreOriginalFrame(true);//播放完后回到第一帧
+	auto animate = Animate::create(animation);
+	quan->runAction(RepeatForever::create(Sequence::create(animate, DelayTime::create(0.2f), NULL)));
 }

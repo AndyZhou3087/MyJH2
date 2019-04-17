@@ -129,7 +129,6 @@ void StoryScene::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventT
 				return;
 
 			bg->setEnabled(false);
-			NewGuideLayer::setNewGuideInfo(FIRSTGUIDESTEP);
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 		}
 		else

@@ -587,10 +587,6 @@ void LoadingScene::enterNewScene()
 	}
 	else
 	{
-		if (!NewGuideLayer::checkifNewerGuide(10) && NewGuideLayer::checkifNewerGuide(11))
-		{
-			GlobalInstance::getInstance()->saveNewerGuide(11, false);
-		}
 		int index = -1;
 		int STEPS[] = { FIRSTGUIDESTEP, SECONDGUIDESTEP, THRIDGUIDESTEP, MIDELEGUIDESTEP, FOURTHGUIDESTEP };
 		for (int i = 0; i < sizeof(STEPS) / sizeof(STEPS[0]); i++)

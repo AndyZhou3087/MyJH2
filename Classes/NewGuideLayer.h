@@ -6,7 +6,7 @@
 #include "ui/CocosGUI.h"
 USING_NS_CC;
 
-#define FIRSTGUIDESTEP 11
+#define FIRSTGUIDESTEP 5
 #define SECONDGUIDESTEP 85
 #define THRIDGUIDESTEP 39
 #define MIDELEGUIDESTEP 44
@@ -36,7 +36,6 @@ private:
 	void showAnim(Vec2 pos);
 	void showWord(std::string wordstr);
 	void showNode(std::vector<Node*> stencilNodes);
-	static void clearNewGuideData();
 	void removeSelf(float dt);
 	void showNextGuide();
 

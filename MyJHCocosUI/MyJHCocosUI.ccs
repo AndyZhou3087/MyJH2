@@ -34,6 +34,13 @@
             <Image Name="guide_finger_0.png" />
             <Image Name="guide_finger_1.png" />
             <Image Name="guide_frame.png" />
+            <Image Name="zoomar1.png" />
+            <Image Name="zoomar2.png" />
+            <Image Name="zoomfig1.png" />
+            <Image Name="zoomfig2.png" />
+            <Image Name="zoomfig3.png" />
+            <Image Name="zoomfig4.png" />
+            <Image Name="zoomfig5.png" />
           </Folder>
           <Image Name="brownbox.png" />
           <Image Name="cardh_0_0.png" />
@@ -1620,6 +1627,7 @@
         <Project Name="wellmorebtnnode.csd" Type="Node" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="mapZoomGuideLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

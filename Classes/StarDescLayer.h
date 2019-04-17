@@ -19,8 +19,11 @@ public:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	static bool sortbyfinishstat(S_StarData a, S_StarData b);
+	void delayShowNewerGuide(float dt);
+	void showNewerGuide(int step);
 private:
 	std::string m_mapid;
+	cocos2d::ui::Widget* actionbtn;
 };
 
 #endif

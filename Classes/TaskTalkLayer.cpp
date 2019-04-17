@@ -23,6 +23,7 @@ TaskTalkLayer::TaskTalkLayer()
 
 TaskTalkLayer::~TaskTalkLayer()
 {
+	g_MapBlockScene->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.3f);
 
 }
 

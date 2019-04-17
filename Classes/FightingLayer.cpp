@@ -127,58 +127,29 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 
 void FightingLayer::checkNewGuide()
 {
-	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
+	if (NewGuideLayer::checkifNewerGuide(9))
 	{
-		if (NewGuideLayer::checkifNewerGuide(6))
-			showNewerGuide(6);
-		else if (NewGuideLayer::checkifNewerGuide(7))
-		{
-			showNewerGuide(7);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(8))
-		{
-			showNewerGuide(8);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(9))
-		{
-			showNewerGuide(9);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(10))
-		{
-			showNewerGuide(10);
-		}
+		showNewerGuide(9);
 	}
+
 }
 
 void FightingLayer::showNewerGuide(int step)
 {
 	pauseAtkSchedule();
+
 	std::vector<Node*> nodes;
-	if (step == 6)
+	if (step == 9)
 	{
-		
+		for (int i = 0; i < 6; i++)
+		{
+			FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(i);
+			if (fnode != NULL)
+				nodes.push_back(fnode);
+		}
 	}
-	else if (step == 7)
-	{
-		FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(0);
-		nodes.push_back(fnode);
-	}
-	else if (step == 8)
-	{
-		FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(3);
-		nodes.push_back(fnode);
-	}
-	else if (step == 9)
-	{
-		FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(1);
-		nodes.push_back(fnode);
-	}
-	else if (step == 10)
-	{
-		FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(5);
-		nodes.push_back(fnode);
-	}
-	if (g_MapBlockScene != NULL)
+
+	if (g_MapBlockScene != NULL && nodes.size() > 0)
 	{
 		g_MapBlockScene->showNewerGuideNode(step, nodes);
 	}
@@ -205,7 +176,7 @@ void FightingLayer::updateMapHero(int which)
 		g_MapBlockScene->updateHeroUI(which);
 		fightcount++;
 
-		if (fightcount > 10 && !NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
+		if (fightcount > 10)
 			m_escapebtn->setVisible(true);
 	}
 }

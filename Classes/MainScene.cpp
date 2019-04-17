@@ -320,7 +320,7 @@ void MainScene::delayShowNewerGuide(float dt)
 			showNewerGuide(5);
 		}
 	}
-	else if (NewGuideLayer::checkifNewerGuide(12) && NewGuideLayer::checkifNewerGuide(14))
+	else if (NewGuideLayer::checkifNewerGuide(12) && !NewGuideLayer::checkifNewerGuide(5))
 	{
 		showNewerGuide(12);
 	}
@@ -356,18 +356,6 @@ void MainScene::delayShowNewerGuide(float dt)
 		{
 			showNewerGuide(15);
 		}*/
-		else if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
-		{
-			if (NewGuideLayer::checkifNewerGuide(15))
-			{
-				showNewerGuide(15);
-			}
-		}
-
-		else if (!NewGuideLayer::checkifNewerGuide(30) && NewGuideLayer::checkifNewerGuide(23))
-		{
-			showNewerGuide(23);
-		}
 
 		else if (NewGuideLayer::checkifNewerGuide(MIDELEGUIDESTEP))
 		{
@@ -388,6 +376,19 @@ void MainScene::delayShowNewerGuide(float dt)
 			if (NewGuideLayer::checkifNewerGuide(55))
 			{
 				showNewerGuide(55);
+			}
+		}
+
+		else if (!NewGuideLayer::checkifNewerGuide(30) && NewGuideLayer::checkifNewerGuide(23))
+		{
+			showNewerGuide(23);
+		}
+
+		else if (NewGuideLayer::checkifNewerGuide(SECONDGUIDESTEP))
+		{
+			if (NewGuideLayer::checkifNewerGuide(15))
+			{
+				showNewerGuide(15);
 			}
 		}
 	}
