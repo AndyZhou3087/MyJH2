@@ -1536,7 +1536,7 @@ void MapBlockScene::createFog()
 		{
 			std::vector<std::string> vec_tmp;
 			CommonFuncs::split(vec_cfg[0], vec_tmp, ",");
-			int i = 0;
+			unsigned int i = 0;
 			for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
 			{
 				if (i < vec_tmp.size())
@@ -3172,17 +3172,27 @@ void MapBlockScene::showRouting(std::vector<Vec2> vec_routs)
 		std::string routname = StringUtils::format("routblock%d", bindex);
 
 		int zorder = map_mapBlocks[bindex]->getLocalZOrder() + 10000;
-		if (!mapIsAllOpen && !map_mapBlocks[bindex]->getIsCanSee() && c > fogscale / 2 && r > fogscale / 2)
+		if (!mapIsAllOpen && !map_mapBlocks[bindex]->getIsCanSee() && c > fogscale / 2-1 && r > fogscale / 2-1)
 			zorder = 30000;
 		map_mapBlocks[bindex]->getParent()->addChild(routblock, zorder, routname);
 		routblock->setVisible(false);
-		if (i == vec_routs.size() - 1)
+		int routslen = vec_routs.size();
+		if (i == routslen - 1)
 		{
 			Sprite* rdesc = Sprite::createWithSpriteFrameName("ui/routdesticon.png");
 			rdesc->setAnchorPoint(Vec2(0.5f, 0));
-			rdesc->setPosition(Vec2(MAPBLOCKWIDTH/2, MAPBLOCKWIDTH/2));
-			routblock->addChild(rdesc);
+			rdesc->setVisible(false);
+			rdesc->setPosition(Vec2(routblock->getPositionX() + MAPBLOCKWIDTH/2, routblock->getPositionY() - MAPBLOCKWIDTH/2));
+			std::string rdescname = StringUtils::format("routdest%d", bindex);
+			map_mapBlocks[bindex]->getParent()->addChild(rdesc, 30000, rdescname);
+			rdesc->runAction(Sequence::create(DelayTime::create(0.02f* routslen), Show::create(), NULL));
 			rdesc->runAction(RepeatForever::create(Sequence::create(MoveBy::create(0.3f, Vec2(0, 5)), MoveBy::create(0.6f, Vec2(0, -5)), MoveBy::create(0.5f, Vec2(0, 0)), NULL)));
+			
+			std::string countstr = StringUtils::format("%d", routslen);
+			Label *countlbl = Label::createWithTTF(countstr, FONT_NAME, 28);
+			countlbl->setColor(Color3B(255, 255, 255));
+			countlbl->setPosition(Vec2(rdesc->getContentSize().width / 2, -20));
+			rdesc->addChild(countlbl);
 		}
 
 		routblock->runAction(Sequence::create(DelayTime::create(0.02f* i), Show::create(), NULL));
@@ -3196,7 +3206,14 @@ void MapBlockScene::removeCurRouting(int row, int col)
 	Node* rnode = map_mapBlocks[bindex]->getParent()->getChildByName(routname);
 
 	if (rnode != NULL)
+	{
 		map_mapBlocks[bindex]->getParent()->removeChildByName(routname);
+
+		std::string rdescname = StringUtils::format("routdest%d", bindex);
+		Node* dnode = map_mapBlocks[bindex]->getParent()->getChildByName(rdescname);
+		if (dnode != NULL)
+			map_mapBlocks[bindex]->getParent()->removeChildByName(rdescname);
+	}
 
 	
 	for (unsigned int i = 0; i < m_vecrouts.size(); i++)
@@ -3210,7 +3227,7 @@ void MapBlockScene::removeCurRouting(int row, int col)
 		if (rnode != NULL)
 		{
 			int zorder = map_mapBlocks[bindex]->getLocalZOrder() + 10000;
-			if (!mapIsAllOpen && !map_mapBlocks[bindex]->getIsCanSee() && c > fogscale / 2 && r > fogscale / 2)
+			if (!mapIsAllOpen && !map_mapBlocks[bindex]->getIsCanSee() && c > fogscale / 2-1 && r > fogscale / 2-1)
 				zorder = 30000;
 			rnode->setLocalZOrder(zorder);
 		}
@@ -3229,7 +3246,14 @@ void MapBlockScene::removeAllRoutingBlock()
 		std::string routname = StringUtils::format("routblock%d", bindex);
 		Node* rnode = map_mapBlocks[bindex]->getParent()->getChildByName(routname);
 		if (rnode != NULL)
+		{
 			map_mapBlocks[bindex]->getParent()->removeChildByName(routname);
+
+			std::string rdescname = StringUtils::format("routdest%d", bindex);
+			Node* dnode = map_mapBlocks[bindex]->getParent()->getChildByName(rdescname);
+			if (dnode != NULL)
+				map_mapBlocks[bindex]->getParent()->removeChildByName(rdescname);
+		}
 	}
 }
 
