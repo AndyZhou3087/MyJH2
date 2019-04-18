@@ -70,6 +70,7 @@ void AstarRouting::moveToPosByAStar(const cocos2d::Vec2 &frowcolrow, const cocos
 	Vec2 fromTiled = frowcolrow;
 	Vec2 toTiled = tocolrow;
 
+	bool isfindrout = false;
 	if (fromTiled == toTiled)
 	{
 		return;
@@ -91,6 +92,7 @@ void AstarRouting::moveToPosByAStar(const cocos2d::Vec2 &frowcolrow, const cocos
 
 		if(currentStep->getPos() == toTiled)
 		{
+			isfindrout = true;
 			this->constructPathStartMoveFromStep(currentStep);
 
 			_openStepList.clear();
@@ -135,6 +137,10 @@ void AstarRouting::moveToPosByAStar(const cocos2d::Vec2 &frowcolrow, const cocos
 
 	}while(_openStepList.size()>0);
 	
+	if (!isfindrout)
+	{
+		MovingLabel::show(ResourceLang::map_lang["norouting"]);
+	}
 }
 
 cocos2d::PointArray *AstarRouting::WakabledAdjacentTiledColRow(const cocos2d::Vec2 &colrow)
@@ -238,18 +244,25 @@ void AstarRouting::constructPathStartMoveFromStep(ShortestPathStep* step)
 	}
 	else
 	{
-		if (g_MapBlockScene->isNewerGuideMap)
+		if (vec_steps.size() > 0)
 		{
-			if (g_MapBlockScene->getChildByName("cannottouchlayer") == NULL)
+			if (g_MapBlockScene->isNewerGuideMap)
 			{
-				CannotTouchLayer* notTouchLayer = CannotTouchLayer::create();
-				g_MapBlockScene->addChild(notTouchLayer, 1, "cannottouchlayer");
+				if (g_MapBlockScene->getChildByName("cannottouchlayer") == NULL)
+				{
+					CannotTouchLayer* notTouchLayer = CannotTouchLayer::create();
+					g_MapBlockScene->addChild(notTouchLayer, 1, "cannottouchlayer");
+				}
 			}
+
+			g_MapBlockScene->showRouting(vec_steps);
+
+			move();
 		}
-
-		g_MapBlockScene->showRouting(vec_steps);
-
-		move();
+		else
+		{
+			MovingLabel::show(ResourceLang::map_lang["norouting"]);
+		}
 	}
 
 }

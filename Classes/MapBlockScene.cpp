@@ -289,8 +289,16 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 			int startposindex = GlobalInstance::getInstance()->createRandomNum(count);
 			randStartPos = vec_startpos[startposindex];
 		}
+
 		map_mapBlocks[randStartPos]->setPosIcon();
 
+		for (int i = 0; i < count; i++)
+		{
+			if (randStartPos != vec_startpos[i])
+			{
+				map_mapBlocks[vec_startpos[i]]->setPosType(-1);
+			}
+		}
 	}
 	mycurCol = randStartPos % blockColCount;
 	mycurRow = randStartPos / blockColCount;
