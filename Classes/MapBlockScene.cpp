@@ -1346,7 +1346,7 @@ void MapBlockScene::scrollViewDidScroll(ScrollView* view)
 
 void MapBlockScene::scrollViewDidZoom(ScrollView* view)
 {
-	//isDraging = true;
+	isDraging = true;
 
 	if (isBlockClickCancel)
 	{
