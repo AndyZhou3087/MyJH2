@@ -98,7 +98,7 @@ bool StarDescLayer::init(std::string mapid)
 		S_StarData sdata;
 		sdata.sid = cid;
 		sdata.needcount = count;
-		if (cid == SA_NODEATH)
+		if (cid == SA_NODEATH || cid == SA_GETALLBOX)
 			sdata.finishcount = -1;
 		else
 			sdata.finishcount = 0;
