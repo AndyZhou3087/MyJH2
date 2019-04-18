@@ -2403,7 +2403,7 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 	}
 	else if (type == ui::Widget::TouchEventType::CANCELED)
 	{
-		isDraging = false;
+		//isDraging = false;
 		isBlockClickCancel = true;
 	}
 }
