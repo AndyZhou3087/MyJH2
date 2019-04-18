@@ -722,6 +722,10 @@
           <Image Name="msggeting_text.png" />
           <Image Name="mypackagetitle.png" />
           <Image Name="newherotitle.png" />
+          <Image Name="newherovoc0_text.png" />
+          <Image Name="newherovoc1_text.png" />
+          <Image Name="newherovoc2_text.png" />
+          <Image Name="newherovoc3_text.png" />
           <Image Name="nexttime_text.png" />
           <Image Name="npcgive_text.png" />
           <Image Name="npctext_0.png" />
@@ -1555,6 +1559,7 @@
         <Project Name="mapBlockLayer.csd" Type="Layer" />
         <Project Name="mapEventLayer.csd" Type="Layer" />
         <PlistInfo Name="mapui.csi" Type="Plist" />
+        <Project Name="mapZoomGuideLayer.csd" Type="Layer" />
         <Project Name="marketLayer.csd" Type="Layer" />
         <Project Name="marketRefreshLayer.csd" Type="Layer" />
         <Project Name="marketResNode.csd" Type="Node" />
@@ -1627,7 +1632,6 @@
         <Project Name="wellmorebtnnode.csd" Type="Node" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
-        <Project Name="mapZoomGuideLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

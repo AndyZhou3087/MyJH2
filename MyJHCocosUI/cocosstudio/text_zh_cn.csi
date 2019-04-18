@@ -410,6 +410,10 @@
       <FilePathData Path="text_zh_cn/starscore2_text.png" />
       <FilePathData Path="text_zh_cn/starscore3_text.png" />
       <FilePathData Path="text_zh_cn/starscorebest_text.png" />
+      <FilePathData Path="text_zh_cn/newherovoc0_text.png" />
+      <FilePathData Path="text_zh_cn/newherovoc1_text.png" />
+      <FilePathData Path="text_zh_cn/newherovoc2_text.png" />
+      <FilePathData Path="text_zh_cn/newherovoc3_text.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

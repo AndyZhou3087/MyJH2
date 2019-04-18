@@ -19,9 +19,7 @@ public:
 public:
 private:
 	cocos2d::ui::ImageView* headimg;
-	cocos2d::ui::Text* namelbl;
-	cocos2d::ui::Text* vocationtextlbl;
-	cocos2d::ui::Text* vocationlbl;
+	cocos2d::ui::ImageView* vocimg;
 	cocos2d::ui::ImageView* quimg;
 	Node* light;
 

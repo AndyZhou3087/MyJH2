@@ -40,7 +40,7 @@ bool PopNewHeroLayer::init(Hero* hero)
 	if (!Layer::init())
 		return false;
 
-	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
+	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 220));
 	this->addChild(color, 0, "colorLayer");
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("popNewHeroLayer.csb"));
@@ -56,15 +56,9 @@ bool PopNewHeroLayer::init(Hero* hero)
 	headimg->ignoreContentAdaptWithSize(true);
 	headimg->setScale(0.5f);
 
-	//名字
-	namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
-	namelbl->setString(hero->getName());
-
-	//职业
-	vocationtextlbl = (cocos2d::ui::Text*)csbnode->getChildByName("vocationtext");
-	vocationtextlbl->setString(ResourceLang::map_lang["vocationtext"]);
-
-	vocationlbl = (cocos2d::ui::Text*)csbnode->getChildByName("vocation");
+	vocimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("herovoc");
+	std::string vocimgstr = StringUtils::format("newherovoc%d_text", hero->getVocation());
+	vocimg->loadTexture(ResourcePath::makeTextImgPath(vocimgstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//品质
 	quimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("heroqu");
@@ -74,9 +68,6 @@ bool PopNewHeroLayer::init(Hero* hero)
 
 	std::string str = StringUtils::format("hfull_%d_%d.png", hero->getVocation(), hero->getSex());
 	headimg->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
-
-	str = StringUtils::format("vocation_%d", hero->getVocation());
-	vocationlbl->setString(ResourceLang::map_lang[str]);
 
 	light = csbnode->getChildByName("light");
 
