@@ -97,7 +97,11 @@ void SelectEquipLayer::delayShowNewerGuide(float dt)
 	{
 		if (NewGuideLayer::checkifNewerGuide(THRIDGUIDESTEP))
 		{
-			if (NewGuideLayer::checkifNewerGuide(33))
+			if (NewGuideLayer::checkifNewerGuide(11))
+			{
+				showNewerGuide(11);
+			}
+			else if (NewGuideLayer::checkifNewerGuide(33))
 			{
 				showNewerGuide(33);
 			}
@@ -119,7 +123,7 @@ void SelectEquipLayer::delayShowNewerGuide(float dt)
 void SelectEquipLayer::showNewerGuide(int step)
 {
 	std::vector<Node*> nodes;
-	if (step == 33 || step == 36 || step == 80)
+	if (step== 11 || step == 33 || step == 36 || step == 80)
 	{
 		nodes.push_back(scrollview->getChildren().at(0)->getChildren().at(0));
 	}

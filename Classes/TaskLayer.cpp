@@ -39,7 +39,8 @@ TaskLayer::~TaskLayer()
 	//}
 	if (!NewGuideLayer::checkifNewerGuide(62) && NewGuideLayer::checkifNewerGuide(23))
 	{
-		g_mainScene->scheduleOnce(schedule_selector(MainScene::delayShowNewerGuide), 0.3f);
+		if (g_mainScene != NULL)
+			g_mainScene->scheduleOnce(schedule_selector(MainScene::delayShowNewerGuide), 0.3f);
 	}
 }
 

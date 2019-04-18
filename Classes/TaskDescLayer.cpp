@@ -412,10 +412,6 @@ void TaskDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			node->setVisible(false);
 			getRewards();
 			AnimationEffect::closeAniEffect(this);
-
-			TaskLayer* tlayer = (TaskLayer*)g_mainScene->getChildByName("9assemblyhall");
-
-			tlayer->scheduleOnce(schedule_selector(TaskLayer::delayShowNewerGuide), newguidetime);
 		}
 			break;
 		default:

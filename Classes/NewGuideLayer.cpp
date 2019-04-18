@@ -30,14 +30,13 @@ std::string descText[] = { "", //0
 "小师妹：掌门师兄，传言果然是真的，十四天书现世，六大派和魔教为了争夺天书打起来了。", //2
 "密探：\n报告帮主，十四天书在剑南山现世，正魔两派强者已赶往天书出世地抢夺天书。",//3
 "少帮主：\n父亲，我愿一同前去为夺书出力。",//4
-"帮主：\n好，速召集强者，我们出发！十四天书，决不能落入宵小之手！", //进入战斗界面//5
+"帮主：\n好，速召集强者，我们出发！十四天书，决不能落入宵小之手！", //5
 "",//6 星级界面
 "",//7 缩放引导
 "",//8 找到BOSS高亮引导
 "小师妹：掌门师兄，战斗过程为全自动，掌门只要根据角色的属性去分配好位置就可以了。（前排适合防御力比较高的在前面抗伤害，后排适合输出和治疗职业）", //9
-"小师妹：掌门师兄，战斗过程为全自动，掌门只要根据角色的属性去分配好位置就可以了。（前排适合防御力比较高的在前面抗伤害，后排适合输出和治疗职业）",//10
-//开始战斗--结束
-"小师妹：不好，妖人居然隐藏实力，帮主与妖人拼得两败俱伤，都不慎坠崖，天书也不知所踪，师兄切不可意气用事，趁更多人赶来之前，我们先行躲避，再寻天书的踪迹", //11
+"",//10
+"", //11
 "小师妹：师兄切莫悲伤，帮主虽恐遭不测，但我们不可放弃，天书亦决不能落入宵小之人手中。我们广纳豪杰，才好寻回老帮主和天书，客栈中经常会有江湖侠客停留，师兄可前往招募。",//12
 "",//13
 "小师妹：点击刷新按钮，可以刷新可招募的侠客，最高可刷新出橙色品质的侠客哦！（侠客的品质由低到高依次为绿，蓝，紫，橙，红）",//14
@@ -77,7 +76,7 @@ std::string descText[] = { "", //0
 "",
 //这里是否需要滑动引导
 "小师妹：掌门师兄快去青龙帮瞧一瞧吧，只要得到十四天书，师兄就可以独步武林了！",//出门45
-"小师妹：最后我再交代一下，在这里师兄可以设置参战角色的位置，快去设置一下吧！",//46
+"小师妹：在这里师兄可以设置参战角色的位置，快去设置一下吧！",//46
 "",//47
 "",
 "",
@@ -147,7 +146,7 @@ std::string descText[] = { "", //0
 int voc[6] = { 6,4,11,3,8,1 };
 std::string gf[6][2] = { { "x014","w014" },{ "x004","w004" },{ "x035","w035" },{ "x016","w016" },{ "x023","w023" },{ "x006","w006" } };
 int stenNodesArr[] = { 72,17,19,75,34,37,25,27,29,32,35,38,71,79,16,18,20,21,64,23,31,78,39,70,53,15,22,69,77,40,55,45,63,66,73,
-0,1,11,13,67,68,46,48,50,52,14,24,26,28,30,33,36,80,47,49,51,54,74,76,81,42,60,43,58,61,57,41,59,44,56,62,85 };
+0,1,11,13,67,68,46,48,50,52,14,24,26,28,30,33,36,80,47,49,51,54,74,76,91,81,42,60,43,58,61,57,41,59,44,56,62,85 };
 
 NewGuideLayer* g_NewGuideLayer = NULL;
 NewGuideLayer::NewGuideLayer()
@@ -192,7 +191,7 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 	showNode(stencilNodes);
 	showWord(descText[m_step]);
 
-	if ((m_step >= 2 && m_step <= 10) || m_step == 12 || m_step == 14 || m_step == 65)
+	if ((m_step >= 2 && m_step <= 5) || m_step == 9 || m_step == 12 || m_step == 14 || m_step == 65)
 	{
 		iscannext = true;
 	}
@@ -218,10 +217,8 @@ bool NewGuideLayer::init(int step, std::vector<Node*> stencilNodes)
 			if (rect.containsPoint(point))//如果触点处于rect中  
 			{
 				iscannext = true;
-				if (m_step != 11)
-				{
-					listener->setSwallowTouches(false);
-				}
+
+				listener->setSwallowTouches(false);
 			}
 			else
 			{
@@ -335,10 +332,10 @@ void NewGuideLayer::showNextGuide()
 	{
 		//MyRes::Add("r001", 10, MYPACKAGE);
 		//Director::getInstance()->replaceScene(TransitionFade::create(2.2f, MapBlockScene::createScene("m0-0-0", 1)));
-
+		
 		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, PlotStoryScene::createScene(0)));
 	}
-	else if (m_step == 15 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 22 || m_step == 23
+	else if (m_step == 10 || m_step == 15 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 22 || m_step == 23
 		|| m_step == 24 || m_step == 26 || m_step == 28 || m_step == 31 || m_step == 32 || m_step == 33 || m_step == 35 || m_step == 19
 		|| m_step == 36 || m_step == 40 || m_step == 41 || m_step == 45 || m_step == 46
 		|| m_step == 52 || m_step == 53 || m_step == 54 || m_step == 55 || m_step == 56 || m_step == 57 || m_step == 59 || m_step == 63
@@ -596,7 +593,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 				m_pos = stencilNodes[i]->getParent()->convertToWorldSpace(stencilNodes[i]->getPosition());
 				float scalex = stencilNodes[i]->getContentSize().width / cnode->getContentSize().width;
 				float scaley = stencilNodes[i]->getContentSize().height / cnode->getContentSize().height;
-				if ((m_step >= 7 && m_step <= 10))
+				if ((m_step == 9))
 				{
 					scalex = 3.0f;
 					scaley = 3.0f;
@@ -613,7 +610,7 @@ void NewGuideLayer::showNode(std::vector<Node*> stencilNodes)
 				cnode->setScale(scalex*1.5f, scaley*1.5f);
 
 				if (m_step == 0 || m_step == 1 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 17 || m_step == 18 || m_step == 19 || m_step == 23 || m_step == 25 || m_step == 27 || m_step == 29 || m_step == 34 || m_step == 37 || m_step == 39 || m_step == 52 ||
-					m_step == 38 || m_step == 47 || m_step == 48 || m_step == 49 || m_step == 51 || m_step == 71 || m_step == 75 || m_step == 81 || m_step == 87)
+					m_step == 38 || m_step == 47 || m_step == 48 || m_step == 49 || m_step == 51 || m_step == 71 || m_step == 75 || m_step == 91 || m_step == 81 || m_step == 87)
 				{
 					cnode->setScale(scalex*1.5f);
 				}
@@ -686,7 +683,7 @@ void NewGuideLayer::showWord(std::string wordstr)
 		if (m_step == 22)
 			textbox->setVisible(false);
 
-		if (m_step == 0 || m_step == 1 || m_step == 8 || m_step == 10 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 18
+		if (m_step == 0 || m_step == 1 || m_step == 8 || m_step == 11 || m_step == 13 || m_step == 16 || m_step == 18
 			|| m_step == 25 || m_step == 27 || m_step == 29 || m_step == 45 || m_step == 52 || m_step == 71 || m_step == 86)
 			textbox->setPosition(Vec2(360, 430));
 		else if (m_step == 73)
@@ -905,6 +902,9 @@ void NewGuideLayer::setNewGuideInfo(int step)
 			{
 				GlobalInstance::getInstance()->saveNewerGuide(i, true);
 			}
+			GlobalInstance::getInstance()->saveNewerGuide(10, true);
+			GlobalInstance::getInstance()->saveNewerGuide(11, true);
+			GlobalInstance::getInstance()->saveNewerGuide(91, true);
 		}
 	}
 	else if (step == FOURTHGUIDESTEP)

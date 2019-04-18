@@ -305,20 +305,17 @@ void MainScene::checkBuildingOpen(float dt)
 
 void MainScene::delayShowNewerGuide(float dt)
 {
-	if (NewGuideLayer::checkifNewerGuide(FIRSTGUIDESTEP))
+	if (NewGuideLayer::checkifNewerGuide(3))
 	{
-		if (NewGuideLayer::checkifNewerGuide(3))
-		{
-			showNewerGuide(3);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(4))
-		{
-			showNewerGuide(4);
-		}
-		else if (NewGuideLayer::checkifNewerGuide(5))
-		{
-			showNewerGuide(5);
-		}
+		showNewerGuide(3);
+	}
+	else if (NewGuideLayer::checkifNewerGuide(4))
+	{
+		showNewerGuide(4);
+	}
+	else if (NewGuideLayer::checkifNewerGuide(5))
+	{
+		showNewerGuide(5);
 	}
 	else if (NewGuideLayer::checkifNewerGuide(12) && !NewGuideLayer::checkifNewerGuide(5))
 	{

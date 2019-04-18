@@ -292,11 +292,14 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 		actionbtn->setTag(1002);
 		actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("selectbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		takeoffbtn->setVisible(false);
+		actionbtn->setPositionX(200);
+		strenthbtn->setPositionX(520);
 	}
 	else
 	{
 		actionbtn->setVisible(false);
-		takeoffbtn->setPositionX(150);
+		takeoffbtn->setPositionX(200);
+		strenthbtn->setPositionX(520);
 	}
 
 	if (isChangeEquip)
@@ -360,7 +363,11 @@ void TakeOnLayer::updateRedpoint(float dt)
 
 void TakeOnLayer::delayShowNewerGuide(float dt)
 {
-	if (!NewGuideLayer::checkifNewerGuide(80))
+	if (!NewGuideLayer::checkifNewerGuide(11) && NewGuideLayer::checkifNewerGuide(91))
+	{
+		showNewerGuide(91);
+	}
+	else if (!NewGuideLayer::checkifNewerGuide(80))
 	{
 		if (NewGuideLayer::checkifNewerGuide(81))
 		{
@@ -372,7 +379,7 @@ void TakeOnLayer::delayShowNewerGuide(float dt)
 void TakeOnLayer::showNewerGuide(int step)
 {
 	std::vector<Node*> nodes;
-	if (step == 81)
+	if (step == 91 || step == 81)
 	{
 		nodes.push_back(actionbtn);
 	}
@@ -415,6 +422,9 @@ void TakeOnLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 				HeroAttrLayer* heroAttrLayer = (HeroAttrLayer*)this->getParent()->getParent();
 				heroAttrLayer->takeOn(m_equip);
 				updateAttr();
+
+				heroAttrLayer->delayShowNewerGuide(0);
+
 				this->getParent()->removeFromParentAndCleanup(true);
 			}
 			break;

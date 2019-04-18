@@ -370,6 +370,10 @@ void HeroAttrLayer::delayShowNewerGuide(float dt)
 			{
 				showNewerGuide(29);
 			}
+			else if (NewGuideLayer::checkifNewerGuide(10))
+			{
+				showNewerGuide(10);
+			}
 			else if (NewGuideLayer::checkifNewerGuide(32))
 			{
 				showNewerGuide(32);
@@ -410,6 +414,10 @@ void HeroAttrLayer::showNewerGuide(int step)
 	if (step == 25 || step == 27 || step == 29)
 	{
 		nodes.push_back(btnArr[3]);
+	}
+	else if (step == 10)
+	{
+		nodes.push_back(equipnode->getChildren().at(1));
 	}
 	else if (step == 32)
 	{
