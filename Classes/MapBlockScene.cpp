@@ -1,4 +1,4 @@
-#include "MapBlockScene.h"
+﻿#include "MapBlockScene.h"
 #include "Resource.h"
 #include "MyRes.h"
 #include "CommonFuncs.h"
@@ -62,7 +62,6 @@ MapBlockScene::MapBlockScene()
 	usefood = 1;
 	usingprop = -1;
 	isDraging = false;
-	isBlockClickCancel = false;
 	isMaze = false;
 	buildfocus = NULL;
 	mapAllOpenFog = NULL;
@@ -1335,10 +1334,6 @@ void MapBlockScene::scrollViewDidScroll(ScrollView* view)
 {
 	//isDraging = true;
 
-	if(isBlockClickCancel)
-	{
-		isBlockClickCancel = false;
-	}
 	log("zhou scrollViewDidScroll");
 	return;
 }
@@ -1347,10 +1342,6 @@ void MapBlockScene::scrollViewDidZoom(ScrollView* view)
 {
 	isDraging = true;
 
-	if (isBlockClickCancel)
-	{
-		isBlockClickCancel = false;
-	}
 	log("zhou scrollViewDidZoom = %.2f", scrollView->getZoomScale());
 	ajustMyPos();
 	return;
@@ -2263,7 +2254,7 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 {
 	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
-		isBlockClickCancel = false;
+
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
@@ -2399,11 +2390,6 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 				}
 			}
 		}
-	}
-	else if (type == ui::Widget::TouchEventType::CANCELED)
-	{
-		//isDraging = false;
-		isBlockClickCancel = true;
 	}
 }
 

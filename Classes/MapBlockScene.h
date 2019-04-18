@@ -290,7 +290,6 @@ private:
 	cocos2d::ui::TextBMFont* torchcountlbl;
 	int usingprop;//正在使用的道具
 	bool isDraging;
-	bool isBlockClickCancel;
 	bool isMaze;
 
 	std::vector<MAZE_POS> vec_mazetranspoints;
