@@ -226,8 +226,6 @@ private:
 
 	void showBossGuideAnim(Vec2 pos);
 
-	void addBlankRowBlock();
-
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;

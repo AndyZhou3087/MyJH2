@@ -1309,9 +1309,9 @@ void MapBlockScene::createMap()
 	m_csbnode->addChild(scrollView, -1);
 
 	int mapW = blockColCount * MAPBLOCKWIDTH;
-	int mapH = blockRowCount* MAPBLOCKHEIGHT;
+	int mapH = (blockRowCount + 1.5)* MAPBLOCKHEIGHT;
 	m_mapscrollcontainer = LayerColor::create(Color4B(0, 0, 0, 255));
-	m_mapscrollcontainer->setContentSize(Size(blockColCount * MAPBLOCKWIDTH, blockRowCount* MAPBLOCKHEIGHT));
+	m_mapscrollcontainer->setContentSize(Size(blockColCount * MAPBLOCKWIDTH, (blockRowCount + 1.5f)* MAPBLOCKHEIGHT));
 
 	float scalex = scrollView->getViewSize().width / mapW;
 	float scaley = scrollView->getViewSize().height / mapH;
@@ -3346,38 +3346,4 @@ void MapBlockScene::showBossGuideAnim(Vec2 pos)
 	animation->setRestoreOriginalFrame(true);//播放完后回到第一帧
 	auto animate = Animate::create(animation);
 	quan->runAction(RepeatForever::create(Sequence::create(animate, DelayTime::create(0.2f), NULL)));
-}
-
-void MapBlockScene::addBlankRowBlock()
-{
-	//int postype = element->IntAttribute("p");
-	//bool walkable = element->IntAttribute("w") == 1 ? true : false;
-	//std::string boardname = element->Attribute("m");
-	//const char* buildchar = element->Attribute("d");
-	//std::string buildname;
-	//if (buildchar != NULL)
-	//	buildname = buildchar;
-
-	//MapBlock* mb = MapBlock::create(blockRowCount - 1 - r, c, boardname);
-	//int rc = (blockRowCount - 1 - r)*blockColCount + c;
-	//int zorder = r * blockColCount + c;
-	//m_mapscrollcontainer->addChild(mb, zorder);
-	//mb->setBuilding(buildname);
-	//mb->getTexture()->setAliasTexParameters();
-
-	//mb->setPosType(postype);
-
-	//mb->setWalkable(walkable);
-	//map_mapBlocks[rc] = mb;
-	//mb->setTag(rc);
-
-	//cocos2d::ui::ImageView* blockclick = cocos2d::ui::ImageView::create("mapui/blankdot.png", cocos2d::ui::Widget::TextureResType::PLIST);
-	//blockclick->setScale(72);
-	//blockclick->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBlockClick, this));
-	//blockclick->setAnchorPoint(Vec2(0, 0));
-	//blockclick->setPosition(mb->getPosition());
-	//blockclick->setTouchEnabled(true);
-	//blockclick->setSwallowTouches(isMaze);
-	//blockclick->setTag(rc);
-	//m_mapscrollcontainer->addChild(blockclick, zorder);
 }
