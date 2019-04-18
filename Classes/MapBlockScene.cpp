@@ -1,4 +1,4 @@
-﻿#include "MapBlockScene.h"
+#include "MapBlockScene.h"
 #include "Resource.h"
 #include "MyRes.h"
 #include "CommonFuncs.h"
@@ -1337,7 +1337,6 @@ void MapBlockScene::scrollViewDidScroll(ScrollView* view)
 
 	if(isBlockClickCancel)
 	{
-		isDraging = false;
 		isBlockClickCancel = false;
 	}
 	log("zhou scrollViewDidScroll");
@@ -2273,7 +2272,7 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 
 		if (isDraging)
 		{
-			isDraging = false;
+			//isDraging = false;
 			return;
 		}
 		Node* node = (Node*)pSender;

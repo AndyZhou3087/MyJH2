@@ -115,6 +115,12 @@
 		7206D260211D9FD9002D1BDE /* effect in Resources */ = {isa = PBXBuildFile; fileRef = 7206D25B211D9FD9002D1BDE /* effect */; };
 		7206D261211D9FD9002D1BDE /* herowalk in Resources */ = {isa = PBXBuildFile; fileRef = 7206D25C211D9FD9002D1BDE /* herowalk */; };
 		72120D822154F3F700C00BD1 /* Shake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72120D7F2154F3F700C00BD1 /* Shake.cpp */; };
+		7216F5342251F174002EC4A7 /* matchfightSuccAwdLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7216F5302251F174002EC4A7 /* matchfightSuccAwdLayer.csb */; };
+		7216F5352251F174002EC4A7 /* wellmorebtnnode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7216F5322251F174002EC4A7 /* wellmorebtnnode.csb */; };
+		7216F5362251F174002EC4A7 /* wellGiftLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7216F5332251F174002EC4A7 /* wellGiftLayer.csb */; };
+		7216F53D2251F18E002EC4A7 /* WellMoreBtnNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7216F5382251F18E002EC4A7 /* WellMoreBtnNode.cpp */; };
+		7216F53E2251F18E002EC4A7 /* MacthFightSucAwdLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7216F5392251F18E002EC4A7 /* MacthFightSucAwdLayer.cpp */; };
+		7216F53F2251F18E002EC4A7 /* WellGiftLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7216F53B2251F18E002EC4A7 /* WellGiftLayer.cpp */; };
 		7219409520FED4BE00071BFC /* TrainSelectLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7219408E20FED4BD00071BFC /* TrainSelectLayer.cpp */; };
 		7219409620FED4BE00071BFC /* TrainLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7219409020FED4BD00071BFC /* TrainLayer.cpp */; };
 		7219409C20FED4E200071BFC /* trainSelectLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7219409820FED4E100071BFC /* trainSelectLayer.csb */; };
@@ -239,6 +245,13 @@
 		7282708E20F5B7EE00B07087 /* taskMainDescLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7282708220F5B7EE00B07087 /* taskMainDescLayer.csb */; };
 		7282708F20F5B7EE00B07087 /* equipDescLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7282708320F5B7EE00B07087 /* equipDescLayer.csb */; };
 		7282709020F5B7EE00B07087 /* marketRefreshLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7282708420F5B7EE00B07087 /* marketRefreshLayer.csb */; };
+		7285A29122675EBA00481FDE /* PlotStoryScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7285A28D22675EB900481FDE /* PlotStoryScene.cpp */; };
+		7285A29222675EBA00481FDE /* MapZoomGuideLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7285A29022675EB900481FDE /* MapZoomGuideLayer.cpp */; };
+		7285A29722675EDF00481FDE /* story2.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7285A29322675EDF00481FDE /* story2.csb */; };
+		7285A29822675EDF00481FDE /* mapZoomGuideLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7285A29422675EDF00481FDE /* mapZoomGuideLayer.csb */; };
+		7285A29922675EDF00481FDE /* story1.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7285A29522675EDF00481FDE /* story1.csb */; };
+		7285A29A22675EDF00481FDE /* story3.csb in Resources */ = {isa = PBXBuildFile; fileRef = 7285A29622675EDF00481FDE /* story3.csb */; };
+		7285A29C2267602A00481FDE /* storyimg in Resources */ = {isa = PBXBuildFile; fileRef = 7285A29B2267602A00481FDE /* storyimg */; };
 		728A06B821E32772006B5197 /* MyActionProgressTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728A06B621E32771006B5197 /* MyActionProgressTimer.cpp */; };
 		728A06B921E32772006B5197 /* MyTransitionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728A06B721E32772006B5197 /* MyTransitionScene.cpp */; };
 		728A06BB21E3278E006B5197 /* transitionLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 728A06BA21E3278E006B5197 /* transitionLayer.csb */; };
@@ -274,6 +287,20 @@
 		72A2BD0120F8BA1F0085B17D /* hospitalLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A2BCFB20F8BA1F0085B17D /* hospitalLayer.csb */; };
 		72A2BD0220F8BA1F0085B17D /* simpleLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A2BCFC20F8BA1F0085B17D /* simpleLayer.csb */; };
 		72A2BD0320F8BA1F0085B17D /* winRewardLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A2BCFD20F8BA1F0085B17D /* winRewardLayer.csb */; };
+		72A2DC0F2253329500734ADF /* RebatLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72A2DC0C2253329500734ADF /* RebatLayer.cpp */; };
+		72A2DC102253329500734ADF /* RebateAwdNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72A2DC0D2253329500734ADF /* RebateAwdNode.cpp */; };
+		72A2DC13225332B100734ADF /* rebatLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A2DC11225332B100734ADF /* rebatLayer.csb */; };
+		72A2DC14225332B100734ADF /* rebateawdnode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A2DC12225332B100734ADF /* rebateawdnode.csb */; };
+		72A532C1226022860006481E /* StarDescLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72A532BA226022850006481E /* StarDescLayer.cpp */; };
+		72A532C2226022860006481E /* StarFrist3AwdLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72A532BB226022850006481E /* StarFrist3AwdLayer.cpp */; };
+		72A532C3226022860006481E /* StarResultLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72A532BC226022850006481E /* StarResultLayer.cpp */; };
+		72A532C4226022860006481E /* PopNewHeroLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72A532BE226022850006481E /* PopNewHeroLayer.cpp */; };
+		72A532CB226022BE0006481E /* popNewHeroLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A532C5226022BD0006481E /* popNewHeroLayer.csb */; };
+		72A532CC226022BE0006481E /* first3starawdLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A532C6226022BD0006481E /* first3starawdLayer.csb */; };
+		72A532CD226022BE0006481E /* starDescLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A532C7226022BE0006481E /* starDescLayer.csb */; };
+		72A532CE226022BE0006481E /* first3starp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72A532C8226022BE0006481E /* first3starp.plist */; };
+		72A532CF226022BE0006481E /* stargresultLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A532C9226022BE0006481E /* stargresultLayer.csb */; };
+		72A532D0226022BE0006481E /* f3star.png in Resources */ = {isa = PBXBuildFile; fileRef = 72A532CA226022BE0006481E /* f3star.png */; };
 		72A55FDD21D60FFF00D95DA8 /* BuyResLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72A55FDA21D60FFE00D95DA8 /* BuyResLayer.cpp */; };
 		72A55FDE21D60FFF00D95DA8 /* BuyCoinLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72A55FDC21D60FFF00D95DA8 /* BuyCoinLayer.cpp */; };
 		72A55FE121D6101900D95DA8 /* buyResLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72A55FDF21D6101800D95DA8 /* buyResLayer.csb */; };
@@ -317,6 +344,7 @@
 		72F700A92178707500ED33F1 /* npcgiveLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72F700A82178707400ED33F1 /* npcgiveLayer.csb */; };
 		72FCFBED214FAF0E0020DEF3 /* IOSPurchase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 72FCFBEA214FAF0D0020DEF3 /* IOSPurchase.mm */; };
 		72FCFBEE214FAF0E0020DEF3 /* IOSPurchaseWrap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 72FCFBEC214FAF0D0020DEF3 /* IOSPurchaseWrap.mm */; };
+		72FED09222609DF9007970FE /* AstarRouting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FED09122609DF9007970FE /* AstarRouting.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -525,6 +553,15 @@
 		7206D25C211D9FD9002D1BDE /* herowalk */ = {isa = PBXFileReference; lastKnownFileType = folder; path = herowalk; sourceTree = "<group>"; };
 		72120D7F2154F3F700C00BD1 /* Shake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shake.cpp; sourceTree = "<group>"; };
 		72120D812154F3F700C00BD1 /* Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shake.h; sourceTree = "<group>"; };
+		7216F5302251F174002EC4A7 /* matchfightSuccAwdLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = matchfightSuccAwdLayer.csb; sourceTree = "<group>"; };
+		7216F5322251F174002EC4A7 /* wellmorebtnnode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = wellmorebtnnode.csb; sourceTree = "<group>"; };
+		7216F5332251F174002EC4A7 /* wellGiftLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = wellGiftLayer.csb; sourceTree = "<group>"; };
+		7216F5372251F18E002EC4A7 /* WellGiftLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WellGiftLayer.h; sourceTree = "<group>"; };
+		7216F5382251F18E002EC4A7 /* WellMoreBtnNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WellMoreBtnNode.cpp; sourceTree = "<group>"; };
+		7216F5392251F18E002EC4A7 /* MacthFightSucAwdLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MacthFightSucAwdLayer.cpp; sourceTree = "<group>"; };
+		7216F53A2251F18E002EC4A7 /* MacthFightSucAwdLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacthFightSucAwdLayer.h; sourceTree = "<group>"; };
+		7216F53B2251F18E002EC4A7 /* WellGiftLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WellGiftLayer.cpp; sourceTree = "<group>"; };
+		7216F53C2251F18E002EC4A7 /* WellMoreBtnNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WellMoreBtnNode.h; sourceTree = "<group>"; };
 		7219408E20FED4BD00071BFC /* TrainSelectLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TrainSelectLayer.cpp; sourceTree = "<group>"; };
 		7219409020FED4BD00071BFC /* TrainLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TrainLayer.cpp; sourceTree = "<group>"; };
 		7219409320FED4BD00071BFC /* TrainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainLayer.h; sourceTree = "<group>"; };
@@ -711,6 +748,15 @@
 		7282708220F5B7EE00B07087 /* taskMainDescLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = taskMainDescLayer.csb; sourceTree = "<group>"; };
 		7282708320F5B7EE00B07087 /* equipDescLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = equipDescLayer.csb; sourceTree = "<group>"; };
 		7282708420F5B7EE00B07087 /* marketRefreshLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = marketRefreshLayer.csb; sourceTree = "<group>"; };
+		7285A28D22675EB900481FDE /* PlotStoryScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlotStoryScene.cpp; sourceTree = "<group>"; };
+		7285A28E22675EB900481FDE /* PlotStoryScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotStoryScene.h; sourceTree = "<group>"; };
+		7285A28F22675EB900481FDE /* MapZoomGuideLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapZoomGuideLayer.h; sourceTree = "<group>"; };
+		7285A29022675EB900481FDE /* MapZoomGuideLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapZoomGuideLayer.cpp; sourceTree = "<group>"; };
+		7285A29322675EDF00481FDE /* story2.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = story2.csb; sourceTree = "<group>"; };
+		7285A29422675EDF00481FDE /* mapZoomGuideLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = mapZoomGuideLayer.csb; sourceTree = "<group>"; };
+		7285A29522675EDF00481FDE /* story1.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = story1.csb; sourceTree = "<group>"; };
+		7285A29622675EDF00481FDE /* story3.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = story3.csb; sourceTree = "<group>"; };
+		7285A29B2267602A00481FDE /* storyimg */ = {isa = PBXFileReference; lastKnownFileType = folder; path = storyimg; sourceTree = "<group>"; };
 		728A06B321E32771006B5197 /* MyActionProgressTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyActionProgressTimer.h; sourceTree = "<group>"; };
 		728A06B521E32771006B5197 /* MyTransitionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTransitionScene.h; sourceTree = "<group>"; };
 		728A06B621E32771006B5197 /* MyActionProgressTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyActionProgressTimer.cpp; sourceTree = "<group>"; };
@@ -763,6 +809,26 @@
 		72A2BCFB20F8BA1F0085B17D /* hospitalLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = hospitalLayer.csb; sourceTree = "<group>"; };
 		72A2BCFC20F8BA1F0085B17D /* simpleLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = simpleLayer.csb; sourceTree = "<group>"; };
 		72A2BCFD20F8BA1F0085B17D /* winRewardLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = winRewardLayer.csb; sourceTree = "<group>"; };
+		72A2DC0B2253329500734ADF /* RebateAwdNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RebateAwdNode.h; sourceTree = "<group>"; };
+		72A2DC0C2253329500734ADF /* RebatLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RebatLayer.cpp; sourceTree = "<group>"; };
+		72A2DC0D2253329500734ADF /* RebateAwdNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RebateAwdNode.cpp; sourceTree = "<group>"; };
+		72A2DC0E2253329500734ADF /* RebatLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RebatLayer.h; sourceTree = "<group>"; };
+		72A2DC11225332B100734ADF /* rebatLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = rebatLayer.csb; sourceTree = "<group>"; };
+		72A2DC12225332B100734ADF /* rebateawdnode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = rebateawdnode.csb; sourceTree = "<group>"; };
+		72A532B8226022840006481E /* StarFrist3AwdLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarFrist3AwdLayer.h; sourceTree = "<group>"; };
+		72A532BA226022850006481E /* StarDescLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StarDescLayer.cpp; sourceTree = "<group>"; };
+		72A532BB226022850006481E /* StarFrist3AwdLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StarFrist3AwdLayer.cpp; sourceTree = "<group>"; };
+		72A532BC226022850006481E /* StarResultLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StarResultLayer.cpp; sourceTree = "<group>"; };
+		72A532BD226022850006481E /* StarResultLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarResultLayer.h; sourceTree = "<group>"; };
+		72A532BE226022850006481E /* PopNewHeroLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PopNewHeroLayer.cpp; sourceTree = "<group>"; };
+		72A532BF226022860006481E /* PopNewHeroLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopNewHeroLayer.h; sourceTree = "<group>"; };
+		72A532C0226022860006481E /* StarDescLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarDescLayer.h; sourceTree = "<group>"; };
+		72A532C5226022BD0006481E /* popNewHeroLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = popNewHeroLayer.csb; sourceTree = "<group>"; };
+		72A532C6226022BD0006481E /* first3starawdLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = first3starawdLayer.csb; sourceTree = "<group>"; };
+		72A532C7226022BE0006481E /* starDescLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = starDescLayer.csb; sourceTree = "<group>"; };
+		72A532C8226022BE0006481E /* first3starp.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = first3starp.plist; sourceTree = "<group>"; };
+		72A532C9226022BE0006481E /* stargresultLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = stargresultLayer.csb; sourceTree = "<group>"; };
+		72A532CA226022BE0006481E /* f3star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f3star.png; sourceTree = "<group>"; };
 		72A55FD821D60FFE00D95DA8 /* BuyCoinLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyCoinLayer.h; sourceTree = "<group>"; };
 		72A55FDA21D60FFE00D95DA8 /* BuyResLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuyResLayer.cpp; sourceTree = "<group>"; };
 		72A55FDB21D60FFE00D95DA8 /* BuyResLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyResLayer.h; sourceTree = "<group>"; };
@@ -828,6 +894,8 @@
 		72FCFBEA214FAF0D0020DEF3 /* IOSPurchase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IOSPurchase.mm; sourceTree = "<group>"; };
 		72FCFBEB214FAF0D0020DEF3 /* IOSPurchaseWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSPurchaseWrap.h; sourceTree = "<group>"; };
 		72FCFBEC214FAF0D0020DEF3 /* IOSPurchaseWrap.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IOSPurchaseWrap.mm; sourceTree = "<group>"; };
+		72FED08F22609DF9007970FE /* AstarRouting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AstarRouting.h; sourceTree = "<group>"; };
+		72FED09122609DF9007970FE /* AstarRouting.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AstarRouting.cpp; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -968,6 +1036,22 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7285A29B2267602A00481FDE /* storyimg */,
+				7285A29422675EDF00481FDE /* mapZoomGuideLayer.csb */,
+				7285A29522675EDF00481FDE /* story1.csb */,
+				7285A29322675EDF00481FDE /* story2.csb */,
+				7285A29622675EDF00481FDE /* story3.csb */,
+				72A532CA226022BE0006481E /* f3star.png */,
+				72A532C6226022BD0006481E /* first3starawdLayer.csb */,
+				72A532C8226022BE0006481E /* first3starp.plist */,
+				72A532C5226022BD0006481E /* popNewHeroLayer.csb */,
+				72A532C7226022BE0006481E /* starDescLayer.csb */,
+				72A532C9226022BE0006481E /* stargresultLayer.csb */,
+				72A2DC12225332B100734ADF /* rebateawdnode.csb */,
+				72A2DC11225332B100734ADF /* rebatLayer.csb */,
+				7216F5302251F174002EC4A7 /* matchfightSuccAwdLayer.csb */,
+				7216F5332251F174002EC4A7 /* wellGiftLayer.csb */,
+				7216F5322251F174002EC4A7 /* wellmorebtnnode.csb */,
 				72BA567E224A1B9D006E1D66 /* hhreslvlayer.csb */,
 				72BA5680224A1B9E006E1D66 /* homehillinfolayer.csb */,
 				72BA567F224A1B9D006E1D66 /* homehillLayer2.csb */,
@@ -1114,32 +1198,6 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				72BA5674224A1B67006E1D66 /* HH_ResActionLayer.cpp */,
-				72BA5678224A1B69006E1D66 /* HH_ResActionLayer.h */,
-				72BA5676224A1B68006E1D66 /* HillResNode2.cpp */,
-				72BA5679224A1B69006E1D66 /* HillResNode2.h */,
-				72BA5677224A1B68006E1D66 /* HomeHillLayer2.cpp */,
-				72BA567A224A1B69006E1D66 /* HomeHillLayer2.h */,
-				7203E8BA223129B900A19758 /* BuySelectLayer.cpp */,
-				7203E8BC223129B900A19758 /* BuySelectLayer.h */,
-				72442283222F5CC100A2B517 /* FlowWorld.cpp */,
-				72442281222F5CC000A2B517 /* FlowWorld.h */,
-				72442286222F5CC100A2B517 /* LibraryLayer2.cpp */,
-				72442287222F5CC200A2B517 /* LibraryLayer2.h */,
-				72442284222F5CC100A2B517 /* MazeDescLayer.cpp */,
-				72442285222F5CC100A2B517 /* MazeDescLayer.h */,
-				722D3B8A2228D105004D1285 /* BuySingleResLayer.cpp */,
-				722D3B8D2228D106004D1285 /* BuySingleResLayer.h */,
-				722D3B8E2228D106004D1285 /* MazeTransitionScene.cpp */,
-				722D3B8C2228D105004D1285 /* MazeTransitionScene.h */,
-				722D3B892228D105004D1285 /* UsePropLayer.cpp */,
-				722D3B8B2228D105004D1285 /* UsePropLayer.h */,
-				729ADB0C2225527E00E25E3E /* EquipLibraryInfoLayer.cpp */,
-				729ADB0D2225527E00E25E3E /* EquipLibraryInfoLayer.h */,
-				729ADB092225527D00E25E3E /* EquipLibraryLayer.cpp */,
-				729ADB0B2225527E00E25E3E /* EquipLibraryLayer.h */,
-				729ADB072225527D00E25E3E /* FirstChargeLayer.cpp */,
-				729ADB0A2225527E00E25E3E /* FirstChargeLayer.h */,
 				72421DBA21269C30008B1B57 /* AchieveLayer.cpp */,
 				72421DBF21269C30008B1B57 /* AchieveLayer.h */,
 				72421DBD21269C30008B1B57 /* AchieveNode.cpp */,
@@ -1148,12 +1206,18 @@
 				72D063C22122A264004EEEB9 /* AnimationEffect.h */,
 				720452BE20D8921D0011D560 /* AppDelegate.cpp */,
 				720452B320D8921C0011D560 /* AppDelegate.h */,
+				72FED09122609DF9007970FE /* AstarRouting.cpp */,
+				72FED08F22609DF9007970FE /* AstarRouting.h */,
 				7204529B20D8921A0011D560 /* Building.cpp */,
 				720452C920D8921E0011D560 /* Building.h */,
 				72A55FDC21D60FFF00D95DA8 /* BuyCoinLayer.cpp */,
 				72A55FD821D60FFE00D95DA8 /* BuyCoinLayer.h */,
 				72A55FDA21D60FFE00D95DA8 /* BuyResLayer.cpp */,
 				72A55FDB21D60FFE00D95DA8 /* BuyResLayer.h */,
+				7203E8BA223129B900A19758 /* BuySelectLayer.cpp */,
+				7203E8BC223129B900A19758 /* BuySelectLayer.h */,
+				722D3B8A2228D105004D1285 /* BuySingleResLayer.cpp */,
+				722D3B8D2228D106004D1285 /* BuySingleResLayer.h */,
 				727CFC882160B4BB0004F5DC /* CannotTouchLayer.cpp */,
 				727CFC8A2160B4BB0004F5DC /* CannotTouchLayer.h */,
 				720452D620D892200011D560 /* CardHeroNode.cpp */,
@@ -1180,6 +1244,10 @@
 				7282704E20F5B7AD00B07087 /* Equipable.h */,
 				7282705320F5B7AE00B07087 /* EquipDescLayer.cpp */,
 				7282705620F5B7AF00B07087 /* EquipDescLayer.h */,
+				729ADB0C2225527E00E25E3E /* EquipLibraryInfoLayer.cpp */,
+				729ADB0D2225527E00E25E3E /* EquipLibraryInfoLayer.h */,
+				729ADB092225527D00E25E3E /* EquipLibraryLayer.cpp */,
+				729ADB0B2225527E00E25E3E /* EquipLibraryLayer.h */,
 				726CA462215DFD44002D0273 /* ErrorHintLayer.cpp */,
 				726CA460215DFD44002D0273 /* ErrorHintLayer.h */,
 				72421DBE21269C30008B1B57 /* EventBusinessLayer.cpp */,
@@ -1192,6 +1260,10 @@
 				7282704320F5B7AA00B07087 /* FightingLayer.h */,
 				72A2BCF020F8B9FF0085B17D /* FightingResultLayer.cpp */,
 				72A2BCF220F8BA000085B17D /* FightingResultLayer.h */,
+				729ADB072225527D00E25E3E /* FirstChargeLayer.cpp */,
+				729ADB0A2225527E00E25E3E /* FirstChargeLayer.h */,
+				72442283222F5CC100A2B517 /* FlowWorld.cpp */,
+				72442281222F5CC000A2B517 /* FlowWorld.h */,
 				725BDD7E221EC10100199FE4 /* GambleBoxLayer.cpp */,
 				725BDD7F221EC10100199FE4 /* GambleBoxLayer.h */,
 				724C88F2221A506200454D30 /* GfLibraryInfoLayer.cpp */,
@@ -1212,12 +1284,18 @@
 				720452D020D8921F0011D560 /* Hero.h */,
 				720452C320D8921E0011D560 /* HeroAttrLayer.cpp */,
 				720452A220D8921A0011D560 /* HeroAttrLayer.h */,
+				72BA5674224A1B67006E1D66 /* HH_ResActionLayer.cpp */,
+				72BA5678224A1B69006E1D66 /* HH_ResActionLayer.h */,
 				720452D320D8921F0011D560 /* HillResNode.cpp */,
 				720452CD20D8921F0011D560 /* HillResNode.h */,
+				72BA5676224A1B68006E1D66 /* HillResNode2.cpp */,
+				72BA5679224A1B69006E1D66 /* HillResNode2.h */,
 				7256A75C2109748D000492EA /* HintBoxLayer.cpp */,
 				7256A7582109748C000492EA /* HintBoxLayer.h */,
 				720452B720D8921C0011D560 /* HomeHillLayer.cpp */,
 				7204529F20D8921A0011D560 /* HomeHillLayer.h */,
+				72BA5677224A1B68006E1D66 /* HomeHillLayer2.cpp */,
+				72BA567A224A1B69006E1D66 /* HomeHillLayer2.h */,
 				72A2BCEB20F8B9FF0085B17D /* HospitalLayer.cpp */,
 				72A2BCED20F8B9FF0085B17D /* HospitalLayer.h */,
 				7204528F20D892190011D560 /* HttpDataSwap.cpp */,
@@ -1238,6 +1316,8 @@
 				720452D220D8921F0011D560 /* json.h */,
 				724C88EC221A506100454D30 /* LibraryLayer.cpp */,
 				724C88EE221A506100454D30 /* LibraryLayer.h */,
+				72442286222F5CC100A2B517 /* LibraryLayer2.cpp */,
+				72442287222F5CC200A2B517 /* LibraryLayer2.h */,
 				7282705720F5B7AF00B07087 /* LoadingBarProgressTimer.cpp */,
 				7282704420F5B7AB00B07087 /* LoadingBarProgressTimer.h */,
 				7204529320D892190011D560 /* LoadingScene.cpp */,
@@ -1248,6 +1328,8 @@
 				723FC5E321EDF16900F8414F /* LoginRewardV2Layer.h */,
 				723FC5DF21EDF16800F8414F /* M1_5_BoxLayer.cpp */,
 				723FC5E621EDF16900F8414F /* M1_5_BoxLayer.h */,
+				7216F5392251F18E002EC4A7 /* MacthFightSucAwdLayer.cpp */,
+				7216F53A2251F18E002EC4A7 /* MacthFightSucAwdLayer.h */,
 				720452CE20D8921F0011D560 /* MainMapScene.cpp */,
 				7204529920D892190011D560 /* MainMapScene.h */,
 				720452C520D8921E0011D560 /* MainMenuLayer.cpp */,
@@ -1264,6 +1346,8 @@
 				720452D820D892200011D560 /* MapBlockScene.h */,
 				7232D81020E639D400299738 /* MapEventLayer.cpp */,
 				7232D81220E639D400299738 /* MapEventLayer.h */,
+				7285A29022675EB900481FDE /* MapZoomGuideLayer.cpp */,
+				7285A28F22675EB900481FDE /* MapZoomGuideLayer.h */,
 				7232D80B20E639D300299738 /* MarketLayer.cpp */,
 				7232D81720E639D500299738 /* MarketLayer.h */,
 				7282705D20F5B7B000B07087 /* MarketRefreshLayer.cpp */,
@@ -1288,6 +1372,10 @@
 				7298894A21A2987800071057 /* MatchVSLayer.h */,
 				7282704520F5B7AB00B07087 /* MaterialDescLayer.cpp */,
 				7282703E20F5B7A900B07087 /* MaterialDescLayer.h */,
+				72442284222F5CC100A2B517 /* MazeDescLayer.cpp */,
+				72442285222F5CC100A2B517 /* MazeDescLayer.h */,
+				722D3B8E2228D106004D1285 /* MazeTransitionScene.cpp */,
+				722D3B8C2228D105004D1285 /* MazeTransitionScene.h */,
 				720452C720D8921E0011D560 /* MD5.cpp */,
 				720452BB20D8921D0011D560 /* MD5.h */,
 				7206D249211D9F9F002D1BDE /* MessageDescLayer.cpp */,
@@ -1326,12 +1414,20 @@
 				723C870A21F99B9900A0518D /* OpenHolesLayer.h */,
 				7204529520D892190011D560 /* OutTownLayer.cpp */,
 				720452D920D892200011D560 /* OutTownLayer.h */,
+				7285A28D22675EB900481FDE /* PlotStoryScene.cpp */,
+				7285A28E22675EB900481FDE /* PlotStoryScene.h */,
+				72A532BE226022850006481E /* PopNewHeroLayer.cpp */,
+				72A532BF226022860006481E /* PopNewHeroLayer.h */,
 				7282706320F5B7B200B07087 /* Quest.cpp */,
 				7282706420F5B7B200B07087 /* Quest.h */,
 				7204528D20D892190011D560 /* RandHeroLayer.cpp */,
 				720452A120D8921A0011D560 /* RandHeroLayer.h */,
 				720452A320D8921A0011D560 /* RandHeroNode.cpp */,
 				7204528E20D892190011D560 /* RandHeroNode.h */,
+				72A2DC0D2253329500734ADF /* RebateAwdNode.cpp */,
+				72A2DC0B2253329500734ADF /* RebateAwdNode.h */,
+				72A2DC0C2253329500734ADF /* RebatLayer.cpp */,
+				72A2DC0E2253329500734ADF /* RebatLayer.h */,
 				723FC5E521EDF16900F8414F /* RenationLayer.cpp */,
 				723FC5DB21EDF16700F8414F /* RenationLayer.h */,
 				720452C620D8921E0011D560 /* ResBase.cpp */,
@@ -1372,6 +1468,12 @@
 				7232D80F20E639D400299738 /* SmithyLayer.h */,
 				720452CB20D8921E0011D560 /* SoundManager.cpp */,
 				720452D420D8921F0011D560 /* SoundManager.h */,
+				72A532BA226022850006481E /* StarDescLayer.cpp */,
+				72A532C0226022860006481E /* StarDescLayer.h */,
+				72A532BB226022850006481E /* StarFrist3AwdLayer.cpp */,
+				72A532B8226022840006481E /* StarFrist3AwdLayer.h */,
+				72A532BC226022850006481E /* StarResultLayer.cpp */,
+				72A532BD226022850006481E /* StarResultLayer.h */,
 				7232D81620E639D500299738 /* StoreHouseLayer.cpp */,
 				7232D81C20E639D500299738 /* StoreHouseLayer.h */,
 				727CFC8D2160DBCF0004F5DC /* StoryScene.cpp */,
@@ -1396,6 +1498,8 @@
 				7219409320FED4BD00071BFC /* TrainLayer.h */,
 				7219408E20FED4BD00071BFC /* TrainSelectLayer.cpp */,
 				7219409420FED4BD00071BFC /* TrainSelectLayer.h */,
+				722D3B892228D105004D1285 /* UsePropLayer.cpp */,
+				722D3B8B2228D105004D1285 /* UsePropLayer.h */,
 				725BD2BC215BA24500B97454 /* UserProtocolLayer.cpp */,
 				725BD2BD215BA24500B97454 /* UserProtocolLayer.h */,
 				725BD2BF215BA24500B97454 /* UserTipsBoxLayer.cpp */,
@@ -1403,6 +1507,10 @@
 				7204529720D892190011D560 /* Utility.h */,
 				7206D24C211D9F9F002D1BDE /* WaitingProgress.cpp */,
 				7206D24D211D9FA0002D1BDE /* WaitingProgress.h */,
+				7216F53B2251F18E002EC4A7 /* WellGiftLayer.cpp */,
+				7216F5372251F18E002EC4A7 /* WellGiftLayer.h */,
+				7216F5382251F18E002EC4A7 /* WellMoreBtnNode.cpp */,
+				7216F53C2251F18E002EC4A7 /* WellMoreBtnNode.h */,
 				72AD00F3211461E3009C44DA /* WgLvLayer.cpp */,
 				72AD00F6211461E4009C44DA /* WgLvLayer.h */,
 				72A2BCEF20F8B9FF0085B17D /* WinRewardLayer.cpp */,
@@ -1540,6 +1648,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72A532D0226022BE0006481E /* f3star.png in Resources */,
 				7204534320D892640011D560 /* images in Resources */,
 				7206D257211D9FB7002D1BDE /* sounds in Resources */,
 				72A55FE221D6101900D95DA8 /* buyCoinLayer.csb in Resources */,
@@ -1550,6 +1659,7 @@
 				728A06BB21E3278E006B5197 /* transitionLayer.csb in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				7219409C20FED4E200071BFC /* trainSelectLayer.csb in Resources */,
+				72A532CE226022BE0006481E /* first3starp.plist in Resources */,
 				723FC5F721EDF18B00F8414F /* m1_5_BoxLayer.csb in Resources */,
 				72A2BD0020F8BA1F0085B17D /* gray.vsh in Resources */,
 				7282708820F5B7EE00B07087 /* fighterAttrLayer.csb in Resources */,
@@ -1587,23 +1697,31 @@
 				7282708C20F5B7EE00B07087 /* taskDayNode.csb in Resources */,
 				726CA469215DFD90002D0273 /* loadingclicktext.png in Resources */,
 				7204532620D892640011D560 /* ui.plist in Resources */,
+				72A532CB226022BE0006481E /* popNewHeroLayer.csb in Resources */,
 				726CA467215DFD90002D0273 /* userprotocol.html in Resources */,
 				724C88F8221A507700454D30 /* gfLibraryInfoLayer.csb in Resources */,
 				7282708520F5B7EE00B07087 /* taskMainNode.csb in Resources */,
+				7216F5362251F174002EC4A7 /* wellGiftLayer.csb in Resources */,
 				7232D83420E63A0700299738 /* resDescLayer.csb in Resources */,
 				72421DCD21269C52008B1B57 /* achieveLayer.csb in Resources */,
 				7282708720F5B7EE00B07087 /* setinStoneLayer.csb in Resources */,
+				72A532CD226022BE0006481E /* starDescLayer.csb in Resources */,
 				72A2BCFE20F8BA1F0085B17D /* fightResultLayer.csb in Resources */,
 				7204532B20D892640011D560 /* text_zh_cn.png in Resources */,
 				7204534420D892640011D560 /* outTownLayer.csb in Resources */,
 				7282708A20F5B7EE00B07087 /* takeOnLayer.csb in Resources */,
 				7282708D20F5B7EE00B07087 /* taskLayer.csb in Resources */,
+				7285A29922675EDF00481FDE /* story1.csb in Resources */,
+				7285A29722675EDF00481FDE /* story2.csb in Resources */,
 				72A2BD0220F8BA1F0085B17D /* simpleLayer.csb in Resources */,
 				725BD2BA215BA23100B97454 /* UserProtocolLayer.csb in Resources */,
 				7226FB462142217500467283 /* newGuideLayer.csb in Resources */,
+				7285A29C2267602A00481FDE /* storyimg in Resources */,
+				7285A29A22675EDF00481FDE /* story3.csb in Resources */,
 				729ADB16222552A000E25E3E /* equipLibraryInfoLayer.csb in Resources */,
 				7204533420D892640011D560 /* randHeroLayer.csb in Resources */,
 				7226FB452142217500467283 /* simpleResPopLayer.csb in Resources */,
+				72A2DC13225332B100734ADF /* rebatLayer.csb in Resources */,
 				7206D25F211D9FD9002D1BDE /* messageNode.csb in Resources */,
 				72796F5A214BC1FE00664B82 /* logo.png in Resources */,
 				7204532420D892640011D560 /* mapui.plist in Resources */,
@@ -1615,6 +1733,7 @@
 				7204532A20D892640011D560 /* mapBlockLayer.csb in Resources */,
 				1AF87B891F6F781D007BE51C /* LaunchScreenBackground.png in Resources */,
 				7232D82F20E63A0700299738 /* marketLayer.csb in Resources */,
+				72A532CF226022BE0006481E /* stargresultLayer.csb in Resources */,
 				7204532920D892640011D560 /* LoadingLayer.csb in Resources */,
 				7204532820D892640011D560 /* hillResNode.csb in Resources */,
 				1AF87B881F6F781D007BE51C /* LaunchScreen.storyboard in Resources */,
@@ -1632,20 +1751,24 @@
 				72AD00FD21146216009C44DA /* wgLvLayer.csb in Resources */,
 				72421DCF21269C52008B1B57 /* achieveNode.csb in Resources */,
 				7298896221A2989800071057 /* matchRewardNode.csb in Resources */,
+				7216F5342251F174002EC4A7 /* matchfightSuccAwdLayer.csb in Resources */,
 				727CFC922160DBEE0004F5DC /* story.txt in Resources */,
 				72AD00FC21146216009C44DA /* strengthenLayer.csb in Resources */,
+				72A532CC226022BE0006481E /* first3starawdLayer.csb in Resources */,
 				7244228D222F5CF900A2B517 /* libraryLayer2.csb in Resources */,
 				7204533B20D892640011D560 /* mainimg in Resources */,
 				7204533E20D892640011D560 /* ui.png in Resources */,
 				72C1A0EF2136917900246A17 /* newPopLayer.csb in Resources */,
 				7282708F20F5B7EE00B07087 /* equipDescLayer.csb in Resources */,
 				72F700A92178707500ED33F1 /* npcgiveLayer.csb in Resources */,
+				7216F5352251F174002EC4A7 /* wellmorebtnnode.csb in Resources */,
 				7206D261211D9FD9002D1BDE /* herowalk in Resources */,
 				726CA468215DFD90002D0273 /* errorHintLayer.csb in Resources */,
 				72421DD92126E534008B1B57 /* headInfoLayer.csb in Resources */,
 				7204534120D892640011D560 /* innRoomLayer.csb in Resources */,
 				723FC5F521EDF18B00F8414F /* renationitemNode.csb in Resources */,
 				72A55FE121D6101900D95DA8 /* buyResLayer.csb in Resources */,
+				7285A29822675EDF00481FDE /* mapZoomGuideLayer.csb in Resources */,
 				7282708620F5B7EE00B07087 /* materialDescNode.csb in Resources */,
 				7226FB442142217500467283 /* rewardLayer.csb in Resources */,
 				722D3B872228D0B7004D1285 /* usePropLayer.csb in Resources */,
@@ -1674,6 +1797,7 @@
 				7204534520D892640011D560 /* myHeroNode.csb in Resources */,
 				7298895F21A2989800071057 /* matchHeroNode.csb in Resources */,
 				72BAB57F2130217600714493 /* skillstarttextanim.csb in Resources */,
+				72A2DC14225332B100734ADF /* rebateawdnode.csb in Resources */,
 				725BD2BB215BA23100B97454 /* UserTipsBoxLayer.csb in Resources */,
 				7204532D20D892640011D560 /* heroname in Resources */,
 				725BDD7C221EC0E100199FE4 /* rollDiceAnim.csb in Resources */,
@@ -1702,9 +1826,12 @@
 			files = (
 				72F700A62178703B00ED33F1 /* NpcgiveLayer.cpp in Sources */,
 				720452FB20D892200011D560 /* CommonFuncs.cpp in Sources */,
+				72A2DC0F2253329500734ADF /* RebatLayer.cpp in Sources */,
 				720452DE20D892200011D560 /* RandHeroLayer.cpp in Sources */,
+				72A532C4226022860006481E /* PopNewHeroLayer.cpp in Sources */,
 				725BD2C0215BA24500B97454 /* UserProtocolLayer.cpp in Sources */,
 				720452F420D892200011D560 /* DataBase64.cpp in Sources */,
+				72A532C2226022860006481E /* StarFrist3AwdLayer.cpp in Sources */,
 				723C870D21F99B9900A0518D /* OpenHolesLayer.cpp in Sources */,
 				7282706520F5B7B200B07087 /* FightingLayer.cpp in Sources */,
 				7282706B20F5B7B200B07087 /* TaskTalkLayer.cpp in Sources */,
@@ -1726,6 +1853,7 @@
 				72C1A0EA2136914D00246A17 /* NewPopLayer.cpp in Sources */,
 				720452EB20D892200011D560 /* SelectMyHerosLayer.cpp in Sources */,
 				7298894E21A2987800071057 /* MatchRankNode.cpp in Sources */,
+				7216F53D2251F18E002EC4A7 /* WellMoreBtnNode.cpp in Sources */,
 				7232D81E20E639D600299738 /* MarketLayer.cpp in Sources */,
 				72BAB5762130213200714493 /* SkillStartLayer.cpp in Sources */,
 				728A06B921E32772006B5197 /* MyTransitionScene.cpp in Sources */,
@@ -1736,6 +1864,7 @@
 				720452E020D892200011D560 /* JHKeychain.mm in Sources */,
 				72442288222F5CC200A2B517 /* FlowWorld.cpp in Sources */,
 				720452F620D892200011D560 /* HeroAttrLayer.cpp in Sources */,
+				72FED09222609DF9007970FE /* AstarRouting.cpp in Sources */,
 				720452F020D892200011D560 /* GlobalInstance.cpp in Sources */,
 				7282707420F5B7B200B07087 /* MarketRefreshLayer.cpp in Sources */,
 				7219409520FED4BE00071BFC /* TrainSelectLayer.cpp in Sources */,
@@ -1762,6 +1891,8 @@
 				7282707220F5B7B200B07087 /* LoadingBarProgressTimer.cpp in Sources */,
 				720452E320D892200011D560 /* Building.cpp in Sources */,
 				729ADB102225527E00E25E3E /* EquipLibraryInfoLayer.cpp in Sources */,
+				7216F53E2251F18E002EC4A7 /* MacthFightSucAwdLayer.cpp in Sources */,
+				72A532C3226022860006481E /* StarResultLayer.cpp in Sources */,
 				7282707820F5B7B200B07087 /* Quest.cpp in Sources */,
 				7298895121A2987800071057 /* MatchRuleLayer.cpp in Sources */,
 				72FCFBEE214FAF0E0020DEF3 /* IOSPurchaseWrap.mm in Sources */,
@@ -1776,6 +1907,7 @@
 				720452DD20D892200011D560 /* MyHeroNode.cpp in Sources */,
 				1AF87B8B1F6F782A007BE51C /* RootViewController.mm in Sources */,
 				7204530020D892200011D560 /* CardHeroNode.cpp in Sources */,
+				7216F53F2251F18E002EC4A7 /* WellGiftLayer.cpp in Sources */,
 				725BD2C1215BA24500B97454 /* UserTipsBoxLayer.cpp in Sources */,
 				72AD00F8211461E4009C44DA /* WgLvLayer.cpp in Sources */,
 				7232D82020E639D600299738 /* MapEventLayer.cpp in Sources */,
@@ -1797,6 +1929,7 @@
 				7256A75E2109748D000492EA /* HintBoxLayer.cpp in Sources */,
 				72A55FDE21D60FFF00D95DA8 /* BuyCoinLayer.cpp in Sources */,
 				7226FB3E2142214B00467283 /* SimplePopLayer.cpp in Sources */,
+				7285A29122675EBA00481FDE /* PlotStoryScene.cpp in Sources */,
 				72DD1CB12139564000832ADB /* ShopNode.cpp in Sources */,
 				7282706620F5B7B200B07087 /* SetInStoneLayer.cpp in Sources */,
 				720452DF20D892200011D560 /* HttpDataSwap.cpp in Sources */,
@@ -1807,6 +1940,7 @@
 				724C88F3221A506200454D30 /* LibraryLayer.cpp in Sources */,
 				723FC5EA21EDF16900F8414F /* MoreBtnNode.cpp in Sources */,
 				723FC5E821EDF16900F8414F /* LoginGetLayer.cpp in Sources */,
+				7285A29222675EBA00481FDE /* MapZoomGuideLayer.cpp in Sources */,
 				7206D253211D9FA1002D1BDE /* WaitingProgress.cpp in Sources */,
 				7298895021A2987800071057 /* MatchRewardLayer.cpp in Sources */,
 				7282707520F5B7B200B07087 /* Npc.cpp in Sources */,
@@ -1815,6 +1949,7 @@
 				720452F520D892200011D560 /* ConsumeResActionLayer.cpp in Sources */,
 				72DD1CB22139564000832ADB /* ShopLayer.cpp in Sources */,
 				720452E720D892200011D560 /* MyRes.cpp in Sources */,
+				72A2DC102253329500734ADF /* RebateAwdNode.cpp in Sources */,
 				7203E8BD223129B900A19758 /* BuySelectLayer.cpp in Sources */,
 				720452EC20D892200011D560 /* FightHeroNode.cpp in Sources */,
 				7282706720F5B7B200B07087 /* TaskDailyNode.cpp in Sources */,
@@ -1845,6 +1980,7 @@
 				7298895321A2987800071057 /* MatchContentLayer.cpp in Sources */,
 				720452E620D892200011D560 /* RandHeroNode.cpp in Sources */,
 				72421DD52126E4D6008B1B57 /* HeadInfoLayer.cpp in Sources */,
+				72A532C1226022860006481E /* StarDescLayer.cpp in Sources */,
 				7232D82620E639D600299738 /* ResDescLayer.cpp in Sources */,
 				722D3B902228D106004D1285 /* BuySingleResLayer.cpp in Sources */,
 				720452F120D892200011D560 /* MainScene.cpp in Sources */,
