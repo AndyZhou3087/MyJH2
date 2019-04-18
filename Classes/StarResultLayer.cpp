@@ -205,7 +205,7 @@ void StarResultLayer::showAnim(float dt)
 
 	besttextimg->runAction(ScaleTo::create(0.3f, 1));
 
-	this->scheduleOnce(schedule_selector(StarResultLayer::showf3starAwd), 0.5f);
+	this->scheduleOnce(schedule_selector(StarResultLayer::showf3starAwd), 1.5f);
 }
 
 void StarResultLayer::showf3starAwd(float dt)
