@@ -1350,7 +1350,6 @@ void MapBlockScene::scrollViewDidZoom(ScrollView* view)
 
 	if (isBlockClickCancel)
 	{
-		isDraging = false;
 		isBlockClickCancel = false;
 	}
 	log("zhou scrollViewDidZoom = %.2f", scrollView->getZoomScale());
