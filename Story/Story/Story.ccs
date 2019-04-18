@@ -38,6 +38,8 @@
           <Image Name="s3_t1.png" />
           <Image Name="s3_t2.png" />
           <Image Name="s3_t3.png" />
+          <Image Name="s3_t4.png" />
+          <Image Name="text_box.png" />
         </Folder>
         <Project Name="story1.csd" Type="Layer" />
         <Project Name="story2.csd" Type="Layer" />

@@ -134,7 +134,7 @@
     <Cell c="5" r="1" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="5" r="2" p="5" w="0" m="129.png" d="51.png">
       <npcid>2</npcid>
-      <msawd1 id="s004" qu="0" rnd="50.00">1</msawd1>
+      <msawd1 id="s004" qu="0" rnd="30.00">1</msawd1>
     </Cell>
     <Cell c="5" r="3" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="5" r="4" p="5" w="0" m="129.png" d="51.png">
