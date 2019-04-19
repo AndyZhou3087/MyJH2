@@ -42,6 +42,22 @@
             <Image Name="zoomfig4.png" />
             <Image Name="zoomfig5.png" />
           </Folder>
+          <Folder Name="newheroanim">
+            <Image Name="00.png" />
+            <Image Name="01.png" />
+            <Image Name="02.png" />
+            <Image Name="03.png" />
+            <Image Name="04.png" />
+            <Image Name="05.png" />
+            <Image Name="06.png" />
+            <Image Name="07.png" />
+            <Image Name="08.png" />
+            <Image Name="09.png" />
+            <Image Name="10.png" />
+            <Image Name="11.png" />
+            <Image Name="12.png" />
+            <Image Name="13.png" />
+          </Folder>
           <Image Name="brownbox.png" />
           <Image Name="cardh_0_0.png" />
           <Image Name="cardh_0_1.png" />

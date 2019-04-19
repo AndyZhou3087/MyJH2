@@ -251,6 +251,21 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 		}
 	}
 
+	if (g_mainScene->getChildByName("0outtown") != NULL)
+		clickwhere = 3;
+	else if (g_mainScene->getChildByName("8pkground") != NULL)
+		clickwhere = 4;
+
+	m_clickhere = clickwhere;
+
+	if (clickwhere == 3 || clickwhere == 4)
+	{
+		btnArr[0]->setVisible(false);
+		btnArr[1]->setVisible(true);
+		btnArr[1]->setPositionX(220);
+		btnArr[2]->setPositionX(500);
+	}
+
 	//滑动
 	pageView = (cocos2d::ui::PageView*)csbnode->getChildByName("pageView");
 	pageView->addEventListener((ui::PageView::ccPageViewCallback)CC_CALLBACK_2(HeroAttrLayer::JumpSceneCallback, this));
@@ -459,18 +474,28 @@ void HeroAttrLayer::updateAtrBtnUI()
 	{
 		int herostate = m_heroData->getState();
 
-		if (herostate == HS_TAKEON || herostate == HS_TRAINING)
+		if (herostate == HS_TRAINING)
 		{
 			btnArr[0]->setVisible(false);
 			btnArr[1]->setVisible(true);
 			btnArr[1]->setPositionX(220);
 			btnArr[2]->setPositionX(500);
 		}
-		else if (herostate == HS_OWNED)
+		else if (herostate == HS_OWNED || herostate == HS_TAKEON)
 		{
-			btnArr[0]->setVisible(true);
-			btnArr[1]->setVisible(true);
-			btnArr[2]->setPositionX(600);;
+			if (m_clickhere == 3 || m_clickhere == 4)
+			{
+				btnArr[0]->setVisible(false);
+				btnArr[1]->setVisible(true);
+				btnArr[1]->setPositionX(220);
+				btnArr[2]->setPositionX(500);
+			}
+			else
+			{
+				btnArr[0]->setVisible(true);
+				btnArr[1]->setVisible(true);
+				btnArr[2]->setPositionX(600);
+			}
 		}
 		btnArr[3]->setVisible(false);
 	}
@@ -534,7 +559,7 @@ void HeroAttrLayer::loadHeroUI()
 			{
 				btn->setVisible(false);
 			}
-			else if (herostate == HS_OWNED)
+			else if (herostate == HS_OWNED || herostate == HS_TAKEON)
 			{
 				//前4种职业等级10可转职，后面可突破
 				if ((m_heroData->getLevel() + 1) % 10 == 0 && (m_heroData->getVocation() < 4 || (m_heroData->getLevel() + 1) / 10 == m_heroData->getChangeCount() + 1))
@@ -587,7 +612,6 @@ void HeroAttrLayer::loadHeroUI()
 			}
 		}
 	}
-
 	updataAtrrUI(0);
 }
 

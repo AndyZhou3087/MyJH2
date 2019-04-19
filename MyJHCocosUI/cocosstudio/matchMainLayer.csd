@@ -141,7 +141,7 @@
             <FileData Type="MarkedSubImage" Path="ui/setpline0.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="matchlvtext" ActionTag="375953449" Tag="95" IconVisible="False" LeftMargin="146.4992" RightMargin="534.5007" TopMargin="716.7900" BottomMargin="542.2100" FontSize="18" LabelText="段位" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="matchlvtext" ActionTag="375953449" Tag="95" IconVisible="False" LeftMargin="146.4992" RightMargin="534.5008" TopMargin="716.7900" BottomMargin="542.2100" FontSize="18" LabelText="段位" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="39.0000" Y="21.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="165.9992" Y="552.7100" />
@@ -153,7 +153,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="matchlv" ActionTag="1735913899" Tag="96" IconVisible="False" LeftMargin="141.9992" RightMargin="530.0007" TopMargin="754.5593" BottomMargin="499.4407" FontSize="23" LabelText="新兵" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="matchlv" ActionTag="1735913899" Tag="96" IconVisible="False" LeftMargin="141.9992" RightMargin="530.0008" TopMargin="754.5593" BottomMargin="499.4407" FontSize="23" LabelText="新兵" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="48.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="165.9992" Y="512.4407" />
@@ -250,7 +250,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="matchbtn" ActionTag="800813778" Tag="121" IconVisible="False" LeftMargin="416.9717" RightMargin="99.0283" TopMargin="873.3434" BottomMargin="322.6566" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="matchbtn" ActionTag="800813778" Tag="121" IconVisible="False" LeftMargin="416.9700" RightMargin="99.0300" TopMargin="873.3400" BottomMargin="322.6600" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="1875725972" Tag="122" IconVisible="False" LeftMargin="27.5216" RightMargin="28.4784" TopMargin="21.7404" BottomMargin="26.2596" LeftEage="23" RightEage="23" TopEage="13" BottomEage="13" Scale9OriginX="23" Scale9OriginY="13" Scale9Width="102" Scale9Height="10" ctype="ImageViewObjectData">
@@ -265,7 +265,7 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="518.9717" Y="364.6566" />
+            <Position X="518.9700" Y="364.6600" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.7208" Y="0.2849" />
@@ -381,6 +381,18 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.7674" Y="0.3997" />
             <PreSize X="0.1292" Y="0.0227" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="leftcount" ActionTag="1404222618" Tag="144" IconVisible="False" LeftMargin="457.4700" RightMargin="139.5300" TopMargin="957.4999" BottomMargin="297.5001" FontSize="22" LabelText="剩余次数：0" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="123.0000" Y="25.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="518.9700" Y="310.0001" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.7208" Y="0.2422" />
+            <PreSize X="0.1708" Y="0.0195" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />

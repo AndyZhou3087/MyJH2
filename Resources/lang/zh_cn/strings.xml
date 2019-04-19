@@ -534,5 +534,8 @@
 	<s name="norouting">不能到达指定地点！</s>
 	<s name="routnofood">食物不足！无法行走到目的位置</s>
 	<s name="clickcontinue">点击屏幕继续</s>
-	<s name="zoomguidetext">两指滑动可缩放地图</s>									
+	<s name="zoomguidetext">两指滑动可缩放地图</s>
+	<s name="matchfightcount1">剩余次数：%d</s>
+	<s name="matchfightcount2">剩余挑战次数：%d</s>
+	<s name="matchfightnocount">次数已用完，每日凌晨4点重置次数！</s>						
 </strings>

@@ -1412,6 +1412,10 @@ void HttpDataSwap::httpGetMyMatchHerosCB(std::string retdata, int code, std::str
 
 				GlobalInstance::myMatchInfo.lostcount = atoi(getJsonValueStr(mydatav["lostcount"]).c_str());
 
+				GlobalInstance::myMatchInfo.matchcount = atoi(getJsonValueStr(mydatav["matchcount"]).c_str());
+
+				GlobalInstance::myMatchInfo.specifiedcount = atoi(getJsonValueStr(mydatav["specifiedcount"]).c_str());
+
 				GlobalInstance::myMatchInfo.map_myheros.clear();
 				for (int i = 0; i < 6; i++)
 				{

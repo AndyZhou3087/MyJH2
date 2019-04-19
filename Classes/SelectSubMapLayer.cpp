@@ -165,30 +165,48 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 
 		i++;
 
-		std::vector<std::string> vec_finishstar;
-
-		CommonFuncs::split(DataSave::getInstance()->getFinishStar(it->first), vec_finishstar, ",");
-
-		for (unsigned int n = 0; n < 3; n++)
+		if (m_mainmapid.compare("m1-5") != 0)
 		{
-			std::string starname = StringUtils::format("star%d", n);
-			Node* star = subnode->getChildByName(starname);
+			std::vector<std::string> vec_finishstar;
 
-			if (n < vec_finishstar.size())
+			CommonFuncs::split(DataSave::getInstance()->getFinishStar(it->first), vec_finishstar, ",");
+
+			for (unsigned int n = 0; n < 3; n++)
 			{
-				star->setVisible(true);
+				std::string starname = StringUtils::format("star%d", n);
+				Node* star = subnode->getChildByName(starname);
+
+				if (n < vec_finishstar.size())
+				{
+					star->setVisible(true);
+				}
+				else
+				{
+					star->setVisible(false);
+				}
 			}
-			else
+
+			showCStarAwdUI();
+		}
+		else
+		{
+			for (int i = 0; i < 3; i++)
 			{
+				std::string keyname = StringUtils::format("starbg_%d", i);
+				Node* starbg = subnode->getChildByName(keyname);
+				starbg->setVisible(false);
+
+				keyname = StringUtils::format("star%d", i);
+				Node* star = subnode->getChildByName(keyname);
 				star->setVisible(false);
 			}
+			starAwdNode->setVisible(false);
 		}
 	}
 
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 	desclbl->setString(GlobalInstance::map_AllResources[mainmapid].desc);
 
-	showCStarAwdUI();
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -422,12 +440,12 @@ void SelectSubMapLayer::showCStarAwdUI()
 			std::string boxstr;
 			if (state == 0)
 			{
-				boxstr = StringUtils::format("ui/cstarbox%d_s.png", curchapter);
+				boxstr = StringUtils::format("ui/cstarbox%d_s.png", i + 1);
 				box[i]->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 7), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -7), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
 			}
 			else if (state == 1)
 			{
-				boxstr = StringUtils::format("ui/cstarbox%d_p.png", curchapter);
+				boxstr = StringUtils::format("ui/cstarbox%d_p.png", i + 1);
 			}
 			box[i]->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 		}
@@ -491,7 +509,7 @@ void SelectSubMapLayer::onAwdBoxClick(cocos2d::Ref *pSender, cocos2d::ui::Widget
 				GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_getstate[boxindex] = 1;
 				clicknode->stopAllActions();
 				clicknode->setRotation(0);
-				std::string boxstr = StringUtils::format("ui/cstarbox%d_p.png", curchapter);
+				std::string boxstr = StringUtils::format("ui/cstarbox%d_p.png", boxindex + 1);
 				clicknode->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 				StarFrist3AwdLayer* layer = StarFrist3AwdLayer::create(GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_adws[boxindex][0]);
 				this->addChild(layer);

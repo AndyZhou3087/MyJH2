@@ -26,7 +26,7 @@ MatchMainLayer::MatchMainLayer()
 {
 	clickHero = -1;
 	httptag = 0;
-
+	isspecifiedfight = false;
 }
 
 MatchMainLayer::~MatchMainLayer()
@@ -162,6 +162,7 @@ bool MatchMainLayer::init()
 	endtime = (cocos2d::ui::Text*)csbnode->getChildByName("endtime");
 	endtime->setString("");
 	
+	leftcountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("leftcount");
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -181,7 +182,7 @@ bool MatchMainLayer::init()
 
 	HttpDataSwap::init(this)->getMyMatchHeros();
 
-	this->schedule(schedule_selector(MatchMainLayer::updateScore), 1.0f);
+	this->schedule(schedule_selector(MatchMainLayer::updatelbl), 1.0f);
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -442,7 +443,7 @@ void MatchMainLayer::setMatchBtnStatus(int s)
 	}
 }
 
-void MatchMainLayer::updateScore(float dt)
+void MatchMainLayer::updatelbl(float dt)
 {
 	int lv = 0;
 
@@ -483,13 +484,15 @@ void MatchMainLayer::updateScore(float dt)
 	else
 		str = StringUtils::format("%.2f%%", GlobalInstance::myMatchInfo.wincount*100.0f / totalcount);
 	matchwin->setString(str);
+
+	std::string leftcountstr = StringUtils::format(ResourceLang::map_lang["matchfightcount1"].c_str(), GlobalInstance::myMatchInfo.matchcount);
+	leftcountlbl->setString(leftcountstr);
 }
 
 void MatchMainLayer::updateUI()
 {
-	updateScore(0);
+	updatelbl(0);
 	endtime->setString(GlobalInstance::myMatchInfo.endtime);
-
 
 	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 	{
@@ -679,6 +682,8 @@ void MatchMainLayer::getMatchVsPairData(std::string playerid)
 	WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
 	this->addChild(wp, 0, "waitingprogress");
 
+	if (playerid.length() > 0)
+		isspecifiedfight = true;
 	httptag = 3;
 	HttpDataSwap::init(this)->getMatchPairData(playerid);
 }
@@ -697,6 +702,7 @@ void MatchMainLayer::onFinish(int code)
 				networkerrLayer->removeFromParentAndCleanup(true);
 			updateUI();
 			bindHeroData();
+
 		}
 		else if (httptag == 1)
 		{
@@ -716,6 +722,11 @@ void MatchMainLayer::onFinish(int code)
 			MatchVSLayer* layer = MatchVSLayer::create();
 			this->addChild(layer, 100);
 			setMatchBtnStatus(0);
+
+			if (isspecifiedfight)
+				GlobalInstance::myMatchInfo.specifiedcount--;
+			else
+				GlobalInstance::myMatchInfo.matchcount--;
 		}
 
 		if (GlobalInstance::myMatchInfo.getrewardstate == 1)
@@ -746,15 +757,19 @@ void MatchMainLayer::onFinish(int code)
 		{
 			setMatchBtnStatus(0);
 
-			if (httptag == 3 && code == 3)
+			if (httptag == 3)
 			{
-				MovingLabel::show(ResourceLang::map_lang["nomatch"]);
+				if (code == 3)
+					MovingLabel::show(ResourceLang::map_lang["nomatch"]);
+				else if (code == 4)
+					MovingLabel::show(ResourceLang::map_lang["matchfightnocount"]);
 				return;
 			}
 		}
 		
 		MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
 	}
+	isspecifiedfight = false;
 }
 
 void MatchMainLayer::showFightSuccAwdLayer(float dt)

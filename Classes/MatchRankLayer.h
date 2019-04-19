@@ -21,10 +21,11 @@ private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onFinish(int code);
 	void loadMyRankHeros();
-
+	void updatelbl(float dt);
 private:
 	cocos2d::ui::ScrollView* scrollView;
 	cocos2d::ui::Text* text;
+	cocos2d::ui::Text* leftcountlbl;
 	MatchRankNode* mynode;
 };
 

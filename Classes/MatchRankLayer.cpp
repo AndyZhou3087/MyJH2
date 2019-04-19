@@ -67,6 +67,11 @@ bool MatchRankLayer::init()
 	WaitingProgress* waitbox = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
 	Director::getInstance()->getRunningScene()->addChild(waitbox, 100, "waitbox");
 
+	leftcountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("leftcount");
+	leftcountlbl->setVisible(false);
+
+	this->schedule(schedule_selector(MatchRankLayer::updatelbl), 1.0f);
+
 	HttpDataSwap::init(this)->getMatchRankHeros();
 
 
@@ -144,5 +149,19 @@ void MatchRankLayer::onFinish(int code)
 	else
 	{
 		MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
+	}
+}
+
+void MatchRankLayer::updatelbl(float dt)
+{
+	if (GlobalInstance::myRankInfo.myrank <= 10 && GlobalInstance::myRankInfo.myrank >= 0)
+	{
+		leftcountlbl->setVisible(true);
+		std::string leftcountstr = StringUtils::format(ResourceLang::map_lang["matchfightcount2"].c_str(), GlobalInstance::myMatchInfo.specifiedcount);
+		leftcountlbl->setString(leftcountstr);
+	}
+	else
+	{
+		leftcountlbl->setVisible(false);
 	}
 }

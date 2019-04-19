@@ -181,6 +181,7 @@ private:
 
 	cocos2d::ui::PageView* pageView;
 	int m_fromwhere;
+	int m_clickhere;
 	std::vector<Hero*> vec_norheros;
 
 	Point beginTouchPoint;

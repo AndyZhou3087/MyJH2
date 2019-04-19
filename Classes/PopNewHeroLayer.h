@@ -22,9 +22,15 @@ private:
 	cocos2d::ui::ImageView* vocimg;
 	cocos2d::ui::ImageView* quimg;
 	Node* light;
-
+	Node* textnode;
+	Node* aminnode;
+	Node* heronode;
 private:
-	void delayShowLightAnim(float dt);
+
+	bool iscanclick;
+	void showHeroAnim(float dt);
+
+	void showText(float dt);
 };
 #endif
 

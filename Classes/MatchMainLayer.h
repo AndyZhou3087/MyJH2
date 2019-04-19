@@ -36,7 +36,7 @@ private:
 
 	void updateUI();
 
-	void updateScore(float dt);
+	void updatelbl(float dt);
 
 	void setMatchBtnStatus(int s);
 
@@ -59,9 +59,10 @@ private:
 	cocos2d::ui::Text* rewardtext;
 	cocos2d::ui::Text* endtimetxt;
 	cocos2d::ui::ImageView* matchrewardicon;
-
+	cocos2d::ui::Text* leftcountlbl;
 	int httptag;
 	int fightret;
+	bool isspecifiedfight;
 };
 
 #endif

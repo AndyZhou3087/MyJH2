@@ -75,7 +75,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scrollView" ActionTag="1723197788" Tag="137" IconVisible="False" LeftMargin="34.1561" RightMargin="35.8439" TopMargin="122.5150" BottomMargin="227.4850" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="scrollView" ActionTag="1723197788" Tag="137" IconVisible="False" LeftMargin="34.1561" RightMargin="35.8439" TopMargin="122.5150" BottomMargin="227.4850" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="650.0000" Y="930.0000" />
             <AnchorPoint />
             <Position X="34.1561" Y="227.4850" />
@@ -88,6 +88,18 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="650" Height="930" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="leftcount" ActionTag="1319366359" Tag="166" IconVisible="False" LeftMargin="473.9999" RightMargin="68.0001" TopMargin="92.4998" BottomMargin="1162.5002" FontSize="22" LabelText="剩余挑战次数：10" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="178.0000" Y="25.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="562.9999" Y="1175.0002" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.7819" Y="0.9180" />
+            <PreSize X="0.2472" Y="0.0195" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

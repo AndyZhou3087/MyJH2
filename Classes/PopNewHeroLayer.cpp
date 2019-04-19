@@ -9,14 +9,17 @@
 
 PopNewHeroLayer::PopNewHeroLayer()
 {
-
+	iscanclick = false;
 }
 
 
 PopNewHeroLayer::~PopNewHeroLayer()
 {
-	RandHeroLayer* randlayer = (RandHeroLayer*)g_mainScene->getChildByName("RandHeroLayer");
-	randlayer->delayShowNewerGuide(0);
+	if (g_mainScene != NULL)
+	{
+		RandHeroLayer* randlayer = (RandHeroLayer*)g_mainScene->getChildByName("RandHeroLayer");
+		randlayer->delayShowNewerGuide(0);
+	}
 }
 
 PopNewHeroLayer* PopNewHeroLayer::create(Hero* hero)
@@ -48,28 +51,35 @@ bool PopNewHeroLayer::init(Hero* hero)
 	
 	int langtype = GlobalInstance::getInstance()->getLang();
 
-	cocos2d::ui::ImageView* title = (cocos2d::ui::ImageView*)csbnode->getChildByName("title");
+	textnode = csbnode->getChildByName("textnode");
+	aminnode = csbnode->getChildByName("animnode");
+	heronode = csbnode->getChildByName("heronode");
+	heronode->setVisible(false);
+	textnode->setVisible(false);
+
+	cocos2d::ui::ImageView* title = (cocos2d::ui::ImageView*)textnode->getChildByName("title");
 	title->loadTexture(ResourcePath::makeTextImgPath("newherotitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	//头像
-	headimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("heroimg");
-	headimg->ignoreContentAdaptWithSize(true);
-	headimg->setScale(0.5f);
-
-	vocimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("herovoc");
+	vocimg = (cocos2d::ui::ImageView*)textnode->getChildByName("herovoc");
 	std::string vocimgstr = StringUtils::format("newherovoc%d_text", hero->getVocation());
 	vocimg->loadTexture(ResourcePath::makeTextImgPath(vocimgstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//品质
-	quimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("heroqu");
+	quimg = (cocos2d::ui::ImageView*)textnode->getChildByName("heroqu");
 
 	std::string quimgstr = StringUtils::format("heroattrqu_%d", hero->getPotential());
 	quimg->loadTexture(ResourcePath::makeTextImgPath(quimgstr, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+	//头像
+	headimg = (cocos2d::ui::ImageView*)heronode->getChildByName("heroimg");
+	headimg->ignoreContentAdaptWithSize(true);
+	headimg->setScale(0.5f);
+
 	std::string str = StringUtils::format("hfull_%d_%d.png", hero->getVocation(), hero->getSex());
 	headimg->loadTexture(ResourcePath::makeImagePath(str), cocos2d::ui::Widget::TextureResType::LOCAL);
 
-	light = csbnode->getChildByName("light");
+	light = heronode->getChildByName("light");
+	light->runAction(RepeatForever::create(RotateTo::create(10, 720)));
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -78,17 +88,45 @@ bool PopNewHeroLayer::init(Hero* hero)
 	};
 	listener->onTouchEnded = [=](Touch *touch, Event *event)
 	{
-		AnimationEffect::closeAniEffect((Layer*)this);
+		if (iscanclick)
+			AnimationEffect::closeAniEffect((Layer*)this);
 	};
 
-	this->scheduleOnce(schedule_selector(PopNewHeroLayer::delayShowLightAnim), 0.5f);
+	if (hero->getPotential() <= 3)
+	{
+		aminnode->setVisible(false);
+		heronode->setScale(0);
+		heronode->setVisible(true);
+		heronode->runAction(Sequence::create(DelayTime::create(0.2f), Show::create(), ScaleTo::create(0.2f, 1), CallFunc::create(CC_CALLBACK_0(PopNewHeroLayer::showText, this, 0)), NULL));
+	}
+	else if (hero->getPotential() <= 4)
+	{
+		aminnode->setVisible(true);
+		heronode->setVisible(true);
+		heronode->setScale(0);
+		auto action = CSLoader::createTimeline("popNewHeroLayer.csb");
+		csbnode->runAction(action);
+		action->gotoFrameAndPlay(0, false);
+
+		this->scheduleOnce(schedule_selector(PopNewHeroLayer::showHeroAnim), 1.5f);
+
+		this->scheduleOnce(schedule_selector(PopNewHeroLayer::showText), 2.0f);
+
+	}
+
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 	return true;
 }
 
-void PopNewHeroLayer::delayShowLightAnim(float dt)
+void PopNewHeroLayer::showText(float dt)
 {
-	light->runAction(RepeatForever::create(RotateTo::create(10, 720)));
+	textnode->setVisible(true);
+	iscanclick = true;
+}
+
+void PopNewHeroLayer::showHeroAnim(float dt)
+{
+	heronode->runAction(Sequence::create(ScaleTo::create(0.2f, 1), NULL));
 }

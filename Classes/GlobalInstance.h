@@ -347,6 +347,8 @@ typedef struct
 	int pairscore;
 	int wincount;
 	int lostcount;
+	int matchcount;
+	int specifiedcount;
 }MyMatchInfo;
 
 typedef struct

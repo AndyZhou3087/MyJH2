@@ -1082,7 +1082,7 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	}
 
 	bool isfollowme = true;
-	if (!isoverscreen)
+	if (!isoverscreen && !isMaze)
 	{
 		int mycurindex = mycurRow * blockColCount + mycurCol;
         int destrow =destblockindex/blockColCount;
@@ -3259,9 +3259,9 @@ void MapBlockScene::removeAllRoutingBlock()
 		}
 	}
 
-
 	map_mapBlocks[0]->getParent()->removeChildByName("bossquan");
 	g_MapBlockScene->removeChildByName("cannottouchlayer");
+
 }
 
 void MapBlockScene::showBuySelectFood()
