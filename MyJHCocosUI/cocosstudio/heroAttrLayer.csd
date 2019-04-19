@@ -415,14 +415,14 @@
                 <PreSize X="0.0389" Y="0.0962" />
                 <FileData Type="MarkedSubImage" Path="ui/heroattrmodify.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="nameinput" ActionTag="2073104671" Tag="139" IconVisible="False" LeftMargin="267.5000" RightMargin="207.5000" TopMargin="68.0000" BottomMargin="328.0000" TouchEnable="True" FontSize="30" IsCustomSize="True" LabelText="ABC" PlaceHolderText="" MaxLengthText="10" ctype="TextFieldObjectData">
-                <Size X="245.0000" Y="30.0000" />
+              <AbstractNodeData Name="nameinput" ActionTag="2073104671" Tag="139" IconVisible="False" LeftMargin="267.5000" RightMargin="207.5000" TopMargin="58.0000" BottomMargin="318.0000" TouchEnable="True" FontSize="30" IsCustomSize="True" LabelText="ABC" PlaceHolderText="" MaxLengthText="10" ctype="TextFieldObjectData">
+                <Size X="245.0000" Y="50.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="390.0000" Y="343.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="26" G="68" B="101" />
                 <PrePosition X="0.5417" Y="0.8052" />
-                <PreSize X="0.3403" Y="0.0704" />
+                <PreSize X="0.3403" Y="0.1174" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
               </AbstractNodeData>
               <AbstractNodeData Name="vocation" ActionTag="1106552525" Tag="140" IconVisible="False" LeftMargin="326.4984" RightMargin="340.5016" TopMargin="113.0874" BottomMargin="283.9126" FontSize="25" LabelText="剑客" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
