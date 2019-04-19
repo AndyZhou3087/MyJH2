@@ -137,7 +137,7 @@ private:
 
 	void createMap();
 
-	void setMyPos();
+	void setMyPos(bool isfollowme = true);
 
 	//视线移动到角色中心
 	void ajustMyPos(bool isanim = true);
@@ -310,6 +310,9 @@ private:
 	int m_startClickX;
 	int m_startClickY;
 	std::vector<Vec2> m_vecrouts;
+
+	int destblockindex;
+	bool isoverscreen;
 
 	public:
 		bool isMovingRouting;

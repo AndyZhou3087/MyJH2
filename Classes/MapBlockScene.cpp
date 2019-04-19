@@ -75,6 +75,10 @@ MapBlockScene::MapBlockScene()
 	isMovingRouting = false;
 
 	isRoutingBreakOff = false;
+
+	destblockindex = -1;
+
+	isoverscreen = false;
 }
 
 
@@ -1064,7 +1068,17 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 		break;
 	}
 
-	setMyPos();
+	bool isfollowme = true;
+	if (!isoverscreen)
+	{
+		int mycurindex = mycurRow * blockColCount + mycurCol;
+		if (fabs(map_mapBlocks[mycurindex]->getPositionX() - map_mapBlocks[destblockindex]->getPositionX()) < scrollView->getViewSize().width / 2 || fabs(map_mapBlocks[mycurindex]->getPositionY() - map_mapBlocks[destblockindex]->getPositionY()) < scrollView->getViewSize().height / 2)
+			isfollowme = true;
+		else
+			isfollowme = false;
+	}
+
+	setMyPos(isfollowme);
 
 	int usefoodcount = usefood;
 	int mypackagefood = MyRes::getMyResCount("r001", MYPACKAGE);
@@ -1388,7 +1402,7 @@ void MapBlockScene::ajustStatus()
 	setBtnEnable(true);
 }
 
-void MapBlockScene::setMyPos()
+void MapBlockScene::setMyPos(bool isfollowme)
 {
 	int px = mycurCol * MAPBLOCKWIDTH + MAPBLOCKWIDTH / 2;
 	int py = mycurRow * MAPBLOCKHEIGHT + MAPBLOCKHEIGHT / 2;
@@ -1416,7 +1430,8 @@ void MapBlockScene::setMyPos()
 		m_lastWalkDirection = m_walkDirection;
 	}
 
-	ajustMyPos();
+	if (isfollowme)
+		ajustMyPos();
 
 	this->scheduleOnce(schedule_selector(MapBlockScene::updateFog), 0.25f);
 
@@ -2342,8 +2357,8 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			}
 			else
 			{
-				int descblockindex = checkNearestIndex(tag, 6);
-				if (descblockindex < 0)
+				destblockindex = checkNearestIndex(tag, 6);
+				if (destblockindex < 0)
 					MovingLabel::show(ResourceLang::map_lang["norouting"]);
 				else
 				{
@@ -2356,7 +2371,7 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 						return;
 					}
 					isRoutingBreakOff = false;
-					astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(descblockindex % blockColCount, descblockindex / blockColCount));
+					astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(destblockindex % blockColCount, destblockindex / blockColCount));
 				}
 			}
 
@@ -2380,8 +2395,8 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			else
 			{
 				buildfocus->setVisible(false);
-				int descblockindex = checkNearestIndex(tag, 6);
-				if (descblockindex < 0)
+				destblockindex = checkNearestIndex(tag, 6);
+				if (destblockindex < 0)
 					MovingLabel::show(ResourceLang::map_lang["norouting"]);
 				else
 				{
@@ -2394,9 +2409,17 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 						return;
 					}
 					isRoutingBreakOff = false;
-					astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(descblockindex % blockColCount, descblockindex / blockColCount));
+					astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(destblockindex % blockColCount, destblockindex / blockColCount));
 				}
 			}
+		}
+
+		if (destblockindex > 0)
+		{
+			int mycurindex = mycurRow * blockColCount + mycurCol;
+			//if (fabs(map_mapBlocks[mycurindex]->getPositionX() - map_mapBlocks[destblockindex]->getPositionX()) < scrollView->getViewSize().width / 2 || fabs(map_mapBlocks[mycurindex]->getPositionY() - map_mapBlocks[destblockindex]->getPositionY()) < scrollView->getViewSize().height / 2)
+			if (map_mapBlocks[mycurindex]->getPositionX() < fabs(scrollView->getContentOffset().x) || map_mapBlocks[mycurindex]->getPositionY() < fabs(scrollView->getContentOffset().y))
+				isoverscreen = true;
 		}
 	}
 }

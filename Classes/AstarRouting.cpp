@@ -237,14 +237,15 @@ void AstarRouting::constructPathStartMoveFromStep(ShortestPathStep* step)
 		vec_steps.push_back(_shortPathList.at(i)->getPos());
 	}
 
-	if (MyRes::getMyResCount("r001", MYPACKAGE) < vec_steps.size())
+	int stepscount = vec_steps.size();
+	if (MyRes::getMyResCount("r001", MYPACKAGE) < stepscount)
 	{
 		MovingLabel::show(ResourceLang::map_lang["routnofood"]);
 		g_MapBlockScene->showBuySelectFood();
 	}
 	else
 	{
-		if (vec_steps.size() > 0)
+		if (stepscount > 0)
 		{
 			if (g_MapBlockScene->isNewerGuideMap)
 			{
