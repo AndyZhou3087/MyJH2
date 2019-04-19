@@ -1,4 +1,4 @@
-﻿#include "MapBlockScene.h"
+#include "MapBlockScene.h"
 #include "Resource.h"
 #include "MyRes.h"
 #include "CommonFuncs.h"
@@ -79,6 +79,8 @@ MapBlockScene::MapBlockScene()
 	destblockindex = -1;
 
 	isoverscreen = false;
+    
+    ishalfscreen = false;
 }
 
 
@@ -1072,7 +1074,11 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 	if (!isoverscreen)
 	{
 		int mycurindex = mycurRow * blockColCount + mycurCol;
-		if (fabs(map_mapBlocks[mycurindex]->getPositionX() - map_mapBlocks[destblockindex]->getPositionX()) < scrollView->getViewSize().width / 2 || fabs(map_mapBlocks[mycurindex]->getPositionY() - map_mapBlocks[destblockindex]->getPositionY()) < scrollView->getViewSize().height / 2)
+        int destrow =destblockindex/blockColCount;
+        int destcol = blockColCount%blockColCount;
+        int drow = abs(mycurRow - destrow);
+        int dcol = abs(mycurCol - destcol);
+		if (ishalfscreen && (drow == 1 ||dcol == 1))
 			isfollowme = true;
 		else
 			isfollowme = false;
@@ -2413,14 +2419,17 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 				}
 			}
 		}
-
+        isoverscreen = false;
+        ishalfscreen = false;
 		if (destblockindex > 0)
 		{
 			int mycurindex = mycurRow * blockColCount + mycurCol;
-			//if (fabs(map_mapBlocks[mycurindex]->getPositionX() - map_mapBlocks[destblockindex]->getPositionX()) < scrollView->getViewSize().width / 2 || fabs(map_mapBlocks[mycurindex]->getPositionY() - map_mapBlocks[destblockindex]->getPositionY()) < scrollView->getViewSize().height / 2)
-			if (map_mapBlocks[mycurindex]->getPositionX() < fabs(scrollView->getContentOffset().x) || map_mapBlocks[mycurindex]->getPositionY() < fabs(scrollView->getContentOffset().y))
+			if (map_mapBlocks[mycurindex]->getPositionX()* scrollView->getZoomScale() < fabs(scrollView->getContentOffset().x) || map_mapBlocks[mycurindex]->getPositionY()*scrollView->getZoomScale() < fabs(scrollView->getContentOffset().y))
 				isoverscreen = true;
-		}
+            
+            if (fabs(map_mapBlocks[mycurindex]->getPositionX() - map_mapBlocks[destblockindex]->getPositionX())* scrollView->getZoomScale() > scrollView->getViewSize().width/2 || fabs(map_mapBlocks[mycurindex]->getPositionY() - map_mapBlocks[destblockindex]->getPositionY())*scrollView->getZoomScale() > scrollView->getViewSize().height/2)
+                ishalfscreen = true;
+        }
 	}
 }
 
