@@ -269,7 +269,7 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 
 		GlobalInstance::eventfrommapid = "";
 		GlobalInstance::eventstartmappos = -1;
-
+		GlobalInstance::map_randstartpos = -1;
 		if (m_mainmapid.compare("m1-5") == 0)
 		{
 			int needph = GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].ph;

@@ -292,8 +292,16 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 		if (randStartPos < 0)
 		{
-			int startposindex = GlobalInstance::getInstance()->createRandomNum(count);
-			randStartPos = vec_startpos[startposindex];
+			if (GlobalInstance::map_randstartpos >= 0)
+			{
+				randStartPos = GlobalInstance::map_randstartpos;
+				GlobalInstance::map_randstartpos = -1;
+			}
+			else
+			{
+				int startposindex = GlobalInstance::getInstance()->createRandomNum(count);
+				randStartPos = vec_startpos[startposindex];
+			}
 		}
 
 		map_mapBlocks[randStartPos]->setPosIcon();
@@ -306,6 +314,9 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 			}
 		}
 	}
+
+
+
 	mycurCol = randStartPos % blockColCount;
 	mycurRow = randStartPos / blockColCount;
 
@@ -1711,6 +1722,8 @@ void MapBlockScene::doMyStatus()
 			GlobalInstance::ishasmazeentry = false;
 
 			GlobalInstance::eventstartmappos = mycr;
+
+			GlobalInstance::map_randstartpos = randStartPos;
 
 			GlobalInstance::eventfrommapid = m_mapid;
 

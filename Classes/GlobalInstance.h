@@ -908,6 +908,8 @@ public:
 	static std::string eventfrommapid;
 	static int eventstartmappos;
 
+	static int map_randstartpos;
+
 	static std::vector<std::string> vec_news;
 
 	static int getNewsTime;
