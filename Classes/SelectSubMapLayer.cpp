@@ -190,6 +190,9 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 		}
 		else
 		{
+			Node* starbox = subnode->getChildByName("starbox");
+			starbox->setVisible(false);
+
 			for (int i = 0; i < 3; i++)
 			{
 				std::string keyname = StringUtils::format("starbg_%d", i);
@@ -200,6 +203,7 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 				Node* star = subnode->getChildByName(keyname);
 				star->setVisible(false);
 			}
+
 			starAwdNode->setVisible(false);
 		}
 	}
