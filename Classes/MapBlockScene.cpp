@@ -2477,6 +2477,7 @@ int MapBlockScene::checkNearestIndex(int blockindex, int gridrowcol)
 		int c1 = col + i;
 		if (c1 >= blockColCount)
 			c1 = blockColCount - 1;
+
 		for (int n = r0; n <= r1; n++)
 		{
 			for (int m = c0; m <= c1; m++)
