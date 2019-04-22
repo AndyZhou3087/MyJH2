@@ -10,6 +10,7 @@
 #include "MyTransitionScene.h"
 #include "M1_5_BoxLayer.h"
 #include "MyRes.h"
+#include "CommonFuncs.h"
 
 MainMapScene* g_MainMapScene = NULL;
 MainMapScene::MainMapScene()
@@ -68,6 +69,7 @@ bool MainMapScene::init()
 
 	cocos2d::ui::Widget* m1_5_box = (cocos2d::ui::Widget*)mapbg->getChildByName("m1-5")->getChildByName("box");
 	m1_5_box->addTouchEventListener(CC_CALLBACK_2(MainMapScene::onBoxclick, this));
+	m1_5_box->setSwallowTouches(false);
 
 	std::map<std::string, std::vector<Node*>> map_taskicon;
 
@@ -76,10 +78,18 @@ bool MainMapScene::init()
 		cocos2d::ui::Widget* mapname = (cocos2d::ui::Widget*)mapbg->getChildren().at(i);
 		cocos2d::ui::Widget* normal = (cocos2d::ui::Widget*)mapname->getChildByName("normal");
 		cocos2d::ui::Widget* select = (cocos2d::ui::Widget*)mapname->getChildByName("select");
+		cocos2d::ui::Widget* click = (cocos2d::ui::Widget*)mapname->getChildByName("click");
 		select->setVisible(false);
-		normal->setUserData((void*)select);
-		normal->addTouchEventListener(CC_CALLBACK_2(MainMapScene::onclick, this));
-		normal->setSwallowTouches(false);
+
+		normal->setEnabled(false);
+		//normal->setSwallowTouches(false);
+		//normal->setUserData((void*)select);
+		//normal->addTouchEventListener(CC_CALLBACK_2(MainMapScene::onclick, this));
+
+		click->setUserData((void*)select);
+		click->setSwallowTouches(false);
+		click->addTouchEventListener(CC_CALLBACK_2(MainMapScene::onclick, this));
+
 		std::string mname = mapname->getName();
 		int c = atoi(mname.substr(1, mname.find_first_of("-") - 1).c_str());
 
@@ -251,16 +261,15 @@ void MainMapScene::onclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 
 void MainMapScene::onBoxclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	cocos2d::ui::Widget* clicknode = (cocos2d::ui::Widget*)pSender;
-	Node* selnode = (Node*)clicknode->getUserData();
-
+	CommonFuncs::BtnAction(pSender, type);
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
+		cocos2d::ui::Widget* clicknode = (cocos2d::ui::Widget*)pSender;
+		Node* selnode = (Node*)clicknode->getUserData();
+
 		std::string mapname = clicknode->getParent()->getName();
 		if (m_isDraging)
 			return;
-
-		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 
 		M1_5_BoxLayer* layer = M1_5_BoxLayer::create();
 		this->addChild(layer);
