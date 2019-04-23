@@ -9,7 +9,7 @@
 #include "TaskLayer.h"
 #include "Building.h"
 #include "MainScene.h"
-#include "InnRoomLayer.h"
+#include "RandHeroLayer.h"
 #include "SmithyLayer.h"
 #include "StoreHouseLayer.h"
 #include "Quest.h"
@@ -23,6 +23,7 @@
 #include "NewGuideLayer.h"
 #include "HomeHillLayer.h"
 #include "TrainLayer.h"
+#include "InnRoomLayer.h"
 
 TaskDailyNode::TaskDailyNode()
 {
@@ -267,8 +268,8 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 			case FRESH_PUBENLIST:
 			{
-				InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
-				g_mainScene->addChild(layer, 0, "6innroom");
+				RandHeroLayer* layer = RandHeroLayer::create();
+				g_mainScene->addChild(layer, 0, "RandHeroLayer");
 				AnimationEffect::openAniEffect((Layer*)layer);
 			}
 			break;
@@ -289,8 +290,8 @@ void TaskDailyNode::onbtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				}
 				else if (Building::map_buildingDatas["6innroom"]->level.getValue() < Building::map_buildingDatas["6innroom"]->maxlevel.getValue() - 1)
 				{
-					InnRoomLayer* layer = InnRoomLayer::create(Building::map_buildingDatas["6innroom"]);
-					g_mainScene->addChild(layer, 0, "6innroom");
+					RandHeroLayer* layer = RandHeroLayer::create();
+					g_mainScene->addChild(layer, 0, "RandHeroLayer");
 					AnimationEffect::openAniEffect((Layer*)layer);
 				}
 				else if (Building::map_buildingDatas["5market"]->level.getValue() < Building::map_buildingDatas["5market"]->maxlevel.getValue() - 1)
