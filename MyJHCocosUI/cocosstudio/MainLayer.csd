@@ -6,16 +6,29 @@
       <ObjectData Name="Layer" Tag="2" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
-          <AbstractNodeData Name="scroll_1" ActionTag="-1260603270" Tag="5" IconVisible="False" ClipAble="True" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="scroll_1" ActionTag="-1260603270" Tag="5" IconVisible="False" ClipAble="False" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
             <Size X="720.0000" Y="1280.0000" />
             <Children>
-              <AbstractNodeData Name="sky" ActionTag="1273293467" Tag="4" IconVisible="False" LeftMargin="1.1973" RightMargin="-1.1973" TopMargin="0.0061" BottomMargin="367.9939" LeftEage="818" RightEage="818" TopEage="300" BottomEage="300" Scale9OriginX="818" Scale9OriginY="300" Scale9Width="844" Scale9Height="312" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="main_sky" ActionTag="1273293467" Tag="4" IconVisible="False" TopMargin="0.0100" BottomMargin="367.9900" LeftEage="818" RightEage="818" TopEage="300" BottomEage="300" Scale9OriginX="818" Scale9OriginY="300" Scale9Width="844" Scale9Height="312" ctype="ImageViewObjectData">
                 <Size X="2480.0000" Y="912.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="1.0000" />
-                <Position X="1241.1973" Y="1279.9939" />
+                <Children>
+                  <AbstractNodeData Name="main_cloud" ActionTag="-2122533978" Tag="65" IconVisible="False" LeftMargin="1231.5000" RightMargin="711.5000" TopMargin="165.0000" BottomMargin="473.0000" ctype="SpriteObjectData">
+                    <Size X="537.0000" Y="274.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="1500.0000" Y="610.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.6048" Y="0.6689" />
+                    <PreSize X="0.2165" Y="0.3004" />
+                    <FileData Type="Normal" Path="mainimg/main_cloud.png" Plist="" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleY="1.0000" />
+                <Position Y="1279.9900" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5005" Y="1.0000" />
+                <PrePosition Y="1.0000" />
                 <PreSize X="1.0000" Y="0.7125" />
                 <FileData Type="Normal" Path="mainimg/main_sky.jpg" Plist="" />
               </AbstractNodeData>
@@ -69,10 +82,10 @@
                 <PreSize X="0.1347" Y="0.2484" />
                 <FileData Type="Normal" Path="mainimg/main_10_s.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="main_10_pic" ActionTag="-1634322249" Tag="6" IconVisible="False" LeftMargin="592.1436" RightMargin="1563.8564" TopMargin="388.0004" BottomMargin="583.9996" LeftEage="106" RightEage="106" TopEage="101" BottomEage="101" Scale9OriginX="106" Scale9OriginY="101" Scale9Width="112" Scale9Height="106" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="main_10_pic" ActionTag="-1634322249" Tag="6" IconVisible="False" LeftMargin="592.1400" RightMargin="1563.8600" TopMargin="388.0004" BottomMargin="583.9996" LeftEage="106" RightEage="106" TopEage="101" BottomEage="101" Scale9OriginX="106" Scale9OriginY="101" Scale9Width="112" Scale9Height="106" ctype="ImageViewObjectData">
                 <Size X="324.0000" Y="308.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="754.1436" Y="737.9996" />
+                <Position X="754.1400" Y="737.9996" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.3041" Y="0.5766" />
@@ -165,7 +178,7 @@
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="2480" Height="1280" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scroll_2" ActionTag="-821746676" Tag="12" IconVisible="False" ClipAble="True" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="scroll_2" ActionTag="-821746676" Tag="12" IconVisible="False" ClipAble="False" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
             <Size X="720.0000" Y="1280.0000" />
             <Children>
               <AbstractNodeData Name="main_back_b" ActionTag="-1678309981" Tag="13" IconVisible="False" LeftMargin="-0.0562" RightMargin="0.0562" TopMargin="913.0034" BottomMargin="264.9966" LeftEage="818" RightEage="818" TopEage="33" BottomEage="33" Scale9OriginX="818" Scale9OriginY="33" Scale9Width="844" Scale9Height="36" ctype="ImageViewObjectData">
@@ -332,14 +345,14 @@
               <AbstractNodeData Name="maincityhintbox" ActionTag="510589308" Tag="130" IconVisible="False" LeftMargin="1211.9998" RightMargin="1072.0002" TopMargin="517.0000" BottomMargin="677.0000" ctype="SpriteObjectData">
                 <Size X="196.0000" Y="86.0000" />
                 <Children>
-                  <AbstractNodeData Name="text" ActionTag="-1181347981" Tag="131" IconVisible="False" LeftMargin="19.5000" RightMargin="19.5000" TopMargin="26.1537" BottomMargin="34.8463" FontSize="22" LabelText="可招募新的英雄" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
-                    <Size X="157.0000" Y="25.0000" />
+                  <AbstractNodeData Name="text" ActionTag="-1181347981" Tag="131" IconVisible="False" LeftMargin="9.0000" RightMargin="9.0000" TopMargin="24.1537" BottomMargin="32.8463" FontSize="25" LabelText="可招募新的英雄" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ShadowEnabled="True" ctype="TextObjectData">
+                    <Size X="178.0000" Y="29.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="98.0000" Y="47.3463" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="225" B="83" />
                     <PrePosition X="0.5000" Y="0.5505" />
-                    <PreSize X="0.8010" Y="0.2907" />
+                    <PreSize X="0.9082" Y="0.3372" />
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="80" G="38" B="12" />
                     <ShadowColor A="255" R="36" G="48" B="58" />
@@ -367,7 +380,7 @@
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="2480" Height="1280" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scroll_3" ActionTag="-1662775790" Tag="24" IconVisible="False" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="scroll_3" ActionTag="-1662775790" Tag="24" IconVisible="False" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
             <Size X="720.0000" Y="1280.0000" />
             <Children>
               <AbstractNodeData Name="main_back_f" ActionTag="-691650551" Tag="42" IconVisible="False" LeftMargin="-0.0304" RightMargin="0.0303" TopMargin="1013.9999" BottomMargin="0.0001" LeftEage="818" RightEage="818" TopEage="33" BottomEage="33" Scale9OriginX="818" Scale9OriginY="33" Scale9Width="844" Scale9Height="200" ctype="ImageViewObjectData">

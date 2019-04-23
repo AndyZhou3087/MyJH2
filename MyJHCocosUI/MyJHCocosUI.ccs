@@ -232,9 +232,15 @@
           <Image Name="main_back_f.jpg" />
           <Image Name="main_bg_l.png" />
           <Image Name="main_bg_r.png" />
+          <Image Name="main_bird1.png" />
+          <Image Name="main_bird2.png" />
+          <Image Name="main_bird3.png" />
+          <Image Name="main_bird4.png" />
           <Image Name="main_blank_c.png" />
+          <Image Name="main_cloud.png" />
           <Image Name="main_sky.jpg" />
           <Image Name="q.jpg" />
+          <Image Name="qq1.png" />
         </Folder>
         <Folder Name="mapui">
           <Image Name="attricon0down.png" />
@@ -1572,6 +1578,7 @@
         <Project Name="MainMenuLayer.csd" Type="Layer" />
         <Project Name="makeResLayer.csd" Type="Layer" />
         <Project Name="makeResNode.csd" Type="Node" />
+        <Project Name="mapbirds.csd" Type="Node" />
         <Project Name="mapBlockLayer.csd" Type="Layer" />
         <Project Name="mapEventLayer.csd" Type="Layer" />
         <PlistInfo Name="mapui.csi" Type="Plist" />

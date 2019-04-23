@@ -25,7 +25,6 @@
 #include "MatchMainLayer.h"
 #include "LibraryLayer.h"
 #include "FlowWorld.h"
-//#include "LibraryLayer2.h"
 #include "HomeHillLayer.h"
 #include "GiftContentLayer.h"
 #include "RandHeroLayer.h"
@@ -33,7 +32,6 @@
 #include "iosfunc.h"
 #endif
 
-USING_NS_CC;
 MainScene* g_mainScene = NULL;
 MainScene::MainScene()
 {
@@ -73,7 +71,7 @@ Scene* MainScene::createScene()
 // on "init" you need to initialize your instance
 bool MainScene::init()
 {
-    if ( !Layer::init() )
+    if (!Layer::init() )
     {
         return false;
     }
@@ -88,6 +86,10 @@ bool MainScene::init()
 
 	newsbg = (Sprite*)csbnode->getChildByName("newsbg");
 	newsbg->setVisible(false);
+
+	int hours = (GlobalInstance::getInstance()->getSysSecTime() + 8 * 60 * 60) % (TWENTYFOURHOURSTOSEC) / 3600;
+
+	bool isnight = !(hours >= 6 && hours <= 18);
 
 	scroll_3 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_3");
 	scroll_3->setScrollBarEnabled(false);
@@ -104,6 +106,20 @@ bool MainScene::init()
 	scroll_1->setScrollBarEnabled(false);
 	scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 	scroll_1->setSwallowTouches(false);
+
+	if (isnight)
+	{
+		std::string otherpicparentname[] = { "scroll_1", "scroll_2", "scroll_2", "scroll_2", "scroll_3" };
+		std::string otherpicname[] = { "main_sky", "main_back_b", "main_bg_l", "main_bg_r", "main_back_f" };
+		std::string otherpicext[] = { "jpg", "jpg", "png", "png", "jpg" };
+		for (unsigned int i = 0; i < sizeof(otherpicname) / sizeof(otherpicname[0]); i++)
+		{
+			cocos2d::ui::ImageView* otherpic = (cocos2d::ui::ImageView*)csbnode->getChildByName(otherpicparentname[i])->getChildByName(otherpicname[i]);
+			std::string otherpicnightname = StringUtils::format("mainimg/%s_n.%s", otherpicname[i].c_str(), otherpicext[i].c_str());
+
+			otherpic->loadTexture(ResourcePath::makePath(otherpicnightname), cocos2d::ui::Widget::TextureResType::LOCAL);
+		}
+	}
 
 	std::map<std::string, Building*>::iterator it;
 	int i = 1;
@@ -151,6 +167,16 @@ bool MainScene::init()
 		buildingNomal->setUserData((void*)buildingSelect);
 		buildingNomal->setTag(i);
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
+
+		if (isnight)
+		{
+			std::string buildpicname = StringUtils::format("main_%02d_pic", i);
+			cocos2d::ui::ImageView* buildpic = (cocos2d::ui::ImageView*)buildParent->getChildByName(buildpicname);
+
+			std::string buildnightstr = StringUtils::format("mainimg/main_%02d_n_n.png", i);
+			buildpic->loadTexture(ResourcePath::makePath(buildnightstr), cocos2d::ui::Widget::TextureResType::LOCAL);
+		}
+
 		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && GlobalInstance::getInstance()->getHerosLevelCount(10) <= 0)
 			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 5) || (GlobalInstance::getInstance()->getHerosLevelCount(15) <= 0 && i == 3)
 			|| (i == 8 && !GlobalInstance::getInstance()->getUnlockHomehillCondition() && NewGuideLayer::checkifNewerGuide(15))
@@ -235,6 +261,34 @@ bool MainScene::init()
 	//	GlobalInstance::vec_TaskBranch[i].finishtype = 0;
 	//}
 	//GlobalInstance::getInstance()->saveMyTaskBranchData();
+
+	if (!isnight)
+	{
+		Node* cloud = scroll_1->getChildByName("main_sky")->getChildByName("main_cloud");
+		int r = GlobalInstance::getInstance()->createRandomNum(870) + 1130;
+		cloud->setPositionX(r);
+		int t = (2800 - r) / 20;
+		cloud->runAction(MoveTo::create(t, Vec2(2800, cloud->getPositionY())));
+
+		r = GlobalInstance::getInstance()->createRandomNum(2);
+		if (r <= 0)
+		{
+			std::string animstr = "mapbirds.csb";
+			auto birdnode = CSLoader::createNode(animstr);
+
+			r = GlobalInstance::getInstance()->createRandomNum(720) + 580;
+			birdnode->setPosition(Vec2(r, 1100));
+			scroll_1->addChild(birdnode);
+
+			auto birdaction = CSLoader::createTimeline(animstr);
+			birdnode->runAction(birdaction);
+			birdaction->gotoFrameAndPlay(0, true);
+
+			int tb = (3000 - r) / 40;
+
+			birdnode->runAction(MoveTo::create(tb, Vec2(3000, birdnode->getPositionY())));
+		}
+	}
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
