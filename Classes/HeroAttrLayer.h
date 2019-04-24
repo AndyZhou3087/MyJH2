@@ -168,7 +168,6 @@ private:
 	int lastexp;
 	int breakcount;
 
-	cocos2d::ui::ImageView* blankclick;
 	cocos2d::ui::ImageView* cantclick;
 
 	bool m_isLongPress;

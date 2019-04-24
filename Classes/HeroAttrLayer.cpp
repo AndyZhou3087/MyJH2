@@ -102,9 +102,6 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 	this->addChild(csbnode);
 	langtype = GlobalInstance::getInstance()->getLang();
 
-	blankclick = (cocos2d::ui::ImageView*)csbnode->getChildByName("blankclick");
-	blankclick->setSwallowTouches(true);
-
 	cantclick = (cocos2d::ui::ImageView*)csbnode->getChildByName("cantclick");
 	cantclick->setSwallowTouches(true);
 	cantclick->setVisible(false);
@@ -1414,15 +1411,13 @@ void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 				{
 					heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, -heroattrbottom->getContentSize().height)), DelayTime::create(0.12f), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
 					equipnode->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(360, -560)), NULL));
-					blankclick->setVisible(false);
-					cantclick->setVisible(true);
+					cantclick->setVisible(false);
 				}
 				else
 				{
 					heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, 0)), DelayTime::create(0.02f), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
 					equipnode->runAction(MoveTo::create(0.3f, Vec2(360, 490)));
-					blankclick->setVisible(true);
-					cantclick->setVisible(false);
+					cantclick->setVisible(true);
 				}
 			}
 			else
@@ -1433,8 +1428,7 @@ void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 					equipnode->setPositionY(490);
 					heroattrbottom->runAction(Sequence::create(DelayTime::create(0.5f), MoveTo::create(0.3f, Vec2(0, -heroattrbottom->getContentSize().height)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
 					equipnode->runAction(Sequence::create(DelayTime::create(0.5f), MoveTo::create(0.3f, Vec2(360, -560)), NULL));
-					blankclick->setVisible(false);
-					cantclick->setVisible(true);
+					cantclick->setVisible(false);
 				}
 				else
 				{
@@ -1442,8 +1436,7 @@ void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 					equipnode->setPositionY(-560);
 					heroattrbottom->runAction(Sequence::create(DelayTime::create(0.5f), MoveTo::create(0.3f, Vec2(0, 0)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
 					equipnode->runAction(Sequence::create(DelayTime::create(0.5f), MoveTo::create(0.3f, Vec2(360, 490)), NULL));
-					blankclick->setVisible(true);
-					cantclick->setVisible(false);
+					cantclick->setVisible(true);
 				}
 			}
 			
