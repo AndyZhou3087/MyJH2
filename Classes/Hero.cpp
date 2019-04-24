@@ -154,7 +154,7 @@ void Hero::setExpLimit(int vexp)
 	if (isChangeLevel)
 	{
 		DynamicValueInt dal;
-		dal.setValue(GlobalInstance::vec_herosAttr[m_vocation].vec_exp[((m_lastlevel + 1) / 10 + 1) * 10 - 2]);
+		dal.setValue(GlobalInstance::vec_herosAttr[m_vocation].vec_exp[(m_changecount+1)*10-2]);
 		setExp(dal);
 	}
 	else
