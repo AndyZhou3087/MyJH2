@@ -61,6 +61,7 @@ bool NewPopLayer::init(int unlockchapter)
 
 	cocos2d::ui::ScrollView* contentscoll = (cocos2d::ui::ScrollView*)csbnode->getChildByName("contentscroll");
 	contentscoll->setScrollBarEnabled(false);
+	contentscoll->setBounceEnabled(true);
 
 	Label* contentlbl = Label::createWithTTF("", FONT_NAME, 25);
 	contentlbl->setAnchorPoint(Vec2(0, 1));
@@ -117,12 +118,13 @@ bool NewPopLayer::init(int unlockchapter)
 
 		contentlbl->setString(ResourceLang::map_lang[str]);
 
-		int innerheight = contentlbl->getStringNumLines() * 35;//contentlbl->getHeight();
+		int innerheight = contentlbl->getStringNumLines() * 33;//contentlbl->getHeight();
 		int contentheight = contentscoll->getContentSize().height;
 		if (innerheight < contentheight)
+		{
 			innerheight = contentheight;
-		else
 			contentscoll->setBounceEnabled(false);
+		}
 		contentscoll->setInnerContainerSize(Size(contentscoll->getContentSize().width, innerheight));
 		contentlbl->setPosition(Vec2(0, innerheight));
 
@@ -138,12 +140,13 @@ bool NewPopLayer::init(int unlockchapter)
 		contentscoll->setContentSize(Size(contentscoll->getContentSize().width, 380));
 		contentlbl->setString(GlobalInstance::vec_notice[0].content);
 
-		int innerheight = contentlbl->getStringNumLines() * 25;//contentlbl->getHeight();
+		int innerheight = contentlbl->getStringNumLines() * 33;//contentlbl->getHeight();
 		int contentheight = contentscoll->getContentSize().height;
 		if (innerheight < contentheight)
+		{
 			innerheight = contentheight;
-		else
 			contentscoll->setBounceEnabled(false);
+		}
 
 		contentscoll->setInnerContainerSize(Size(contentscoll->getContentSize().width, innerheight));
 		contentlbl->setPosition(Vec2(0, innerheight));
