@@ -36,13 +36,14 @@ private:
 	std::vector<MyHeroNode*> vec_deadNodes;
 	int dcount;
 	cocos2d::ui::Widget* closebtn;
-
+	cocos2d::ui::Text* repairtimelbl;
+	cocos2d::ui::Widget* repairbtn;
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void todoNewGuide();
 	void updateUI(float dt);
+	void updateRepairUi();
 public:
 
 };
 #endif
-

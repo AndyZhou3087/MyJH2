@@ -576,6 +576,15 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					return;
 				}
 
+				if (GlobalInstance::map_buildingrepairdata["1hospital"].state > 0)
+				{
+					if (m_heroData->getLevel() >= 19)
+					{
+						MovingLabel::show(ResourceLang::map_lang["hospitalbrokendesc"]);
+						return; 
+					}
+				}
+
 				DynamicValueInt dval = GlobalInstance::getInstance()->getMySoliverCount();
 
 				int rheroc = DataSave::getInstance()->getReviveHeroCount();
@@ -632,6 +641,12 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			}
 			else if (m_showtype == HS_TRAINING)
 			{
+				if (GlobalInstance::map_buildingrepairdata["4trainigroom"].state > 0)
+				{
+					MovingLabel::show(ResourceLang::map_lang["trainigroombrokendesc"]);
+					return;
+				}
+
 				if (m_heroData->getState() == HS_OWNED)
 				{
 					TrainSelectLayer* layer = TrainSelectLayer::create(m_heroData, this);

@@ -66,6 +66,15 @@ public:
 private:
 	void updateTaskLayerTip(float dt);
 
+	void doBuildingBrokenEvent();
+
+	void repairFinish(std::string buildingname);
+
+	void showRepairAnim(std::string buildingname);
+
+	void showRepairFinishAwd(std::string buildingname);
+
+	void changeDayOrNight();
 private:
 	cocos2d::ui::ScrollView* scroll_3;//最外层滑动层，包括训练场-仓库-铁匠铺-医馆-出城
 	cocos2d::ui::ScrollView* scroll_2;//中间层滑动层，包括后山-客栈-市场
@@ -92,6 +101,9 @@ private:
 	cocos2d::ui::Widget* hostip;
 	Sprite* newsbg;
 	int httpgettype;
+	bool isnight;
+	bool lastisnight;
+	Node* csbnode;
 };
 extern MainScene* g_mainScene;
 #endif

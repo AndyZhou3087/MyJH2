@@ -447,7 +447,12 @@ int MarketResNode::getResInMarketLv()
 void MarketResNode::updateTime(float dt)
 {
 	Building* buildingdata = Building::map_buildingDatas["5market"];
-	if (inmarktLv > buildingdata->level.getValue())
+
+	int brokenlesslv = 0;
+	if (buildingdata->level.getValue() >= 8 && GlobalInstance::map_buildingrepairdata["5market"].state > 0)
+		brokenlesslv = 8;
+
+	if (inmarktLv > buildingdata->level.getValue() - brokenlesslv)
 	{
 		if (GlobalInstance::map_timeMartData.find(m_resid) != GlobalInstance::map_timeMartData.end())
 		{

@@ -622,6 +622,8 @@
       <FilePathData Path="ui/routblock.png" />
       <FilePathData Path="ui/routdesticon.png" />
       <FilePathData Path="ui/mapbottompropbg.png" />
+      <FilePathData Path="ui/repairclose.png" />
+      <FilePathData Path="ui/buildingrepairbtn.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

@@ -45,6 +45,8 @@ private:
 
 	int checkIsTopPotentail(int buytype);
 
+	void updateRepairUi();
+
 public:
 	void refresh3Hero(int i);
 
@@ -69,7 +71,8 @@ private:
 	Node* csbnode;
 	DynamicValueInt refreshHeroCoin;
 	DynamicValueInt refreshHeroSilver;
-
+	cocos2d::ui::Text* repairtimelbl;
+	cocos2d::ui::Widget* repairbtn;
 };
 
 #endif

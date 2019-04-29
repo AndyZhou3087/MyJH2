@@ -6,21 +6,45 @@
       <ObjectData Name="Layer" Tag="2" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
-          <AbstractNodeData Name="scroll_1" ActionTag="-1260603270" Tag="5" IconVisible="False" ClipAble="False" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="scroll_1" ActionTag="-1260603270" Tag="5" IconVisible="False" ClipAble="True" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
             <Size X="720.0000" Y="1280.0000" />
             <Children>
               <AbstractNodeData Name="main_sky" ActionTag="1273293467" Tag="4" IconVisible="False" TopMargin="0.0100" BottomMargin="367.9900" LeftEage="818" RightEage="818" TopEage="300" BottomEage="300" Scale9OriginX="818" Scale9OriginY="300" Scale9Width="844" Scale9Height="312" ctype="ImageViewObjectData">
                 <Size X="2480.0000" Y="912.0000" />
                 <Children>
-                  <AbstractNodeData Name="main_cloud" ActionTag="-2122533978" Tag="65" IconVisible="False" LeftMargin="1231.5000" RightMargin="711.5000" TopMargin="165.0000" BottomMargin="473.0000" ctype="SpriteObjectData">
-                    <Size X="537.0000" Y="274.0000" />
+                  <AbstractNodeData Name="main_cloud" ActionTag="-2122533978" Tag="65" IconVisible="False" LeftMargin="941.8521" RightMargin="899.1479" TopMargin="39.5000" BottomMargin="607.5000" ctype="SpriteObjectData">
+                    <Size X="639.0000" Y="265.0000" />
+                    <Children>
+                      <AbstractNodeData Name="y2_1" ActionTag="1811589730" Tag="102" IconVisible="False" LeftMargin="-58.5413" RightMargin="415.5413" TopMargin="212.3553" BottomMargin="-68.3553" ctype="SpriteObjectData">
+                        <Size X="282.0000" Y="121.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="82.4587" Y="-7.8553" />
+                        <Scale ScaleX="1.6000" ScaleY="1.6000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.1290" Y="-0.0296" />
+                        <PreSize X="0.4413" Y="0.4566" />
+                        <FileData Type="Normal" Path="mainimg/y2.png" Plist="" />
+                        <BlendFunc Src="1" Dst="771" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="y2_2" ActionTag="961401004" Tag="103" IconVisible="False" LeftMargin="695.4048" RightMargin="-338.4048" TopMargin="173.9441" BottomMargin="-29.9441" ctype="SpriteObjectData">
+                        <Size X="282.0000" Y="121.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="836.4048" Y="30.5559" />
+                        <Scale ScaleX="1.6000" ScaleY="1.6000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="1.3089" Y="0.1153" />
+                        <PreSize X="0.4413" Y="0.4566" />
+                        <FileData Type="Normal" Path="mainimg/y2.png" Plist="" />
+                        <BlendFunc Src="1" Dst="771" />
+                      </AbstractNodeData>
+                    </Children>
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="1500.0000" Y="610.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <Position X="1261.3521" Y="740.0000" />
+                    <Scale ScaleX="0.6000" ScaleY="0.6000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.6048" Y="0.6689" />
-                    <PreSize X="0.2165" Y="0.3004" />
-                    <FileData Type="Normal" Path="mainimg/main_cloud.png" Plist="" />
+                    <PrePosition X="0.5086" Y="0.8114" />
+                    <PreSize X="0.2577" Y="0.2906" />
+                    <FileData Type="Normal" Path="mainimg/y1.png" Plist="" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>
@@ -178,7 +202,7 @@
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="2480" Height="1280" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scroll_2" ActionTag="-821746676" Tag="12" IconVisible="False" ClipAble="False" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="scroll_2" ActionTag="-821746676" Tag="12" IconVisible="False" ClipAble="True" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
             <Size X="720.0000" Y="1280.0000" />
             <Children>
               <AbstractNodeData Name="main_back_b" ActionTag="-1678309981" Tag="13" IconVisible="False" LeftMargin="-0.0562" RightMargin="0.0562" TopMargin="913.0034" BottomMargin="264.9966" LeftEage="818" RightEage="818" TopEage="33" BottomEage="33" Scale9OriginX="818" Scale9OriginY="33" Scale9Width="844" Scale9Height="36" ctype="ImageViewObjectData">
@@ -380,7 +404,7 @@
             <ColorVector ScaleY="1.0000" />
             <InnerNodeSize Width="2480" Height="1280" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scroll_3" ActionTag="-1662775790" Tag="24" IconVisible="False" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="scroll_3" ActionTag="-1662775790" Tag="24" IconVisible="False" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
             <Size X="720.0000" Y="1280.0000" />
             <Children>
               <AbstractNodeData Name="main_back_f" ActionTag="-691650551" Tag="42" IconVisible="False" LeftMargin="-0.0304" RightMargin="0.0303" TopMargin="1013.9999" BottomMargin="0.0001" LeftEage="818" RightEage="818" TopEage="33" BottomEage="33" Scale9OriginX="818" Scale9OriginY="33" Scale9Width="844" Scale9Height="200" ctype="ImageViewObjectData">

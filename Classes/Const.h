@@ -42,6 +42,8 @@
 
 #define QUMAX 5
 
+#define REPAIRTIME 60
+
 //#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 //#define UMENG
 //#include "UMeng/Analytics/MobClickCpp.h"

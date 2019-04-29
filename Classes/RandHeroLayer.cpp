@@ -19,6 +19,7 @@
 #include "InnRoomLayer.h"
 #include "BuyCoinLayer.h"
 #include "ConsumeResActionLayer.h"
+#include "RepairBuildingLayer.h"
 
 USING_NS_CC;
 
@@ -171,6 +172,13 @@ bool RandHeroLayer::init()
 	cocos2d::ui::Text* hintdesc = (cocos2d::ui::Text*)csbnode->getChildByName("hintdesc");
 	hintdesc->setString(ResourceLang::map_lang["innroomhintdesc"]);
 
+	repairbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("repairbtn");
+	repairbtn->setTag(2000);
+	repairbtn->addTouchEventListener(CC_CALLBACK_2(RandHeroLayer::onBtnClick, this));
+
+	repairtimelbl = (cocos2d::ui::Text*)repairbtn->getChildByName("time");
+	repairtimelbl->setString("");
+
 	updateUI(0);
 	this->schedule(schedule_selector(RandHeroLayer::updateUI), 1.0f);
 
@@ -259,9 +267,18 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		if (GlobalInstance::map_buildingrepairdata["6innroom"].state > 0)
+		{
+			if (tag >= BNT_F_REFRESH && tag <= BTN_USECARD)
+			{
+				MovingLabel::show(ResourceLang::map_lang["innroombrokendesc"]);
+				return;
+			}
+		}
+
 		switch (tag)
 		{
-		case BNT_F_REFRESH://银子刷新
+		case BNT_F_REFRESH://免费刷新刷新
 			{
 				if (checkIsTopPotentail(4) < 0)
 					refresh3Hero(4);
@@ -369,6 +386,12 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case BTN_CLOSE://关闭
 			AnimationEffect::closeAniEffect((Layer*)this);
+			break;
+		case 2000:
+		{
+			RepairBuildingLayer* layer = RepairBuildingLayer::create("6innroom");
+			addChild(layer);
+		}
 			break;
 		default:
 			break;
@@ -529,6 +552,8 @@ void RandHeroLayer::updateUI(float dt)
 		GlobalInstance::getInstance()->setSilverRefHeroCount(0);
 		GlobalInstance::isNewHeroRefresh = true;
 	}
+
+	updateRepairUi();
 }
 
 void RandHeroLayer::lvup()
@@ -590,6 +615,38 @@ void RandHeroLayer::delete3RandHero()
 		GlobalInstance::vec_rand3Heros[i] = NULL;
 	}
 	GlobalInstance::vec_rand3Heros.clear();
+}
+
+void RandHeroLayer::updateRepairUi()
+{
+	int repairstate = GlobalInstance::map_buildingrepairdata["6innroom"].state;
+	if (repairstate > 0)
+	{
+		if (repairstate == 3)
+		{
+			int pasttime = GlobalInstance::servertime - GlobalInstance::map_buildingrepairdata["6innroom"].repairtime;
+
+			if (pasttime >= REPAIRTIME)
+			{
+				repairbtn->setVisible(false);
+			}
+			else
+			{
+				repairtimelbl->setVisible(true);
+				int lefttime = REPAIRTIME - pasttime;
+				std::string strlbl = StringUtils::format("%02d:%02d", lefttime / 60, lefttime % 60);
+				repairtimelbl->setString(strlbl);
+			}
+		}
+		else
+		{
+			repairtimelbl->setVisible(false);
+		}
+	}
+	else
+	{
+		repairbtn->setVisible(false);
+	}
 }
 
 void RandHeroLayer::onExit()

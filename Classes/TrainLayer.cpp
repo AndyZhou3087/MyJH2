@@ -1,5 +1,6 @@
 #include "TrainLayer.h"
 #include "Resource.h"
+#include "Const.h"
 #include "CommonFuncs.h"
 #include "GlobalInstance.h"
 #include "ConsumeResActionLayer.h"
@@ -8,6 +9,7 @@
 #include "Hero.h"
 #include "MyHeroNode.h"
 #include "AnimationEffect.h"
+#include "RepairBuildingLayer.h"
 
 USING_NS_CC;
 
@@ -93,6 +95,16 @@ bool TrainLayer::init(Building* buidingData)
 	loadData();
 	updateContent();
 
+	repairbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("repairbtn");
+	repairbtn->setTag(2000);
+	repairbtn->addTouchEventListener(CC_CALLBACK_2(TrainLayer::onBtnClick, this));
+
+	repairtimelbl = (cocos2d::ui::Text*)repairbtn->getChildByName("time");
+	repairtimelbl->setString("");
+
+	updateRepairTime(0);
+	this->schedule(schedule_selector(TrainLayer::updateRepairTime), 1.0f);
+
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -128,6 +140,12 @@ void TrainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 		case 1001://¹Ø±Õ
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
+		case 2000:
+		{
+			RepairBuildingLayer* layer = RepairBuildingLayer::create(m_buidingData->name);
+			addChild(layer);
+		}
+		break;
 		default:
 			break;
 		}
@@ -184,4 +202,41 @@ void TrainLayer::lvup()
 
 	loadData();
 	updateContent();
+}
+
+void TrainLayer::updateRepairTime(float dt)
+{
+	updateRepairUi();
+}
+
+void TrainLayer::updateRepairUi()
+{
+	int repairstate = GlobalInstance::map_buildingrepairdata["4trainigroom"].state;
+	if (repairstate > 0)
+	{
+		if (repairstate == 3)
+		{
+			int pasttime = GlobalInstance::servertime - GlobalInstance::map_buildingrepairdata["4trainigroom"].repairtime;
+
+			if (pasttime >= REPAIRTIME)
+			{
+				repairbtn->setVisible(false);
+			}
+			else
+			{
+				repairtimelbl->setVisible(true);
+				int lefttime = REPAIRTIME - pasttime;
+				std::string strlbl = StringUtils::format("%02d:%02d", lefttime / 60, lefttime % 60);
+				repairtimelbl->setString(strlbl);
+			}
+		}
+		else
+		{
+			repairtimelbl->setVisible(false);
+		}
+	}
+	else
+	{
+		repairbtn->setVisible(false);
+	}
 }

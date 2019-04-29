@@ -29,9 +29,13 @@ private:
 
 	void loadData();
 
+	void updateRepairTime(float dt);
+	void updateRepairUi();
 private:
 	int langtype;
 	cocos2d::ui::Text* lvUIlbl;
+	cocos2d::ui::Text* repairtimelbl;
+	cocos2d::ui::Widget* repairbtn;
 };
 
 #endif

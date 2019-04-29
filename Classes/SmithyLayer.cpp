@@ -13,12 +13,15 @@
 #include "MainScene.h"
 #include "EquipDescLayer.h"
 #include "MakeResNode.h"
+#include "RepairBuildingLayer.h"
 
 USING_NS_CC;
 
 SmithyLayer::SmithyLayer()
 {
 	lastCategoryindex = 1;
+	brokenlesslv = 0;
+	isrepairrefresh = true;
 }
 
 SmithyLayer::~SmithyLayer()
@@ -82,6 +85,16 @@ bool SmithyLayer::init(Building* buidingData)
 	closebtn->setTag(1001);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(SmithyLayer::onBtnClick, this));
 
+	repairbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("repairbtn");
+	repairbtn->setTag(2000);
+	repairbtn->addTouchEventListener(CC_CALLBACK_2(SmithyLayer::onBtnClick, this));
+
+	repairtimelbl = (cocos2d::ui::Text*)repairbtn->getChildByName("time");
+	repairtimelbl->setString("");
+
+	buildinglvbox = csbnode->getChildByName("buildinglvbox");
+	buildinglvbox->setScaleX(1.25f);
+
 	//滚动控件
 	m_contentscroll = (cocos2d::ui::ScrollView*)csbnode->getChildByName("contentscroll");
 
@@ -98,6 +111,14 @@ bool SmithyLayer::init(Building* buidingData)
 		hintlbl->setString("");
 	else
 		hintlbl->setString(ResourceLang::map_lang["smithylvdesc"]);
+
+	if (buidingData->level.getValue() >= 8)
+	{
+		brokenlesslv = 8;
+	}
+
+	updateRepairTime(0);
+	this->schedule(schedule_selector(SmithyLayer::updateRepairTime), 1.0f);
 
 	Node* categoryBtnNode = csbnode->getChildByName("catanode");
 	for (int i = 0; i < categoryBtnNode->getChildrenCount(); i++)
@@ -195,6 +216,12 @@ void SmithyLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 		case 1001://关闭
 			AnimationEffect::closeAniEffect((Layer*)this);
 			break;
+		case 2000:
+		{
+			RepairBuildingLayer* layer = RepairBuildingLayer::create(m_buidingData->name);
+			addChild(layer);
+		}
+			break;
 		default:
 			break;
 		}
@@ -287,8 +314,10 @@ void SmithyLayer::updateContent(int category)
 
 			//itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 			m_contentscroll->addChild(itemnode, 0, map_cateRes[category][i]);
-			if (itemnode->getResInSmithyLv() > m_buidingData->level.getValue())
+			if (itemnode->getResInSmithyLv() > m_buidingData->level.getValue() - brokenlesslv)
 				itemnode->setEnable(false);
+			else
+				itemnode->setEnable(true);
 		}
 	}
 	else
@@ -438,8 +467,10 @@ void SmithyLayer::loadArmCataUi()
 			itemnode->setPosition(Vec2(50, -n*120));
 
 			armcatacontent[i]->addChild(itemnode, 0, map_catearms[i][n]);
-			if (itemnode->getResInSmithyLv() > m_buidingData->level.getValue())
+			if (itemnode->getResInSmithyLv() > m_buidingData->level.getValue() - brokenlesslv)
 				itemnode->setEnable(false);
+			else
+				itemnode->setEnable(true);
 			armcatacontent[i]->setVisible(false);
 		}
 	}
@@ -472,8 +503,11 @@ void SmithyLayer::onArmsCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 
 void SmithyLayer::lvup()
 {
+	if (m_buidingData->level.getValue() >= 8)
+		brokenlesslv = 8;
 	std::string str = StringUtils::format("%d%s", m_buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
 	lvUIlbl->setString(str);
+
 
 	//loadData();
 	//updateContent(lastCategoryindex);
@@ -488,16 +522,20 @@ void SmithyLayer::lvup()
 				for (unsigned int m = 0; m < map_catearms[n].size(); m++)
 				{
 					itemnode = (MakeResNode*)armcatacontent[n]->getChildByName(map_catearms[n][m]);
-					if (itemnode->getResInSmithyLv() <= m_buidingData->level.getValue())
+					if (itemnode->getResInSmithyLv() <= m_buidingData->level.getValue() - brokenlesslv)
 						itemnode->setEnable(true);
+					else
+						itemnode->setEnable(false);
 				}
 			}
 		}
 		else
 		{
 			itemnode = (MakeResNode*)m_contentscroll->getChildByName(map_cateRes[lastCategoryindex][i]);
-			if (itemnode->getResInSmithyLv() <= m_buidingData->level.getValue())
+			if (itemnode->getResInSmithyLv() <= m_buidingData->level.getValue() - brokenlesslv)
 				itemnode->setEnable(true);
+			else
+				itemnode->setEnable(false);
 		}
 
 	}
@@ -593,5 +631,78 @@ void SmithyLayer::makeRes(std::string resid)
 
 		std::string contentstr = StringUtils::format(ResourceLang::map_lang["newtemplet0"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str(), namestr.c_str());
 		MainScene::addNews(contentstr, 2);
+	}
+}
+
+void SmithyLayer::updateRepairTime(float dt)
+{
+	updateRepairUi();
+}
+
+void SmithyLayer::updateRepairUi()
+{
+	int repairstate = GlobalInstance::map_buildingrepairdata["2smithy"].state;
+	if (repairstate > 0)
+	{
+		isrepairrefresh = false;
+		if (repairstate == 3)
+		{
+			int pasttime = GlobalInstance::servertime - GlobalInstance::map_buildingrepairdata["2smithy"].repairtime;
+
+			if (pasttime >= REPAIRTIME)
+			{
+				repairbtn->setVisible(false);
+				buildinglvbox->setScaleX(1);
+				brokenlesslv = 0;
+			}
+			else
+			{
+				repairtimelbl->setVisible(true);
+				int lefttime = REPAIRTIME - pasttime;
+				std::string strlbl = StringUtils::format("%02d:%02d", lefttime / 60, lefttime % 60);
+				repairtimelbl->setString(strlbl);
+			}
+		}
+		else
+		{
+			repairtimelbl->setVisible(false);
+		}
+
+	}
+	else
+	{
+		buildinglvbox->setScaleX(1);
+		brokenlesslv = 0;
+		repairbtn->setVisible(false);
+		if (!isrepairrefresh)
+		{
+			isrepairrefresh = true;
+			if (lastCategoryindex == 1)
+				loadArmCataUi();
+			updateContent(lastCategoryindex);
+		}
+	}
+
+	if (brokenlesslv > 0 && m_buidingData->level.getValue() >= 8)
+	{
+		std::string str = StringUtils::format("%d%s-8", m_buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
+		lvUIlbl->setString(str);
+
+		std::u32string utf32lblString;
+		StringUtils::UTF8ToUTF32(str, utf32lblString);
+
+		Label* vlbl = (Label*)lvUIlbl->getVirtualRenderer();
+		for (std::size_t i = 0; i < utf32lblString.length(); i++)
+		{
+			if (i >= utf32lblString.length() - 2)
+				vlbl->getLetter(i)->setColor(Color3B(255, 0, 0));
+			else
+				vlbl->getLetter(i)->setColor(Color3B(255, 255, 255));
+		}
+	}
+	else
+	{
+		std::string str = StringUtils::format("%d%s", m_buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
+		lvUIlbl->setString(str);
 	}
 }

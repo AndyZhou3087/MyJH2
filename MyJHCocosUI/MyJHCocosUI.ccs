@@ -187,6 +187,7 @@
           <Image Name="rebatebg.png" />
           <Image Name="rebatebottom.png" />
           <Image Name="renationbg.png" />
+          <Image Name="repairbuildingbox.png" />
           <Image Name="selectequipbg.png" />
           <Image Name="shopbg.jpg" />
           <Image Name="smallbg.png" />
@@ -241,6 +242,12 @@
           <Image Name="main_sky.jpg" />
           <Image Name="q.jpg" />
           <Image Name="qq1.png" />
+          <Image Name="repairanim0_1.png" />
+          <Image Name="repairanim0_2.png" />
+          <Image Name="repairanim1_1.png" />
+          <Image Name="repairanim1_2.png" />
+          <Image Name="y1.png" />
+          <Image Name="y2.png" />
         </Folder>
         <Folder Name="mapui">
           <Image Name="attricon0down.png" />
@@ -780,6 +787,7 @@
           <Image Name="refreshbtn_text.png" />
           <Image Name="refusetext.png" />
           <Image Name="renatitontilte.png" />
+          <Image Name="repairbuildbtn_text.png" />
           <Image Name="replacebtn_text.png" />
           <Image Name="resitemlv_text.png" />
           <Image Name="retry_text.png" />
@@ -1019,6 +1027,7 @@
           <Image Name="buildingactbtn_n.png" />
           <Image Name="buildingactbtn1_n.png" />
           <Image Name="buildinglvbox.png" />
+          <Image Name="buildingrepairbtn.png" />
           <Image Name="buildingtitlebox.png" />
           <Image Name="c001.png" />
           <Image Name="cardnamebox.png" />
@@ -1359,6 +1368,7 @@
           <Image Name="renationclosebtn.png" />
           <Image Name="renationitem.png" />
           <Image Name="renationitem1.png" />
+          <Image Name="repairclose.png" />
           <Image Name="resaddbtn.png" />
           <Image Name="resbox.png" />
           <Image Name="resbox_qu0.png" />
@@ -1527,6 +1537,7 @@
         <Image Name="1111.png" />
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />
+        <Project Name="buildingBrokenHintLayer.csd" Type="Layer" />
         <Project Name="buyCoinLayer.csd" Type="Layer" />
         <Project Name="buyResLayer.csd" Type="Layer" />
         <Project Name="buySelectLayer.csd" Type="Layer" />
@@ -1616,6 +1627,9 @@
         <Project Name="rebatLayer.csd" Type="Layer" />
         <Project Name="renationitemNode.csd" Type="Node" />
         <Project Name="renationLayer.csd" Type="Layer" />
+        <Project Name="repairanim1.csd" Type="Node" />
+        <Project Name="repairanim2.csd" Type="Node" />
+        <Project Name="repairBuildingNode.csd" Type="Node" />
         <Project Name="resDescLayer.csd" Type="Scene" />
         <Project Name="rewardLayer.csd" Type="Layer" />
         <Project Name="selectEquipLayer.csd" Type="Scene" />

@@ -50,6 +50,9 @@ private:
 
 	void loadArmCataUi();
 
+	void updateRepairTime(float dt);
+	void updateRepairUi();
+
 private:
 	std::vector<cocos2d::ui::Button*> vec_categoryBtn;
 	std::map<int, std::vector<std::string>> map_cateRes;
@@ -64,6 +67,11 @@ private:
 
 	bool clickflag;
 	Vec2 beginTouchPoint;
+	cocos2d::ui::Text* repairtimelbl;
+	cocos2d::ui::Widget* repairbtn;
+	Node* buildinglvbox;
+	int brokenlesslv;
+	bool isrepairrefresh;
 };
 
 #endif

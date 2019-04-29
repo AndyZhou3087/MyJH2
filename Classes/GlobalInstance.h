@@ -438,6 +438,15 @@ typedef enum
 	SA_USETORCH
 }STAR_TYPE;
 
+typedef struct
+{
+	std::vector<std::string> vec_repairres;
+	std::vector<std::string> vec_adws;
+	std::string name;
+	int state;//0--没有破损，1--破损提示，2--破损没有修复， 3--修复中
+	int repairtime;
+}S_BUILDINREPAIR;
+
 class GlobalInstance
 {
 public:
@@ -807,6 +816,9 @@ public:
 
 	void setIsGetRebateAwds(int index, bool val);
 
+	void parseBuildingRepairData();
+
+	void setBuildingBroken();
 
 private:
 	static GlobalInstance* _Context;//类实例
@@ -930,6 +942,8 @@ public:
 	static std::vector<S_StarData> vec_stardata;
 
 	static std::vector<S_ChapterStarAwd> vec_chaperstarawds;
+
+	static std::map<std::string, S_BUILDINREPAIR> map_buildingrepairdata;
 	
 	static int curMapFinishStars;
 

@@ -11,6 +11,7 @@
 #include "NewGuideLayer.h"
 #include "MainScene.h"
 #include "DataSave.h"
+#include "RepairBuildingLayer.h"
 
 HospitalLayer::HospitalLayer()
 {
@@ -44,6 +45,7 @@ bool HospitalLayer::init()
 
 	closebtn = (cocos2d::ui::Widget*)m_csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(HospitalLayer::onBtnClick, this));
+	closebtn->setTag(1000);
 
 	scrollview = (cocos2d::ui::ScrollView*)m_csbnode->getChildByName("scrollview");
 	scrollview->setScrollBarEnabled(false);
@@ -65,6 +67,13 @@ bool HospitalLayer::init()
 	revivecountlbl = (cocos2d::ui::Text*)m_csbnode->getChildByName("reivecountlbl");
 
 	updateContent();
+
+	repairbtn = (cocos2d::ui::Widget*)m_csbnode->getChildByName("repairbtn");
+	repairbtn->setTag(1001);
+	repairbtn->addTouchEventListener(CC_CALLBACK_2(HospitalLayer::onBtnClick, this));
+
+	repairtimelbl = (cocos2d::ui::Text*)repairbtn->getChildByName("time");
+	repairtimelbl->setString("");
 
 	updateUI(0);
 	this->schedule(schedule_selector(HospitalLayer::updateUI), 1.0f);
@@ -127,7 +136,14 @@ void HospitalLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		AnimationEffect::closeAniEffect((Layer*)this);
+		Node* clicknode = (Node*)pSender;
+		if (clicknode->getTag() == 1000)
+			AnimationEffect::closeAniEffect(this);
+		else
+		{
+			RepairBuildingLayer* layer = RepairBuildingLayer::create("1hospital");
+			addChild(layer);
+		}
 	}
 }
 
@@ -219,4 +235,38 @@ void HospitalLayer::updateUI(float dt)
 
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	silvertext->setString(str);
+
+	updateRepairUi();
+}
+
+void HospitalLayer::updateRepairUi()
+{
+	int repairstate = GlobalInstance::map_buildingrepairdata["1hospital"].state;
+	if (repairstate > 0)
+	{
+		if (repairstate == 3)
+		{
+			int pasttime = GlobalInstance::servertime - GlobalInstance::map_buildingrepairdata["1hospital"].repairtime;
+
+			if (pasttime >= REPAIRTIME)
+			{
+				repairbtn->setVisible(false);
+			}
+			else
+			{
+				repairtimelbl->setVisible(true);
+				int lefttime = REPAIRTIME - pasttime;
+				std::string strlbl = StringUtils::format("%02d:%02d", lefttime / 60, lefttime % 60);
+				repairtimelbl->setString(strlbl);
+			}
+		}
+		else
+		{
+			repairtimelbl->setVisible(false);
+		}
+	}
+	else
+	{
+		repairbtn->setVisible(false);
+	}
 }

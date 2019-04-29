@@ -490,6 +490,11 @@ public:
 
 	void setChapterStarAwd(int chapter, std::string val);
 
+	//建筑物破损
+	void setBuildingBroken(std::string val);
+
+	std::string getBuildingBroken();
+
 	void deleteDataByKey(std::string key);
 
 private:

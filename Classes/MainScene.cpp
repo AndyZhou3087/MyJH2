@@ -28,6 +28,8 @@
 #include "HomeHillLayer.h"
 #include "GiftContentLayer.h"
 #include "RandHeroLayer.h"
+#include "BuildingBrokenHintLayer.h"
+#include "RepairBuildingLayer.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -78,7 +80,7 @@ bool MainScene::init()
 
 	int langtype = GlobalInstance::getInstance()->getLang();
 
-	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("MainLayer.csb"));
+	csbnode = CSLoader::createNode(ResourcePath::makePath("MainLayer.csb"));
 	this->addChild(csbnode);
 
 	g_MainMenuLayer = MainMenuLayer::create();
@@ -87,9 +89,37 @@ bool MainScene::init()
 	newsbg = (Sprite*)csbnode->getChildByName("newsbg");
 	newsbg->setVisible(false);
 
-	int hours = (GlobalInstance::getInstance()->getSysSecTime() + 8 * 60 * 60) % (TWENTYFOURHOURSTOSEC) / 3600;
+	bool ishasbuildingbroken = false;
+	if (!NewGuideLayer::checkifNewerGuide(72))
+	{
+		std::map<std::string, S_BUILDINREPAIR>::iterator bbit;
 
-	bool isnight = !(hours >= 6 && hours <= 18);
+		for (bbit = GlobalInstance::map_buildingrepairdata.begin(); bbit != GlobalInstance::map_buildingrepairdata.end(); bbit++)
+		{
+			if (bbit->second.state > 0)
+			{
+				ishasbuildingbroken = true;
+				break;
+			}
+		}
+		if (!ishasbuildingbroken)
+		{
+			bool ishasnew = false;
+			for (bbit = GlobalInstance::map_buildingrepairdata.begin(); bbit != GlobalInstance::map_buildingrepairdata.end(); bbit++)
+			{
+				int r = GlobalInstance::getInstance()->createRandomNum(100);
+
+				if (r < 100)
+				{
+					GlobalInstance::map_buildingrepairdata[bbit->first].state = 1;
+					ishasnew = true;
+				}
+			}
+
+			if (ishasnew)
+				GlobalInstance::getInstance()->setBuildingBroken();
+		}
+	}
 
 	scroll_3 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_3");
 	scroll_3->setScrollBarEnabled(false);
@@ -106,20 +136,6 @@ bool MainScene::init()
 	scroll_1->setScrollBarEnabled(false);
 	scroll_1->setInnerContainerPosition(scroll_3->getInnerContainerPosition());
 	scroll_1->setSwallowTouches(false);
-
-	if (isnight)
-	{
-		std::string otherpicparentname[] = { "scroll_1", "scroll_2", "scroll_2", "scroll_2", "scroll_3" };
-		std::string otherpicname[] = { "main_sky", "main_back_b", "main_bg_l", "main_bg_r", "main_back_f" };
-		std::string otherpicext[] = { "jpg", "jpg", "png", "png", "jpg" };
-		for (unsigned int i = 0; i < sizeof(otherpicname) / sizeof(otherpicname[0]); i++)
-		{
-			cocos2d::ui::ImageView* otherpic = (cocos2d::ui::ImageView*)csbnode->getChildByName(otherpicparentname[i])->getChildByName(otherpicname[i]);
-			std::string otherpicnightname = StringUtils::format("mainimg/%s_n.%s", otherpicname[i].c_str(), otherpicext[i].c_str());
-
-			otherpic->loadTexture(ResourcePath::makePath(otherpicnightname), cocos2d::ui::Widget::TextureResType::LOCAL);
-		}
-	}
 
 	std::map<std::string, Building*>::iterator it;
 	int i = 1;
@@ -167,15 +183,6 @@ bool MainScene::init()
 		buildingNomal->setUserData((void*)buildingSelect);
 		buildingNomal->setTag(i);
 		buildingNomal->addTouchEventListener(CC_CALLBACK_2(MainScene::onBuildingClick, this));
-
-		if (isnight)
-		{
-			std::string buildpicname = StringUtils::format("main_%02d_pic", i);
-			cocos2d::ui::ImageView* buildpic = (cocos2d::ui::ImageView*)buildParent->getChildByName(buildpicname);
-
-			std::string buildnightstr = StringUtils::format("mainimg/main_%02d_n_n.png", i);
-			buildpic->loadTexture(ResourcePath::makePath(buildnightstr), cocos2d::ui::Widget::TextureResType::LOCAL);
-		}
 
 		if ((NewGuideLayer::checkifNewerGuide(63) && i == 2) || (i == 6 && GlobalInstance::getInstance()->getHerosLevelCount(10) <= 0)
 			|| (GlobalInstance::getInstance()->getHerosLevelCount(20) <= 0 && i == 5) || (GlobalInstance::getInstance()->getHerosLevelCount(15) <= 0 && i == 3)
@@ -262,13 +269,20 @@ bool MainScene::init()
 	//}
 	//GlobalInstance::getInstance()->saveMyTaskBranchData();
 
+	int hours = (GlobalInstance::getInstance()->getSysSecTime() + 8 * 60 * 60) % (TWENTYFOURHOURSTOSEC) / 3600;
+
+	isnight = !(hours >= 6 && hours <= 21);
+
+	lastisnight = !isnight;
+
 	if (!isnight)
 	{
 		Node* cloud = scroll_1->getChildByName("main_sky")->getChildByName("main_cloud");
 		int r = GlobalInstance::getInstance()->createRandomNum(870) + 1130;
 		cloud->setPositionX(r);
+
 		int t = (2800 - r) / 20;
-		cloud->runAction(MoveTo::create(t, Vec2(2800, cloud->getPositionY())));
+		cloud->runAction(Sequence::create(MoveTo::create(t, Vec2(2800, cloud->getPositionY())), RemoveSelf::create(), NULL));
 
 		r = GlobalInstance::getInstance()->createRandomNum(2);
 		if (r <= 0)
@@ -286,9 +300,11 @@ bool MainScene::init()
 
 			int tb = (3000 - r) / 40;
 
-			birdnode->runAction(MoveTo::create(tb, Vec2(3000, birdnode->getPositionY())));
+			birdnode->runAction(Sequence::create(MoveTo::create(tb, Vec2(3000, birdnode->getPositionY())), RemoveSelf::create(), NULL));
 		}
 	}
+
+	changeDayOrNight();
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -887,6 +903,8 @@ void MainScene::onFinish(int code)
 				httpgettype = 1;
 				HttpDataSwap::init(this)->getNews();
 			}
+
+			doBuildingBrokenEvent();
 		}
 		else
 		{
@@ -924,7 +942,7 @@ void MainScene::updateTime(float dt)
 	int respasttime = GlobalInstance::servertime - GlobalInstance::getInstance()->getRefreshResTime();
 	if (respasttime >= RES_REFRESHTIME)
 	{
-		GlobalInstance::getInstance()->saveRefreshResTime(GlobalInstance::servertime - respasttime%RES_REFRESHTIME);
+		GlobalInstance::getInstance()->saveRefreshResTime(GlobalInstance::servertime - respasttime % RES_REFRESHTIME);
 		for (unsigned int i = 0; i < GlobalInstance::vec_resCreators.size(); i++)
 		{
 			ResCreator* rescreator = GlobalInstance::vec_resCreators[i];
@@ -1061,6 +1079,138 @@ void MainScene::updateTime(float dt)
 		GlobalInstance::map_timeMartData.clear();
 		DataSave::getInstance()->deleteDataByKey("timemarket");
 	}
+
+	changeDayOrNight();
+
+	std::map<std::string, S_BUILDINREPAIR>::iterator bbit;
+
+	bool issavebroken = false;
+	for (bbit = GlobalInstance::map_buildingrepairdata.begin(); bbit != GlobalInstance::map_buildingrepairdata.end(); bbit++)
+	{
+		if (bbit->second.state == 3)
+		{
+			int pasttime = GlobalInstance::servertime - GlobalInstance::map_buildingrepairdata[bbit->first].repairtime;
+
+			if (pasttime >= REPAIRTIME)
+			{
+				GlobalInstance::map_buildingrepairdata[bbit->first].state = 0;
+				GlobalInstance::map_buildingrepairdata[bbit->first].repairtime = 0;
+				issavebroken = true;
+				repairFinish(bbit->first);
+				showRepairFinishAwd(bbit->first);
+			}
+			else
+			{
+				showRepairAnim(bbit->first);
+			}
+		}
+	}
+
+	if (issavebroken)
+		GlobalInstance::getInstance()->setBuildingBroken();
+}
+
+void MainScene::changeDayOrNight()
+{
+	int hours = (GlobalInstance::getInstance()->getSysSecTime() + 8 * 60 * 60) % (TWENTYFOURHOURSTOSEC) / 3600;
+
+	isnight = !(hours >= 6 && hours <= 21);
+
+	if (lastisnight == isnight)
+		return;
+
+	lastisnight = isnight;
+
+	std::string otherpicparentname[] = { "scroll_1", "scroll_2", "scroll_2", "scroll_2", "scroll_3" };
+	std::string otherpicname[] = { "main_sky", "main_back_b", "main_bg_l", "main_bg_r", "main_back_f" };
+	std::string otherpicext[] = { "jpg", "jpg", "png", "png", "jpg" };
+	for (unsigned int i = 0; i < sizeof(otherpicname) / sizeof(otherpicname[0]); i++)
+	{
+		cocos2d::ui::ImageView* otherpic = (cocos2d::ui::ImageView*)csbnode->getChildByName(otherpicparentname[i])->getChildByName(otherpicname[i]);
+		std::string otherpicnightname;
+		
+		if (isnight)
+			otherpicnightname = StringUtils::format("mainimg/%s_n.%s", otherpicname[i].c_str(), otherpicext[i].c_str());
+		else
+			otherpicnightname = StringUtils::format("mainimg/%s.%s", otherpicname[i].c_str(), otherpicext[i].c_str());
+		otherpic->loadTexture(ResourcePath::makePath(otherpicnightname), cocos2d::ui::Widget::TextureResType::LOCAL);
+	}
+
+	std::map<std::string, Building*>::iterator it;
+	int i = 1;
+	for (it = Building::map_buildingDatas.begin(); it != Building::map_buildingDatas.end(); it++)
+	{
+		Node* buildParent;
+		if (i <= 5)
+			buildParent = scroll_3;
+		else if (i <= 8)
+			buildParent = scroll_2;
+		else
+			buildParent = scroll_1;
+
+		std::string buildpicname = StringUtils::format("main_%02d_pic", i);
+		cocos2d::ui::ImageView* buildpic = (cocos2d::ui::ImageView*)buildParent->getChildByName(buildpicname);
+		if (isnight)
+		{
+			std::string buildnightstr = StringUtils::format("mainimg/main_%02d_n_n.png", i);
+			buildpic->loadTexture(ResourcePath::makePath(buildnightstr), cocos2d::ui::Widget::TextureResType::LOCAL);
+		}
+		else
+		{
+			if (GlobalInstance::map_buildingrepairdata.find(it->first) != GlobalInstance::map_buildingrepairdata.end() && GlobalInstance::map_buildingrepairdata[it->first].state > 0)
+			{
+				std::string buildnightstr = StringUtils::format("mainimg/main_%02d_n_b.png", i);
+				buildpic->loadTexture(ResourcePath::makePath(buildnightstr), cocos2d::ui::Widget::TextureResType::LOCAL);
+			}
+			else
+			{
+				std::string buildnightstr = StringUtils::format("mainimg/main_%02d_n.png", i);
+				buildpic->loadTexture(ResourcePath::makePath(buildnightstr), cocos2d::ui::Widget::TextureResType::LOCAL);
+			}
+		}
+		i++;
+	}
+}
+
+void MainScene::repairFinish(std::string buildingname)
+{
+	std::map<std::string, Building*>::iterator it;
+	int i = 1;
+	int buildindex = 0;
+	Node* buildParent = NULL;
+	for (it = Building::map_buildingDatas.begin(); it != Building::map_buildingDatas.end(); it++)
+	{
+		if (it->first.compare(buildingname) == 0)
+		{
+			if (i <= 5)
+				buildParent = scroll_3;
+			else if (i <= 8)
+				buildParent = scroll_2;
+			else
+				buildParent = scroll_1;
+			buildindex = i;
+			break;
+		}
+		i++;
+	}
+	if (!isnight)
+	{
+		if (GlobalInstance::map_buildingrepairdata[buildingname].state == 0)
+		{
+			std::string buildpicname = StringUtils::format("main_%02d_pic", buildindex);
+			cocos2d::ui::ImageView* buildpic = (cocos2d::ui::ImageView*)buildParent->getChildByName(buildpicname);
+
+			std::string buildnightstr = StringUtils::format("mainimg/main_%02d_n.png", buildindex);
+			buildpic->loadTexture(ResourcePath::makePath(buildnightstr), cocos2d::ui::Widget::TextureResType::LOCAL);
+
+			for (int n = 0; n < 2; n++)
+			{
+				std::string animname = StringUtils::format("repair_%02d_%d", buildindex, n+1);
+
+				buildParent->removeChildByName(animname);
+			}
+		}
+	}
 }
 
 void MainScene::showInnRoomNewHeroAnim()
@@ -1172,5 +1322,120 @@ void MainScene::delayShowVipReward(float dt)
 	if (g_mainScene != NULL)
 	{
 		g_mainScene->addChild(layer, 10, "viprewardlayer");
+	}
+}
+
+void MainScene::doBuildingBrokenEvent()
+{
+	bool ishas = false;
+	std::map<std::string, S_BUILDINREPAIR>::iterator it;
+
+	for (it = GlobalInstance::map_buildingrepairdata.begin(); it != GlobalInstance::map_buildingrepairdata.end(); it++)
+	{
+		if (it->second.state == 1)
+		{
+			ishas = true;
+			break;
+		}
+	}
+
+	if (ishas)
+	{
+		BuildingBrokenHintLayer* layer = BuildingBrokenHintLayer::create();
+		addChild(layer);
+	}
+}
+
+
+void MainScene::showRepairFinishAwd(std::string buildingname)
+{
+	bool ishas = false;
+	std::map<std::string, S_BUILDINREPAIR>::iterator it;
+
+	int r = GlobalInstance::getInstance()->createRandomNum(100);
+	if (r < 100)
+	{
+		RepairBuildingLayer* layer = RepairBuildingLayer::create(buildingname, 1);
+		addChild(layer);
+	}
+}
+
+void MainScene::showRepairAnim(std::string buildingname)
+{
+	Vec2 animpos1[] = { Vec2(2230, 490), Vec2(510,400), Vec2(85, 440), Vec2(1810, 510), Vec2(1090, 630)};
+	Vec2 animpos2[] = { Vec2(1935, 245), Vec2(380,210), Vec2(100, 280), Vec2(1560, 345), Vec2(1250, 345) };
+	std::map<std::string, Building*>::iterator it;
+	int i = 1;
+	int buildindex = 0;
+	Node* buildParent = NULL;
+	for (it = Building::map_buildingDatas.begin(); it != Building::map_buildingDatas.end(); it++)
+	{
+		if (it->first.compare(buildingname) == 0)
+		{
+			if (i <= 5)
+				buildParent = scroll_3;
+			else if (i <= 8)
+				buildParent = scroll_2;
+			else
+				buildParent = scroll_1;
+			buildindex = i;
+			break;
+		}
+		i++;
+	}
+
+	int inbuildbrokenindex = -1;
+
+	std::map<std::string, S_BUILDINREPAIR>::iterator bbit;
+
+	for (bbit = GlobalInstance::map_buildingrepairdata.begin(); bbit != GlobalInstance::map_buildingrepairdata.end(); bbit++)
+	{
+		inbuildbrokenindex++;
+		if (bbit->first.compare(buildingname) == 0)
+		{
+			break;
+		}
+	}
+
+	if (!isnight)
+	{
+		bool ishasanim = false;
+		std::string name1 = StringUtils::format("repair_%02d_1", buildindex);
+		std::string name2 = StringUtils::format("repair_%02d_2", buildindex);
+		if (buildParent->getChildByName(name1) != NULL || buildParent->getChildByName(name2) != NULL)
+			ishasanim = true;
+
+		if (!ishasanim)
+		{
+			int r = GlobalInstance::getInstance()->createRandomNum(3) + 1;
+			if (r == 1 || r == 3)
+			{
+
+				Node* animnode = CSLoader::createNode(ResourcePath::makePath("repairanim1.csb"));
+				animnode->setPosition(animpos1[inbuildbrokenindex]);
+				buildParent->addChild(animnode, 0, name1);
+
+				auto action = CSLoader::createTimeline("repairanim1.csb");
+				animnode->runAction(action);
+				action->gotoFrameAndPlay(0, true);
+			}
+
+			if (r == 2 || r == 3)
+			{
+
+				Node* animnode = CSLoader::createNode(ResourcePath::makePath("repairanim2.csb"));
+				animnode->setPosition(animpos2[inbuildbrokenindex]);
+				if (buildingname.compare("6innroom") == 0)
+				{
+					Sprite* repairfarmer = (Sprite*)animnode->getChildByName("repairanim");
+					repairfarmer->setFlippedX(true);
+					animnode->setScale(0.6f);
+				}
+				buildParent->addChild(animnode, 0, name2);
+				auto action = CSLoader::createTimeline("repairanim2.csb");
+				animnode->runAction(action);
+				action->gotoFrameAndPlay(0, true);
+			}
+		}
 	}
 }

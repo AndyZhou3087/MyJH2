@@ -11,6 +11,7 @@
 #include "M1_5_BoxLayer.h"
 #include "MyRes.h"
 #include "CommonFuncs.h"
+#include "AnimationEffect.h"
 
 MainMapScene* g_MainMapScene = NULL;
 MainMapScene::MainMapScene()
@@ -273,6 +274,7 @@ void MainMapScene::onBoxclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 		M1_5_BoxLayer* layer = M1_5_BoxLayer::create();
 		this->addChild(layer);
+		AnimationEffect::openAniEffect(layer);
 	}
 }
 

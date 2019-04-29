@@ -150,6 +150,8 @@ int GlobalInstance::takeoutherocount = 0;
 
 std::vector<S_ChapterStarAwd> GlobalInstance::vec_chaperstarawds;
 
+std::map<std::string, S_BUILDINREPAIR> GlobalInstance::map_buildingrepairdata;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -3280,6 +3282,74 @@ void GlobalInstance::setIsGetRebateAwds(int index, bool val)
 	if (str.length() > 0)
 	{
 		DataSave::getInstance()->setRebateAwds(str);
+	}
+}
+
+void GlobalInstance::parseBuildingRepairData()
+{
+	rapidjson::Document docdata = ReadJsonFile(ResourcePath::makePath("json/repairbuild.json"));
+	rapidjson::Value& alldata = docdata["rbs"];
+	for (unsigned int i = 0; i < alldata.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = alldata[i];
+		if (jsonvalue.IsObject())
+		{
+			S_BUILDINREPAIR data;
+			rapidjson::Value& v = jsonvalue["name"];
+			data.name = v.GetString();
+
+			v = jsonvalue["rbres"];
+
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_repairres.push_back(v[m].GetString());
+			}
+			v = jsonvalue["rbawd"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_adws.push_back(v[m].GetString());
+			}
+			data.state = 0;
+			data.repairtime = 0;
+			map_buildingrepairdata[data.name] = data;
+		}
+	}
+
+	std::string str = DataSave::getInstance()->getBuildingBroken();
+
+	if (str.length() > 0)
+	{
+		std::map<std::string, S_BUILDINREPAIR>::iterator bbit = GlobalInstance::map_buildingrepairdata.begin();
+		std::vector<std::string> vec_onbuilding;
+		CommonFuncs::split(str, vec_onbuilding, ";");
+
+		for (unsigned int i = 0; i < vec_onbuilding.size(); i++)
+		{
+			std::vector<std::string> vec_;
+			CommonFuncs::split(vec_onbuilding[i], vec_, ",");
+			GlobalInstance::map_buildingrepairdata[bbit->first].state = atoi(vec_[0].c_str());
+			GlobalInstance::map_buildingrepairdata[bbit->first].repairtime = atoi(vec_[1].c_str());
+			bbit++;
+		}
+	}
+}
+
+void GlobalInstance::setBuildingBroken()
+{
+	std::map<std::string, S_BUILDINREPAIR>::iterator bbit;
+
+	std::string str;
+	for (bbit = GlobalInstance::map_buildingrepairdata.begin(); bbit != GlobalInstance::map_buildingrepairdata.end(); bbit++)
+	{
+		std::string onestr = StringUtils::format("%d,%d", bbit->second.state, bbit->second.repairtime);
+		
+		if (str.length() > 0)
+			str.append(";");
+		str.append(onestr);
+	}
+	if (str.length() > 0)
+	{
+		DataSave::getInstance()->setBuildingBroken(str);
 	}
 }
 

@@ -13,12 +13,15 @@
 #include "NewGuideLayer.h"
 #include "MainScene.h"
 #include "WaitingProgress.h"
+#include "RepairBuildingLayer.h"
 
 USING_NS_CC;
 
 MarketLayer::MarketLayer()
 {
 	lastCategoryindex = -1;
+	brokenlesslv = 0;
+	isrepairrefresh = true;
 }
 
 MarketLayer::~MarketLayer()
@@ -90,6 +93,21 @@ bool MarketLayer::init(Building* buidingData)
 	closebtn->setTag(1002);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(MarketLayer::onBtnClick, this));
 
+	repairbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("repairbtn");
+	repairbtn->setTag(1003);
+	repairbtn->addTouchEventListener(CC_CALLBACK_2(MarketLayer::onBtnClick, this));
+
+	repairtimelbl = (cocos2d::ui::Text*)repairbtn->getChildByName("time");
+	repairtimelbl->setString("");
+
+	buildinglvbox = csbnode->getChildByName("buildinglvbox");
+	buildinglvbox->setScaleX(1.25f);
+
+	if (buidingData->level.getValue() >= 8)
+	{
+		brokenlesslv = 8;
+	}
+
 	//滚动控件
 	m_contentscroll = (cocos2d::ui::ScrollView*)csbnode->getChildByName("contentscroll");
 
@@ -142,6 +160,73 @@ bool MarketLayer::init(Building* buidingData)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     return true;
+}
+
+void MarketLayer::updateRepairUi()
+{
+	int repairstate = GlobalInstance::map_buildingrepairdata[m_buidingData->name].state;
+	if (repairstate > 0)
+	{
+		isrepairrefresh = false;
+		if (repairstate == 3)
+		{
+			int pasttime = GlobalInstance::servertime - GlobalInstance::map_buildingrepairdata[m_buidingData->name].repairtime;
+
+			if (pasttime >= REPAIRTIME)
+			{
+				//GlobalInstance::map_buildingrepairdata[m_buidingData->name].state = 0;
+				//GlobalInstance::getInstance()->setBuildingBroken();
+				repairbtn->setVisible(false);
+				buildinglvbox->setScaleX(1);
+				brokenlesslv = 0;
+			}
+			else
+			{
+				repairtimelbl->setVisible(true);
+				int lefttime = REPAIRTIME - pasttime;
+				std::string strlbl = StringUtils::format("%02d:%02d", lefttime / 60, lefttime % 60);
+				repairtimelbl->setString(strlbl);
+			}
+		}
+		else
+		{
+			repairtimelbl->setVisible(false);
+		}
+	}
+	else
+	{
+		buildinglvbox->setScaleX(1);
+		brokenlesslv = 0;
+		repairbtn->setVisible(false);
+		if (!isrepairrefresh)
+		{
+			isrepairrefresh = true;
+			updateContent(lastCategoryindex);
+		}
+	}
+
+	if (brokenlesslv > 0 && m_buidingData->level.getValue() >= 8)
+	{
+		std::string str = StringUtils::format("%d%s-8", m_buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
+		lvUIlbl->setString(str);
+
+		std::u32string utf32lblString;
+		StringUtils::UTF8ToUTF32(str, utf32lblString);
+
+		Label* vlbl = (Label*)lvUIlbl->getVirtualRenderer();
+		for (std::size_t i = 0; i < utf32lblString.length(); i++)
+		{
+			if (i >= utf32lblString.length() - 2)
+				vlbl->getLetter(i)->setColor(Color3B(255, 0, 0));
+			else
+				vlbl->getLetter(i)->setColor(Color3B(255, 255, 255));
+		}
+	}
+	else
+	{
+		std::string str = StringUtils::format("%d%s", m_buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
+		lvUIlbl->setString(str);
+	}
 }
 
 void MarketLayer::delayShowUI(float dt)
@@ -223,6 +308,12 @@ void MarketLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 			break;
 		case 1002://关闭
 			AnimationEffect::closeAniEffect((Layer*)this);
+			break;
+		case 1003:
+		{
+			RepairBuildingLayer* layer = RepairBuildingLayer::create(m_buidingData->name);
+			addChild(layer);
+		}
 			break;
 		default:
 			break;
@@ -361,26 +452,34 @@ void MarketLayer::updateContent(int category)
 		itemnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
 		//itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 		m_contentscroll->addChild(itemnode, 0 , i);
-		if (itemnode->getResInMarketLv() > m_buidingData->level.getValue())
+		if (itemnode->getResInMarketLv() > m_buidingData->level.getValue() - brokenlesslv)
 			itemnode->setEnable(false);
+		else
+			itemnode->setEnable(true);
 	}
 }
 
 void MarketLayer::lvup()
 {
+
+	if (m_buidingData->level.getValue() >= 8)
+		brokenlesslv = 8;
+
 	std::string str = StringUtils::format("%d%s", m_buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
 	lvUIlbl->setString(str);
 
 	for (unsigned int i = 0; i < map_cateRes[lastCategoryindex].size(); i++)
 	{
 		MarketResNode* itemnode = (MarketResNode*)m_contentscroll->getChildByTag(i);
-		if (itemnode->getResInMarketLv() <= m_buidingData->level.getValue())
+		if (itemnode->getResInMarketLv() <= m_buidingData->level.getValue() - brokenlesslv)
 			itemnode->setEnable(true);
+		else
+			itemnode->setEnable(false);
 
 		std::string resid = map_cateRes[lastCategoryindex][i].resid;
 		if (GlobalInstance::map_timeMartData.find(resid) != GlobalInstance::map_timeMartData.end() && getResInMarketLv(resid) == m_buidingData->level.getValue())
 		{
-			int curlv = m_buidingData->level.getValue();
+			int curlv = m_buidingData->level.getValue() - brokenlesslv;
 			for (unsigned int i = 0; i < m_buidingData->vec_exdata[curlv].size(); i++)
 			{
 				std::vector<std::string> vec_tmp;
@@ -537,6 +636,8 @@ void MarketLayer::updateUI(float dt)
 	std::string timestr = StringUtils::format("%02d:%02d:%02d", lefttime / 3600, lefttime % 3600 / 60, lefttime % 3600 % 60);
 	timelbl->setString(timestr);
 	timebar->setPercent(lefttime * 100 / MARKET_RESETTIME);
+
+	updateRepairUi();
 }
 
 void MarketLayer::resetStockRes()
@@ -634,7 +735,7 @@ void MarketLayer::loadTimeMarket()
 				td.rid = vec_onetmp[0];
 				td.buycount = 0;
 				td.totalcount = atoi(vec_onetmp[1].c_str());
-				if (getResInMarketLv(td.rid) > m_buidingData->level.getValue())
+				if (getResInMarketLv(td.rid) > m_buidingData->level.getValue() - brokenlesslv)
 					GlobalInstance::map_timeMartData[td.rid] = td;
 			}
 		}

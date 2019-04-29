@@ -528,6 +528,8 @@ void LoadingScene::parseCfgFiles()
 	//加载每章节星奖奖励数据
 	GlobalInstance::getInstance()->loadChapterStarAwds();
 
+	GlobalInstance::getInstance()->parseBuildingRepairData();
+
 	//本地英雄加上ID兼容上一个版本
 	addHeroId();
 

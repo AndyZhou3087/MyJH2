@@ -555,6 +555,16 @@ void DataSave::setChapterStarAwd(int chapter, std::string val)
 	saveStringDataByKey(key, val);
 }
 
+void DataSave::setBuildingBroken(std::string val)
+{
+	saveStringDataByKey("bdbroken", val);
+}
+
+std::string DataSave::getBuildingBroken()
+{
+	return loadStringDataByKey("bdbroken");
+}
+
 void DataSave::deleteDataByKey(std::string key)
 {
 	removeEleByKey(key);

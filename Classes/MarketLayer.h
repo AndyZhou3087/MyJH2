@@ -63,6 +63,9 @@ private:
 	void loadTimeMarket();
 
 	int getResInMarketLv(std::string resid);
+
+	void updateRepairUi();
+
 private:
 	std::map<int, std::vector<MK_RES>> map_cateRes;
 	cocos2d::ui::Text* lvUIlbl;
@@ -72,10 +75,16 @@ private:
 
 	cocos2d::ui::Text* mysilverlbl;
 	cocos2d::ui::Text* mycoinlbl;
+	cocos2d::ui::Text* repairtimelbl;
 	cocos2d::ui::Widget* closebtn;
+	cocos2d::ui::Widget* repairbtn;
 	int langtype;
 	std::vector<cocos2d::ui::Button*> vec_categoryBtn;
 	int lastCategoryindex;
+
+	Node* buildinglvbox;
+	int brokenlesslv;
+	bool isrepairrefresh;
 };
 
 #endif
