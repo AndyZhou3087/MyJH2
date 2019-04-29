@@ -2641,10 +2641,6 @@ void MapBlockScene::parseMapXml(std::string mapname)
 						mb->setPosType(postype);
 						vec_boxblock.push_back(mb);
 					}
-					else if (postype >= POS_NPC && postype <= POS_TBOSS)
-					{
-						vec_npcOrBossBlocks.push_back(mb);
-					}
 					if ((postype > POS_START && postype < POS_MAZETRANS) || postype == POS_MAZEENTRY)
 					{
 						int posrange = -1;
@@ -2703,6 +2699,11 @@ void MapBlockScene::parseMapXml(std::string mapname)
 								madata.maid = atoi(e0->GetText());
 								madata.blockindex = rc;
 								vec_mazetranspoints.push_back(madata);
+							}
+
+							if (postype >= POS_NPC && postype <= POS_TBOSS)
+							{
+								vec_npcOrBossid.push_back(mb->getPosNpcID());
 							}
 						}
 						else if (ename.compare("npcrnd") == 0)
@@ -3063,9 +3064,9 @@ void MapBlockScene::checkotherstar()
 			}
 		}
 
-		for (unsigned int i = 0; i < vec_npcOrBossBlocks.size(); i++)
+		for (unsigned int i = 0; i < vec_npcOrBossid.size(); i++)
 		{
-			std::string npcid = vec_npcOrBossBlocks[i]->getPosNpcID();
+			std::string npcid = vec_npcOrBossid[i];
 
 			std::map<std::string, NpcFriendly>::iterator it;
 
@@ -3074,17 +3075,17 @@ void MapBlockScene::checkotherstar()
 				std::string nid = it->first;
 				if (npcid.compare(nid) == 0)
 				{
-					for (unsigned int i = 0; i < it->second.relation.size(); i++)
+					for (unsigned int n = 0; i < it->second.relation.size(); n++)
 					{
-						if (it->second.relation[i] == NPC_FRIEND)
+						if (it->second.relation[n] == NPC_FRIEND)
 						{
 							calcStar(SA_BEFRIEND);
 						}
-						else if (it->second.relation[i] == NPC_MASTER)
+						else if (it->second.relation[n] == NPC_MASTER)
 						{
 							calcStar(SA_BEMASTER);
 						}
-						else if (it->second.relation[i] == NPC_COUPEL)
+						else if (it->second.relation[n] == NPC_COUPEL)
 						{
 							calcStar(SA_BECOMPLE);
 						}

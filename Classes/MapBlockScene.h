@@ -279,7 +279,7 @@ private:
 	std::vector<MapBlock*> vec_normalBlocks;
 	std::vector<MapBlock*> vec_monsterBlocks;
 
-	std::vector<MapBlock*> vec_npcOrBossBlocks;
+	std::vector<std::string> vec_npcOrBossid;
 
 	int firstpostype;
 
