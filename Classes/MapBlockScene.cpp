@@ -1,4 +1,4 @@
-﻿#include "MapBlockScene.h"
+#include "MapBlockScene.h"
 #include "Resource.h"
 #include "MyRes.h"
 #include "CommonFuncs.h"
@@ -3075,7 +3075,7 @@ void MapBlockScene::checkotherstar()
 				std::string nid = it->first;
 				if (npcid.compare(nid) == 0)
 				{
-					for (unsigned int n = 0; i < it->second.relation.size(); n++)
+					for (unsigned int n = 0; n < it->second.relation.size(); n++)
 					{
 						if (it->second.relation[n] == NPC_FRIEND)
 						{
