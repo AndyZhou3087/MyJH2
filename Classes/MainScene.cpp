@@ -120,7 +120,7 @@ bool MainScene::init()
 				{
 					int r = GlobalInstance::getInstance()->createRandomNum(100);
 
-					if (r < 50)
+					if (r < 20)
 					{
 						GlobalInstance::map_buildingrepairdata[bbit->first].state = 1;
 						ishasnew = true;
@@ -152,7 +152,7 @@ bool MainScene::init()
 	else if (iscantrigger)
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(100);
-		if (r < 50)
+		if (r < 20)
 		{
 			ishasbeggar = true;
 			ishintbeggar = true;
@@ -165,14 +165,12 @@ bool MainScene::init()
 		if (!DataSave::getInstance()->getHasSmallStall())
 		{
 			int r = GlobalInstance::getInstance()->createRandomNum(100);
-			if (r < 50)
+			if (r < 20)
 			{
 				DataSave::getInstance()->setHasSmallStall(true);
 			}
 		}
 	}
-
-
 
 	scroll_3 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_3");
 	scroll_3->setScrollBarEnabled(false);
@@ -1489,7 +1487,7 @@ void MainScene::showRepairFinishAwd(std::string buildingname)
 	std::map<std::string, S_BUILDINREPAIR>::iterator it;
 
 	int r = GlobalInstance::getInstance()->createRandomNum(100);
-	if (r < 50)
+	if (r < 10)
 	{
 		RepairBuildingLayer* layer = RepairBuildingLayer::create(buildingname, 1);
 		addChild(layer);
