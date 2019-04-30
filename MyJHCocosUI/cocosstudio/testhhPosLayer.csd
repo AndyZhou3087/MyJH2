@@ -14,7 +14,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="1.0000" Y="1.0000" />
-            <FileData Type="Normal" Path="hh.jpg" Plist="" />
+            <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Node_1" ActionTag="960444873" Tag="107" IconVisible="True" LeftMargin="230.0000" RightMargin="490.0000" TopMargin="1180.0000" BottomMargin="100.0000" ctype="SingleNodeObjectData">

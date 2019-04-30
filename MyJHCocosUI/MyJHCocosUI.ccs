@@ -203,6 +203,9 @@
           <Image Name="xiaoshimei.png" />
         </Folder>
         <Folder Name="mainimg">
+          <Image Name="beggar_n.png" />
+          <Image Name="beggar_n_n.png" />
+          <Image Name="beggar_s.png" />
           <Image Name="main_01_n.png" />
           <Image Name="main_01_s.png" />
           <Image Name="main_02_c.png" />
@@ -241,11 +244,12 @@
           <Image Name="main_cloud.png" />
           <Image Name="main_sky.jpg" />
           <Image Name="q.jpg" />
-          <Image Name="qq1.png" />
           <Image Name="repairanim0_1.png" />
           <Image Name="repairanim0_2.png" />
           <Image Name="repairanim1_1.png" />
           <Image Name="repairanim1_2.png" />
+          <Image Name="smallstall.png" />
+          <Image Name="smallstall_s.png" />
           <Image Name="y1.png" />
           <Image Name="y2.png" />
         </Folder>
@@ -567,6 +571,7 @@
           <Image Name="forge_text.png" />
           <Image Name="freerefreshhero_text.png" />
           <Image Name="getscore_text.png" />
+          <Image Name="givebeggar_text.png" />
           <Image Name="goawaybtn_text.png" />
           <Image Name="goback_home_text.png" />
           <Image Name="goback_map_text.png" />
@@ -796,6 +801,7 @@
           <Image Name="selectbtn_text.png" />
           <Image Name="selheadtitle.png" />
           <Image Name="settingtitle.png" />
+          <Image Name="smallstalltitle.png" />
           <Image Name="smcatabtn0_text_n.png" />
           <Image Name="smcatabtn0_text_s.png" />
           <Image Name="smcatabtn1_text_n.png" />
@@ -1368,7 +1374,6 @@
           <Image Name="renationclosebtn.png" />
           <Image Name="renationitem.png" />
           <Image Name="renationitem1.png" />
-          <Image Name="repairclose.png" />
           <Image Name="resaddbtn.png" />
           <Image Name="resbox.png" />
           <Image Name="resbox_qu0.png" />
@@ -1534,10 +1539,9 @@
           <Image Name="z003.png" />
           <Image Name="z004.png" />
         </Folder>
-        <Image Name="1111.png" />
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />
-        <Project Name="buildingBrokenHintLayer.csd" Type="Layer" />
+        <Project Name="mainhomeHintLayer.csd" Type="Layer" />
         <Project Name="buyCoinLayer.csd" Type="Layer" />
         <Project Name="buyResLayer.csd" Type="Layer" />
         <Project Name="buySelectLayer.csd" Type="Layer" />
@@ -1564,7 +1568,6 @@
         <Project Name="goBackLayer.csd" Type="Layer" />
         <Project Name="headInfoLayer.csd" Type="Layer" />
         <Project Name="heroAttrLayer.csd" Type="Layer" />
-        <Image Name="hh.jpg" />
         <Project Name="hhreslvlayer.csd" Type="Layer" />
         <Project Name="hillResNode.csd" Type="Node" />
         <Project Name="hitBoxLayer.csd" Type="Layer" />
@@ -1664,7 +1667,6 @@
         <Project Name="usePropLayer.csd" Type="Layer" />
         <Project Name="UserProtocolLayer.csd" Type="Layer" />
         <Project Name="UserTipsBoxLayer.csd" Type="Layer" />
-        <Image Name="w.png" />
         <Project Name="wellGiftLayer.csd" Type="Layer" />
         <Project Name="wellmorebtnnode.csd" Type="Node" />
         <Project Name="wgLvLayer.csd" Type="Layer" />

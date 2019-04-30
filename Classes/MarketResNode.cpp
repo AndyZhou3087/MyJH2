@@ -11,6 +11,7 @@
 #include "SimpleResPopLayer.h"
 #include "AnimationEffect.h"
 #include "BuyCoinLayer.h"
+#include "SmallStallLayer.h"
 
 MarketResNode::MarketResNode()
 {
@@ -26,10 +27,10 @@ MarketResNode::~MarketResNode()
 
 }
 
-MarketResNode* MarketResNode::create(std::string resid, int rescount)
+MarketResNode* MarketResNode::create(std::string resid, int rescount, int type)
 {
 	MarketResNode *pRet = new(std::nothrow)MarketResNode();
-	if (pRet && pRet->init(resid, rescount))
+	if (pRet && pRet->init(resid, rescount, type))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -42,9 +43,10 @@ MarketResNode* MarketResNode::create(std::string resid, int rescount)
 	}
 }
 
-bool MarketResNode::init(std::string resid, int rescount)
+bool MarketResNode::init(std::string resid, int rescount, int type)
 {
 	m_resid = resid;
+	m_type = type;
 	totalrescount = rescount; 
 	csbnode = CSLoader::createNode(ResourcePath::makePath("marketResNode.csb"));
 	this->addChild(csbnode, 0, "csbnode");
@@ -96,6 +98,17 @@ bool MarketResNode::init(std::string resid, int rescount)
 	desclbl->setString(GlobalInstance::map_AllResources[resid].desc);
 
 	totalpricelbl = (cocos2d::ui::Text*)csbnode->getChildByName("totalprice");
+
+	totalpricelbl_1 = (cocos2d::ui::Text*)csbnode->getChildByName("totalprice_1");
+	if (type == 0)
+	{
+		discount = 1.0f;
+		totalpricelbl_1->setVisible(false);
+	}
+	else
+	{
+		discount = 0.6f;
+	}
 
 
 	rescountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("rescount");
@@ -185,13 +198,13 @@ void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				myrich.setValue(GlobalInstance::getInstance()->getMySoliverCount().getValue());
 			}
 
-			if (myrich.getValue() < buycount * saleval)
+			if (myrich.getValue() < buycount * saleval * discount)
 			{
 				if (iscoinsale)
 				{
 					showstr = ResourceLang::map_lang["nomorecoin"];
 
-					Layer* layer = BuyCoinLayer::create(buycount * saleval - myrich.getValue());
+					Layer* layer = BuyCoinLayer::create(buycount * saleval * discount - myrich.getValue());
 					Director::getInstance()->getRunningScene()->addChild(layer, 100, "buycoinlayer");
 				}
 				else
@@ -216,8 +229,17 @@ void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 						if (isCanBuy)
 						{
 							SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUYRES);
-							MarketLayer* parent = (MarketLayer*)this->getParent()->getParent()->getParent()->getParent();
-							parent->buyRes(this->getTag(), buycount);
+							if (m_type == 0)
+							{
+								MarketLayer* parent = (MarketLayer*)this->getParent()->getParent()->getParent()->getParent();
+								parent->buyRes(this->getTag(), buycount);
+							}
+							else
+							{
+								SmallStallLayer* parent = (SmallStallLayer*)this->getParent()->getParent()->getParent()->getParent();
+								parent->buyRes(this->getTag(), buycount);
+
+							}
 
 							std::string str = StringUtils::format("%sx%d", GlobalInstance::map_AllResources[m_resid].name.c_str(), buycount);
 							showstr = StringUtils::format(ResourceLang::map_lang["marketbuyok"].c_str(), str.c_str());
@@ -389,20 +411,42 @@ void MarketResNode::updateData()
 		myrich.setValue(GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	}
 
-	if (myrich.getValue() < buycount * saleval)
+	int needrich = buycount * saleval * discount;
+	if (myrich.getValue() < needrich)
 	{
 		totalpricelbl->setColor(Color3B(255, 0, 0));
+		totalpricelbl_1->setColor(Color3B(255, 0, 0));
 	}
 	else
 	{
 		totalpricelbl->setColor(Color3B(121, 78, 46));
+		totalpricelbl_1->setColor(Color3B(0, 128, 0));
 	}
 
 	std::string salestr = StringUtils::format("%d", buycount * saleval);
 	totalpricelbl->setString(salestr);
 
+	totalpricelbl_1->setPositionX(totalpricelbl->getPositionX() + totalpricelbl->getContentSize().width + 10);
+
+	salestr = StringUtils::format("%d", needrich);
+	totalpricelbl_1->setString(salestr);
+
 	std::string countstr = StringUtils::format("%d/%d", buycount, totalrescount);
 	rescountlbl->setString(countstr);
+
+
+	if (m_type == 1)
+	{
+		if (totalpricelbl->getChildByName("mline") != NULL)
+		{
+			totalpricelbl->removeChildByName("mline");
+		}
+
+		DrawNode* underlineNode = DrawNode::create();
+		totalpricelbl->addChild(underlineNode, 1, "mline");
+		underlineNode->setLineWidth(2.0f);
+		underlineNode->drawLine(Vec2(0, totalpricelbl->getContentSize().height/2), Vec2(totalpricelbl->getContentSize().width, totalpricelbl->getContentSize().height/2), Color4F(Color3B(255, 0, 0)));
+	}
 }
 
 bool MarketResNode::checkResIsFull()
@@ -449,8 +493,11 @@ void MarketResNode::updateTime(float dt)
 	Building* buildingdata = Building::map_buildingDatas["5market"];
 
 	int brokenlesslv = 0;
-	if (buildingdata->level.getValue() >= 8 && GlobalInstance::map_buildingrepairdata["5market"].state > 0)
-		brokenlesslv = 8;
+	if (m_type == 0)
+	{
+		if (buildingdata->level.getValue() >= 8 && GlobalInstance::map_buildingrepairdata["5market"].state > 0)
+			brokenlesslv = 8;
+	}
 
 	if (inmarktLv > buildingdata->level.getValue() - brokenlesslv)
 	{

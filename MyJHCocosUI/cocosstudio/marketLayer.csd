@@ -8,11 +8,11 @@
         <Children>
           <AbstractNodeData Name="bg" ActionTag="-1690550961" Tag="44" IconVisible="False" LeftMargin="25.0000" RightMargin="25.0000" TopMargin="64.0012" BottomMargin="115.9988" Scale9Enable="True" LeftEage="132" RightEage="132" TopEage="62" BottomEage="62" Scale9OriginX="132" Scale9OriginY="62" Scale9Width="136" Scale9Height="66" ctype="ImageViewObjectData">
             <Size X="670.0000" Y="1100.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="665.9988" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="1.0000" />
+            <Position X="360.0000" Y="1215.9988" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.5203" />
+            <PrePosition X="0.5000" Y="0.9500" />
             <PreSize X="0.9306" Y="0.8594" />
             <FileData Type="MarkedSubImage" Path="ui/normal9bg.png" Plist="ui.plist" />
           </AbstractNodeData>
@@ -63,11 +63,11 @@
           </AbstractNodeData>
           <AbstractNodeData Name="contentscroll" ActionTag="-755374728" Tag="24" IconVisible="False" LeftMargin="35.0000" RightMargin="35.0000" TopMargin="230.0000" BottomMargin="170.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="650.0000" Y="880.0000" />
-            <AnchorPoint />
-            <Position X="35.0000" Y="170.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="1.0000" />
+            <Position X="360.0000" Y="1050.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0486" Y="0.1328" />
+            <PrePosition X="0.5000" Y="0.8203" />
             <PreSize X="0.9028" Y="0.6875" />
             <SingleColor A="255" R="255" G="150" B="100" />
             <FirstColor A="255" R="255" G="150" B="100" />

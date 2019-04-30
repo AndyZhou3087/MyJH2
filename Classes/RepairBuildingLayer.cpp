@@ -6,6 +6,7 @@
 #include "AnimationEffect.h"
 #include "MyRes.h"
 #include "MainScene.h"
+#include "DataSave.h"
 
 USING_NS_CC;
 
@@ -67,7 +68,9 @@ bool RepairBuildingLayer::init(std::string buildingname, int type)
 	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("repairbuildbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	actionbtntxt->ignoreContentAdaptWithSize(true);
 
-	int rewardsize = GlobalInstance::map_buildingrepairdata[buildingname].vec_repairres.size();
+	int rewardsize = 1;
+	if (type < 2)
+		rewardsize = GlobalInstance::map_buildingrepairdata[buildingname].vec_repairres.size();
 
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(RepairBuildingLayer::onBtnClick, this));
@@ -78,16 +81,52 @@ bool RepairBuildingLayer::init(std::string buildingname, int type)
 
 	std::string str;
 
+	std::vector<std::string> vec_showres;
 	if (type == 0)
 		str = StringUtils::format(ResourceLang::map_lang["repairbuilding"].c_str(), GlobalInstance::map_AllResources[buildingname].name.c_str());
-	else
+	else if (type == 1)
 	{
 		closebtn->setVisible(false);
 		actionbtn->setTag(1002);
 		str = StringUtils::format(ResourceLang::map_lang["repairbuildingawddesc"].c_str(), GlobalInstance::map_AllResources[buildingname].name.c_str());
-		timelbl->setVisible(false);
+		timelbl->setVisible(false); 
 		actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("allgetbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		actionbtntxt->setScale(0.8f);
+	}
+	else if (type == 2)
+	{
+		actionbtn->setTag(1003);
+		str = ResourceLang::map_lang["beggargivetext"].c_str();
+		timelbl->setVisible(false);
+		actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("givebeggar_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		std::vector<std::string> vec_res;
+		for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
+		{
+			if ((MyRes::vec_MyResources[i]->getType() == T_RENS && (MyRes::vec_MyResources[i]->getId().compare("r001") >= 0 && MyRes::vec_MyResources[i]->getId().compare("r006") != 0 && MyRes::vec_MyResources[i]->getId().compare("r011") <= 0))
+				|| MyRes::vec_MyResources[i]->getType() == T_RENS
+				|| MyRes::vec_MyResources[i]->getType() == T_QH
+				|| MyRes::vec_MyResources[i]->getType() == T_DAN
+				|| MyRes::vec_MyResources[i]->getType() == T_MIJI
+				|| MyRes::vec_MyResources[i]->getType() == T_BOX
+				)
+			{
+				int count = 1;
+
+				if (MyRes::vec_MyResources[i]->getCount().getValue() >= 10)
+					count = MyRes::vec_MyResources[i]->getCount().getValue() * 2 / 10;
+				std::string str = StringUtils::format("%s-%d", MyRes::vec_MyResources[i]->getId().c_str(), count);
+				vec_res.push_back(str);
+			}
+		}
+		int solilercount = 1;
+
+		if (GlobalInstance::getInstance()->getMySoliverCount().getValue() >= 1000)
+			vec_res.push_back("r006-1000");
+		if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= 10)
+			vec_res.push_back("r012-10");
+
+		int r = GlobalInstance::getInstance()->createRandomNum(vec_res.size());
+		vec_showres.push_back(vec_res[r]);
 	}
 	titletext->setString(str);
 
@@ -110,8 +149,10 @@ bool RepairBuildingLayer::init(std::string buildingname, int type)
 			std::vector<std::string> vec_ret;
 			if (type == 0)
 				CommonFuncs::split(GlobalInstance::map_buildingrepairdata[buildingname].vec_repairres[i], vec_ret, "-");
-			else
+			else if (type == 1)
 				CommonFuncs::split(GlobalInstance::map_buildingrepairdata[buildingname].vec_adws[i], vec_ret, "-");
+			else if (type == 2)
+				CommonFuncs::split(vec_showres[i], vec_ret, "-");
 
 			std::string resid = vec_ret[0];
 			int count = atoi(vec_ret[1].c_str());
@@ -158,7 +199,7 @@ bool RepairBuildingLayer::init(std::string buildingname, int type)
 		}
 	}
 
-	if (GlobalInstance::map_buildingrepairdata[buildingname].state == 3 && m_type == 0)
+	if (m_type == 0 && GlobalInstance::map_buildingrepairdata[buildingname].state == 3)
 	{
 		actionbtn->setEnabled(false);
 		upatetimelbl(0);
@@ -241,7 +282,7 @@ void RepairBuildingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				}
 				else
 				{
-					MyRes::Add(resid, count);
+					MyRes::Use(resid, count);
 				}
 			}
 
@@ -274,6 +315,36 @@ void RepairBuildingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				else
 				{
 					MyRes::Add(resid, count);
+				}
+			}
+			removeSelf();
+		}
+		else if (tag == 1003)
+		{
+			if (g_mainScene != NULL)
+				g_mainScene->hideBeggar();
+
+			DataSave::getInstance()->setHasBeggar(false);
+
+			for (unsigned int i = 0; i < vec_repairres.size(); i++)
+			{
+				std::string resid = vec_repairres[i].rid;
+				int count = vec_repairres[i].count;
+				if (resid.compare("r006") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(count);
+					GlobalInstance::getInstance()->costMySoliverCount(dvint);
+				}
+				else if (resid.compare("r012") == 0)
+				{
+					DynamicValueInt dvint;
+					dvint.setValue(count);
+					GlobalInstance::getInstance()->costMyCoinCount(dvint);
+				}
+				else
+				{
+					MyRes::Use(resid, count);
 				}
 			}
 			removeSelf();

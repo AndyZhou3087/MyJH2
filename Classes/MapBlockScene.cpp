@@ -2377,7 +2377,7 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			else
 			{
 				destblockindex = checkNearestIndex(tag, 6);
-				if (destblockindex < 0)
+				if (destblockindex < 0 || (tag != mycurRow * blockColCount + mycurCol && destblockindex == mycurRow * blockColCount + mycurCol))
 					MovingLabel::show(ResourceLang::map_lang["norouting"]);
 				else
 				{
@@ -2415,7 +2415,7 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			{
 				buildfocus->setVisible(false);
 				destblockindex = checkNearestIndex(tag, 6);
-				if (destblockindex < 0)
+				if (destblockindex < 0 || (tag != mycurRow* blockColCount + mycurCol && destblockindex == mycurRow * blockColCount + mycurCol))
 					MovingLabel::show(ResourceLang::map_lang["norouting"]);
 				else
 				{
@@ -2437,7 +2437,9 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		if (destblockindex > 0)
 		{
 			int mycurindex = mycurRow * blockColCount + mycurCol;
-			if (map_mapBlocks[mycurindex]->getPositionX()* scrollView->getZoomScale() < fabs(scrollView->getContentOffset().x) || map_mapBlocks[mycurindex]->getPositionY()*scrollView->getZoomScale() < fabs(scrollView->getContentOffset().y))
+			if ((map_mapBlocks[mycurindex]->getPositionX()* scrollView->getZoomScale() < fabs(scrollView->getContentOffset().x) || map_mapBlocks[mycurindex]->getPositionY()*scrollView->getZoomScale() < fabs(scrollView->getContentOffset().y))
+				|| (map_mapBlocks[mycurindex]->getPositionX()* scrollView->getZoomScale() > fabs(scrollView->getContentOffset().x) + scrollView->getViewSize().width || map_mapBlocks[mycurindex]->getPositionY() * scrollView->getZoomScale() > fabs(scrollView->getContentOffset().y) + scrollView->getViewSize().height)
+				)
 				isoverscreen = true;
             
             if (fabs(map_mapBlocks[mycurindex]->getPositionX() - map_mapBlocks[destblockindex]->getPositionX())* scrollView->getZoomScale() > scrollView->getViewSize().width/2 || fabs(map_mapBlocks[mycurindex]->getPositionY() - map_mapBlocks[destblockindex]->getPositionY())*scrollView->getZoomScale() > scrollView->getViewSize().height/2)

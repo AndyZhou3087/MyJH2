@@ -231,7 +231,7 @@ public:
 	std::string getMarketStock();
 
 	/****************************
-	设置我的元宝
+	设置市场库存
 	****************************/
 	void setMarketStock(std::string val);
 
@@ -494,6 +494,36 @@ public:
 	void setBuildingBroken(std::string val);
 
 	std::string getBuildingBroken();
+
+	/****************************
+	小摊位库存
+	****************************/
+	std::string getSmallStallStock();
+
+	/****************************
+	设置小摊位库存
+	****************************/
+	void setSmallStallStock(std::string val);
+
+	/****************************
+	获取是否出现小摊位
+	****************************/
+	bool getHasSmallStall();
+
+	/****************************
+	设置是否出现小摊位
+	****************************/
+	void setHasSmallStall(bool val);
+
+	/****************************
+	获取是否出现乞丐
+	****************************/
+	bool getHasBeggar();
+
+	/****************************
+	设置是否出现乞丐
+	****************************/
+	void setHasBeggar(bool val);
 
 	void deleteDataByKey(std::string key);
 

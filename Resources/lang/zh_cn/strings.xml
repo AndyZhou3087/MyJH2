@@ -539,11 +539,15 @@
 	<s name="matchfightcount2">剩余挑战次数：%d</s>
 	<s name="matchfightnocount">次数已用完，每日凌晨4点重置次数！</s>
 	<s name="repairbuilding">%s发生破损，是否修理？</s>
-	<s name="buildingbrokenhint">师兄...！%s发生破损需要翻修，请前往查看。</s>
+	<s name="buildingbrokenhint">小师妹：师兄...！%s发生破损需要翻修，请前往查看。</s>
 	<s name="repairbuildingawddesc">工人修葺%s时在角落中发现了如下物品：</s>
 	<s name="hospitalbrokendesc">医馆破损，无法为20级以上侠客疗伤！</s>
 	<s name="smithybrokendesc">铁匠铺破损，无法打造更多装备！</s>
 	<s name="trainigroombrokendesc">训练场破损！无法训练！</s>
 	<s name="marketbrokendesc">市场破损，无法提供更多物品购买！</s>
-	<s name="innroombrokendesc">客栈破损！无法招募侠客！</s>					
+	<s name="innroombrokendesc">客栈破损！无法招募侠客！</s>
+	<s name="smallstalldesc">小摊位以六折的价格出售当前市场可购买的物品。</s>
+	<s name="beggarhint">小师妹：师兄...！最近天灾不断，街上的难民越来越多了！。</s>
+	<s name="beggargivetext">大侠行行好，我已经很久没有吃饭了！</s>	
+	<s name="beggarlossres">乞丐出现，食材-1</s>			
 </strings>

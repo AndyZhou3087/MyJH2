@@ -70,6 +70,18 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="totalprice_1" ActionTag="1042147791" Tag="282" IconVisible="False" LeftMargin="-207.1122" RightMargin="169.1122" TopMargin="50.5837" BottomMargin="-76.5837" FontSize="23" LabelText="100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="38.0000" Y="26.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="-207.1122" Y="-63.5837" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
           <AbstractNodeData Name="name" ActionTag="-261635333" Tag="162" IconVisible="False" LeftMargin="-185.1654" RightMargin="127.1654" TopMargin="-66.1454" BottomMargin="34.1454" FontSize="28" LabelText="木材" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="58.0000" Y="32.0000" />
             <AnchorPoint ScaleY="0.5000" />
@@ -173,10 +185,10 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="timelbl" ActionTag="-972819183" VisibleForFrame="False" Tag="245" IconVisible="False" LeftMargin="-24.0000" RightMargin="-74.0000" TopMargin="-63.0000" BottomMargin="37.0000" FontSize="23" LabelText="10:00:00" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="timelbl" ActionTag="-972819183" VisibleForFrame="False" Tag="245" IconVisible="False" LeftMargin="1.0000" RightMargin="-99.0000" TopMargin="-63.0000" BottomMargin="37.0000" FontSize="23" LabelText="10:00:00" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
             <Size X="98.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="25.0000" Y="50.0000" />
+            <Position X="50.0000" Y="50.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="0" B="127" />
             <PrePosition />
@@ -185,7 +197,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="tag" ActionTag="-1466570283" Tag="166" IconVisible="False" LeftMargin="-320.2981" RightMargin="277.2981" TopMargin="-97.8157" BottomMargin="-19.1843" ctype="SpriteObjectData">
+          <AbstractNodeData Name="tag" ActionTag="-1466570283" Tag="166" IconVisible="False" LeftMargin="-320.3001" RightMargin="277.3001" TopMargin="-97.8204" BottomMargin="-19.1796" ctype="SpriteObjectData">
             <Size X="43.0000" Y="117.0000" />
             <AnchorPoint ScaleX="0.5203" ScaleY="0.5149" />
             <Position X="-297.9272" Y="41.0637" />

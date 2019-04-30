@@ -28,8 +28,9 @@
 #include "HomeHillLayer.h"
 #include "GiftContentLayer.h"
 #include "RandHeroLayer.h"
-#include "BuildingBrokenHintLayer.h"
+#include "MainHomeHintLayer.h"
 #include "RepairBuildingLayer.h"
+#include "SmallStallLayer.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -44,10 +45,12 @@ MainScene::MainScene()
 	hostip = NULL;
 	traintip = NULL;
 	httpgettype = 0;
-
+	ishasbeggar = false;
+	ishintbeggar = false;
 	int z002count = MyRes::getMyResCount("z002", MYPACKAGE);
 	if (z002count > 0)
 		MyRes::Use("z002", z002count, MYPACKAGE);
+
 }
 
 MainScene::~MainScene()
@@ -89,37 +92,87 @@ bool MainScene::init()
 	newsbg = (Sprite*)csbnode->getChildByName("newsbg");
 	newsbg->setVisible(false);
 
-	bool ishasbuildingbroken = false;
-	if (!NewGuideLayer::checkifNewerGuide(72))
-	{
-		std::map<std::string, S_BUILDINREPAIR>::iterator bbit;
+	int hours = (GlobalInstance::getInstance()->getSysSecTime() + 8 * 60 * 60) % (TWENTYFOURHOURSTOSEC) / 3600;
 
-		for (bbit = GlobalInstance::map_buildingrepairdata.begin(); bbit != GlobalInstance::map_buildingrepairdata.end(); bbit++)
+	isnight = !(hours >= 6 && hours <= 21);
+
+	lastisnight = !isnight;
+
+	if (!isnight)
+	{
+		bool ishasbuildingbroken = false;
+		if (!NewGuideLayer::checkifNewerGuide(72))
 		{
-			if (bbit->second.state > 0)
-			{
-				ishasbuildingbroken = true;
-				break;
-			}
-		}
-		if (!ishasbuildingbroken)
-		{
-			bool ishasnew = false;
+			std::map<std::string, S_BUILDINREPAIR>::iterator bbit;
+
 			for (bbit = GlobalInstance::map_buildingrepairdata.begin(); bbit != GlobalInstance::map_buildingrepairdata.end(); bbit++)
 			{
-				int r = GlobalInstance::getInstance()->createRandomNum(100);
-
-				if (r < 100)
+				if (bbit->second.state > 0)
 				{
-					GlobalInstance::map_buildingrepairdata[bbit->first].state = 1;
-					ishasnew = true;
+					ishasbuildingbroken = true;
+					break;
 				}
 			}
+			if (!ishasbuildingbroken)
+			{
+				bool ishasnew = false;
+				for (bbit = GlobalInstance::map_buildingrepairdata.begin(); bbit != GlobalInstance::map_buildingrepairdata.end(); bbit++)
+				{
+					int r = GlobalInstance::getInstance()->createRandomNum(100);
 
-			if (ishasnew)
-				GlobalInstance::getInstance()->setBuildingBroken();
+					if (r < 50)
+					{
+						GlobalInstance::map_buildingrepairdata[bbit->first].state = 1;
+						ishasnew = true;
+					}
+				}
+
+				if (ishasnew)
+					GlobalInstance::getInstance()->setBuildingBroken();
+			}
 		}
 	}
+
+	bool iscantrigger = true;
+	std::map<std::string, S_BUILDINREPAIR>::iterator bbit;
+
+	for (bbit = GlobalInstance::map_buildingrepairdata.begin(); bbit != GlobalInstance::map_buildingrepairdata.end(); bbit++)
+	{
+		if (bbit->second.state == 1)
+		{
+			iscantrigger = false;
+			break;
+		}
+	}
+
+	if (DataSave::getInstance()->getHasBeggar())
+	{
+		ishasbeggar = true;
+	}
+	else if (iscantrigger)
+	{
+		int r = GlobalInstance::getInstance()->createRandomNum(100);
+		if (r < 50)
+		{
+			ishasbeggar = true;
+			ishintbeggar = true;
+			DataSave::getInstance()->setHasBeggar(true);
+		}
+	}
+
+	if (!isnight)
+	{
+		if (!DataSave::getInstance()->getHasSmallStall())
+		{
+			int r = GlobalInstance::getInstance()->createRandomNum(100);
+			if (r < 50)
+			{
+				DataSave::getInstance()->setHasSmallStall(true);
+			}
+		}
+	}
+
+
 
 	scroll_3 = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scroll_3");
 	scroll_3->setScrollBarEnabled(false);
@@ -269,15 +322,10 @@ bool MainScene::init()
 	//}
 	//GlobalInstance::getInstance()->saveMyTaskBranchData();
 
-	int hours = (GlobalInstance::getInstance()->getSysSecTime() + 8 * 60 * 60) % (TWENTYFOURHOURSTOSEC) / 3600;
-
-	isnight = !(hours >= 6 && hours <= 21);
-
-	lastisnight = !isnight;
-
+	Node* cloud = scroll_1->getChildByName("main_sky")->getChildByName("main_cloud");
+	cloud->setVisible(!isnight);
 	if (!isnight)
 	{
-		Node* cloud = scroll_1->getChildByName("main_sky")->getChildByName("main_cloud");
 		int r = GlobalInstance::getInstance()->createRandomNum(870) + 1130;
 		cloud->setPositionX(r);
 
@@ -737,6 +785,50 @@ bool MainScene::buildingIsClickOn(int tag)
 	return false;
 }
 
+void MainScene::onEventBuildingClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	cocos2d::ui::ImageView* clicknode = (cocos2d::ui::ImageView*)pSender;
+	Node* snode = (Node*)clicknode->getUserData();
+	int tag = clicknode->getTag();
+	switch (type)
+	{
+	case cocos2d::ui::Widget::TouchEventType::BEGAN:
+	{
+		snode->setVisible(true);
+	}
+	break;
+	case cocos2d::ui::Widget::TouchEventType::MOVED:
+		break;
+	case cocos2d::ui::Widget::TouchEventType::ENDED:
+	{
+		snode->setVisible(false);
+		if (m_isDraging)
+			return;
+
+		if (tag == 0)
+		{
+			SmallStallLayer* layer = SmallStallLayer::create();
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
+		else if (tag == 1)
+		{
+			RepairBuildingLayer* layer = RepairBuildingLayer::create("", 2);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
+	}
+	case cocos2d::ui::Widget::TouchEventType::CANCELED:
+	{
+		snode->setVisible(false);
+	}
+		break;
+	default:
+		break;
+	}
+
+}
+
 void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	cocos2d::ui::ImageView* clicknode = (cocos2d::ui::ImageView*)pSender;
@@ -904,7 +996,7 @@ void MainScene::onFinish(int code)
 				HttpDataSwap::init(this)->getNews();
 			}
 
-			doBuildingBrokenEvent();
+			doBuildingEvent();
 		}
 		else
 		{
@@ -1013,6 +1105,12 @@ void MainScene::updateTime(float dt)
 
 			}
 		}
+
+		if (ishasbeggar)
+		{
+			MyRes::Use("r001", 1);
+			MovingLabel::show(ResourceLang::map_lang["beggarlossres"]);
+		}
 	}
 
 	int refreshtime = GlobalInstance::getInstance()->getRefreshHeroTime();
@@ -1078,6 +1176,7 @@ void MainScene::updateTime(float dt)
 		GlobalInstance::timeMarketStr = "";
 		GlobalInstance::map_timeMartData.clear();
 		DataSave::getInstance()->deleteDataByKey("timemarket");
+		DataSave::getInstance()->setHasSmallStall(false);
 	}
 
 	changeDayOrNight();
@@ -1157,7 +1256,13 @@ void MainScene::changeDayOrNight()
 		}
 		else
 		{
-			if (GlobalInstance::map_buildingrepairdata.find(it->first) != GlobalInstance::map_buildingrepairdata.end() && GlobalInstance::map_buildingrepairdata[it->first].state > 0)
+			bool isbroken = false;
+			if (GlobalInstance::map_buildingrepairdata.find(it->first) != GlobalInstance::map_buildingrepairdata.end())
+			{
+				if (GlobalInstance::map_buildingrepairdata[it->first].state > 0)
+					isbroken = true;
+			}
+			if (isbroken)
 			{
 				std::string buildnightstr = StringUtils::format("mainimg/main_%02d_n_b.png", i);
 				buildpic->loadTexture(ResourcePath::makePath(buildnightstr), cocos2d::ui::Widget::TextureResType::LOCAL);
@@ -1170,6 +1275,32 @@ void MainScene::changeDayOrNight()
 		}
 		i++;
 	}
+
+	cocos2d::ui::ImageView* smallstall = (cocos2d::ui::ImageView*)scroll_3->getChildByName("smallstall");
+	cocos2d::ui::ImageView* smallstall_s = (cocos2d::ui::ImageView*)scroll_3->getChildByName("smallstall_s");
+	smallstall_s->setVisible(false);
+	smallstall->setSwallowTouches(false);
+	smallstall->setTag(0);
+	smallstall->setUserData((void*)smallstall_s);
+	smallstall->addTouchEventListener(CC_CALLBACK_2(MainScene::onEventBuildingClick, this));
+
+	smallstall->setVisible(DataSave::getInstance()->getHasSmallStall() && !isnight);
+
+
+	beggar = (cocos2d::ui::ImageView*)scroll_3->getChildByName("beggar_n");
+	cocos2d::ui::ImageView* beggar_s = (cocos2d::ui::ImageView*)scroll_3->getChildByName("beggar_s");
+	beggar->setVisible(ishasbeggar);
+	beggar_s->setVisible(false);
+	beggar->setTag(1);
+	beggar->setSwallowTouches(false);
+	beggar->setUserData((void*)beggar_s);
+	beggar->addTouchEventListener(CC_CALLBACK_2(MainScene::onEventBuildingClick, this));
+	std::string beggarstr;
+	if (isnight)
+		beggarstr = "mainimg/beggar_n_n.png";
+	else
+		beggarstr = "mainimg/beggar_n.png";
+	beggar->loadTexture(ResourcePath::makePath(beggarstr), cocos2d::ui::Widget::TextureResType::LOCAL);
 }
 
 void MainScene::repairFinish(std::string buildingname)
@@ -1264,7 +1395,7 @@ void MainScene::updateTaskIcon()
 
 void MainScene::saveAllData()
 {
-	if (!GlobalInstance::isNotSameUUID)
+	//if (!GlobalInstance::isNotSameUUID)
 	{
 		GlobalInstance::getInstance()->saveMyHeros();
 		MyRes::saveData();
@@ -1325,7 +1456,7 @@ void MainScene::delayShowVipReward(float dt)
 	}
 }
 
-void MainScene::doBuildingBrokenEvent()
+void MainScene::doBuildingEvent()
 {
 	bool ishas = false;
 	std::map<std::string, S_BUILDINREPAIR>::iterator it;
@@ -1341,7 +1472,12 @@ void MainScene::doBuildingBrokenEvent()
 
 	if (ishas)
 	{
-		BuildingBrokenHintLayer* layer = BuildingBrokenHintLayer::create();
+		MainHomeHintLayer* layer = MainHomeHintLayer::create(0);
+		addChild(layer);
+	}
+	else if (ishintbeggar)
+	{
+		MainHomeHintLayer* layer = MainHomeHintLayer::create(1);
 		addChild(layer);
 	}
 }
@@ -1353,7 +1489,7 @@ void MainScene::showRepairFinishAwd(std::string buildingname)
 	std::map<std::string, S_BUILDINREPAIR>::iterator it;
 
 	int r = GlobalInstance::getInstance()->createRandomNum(100);
-	if (r < 100)
+	if (r < 50)
 	{
 		RepairBuildingLayer* layer = RepairBuildingLayer::create(buildingname, 1);
 		addChild(layer);
@@ -1438,4 +1574,10 @@ void MainScene::showRepairAnim(std::string buildingname)
 			}
 		}
 	}
+}
+
+void MainScene::hideBeggar()
+{
+	ishasbeggar = false;
+	beggar->setVisible(false);
 }

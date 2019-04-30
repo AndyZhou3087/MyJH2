@@ -11,9 +11,9 @@ public:
 	MarketResNode();
 	~MarketResNode();
 
-	bool init(std::string resid, int rescount);
+	bool init(std::string resid, int rescount, int type = 0);
 
-	static MarketResNode* create(std::string resid, int rescount);
+	static MarketResNode* create(std::string resid, int rescount, int type = 0);
 
 	void reset(int maxcount);
 
@@ -23,6 +23,7 @@ public:
 private:
 	Node* csbnode;
 	cocos2d::ui::Text* totalpricelbl;
+	cocos2d::ui::Text* totalpricelbl_1;
 	cocos2d::ui::ImageView* priceicon;
 	cocos2d::ui::Text* rescountlbl;
 	int buycount;
@@ -42,6 +43,9 @@ private:
 	int inmarktLv;
 	cocos2d::ui::Text* timelbl;
 	Node* tagnode;
+	int m_type;
+
+	float discount;
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

@@ -30,6 +30,11 @@ public:
 	void onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	/*********************************
+	点击事件建筑物
+	**********************************/
+	void onEventBuildingClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	/*********************************
 	更新任务图标
 	**********************************/
 	void updateTaskIcon();
@@ -60,13 +65,15 @@ public:
 
 	void delayShowVipReward(float dt);
 
+	void hideBeggar();
+
 public:
 	cocos2d::ui::Widget* traintip;
 
 private:
 	void updateTaskLayerTip(float dt);
 
-	void doBuildingBrokenEvent();
+	void doBuildingEvent();
 
 	void repairFinish(std::string buildingname);
 
@@ -104,6 +111,9 @@ private:
 	bool isnight;
 	bool lastisnight;
 	Node* csbnode;
+	bool ishasbeggar;
+	bool ishintbeggar;
+	cocos2d::ui::ImageView* beggar;
 };
 extern MainScene* g_mainScene;
 #endif
