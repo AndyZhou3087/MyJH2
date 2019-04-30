@@ -2262,7 +2262,11 @@ void MapBlockScene::delayShowFightResult(float dt)
 	}
 	int winexp = 0;
 	if (count > 0)
+	{
 		winexp = getWinExp() / count;
+		if (winexp <= 0)
+			winexp = 1;
+	}
 
 	FightingResultLayer* FRlayer = FightingResultLayer::create(vec_winrewards, winexp);
 	this->addChild(FRlayer);
