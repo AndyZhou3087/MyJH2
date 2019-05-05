@@ -24,7 +24,8 @@ NpcLayer::NpcLayer()
 
 NpcLayer::~NpcLayer()
 {
-
+	if (g_MapBlockScene != NULL)
+		g_MapBlockScene->isRoutingBreakOff = false;
 }
 
 

@@ -25,6 +25,9 @@ TaskTalkLayer::~TaskTalkLayer()
 {
 	if (Quest::isMainQuestFinish(1) && GlobalInstance::vec_TaskMain[0].finishtype == 2)
 		g_MapBlockScene->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.3f);
+
+	if(g_MapBlockScene != NULL)
+		g_MapBlockScene->isRoutingBreakOff = false;
 }
 
 TaskTalkLayer* TaskTalkLayer::create(std::string npcid, std::vector<Npc*> vec_enemys, int type)

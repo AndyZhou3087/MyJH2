@@ -30,7 +30,8 @@ HintBoxLayer::HintBoxLayer()
 
 HintBoxLayer::~HintBoxLayer()
 {
-
+	if (g_MapBlockScene != NULL)
+		g_MapBlockScene->isRoutingBreakOff = false;
 }
 
 

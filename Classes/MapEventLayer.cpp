@@ -33,6 +33,7 @@ MapEventLayer::MapEventLayer()
 
 MapEventLayer::~MapEventLayer()
 {
+	g_MapBlockScene->isRoutingBreakOff = false;
 }
 
 

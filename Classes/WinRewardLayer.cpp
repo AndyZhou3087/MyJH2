@@ -29,6 +29,7 @@ WinRewardLayer::~WinRewardLayer()
 	}
 
 	MyRes::removeSivlerAndCoin();
+	g_MapBlockScene->isRoutingBreakOff = false;
 }
 
 WinRewardLayer* WinRewardLayer::create(std::vector<FOURProperty> reward_res)

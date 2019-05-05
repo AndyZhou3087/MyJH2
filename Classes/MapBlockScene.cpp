@@ -1163,6 +1163,7 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 
 		if (mycurCol == randStartPos % blockColCount && mycurRow == randStartPos / blockColCount)
 		{
+			isRoutingBreakOff = true;
 			this->scheduleOnce(schedule_selector(MapBlockScene::delayShowExit), 0.45f);
 		}
 		else
@@ -1663,11 +1664,11 @@ void MapBlockScene::doMyStatus()
 		if (ret <= POS_BUSINESS && ret != POS_BET)
 #endif
 		{
+			isRoutingBreakOff = true;
 			MapEventLayer* mlayer = MapEventLayer::create(ret);
 			this->addChild(mlayer);
 			AnimationEffect::openAniEffect((Layer*)mlayer);
 			calcStar(SA_EVENT);
-			isRoutingBreakOff = true;
 			sitetext->stopAllActions();
 			removeAllRoutingBlock();
 		}
@@ -1683,9 +1684,9 @@ void MapBlockScene::doMyStatus()
 
 		if (mapblock->getPosType() != POS_NOTHING)
 		{
+			isRoutingBreakOff = true;
 			sitetext->stopAllActions();
 			removeAllRoutingBlock();
-			isRoutingBreakOff = true;
 		}
 		if (mapblock->getPosType() == POS_NPC || mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS)
 		{
@@ -1864,6 +1865,7 @@ void MapBlockScene::createBoxRewards(MapBlock* mbolck)
 	else
 	{
 		MovingLabel::show(ResourceLang::map_lang["nothingbox"]);
+		isRoutingBreakOff = false;
 	}
 }
 
@@ -2312,6 +2314,9 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			//isDraging = false;
 			return;
 		}
+		if (isRoutingBreakOff)
+			return;
+
 		Node* node = (Node*)pSender;
 		int tag = node->getTag();
 		if (!isMaze)
@@ -2387,13 +2392,11 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 				{
 					if (isMovingRouting)
 					{
-						isRoutingBreakOff = true;
 						sitetext->stopAllActions();
 						removeAllRoutingBlock();
 						checkMazeStoneHint();
 						return;
 					}
-					isRoutingBreakOff = false;
 					astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(destblockindex % blockColCount, destblockindex / blockColCount));
 				}
 			}
@@ -2425,13 +2428,11 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 				{
 					if (isMovingRouting)
 					{
-						isRoutingBreakOff = true;
 						sitetext->stopAllActions();
 						removeAllRoutingBlock();
 						checkMazeStoneHint();
 						return;
 					}
-					isRoutingBreakOff = false;
 					astarrouting->moveToPosByAStar(Vec2(mycurCol, mycurRow), Vec2(destblockindex % blockColCount, destblockindex / blockColCount));
 				}
 			}

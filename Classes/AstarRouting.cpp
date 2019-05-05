@@ -285,10 +285,7 @@ void AstarRouting::move()
 	g_MapBlockScene->goToDest((int)tostep->getPos().y, (int)tostep->getPos().x);
 	_shortPathList.erase(0);
 
-	if (!g_MapBlockScene->isRoutingBreakOff)
-	{
-		CallFunc *actionCallBack = CallFunc::create(CC_CALLBACK_0(AstarRouting::move, this));
-		Sequence *actionSq = Sequence::create(DelayTime::create(0.53f), actionCallBack, nullptr);
-		g_MapBlockScene->getRoutingAnimNode()->runAction(actionSq);
-	}
+	CallFunc *actionCallBack = CallFunc::create(CC_CALLBACK_0(AstarRouting::move, this));
+	Sequence *actionSq = Sequence::create(DelayTime::create(0.53f), actionCallBack, nullptr);
+	g_MapBlockScene->getRoutingAnimNode()->runAction(actionSq);
 }

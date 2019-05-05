@@ -7,6 +7,7 @@
 #include "MyRes.h"
 #include "MainScene.h"
 #include "TaskLayer.h"
+#include "MapBlockScene.h"
 
 USING_NS_CC;
 
@@ -17,7 +18,8 @@ RewardLayer::RewardLayer()
 
 RewardLayer::~RewardLayer()
 {
-
+	if (g_MapBlockScene != NULL)
+		g_MapBlockScene->isRoutingBreakOff = false;
 }
 
 
