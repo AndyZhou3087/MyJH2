@@ -229,9 +229,9 @@ void RepairBuildingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 			removeSelf();
 		else if (tag == 1000)
 		{
-
 			bool isresenough = true;
 
+			std::string laskresstr;
 			for (unsigned int i = 0; i < vec_repairres.size(); i++)
 			{
 				std::string resid = vec_repairres[i].rid;
@@ -240,6 +240,9 @@ void RepairBuildingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				{
 					if (vec_repairres[i].count > GlobalInstance::getInstance()->getMySoliverCount().getValue())
 					{
+						if (laskresstr.length() > 0)
+							laskresstr.append(ResourceLang::map_lang["dunhao"]);
+						laskresstr.append(GlobalInstance::map_AllResources[resid].name);
 						isresenough = false;
 						break;
 					}
@@ -248,19 +251,26 @@ void RepairBuildingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				{
 					if (vec_repairres[i].count > GlobalInstance::getInstance()->getMyCoinCount().getValue())
 					{
+						if (laskresstr.length() > 0)
+							laskresstr.append(ResourceLang::map_lang["dunhao"]);
+						laskresstr.append(GlobalInstance::map_AllResources[resid].name);
 						isresenough = false;
 						break;
 					}
 				}
 				else if (vec_repairres[i].count > MyRes::getMyResCount(vec_repairres[i].rid))
 				{
+					if (laskresstr.length() > 0)
+						laskresstr.append(ResourceLang::map_lang["dunhao"]);
+					laskresstr.append(GlobalInstance::map_AllResources[resid].name);
 					isresenough = false;
 					break;
 				}
 			}
 			if (!isresenough)
 			{
-				MovingLabel::show(ResourceLang::map_lang["reslack"]);
+				std::string showstr = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), laskresstr.c_str());
+				MovingLabel::show(showstr);
 				return;
 			}
 

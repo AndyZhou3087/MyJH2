@@ -151,12 +151,15 @@ bool MainScene::init()
 	}
 	else if (iscantrigger)
 	{
-		int r = GlobalInstance::getInstance()->createRandomNum(100);
-		if (r < 20)
+		if (!NewGuideLayer::checkifNewerGuide(72))
 		{
-			ishasbeggar = true;
-			ishintbeggar = true;
-			DataSave::getInstance()->setHasBeggar(true);
+			int r = GlobalInstance::getInstance()->createRandomNum(100);
+			if (r < 20)
+			{
+				ishasbeggar = true;
+				ishintbeggar = true;
+				DataSave::getInstance()->setHasBeggar(true);
+			}
 		}
 	}
 
