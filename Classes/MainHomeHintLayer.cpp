@@ -66,7 +66,7 @@ bool MainHomeHintLayer::init(int type)
 			}
 		}
 
-
+		GlobalInstance::getInstance()->setBuildingBroken();
 		str = StringUtils::format(ResourceLang::map_lang["buildingbrokenhint"].c_str(), namestr.c_str());
 	}
 	else if (type == 1)
