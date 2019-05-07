@@ -575,17 +575,6 @@ void DataSave::setSmallStallStock(std::string val)
 	saveStringDataByKey("sstallstock", val);
 }
 
-bool DataSave::getHasSmallStall()
-{
-	int val = loadIntDataByKey("hassstall", 0);
-	return val == 1 ? true : false;
-}
-
-void DataSave::setHasSmallStall(bool val)
-{
-	saveIntDataByKey("hassstall", val == true ? 1 : 0);
-}
-
 bool DataSave::getHasBeggar()
 {
 	int val = loadIntDataByKey("hasbeggar", 0);

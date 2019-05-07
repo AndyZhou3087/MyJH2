@@ -55,6 +55,7 @@ private:
 	std::vector<Hero*> m_myHeros;
 	cocos2d::ui::Widget* m_escapebtn;
 	int fightcount;
+	int ajustFightRet;
 
 	std::vector<FightHeroNode*> vec_atkheronode;
 	std::vector< FightHeroNode*> vec_pairheronode;

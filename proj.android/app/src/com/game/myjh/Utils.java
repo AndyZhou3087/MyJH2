@@ -20,8 +20,9 @@ import android.content.res.AssetManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import android.os.Build;
 import android.os.Environment;
+
+import android.provider.Settings;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlSerializer;
@@ -123,23 +124,22 @@ public class Utils {
     
     public static String UUID()
     {
-        String uuid = null;
-		String serial = null;
-		String m_szDevIDShort = "35" +
-				Build.BOARD.length()%10+ Build.BRAND.length()%10 +
-				Build.HARDWARE.length()%10 + Build.DEVICE.length()%10 +
-				Build.DISPLAY.length()%10 + Build.HOST.length()%10 +
-				Build.ID.length()%10 + Build.MANUFACTURER.length()%10 +
-				Build.MODEL.length()%10 + Build.PRODUCT.length()%10 +
-				Build.TAGS.length()%10 + Build.TYPE.length()%10 +
-				Build.USER.length()%10 ; //13 位
-		try {
-			serial = android.os.Build.class.getField("SERIAL").get(null).toString();
-			//API>=9 使用serial号
-            uuid = new UUID(m_szDevIDShort.hashCode(), serial.hashCode()).toString();
-		} catch (Exception exception) {
-			exception.printStackTrace();
-            uuid = UUID.randomUUID().toString();
+    	final String ANDOIDIDKEY = "androidid";
+		SharedPreferences prefs = sContext.getSharedPreferences("Cocos2dxPrefsFile", 0);
+		String uuid = prefs.getString(ANDOIDIDKEY, null );
+		if (uuid == null || (uuid != null && "".equals(uuid)))
+		{
+			String androidId = Settings.Secure.getString(sContext.getContentResolver(), Settings.Secure.ANDROID_ID);
+			UUID deviceUUid = new UUID(androidId.hashCode(), ((long) androidId.hashCode() << 32));
+			uuid = deviceUUid.toString();
+
+			if (uuid == null || (uuid != null && "".equals(uuid))) {
+				uuid = GetLocalMacAddress();
+			}
+			if (uuid == null || (uuid != null && "".equals(uuid))) {
+				uuid = UUID.randomUUID().toString();
+			}
+			prefs.edit().putString(ANDOIDIDKEY, uuid).commit();
 		}
 		return uuid;
     }

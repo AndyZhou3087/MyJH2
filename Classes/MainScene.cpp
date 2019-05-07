@@ -47,6 +47,7 @@ MainScene::MainScene()
 	httpgettype = 0;
 	ishasbeggar = false;
 	ishintbeggar = false;
+	isHasSmallStall = false;
 	int z002count = MyRes::getMyResCount("z002", MYPACKAGE);
 	if (z002count > 0)
 		MyRes::Use("z002", z002count, MYPACKAGE);
@@ -120,7 +121,7 @@ bool MainScene::init()
 				{
 					int r = GlobalInstance::getInstance()->createRandomNum(100);
 
-					if (r < 20)
+					if (r < 5)
 					{
 						GlobalInstance::map_buildingrepairdata[bbit->first].state = 1;
 						ishasnew = true;
@@ -148,13 +149,14 @@ bool MainScene::init()
 	if (DataSave::getInstance()->getHasBeggar())
 	{
 		ishasbeggar = true;
+		ishintbeggar = false;
 	}
 	else if (iscantrigger)
 	{
 		if (!NewGuideLayer::checkifNewerGuide(72))
 		{
 			int r = GlobalInstance::getInstance()->createRandomNum(100);
-			if (r < 20)
+			if (r < 5)
 			{
 				ishasbeggar = true;
 				ishintbeggar = true;
@@ -165,12 +167,12 @@ bool MainScene::init()
 
 	if (!isnight)
 	{
-		if (!DataSave::getInstance()->getHasSmallStall())
+		if (!isHasSmallStall)
 		{
 			int r = GlobalInstance::getInstance()->createRandomNum(100);
-			if (r < 20)
+			if (r < 10)
 			{
-				DataSave::getInstance()->setHasSmallStall(true);
+				isHasSmallStall = true;
 			}
 		}
 	}
@@ -1177,7 +1179,6 @@ void MainScene::updateTime(float dt)
 		GlobalInstance::timeMarketStr = "";
 		GlobalInstance::map_timeMartData.clear();
 		DataSave::getInstance()->deleteDataByKey("timemarket");
-		DataSave::getInstance()->setHasSmallStall(false);
 	}
 
 	changeDayOrNight();
@@ -1285,7 +1286,7 @@ void MainScene::changeDayOrNight()
 	smallstall->setUserData((void*)smallstall_s);
 	smallstall->addTouchEventListener(CC_CALLBACK_2(MainScene::onEventBuildingClick, this));
 
-	smallstall->setVisible(DataSave::getInstance()->getHasSmallStall() && !isnight);
+	smallstall->setVisible(isHasSmallStall && !isnight);
 
 
 	beggar = (cocos2d::ui::ImageView*)scroll_3->getChildByName("beggar_n");
@@ -1478,6 +1479,7 @@ void MainScene::doBuildingEvent()
 	}
 	else if (ishintbeggar)
 	{
+		ishintbeggar = false;
 		MainHomeHintLayer* layer = MainHomeHintLayer::create(1);
 		addChild(layer);
 	}
@@ -1490,7 +1492,7 @@ void MainScene::showRepairFinishAwd(std::string buildingname)
 	std::map<std::string, S_BUILDINREPAIR>::iterator it;
 
 	int r = GlobalInstance::getInstance()->createRandomNum(100);
-	if (r < 10)
+	if (r < 20)
 	{
 		RepairBuildingLayer* layer = RepairBuildingLayer::create(buildingname, 1);
 		addChild(layer);
@@ -1580,5 +1582,6 @@ void MainScene::showRepairAnim(std::string buildingname)
 void MainScene::hideBeggar()
 {
 	ishasbeggar = false;
+	ishintbeggar = false;
 	beggar->setVisible(false);
 }

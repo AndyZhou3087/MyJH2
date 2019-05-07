@@ -114,6 +114,7 @@ private:
 	bool ishasbeggar;
 	bool ishintbeggar;
 	cocos2d::ui::ImageView* beggar;
+	bool isHasSmallStall;
 };
 extern MainScene* g_mainScene;
 #endif

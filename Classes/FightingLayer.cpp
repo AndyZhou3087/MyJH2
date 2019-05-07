@@ -17,6 +17,7 @@ USING_NS_CC;
 FightingLayer::FightingLayer()
 {
 	fightcount = 0;
+	ajustFightRet = 0;
 }
 
 FightingLayer::~FightingLayer()
@@ -365,7 +366,15 @@ void FightingLayer::heroFight(int fightertag)
 
 		if (atindex < 0)
 		{	
-			this->runAction(Sequence::create(DelayTime::create(1.0f), CallFunc::create(CC_CALLBACK_0(FightingLayer::resumeAtkSchedule, this)), NULL));
+			ajustFightRet++;
+			if (ajustFightRet > 3)
+			{
+				ajustFightRet = 0;
+				fightOver(1);
+			}
+			else
+				this->runAction(Sequence::create(DelayTime::create(1.0f), CallFunc::create(CC_CALLBACK_0(FightingLayer::resumeAtkSchedule, this)), NULL));
+
 			return;
 		}
 
