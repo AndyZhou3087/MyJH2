@@ -15,9 +15,11 @@
     <ma id="s002" c="2" qu="0">10.00</ma>
   </Monstors>
   <Cells rs="32" cs="30">
-    <Cell c="0" r="0" p="-1" w="1" m="91.png" d="22.png" />
+    <Cell c="0" r="0" p="-1" w="1" m="91.png" d="22.png">
+      <event>0;20;0;0;0;0;0</event>
+    </Cell>
     <Cell c="0" r="1" p="-1" w="1" m="6.png" />
-    <Cell c="0" r="2" p="-1" w="1" m="6.png" d="3.png" />
+    <Cell c="0" r="2" p="-1" w="1" m="6.png" />
     <Cell c="0" r="3" p="-1" w="1" m="6.png" />
     <Cell c="0" r="4" p="-1" w="1" m="6.png" />
     <Cell c="0" r="5" p="-1" w="1" m="6.png" />
