@@ -32,8 +32,9 @@
           <FilePathData Path="MainLayer.csd" />
           <FilePathData Path="wgLvLayer.csd" />
           <FilePathData Path="winRewardLayer.csd" />
+          <FilePathData Path="heroAttrLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="winRewardLayer.csd" />
+        <ActiveDocument Path="heroAttrLayer.csd" />
       </Value>
     </Item>
   </Properties>

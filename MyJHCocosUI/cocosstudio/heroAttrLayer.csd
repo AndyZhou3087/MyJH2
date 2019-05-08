@@ -30,6 +30,16 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </AbstractNodeData>
+          <AbstractNodeData Name="cantclick" Visible="False" ActionTag="-1594071010" Tag="72" IconVisible="False" TopMargin="720.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+            <Size X="720.0000" Y="560.0000" />
+            <AnchorPoint />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="1.0000" Y="0.4375" />
+            <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+          </AbstractNodeData>
           <AbstractNodeData Name="equipnode" ActionTag="-1770716320" Tag="139" IconVisible="True" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="790.0000" BottomMargin="490.0000" ctype="SingleNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
             <Children>
@@ -924,16 +934,6 @@
             <PrePosition X="0.9546" Y="0.9741" />
             <PreSize X="0.0431" Y="0.0406" />
             <FileData Type="MarkedSubImage" Path="ui/herohinticon.png" Plist="ui.plist" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="cantclick" Visible="False" ActionTag="-1594071010" Tag="72" IconVisible="False" TopMargin="720.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
-            <Size X="720.0000" Y="560.0000" />
-            <AnchorPoint />
-            <Position />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition />
-            <PreSize X="1.0000" Y="0.4375" />
-            <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

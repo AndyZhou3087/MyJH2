@@ -183,11 +183,15 @@ private:
 	int m_clickhere;
 	std::vector<Hero*> vec_norheros;
 
-	Point beginTouchPoint;
+
 	int pageMoveClickIndex;
 	Node* effectnode[6];
 
 	cocos2d::ui::Widget* redpointArr[6];
+	Point beginTouchPoint;
+	bool isDraging;
+	int m_startClickX;
+	int m_startClickY;
 };
 
 #endif

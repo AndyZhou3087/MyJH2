@@ -48,7 +48,7 @@ HeroAttrLayer::HeroAttrLayer()
 	isCanClickFullHero = true;
 	redtip = NULL;
 	pageMoveClickIndex = 0;
-
+	isDraging = false;
 	for (int i=0;i<6;i++)
 		effectnode[i] = NULL;
 }
@@ -104,7 +104,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 
 	cantclick = (cocos2d::ui::ImageView*)csbnode->getChildByName("cantclick");
 	cantclick->setSwallowTouches(true);
-	cantclick->setVisible(false);
+	//cantclick->setVisible(false);
 
 	cocos2d::ui::Button* hintbtn = (cocos2d::ui::Button*)csbnode->getChildByName("hintbtn");
 	hintbtn->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onHeroHintClick, this));
@@ -267,6 +267,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 	pageView = (cocos2d::ui::PageView*)csbnode->getChildByName("pageView");
 	pageView->addEventListener((ui::PageView::ccPageViewCallback)CC_CALLBACK_2(HeroAttrLayer::JumpSceneCallback, this));
 	pageView->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onHeroFullClick, this));
+	pageView->setSwallowTouches(false);
 	if (fromwhere != 0)
 	{
 		pageView->setEnabled(false);
@@ -351,13 +352,20 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = [=](Touch *touch, Event *event)
+	listener->onTouchBegan = [=](Touch * touch, Event * event)
 	{
+		isDraging = false;
+		m_startClickX = touch->getLocation().x;
+		m_startClickY = touch->getLocation().y;
 		return true;
 	};
-	listener->onTouchMoved = [=](Touch *touch, Event *event)
+
+	listener->onTouchMoved = [=](Touch * touch, Event * event)
 	{
-		return true;
+		if (fabsf(m_startClickX - touch->getLocation().x) > CLICKOFFSETP || fabsf(m_startClickY - touch->getLocation().y) > CLICKOFFSETP)
+		{
+			isDraging = true;
+		}
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -623,8 +631,7 @@ void HeroAttrLayer::JumpSceneCallback(cocos2d::Ref* pScene, cocos2d::ui::PageVie
 		equipnode->stopAllActions();
 		heroattrbottom->runAction(Sequence::create(MoveTo::create(0.3f, Vec2(0, 0)),CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
 		equipnode->runAction(MoveTo::create(0.3f, Vec2(360, 490)));*/
-		cantclick->setVisible(false);
-
+		cantclick->setVisible(true);
 		for (int i = 0; i < equipnode->getChildrenCount(); i++)
 		{
 			if (effectnode[i] != NULL)
@@ -1364,32 +1371,34 @@ void HeroAttrLayer::updateVocationUI()
 
 void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
+	Node* clicknode = (Node*)pSender;
 	if (type == cocos2d::ui::Widget::TouchEventType::BEGAN)
 	{
 		pageMoveClickIndex = 1;
+
 	}
 	else if (type == cocos2d::ui::Widget::TouchEventType::MOVED)
 	{
 		pageMoveClickIndex = 2;
-		if (!cantclick->isVisible())
-		{
-			heroattrbottom->stopAllActions();
-			equipnode->stopAllActions();
-			heroattrbottom->runAction(Sequence::create(MoveTo::create(0.2f, Vec2(0, -heroattrbottom->getContentSize().height)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
-			equipnode->runAction(Sequence::create(MoveTo::create(0.2f, Vec2(360, -560)), NULL));
-			cantclick->setVisible(true);
-		}
+		//if (!cantclick->isVisible())
+		//{
+		//	heroattrbottom->stopAllActions();
+		//	equipnode->stopAllActions();
+		//	heroattrbottom->runAction(Sequence::create(MoveTo::create(0.2f, Vec2(0, -heroattrbottom->getContentSize().height)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+		//	equipnode->runAction(Sequence::create(MoveTo::create(0.2f, Vec2(360, -560)), NULL));
+		//	cantclick->setVisible(true);
+		//}
 	}
 	else if (type == cocos2d::ui::Widget::TouchEventType::CANCELED)
 	{
-		if (cantclick->isVisible())
-		{
-			heroattrbottom->stopAllActions();
-			equipnode->stopAllActions();
-			heroattrbottom->runAction(Sequence::create(MoveTo::create(0.2f, Vec2(0, 0)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
-			equipnode->runAction(MoveTo::create(0.2f, Vec2(360, 490)));
-			cantclick->setVisible(false);
-		}
+		//if (cantclick->isVisible())
+		//{
+		//	heroattrbottom->stopAllActions();
+		//	equipnode->stopAllActions();
+		//	heroattrbottom->runAction(Sequence::create(MoveTo::create(0.2f, Vec2(0, 0)), CallFunc::create(CC_CALLBACK_0(HeroAttrLayer::finishMovingAction, this)), NULL));
+		//	equipnode->runAction(MoveTo::create(0.2f, Vec2(360, 490)));
+		//	cantclick->setVisible(false);
+		//}
 	}
 	else if (type == ui::Widget::TouchEventType::ENDED)
 	{
@@ -1398,6 +1407,9 @@ void HeroAttrLayer::onHeroFullClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 			isCanClickFullHero = true;
 			return;
 		}
+		if (isDraging)
+			return;
+
 		if (lvnode->isVisible() || isMovingAction || !isCanClickFullHero)
 			return;
 		else

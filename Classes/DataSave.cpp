@@ -349,7 +349,7 @@ void DataSave::setMapBoxRewards(std::string mapid, int bid, int val)
 int DataSave::getMapOrderCount(std::string mapid)
 {
 	std::string str = StringUtils::format("order%s", mapid.c_str());
-	return loadIntDataByKey(str, 0);
+	return loadIntDataByKey(str, 1);
 }
 
 void DataSave::setMapOrderCount(std::string mapid, int val)

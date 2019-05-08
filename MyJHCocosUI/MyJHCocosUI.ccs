@@ -1541,7 +1541,6 @@
         </Folder>
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />
-        <Project Name="mainhomeHintLayer.csd" Type="Layer" />
         <Project Name="buyCoinLayer.csd" Type="Layer" />
         <Project Name="buyResLayer.csd" Type="Layer" />
         <Project Name="buySelectLayer.csd" Type="Layer" />
@@ -1587,6 +1586,7 @@
         <Project Name="loginRewardV2Layer.csd" Type="Layer" />
         <Image Name="logo.png" />
         <Project Name="m1_5_BoxLayer.csd" Type="Layer" />
+        <Project Name="mainhomeHintLayer.csd" Type="Layer" />
         <Project Name="MainLayer.csd" Type="Layer" />
         <Project Name="mainMapLayer.csd" Type="Layer" />
         <Project Name="MainMenuLayer.csd" Type="Layer" />
