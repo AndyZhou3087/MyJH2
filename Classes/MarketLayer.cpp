@@ -103,7 +103,7 @@ bool MarketLayer::init(Building* buidingData)
 	buildinglvbox = csbnode->getChildByName("buildinglvbox");
 	buildinglvbox->setScaleX(1.25f);
 
-	if (buidingData->level.getValue() >= 8)
+	if (GlobalInstance::map_buildingrepairdata.find(m_buidingData->name) != GlobalInstance::map_buildingrepairdata.end() && GlobalInstance::map_buildingrepairdata[m_buidingData->name].state > 0 && m_buidingData->level.getValue() >= 8)
 	{
 		brokenlesslv = 8;
 	}
@@ -462,8 +462,10 @@ void MarketLayer::updateContent(int category)
 void MarketLayer::lvup()
 {
 
-	if (m_buidingData->level.getValue() >= 8)
+	if (GlobalInstance::map_buildingrepairdata.find(m_buidingData->name) != GlobalInstance::map_buildingrepairdata.end() && GlobalInstance::map_buildingrepairdata[m_buidingData->name].state > 0 && m_buidingData->level.getValue() >= 8)
 		brokenlesslv = 8;
+	else
+		brokenlesslv = 0;
 
 	std::string str = StringUtils::format("%d%s", m_buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
 	lvUIlbl->setString(str);

@@ -244,7 +244,6 @@ void RepairBuildingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 							laskresstr.append(ResourceLang::map_lang["dunhao"]);
 						laskresstr.append(GlobalInstance::map_AllResources[resid].name);
 						isresenough = false;
-						break;
 					}
 				}
 				else if (resid.compare("r012") == 0)
@@ -255,7 +254,6 @@ void RepairBuildingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 							laskresstr.append(ResourceLang::map_lang["dunhao"]);
 						laskresstr.append(GlobalInstance::map_AllResources[resid].name);
 						isresenough = false;
-						break;
 					}
 				}
 				else if (vec_repairres[i].count > MyRes::getMyResCount(vec_repairres[i].rid))
@@ -264,7 +262,6 @@ void RepairBuildingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 						laskresstr.append(ResourceLang::map_lang["dunhao"]);
 					laskresstr.append(GlobalInstance::map_AllResources[resid].name);
 					isresenough = false;
-					break;
 				}
 			}
 			if (!isresenough)

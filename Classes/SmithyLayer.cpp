@@ -112,7 +112,7 @@ bool SmithyLayer::init(Building* buidingData)
 	else
 		hintlbl->setString(ResourceLang::map_lang["smithylvdesc"]);
 
-	if (buidingData->level.getValue() >= 8)
+	if (GlobalInstance::map_buildingrepairdata.find(m_buidingData->name) != GlobalInstance::map_buildingrepairdata.end() && GlobalInstance::map_buildingrepairdata[m_buidingData->name].state > 0 && buidingData->level.getValue() >= 8)
 	{
 		brokenlesslv = 8;
 	}
@@ -503,8 +503,10 @@ void SmithyLayer::onArmsCategory(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 
 void SmithyLayer::lvup()
 {
-	if (m_buidingData->level.getValue() >= 8)
+	if (GlobalInstance::map_buildingrepairdata.find(m_buidingData->name) != GlobalInstance::map_buildingrepairdata.end() && GlobalInstance::map_buildingrepairdata[m_buidingData->name].state > 0 && m_buidingData->level.getValue() >= 8)
 		brokenlesslv = 8;
+	else
+		brokenlesslv = 0;
 	std::string str = StringUtils::format("%d%s", m_buidingData->level.getValue() + 1, ResourceLang::map_lang["lvtext"].c_str());
 	lvUIlbl->setString(str);
 
