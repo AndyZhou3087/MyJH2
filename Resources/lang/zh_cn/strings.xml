@@ -518,11 +518,11 @@
 	<s name="stagestar01">完成主线任务</s>
 	<s name="stagestar02">完成支线任务</s>	
 	<s name="stagestar03">拾取当前地图所有的包裹</s>	
-	<s name="stagestar04">战斗胜利%d次</s>	
+	<s name="stagestar04">当前地图战斗胜利%d次</s>	
 	<s name="stagestar05">触发一次随机事件</s>
 	<s name="stagestar06">神秘商店处购买一次物品</s>
 	<s name="stagestar07">进入一次迷宫</s>
-	<s name="stagestar08">当前地图侠客无重伤</s>
+	<s name="stagestar08">当前地图连胜10次无侠客重伤</s>
 	<s name="stagestar09">当前地图行走%d格</s>
 	<s name="stagestar10">与任意NPC结交</s>
 	<s name="stagestar11">与任意NPC成为师徒</s>

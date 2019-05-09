@@ -402,7 +402,7 @@
       <msatt6 id="n002" qu="2">30</msatt6>
       <msawd1 id="d002" qu="0" rnd="25.00">1</msawd1>
       <msawd2 id="x021" qu="0" rnd="25.00">1</msawd2>
-      <msawd3 id="x025" qu="0" rnd="25.00">1</msawd3>
+      <msawd3 id="x025" qu="0" rnd="100.00">1</msawd3>
       <msawd4 id="x029" qu="0" rnd="25.00">1</msawd4>
       <msawd5 id="y001" qu="0" rnd="25.00">1</msawd5>
       <msawd6 id="m001" qu="0" rnd="25.00">1</msawd6>

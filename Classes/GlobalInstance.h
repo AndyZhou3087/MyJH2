@@ -948,6 +948,7 @@ public:
 	static int curMapFinishStars;
 
 	static int takeoutherocount;
+	static int contunefightsucccount;
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

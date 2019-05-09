@@ -2117,7 +2117,28 @@ void MapBlockScene::showFightResult(int result)
 		Quest::setAchieveTypeCount(ACHIEVE_FIGHT, 1, mapblock->getPosNpcID());
 
 		if (GlobalInstance::npcmasterfinish != 1)
+		{
+			GlobalInstance::contunefightsucccount++;
+			if (GlobalInstance::contunefightsucccount >= 10)
+			{
+				int liveherocount = 0;
+
+				for (int i = 0; i < 6; i++)
+				{
+					if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
+						liveherocount++;
+				}
+				if (GlobalInstance::takeoutherocount == liveherocount)
+				{
+					calcStar(SA_NODEATH);
+				}
+				else
+				{
+					GlobalInstance::contunefightsucccount = 0;
+				}
+			}
 			calcStar(SA_FIGHTSUCC);
+		}
 
 		isMoving = true;
 		int bindex = (mycurRow)*blockColCount + mycurCol;
@@ -2132,6 +2153,11 @@ void MapBlockScene::showFightResult(int result)
 			map_mapBlocks[bindex]->removePosIcon();
 			map_mapBlocks[bindex]->setPosType(POS_NOTHING);
 		}
+	}
+	else
+	{
+		if (GlobalInstance::npcmasterfinish != 1)
+			GlobalInstance::contunefightsucccount = 0;
 	}
 
 	//出师战斗结果
@@ -3026,18 +3052,6 @@ void MapBlockScene::checkotherstar()
 		if (boxcount >= totalBoxcount)
 		{
 			calcStar(SA_GETALLBOX);
-		}
-
-		int liveherocount = 0;
-
-		for (int i = 0; i < 6; i++)
-		{
-			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
-				liveherocount++;
-		}
-		if (GlobalInstance::takeoutherocount == liveherocount)
-		{
-			calcStar(SA_NODEATH);
 		}
 
 		for (unsigned int i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)

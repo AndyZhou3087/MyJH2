@@ -148,6 +148,8 @@ int GlobalInstance::curMapFinishStars = 0;
 
 int GlobalInstance::takeoutherocount = 0;
 
+int GlobalInstance::contunefightsucccount = 0;
+
 std::vector<S_ChapterStarAwd> GlobalInstance::vec_chaperstarawds;
 
 std::map<std::string, S_BUILDINREPAIR> GlobalInstance::map_buildingrepairdata;
