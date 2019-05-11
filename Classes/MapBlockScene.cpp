@@ -2473,10 +2473,6 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 				)
 				isoverscreen = true;
             
-			float a = map_mapBlocks[mycurindex]->getPositionX();
-			float b = map_mapBlocks[destblockindex]->getPositionX();
-			float w = scrollView->getViewSize().width;
-			float h = scrollView->getViewSize().height;
             if (fabs(map_mapBlocks[mycurindex]->getPositionX() - map_mapBlocks[destblockindex]->getPositionX())* scrollView->getZoomScale() >= scrollView->getViewSize().width/2 || fabs(map_mapBlocks[mycurindex]->getPositionY() - map_mapBlocks[destblockindex]->getPositionY())*scrollView->getZoomScale() >= scrollView->getViewSize().height/2)
                 ishalfscreen = true;
         }

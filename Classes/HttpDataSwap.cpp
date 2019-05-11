@@ -769,11 +769,18 @@ void HttpDataSwap::addNews(std::string content, int type)
 	url.append("&content=");
 	url.append(content);
 
-//    url.append("&sign=");
-//    std::string md5ostr = GlobalInstance::getInstance()->UUID() + typestr;
-//
-//    std::string signstr = md5(md5ostr + "key=zhoujian-87");
-//    url.append(signstr);
+	url.append("&content=");
+	url.append(content);
+
+	url.append("&timsec=");
+	std::string timestr = StringUtils::format("%d", GlobalInstance::getInstance()->getSysSecTime());
+	url.append(timestr);
+
+    url.append("&sign=");
+    std::string md5ostr = GlobalInstance::getInstance()->UUID() + timestr;
+
+    std::string signstr = md5(md5ostr + "key=zhoujian-87");
+    url.append(signstr);
 
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpAddNewsCB, this));
 }
