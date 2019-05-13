@@ -162,6 +162,7 @@ void FightingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		this->removeFromParentAndCleanup(true);
+		g_MapBlockScene->isRoutingBreakOff = false;
 	}
 }
 

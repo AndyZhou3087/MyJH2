@@ -8,3 +8,4 @@ MyJHCocosUI/Resources/res
 .cocos-project.json
 CMakeLists.txt
 Resources/ResourcesEnc
+.vs/
