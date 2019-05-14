@@ -1,4 +1,4 @@
-﻿#include "GlobalInstance.h"
+#include "GlobalInstance.h"
 #include "DataSave.h"
 #include "Hero.h"
 #include "CommonFuncs.h"
@@ -1733,6 +1733,7 @@ void GlobalInstance::loadMyResData()
 		for (unsigned int i = 0; i < vec_tmp.size(); i++)
 		{
 			std::vector<std::string> vec_one;
+
 			CommonFuncs::split(vec_tmp[i], vec_one, "-");
 			std::string rid = vec_one[0];
 

@@ -212,6 +212,13 @@
 		726CA468215DFD90002D0273 /* errorHintLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 726CA465215DFD90002D0273 /* errorHintLayer.csb */; };
 		726CA469215DFD90002D0273 /* loadingclicktext.png in Resources */ = {isa = PBXBuildFile; fileRef = 726CA466215DFD90002D0273 /* loadingclicktext.png */; };
 		72758D64221FD012008C2107 /* MakeResNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72758D61221FD011008C2107 /* MakeResNode.cpp */; };
+		72775AA7227829B400C41984 /* RepairBuildingLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72775AA0227829B300C41984 /* RepairBuildingLayer.cpp */; };
+		72775AA8227829B400C41984 /* SmallStallLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72775AA4227829B300C41984 /* SmallStallLayer.cpp */; };
+		72775AA9227829B400C41984 /* MainHomeHintLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72775AA5227829B400C41984 /* MainHomeHintLayer.cpp */; };
+		72775AAE227829FA00C41984 /* repairanim1.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72775AAA227829F900C41984 /* repairanim1.csb */; };
+		72775AAF227829FA00C41984 /* repairanim2.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72775AAB227829FA00C41984 /* repairanim2.csb */; };
+		72775AB0227829FA00C41984 /* repairBuildingNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72775AAC227829FA00C41984 /* repairBuildingNode.csb */; };
+		72775AB1227829FA00C41984 /* mainhomeHintLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72775AAD227829FA00C41984 /* mainhomeHintLayer.csb */; };
 		72796F5A214BC1FE00664B82 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 72796F58214BC1FE00664B82 /* logo.png */; };
 		727CFC8B2160B4BB0004F5DC /* CannotTouchLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 727CFC882160B4BB0004F5DC /* CannotTouchLayer.cpp */; };
 		727CFC8E2160DBCF0004F5DC /* StoryScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 727CFC8D2160DBCF0004F5DC /* StoryScene.cpp */; };
@@ -699,6 +706,16 @@
 		726CA466215DFD90002D0273 /* loadingclicktext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingclicktext.png; sourceTree = "<group>"; };
 		72758D61221FD011008C2107 /* MakeResNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MakeResNode.cpp; sourceTree = "<group>"; };
 		72758D63221FD011008C2107 /* MakeResNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeResNode.h; sourceTree = "<group>"; };
+		72775AA0227829B300C41984 /* RepairBuildingLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RepairBuildingLayer.cpp; sourceTree = "<group>"; };
+		72775AA2227829B300C41984 /* RepairBuildingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairBuildingLayer.h; sourceTree = "<group>"; };
+		72775AA3227829B300C41984 /* MainHomeHintLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHomeHintLayer.h; sourceTree = "<group>"; };
+		72775AA4227829B300C41984 /* SmallStallLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmallStallLayer.cpp; sourceTree = "<group>"; };
+		72775AA5227829B400C41984 /* MainHomeHintLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainHomeHintLayer.cpp; sourceTree = "<group>"; };
+		72775AA6227829B400C41984 /* SmallStallLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallStallLayer.h; sourceTree = "<group>"; };
+		72775AAA227829F900C41984 /* repairanim1.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = repairanim1.csb; sourceTree = "<group>"; };
+		72775AAB227829FA00C41984 /* repairanim2.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = repairanim2.csb; sourceTree = "<group>"; };
+		72775AAC227829FA00C41984 /* repairBuildingNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = repairBuildingNode.csb; sourceTree = "<group>"; };
+		72775AAD227829FA00C41984 /* mainhomeHintLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainhomeHintLayer.csb; sourceTree = "<group>"; };
 		72796F58214BC1FE00664B82 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		727CFC882160B4BB0004F5DC /* CannotTouchLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CannotTouchLayer.cpp; sourceTree = "<group>"; };
 		727CFC8A2160B4BB0004F5DC /* CannotTouchLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CannotTouchLayer.h; sourceTree = "<group>"; };
@@ -1038,6 +1055,10 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				72775AAD227829FA00C41984 /* mainhomeHintLayer.csb */,
+				72775AAA227829F900C41984 /* repairanim1.csb */,
+				72775AAB227829FA00C41984 /* repairanim2.csb */,
+				72775AAC227829FA00C41984 /* repairBuildingNode.csb */,
 				72B5E8BD226FFF98007E9EFC /* mapbirds.csb */,
 				7285A29B2267602A00481FDE /* storyimg */,
 				7285A29422675EDF00481FDE /* mapZoomGuideLayer.csb */,
@@ -1201,6 +1222,12 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				72775AA5227829B400C41984 /* MainHomeHintLayer.cpp */,
+				72775AA3227829B300C41984 /* MainHomeHintLayer.h */,
+				72775AA0227829B300C41984 /* RepairBuildingLayer.cpp */,
+				72775AA2227829B300C41984 /* RepairBuildingLayer.h */,
+				72775AA4227829B300C41984 /* SmallStallLayer.cpp */,
+				72775AA6227829B400C41984 /* SmallStallLayer.h */,
 				72421DBA21269C30008B1B57 /* AchieveLayer.cpp */,
 				72421DBF21269C30008B1B57 /* AchieveLayer.h */,
 				72421DBD21269C30008B1B57 /* AchieveNode.cpp */,
@@ -1684,6 +1711,7 @@
 				729ADB14222552A000E25E3E /* firstchargeLayer.csb in Resources */,
 				7219409D20FED4E200071BFC /* trainLayer.csb in Resources */,
 				723FC5F921EDF18B00F8414F /* loginRewardV2Layer.csb in Resources */,
+				72775AB1227829FA00C41984 /* mainhomeHintLayer.csb in Resources */,
 				72C1A0EE2136917900246A17 /* goBackLayer.csb in Resources */,
 				7204533920D892640011D560 /* consumeResActionLayer.csb in Resources */,
 				723FC5F821EDF18B00F8414F /* renationLayer.csb in Resources */,
@@ -1698,6 +1726,7 @@
 				7226FB4B2142239F00467283 /* Images.xcassets in Resources */,
 				7204533A20D892640011D560 /* homeHillLayer.csb in Resources */,
 				7282708C20F5B7EE00B07087 /* taskDayNode.csb in Resources */,
+				72775AAF227829FA00C41984 /* repairanim2.csb in Resources */,
 				726CA469215DFD90002D0273 /* loadingclicktext.png in Resources */,
 				7204532620D892640011D560 /* ui.plist in Resources */,
 				72A532CB226022BE0006481E /* popNewHeroLayer.csb in Resources */,
@@ -1764,6 +1793,7 @@
 				72C1A0EF2136917900246A17 /* newPopLayer.csb in Resources */,
 				7282708F20F5B7EE00B07087 /* equipDescLayer.csb in Resources */,
 				72F700A92178707500ED33F1 /* npcgiveLayer.csb in Resources */,
+				72775AAE227829FA00C41984 /* repairanim1.csb in Resources */,
 				7216F5352251F174002EC4A7 /* wellmorebtnnode.csb in Resources */,
 				7206D261211D9FD9002D1BDE /* herowalk in Resources */,
 				726CA468215DFD90002D0273 /* errorHintLayer.csb in Resources */,
@@ -1782,6 +1812,7 @@
 				7204533020D892640011D560 /* heroAttrLayer.csb in Resources */,
 				7204533F20D892640011D560 /* selectMapNode.csb in Resources */,
 				7282708920F5B7EE00B07087 /* fightLayer.csb in Resources */,
+				72775AB0227829FA00C41984 /* repairBuildingNode.csb in Resources */,
 				7244228E222F5CF900A2B517 /* mazedescLayer.csb in Resources */,
 				7256A7642109CFC0000492EA /* taskTipsNode.csb in Resources */,
 				7206D25E211D9FD9002D1BDE /* messageLayer.csb in Resources */,
@@ -1875,6 +1906,7 @@
 				72421DC321269C31008B1B57 /* AchieveLayer.cpp in Sources */,
 				727CFC8E2160DBCF0004F5DC /* StoryScene.cpp in Sources */,
 				723FC5E921EDF16900F8414F /* M1_5_BoxLayer.cpp in Sources */,
+				72775AA7227829B400C41984 /* RepairBuildingLayer.cpp in Sources */,
 				720452FD20D892200011D560 /* MainMapScene.cpp in Sources */,
 				72C1A0E82136914D00246A17 /* TaskDescLayer.cpp in Sources */,
 				7232D82520E639D600299738 /* MyMenu.cpp in Sources */,
@@ -1891,6 +1923,7 @@
 				720452FF20D892200011D560 /* MapBlockScene.cpp in Sources */,
 				7256A75D2109748D000492EA /* ChangeVocationLayer.cpp in Sources */,
 				72C1A0EB2136914D00246A17 /* TaskNode.cpp in Sources */,
+				72775AA9227829B400C41984 /* MainHomeHintLayer.cpp in Sources */,
 				722D3B912228D106004D1285 /* MazeTransitionScene.cpp in Sources */,
 				7282707220F5B7B200B07087 /* LoadingBarProgressTimer.cpp in Sources */,
 				720452E320D892200011D560 /* Building.cpp in Sources */,
@@ -1911,6 +1944,7 @@
 				720452DD20D892200011D560 /* MyHeroNode.cpp in Sources */,
 				1AF87B8B1F6F782A007BE51C /* RootViewController.mm in Sources */,
 				7204530020D892200011D560 /* CardHeroNode.cpp in Sources */,
+				72775AA8227829B400C41984 /* SmallStallLayer.cpp in Sources */,
 				7216F53F2251F18E002EC4A7 /* WellGiftLayer.cpp in Sources */,
 				725BD2C1215BA24500B97454 /* UserTipsBoxLayer.cpp in Sources */,
 				72AD00F8211461E4009C44DA /* WgLvLayer.cpp in Sources */,
