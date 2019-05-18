@@ -1418,6 +1418,8 @@ void MapBlockScene::ajustStatus()
 {
 	ajustMyPos(!isMaze);
 	setBtnEnable(true);
+	if (isMaze)
+		isRoutingBreakOff = false;
 }
 
 void MapBlockScene::setMyPos(bool isfollowme)
