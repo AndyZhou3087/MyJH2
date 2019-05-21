@@ -16,6 +16,7 @@
 #include "StoryScene.h"
 #include "HintBoxLayer.h"
 #include "SoundManager.h"
+#include "MyRes.h"
 #ifdef UMENG
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
@@ -457,6 +458,39 @@ void LoadingScene::optimizeSaveData()
 		}
 		DataSave::getInstance()->deleteDataByKey("BranchTask");
 		GlobalInstance::getInstance()->saveMyTaskBranchData();
+	}
+
+	//保存的物品给角色穿戴，名字如果有乱码，无法保存数据到服务器
+
+	bool issavedata = false;
+	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
+	{
+		if (MyRes::vec_MyResources[i]->getType() >= T_ARMOR && MyRes::vec_MyResources[i]->getType() <= T_NG)
+		{
+			Equipable* equip = (Equipable*)MyRes::vec_MyResources[i];
+
+			bool isfind = false;
+			for (unsigned int m = 0; m < GlobalInstance::vec_myHeros.size(); m++)
+			{
+				if (equip->getWhos().compare(GlobalInstance::vec_myHeros[m]->getName()) == 0)
+				{
+					isfind = true;
+					break;
+				}
+			}
+
+			if (!isfind && equip->getWhos().length() > 0)
+			{
+				equip->setWhos("");
+				equip->setWhere(MYSTORAGE);
+				issavedata = true;
+			}
+		}
+	}
+
+	if (issavedata)
+	{
+		MyRes::saveData();
 	}
 }
 

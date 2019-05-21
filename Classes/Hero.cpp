@@ -1,4 +1,4 @@
-#include "Hero.h"
+﻿#include "Hero.h"
 #include "Resource.h"
 #include "CommonFuncs.h"
 #include "Const.h"
