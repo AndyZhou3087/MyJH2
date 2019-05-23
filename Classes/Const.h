@@ -62,10 +62,16 @@ const static cocos2d::Color3B POTENTIALCOLOR[5] = { cocos2d::Color3B(36, 255, 82
 //镶嵌宝石加成
 const static float STONE_BNS[][3] = { {38.0f, 121.0f, 299.0f},{19.0f, 61.0f, 150.0f},{375.0f,1210.0f, 2990.0f},{0.375f, 1.21f, 2.99f},{0.375f, 1.21f, 2.99f} };
 
-const static float POTENTIAL_BNS[] = {1.0f, 1.27f, 1.63f, 2.08f, 2.63f};
+const static float POTENTIAL_BNS[] = {1.0f, 1.27f, 1.63f, 2.10f, 2.70f};
 
 //突破等级系数
 const static float BREAK_BNS[] = { 1.0f, 1.1f, 1.12f, 1.15f, 1.19f, 1.24f };
+
+//初始最大等级
+const static int BASEMAXHEROLV = 50;
+
+//最大等级后，根据解锁的章节开放多少级
+const static int ADDMAXHEROLV[] = {0,0,0,0,5,5,0};
 
 //装备强化失败降级数
 const static int COSTLV[] = { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 15, 16, 17, 18, 19 };

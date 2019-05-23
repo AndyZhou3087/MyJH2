@@ -97,13 +97,20 @@ void Hero::setHp(float hp)
 
 int Hero::getMaxLevel()
 {
-	int size = GlobalInstance::vec_herosAttr[m_vocation].vec_exp.size();
+	int size = BASEMAXHEROLV;//GlobalInstance::vec_herosAttr[m_vocation].vec_exp.size();
+	
+	for (int i = 0; i < sizeof(ADDMAXHEROLV)/sizeof(ADDMAXHEROLV[0]); i++)
+	{
+		if (i < GlobalInstance::getInstance()->getUnlockChapter())
+			size += ADDMAXHEROLV[i];
+	}
+	
 	return size;
 }
 
 int Hero::getLevel()
 {
-	int size = GlobalInstance::vec_herosAttr[m_vocation].vec_exp.size();
+	int size = getMaxLevel();//GlobalInstance::vec_herosAttr[m_vocation].vec_exp.size();
 	for (int i = 0; i < size; i++)
 	{
 		if (m_exp.getValue() < GlobalInstance::vec_herosAttr[m_vocation].vec_exp[i])
@@ -138,7 +145,7 @@ void Hero::setExpLimit(int vexp)
 	bool isChangeLevel = false;
 	m_lastlevel = getLevel();
 
-	int size = GlobalInstance::vec_herosAttr[m_vocation].vec_exp.size();
+	int size = getMaxLevel();//GlobalInstance::vec_herosAttr[m_vocation].vec_exp.size();
 	int allexp = m_exp.getValue() + vexp;
 	for (int i = 0; i < size; i++)
 	{

@@ -597,7 +597,7 @@ void FightHeroNode::setFightState(int winexp)
 		}
 		else
 		{
-			int maxlv = GlobalInstance::vec_herosAttr[myhero->getVocation()].vec_exp.size();
+			int maxlv = myhero->getMaxLevel();
 			DynamicValueInt dv;
 			dv.setValue(myhero->getExp().getValue() + winexp);
 
