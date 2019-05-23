@@ -1307,7 +1307,7 @@
                     <PrePosition X="0.5033" Y="0.5938" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="m15-10" ActionTag="-595959871" Tag="410" IconVisible="True" LeftMargin="640.0000" RightMargin="1784.0000" TopMargin="725.0000" BottomMargin="875.0000" ctype="SingleNodeObjectData">
+                  <AbstractNodeData Name="m6-1" ActionTag="-595959871" Tag="410" IconVisible="True" LeftMargin="640.0000" RightMargin="1784.0000" TopMargin="725.0000" BottomMargin="875.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <Children>
                       <AbstractNodeData Name="click" Visible="False" ActionTag="-502252742" Tag="297" IconVisible="False" LeftMargin="-50.0000" RightMargin="-50.0000" TopMargin="-80.0000" BottomMargin="-80.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
@@ -1348,7 +1348,7 @@
                         <CColor A="255" R="255" G="255" B="255" />
                         <PrePosition />
                         <PreSize X="0.0000" Y="0.0000" />
-                        <FileData Type="MarkedSubImage" Path="text_zh_cn/m55-10.png" Plist="text_zh_cn.plist" />
+                        <FileData Type="MarkedSubImage" Path="text_zh_cn/m6-1.png" Plist="text_zh_cn.plist" />
                       </AbstractNodeData>
                     </Children>
                     <AnchorPoint />
@@ -1358,7 +1358,7 @@
                     <PrePosition X="0.2640" Y="0.5469" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="m22-1" ActionTag="-360181005" Tag="418" IconVisible="True" LeftMargin="150.0000" RightMargin="2274.0000" TopMargin="440.0000" BottomMargin="1160.0000" ctype="SingleNodeObjectData">
+                  <AbstractNodeData Name="m6-2" ActionTag="-360181005" Tag="418" IconVisible="True" LeftMargin="150.0000" RightMargin="2274.0000" TopMargin="440.0000" BottomMargin="1160.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <Children>
                       <AbstractNodeData Name="click" Visible="False" ActionTag="-1972434302" Tag="298" IconVisible="False" LeftMargin="-50.0000" RightMargin="-50.0000" TopMargin="-80.0000" BottomMargin="-80.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
@@ -1399,7 +1399,7 @@
                         <CColor A="255" R="255" G="255" B="255" />
                         <PrePosition />
                         <PreSize X="0.0000" Y="0.0000" />
-                        <FileData Type="MarkedSubImage" Path="text_zh_cn/m922-1.png" Plist="text_zh_cn.plist" />
+                        <FileData Type="MarkedSubImage" Path="text_zh_cn/m6-2.png" Plist="text_zh_cn.plist" />
                       </AbstractNodeData>
                     </Children>
                     <AnchorPoint />

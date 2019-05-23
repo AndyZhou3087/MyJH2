@@ -126,7 +126,7 @@ bool MainMapScene::init()
 //#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 //		mapname->setVisible(true);
 #else
-		if (c <= 5 && c <= GlobalInstance::getInstance()->getUnlockChapter())
+		if (c <= 6 && c <= GlobalInstance::getInstance()->getUnlockChapter())
 		{
 			mapname->setVisible(true);
 		}
