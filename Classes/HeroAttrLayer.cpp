@@ -139,6 +139,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 		node->setTag(i);
 		node->addTouchEventListener(CC_CALLBACK_2(HeroAttrLayer::onEquipClick, this));
 		redpointArr[i] = (cocos2d::ui::Widget*)node->getChildByName("redpoint");
+		nofiticonArr[i]= (cocos2d::ui::Widget*)node->getChildByName("nofit");
 	}
 	//属性信息
 	heroattrbottom = csbnode->getChildByName("heroattrbottom");
@@ -300,6 +301,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 				cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
 				node->setEnabled(false);
 				redpointArr[i]->setOpacity(0);
+				nofiticonArr[i]->setOpacity(0);
 			}
 			moditybtn->setVisible(false);
 			m_editName->setEnabled(false);
@@ -1309,6 +1311,7 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 		{
 			Equipable* eres = (Equipable*)m_heroData->getEquipable(equiptype[i]);
 			redpointArr[i]->setVisible(false);
+			nofiticonArr[i]->setVisible(false);
 			if (eres != NULL)
 			{
 				if (i != 2 && i != 3)
@@ -1325,7 +1328,26 @@ void HeroAttrLayer::updataAtrrUI(float dt)
 						redpointArr[i]->setVisible(true);
 					}
 				}
+
+				//不适合显示感叹号
+				if (eres->getType() == T_ARMOR)
+				{
+					if (GlobalInstance::map_Equip[eres->getId()].vec_bns[m_heroData->getVocation()] < 1)
+					{
+						nofiticonArr[i]->setVisible(true);
+					}
+				}
+				else if (eres->getType() >= T_WG && eres->getType() <= T_NG)
+				{
+
+					if (GlobalInstance::map_GF[eres->getId()].vec_skillbns[m_heroData->getVocation()] < 1)
+					{
+						nofiticonArr[i]->setVisible(true);
+					}
+				}
 			}
+
+
 			//更新等级
 			cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)equipnode->getChildren().at(i);
 			cocos2d::ui::Text* lvtext = (cocos2d::ui::Text*)node->getChildByName("lvtext");

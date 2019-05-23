@@ -110,6 +110,39 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 
 	p_res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
+	cocos2d::ui::Text* vocationtextlbl = (cocos2d::ui::Text*)infonode->getChildByName("vocationtext");
+	vocationtextlbl->setString(ResourceLang::map_lang["fitjob"]);
+
+
+	cocos2d::ui::Text* jobtext = (cocos2d::ui::Text*)infonode->getChildByName("fitvoc");
+
+	if (m_equip->getType() == T_ARMOR)
+	{
+		Equipable* eres = (Equipable*)m_equip;
+
+		std::string jobstr;
+		for (unsigned int i = 0; i < GlobalInstance::map_Equip[eres->getId()].vec_bns.size(); i++)
+		{
+			float m = GlobalInstance::map_Equip[eres->getId()].vec_bns[i];
+			if (m >= 1)
+			{
+				if (jobstr.length() > 0)
+					jobstr.append(ResourceLang::map_lang["comma"]);
+				jobstr.append(GlobalInstance::map_AllResources[GlobalInstance::vec_herosAttr[i].id].name);
+			}
+		}
+		jobtext->setString(jobstr);
+	}
+	else if (m_equip->getType() >= T_EQUIP && m_equip->getType() <= T_FASHION)
+	{
+		jobtext->setString(ResourceLang::map_lang["fitalljob"]);
+	}
+	else
+	{
+		jobtext->setVisible(false);
+		vocationtextlbl->setVisible(false);
+	}
+
 	cocos2d::ui::Text* qutext = (cocos2d::ui::Text*)infonode->getChildByName("qutext");
 	qutext->setString(ResourceLang::map_lang["potentialtext"]);
 

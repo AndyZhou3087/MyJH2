@@ -188,6 +188,7 @@ private:
 	Node* effectnode[6];
 
 	cocos2d::ui::Widget* redpointArr[6];
+	cocos2d::ui::Widget* nofiticonArr[6];
 	Point beginTouchPoint;
 	bool isDraging;
 	int m_startClickX;

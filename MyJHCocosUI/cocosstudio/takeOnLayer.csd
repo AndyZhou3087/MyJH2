@@ -54,10 +54,10 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="MarkedSubImage" Path="ui/r001.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="qutext" ActionTag="1692101970" Tag="141" IconVisible="False" LeftMargin="-300.7165" RightMargin="243.7165" TopMargin="38.1252" BottomMargin="-64.1252" FontSize="23" LabelText="品质：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-                <Size X="57.0000" Y="26.0000" />
+              <AbstractNodeData Name="vocationtext" ActionTag="876410382" Tag="364" IconVisible="False" LeftMargin="-300.7166" RightMargin="197.7166" TopMargin="17.0426" BottomMargin="-43.0426" FontSize="23" LabelText="适合职业：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                <Size X="103.0000" Y="26.0000" />
                 <AnchorPoint ScaleY="0.5000" />
-                <Position X="-300.7165" Y="-51.1252" />
+                <Position X="-300.7166" Y="-30.0426" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -66,10 +66,34 @@
                 <OutlineColor A="255" R="80" G="38" B="12" />
                 <ShadowColor A="255" R="0" G="0" B="0" />
               </AbstractNodeData>
-              <AbstractNodeData Name="qu" ActionTag="-1660529406" Tag="142" IconVisible="False" LeftMargin="-229.5396" RightMargin="205.5396" TopMargin="38.1252" BottomMargin="-64.1252" FontSize="23" LabelText="甲" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+              <AbstractNodeData Name="fitvoc" ActionTag="992557037" Tag="363" IconVisible="False" LeftMargin="-183.6622" RightMargin="65.6622" TopMargin="17.0426" BottomMargin="-43.0426" FontSize="23" LabelText="侠客，侠客" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                <Size X="118.0000" Y="26.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="-183.6622" Y="-30.0426" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="80" G="38" B="12" />
+                <ShadowColor A="255" R="0" G="0" B="0" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="qutext" ActionTag="1692101970" Tag="141" IconVisible="False" LeftMargin="-300.7166" RightMargin="243.7166" TopMargin="56.1249" BottomMargin="-82.1249" FontSize="23" LabelText="品质：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                <Size X="57.0000" Y="26.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="-300.7166" Y="-69.1249" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="80" G="38" B="12" />
+                <ShadowColor A="255" R="0" G="0" B="0" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="qu" ActionTag="-1660529406" Tag="142" IconVisible="False" LeftMargin="-229.5397" RightMargin="205.5397" TopMargin="56.1249" BottomMargin="-82.1249" FontSize="23" LabelText="甲" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                 <Size X="24.0000" Y="26.0000" />
                 <AnchorPoint ScaleY="0.5000" />
-                <Position X="-229.5396" Y="-51.1252" />
+                <Position X="-229.5397" Y="-69.1249" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -90,10 +114,10 @@
                 <OutlineColor A="255" R="80" G="38" B="12" />
                 <ShadowColor A="255" R="0" G="0" B="0" />
               </AbstractNodeData>
-              <AbstractNodeData Name="desc" ActionTag="-565577886" Tag="144" IconVisible="False" LeftMargin="-299.9821" RightMargin="-300.0179" TopMargin="81.8831" BottomMargin="-131.8831" IsCustomSize="True" FontSize="23" LabelText="甲&#xA;甲" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+              <AbstractNodeData Name="desc" ActionTag="-565577886" Tag="144" IconVisible="False" LeftMargin="-299.9821" RightMargin="-300.0179" TopMargin="98.8830" BottomMargin="-148.8830" IsCustomSize="True" FontSize="23" LabelText="甲&#xA;甲" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
                 <Size X="600.0000" Y="50.0000" />
                 <AnchorPoint ScaleY="0.5000" />
-                <Position X="-299.9821" Y="-106.8831" />
+                <Position X="-299.9821" Y="-123.8830" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />

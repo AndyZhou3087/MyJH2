@@ -635,6 +635,7 @@
       <FilePathData Path="ui/a040.png" />
       <FilePathData Path="ui/a040-2.png" />
       <FilePathData Path="ui/a040-3.png" />
+      <FilePathData Path="ui/nofiticon.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

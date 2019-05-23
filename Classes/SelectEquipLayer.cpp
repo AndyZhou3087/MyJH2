@@ -317,7 +317,7 @@ void SelectEquipLayer::updateUI(float dt)
 
 	for (unsigned int m = 0; m < vec_res.size(); m++)
 	{
-		Node* redpoint = scrollview->getChildByTag(m)->getChildByName("item")->getChildByName("redpoint");
+		Sprite* redpoint = (Sprite*)scrollview->getChildByTag(m)->getChildByName("item")->getChildByName("redpoint");
 		redpoint->setVisible(false);
 
 		Equipable* ret_e = GlobalInstance::getInstance()->compareFitEquip(vec_res[m]->getType(), m_herodata);
@@ -345,6 +345,7 @@ void SelectEquipLayer::updateUI(float dt)
 			if (isfind)
 			{
 				redpoint->setVisible(true);
+				break;
 			}
 		}
 	}

@@ -2125,45 +2125,12 @@ void GlobalInstance::loadChapterStarAwds()
 bool GlobalInstance::compareHighEquip(int type, Hero* herodata)
 {
 	Equipable* myequip = herodata->getEquipable(type);
-	bool isCanShow = false;
+	bool ishas = false;
 	if (myequip != NULL)
 	{
-		float mycount = myequip->getAtk() + myequip->getAtkSpeed() + myequip->getCrit() + myequip->getDf() + myequip->getDodge() + myequip->getHp();
-		float avecount = mycount;
-		bool isSelffit = false;
-		if (type >= T_WG && type <= T_NG)
-		{
-			for (unsigned int i = 0; i < GlobalInstance::map_GF[myequip->getId()].vec_skillbns.size(); i++)
-			{
-				int m = GlobalInstance::map_GF[myequip->getId()].vec_skillbns[i];
-				if (m == 1)
-				{
-					if (i == herodata->getVocation())
-					{
-						isSelffit = true;
-						break;
-					}
-				}
-			}
-		}
-		else if (type == T_ARMOR)
-		{
-			for (unsigned int i = 0; i < GlobalInstance::map_Equip[myequip->getId()].vec_bns.size(); i++)
-			{
-				float m = GlobalInstance::map_Equip[myequip->getId()].vec_bns[i];
-				if (m >= 1)
-				{
-					if (i == herodata->getVocation())
-					{
-						isSelffit = true;
-						break;
-					}
-				}
-			}
-		}
 		for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
 		{
-			bool isfit = false;
+
 			ResBase* res = MyRes::vec_MyResources[i];
 			if (res->getWhere() == MYEQUIP)
 			{
@@ -2174,50 +2141,76 @@ bool GlobalInstance::compareHighEquip(int type, Hero* herodata)
 				Equipable* m_res = (Equipable*)res;
 				if (type >= T_WG && type <= T_NG)
 				{
-					for (unsigned int i = 0; i < GlobalInstance::map_GF[m_res->getId()].vec_skillbns.size(); i++)
+					if (GlobalInstance::map_GF[m_res->getId()].vec_skillbns[herodata->getVocation()] >= 1)
 					{
-						int m = GlobalInstance::map_GF[m_res->getId()].vec_skillbns[i];
-						if (m == 1)
+						if (type == T_WG)
 						{
-							if (i == herodata->getVocation())
+							if (m_res->getAtk() > myequip->getAtk())
 							{
-								isfit = true;
+								ishas = true;
+								break;
+							}
+						}
+						else if (type == T_NG)
+						{
+							if (m_res->getDf() > myequip->getDf())
+							{
+								ishas = true;
 								break;
 							}
 						}
 					}
+
 				}
 				else if (type == T_ARMOR)
 				{
-					for (unsigned int i = 0; i < GlobalInstance::map_Equip[m_res->getId()].vec_bns.size(); i++)
+					if (GlobalInstance::map_Equip[m_res->getId()].vec_bns[herodata->getVocation()] >= 1)
 					{
-						float m = GlobalInstance::map_Equip[m_res->getId()].vec_bns[i];
-						if (m >= 1)
+						if (m_res->getAtk() > myequip->getAtk())
 						{
-							if (i == herodata->getVocation())
-							{
-								isfit = true;
-								break;
-							}
+							ishas = true;
+							break;
 						}
 					}
 				}
-				if (isfit && isSelffit)
+
+				else if (type == T_EQUIP)
 				{
-					float procount = m_res->getAtk() + m_res->getAtkSpeed() + m_res->getCrit() + m_res->getDf() + m_res->getDodge() + m_res->getHp();
-					if (procount > avecount)
+					if (GlobalInstance::map_Equip[m_res->getId()].vec_bns[herodata->getVocation()] >= 1)
 					{
-						avecount = procount;
+						if (m_res->getHp() > myequip->getHp())
+						{
+							ishas = true;
+							break;
+						}
 					}
 				}
-				else if (isfit && !isSelffit)
+				else if (type == T_HANDARMOR)
 				{
-					isCanShow = true;
-					break;
+					if (GlobalInstance::map_Equip[m_res->getId()].vec_bns[herodata->getVocation()] >= 1)
+					{
+						if (m_res->getDodge() > myequip->getDodge())
+						{
+							ishas = true;
+							break;
+						}
+					}
+				}
+				else if (type == T_FASHION)
+				{
+					if (GlobalInstance::map_Equip[m_res->getId()].vec_bns[herodata->getVocation()] >= 1)
+					{
+						if (m_res->getHp() > myequip->getHp())
+						{
+							ishas = true;
+							break;
+						}
+					}
+
 				}
 			}
 		}
-		if (avecount > mycount || isCanShow)
+		if (ishas)
 		{
 			return true;
 		}
@@ -2227,56 +2220,110 @@ bool GlobalInstance::compareHighEquip(int type, Hero* herodata)
 
 Equipable* GlobalInstance::compareFitEquip(int type, Hero* herodata)
 {
-	float avecount = 0;
 	Equipable* ret_equipable = NULL;
 	for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
 	{
-		bool isfit = false;
 		ResBase* res = MyRes::vec_MyResources[i];
 		if (res->getWhere() == MYEQUIP)
 		{
 			continue;
 		}
+
 		if (type == res->getType() && herodata != NULL)
 		{
 			Equipable* m_res = (Equipable*)res;
 			if (type >= T_WG && type <= T_NG)
 			{
-				for (unsigned int i = 0; i < GlobalInstance::map_GF[m_res->getId()].vec_skillbns.size(); i++)
+				if (GlobalInstance::map_GF[m_res->getId()].vec_skillbns[herodata->getVocation()] >= 1)
 				{
-					int m = GlobalInstance::map_GF[m_res->getId()].vec_skillbns[i];
-					if (m == 1)
+					if (ret_equipable == NULL)
+						ret_equipable = m_res;
+					else
 					{
-						if (i == herodata->getVocation())
+						if (type == T_WG)
 						{
-							isfit = true;
-							break;
+							if (m_res->getAtk() > ret_equipable->getAtk())
+							{
+								ret_equipable = m_res;
+							}
+						}
+						else if (type == T_NG)
+						{
+							if (m_res->getDf() > ret_equipable->getDf())
+							{
+								ret_equipable = m_res;
+							}
 						}
 					}
 				}
+	
 			}
 			else if (type == T_ARMOR)
 			{
-				for (unsigned int i = 0; i < GlobalInstance::map_Equip[m_res->getId()].vec_bns.size(); i++)
+				if (GlobalInstance::map_Equip[m_res->getId()].vec_bns[herodata->getVocation()] >= 1)
 				{
-					float m = GlobalInstance::map_Equip[m_res->getId()].vec_bns[i];
-					if (m >= 1)
+					if (ret_equipable == NULL)
 					{
-						if (i == herodata->getVocation())
+						ret_equipable = m_res;
+					}
+					else
+					{
+						if (m_res->getAtk() > ret_equipable->getAtk())
 						{
-							isfit = true;
-							break;
+							ret_equipable = m_res;
 						}
 					}
 				}
 			}
-			if (isfit)
+			else if (type == T_EQUIP)
 			{
-				float procount = m_res->getAtk() + m_res->getAtkSpeed() + m_res->getCrit() + m_res->getDf() + m_res->getDodge() + m_res->getHp();
-				if (procount > avecount)
+				if (GlobalInstance::map_Equip[m_res->getId()].vec_bns[herodata->getVocation()] >= 1)
 				{
-					avecount = procount;
-					ret_equipable = m_res;
+					if (ret_equipable == NULL)
+					{
+						ret_equipable = m_res;
+					}
+					else
+					{
+						if (m_res->getHp() > ret_equipable->getHp())
+						{
+							ret_equipable = m_res;
+						}
+					}
+				}
+			}
+			else if (type == T_HANDARMOR)
+			{
+				if (GlobalInstance::map_Equip[m_res->getId()].vec_bns[herodata->getVocation()] >= 1)
+				{
+					if (ret_equipable == NULL)
+					{
+						ret_equipable = m_res;
+					}
+					else
+					{
+						if (m_res->getDodge() > ret_equipable->getDodge())
+						{
+							ret_equipable = m_res;
+						}
+					}
+				}
+			}
+			else if (type == T_FASHION)
+			{
+				if (GlobalInstance::map_Equip[m_res->getId()].vec_bns[herodata->getVocation()] >= 1)
+				{
+					if (ret_equipable == NULL)
+					{
+						ret_equipable = m_res;
+					}
+					else
+					{
+						if (m_res->getHp() > ret_equipable->getHp())
+						{
+							ret_equipable = m_res;
+						}
+					}
 				}
 			}
 		}

@@ -89,6 +89,17 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="nofit" ActionTag="-777763989" Tag="271" IconVisible="False" LeftMargin="7.5000" RightMargin="87.5000" TopMargin="6.0000" BottomMargin="70.0000" ctype="SpriteObjectData">
+                    <Size X="11.0000" Y="30.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="13.0000" Y="85.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1226" Y="0.8019" />
+                    <PreSize X="0.2264" Y="0.2264" />
+                    <FileData Type="MarkedSubImage" Path="ui/nofiticon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-294.9840" />
@@ -143,6 +154,17 @@
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="nofit" ActionTag="-763856693" Tag="272" IconVisible="False" LeftMargin="7.5000" RightMargin="87.5000" TopMargin="6.0000" BottomMargin="70.0000" ctype="SpriteObjectData">
+                    <Size X="11.0000" Y="30.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="13.0000" Y="85.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1226" Y="0.8019" />
+                    <PreSize X="0.1038" Y="0.2830" />
+                    <FileData Type="MarkedSubImage" Path="ui/nofiticon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -199,6 +221,17 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="nofit" ActionTag="910318415" Tag="273" IconVisible="False" LeftMargin="7.5000" RightMargin="106.5000" TopMargin="7.0000" BottomMargin="88.0000" ctype="SpriteObjectData">
+                    <Size X="11.0000" Y="30.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="13.0000" Y="103.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1040" Y="0.8240" />
+                    <PreSize X="0.0880" Y="0.2400" />
+                    <FileData Type="MarkedSubImage" Path="ui/nofiticon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="-64.2035" Y="9.5001" />
@@ -253,6 +286,17 @@
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="nofit" ActionTag="49778572" Tag="274" IconVisible="False" LeftMargin="7.5000" RightMargin="106.5000" TopMargin="7.0000" BottomMargin="88.0000" ctype="SpriteObjectData">
+                    <Size X="11.0000" Y="30.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="13.0000" Y="103.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1040" Y="0.8240" />
+                    <PreSize X="0.0880" Y="0.2400" />
+                    <FileData Type="MarkedSubImage" Path="ui/nofiticon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -309,6 +353,17 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="nofit" ActionTag="-435443473" Tag="275" IconVisible="False" LeftMargin="7.5000" RightMargin="87.5000" TopMargin="6.0000" BottomMargin="70.0000" ctype="SpriteObjectData">
+                    <Size X="11.0000" Y="30.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="13.0000" Y="85.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1226" Y="0.8019" />
+                    <PreSize X="0.1038" Y="0.2830" />
+                    <FileData Type="MarkedSubImage" Path="ui/nofiticon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="185.5771" Y="0.0001" />
@@ -363,6 +418,17 @@
                     <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="nofit" ActionTag="-833537035" Tag="276" IconVisible="False" LeftMargin="7.5000" RightMargin="87.5000" TopMargin="6.0000" BottomMargin="70.0000" ctype="SpriteObjectData">
+                    <Size X="11.0000" Y="30.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="13.0000" Y="85.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1226" Y="0.8019" />
+                    <PreSize X="0.1038" Y="0.2830" />
+                    <FileData Type="MarkedSubImage" Path="ui/nofiticon.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
