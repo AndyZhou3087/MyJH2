@@ -623,6 +623,18 @@
       <FilePathData Path="ui/routdesticon.png" />
       <FilePathData Path="ui/mapbottompropbg.png" />
       <FilePathData Path="ui/buildingrepairbtn.png" />
+      <FilePathData Path="ui/a037.png" />
+      <FilePathData Path="ui/a037-2.png" />
+      <FilePathData Path="ui/a037-3.png" />
+      <FilePathData Path="ui/a038.png" />
+      <FilePathData Path="ui/a038-2.png" />
+      <FilePathData Path="ui/a038-3.png" />
+      <FilePathData Path="ui/a039.png" />
+      <FilePathData Path="ui/a039-2.png" />
+      <FilePathData Path="ui/a039-3.png" />
+      <FilePathData Path="ui/a040.png" />
+      <FilePathData Path="ui/a040-2.png" />
+      <FilePathData Path="ui/a040-3.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
