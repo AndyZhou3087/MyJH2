@@ -34,6 +34,7 @@ private:
 	Hero* m_herodata;
 	int m_forwhere;
 	std::string needresid;
+	int needcount;
 	Node* csbnode;
 	cocos2d::ui::Text* count[2];
 

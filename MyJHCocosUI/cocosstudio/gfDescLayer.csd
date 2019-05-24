@@ -144,25 +144,25 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="vocationtext" ActionTag="406392156" Tag="140" IconVisible="False" LeftMargin="120.9794" RightMargin="496.0206" TopMargin="750.0355" BottomMargin="503.9645" FontSize="23" LabelText="适合职业：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="vocationtext" ActionTag="406392156" Tag="140" IconVisible="False" LeftMargin="120.9794" RightMargin="496.0206" TopMargin="749.0356" BottomMargin="504.9644" FontSize="23" LabelText="适合职业：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="103.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="172.4794" Y="516.9645" />
+            <Position X="172.4794" Y="517.9644" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="214" B="71" />
-            <PrePosition X="0.2396" Y="0.4039" />
+            <PrePosition X="0.2396" Y="0.4047" />
             <PreSize X="0.1431" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_6" ActionTag="-1498786390" Tag="76" IconVisible="False" LeftMargin="233.3471" RightMargin="437.6529" TopMargin="750.0355" BottomMargin="503.9645" FontSize="23" LabelText="侠客" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_6" ActionTag="-1498786390" Tag="76" IconVisible="False" LeftMargin="233.3471" RightMargin="437.6529" TopMargin="749.0356" BottomMargin="504.9644" FontSize="23" LabelText="侠客" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="49.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="233.3471" Y="516.9645" />
+            <Position X="233.3471" Y="517.9644" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3241" Y="0.4039" />
+            <PrePosition X="0.3241" Y="0.4047" />
             <PreSize X="0.0681" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
@@ -191,25 +191,25 @@
             <FileData Type="MarkedSubImage" Path="ui/setpline0.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="skilltext" ActionTag="-635899131" Tag="141" IconVisible="False" LeftMargin="120.9797" RightMargin="496.0203" TopMargin="791.9775" BottomMargin="462.0225" FontSize="23" LabelText="可用技能：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="skilltext" ActionTag="-635899131" Tag="141" IconVisible="False" LeftMargin="120.9798" RightMargin="496.0202" TopMargin="790.9776" BottomMargin="463.0224" FontSize="23" LabelText="可用技能：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="103.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="172.4797" Y="475.0225" />
+            <Position X="172.4798" Y="476.0224" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="214" B="71" />
-            <PrePosition X="0.2396" Y="0.3711" />
+            <PrePosition X="0.2396" Y="0.3719" />
             <PreSize X="0.1431" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="skillname" ActionTag="224840073" Tag="142" IconVisible="False" LeftMargin="235.9601" RightMargin="381.0399" TopMargin="792.5296" BottomMargin="461.4704" FontSize="23" LabelText="可用技能：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="skillname" ActionTag="224840073" Tag="142" IconVisible="False" LeftMargin="235.9601" RightMargin="381.0399" TopMargin="791.5297" BottomMargin="462.4703" FontSize="23" LabelText="可用技能：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="103.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="287.4601" Y="474.4704" />
+            <Position X="287.4601" Y="475.4703" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="51" B="0" />
-            <PrePosition X="0.3993" Y="0.3707" />
+            <PrePosition X="0.3993" Y="0.3715" />
             <PreSize X="0.1431" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />

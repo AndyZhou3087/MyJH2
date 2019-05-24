@@ -70,6 +70,12 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 	int c = (herodata->getLevel() + 1) / 10;
 	needresid = StringUtils::format("d%03d", c);
 
+	if (c > 5)
+	{
+		c = c % 5 + 1;
+		needresid = StringUtils::format("d%03d", c);
+	}
+
 	//关闭按钮
 	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(ChangeVocationLayer::onBtnClick, this));
@@ -89,6 +95,7 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 		vnode[0]->setPositionY(895);
 		bg->setContentSize(Size(bg->getContentSize().width, 1130));
 		closebtn->setPositionY(1160);
+		needcount = 1;
 	}
 	else
 	{
@@ -105,6 +112,11 @@ bool ChangeVocationLayer::init(Hero* herodata, int forwhere)
 		//vnode[1]->setVisible(false);
 		//bg->setContentSize(Size(bg->getContentSize().width, 620));
 		//closebtn->setPositionY(905);
+		needcount = 1;
+
+		int c = (m_herodata->getLevel() + 1) / 10;
+		if (c > 5)
+			needcount = 2;
 	}
 	for (int i = 0; i < index; i++)
 	{
@@ -326,7 +338,7 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 		{
 			if (m_forwhere == 0)//转职
 			{
-				if (MyRes::getMyResCount(needresid) < 1)
+				if (MyRes::getMyResCount(needresid) < needcount)
 				{
 					MovingLabel::show(ResourceLang::map_lang["reslack"]);
 
@@ -336,7 +348,7 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 					std::vector< MSGAWDSDATA> vec_res;
 					MSGAWDSDATA rdata;
 					rdata.rid = needresid;
-					rdata.count = 1;
+					rdata.count = needcount;
 					rdata.qu = 0;
 					vec_res.push_back(rdata);
 					BuyResLayer* layer = BuyResLayer::create(vec_res);
@@ -361,13 +373,13 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 			}
 			else//突破
 			{
-				if (MyRes::getMyResCount(needresid) < 1)
+				if (MyRes::getMyResCount(needresid) < needcount)
 				{
 					MovingLabel::show(ResourceLang::map_lang["reslack"]);
 					std::vector< MSGAWDSDATA> vec_res;
 					MSGAWDSDATA rdata;
 					rdata.rid = needresid;
-					rdata.count = 1;
+					rdata.count = needcount;
 					rdata.qu = 0;
 					vec_res.push_back(rdata);
 					BuyResLayer* layer = BuyResLayer::create(vec_res);
@@ -376,7 +388,7 @@ void ChangeVocationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 				}
 				else
 				{
-					MyRes::Use(needresid);
+					MyRes::Use(needresid, needcount);
 					m_herodata->setChangeCount(m_herodata->getChangeCount() + 1);
 					GlobalInstance::getInstance()->saveHero(m_herodata);
 					HeroAttrLayer* attlay = (HeroAttrLayer*)this->getParent();
@@ -414,7 +426,7 @@ void ChangeVocationLayer::onImgClick(cocos2d::Ref *pSender, cocos2d::ui::Widget:
 
 void ChangeVocationLayer::updateResCount(float dt)
 {
-	std::string str = StringUtils::format("%d/1", MyRes::getMyResCount(needresid));
+	std::string str = StringUtils::format("%d/%d", MyRes::getMyResCount(needresid), needcount);
 
 	for (int i = 0; i < 2; i++)
 	{
@@ -422,7 +434,7 @@ void ChangeVocationLayer::updateResCount(float dt)
 		{
 			count[i]->setString(str);
 
-			if (MyRes::getMyResCount(needresid) >= 1)
+			if (MyRes::getMyResCount(needresid) >= needcount)
 			{
 				count[i]->setColor(Color3B(255, 255, 255));
 			}
