@@ -144,26 +144,38 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="vocationtext" ActionTag="406392156" Tag="140" IconVisible="False" LeftMargin="120.9803" RightMargin="496.0197" TopMargin="736.0335" BottomMargin="517.9665" FontSize="23" LabelText="适合职业：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="vocationtext" ActionTag="406392156" Tag="140" IconVisible="False" LeftMargin="120.9794" RightMargin="496.0206" TopMargin="750.0355" BottomMargin="503.9645" FontSize="23" LabelText="适合职业：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="103.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="172.4803" Y="530.9665" />
+            <Position X="172.4794" Y="516.9645" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="214" B="71" />
-            <PrePosition X="0.2396" Y="0.4148" />
+            <PrePosition X="0.2396" Y="0.4039" />
             <PreSize X="0.1431" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="attrtext_6" ActionTag="-1498786390" Tag="76" IconVisible="False" LeftMargin="233.3482" RightMargin="437.6518" TopMargin="736.0335" BottomMargin="517.9665" FontSize="23" LabelText="侠客" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="attrtext_6" ActionTag="-1498786390" Tag="76" IconVisible="False" LeftMargin="233.3471" RightMargin="437.6529" TopMargin="750.0355" BottomMargin="503.9645" FontSize="23" LabelText="侠客" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="49.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="233.3482" Y="530.9665" />
+            <Position X="233.3471" Y="516.9645" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3241" Y="0.4148" />
+            <PrePosition X="0.3241" Y="0.4039" />
             <PreSize X="0.0681" Y="0.0203" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="nofithint" ActionTag="560103342" Tag="90" IconVisible="False" LeftMargin="110.9616" RightMargin="94.0383" TopMargin="716.8409" BottomMargin="542.1591" FontSize="18" LabelText="（不适合本职业，如若使用则此武功属性会降低并且不触发技能）" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="515.0000" Y="21.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="110.9616" Y="552.6591" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="0" B="0" />
+            <PrePosition X="0.1541" Y="0.4318" />
+            <PreSize X="0.7153" Y="0.0164" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
@@ -179,43 +191,43 @@
             <FileData Type="MarkedSubImage" Path="ui/setpline0.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="skilltext" ActionTag="-635899131" Tag="141" IconVisible="False" LeftMargin="120.9801" RightMargin="496.0199" TopMargin="781.9764" BottomMargin="472.0236" FontSize="23" LabelText="可用技能：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="skilltext" ActionTag="-635899131" Tag="141" IconVisible="False" LeftMargin="120.9797" RightMargin="496.0203" TopMargin="791.9775" BottomMargin="462.0225" FontSize="23" LabelText="可用技能：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="103.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="172.4801" Y="485.0236" />
+            <Position X="172.4797" Y="475.0225" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="214" B="71" />
-            <PrePosition X="0.2396" Y="0.3789" />
+            <PrePosition X="0.2396" Y="0.3711" />
             <PreSize X="0.1431" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="skillname" ActionTag="224840073" Tag="142" IconVisible="False" LeftMargin="235.9607" RightMargin="381.0393" TopMargin="782.5283" BottomMargin="471.4717" FontSize="23" LabelText="可用技能：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="skillname" ActionTag="224840073" Tag="142" IconVisible="False" LeftMargin="235.9601" RightMargin="381.0399" TopMargin="792.5296" BottomMargin="461.4704" FontSize="23" LabelText="可用技能：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="103.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="287.4607" Y="484.4717" />
+            <Position X="287.4601" Y="474.4704" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="51" B="0" />
-            <PrePosition X="0.3993" Y="0.3785" />
+            <PrePosition X="0.3993" Y="0.3707" />
             <PreSize X="0.1431" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="skilldesc" ActionTag="-517025343" Tag="143" IconVisible="False" LeftMargin="120.9800" RightMargin="119.0200" TopMargin="814.8729" BottomMargin="413.1271" IsCustomSize="True" FontSize="23" LabelText="可用技能：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="skilldesc" ActionTag="-517025343" Tag="143" IconVisible="False" LeftMargin="120.9800" RightMargin="119.0200" TopMargin="831.8733" BottomMargin="396.1267" IsCustomSize="True" FontSize="23" LabelText="可用技能：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="480.0000" Y="52.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="120.9800" Y="439.1271" />
+            <Position X="120.9800" Y="422.1267" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1680" Y="0.3431" />
+            <PrePosition X="0.1680" Y="0.3298" />
             <PreSize X="0.6667" Y="0.0406" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="actionbtn" ActionTag="-782114571" Tag="74" IconVisible="False" LeftMargin="271.0005" RightMargin="244.9995" TopMargin="881.0002" BottomMargin="314.9998" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="actionbtn" ActionTag="-782114571" Tag="74" IconVisible="False" LeftMargin="271.0003" RightMargin="244.9997" TopMargin="898.0006" BottomMargin="297.9994" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-493156186" Tag="75" IconVisible="False" LeftMargin="64.5216" RightMargin="65.4784" TopMargin="21.2404" BottomMargin="25.7596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="24" Scale9Height="11" ctype="ImageViewObjectData">
@@ -241,10 +253,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="373.0005" Y="356.9998" />
+            <Position X="373.0003" Y="339.9994" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5181" Y="0.2789" />
+            <PrePosition X="0.5181" Y="0.2656" />
             <PreSize X="0.2833" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
@@ -253,7 +265,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lvbtn" ActionTag="486500279" VisibleForFrame="False" Tag="72" IconVisible="False" LeftMargin="391.7579" RightMargin="124.2421" TopMargin="881.0002" BottomMargin="314.9998" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="lvbtn" ActionTag="486500279" VisibleForFrame="False" Tag="72" IconVisible="False" LeftMargin="391.7578" RightMargin="124.2422" TopMargin="898.0006" BottomMargin="297.9994" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="1448527328" Tag="73" IconVisible="False" LeftMargin="62.5216" RightMargin="63.4784" TopMargin="19.7404" BottomMargin="24.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="28" Scale9Height="14" ctype="ImageViewObjectData">
@@ -279,10 +291,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="493.7579" Y="356.9998" />
+            <Position X="493.7578" Y="339.9994" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6858" Y="0.2789" />
+            <PrePosition X="0.6858" Y="0.2656" />
             <PreSize X="0.2833" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
@@ -291,7 +303,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="salebtn" ActionTag="1963404056" VisibleForFrame="False" Tag="100" IconVisible="False" LeftMargin="130.7392" RightMargin="385.2608" TopMargin="881.0002" BottomMargin="314.9998" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="salebtn" ActionTag="1963404056" VisibleForFrame="False" Tag="100" IconVisible="False" LeftMargin="130.7389" RightMargin="385.2611" TopMargin="898.0006" BottomMargin="297.9994" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="599733861" Tag="101" IconVisible="False" LeftMargin="62.5216" RightMargin="63.4784" TopMargin="19.7404" BottomMargin="24.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="28" Scale9Height="14" ctype="ImageViewObjectData">
@@ -306,10 +318,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="232.7392" Y="356.9998" />
+            <Position X="232.7389" Y="339.9994" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3232" Y="0.2789" />
+            <PrePosition X="0.3232" Y="0.2656" />
             <PreSize X="0.2833" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />

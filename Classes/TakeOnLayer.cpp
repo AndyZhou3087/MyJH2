@@ -143,6 +143,15 @@ bool TakeOnLayer::init(Equip* res_equip, Hero* herodata)
 		vocationtextlbl->setVisible(false);
 	}
 
+	cocos2d::ui::Text* nofithint = (cocos2d::ui::Text*)infonode->getChildByName("fithint");
+
+	if (GlobalInstance::map_Equip[m_equip->getId()].vec_bns[m_herodata->getVocation()] >= 1)
+		nofithint->setVisible(false);
+	else
+	{
+		nofithint->setString(ResourceLang::map_lang["nofitdesc1"]);
+	}
+
 	cocos2d::ui::Text* qutext = (cocos2d::ui::Text*)infonode->getChildByName("qutext");
 	qutext->setString(ResourceLang::map_lang["potentialtext"]);
 

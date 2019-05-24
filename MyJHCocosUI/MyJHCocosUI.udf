@@ -25,18 +25,5 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="ui.csi" />
-          <FilePathData Path="mainMapLayer.csd" />
-          <FilePathData Path="selectEquipLayer.csd" />
-          <FilePathData Path="heroAttrLayer.csd" />
-          <FilePathData Path="takeOnLayer.csd" />
-          <FilePathData Path="gfDescLayer.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="takeOnLayer.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

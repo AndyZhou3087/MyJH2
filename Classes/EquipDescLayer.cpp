@@ -53,7 +53,7 @@ EquipDescLayer::~EquipDescLayer()
 	}
 }
 
-EquipDescLayer* EquipDescLayer::create(std::string resid, int qu, int fromwhere)
+EquipDescLayer* EquipDescLayer::create(std::string resid, int qu, int fromwhere, Hero* herodata)
 {
 
 	int t = -1;
@@ -82,10 +82,10 @@ EquipDescLayer* EquipDescLayer::create(std::string resid, int qu, int fromwhere)
 	return create(IdEquipable, fromwhere);
 }
 
-EquipDescLayer* EquipDescLayer::create(ResBase* res, int fromwhere)
+EquipDescLayer* EquipDescLayer::create(ResBase* res, int fromwhere, Hero* herodata)
 {
 	EquipDescLayer *pRet = new(std::nothrow)EquipDescLayer();
-	if (pRet && pRet->init(res, fromwhere))
+	if (pRet && pRet->init(res, fromwhere, herodata))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -99,7 +99,7 @@ EquipDescLayer* EquipDescLayer::create(ResBase* res, int fromwhere)
 }
 
 // on "init" you need to initialize your instance
-bool EquipDescLayer::init(ResBase* res, int fromwhere)
+bool EquipDescLayer::init(ResBase* res, int fromwhere, Hero* herodata)
 {
 	if (!Layer::init())
 	{
@@ -210,6 +210,23 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere)
 			}
 		}
 		jobtext->setString(jobstr);
+
+		cocos2d::ui::Text* nofithint = (cocos2d::ui::Text*)csbnode->getChildByName("nofithint");
+
+		if (herodata != NULL)
+		{
+			if (GlobalInstance::map_GF[gf->getId()].vec_skillbns[herodata->getVocation()] >= 1)
+				nofithint->setVisible(false);
+			else
+			{
+				nofithint->setString(ResourceLang::map_lang["nofitdesc2"]);
+			}
+		}
+		else
+		{
+			nofithint->setVisible(false);
+
+		}
 
 		cocos2d::ui::Text* vocationtextlbl = (cocos2d::ui::Text*)csbnode->getChildByName("vocationtext");
 		vocationtextlbl->setString(ResourceLang::map_lang["fitjob"]);

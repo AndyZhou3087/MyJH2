@@ -5,6 +5,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "Equipable.h"
+#include "Hero.h"
 USING_NS_CC;
 
 typedef enum
@@ -22,10 +23,10 @@ public:
 	EquipDescLayer();
 	~EquipDescLayer();
 	virtual void onEnterTransitionDidFinish();
-	static EquipDescLayer* create(ResBase* res, int fromwhere);
-	static EquipDescLayer* create(std::string resid,int qu, int fromwhere);
+	static EquipDescLayer* create(ResBase* res, int fromwhere, Hero* herodata = NULL);
+	static EquipDescLayer* create(std::string resid,int qu, int fromwhere, Hero* herodata = NULL);
 	virtual void onExit();
-	bool init(ResBase* res, int fromwhere);
+	bool init(ResBase* res, int fromwhere, Hero* herodata = NULL);
 	void updateAttr();
 
 	void updateStoneUI();
