@@ -112,8 +112,13 @@ bool RepairBuildingLayer::init(std::string buildingname, int type)
 			{
 				int count = 1;
 
-				if (MyRes::vec_MyResources[i]->getCount().getValue() >= 10)
-					count = MyRes::vec_MyResources[i]->getCount().getValue() * 2 / 10;
+				if (MyRes::vec_MyResources[i]->getCount().getValue() < 10)
+					count = 1;
+				else
+					count = MyRes::vec_MyResources[i]->getCount().getValue() / 10;
+
+				if (count > 10)
+					count = 10;
 				std::string str = StringUtils::format("%s-%d", MyRes::vec_MyResources[i]->getId().c_str(), count);
 				vec_res.push_back(str);
 			}

@@ -497,7 +497,6 @@ void LoadingScene::optimizeSaveData()
 void LoadingScene::parseCfgFiles()
 {
 	GlobalInstance::getInstance()->loadInitData();
-	int langtype = GlobalInstance::getInstance()->getLang();
 
 	//解析建筑物xml
 	Building::parseData();
