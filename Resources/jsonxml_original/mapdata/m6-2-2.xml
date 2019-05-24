@@ -381,7 +381,7 @@
     <Cell c="8" r="3" p="-1" w="1" m="6.png" />
     <Cell c="8" r="4" p="-1" w="1" m="6.png" />
     <Cell c="8" r="5" p="4" w="1" prs1="89" pre1="734" m="6.png">
-      <npcid>n006</npcid>
+      <npcid>n004</npcid>
       <npcrnd>100</npcrnd>
       <msatt1 id="n004" qu="3">65</msatt1>
       <msatt2 id="n004" qu="3">65</msatt2>
