@@ -175,6 +175,7 @@ bool RandHeroLayer::init()
 	repairbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("repairbtn");
 	repairbtn->setTag(2000);
 	repairbtn->addTouchEventListener(CC_CALLBACK_2(RandHeroLayer::onBtnClick, this));
+	repairbtn->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 10), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -10), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
 
 	repairtimelbl = (cocos2d::ui::Text*)repairbtn->getChildByName("time");
 	repairtimelbl->setString("");
@@ -636,6 +637,7 @@ void RandHeroLayer::updateRepairUi()
 				int lefttime = REPAIRTIME - pasttime;
 				std::string strlbl = StringUtils::format("%02d:%02d", lefttime / 60, lefttime % 60);
 				repairtimelbl->setString(strlbl);
+				repairbtn->stopAllActions();
 			}
 		}
 		else
