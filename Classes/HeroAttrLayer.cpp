@@ -580,9 +580,20 @@ void HeroAttrLayer::loadHeroUI()
 						txtimg->loadTexture(ResourcePath::makeTextImgPath("changebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 					}
 				}
+
 				if (m_heroData->getExp().getValue() >= GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getMaxLevel() - 1])
 				{
-					btn->setEnabled(false);
+					int index = -1;
+					for (int i = 0; i < sizeof(ADDMAXHEROLV) / sizeof(ADDMAXHEROLV[0]); i++)
+					{
+						if (ADDMAXHEROLV[i] > 0 && i >= GlobalInstance::getInstance()->getUnlockChapter())
+						{
+							index = i;
+							break;
+						}
+					}
+					if (index < 0)
+						btn->setEnabled(false);
 				}
 			}
 		}
@@ -777,6 +788,30 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			}
 			else
 			{
+				if (m_heroData->getExp().getValue() >= GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getMaxLevel() - 1])
+				{
+					int index = -1;
+					for (int i = 0; i < sizeof(ADDMAXHEROLV) / sizeof(ADDMAXHEROLV[0]); i++)
+					{
+						if (ADDMAXHEROLV[i] > 0 && i >= GlobalInstance::getInstance()->getUnlockChapter())
+						{
+							index = i;
+							break;
+						}
+					}
+					if (index >= 0)
+					{
+						int maxlv = BASEMAXHEROLV;
+						for (int i = 0; i <= index; i++)
+						{
+							maxlv += ADDMAXHEROLV[i];
+						}
+
+						std::string showstr = StringUtils::format(ResourceLang::map_lang["openmaxherolvhint"].c_str(), index+1, maxlv);
+						MovingLabel::show(showstr);
+					}
+					return;
+				}
 				updateAtrBtnUI();
 				lvnode->setVisible(true);
 				addexplbl->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
@@ -1023,7 +1058,17 @@ void HeroAttrLayer::changeButton()
 	if (m_heroData->getExp().getValue() >= GlobalInstance::vec_herosAttr[m_heroData->getVocation()].vec_exp[m_heroData->getMaxLevel() - 1])
 	{
 		txtimg->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-		btnArr[1]->setEnabled(false);
+		int index = -1;
+		for (int i = 0; i < sizeof(ADDMAXHEROLV) / sizeof(ADDMAXHEROLV[0]); i++)
+		{
+			if (ADDMAXHEROLV[i] > 0 && i >= GlobalInstance::getInstance()->getUnlockChapter())
+			{
+				index = i;
+				break;
+			}
+		}
+		if (index < 0)
+			btnArr[1]->setEnabled(false);
 	}
 }
 
