@@ -72,7 +72,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scenetext" ActionTag="1419858545" Tag="8" IconVisible="False" LeftMargin="102.9593" RightMargin="117.0407" TopMargin="534.8850" BottomMargin="645.1150" IsCustomSize="True" FontSize="25" LabelText="新场景" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="scenetext" ActionTag="1419858545" Tag="8" IconVisible="False" LeftMargin="102.9593" RightMargin="117.0407" TopMargin="534.8850" BottomMargin="645.1150" IsCustomSize="True" FontSize="25" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="500.0000" Y="100.0000" />
             <AnchorPoint ScaleY="1.0000" />
             <Position X="102.9593" Y="745.1150" />

@@ -225,6 +225,7 @@
 	<s name="unlockchapter3">自古正邪不两立，正道一直没有停止围剿魔教。但魔教一直存着统一武林的野心。趁江湖大乱，魔教也派出人马抢夺天书，更有不少门派暗中投靠了魔教，莫非魔教将会死灰复燃？</s>
 	<s name="unlockchapter4">魔教此番卷土重来，声势浩大，魔教早已在多地设立据点，所图甚大。并且魔教还施展卑鄙手段将不少门派帮主变为傀儡。魔教如此猖狂，我正道中人需要慎之又慎。</s>
 	<s name="unlockchapter5">五岳剑派原本同气连枝，守望互助。但为了这天书，有人谋害盟友，有人引狼入室，有人走火入魔，有的却能坚持本心，匡扶正道。且看五岳剑派这场风波，能看清多少人心善恶。</s>
+	<s name="unlockchapter6">崆峒昆仑历来在武林中占据重要地位，天书自然也少不了他们的身影，近来两派也出现了一些乱象，新的挑战在等着你。</s>
 	<s name="powerlimit">体力已达上限，无需使用！</s>
 	<s name="gobacktext">回城</s>
 	<s name="hcjznomore">回城卷轴数量不足！</s>
@@ -552,6 +553,7 @@
 	<s name="beggargivetext">大侠行行好，我已经很久没有吃饭了！</s>	
 	<s name="beggarlossres">乞丐出现，食材-1</s>
 	<s name="nofitdesc1">（不适合本职业，如若使用则此装备属性会降低）</s>
-	<s name="nofitdesc2">（不适合本职业，如若使用则此武功属性会降低并且不触发技能）</s>
+	<s name="nofitdesc2">（不适合本职业，如若使用则此武功属性会降低且不触发技能）</s>
 	<s name="openmaxherolvhint">解锁第%d章节开放侠客最高等级到%d级</s>
+	<s name="unlockmaxherolv">开放侠客最高等级到%d级</s>
 </strings>

@@ -93,6 +93,8 @@ bool NewPopLayer::init(int unlockchapter)
 	{
 		scenetitle->setVisible(true);
 		scenetext->setVisible(true);
+		Label* scenetextlbl = (Label*)scenetext->getVirtualRenderer();
+		scenetextlbl->setLineSpacing(10);
 		std::string str;
 		std::map<std::string, S_MainMap>::iterator it;
 		for (it = GlobalInstance::map_mapsdata.begin(); it != GlobalInstance::map_mapsdata.end(); it++)
@@ -107,6 +109,20 @@ bool NewPopLayer::init(int unlockchapter)
 			}
 		}
 		str = StringUtils::format("%s", str.c_str());
+
+		if (unlockchapter >= 5)
+		{
+			str.append("\n");
+			int maxlv = BASEMAXHEROLV;
+			for (int i = 0; i < sizeof(ADDMAXHEROLV) / sizeof(ADDMAXHEROLV[0]); i++)
+			{
+				if (i < unlockchapter)
+					maxlv += ADDMAXHEROLV[i];
+			}
+			std::string unlocklvstr = StringUtils::format(ResourceLang::map_lang["unlockmaxherolv"].c_str(), maxlv);
+			str.append(unlocklvstr);
+		}
+
 		scenetext->setString(str);
 
 		title->loadTexture(ResourcePath::makeTextImgPath("text_unlock", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -115,8 +131,9 @@ bool NewPopLayer::init(int unlockchapter)
 
 		str = StringUtils::format("unlockchapter%d", unlockchapter);
 		//content->setString(ResourceLang::map_lang[str]);
+		std::string contentstr = ResourceLang::map_lang[str];
 
-		contentlbl->setString(ResourceLang::map_lang[str]);
+		contentlbl->setString(contentstr);
 
 		int innerheight = contentlbl->getStringNumLines() * 33;//contentlbl->getHeight();
 		int contentheight = contentscoll->getContentSize().height;
