@@ -37,6 +37,7 @@ LoadingScene::LoadingScene()
 LoadingScene::~LoadingScene()
 {
 	g_loadingScene = NULL;
+	GlobalInstance::legalcopyurl = "";
 }
 
 Scene* LoadingScene::createScene()
@@ -709,6 +710,17 @@ void LoadingScene::onFinish(int errcode)
 			isLoadLocal = true;
 			isDataOk = true;
 		}
+		if (GlobalInstance::legalcopyurl.length() > 0 && errcode == 3)
+		{
+			ErrorHintLayer* layer = (ErrorHintLayer*)this->getChildByName("networkerrlayer");
+			if (layer == NULL)
+			{
+				layer = ErrorHintLayer::create(6);
+				this->addChild(layer, 0, "networkerrlayer");
+				AnimationEffect::openAniEffect(layer);
+				return;
+			}
+		}
 	}
 
 	if (!isDataOk)//数据错误
@@ -729,7 +741,6 @@ void LoadingScene::onFinish(int errcode)
 	if (isLoadLocal)
 	{
         loadLocalData();
-
 	}
 }
 

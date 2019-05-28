@@ -314,7 +314,9 @@
 	<s name="dataerr1">检测到您在游戏中多次修改数据，为维护游戏公平性，将您的账号封停处理！</s>
 	<s name="dataerr2">检测到您的账号数据存在异常，请联系客服处理！</s>
 	<s name="comtactus">如有疑问请联系客服</s>
+	<s name="crackerr">您安装的是盗版游戏，请支持正版！可点击下方链接下载正版（卸载此版本后方可安装正版）</s>
 	<s name="qq">QQ:</s>
+	<s name="downloadtext">点击下载</s>
 	<s name="copyqq">QQ号已复制到剪切板</s>
 	<s name="nicknameused">抱歉！该帮派名号已被其他人使用</s>
 	<s name="senstiveword">抱歉！该帮派名号包含敏感词</s>

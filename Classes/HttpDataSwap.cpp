@@ -350,6 +350,16 @@ void HttpDataSwap::getPlayerId()
 	url.append("&idfa=");
 	url.append(GlobalInstance::getInstance()->getIDFA());
 
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	url.append("&sign=");
+	std::string appsignmd5 = GlobalInstance::getInstance()->getAppMD5Sign();
+	std::string md5ostr = GlobalInstance::getInstance()->UUID() + appsignmd5;
+
+	std::string signstr = md5(md5ostr + "key=zhoujian-87");
+	url.append(signstr);
+#endif
+
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetPlayerIdCB, this));
 }
 
@@ -1170,10 +1180,12 @@ void HttpDataSwap::httpGetPlayerIdCB(std::string retdata, int code, std::string 
 
 				v = doc["nickname"];
 				GlobalInstance::getInstance()->setMyNickName(v.GetString());
-
-				if (doc.HasMember("qq"))
-					GlobalInstance::qq = doc["qq"].GetString();
 			}
+			if (doc.HasMember("qq"))
+				GlobalInstance::qq = doc["qq"].GetString();
+
+			if (doc.HasMember("url"))
+				GlobalInstance::legalcopyurl = doc["url"].GetString();
 		}
 		else
 		{

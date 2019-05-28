@@ -28,6 +28,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -105,6 +106,33 @@ public class AppActivity extends Cocos2dxActivity implements DownloadApkTask.onD
                 cm.setPrimaryClip(myClip);
             }
         });
+    }
+
+    public static void openBrower(final String url)
+    {
+        final Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        // 注意此处的判断intent.resolveActivity()可以返回显示该Intent的Activity对应的组件名
+        // 官方解释 : Name of the component implementing an activity that can display the intent
+        if (intent.resolveActivity(m_self.getPackageManager()) != null) {
+            final ComponentName componentName = intent.resolveActivity(m_self.getPackageManager());
+
+            m_self.startActivity(Intent.createChooser(intent, "请选择浏览器"));
+        } else {
+            m_self.runOnUiThread(new Runnable()
+            {
+                public void run()
+                {
+                    ClipboardManager cm = (ClipboardManager) m_self.getSystemService(Context.CLIPBOARD_SERVICE);
+                    // 将文本内容放到系统剪贴板里。
+                    ClipData myClip = ClipData.newPlainText("durl", url);
+                    cm.setPrimaryClip(myClip);
+                    Toast.makeText(m_self.getApplicationContext(), "下载地址已复制，请用浏览器打开", Toast.LENGTH_LONG).show();
+                }
+            });
+
+        }
     }
 
     public static void upgradeApk(final String url) {

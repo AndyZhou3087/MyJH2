@@ -487,6 +487,11 @@ public:
 	*****************************/
 	std::string getIDFA();
 
+	/****************************
+	MD5
+	*****************************/
+	std::string getAppMD5Sign();
+
 	int getSysSecTime();
 
 	int createRandomNum(int val);
@@ -884,6 +889,8 @@ public:
 	static bool isNewHeroRefresh;
 
 	static std::string qq;
+
+	static std::string legalcopyurl;
 
 	static bool isCheat;
 

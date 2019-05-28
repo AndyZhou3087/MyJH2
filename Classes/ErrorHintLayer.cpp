@@ -10,6 +10,7 @@
 #include "HttpDataSwap.h"
 #include "MainScene.h"
 #include "MovingLabel.h"
+#include "SoundManager.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -136,6 +137,43 @@ bool ErrorHintLayer::init(int forwhere)
 		text_2->setVisible(false);
 		actiontextstr = "okbtn_text";
 	}
+	else if (forwhere == 6)
+	{
+		text->setString(ResourceLang::map_lang["crackerr"]);
+		if (GlobalInstance::qq.length() > 0)
+		{
+			std::string text2str;
+			text2str.append(ResourceLang::map_lang["comtactus"]);
+			text2str.append(ResourceLang::map_lang["qq"]);
+			text2str.append(GlobalInstance::qq);
+			text_2->setString(text2str);
+			DrawNode* underlineNode = DrawNode::create();
+			text_2->addChild(underlineNode, 1);
+			underlineNode->setLineWidth(2.0f);
+			underlineNode->drawLine(Vec2(0, 0), Vec2(text_2->getContentSize().width, 0), Color4F(text_2->getTextColor()));
+		}
+		else
+		{
+			text_2->setVisible(false);
+		}
+
+		if (GlobalInstance::legalcopyurl.length() > 0)
+		{
+			text_1->setString(ResourceLang::map_lang["downloadtext"]);
+			text_1->setTextColor(Color4B(58, 151, 234, 255));
+			DrawNode* underlineNode = DrawNode::create();
+			text_1->addChild(underlineNode, 1);
+			underlineNode->setLineWidth(2.0f);
+			underlineNode->drawLine(Vec2(0, 0), Vec2(text_1->getContentSize().width, 0), Color4F(text_2->getTextColor()));
+			text_1->setTag(1000);
+			text_1->addTouchEventListener(CC_CALLBACK_2(ErrorHintLayer::onQQClick, this));
+		}
+		else
+		{
+			text_1->setVisible(false);
+		}
+	}
+
 
 	if (forwhere == 1 || forwhere == 2)
 	{
@@ -207,23 +245,42 @@ void ErrorHintLayer::onFinish(int code)
 
 void ErrorHintLayer::onQQClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-		JniMethodInfo methodInfo;
-		char p_str1[32] = { 0 };
-		sprintf(p_str1, "%s", GlobalInstance::qq.c_str());
-		std::string clsname = StringUtils::format("%s/AppActivity", ANDOIRJNICLS);
-		if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "copyToClipboard", "(Ljava/lang/String;)V"))
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		Node* clicknode = (Node*)pSender;
+		if (clicknode->getTag() == 1000)
 		{
-			jstring str1 = methodInfo.env->NewStringUTF(p_str1);
-			methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1);
-		}
-		MovingLabel::show(ResourceLang::map_lang["copyqq"]);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-		copytoclipboard((char*)GlobalInstance::qq.c_str());
-		MovingLabel::show(ResourceLang::map_lang["copyqq"]);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+			JniMethodInfo methodInfo;
+			char p_str1[128] = { 0 };
+			sprintf(p_str1, "%s", GlobalInstance::legalcopyurl.c_str());
+			std::string clsname = StringUtils::format("%s/AppActivity", ANDOIRJNICLS);
+			if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "openBrower", "(Ljava/lang/String;)V"))
+			{
+				jstring str1 = methodInfo.env->NewStringUTF(p_str1);
+				methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1);
+			}
 #endif
+		}
+		else
+		{
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+			JniMethodInfo methodInfo;
+			char p_str1[32] = { 0 };
+			sprintf(p_str1, "%s", GlobalInstance::qq.c_str());
+			std::string clsname = StringUtils::format("%s/AppActivity", ANDOIRJNICLS);
+			if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "copyToClipboard", "(Ljava/lang/String;)V"))
+			{
+				jstring str1 = methodInfo.env->NewStringUTF(p_str1);
+				methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1);
+			}
+			MovingLabel::show(ResourceLang::map_lang["copyqq"]);
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+			copytoclipboard((char*)GlobalInstance::qq.c_str());
+			MovingLabel::show(ResourceLang::map_lang["copyqq"]);
+#endif
+		}
 	}
 }

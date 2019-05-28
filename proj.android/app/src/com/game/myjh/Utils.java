@@ -9,6 +9,8 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.UUID;
 
@@ -288,5 +290,48 @@ public class Utils {
 			count++;
 		}
 		return count;
+	}
+
+	public static String getMD5Sign()
+	{
+		PackageInfo info = null;
+		String packageName = getPkgName();
+		if (packageName == null || packageName.length() == 0) {
+			return "";
+		}
+		try {
+			info = sContext.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+		} catch (PackageManager.NameNotFoundException e) {
+
+		}
+
+		if (info == null)
+			return "";
+
+		MessageDigest localMessageDigest = null;
+		try {
+			localMessageDigest = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		localMessageDigest.update(info.signatures[0].toByteArray());
+		return toHexString(localMessageDigest.digest());
+	}
+
+	private static String toHexString(byte[] paramArrayOfByte) {
+		if (paramArrayOfByte == null) {
+			return "";
+		}
+		StringBuilder localStringBuilder = new StringBuilder(2 * paramArrayOfByte.length);
+		for (int i = 0; ; i++) {
+			if (i >= paramArrayOfByte.length) {
+				return localStringBuilder.toString();
+			}
+			String str = Integer.toString(0xFF & paramArrayOfByte[i], 16);
+			if (str.length() == 1) {
+				str = "0" + str;
+			}
+			localStringBuilder.append(str);
+		}
 	}
 }

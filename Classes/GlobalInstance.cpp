@@ -84,6 +84,8 @@ bool GlobalInstance::isNewHeroRefresh = false;
 
 std::string GlobalInstance::qq;
 
+std::string GlobalInstance::legalcopyurl;
+
 bool GlobalInstance::isCheat = false;
 
 S_TimeGift GlobalInstance::serverTimeGiftData;
@@ -267,9 +269,25 @@ std::string GlobalInstance::getIDFA()
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	return "WIN32 IDFA TEST";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	return "ANDROID IDFA";
+	return "ANDROID_IDFA";
 #endif
 }
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+std::string GlobalInstance::getAppMD5Sign()
+{
+
+	std::string ret;
+	JniMethodInfo methodInfo;
+	std::string clsname = StringUtils::format("%s/Utils", ANDOIRJNICLS);
+	if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "getMD5Sign", "()Ljava/lang/String;"))
+	{
+		jstring jstr = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+		ret = methodInfo.env->GetStringUTFChars(jstr, 0);
+	}
+	return ret;
+}
+#endif
 
 
 int GlobalInstance::getSysSecTime()

@@ -37,43 +37,43 @@
             <PreSize X="0.1611" Y="0.0531" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/usertitle.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="text" ActionTag="1332600237" Tag="32" IconVisible="False" LeftMargin="134.9999" RightMargin="135.0001" TopMargin="545.1150" BottomMargin="674.8850" IsCustomSize="True" FontSize="25" LabelText="隐私策略隐私策略隐私策略隐私策略隐私策略隐私策略隐私策略隐私策略" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="450.0000" Y="60.0000" />
+          <AbstractNodeData Name="text" ActionTag="1332600237" Tag="32" IconVisible="False" LeftMargin="134.9999" RightMargin="135.0001" TopMargin="515.1150" BottomMargin="674.8850" IsCustomSize="True" FontSize="25" LabelText="隐私策略隐私策略隐私策略隐私策略隐私" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="450.0000" Y="90.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="359.9999" Y="704.8850" />
+            <Position X="359.9999" Y="719.8850" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="92" G="92" B="92" />
-            <PrePosition X="0.5000" Y="0.5507" />
-            <PreSize X="0.6250" Y="0.0469" />
+            <PrePosition X="0.5000" Y="0.5624" />
+            <PreSize X="0.6250" Y="0.0703" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="text_1" ActionTag="1654304449" Tag="36" IconVisible="False" LeftMargin="160.0001" RightMargin="159.9999" TopMargin="639.8765" BottomMargin="611.1235" IsCustomSize="True" FontSize="25" LabelText="隐私&#xA;" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="400.0000" Y="29.0000" />
+          <AbstractNodeData Name="text_1" ActionTag="1654304449" Tag="36" IconVisible="False" LeftMargin="334.0001" RightMargin="333.9999" TopMargin="651.8765" BottomMargin="599.1235" TouchEnable="True" FontSize="25" LabelText="隐私" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="52.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0001" Y="625.6235" />
+            <Position X="360.0001" Y="613.6235" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="92" G="92" B="92" />
-            <PrePosition X="0.5000" Y="0.4888" />
-            <PreSize X="0.5556" Y="0.0227" />
+            <PrePosition X="0.5000" Y="0.4794" />
+            <PreSize X="0.0722" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="text_2" ActionTag="-1622471689" Tag="37" IconVisible="False" LeftMargin="281.0004" RightMargin="280.9996" TopMargin="676.8770" BottomMargin="574.1230" TouchEnable="True" FontSize="25" LabelText="QQ:123456789" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="text_2" ActionTag="-1622471689" Tag="37" IconVisible="False" LeftMargin="281.0004" RightMargin="280.9996" TopMargin="692.8770" BottomMargin="558.1230" TouchEnable="True" FontSize="25" LabelText="QQ:123456789" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="158.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0004" Y="588.6230" />
+            <Position X="360.0004" Y="572.6230" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="92" G="92" B="92" />
-            <PrePosition X="0.5000" Y="0.4599" />
+            <PrePosition X="0.5000" Y="0.4474" />
             <PreSize X="0.2194" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="actionbtn" ActionTag="1280839015" Tag="30" IconVisible="False" LeftMargin="258.0000" RightMargin="258.0000" TopMargin="723.2053" BottomMargin="472.7947" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="actionbtn" ActionTag="1280839015" Tag="30" IconVisible="False" LeftMargin="258.0000" RightMargin="258.0000" TopMargin="746.2053" BottomMargin="449.7947" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="1613744893" Tag="31" IconVisible="False" LeftMargin="65.3760" RightMargin="58.6240" TopMargin="20.5713" BottomMargin="27.4287" LeftEage="26" RightEage="26" TopEage="11" BottomEage="11" Scale9OriginX="26" Scale9OriginY="11" Scale9Width="28" Scale9Height="14" ctype="ImageViewObjectData">
@@ -88,10 +88,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="514.7947" />
+            <Position X="360.0000" Y="491.7947" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.4022" />
+            <PrePosition X="0.5000" Y="0.3842" />
             <PreSize X="0.2833" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
