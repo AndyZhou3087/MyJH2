@@ -62,13 +62,77 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp,
 
 	Node* matchinfonode = csbnode->getChildByName("matchinfonode");
 
+	Node* continuenode = csbnode->getChildByName("continuenode");
+	continuenode->setVisible(false);
+
+	Node* failhintnode = csbnode->getChildByName("failhintnode");
+	failhintnode->setVisible(false);
+
 	if (m_onstate == 0)
 	{
 		matchinfonode->setVisible(false);
+	
+		cocos2d::ui::Text* continuewintext = (cocos2d::ui::Text*)continuenode->getChildByName("continuewintext");
+		cocos2d::ui::Text* continuenodeathwintext = (cocos2d::ui::Text*)continuenode->getChildByName("continuenodeathwintext");
+
+		if (winexp > 0)
+		{
+			continuenode->setVisible(true);
+			failhintnode->setVisible(false);
+			std::string str = StringUtils::format(ResourceLang::map_lang["continuefighttext"].c_str(), GlobalInstance::curmapcontinuefightsucccount);
+			continuewintext->setString(str);
+			str = StringUtils::format(ResourceLang::map_lang["continuefighnodeathttext"].c_str(), GlobalInstance::starcontinuefightsucccount);
+			for (unsigned int i = 0; i < GlobalInstance::vec_stardata.size(); i++)
+			{
+				if (GlobalInstance::vec_stardata[i].sid == SA_NODEATH)
+				{
+					std::string strkey = StringUtils::format("stagestar%02d", GlobalInstance::vec_stardata[i].sid);
+					str.append(ResourceLang::map_lang[strkey]);
+					break;
+				}
+			}
+			continuenodeathwintext->setString(str);
+		}
+		else
+		{
+			continuenode->setVisible(false);
+			int unlockc = GlobalInstance::getInstance()->getUnlockChapter();
+			if (unlockc >= 3)
+			{
+				failhintnode->setVisible(false);
+			}
+			else
+			{
+				failhintnode->setVisible(true);
+
+				std::vector<int> vec_hintindex;
+				for (int i = 0; i < 11; i++)
+				{
+					vec_hintindex.push_back(i);
+				}
+				if (GlobalInstance::takeoutherocount >= 6 || unlockc == 2)
+				{
+					vec_hintindex.erase(vec_hintindex.begin());
+				}
+
+				std::random_shuffle(vec_hintindex.begin(), vec_hintindex.end());
+
+				for (int i = 0; i < 3; i++)
+				{
+					std::string textname = StringUtils::format("hint%d", i + 1);
+					cocos2d::ui::Text* failhintext = (cocos2d::ui::Text*)failhintnode->getChildByName(textname);
+					textname = StringUtils::format("failhinttext%d", i + 1);
+					std::string showstr = StringUtils::format("%d.", i + 1);
+					showstr.append(ResourceLang::map_lang[textname]);
+					failhintext->setString(showstr);
+				}
+			}
+		}
 	}
 	else
 	{
-
+		continuenode->setVisible(false);
+		failhintnode->setVisible(false);
 		cocos2d::ui::ImageView* getscoretext = (cocos2d::ui::ImageView*)matchinfonode->getChildByName("getscoretext");
 		getscoretext->loadTexture(ResourcePath::makeTextImgPath("getscore_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 

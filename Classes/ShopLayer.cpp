@@ -210,95 +210,119 @@ void ShopLayer::beginPay(int index)
 #endif
 }
 
-
-void ShopLayer::setMessage(PYARET ret)
+void ShopLayer::setMessage(PYARET ret, std::string para)
 {
 	if (ret == PAY_SUCC && payindex >= 0)
 	{
-		int type = GlobalInstance::vec_shopdata[payindex].type;
-		if (type == COIN)
-		{
-			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata[payindex].res.size(); i++)
-			{
-				std::vector<std::string> vec_res = GlobalInstance::vec_shopdata[payindex].res[i];
-				std::string resid = vec_res[0];
-				int count = atoi(vec_res[1].c_str());
-				DynamicValueInt dal;
-				dal.setValue(count);
-				GlobalInstance::getInstance()->addMyCoinCount(dal);	
-#ifdef UMENG
-				umeng::MobClickCpp::pay(GlobalInstance::vec_shopdata[payindex].price, 2, count);
-#endif
-			}
-			Node* buycoinlayer = Director::getInstance()->getRunningScene()->getChildByName("buycoinlayer");
-			if (buycoinlayer != NULL)
-			{
-				AnimationEffect::closeAniEffect((Layer*)buycoinlayer);
-			}
-		}
-		else if (type == GIFT)
-		{
-			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata[payindex].res.size(); i++)
-			{
-				std::vector<std::string> vec_res = GlobalInstance::vec_shopdata[payindex].res[i];
-				std::string resid = vec_res[0];
-				int count = atoi(vec_res[1].c_str());
-				int qu = 0;
-				if (vec_res.size() > 2)
-				{
-					qu = atoi(vec_res[2].c_str());
-				}
-				int stonescount = GlobalInstance::getInstance()->generateStoneCount(qu);
+		std::string goodsid = GlobalInstance::vec_shopdata[payindex].icon;
 
-				if (resid.compare("r006") == 0)
-				{
-					DynamicValueInt dvint;
-					dvint.setValue(count);
-					GlobalInstance::getInstance()->addMySoliverCount(dvint);
-				}
-				else if (resid.compare("r012") == 0)
-				{
-					DynamicValueInt dvint;
-					dvint.setValue(count);
-					GlobalInstance::getInstance()->addMyCoinCount(dvint);
-				}
-				else
-					MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
-			}
-			std::string iconname = GlobalInstance::vec_shopdata[payindex].icon;
-			if (iconname.compare("firstcharge") == 0)
-			{
-				GlobalInstance::isBuyFirstCharge = true;
-				Node* chargelayer = Director::getInstance()->getRunningScene()->getChildByName("firstcharge");
-				if (chargelayer != NULL)
-					AnimationEffect::closeAniEffect((Layer*)chargelayer);
-			}
-			else if (iconname.compare(0, 8, "timegift") == 0)
-			{
-				Node * giftlayer = Director::getInstance()->getRunningScene()->getChildByName(iconname);
-				if (giftlayer != NULL)
-					AnimationEffect::closeAniEffect((Layer*)giftlayer);
-			}
+		if (GlobalInstance::vec_shopdata[payindex].type == VIP)
+		{
+			int id = atoi(goodsid.substr(3, 1).c_str());
+			goodsid = StringUtils::format("vip%d", id + 2);
 		}
-		else if (type == VIP)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+		if (GlobalInstance::ispaycheck)
 		{
 			if (g_mainScene != NULL)
-				g_mainScene->showVipReward(payindex);
+				g_mainScene->checkorder(para, goodsid, GlobalInstance::vec_shopdata[payindex].price);
 		}
+		else
+		{
+			HttpDataSwap::init(NULL)->paySuccNotice(para, goodsid, GlobalInstance::vec_shopdata[payindex].price);
+			paySucc();
+		}
+#else
+		HttpDataSwap::init(NULL)->paySuccNotice(para, goodsid, GlobalInstance::vec_shopdata[payindex].price);
+		paySucc();
+#endif
+	}
+	else
+	{
+		isPaying = false;
+	}
+}
 
-		if (type != VIP)
-			HttpDataSwap::init(NULL)->paySuccNotice(GlobalInstance::vec_shopdata[payindex].icon, GlobalInstance::vec_shopdata[payindex].price);
+void ShopLayer::paySucc()
+{
+	int type = GlobalInstance::vec_shopdata[payindex].type;
+	if (type == COIN)
+	{
+		for (unsigned int i = 0; i < GlobalInstance::vec_shopdata[payindex].res.size(); i++)
+		{
+			std::vector<std::string> vec_res = GlobalInstance::vec_shopdata[payindex].res[i];
+			std::string resid = vec_res[0];
+			int count = atoi(vec_res[1].c_str());
+			DynamicValueInt dal;
+			dal.setValue(count);
+			GlobalInstance::getInstance()->addMyCoinCount(dal);
+#ifdef UMENG
+			umeng::MobClickCpp::pay(GlobalInstance::vec_shopdata[payindex].price, 2, count);
+#endif
+		}
+		Node* buycoinlayer = Director::getInstance()->getRunningScene()->getChildByName("buycoinlayer");
+		if (buycoinlayer != NULL)
+		{
+			AnimationEffect::closeAniEffect((Layer*)buycoinlayer);
+		}
+}
+	else if (type == GIFT)
+	{
+		for (unsigned int i = 0; i < GlobalInstance::vec_shopdata[payindex].res.size(); i++)
+		{
+			std::vector<std::string> vec_res = GlobalInstance::vec_shopdata[payindex].res[i];
+			std::string resid = vec_res[0];
+			int count = atoi(vec_res[1].c_str());
+			int qu = 0;
+			if (vec_res.size() > 2)
+			{
+				qu = atoi(vec_res[2].c_str());
+			}
+			int stonescount = GlobalInstance::getInstance()->generateStoneCount(qu);
 
-		GlobalInstance::totalPayAmout.setValue(GlobalInstance::totalPayAmout.getValue() + GlobalInstance::vec_shopdata[payindex].price);
+			if (resid.compare("r006") == 0)
+			{
+				DynamicValueInt dvint;
+				dvint.setValue(count);
+				GlobalInstance::getInstance()->addMySoliverCount(dvint);
+			}
+			else if (resid.compare("r012") == 0)
+			{
+				DynamicValueInt dvint;
+				dvint.setValue(count);
+				GlobalInstance::getInstance()->addMyCoinCount(dvint);
+			}
+			else
+				MyRes::Add(resid, count, MYSTORAGE, qu, stonescount);
+		}
+		std::string iconname = GlobalInstance::vec_shopdata[payindex].icon;
+		if (iconname.compare("firstcharge") == 0)
+		{
+			GlobalInstance::isBuyFirstCharge = true;
+			Node* chargelayer = Director::getInstance()->getRunningScene()->getChildByName("firstcharge");
+			if (chargelayer != NULL)
+				AnimationEffect::closeAniEffect((Layer*)chargelayer);
+		}
+		else if (iconname.compare(0, 8, "timegift") == 0)
+		{
+			Node* giftlayer = Director::getInstance()->getRunningScene()->getChildByName(iconname);
+			if (giftlayer != NULL)
+				AnimationEffect::closeAniEffect((Layer*)giftlayer);
+		}
+	}
+	else if (type == VIP)
+	{
+		if (g_mainScene != NULL)
+			g_mainScene->showVipReward(payindex);
+	}
 
-		HttpDataSwap::init(NULL)->postAllData();
+	GlobalInstance::totalPayAmout.setValue(GlobalInstance::totalPayAmout.getValue() + GlobalInstance::vec_shopdata[payindex].price);
+
+	HttpDataSwap::init(NULL)->postAllData();
 
 #ifdef UMENG
-		umeng::MobClickCpp::event(GlobalInstance::vec_shopdata[payindex].icon.c_str());
+	umeng::MobClickCpp::event(GlobalInstance::vec_shopdata[payindex].icon.c_str());
 #endif
-		payindex = -1;
-	}
-	//std::string str = StringUtils::format("buy_%d", (int)ret);
-	//MovingLabel::show(ResourceLang::map_lang[str]);
+	payindex = -1;
 	isPaying = false;
 }

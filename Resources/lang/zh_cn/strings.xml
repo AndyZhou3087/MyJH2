@@ -491,6 +491,7 @@
 	<s name="newtemplet5">{%s}偶遇绿林之人强抢民女，一招便将小贼解决，民女感恩戴德，拿出祖传秘籍[%s]感谢其相救之恩。</s>
 	<s name="newtemplet6">{%s}发现神秘山洞，洞中隐隐可见幽光，一看便是某位江湖大侠的衣冠冢，躲过无数机关后，[%s]终于重现武林。</s>
 	<s name="newtemplet7">{%s}进入了迷宫，祝他/她好运！</s>
+	<s name="newtemplet8">恭喜{%s}的[%s]升级到了%d级，厉害！</s>
 	<s name="newfindstr0">{</s>	
 	<s name="newfindstr1">}</s>	
 	<s name="newfindstr2">[</s>	
@@ -558,4 +559,18 @@
 	<s name="nofitdesc2">（不适合本职业，如若使用则此武功属性会降低且不触发技能）</s>
 	<s name="openmaxherolvhint">解锁第%d章节开放侠客最高等级到%d级</s>
 	<s name="unlockmaxherolv">开放侠客最高等级到%d级</s>
+	<s name="continuefighttext">当前已连胜%d场</s>
+	<s name="continuefighnodeathttext">当前无重伤连胜%d场</s>
+	<s name="continuefighnodeathttext1">（无重伤连胜%d场可获得一颗星）</s>
+	<s name="failhinttext0">战斗时使用更多的角色</s>
+	<s name="failhinttext1">强化角色的武器</s>
+	<s name="failhinttext2">使用人参增加角色的经验值</s>
+	<s name="failhinttext3">把角色的武器防具等装备齐全</s>
+	<s name="failhinttext4">使用参悟秘籍升级武功内功</s>
+	<s name="failhinttext5">给武器等钻孔并镶嵌宝石</s>
+	<s name="failhinttext6">给角色装配适合的武器武功内功</s>
+	<s name="failhinttext7">开启仓库里的宝箱</s>
+	<s name="failhinttext8">在训练场训练增加经验值</s>
+	<s name="failhinttext9">在地图神秘商店购买厉害的武器武功</s>
+	<s name="failhinttext10">更合理的角色站位搭配</s>
 </strings>

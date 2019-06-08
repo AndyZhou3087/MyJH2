@@ -150,7 +150,13 @@ int GlobalInstance::curMapFinishStars = 0;
 
 int GlobalInstance::takeoutherocount = 0;
 
-int GlobalInstance::contunefightsucccount = 0;
+int GlobalInstance::starcontinuefightsucccount = 0;
+
+int GlobalInstance::curmapcontinuefightsucccount = 0;
+
+bool GlobalInstance::ispaycheck = true;
+
+bool GlobalInstance::ispayconfirm = false;
 
 std::vector<S_ChapterStarAwd> GlobalInstance::vec_chaperstarawds;
 

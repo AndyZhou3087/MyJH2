@@ -2120,8 +2120,9 @@ void MapBlockScene::showFightResult(int result)
 
 		if (GlobalInstance::npcmasterfinish != 1)
 		{
-			GlobalInstance::contunefightsucccount++;
-			if (GlobalInstance::contunefightsucccount >= 10)
+			GlobalInstance::starcontinuefightsucccount++;
+			GlobalInstance::curmapcontinuefightsucccount++;
+			if (GlobalInstance::starcontinuefightsucccount >= 10)
 			{
 				int liveherocount = 0;
 
@@ -2136,7 +2137,7 @@ void MapBlockScene::showFightResult(int result)
 				}
 				else
 				{
-					GlobalInstance::contunefightsucccount = 0;
+					GlobalInstance::starcontinuefightsucccount = 0;
 				}
 			}
 			calcStar(SA_FIGHTSUCC);
@@ -2159,7 +2160,10 @@ void MapBlockScene::showFightResult(int result)
 	else
 	{
 		if (GlobalInstance::npcmasterfinish != 1)
-			GlobalInstance::contunefightsucccount = 0;
+		{
+			GlobalInstance::starcontinuefightsucccount = 0;
+			GlobalInstance::curmapcontinuefightsucccount = 0;
+		}
 	}
 
 	//出师战斗结果

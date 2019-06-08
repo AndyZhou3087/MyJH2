@@ -72,6 +72,11 @@ bool MainMapScene::init()
 	m1_5_box->addTouchEventListener(CC_CALLBACK_2(MainMapScene::onBoxclick, this));
 	m1_5_box->setSwallowTouches(false);
 
+	int curc = atoi(GlobalInstance::myCurMainData.place.substr(1, GlobalInstance::myCurMainData.place.find_first_of("-") - 1).c_str());
+
+	if (curc > GlobalInstance::getInstance()->getUnlockChapter())
+		GlobalInstance::getInstance()->saveUnlockChapter(curc);
+
 	std::map<std::string, std::vector<Node*>> map_taskicon;
 
 	for (int i = 0; i < mapnamecount; i++)

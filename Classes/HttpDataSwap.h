@@ -32,7 +32,7 @@ public:
 
 	void vipIsOn();
 
-	void paySuccNotice(std::string goodsid, int price/*分为单位*/);
+	void paySuccNotice(std::string orderid, std::string goodsid, int price/*分为单位*/);
 
 	void getMonthlyReward(std::string vipid);
 
@@ -111,6 +111,8 @@ private:
 	void httpAddNewsCB(std::string retdata, int code, std::string extdata);
 
 	void httpGetNewsCB(std::string retdata, int code, std::string extdata);
+
+	void httpBuyNoticeCB(std::string retdata, int code, std::string extdata);
 };
 
 class HTTPDataDelegateProtocol

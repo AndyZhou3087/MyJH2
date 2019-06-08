@@ -51,6 +51,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 		{
 	        Message msg = AppActivity.handler.obtainMessage();
 	        msg.what = 0;
+	        msg.obj = WXPay.orderid;
 	        msg.sendToTarget();
 		}
 		else if (resp.errCode == BaseResp.ErrCode.ERR_USER_CANCEL)

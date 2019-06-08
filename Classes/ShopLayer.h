@@ -23,10 +23,10 @@ public:
 
 	static ShopLayer* create();
 	static void beginPay(int index);
-	static void setMessage(PYARET ret);
+	static void setMessage(PYARET ret, std::string para="");
 	virtual void onExit();
 	bool init();
-
+	static void paySucc();
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onQQClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);

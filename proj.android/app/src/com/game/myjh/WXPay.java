@@ -23,6 +23,8 @@ public class WXPay {
 	private static ProgressDialog mProgressDialog = null;
 	private static Runnable progressThread;
 	static public IWXAPI wxapi;
+
+	static public String orderid = "";
 	
 	public static void pay(String payName, int price)
 	{ 
@@ -75,7 +77,6 @@ public class WXPay {
 		strb.append(Utils.UUID() + ":" + payName);
 		
 		HttpUtil hp = new HttpUtil(strb.toString());
-		Log.d("", "http str = " + strb.toString());
 		String ret = hp.getSimpleString();
 		if (ret == null)
 		{
@@ -95,6 +96,7 @@ public class WXPay {
 			String noncestr = json.getString("noncestr");
 			String timestamp = json.getInt("timestamp") + "";
 			String sign = json.getString("sign");
+			orderid = json.getString("out_trade_no");
 			wxpay(appid, partnerid, prepay_id, packagevalue, noncestr, timestamp, sign);
 			
 			final Timer timer = new Timer();
@@ -103,7 +105,7 @@ public class WXPay {
 			 public void run() {
 				 timer.cancel();
 					dismissProgressDialog();
-					JNI.sendMessage(-1);//微信支付时，HOME键支付界面会关闭
+					JNI.sendMessage(-1, "");//微信支付时，HOME键支付界面会关闭
 			 }
 			};
 			timer.schedule(timerTask, 600, 600);

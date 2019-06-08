@@ -654,7 +654,17 @@ void LoadingScene::enterNewScene()
 			else if (exitscene == 1 || exitscene == 2)
 			{
 				GlobalInstance::myOutMapCarry = DataSave::getInstance()->getHeroMapCarryCount();
-				Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+
+				int count = 0;
+				for (int i = 0; i < 6; i++)
+				{
+					if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
+						count++;
+				}
+				if (count > 0)
+					Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
+				else
+					Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
 			}
 		}
 	}
@@ -716,6 +726,17 @@ void LoadingScene::onFinish(int errcode)
 			if (layer == NULL)
 			{
 				layer = ErrorHintLayer::create(6);
+				this->addChild(layer, 0, "networkerrlayer");
+				AnimationEffect::openAniEffect(layer);
+				return;
+			}
+		}
+		if (errcode == 2)
+		{
+			ErrorHintLayer* layer = (ErrorHintLayer*)this->getChildByName("networkerrlayer");
+			if (layer == NULL)
+			{
+				layer = ErrorHintLayer::create(2);
 				this->addChild(layer, 0, "networkerrlayer");
 				AnimationEffect::openAniEffect(layer);
 				return;

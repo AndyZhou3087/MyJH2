@@ -303,27 +303,27 @@ public class AppActivity extends Cocos2dxActivity implements DownloadApkTask.onD
                 {
                     case -1:
                         Toast.makeText(m_self, "网络不可用，请检查您的网络设置", Toast.LENGTH_SHORT).show();
-                        JNI.sendMessage(-1);
+                        JNI.sendMessage(-1, "");
                         break;
                     case -2:
                         Toast.makeText(m_self, "下单失败！！", Toast.LENGTH_SHORT).show();
-                        JNI.sendMessage(-1);
+                        JNI.sendMessage(-1, "");
                         break;
                     case -3:
                         Toast.makeText(m_self, "调取支付插件失败！！", Toast.LENGTH_SHORT).show();
-                        JNI.sendMessage(-1);
+                        JNI.sendMessage(-1, "");
                         break;
                     case 0:
-                        Toast.makeText(m_self, "支付成功！！", Toast.LENGTH_SHORT).show();
-                        JNI.sendMessage(0);
+                        Toast.makeText(m_self, "支付成功！！如果充值未到账，请联系客服！", Toast.LENGTH_SHORT).show();
+                        JNI.sendMessage(0, (String)msg.obj);
                         break;
                     case 1:
                         Toast.makeText(m_self, "支付失败！！", Toast.LENGTH_SHORT).show();
-                        JNI.sendMessage(-1);
+                        JNI.sendMessage(-1, "");
                         break;
                     case 2:
                         Toast.makeText(m_self, "支付取消！！", Toast.LENGTH_SHORT).show();
-                        JNI.sendMessage(-1);
+                        JNI.sendMessage(-1, "");
                         break;
                     default:
                         break;

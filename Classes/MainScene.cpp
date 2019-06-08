@@ -31,6 +31,7 @@
 #include "MainHomeHintLayer.h"
 #include "RepairBuildingLayer.h"
 #include "SmallStallLayer.h"
+#include "ShopLayer.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -1014,7 +1015,7 @@ void MainScene::onFinish(int code)
 			}
 		}
 	}
-	else
+	else if (httpgettype == 1)
 	{
 		if (code == SUCCESS)
 		{
@@ -1029,6 +1030,24 @@ void MainScene::onFinish(int code)
 		}
 		httpgettype = 0;
 	}
+	else if (httpgettype == 2)
+	{
+		if (code == SUCCESS)
+		{
+			if (GlobalInstance::ispayconfirm)
+			{
+				ShopLayer::paySucc();
+				GlobalInstance::ispayconfirm = false;
+			}
+		}
+		httpgettype = 0;
+	}
+}
+
+void MainScene::checkorder(std::string orderid, std::string goodsid, int price)
+{
+	httpgettype = 2;
+	HttpDataSwap::init(this)->paySuccNotice(orderid, goodsid, price);
 }
 
 void MainScene::updateTime(float dt)
@@ -1439,7 +1458,7 @@ void MainScene::addNews(std::string content, int type)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	utf8str = gbkToUTF8(content.c_str());
 #endif
-	HttpDataSwap::init(NULL)->addNews(utf8str);
+	HttpDataSwap::init(NULL)->addNews(utf8str, type);
 }
 
 void MainScene::showVipReward(int payindex)

@@ -77,6 +77,15 @@ bool ErrorHintLayer::init(int forwhere)
 
 	cocos2d::ui::Text* idtext = (cocos2d::ui::Text*)m_csbnode->getChildByName("idtext");
 
+	cocos2d::ui::Text* text3 = (cocos2d::ui::Text*)m_csbnode->getChildByName("text_3");
+	text3->setString(GlobalInstance::getInstance()->UUID());
+
+	if (GlobalInstance::getInstance()->getMyID().length() > 0)
+		text3->setVisible(false);
+
+	cocos2d::ui::Text* text4 = (cocos2d::ui::Text*)m_csbnode->getChildByName("text_4");
+	text4->setString("v" + GlobalInstance::getInstance()->getVersionCode());
+
 	std::string actiontextstr = "okbtn_text";
 	 
 	if (forwhere == 0)
@@ -129,6 +138,7 @@ bool ErrorHintLayer::init(int forwhere)
 
 		std::string idstr = StringUtils::format("ID:%s", GlobalInstance::getInstance()->getMyID().c_str());
 		idtext->setString(idstr);
+		text3->setVisible(false);
 	}
 	else if (forwhere == 5)
 	{

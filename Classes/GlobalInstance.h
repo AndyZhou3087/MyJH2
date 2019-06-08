@@ -955,7 +955,13 @@ public:
 	static int curMapFinishStars;
 
 	static int takeoutherocount;
-	static int contunefightsucccount;
+	static int starcontinuefightsucccount;
+
+	static int curmapcontinuefightsucccount;
+
+	static bool ispaycheck;
+
+	static bool ispayconfirm;
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

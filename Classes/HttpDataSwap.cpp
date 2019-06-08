@@ -196,7 +196,7 @@ void HttpDataSwap::vipIsOn()
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpVipIsOnCB, this));
 }
 
-void HttpDataSwap::paySuccNotice(std::string goodsid, int price)
+void HttpDataSwap::paySuccNotice(std::string orderid, std::string goodsid, int price)
 {
 	std::string url;
 	url.append(HTTPURL);
@@ -222,13 +222,16 @@ void HttpDataSwap::paySuccNotice(std::string goodsid, int price)
 	std::string pricestr = StringUtils::format("%d", price * 100);
 	url.append(pricestr);
 
+	url.append("&out_trade_no=");
+	url.append(orderid);
+
 	url.append("&sign=");
 	std::string md5ostr = GlobalInstance::getInstance()->UUID() + goodsid;
 
 	std::string signstr = md5(md5ostr + "key=zhoujian-87");
 	url.append(signstr);
 
-	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpBlankCB, this));
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpBuyNoticeCB, this));
 }
 
 void HttpDataSwap::getMonthlyReward(std::string vipid)
@@ -358,8 +361,12 @@ void HttpDataSwap::getPlayerId()
 
 	std::string signstr = md5(md5ostr + "key=zhoujian-87");
 	url.append(signstr);
+
+	url.append("&rsamd5=");
+	url.append(appsignmd5);
 #endif
 
+	url.append("&new=1");
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetPlayerIdCB, this));
 }
 
@@ -858,6 +865,38 @@ void HttpDataSwap::httpPostAllDataCB(std::string retdata, int code, std::string 
 		{
 			rapidjson::Value& retv = doc["ret"];
 			ret = retv.GetInt();
+
+			if (ret == 1)
+				MainScene::cheatAction(3);
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpBuyNoticeCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+
+			if (doc.HasMember("confirm"))
+			{
+				GlobalInstance::ispayconfirm = atoi(getJsonValueStr(doc["confirm"]).c_str()) == 1 ? true : false;
+			}
 		}
 		else
 		{
@@ -1173,19 +1212,28 @@ void HttpDataSwap::httpGetPlayerIdCB(std::string retdata, int code, std::string 
 			rapidjson::Value& retv = doc["ret"];
 			ret = retv.GetInt();
 
-			if (ret == 0)
+			if (doc.HasMember("id"))
 			{
-				rapidjson::Value& v = doc["id"];
-				GlobalInstance::getInstance()->setMyID(v.GetString());
-
-				v = doc["nickname"];
+				//rapidjson::Value& v = doc["id"];
+				GlobalInstance::getInstance()->setMyID(getJsonValueStr(doc["id"]));
+			}
+			if (doc.HasMember("nickname"))
+			{
+				rapidjson::Value& v = doc["nickname"];
 				GlobalInstance::getInstance()->setMyNickName(v.GetString());
 			}
+
 			if (doc.HasMember("qq"))
 				GlobalInstance::qq = doc["qq"].GetString();
 
 			if (doc.HasMember("url"))
 				GlobalInstance::legalcopyurl = doc["url"].GetString();
+
+			if (doc.HasMember("checked"))
+			{
+				int checked = atoi(getJsonValueStr(doc["checked"]).c_str());
+				GlobalInstance::ispaycheck = checked == 1?false:true;
+			}
 		}
 		else
 		{

@@ -67,6 +67,8 @@ public:
 
 	void hideBeggar();
 
+	void checkorder(std::string orderid, std::string goodsid, int price);
+
 public:
 	cocos2d::ui::Widget* traintip;
 
