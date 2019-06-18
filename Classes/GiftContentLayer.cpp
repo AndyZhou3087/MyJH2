@@ -70,6 +70,11 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 	buybtntext->loadTexture(ResourcePath::makeTextImgPath("mapeventtext_6_1", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	buybtntext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("mapeventtext_6_1", langtype))->getContentSize());
 
+	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
+	closebtn->addTouchEventListener(CC_CALLBACK_2(GiftContentLayer::onBtnClick, this));
+	closebtn->setTag(1001);
+	closebtn->setVisible(false);
+
 	cocos2d::ui::ImageView* title = (cocos2d::ui::ImageView*)csbnode->getChildByName("title");
 	title->ignoreContentAdaptWithSize(true);
 	std::string str = StringUtils::format("text_%s", data->icon.c_str());
@@ -93,6 +98,10 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 	{
 		buybtn->setVisible(false);
 		price->setVisible(false);
+	}
+	else
+	{
+		closebtn->setVisible(true);
 	}
 
 	if (data->type == GIFT)
@@ -213,13 +222,6 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 	{
 		return true;
 	};
-	listener->onTouchEnded = [=](Touch *touch, Event *event)
-	{
-		if (m_type == 0)
-		{
-			AnimationEffect::closeAniEffect((Layer*)this);
-		}
-	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
@@ -257,11 +259,15 @@ void GiftContentLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 	{
 		Node* node = (Node*)pSender;
 		int tag = node->getTag();
-		if (tag == 0)
+		if (tag == 1001)
+		{
+			AnimationEffect::closeAniEffect(this);
+		}
+		else if (tag == 0)
 		{
 			ShopLayer::beginPay(m_tag);
 
-			AnimationEffect::closeAniEffect((Layer*)this);
+			AnimationEffect::closeAniEffect(this);
 		}
 		else
 		{

@@ -81,12 +81,6 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 	}
-	else if (t == T_FRAGMENT)
-	{
-		int qu = 4;
-		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
-		CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
-	}
 	resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");

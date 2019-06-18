@@ -161,10 +161,10 @@ void HomeHillLayer::delayShowNewerGuide(float dt)
 		{
 			showNewerGuide(84);
 		}
-		else if (NewGuideLayer::checkifNewerGuide(85))
-		{
-			showNewerGuide(85);
-		}
+		//else if (NewGuideLayer::checkifNewerGuide(85))
+		//{
+		//	showNewerGuide(85);
+		//}
 	}
 }
 
@@ -186,10 +186,10 @@ void HomeHillLayer::showNewerGuide(int step)
 			nodes.push_back(m_hillResNode->getChildByName("csbnode")->getChildByName("addbtn"));
 		}
 	}
-	else if (step == 85)
-	{
-		nodes.push_back(csbnode->getChildByName("closebtn"));
-	}
+	//else if (step == 85)
+	//{
+	//	nodes.push_back(csbnode->getChildByName("closebtn"));
+	//}
 	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
@@ -225,7 +225,7 @@ void HomeHillLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		}
 		case 1002://关闭
-			AnimationEffect::closeAniEffect((Layer*)this);
+			AnimationEffect::closeAniEffect(this);
 			break;
 		default:
 			break;
