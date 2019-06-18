@@ -313,7 +313,11 @@ void ShopLayer::paySucc()
 	else if (type == VIP)
 	{
 		if (g_mainScene != NULL)
+		{
+			if (g_mainScene->getChildByName("GiftContentLayer") != NULL)
+				g_mainScene->removeChildByName("GiftContentLayer");
 			g_mainScene->showVipReward(payindex);
+		}
 	}
 
 	GlobalInstance::totalPayAmout.setValue(GlobalInstance::totalPayAmout.getValue() + GlobalInstance::vec_shopdata[payindex].price);

@@ -444,7 +444,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				if (GlobalInstance::vec_shopdata[i].icon.compare("vip3") == 0)
 				{
 					GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
-					this->addChild(layer);
+					this->addChild(layer, 0, "GiftContentLayer");
 					AnimationEffect::openAniEffect((Layer*)layer);
 					break;
 				}

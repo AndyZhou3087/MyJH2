@@ -266,8 +266,6 @@ void GiftContentLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 		else if (tag == 0)
 		{
 			ShopLayer::beginPay(m_tag);
-
-			AnimationEffect::closeAniEffect(this);
 		}
 		else
 		{
