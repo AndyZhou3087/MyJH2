@@ -1647,7 +1647,7 @@ void MainScene::checkStarAchTask()
 		{
 			if (element->GetText() != NULL)
 			{
-				std::string textstr = element->GetText();
+				std::string textstr = DataSave::getInstance()->getFinishStar(key.substr(6));
 				std::vector<std::string> vec_tmp;
 				CommonFuncs::split(textstr, vec_tmp, ",");
 				totalstar += vec_tmp.size();
