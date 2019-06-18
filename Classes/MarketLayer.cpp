@@ -189,6 +189,7 @@ void MarketLayer::updateRepairUi()
 				std::string strlbl = StringUtils::format("%02d:%02d", lefttime / 60, lefttime % 60);
 				repairtimelbl->setString(strlbl);
 				repairbtn->stopAllActions();
+				repairbtn->setRotation(0);
 			}
 		}
 		else
