@@ -429,7 +429,9 @@ void ConsumeResActionLayer::action()
 		{
 			std::string newstr = StringUtils::format(ResourceLang::map_lang["newtemplet8"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str(), GlobalInstance::map_AllResources[bdata->name].name.c_str(), bdata->level.getValue() + 1);
 			MainScene::addNews(newstr, 2);
-
+		}
+		if ((bdata->level.getValue() + 1) > 5 && (bdata->level.getValue() + 1) % 5 == 0)
+		{
 			std::vector<MSGAWDSDATA> vec_rewards;
 			MSGAWDSDATA wdata;
 			wdata.rid = "j001";
