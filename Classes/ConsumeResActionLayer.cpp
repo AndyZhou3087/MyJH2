@@ -436,6 +436,7 @@ void ConsumeResActionLayer::action()
 			MSGAWDSDATA wdata;
 			wdata.rid = "j001";
 			wdata.count = 1;
+			wdata.qu = 0;
 			vec_rewards.push_back(wdata);
 
 			RewardLayer* layer = RewardLayer::create(vec_rewards);
