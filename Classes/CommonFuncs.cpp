@@ -183,10 +183,10 @@ void CommonFuncs::checkEnAndCnCount(std::string instr, int& encount, int& cncoun
 	cncount = chiniseCount;
 }
 
-void CommonFuncs::playCommonLvUpAnim(Node* target, std::string textstr)
+void CommonFuncs::playCommonLvUpAnim(Node* target, std::string textstr, cocos2d::Vec2 pos)
 {
 	auto effectnode = CSLoader::createNode("effect/qianghuachenggong.csb");
-	effectnode->setPosition(Vec2(360, 640));
+	effectnode->setPosition(pos);
 	target->addChild(effectnode, 10, "qianghuachenggong");
 	cocos2d::ui::ImageView* ziti = (cocos2d::ui::ImageView*)effectnode->getChildByName("ziti");
 	ziti->loadTexture(ResourcePath::makeTextImgPath(textstr, GlobalInstance::getInstance()->getLang()), cocos2d::ui::Widget::TextureResType::PLIST);

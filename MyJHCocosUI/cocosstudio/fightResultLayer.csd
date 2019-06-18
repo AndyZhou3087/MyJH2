@@ -146,7 +146,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
                 <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="text_zh_cn/getscore_text.png" Plist="text_zh_cn.plist" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/continuewin_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="fightretline_2" ActionTag="1349674958" Tag="47" IconVisible="False" LeftMargin="91.0000" RightMargin="-269.0000" TopMargin="-14.1411" BottomMargin="-18.8589" FlipX="True" ctype="SpriteObjectData">
                 <Size X="178.0000" Y="33.0000" />
@@ -213,7 +213,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
                 <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="text_zh_cn/getscore_text.png" Plist="text_zh_cn.plist" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/getwin_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="fightretline_2" ActionTag="341893293" Tag="55" IconVisible="False" LeftMargin="91.0000" RightMargin="-269.0000" TopMargin="-14.1411" BottomMargin="-18.8589" FlipX="True" ctype="SpriteObjectData">
                 <Size X="178.0000" Y="33.0000" />

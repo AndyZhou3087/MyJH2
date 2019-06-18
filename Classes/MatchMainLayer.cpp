@@ -736,6 +736,7 @@ void MatchMainLayer::onFinish(int code)
 			rewardtext->setString(ResourceLang::map_lang["matchrewardget"]);
 			//rewardtext->setTextColor(Color4B(28, 208, 255, 255));
 			matchrewardicon->loadTexture("ui/matchreward_1.png", cocos2d::ui::Widget::TextureResType::PLIST);
+			matchrewardicon->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 7), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -7), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
 		}
 	}
 	else

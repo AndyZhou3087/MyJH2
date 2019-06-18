@@ -460,8 +460,6 @@
       <FilePathData Path="ui/loginrewardclose.png" />
       <FilePathData Path="ui/renationbtn.png" />
       <FilePathData Path="ui/renationclosebtn.png" />
-      <FilePathData Path="ui/renationitem.png" />
-      <FilePathData Path="ui/renationitem1.png" />
       <FilePathData Path="ui/addnicknamecountbtn.png" />
       <FilePathData Path="ui/i002.png" />
       <FilePathData Path="ui/i004.png" />
@@ -525,7 +523,6 @@
       <FilePathData Path="ui/main_outbtn.png" />
       <FilePathData Path="ui/main_renationbtn.png" />
       <FilePathData Path="ui/main_wellbtn.png" />
-      <FilePathData Path="text_zh_cn/main_wellbtn_text.png" />
       <FilePathData Path="ui/main_rebatebtn.png" />
       <FilePathData Path="ui/main_wellcardbtn.png" />
       <FilePathData Path="ui/main_wellmorebtn_bg.png" />
@@ -636,6 +633,23 @@
       <FilePathData Path="ui/a040-2.png" />
       <FilePathData Path="ui/a040-3.png" />
       <FilePathData Path="ui/nofiticon.png" />
+      <FilePathData Path="ui/finishstarflag1.png" />
+      <FilePathData Path="ui/finishstarflag2.png" />
+      <FilePathData Path="ui/finishstarflag3.png" />
+      <FilePathData Path="ui/renationattrbg.png" />
+      <FilePathData Path="ui/renationtotalattrbg.png" />
+      <FilePathData Path="ui/renationtotalattrline.png" />
+      <FilePathData Path="ui/renationitem_n.png" />
+      <FilePathData Path="ui/renationitem_s.png" />
+      <FilePathData Path="ui/renationitemr0.png" />
+      <FilePathData Path="ui/renationitemr1.png" />
+      <FilePathData Path="ui/renationitemr2.png" />
+      <FilePathData Path="ui/j001.png" />
+      <FilePathData Path="ui/dailytask_13.png" />
+      <FilePathData Path="ui/dailytask_14.png" />
+      <FilePathData Path="ui/dailytask_15.png" />
+      <FilePathData Path="ui/dailytask_16.png" />
+      <FilePathData Path="ui/vip2.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

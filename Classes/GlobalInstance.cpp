@@ -205,7 +205,7 @@ std::string GlobalInstance::getVersionCode()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getvercode();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "2.0.3";
+	return "2.3.0";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
@@ -2023,13 +2023,16 @@ void GlobalInstance::loadNpcFriendData()
 			
 			map_npcrelation[data.npcid] = data;
 
-			NpcFriendly fdata;
+			if (GlobalInstance::map_AllResources[data.npcid].desc.length() > 0)
+			{
+				NpcFriendly fdata;
 
-			fdata.npcid = data.npcid;
-			fdata.friendly = 0;
-			//fdata.relation = NPC_NORMOL;
+				fdata.npcid = data.npcid;
+				fdata.friendly = 0;
+				//fdata.relation = NPC_NORMOL;
 
-			map_myfriendly[fdata.npcid] = fdata;
+				map_myfriendly[fdata.npcid] = fdata;
+			}
 		}
 	}
 }
@@ -2052,23 +2055,26 @@ void GlobalInstance::loadNpcFriendly()
 
 				CommonFuncs::split(vec_tmp[i], vec_one, sep);
 
-				std::string renationstr;
-				if (std::string::npos == vec_tmp[i].find("#"))
+				if (vec_one.size() > 0 && GlobalInstance::map_AllResources[vec_one[0]].desc.length() > 0)
 				{
-					std::string f = vec_tmp[i].substr(5, vec_tmp[i].find_last_of("-") - 5);
-					map_myfriendly[vec_one[0]].friendly = atoi(f.c_str());
-					renationstr = vec_tmp[i].substr(vec_tmp[i].find_last_of("-") + 1);
-				}
-				else
-				{
-					map_myfriendly[vec_one[0]].friendly = atoi(vec_one[1].c_str());
-					renationstr = vec_one[2];
-				}
-				std::vector<std::string> vec_two;
-				CommonFuncs::split(renationstr, vec_two, ",");
-				for (unsigned int i = 0; i < vec_two.size(); i++)
-				{
-					map_myfriendly[vec_one[0]].relation.push_back(atoi(vec_two[i].c_str()));
+					std::string renationstr;
+					if (std::string::npos == vec_tmp[i].find("#"))
+					{
+						std::string f = vec_tmp[i].substr(5, vec_tmp[i].find_last_of("-") - 5);
+						map_myfriendly[vec_one[0]].friendly = atoi(f.c_str());
+						renationstr = vec_tmp[i].substr(vec_tmp[i].find_last_of("-") + 1);
+					}
+					else
+					{
+						map_myfriendly[vec_one[0]].friendly = atoi(vec_one[1].c_str());
+						renationstr = vec_one[2];
+					}
+					std::vector<std::string> vec_two;
+					CommonFuncs::split(renationstr, vec_two, ",");
+					for (unsigned int i = 0; i < vec_two.size(); i++)
+					{
+						map_myfriendly[vec_one[0]].relation.push_back(atoi(vec_two[i].c_str()));
+					}
 				}
 			}
 		}
@@ -2387,31 +2393,35 @@ void GlobalInstance::parsePairFriendly(std::string fstr)
 			if (vec_one.size() >= 2)
 			{
 				std::string nid = StringUtils::format("n%s", vec_one[0].c_str());
-				int ralation = atoi(vec_one[1].c_str());
-				NpcFriendly s_f;
-				s_f.npcid = nid;
-				s_f.friendly = 0;
-				if (ralation == NPC_COUPEL + 1)
-				{
-					s_f.relation.push_back(1);
-					s_f.relation.push_back(3);
-				}
-				else if (ralation == NPC_COUPEL + 2)
-				{
-					s_f.relation.push_back(2);
-					s_f.relation.push_back(3);
-				}
-				else if (ralation == NPC_COUPEL + 3)
-				{
-					s_f.relation.push_back(1);
-					s_f.relation.push_back(2);
-				}
-				else
-				{
-					s_f.relation.push_back(ralation);
-				}
 
-				GlobalInstance::myMatchInfo.map_pairfriendly[nid] = s_f;
+				if (GlobalInstance::map_AllResources[nid].desc.length() > 0)
+				{
+					int ralation = atoi(vec_one[1].c_str());
+					NpcFriendly s_f;
+					s_f.npcid = nid;
+					s_f.friendly = 0;
+					if (ralation == NPC_COUPEL + 1)
+					{
+						s_f.relation.push_back(1);
+						s_f.relation.push_back(3);
+					}
+					else if (ralation == NPC_COUPEL + 2)
+					{
+						s_f.relation.push_back(2);
+						s_f.relation.push_back(3);
+					}
+					else if (ralation == NPC_COUPEL + 3)
+					{
+						s_f.relation.push_back(1);
+						s_f.relation.push_back(2);
+					}
+					else
+					{
+						s_f.relation.push_back(ralation);
+					}
+
+					GlobalInstance::myMatchInfo.map_pairfriendly[nid] = s_f;
+				}
 			}
 		}
 	}
@@ -2488,6 +2498,7 @@ std::vector<std::vector<std::string>> GlobalInstance::getMatchRewardByLv(int lv)
 	std::vector<std::vector<std::string>> vec_matchlv;
 	std::vector<std::string> vec_retstr;
 	CommonFuncs::split(GlobalInstance::myMatchInfo.rewardstr, vec_retstr, ";");
+
 	for (unsigned int i = 0; i < vec_retstr.size(); i++)
 	{
 		std::vector<std::vector<std::string>> vec_mstr;

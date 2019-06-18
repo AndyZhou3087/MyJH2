@@ -18,13 +18,13 @@ public:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void createPage();
+	void createScrollview();
 private:
 	void updateNpcAddAttr(std::string npcid);
-	cocos2d::ui::PageView* pageView;
+	cocos2d::ui::ScrollView* scrollview;
 	std::vector<std::string> vec_npc;
 	cocos2d::ui::Text* npcattrlbl[6];
-	cocos2d::ui::Text* npcname;
+	cocos2d::ui::Text* addrname;
 	Node* lastClickNpcItem;
 	bool clickflag;
 	Vec2 beginTouchPoint;

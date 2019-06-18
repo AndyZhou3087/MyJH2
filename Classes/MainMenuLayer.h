@@ -27,8 +27,7 @@ typedef enum
 	COINBOX,//金币狂按钮
 	ADDSILVERBTN,//银子“+”按钮
 	ADDCOINBTN,//金币“+”按钮
-	VIP1BTN,//月卡1
-	VIP2BTN,//月卡2
+	VIPBTN,//碎片月卡
 	TIMEGIFTBTN,//限时礼包
 	TIMEGIFTBTN_0,
 	TIMEGIFTBTN_1,
@@ -75,7 +74,6 @@ private:
 	cocos2d::ui::Widget* firstchargebtn;
 	cocos2d::ui::ImageView* head;//头像
 	Node* csbnode;
-	cocos2d::ui::Text* vipstrArr[2];
 	cocos2d::ui::Widget* tgiftbtn[3];
 	cocos2d::ui::Text* tgiftname[3];
 	bool isGetVipData;

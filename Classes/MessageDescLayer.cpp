@@ -141,6 +141,11 @@ bool MessageDescLayer::init(int index)
 					qu = atoi(resid.substr(1).c_str()) - 1;
 					qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 				}
+				else if (k >= T_HEROCARD && k <= T_ARMCARD)
+				{
+					qu = atoi(resid.substr(1).c_str()) + 2;
+					qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
+				}
 
 				resbox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 

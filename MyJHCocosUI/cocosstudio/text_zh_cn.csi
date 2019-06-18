@@ -417,6 +417,12 @@
       <FilePathData Path="text_zh_cn/repairbuildbtn_text.png" />
       <FilePathData Path="text_zh_cn/smallstalltitle.png" />
       <FilePathData Path="text_zh_cn/givebeggar_text.png" />
+      <FilePathData Path="text_zh_cn/getwin_text.png" />
+      <FilePathData Path="text_zh_cn/continuewin_text.png" />
+      <FilePathData Path="text_zh_cn/texiao_xlwc.png" />
+      <FilePathData Path="text_zh_cn/composebtn_text.png" />
+      <FilePathData Path="text_zh_cn/main_wellbtn_text.png" />
+      <FilePathData Path="text_zh_cn/text_vip3.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

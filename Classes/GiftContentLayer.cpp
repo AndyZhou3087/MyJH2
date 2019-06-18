@@ -168,6 +168,11 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 			qu = atoi(resid.substr(1).c_str()) - 1;
 			str = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
+		else if (t == T_FRAGMENT)
+		{
+			qu = 4;
+			str = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
 
 		cocos2d::ui::ImageView* box = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::PLIST);
 		box->addTouchEventListener(CC_CALLBACK_2(GiftContentLayer::onResclick, this));

@@ -81,6 +81,12 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 	}
+	else if (t == T_FRAGMENT)
+	{
+		int qu = 4;
+		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
+	}
 	resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
@@ -198,6 +204,11 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 		else if (/*res->getType() == T_HEROCARD || */res->getType() == T_ARMCARD)
 		{
 			btntextstr = "usecard_Text";
+			status = S_CAN_USE;
+		}
+		else if (res->getType() == T_FRAGMENT)
+		{
+			btntextstr = "composebtn_text";
 			status = S_CAN_USE;
 		}
 		else
@@ -383,6 +394,25 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 					storelayer->addChild(layer);
 					AnimationEffect::openAniEffect(layer);
 					storelayer->updateUI();
+				}
+			}
+			else if (m_res->getType() == T_FRAGMENT)
+			{
+				if (m_res->getId().compare("j001") == 0)
+				{
+					if (m_res->getCount().getValue() >= 100)
+					{
+						MyRes::Add("u002");
+						MyRes::Use("j001", 100);
+						StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+						storelayer->updateUI();
+					}
+					else
+					{
+						std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources[m_res->getId()].name.c_str());
+						MovingLabel::show(str);
+						return;
+					}
 				}
 			}
 		}

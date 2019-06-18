@@ -140,7 +140,11 @@ typedef enum
 	ACHIEVE_GOODS,//获得XX物品XX个
 	ACHIEVE_GOLD,//消耗XX个元宝
 	ACHIEVE_SLIVER,//消耗XX个银两
-	HERO_LEVEL//角色等级到X级
+	HERO_LEVEL,//角色等级到X级
+	SAFE_WOMAN,//救民女
+	SAFE_OLDER,//救老人
+	GET_STARS,//获得评星
+	FINISH_MAIN//完成主线任务
 }QUESTDAYTYPE;
 
 typedef struct
@@ -337,6 +341,9 @@ typedef struct
 	int getrewardstate;//0未到时间，1到时间可领取，2已领取
 	std::string endtime;
 	std::string rewardstr;
+	std::string rewardstr1;
+	std::string rewardinfo;
+	std::string rewardrank;
 	int matchscore;
 	int awardindex;
 	std::map<std::string, std::string> map_myheros;

@@ -20,6 +20,7 @@
 #include "MainScene.h"
 #include "BuyCoinLayer.h"
 #include "RandHeroLayer.h"
+#include "RewardLayer.h"
 
 USING_NS_CC;
 
@@ -342,7 +343,7 @@ void ConsumeResActionLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widge
 			break;
 		case 1001://直接升级
 			{
-				if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= costcoindv.getValue())
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= costcoindv.getValue())
 				{
 					GlobalInstance::getInstance()->costMyCoinCount(costcoindv);
 					action();
@@ -428,6 +429,17 @@ void ConsumeResActionLayer::action()
 		{
 			std::string newstr = StringUtils::format(ResourceLang::map_lang["newtemplet8"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str(), GlobalInstance::map_AllResources[bdata->name].name.c_str(), bdata->level.getValue() + 1);
 			MainScene::addNews(newstr, 2);
+
+			std::vector<MSGAWDSDATA> vec_rewards;
+			MSGAWDSDATA wdata;
+			wdata.rid = "j001";
+			wdata.count = 1;
+			vec_rewards.push_back(wdata);
+
+			RewardLayer* layer = RewardLayer::create(vec_rewards);
+			g_mainScene->addChild(layer, 100);
+			AnimationEffect::openAniEffect(layer);
+
 		}
 		
 #ifdef UMENG
@@ -451,6 +463,13 @@ void ConsumeResActionLayer::action()
 		rdata->setLv(dlv);
 		GlobalInstance::getInstance()->saveResCreatorData();
 		CommonFuncs::playCommonLvUpAnim(this->getParent(), "texiao_sjcg");
+
+		if (rdata->getLv().getValue() == 30 || rdata->getLv().getValue() == 44)
+		{
+			std::string newstr = StringUtils::format(ResourceLang::map_lang["newtemplet9"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str(), GlobalInstance::map_AllResources[rdata->getName()].name.c_str(), rdata->getMaxCap(rdata->getLv().getValue()).getValue()/10000);
+
+			MainScene::addNews(newstr, 2);
+		}
 	}
 	else if (m_actiontype == CA_MAKERES)
 	{

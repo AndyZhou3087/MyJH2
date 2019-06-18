@@ -111,22 +111,10 @@ bool MainMenuLayer::init()
 			textimg->loadTexture(ResourcePath::makeTextImgPath(textname, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 
-		else if (i >= VIP1BTN && i <= VIP2BTN)
+		else if (i == VIPBTN)
 		{
-			clickwidget->setVisible(false);
-
 			cocos2d::ui::Text* text = (cocos2d::ui::Text*)clickwidget->getChildByName("text");
-			int days = 0;
-			if (i == VIP1BTN)
-			{
-				days = GlobalInstance::map_buyVipDays["vip1"];
-				vipstrArr[0] = text;
-			}
-			else
-			{
-				days = GlobalInstance::map_buyVipDays["vip0"];
-				vipstrArr[1] = text;
-			}
+			int days = GlobalInstance::map_buyVipDays["vip3"];
 			std::string textstr = StringUtils::format(ResourceLang::map_lang["daytext"].c_str(), days);
 			text->setString(textstr);
 			if (days == 0)
@@ -326,19 +314,13 @@ void MainMenuLayer::updateUI(float dt)
 	mailredpoint->setVisible(showmessageredpoint);
 
 	//月卡更新
-	if (GlobalInstance::map_buyVipDays["vip1"] > 0)
+	if (GlobalInstance::map_buyVipDays["vip3"] > 0)
 	{
-		vipstrArr[0]->setVisible(true);
+		cocos2d::ui::Text* vipleftdaylbl = (cocos2d::ui::Text*)csbnode->getChildByName("vipbtn")->getChildByName("text");
+		vipleftdaylbl->setVisible(true);
+		std::string textstr = StringUtils::format(ResourceLang::map_lang["daytext"].c_str(), GlobalInstance::map_buyVipDays["vip3"]);
+		vipleftdaylbl->setString(textstr);
 	}
-	std::string textstr = StringUtils::format(ResourceLang::map_lang["daytext"].c_str(), GlobalInstance::map_buyVipDays["vip1"]);
-	vipstrArr[0]->setString(textstr);
-	
-	if (GlobalInstance::map_buyVipDays["vip0"] > 0)
-	{
-		vipstrArr[1]->setVisible(true);
-	}
-	textstr = StringUtils::format(ResourceLang::map_lang["daytext"].c_str(), GlobalInstance::map_buyVipDays["vip0"]);
-	vipstrArr[1]->setString(textstr);
 	
 	//更新限时礼包时间
 	if (GlobalInstance::serverTimeGiftData.isopen)
@@ -456,22 +438,10 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			AnimationEffect::openAniEffect((Layer*)layer);
 		}
 			break;
-		case VIP1BTN:
+		case VIPBTN:
 			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
 			{
-				if (GlobalInstance::vec_shopdata[i].icon.compare("vip1") == 0)
-				{
-					GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
-					this->addChild(layer);
-					AnimationEffect::openAniEffect((Layer*)layer);
-					break;
-				}
-			}
-			break;
-		case VIP2BTN:
-			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
-			{
-				if (GlobalInstance::vec_shopdata[i].icon.compare("vip0") == 0)
+				if (GlobalInstance::vec_shopdata[i].icon.compare("vip3") == 0)
 				{
 					GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
 					this->addChild(layer);

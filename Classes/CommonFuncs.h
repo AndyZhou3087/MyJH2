@@ -63,7 +63,7 @@ public:
 	/****************************
 	通用升级动画，强化，招募，转职，任务完成，突破
 	****************************/
-	static void playCommonLvUpAnim(cocos2d::Node* target, std::string textstr);
+	static void playCommonLvUpAnim(cocos2d::Node* target, std::string textstr, cocos2d::Vec2 pos = cocos2d::Vec2(360, 640));
 
 	/****************************
 	资源边框特效，紫色以上

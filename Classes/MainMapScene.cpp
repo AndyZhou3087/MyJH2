@@ -128,12 +128,14 @@ bool MainMapScene::init()
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 		mapname->setVisible(true);
+		checkShowFlag(mapname, mname);
 //#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 //		mapname->setVisible(true);
 #else
 		if (c <= 6 && c <= GlobalInstance::getInstance()->getUnlockChapter())
 		{
 			mapname->setVisible(true);
+			checkShowFlag(mapname, mname);
 		}
 		else
 		{
@@ -319,5 +321,44 @@ void MainMapScene::onFinish(int code)
 			}
 		}
 
+	}
+}
+
+void MainMapScene::checkShowFlag(Node* mapnode, std::string mainmapid)
+{
+	if (mainmapid.compare("m1-5") != 0)
+	{
+		int submapcount = 0;
+		int getstarcount = 0;
+		std::map<std::string, S_SubMap>::iterator it;
+		for (it = GlobalInstance::map_mapsdata[mainmapid].map_sublist.begin(); it != GlobalInstance::map_mapsdata[mainmapid].map_sublist.end(); it++)
+		{
+			submapcount++;
+			std::vector<std::string> vec_finishstar;
+
+			CommonFuncs::split(DataSave::getInstance()->getFinishStar(it->first), vec_finishstar, ",");
+			getstarcount += vec_finishstar.size();
+		}
+
+		if (getstarcount > 0 && getstarcount >= submapcount * 3)
+		{
+			Sprite* flag = Sprite::createWithSpriteFrameName("ui/finishstarflag1.png");
+			flag->setAnchorPoint(Vec2(0, 0.5f));
+			
+			flag->setPosition(Vec2(mapnode->getChildByName("normal")->getPositionX() - mapnode->getChildByName("normal")->getContentSize().width/2, mapnode->getChildByName("normal")->getPositionY() + mapnode->getChildByName("normal")->getContentSize().height/2));
+			mapnode->addChild(flag);
+
+			auto animation = Animation::create();
+			for (int i = 1; i <= 3; i++)
+			{
+				std::string framename = StringUtils::format("ui/finishstarflag%d.png", i);
+				animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(framename));
+			}
+			//设置帧动画属性
+			animation->setDelayPerUnit(0.2f);//每一帧停留的时间
+			animation->setRestoreOriginalFrame(true);//播放完后回到第一帧
+			auto animate = Animate::create(animation);
+			flag->runAction(RepeatForever::create(animate));
+		}
 	}
 }

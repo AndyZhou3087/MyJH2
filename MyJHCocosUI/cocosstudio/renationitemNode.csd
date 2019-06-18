@@ -6,51 +6,37 @@
       <ObjectData Name="Node" Tag="191" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="renationitem" ActionTag="-1597963912" Tag="146" IconVisible="False" LeftMargin="-133.0000" RightMargin="-133.0000" TopMargin="-12.0000" BottomMargin="-12.0000" TouchEnable="True" LeftEage="87" RightEage="87" TopEage="7" BottomEage="7" Scale9OriginX="87" Scale9OriginY="7" Scale9Width="92" Scale9Height="10" ctype="ImageViewObjectData">
-            <Size X="266.0000" Y="24.0000" />
+          <AbstractNodeData Name="renationitem" ActionTag="-1597963912" Tag="146" IconVisible="False" LeftMargin="-77.0000" RightMargin="-77.0000" TopMargin="-87.0002" BottomMargin="-110.9998" TouchEnable="True" LeftEage="15" RightEage="15" TopEage="7" BottomEage="7" Scale9OriginX="15" Scale9OriginY="7" Scale9Width="124" Scale9Height="184" ctype="ImageViewObjectData">
+            <Size X="154.0000" Y="198.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position />
+            <Position Y="-11.9998" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="MarkedSubImage" Path="ui/renationitem.png" Plist="ui.plist" />
+            <FileData Type="MarkedSubImage" Path="ui/renationitem_n.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="name" ActionTag="258100084" Tag="193" IconVisible="False" LeftMargin="-118.2687" RightMargin="83.2687" TopMargin="-8.0000" BottomMargin="-10.0000" FontSize="16" LabelText="名称" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="35.0000" Y="18.0000" />
-            <AnchorPoint ScaleY="0.5000" />
-            <Position X="-118.2687" Y="-1.0000" />
+          <AbstractNodeData Name="name" ActionTag="-207982361" Tag="194" IconVisible="False" LeftMargin="-59.9440" RightMargin="-57.0560" TopMargin="67.9143" BottomMargin="-93.9143" FontSize="23" LabelText="太极门弟子" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="117.0000" Y="26.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-1.4440" Y="-80.9143" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="47" G="37" B="25" />
+            <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="addr" ActionTag="-207982361" Tag="194" IconVisible="False" LeftMargin="-29.2894" RightMargin="-5.7106" TopMargin="-8.0000" BottomMargin="-10.0000" FontSize="16" LabelText="名称" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="35.0000" Y="18.0000" />
-            <AnchorPoint ScaleY="0.5000" />
-            <Position X="-29.2894" Y="-1.0000" />
+          <AbstractNodeData Name="icon" ActionTag="-205195469" Tag="394" IconVisible="False" LeftMargin="-67.0082" RightMargin="-64.9918" TopMargin="-107.2272" BottomMargin="-54.7728" LeftEage="43" RightEage="43" TopEage="53" BottomEage="53" Scale9OriginX="43" Scale9OriginY="53" Scale9Width="46" Scale9Height="56" ctype="ImageViewObjectData">
+            <Size X="132.0000" Y="162.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-1.0082" Y="26.2272" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="47" G="37" B="25" />
+            <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="renation" ActionTag="-1645259103" Tag="195" IconVisible="False" LeftMargin="79.9341" RightMargin="-114.9341" TopMargin="-8.0000" BottomMargin="-10.0000" FontSize="16" LabelText="名称" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="35.0000" Y="18.0000" />
-            <AnchorPoint ScaleY="0.5000" />
-            <Position X="79.9341" Y="-1.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="47" G="37" B="25" />
-            <PrePosition />
-            <PreSize X="0.0000" Y="0.0000" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
+            <FileData Type="MarkedSubImage" Path="ui/n009.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

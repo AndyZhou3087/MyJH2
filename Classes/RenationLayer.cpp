@@ -53,20 +53,21 @@ bool RenationLayer::init()
 	cocos2d::ui::ImageView* title = (cocos2d::ui::ImageView*)csbnode->getChildByName("title");
 	title->loadTexture(ResourcePath::makeTextImgPath("renatitontilte", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-	cocos2d::ui::Text* tname = (cocos2d::ui::Text*)csbnode->getChildByName("tname");
-	tname->setString(ResourceLang::map_lang["renationtname"]);
+	addrname = (cocos2d::ui::Text*)csbnode->getChildByName("addrname");
+	addrname->setString("");
 
-	npcname = (cocos2d::ui::Text*)csbnode->getChildByName("npcname");
-
-	cocos2d::ui::Text* hintdesc = (cocos2d::ui::Text*)csbnode->getChildByName("hintdesc");
-	hintdesc->setString(ResourceLang::map_lang["renationhintdesc"]);
+	cocos2d::ui::Text* addrtext = (cocos2d::ui::Text*)csbnode->getChildByName("addrtext");
+	addrtext->setString(ResourceLang::map_lang["renationaddrtext"]);
 
 	//°´Å¥1
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(RenationLayer::onBtnClick, this));
 	closebtn->setTag(1000);
 
-	createPage();
+	scrollview = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scrollview");
+	scrollview->setScrollBarEnabled(false);
+	scrollview->setBounceEnabled(true);
+	createScrollview();
 
 	cocos2d::ui::Text* totalattrtitle = (cocos2d::ui::Text*)csbnode->getChildByName("totalattrtitle");
 	totalattrtitle->setString(ResourceLang::map_lang["totalattrtitle"]);
@@ -100,9 +101,16 @@ bool RenationLayer::init()
 	for (int i = 0; i < 6; i++)
 	{
 		std::string str = StringUtils::format("attrtext_%d", i); 
+		cocos2d::ui::Text* totalattrtext = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+		std::string strkey = StringUtils::format("reattrtext_%d", i);
+		totalattrtext->setString(ResourceLang::map_lang[strkey]);
+
+		str = StringUtils::format("attrval_%d", i);
 		cocos2d::ui::Text* totalattr = (cocos2d::ui::Text*)csbnode->getChildByName(str);
-		std::string strkey = StringUtils::format("renationaddattrvalue_%d", i);
-		str = StringUtils::format(ResourceLang::map_lang[strkey].c_str(), totalattrval[i]*100);
+
+		std::string valueformat[] = { "+%.2f%%", "+%.2f%%", "+%.2f%%", "+%.3f%%", "+%.3f%%", "+%.3f%%" };
+
+		str = StringUtils::format(valueformat[i].c_str(), totalattrval[i] * 100);
 		totalattr->setString(str);
 
 		str = StringUtils::format("renationitem_%d", i);
@@ -126,25 +134,13 @@ bool RenationLayer::init()
 	{
 
 	};
-	listener->onTouchEnded = [=](Touch *touch, Event *event)
-	{
-		auto endPoint = touch->getLocation();
-		if (fabs(endPoint.x - beginTouchPoint.x) >= 100 && (fabs(endPoint.y - beginTouchPoint.y) <= 20 || fabs(endPoint.y - beginTouchPoint.y) >= -20))
-		{
-			pageView->scrollToPage(pageView->getCurrentPageIndex() + 1);
-		}
-		else if (fabs(endPoint.x - beginTouchPoint.x) <= -100 && (fabs(endPoint.y - beginTouchPoint.y) <= 20 || fabs(endPoint.y - beginTouchPoint.y) >= -20))
-		{
-			pageView->scrollToPage(pageView->getCurrentPageIndex() - 1);
-		}
 
-	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
 }
 
-void RenationLayer::createPage()
+void RenationLayer::createScrollview()
 {
 	std::map<std::string, NPCData>::iterator it;
 	
@@ -158,69 +154,85 @@ void RenationLayer::createPage()
 	}
 
 	int size = vec_npc.size();
-	int itemheight = 39;
-	int perpageitem = 12;
-	pageView = cocos2d::ui::PageView::create();
-	pageView->setContentSize(Size(270, itemheight*perpageitem));
-	pageView->setPosition(Vec2(90, 350));
 
-	int page = size % perpageitem == 0 ? size / perpageitem : size / perpageitem + 1;
+	int itemwidth = 160;
+	int itemheight = 230;
+	int row = size % 4 == 0 ? size / 4 : (size / 4 + 1);
+	int innerheight = itemheight * row;
 
-	int vecindex = 0;
-	for (int m = 0; m < page; m++)
+	int contentheight = scrollview->getContentSize().height;
+	if (innerheight < contentheight)
+		innerheight = contentheight;
+	scrollview->setInnerContainerSize(Size(scrollview->getContentSize().width, innerheight));
+
+	for (int n = 0; n < size; n++)
 	{
-		auto layout = cocos2d::ui::Layout::create();
-		layout->setContentSize(Size(pageView->getContentSize().width, itemheight * perpageitem));
+		std::string npcid = vec_npc[n];
+		Node* itemnode = CSLoader::createNode(ResourcePath::makePath("renationitemNode.csb"));
 
-		for (int i = 0; i < perpageitem; i++)
+		itemnode->setPosition(Vec2(itemwidth/2 + n % 4 * itemwidth, innerheight - itemheight / 2 - n / 4 * itemheight + 5));
+		scrollview->addChild(itemnode);
+
+		cocos2d::ui::Text* name = (cocos2d::ui::Text*)itemnode->getChildByName("name");
+		name->setString(GlobalInstance::map_AllResources[npcid].name);
+
+		cocos2d::ui::ImageView* npcicon = (cocos2d::ui::ImageView*)itemnode->getChildByName("icon");
+		std::string npcpath = StringUtils::format("ui/%s.png", GlobalInstance::map_Npcs[npcid].icon.c_str());
+		npcicon->loadTexture(npcpath, cocos2d::ui::Widget::TextureResType::PLIST);
+
+		cocos2d::ui::Widget* renationitem = (cocos2d::ui::Widget*)itemnode->getChildByName("renationitem");
+		renationitem->addTouchEventListener(CC_CALLBACK_2(RenationLayer::onItemClick, this));
+		renationitem->setTag(n);
+		renationitem->setSwallowTouches(false);
+
+		int rcount = 0;
+		int ralation = NPC_NORMOL;
+		if (GlobalInstance::map_myfriendly.find(npcid) != GlobalInstance::map_myfriendly.end())
 		{
-			if (vecindex < size)
+			for (unsigned int i = 0; i < GlobalInstance::map_myfriendly[npcid].relation.size(); i++)
 			{
-				Node* itemnode = CSLoader::createNode(ResourcePath::makePath("renationitemNode.csb"));
-				itemnode->setPosition(Vec2(layout->getContentSize().width / 2, layout->getContentSize().height - itemheight / 2 - itemheight * i));
-				cocos2d::ui::Text* name = (cocos2d::ui::Text*)itemnode->getChildByName("name");
-				name->setString(GlobalInstance::map_AllResources[vec_npc[vecindex]].name);
-				cocos2d::ui::Text* addr = (cocos2d::ui::Text*)itemnode->getChildByName("addr");
-				std::string addrkey = GlobalInstance::map_AllResources[vec_npc[vecindex]].desc;
-				addr->setString(GlobalInstance::map_AllResources[addrkey].name);
-				cocos2d::ui::Text* renation = (cocos2d::ui::Text*)itemnode->getChildByName("renation");
+				ralation = GlobalInstance::map_myfriendly[npcid].relation[i];
 
-				cocos2d::ui::Widget* renationitem = (cocos2d::ui::Widget*)itemnode->getChildByName("renationitem");
-				renationitem->addTouchEventListener(CC_CALLBACK_2(RenationLayer::onItemClick, this));
-				renationitem->setTag(vecindex);
-				renationitem->setSwallowTouches(false);
-				
-				int ralation = NPC_NORMOL;
-				if (GlobalInstance::map_myfriendly.find(vec_npc[vecindex]) != GlobalInstance::map_myfriendly.end())
+				Sprite* rbox = NULL;
+				std::string renationsimptext;
+				if (ralation == NPC_FRIEND)
 				{
-					for (unsigned int i = 0; i < GlobalInstance::map_myfriendly[vec_npc[vecindex]].relation.size(); i++)
-					{
-						ralation = GlobalInstance::map_myfriendly[vec_npc[vecindex]].relation[i];
-					}
+					rbox = Sprite::createWithSpriteFrameName("ui/renationitemr0.png");
+					renationsimptext = ResourceLang::map_lang["renationtextsimp0"];
+				}
+				else if (ralation == NPC_MASTER)
+				{
+					rbox = Sprite::createWithSpriteFrameName("ui/renationitemr1.png");
+					renationsimptext = ResourceLang::map_lang["renationtextsimp1"];
+				}
+				else if (ralation == NPC_COUPEL)
+				{
+					rbox = Sprite::createWithSpriteFrameName("ui/renationitemr2.png");
+					renationsimptext = ResourceLang::map_lang["renationtextsimp2"];
+				}
+				if (rbox != NULL)
+				{
+					rbox->setPosition(Vec2(-50, 72 - 32 * rcount));
+					itemnode->addChild(rbox);
+
+					Label* rlbl = Label::createWithTTF(renationsimptext, FONT_NAME, 22);
+					rlbl->setColor(Color3B(255, 255, 255));
+					rlbl->setPosition(rbox->getPosition());
+					itemnode->addChild(rlbl);
 				}
 
-				if (ralation == NPC_FRIEND)
-					renation->setTextColor(Color4B(27, 140, 1, 255));
-				else if (ralation == NPC_MASTER)
-					renation->setTextColor(Color4B(5, 105, 207, 255));
-				else if (ralation == NPC_COUPEL)
-					renation->setTextColor(Color4B(232,23,23, 255));
-				std::string renationname = StringUtils::format("npcrelation_%d", ralation);
-				renation->setString(ResourceLang::map_lang[renationname]);
-				layout->addChild(itemnode);
+				rcount++;
 			}
-			vecindex++;
 		}
-		pageView->addPage(layout);
+
 	}
-	this->addChild(pageView);
 }
 
 void RenationLayer::updateNpcAddAttr(std::string npcid)
 {
-	npcname->setString(GlobalInstance::map_AllResources[npcid].name);
+	addrname->setString(GlobalInstance::map_AllResources[GlobalInstance::map_AllResources[npcid].desc].name);
 
-	std::string valueformat[] = {"+%.2f%%", "+%.2f%%", "+%.2f%%", "+%.3f%%", "+%.3f%%", "+%.3f"};
+	std::string valueformat[] = {"+%.2f%%", "+%.2f%%", "+%.2f%%", "+%.3f%%", "+%.3f%%", "+%.3f%%"};
 	float attrval[] = { 0,0,0,0,0,0 };
 	if (GlobalInstance::map_myfriendly.find(npcid) != GlobalInstance::map_myfriendly.end())
 	{
@@ -251,6 +263,7 @@ void RenationLayer::updateNpcAddAttr(std::string npcid)
 void RenationLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
+
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		Node* node = (Node*)pSender;
@@ -289,8 +302,8 @@ void RenationLayer::onItemClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		if (lastClickNpcItem != npcitem)
 		{
 			if (lastClickNpcItem != NULL)
-				((cocos2d::ui::ImageView*)lastClickNpcItem)->loadTexture(ResourcePath::makePath("ui/renationitem.png"), cocos2d::ui::Widget::TextureResType::PLIST);
-			npcitem->loadTexture(ResourcePath::makePath("ui/renationitem1.png"), cocos2d::ui::Widget::TextureResType::PLIST);
+				((cocos2d::ui::ImageView*)lastClickNpcItem)->loadTexture(ResourcePath::makePath("ui/renationitem_n.png"), cocos2d::ui::Widget::TextureResType::PLIST);
+			npcitem->loadTexture(ResourcePath::makePath("ui/renationitem_s.png"), cocos2d::ui::Widget::TextureResType::PLIST);
 			lastClickNpcItem = npcitem;
 			updateNpcAddAttr(vec_npc[tag]);
 		}

@@ -59,6 +59,13 @@ bool MatchRewardLayer::init()
 	//≤‚ ‘
 	//GlobalInstance::myMatchInfo.rewardstr = "r001-10-0,r006-100-0,a001-1-1;w001-1-0,r006-100-0;x001-1-0,r012-100-0;e001-1-1,f001-1-1,r012-100-0;a002-1-1,f002-1-1,r012-100-0";
 	std::vector<std::vector<std::vector<std::string>>> vec_matchlv;
+
+	if (GlobalInstance::myMatchInfo.rewardstr1.length() > 0)
+	{
+		GlobalInstance::myMatchInfo.rewardstr.append(";");
+		GlobalInstance::myMatchInfo.rewardstr.append((GlobalInstance::myMatchInfo.rewardstr1));
+	}
+
 	std::vector<std::string> vec_retstr;
 	CommonFuncs::split(GlobalInstance::myMatchInfo.rewardstr, vec_retstr, ";");
 	for (unsigned int i = 0; i < vec_retstr.size(); i++)
@@ -75,8 +82,20 @@ bool MatchRewardLayer::init()
 		vec_matchlv.push_back(vec_mstr);
 	}
 
-	int lvscores[] = { 100, 300, 700, 1000, INT32_MAX };
-	int lvsize = sizeof(lvscores) / sizeof(lvscores[0]);
+	int dwscores[] = { 100, 300, 700, 1000, INT32_MAX };
+	std::vector<int> lvscores;
+	
+	int lvscoressize = sizeof(dwscores) / sizeof(dwscores[0]);
+	for (int i = 0; i < lvscoressize; i++)
+	{
+		lvscores.push_back(dwscores[i]);
+	}
+
+	std::vector<std::string> vec_rankinfo;
+	CommonFuncs::split(GlobalInstance::myMatchInfo.rewardrank, vec_rankinfo, ";");
+
+
+	int lvsize = lvscoressize + vec_rankinfo.size();
 	int itemheight = 220;
 	int innerheight = lvsize * itemheight;
 	int contentheight = scrollView->getContentSize().height;
@@ -90,54 +109,63 @@ bool MatchRewardLayer::init()
 		Node* node = CSLoader::createNode(ResourcePath::makePath("matchRewardNode.csb"));
 		scrollView->addChild(node);
 		node->setPosition(Vec2(240, innerheight - i * itemheight - itemheight / 2));
-		std::string lvname = StringUtils::format("matchlvname_%d", i);
-		int minscore = 0;
-		int maxscore = lvscores[i];
-		if (i > 0)
+
+		cocos2d::ui::Text* title = (cocos2d::ui::Text*)node->getChildByName("title");
+		std::string str;
+		if (i <= 4)
 		{
-			minscore = lvscores[i - 1] + 1;
-			//maxscore = lvscores[i];
+			std::string lvname = StringUtils::format("matchlvname_%d", i);
+			int minscore = 0;
+			int maxscore = lvscores[i];
+			if (i > 0)
+			{
+				minscore = lvscores[i - 1] + 1;
+				//maxscore = lvscores[i];
+			}
+
+			str = StringUtils::format(ResourceLang::map_lang["matchlv"].c_str(), ResourceLang::map_lang[lvname].c_str(), minscore, maxscore);
+		}
+		else
+		{
+
+			str = StringUtils::format(ResourceLang::map_lang["matchranktext"].c_str(), vec_rankinfo[i-5].c_str());
 		}
 
-		std::string str = StringUtils::format(ResourceLang::map_lang["matchlv"].c_str(), ResourceLang::map_lang[lvname].c_str(), minscore, maxscore);
-		cocos2d::ui::Text* title = (cocos2d::ui::Text*)node->getChildByName("title");
 		title->setString(str);
-		if (vec_matchlv.size() == lvsize)
+
+		int rewardsize = vec_matchlv[i].size();
+		for (int n = 0; n < 3; n++)
 		{
-			int rewardsize = vec_matchlv[i].size();
-			for (int n = 0; n < 3; n++)
+			str = StringUtils::format("resbox_%d", n);
+			cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)node->getChildByName(str);
+			cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
+			cocos2d::ui::Text* countlbl = (cocos2d::ui::Text*)resbox->getChildByName("countlbl");
+			cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)resbox->getChildByName("name");
+			if (n < rewardsize)
 			{
-				str = StringUtils::format("resbox_%d", n);
-				cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)node->getChildByName(str);
-				cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
-				cocos2d::ui::Text* countlbl = (cocos2d::ui::Text*)resbox->getChildByName("countlbl");
-				cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)resbox->getChildByName("name");
-				if (n < rewardsize)
+				resbox->setPositionX(startx[rewardsize - 1] + offsetx[rewardsize - 1] * n);
+
+				std::string resid = vec_matchlv[i][n][0];
+				int count = atoi(vec_matchlv[i][n][1].c_str());
+				int qu = atoi(vec_matchlv[i][n][2].c_str());
+				int t = 0;
+				for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
 				{
-					resbox->setPositionX(startx[rewardsize - 1] + offsetx[rewardsize - 1] * n);
-
-					std::string resid = vec_matchlv[i][n][0];
-					int count = atoi(vec_matchlv[i][n][1].c_str());
-					int qu = atoi(vec_matchlv[i][n][2].c_str());
-					int t = 0;
-					for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
-					{
-						if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
-							break;
-					}
-
-					CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
-
-					std::string resstr = StringUtils::format("ui/%s.png", resid.c_str());
-					res->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
-					namelbl->setString(GlobalInstance::map_AllResources[resid].name);
-					std::string countstr = StringUtils::format("%d", count);
-					countlbl->setString(countstr);
+					if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+						break;
 				}
-				else
-				{
-					resbox->setVisible(false);
-				}
+
+				CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
+
+				std::string resstr = StringUtils::format("ui/%s.png", resid.c_str());
+				res->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
+				namelbl->setString(GlobalInstance::map_AllResources[resid].name);
+				std::string countstr = StringUtils::format("%d", count);
+				countlbl->setString(countstr);
+			}
+			else
+			{
+				resbox->setVisible(false);
 			}
 		}
 	}

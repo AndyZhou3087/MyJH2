@@ -32,6 +32,7 @@
 #include "RepairBuildingLayer.h"
 #include "SmallStallLayer.h"
 #include "ShopLayer.h"
+#include "TrainFinishLayer.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -357,6 +358,19 @@ bool MainScene::init()
 	}
 
 	changeDayOrNight();
+
+	int maintaskcount = 0;
+	for (unsigned i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
+	{
+		TaskData data = GlobalInstance::vec_TaskMain[i];
+		if (data.isfinish >= QUEST_FINISH)
+		{
+			maintaskcount++;
+		}
+	}
+	Quest::setAchieveTypeCount(FINISH_MAIN, maintaskcount);
+
+	checkStarAchTask();
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -993,7 +1007,7 @@ void MainScene::onFinish(int code)
 			updateTime(0);
 			this->schedule(schedule_selector(MainScene::updateTime), 1);
 
-			if (GlobalInstance::servertime - GlobalInstance::getNewsTime >= 5 * 60)
+			if (GlobalInstance::servertime - GlobalInstance::getNewsTime >= 4 * 60)
 			{
 				GlobalInstance::getNewsTime = GlobalInstance::servertime;
 				httpgettype = 1;
@@ -1158,6 +1172,7 @@ void MainScene::updateTime(float dt)
 		maincityhintbox->setVisible(false);
 	}
 
+	bool istainfinish = false;
 	for (unsigned int m = 0; m < GlobalInstance::vec_myHeros.size(); m++)
 	{
 		Hero* trainhero = GlobalInstance::vec_myHeros[m];
@@ -1167,26 +1182,30 @@ void MainScene::updateTime(float dt)
 			int pasttime = GlobalInstance::servertime - refreshtime;
 			if (pasttime >= trainhero->getTrainHour())
 			{
-				int lv = Building::map_buildingDatas["4trainigroom"]->level.getValue();
-				int bexp = Building::map_buildingDatas["4trainigroom"]->vec_exdatatrain[lv];
+				istainfinish = true;
+				break;
+				//int lv = Building::map_buildingDatas["4trainigroom"]->level.getValue();
+				//int bexp = Building::map_buildingDatas["4trainigroom"]->vec_exdatatrain[lv];
 
-				int lastLevel = trainhero->getLevel();
-				trainhero->setExpLimit(trainhero->getTrainHour() / 3600 * bexp);
-				int curLevel = trainhero->getLevel();
-				//if (lastLevel <= curLevel - 1)
-				//{
-				//	CommonFuncs::playCommonLvUpAnim(this, "texiao_sjcg");
-				//}
+				//int lastLevel = trainhero->getLevel();
+				//trainhero->setExpLimit(trainhero->getTrainHour() / 3600 * bexp);
+				//int curLevel = trainhero->getLevel();
+				////if (lastLevel <= curLevel - 1)
+				////{
+				////	CommonFuncs::playCommonLvUpAnim(this, "texiao_sjcg");
+				////}
 
-				trainhero->setTrainHour(0);
-				trainhero->setTrainTime(0);
-				trainhero->setState(HS_OWNED);
-
-				traintip->setVisible(true);
-				std::string showstr = StringUtils::format(ResourceLang::map_lang["trainfinishtext"].c_str(), trainhero->getName().c_str());
-				MovingLabel::show(showstr);
+				//trainhero->setTrainHour(0);
+				//trainhero->setTrainTime(0);
+				//trainhero->setState(HS_OWNED);
 			}
 		}
+	}
+
+	if (istainfinish && this->getChildByName("trainfinishlayer") == NULL)
+	{
+		TrainFinishLayer* layer = TrainFinishLayer::create();
+		this->addChild(layer, 10000, "trainfinishlayer");
 	}
 
 	int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
@@ -1603,4 +1622,39 @@ void MainScene::hideBeggar()
 	ishasbeggar = false;
 	ishintbeggar = false;
 	beggar->setVisible(false);
+}
+
+void MainScene::checkStarAchTask()
+{
+	int totalstar = 0;
+	tinyxml2::XMLDocument* pDoc = new tinyxml2::XMLDocument();
+
+	std::string content = GlobalInstance::getInstance()->getUserDefaultXmlString(1);
+
+	int err = pDoc->Parse(content.c_str());
+	if (err != 0)
+	{
+		delete pDoc;
+	}
+	tinyxml2::XMLElement* rootEle = pDoc->RootElement();
+
+	tinyxml2::XMLElement* element = rootEle->FirstChildElement();
+	while (element != NULL)
+	{
+		std::string key = element->Name();
+
+		if (key.find("jhstarm") != std::string::npos)
+		{
+			if (element->GetText() != NULL)
+			{
+				std::string textstr = element->GetText();
+				std::vector<std::string> vec_tmp;
+				CommonFuncs::split(textstr, vec_tmp, ",");
+				totalstar += vec_tmp.size();
+			}
+		}
+		element = element->NextSiblingElement();
+	}
+
+	Quest::setAchieveTypeCount(GET_STARS, totalstar);
 }

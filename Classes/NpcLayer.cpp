@@ -186,7 +186,7 @@ bool NpcLayer::init(std::string npcid, std::vector<Npc*> vec_enemys)
 	scrollView->setScrollBarEnabled(false);
 	scrollView->setBounceEnabled(true);
 
-	if (GlobalInstance::eventstartmappos > -1)
+	if (GlobalInstance::eventstartmappos > -1 || GlobalInstance::map_AllResources[npcid].desc.length() <= 0)
 	{
 		text0->setVisible(false);
 		for (int i = 0; i < 5; i++)

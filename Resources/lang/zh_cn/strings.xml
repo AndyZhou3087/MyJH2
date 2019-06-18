@@ -103,12 +103,18 @@
 	<s name="dailytype_10">消耗%d元宝</s>
 	<s name="dailytype_11">消耗%d银两</s>
 	<s name="dailytype_12">角色升到%d级</s>
+	<s name="dailytype_13">救民女%d次</s>
+	<s name="dailytype_14">扶老人%d次</s>
+	<s name="dailytype_15">获得%d颗评星</s>
+	<s name="dailytype_16">完成%d个主线任务</s>		
 	<s name="dailyrlabel">奖励:</s>
 	<s name="dailypoint">积分x%d</s>
 	<s name="pointtext">%d积分</s>
 	<s name="nomorepoint">积分未达到！</s>
 	<s name="getpointreward">已领取积分物品</s>
 	<s name="winexp">经验值+%d</s>
+	<s name="trainexptext">经验</s>
+	<s name="trainlvtext">等级</s>		
 	<s name="heroempty">空空如也~~请到客栈招募侠客！</s>
 	<s name="timeselect">时间选择</s>
 	<s name="hour0">一小时</s>
@@ -377,9 +383,10 @@
 	<s name="matchnetsaveok">保存成功！</s>
 	<s name="mymatchherosempty">请选择出战侠客！</s>
 	<s name="matchruletitle">比赛规则</s>
-	<s name="matchruletext">1、竞技场规则：\n用户自行编辑阵容，与相同或接近段位的用户进行PVP。\n获胜将获得积分奖励。\n失败将扣除相应积分。\n当一次比赛周期结束时，用户会获得对应段位的奖励。\n\n2、匹配规则：\n仅在使用过竞技场功能，并保存了阵容的选手之间匹配。\n\n3、阵容规则：\n竞技场阵容由用户自行搭配。\n搭配完成后点击保存阵容即可进行保存。\n保存后的阵容将参与竞技。\n竞技场阵容可与出城阵容相同。\n竞技场阵容中不可出现已死亡角色。\n\n4、胜负规则：\n一方角色全部死亡为战斗结束。\n战斗结束时角色全部死亡为负。\n战斗结束时角色未全部死亡为胜。\n胜利获得积分奖励。\n失败扣除相应积分。\n\n5、段位规则：\n5.1 段位区分：\n乡野义士：0-100积分。\n江湖侠士：101-300积分。\n名门侠客：301-700积分。\n一方大侠：701-1000积分。\n墨者：1000积分+\n5.2 积分提升：\n每次竞技场战斗胜利时增加5积分。\n5.3 段位提升：\n当积分达到相应段位区间时则提升段位。\n当积分发生变化时段位也会随之变化提升或降低。\n默认积分统一为0（积分=0时不进行扣除）。\n\n6、赛季结算：\n每7天进行一次结算。\n结算后所有用户积分全部清零。\n\n7、结算奖励：\n乡野义士：10元宝\n江湖侠士：20元宝\n名门侠客：30元宝\n一方大侠：50元宝\n墨者：100元宝</s>
-	<s name="matchrulecontent">赛季结束后按照下列段位可领取奖励：</s>
+	<s name="matchruletext">1、竞技场规则：\n用户自行编辑阵容，与相同或接近段位的用户进行PVP。\n获胜将获得积分奖励。\n失败将扣除相应积分。\n当一次比赛周期结束时，用户按排名和对应段位获得奖励。\n\n2、匹配规则：\n仅在使用过竞技场功能，并保存了阵容的选手之间匹配。\n\n3、阵容规则：\n竞技场阵容由用户自行搭配。\n搭配完成后点击保存阵容即可进行保存。\n保存后的阵容将参与竞技。\n竞技场阵容可与出城阵容相同。\n竞技场阵容中不可出现已死亡角色。\n\n4、胜负规则：\n一方角色全部死亡为战斗结束。\n战斗结束时角色全部死亡为负。\n战斗结束时角色未全部死亡为胜。\n胜利获得积分奖励。\n失败扣除相应积分。\n\n5、段位规则：\n5.1 段位区分：\n乡野义士：0-100积分。\n江湖侠士：101-300积分。\n名门侠客：301-700积分。\n一方大侠：701-1000积分。\n墨者：1000积分+\n5.2 积分提升：\n每次竞技场战斗胜利时增加5积分。\n5.3 段位提升：\n当积分达到相应段位区间时则提升段位。\n当积分发生变化时段位也会随之变化提升或降低。\n默认积分统一为0（积分=0时不进行扣除）。\n\n6、赛季结算：\n每7天进行一次结算。\n结算后所有用户积分全部清零。\n\n7、</s>
+	<s name="matchrulecontent">赛季结束后按照下列段位和排名领取奖励：</s>
 	<s name="matchlv">段位 %s (%d~%d积分)</s>
+	<s name="matchranktext">第%s名</s>
 	<s name="matchwinscoretext">本局积分：</s>
 	<s name="matchtotalscoretext">我的积分：</s>
 	<s name="matchrewardget">点击可领取奖励</s>
@@ -428,16 +435,12 @@
 	<s name="loginbox4desc">大侠坚毅之心，日月皆知，天地可鉴，每天的神秘机缘之礼，大侠切莫错过！</s>
 	<s name="loginbox5desc">少侠，今日签到奖励已领，请明日再来！</s>
 	<s name="loginbox6desc">已连续签到%d天</s>
-	<s name="getloginrwdhint">点击物品领取</s>	
-	<s name="renationtname">名称     位置       关系</s>
+	<s name="getloginrwdhint">点击物品领取</s>
 	<s name="totalattrtitle">总增加属性</s>
-	<s name="renationaddattrvalue_0">生命值 +%.2f%%</s>
-	<s name="renationaddattrvalue_1">攻击力 +%.2f%%</s>
-	<s name="renationaddattrvalue_2">防御力 +%.2f%%</s>
-	<s name="renationaddattrvalue_3">闪避几率 +%.3f%%</s>
-	<s name="renationaddattrvalue_4">暴击几率 +%.3f%%</s>
-	<s name="renationaddattrvalue_5">攻击速度 +%.3f</s>
-	<s name="renationhintdesc">左右滑动翻页查看更多</s>
+	<s name="renationaddrtext">地点：</s>
+	<s name="renationtextsimp0">友</s>
+	<s name="renationtextsimp1">师</s>
+	<s name="renationtextsimp2">亲</s>
 	<s name="openholestitle">装备开孔</s>
 	<s name="openholesdesc">请选择开孔道具:</s>
 	<s name="openholestips">开孔成功率%d%%</s>
@@ -492,6 +495,7 @@
 	<s name="newtemplet6">{%s}发现神秘山洞，洞中隐隐可见幽光，一看便是某位江湖大侠的衣冠冢，躲过无数机关后，[%s]终于重现武林。</s>
 	<s name="newtemplet7">{%s}进入了迷宫，祝他/她好运！</s>
 	<s name="newtemplet8">恭喜{%s}的[%s]升级到了%d级，厉害！</s>
+	<s name="newtemplet9">恭喜{%s}的[%s]储备容量达到了%d万，厉害！</s>	
 	<s name="newfindstr0">{</s>	
 	<s name="newfindstr1">}</s>	
 	<s name="newfindstr2">[</s>	

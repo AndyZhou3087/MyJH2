@@ -1,5 +1,6 @@
 ﻿#include "MapBlock.h"
 #include "Const.h"
+#include "GlobalInstance.h"
 
 std::vector<FOURProperty> MapBlock::vec_randMonsters;
 std::vector<FOURProperty> MapBlock::vec_randMonstersRes;
@@ -90,6 +91,14 @@ void MapBlock::setPosIcon()
 	}
 	else
 	{
+		if (m_postype == 3 || m_postype == 4)
+		{
+			cocos2d::ui::ImageView* nicon = (cocos2d::ui::ImageView*)posicon->getChildByName("nicon");
+
+			std::string niconstr = StringUtils::format("ui/p%s.png", GlobalInstance::map_Npcs[m_posnpcid].icon.c_str());
+			nicon->loadTexture(niconstr, cocos2d::ui::Widget::TextureResType::PLIST);
+		}
+
 		posicon->setPosition(Vec2(Col*MAPBLOCKWIDTH + MAPBLOCKWIDTH/2, Row*MAPBLOCKHEIGHT + MAPBLOCKHEIGHT/2));
 		std::string posname = StringUtils::format("posicon%d", this->getLocalZOrder());
 		this->getParent()->addChild(posicon, this->getLocalZOrder() + 10002, posname);

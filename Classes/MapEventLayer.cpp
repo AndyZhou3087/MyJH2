@@ -12,6 +12,7 @@
 #include "MovingLabel.h"
 #include "BuyCoinLayer.h"
 #include "MazeTransitionScene.h"
+#include "Quest.h"
 
 #define BETPRO 450
 
@@ -296,6 +297,8 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					eventnode_3->setVisible(true);
 					eventElderExtort(m_eventindex);
 				}
+
+				Quest::setAchieveTypeCount(SAFE_OLDER, 1);
 			}
 			else if (m_eventindex == POS_WOMAN)
 			{
@@ -328,6 +331,8 @@ void MapEventLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					eventnode_3->setVisible(true);
 					eventFight();
 				}
+
+				Quest::setAchieveTypeCount(SAFE_WOMAN, 1);
 			}
 			else if (m_eventindex == POS_THIEF)
 			{

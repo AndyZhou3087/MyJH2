@@ -25,6 +25,7 @@ public:
 	void showNewerGuide(int step, Node* node);
 	void showNewerGuideNode(int step, std::vector<Node*> nodes);
 
+
 private:
 	CREATE_FUNC(MainMapScene);
 
@@ -37,6 +38,8 @@ private:
 
 	void updateTime(float dt);
 	void onFinish(int code);
+
+	void checkShowFlag(Node* mapnode, std::string mainmapid);
 
 private:
 	int m_startClickX;

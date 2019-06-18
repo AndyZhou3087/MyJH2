@@ -57,6 +57,15 @@ bool MatchRuleLayer::init()
 
 	cocos2d::ui::ScrollView* scrollView = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scrollView");
 	std::string str = CommonFuncs::replace_all(ResourceLang::map_lang["matchruletext"], "\\n", "\n");
+
+	if (GlobalInstance::myMatchInfo.rewardinfo.length() > 0)
+	{
+		std::string ruleawardtext;
+
+		ruleawardtext = CommonFuncs::replace_all(GlobalInstance::myMatchInfo.rewardinfo, "\\n", "\n");
+		str.append(ruleawardtext);
+	}
+
 	Label* contentlbl = Label::createWithTTF(str, FONT_NAME, 25);
 	contentlbl->setAnchorPoint(Vec2(0, 1));
 	contentlbl->setColor(Color3B(255, 255, 255));

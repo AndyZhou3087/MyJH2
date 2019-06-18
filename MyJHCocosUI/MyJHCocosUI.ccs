@@ -43,7 +43,6 @@
             <Image Name="zoomfig5.png" />
           </Folder>
           <Folder Name="newheroanim">
-            <Image Name="00.png" />
             <Image Name="01.png" />
             <Image Name="02.png" />
             <Image Name="03.png" />
@@ -540,8 +539,10 @@
           <Image Name="cleandata_text.png" />
           <Image Name="cleanread_text.png" />
           <Image Name="closebtn_text.png" />
+          <Image Name="composebtn_text.png" />
           <Image Name="continuebtn_text.png" />
           <Image Name="continuegamebtn_text.png" />
+          <Image Name="continuewin_text.png" />
           <Image Name="crefresh_text.png" />
           <Image Name="crit_text.png" />
           <Image Name="cure_text.png" />
@@ -571,6 +572,7 @@
           <Image Name="forge_text.png" />
           <Image Name="freerefreshhero_text.png" />
           <Image Name="getscore_text.png" />
+          <Image Name="getwin_text.png" />
           <Image Name="givebeggar_text.png" />
           <Image Name="goawaybtn_text.png" />
           <Image Name="goback_home_text.png" />
@@ -876,6 +878,7 @@
           <Image Name="texiao_rwwc.png" />
           <Image Name="texiao_sjcg.png" />
           <Image Name="texiao_tpcg.png" />
+          <Image Name="texiao_xlwc.png" />
           <Image Name="texiao_ziti.png" />
           <Image Name="texiao_zmcg.png" />
           <Image Name="texiao_zzcg.png" />
@@ -889,6 +892,7 @@
           <Image Name="text_vip0.png" />
           <Image Name="text_vip1.png" />
           <Image Name="text_vip2.png" />
+          <Image Name="text_vip3.png" />
           <Image Name="timegifttitle.png" />
           <Image Name="train_text.png" />
           <Image Name="traincoin_text.png" />
@@ -1087,6 +1091,10 @@
           <Image Name="dailytask_1.png" />
           <Image Name="dailytask_10.png" />
           <Image Name="dailytask_11.png" />
+          <Image Name="dailytask_13.png" />
+          <Image Name="dailytask_14.png" />
+          <Image Name="dailytask_15.png" />
+          <Image Name="dailytask_16.png" />
           <Image Name="dailytask_2.png" />
           <Image Name="dailytask_3.png" />
           <Image Name="dailytask_4.png" />
@@ -1140,6 +1148,9 @@
           <Image Name="f005-3.png" />
           <Image Name="f006-3.png" />
           <Image Name="fightretline.png" />
+          <Image Name="finishstarflag1.png" />
+          <Image Name="finishstarflag2.png" />
+          <Image Name="finishstarflag3.png" />
           <Image Name="firstcharge.png" />
           <Image Name="friendly_bar_0.png" />
           <Image Name="friendly_bar_1.png" />
@@ -1225,6 +1236,7 @@
           <Image Name="hh_subbtn.png" />
           <Image Name="i002.png" />
           <Image Name="i004.png" />
+          <Image Name="j001.png" />
           <Image Name="k001.png" />
           <Image Name="librarybackbtn.png" />
           <Image Name="librarytextbg.png" />
@@ -1383,10 +1395,16 @@
           <Image Name="rebategetbtn_n.png" />
           <Image Name="rebatpricebar.png" />
           <Image Name="rebatpricebarbg.png" />
+          <Image Name="renationattrbg.png" />
           <Image Name="renationbtn.png" />
           <Image Name="renationclosebtn.png" />
-          <Image Name="renationitem.png" />
-          <Image Name="renationitem1.png" />
+          <Image Name="renationitem_n.png" />
+          <Image Name="renationitem_s.png" />
+          <Image Name="renationitemr0.png" />
+          <Image Name="renationitemr1.png" />
+          <Image Name="renationitemr2.png" />
+          <Image Name="renationtotalattrbg.png" />
+          <Image Name="renationtotalattrline.png" />
           <Image Name="resaddbtn.png" />
           <Image Name="resbox.png" />
           <Image Name="resbox_qu0.png" />
@@ -1445,6 +1463,7 @@
           <Image Name="v001.png" />
           <Image Name="vip0.png" />
           <Image Name="vip1.png" />
+          <Image Name="vip2.png" />
           <Image Name="voc10icon.png" />
           <Image Name="voc11icon.png" />
           <Image Name="voc4icon.png" />
@@ -1673,6 +1692,8 @@
         <Project Name="testhhPosLayer.csd" Type="Layer" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <Project Name="timeGiftLayer.csd" Type="Layer" />
+        <Project Name="trainFinishLayer.csd" Type="Layer" />
+        <Project Name="trainFinishNode.csd" Type="Node" />
         <Project Name="trainLayer.csd" Type="Layer" />
         <Project Name="trainSelectLayer.csd" Type="Layer" />
         <Project Name="transitionLayer.csd" Type="Layer" />

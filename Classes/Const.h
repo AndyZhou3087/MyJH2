@@ -79,7 +79,7 @@ const static int COSTLV[] = { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 15, 1
 const static float ODDS[] = { 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 96.5f, 92.5f, 88.0f, 83.0f, 77.5f, 71.5f, 65.0f, 58.0f, 50.5f, 42.5f, 34.0f, 25.0f, 15.5f, 5.5f };
 
 //区分资源类型的字符
-const static std::string RES_TYPES_CHAR[] = { "r","a","e","g","f","w","x", "q", "c", "s" ,"d","m","i","b","y","v","t","p","u","k","z"};
+const static std::string RES_TYPES_CHAR[] = { "r","a","e","g","f","w","x", "q", "c", "s" ,"d","m","i","b","y","v","t","p","u","k","z","j"};
 
 const static std::string defaultres = "r001-500-1;r002-500-1;r003-500-1;r004-500-1;t001-10-1;r005-500-1;r009-10-1;p001-5-1;v001-2-1;z001-2-1;w001-1-1-0-0-;x001-1-1-0-0-";
 
@@ -87,5 +87,5 @@ const static std::string defaultres = "r001-500-1;r002-500-1;r003-500-1;r004-500
 const static int mazes[] = {2, 5, 3, 3, 2};
 const static int mazesfightbg[] = {2, 3, 2, 2, 3};
 
-const static int VIPDAYS[] = { 30,30,365 };
+const static int VIPDAYS[] = { 30,30,365,30};
 #endif // _H_CONST_H_

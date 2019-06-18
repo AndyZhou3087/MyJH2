@@ -1503,6 +1503,24 @@ void HttpDataSwap::httpGetMyMatchHerosCB(std::string retdata, int code, std::str
 				rapidjson::Value& v = doc["matchaward"];
 				GlobalInstance::myMatchInfo.rewardstr = v.GetString();
 			}
+
+			if (doc.HasMember("matchaward1"))
+			{
+				rapidjson::Value& v = doc["matchaward1"];
+				GlobalInstance::myMatchInfo.rewardstr1 = v.GetString();
+			}
+
+			if (doc.HasMember("awardinfo"))
+			{
+				rapidjson::Value& v = doc["awardinfo"];
+				GlobalInstance::myMatchInfo.rewardinfo = v.GetString();
+			}
+
+			if (doc.HasMember("ranklevel"))
+			{
+				rapidjson::Value& v = doc["ranklevel"];
+				GlobalInstance::myMatchInfo.rewardrank = v.GetString();
+			}
 			
 			if (ret == 2)
 				ret = SUCCESS;
