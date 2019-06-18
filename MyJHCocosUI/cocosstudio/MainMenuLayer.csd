@@ -471,7 +471,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5068" Y="0.5205" />
                 <PreSize X="0.7466" Y="0.7466" />
-                <FileData Type="MarkedSubImage" Path="ui/vip2.png" Plist="ui.plist" />
+                <FileData Type="MarkedSubImage" Path="ui/vip3.png" Plist="ui.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="text" ActionTag="-549227664" Tag="399" IconVisible="False" LeftMargin="72.1530" RightMargin="-2.1530" TopMargin="104.0000" BottomMargin="-2.0000" FontSize="35" LabelText="20天" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="76.0000" Y="44.0000" />
