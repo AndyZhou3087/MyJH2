@@ -235,10 +235,6 @@
           <Image Name="main_back_f.jpg" />
           <Image Name="main_bg_l.png" />
           <Image Name="main_bg_r.png" />
-          <Image Name="main_bird1.png" />
-          <Image Name="main_bird2.png" />
-          <Image Name="main_bird3.png" />
-          <Image Name="main_bird4.png" />
           <Image Name="main_blank_c.png" />
           <Image Name="main_cloud.png" />
           <Image Name="main_sky.jpg" />
@@ -1570,6 +1566,10 @@
           <Image Name="z002.png" />
           <Image Name="z003.png" />
           <Image Name="z004.png" />
+          <Image Name="main_bird1.png" />
+          <Image Name="main_bird2.png" />
+          <Image Name="main_bird3.png" />
+          <Image Name="main_bird4.png" />
         </Folder>
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />

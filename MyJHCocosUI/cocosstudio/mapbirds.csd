@@ -5,114 +5,114 @@
       <Animation Duration="36" Speed="1.0000">
         <Timeline ActionTag="-297558654" Property="FileData">
           <TextureFrame FrameIndex="0" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird1.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird1.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="12" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="24" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird3.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird3.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="36" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird4.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird4.png" Plist="ui.plist" />
           </TextureFrame>
         </Timeline>
         <Timeline ActionTag="-2109740050" Property="FileData">
           <TextureFrame FrameIndex="0" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird1.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird1.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="12" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="24" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird3.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird3.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="36" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird4.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird4.png" Plist="ui.plist" />
           </TextureFrame>
         </Timeline>
         <Timeline ActionTag="118788277" Property="FileData">
           <TextureFrame FrameIndex="0" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird1.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird1.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="12" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="24" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird3.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird3.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="36" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird4.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird4.png" Plist="ui.plist" />
           </TextureFrame>
         </Timeline>
         <Timeline ActionTag="723871795" Property="FileData">
           <TextureFrame FrameIndex="0" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird1.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird1.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="12" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="24" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird3.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird3.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="36" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird4.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird4.png" Plist="ui.plist" />
           </TextureFrame>
         </Timeline>
         <Timeline ActionTag="-1595625219" Property="FileData">
           <TextureFrame FrameIndex="0" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird1.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird1.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="12" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="24" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird3.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird3.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="36" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird4.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird4.png" Plist="ui.plist" />
           </TextureFrame>
         </Timeline>
         <Timeline ActionTag="-1639267044" Property="FileData">
           <TextureFrame FrameIndex="0" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird1.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird1.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="12" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="24" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird3.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird3.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="36" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird4.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird4.png" Plist="ui.plist" />
           </TextureFrame>
         </Timeline>
         <Timeline ActionTag="702324018" Property="FileData">
           <TextureFrame FrameIndex="0" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird1.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird1.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="12" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="24" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird3.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird3.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="36" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird4.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird4.png" Plist="ui.plist" />
           </TextureFrame>
         </Timeline>
         <Timeline ActionTag="-2013396041" Property="FileData">
           <TextureFrame FrameIndex="0" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird1.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird1.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="12" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="24" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird3.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird3.png" Plist="ui.plist" />
           </TextureFrame>
           <TextureFrame FrameIndex="36" Tween="False">
-            <TextureFile Type="Normal" Path="mainimg/main_bird4.png" Plist="" />
+            <TextureFile Type="MarkedSubImage" Path="ui/main_bird4.png" Plist="ui.plist" />
           </TextureFrame>
         </Timeline>
       </Animation>
@@ -127,7 +127,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <FileData Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Sprite_1_0" ActionTag="-2109740050" Tag="68" IconVisible="False" LeftMargin="-94.4078" RightMargin="32.4078" TopMargin="-94.4081" BottomMargin="26.4081" ctype="SpriteObjectData">
@@ -138,7 +138,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <FileData Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Sprite_1_0_0" ActionTag="118788277" Tag="69" IconVisible="False" LeftMargin="20.8635" RightMargin="-82.8635" TopMargin="-54.7863" BottomMargin="-13.2137" ctype="SpriteObjectData">
@@ -149,7 +149,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <FileData Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Sprite_1_0_0_0" ActionTag="723871795" Tag="70" IconVisible="False" LeftMargin="-25.8391" RightMargin="-36.1609" TopMargin="1.6355" BottomMargin="-69.6355" ctype="SpriteObjectData">
@@ -160,7 +160,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <FileData Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Sprite_1_0_0_0_0" ActionTag="-1595625219" Tag="71" IconVisible="False" LeftMargin="29.3152" RightMargin="-91.3152" TopMargin="-5.5544" BottomMargin="-62.4456" ctype="SpriteObjectData">
@@ -171,7 +171,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <FileData Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Sprite_1_0_0_0_0_0" ActionTag="-1639267044" Tag="72" IconVisible="False" LeftMargin="81.3663" RightMargin="-143.3663" TopMargin="-25.0474" BottomMargin="-42.9526" ctype="SpriteObjectData">
@@ -182,7 +182,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <FileData Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Sprite_1_0_1" ActionTag="702324018" Tag="74" IconVisible="False" LeftMargin="-145.7395" RightMargin="83.7395" TopMargin="25.5751" BottomMargin="-93.5751" ctype="SpriteObjectData">
@@ -193,7 +193,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <FileData Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Sprite_1_0_2" ActionTag="-2013396041" Tag="75" IconVisible="False" LeftMargin="-81.6688" RightMargin="19.6688" TopMargin="11.8205" BottomMargin="-79.8205" ctype="SpriteObjectData">
@@ -204,7 +204,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="mainimg/main_bird2.png" Plist="" />
+            <FileData Type="MarkedSubImage" Path="ui/main_bird2.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
         </Children>

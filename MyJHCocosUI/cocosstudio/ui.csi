@@ -650,6 +650,10 @@
       <FilePathData Path="ui/dailytask_15.png" />
       <FilePathData Path="ui/dailytask_16.png" />
       <FilePathData Path="ui/vip2.png" />
+      <FilePathData Path="ui/main_bird1.png" />
+      <FilePathData Path="ui/main_bird2.png" />
+      <FilePathData Path="ui/main_bird3.png" />
+      <FilePathData Path="ui/main_bird4.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>
