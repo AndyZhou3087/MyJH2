@@ -121,7 +121,7 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp,
 				{
 					std::string textname = StringUtils::format("hint%d", i + 1);
 					cocos2d::ui::Text* failhintext = (cocos2d::ui::Text*)failhintnode->getChildByName(textname);
-					textname = StringUtils::format("failhinttext%d", i + 1);
+					textname = StringUtils::format("failhinttext%d", vec_hintindex[i]);
 					std::string showstr = StringUtils::format("%d.", i + 1);
 					showstr.append(ResourceLang::map_lang[textname]);
 					failhintext->setString(showstr);
