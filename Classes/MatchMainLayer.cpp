@@ -391,6 +391,24 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 					wdata.qu = qu;
 					vec_rewards.push_back(wdata);
 				}
+
+				if (GlobalInstance::myMatchInfo.awardindex1.length() > 0)
+				{
+					std::vector<std::string> vec_;
+					CommonFuncs::split(GlobalInstance::myMatchInfo.awardindex1, vec_,";");
+					for (unsigned int i = 0; i < vec_.size(); i++)
+					{
+						std::vector<std::string> vec_one;
+						CommonFuncs::split(vec_[i], vec_one,"-");
+
+						MSGAWDSDATA wdata;
+						wdata.rid = vec_one[0];
+						wdata.count = atoi(vec_one[1].c_str());
+						wdata.qu = atoi(vec_one[2].c_str());
+						vec_rewards.push_back(wdata);
+					}
+				}
+
 				if (vec_rewards.size() > 0)
 				{
 					RewardLayer* layer = RewardLayer::create(vec_rewards, MYSTORAGE, 1);

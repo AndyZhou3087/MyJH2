@@ -346,6 +346,7 @@ typedef struct
 	std::string rewardrank;
 	int matchscore;
 	int awardindex;
+	std::string awardindex1;
 	std::map<std::string, std::string> map_myheros;
 	std::map<std::string, std::string> map_pairheros;
 	std::string pairplayerid;

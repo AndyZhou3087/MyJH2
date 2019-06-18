@@ -2122,23 +2122,23 @@ void MapBlockScene::showFightResult(int result)
 		{
 			GlobalInstance::starcontinuefightsucccount++;
 			GlobalInstance::curmapcontinuefightsucccount++;
-			if (GlobalInstance::starcontinuefightsucccount >= 10)
-			{
-				int liveherocount = 0;
 
-				for (int i = 0; i < 6; i++)
-				{
-					if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
-						liveherocount++;
-				}
-				if (GlobalInstance::takeoutherocount == liveherocount)
-				{
+			int liveherocount = 0;
+
+			for (int i = 0; i < 6; i++)
+			{
+				if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
+					liveherocount++;
+			}
+
+			if (GlobalInstance::takeoutherocount == liveherocount)
+			{
+				if (GlobalInstance::starcontinuefightsucccount >= 10)
 					calcStar(SA_NODEATH);
-				}
-				else
-				{
-					GlobalInstance::starcontinuefightsucccount = 0;
-				}
+			}
+			else
+			{
+				GlobalInstance::starcontinuefightsucccount = 0;
 			}
 			calcStar(SA_FIGHTSUCC);
 		}

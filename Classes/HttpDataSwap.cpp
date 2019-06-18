@@ -1475,6 +1475,11 @@ void HttpDataSwap::httpGetMyMatchHerosCB(std::string retdata, int code, std::str
 				myd = mydatav["awardindex"];
 				GlobalInstance::myMatchInfo.awardindex = atoi(myd.GetString());
 
+				if (mydatav.HasMember("awardindex1"))
+				{
+					GlobalInstance::myMatchInfo.awardindex1 = mydatav["awardindex1"].GetString();
+				}
+
 				GlobalInstance::myMatchInfo.wincount = atoi(getJsonValueStr(mydatav["wincount"]).c_str());
 
 				GlobalInstance::myMatchInfo.lostcount = atoi(getJsonValueStr(mydatav["lostcount"]).c_str());
