@@ -113,7 +113,7 @@ void ShopNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 	{
 		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
 
-		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
+		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP*2 || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP*2)
 			clickflag = false;
 	}
 
