@@ -129,11 +129,10 @@ void ShopNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		else
 		{
 			GiftContentLayer* layer = GiftContentLayer::create(m_shopdata, this->getTag());
-			ShopLayer* shop = (ShopLayer*)g_mainScene->getChildByName("ShopLayer");
-			if (shop != NULL)
+			if (g_mainScene != NULL)
 			{
-				shop->addChild(layer);
-				AnimationEffect::openAniEffect((Layer*)layer);
+				g_mainScene->addChild(layer, 0, "GiftContentLayer");
+				AnimationEffect::openAniEffect(layer);
 			}
 		}
 	}
