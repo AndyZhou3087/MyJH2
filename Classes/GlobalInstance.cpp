@@ -3007,7 +3007,7 @@ int GlobalInstance::generateHeroPotential()
 		int r = GlobalInstance::getInstance()->createRandomNum(100);
 		if (r < 55)
 			return 0;
-		else if (r < 95)
+		if (r < 95)
 			return 1;
 		return 2;
 	}
@@ -3016,9 +3016,9 @@ int GlobalInstance::generateHeroPotential()
 		int r = GlobalInstance::getInstance()->createRandomNum(100);
 		if (r < 50)
 			return 0;
-		else if (r < 89)
+		if (r < 89)
 			return 1;
-		else if (r < 99)
+		if (r < 99)
 			return 2;
 		return 3;
 	}
@@ -3027,11 +3027,11 @@ int GlobalInstance::generateHeroPotential()
 		int r = GlobalInstance::getInstance()->createRandomNum(10000);
 		if (r < 4999)
 			return 0;
-		else if (r < 8399)
+		if (r < 8399)
 			return 1;
-		else if (r < 9899)
+		if (r < 9899)
 			return 2;
-		else if (r < 9999)
+		if (r < 9999)
 			return 3;
 		return 4;
 	}
@@ -3046,7 +3046,7 @@ int GlobalInstance::generateHeroPotentialByCoin()
 		int r = GlobalInstance::getInstance()->createRandomNum(100);
 		if (r < 84)
 			return 1;
-		else if (r < 99)
+		if (r < 99)
 			return 2;
 		return 3;
 	}
@@ -3055,9 +3055,9 @@ int GlobalInstance::generateHeroPotentialByCoin()
 		int r = GlobalInstance::getInstance()->createRandomNum(10000);
 		if (r < 7899)
 			return 1;
-		else if (r < 9899)
+		if (r < 9899)
 			return 2;
-		else if (r < 9999)
+		if (r < 9999)
 			return 3;
 		return 4;
 	}
@@ -3066,7 +3066,7 @@ int GlobalInstance::generateHeroPotentialByCoin()
 		int r = GlobalInstance::getInstance()->createRandomNum(10000);
 		if (r < 9498)
 			return 2;
-		else if (r < 9998)
+		if (r < 9998)
 			return 3;
 		return 4;
 	}

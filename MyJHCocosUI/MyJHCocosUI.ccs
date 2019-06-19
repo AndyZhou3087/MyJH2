@@ -1246,6 +1246,10 @@
           <Image Name="m1-5_box.png" />
           <Image Name="main_achbtn.png" />
           <Image Name="main_addbtn.png" />
+          <Image Name="main_bird1.png" />
+          <Image Name="main_bird2.png" />
+          <Image Name="main_bird3.png" />
+          <Image Name="main_bird4.png" />
           <Image Name="main_btn_redpoint.png" />
           <Image Name="main_coin.png" />
           <Image Name="main_coin_box.png" />
@@ -1566,10 +1570,6 @@
           <Image Name="z002.png" />
           <Image Name="z003.png" />
           <Image Name="z004.png" />
-          <Image Name="main_bird1.png" />
-          <Image Name="main_bird2.png" />
-          <Image Name="main_bird3.png" />
-          <Image Name="main_bird4.png" />
         </Folder>
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />

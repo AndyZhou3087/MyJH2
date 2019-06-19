@@ -180,9 +180,10 @@ void RenationLayer::createScrollview()
 		std::string npcpath = StringUtils::format("ui/%s.png", GlobalInstance::map_Npcs[npcid].icon.c_str());
 		npcicon->loadTexture(npcpath, cocos2d::ui::Widget::TextureResType::PLIST);
 
-		cocos2d::ui::Widget* renationitem = (cocos2d::ui::Widget*)itemnode->getChildByName("renationitem");
+		cocos2d::ui::ImageView* renationitem = (cocos2d::ui::ImageView*)itemnode->getChildByName("renationitem");
 		renationitem->addTouchEventListener(CC_CALLBACK_2(RenationLayer::onItemClick, this));
 		renationitem->setTag(n);
+		renationitem->ignoreContentAdaptWithSize(true);
 		renationitem->setSwallowTouches(false);
 
 		int rcount = 0;

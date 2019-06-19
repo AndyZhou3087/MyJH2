@@ -71,8 +71,8 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="exp" ActionTag="556562500" Tag="130" IconVisible="False" LeftMargin="154.0800" RightMargin="-191.0800" TopMargin="10.5000" BottomMargin="-25.5000" FontSize="13" LabelText="0/100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="37.0000" Y="15.0000" />
+          <AbstractNodeData Name="exp" ActionTag="556562500" Tag="130" IconVisible="False" LeftMargin="151.5800" RightMargin="-193.5800" TopMargin="9.5000" BottomMargin="-26.5000" FontSize="15" LabelText="0/100" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="42.0000" Y="17.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="172.5800" Y="-18.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />

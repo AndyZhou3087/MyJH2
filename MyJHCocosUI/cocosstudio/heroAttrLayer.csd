@@ -96,7 +96,7 @@
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.1226" Y="0.8019" />
-                    <PreSize X="0.2264" Y="0.2264" />
+                    <PreSize X="0.1038" Y="0.2830" />
                     <FileData Type="MarkedSubImage" Path="ui/nofiticon.png" Plist="ui.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
@@ -536,14 +536,14 @@
                 <PreSize X="0.2917" Y="0.0329" />
                 <ImageFileData Type="MarkedSubImage" Path="ui/heroattrexpbar.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="exp" ActionTag="-508342387" Tag="183" IconVisible="False" LeftMargin="310.0000" RightMargin="310.0000" TopMargin="149.5000" BottomMargin="261.5000" FontSize="13" LabelText="1234/123456789" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="100.0000" Y="15.0000" />
+              <AbstractNodeData Name="exp" ActionTag="-508342387" Tag="183" IconVisible="False" LeftMargin="303.0000" RightMargin="303.0000" TopMargin="148.5000" BottomMargin="260.5000" FontSize="15" LabelText="1234/123456789" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="114.0000" Y="17.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="360.0000" Y="269.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.6315" />
-                <PreSize X="0.1389" Y="0.0352" />
+                <PreSize X="0.1583" Y="0.0399" />
                 <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />

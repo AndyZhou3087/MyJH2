@@ -62,7 +62,8 @@ const static cocos2d::Color3B POTENTIALCOLOR[5] = { cocos2d::Color3B(36, 255, 82
 //镶嵌宝石加成
 const static float STONE_BNS[][3] = { {38.0f, 121.0f, 299.0f},{19.0f, 61.0f, 150.0f},{375.0f,1210.0f, 2990.0f},{0.375f, 1.21f, 2.99f},{0.375f, 1.21f, 2.99f} };
 
-const static float POTENTIAL_BNS[] = {1.0f, 1.27f, 1.63f, 2.10f, 2.70f};
+//品质系数
+const static float POTENTIAL_BNS[] = {1.0f, 1.27f, 1.63f, 2.10f, 2.75f};
 
 //突破等级系数
 const static float BREAK_BNS[] = { 1.0f, 1.1f, 1.12f, 1.15f, 1.19f, 1.24f, 1.3f};
