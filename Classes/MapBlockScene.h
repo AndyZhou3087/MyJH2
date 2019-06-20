@@ -311,6 +311,7 @@ private:
 	int m_startClickY;
 	std::vector<Vec2> m_vecrouts;
 
+	int guideBossPos;
 	int destblockindex;
 	bool isoverscreen;
     bool ishalfscreen;

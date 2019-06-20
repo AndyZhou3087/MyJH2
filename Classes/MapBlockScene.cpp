@@ -81,6 +81,8 @@ MapBlockScene::MapBlockScene()
 	isoverscreen = false;
     
     ishalfscreen = false;
+
+	guideBossPos = -1;
 }
 
 
@@ -589,6 +591,7 @@ void MapBlockScene::showNewerGuide(int step)
 			{
 				showBossGuideAnim(block->getPosition());
 				nodes.push_back(block);
+				guideBossPos = it->first;
 				break;
 			}
 		}
@@ -2418,6 +2421,12 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			else
 			{
 				destblockindex = checkNearestIndex(tag, 6);
+
+				if (guideBossPos >= 0)
+				{
+					destblockindex = guideBossPos;
+					guideBossPos = -1;
+				}
 				if (destblockindex < 0 || (tag != mycurRow * blockColCount + mycurCol && destblockindex == mycurRow * blockColCount + mycurCol))
 					MovingLabel::show(ResourceLang::map_lang["norouting"]);
 				else
