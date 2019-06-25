@@ -156,7 +156,7 @@ bool MyHeroNode::init(Hero* herodata, int showtype, int forwhere)
 			CommonFuncs::changeGray(headimg);
 
 			CommonFuncs::changeGray(csbnode->getChildByName("itembg"));
-			clickimg->setEnabled(false);
+			//clickimg->setEnabled(false);
 		}
 	}
 	else if (m_showtype == HS_TRAINING)
