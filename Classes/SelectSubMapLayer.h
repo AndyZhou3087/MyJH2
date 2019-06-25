@@ -24,6 +24,8 @@ private:
 	void showCloudAnim(Node* target, Vec2 pos);
 
 	void showCStarAwdUI();
+
+	bool checkMapIsPass(std::string mapid);
 private:
 	std::string m_mainmapid;
 	bool clickflag;

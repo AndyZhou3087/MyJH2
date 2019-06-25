@@ -142,7 +142,7 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 
 		int finishOrder = DataSave::getInstance()->getMapOrderCount(m_mainmapid);
 
-		if (i >= finishOrder)
+		if (i >= finishOrder && !checkMapIsPass(it->first))
 		{
 			for (int k = 0; k < subnode->getChildren().size(); k++)
 				CommonFuncs::changeGray(subnode->getChildren().at(k));
@@ -276,9 +276,11 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 
+		std::string mapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag());
+
 		int finishOrder = DataSave::getInstance()->getMapOrderCount(m_mainmapid);
 
-		if (clicknode->getTag() - 1 >= finishOrder)
+		if (clicknode->getTag() - 1 >= finishOrder && !checkMapIsPass(mapid))
 		{
 			std::string premapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag() - 1);
 			std::string str = StringUtils::format(ResourceLang::map_lang["maporderhint"].c_str(), GlobalInstance::map_AllResources[premapid].name.c_str());
@@ -286,7 +288,6 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 			return;
 		}
 
-		std::string mapid = StringUtils::format("%s-%d", m_mainmapid.c_str(), clicknode->getTag());
 		showCloudAnim(clicknode->getParent()->getParent(), clicknode->getParent()->getPosition());
 
 		GlobalInstance::eventfrommapid = "";
@@ -533,4 +534,34 @@ void SelectSubMapLayer::onAwdBoxClick(cocos2d::Ref *pSender, cocos2d::ui::Widget
 			MovingLabel::show(ResourceLang::map_lang["cstarawdgeted"], Color4B(Color3B(255, 229, 188)), Vec2(360, 300));
 		}
 	}
+}
+
+bool SelectSubMapLayer::checkMapIsPass(std::string mapid)
+{
+	int maintaskf = -1;
+	std::vector<std::string> vec;
+	CommonFuncs::split(GlobalInstance::myCurMainData.place, vec, "-");
+	if (vec.size() >= 3)
+	{
+		int d1 = atoi(vec[0].substr(1).c_str());
+		int d2 = atoi(vec[1].c_str());
+		int d3 = atoi(vec[2].c_str());
+		maintaskf = d1 * 10000 + d2 * 100 + d3;
+	}
+	
+	int curf = 0;
+	std::vector<std::string> vec1;
+	CommonFuncs::split(mapid, vec1, "-");
+	if (vec1.size() >= 3)
+	{
+		int d1 = atoi(vec1[0].substr(1).c_str());
+		int d2 = atoi(vec1[1].c_str());
+		int d3 = atoi(vec1[2].c_str());
+		curf = d1 * 10000 + d2 * 100 + d3;
+	}
+
+	if (curf <= maintaskf)
+		return true;
+	return false;
+
 }

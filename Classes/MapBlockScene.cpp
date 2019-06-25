@@ -2152,7 +2152,6 @@ void MapBlockScene::showFightResult(int result)
 		{
 			map_mapBlocks[bindex]->removePosIcon();
 			map_mapBlocks[bindex]->setPosType(POS_NOTHING);
-			setMapOrderData();
 		}
 		else if (map_mapBlocks[bindex]->getPosType() == POS_TBOSS)
 		{
