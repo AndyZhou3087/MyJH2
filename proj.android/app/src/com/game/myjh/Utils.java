@@ -260,7 +260,7 @@ public class Utils {
 				if (vaulestr != null && vaulestr.trim().length() > 0 && key.startsWith("jh"))
 				{
 					boolean isok = false;
-					if (type == 1&& !(key.startsWith("jhm") && getSubCount(key,"-") == 2))
+					if (type == 1 && !(key.startsWith("jhm") && key.split("-").length == 3 && vaulestr.length() > 32))
 						isok = true;
 					else if (type == 0)
 						isok = true;
@@ -279,17 +279,6 @@ public class Utils {
 			return "";
 		}
 		return sw.toString();
-	}
-
-	public static int getSubCount(String str, String key) {
-		int count = 0;
-		int index = 0;
-		while ((index = str.indexOf(key, index)) != -1) {
-			index = index + key.length();
-
-			count++;
-		}
-		return count;
 	}
 
 	public static String getMD5Sign()
