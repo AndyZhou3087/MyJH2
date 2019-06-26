@@ -389,7 +389,8 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 					wdata.rid = resid;
 					wdata.count = count;
 					wdata.qu = qu;
-					vec_rewards.push_back(wdata);
+					if (GlobalInstance::map_AllResources.find(wdata.rid) != GlobalInstance::map_AllResources.end())
+						vec_rewards.push_back(wdata);
 				}
 
 				if (GlobalInstance::myMatchInfo.awardindex1.length() > 0)
@@ -405,7 +406,8 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 						wdata.rid = vec_one[0];
 						wdata.count = atoi(vec_one[1].c_str());
 						wdata.qu = atoi(vec_one[2].c_str());
-						vec_rewards.push_back(wdata);
+						if (GlobalInstance::map_AllResources.find(wdata.rid) != GlobalInstance::map_AllResources.end())
+							vec_rewards.push_back(wdata);
 					}
 				}
 
