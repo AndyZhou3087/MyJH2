@@ -630,10 +630,13 @@ void EquipDescLayer::updateStoneUI()
 			equipstonebox->setTag(i);
 		}
 
-		StoreHouseLayer* mlayer = (StoreHouseLayer*)g_mainScene->getChildByName("3storehouse");
-		if (mlayer != NULL)
+		if (g_mainScene != NULL)
 		{
-			mlayer->updateUI();
+			StoreHouseLayer* mlayer = (StoreHouseLayer*)g_mainScene->getChildByName("3storehouse");
+			if (mlayer != NULL)
+			{
+				mlayer->updateUI();
+			}
 		}
 	}
 
