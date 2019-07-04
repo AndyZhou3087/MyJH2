@@ -89,4 +89,6 @@ const static int mazes[] = {2, 5, 3, 3, 2};
 const static int mazesfightbg[] = {2, 3, 2, 2, 3};
 
 const static int VIPDAYS[] = { 30,30,365,30};
+
+const static int ADDZANMAINTASKCOUNTS[] = {5, 10, 20, 30, 40, 50, 60, 80, 100, 120};
 #endif // _H_CONST_H_

@@ -21,6 +21,7 @@ public:
 
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
+	void checkFormation();
 private:
 	bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
 	void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event);
@@ -36,7 +37,6 @@ private:
 
 	void addRes(Node* clicknode);
 	void subRes(Node* clicknode);
-	void onGoBuyText(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 
 	void editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox);
@@ -47,13 +47,25 @@ private:
 
 	void editBoxReturn(cocos2d::ui::EditBox *editBox);
 
-	void updatelbl(float dt);
+	void addFormationUi();
+	void onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	void selectFormation(int index);
+
+	void updateFormationInfo(int index);
+
+	void updateChangeHint(float dt);
+
+	void takeOnFormation(int formationindex);
+
+	static bool formationCandidateSort(Hero* a, Hero* b);
 
 private:
+	int langtype;
 	CardHeroNode* m_myCardHerosNode[6];
 	cocos2d::ui::Text* carrylbl;
-	int caryycount[3];
-	cocos2d::ui::Text* caryycountlbl[3];
+	int caryycount;
+	cocos2d::ui::Text* caryycountlbl;
 
 	bool m_isLongPress;
 	Node* m_longTouchNode;
@@ -63,8 +75,24 @@ private:
 	cocos2d::ui::Widget* changebtn;
 
 	cocos2d::ui::EditBox* m_editCount;
-	cocos2d::ui::Text* versionname;
-	cocos2d::ui::Text* gocityname;
+
+	cocos2d::ui::ScrollView* scrollview;
+	Node* formationInfoNode;
+	bool clickflag;
+	//Vec2 beginTouchPoint;
+
+	int lastselectformation;
+
+	std::vector<cocos2d::ui::ImageView*> vec_formationboxs;
+	cocos2d::ui::Text* changehintlbl;
+	int changehintindex;
+	Node* carryoutherobox;
+
+	Node* bigformation;
+
+	std::vector<Hero*> vec_formationCandidate;
+
+	std::vector<Hero*> vec_selformation;
 };
 
 #endif

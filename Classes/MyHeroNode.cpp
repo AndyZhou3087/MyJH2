@@ -457,6 +457,8 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 					CardHeroNode* cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(carrycount);
 					cardheroNode->setData(m_heroData);
+
+					outTownLayer->checkFormation();
 				}
 				else if (m_heroData->getState() == HS_TAKEON)
 				{
@@ -479,6 +481,8 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 					CardHeroNode *cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(heropos - 1);
 					cardheroNode->setData(NULL);
+
+					outTownLayer->checkFormation();
 
 					//std::vector<Hero*> vec_hero;
 					//for (int i = 0; i < 6; i++)

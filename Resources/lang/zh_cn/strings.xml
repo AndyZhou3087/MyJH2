@@ -253,7 +253,9 @@
 	<s name="foodcreatordesc">产出：%s+1</s>
 	<s name="smithylvdesc">升级铁匠铺可制造更多物品</s>
 	<s name="needresdesc">所需%s</s>
-	<s name="changelineuphint">可拖拽角色变换阵容</s>
+	<s name="changelineuphint0">可拖拽角色变换阵容</s>
+	<s name="changelineuphint1">拖动角色到框外则从阵容中移除</s>
+	<s name="changelineuphint2">连续点击某个阵型按钮则可在该阵型的多个候选阵容中切换</s>
 	<s name="outtownhintdesc">合理搭配阵容，可以最好的发挥战斗力</s>
 	<s name="taskhintdesc">完成主线任务，可以解锁更多的地图</s>
 	<s name="marketrefreshdesc">立即补满货物库存数量</s>
@@ -495,7 +497,8 @@
 	<s name="newtemplet6">{%s}发现神秘山洞，洞中隐隐可见幽光，一看便是某位江湖大侠的衣冠冢，躲过无数机关后，[%s]终于重现武林。</s>
 	<s name="newtemplet7">{%s}进入了迷宫，祝他/她好运！</s>
 	<s name="newtemplet8">恭喜{%s}的[%s]升级到了%d级，厉害！</s>
-	<s name="newtemplet9">恭喜{%s}的[%s]储备容量达到了%d万，厉害！</s>	
+	<s name="newtemplet9">恭喜{%s}的[%s]储备容量达到了%d万，厉害！</s>
+	<s name="newtemplet10">恭喜{%s}兑换了10个红色招募券碎片！</s>	
 	<s name="newfindstr0">{</s>	
 	<s name="newfindstr1">}</s>	
 	<s name="newfindstr2">[</s>	
@@ -577,4 +580,21 @@
 	<s name="failhinttext8">在训练场训练增加经验值</s>
 	<s name="failhinttext9">在地图神秘商店购买厉害的武器武功</s>
 	<s name="failhinttext10">更合理的角色站位搭配</s>
+	<s name="zantitle0"> 昵称           本周收到点赞</s>
+	<s name="zantitle1">  排名     昵称             本周收到点赞</s>
+	<s name="zantitle2">昵称              点赞时间    </s>
+	<s name="zanmyinfo">我的点赞券</s>
+	<s name="zantimeuptext">发布赞将在%s后过期</s>
+	<s name="praisesucc">点赞成功！</s>
+	<s name="praisefail">点赞失败！</s>
+	<s name="nopraisehint">点赞券不足！</s>
+	<s name="canntexchangepaisecoin">集满10个赞币才可以兑换！</s>
+	<s name="exchangej002succ">成功兑换10个红侠招募券碎片！</s>
+	<s name="zanruletitle">点赞规则</s>
+	<s name="zanweektext">本周获得</s>
+	<s name="zanexchangetext">可兑换</s>	
+	<s name="zanruletext">1.每个新用户默认有3个“点赞券”；\n\n2.完成若干主线任务会获得不同个数的“点赞券”；\n\n3.“赞”可以兑换成红侠招募券碎片（每次兑换消耗10个“赞”获得10张红侠招募券碎片）；\n\n4.发布求赞一次消耗5元宝，发布一次有效期为24小时；\n\n5.每周一凌晨4点结算上周的获赞排行榜，获得的“赞”通过邮件下发，用户通过邮件领取；\n\n</s>
+	<s name="firstlearntext">请先学习「%s」阵型</s>
+	<s name="learnsucc">完美习得「%s」阵型</s>
+	<s name="noformation">「%s」阵型没有匹配到合适的侠客</s>
 </strings>

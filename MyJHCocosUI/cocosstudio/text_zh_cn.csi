@@ -2,7 +2,7 @@
   <PropertyGroup Name="text_zh_cn" Type="Plist" ID="f11a539c-8271-4133-8d09-0b259584b6a8" Version="3.10.0.0" />
   <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
     <ImageFiles>
-      <FilePathData Path="text_zh_cn/main_01_t.png" />
+      <FilePathData Path="text_zh_cn/main_01_t_backup.png" />
       <FilePathData Path="text_zh_cn/main_02_t.png" />
       <FilePathData Path="text_zh_cn/main_03_t.png" />
       <FilePathData Path="text_zh_cn/main_04_t.png" />
@@ -423,6 +423,18 @@
       <FilePathData Path="text_zh_cn/composebtn_text.png" />
       <FilePathData Path="text_zh_cn/main_wellbtn_text.png" />
       <FilePathData Path="text_zh_cn/text_vip3.png" />
+      <FilePathData Path="text_zh_cn/zantagtext0_0.png" />
+      <FilePathData Path="text_zh_cn/zantagtext0_1.png" />
+      <FilePathData Path="text_zh_cn/zantagtext1_0.png" />
+      <FilePathData Path="text_zh_cn/zantagtext1_1.png" />
+      <FilePathData Path="text_zh_cn/zantitle0.png" />
+      <FilePathData Path="text_zh_cn/zantitle1.png" />
+      <FilePathData Path="text_zh_cn/main_01_t.png" />
+      <FilePathData Path="text_zh_cn/zanpublish_text.png" />
+      <FilePathData Path="text_zh_cn/exchangebtn_text.png" />
+      <FilePathData Path="text_zh_cn/zantitle2.png" />
+      <FilePathData Path="text_zh_cn/learnformation_text.png" />
+      <FilePathData Path="text_zh_cn/formationtitle.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

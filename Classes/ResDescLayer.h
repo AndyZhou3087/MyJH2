@@ -30,6 +30,7 @@ private:
 	ResBase* m_res;
 	int m_fromwhere;
 	cocos2d::ui::Widget* actionbtn;
+	cocos2d::ui::Text* coutlbl;
 };
 
 #endif

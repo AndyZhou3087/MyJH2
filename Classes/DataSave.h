@@ -515,6 +515,23 @@ public:
 	****************************/
 	void setHasBeggar(bool val);
 
+	/****************************
+	设置我的赞
+	****************************/
+	int getMyZanCount();
+
+	void setMyZanCount(int val);
+
+	/****************************
+	设置我学习的阵型
+	****************************/
+	void setMyFormation(std::string str);
+
+	/****************************
+	设置我学习的阵型
+	****************************/
+	std::string getMyFormation();
+
 	void deleteDataByKey(std::string key);
 
 private:

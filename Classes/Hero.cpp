@@ -239,6 +239,8 @@ float Hero::getAtk()
 		}
 	}
 
+	heroatk += heroatk * GlobalInstance::getInstance()->getFormationBns(1);
+
 	return heroatk;
 }
 float Hero::getDf()
@@ -307,7 +309,7 @@ float Hero::getDf()
 			}
 		}
 	}
-
+	herodf += herodf * GlobalInstance::getInstance()->getFormationBns(2);
 	return herodf;
 }
 float Hero::getMaxHp()
@@ -379,6 +381,8 @@ float Hero::getMaxHp()
 		}
 	}
 
+	herohp += herohp * GlobalInstance::getInstance()->getFormationBns(0);
+
 	if (herohp != m_lastmaxhp)
 	{
 		m_lastmaxhp = herohp;
@@ -386,6 +390,7 @@ float Hero::getMaxHp()
 	}
 	if (m_hp > herohp)
 		m_hp = herohp;
+
 	return herohp;
 }
 float Hero::getAtkSpeed()
@@ -440,7 +445,7 @@ float Hero::getAtkSpeed()
 			}
 		}
 	}
-
+	heroatkspeed += heroatkspeed * GlobalInstance::getInstance()->getFormationBns(5);
 	return heroatkspeed > 3.0f ? 3.0f : heroatkspeed;
 }
 float Hero::getCrit()
@@ -493,7 +498,7 @@ float Hero::getCrit()
 			}
 		}
 	}
-
+	herocrit += herocrit * GlobalInstance::getInstance()->getFormationBns(4);
 	return herocrit;
 }
 float Hero::getDodge()
@@ -545,7 +550,7 @@ float Hero::getDodge()
 			}
 		}
 	}
-
+	herododge += herododge * GlobalInstance::getInstance()->getFormationBns(3);
 	return herododge;
 }
 

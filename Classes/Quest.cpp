@@ -199,6 +199,20 @@ void Quest::finishTaskMain()
 	GlobalInstance::myCurMainData.isfinish = QUEST_FINISH;
 	saveMainData();
 
+	int mtid = GlobalInstance::myCurMainData.id;
+	//完成主线任务获得点赞券
+	for (int i = 0; i < sizeof(ADDZANMAINTASKCOUNTS) / sizeof(ADDZANMAINTASKCOUNTS[0]); i++)
+	{
+		if (mtid == ADDZANMAINTASKCOUNTS[i])
+		{
+			if (mtid > 5)
+				GlobalInstance::getInstance()->updateMyZan(2);
+			else
+				GlobalInstance::getInstance()->updateMyZan(1);
+			break;
+		}
+	}
+
 #ifdef UMENG
 	umeng::eventDict dict;
 	std::string eventstr = StringUtils::format("maintask_%d", GlobalInstance::myCurMainData.id);

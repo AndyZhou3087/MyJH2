@@ -586,7 +586,28 @@ void DataSave::setHasBeggar(bool val)
 	saveIntDataByKey("hasbeggar", val == true ? 1 : 0);
 }
 
+int DataSave::getMyZanCount()
+{
+	int val = loadIntDataByKey("myzan", 3);
+	return val;
+}
+
+void DataSave::setMyZanCount(int val)
+{
+	saveIntDataByKey("myzan", val);
+}
+
 void DataSave::deleteDataByKey(std::string key)
 {
 	removeEleByKey(key);
+}
+
+void DataSave::setMyFormation(std::string str)
+{
+	saveStringDataByKey("myformation", str);
+}
+
+std::string DataSave::getMyFormation()
+{
+	return loadStringDataByKey("myformation");
 }
