@@ -114,7 +114,7 @@
                 <OutlineColor A="255" R="80" G="38" B="12" />
                 <ShadowColor A="255" R="0" G="0" B="0" />
               </AbstractNodeData>
-              <AbstractNodeData Name="desc" ActionTag="-93518718" Tag="180" IconVisible="False" LeftMargin="-280.3095" RightMargin="0.3095" TopMargin="-23.5778" BottomMargin="-36.4222" IsCustomSize="True" FontSize="23" LabelText="阵型角色生命值增加5%" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="desc" ActionTag="-93518718" Tag="180" IconVisible="False" LeftMargin="-280.3095" RightMargin="0.3095" TopMargin="-23.5778" BottomMargin="-36.4222" IsCustomSize="True" FontSize="23" LabelText="阵型角色生命值增加5%" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
                 <Size X="280.0000" Y="60.0000" />
                 <AnchorPoint ScaleY="0.5000" />
                 <Position X="-280.3095" Y="-6.4222" />
@@ -126,226 +126,228 @@
                 <OutlineColor A="255" R="80" G="38" B="12" />
                 <ShadowColor A="255" R="0" G="0" B="0" />
               </AbstractNodeData>
-              <AbstractNodeData Name="formationinfotable" ActionTag="-1996593069" Tag="163" IconVisible="False" LeftMargin="5.3848" RightMargin="-164.3848" TopMargin="-31.0837" BottomMargin="-71.9163" ctype="SpriteObjectData">
+              <AbstractNodeData Name="formationinfotable" ActionTag="-1996593069" Tag="163" IconVisible="False" LeftMargin="5.5000" RightMargin="-164.5000" TopMargin="-31.0837" BottomMargin="-71.9163" ctype="SpriteObjectData">
                 <Size X="159.0000" Y="103.0000" />
+                <Children>
+                  <AbstractNodeData Name="vocationbox0" ActionTag="478668354" Tag="211" IconVisible="False" LeftMargin="10.9060" RightMargin="114.0940" TopMargin="4.8608" BottomMargin="64.1392" ctype="SpriteObjectData">
+                    <Size X="34.0000" Y="34.0000" />
+                    <Children>
+                      <AbstractNodeData Name="v" ActionTag="193934239" Tag="212" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
+                        <Size X="34.0000" Y="34.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="16.0001" Y="18.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.4706" Y="0.5294" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="27.9060" Y="81.1392" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1755" Y="0.7878" />
+                    <PreSize X="0.2138" Y="0.3301" />
+                    <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocationbox1" ActionTag="-1659864387" Tag="213" IconVisible="False" LeftMargin="62.9063" RightMargin="62.0937" TopMargin="4.8608" BottomMargin="64.1392" ctype="SpriteObjectData">
+                    <Size X="34.0000" Y="34.0000" />
+                    <Children>
+                      <AbstractNodeData Name="v" ActionTag="409607750" Tag="214" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
+                        <Size X="34.0000" Y="34.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="16.0001" Y="18.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.4706" Y="0.5294" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="79.9063" Y="81.1392" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5026" Y="0.7878" />
+                    <PreSize X="0.2138" Y="0.3301" />
+                    <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocationbox2" ActionTag="-356856291" Tag="215" IconVisible="False" LeftMargin="114.9065" RightMargin="10.0935" TopMargin="4.8605" BottomMargin="64.1395" ctype="SpriteObjectData">
+                    <Size X="34.0000" Y="34.0000" />
+                    <Children>
+                      <AbstractNodeData Name="v" ActionTag="-93671925" Tag="216" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
+                        <Size X="34.0000" Y="34.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="16.0001" Y="18.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.4706" Y="0.5294" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="131.9065" Y="81.1395" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8296" Y="0.7878" />
+                    <PreSize X="0.2138" Y="0.3301" />
+                    <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocationbox3" ActionTag="447939024" Tag="217" IconVisible="False" LeftMargin="11.0813" RightMargin="113.9187" TopMargin="54.7061" BottomMargin="14.2939" ctype="SpriteObjectData">
+                    <Size X="34.0000" Y="34.0000" />
+                    <Children>
+                      <AbstractNodeData Name="v" ActionTag="-1015689288" Tag="218" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
+                        <Size X="34.0000" Y="34.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="16.0001" Y="18.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.4706" Y="0.5294" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="28.0813" Y="31.2939" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1766" Y="0.3038" />
+                    <PreSize X="0.2138" Y="0.3301" />
+                    <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocationbox4" ActionTag="-596253730" Tag="219" IconVisible="False" LeftMargin="63.0816" RightMargin="61.9184" TopMargin="54.7061" BottomMargin="14.2939" ctype="SpriteObjectData">
+                    <Size X="34.0000" Y="34.0000" />
+                    <Children>
+                      <AbstractNodeData Name="v" ActionTag="-485944991" Tag="220" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
+                        <Size X="34.0000" Y="34.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="16.0001" Y="18.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.4706" Y="0.5294" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="80.0816" Y="31.2939" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5037" Y="0.3038" />
+                    <PreSize X="0.2138" Y="0.3301" />
+                    <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocationbox5" ActionTag="1814814380" Tag="221" IconVisible="False" LeftMargin="115.0819" RightMargin="9.9181" TopMargin="54.7061" BottomMargin="14.2939" ctype="SpriteObjectData">
+                    <Size X="34.0000" Y="34.0000" />
+                    <Children>
+                      <AbstractNodeData Name="v" ActionTag="-1028834437" Tag="222" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
+                        <Size X="34.0000" Y="34.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="16.0001" Y="18.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.4706" Y="0.5294" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="132.0819" Y="31.2939" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8307" Y="0.3038" />
+                    <PreSize X="0.2138" Y="0.3301" />
+                    <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocname0" ActionTag="-1842380665" Tag="257" IconVisible="False" LeftMargin="10.5970" RightMargin="116.4030" TopMargin="31.9297" BottomMargin="53.0703" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                    <Size X="32.0000" Y="18.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="26.5970" Y="62.0703" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1673" Y="0.6026" />
+                    <PreSize X="0.2013" Y="0.1748" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="0" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocname1" ActionTag="2038539591" Tag="258" IconVisible="False" LeftMargin="63.5997" RightMargin="63.4003" TopMargin="31.9297" BottomMargin="53.0703" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                    <Size X="32.0000" Y="18.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="79.5997" Y="62.0703" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5006" Y="0.6026" />
+                    <PreSize X="0.2013" Y="0.1748" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="0" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocname2" ActionTag="-368793633" Tag="259" IconVisible="False" LeftMargin="115.6030" RightMargin="11.3970" TopMargin="31.9297" BottomMargin="53.0703" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                    <Size X="32.0000" Y="18.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="131.6030" Y="62.0703" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8277" Y="0.6026" />
+                    <PreSize X="0.2013" Y="0.1748" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="0" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocname3" ActionTag="-830408338" Tag="260" IconVisible="False" LeftMargin="10.5970" RightMargin="116.4030" TopMargin="81.5087" BottomMargin="3.4913" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                    <Size X="32.0000" Y="18.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="26.5970" Y="12.4913" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1673" Y="0.1213" />
+                    <PreSize X="0.2013" Y="0.1748" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="0" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocname4" ActionTag="-878175621" Tag="261" IconVisible="False" LeftMargin="63.5997" RightMargin="63.4003" TopMargin="81.5087" BottomMargin="3.4913" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                    <Size X="32.0000" Y="18.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="79.5997" Y="12.4913" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5006" Y="0.1213" />
+                    <PreSize X="0.2013" Y="0.1748" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="0" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocname5" ActionTag="2110521859" Tag="262" IconVisible="False" LeftMargin="115.6030" RightMargin="11.3970" TopMargin="81.5087" BottomMargin="3.4913" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                    <Size X="32.0000" Y="18.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="131.6030" Y="12.4913" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8277" Y="0.1213" />
+                    <PreSize X="0.2013" Y="0.1748" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="0" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="84.8848" Y="-20.4163" />
+                <Position X="85.0000" Y="-20.4163" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="MarkedSubImage" Path="ui/formationinfotable.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="vocationbox0" ActionTag="478668354" Tag="211" IconVisible="False" LeftMargin="17.0000" RightMargin="-51.0000" TopMargin="-24.9999" BottomMargin="-9.0001" ctype="SpriteObjectData">
-                <Size X="34.0000" Y="34.0000" />
-                <Children>
-                  <AbstractNodeData Name="v" ActionTag="193934239" Tag="212" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
-                    <Size X="34.0000" Y="34.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="16.0001" Y="18.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4706" Y="0.5294" />
-                    <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="34.0000" Y="7.9999" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
-                <BlendFunc Src="1" Dst="771" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="vocationbox1" ActionTag="-1659864387" Tag="213" IconVisible="False" LeftMargin="69.0000" RightMargin="-103.0000" TopMargin="-24.9999" BottomMargin="-9.0001" ctype="SpriteObjectData">
-                <Size X="34.0000" Y="34.0000" />
-                <Children>
-                  <AbstractNodeData Name="v" ActionTag="409607750" Tag="214" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
-                    <Size X="34.0000" Y="34.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="16.0001" Y="18.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4706" Y="0.5294" />
-                    <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="86.0000" Y="7.9999" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
-                <BlendFunc Src="1" Dst="771" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="vocationbox2" ActionTag="-356856291" Tag="215" IconVisible="False" LeftMargin="121.0000" RightMargin="-155.0000" TopMargin="-25.0000" BottomMargin="-9.0000" ctype="SpriteObjectData">
-                <Size X="34.0000" Y="34.0000" />
-                <Children>
-                  <AbstractNodeData Name="v" ActionTag="-93671925" Tag="216" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
-                    <Size X="34.0000" Y="34.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="16.0001" Y="18.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4706" Y="0.5294" />
-                    <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="138.0000" Y="8.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
-                <BlendFunc Src="1" Dst="771" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="vocationbox3" ActionTag="447939024" Tag="217" IconVisible="False" LeftMargin="17.1755" RightMargin="-51.1755" TopMargin="24.8455" BottomMargin="-58.8455" ctype="SpriteObjectData">
-                <Size X="34.0000" Y="34.0000" />
-                <Children>
-                  <AbstractNodeData Name="v" ActionTag="-1015689288" Tag="218" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
-                    <Size X="34.0000" Y="34.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="16.0001" Y="18.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4706" Y="0.5294" />
-                    <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="34.1755" Y="-41.8455" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
-                <BlendFunc Src="1" Dst="771" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="vocationbox4" ActionTag="-596253730" Tag="219" IconVisible="False" LeftMargin="69.1756" RightMargin="-103.1756" TopMargin="24.8455" BottomMargin="-58.8455" ctype="SpriteObjectData">
-                <Size X="34.0000" Y="34.0000" />
-                <Children>
-                  <AbstractNodeData Name="v" ActionTag="-485944991" Tag="220" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
-                    <Size X="34.0000" Y="34.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="16.0001" Y="18.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4706" Y="0.5294" />
-                    <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="86.1756" Y="-41.8455" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
-                <BlendFunc Src="1" Dst="771" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="vocationbox5" ActionTag="1814814380" Tag="221" IconVisible="False" LeftMargin="121.1757" RightMargin="-155.1757" TopMargin="24.8455" BottomMargin="-58.8455" ctype="SpriteObjectData">
-                <Size X="34.0000" Y="34.0000" />
-                <Children>
-                  <AbstractNodeData Name="v" ActionTag="-1028834437" Tag="222" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
-                    <Size X="34.0000" Y="34.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="16.0001" Y="18.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4706" Y="0.5294" />
-                    <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="138.1757" Y="-41.8455" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
-                <BlendFunc Src="1" Dst="771" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="vocname0" ActionTag="-1842380665" Tag="257" IconVisible="False" LeftMargin="16.6906" RightMargin="-48.6906" TopMargin="2.0691" BottomMargin="-20.0691" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-                <Size X="32.0000" Y="18.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="32.6906" Y="-11.0691" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-                <OutlineColor A="255" R="0" G="0" B="0" />
-                <ShadowColor A="255" R="0" G="0" B="0" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="vocname1" ActionTag="2038539591" Tag="258" IconVisible="False" LeftMargin="69.6934" RightMargin="-101.6934" TopMargin="2.0691" BottomMargin="-20.0691" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-                <Size X="32.0000" Y="18.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="85.6934" Y="-11.0691" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-                <OutlineColor A="255" R="0" G="0" B="0" />
-                <ShadowColor A="255" R="0" G="0" B="0" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="vocname2" ActionTag="-368793633" Tag="259" IconVisible="False" LeftMargin="121.6963" RightMargin="-153.6963" TopMargin="2.0691" BottomMargin="-20.0691" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-                <Size X="32.0000" Y="18.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="137.6963" Y="-11.0691" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-                <OutlineColor A="255" R="0" G="0" B="0" />
-                <ShadowColor A="255" R="0" G="0" B="0" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="vocname3" ActionTag="-830408338" Tag="260" IconVisible="False" LeftMargin="16.6906" RightMargin="-48.6906" TopMargin="51.6481" BottomMargin="-69.6481" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-                <Size X="32.0000" Y="18.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="32.6906" Y="-60.6481" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-                <OutlineColor A="255" R="0" G="0" B="0" />
-                <ShadowColor A="255" R="0" G="0" B="0" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="vocname4" ActionTag="-878175621" Tag="261" IconVisible="False" LeftMargin="69.6934" RightMargin="-101.6934" TopMargin="51.6481" BottomMargin="-69.6481" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-                <Size X="32.0000" Y="18.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="85.6934" Y="-60.6481" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-                <OutlineColor A="255" R="0" G="0" B="0" />
-                <ShadowColor A="255" R="0" G="0" B="0" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="vocname5" ActionTag="2110521859" Tag="262" IconVisible="False" LeftMargin="121.6963" RightMargin="-153.6963" TopMargin="51.6481" BottomMargin="-69.6481" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-                <Size X="32.0000" Y="18.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="137.6963" Y="-60.6481" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-                <OutlineColor A="255" R="0" G="0" B="0" />
-                <ShadowColor A="255" R="0" G="0" B="0" />
               </AbstractNodeData>
               <AbstractNodeData Name="studybtn" ActionTag="1447524248" Tag="255" IconVisible="False" LeftMargin="176.6119" RightMargin="-290.6119" TopMargin="-4.7321" BottomMargin="-51.2679" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="114.0000" Y="56.0000" />
@@ -597,14 +599,14 @@
           <AbstractNodeData Name="actionbtn" ActionTag="-1133486313" Tag="184" IconVisible="False" LeftMargin="448.5088" RightMargin="67.4912" TopMargin="1100.8599" BottomMargin="95.1401" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
-              <AbstractNodeData Name="text" ActionTag="-1584129860" Tag="185" IconVisible="False" LeftMargin="65.5216" RightMargin="66.4784" TopMargin="20.7404" BottomMargin="25.2596" LeftEage="23" RightEage="23" TopEage="13" BottomEage="13" Scale9OriginX="23" Scale9OriginY="13" Scale9Width="26" Scale9Height="12" ctype="ImageViewObjectData">
-                <Size X="72.0000" Y="38.0000" />
+              <AbstractNodeData Name="text" ActionTag="-1584129860" Tag="185" IconVisible="False" LeftMargin="49.5216" RightMargin="50.4784" TopMargin="15.2404" BottomMargin="19.7596" LeftEage="23" RightEage="23" TopEage="13" BottomEage="13" Scale9OriginX="23" Scale9OriginY="13" Scale9Width="58" Scale9Height="23" ctype="ImageViewObjectData">
+                <Size X="104.0000" Y="49.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="101.5216" Y="44.2596" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.4977" Y="0.5269" />
-                <PreSize X="0.3529" Y="0.4524" />
+                <PreSize X="0.5098" Y="0.5833" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/goout_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
             </Children>

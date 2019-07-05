@@ -25,7 +25,7 @@ OutTownLayer::OutTownLayer()
 	m_longTouchNode = NULL;
 
 	caryycount = 0;
-	lastselectformation = GlobalInstance::myFormationData.mycarryon;
+	lastselectformation = GlobalInstance::myTakeOnFormation;
 }
 
 OutTownLayer::~OutTownLayer()
@@ -633,7 +633,7 @@ void OutTownLayer::addFormationUi()
 
 		std::string formationid = StringUtils::format("zx%03d", m + 1);
 
-		if (m+1 <= GlobalInstance::myFormationData.learncount )
+		if (GlobalInstance::map_formations[formationid].state == 1)
 			iconstr = "ui/formation1_n.png";
 		cocos2d::ui::ImageView* icon = cocos2d::ui::ImageView::create(iconstr, cocos2d::ui::Widget::TextureResType::PLIST);
 		icon->setPosition(Vec2(box->getContentSize().width / 2, box->getContentSize().height/2));
@@ -676,23 +676,19 @@ void OutTownLayer::onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::
 		if (clicktag < 2000)
 		{
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-			selectFormation(clicknode->getTag());
+
+			if (GlobalInstance::getInstance()->getUnlockChapter() >= 2)
+				selectFormation(clicknode->getTag());
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["unlockformationhint"]);
+			}
 		}
 		else
 		{
 			int learnindex = clicktag % 2000;
 
-			if (learnindex > GlobalInstance::myFormationData.learncount + 1)
-			{
-				std::string formationid = StringUtils::format("zx%03d", learnindex - 1);
-
-				std::string showstr = StringUtils::format(ResourceLang::map_lang["firstlearntext"].c_str(), GlobalInstance::map_AllResources[formationid].name.c_str());
-				MovingLabel::show(showstr);
-				return;
-			}
-
-			int needcoin = (GlobalInstance::myFormationData.learncount + 1) * 50;
-			needcoin = needcoin > 200 ? 200 : needcoin;
+			int needcoin = 200;
 
 			cocos2d::ui::Text* coincountlbl = (cocos2d::ui::Text*)formationInfoNode->getChildByName("countlbl");
 			std::string str = StringUtils::format("%d", needcoin);
@@ -702,15 +698,28 @@ void OutTownLayer::onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::
 			{
 				cocos2d::ui::ImageView* boxf = (cocos2d::ui::ImageView*)vec_formationboxs[learnindex - 1]->getChildByName("f");
 				boxf->loadTexture("ui/formation1_n.png", cocos2d::ui::Widget::TextureResType::PLIST);
+
 				std::string formationid = StringUtils::format("zx%03d", learnindex);
+
+				cocos2d::ui::Text* fdesc = (cocos2d::ui::Text*)formationInfoNode->getChildByName("desc");
+				cocos2d::ui::Text* table = (cocos2d::ui::Text*)formationInfoNode->getChildByName("formationinfotable");
+
+				table->setPositionX(200);
+				table->setVisible(true);
+				fdesc->setString(GlobalInstance::map_AllResources[formationid].desc);
+
 				clicknode->setVisible(false);
-				GlobalInstance::myFormationData.learncount += 1;
+				formationInfoNode->getChildByName("countlbl")->setVisible(false);
+				formationInfoNode->getChildByName("coin")->setVisible(false);
+
+				GlobalInstance::map_formations[formationid].state = 1;
 				GlobalInstance::getInstance()->saveMyFormation();
 				DynamicValueInt dvint;
 				dvint.setValue(needcoin);
 				GlobalInstance::getInstance()->costMyCoinCount(dvint);
 				std::string showstr = StringUtils::format(ResourceLang::map_lang["learnsucc"].c_str(), GlobalInstance::map_AllResources[formationid].name.c_str());
 				MovingLabel::show(showstr);
+
 			}
 			else
 			{
@@ -731,12 +740,6 @@ void OutTownLayer::selectFormation(int index)
 
 		lastselectformation = index;
 
-		if (index <= GlobalInstance::myFormationData.learncount)
-		{
-			takeOnFormation(index);
-			bigformation->setVisible(true);
-			bigformation->runAction(Repeat::create(Sequence::create(FadeIn::create(0.5), FadeOut::create(0.5), FadeIn::create(0.5), NULL) ,3));
-		}
 	}
 	else if (lastselectformation > 0)
 	{
@@ -748,64 +751,78 @@ void OutTownLayer::selectFormation(int index)
 
 void OutTownLayer::updateFormationInfo(int index)
 {
+	std::string formationid = StringUtils::format("zx%03d", index);
 
 	cocos2d::ui::Text* fname = (cocos2d::ui::Text*)formationInfoNode->getChildByName("fname");
-	
+
 	cocos2d::ui::Text* fdesc = (cocos2d::ui::Text*)formationInfoNode->getChildByName("desc");
 
+	Label* desclbl = (Label*)fdesc->getVirtualRenderer();
+	desclbl->setLineSpacing(10);
+
 	cocos2d::ui::Text* table = (cocos2d::ui::Text*)formationInfoNode->getChildByName("formationinfotable");
-	table->setVisible(index > 0);
 
 	cocos2d::ui::Widget* studybtn = (cocos2d::ui::Widget*)formationInfoNode->getChildByName("studybtn");
-	studybtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onFormationClick, this));
-	studybtn->setVisible(index > GlobalInstance::myFormationData.learncount);
-	studybtn->setTag(2000+index);
-
-	formationInfoNode->getChildByName("countlbl")->setVisible(studybtn->isVisible());
-	formationInfoNode->getChildByName("coin")->setVisible(studybtn->isVisible());
-
-	cocos2d::ui::ImageView* studybtntxt = (cocos2d::ui::ImageView*)studybtn->getChildByName("btntext");
-	studybtntxt->loadTexture(ResourcePath::makeTextImgPath("learnformation_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-
-	for (int i = 0; i < 6; i++)
-	{
-		std::string herokey = StringUtils::format("vocationbox%d", i);
-		formationInfoNode->getChildByName(herokey)->setVisible(index > 0);
-
-		if (index > 0)
-		{
-			std::string formationid = StringUtils::format("zx%03d", index);
-			cocos2d::ui::ImageView* headimg = (cocos2d::ui::ImageView*)formationInfoNode->getChildByName(herokey)->getChildByName("v");
-			herokey = StringUtils::format("ui/cardvocation%d.png", GlobalInstance::map_formations[formationid].vec_formation[i] - 1);
-			headimg->loadTexture(herokey, cocos2d::ui::Widget::TextureResType::PLIST);
-		}
-
-		std::string namekey = StringUtils::format("vocname%d", i);
-		formationInfoNode->getChildByName(namekey)->setVisible(index > 0);
-
-		if (index > 0)
-		{
-			std::string formationid = StringUtils::format("zx%03d", index);
-			cocos2d::ui::Text* herovocname = (cocos2d::ui::Text*)formationInfoNode->getChildByName(namekey);
-			namekey = StringUtils::format("vocation_%d", GlobalInstance::map_formations[formationid].vec_formation[i] - 1);
-			herovocname->setString(ResourceLang::map_lang[namekey]);
-		}
-	}
-	if (index==0)
+	if (index == 0)
 	{
 		fname->setString(ResourceLang::map_lang["npcrelation_0"]);
 		fdesc->setString(ResourceLang::map_lang["npcrelation_0"]);
+		table->setVisible(false);
 
+		studybtn->setVisible(false);
 	}
 	else
 	{
-		std::string formationid = StringUtils::format("zx%03d", index);
-		fname->setString(GlobalInstance::map_AllResources[formationid].name);
-		fdesc->setString(GlobalInstance::map_AllResources[formationid].desc);
+		studybtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onFormationClick, this));
+		studybtn->setTag(2000 + index);
+		cocos2d::ui::ImageView* studybtntxt = (cocos2d::ui::ImageView*)studybtn->getChildByName("btntext");
+		studybtntxt->loadTexture(ResourcePath::makeTextImgPath("learnformation_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
-		Label* desclbl = (Label*)fdesc->getVirtualRenderer();
-		desclbl->setLineSpacing(10);
+		fname->setString(GlobalInstance::map_AllResources[formationid].name);
+
+		if (GlobalInstance::map_formations[formationid].state == 1)
+		{
+			takeOnFormation(index);
+
+			studybtn->setVisible(false);
+			table->setPositionX(200);
+			table->setVisible(true);
+			fdesc->setString(GlobalInstance::map_AllResources[formationid].desc);
+		}
+		else
+		{
+			studybtn->setVisible(true);
+			table->setVisible(false);
+			bigformation->setVisible(false);
+			fdesc->setString(ResourceLang::map_lang["notlearntext"]);
+		}
+
+		for (int i = 0; i < 6; i++)
+		{
+			std::string herokey = StringUtils::format("vocationbox%d", i);
+
+			if (index > 0)
+			{
+				std::string formationid = StringUtils::format("zx%03d", index);
+				cocos2d::ui::ImageView* headimg = (cocos2d::ui::ImageView*)table->getChildByName(herokey)->getChildByName("v");
+				herokey = StringUtils::format("ui/cardvocation%d.png", GlobalInstance::map_formations[formationid].vec_formation[i] - 1);
+				headimg->loadTexture(herokey, cocos2d::ui::Widget::TextureResType::PLIST);
+			}
+
+			std::string namekey = StringUtils::format("vocname%d", i);
+
+			if (index > 0)
+			{
+				std::string formationid = StringUtils::format("zx%03d", index);
+				cocos2d::ui::Text* herovocname = (cocos2d::ui::Text*)table->getChildByName(namekey);
+				namekey = StringUtils::format("vocation_%d", GlobalInstance::map_formations[formationid].vec_formation[i] - 1);
+				herovocname->setString(ResourceLang::map_lang[namekey]);
+			}
+		}
 	}
+
+	formationInfoNode->getChildByName("countlbl")->setVisible(studybtn->isVisible());
+	formationInfoNode->getChildByName("coin")->setVisible(studybtn->isVisible());
 }
 
 void OutTownLayer::updateChangeHint(float dt)
@@ -819,7 +836,7 @@ void OutTownLayer::updateChangeHint(float dt)
 
 void OutTownLayer::checkFormation()
 {
-	GlobalInstance::myFormationData.mycarryon = 0;
+	GlobalInstance::myTakeOnFormation = 0;
 	std::string matchformation;
 	std::map<std::string, S_FORMATION>::iterator it;
 	for (it = GlobalInstance::map_formations.begin(); it != GlobalInstance::map_formations.end(); it++)
@@ -842,12 +859,12 @@ void OutTownLayer::checkFormation()
 	if (matchformation.length() > 0)
 	{
 		int takeonf = atoi(matchformation.substr(2).c_str());
-		if (takeonf <= GlobalInstance::myFormationData.learncount)
+		if (GlobalInstance::map_formations[matchformation].state == 1)
 		{
-			GlobalInstance::myFormationData.mycarryon = takeonf;
+			GlobalInstance::myTakeOnFormation = takeonf;
 		}
 	}
-	selectFormation(GlobalInstance::myFormationData.mycarryon);
+	selectFormation(GlobalInstance::myTakeOnFormation);
 	GlobalInstance::getInstance()->saveMyFormation();
 }
 
@@ -908,6 +925,10 @@ void OutTownLayer::takeOnFormation(int formationindex)
 			GlobalInstance::myCardHeros[i]->setPos(i + 1);
 			m_myCardHerosNode[i]->setData(GlobalInstance::myCardHeros[i]);
 		}
+		bigformation->stopAllActions();
+		bigformation->setOpacity(255);
+		bigformation->setVisible(true);
+		bigformation->runAction(Repeat::create(Sequence::create(FadeIn::create(0.5), FadeOut::create(0.5), FadeIn::create(0.5), NULL), 3));
 	}
 	else
 	{

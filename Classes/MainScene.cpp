@@ -1218,6 +1218,14 @@ void MainScene::updateTime(float dt)
 		GlobalInstance::timeMarketStr = "";
 		GlobalInstance::map_timeMartData.clear();
 		DataSave::getInstance()->deleteDataByKey("timemarket");
+
+		std::map<std::string, S_MOPUPRWDDATA>::iterator mopupit;
+
+		for (mopupit = GlobalInstance::map_mopuprwds.begin(); mopupit != GlobalInstance::map_mopuprwds.end(); mopupit++)
+		{
+			std::string strkey = StringUtils::format("mopup%s", mopupit->first);
+			DataSave::getInstance()->deleteDataByKey(strkey);
+		}
 	}
 
 	changeDayOrNight();

@@ -460,6 +460,7 @@ typedef struct
 	std::string id;
 	std::vector<int> vec_formation;
 	std::vector<float> vec_addattr;
+	int state;
 }S_FORMATION;
 
 typedef struct
@@ -472,9 +473,13 @@ typedef struct
 
 typedef struct
 {
-	int mycarryon;
-	int learncount;
-}S_MYFORMATIONDATA;
+	std::string mapid;
+	std::vector<std::string> vec_rwdstr;
+	std::vector<int> vec_rnd;
+	int bnsexp;
+	int costfood;
+	int needherocount;
+}S_MOPUPRWDDATA;
 
 
 class GlobalInstance
@@ -863,6 +868,9 @@ public:
 
 	float getFormationBns(int whichattr);
 
+	//扫荡数据
+	void parseMopupData();
+
 private:
 	static GlobalInstance* _Context;//类实例
 
@@ -991,7 +999,6 @@ public:
 	static std::map<std::string, S_BUILDINREPAIR> map_buildingrepairdata;
 
 	static std::map<std::string, S_FORMATION> map_formations;
-	
 	static int curMapFinishStars;
 
 	static int takeoutherocount;
@@ -1013,7 +1020,10 @@ public:
 
 	static std::vector<S_PAISEDATA> vec_ToMyPaiseData;
 
-	static S_MYFORMATIONDATA myFormationData;
+	static int myTakeOnFormation;
+
+	static std::map<std::string, S_MOPUPRWDDATA> map_mopuprwds;
+	
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;

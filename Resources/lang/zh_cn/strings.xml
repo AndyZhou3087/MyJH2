@@ -260,7 +260,7 @@
 	<s name="taskhintdesc">完成主线任务，可以解锁更多的地图</s>
 	<s name="marketrefreshdesc">立即补满货物库存数量</s>
 	<s name="hospitalhintdesc">没有角色重伤需要治疗</s>
-	<s name="hospitalrevivedesc">疗伤优惠：100银币/次，剩余   次。</s>
+	<s name="hospitalrevivedesc">疗伤优惠：200银币/次，剩余   次。</s>
 	<s name="innroomhintdesc">客栈等级越高，招募高品质侠客的概率越高</s>
 	<s name="gocitycard">回城卷轴：%d</s>
 	<s name="tomartketbuy1">去市场购买</s>
@@ -594,7 +594,14 @@
 	<s name="zanweektext">本周获得</s>
 	<s name="zanexchangetext">可兑换</s>	
 	<s name="zanruletext">1.每个新用户默认有3个“点赞券”；\n\n2.完成若干主线任务会获得不同个数的“点赞券”；\n\n3.“赞”可以兑换成红侠招募券碎片（每次兑换消耗10个“赞”获得10张红侠招募券碎片）；\n\n4.发布求赞一次消耗5元宝，发布一次有效期为24小时；\n\n5.每周一凌晨4点结算上周的获赞排行榜，获得的“赞”通过邮件下发，用户通过邮件领取；\n\n</s>
-	<s name="firstlearntext">请先学习「%s」阵型</s>
+	<s name="notlearntext">阵型未学习，学习后可查看详细</s>
 	<s name="learnsucc">完美习得「%s」阵型</s>
 	<s name="noformation">「%s」阵型没有匹配到合适的侠客</s>
+	<s name="finish3starmopuphint">完成3星可扫荡！</s>
+	<s name="mopupcountless">扫荡人数不足，至少%d个侠客参与扫荡</s>
+	<s name="mopupfoodless">背包食物不足，扫荡需要%d食物</s>
+	<s name="mopupj003less">扫荡券不足</s>
+	<s name="mopupcountsless">今日次数已用完</s>
+	<s name="mopupleftcount">今日剩余次数：%d/5</s>
+	<s name="unlockformationhint">通关神龙教教主解锁第2章节方可学习阵型</s>
 </strings>

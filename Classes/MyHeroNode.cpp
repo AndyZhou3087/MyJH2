@@ -97,7 +97,12 @@ bool MyHeroNode::init(Hero* herodata, int showtype, int forwhere)
 	silver = (cocos2d::ui::Widget*)csbnode->getChildByName("silver");
 	count = (cocos2d::ui::Text*)silver->getChildByName("count");
 
-	std::string s = StringUtils::format("%d", DataSave::getInstance()->getReviveHeroCount() < 20 ? 100: (herodata->getLevel() + 1) * RSILVERCOUNT);
+	int needsilver = (herodata->getLevel() + 1) * RSILVERCOUNT;
+	if (DataSave::getInstance()->getReviveHeroCount() < 10)
+	{
+		needsilver = needsilver > 200 ? 200 : needsilver;
+	}
+	std::string s = StringUtils::format("%d", needsilver);
 	count->setString(s);
 
 	langtype = GlobalInstance::getInstance()->getLang();
@@ -593,8 +598,13 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 				int rheroc = DataSave::getInstance()->getReviveHeroCount();
 				DynamicValueInt dva;
-				if (rheroc < 20)
-					dva.setValue(100);
+				if (rheroc < 10)
+				{
+					int needsilver = (m_heroData->getLevel() + 1) * RSILVERCOUNT;
+					needsilver = needsilver > 200 ? 200 : needsilver;
+
+					dva.setValue(needsilver);
+				}
 				else
 					dva.setValue((m_heroData->getLevel() + 1) * RSILVERCOUNT);
 

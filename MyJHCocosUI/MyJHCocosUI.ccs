@@ -576,7 +576,6 @@
           <Image Name="getscore_text.png" />
           <Image Name="getwin_text.png" />
           <Image Name="givebeggar_text.png" />
-          <Image Name="goawaybtn_text.png" />
           <Image Name="goback_home_text.png" />
           <Image Name="goback_map_text.png" />
           <Image Name="gocitybtn_text.png" />
@@ -757,6 +756,8 @@
           <Image Name="matchrulebtn_text.png" />
           <Image Name="matchsave_text.png" />
           <Image Name="messagetitle.png" />
+          <Image Name="mopup_text.png" />
+          <Image Name="mopupexp_text.png" />
           <Image Name="msgallget_text.png" />
           <Image Name="msggeted_text.png" />
           <Image Name="msggeting_text.png" />
@@ -1254,6 +1255,7 @@
           <Image Name="i004.png" />
           <Image Name="j001.png" />
           <Image Name="j002.png" />
+          <Image Name="j003.png" />
           <Image Name="k001.png" />
           <Image Name="librarybackbtn.png" />
           <Image Name="librarytextbg.png" />
@@ -1726,6 +1728,7 @@
         <Project Name="testhhPosLayer.csd" Type="Layer" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <Project Name="timeGiftLayer.csd" Type="Layer" />
+        <Project Name="toMyPraiseNode.csd" Type="Node" />
         <Project Name="trainFinishLayer.csd" Type="Layer" />
         <Project Name="trainFinishNode.csd" Type="Node" />
         <Project Name="trainLayer.csd" Type="Layer" />
@@ -1742,7 +1745,7 @@
         <Project Name="zanLayer.csd" Type="Layer" />
         <Project Name="zanqiuNode.csd" Type="Node" />
         <Project Name="zanrankNode.csd" Type="Node" />
-        <Project Name="toMyPraiseNode.csd" Type="Node" />
+        <Project Name="mopupretLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

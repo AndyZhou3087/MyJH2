@@ -176,7 +176,9 @@ std::string GlobalInstance::zanrwdinfo;
 
 std::vector<S_PAISEDATA> GlobalInstance::vec_ToMyPaiseData;
 
-S_MYFORMATIONDATA GlobalInstance::myFormationData;
+int GlobalInstance::myTakeOnFormation = 0;
+
+std::map<std::string, S_MOPUPRWDDATA> GlobalInstance::map_mopuprwds;
 
 GlobalInstance::GlobalInstance()
 {
@@ -201,7 +203,7 @@ std::string GlobalInstance::UUID()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getDeviceIDInKeychain();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "*******************1";
+	return "***************";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
@@ -468,20 +470,8 @@ void GlobalInstance::loadInitData()
 			GlobalInstance::vec_rebateisget[i] = atoi(str.substr(i, 1).c_str()) == 1?true:false;
 	}
 
-	GlobalInstance::myFormationData.learncount = 0;
-	GlobalInstance::myFormationData.mycarryon = 0;
-	str = DataSave::getInstance()->getMyFormation();
-	if (str.length() > 0)
-	{
-		std::vector<std::string> vec_ret;
-		CommonFuncs::split(str, vec_ret, ",");
+	GlobalInstance::myTakeOnFormation = 0;
 
-		if (vec_ret.size() >= 2)
-		{
-			GlobalInstance::myFormationData.mycarryon = atoi(vec_ret[0].c_str());
-			GlobalInstance::myFormationData.learncount = atoi(vec_ret[1].c_str());
-		}
-	}
 }
 
 void GlobalInstance::saveMyHeros()
@@ -1680,7 +1670,7 @@ void GlobalInstance::loadNpcData()
 			v = jsonvalue["exp"];
 			for (unsigned int m = 0; m < v.Size(); m++)
 			{
-				data.vec_bnsexp.push_back(v[m].GetFloat());
+				data. vec_bnsexp.push_back(v[m].GetFloat());
 			}
 
 			map_NpcAttrData[data.vocation] = data;
@@ -2460,6 +2450,46 @@ void GlobalInstance::parsePairFriendly(std::string fstr)
 					GlobalInstance::myMatchInfo.map_pairfriendly[nid] = s_f;
 				}
 			}
+		}
+	}
+}
+
+void GlobalInstance::parseMopupData()
+{
+	rapidjson::Document rsdoc = ReadJsonFile(ResourcePath::makePath("json/killall.json"));
+	rapidjson::Value& rsallData = rsdoc["rwd"];
+	for (unsigned int i = 0; i < rsallData.Size(); i++)
+	{
+		rapidjson::Value& jsonvalue = rsallData[i];
+		if (jsonvalue.IsObject())
+		{
+			S_MOPUPRWDDATA data;
+			rapidjson::Value& v = jsonvalue["pos"];
+
+			data.mapid = v.GetString();
+
+			v = jsonvalue["award"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_rwdstr.push_back(v[m].GetString());
+			}
+
+			v = jsonvalue["rnd"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_rnd.push_back(v[m].GetFloat()*10);
+			}
+
+			v = jsonvalue["exp"];
+			data.bnsexp = atoi(v.GetString());
+
+			v = jsonvalue["food"];
+			data.costfood = atoi(v.GetString());
+
+			v = jsonvalue["people"];
+			data.needherocount = atoi(v.GetString());
+
+			map_mopuprwds[data.mapid]= data;
 		}
 	}
 }
@@ -3480,7 +3510,29 @@ void GlobalInstance::parseFormationData()
 			{
 				data.vec_addattr.push_back(v[m].GetFloat());
 			}
+			data.state = 0;
 			map_formations[data.id] = data;
+		}
+	}
+
+	std::string str = DataSave::getInstance()->getMyFormation();
+	if (str.length() > 0)
+	{
+		std::vector<std::string> vec_ret;
+		CommonFuncs::split(str, vec_ret, ";");
+
+		if (vec_ret.size() >= 2)
+		{
+			GlobalInstance::myTakeOnFormation = atoi(vec_ret[0].c_str());
+
+			std::vector<std::string> vec_;
+			CommonFuncs::split(vec_ret[1], vec_, ",");
+
+			for (unsigned int i = 0; i < vec_.size(); i++)
+			{
+				std::string fid = StringUtils::format("zx%03d", i + 1);
+				map_formations[fid].state = atoi(vec_[i].c_str());
+			}
 		}
 	}
 }
@@ -3512,15 +3564,24 @@ void GlobalInstance::updateMyZan(int addcount)
 
 void GlobalInstance::saveMyFormation()
 {
-	std::string str = StringUtils::format("%d,%d", GlobalInstance::myFormationData.mycarryon, GlobalInstance::myFormationData.learncount);
-	DataSave::getInstance()->setMyFormation(str);
+	std::string str;
+	std::map<std::string, S_FORMATION>::iterator it;
+	for (it = GlobalInstance::map_formations.begin(); it != GlobalInstance::map_formations.end(); it++)
+	{
+		if (str.length() > 0)
+			str.append(",");
+		std::string statestr = StringUtils::format("%d", it->second.state);
+		str.append(statestr);
+	}
+	std::string savestr = StringUtils::format("%d;%s", GlobalInstance::myTakeOnFormation, str.c_str());
+	DataSave::getInstance()->setMyFormation(savestr);
 }
 
 float GlobalInstance::getFormationBns(int whichattr)
 {
-	if (GlobalInstance::myFormationData.mycarryon > 0)
+	if (GlobalInstance::myTakeOnFormation > 0)
 	{
-		std::string fid = StringUtils::format("zx%03d", GlobalInstance::myFormationData.mycarryon);
+		std::string fid = StringUtils::format("zx%03d", GlobalInstance::myTakeOnFormation);
 		return GlobalInstance::map_formations[fid].vec_addattr[whichattr];
 	}
 	return 0;

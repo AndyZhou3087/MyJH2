@@ -297,13 +297,7 @@ void FightHeroNode::update(float dt)
 			}
 			else
 			{
-				if (this->isVisible())
-					this->runAction(Sequence::create(ScaleTo::create(0.22f, 1.2f), ScaleTo::create(0.08f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
-				else
-				{
-					isPlaySkillAnim = false;
-					nextRound(0);
-				}
+				this->runAction(Sequence::create(ScaleTo::create(0.22f, 1.2f), ScaleTo::create(0.08f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
 			}
 		}
 	}
@@ -328,7 +322,7 @@ void FightHeroNode::pauseTimeSchedule()
 
 void FightHeroNode::resumeTimeSchedule()
 {
-	if (m_Data != NULL)
+	if (m_Data != NULL && m_Data->getHp() > 0.00001)
 	{
 		ispause = false;
 	}
@@ -397,7 +391,7 @@ void FightHeroNode::hurt(float hp, int stat)//stat -1:不显示普攻动画
 
 void FightHeroNode::atkAnimFinish()
 {
-	if (this->isVisible())
+	if (this->isVisible() && m_Data->getHp() > 0.00001)
 	{
 		FightingLayer* fighting = (FightingLayer*)this->getParent();
 		fighting->showAtk(this->getTag());
@@ -448,8 +442,6 @@ void FightHeroNode::hurtAnimFinish()
 				((Hero*)m_Data)->setState(HS_DEAD);
 
 				((Hero*)m_Data)->setPos(0);
-
-				int v = ((Hero*)m_Data)->getVocation();
 
 				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DIE);
 				//nextRound(0);

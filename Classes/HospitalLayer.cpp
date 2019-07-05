@@ -163,7 +163,7 @@ void HospitalLayer::updateContent()
 	vec_deadNodes.clear();
 
 	int rheroc = DataSave::getInstance()->getReviveHeroCount();
-	if (rheroc >= 20)
+	if (rheroc >= 10)
 	{
 		scrollview->setContentSize(Size(scrollview->getContentSize().width, 1060));
 		revivecounttext->setVisible(false);
@@ -172,7 +172,7 @@ void HospitalLayer::updateContent()
 	else
 	{
 		scrollview->setContentSize(Size(scrollview->getContentSize().width, 1040));
-		std::string countstr = StringUtils::format("%d", 20 - rheroc);
+		std::string countstr = StringUtils::format("%d", 10 - rheroc);
 		revivecountlbl->setString(countstr);
 	}
 

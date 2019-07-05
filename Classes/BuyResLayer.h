@@ -14,8 +14,8 @@ public:
 	BuyResLayer();
 	~BuyResLayer();
 
-	static BuyResLayer* create(std::vector<MSGAWDSDATA> vec_res, int putwhere = MYSTORAGE);
-	bool init(std::vector<MSGAWDSDATA> vec_res, int putwhere = MYSTORAGE);
+	static BuyResLayer* create(std::vector<MSGAWDSDATA> vec_res, int putwhere = MYSTORAGE, bool inMarket = true);
+	bool init(std::vector<MSGAWDSDATA> vec_res, int putwhere = MYSTORAGE, bool inMarket = true);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void setMarketData();
