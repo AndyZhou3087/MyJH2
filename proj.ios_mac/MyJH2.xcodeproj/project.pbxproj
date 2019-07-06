@@ -347,6 +347,9 @@
 		72DD1CB72139565F00832ADB /* shopLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72DD1CB42139565E00832ADB /* shopLayer.csb */; };
 		72DD1CB82139565F00832ADB /* shopNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72DD1CB52139565F00832ADB /* shopNode.csb */; };
 		72E31E5C215A487A008942F8 /* gfDescLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72E31E5A215A487A008942F8 /* gfDescLayer.csb */; };
+		72E8FE0922B8BA510077A2A4 /* TrainFinishLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72E8FE0822B8BA510077A2A4 /* TrainFinishLayer.cpp */; };
+		72E8FE0C22B8BA850077A2A4 /* trainFinishLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72E8FE0A22B8BA850077A2A4 /* trainFinishLayer.csb */; };
+		72E8FE0D22B8BA850077A2A4 /* trainFinishNode.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72E8FE0B22B8BA850077A2A4 /* trainFinishNode.csb */; };
 		72F700A62178703B00ED33F1 /* NpcgiveLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72F700A12178703B00ED33F1 /* NpcgiveLayer.cpp */; };
 		72F700A72178703B00ED33F1 /* SaleGfLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72F700A32178703B00ED33F1 /* SaleGfLayer.cpp */; };
 		72F700A92178707500ED33F1 /* npcgiveLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 72F700A82178707400ED33F1 /* npcgiveLayer.csb */; };
@@ -904,6 +907,10 @@
 		72DD1CB42139565E00832ADB /* shopLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = shopLayer.csb; sourceTree = "<group>"; };
 		72DD1CB52139565F00832ADB /* shopNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = shopNode.csb; sourceTree = "<group>"; };
 		72E31E5A215A487A008942F8 /* gfDescLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = gfDescLayer.csb; sourceTree = "<group>"; };
+		72E8FE0622B8BA510077A2A4 /* TrainFinishLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainFinishLayer.h; sourceTree = "<group>"; };
+		72E8FE0822B8BA510077A2A4 /* TrainFinishLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TrainFinishLayer.cpp; sourceTree = "<group>"; };
+		72E8FE0A22B8BA850077A2A4 /* trainFinishLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = trainFinishLayer.csb; sourceTree = "<group>"; };
+		72E8FE0B22B8BA850077A2A4 /* trainFinishNode.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = trainFinishNode.csb; sourceTree = "<group>"; };
 		72F700A12178703B00ED33F1 /* NpcgiveLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NpcgiveLayer.cpp; sourceTree = "<group>"; };
 		72F700A32178703B00ED33F1 /* SaleGfLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SaleGfLayer.cpp; sourceTree = "<group>"; };
 		72F700A42178703B00ED33F1 /* SaleGfLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleGfLayer.h; sourceTree = "<group>"; };
@@ -1055,6 +1062,8 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				72E8FE0A22B8BA850077A2A4 /* trainFinishLayer.csb */,
+				72E8FE0B22B8BA850077A2A4 /* trainFinishNode.csb */,
 				72775AAD227829FA00C41984 /* mainhomeHintLayer.csb */,
 				72775AAA227829F900C41984 /* repairanim1.csb */,
 				72775AAB227829FA00C41984 /* repairanim2.csb */,
@@ -1222,6 +1231,8 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				72E8FE0822B8BA510077A2A4 /* TrainFinishLayer.cpp */,
+				72E8FE0622B8BA510077A2A4 /* TrainFinishLayer.h */,
 				72421DBA21269C30008B1B57 /* AchieveLayer.cpp */,
 				72421DBF21269C30008B1B57 /* AchieveLayer.h */,
 				72421DBD21269C30008B1B57 /* AchieveNode.cpp */,
@@ -1820,6 +1831,7 @@
 				7298896121A2989800071057 /* matchMainLayer.csb in Resources */,
 				7232D83220E63A0700299738 /* storeHouseLayer.csb in Resources */,
 				7256A762210974A1000492EA /* changeVocationLayer.csb in Resources */,
+				72E8FE0D22B8BA850077A2A4 /* trainFinishNode.csb in Resources */,
 				7204532720D892640011D560 /* mapdata in Resources */,
 				7298895E21A2989800071057 /* matchContentLayer.csb in Resources */,
 				7282709020F5B7EE00B07087 /* marketRefreshLayer.csb in Resources */,
@@ -1830,6 +1842,7 @@
 				7206D260211D9FD9002D1BDE /* effect in Resources */,
 				72B5E8BF226FFF98007E9EFC /* mapbirds.csb in Resources */,
 				7204534520D892640011D560 /* myHeroNode.csb in Resources */,
+				72E8FE0C22B8BA850077A2A4 /* trainFinishLayer.csb in Resources */,
 				7298895F21A2989800071057 /* matchHeroNode.csb in Resources */,
 				72BAB57F2130217600714493 /* skillstarttextanim.csb in Resources */,
 				72A2DC14225332B100734ADF /* rebateawdnode.csb in Resources */,
@@ -2004,6 +2017,7 @@
 				7226FB402142214B00467283 /* SimpleResPopLayer.cpp in Sources */,
 				72442289222F5CC200A2B517 /* MazeDescLayer.cpp in Sources */,
 				72AD00F9211461E4009C44DA /* StrengthenLayer.cpp in Sources */,
+				72E8FE0922B8BA510077A2A4 /* TrainFinishLayer.cpp in Sources */,
 				720452E120D892200011D560 /* LoadingScene.cpp in Sources */,
 				720452E220D892200011D560 /* OutTownLayer.cpp in Sources */,
 				7226FB3D2142214B00467283 /* NewGuideLayer.cpp in Sources */,

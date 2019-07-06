@@ -94,7 +94,7 @@ const char* getUserDefaultXml(int type)
         bool isok = false;
         if (kvalue && kvalue.length > 0 && [key hasPrefix:@"jh"])
         {
-            if (type == 1 &&!([key hasPrefix:@"jhm"] && [key componentsSeparatedByString:@"-"].count == 3 && kvalue.length > 20))
+            if (type == 1 &&!([key hasPrefix:@"jhm"] && [key componentsSeparatedByString:@"-"].count == 3 && kvalue.length > 32))
             {
                 isok = true;
             }
