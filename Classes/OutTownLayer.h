@@ -89,7 +89,7 @@ private:
 	Node* carryoutherobox;
 
 	Node* bigformation;
-
+	cocos2d::ui::Widget* studybtn;
 	std::vector<Hero*> vec_formationCandidate;
 
 	std::vector<Hero*> vec_selformation;

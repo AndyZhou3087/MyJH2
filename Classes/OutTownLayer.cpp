@@ -99,6 +99,11 @@ bool OutTownLayer::init()
 
 	formationInfoNode = csbnode->getChildByName("formationnode");
 
+	studybtn = (cocos2d::ui::Widget*)formationInfoNode->getChildByName("studybtn");
+	studybtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onFormationClick, this));
+	cocos2d::ui::ImageView* studybtntxt = (cocos2d::ui::ImageView*)studybtn->getChildByName("btntext");
+	studybtntxt->loadTexture(ResourcePath::makeTextImgPath("learnformation_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
 	addFormationUi();
 	//按钮
 	actionbtn = (cocos2d::ui::Button*)csbnode->getChildByName("actionbtn");
@@ -701,19 +706,9 @@ void OutTownLayer::onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::
 
 				std::string formationid = StringUtils::format("zx%03d", learnindex);
 
-				cocos2d::ui::Text* fdesc = (cocos2d::ui::Text*)formationInfoNode->getChildByName("desc");
-				cocos2d::ui::Text* table = (cocos2d::ui::Text*)formationInfoNode->getChildByName("formationinfotable");
-
-				table->setPositionX(200);
-				table->setVisible(true);
-				fdesc->setString(GlobalInstance::map_AllResources[formationid].desc);
-
-				clicknode->setVisible(false);
-				formationInfoNode->getChildByName("countlbl")->setVisible(false);
-				formationInfoNode->getChildByName("coin")->setVisible(false);
-
 				GlobalInstance::map_formations[formationid].state = 1;
 				GlobalInstance::getInstance()->saveMyFormation();
+				updateFormationInfo(learnindex);
 				DynamicValueInt dvint;
 				dvint.setValue(needcoin);
 				GlobalInstance::getInstance()->costMyCoinCount(dvint);
@@ -740,13 +735,19 @@ void OutTownLayer::selectFormation(int index)
 
 		lastselectformation = index;
 
+		std::string formationid = StringUtils::format("zx%03d", index);
+		if (GlobalInstance::map_formations[formationid].state == 1)
+		{
+			takeOnFormation(index);
+		}
+
 	}
 	else if (lastselectformation > 0)
 	{
-		bigformation->setVisible(false);
 		vec_formationboxs[lastselectformation - 1]->loadTexture("ui/formationbox_n.png", cocos2d::ui::Widget::TextureResType::PLIST);
 	}
 	updateFormationInfo(index);
+
 }
 
 void OutTownLayer::updateFormationInfo(int index)
@@ -762,7 +763,6 @@ void OutTownLayer::updateFormationInfo(int index)
 
 	cocos2d::ui::Text* table = (cocos2d::ui::Text*)formationInfoNode->getChildByName("formationinfotable");
 
-	cocos2d::ui::Widget* studybtn = (cocos2d::ui::Widget*)formationInfoNode->getChildByName("studybtn");
 	if (index == 0)
 	{
 		fname->setString(ResourceLang::map_lang["npcrelation_0"]);
@@ -773,17 +773,12 @@ void OutTownLayer::updateFormationInfo(int index)
 	}
 	else
 	{
-		studybtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onFormationClick, this));
 		studybtn->setTag(2000 + index);
-		cocos2d::ui::ImageView* studybtntxt = (cocos2d::ui::ImageView*)studybtn->getChildByName("btntext");
-		studybtntxt->loadTexture(ResourcePath::makeTextImgPath("learnformation_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 		fname->setString(GlobalInstance::map_AllResources[formationid].name);
 
 		if (GlobalInstance::map_formations[formationid].state == 1)
 		{
-			takeOnFormation(index);
-
 			studybtn->setVisible(false);
 			table->setPositionX(200);
 			table->setVisible(true);
@@ -793,7 +788,6 @@ void OutTownLayer::updateFormationInfo(int index)
 		{
 			studybtn->setVisible(true);
 			table->setVisible(false);
-			bigformation->setVisible(false);
 			fdesc->setString(ResourceLang::map_lang["notlearntext"]);
 		}
 
@@ -863,6 +857,11 @@ void OutTownLayer::checkFormation()
 		{
 			GlobalInstance::myTakeOnFormation = takeonf;
 		}
+	}
+	else
+	{
+		bigformation->stopAllActions();
+		bigformation->setVisible(false);
 	}
 	selectFormation(GlobalInstance::myTakeOnFormation);
 	GlobalInstance::getInstance()->saveMyFormation();
