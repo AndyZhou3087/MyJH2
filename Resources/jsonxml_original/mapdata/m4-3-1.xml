@@ -6,10 +6,10 @@
     <m id="n012" minlv="40" maxlv="40" minqu="1" maxqu="2">33</m>
     <ma id="r001" c="30" qu="0">10.00</ma>
     <ma id="r002" c="30" qu="0">10.00</ma>
-    <ma id="r003" c="30" qu="0">10.00</ma>
-    <ma id="r004" c="30" qu="0">10.00</ma>
-    <ma id="r005" c="30" qu="0">10.00</ma>
-    <ma id="s002" c="2" qu="0">10.00</ma>
+    <ma id="r012" c="3" qu="0">4.00</ma>
+    <ma id="b003" c="1" qu="0">5.00</ma>
+    <ma id="r006" c="100" qu="0">20.00</ma>
+    <ma id="s002" c="3" qu="0">10.00</ma>
   </Monstors>
   <Cells rs="37" cs="35">
     <Cell c="0" r="0" p="-1" w="0" m="5.png" />

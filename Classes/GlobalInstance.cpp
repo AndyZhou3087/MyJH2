@@ -3530,8 +3530,8 @@ void GlobalInstance::parseFormationData()
 
 			for (unsigned int i = 0; i < vec_.size(); i++)
 			{
-				std::string fid = StringUtils::format("zx%03d", i + 1);
-				map_formations[fid].state = atoi(vec_[i].c_str());
+				std::string fid = StringUtils::format("zx%03d", atoi(vec_[i].c_str()));
+				map_formations[fid].state = 1;
 			}
 		}
 	}
@@ -3568,10 +3568,14 @@ void GlobalInstance::saveMyFormation()
 	std::map<std::string, S_FORMATION>::iterator it;
 	for (it = GlobalInstance::map_formations.begin(); it != GlobalInstance::map_formations.end(); it++)
 	{
-		if (str.length() > 0)
-			str.append(",");
-		std::string statestr = StringUtils::format("%d", it->second.state);
-		str.append(statestr);
+		if (it->second.state == 1)
+		{
+			if (str.length() > 0)
+				str.append(",");
+			int f = atoi(it->first.substr(2).c_str());
+			std::string statestr = StringUtils::format("%d", f);
+			str.append(statestr);
+		}
 	}
 	std::string savestr = StringUtils::format("%d;%s", GlobalInstance::myTakeOnFormation, str.c_str());
 	DataSave::getInstance()->setMyFormation(savestr);
