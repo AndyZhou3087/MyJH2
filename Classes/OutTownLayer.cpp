@@ -623,20 +623,33 @@ void OutTownLayer::addFormationUi()
 		innerwidth = contentwidth;
 	scrollview->setInnerContainerSize(Size(innerwidth, scrollview->getContentSize().height));
 
+	std::vector<S_FORMATION*> vec_formationdatas;
+	std::map<std::string, S_FORMATION>::iterator it;
+
+	for (it = GlobalInstance::map_formations.begin(); it != GlobalInstance::map_formations.end(); it++)
+	{
+		vec_formationdatas.push_back(&it->second);
+		vec_formationboxs.push_back(NULL);
+	}
+
+	std::sort(vec_formationdatas.begin(), vec_formationdatas.end(), sortbylearned);
+
 	for (int m = 0; m < ressize; m++)
 	{
+		std::string formationid = vec_formationdatas[m]->id;
+
 		std::string boxstr = "ui/formationbox_n.png";
 
 		cocos2d::ui::ImageView* box = cocos2d::ui::ImageView::create(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 		box->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onFormationClick, this));
 		box->setTouchEnabled(true);
-		box->setTag(m+1);
+		int findex = atoi(formationid.substr(2).c_str());
+		box->setTag(findex);
+		//box->setUserData((void*)GlobalInstance::map_formations[formationid].id.c_str());
 		box->setPosition(Vec2(box->getContentSize().width / 2 + m * itemwidth, scrollview->getContentSize().height / 2 + 10));
 		scrollview->addChild(box);
-		vec_formationboxs.push_back(box);
+		vec_formationboxs[findex - 1] = box;
 		std::string iconstr = "ui/formation1_d.png";
-
-		std::string formationid = StringUtils::format("zx%03d", m + 1);
 
 		if (GlobalInstance::map_formations[formationid].state == 1)
 			iconstr = "ui/formation1_n.png";
@@ -650,6 +663,13 @@ void OutTownLayer::addFormationUi()
 		namelbl->setPosition(Vec2(box->getContentSize().width / 2, -5));
 		box->addChild(namelbl);
 	}
+}
+
+bool OutTownLayer::sortbylearned(S_FORMATION* a, S_FORMATION* b)
+{
+	if (a->state > b->state)
+		return true;
+	return false;
 }
 
 void OutTownLayer::onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType type)

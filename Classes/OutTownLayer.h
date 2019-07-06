@@ -5,6 +5,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "CardHeroNode.h"
+#include "GlobalInstance.h"
 USING_NS_CC;
 
 class OutTownLayer : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate
@@ -93,6 +94,7 @@ private:
 	std::vector<Hero*> vec_formationCandidate;
 
 	std::vector<Hero*> vec_selformation;
+	static bool sortbylearned(S_FORMATION* a, S_FORMATION* b);
 };
 
 #endif
