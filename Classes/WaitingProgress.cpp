@@ -14,7 +14,7 @@ bool WaitingProgress::init(std::string text)
 		addChild(boxbg);
 
 		Sprite* progress = Sprite::createWithSpriteFrameName("ui/waitingprogress.png");
-		progress->setPosition(Vec2(progress->getContentSize().width, boxbg->getContentSize().height/2));
+		progress->setPosition(Vec2(progress->getContentSize().width/2 + 5, boxbg->getContentSize().height/2));
 		boxbg->addChild(progress);
 		progress->runAction(RepeatForever::create(RotateTo::create(2, 720)));
 

@@ -97,7 +97,12 @@ bool MyHeroNode::init(Hero* herodata, int showtype, int forwhere)
 	silver = (cocos2d::ui::Widget*)csbnode->getChildByName("silver");
 	count = (cocos2d::ui::Text*)silver->getChildByName("count");
 
-	std::string s = StringUtils::format("%d", DataSave::getInstance()->getReviveHeroCount() < 20 ? 100: (herodata->getLevel() + 1) * RSILVERCOUNT);
+	int needsilver = (herodata->getLevel() + 1) * RSILVERCOUNT;
+	if (DataSave::getInstance()->getReviveHeroCount() < 10)
+	{
+		needsilver = needsilver > 200 ? 200 : needsilver;
+	}
+	std::string s = StringUtils::format("%d", needsilver);
 	count->setString(s);
 
 	langtype = GlobalInstance::getInstance()->getLang();
@@ -156,7 +161,7 @@ bool MyHeroNode::init(Hero* herodata, int showtype, int forwhere)
 			CommonFuncs::changeGray(headimg);
 
 			CommonFuncs::changeGray(csbnode->getChildByName("itembg"));
-			clickimg->setEnabled(false);
+			//clickimg->setEnabled(false);
 		}
 	}
 	else if (m_showtype == HS_TRAINING)
@@ -457,6 +462,8 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 					CardHeroNode* cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(carrycount);
 					cardheroNode->setData(m_heroData);
+
+					outTownLayer->checkFormation();
 				}
 				else if (m_heroData->getState() == HS_TAKEON)
 				{
@@ -479,6 +486,8 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 					CardHeroNode *cardheroNode = (CardHeroNode*)outTownLayer->getChildByTag(heropos - 1);
 					cardheroNode->setData(NULL);
+
+					outTownLayer->checkFormation();
 
 					//std::vector<Hero*> vec_hero;
 					//for (int i = 0; i < 6; i++)
@@ -589,8 +598,13 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 
 				int rheroc = DataSave::getInstance()->getReviveHeroCount();
 				DynamicValueInt dva;
-				if (rheroc < 20)
-					dva.setValue(100);
+				if (rheroc < 10)
+				{
+					int needsilver = (m_heroData->getLevel() + 1) * RSILVERCOUNT;
+					needsilver = needsilver > 200 ? 200 : needsilver;
+
+					dva.setValue(needsilver);
+				}
 				else
 					dva.setValue((m_heroData->getLevel() + 1) * RSILVERCOUNT);
 

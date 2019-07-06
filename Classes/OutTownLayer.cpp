@@ -14,17 +14,18 @@
 #include "SelectMyHerosLayer.h"
 #include "DataSave.h"
 #include "MyTransitionScene.h"
+#include "MyMenu.h"
 
 USING_NS_CC;
 
-std::string carryResids[] = {"r001", "r011", "r012"};
+std::string carryResid = "r001";
 OutTownLayer::OutTownLayer()
 {
 	m_isLongPress = false;
 	m_longTouchNode = NULL;
 
-	for (int i=0;i<3;i++)
-		caryycount[i] = 0;
+	caryycount = 0;
+	lastselectformation = GlobalInstance::myTakeOnFormation;
 }
 
 OutTownLayer::~OutTownLayer()
@@ -85,11 +86,25 @@ bool OutTownLayer::init()
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("outTownLayer.csb"));
 	this->addChild(csbnode);
-	int langtype = GlobalInstance::getInstance()->getLang();
+	langtype = GlobalInstance::getInstance()->getLang();
 	//标题
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("outtowntitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+	scrollview = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scrollview");
+	scrollview->setScrollBarEnabled(false);
+	scrollview->setBounceEnabled(true);
+	scrollview->setSwallowTouches(true);
+
+
+	formationInfoNode = csbnode->getChildByName("formationnode");
+
+	studybtn = (cocos2d::ui::Widget*)formationInfoNode->getChildByName("studybtn");
+	studybtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onFormationClick, this));
+	cocos2d::ui::ImageView* studybtntxt = (cocos2d::ui::ImageView*)studybtn->getChildByName("btntext");
+	studybtntxt->loadTexture(ResourcePath::makeTextImgPath("learnformation_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	addFormationUi();
 	//按钮
 	actionbtn = (cocos2d::ui::Button*)csbnode->getChildByName("actionbtn");
 	actionbtn->setTag(1000);
@@ -104,6 +119,11 @@ bool OutTownLayer::init()
 	closebtn->setTag(1001);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onBtnClick, this));
 
+	carryoutherobox = csbnode->getChildByName("carryoutherobox");
+
+	bigformation = csbnode->getChildByName("formation");
+	bigformation->setVisible(false);
+
 	//更换队形按钮
 	changebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("changebtn");
 	changebtn->setTag(1002);
@@ -115,24 +135,24 @@ bool OutTownLayer::init()
 	cocos2d::ui::Text* foodname = (cocos2d::ui::Text*)csbnode->getChildByName("r001box")->getChildByName("namelbl");
 	foodname->setString(GlobalInstance::map_AllResources["r001"].name);
 
-	versionname = (cocos2d::ui::Text*)csbnode->getChildByName("v001box")->getChildByName("namelbl");
-
-	gocityname = (cocos2d::ui::Text*)csbnode->getChildByName("t001box")->getChildByName("namelbl");
-
 	cocos2d::ui::Text* carrytextlbl = (cocos2d::ui::Text*)csbnode->getChildByName("carrytextlbl");
 	carrytextlbl->setString(ResourceLang::map_lang["carrytext"]);
 
 	carrylbl = (cocos2d::ui::Text*)csbnode->getChildByName("carrylbl");
 
-	cocos2d::ui::Text* changehint = (cocos2d::ui::Text*)csbnode->getChildByName("changehint");
-	changehint->setString(ResourceLang::map_lang["changelineuphint"]);
+	changehintindex = GlobalInstance::getInstance()->createRandomNum(3);
+	std::string changehintkey = StringUtils::format("changelineuphint%d", changehintindex);
+	changehintlbl = (cocos2d::ui::Text*)csbnode->getChildByName("changehint");
+	changehintlbl->setString(ResourceLang::map_lang[changehintkey]);
+
+	this->schedule(schedule_selector(OutTownLayer::updateChangeHint), 3);
 
 	cocos2d::ui::Text* hintdesc = (cocos2d::ui::Text*)csbnode->getChildByName("hintdesc");
 	hintdesc->setString(ResourceLang::map_lang["outtownhintdesc"]);
 
 	for (int i = 0; i < 6; i++)
 	{
-		Vec2 pos = Vec2(140 + i % 3 * 215, /*745 + */1060 - i / 3 * 250);
+		Vec2 pos = Vec2(150 + i % 3 * 210, 705 - i / 3 * 245);
 		Sprite* cardnodebg = Sprite::create(ResourcePath::makeImagePath("cardherobox_.png"));
 		cardnodebg->setPosition(Vec2(pos.x, pos.y+14));
 		this->addChild(cardnodebg, 0);
@@ -143,34 +163,21 @@ bool OutTownLayer::init()
 		m_myCardHerosNode[i]->setData(GlobalInstance::myCardHeros[i]);
 	}
 
-	std::string str;
-	for (int i = 0; i < 1; i++)
-	{
-		str = StringUtils::format("addbtn%d", i);
-		cocos2d::ui::Button* addbtn = (cocos2d::ui::Button*)csbnode->getChildByName(str);
-		addbtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onAddBtnClick, this));
-		addbtn->setTag(10000 + i);
+	std::string str = "addbtn0";
 
-		str = StringUtils::format("subbtn%d", i);
-		cocos2d::ui::Button* subbtn = (cocos2d::ui::Button*)csbnode->getChildByName(str);
-		subbtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onSubBtnClick, this));
-		subbtn->setTag(20000 + i);
+	cocos2d::ui::Button* addbtn = (cocos2d::ui::Button*)csbnode->getChildByName(str);
+	addbtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onAddBtnClick, this));
+	addbtn->setTag(10000);
 
-		str = StringUtils::format("carrycount%d", i);
-		caryycountlbl[i] = (cocos2d::ui::Text*)csbnode->getChildByName(str);
+	str = "subbtn0";
+	cocos2d::ui::Button* subbtn = (cocos2d::ui::Button*)csbnode->getChildByName(str);
+	subbtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onSubBtnClick, this));
+	subbtn->setTag(20000);
 
-		//caryycount[i] = MyRes::getMyResCount(carryResids[i]);
-	}
+	str = "carrycount0";
+	caryycountlbl = (cocos2d::ui::Text*)csbnode->getChildByName(str);
 
 	updateHeroCarry();
-
-	for (int i = 1; i <= 2; i++)
-	{
-		str = StringUtils::format("tomartketbuy%d", i);
-		cocos2d::ui::Text* tobuytext = (cocos2d::ui::Text*)csbnode->getChildByName(str);
-		tobuytext->setString(ResourceLang::map_lang[str]);
-		tobuytext->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onGoBuyText, this));
-	}
 
 	cocos2d::ui::TextField* countTextField = (cocos2d::ui::TextField*)csbnode->getChildByName("coutinput");
 	countTextField->setString("");
@@ -190,9 +197,7 @@ bool OutTownLayer::init()
 	m_editCount->setDelegate(this);
 	csbnode->addChild(m_editCount);
 
-	updatelbl(0);
-
-	this->schedule(schedule_selector(OutTownLayer::updatelbl), 1.0f);
+	selectFormation(lastselectformation);
 
 	this->scheduleOnce(schedule_selector(OutTownLayer::delayShowNewerGuide), newguidetime);
 
@@ -265,19 +270,19 @@ void OutTownLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_ev
 					CardHeroNode* cardnode = m_myCardHerosNode[clickHero];
 
 					m_myCardHerosNode[clickHero]->setLocalZOrder(1);
-					m_myCardHerosNode[clickHero]->runAction(MoveTo::create(0.2f, Vec2(140 + i % 3 * 215, /*745 + */1060 - i / 3 * 250)));
+					m_myCardHerosNode[clickHero]->runAction(MoveTo::create(0.2f, Vec2(150 + i % 3 * 210, /*745 + */705 - i / 3 * 245)));
 					m_myCardHerosNode[clickHero]->setTag(i);
 					GlobalInstance::myCardHeros[clickHero]->setPos(i + 1);
 					
 					m_myCardHerosNode[i]->setTag(clickHero);
 					if (GlobalInstance::myCardHeros[i] != NULL)
 					{
-						m_myCardHerosNode[i]->runAction(MoveTo::create(0.2f, Vec2(140 + clickHero % 3 * 215, /*745 + */1060 - clickHero / 3 * 250)));
+						m_myCardHerosNode[i]->runAction(MoveTo::create(0.2f, Vec2(150 + clickHero % 3 * 210, /*745 + */705 - clickHero / 3 * 245)));
 						GlobalInstance::myCardHeros[i]->setPos(clickHero + 1);
 					}
 					else
 					{
-						m_myCardHerosNode[i]->setPosition(Vec2(140 + clickHero % 3 * 215, /*745 + */1060 - clickHero / 3 * 250));
+						m_myCardHerosNode[i]->setPosition(Vec2(150 + clickHero % 3 * 210, /*745 + */705 - clickHero / 3 * 245));
 						m_myCardHerosNode[i]->updateSelPosLbl();
 					}
 
@@ -295,8 +300,16 @@ void OutTownLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_ev
 		}
 		if (!ischange)
 		{
-			m_myCardHerosNode[clickHero]->setPosition(Vec2(140 + clickHero % 3 * 215, /*745 + */1060 - clickHero / 3 * 250));
+			if (!carryoutherobox->getBoundingBox().containsPoint(m_myCardHerosNode[clickHero]->getPosition()))
+			{
+				m_myCardHerosNode[clickHero]->setData(NULL);
+				GlobalInstance::myCardHeros[clickHero]->setState(HS_OWNED);
+				GlobalInstance::myCardHeros[clickHero]->setPos(0);
+				GlobalInstance::myCardHeros[clickHero] = NULL;
+			}
+			m_myCardHerosNode[clickHero]->setPosition(Vec2(150 + clickHero % 3 * 210, /*745 + */705 - clickHero / 3 * 245));
 			m_myCardHerosNode[clickHero]->setLocalZOrder(1);
+		
 		}
 		clickHero = -1;
 	}
@@ -384,20 +397,19 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 				return;
 			}
 			
-
-			for (int i = 0; i < 3; i++)
+			int addcount = caryycount;
+			if (addcount != 0)
 			{
-				int addcount = caryycount[i];
-				if (addcount != 0)
-				{
-					MyRes::Add(carryResids[i], addcount, MYPACKAGE);
-					MyRes::Use(carryResids[i], addcount);
-				}
+				MyRes::Add(carryResid, addcount, MYPACKAGE);
+				MyRes::Use(carryResid, addcount);
 			}
+
 			((cocos2d::ui::Button*)pSender)->setEnabled(false);
 
 			GlobalInstance::getInstance()->recoveCardHeroMaxHp();
 			GlobalInstance::myOutMapCarry = GlobalInstance::getInstance()->getTotalCarry();
+
+			checkFormation();
 #if USE_TRANSCENE
 			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAP)));
 #else
@@ -444,20 +456,19 @@ void OutTownLayer::onAddBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 void OutTownLayer::addRes(Node* clicknode)
 {
 	std::string name = clicknode->getName();
-	int index = atoi(name.substr(name.length() - 1).c_str());
 	if (isCarryOver())
 	{
 		MovingLabel::show(ResourceLang::map_lang["carryovertext"]);
 	}
 	else
 	{
-		if (caryycount[index] >= MyRes::getMyResCount(carryResids[index]))
+		if (caryycount >= MyRes::getMyResCount(carryResid))
 		{
-			std::string str = StringUtils::format(ResourceLang::map_lang["lacktext"].c_str(), GlobalInstance::map_AllResources[carryResids[index]].name.c_str());
+			std::string str = StringUtils::format(ResourceLang::map_lang["lacktext"].c_str(), GlobalInstance::map_AllResources[carryResid].name.c_str());
 			MovingLabel::show(str);
 			return;
 		}
-		caryycount[index]++;
+		caryycount++;
 		updateCaryyCountLbl();
 	}
 }
@@ -507,27 +518,27 @@ void OutTownLayer::subRes(Node* clicknode)
 	std::string name = clicknode->getName();
 	int index = atoi(name.substr(name.length() - 1).c_str());
 
-	if (caryycount[index] <= 0)
+	if (caryycount <= 0)
 		return;
 
-	caryycount[index]--;
+	caryycount--;
 	updateCaryyCountLbl();
 }
 
 void OutTownLayer::updateCaryyCountLbl()
 {
-	std::string str = StringUtils::format("%d/%d", caryycount[0] + caryycount[1] + caryycount[2], GlobalInstance::getInstance()->getTotalCarry());
+	std::string str = StringUtils::format("%d/%d", caryycount, GlobalInstance::getInstance()->getTotalCarry());
 	carrylbl->setString(str);
 
-	str = StringUtils::format("%d", caryycount[0]);
-	caryycountlbl[0]->setString(str);
+	str = StringUtils::format("%d", caryycount);
+	caryycountlbl->setString(str);
 }
 
 void OutTownLayer::updateHeroCarry()
 {
-	caryycount[0] = GlobalInstance::getInstance()->getTotalCarry() - caryycount[1] - caryycount[2];
-	if (caryycount[0] > MyRes::getMyResCount(carryResids[0]))
-		caryycount[0] = MyRes::getMyResCount(carryResids[0]);
+	caryycount = GlobalInstance::getInstance()->getTotalCarry();
+	if (caryycount > MyRes::getMyResCount(carryResid))
+		caryycount = MyRes::getMyResCount(carryResid);
 
 	updateCaryyCountLbl();
 }
@@ -535,11 +546,7 @@ void OutTownLayer::updateHeroCarry()
 
 bool OutTownLayer::isCarryOver()
 {
-	int count = 0;
-	for (int i = 0; i < 3; i++)
-	{
-		count += caryycount[i];
-	}
+	int count = caryycount;
 	return count >= GlobalInstance::getInstance()->getTotalCarry();
 }
 
@@ -553,47 +560,18 @@ CardHeroNode* OutTownLayer::getMyCardHeroNode(int index)
 	return m_myCardHerosNode[index];
 }
 
-void OutTownLayer::onGoBuyText(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
-{
-	Node* clicknode = (Node*)pSender;
-
-	if (type == ui::Widget::TouchEventType::ENDED)
-	{
-		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		if (g_mainScene != NULL && g_mainScene->buildingIsClickOn(6))
-		{
-			MovingLabel::show(ResourceLang::map_lang["unlockmain_6"]);
-		}
-		else
-		{
-			MarketLayer* layer = MarketLayer::create(Building::map_buildingDatas["5market"]);
-			g_mainScene->addChild(layer, 0, "5market");
-			AnimationEffect::openAniEffect(layer);
-		}
-	}
-}
-
-void OutTownLayer::updatelbl(float dt)
-{
-	std::string vstr = StringUtils::format(ResourceLang::map_lang["vision"].c_str(), MyRes::getMyResCount("v001"));
-	versionname->setString(vstr);
-
-	std::string gstr = StringUtils::format(ResourceLang::map_lang["gocitycard"].c_str(), MyRes::getMyResCount("t001"));
-	gocityname->setString(gstr);
-}
-
 void OutTownLayer::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)
 {
-	std::string countstr = StringUtils::format("%d", caryycount[0]);
+	std::string countstr = StringUtils::format("%d", caryycount);
 	editBox->setText(countstr.c_str());
-	caryycountlbl[0]->setVisible(false);
+	caryycountlbl->setVisible(false);
 }
 
 void OutTownLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox, EditBoxEndAction action)
 {
 	std::string edittext = editBox->getText();
 	editBox->setText(" ");
-	caryycountlbl[0]->setVisible(true);
+	caryycountlbl->setVisible(true);
 
 	if (edittext.length() > 0)
 	{
@@ -609,14 +587,14 @@ void OutTownLayer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox,
 		}
 		else
 		{
-			if (editcount > MyRes::getMyResCount(carryResids[0]))
+			if (editcount > MyRes::getMyResCount(carryResid))
 			{
-				caryycount[0] = MyRes::getMyResCount(carryResids[0]);
+				caryycount = MyRes::getMyResCount(carryResid);
 				MovingLabel::show(ResourceLang::map_lang["inputfoodenough"]);
 			}
 			else
 			{
-				caryycount[0] = editcount;
+				caryycount = editcount;
 			}
 			updateCaryyCountLbl();
 		}
@@ -631,4 +609,358 @@ void OutTownLayer::editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std::
 void OutTownLayer::editBoxReturn(cocos2d::ui::EditBox *editBox)
 {
 
+}
+
+void OutTownLayer::addFormationUi()
+{
+	int itemwidth = 140;
+
+	int ressize = GlobalInstance::map_formations.size();
+	int innerwidth = itemwidth * ressize;
+
+	int contentwidth = scrollview->getContentSize().width;
+	if (innerwidth < contentwidth)
+		innerwidth = contentwidth;
+	scrollview->setInnerContainerSize(Size(innerwidth, scrollview->getContentSize().height));
+
+	std::vector<S_FORMATION*> vec_formationdatas;
+	std::map<std::string, S_FORMATION>::iterator it;
+
+	for (it = GlobalInstance::map_formations.begin(); it != GlobalInstance::map_formations.end(); it++)
+	{
+		vec_formationdatas.push_back(&it->second);
+		vec_formationboxs.push_back(NULL);
+	}
+
+	std::sort(vec_formationdatas.begin(), vec_formationdatas.end(), sortbylearned);
+
+	for (int m = 0; m < ressize; m++)
+	{
+		std::string formationid = vec_formationdatas[m]->id;
+
+		std::string boxstr = "ui/formationbox_n.png";
+
+		cocos2d::ui::ImageView* box = cocos2d::ui::ImageView::create(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
+		box->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onFormationClick, this));
+		box->setTouchEnabled(true);
+		int findex = atoi(formationid.substr(2).c_str());
+		box->setTag(findex);
+		//box->setUserData((void*)GlobalInstance::map_formations[formationid].id.c_str());
+		box->setPosition(Vec2(box->getContentSize().width / 2 + m * itemwidth, scrollview->getContentSize().height / 2 + 10));
+		scrollview->addChild(box);
+		vec_formationboxs[findex - 1] = box;
+		std::string iconstr = "ui/formation1_d.png";
+
+		if (GlobalInstance::map_formations[formationid].state == 1)
+			iconstr = "ui/formation1_n.png";
+		cocos2d::ui::ImageView* icon = cocos2d::ui::ImageView::create(iconstr, cocos2d::ui::Widget::TextureResType::PLIST);
+		icon->setPosition(Vec2(box->getContentSize().width / 2, box->getContentSize().height/2));
+		box->addChild(icon, 0, "f");
+
+
+		Label* namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[formationid].name, FONT_NAME, 20);
+		namelbl->setColor(Color3B(34, 74, 79));
+		namelbl->setPosition(Vec2(box->getContentSize().width / 2, -5));
+		box->addChild(namelbl);
+	}
+}
+
+bool OutTownLayer::sortbylearned(S_FORMATION* a, S_FORMATION* b)
+{
+	if (a->state > b->state)
+		return true;
+	return false;
+}
+
+void OutTownLayer::onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+
+	cocos2d::ui::Widget* clicknode = (cocos2d::ui::Widget*)pSender;
+	int clicktag = clicknode->getTag();
+	
+	if (clicktag > 2000)
+		CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::BEGAN)
+	{
+		clickflag = true;
+		beginTouchPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+	}
+	else if (type == ui::Widget::TouchEventType::MOVED)
+	{
+		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+
+		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP * 2 || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP * 2)
+			clickflag = false;
+	}
+
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		if (!clickflag)
+			return;
+
+		if (clicktag < 2000)
+		{
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+
+			if (GlobalInstance::getInstance()->getUnlockChapter() >= 2)
+				selectFormation(clicknode->getTag());
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["unlockformationhint"]);
+			}
+		}
+		else
+		{
+			int learnindex = clicktag % 2000;
+
+			int needcoin = 200;
+
+			cocos2d::ui::Text* coincountlbl = (cocos2d::ui::Text*)formationInfoNode->getChildByName("countlbl");
+			std::string str = StringUtils::format("%d", needcoin);
+			coincountlbl->setString(str);
+
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= needcoin)
+			{
+				cocos2d::ui::ImageView* boxf = (cocos2d::ui::ImageView*)vec_formationboxs[learnindex - 1]->getChildByName("f");
+				boxf->loadTexture("ui/formation1_n.png", cocos2d::ui::Widget::TextureResType::PLIST);
+
+				std::string formationid = StringUtils::format("zx%03d", learnindex);
+
+				GlobalInstance::map_formations[formationid].state = 1;
+				GlobalInstance::getInstance()->saveMyFormation();
+				updateFormationInfo(learnindex);
+				DynamicValueInt dvint;
+				dvint.setValue(needcoin);
+				GlobalInstance::getInstance()->costMyCoinCount(dvint);
+				std::string showstr = StringUtils::format(ResourceLang::map_lang["learnsucc"].c_str(), GlobalInstance::map_AllResources[formationid].name.c_str());
+				MovingLabel::show(showstr);
+
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+			}
+		}
+	}
+}
+
+void OutTownLayer::selectFormation(int index)
+{
+	if (index > 0)
+	{
+		if (lastselectformation > 0)
+			vec_formationboxs[lastselectformation - 1]->loadTexture("ui/formationbox_n.png", cocos2d::ui::Widget::TextureResType::PLIST);
+
+		vec_formationboxs[index - 1]->loadTexture("ui/formationbox_s.png", cocos2d::ui::Widget::TextureResType::PLIST);
+
+		lastselectformation = index;
+
+		std::string formationid = StringUtils::format("zx%03d", index);
+		if (GlobalInstance::map_formations[formationid].state == 1)
+		{
+			takeOnFormation(index);
+		}
+
+	}
+	else if (lastselectformation > 0)
+	{
+		vec_formationboxs[lastselectformation - 1]->loadTexture("ui/formationbox_n.png", cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+	updateFormationInfo(index);
+
+}
+
+void OutTownLayer::updateFormationInfo(int index)
+{
+	std::string formationid = StringUtils::format("zx%03d", index);
+
+	cocos2d::ui::Text* fname = (cocos2d::ui::Text*)formationInfoNode->getChildByName("fname");
+
+	cocos2d::ui::Text* fdesc = (cocos2d::ui::Text*)formationInfoNode->getChildByName("desc");
+
+	Label* desclbl = (Label*)fdesc->getVirtualRenderer();
+	desclbl->setLineSpacing(10);
+
+	cocos2d::ui::Text* table = (cocos2d::ui::Text*)formationInfoNode->getChildByName("formationinfotable");
+
+	if (index == 0)
+	{
+		fname->setString(ResourceLang::map_lang["npcrelation_0"]);
+		fdesc->setString(ResourceLang::map_lang["npcrelation_0"]);
+		table->setVisible(false);
+
+		studybtn->setVisible(false);
+	}
+	else
+	{
+		studybtn->setTag(2000 + index);
+
+		fname->setString(GlobalInstance::map_AllResources[formationid].name);
+
+		if (GlobalInstance::map_formations[formationid].state == 1)
+		{
+			studybtn->setVisible(false);
+			table->setPositionX(200);
+			table->setVisible(true);
+			fdesc->setString(GlobalInstance::map_AllResources[formationid].desc);
+		}
+		else
+		{
+			studybtn->setVisible(true);
+			table->setVisible(false);
+			fdesc->setString(ResourceLang::map_lang["notlearntext"]);
+		}
+
+		for (int i = 0; i < 6; i++)
+		{
+			std::string herokey = StringUtils::format("vocationbox%d", i);
+
+			if (index > 0)
+			{
+				std::string formationid = StringUtils::format("zx%03d", index);
+				cocos2d::ui::ImageView* headimg = (cocos2d::ui::ImageView*)table->getChildByName(herokey)->getChildByName("v");
+				herokey = StringUtils::format("ui/cardvocation%d.png", GlobalInstance::map_formations[formationid].vec_formation[i] - 1);
+				headimg->loadTexture(herokey, cocos2d::ui::Widget::TextureResType::PLIST);
+			}
+
+			std::string namekey = StringUtils::format("vocname%d", i);
+
+			if (index > 0)
+			{
+				std::string formationid = StringUtils::format("zx%03d", index);
+				cocos2d::ui::Text* herovocname = (cocos2d::ui::Text*)table->getChildByName(namekey);
+				namekey = StringUtils::format("vocation_%d", GlobalInstance::map_formations[formationid].vec_formation[i] - 1);
+				herovocname->setString(ResourceLang::map_lang[namekey]);
+			}
+		}
+	}
+
+	formationInfoNode->getChildByName("countlbl")->setVisible(studybtn->isVisible());
+	formationInfoNode->getChildByName("coin")->setVisible(studybtn->isVisible());
+}
+
+void OutTownLayer::updateChangeHint(float dt)
+{
+	changehintindex++;
+	if (changehintindex > 2)
+		changehintindex = 0;
+	std::string changehintkey = StringUtils::format("changelineuphint%d", changehintindex);
+	changehintlbl->setString(ResourceLang::map_lang[changehintkey]);
+}
+
+void OutTownLayer::checkFormation()
+{
+	GlobalInstance::myTakeOnFormation = 0;
+	std::string matchformation;
+	std::map<std::string, S_FORMATION>::iterator it;
+	for (it = GlobalInstance::map_formations.begin(); it != GlobalInstance::map_formations.end(); it++)
+	{
+		int matchcount = 0;
+		for (int i = 0; i < 6; i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getVocation() + 1 == it->second.vec_formation[i])
+			{
+				matchcount++;
+			}
+		}
+		if (matchcount >= 6)
+		{
+			matchformation = it->first;
+			break;
+		}
+	}
+
+	if (matchformation.length() > 0)
+	{
+		int takeonf = atoi(matchformation.substr(2).c_str());
+		if (GlobalInstance::map_formations[matchformation].state == 1)
+		{
+			GlobalInstance::myTakeOnFormation = takeonf;
+		}
+	}
+	else
+	{
+		bigformation->stopAllActions();
+		bigformation->setVisible(false);
+	}
+	selectFormation(GlobalInstance::myTakeOnFormation);
+	GlobalInstance::getInstance()->saveMyFormation();
+}
+
+void OutTownLayer::takeOnFormation(int formationindex)
+{
+	vec_formationCandidate.clear();
+	vec_selformation.clear();
+
+	std::string formationid = StringUtils::format("zx%03d", formationindex);
+
+	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+	{
+		for (unsigned int j = 0; j < GlobalInstance::map_formations[formationid].vec_formation.size(); j++)
+		{
+			if (GlobalInstance::vec_myHeros[i]->getVocation() + 1 == GlobalInstance::map_formations[formationid].vec_formation[j])
+			{
+				vec_formationCandidate.push_back(GlobalInstance::vec_myHeros[i]);
+				break;
+			}
+		}
+	}
+	std::sort(vec_formationCandidate.begin(), vec_formationCandidate.end(), OutTownLayer::formationCandidateSort);
+
+
+	std::vector<Hero*>::iterator it;
+	for (unsigned int j = 0; j < GlobalInstance::map_formations[formationid].vec_formation.size(); j++)
+	{
+		for (it = vec_formationCandidate.begin(); it != vec_formationCandidate.end();)
+		{
+			Hero* hero = *it;
+	
+			if (hero->getVocation() + 1 == GlobalInstance::map_formations[formationid].vec_formation[j])
+			{
+				vec_selformation.push_back(hero);
+				it = vec_formationCandidate.erase(it);
+				break;
+			}
+
+			else
+			{
+				it++;
+			}
+		}
+	}
+
+	if (vec_selformation.size() >= 6)
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL)
+			{
+				GlobalInstance::myCardHeros[i]->setState(HS_OWNED);
+				GlobalInstance::myCardHeros[i]->setPos(0);
+				GlobalInstance::myCardHeros[i] = NULL;
+			}
+			GlobalInstance::myCardHeros[i] = vec_selformation[i];
+			GlobalInstance::myCardHeros[i]->setState(HS_TAKEON);
+			GlobalInstance::myCardHeros[i]->setPos(i + 1);
+			m_myCardHerosNode[i]->setData(GlobalInstance::myCardHeros[i]);
+		}
+		bigformation->stopAllActions();
+		bigformation->setOpacity(255);
+		bigformation->setVisible(true);
+		bigformation->runAction(Repeat::create(Sequence::create(FadeIn::create(0.5), FadeOut::create(0.5), FadeIn::create(0.5), NULL), 3));
+	}
+	else
+	{
+		std::string str = StringUtils::format(ResourceLang::map_lang["noformation"].c_str(), GlobalInstance::map_AllResources[formationid].name.c_str());
+		MovingLabel::show(str);
+	}
+}
+
+bool OutTownLayer::formationCandidateSort(Hero* a, Hero* b)
+{
+	if (a->getPotential() * 10000 + a->getLevel() > b->getPotential() * 10000 + b->getLevel())
+	{
+		return true;
+	}
+	return false;
 }

@@ -60,6 +60,16 @@ public:
 
 	void getNews();
 
+	void askApraise();
+
+	void praiseRankList();//获赞榜
+
+	void askApraiseRankList();//点赞栏
+
+	void praise(std::string toplayerid);//点赞
+
+	void exchangePraise(int amount);//兑换点赞
+
 private:
 	HTTPDataDelegateProtocol *m_pDelegateProtocol;//接口对象
 	HttpDataSwap();
@@ -113,6 +123,17 @@ private:
 	void httpGetNewsCB(std::string retdata, int code, std::string extdata);
 
 	void httpBuyNoticeCB(std::string retdata, int code, std::string extdata);
+
+	void httpAskApraiseCB(std::string retdata, int code, std::string extdata);
+
+	void httpPraiseRankListCB(std::string retdata, int code, std::string extdata);
+
+	void httpAskApraiseRankListCB(std::string retdata, int code, std::string extdata);
+
+	void httpPraiseCB(std::string retdata, int code, std::string extdata);
+
+	void httpExchangePraiseCB(std::string retdata, int code, std::string extdata);
+	
 };
 
 class HTTPDataDelegateProtocol

@@ -11,6 +11,8 @@
 #include "RewardLayer.h"
 #include "HeroAttrLayer.h"
 #include "EquipDescLayer.h"
+#include "DataSave.h"
+#include "ZanLayer.h"
 
 USING_NS_CC;
 
@@ -99,7 +101,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 
 	str = StringUtils::format(ResourceLang::map_lang["rescount"].c_str(), res->getCount().getValue());
 
-	cocos2d::ui::Text* coutlbl = (cocos2d::ui::Text*)csbnode->getChildByName("coutlbl");
+	coutlbl = (cocos2d::ui::Text*)csbnode->getChildByName("coutlbl");
 	coutlbl->setString(str);
 
 	//按钮
@@ -202,7 +204,12 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 		}
 		else if (res->getType() == T_FRAGMENT)
 		{
-			btntextstr = "composebtn_text";
+			if (res->getId().compare("j002") == 0)
+			{
+				btntextstr = "exchangebtn_text";
+			}
+			else
+				btntextstr = "composebtn_text";
 			status = S_CAN_USE;
 		}
 		else
@@ -406,6 +413,28 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 						std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources[m_res->getId()].name.c_str());
 						MovingLabel::show(str);
 						return;
+					}
+				}
+				else if (m_res->getId().compare("j002") == 0)
+				{
+					if (m_res->getCount().getValue() >= 10)
+					{
+						DynamicValueInt dvcount;
+						dvcount.setValue(m_res->getCount().getValue() - 10);
+						m_res->setCount(dvcount);
+						int j002count = MyRes::getMyResCount("j002");
+						MyRes::Use("j002", j002count >= 10 ? 10:j002count);
+
+						std::string str = StringUtils::format(ResourceLang::map_lang["rescount"].c_str(), m_res->getCount().getValue());
+						coutlbl->setString(str);
+
+						ZanLayer* zanlayer = (ZanLayer*)this->getParent();
+						zanlayer->exchange(10);
+						return;
+					}
+					else
+					{
+						MovingLabel::show(ResourceLang::map_lang["canntexchangepaisecoin"]);
 					}
 				}
 			}

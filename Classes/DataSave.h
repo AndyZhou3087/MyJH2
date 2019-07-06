@@ -515,6 +515,33 @@ public:
 	****************************/
 	void setHasBeggar(bool val);
 
+	/****************************
+	设置我的赞
+	****************************/
+	int getMyZanCount();
+
+	void setMyZanCount(int val);
+
+	/****************************
+	设置我学习的阵型
+	****************************/
+	void setMyFormation(std::string str);
+
+	/****************************
+	设置我学习的阵型
+	****************************/
+	std::string getMyFormation();
+
+	/****************************
+	设置每个地图扫荡剩余次数
+	****************************/
+	void setMopupLeftCount(std::string mapid, int count);
+
+	/****************************
+	设置每个地图扫荡剩余次数
+	****************************/
+	int getMopupLeftCount(std::string mapid);
+
 	void deleteDataByKey(std::string key);
 
 private:

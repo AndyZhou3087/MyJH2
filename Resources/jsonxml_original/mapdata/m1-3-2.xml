@@ -3,7 +3,7 @@
   <Monstors minc="2" maxc="3">
     <m id="n001" minlv="5" maxlv="10" minqu="0" maxqu="1">15</m>
     <m id="n003" minlv="5" maxlv="10" minqu="0" maxqu="1">15</m>
-    <m id="n004" minlv="5" maxlv="10" minqu="0" maxqu="1">15</m>
+    <m id="n004" minlv="6" maxlv="10" minqu="0" maxqu="1">15</m>
     <m id="n007" minlv="5" maxlv="10" minqu="0" maxqu="1">15</m>
     <m id="n015" minlv="5" maxlv="10" minqu="0" maxqu="1">15</m>
     <m id="n013" minlv="5" maxlv="10" minqu="0" maxqu="1">25</m>
@@ -236,7 +236,7 @@
     <Cell c="9" r="3" p="3" w="1" prs1="27" pre1="78" m="22.png">
       <npcid>n108</npcid>
       <npcrnd>100</npcrnd>
-      <msatt1 id="n001" qu="1">10</msatt1>
+      <msatt1 id="n001" qu="1">11</msatt1>
       <msatt2 id="n003" qu="1">10</msatt2>
       <msatt3 id="n004" qu="1">10</msatt3>
       <msatt4 id="n007" qu="1">10</msatt4>

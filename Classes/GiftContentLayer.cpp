@@ -119,40 +119,14 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 
 	}
 
-	std::vector<int> startx;
-	std::vector<int> starty;
-	if (data->res.size() < 4)
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			startx.push_back(202 + i * 160);
-			starty.push_back(660);
-		}
-	}
-	else if (data->res.size() < 5)
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			startx.push_back(202 + i * 160);
-			starty.push_back(730);
-		}
-		startx.push_back(362);
-		starty.push_back(573);
-	}
-	else
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			startx.push_back(202 + i * 160);
-			starty.push_back(730);
-		}
-		for (int j = 0; j < 2; j++)
-		{
-			startx.push_back(274 + j * 176);
-			starty.push_back(566);
-		}
-	}
-	for (unsigned int i = 0; i < data->res.size(); i++)
+	int ressize = data->res.size();
+	int startx[] = { 360, 270 ,210 };
+	int offsetx[] = { 0, 180, 150 };
+
+	int starty[] = { 660, 730 };
+	int offsety[] = { 0, 160 };
+	int row = (ressize - 1) / 3;
+	for (int i = 0; i < ressize; i++)
 	{
 		std::string str = "ui/resbox.png";
 
@@ -192,7 +166,17 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 		CommonFuncs::playResBoxEffect(box, t, qu, 0);
 
 		this->addChild(box);
-		box->setPosition(Vec2(startx[i], starty[i]));
+
+		int index = 0;
+		if (i < row * 3)
+			index = (3 - 1) % 3;
+		else
+			index = (ressize - 1) % 3;
+
+		int x = startx[index] + offsetx[index] * (i % 3);
+		int y = starty[(ressize - 1) / 3] - offsety[(ressize - 1) / 3] * (i / 3);
+
+		box->setPosition(Vec2(x, y));
 
 		if (vec_res.size() > 2)
 		{

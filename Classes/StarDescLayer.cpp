@@ -10,6 +10,10 @@
 #include "BuyResLayer.h"
 #include "DataSave.h"
 #include "NewGuideLayer.h"
+#include "MopupRewardLayer.h"
+#include "SoundManager.h"
+#include "EquipDescLayer.h"
+#include "SimpleResPopLayer.h"
 
 USING_NS_CC;
 
@@ -152,11 +156,55 @@ bool StarDescLayer::init(std::string mapid)
 		}
 	}
 
-	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox");
+	Node* first3starboxnode = csbnode->getChildByName("stagebox1");
+	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)first3starboxnode->getChildByName("resbox");
 	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
 	cocos2d::ui::Text* rescountlbl = (cocos2d::ui::Text*)resbox->getChildByName("countlbl");
 	cocos2d::ui::Text* resname = (cocos2d::ui::Text*)resbox->getChildByName("name");
 
+	mopupnode = csbnode->getChildByName("mopupnode");
+
+	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
+	closebtn->addTouchEventListener(CC_CALLBACK_2(StarDescLayer::onBtnClick, this));
+	closebtn->setTag(1001);
+	//按钮1
+	actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
+	actionbtn->addTouchEventListener(CC_CALLBACK_2(StarDescLayer::onBtnClick, this));
+	actionbtn->setTag(1000);
+
+	//按钮1文字
+	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
+	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("goout_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	Node* mopupbtnnode = csbnode->getChildByName("mopupbtnnode");
+	cocos2d::ui::ImageView* mopupbtn = (cocos2d::ui::ImageView*)mopupbtnnode->getChildByName("mopupbtn");
+	mopupbtn->addTouchEventListener(CC_CALLBACK_2(StarDescLayer::onBtnClick, this));
+	mopupbtn->setTag(1002);
+	//按钮1文字
+	cocos2d::ui::ImageView* mopupbtntxt = (cocos2d::ui::ImageView*)mopupbtn->getChildByName("text");
+	mopupbtntxt->loadTexture(ResourcePath::makeTextImgPath("mopup_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	cocos2d::ui::Text* hintlbl = (cocos2d::ui::Text*)csbnode->getChildByName("hintdesc");
+	
+
+	if (GlobalInstance::curMapFinishStars >= 3 && GlobalInstance::map_mopuprwds.find(mapid)!= GlobalInstance::map_mopuprwds.end())
+	{
+		mopupleftcountlbl = (cocos2d::ui::Text*)mopupbtnnode->getChildByName("leftcount");
+		j003leftcountlbl = (cocos2d::ui::Text*)mopupbtnnode->getChildByName("j003count");
+		packagefoodcountlbl = (cocos2d::ui::Text*)mopupnode->getChildByName("r001count");
+		hintlbl->setString(ResourceLang::map_lang["finish3starmopuphint"]);
+		first3starboxnode->setVisible(false);
+		showMopUpRwd();
+		updatelabel(0);
+		this->schedule(schedule_selector(StarDescLayer::updatelabel), 1);
+	}
+	else
+	{
+		hintlbl->setVisible(false);
+		mopupnode->setVisible(false);
+		actionbtn->setPositionX(360);
+		mopupbtnnode->setVisible(false);
+	}
 	std::vector<std::string> vec_str;
 	std::string resstr = GlobalInstance::map_mapsdata[mainmapid].map_sublist[m_mapid].vec_f3starawds[0];
 	CommonFuncs::split(resstr, vec_str, "-");
@@ -188,26 +236,13 @@ bool StarDescLayer::init(std::string mapid)
 	}
 	resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
-	Node* effectnode = CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
-	if (effectnode != NULL)
-		effectnode->setScale(0.8f);
+	CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
 	std::string residstr = StringUtils::format("ui/%s.png", resid.c_str());
 	res->loadTexture(residstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	std::string countstr = StringUtils::format("%d", rescount);
 	rescountlbl->setString(countstr);
-
-	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
-	closebtn->addTouchEventListener(CC_CALLBACK_2(StarDescLayer::onBtnClick, this));
-	closebtn->setTag(1001);
-	//按钮1
-	actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
-	actionbtn->addTouchEventListener(CC_CALLBACK_2(StarDescLayer::onBtnClick, this));
-	actionbtn->setTag(1000);
-	//按钮1文字
-	cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)actionbtn->getChildByName("text");
-	actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("goawaybtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	this->scheduleOnce(schedule_selector(StarDescLayer::delayShowNewerGuide), newguidetime);
 	//屏蔽下层点击
@@ -271,9 +306,6 @@ void StarDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				{
 					if (GlobalInstance::myCardHeros[i] != NULL)
 					{
-						if (GlobalInstance::myCardHeros[i]->getPower().getValue() >= 100)
-							GlobalInstance::myCardHeros[i]->setPowerTime(GlobalInstance::servertime);
-
 						dv.setValue(GlobalInstance::myCardHeros[i]->getPower().getValue() - needph);
 						GlobalInstance::myCardHeros[i]->setPower(dv);
 						GlobalInstance::getInstance()->saveHero(GlobalInstance::myCardHeros[i]);
@@ -319,9 +351,269 @@ void StarDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			btnnode->setEnabled(false);
 			AnimationEffect::closeAniEffect(this);
 			break;
+		case 1002:
+			mopUpAction();
+			break;
 		default:
 			break;
 		}
+	}
+}
+
+void StarDescLayer::showMopUpRwd()
+{
+	for (unsigned int i = 0; i < GlobalInstance::map_mopuprwds[m_mapid].vec_rwdstr.size(); i++)
+	{
+		std::vector<std::string> vec_tmp;
+		CommonFuncs::split(GlobalInstance::map_mopuprwds[m_mapid].vec_rwdstr[i], vec_tmp, "-");
+
+		std::string resid = vec_tmp[0];
+		std::string resboxname = StringUtils::format("resbox_%d", i);
+		cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)mopupnode->getChildByName(resboxname);
+
+		std::string boxstr = "ui/resbox.png";
+		int t = 0;
+		int qu = atoi(vec_tmp[2].c_str());
+		for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+		{
+			if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+				break;
+		}
+		if (t >= T_ARMOR && t <= T_FASHION)
+		{
+			boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
+		else if (t >= T_WG && t <= T_NG)
+		{
+			qu = GlobalInstance::map_GF[resid].qu;
+			boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
+		else if (t >= T_RENS && t <= T_BOX)
+		{
+			qu = atoi(resid.substr(1).c_str()) - 1;
+			boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
+
+		resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
+		resbox->setTag(i);
+		resbox->addTouchEventListener(CC_CALLBACK_2(StarDescLayer::onresClick, this));
+
+		CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
+
+		cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
+		std::string residstr = StringUtils::format("ui/%s.png", resid.c_str());
+		res->loadTexture(residstr, cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+}
+
+void StarDescLayer::mopUpAction()
+{
+	int leftcount = DataSave::getInstance()->getMopupLeftCount(m_mapid);
+	if (leftcount <= 0)
+	{
+		MovingLabel::show(ResourceLang::map_lang["mopupcountsless"]); 
+		return;
+	}
+
+	if (MyRes::getMyResCount("j003") <= 0)
+	{
+		MovingLabel::show(ResourceLang::map_lang["mopupj003less"]);
+
+		std::vector< MSGAWDSDATA> vec_res;
+		MSGAWDSDATA rdata;
+		rdata.rid = "j003";
+		rdata.count = 5;
+		rdata.qu = 0;
+		vec_res.push_back(rdata);
+		BuyResLayer* layer = BuyResLayer::create(vec_res, MYSTORAGE, false);
+		this->addChild(layer);
+		AnimationEffect::openAniEffect(layer);
+
+		return;
+	}
+
+	if (MyRes::getMyResCount("r001", MYPACKAGE) < GlobalInstance::map_mopuprwds[m_mapid].costfood)
+	{
+		std::string str = StringUtils::format(ResourceLang::map_lang["mopupfoodless"].c_str(), GlobalInstance::map_mopuprwds[m_mapid].costfood);
+		MovingLabel::show(str);
+		return;
+	}
+
+	int herocount = 0;
+	for (int i = 0; i < 6; i++)
+	{
+		if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
+			herocount++;
+	}
+	if (herocount < GlobalInstance::map_mopuprwds[m_mapid].needherocount)
+	{
+		std::string str = StringUtils::format(ResourceLang::map_lang["mopupcountless"].c_str(), GlobalInstance::map_mopuprwds[m_mapid].needherocount);
+		MovingLabel::show(str);
+		return;
+	}
+
+	if (!checkMopupHeroPower())
+		return;
+
+	std::vector<MSGAWDSDATA> vec_selrwd;
+
+	for (unsigned int i = 0; i < GlobalInstance::map_mopuprwds[m_mapid].vec_rwdstr.size(); i++)
+	{
+		int r = GlobalInstance::getInstance()->createRandomNum(1000);
+
+		if (r < GlobalInstance::map_mopuprwds[m_mapid].vec_rnd[i])
+		{
+			std::vector<std::string> vec_tmp;
+			CommonFuncs::split(GlobalInstance::map_mopuprwds[m_mapid].vec_rwdstr[i], vec_tmp, "-");
+
+			MSGAWDSDATA data;
+			data.rid = vec_tmp[0];
+			data.qu = atoi(vec_tmp[2].c_str());
+
+			std::vector<std::string> vec_;
+			CommonFuncs::split(vec_tmp[1], vec_, ",");
+			int minc = atoi(vec_[0].c_str());
+			int maxc = atoi(vec_[1].c_str());
+			data.count = GlobalInstance::getInstance()->createRandomNum(maxc + 1 - minc) + minc;
+			vec_selrwd.push_back(data);
+		}
+	}
+
+	MyRes::Use("j003", 1);
+	DataSave::getInstance()->setMopupLeftCount(m_mapid, leftcount - 1);
+
+	MyRes::Use("r001", GlobalInstance::map_mopuprwds[m_mapid].costfood, MYPACKAGE);
+
+	MopupRewardLayer* layer = MopupRewardLayer::create(vec_selrwd, GlobalInstance::map_mopuprwds[m_mapid].bnsexp / herocount);
+	this->addChild(layer);
+	AnimationEffect::openAniEffect(layer);
+}
+
+void StarDescLayer::onresClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		Node* node = (Node*)pSender;
+		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+		int tag = node->getTag();
+
+		std::vector<std::string> vec_tmp;
+		CommonFuncs::split(GlobalInstance::map_mopuprwds[m_mapid].vec_rwdstr[tag], vec_tmp, "-");
+
+		std::string resid = vec_tmp[0];
+		int qu = atoi(vec_tmp[2].c_str());
+
+		int t = -1;
+		for (int k = 0; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)
+		{
+			if (resid.compare(0, 1, RES_TYPES_CHAR[k]) == 0)
+			{
+				t = k;
+				break;
+			}
+		}
+
+		if (t >= T_ARMOR && t <= T_NG)
+		{
+			Layer* layer = EquipDescLayer::create(resid, qu, 1);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
+		else
+		{
+			SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 3);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
+	}
+}
+
+void StarDescLayer::updatelabel(float dt)
+{
+	std::string str = StringUtils::format(ResourceLang::map_lang["mopupleftcount"].c_str(), DataSave::getInstance()->getMopupLeftCount(m_mapid));
+	mopupleftcountlbl->setString(str);
+	str = StringUtils::format("1/%d", MyRes::getMyResCount("j003"));
+	j003leftcountlbl->setString(str);
+
+	str = StringUtils::format("%d/%d", GlobalInstance::map_mopuprwds[m_mapid].costfood, MyRes::getMyResCount("r001", MYPACKAGE));
+	packagefoodcountlbl->setString(str);
+
+	if (MyRes::getMyResCount("r001", MYPACKAGE) >= GlobalInstance::map_mopuprwds[m_mapid].costfood)
+	{
+		packagefoodcountlbl->setTextColor(Color4B(92,46,13,255));
+	}
+	else
+	{
+		packagefoodcountlbl->setTextColor(Color4B::RED);
+	}
+}
+
+bool StarDescLayer::checkMopupHeroPower()
+{
+	std::string mainmapid = m_mapid.substr(0, m_mapid.find_last_of("-"));
+	int needph = GlobalInstance::map_mapsdata[mainmapid].map_sublist[m_mapid].ph;
+	bool isphok = true;
+
+	std::string nohpherostr;
+	int nohpcount = 0;
+	for (int i = 0; i < 6; i++)
+	{
+		if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getPower().getValue() < needph)
+		{
+			nohpcount++;
+			if (nohpherostr.length() > 0)
+				nohpherostr.append(ResourceLang::map_lang["dunhao"]);
+			if (nohpcount <= 3)
+				nohpherostr.append(GlobalInstance::myCardHeros[i]->getName());
+			else
+			{
+				nohpherostr.append("...");
+				break;
+			}
+			isphok = false;
+		}
+	}
+	if (isphok)
+	{
+
+		DynamicValueInt dv;
+		for (int i = 0; i < 6; i++)
+		{
+			if (GlobalInstance::myCardHeros[i] != NULL)
+			{
+				dv.setValue(GlobalInstance::myCardHeros[i]->getPower().getValue() - needph);
+				GlobalInstance::myCardHeros[i]->setPower(dv);
+				GlobalInstance::getInstance()->saveHero(GlobalInstance::myCardHeros[i]);
+			}
+		}
+		return true;
+	}
+	else
+	{
+		nohpherostr = nohpherostr.substr(0, nohpherostr.length());
+		nohpherostr.append(ResourceLang::map_lang["nomorehp"]);
+		MovingLabel::show(nohpherostr);
+
+		if (MyRes::getMyResCount("p001", MYSTORAGE) > 0)
+		{
+			ResDescLayer* layer = ResDescLayer::create(MyRes::getMyRes("p001", MYSTORAGE), 0);
+			this->addChild(layer, 0, 1111);
+			AnimationEffect::openAniEffect((Layer*)layer);
+		}
+		else
+		{
+			std::vector< MSGAWDSDATA> vec_res;
+			MSGAWDSDATA rdata;
+			rdata.rid = "p001";
+			rdata.count = 1;
+			rdata.qu = 0;
+			vec_res.push_back(rdata);
+			BuyResLayer* layer = BuyResLayer::create(vec_res);
+			this->addChild(layer);
+		}
+
+		return false;
 	}
 }
 

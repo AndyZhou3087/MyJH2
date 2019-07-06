@@ -164,11 +164,11 @@ bool WellGiftLayer::init()
 
 void WellGiftLayer::selectVip(ShopData* data)
 {
-	int startx[] = { 360, 270 ,210 };
-	int offsetx[] = { 0, 180, 150 };
+	int startx[] = { 360, 280 ,230 };
+	int offsetx[] = { 0, 160, 135 };
 
-	int starty[] = { 760, 810 };
-	int offsety[] = { 0, 170 };
+	int starty[] = { 760, 820 };
+	int offsety[] = { 0, 155 };
 	int ressize = data->res.size();
 
 	int row = (ressize - 1) / 3;
@@ -214,10 +214,16 @@ void WellGiftLayer::selectVip(ShopData* data)
 				qu = atoi(resid.substr(1).c_str()) + 2;
 				str = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
+			else if (t == T_FRAGMENT)
+			{
+				qu = 4;
+				str = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
 			box[i]->setVisible(true);
 			box[i]->setName(resid);
 			box[i]->setTag(qu * 1000 + t);
 			box[i]->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+			box[i]->setScale(0.9f);
 			int index = 0;
 			if (i < row * 3)
 				index = (3 - 1) % 3;
@@ -230,7 +236,7 @@ void WellGiftLayer::selectVip(ShopData* data)
 
 			box[i]->removeChildByName("resboxeffect");
 
-			CommonFuncs::playResBoxEffect(box[i], t, qu, 0);
+			CommonFuncs::playResBoxEffect(box[i], t, qu, 0);;
 
 			str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 			cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)box[i]->getChildByName("res");

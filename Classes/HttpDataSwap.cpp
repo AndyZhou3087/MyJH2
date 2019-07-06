@@ -826,6 +826,146 @@ void HttpDataSwap::getNews()
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetNewsCB, this));
 }
 
+void HttpDataSwap::askApraise()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_askapraise?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	url.append("&sign=");
+	std::string md5ostr = GlobalInstance::getInstance()->UUID();
+
+	std::string signstr = md5(md5ostr + "key=zhoujian-87");
+	url.append(signstr);
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpAskApraiseCB, this));
+}
+
+void HttpDataSwap::praiseRankList()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_praiselist?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpPraiseRankListCB, this));
+}
+
+void HttpDataSwap::askApraiseRankList()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_askapraiselist?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpAskApraiseRankListCB, this));
+}
+
+void HttpDataSwap::praise(std::string toplayerid)
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_praise?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	url.append("&destplayerid=");
+	url.append(toplayerid);
+
+	url.append("&sign=");
+	std::string md5ostr = GlobalInstance::getInstance()->UUID() + toplayerid;
+
+	std::string signstr = md5(md5ostr + "key=zhoujian-87");
+	url.append(signstr);
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpPraiseCB, this));
+}
+
+void HttpDataSwap::exchangePraise(int amount)
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_exchangepraise?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	url.append("&amount=");
+
+	std::string amountstr = StringUtils::format("%d", amount);
+	url.append(amountstr);
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpExchangePraiseCB, this));
+}
+
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
@@ -1726,3 +1866,209 @@ void HttpDataSwap::httpGetNewsCB(std::string retdata, int code, std::string extd
 	}
 	release();
 }
+
+void HttpDataSwap::httpAskApraiseCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpPraiseRankListCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		GlobalInstance::vec_PaiseRankData.clear();
+		GlobalInstance::vec_ToMyPaiseData.clear();
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+
+			if (doc.HasMember("data"))
+			{
+				rapidjson::Value& mydatav = doc["data"];
+
+				for (unsigned int m = 0; m < mydatav.Size(); m++)
+				{
+					S_PAISEDATA paisedata;
+
+					rapidjson::Value& myc = mydatav[m]["id"];
+					paisedata.playerid = getJsonValueStr(mydatav[m]["id"]);
+
+					myc = mydatav[m]["nickname"];
+					paisedata.nickname = myc.GetString();
+
+					myc = mydatav[m]["weekcount"];
+					paisedata.weekcount = myc.GetInt();
+
+					GlobalInstance::vec_PaiseRankData.push_back(paisedata);
+				}
+			}
+			if (doc.HasMember("leftcount"))
+			{
+				rapidjson::Value& myc = doc["leftcount"];
+				GlobalInstance::myj002count.setValue(myc.GetInt());
+			}
+
+			if (doc.HasMember("awardinfo"))
+			{
+				rapidjson::Value& myc = doc["awardinfo"];
+				GlobalInstance::zanrwdinfo = myc.GetString();
+			}
+
+			if (doc.HasMember("data1"))
+			{
+				rapidjson::Value& mydatav = doc["data1"];
+
+				for (unsigned int m = 0; m < mydatav.Size(); m++)
+				{
+					S_PAISEDATA paisedata;
+
+					rapidjson::Value& myc = mydatav[m]["nickname"];
+					paisedata.nickname = myc.GetString();
+
+					myc = mydatav[m]["create_time"];
+					paisedata.lefttime = myc.GetInt();
+
+					GlobalInstance::vec_ToMyPaiseData.push_back(paisedata);
+				}
+			}
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpAskApraiseRankListCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		GlobalInstance::vec_PaiseRankData.clear();
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+
+			if (doc.HasMember("lefttime"))
+			{
+				retv = doc["lefttime"];
+				GlobalInstance::myPraisedata.lefttime = retv.GetInt();
+			}
+			if (doc.HasMember("weekcount"))
+			{
+				retv = doc["weekcount"];
+				GlobalInstance::myPraisedata.weekcount = retv.GetInt();
+			}
+			if (doc.HasMember("data"))
+			{
+				rapidjson::Value& mydatav = doc["data"];
+
+				for (unsigned int m = 0; m < mydatav.Size(); m++)
+				{
+					S_PAISEDATA paisedata;
+					rapidjson::Value& myc = mydatav[m]["playerid"];
+					paisedata.playerid = myc.GetString();
+					myc = mydatav[m]["nickname"];
+					paisedata.nickname = myc.GetString();
+
+					myc = mydatav[m]["weekcount"];
+					paisedata.weekcount = myc.GetInt();
+
+					GlobalInstance::vec_PaiseRankData.push_back(paisedata);
+				}
+			}
+
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpPraiseCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpExchangePraiseCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+
+			if (doc.HasMember("leftcount"))
+			{
+				rapidjson::Value& myc = doc["leftcount"];
+				GlobalInstance::myj002count.setValue(myc.GetInt());
+			}
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+

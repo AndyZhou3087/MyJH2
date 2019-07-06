@@ -22,10 +22,10 @@ BuyResLayer::~BuyResLayer()
 }
 
 
-BuyResLayer* BuyResLayer::create(std::vector<MSGAWDSDATA> vec_rewards, int putwhere)
+BuyResLayer* BuyResLayer::create(std::vector<MSGAWDSDATA> vec_rewards, int putwhere, bool inmarket)
 {
 	BuyResLayer *pRet = new(std::nothrow)BuyResLayer();
-	if (pRet && pRet->init(vec_rewards, putwhere))
+	if (pRet && pRet->init(vec_rewards, putwhere, inmarket))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -39,7 +39,7 @@ BuyResLayer* BuyResLayer::create(std::vector<MSGAWDSDATA> vec_rewards, int putwh
 }
 
 // on "init" you need to initialize your instance
-bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
+bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere, bool inmarket)
 {
 	if (!Layer::init())
 	{
@@ -143,15 +143,16 @@ bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere)
 		}
 	}
 
-	needcoincount.setValue(needcoincount.getValue() * 12 / 10);
+	std::string descstr = GlobalInstance::map_AllResources[vec_res[0].rid].desc;
+	if (inmarket)
+	{
+		needcoincount.setValue(needcoincount.getValue() * 12 / 10);
+		descstr.append(ResourceLang::map_lang["reswheregettext"]);
+	}
 
 	cocos2d::ui::Text* countlbl = (cocos2d::ui::Text*)csbnode->getChildByName("cnumbl");
 	std::string str = StringUtils::format("%d", needcoincount.getValue());
 	countlbl->setString(str);
-
-	std::string descstr = GlobalInstance::map_AllResources[vec_res[0].rid].desc;
-
-	descstr.append(ResourceLang::map_lang["reswheregettext"]);
 	
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 

@@ -455,6 +455,33 @@ typedef struct
 	int repairtime;
 }S_BUILDINREPAIR;
 
+typedef struct
+{
+	std::string id;
+	std::vector<int> vec_formation;
+	std::vector<float> vec_addattr;
+	int state;
+}S_FORMATION;
+
+typedef struct
+{
+	std::string playerid;
+	std::string nickname;
+	int weekcount;
+	int lefttime;
+}S_PAISEDATA;
+
+typedef struct
+{
+	std::string mapid;
+	std::vector<std::string> vec_rwdstr;
+	std::vector<int> vec_rnd;
+	int bnsexp;
+	int costfood;
+	int needherocount;
+}S_MOPUPRWDDATA;
+
+
 class GlobalInstance
 {
 public:
@@ -833,6 +860,17 @@ public:
 
 	void setBuildingBroken();
 
+	void parseFormationData();
+
+	void updateMyZan(int addcount);
+
+	void saveMyFormation();
+
+	float getFormationBns(int whichattr);
+
+	//扫荡数据
+	void parseMopupData();
+
 private:
 	static GlobalInstance* _Context;//类实例
 
@@ -959,7 +997,8 @@ public:
 	static std::vector<S_ChapterStarAwd> vec_chaperstarawds;
 
 	static std::map<std::string, S_BUILDINREPAIR> map_buildingrepairdata;
-	
+
+	static std::map<std::string, S_FORMATION> map_formations;
 	static int curMapFinishStars;
 
 	static int takeoutherocount;
@@ -970,6 +1009,21 @@ public:
 	static bool ispaycheck;
 
 	static bool ispayconfirm;
+	static DynamicValueInt myzancount;
+
+	static S_PAISEDATA myPraisedata;
+
+	static std::vector<S_PAISEDATA> vec_PaiseRankData;
+
+	static DynamicValueInt myj002count;
+	static std::string zanrwdinfo;
+
+	static std::vector<S_PAISEDATA> vec_ToMyPaiseData;
+
+	static int myTakeOnFormation;
+
+	static std::map<std::string, S_MOPUPRWDDATA> map_mopuprwds;
+	
 private:
 	static int refreshHeroTime;
 	static int refreshResTime;
@@ -977,6 +1031,7 @@ private:
 	static int totalFarmercount;
 	static DynamicValueInt mySoliverCount;
 	static DynamicValueInt myCoinCount;
+
 
 	static std::string myID;
 	static std::string myNickName;

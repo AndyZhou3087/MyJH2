@@ -26,6 +26,8 @@ private:
 	void showCStarAwdUI();
 
 	bool checkMapIsPass(std::string mapid);
+
+	void verifyStar(std::string mapid);
 private:
 	std::string m_mainmapid;
 	bool clickflag;

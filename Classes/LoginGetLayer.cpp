@@ -66,7 +66,9 @@ bool LoginGetLayer::init()
 			adata.rid = one_str[0];
 			adata.count = atoi(one_str[1].c_str());
 			adata.qu = atoi(one_str[2].c_str());
-			vec_rewards.push_back(adata);
+
+			if (GlobalInstance::map_AllResources.find(adata.rid) != GlobalInstance::map_AllResources.end())
+				vec_rewards.push_back(adata);
 		}
 	}
 
@@ -87,9 +89,17 @@ bool LoginGetLayer::init()
 
 void LoginGetLayer::showRwd()
 {
+
+
 	int startx[] = { 360, 270 ,160 };
 	int offsetx[] = { 0, 180, 200 };
+
+	int starty[] = { 710, 780 };
+	int offsety[] = { 0, 170 };
+
 	int rewardsize = vec_rewards.size();
+
+	int row = (rewardsize - 1) / 3;
 
 	for (int i = 0; i < rewardsize; i++)
 	{
@@ -125,7 +135,18 @@ void LoginGetLayer::showRwd()
 
 		resbox->setPosition(Vec2(360, 500));
 		resbox->setScale(0);
-		resbox->runAction(Spawn::create(MoveTo::create(0.3f, Vec2(startx[rewardsize - 1] + offsetx[rewardsize - 1] * i, 680)), ScaleTo::create(0.3f, 1), DelayTime::create(2 + i*0.5), CallFunc::create(CC_CALLBACK_0(LoginGetLayer::showRotation, this, resbox)),  NULL));
+
+		int index = 0;
+		if (i < row * 3)
+			index = (3 - 1) % 3;
+		else
+			index = (rewardsize - 1) % 3;
+
+		int x = startx[index] + offsetx[index] * (i % 3);
+		int y = starty[(rewardsize - 1) / 3] - offsety[(rewardsize - 1) / 3] * (i / 3);
+		//box->setPosition(Vec2(x, y));
+
+		resbox->runAction(Spawn::create(MoveTo::create(0.3f, Vec2(x, y)), ScaleTo::create(0.3f, 1), DelayTime::create(2 + i*0.5), CallFunc::create(CC_CALLBACK_0(LoginGetLayer::showRotation, this, resbox)),  NULL));
 		//resbox->setPositionX(startx[rewardsize - 1] + offsetx[rewardsize - 1] * i);
 
 		this->addChild(resbox);

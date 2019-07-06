@@ -234,6 +234,14 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 			redtip = (cocos2d::ui::Widget*)btn->getChildByName("redtip");
 		}
 	}
+
+	if (g_mainScene->getChildByName("0outtown") != NULL)
+		clickwhere = 3;
+	else if (g_mainScene->getChildByName("8pkground") != NULL)
+		clickwhere = 4;
+
+	m_clickhere = clickwhere;
+
 	//设置ui
 	loadHeroUI();
 	for (int i = 0; i < sizeof(btnname) / sizeof(btnname[0]); i++)
@@ -247,21 +255,6 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 			else
 				btn->setVisible(false);
 		}
-	}
-
-	if (g_mainScene->getChildByName("0outtown") != NULL)
-		clickwhere = 3;
-	else if (g_mainScene->getChildByName("8pkground") != NULL)
-		clickwhere = 4;
-
-	m_clickhere = clickwhere;
-
-	if (clickwhere == 3 || clickwhere == 4)
-	{
-		btnArr[0]->setVisible(false);
-		btnArr[1]->setVisible(true);
-		btnArr[1]->setPositionX(220);
-		btnArr[2]->setPositionX(500);
 	}
 
 	//滑动
@@ -281,10 +274,7 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 		{
 			for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 			{
-				if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD)
-				{
-					vec_norheros.push_back(GlobalInstance::vec_myHeros[i]);
-				}
+				vec_norheros.push_back(GlobalInstance::vec_myHeros[i]);
 			}
 		}
 		else if (fromwhere == 4)//竞技场看阵容
@@ -331,6 +321,11 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 		imageView->loadTexture(ResourcePath::makeImagePath(fullimgstr), cocos2d::ui::Widget::TextureResType::LOCAL);
 		auto layout = cocos2d::ui::Layout::create();
 		layout->setContentSize(pageView->getContentSize());
+
+		if (vec_norheros[i]->getState() == HS_DEAD)
+		{
+			CommonFuncs::changeGray(imageView);
+		}
 
 		imageView->setPosition(Vec2(layout->getContentSize().width / 2, layout->getContentSize().height / 2));
 		layout->addChild(imageView, 0, "fullimg");
@@ -631,6 +626,45 @@ void HeroAttrLayer::loadHeroUI()
 		}
 	}
 	updataAtrrUI(0);
+
+	if (m_clickhere == 3)
+	{
+		btnArr[0]->setVisible(false);
+		btnArr[1]->setVisible(true);
+		btnArr[1]->setPositionX(220);
+		btnArr[2]->setPositionX(500);
+	}
+	else if (m_clickhere == 4)
+	{
+		btnArr[0]->setVisible(false);
+		btnArr[1]->setVisible(false);
+		btnArr[2]->setPositionX(360);
+		btnArr[3]->setVisible(false);
+	}
+	else if (m_clickhere == 0)
+	{
+		if (m_heroData->getState() == HS_OWNED)
+		{
+			btnArr[0]->setVisible(false);
+			btnArr[1]->setVisible(false);
+			btnArr[2]->setPositionX(360);
+			btnArr[3]->setVisible(false);
+		}
+	}
+	if (m_clickhere == 1 && m_fromwhere == 0)
+	{
+		if (m_heroData->getState() == HS_DEAD)
+		{
+			btnArr[0]->setVisible(false);
+			btnArr[1]->setVisible(false);
+			btnArr[2]->setPositionX(360);
+			btnArr[3]->setVisible(false);
+		}
+		else if (m_heroData->getState() == HS_OWNED)
+		{
+			btnArr[1]->setVisible(true);
+		}
+	}
 }
 
 void HeroAttrLayer::JumpSceneCallback(cocos2d::Ref* pScene, cocos2d::ui::PageView::EventType type)
@@ -655,6 +689,7 @@ void HeroAttrLayer::JumpSceneCallback(cocos2d::Ref* pScene, cocos2d::ui::PageVie
 		}
 
 		m_heroData = vec_norheros[defaultindex];
+		this->setTag(defaultindex);
 
 		loadHeroUI();
 	}

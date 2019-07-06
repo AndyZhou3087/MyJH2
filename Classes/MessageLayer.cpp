@@ -180,7 +180,8 @@ void MessageLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 							adata.rid = one_str[0];
 							adata.count = atoi(one_str[1].c_str());
 							adata.qu = atoi(one_str[2].c_str());
-							awdslist.push_back(adata);
+							if (GlobalInstance::map_AllResources.find(adata.rid) != GlobalInstance::map_AllResources.end())
+								awdslist.push_back(adata);
 						}
 					}
 

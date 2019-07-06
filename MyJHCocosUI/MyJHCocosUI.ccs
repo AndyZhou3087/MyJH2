@@ -72,6 +72,8 @@
           <Image Name="cardherobox_3.png" />
           <Image Name="cardherobox_4.png" />
           <Image Name="carryoutbox.png" />
+          <Image Name="carryoutfoodbox.png" />
+          <Image Name="carryoutherobox.jpg" />
           <Image Name="changevocbg .png" />
           <Image Name="changevocbox .png" />
           <Image Name="changevocdescbox.png" />
@@ -88,6 +90,7 @@
           <Image Name="f3awdlight.png" />
           <Image Name="firstchargebg.png" />
           <Image Name="firstchargebox.png" />
+          <Image Name="formationdescbox.png" />
           <Image Name="heroattrbottom.png" />
           <Image Name="herobg.jpg" />
           <Image Name="hfull_0_0.png" />
@@ -185,7 +188,6 @@
           <Image Name="protocalsel.png" />
           <Image Name="rebatebg.png" />
           <Image Name="rebatebottom.png" />
-          <Image Name="renationbg.png" />
           <Image Name="repairbuildingbox.png" />
           <Image Name="selectequipbg.png" />
           <Image Name="shopbg.jpg" />
@@ -200,6 +202,8 @@
           <Image Name="wellgifttie1.png" />
           <Image Name="wintitle.png" />
           <Image Name="xiaoshimei.png" />
+          <Image Name="zanbg.png" />
+          <Image Name="zanmyinfobox.png" />
         </Folder>
         <Folder Name="mainimg">
           <Image Name="beggar_n.png" />
@@ -558,6 +562,7 @@
           <Image Name="equiptext_5.png" />
           <Image Name="escapebtn_text.png" />
           <Image Name="eventbusinesstitle.png" />
+          <Image Name="exchangebtn_text.png" />
           <Image Name="exitmazebtn_text.png" />
           <Image Name="fastdecompose_text.png" />
           <Image Name="firebtn_text.png" />
@@ -566,11 +571,11 @@
           <Image Name="firstchargegiftbtn_text.png" />
           <Image Name="firstchargetitle.png" />
           <Image Name="forge_text.png" />
+          <Image Name="formationtitle.png" />
           <Image Name="freerefreshhero_text.png" />
           <Image Name="getscore_text.png" />
           <Image Name="getwin_text.png" />
           <Image Name="givebeggar_text.png" />
-          <Image Name="goawaybtn_text.png" />
           <Image Name="goback_home_text.png" />
           <Image Name="goback_map_text.png" />
           <Image Name="gocitybtn_text.png" />
@@ -613,6 +618,7 @@
           <Image Name="innroolv_text.png" />
           <Image Name="innroomtitle.png" />
           <Image Name="isrecruited_text.png" />
+          <Image Name="learnformation_text.png" />
           <Image Name="libequipcata0_text_n.png" />
           <Image Name="libequipcata0_text_s.png" />
           <Image Name="libequipcata1_text_n.png" />
@@ -683,6 +689,7 @@
           <Image Name="m99-8.png" />
           <Image Name="m99-9.png" />
           <Image Name="main_01_t.png" />
+          <Image Name="main_01_t_backup.png" />
           <Image Name="main_02_t.png" />
           <Image Name="main_03_t.png" />
           <Image Name="main_04_t.png" />
@@ -749,6 +756,8 @@
           <Image Name="matchrulebtn_text.png" />
           <Image Name="matchsave_text.png" />
           <Image Name="messagetitle.png" />
+          <Image Name="mopup_text.png" />
+          <Image Name="mopupexp_text.png" />
           <Image Name="msgallget_text.png" />
           <Image Name="msggeted_text.png" />
           <Image Name="msggeting_text.png" />
@@ -916,6 +925,14 @@
           <Image Name="winlvup_text.png" />
           <Image Name="winrewardtitle.png" />
           <Image Name="wxquatext.png" />
+          <Image Name="zanpublish_text.png" />
+          <Image Name="zantagtext0_0.png" />
+          <Image Name="zantagtext0_1.png" />
+          <Image Name="zantagtext1_0.png" />
+          <Image Name="zantagtext1_1.png" />
+          <Image Name="zantitle0.png" />
+          <Image Name="zantitle1.png" />
+          <Image Name="zantitle2.png" />
         </Folder>
         <Folder Name="ui">
           <Image Name="a001.png" />
@@ -1059,7 +1076,6 @@
           <Image Name="cardvocation9.png" />
           <Image Name="cardvocationbox.png" />
           <Image Name="carryoutbag.png" />
-          <Image Name="carryoutboxtop.png" />
           <Image Name="catabtn_n.png" />
           <Image Name="catabtn_s.png" />
           <Image Name="changevocbreakarrow.png" />
@@ -1148,6 +1164,11 @@
           <Image Name="finishstarflag2.png" />
           <Image Name="finishstarflag3.png" />
           <Image Name="firstcharge.png" />
+          <Image Name="formation1_d.png" />
+          <Image Name="formation1_n.png" />
+          <Image Name="formationbox_n.png" />
+          <Image Name="formationbox_s.png" />
+          <Image Name="formationinfotable.png" />
           <Image Name="friendly_bar_0.png" />
           <Image Name="friendly_bar_1.png" />
           <Image Name="friendly_bg.png" />
@@ -1233,6 +1254,8 @@
           <Image Name="i002.png" />
           <Image Name="i004.png" />
           <Image Name="j001.png" />
+          <Image Name="j002.png" />
+          <Image Name="j003.png" />
           <Image Name="k001.png" />
           <Image Name="librarybackbtn.png" />
           <Image Name="librarytextbg.png" />
@@ -1570,6 +1593,19 @@
           <Image Name="z002.png" />
           <Image Name="z003.png" />
           <Image Name="z004.png" />
+          <Image Name="zanbtn0.png" />
+          <Image Name="zanbtn1.png" />
+          <Image Name="zancountbox0.png" />
+          <Image Name="zancountbox1.png" />
+          <Image Name="zanhelpbtn.png" />
+          <Image Name="zanitemsep.png" />
+          <Image Name="zanquanicon.png" />
+          <Image Name="zanrank1.png" />
+          <Image Name="zanrank2.png" />
+          <Image Name="zanrank3.png" />
+          <Image Name="zanrank4.png" />
+          <Image Name="zantag0.png" />
+          <Image Name="zantag1.png" />
         </Folder>
         <Project Name="achieveLayer.csd" Type="Layer" />
         <Project Name="achieveNode.csd" Type="Node" />
@@ -1692,6 +1728,7 @@
         <Project Name="testhhPosLayer.csd" Type="Layer" />
         <PlistInfo Name="text_zh_cn.csi" Type="Plist" />
         <Project Name="timeGiftLayer.csd" Type="Layer" />
+        <Project Name="toMyPraiseNode.csd" Type="Node" />
         <Project Name="trainFinishLayer.csd" Type="Layer" />
         <Project Name="trainFinishNode.csd" Type="Node" />
         <Project Name="trainLayer.csd" Type="Layer" />
@@ -1705,6 +1742,10 @@
         <Project Name="wellmorebtnnode.csd" Type="Node" />
         <Project Name="wgLvLayer.csd" Type="Layer" />
         <Project Name="winRewardLayer.csd" Type="Layer" />
+        <Project Name="zanLayer.csd" Type="Layer" />
+        <Project Name="zanqiuNode.csd" Type="Node" />
+        <Project Name="zanrankNode.csd" Type="Node" />
+        <Project Name="mopupretLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

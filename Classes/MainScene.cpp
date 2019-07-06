@@ -33,6 +33,7 @@
 #include "SmallStallLayer.h"
 #include "ShopLayer.h"
 #include "TrainFinishLayer.h"
+#include "ZanLayer.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -278,11 +279,11 @@ bool MainScene::init()
 			traintip = (cocos2d::ui::Widget*)buildnametext->getChildByName("main_05_p");
 			traintip->setVisible(false);
 		}
-		else if (i == 1)
-		{
-			buildnametext->setVisible(false);
-			buildingNomal->setEnabled(false);
-		}
+		//else if (i == 1)
+		//{
+		//	buildnametext->setVisible(false);
+		//	buildingNomal->setEnabled(false);
+		//}
 		buildingSelect->setVisible(false);
 		buildingSelect->setUserData((void*)it->first.c_str());
 		i++;
@@ -902,7 +903,7 @@ void MainScene::onBuildingClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 
 				if (buildname.compare("0outtown") == 0)
 				{
-					layer = OutTownLayer::create();
+					layer = ZanLayer::create();//OutTownLayer::create();
 				}
 				else if (buildname.compare("1hospital") == 0)
 				{
@@ -1217,6 +1218,14 @@ void MainScene::updateTime(float dt)
 		GlobalInstance::timeMarketStr = "";
 		GlobalInstance::map_timeMartData.clear();
 		DataSave::getInstance()->deleteDataByKey("timemarket");
+
+		std::map<std::string, S_MOPUPRWDDATA>::iterator mopupit;
+
+		for (mopupit = GlobalInstance::map_mopuprwds.begin(); mopupit != GlobalInstance::map_mopuprwds.end(); mopupit++)
+		{
+			std::string strkey = StringUtils::format("mopup%s", mopupit->first);
+			DataSave::getInstance()->deleteDataByKey(strkey);
+		}
 	}
 
 	changeDayOrNight();

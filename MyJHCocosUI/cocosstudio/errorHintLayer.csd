@@ -37,14 +37,14 @@
             <PreSize X="0.1611" Y="0.0531" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/usertitle.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="text" ActionTag="1332600237" Tag="32" IconVisible="False" LeftMargin="134.9999" RightMargin="135.0001" TopMargin="515.1150" BottomMargin="674.8850" IsCustomSize="True" FontSize="25" LabelText="隐私策略隐私策略隐私策略隐私策略隐私" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="450.0000" Y="90.0000" />
+          <AbstractNodeData Name="text" ActionTag="1332600237" Tag="32" IconVisible="False" LeftMargin="119.9999" RightMargin="120.0001" TopMargin="512.6150" BottomMargin="672.3850" IsCustomSize="True" FontSize="25" LabelText="检测到您" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="480.0000" Y="95.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="359.9999" Y="719.8850" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="92" G="92" B="92" />
             <PrePosition X="0.5000" Y="0.5624" />
-            <PreSize X="0.6250" Y="0.0703" />
+            <PreSize X="0.6667" Y="0.0742" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />

@@ -167,6 +167,9 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 
 		if (m_mainmapid.compare("m1-5") != 0)
 		{
+
+			verifyStar(it->first);
+
 			std::vector<std::string> vec_finishstar;
 
 			CommonFuncs::split(DataSave::getInstance()->getFinishStar(it->first), vec_finishstar, ",");
@@ -325,9 +328,6 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 				{
 					if (GlobalInstance::myCardHeros[i] != NULL)
 					{
-						if (GlobalInstance::myCardHeros[i]->getPower().getValue() >= 100)
-							GlobalInstance::myCardHeros[i]->setPowerTime(GlobalInstance::servertime);
-
 						dv.setValue(GlobalInstance::myCardHeros[i]->getPower().getValue() - needph);
 						GlobalInstance::myCardHeros[i]->setPower(dv);
 						GlobalInstance::getInstance()->saveHero(GlobalInstance::myCardHeros[i]);
@@ -563,5 +563,52 @@ bool SelectSubMapLayer::checkMapIsPass(std::string mapid)
 	if (curf <= maintaskf)
 		return true;
 	return false;
+}
 
+void SelectSubMapLayer::verifyStar(std::string mapid)
+{
+
+	std::vector<int> vec_starids;
+	std::vector<std::string> vec_starc = GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].vec_starc;
+
+	for (unsigned int i = 0; i < vec_starc.size(); i++)
+	{
+		std::vector<std::string> vec_one;
+		CommonFuncs::split(vec_starc[i], vec_one, "-");
+
+		int cid = atoi(vec_one[0].c_str());
+
+		vec_starids.push_back(cid);
+	}
+
+	std::string savestr;
+	std::vector<std::string> vec_finishstar;
+	std::string finishstarstr = DataSave::getInstance()->getFinishStar(mapid);
+	CommonFuncs::split(finishstarstr, vec_finishstar, ",");
+
+	for (unsigned int i = 0; i < vec_finishstar.size(); i++)
+	{
+		bool isfind = false;
+		int ctype = atoi(vec_finishstar[i].c_str());
+		for (unsigned int m = 0; m < vec_starids.size(); m++)
+		{
+			if (ctype == vec_starids[m])
+			{
+				isfind = true;
+				break;
+			}
+		}
+		if (isfind)
+		{
+			if (savestr.length() > 0)
+				savestr.append(",");
+			std::string str = StringUtils::format("%d", ctype);
+			savestr.append(str);
+		}
+	}
+
+	if (savestr.compare(finishstarstr) != 0)
+	{
+		DataSave::getInstance()->setFinishStar(mapid, savestr);
+	}
 }

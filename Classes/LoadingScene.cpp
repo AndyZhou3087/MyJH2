@@ -564,6 +564,10 @@ void LoadingScene::parseCfgFiles()
 
 	GlobalInstance::getInstance()->parseBuildingRepairData();
 
+	GlobalInstance::getInstance()->parseFormationData();
+
+	GlobalInstance::getInstance()->parseMopupData();
+
 	//本地英雄加上ID兼容上一个版本
 	addHeroId();
 
