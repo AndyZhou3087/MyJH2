@@ -937,7 +937,7 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 				if (gf->getSkillCount() <= GlobalInstance::map_GF[gf->getId()].skilleff2 - 1)
 				{
 					dt = 0.45f;
-					whosufferNode->hurt(m_Data->getAtk());
+					whosufferNode->hurt(m_Data->getAtk()*(1- eff/100));
 				}
 			}
 			else if (stype == SKILL_5 || stype == SKILL_6)//目标造成%.2f伤害，%d个目标。

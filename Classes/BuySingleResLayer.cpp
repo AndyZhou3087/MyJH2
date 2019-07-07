@@ -172,7 +172,7 @@ bool BuySingleResLayer::init(MSGAWDSDATA fproper)
 				skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[resid].skilleff1);
 			else if (skilltype == SKILL_2)
 				skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[resid].skilleff1 / 100);
-			else if (skilltype == SKILL_3 || skilltype == SKILL_4)
+			else if (skilltype == SKILL_3)
 				skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[resid].skilleff2 - 1);
 			else if (skilltype == SKILL_5 || skilltype == SKILL_6)
 				skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[resid].skilleff2, GlobalInstance::map_GF[resid].skilleff1);
@@ -180,7 +180,7 @@ bool BuySingleResLayer::init(MSGAWDSDATA fproper)
 				skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[resid].skilleff1);
 			else if (skilltype == SKILL_8)
 				skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[resid].skilleff2, GlobalInstance::map_GF[resid].skilleff1);
-			else if (skilltype == SKILL_9 || skilltype == SKILL_10 || skilltype == SKILL_11 || skilltype == SKILL_12 || skilltype == SKILL_14 || skilltype == SKILL_16 || skilltype == SKILL_18)
+			else if (skilltype == SKILL_4 || skilltype == SKILL_9 || skilltype == SKILL_10 || skilltype == SKILL_11 || skilltype == SKILL_12 || skilltype == SKILL_14 || skilltype == SKILL_16 || skilltype == SKILL_18)
 				skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[resid].skilleff1, GlobalInstance::map_GF[resid].skilleff2 - 1);
 			else if (skilltype == SKILL_17)
 				skilldesc = StringUtils::format(GlobalInstance::map_AllResources[skillids].desc.c_str(), GlobalInstance::map_GF[resid].skilleff1, GlobalInstance::map_GF[resid].skilleff1, GlobalInstance::map_GF[resid].skilleff2 - 1);

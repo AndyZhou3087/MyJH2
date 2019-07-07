@@ -3069,7 +3069,7 @@ int GlobalInstance::generateStoneCount(int qu)
 int GlobalInstance::generateHeroPotential()
 {
 	int innroomlv = Building::map_buildingDatas["6innroom"]->level.getValue();
-	if (innroomlv < 10)
+	if (innroomlv < 9)
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(100);
 		if (r < 55)
@@ -3078,64 +3078,87 @@ int GlobalInstance::generateHeroPotential()
 			return 1;
 		return 2;
 	}
-	else if (innroomlv < 19)
-	{
-		int r = GlobalInstance::getInstance()->createRandomNum(100);
-		if (r < 50)
-			return 0;
-		if (r < 89)
-			return 1;
-		if (r < 99)
-			return 2;
-		return 3;
-	}
 	else
 	{
-		int r = GlobalInstance::getInstance()->createRandomNum(10000);
-		if (r < 4999)
-			return 0;
-		if (r < 8399)
-			return 1;
-		if (r < 9899)
-			return 2;
-		if (r < 9999)
+		int r = GlobalInstance::getInstance()->createRandomNum(100000);
+		int il = innroomlv - 9;
+		if (r < 10 + il * 1)//十万分之10~20
+		{
+			return 4;
+		}
+		else if (r < 10 + il * 1 + 100+ il * 10)//十万分之100~200
+		{
 			return 3;
-		return 4;
+		}
+		else if (r < 10 + il * 1 + 100 + il * 10 + 300 + il * 10)//十万分之300~400
+		{
+			return 2;
+		}
+		else if (r < 10 + il * 1 + 100 + il * 10 + 300 + il * 10 + 1000 + il*100)//十万分之1000~2000
+		{
+			return 1;
+		}
+		return 0;
 	}
+	//else if (innroomlv < 19)
+	//{
+	//	int r = GlobalInstance::getInstance()->createRandomNum(100);
+	//	if (r < 50)
+	//		return 0;
+	//	if (r < 89)
+	//		return 1;
+	//	if (r < 99)
+	//		return 2;
+	//	return 3;
+	//}
+	//else
+	//{
+	//	int r = GlobalInstance::getInstance()->createRandomNum(10000);
+	//	if (r < 4999)
+	//		return 0;
+	//	if (r < 8399)
+	//		return 1;
+	//	if (r < 9899)
+	//		return 2;
+	//	if (r < 9999)
+	//		return 3;
+	//	return 4;
+	//}
 	return 0;
 }
 
 int GlobalInstance::generateHeroPotentialByCoin()
 {
 	int innroomlv = Building::map_buildingDatas["6innroom"]->level.getValue();
-	if (innroomlv < 10)
+	if (innroomlv < 9)
 	{
-		int r = GlobalInstance::getInstance()->createRandomNum(100);
-		if (r < 84)
-			return 1;
-		if (r < 99)
+		int r = GlobalInstance::getInstance()->createRandomNum(10000);
+		if (r < 60 + innroomlv * 5)//万分之60~100
+			return 3;
+		if (r < 60 + innroomlv * 5 + 1500 + innroomlv * 50)//万分之1500~1900
 			return 2;
-		return 3;
+		return 1;
 	}
 	else if (innroomlv < 19)
 	{
-		int r = GlobalInstance::getInstance()->createRandomNum(10000);
-		if (r < 7899)
-			return 1;
-		if (r < 9899)
-			return 2;
-		if (r < 9999)
+		int r = GlobalInstance::getInstance()->createRandomNum(100000);
+		int il = innroomlv - 9;
+		if (r < 20 + il * 2)//十万分之20~40
+			return 4;
+		if (r < 20 + il * 2 + 100 + il * 2)//十万分之100~120
 			return 3;
-		return 4;
+		if (r < 20 + il * 2 + 100 + il * 2 + 2000 + il* 200)//十万分之2000~4000
+			return 2;
+		return 1;
 	}
 	else
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(10000);
-		if (r < 9498)
-			return 2;
-		if (r < 9998)
+		if (r < 4)//万分之4
+			return 4;
+		if (r < 404)//万分之400
 			return 3;
-		return 4;
+		return 2;
 	}
 	return 0;
 }
