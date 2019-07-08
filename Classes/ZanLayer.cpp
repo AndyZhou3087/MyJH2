@@ -8,6 +8,7 @@
 #include "ResDescLayer.h"
 #include "MyRes.h"
 #include "ZanRuleLayer.h"
+#include "SoundManager.h"
 
 USING_NS_CC;
 
@@ -208,6 +209,7 @@ void ZanLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		}
 		else if (tag == 1004)
 		{
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 			helpbtn->setVisible(false);
 			lastclicktag = -1;
 
@@ -234,10 +236,7 @@ void ZanLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 
 			if (tag == 0)
 			{
-				WaitingProgress* waitbox = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
-				Director::getInstance()->getRunningScene()->addChild(waitbox, 100, "waitbox");
-				httptag = 2;
-				HttpDataSwap::init(this)->askApraiseRankList();
+				getPraiseRankList();
 				
 			}
 			else
@@ -333,6 +332,8 @@ void ZanLayer::onFinish(int code)
 			GlobalInstance::myPraisedata.lefttime += 24 * 60 * 60;
 			if (!this->isScheduled(schedule_selector(ZanLayer::updateLefttime)))
 				this->schedule(schedule_selector(ZanLayer::updateLefttime), 1);
+
+			getPraiseRankList();
 		}
 		else if (httptag == 2)
 		{
@@ -390,13 +391,18 @@ void ZanLayer::updateLefttime(float dt)
 		if (lefttime->getString().length() > 0)
 		{
 			lefttime->setString("");
-			WaitingProgress* waitbox = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
-			Director::getInstance()->getRunningScene()->addChild(waitbox, 100, "waitbox");
-			httptag = 2;
-			HttpDataSwap::init(this)->askApraiseRankList();
+			getPraiseRankList();
 		}
 		
 	}
+}
+
+void ZanLayer::getPraiseRankList()
+{
+	WaitingProgress* waitbox = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+	Director::getInstance()->getRunningScene()->addChild(waitbox, 100, "waitbox");
+	httptag = 2;
+	HttpDataSwap::init(this)->askApraiseRankList();
 }
 
 void ZanLayer::addAskList()

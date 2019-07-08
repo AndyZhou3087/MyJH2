@@ -33,6 +33,7 @@ private:
 	void addToMyPraiseList();
 	void updatePraiseCount(int itemindex);
 
+	void getPraiseRankList();
 private:
 	cocos2d::ui::ScrollView* scrollView;
 	cocos2d::ui::ImageView* title;
