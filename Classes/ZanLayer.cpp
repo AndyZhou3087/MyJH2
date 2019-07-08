@@ -594,7 +594,7 @@ void ZanLayer::addToMyPraiseList()
 
 		cocos2d::ui::Text* timelbl = (cocos2d::ui::Text*)subnode->getChildByName("time");
 
-		long long int timeSec = GlobalInstance::vec_ToMyPaiseData[i].lefttime;
+		long long int timeSec = GlobalInstance::vec_ToMyPaiseData[i].lefttime + 8 * 60 * 60;
 		char str[64] = { 0 };
 		time_t timep = timeSec;
 		tm* timeStuct = gmtime(&timep);
