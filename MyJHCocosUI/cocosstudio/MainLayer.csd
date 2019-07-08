@@ -511,14 +511,14 @@
                 <PreSize X="0.0177" Y="0.1187" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/main_04_t.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="main_04_n" ActionTag="127142489" Tag="116" IconVisible="False" LeftMargin="793.1198" RightMargin="1476.8801" TopMargin="720.0385" BottomMargin="209.9615" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
-                <Size X="210.0000" Y="350.0000" />
+              <AbstractNodeData Name="main_04_n" ActionTag="127142489" Tag="116" IconVisible="False" LeftMargin="795.0000" RightMargin="1455.0000" TopMargin="705.0000" BottomMargin="235.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                <Size X="230.0000" Y="340.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="898.1198" Y="384.9615" />
+                <Position X="910.0000" Y="405.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3621" Y="0.3008" />
-                <PreSize X="0.0847" Y="0.2734" />
+                <PrePosition X="0.3669" Y="0.3164" />
+                <PreSize X="0.0927" Y="0.2656" />
                 <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="main_04_n_1" ActionTag="1591138879" Tag="117" IconVisible="False" LeftMargin="572.5600" RightMargin="1687.4399" TopMargin="645.3096" BottomMargin="424.6904" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
@@ -705,23 +705,23 @@
                 <PreSize X="0.0851" Y="0.1867" />
                 <FileData Type="Normal" Path="mainimg/smallstall.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="beggar_s" ActionTag="1507724153" Tag="309" IconVisible="False" LeftMargin="872.0000" RightMargin="1392.0000" TopMargin="1022.5000" BottomMargin="142.5000" LeftEage="69" RightEage="69" TopEage="37" BottomEage="37" Scale9OriginX="69" Scale9OriginY="37" Scale9Width="78" Scale9Height="41" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="beggar_s" ActionTag="1507724153" Tag="309" IconVisible="False" LeftMargin="896.9939" RightMargin="1367.0061" TopMargin="1047.4985" BottomMargin="117.5015" LeftEage="69" RightEage="69" TopEage="37" BottomEage="37" Scale9OriginX="69" Scale9OriginY="37" Scale9Width="78" Scale9Height="41" ctype="ImageViewObjectData">
                 <Size X="216.0000" Y="115.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="980.0000" Y="200.0000" />
+                <Position X="1004.9939" Y="175.0015" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3952" Y="0.1563" />
+                <PrePosition X="0.4052" Y="0.1367" />
                 <PreSize X="0.0871" Y="0.0898" />
                 <FileData Type="Normal" Path="mainimg/beggar_s.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="beggar_n" ActionTag="-1762938673" Tag="308" IconVisible="False" LeftMargin="872.0000" RightMargin="1392.0000" TopMargin="1022.5000" BottomMargin="142.5000" TouchEnable="True" LeftEage="69" RightEage="69" TopEage="37" BottomEage="37" Scale9OriginX="69" Scale9OriginY="37" Scale9Width="78" Scale9Height="41" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="beggar_n" ActionTag="-1762938673" Tag="308" IconVisible="False" LeftMargin="896.9965" RightMargin="1367.0035" TopMargin="1047.4995" BottomMargin="117.5005" TouchEnable="True" LeftEage="69" RightEage="69" TopEage="37" BottomEage="37" Scale9OriginX="69" Scale9OriginY="37" Scale9Width="78" Scale9Height="41" ctype="ImageViewObjectData">
                 <Size X="216.0000" Y="115.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="980.0000" Y="200.0000" />
+                <AnchorPoint ScaleX="0.4608" ScaleY="0.4760" />
+                <Position X="996.5289" Y="172.2455" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3952" Y="0.1563" />
+                <PrePosition X="0.4018" Y="0.1346" />
                 <PreSize X="0.0871" Y="0.0898" />
                 <FileData Type="Normal" Path="mainimg/beggar_n.png" Plist="" />
               </AbstractNodeData>

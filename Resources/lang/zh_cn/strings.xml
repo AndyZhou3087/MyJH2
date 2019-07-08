@@ -601,7 +601,7 @@
 	<s name="mopupcountless">扫荡人数不足，至少%d个侠客参与扫荡</s>
 	<s name="mopupfoodless">背包食物不足，扫荡需要%d食物</s>
 	<s name="mopupj003less">扫荡券不足</s>
-	<s name="mopupcountsless">今日次数已用完</s>
+	<s name="mopupcountsless">今日扫荡次数已用完</s>
 	<s name="mopupleftcount">今日剩余次数：%d/5</s>
 	<s name="unlockformationhint">通关神龙教教主解锁第2章节方可学习阵型</s>
 </strings>
