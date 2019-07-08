@@ -575,7 +575,7 @@ void ZanLayer::addToMyPraiseList()
 		innerheight = contentheight;
 	scrollView->setInnerContainerSize(Size(720, innerheight));
 
-	for (unsigned int i = 0; i < GlobalInstance::vec_PaiseRankData.size(); i++)
+	for (unsigned int i = 0; i < GlobalInstance::vec_ToMyPaiseData.size(); i++)
 	{
 		Node* subnode = CSLoader::createNode(ResourcePath::makePath("toMyPraiseNode.csb"));
 
