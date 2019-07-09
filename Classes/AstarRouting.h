@@ -35,6 +35,8 @@ public:
 	cocos2d::PointArray* WakabledAdjacentTiledColRow(const cocos2d::Vec2 &colrow);
 
 	void move();
+
+	void clearPathList();
 private:
 	cocos2d::Vector<ShortestPathStep*> _openStepList;
 	cocos2d::Vector<ShortestPathStep*> _closeStepList;

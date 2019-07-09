@@ -582,7 +582,7 @@
 	<s name="failhinttext10">更合理的角色站位搭配</s>
 	<s name="zantitle0"> 昵称           本周收到点赞</s>
 	<s name="zantitle1">  排名     昵称             本周收到点赞</s>
-	<s name="zantitle2">昵称            点赞时间      </s>
+	<s name="zantitle2">昵称              点赞时间</s>
 	<s name="zanmyinfo">我的点赞券</s>
 	<s name="zantimeuptext">发布赞将在%s后过期</s>
 	<s name="praisesucc">点赞成功！</s>

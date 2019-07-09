@@ -1232,9 +1232,15 @@ void MapBlockScene::checkFood()
 		if (foodcount % 5 == 0)
 			MovingLabel::show(ResourceLang::map_lang["lackfoodhint"]);
 
-		if (isMaze && (foodcount == 10 || foodcount == 1))
+		if (foodcount == 10 || foodcount == 1)
 		{
 			showBuySelectFood();
+
+			if (isMovingRouting)
+			{
+				astarrouting->clearPathList();
+				removeAllRoutingBlock();
+			}
 		}
 	}
 	else if (foodcount <= 0)
@@ -1259,6 +1265,13 @@ void MapBlockScene::checkFood()
 					GlobalInstance::myCardHeros[i] = NULL;
 			}
 		}
+
+		if (isMovingRouting)
+		{
+			astarrouting->clearPathList();
+			removeAllRoutingBlock();
+		}
+
 		if (!checklive())
 		{
 			HintBoxLayer* layer = HintBoxLayer::create(ResourceLang::map_lang["nofooddeathhint"], 11);
@@ -3151,7 +3164,12 @@ bool MapBlockScene::checkShowStarUi(int cwhere)
 	}
 	if (star > GlobalInstance::curMapFinishStars)
 	{
-		StarResultLayer* layer = StarResultLayer::create(m_mapid, cwhere);
+		std::string mapid = m_mapid;
+		if (isMaze)
+		{
+			mapid = GlobalInstance::eventfrommapid;
+		}
+		StarResultLayer* layer = StarResultLayer::create(mapid, cwhere);
 		this->addChild(layer, 1);
 		AnimationEffect::openAniEffect(layer);
 

@@ -238,13 +238,13 @@ void AstarRouting::constructPathStartMoveFromStep(ShortestPathStep* step)
 	}
 
 	int stepscount = vec_steps.size();
-	if (MyRes::getMyResCount("r001", MYPACKAGE) < stepscount)
+/*	if (MyRes::getMyResCount("r001", MYPACKAGE) < stepscount)
 	{
 		MovingLabel::show(ResourceLang::map_lang["routnofood"]);
 		g_MapBlockScene->showBuySelectFood();
 	}
 	else
-	{
+	{*/
 		if (stepscount > 0)
 		{
 			if (g_MapBlockScene->isNewerGuideMap)
@@ -264,7 +264,7 @@ void AstarRouting::constructPathStartMoveFromStep(ShortestPathStep* step)
 		{
 			MovingLabel::show(ResourceLang::map_lang["norouting"]);
 		}
-	}
+	//}
 
 }
 
@@ -283,9 +283,16 @@ void AstarRouting::move()
 	g_MapBlockScene->isMovingRouting = true;
 	ShortestPathStep *tostep = _shortPathList.at(0);
 	g_MapBlockScene->goToDest((int)tostep->getPos().y, (int)tostep->getPos().x);
-	_shortPathList.erase(0);
+
+	if (_shortPathList.size() > 0)
+		_shortPathList.erase(0);
 
 	CallFunc *actionCallBack = CallFunc::create(CC_CALLBACK_0(AstarRouting::move, this));
 	Sequence *actionSq = Sequence::create(DelayTime::create(0.53f), actionCallBack, nullptr);
 	g_MapBlockScene->getRoutingAnimNode()->runAction(actionSq);
+}
+
+void AstarRouting::clearPathList()
+{
+	_shortPathList.clear();
 }

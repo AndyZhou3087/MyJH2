@@ -52,7 +52,6 @@ private:
 	cocos2d::ui::Text* myzanquancount;
 	cocos2d::ui::Widget* actionbtn;
 	cocos2d::ui::Widget* helpbtn;
-
 	cocos2d::ui::Text* lefttime;
 
 	int httptag;

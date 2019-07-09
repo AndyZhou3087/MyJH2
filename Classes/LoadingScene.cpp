@@ -665,7 +665,7 @@ void LoadingScene::enterNewScene()
 					if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD)
 						count++;
 				}
-				if (count > 0)
+				if (count > 0 && MyRes::getMyResCount("r001", MYPACKAGE) > 0)
 					Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMapScene::createScene()));
 				else
 					Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainScene::createScene()));
