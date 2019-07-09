@@ -7,9 +7,9 @@
     <m id="n040" minlv="40" maxlv="45" minqu="1" maxqu="2">25</m>
     <ma id="r001" c="20" qu="0">20.00</ma>
     <ma id="r002" c="20" qu="0">20.00</ma>
-    <ma id="r003" c="20" qu="0">20.00</ma>
+    <ma id="q001" c="1" qu="0">6.00</ma>
     <ma id="r004" c="20" qu="0">20.00</ma>
-    <ma id="r005" c="20" qu="0">20.00</ma>
+    <ma id="m003" c="1" qu="0">6.00</ma>
     <ma id="r006" c="500" qu="0">10.00</ma>
   </Monstors>
   <Cells rs="52" cs="50">
@@ -1175,11 +1175,11 @@
       <msatt4 id="n040" qu="2">45</msatt4>
       <msatt5 id="n001" qu="2">45</msatt5>
       <msatt6 id="n040" qu="3">45</msatt6>
-      <msawd1 id="s002" qu="0" rnd="100.00">2</msawd1>
-      <msawd2 id="c001" qu="0" rnd="100.00">2</msawd2>
-      <msawd3 id="r007" qu="0" rnd="100.00">2</msawd3>
-      <msawd4 id="r009" qu="0" rnd="100.00">2</msawd4>
-      <msawd5 id="r010" qu="0" rnd="100.00">2</msawd5>
+      <msawd1 id="s002" qu="0" rnd="50.00">2</msawd1>
+      <msawd2 id="c001" qu="0" rnd="30.00">2</msawd2>
+      <msawd3 id="r007" qu="0" rnd="50.00">2</msawd3>
+      <msawd4 id="r009" qu="0" rnd="40.00">2</msawd4>
+      <msawd5 id="r010" qu="0" rnd="30.00">2</msawd5>
     </Cell>
     <Cell c="22" r="1" p="-1" w="1" m="107.png" />
     <Cell c="22" r="2" p="-1" w="1" m="107.png" />

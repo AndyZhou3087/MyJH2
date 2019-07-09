@@ -173,7 +173,7 @@ bool MainScene::init()
 		if (!isHasSmallStall)
 		{
 			int r = GlobalInstance::getInstance()->createRandomNum(1000);
-			if (r < 50)
+			if (r < 75)
 			{
 				isHasSmallStall = true;
 			}

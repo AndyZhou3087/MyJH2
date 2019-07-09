@@ -14,7 +14,7 @@
 #include "MazeTransitionScene.h"
 #include "Quest.h"
 
-#define BETPRO 450
+#define BETPRO 460
 
 int maxqupr[5] = { 585,885,985,995,1000 };
 

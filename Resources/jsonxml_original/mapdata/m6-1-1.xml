@@ -5,8 +5,8 @@
     <m id="n011" minlv="50" maxlv="60" minqu="0" maxqu="2">25</m>
     <m id="n013" minlv="50" maxlv="60" minqu="0" maxqu="2">25</m>
     <ma id="r001" c="30" qu="0">10.00</ma>
-    <ma id="r002" c="30" qu="0">10.00</ma>
-    <ma id="r003" c="30" qu="0">10.00</ma>
+    <ma id="r012" c="3" qu="0">10.00</ma>
+    <ma id="z002" c="3" qu="0">10.00</ma>
     <ma id="r004" c="30" qu="0">10.00</ma>
     <ma id="r005" c="30" qu="0">10.00</ma>
     <ma id="r006" c="500" qu="0">10.00</ma>
@@ -1067,7 +1067,7 @@
       <msawd3 id="a003" qu="1" rnd="5.00">1</msawd3>
       <msawd4 id="a007" qu="1" rnd="5.00">1</msawd4>
       <msawd5 id="a011" qu="1" rnd="5.00">1</msawd5>
-      <msawd6 id="x023" qu="0" rnd="0.50">1</msawd6>
+      <msawd6 id="f004" qu="1" rnd="1.00">1</msawd6>
     </Cell>
     <Cell c="28" r="11" p="-1" w="1" m="107.png" />
     <Cell c="28" r="12" p="-1" w="0" m="107.png" />

@@ -75,9 +75,11 @@ const static int BASEMAXHEROLV = 50;
 const static int ADDMAXHEROLV[] = {0,0,0,0,5,5,0};
 
 //装备强化失败降级数
-const static int COSTLV[] = { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 15, 16, 17, 18, 19 };
+const static int COSTLV[] = { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 4, 5 };
 //装备强化成功概率
-const static float ODDS[] = { 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 96.5f, 92.5f, 88.0f, 83.0f, 77.5f, 71.5f, 65.0f, 58.0f, 50.5f, 42.5f, 34.0f, 25.0f, 15.5f, 5.5f };
+const static float ODDS[] = { 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 90.0f, 85.0f, 80.0f, 75.0f, 70.0f, 65.0f, 60.0f, 55.0f, 50.0f, 45.0f, 40.0f, 30.0f, 20.0f, 10.0f };
+//装备强化失败后降级概率
+const static int FAILCOSTLV[] = { 0, 0, 0, 0, 0, 0, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95 };
 
 //区分资源类型的字符
 const static std::string RES_TYPES_CHAR[] = { "r","a","e","g","f","w","x", "q", "c", "s" ,"d","m","i","b","y","v","t","p","u","k","z","j"};

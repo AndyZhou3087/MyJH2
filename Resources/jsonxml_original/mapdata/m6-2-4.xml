@@ -3,7 +3,7 @@
   <Monstors minc="3" maxc="6">
     <m id="n078" minlv="55" maxlv="65" minqu="1" maxqu="3">80</m>
     <m id="n010" minlv="55" maxlv="65" minqu="1" maxqu="3">20</m>
-    <ma id="r001" c="30" qu="0">10.00</ma>
+    <ma id="r012" c="5" qu="0">8.00</ma>
     <ma id="r002" c="30" qu="0">10.00</ma>
     <ma id="r003" c="30" qu="0">10.00</ma>
     <ma id="r004" c="30" qu="0">10.00</ma>
@@ -1614,9 +1614,11 @@
       <msatt4 id="n078" qu="3">65</msatt4>
       <msatt5 id="n080" qu="3">70</msatt5>
       <msatt6 id="n078" qu="3">65</msatt6>
-      <msawd1 id="y012" qu="0" rnd="100.00">1</msawd1>
-      <msawd2 id="r001" qu="0" rnd="100.00">100</msawd2>
-      <msawd3 id="r006" qu="0" rnd="100.00">1000</msawd3>
+      <msawd1 id="y012" qu="0" rnd="20.00">1</msawd1>
+      <msawd2 id="r001" qu="0" rnd="20.00">100</msawd2>
+      <msawd3 id="r006" qu="0" rnd="20.00">1000</msawd3>
+      <msawd4 id="j003" qu="0" rnd="20.00">1</msawd4>
+      <msawd5 id="f003" qu="3" rnd="10.00">1</msawd5>
     </Cell>
     <Cell c="32" r="15" p="-1" w="1" m="43.png" />
     <Cell c="32" r="16" p="-1" w="1" m="43.png" />

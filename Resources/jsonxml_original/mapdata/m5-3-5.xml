@@ -5,8 +5,8 @@
     <ma id="r001" c="30" qu="0">10.00</ma>
     <ma id="r002" c="30" qu="0">10.00</ma>
     <ma id="r003" c="30" qu="0">10.00</ma>
-    <ma id="r004" c="30" qu="0">10.00</ma>
-    <ma id="r005" c="30" qu="0">10.00</ma>
+    <ma id="r012" c="2" qu="0">10.00</ma>
+    <ma id="r006" c="300" qu="0">10.00</ma>
     <ma id="s001" c="10" qu="0">5.00</ma>
   </Monstors>
   <Cells rs="52" cs="50">
@@ -1904,7 +1904,7 @@
       <msatt4 id="n053" qu="3">60</msatt4>
       <msatt5 id="n055" qu="3">65</msatt5>
       <msatt6 id="n054" qu="3">60</msatt6>
-      <msawd1 id="s003" qu="0" rnd="2.00">1</msawd1>
+      <msawd1 id="j001" qu="0" rnd="3.00">1</msawd1>
       <msawd2 id="m004" qu="0" rnd="1.00">1</msawd2>
       <msawd3 id="s004" qu="0" rnd="1.00">1</msawd3>
       <msawd4 id="a007" qu="0" rnd="5.00">1</msawd4>

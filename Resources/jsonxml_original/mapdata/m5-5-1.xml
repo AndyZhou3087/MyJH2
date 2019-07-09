@@ -6,9 +6,9 @@
     <m id="n007" minlv="55" maxlv="60" minqu="0" maxqu="2">20</m>
     <m id="n008" minlv="55" maxlv="60" minqu="0" maxqu="2">20</m>
     <ma id="r001" c="30" qu="0">10.00</ma>
-    <ma id="r002" c="30" qu="0">10.00</ma>
+    <ma id="q002" c="1" qu="0">10.00</ma>
     <ma id="r003" c="30" qu="0">10.00</ma>
-    <ma id="r004" c="30" qu="0">10.00</ma>
+    <ma id="r012" c="2" qu="0">10.00</ma>
     <ma id="r005" c="30" qu="0">10.00</ma>
     <ma id="r006" c="500" qu="0">10.00</ma>
   </Monstors>
@@ -1380,7 +1380,7 @@
       <msatt2 id="n007" qu="3">60</msatt2>
       <msatt3 id="n007" qu="3">60</msatt3>
       <msatt5 id="n045" qu="3">65</msatt5>
-      <msawd1 id="s002" qu="0" rnd="10.00">1</msawd1>
+      <msawd1 id="s002" qu="0" rnd="10.00">2</msawd1>
       <msawd2 id="r007" qu="0" rnd="10.00">10</msawd2>
       <msawd3 id="r009" qu="0" rnd="10.00">10</msawd3>
       <msawd4 id="r010" qu="0" rnd="10.00">10</msawd4>

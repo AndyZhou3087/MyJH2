@@ -12,7 +12,7 @@
 #include "BuyResLayer.h"
 #include "EquipDescLayer.h"
 
-int openRnd[][5] = { {65,35,25,10,0}, { 80,45,35,25,10 } };
+int openRnd[][5] = { {75,45,30,15,0}, { 90,50,40,30,10 } };
 
 OpenHolesLayer::OpenHolesLayer()
 {

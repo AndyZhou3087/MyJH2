@@ -242,10 +242,18 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		else
 		{
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_STRENTHFAIL);
-			DynamicValueInt elv;
-			elv.setValue(m_equip->getLv().getValue() - COSTLV[m_equip->getLv().getValue()]);
-			m_equip->setLv(elv);
+			
+
+			int r1 = GlobalInstance::getInstance()->createRandomNum(1000) + 1;
+			int failrnd = FAILCOSTLV[m_equip->getLv().getValue()] * 10;
+			if (r1 <= failrnd)
+			{
+				DynamicValueInt elv;
+				elv.setValue(m_equip->getLv().getValue() - COSTLV[m_equip->getLv().getValue()]);
+				m_equip->setLv(elv);
+			}
 			MovingLabel::show(ResourceLang::map_lang["strengthfail"]);
+
 		}
 		if (m_forwhere == 0)
 		{
