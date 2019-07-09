@@ -164,7 +164,6 @@ std::map<std::string, S_BUILDINREPAIR> GlobalInstance::map_buildingrepairdata;
 
 std::map<std::string, S_FORMATION> GlobalInstance::map_formations;
 
-DynamicValueInt GlobalInstance::myzancount;
 
 S_PAISEDATA GlobalInstance::myPraisedata;
 
@@ -375,7 +374,6 @@ void GlobalInstance::loadInitData()
 	GlobalInstance::mySoliverCount.setValue(DataSave::getInstance()->getMySoliverCount());
 	GlobalInstance::myCoinCount.setValue(DataSave::getInstance()->getMyCoinCount());
 
-	GlobalInstance::myzancount.setValue(DataSave::getInstance()->getMyZanCount());
 	GlobalInstance::myPraisedata.weekcount = 0;
 	GlobalInstance::myPraisedata.lefttime = 0;
 
@@ -3577,12 +3575,6 @@ void GlobalInstance::setBuildingBroken()
 	{
 		DataSave::getInstance()->setBuildingBroken(str);
 	}
-}
-
-void GlobalInstance::updateMyZan(int addcount)
-{
-	GlobalInstance::myzancount.setValue(GlobalInstance::myzancount.getValue() + addcount);
-	DataSave::getInstance()->setMyZanCount(GlobalInstance::myzancount.getValue());
 }
 
 void GlobalInstance::saveMyFormation()

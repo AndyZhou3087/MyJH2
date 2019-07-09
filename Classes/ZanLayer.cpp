@@ -131,7 +131,7 @@ bool ZanLayer::init()
 	tag1->setTag(1);
 
 	myzanquancount = (cocos2d::ui::Text*)csbnode->getChildByName("myzanquancount");
-	std::string countstr = StringUtils::format("%d", GlobalInstance::myzancount.getValue());
+	std::string countstr = StringUtils::format("%d", MyRes::getMyResCount("j004"));
 	myzanquancount->setString(countstr);
 
 	clicktag(lastclicktag);
@@ -344,8 +344,8 @@ void ZanLayer::onFinish(int code)
 		}
 		else if (httptag == 3)
 		{
-			GlobalInstance::getInstance()->updateMyZan(-1);
-			std::string countstr = StringUtils::format("%d", GlobalInstance::myzancount.getValue());
+			MyRes::Use("j004", 1);
+			std::string countstr = StringUtils::format("%d", MyRes::getMyResCount("j004"));
 			myzanquancount->setString(countstr);
 			MovingLabel::show(ResourceLang::map_lang["praisesucc"]);
 			//不取服务器数据，先客户端加上
@@ -458,7 +458,7 @@ void ZanLayer::onitemBtnClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchE
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		if (GlobalInstance::myzancount.getValue() >= 1)
+		if (MyRes::getMyResCount("j004") >= 1)
 		{
 			Node* clicknode = (Node*)pSender;
 			int tag = clicknode->getTag();

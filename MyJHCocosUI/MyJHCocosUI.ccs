@@ -1599,7 +1599,7 @@
           <Image Name="zancountbox1.png" />
           <Image Name="zanhelpbtn.png" />
           <Image Name="zanitemsep.png" />
-          <Image Name="zanquanicon.png" />
+          <Image Name="j004.png" />
           <Image Name="zanrank1.png" />
           <Image Name="zanrank2.png" />
           <Image Name="zanrank3.png" />
@@ -1682,6 +1682,7 @@
         <Project Name="messageDescLayer.csd" Type="Layer" />
         <Project Name="messageLayer.csd" Type="Layer" />
         <Project Name="messageNode.csd" Type="Node" />
+        <Project Name="mopupretLayer.csd" Type="Layer" />
         <Project Name="morebtnNode.csd" Type="Node" />
         <Project Name="myHeroNode.csd" Type="Node" />
         <Project Name="newGuideLayer.csd" Type="Layer" />
@@ -1745,7 +1746,6 @@
         <Project Name="zanLayer.csd" Type="Layer" />
         <Project Name="zanqiuNode.csd" Type="Node" />
         <Project Name="zanrankNode.csd" Type="Node" />
-        <Project Name="mopupretLayer.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

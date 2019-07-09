@@ -208,8 +208,10 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 			{
 				btntextstr = "exchangebtn_text";
 			}
-			else
+			else if (res->getId().compare("j001") == 0)
 				btntextstr = "composebtn_text";
+			else
+				btntextstr = "closebtn_text";
 			status = S_CAN_USE;
 		}
 		else

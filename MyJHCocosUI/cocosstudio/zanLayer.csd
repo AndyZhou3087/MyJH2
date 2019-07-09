@@ -103,7 +103,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.3326" Y="0.1446" />
             <PreSize X="0.1472" Y="0.0828" />
-            <FileData Type="MarkedSubImage" Path="ui/zanquanicon.png" Plist="ui.plist" />
+            <FileData Type="MarkedSubImage" Path="ui/j004.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="myzanquancount" ActionTag="-277891007" Tag="266" IconVisible="False" LeftMargin="262.8330" RightMargin="395.1670" TopMargin="1089.8684" BottomMargin="164.1316" FontSize="23" LabelText="12345" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">

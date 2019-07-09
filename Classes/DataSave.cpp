@@ -588,7 +588,7 @@ void DataSave::setHasBeggar(bool val)
 
 int DataSave::getMyZanCount()
 {
-	int val = loadIntDataByKey("myzan", 3);
+	int val = loadIntDataByKey("myzan", -1);
 	return val;
 }
 

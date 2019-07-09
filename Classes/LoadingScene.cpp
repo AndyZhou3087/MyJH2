@@ -489,6 +489,16 @@ void LoadingScene::optimizeSaveData()
 		}
 	}
 
+	//点赞券
+
+	if (DataSave::getInstance()->getMyZanCount() < 0)
+	{
+		int defcount = 3;
+		MyRes::Add("j004", defcount);
+		DataSave::getInstance()->setMyZanCount(defcount);
+		issavedata = true;
+	}
+
 	if (issavedata)
 	{
 		MyRes::saveData();

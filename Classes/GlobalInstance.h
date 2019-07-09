@@ -862,8 +862,6 @@ public:
 
 	void parseFormationData();
 
-	void updateMyZan(int addcount);
-
 	void saveMyFormation();
 
 	float getFormationBns(int whichattr);
@@ -1009,7 +1007,6 @@ public:
 	static bool ispaycheck;
 
 	static bool ispayconfirm;
-	static DynamicValueInt myzancount;
 
 	static S_PAISEDATA myPraisedata;
 

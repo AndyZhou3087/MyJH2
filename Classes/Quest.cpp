@@ -206,9 +206,11 @@ void Quest::finishTaskMain()
 		if (mtid == ADDZANMAINTASKCOUNTS[i])
 		{
 			if (mtid > 5)
-				GlobalInstance::getInstance()->updateMyZan(2);
+			{
+				MyRes::Add("j004", 2);
+			}
 			else
-				GlobalInstance::getInstance()->updateMyZan(1);
+				MyRes::Add("j004", 1);
 			break;
 		}
 	}
