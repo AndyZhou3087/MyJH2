@@ -271,6 +271,25 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 					}
 				}
 			}
+
+			else if (m_forwhere == 14)
+			{
+				int constcoin = 20;
+				if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= constcoin)
+				{
+					DynamicValueInt dv;
+					dv.setValue(constcoin);
+					GlobalInstance::getInstance()->costMyCoinCount(dv);
+					std::string mapid = (const char *)this->getUserData();
+					GlobalInstance::getInstance()->resetMopupLeftData(mapid);
+				}
+				else
+				{
+					Layer* layer = BuyCoinLayer::create(constcoin - GlobalInstance::getInstance()->getMyCoinCount().getValue());
+					Director::getInstance()->getRunningScene()->addChild(layer, 10000, "buycoinlayer");
+					return;
+				}
+			}
 			node->setEnabled(false);
 			AnimationEffect::closeAniEffect(this);
 			break;

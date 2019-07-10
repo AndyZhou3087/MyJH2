@@ -202,7 +202,7 @@ std::string GlobalInstance::UUID()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getDeviceIDInKeychain();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "***************";
+	return "********************";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
@@ -2487,9 +2487,27 @@ void GlobalInstance::parseMopupData()
 			v = jsonvalue["people"];
 			data.needherocount = atoi(v.GetString());
 
-			map_mopuprwds[data.mapid]= data;
+			std::string str = DataSave::getInstance()->getMopupLeftCount(data.mapid);
+			std::vector<std::string> vec_;
+			CommonFuncs::split(str, vec_, "-");
+			data.leftcount = atoi(vec_[0].c_str());
+			data.resetcount = atoi(vec_[1].c_str());
+			map_mopuprwds[data.mapid] = data;
 		}
 	}
+}
+
+void GlobalInstance::saveMopupLeftData(std::string mapid)
+{
+	std::string str = StringUtils::format("%d-%d", GlobalInstance::map_mopuprwds[mapid].leftcount, GlobalInstance::map_mopuprwds[mapid].resetcount);
+	DataSave::getInstance()->setMopupLeftCount(mapid, str);
+}
+
+void GlobalInstance::resetMopupLeftData(std::string mapid)
+{
+	GlobalInstance::map_mopuprwds[mapid].leftcount = 5;
+	GlobalInstance::map_mopuprwds[mapid].resetcount--;
+	saveMopupLeftData(mapid);
 }
 
 bool GlobalInstance::isCanUpgradeBuilding()
@@ -3531,7 +3549,7 @@ void GlobalInstance::parseFormationData()
 			{
 				data.vec_addattr.push_back(v[m].GetFloat());
 			}
-			data.state = 0;
+			data.lv = -1;
 			map_formations[data.id] = data;
 		}
 	}
@@ -3551,8 +3569,10 @@ void GlobalInstance::parseFormationData()
 
 			for (unsigned int i = 0; i < vec_.size(); i++)
 			{
-				std::string fid = StringUtils::format("zx%03d", atoi(vec_[i].c_str()));
-				map_formations[fid].state = 1;
+				std::vector<std::string> vec_1;
+				CommonFuncs::split(vec_[i], vec_1, "-");
+				std::string fid = StringUtils::format("zx%03d", atoi(vec_1[0].c_str()));
+				map_formations[fid].lv = atoi(vec_1[1].c_str());
 			}
 		}
 	}
@@ -3583,12 +3603,12 @@ void GlobalInstance::saveMyFormation()
 	std::map<std::string, S_FORMATION>::iterator it;
 	for (it = GlobalInstance::map_formations.begin(); it != GlobalInstance::map_formations.end(); it++)
 	{
-		if (it->second.state == 1)
+		if (it->second.lv >= 0)
 		{
 			if (str.length() > 0)
 				str.append(",");
 			int f = atoi(it->first.substr(2).c_str());
-			std::string statestr = StringUtils::format("%d", f);
+			std::string statestr = StringUtils::format("%d-%d", f, it->second.lv);
 			str.append(statestr);
 		}
 	}

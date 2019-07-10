@@ -460,7 +460,7 @@ typedef struct
 	std::string id;
 	std::vector<int> vec_formation;
 	std::vector<float> vec_addattr;
-	int state;
+	int lv;
 }S_FORMATION;
 
 typedef struct
@@ -479,6 +479,8 @@ typedef struct
 	int bnsexp;
 	int costfood;
 	int needherocount;
+	int leftcount;
+	int resetcount;
 }S_MOPUPRWDDATA;
 
 
@@ -868,6 +870,10 @@ public:
 
 	//扫荡数据
 	void parseMopupData();
+
+	void saveMopupLeftData(std::string mapid);
+
+	void resetMopupLeftData(std::string mapid);
 
 private:
 	static GlobalInstance* _Context;//类实例

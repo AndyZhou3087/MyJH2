@@ -16,13 +16,23 @@ public:
 	static int split(const std::string& str, std::vector<std::string>& ret_, std::string sep = ",");
 
 	/****************************
-	字符串替换
+	字符串替换(替换所有)
 	@param s 源字符串
 	@param t 需要替换的字符串
 	@param w 替换成的字符串
 	@return 替换后的字符串
 	****************************/
 	static std::string replace_all(std::string & s, std::string const & t, std::string const & w);
+
+
+	/****************************
+	字符串替换（替换一次）
+	@param s 源字符串
+	@param t 需要替换的字符串
+	@param w 替换成的字符串
+	@return 替换后的字符串
+	****************************/
+	static std::string replace(std::string& s, std::string const& t, std::string const& w);
 
 	/****************************
 	去掉首尾空格

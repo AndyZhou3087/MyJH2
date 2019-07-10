@@ -91,6 +91,7 @@ private:
 
 	Node* bigformation;
 	cocos2d::ui::Widget* studybtn;
+	cocos2d::ui::ImageView* studybtntxt;
 	std::vector<Hero*> vec_formationCandidate;
 
 	std::vector<Hero*> vec_selformation;

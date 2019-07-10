@@ -612,15 +612,14 @@ std::string DataSave::getMyFormation()
 	return loadStringDataByKey("myformation");
 }
 
-void DataSave::setMopupLeftCount(std::string mapid, int count)
+void DataSave::setMopupLeftCount(std::string mapid, std::string str)
 {
 	std::string key = StringUtils::format("mopup%s", mapid.c_str());
-	saveIntDataByKey(key, count);
+	saveStringDataByKey(key, str);
 }
 
-int DataSave::getMopupLeftCount(std::string mapid)
+std::string DataSave::getMopupLeftCount(std::string mapid)
 {
 	std::string key = StringUtils::format("mopup%s", mapid.c_str());
-	int val = loadIntDataByKey(key, 5);
-	return val;
+	return loadStringDataByKey(key, "5-2");
 }

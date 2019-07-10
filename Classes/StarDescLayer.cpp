@@ -14,6 +14,7 @@
 #include "SoundManager.h"
 #include "EquipDescLayer.h"
 #include "SimpleResPopLayer.h"
+#include "HintBoxLayer.h"
 
 USING_NS_CC;
 
@@ -187,12 +188,13 @@ bool StarDescLayer::init(std::string mapid)
 	cocos2d::ui::Text* hintlbl = (cocos2d::ui::Text*)csbnode->getChildByName("hintdesc");
 	
 
+
 	if (GlobalInstance::curMapFinishStars >= 3 && GlobalInstance::map_mopuprwds.find(mapid)!= GlobalInstance::map_mopuprwds.end())
 	{
 		mopupleftcountlbl = (cocos2d::ui::Text*)mopupbtnnode->getChildByName("leftcount");
 		j003leftcountlbl = (cocos2d::ui::Text*)mopupbtnnode->getChildByName("j003count");
 		packagefoodcountlbl = (cocos2d::ui::Text*)mopupnode->getChildByName("r001count");
-		hintlbl->setString(ResourceLang::map_lang["finish3starmopuphint"]);
+
 		first3starboxnode->setVisible(false);
 		showMopUpRwd();
 		updatelabel(0);
@@ -200,11 +202,20 @@ bool StarDescLayer::init(std::string mapid)
 	}
 	else
 	{
-		hintlbl->setVisible(false);
 		mopupnode->setVisible(false);
 		actionbtn->setPositionX(360);
 		mopupbtnnode->setVisible(false);
 	}
+
+	if (GlobalInstance::map_mopuprwds.find(mapid) != GlobalInstance::map_mopuprwds.end())
+	{
+		hintlbl->setString(ResourceLang::map_lang["finish3starmopuphint"]);
+	}
+	else
+	{
+		hintlbl->setVisible(false);
+	}
+
 	std::vector<std::string> vec_str;
 	std::string resstr = GlobalInstance::map_mapsdata[mainmapid].map_sublist[m_mapid].vec_f3starawds[0];
 	CommonFuncs::split(resstr, vec_str, "-");
@@ -408,10 +419,22 @@ void StarDescLayer::showMopUpRwd()
 
 void StarDescLayer::mopUpAction()
 {
-	int leftcount = DataSave::getInstance()->getMopupLeftCount(m_mapid);
+	int leftcount = GlobalInstance::map_mopuprwds[m_mapid].leftcount;
 	if (leftcount <= 0)
 	{
-		MovingLabel::show(ResourceLang::map_lang["mopupcountsless"]); 
+		if (GlobalInstance::map_mopuprwds[m_mapid].resetcount <= 0)
+		{
+			MovingLabel::show(ResourceLang::map_lang["mopupnoresetcount"]);
+		}
+		else
+		{
+			std::string str = StringUtils::format(ResourceLang::map_lang["mopupresetcount"].c_str(), GlobalInstance::map_mopuprwds[m_mapid].resetcount);
+
+			Layer* layer = HintBoxLayer::create(str, 14);
+			layer->setUserData((void*)m_mapid.c_str());
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
 		return;
 	}
 
@@ -480,7 +503,8 @@ void StarDescLayer::mopUpAction()
 	}
 
 	MyRes::Use("j003", 1);
-	DataSave::getInstance()->setMopupLeftCount(m_mapid, leftcount - 1);
+	GlobalInstance::map_mopuprwds[m_mapid].leftcount--;
+	GlobalInstance::getInstance()->saveMopupLeftData(m_mapid);
 
 	MyRes::Use("r001", GlobalInstance::map_mopuprwds[m_mapid].costfood, MYPACKAGE);
 
@@ -531,7 +555,7 @@ void StarDescLayer::onresClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::Touch
 
 void StarDescLayer::updatelabel(float dt)
 {
-	std::string str = StringUtils::format(ResourceLang::map_lang["mopupleftcount"].c_str(), DataSave::getInstance()->getMopupLeftCount(m_mapid));
+	std::string str = StringUtils::format(ResourceLang::map_lang["mopupleftcount"].c_str(), GlobalInstance::map_mopuprwds[m_mapid].leftcount);
 	mopupleftcountlbl->setString(str);
 	str = StringUtils::format("1/%d", MyRes::getMyResCount("j003"));
 	j003leftcountlbl->setString(str);

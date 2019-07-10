@@ -15,6 +15,7 @@
 #include "DataSave.h"
 #include "MyTransitionScene.h"
 #include "MyMenu.h"
+#include "BuyCoinLayer.h"
 
 USING_NS_CC;
 
@@ -101,7 +102,7 @@ bool OutTownLayer::init()
 
 	studybtn = (cocos2d::ui::Widget*)formationInfoNode->getChildByName("studybtn");
 	studybtn->addTouchEventListener(CC_CALLBACK_2(OutTownLayer::onFormationClick, this));
-	cocos2d::ui::ImageView* studybtntxt = (cocos2d::ui::ImageView*)studybtn->getChildByName("btntext");
+	studybtntxt = (cocos2d::ui::ImageView*)studybtn->getChildByName("btntext");
 	studybtntxt->loadTexture(ResourcePath::makeTextImgPath("learnformation_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	addFormationUi();
@@ -651,7 +652,7 @@ void OutTownLayer::addFormationUi()
 		vec_formationboxs[findex - 1] = box;
 		std::string iconstr = "ui/formation1_d.png";
 
-		if (GlobalInstance::map_formations[formationid].state == 1)
+		if (GlobalInstance::map_formations[formationid].lv >= 0)
 			iconstr = "ui/formation1_n.png";
 		cocos2d::ui::ImageView* icon = cocos2d::ui::ImageView::create(iconstr, cocos2d::ui::Widget::TextureResType::PLIST);
 		icon->setPosition(Vec2(box->getContentSize().width / 2, box->getContentSize().height/2));
@@ -667,7 +668,7 @@ void OutTownLayer::addFormationUi()
 
 bool OutTownLayer::sortbylearned(S_FORMATION* a, S_FORMATION* b)
 {
-	if (a->state > b->state)
+	if (a->lv > b->lv)
 		return true;
 	return false;
 }
@@ -709,7 +710,7 @@ void OutTownLayer::onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::
 				MovingLabel::show(ResourceLang::map_lang["unlockformationhint"]);
 			}
 		}
-		else
+		else if (clicktag < 3000)
 		{
 			int learnindex = clicktag % 2000;
 
@@ -726,7 +727,7 @@ void OutTownLayer::onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::
 
 				std::string formationid = StringUtils::format("zx%03d", learnindex);
 
-				GlobalInstance::map_formations[formationid].state = 1;
+				GlobalInstance::map_formations[formationid].lv = 0;
 				GlobalInstance::getInstance()->saveMyFormation();
 				updateFormationInfo(learnindex);
 				DynamicValueInt dvint;
@@ -739,7 +740,13 @@ void OutTownLayer::onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::
 			else
 			{
 				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+				Layer* layer = BuyCoinLayer::create(needcoin - GlobalInstance::getInstance()->getMyCoinCount().getValue());
+				Director::getInstance()->getRunningScene()->addChild(layer, 100, "buycoinlayer");
 			}
+		}
+		else
+		{
+			MovingLabel::show(ResourceLang::map_lang["formationlvupnotopen"]);
 		}
 	}
 }
@@ -756,7 +763,7 @@ void OutTownLayer::selectFormation(int index)
 		lastselectformation = index;
 
 		std::string formationid = StringUtils::format("zx%03d", index);
-		if (GlobalInstance::map_formations[formationid].state == 1)
+		if (GlobalInstance::map_formations[formationid].lv >= 0)
 		{
 			takeOnFormation(index);
 		}
@@ -790,25 +797,48 @@ void OutTownLayer::updateFormationInfo(int index)
 		table->setVisible(false);
 
 		studybtn->setVisible(false);
+		formationInfoNode->getChildByName("countlbl")->setVisible(false);
+		formationInfoNode->getChildByName("coin")->setVisible(false);
 	}
 	else
 	{
-		studybtn->setTag(2000 + index);
+		
 
 		fname->setString(GlobalInstance::map_AllResources[formationid].name);
 
-		if (GlobalInstance::map_formations[formationid].state == 1)
+		if (GlobalInstance::map_formations[formationid].lv >= 0)
 		{
-			studybtn->setVisible(false);
-			table->setPositionX(200);
+			studybtn->setTag(3000 + index);
+			studybtn->setVisible(true);
+			studybtntxt->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
 			table->setVisible(true);
-			fdesc->setString(GlobalInstance::map_AllResources[formationid].desc);
+
+			std::string descstr = GlobalInstance::map_AllResources[formationid].desc;
+			for (unsigned int i = 0; i < GlobalInstance::map_formations[formationid].vec_addattr.size(); i++)
+			{
+				float attrval = GlobalInstance::map_formations[formationid].vec_addattr[i];
+
+				if (attrval > 0.00001)
+				{
+					std::string astr = StringUtils::format("%.2f", attrval * 100);
+					CommonFuncs::replace(descstr, "#", astr);
+				}
+			}
+			fdesc->setString(descstr);
+			formationInfoNode->getChildByName("countlbl")->setVisible(false);
+			formationInfoNode->getChildByName("coin")->setVisible(false);
 		}
 		else
 		{
+			studybtn->setTag(2000 + index);
 			studybtn->setVisible(true);
+			studybtntxt->loadTexture(ResourcePath::makeTextImgPath("learnformation_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			table->setVisible(false);
+
 			fdesc->setString(ResourceLang::map_lang["notlearntext"]);
+			formationInfoNode->getChildByName("countlbl")->setVisible(studybtn->isVisible());
+			formationInfoNode->getChildByName("coin")->setVisible(studybtn->isVisible());
 		}
 
 		for (int i = 0; i < 6; i++)
@@ -835,8 +865,8 @@ void OutTownLayer::updateFormationInfo(int index)
 		}
 	}
 
-	formationInfoNode->getChildByName("countlbl")->setVisible(studybtn->isVisible());
-	formationInfoNode->getChildByName("coin")->setVisible(studybtn->isVisible());
+	//formationInfoNode->getChildByName("countlbl")->setVisible(studybtn->isVisible());
+	//formationInfoNode->getChildByName("coin")->setVisible(studybtn->isVisible());
 }
 
 void OutTownLayer::updateChangeHint(float dt)
@@ -873,7 +903,7 @@ void OutTownLayer::checkFormation()
 	if (matchformation.length() > 0)
 	{
 		int takeonf = atoi(matchformation.substr(2).c_str());
-		if (GlobalInstance::map_formations[matchformation].state == 1)
+		if (GlobalInstance::map_formations[matchformation].lv >= 0)
 		{
 			GlobalInstance::myTakeOnFormation = takeonf;
 		}

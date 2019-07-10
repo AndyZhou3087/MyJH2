@@ -62,6 +62,16 @@ std::string CommonFuncs::replace_all(std::string & s, std::string const & t, std
 	return s;
 }
 
+std::string CommonFuncs::replace(std::string& s, std::string const& t, std::string const& w)
+{
+	std::string::size_type pos = s.find(t), t_size = t.size(), r_size = w.size();
+	if (pos != std::string::npos) {
+		s.replace(pos, t_size, w);
+		pos = s.find(t, pos + r_size);
+	}
+	return s;
+}
+
 std::string CommonFuncs::trim(std::string &s)
 {
 	if (!s.empty())

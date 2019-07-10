@@ -603,5 +603,8 @@
 	<s name="mopupj003less">扫荡券不足</s>
 	<s name="mopupcountsless">今日扫荡次数已用完</s>
 	<s name="mopupleftcount">今日剩余次数：%d/5</s>
+	<s name="mopupnoresetcount">今日已重置扫荡次数2次（每日最多重置次数2次）</s>
+	<s name="mopupresetcount">重置今日扫荡次数（5次）需花费20钻石。（今日剩余重置次数%d次）</s>		
 	<s name="unlockformationhint">通关神龙教教主解锁第2章节方可学习阵型</s>
+	<s name="formationlvupnotopen">升级功能暂未开放</s>	
 </strings>
