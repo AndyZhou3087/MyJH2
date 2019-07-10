@@ -542,6 +542,16 @@ public:
 	****************************/
 	std::string getMopupLeftCount(std::string mapid);
 
+	/****************************
+	设置是否战胜所有BOSS
+	****************************/
+	void setFightWinAllBoss(std::string mapid, bool val);
+
+	/****************************
+	设置是否战胜所有BOSS
+	****************************/
+	bool getFightWinAllBoss(std::string mapid);
+
 	void deleteDataByKey(std::string key);
 
 private:

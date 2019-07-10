@@ -179,6 +179,10 @@ int GlobalInstance::myTakeOnFormation = 0;
 
 std::map<std::string, S_MOPUPRWDDATA> GlobalInstance::map_mopuprwds;
 
+int GlobalInstance::fightwinbosscount = 0;
+
+bool GlobalInstance::isNewYearCard = true;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -202,7 +206,7 @@ std::string GlobalInstance::UUID()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getDeviceIDInKeychain();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "********************";
+	return "*******************11";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
@@ -469,7 +473,7 @@ void GlobalInstance::loadInitData()
 	}
 
 	GlobalInstance::myTakeOnFormation = 0;
-
+	GlobalInstance::fightwinbosscount = 0;
 }
 
 void GlobalInstance::saveMyHeros()
@@ -1911,7 +1915,16 @@ void GlobalInstance::loadShopData()
 
 			data.show = atoi(v.GetString()) == 1?true:false;
 
-			v = jsonvalue["res"];
+			if (GlobalInstance::isNewYearCard)
+				v = jsonvalue["res"];
+			else
+			{
+				if (jsonvalue.HasMember("ores"))
+					v = jsonvalue["ores"];
+				else
+					v = jsonvalue["res"];
+			}
+
 			for (unsigned int i = 0; i < v.Size(); i++)
 			{
 				std::string onestr = v[i].GetString();

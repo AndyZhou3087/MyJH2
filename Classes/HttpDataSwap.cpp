@@ -1374,6 +1374,11 @@ void HttpDataSwap::httpGetPlayerIdCB(std::string retdata, int code, std::string 
 				int checked = atoi(getJsonValueStr(doc["checked"]).c_str());
 				GlobalInstance::ispaycheck = checked == 1?false:true;
 			}
+			if (doc.HasMember("newyearcard"))
+			{
+				int tempval = atoi(getJsonValueStr(doc["newyearcard"]).c_str());
+				GlobalInstance::isNewYearCard = tempval == 1 ? true : false;
+			}
 		}
 		else
 		{

@@ -621,5 +621,18 @@ void DataSave::setMopupLeftCount(std::string mapid, std::string str)
 std::string DataSave::getMopupLeftCount(std::string mapid)
 {
 	std::string key = StringUtils::format("mopup%s", mapid.c_str());
-	return loadStringDataByKey(key, "5-2");
+	return loadStringDataByKey(key, "5-1");
+}
+
+void DataSave::setFightWinAllBoss(std::string mapid, bool val)
+{
+	std::string key = StringUtils::format("fwb%s", mapid.c_str());
+	saveIntDataByKey(key, val == true ? 1 : 0);
+}
+
+bool DataSave::getFightWinAllBoss(std::string mapid)
+{
+	std::string key = StringUtils::format("fwb%s", mapid.c_str());
+	int val = loadIntDataByKey(key, 0);
+	return val == 1 ? true : false;
 }

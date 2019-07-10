@@ -152,7 +152,7 @@
             <FileData Type="MarkedSubImage" Path="ui/stagebox1.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="mopupnode" ActionTag="-61885495" Tag="96" IconVisible="True" LeftMargin="351.8028" RightMargin="368.1972" TopMargin="863.0845" BottomMargin="416.9156" ctype="SingleNodeObjectData">
+          <AbstractNodeData Name="mopupnode" ActionTag="-61885495" Tag="96" IconVisible="True" LeftMargin="351.8028" RightMargin="368.1972" TopMargin="863.0844" BottomMargin="416.9156" ctype="SingleNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
             <Children>
               <AbstractNodeData Name="r001count" ActionTag="1469227115" Tag="328" IconVisible="False" LeftMargin="210.0735" RightMargin="-293.0735" TopMargin="-128.6187" BottomMargin="105.6187" FontSize="20" LabelText="200/5000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
@@ -396,71 +396,118 @@
             <PrePosition X="0.4886" Y="0.3257" />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="mapstagestarbg_0" ActionTag="1142656277" Tag="122" IconVisible="False" LeftMargin="154.2216" RightMargin="517.7784" TopMargin="411.7093" BottomMargin="822.2907" ctype="SpriteObjectData">
-            <Size X="48.0000" Y="46.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="178.2216" Y="845.2907" />
+          <AbstractNodeData Name="starnode" ActionTag="491086026" Tag="314" IconVisible="True" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="540.0000" BottomMargin="740.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <Children>
+              <AbstractNodeData Name="mapstagestarbg_0" ActionTag="1142656277" Tag="122" IconVisible="False" LeftMargin="-218.2429" RightMargin="170.2429" TopMargin="-120.0040" BottomMargin="74.0040" ctype="SpriteObjectData">
+                <Size X="48.0000" Y="46.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="-194.2429" Y="97.0040" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/mapstagestarbg.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="mapstagestarbg_1" ActionTag="-1210637292" Tag="123" IconVisible="False" LeftMargin="-218.2429" RightMargin="170.2429" TopMargin="-24.3213" BottomMargin="-21.6787" ctype="SpriteObjectData">
+                <Size X="48.0000" Y="46.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="-194.2429" Y="1.3213" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/mapstagestarbg.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="mapstagestarbg_2" ActionTag="514363185" Tag="124" IconVisible="False" LeftMargin="-218.2429" RightMargin="170.2429" TopMargin="71.3686" BottomMargin="-117.3686" ctype="SpriteObjectData">
+                <Size X="48.0000" Y="46.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="-194.2429" Y="-94.3686" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/mapstagestarbg.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="star0" ActionTag="-2133525589" Tag="159" IconVisible="False" LeftMargin="-218.2444" RightMargin="170.2444" TopMargin="-120.0007" BottomMargin="74.0007" ctype="SpriteObjectData">
+                <Size X="48.0000" Y="46.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="-194.2444" Y="97.0007" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/mapstagestar.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="star1" ActionTag="-684452435" Tag="160" IconVisible="False" LeftMargin="-218.2444" RightMargin="170.2444" TopMargin="-24.3171" BottomMargin="-21.6829" ctype="SpriteObjectData">
+                <Size X="48.0000" Y="46.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="-194.2444" Y="1.3171" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/mapstagestar.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="star2" ActionTag="1740397729" Tag="161" IconVisible="False" LeftMargin="-218.2444" RightMargin="170.2444" TopMargin="71.3684" BottomMargin="-117.3684" ctype="SpriteObjectData">
+                <Size X="48.0000" Y="46.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="-194.2444" Y="-94.3684" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/mapstagestar.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="c0" ActionTag="-665772678" Tag="162" IconVisible="False" LeftMargin="-134.1485" RightMargin="-219.8515" TopMargin="-111.4912" BottomMargin="74.4912" FontSize="32" LabelText="拾取当前地图所有的包裹" OutlineSize="2" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="354.0000" Y="37.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="-134.1485" Y="92.9912" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="92" G="46" B="13" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="63" G="43" B="3" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="c1" ActionTag="-1732844679" Tag="163" IconVisible="False" LeftMargin="-134.1485" RightMargin="-203.8515" TopMargin="-15.1560" BottomMargin="-21.8440" FontSize="32" LabelText="战胜当前地图30%的小怪" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="338.0000" Y="37.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="-134.1485" Y="-3.3440" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="92" G="46" B="13" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="92" G="46" B="13" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="c2" ActionTag="19122704" Tag="164" IconVisible="False" LeftMargin="-134.1485" RightMargin="-203.8515" TopMargin="81.5795" BottomMargin="-118.5795" FontSize="32" LabelText="战胜当前地图30%的小怪" OutlineSize="2" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="338.0000" Y="37.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="-134.1485" Y="-100.0795" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="92" G="46" B="13" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="63" G="43" B="3" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint />
+            <Position X="360.0000" Y="740.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2475" Y="0.6604" />
-            <PreSize X="0.0667" Y="0.0359" />
-            <FileData Type="MarkedSubImage" Path="ui/mapstagestarbg.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="mapstagestarbg_1" ActionTag="-1210637292" Tag="123" IconVisible="False" LeftMargin="154.2216" RightMargin="517.7784" TopMargin="507.3945" BottomMargin="726.6055" ctype="SpriteObjectData">
-            <Size X="48.0000" Y="46.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="178.2216" Y="749.6055" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2475" Y="0.5856" />
-            <PreSize X="0.0667" Y="0.0359" />
-            <FileData Type="MarkedSubImage" Path="ui/mapstagestarbg.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="mapstagestarbg_2" ActionTag="514363185" Tag="124" IconVisible="False" LeftMargin="154.2216" RightMargin="517.7784" TopMargin="603.0833" BottomMargin="630.9167" ctype="SpriteObjectData">
-            <Size X="48.0000" Y="46.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="178.2216" Y="653.9167" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2475" Y="0.5109" />
-            <PreSize X="0.0667" Y="0.0359" />
-            <FileData Type="MarkedSubImage" Path="ui/mapstagestarbg.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="star0" ActionTag="-2133525589" Tag="159" IconVisible="False" LeftMargin="154.2194" RightMargin="517.7806" TopMargin="411.7137" BottomMargin="822.2863" ctype="SpriteObjectData">
-            <Size X="48.0000" Y="46.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="178.2194" Y="845.2863" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2475" Y="0.6604" />
-            <PreSize X="0.0667" Y="0.0359" />
-            <FileData Type="MarkedSubImage" Path="ui/mapstagestar.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="star1" ActionTag="-684452435" Tag="160" IconVisible="False" LeftMargin="154.2194" RightMargin="517.7806" TopMargin="507.3975" BottomMargin="726.6025" ctype="SpriteObjectData">
-            <Size X="48.0000" Y="46.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="178.2194" Y="749.6025" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2475" Y="0.5856" />
-            <PreSize X="0.0667" Y="0.0359" />
-            <FileData Type="MarkedSubImage" Path="ui/mapstagestar.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="star2" ActionTag="1740397729" Tag="161" IconVisible="False" LeftMargin="154.2194" RightMargin="517.7806" TopMargin="603.0825" BottomMargin="630.9175" ctype="SpriteObjectData">
-            <Size X="48.0000" Y="46.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="178.2194" Y="653.9175" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2475" Y="0.5109" />
-            <PreSize X="0.0667" Y="0.0359" />
-            <FileData Type="MarkedSubImage" Path="ui/mapstagestar.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
+            <PrePosition X="0.5000" Y="0.5781" />
+            <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
           <AbstractNodeData Name="l" ActionTag="-1967777869" Tag="156" IconVisible="False" LeftMargin="79.3050" RightMargin="360.6950" TopMargin="701.3669" BottomMargin="545.6331" Scale9Enable="True" LeftEage="58" RightEage="58" TopEage="10" BottomEage="10" Scale9OriginX="58" Scale9OriginY="10" Scale9Width="62" Scale9Height="13" ctype="ImageViewObjectData">
             <Size X="280.0000" Y="33.0000" />
@@ -481,42 +528,6 @@
             <PrePosition X="0.6934" Y="0.4392" />
             <PreSize X="0.3889" Y="0.0258" />
             <FileData Type="MarkedSubImage" Path="ui/fightretline.png" Plist="ui.plist" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="c0" ActionTag="-665772678" Tag="162" IconVisible="False" LeftMargin="238.3312" RightMargin="127.6688" TopMargin="420.2139" BottomMargin="822.7861" FontSize="32" LabelText="拾取当前地图所有的包裹" OutlineSize="2" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="354.0000" Y="37.0000" />
-            <AnchorPoint ScaleY="0.5000" />
-            <Position X="238.3312" Y="841.2861" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="92" G="46" B="13" />
-            <PrePosition X="0.3310" Y="0.6573" />
-            <PreSize X="0.4917" Y="0.0289" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="63" G="43" B="3" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="c1" ActionTag="-1732844679" Tag="163" IconVisible="False" LeftMargin="238.3312" RightMargin="143.6688" TopMargin="516.5521" BottomMargin="726.4479" FontSize="32" LabelText="战胜当前地图30%的小怪" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="338.0000" Y="37.0000" />
-            <AnchorPoint ScaleY="0.5000" />
-            <Position X="238.3312" Y="744.9479" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="92" G="46" B="13" />
-            <PrePosition X="0.3310" Y="0.5820" />
-            <PreSize X="0.4694" Y="0.0289" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="92" G="46" B="13" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="c2" ActionTag="19122704" Tag="164" IconVisible="False" LeftMargin="238.3312" RightMargin="143.6688" TopMargin="613.2907" BottomMargin="629.7093" FontSize="32" LabelText="战胜当前地图30%的小怪" OutlineSize="2" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="338.0000" Y="37.0000" />
-            <AnchorPoint ScaleY="0.5000" />
-            <Position X="238.3312" Y="648.2093" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="92" G="46" B="13" />
-            <PrePosition X="0.3310" Y="0.5064" />
-            <PreSize X="0.4694" Y="0.0289" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="63" G="43" B="3" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
           <AbstractNodeData Name="actionbtn" ActionTag="-1139177449" Tag="20" IconVisible="False" LeftMargin="120.2751" RightMargin="395.7249" TopMargin="1056.7040" BottomMargin="139.2960" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
@@ -643,6 +654,18 @@
             <PreSize X="0.0847" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="desc_1" ActionTag="255957205" Tag="315" IconVisible="False" LeftMargin="90.0000" RightMargin="90.0000" TopMargin="490.0000" BottomMargin="690.0000" IsCustomSize="True" FontSize="30" LabelText="石龙对石虎，金银万万五。&#xA;谁人识得破，买到成都府。" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" OutlineSize="2" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="540.0000" Y="100.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="740.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="92" G="46" B="13" />
+            <PrePosition X="0.5000" Y="0.5781" />
+            <PreSize X="0.7500" Y="0.0781" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="63" G="43" B="3" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>

@@ -296,82 +296,82 @@ void SelectSubMapLayer::onNodeClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::
 		GlobalInstance::eventfrommapid = "";
 		GlobalInstance::eventstartmappos = -1;
 		GlobalInstance::map_randstartpos = -1;
-		if (m_mainmapid.compare("m1-5") == 0)
-		{
-			int needph = GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].ph;
-			bool isphok = true;
+		//if (m_mainmapid.compare("m1-5") == 0)
+		//{
+		//	int needph = GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].ph;
+		//	bool isphok = true;
 
-			std::string nohpherostr;
-			int nohpcount = 0;
-			for (int i = 0; i < 6; i++)
-			{
-				if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getPower().getValue() < needph)
-				{
-					nohpcount++;
-					if (nohpherostr.length() > 0)
-						nohpherostr.append(ResourceLang::map_lang["dunhao"]);
-					if (nohpcount <= 3)
-						nohpherostr.append(GlobalInstance::myCardHeros[i]->getName());
-					else
-					{
-						nohpherostr.append("...");
-						break;
-					}
-					isphok = false;
-				}
-			}
-			if (isphok)
-			{
+		//	std::string nohpherostr;
+		//	int nohpcount = 0;
+		//	for (int i = 0; i < 6; i++)
+		//	{
+		//		if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getPower().getValue() < needph)
+		//		{
+		//			nohpcount++;
+		//			if (nohpherostr.length() > 0)
+		//				nohpherostr.append(ResourceLang::map_lang["dunhao"]);
+		//			if (nohpcount <= 3)
+		//				nohpherostr.append(GlobalInstance::myCardHeros[i]->getName());
+		//			else
+		//			{
+		//				nohpherostr.append("...");
+		//				break;
+		//			}
+		//			isphok = false;
+		//		}
+		//	}
+		//	if (isphok)
+		//	{
 
-				DynamicValueInt dv;
-				for (int i = 0; i < 6; i++)
-				{
-					if (GlobalInstance::myCardHeros[i] != NULL)
-					{
-						dv.setValue(GlobalInstance::myCardHeros[i]->getPower().getValue() - needph);
-						GlobalInstance::myCardHeros[i]->setPower(dv);
-						GlobalInstance::getInstance()->saveHero(GlobalInstance::myCardHeros[i]);
-					}
-				}
+		//		DynamicValueInt dv;
+		//		for (int i = 0; i < 6; i++)
+		//		{
+		//			if (GlobalInstance::myCardHeros[i] != NULL)
+		//			{
+		//				dv.setValue(GlobalInstance::myCardHeros[i]->getPower().getValue() - needph);
+		//				GlobalInstance::myCardHeros[i]->setPower(dv);
+		//				GlobalInstance::getInstance()->saveHero(GlobalInstance::myCardHeros[i]);
+		//			}
+		//		}
 
-				clicknode->setEnabled(false);
+		//		clicknode->setEnabled(false);
 
-				isentermap = true;
-				GlobalInstance::ishasmazeentry = false;
-				Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MapBlockScene::createScene(mapid, GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].bgtype)));
+		//		isentermap = true;
+		//		GlobalInstance::ishasmazeentry = false;
+		//		Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MapBlockScene::createScene(mapid, GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].bgtype)));
 
-			}
-			else
-			{
-				nohpherostr = nohpherostr.substr(0, nohpherostr.length());
-				nohpherostr.append(ResourceLang::map_lang["nomorehp"]);
-				MovingLabel::show(nohpherostr);
+		//	}
+		//	else
+		//	{
+		//		nohpherostr = nohpherostr.substr(0, nohpherostr.length());
+		//		nohpherostr.append(ResourceLang::map_lang["nomorehp"]);
+		//		MovingLabel::show(nohpherostr);
 
-				if (MyRes::getMyResCount("p001", MYSTORAGE) > 0)
-				{
-					ResDescLayer* layer = ResDescLayer::create(MyRes::getMyRes("p001", MYSTORAGE), 0);
-					this->addChild(layer, 0, 1111);
-					AnimationEffect::openAniEffect((Layer*)layer);
-				}
-				else
-				{
-					std::vector< MSGAWDSDATA> vec_res;
-					MSGAWDSDATA rdata;
-					rdata.rid = "p001";
-					rdata.count = 1;
-					rdata.qu = 0;
-					vec_res.push_back(rdata);
-					BuyResLayer* layer = BuyResLayer::create(vec_res);
-					this->addChild(layer);
-				}
-			}
-		}
-		else
-		{
+		//		if (MyRes::getMyResCount("p001", MYSTORAGE) > 0)
+		//		{
+		//			ResDescLayer* layer = ResDescLayer::create(MyRes::getMyRes("p001", MYSTORAGE), 0);
+		//			this->addChild(layer, 0, 1111);
+		//			AnimationEffect::openAniEffect((Layer*)layer);
+		//		}
+		//		else
+		//		{
+		//			std::vector< MSGAWDSDATA> vec_res;
+		//			MSGAWDSDATA rdata;
+		//			rdata.rid = "p001";
+		//			rdata.count = 1;
+		//			rdata.qu = 0;
+		//			vec_res.push_back(rdata);
+		//			BuyResLayer* layer = BuyResLayer::create(vec_res);
+		//			this->addChild(layer);
+		//		}
+		//	}
+		//}
+		//else
+		//{
 			StarDescLayer* layer = StarDescLayer::create(mapid);
 			this->addChild(layer);
 			AnimationEffect::openAniEffect(layer);
-		}
+		//}
 	}
 }
 

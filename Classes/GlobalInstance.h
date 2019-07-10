@@ -1026,6 +1026,10 @@ public:
 	static int myTakeOnFormation;
 
 	static std::map<std::string, S_MOPUPRWDDATA> map_mopuprwds;
+
+	static int fightwinbosscount;
+
+	static bool isNewYearCard;
 	
 private:
 	static int refreshHeroTime;

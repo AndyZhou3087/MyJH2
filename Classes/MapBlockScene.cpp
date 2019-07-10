@@ -68,6 +68,8 @@ MapBlockScene::MapBlockScene()
 
 	totalBoxcount = 0;
 
+	totalbosscount = 0;
+
 	astarrouting = NULL;
 
 	iscfgmazeentry = false;
@@ -2159,6 +2161,19 @@ void MapBlockScene::showFightResult(int result)
 			calcStar(SA_FIGHTSUCC);
 		}
 
+		if (mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS)
+		{
+			if (!isMaze)
+			{
+				GlobalInstance::fightwinbosscount++;
+
+				if (GlobalInstance::fightwinbosscount >= totalBoxcount)
+				{
+					DataSave::getInstance()->setFightWinAllBoss(m_mapid, true);
+				}
+			}
+		}
+
 		isMoving = true;
 		int bindex = (mycurRow)*blockColCount + mycurCol;
 		if (map_mapBlocks[bindex]->getPosType() == POS_BOSS)
@@ -2842,6 +2857,11 @@ void MapBlockScene::parseMapXml(std::string mapname)
 							iscfgmazeentry = true;
 							if (GlobalInstance::ishasmazeentry)
 								showPosIcon = true;
+						}
+
+						if (postype >= POS_BOSS && postype <= POS_TBOSS)
+						{
+							totalBoxcount++;
 						}
 
 						if (showPosIcon)

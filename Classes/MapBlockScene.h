@@ -304,6 +304,8 @@ private:
 	std::vector<MapBlock*> vec_boxblock;//宝箱地图块
 	std::map<int, std::vector<MapBlock*>> map_rangeblocks;
 	int totalBoxcount;
+
+	int totalbosscount;
 	AstarRouting* astarrouting;
 
 	bool iscfgmazeentry;
