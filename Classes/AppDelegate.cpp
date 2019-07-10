@@ -2,6 +2,7 @@
 #include "LoadingScene.h"
 #include "MainScene.h"
 #include "SoundManager.h"
+#include "MainMapScene.h"
 
 USING_NS_CC;
 
@@ -103,6 +104,8 @@ void AppDelegate::applicationWillEnterForeground() {
 
 	if (g_mainScene != NULL)
 		HttpDataSwap::init(g_mainScene)->getServerTime();
+	if (g_MainMapScene != NULL)
+		HttpDataSwap::init(g_MainMapScene)->getServerTime();
     // if you use SimpleAudioEngine, it must resume here
     // SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }

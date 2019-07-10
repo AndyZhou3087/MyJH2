@@ -46,5 +46,6 @@ private:
 	int m_startClickY;
 	bool m_isDraging;
 };
+extern MainMapScene* g_MainMapScene;
 #endif
 

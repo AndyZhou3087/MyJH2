@@ -12,6 +12,7 @@
 #include "MyRes.h"
 #include "CommonFuncs.h"
 #include "AnimationEffect.h"
+#include "ErrorHintLayer.h"
 
 MainMapScene* g_MainMapScene = NULL;
 MainMapScene::MainMapScene()
@@ -288,12 +289,31 @@ void MainMapScene::onBoxclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 void MainMapScene::updateTime(float dt)
 {
 	GlobalInstance::servertime++;
+
+	int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
+	//议事厅每日更新
+	int t = zerotime / TWENTYFOURHOURSTOSEC;
+	if (t > DataSave::getInstance()->getMyFreshDate())
+	{
+		std::map<std::string, S_MOPUPRWDDATA>::iterator mopupit;
+
+		for (mopupit = GlobalInstance::map_mopuprwds.begin(); mopupit != GlobalInstance::map_mopuprwds.end(); mopupit++)
+		{
+			std::string strkey = StringUtils::format("mopup%s", mopupit->first.c_str());
+			DataSave::getInstance()->deleteDataByKey(strkey);
+		}
+	}
 }
 
 void MainMapScene::onFinish(int code)
 {
+	ErrorHintLayer* networkerrLayer = (ErrorHintLayer*)this->getChildByName("networkerrorlayer");
+
 	if (code == SUCCESS)
 	{
+		if (networkerrLayer != NULL)
+			networkerrLayer->removeFromParentAndCleanup(true);
+
 		updateTime(0);
 		this->schedule(schedule_selector(MainMapScene::updateTime), 1);
 
@@ -321,6 +341,18 @@ void MainMapScene::onFinish(int code)
 			}
 		}
 
+	}
+	else
+	{
+		if (networkerrLayer == NULL)
+		{
+			ErrorHintLayer* layer = ErrorHintLayer::create(0);
+			this->addChild(layer, 1000, "networkerrorlayer");
+		}
+		else
+		{
+			networkerrLayer->resetBtn();
+		}
 	}
 }
 
