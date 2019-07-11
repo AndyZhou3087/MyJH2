@@ -69,6 +69,7 @@ public:
 
 	void checkorder(std::string orderid, std::string goodsid, int price);
 
+	static void resetDailyData();
 public:
 	cocos2d::ui::Widget* traintip;
 

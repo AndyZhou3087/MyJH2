@@ -29,7 +29,6 @@
 #include "BuyResLayer.h"
 #include "UsePropLayer.h"
 #include "MazeTransitionScene.h"
-#include "BuySingleResLayer.h"
 #include "MazeDescLayer.h"
 #include "BuySelectLayer.h"
 #include "StarResultLayer.h"
@@ -932,7 +931,7 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		break;
 		case BTN_EXITMAZE:
 		{
-			std::string str = StringUtils::format(ResourceLang::map_lang["exitmaze"].c_str(), 30);
+			std::string str = StringUtils::format(ResourceLang::map_lang["exitmaze"].c_str(), 20);
 			HintBoxLayer* hlayer = HintBoxLayer::create(str, 13);
 			this->addChild(hlayer);
 			AnimationEffect::openAniEffect(hlayer);

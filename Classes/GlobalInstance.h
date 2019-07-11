@@ -871,6 +871,7 @@ public:
 	//扫荡数据
 	void parseMopupData();
 
+	void loadMopUpCountData();
 	void saveMopupLeftData(std::string mapid);
 
 	void resetMopupLeftData(std::string mapid);

@@ -254,7 +254,7 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			{
 				if (g_MapBlockScene != NULL)
 				{
-					int constcoin = 30;
+					int constcoin = 20;
 					if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= constcoin)
 					{
 						DynamicValueInt dv;

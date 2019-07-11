@@ -295,13 +295,7 @@ void MainMapScene::updateTime(float dt)
 	int t = zerotime / TWENTYFOURHOURSTOSEC;
 	if (t > DataSave::getInstance()->getMyFreshDate())
 	{
-		std::map<std::string, S_MOPUPRWDDATA>::iterator mopupit;
-
-		for (mopupit = GlobalInstance::map_mopuprwds.begin(); mopupit != GlobalInstance::map_mopuprwds.end(); mopupit++)
-		{
-			std::string strkey = StringUtils::format("mopup%s", mopupit->first.c_str());
-			DataSave::getInstance()->deleteDataByKey(strkey);
-		}
+		MainScene::resetDailyData();
 	}
 }
 

@@ -1256,6 +1256,7 @@
           <Image Name="j001.png" />
           <Image Name="j002.png" />
           <Image Name="j003.png" />
+          <Image Name="j004.png" />
           <Image Name="k001.png" />
           <Image Name="librarybackbtn.png" />
           <Image Name="librarytextbg.png" />
@@ -1599,7 +1600,6 @@
           <Image Name="zancountbox1.png" />
           <Image Name="zanhelpbtn.png" />
           <Image Name="zanitemsep.png" />
-          <Image Name="j004.png" />
           <Image Name="zanrank1.png" />
           <Image Name="zanrank2.png" />
           <Image Name="zanrank3.png" />

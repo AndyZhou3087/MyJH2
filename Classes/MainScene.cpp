@@ -1214,10 +1214,7 @@ void MainScene::updateTime(float dt)
 	int t = zerotime / TWENTYFOURHOURSTOSEC;
 	if (t > DataSave::getInstance()->getMyFreshDate())
 	{
-		Quest::resetDailyTask();
-		GlobalInstance::timeMarketStr = "";
-		GlobalInstance::map_timeMartData.clear();
-		DataSave::getInstance()->deleteDataByKey("timemarket");
+		resetDailyData();
 	}
 
 	changeDayOrNight();
@@ -1248,6 +1245,23 @@ void MainScene::updateTime(float dt)
 
 	if (issavebroken)
 		GlobalInstance::getInstance()->setBuildingBroken();
+}
+
+void MainScene::resetDailyData()
+{
+	Quest::resetDailyTask();
+	GlobalInstance::timeMarketStr = "";
+	GlobalInstance::map_timeMartData.clear();
+	DataSave::getInstance()->deleteDataByKey("timemarket");
+
+	std::map<std::string, S_MOPUPRWDDATA>::iterator mopupit;
+
+	for (mopupit = GlobalInstance::map_mopuprwds.begin(); mopupit != GlobalInstance::map_mopuprwds.end(); mopupit++)
+	{
+		mopupit->second.leftcount = 5;
+		mopupit->second.resetcount = 1;
+		GlobalInstance::getInstance()->saveMopupLeftData(mopupit->first);
+	}
 }
 
 void MainScene::changeDayOrNight()
