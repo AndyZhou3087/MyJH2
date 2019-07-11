@@ -162,6 +162,18 @@
             <FileData Type="MarkedSubImage" Path="mapui/winsepbox.png" Plist="mapui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="winexpdesc" ActionTag="-2137427976" Tag="98" IconVisible="False" LeftMargin="465.4818" RightMargin="113.5182" TopMargin="531.0554" BottomMargin="724.9446" FontSize="21" LabelText="总经验值+1000" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="141.0000" Y="24.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="465.4818" Y="736.9446" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.6465" Y="0.5757" />
+            <PreSize X="0.1958" Y="0.0188" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

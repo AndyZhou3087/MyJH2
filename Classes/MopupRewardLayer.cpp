@@ -89,7 +89,7 @@ bool MopupRewardLayer::init(std::vector<MSGAWDSDATA> reward_res, int perwinexp)
 	loadScrollviewData();
 	updateScrollviewContent();
 
-
+	int herocount = 0;
 	for (int i = 0; i < 6; i++)
 	{
 		FightHeroNode* fightHeroNode = FightHeroNode::create();
@@ -102,8 +102,12 @@ bool MopupRewardLayer::init(std::vector<MSGAWDSDATA> reward_res, int perwinexp)
 		if (fighthero != NULL)
 		{
 			fightHeroNode->setFightState(perwinexp);
+			herocount++;
 		}
 	}
+	std::string expstr = StringUtils::format(ResourceLang::map_lang["mopupexpdesc"].c_str(), herocount * perwinexp);
+	cocos2d::ui::Text* expdesclbl = (cocos2d::ui::Text*)csbnode->getChildByName("winexpdesc");
+	expdesclbl->setString(expstr);
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
