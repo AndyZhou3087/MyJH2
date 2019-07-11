@@ -217,15 +217,15 @@ void MarketResNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 					if (totalrescount >= buycount)
 					{
 						bool isCanBuy = true;
-						if (m_resid.compare("v001") == 0)
-						{
-							int vsionLv = MyRes::getMyResCount(m_resid, MYSTORAGE);
-							if (vsionLv >= 5)
-							{
-								showstr = ResourceLang::map_lang["vsionmax"];
-								isCanBuy = false;
-							}
-						}
+						//if (m_resid.compare("v001") == 0)
+						//{
+						//	int vsionLv = MyRes::getMyResCount(m_resid, MYSTORAGE);
+						//	if (vsionLv >= 5)
+						//	{
+						//		showstr = ResourceLang::map_lang["vsionmax"];
+						//		isCanBuy = false;
+						//	}
+						//}
 						if (isCanBuy)
 						{
 							SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUYRES);
