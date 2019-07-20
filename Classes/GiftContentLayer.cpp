@@ -78,6 +78,10 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 	cocos2d::ui::ImageView* title = (cocos2d::ui::ImageView*)csbnode->getChildByName("title");
 	title->ignoreContentAdaptWithSize(true);
 	std::string str = StringUtils::format("text_%s", data->icon.c_str());
+
+	if (data->type == COIN)
+		str = "text_gd";
+
 	title->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	lefttime = (cocos2d::ui::Text*)csbnode->getChildByName("lefttime");
@@ -104,7 +108,7 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 		closebtn->setVisible(true);
 	}
 
-	if (data->type == GIFT)
+	if (data->type == GIFT || data->type == COIN)
 	{
 		str = StringUtils::format("shoptext_%d", data->type);
 		desc->setString(ResourceLang::map_lang[str]);
@@ -186,6 +190,14 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 		Sprite* res = Sprite::createWithSpriteFrameName(str);
 		box->addChild(res);
 		res->setPosition(Vec2(box->getContentSize().width / 2, box->getContentSize().height / 2));
+
+		if (t == T_EPIECE)
+		{
+			Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+			pieceicon->setAnchorPoint(Vec2(0, 1));
+			pieceicon->setPosition(10, box->getContentSize().height - 10);
+			box->addChild(pieceicon);
+		}
 
 		Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 23);
 		namelbl->setPosition(Vec2(box->getContentSize().width / 2, -15));

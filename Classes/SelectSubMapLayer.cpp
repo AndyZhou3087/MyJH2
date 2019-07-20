@@ -108,10 +108,14 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 	{
 		Node* subnode = CSLoader::createNode(ResourcePath::makePath("selectMapNode.csb"));
 
-		subnode->setPosition(Vec2(scrollView->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
-		subnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-scrollView->getContentSize().width / 2 - 600, 0))));
+		if (i < 8)
+		{
+			subnode->setPosition(Vec2(scrollView->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
+			subnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i * 0.07f, Vec2(-scrollView->getContentSize().width / 2 - 600, 0))));
+		}
+		else
+			subnode->setPosition(Vec2(scrollView->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 
-		//subnode->setPosition(Vec2(scrollView->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 		scrollView->addChild(subnode);
 
 		cocos2d::ui::Text* mapname = (cocos2d::ui::Text*)subnode->getChildByName("namelbl");
@@ -165,7 +169,7 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 
 		i++;
 
-		if (m_mainmapid.compare("m1-5") != 0)
+		if (m_mainmapid.compare("m1-5") != 0 && m_mainmapid.compare("m1-6") != 0)
 		{
 
 			verifyStar(it->first);

@@ -189,8 +189,13 @@ void TrainLayer::updateContent()
 		Hero* hero = vec_trainheros[i];
 		MyHeroNode* node = MyHeroNode::create(hero, HS_TRAINING);
 
-		node->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
-		node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
+		if (i < 8)
+		{
+			node->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
+			node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i * 0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
+		}
+		else
+			node->setPosition(Vec2(m_contentscroll->getContentSize().width/2, innerheight - i * itemheight - itemheight / 2));
 
 		m_contentscroll->addChild(node, 0, i);
 

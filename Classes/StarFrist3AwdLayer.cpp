@@ -83,11 +83,18 @@ bool StarFrist3AwdLayer::init(std::string awdstr)
 		qu = atoi(resid.substr(1).c_str()) - 1;
 		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
+	else if (t == T_EPIECE)
+	{
+		Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+		pieceicon->setAnchorPoint(Vec2(0, 1));
+		pieceicon->setPosition(10, resbox->getContentSize().height - 10);
+		resbox->addChild(pieceicon);
+	}
 	resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	Node* effectnode = CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
-	std::string residstr = StringUtils::format("ui/%s.png", resid.c_str());
+	std::string residstr = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);//StringUtils::format("ui/%s.png", resid.c_str());
 	res->loadTexture(residstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	std::string countstr = StringUtils::format("%d", rescount);

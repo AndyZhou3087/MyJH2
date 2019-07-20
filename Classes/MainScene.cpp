@@ -1260,7 +1260,9 @@ void MainScene::resetDailyData()
 	{
 		mopupit->second.leftcount = 5;
 		mopupit->second.resetcount = 1;
-		GlobalInstance::getInstance()->saveMopupLeftData(mopupit->first);
+		std::string key = StringUtils::format("mopup%s", mopupit->first.c_str());
+		DataSave::getInstance()->deleteDataByKey(key);
+		//GlobalInstance::getInstance()->saveMopupLeftData(mopupit->first);
 	}
 }
 

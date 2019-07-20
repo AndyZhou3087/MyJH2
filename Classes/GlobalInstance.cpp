@@ -183,6 +183,8 @@ int GlobalInstance::fightwinbosscount = 0;
 
 bool GlobalInstance::isNewYearCard = true;
 
+std::string GlobalInstance::androidurl;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -206,7 +208,7 @@ std::string GlobalInstance::UUID()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getDeviceIDInKeychain();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "*******************11";
+	return "AA67AFAD-AC63-461A-AD29-9774E81C4B3F";//"*******************11";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
@@ -1799,7 +1801,7 @@ void GlobalInstance::loadMyResData()
 					break;
 				}
 			}
-			if (rid.length() > 4)
+			if (m < 0)
 				continue;
 
 			if (m >= T_ARMOR && m <= T_FASHION)
@@ -3037,27 +3039,21 @@ int GlobalInstance::generateStoneCount(int qu)
 	int count = 0;
 	//镶嵌孔个数
 	int rnd = GlobalInstance::getInstance()->createRandomNum(100);
-	if (qu == 0)
+	if (qu == 4)
 	{
-		if (rnd < 80)
+		if (rnd < 90)
 			count = 0;
-		else if (rnd < 90)
-			count = 1;
-		else if (rnd < 98)
-			count = 2;
 		else
-			count = 3;
+			count = 1;
 	}
-	else if (qu == 1)
+	else if (qu == 3)
 	{
-		if (rnd < 60)
+		if (rnd < 70)
 			count = 0;
-		else if (rnd < 90)
+		else if (rnd < 92)
 			count = 1;
-		else if (rnd < 98)
-			count = 2;
 		else
-			count = 3;
+			count = 2;
 	}
 	else if (qu == 2)
 	{
@@ -3070,7 +3066,7 @@ int GlobalInstance::generateStoneCount(int qu)
 		else
 			count = 3;
 	}
-	else if (qu == 3)
+	else if (qu == 1)
 	{
 		if (rnd < 40)
 			count = 0;
@@ -3101,9 +3097,9 @@ int GlobalInstance::generateHeroPotential()
 	if (innroomlv < 9)
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(100);
-		if (r < 55)
+		if (r < 60)
 			return 0;
-		if (r < 95)
+		if (r < 97)
 			return 1;
 		return 2;
 	}
@@ -3111,19 +3107,19 @@ int GlobalInstance::generateHeroPotential()
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(100000);
 		int il = innroomlv - 9;
-		if (r < 10 + il * 1)//万分之1~2
+		if (r < 2 + il * 1)//万分之0.2~1.2
 		{
 			return 4;
 		}
-		else if (r < 10 + il * 1 + 100 + il * 10)//千分之1~2
+		else if (r < 2 + il * 1 + 50 + il * 10)//千分之0.5~1.5
 		{
 			return 3;
 		}
-		else if (r < 10 + il * 1 + 100 + il * 10 + 10000 + il * 500)//百分之10~15
+		else if (r < 2 + il * 1 + 50 + il * 10 + 4000 + il * 500)//百分之4~9
 		{
 			return 2;
 		}
-		else if (r < 10 + il * 1 + 100 + il * 10 + 10000 + il * 500 + 40000 + il*1000)//百分之40~50
+		else if (r < 2 + il * 1 + 50 + il * 10 + 4000 + il * 500 + 40000 + il*1000)//百分之40~50
 		{
 			return 1;
 		}
@@ -3162,9 +3158,9 @@ int GlobalInstance::generateHeroPotentialByCoin()
 	if (innroomlv < 9)
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(10000);
-		if (r < 60 + innroomlv * 5)//千分之6~百分之1
+		if (r < 40 + innroomlv * 5)//千分之4~千分之8
 			return 3;
-		if (r < 60 + innroomlv * 5 + 1500 + innroomlv * 50)//百分15~19
+		if (r < 40 + innroomlv * 5 + 1000 + innroomlv * 50)//百分10~14
 			return 2;
 		return 1;
 	}
@@ -3172,20 +3168,20 @@ int GlobalInstance::generateHeroPotentialByCoin()
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(100000);
 		int il = innroomlv - 9;
-		if (r < 20 + il * 2)//万分之2~4
+		if (r < 10 + il * 2)//万分之1~3
 			return 4;
-		if (r < 20 + il * 2 + 1000 + il * 20)//百分之1~1.2
+		if (r < 10 + il * 2 + 900 + il * 20)//千分之9~11
 			return 3;
-		if (r < 20 + il * 2 + 1000 + il * 20 + 20000 + il* 1000)//百分之20~30
+		if (r < 10 + il * 2 + 900 + il * 20 + 15000 + il* 1000)//百分之15~25
 			return 2;
 		return 1;
 	}
 	else
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(10000);
-		if (r < 4)//万分之4
+		if (r < 3)//万分之3
 			return 4;
-		if (r < 404)//百分之4
+		if (r < 403)//百分之4
 			return 3;
 		return 2;
 	}
@@ -3212,6 +3208,10 @@ std::string GlobalInstance::getResUIFrameName(std::string resid, int qu)
 		{
 			str = StringUtils::format("ui/%s-3.png", resid.c_str());
 		}
+	}
+	else if (t == T_EPIECE)
+	{
+		str = StringUtils::format("ui/%s.png", resid.substr(1).c_str());
 	}
 	return str;
 }
@@ -3801,7 +3801,7 @@ void GlobalInstance::cleanUserDefaultXmlData()
 	while (element != NULL)
 	{
 		std::string key = element->Name();
-		if (key.compare("jhpayrebate") != 0)
+		if (key.compare("jhpayrebate") != 0 && key.compare("jhmyzan") != 0)
 			UserDefault::getInstance()->deleteValueForKey(element->Name());
 		element = element->NextSiblingElement();
 	}

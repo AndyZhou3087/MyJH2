@@ -105,10 +105,11 @@ bool StarDescLayer::init(std::string mapid)
 	std::string descstr;
 
 	cocos2d::ui::Text* desclbl_1 = (cocos2d::ui::Text*)csbnode->getChildByName("desc_1");
-	if (mainmapid.compare("m1-5") == 0)
+	if (mainmapid.compare("m1-5") == 0 || mainmapid.compare("m1-6") == 0)
 	{
 		descstr = GlobalInstance::map_AllResources[mainmapid].desc;
-		std::string str1 = CommonFuncs::replace_all(ResourceLang::map_lang["m1_5desc1"], "\\n", "\n");
+		std::string strkey = StringUtils::format("%sdesc1", mainmapid.c_str());
+		std::string str1 = CommonFuncs::replace_all(ResourceLang::map_lang[strkey], "\\n", "\n");
 		desclbl_1->setString(str1);
 		Label* ldsc = (Label*)desclbl_1->getVirtualRenderer();
 		ldsc->setLineSpacing(20);
@@ -117,7 +118,8 @@ bool StarDescLayer::init(std::string mapid)
 
 		if (GlobalInstance::map_mopuprwds.find(mapid) != GlobalInstance::map_mopuprwds.end())
 		{
-			hintlbl->setString(ResourceLang::map_lang["m1_5mopuphint"]);
+			strkey = StringUtils::format("%smopuphint", mainmapid.c_str());
+			hintlbl->setString(ResourceLang::map_lang[strkey]);
 
 			showMopUpRwd();
 			updatelabel(0);
@@ -134,6 +136,18 @@ bool StarDescLayer::init(std::string mapid)
 			mopupbtnnode->setVisible(false);
 			actionbtn->setPositionX(360);
 			mopupnode->setVisible(false);
+
+			if (mainmapid.compare("m1-6") == 0)
+			{
+				mopupnode->setVisible(true);
+				mopupnode->getChildByName("r001count")->setVisible(false);
+				mopupnode->getChildByName("r001")->setVisible(false);
+				mopupnode->getChildByName("r001desc")->setVisible(false);
+
+				cocos2d::ui::Text* awddesctext = (cocos2d::ui::Text*)mopupnode->getChildByName("awddesctext");
+				awddesctext->setString(ResourceLang::map_lang["superbossawdboxdesc"]);
+				showSupperBossRwd();
+			}
 		}
 
 	}
@@ -271,11 +285,18 @@ bool StarDescLayer::init(std::string mapid)
 			qu = atoi(resid.substr(1).c_str()) - 1;
 			boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
+		else if (t == T_EPIECE)
+		{
+			Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+			pieceicon->setAnchorPoint(Vec2(0, 1));
+			pieceicon->setPosition(10, resbox->getContentSize().height - 10);
+			resbox->addChild(pieceicon);
+		}
 		resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 		CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
-		std::string residstr = StringUtils::format("ui/%s.png", resid.c_str());
+		std::string residstr = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);// StringUtils::format("ui/%s.png", resid.c_str());
 		res->loadTexture(residstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 		std::string countstr = StringUtils::format("%d", rescount);
@@ -453,6 +474,13 @@ void StarDescLayer::showMopUpRwd()
 				qu = atoi(resid.substr(1).c_str()) - 1;
 				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
+			else if (t == T_EPIECE)
+			{
+				Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+				pieceicon->setAnchorPoint(Vec2(0, 1));
+				pieceicon->setPosition(10, resbox->getContentSize().height - 10);
+				resbox->addChild(pieceicon);
+			}
 
 			resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 			resbox->setTag(i);
@@ -461,7 +489,67 @@ void StarDescLayer::showMopUpRwd()
 			CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
 			cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
-			std::string residstr = StringUtils::format("ui/%s.png", resid.c_str());
+			std::string residstr = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);//StringUtils::format("ui/%s.png", resid.c_str());
+			res->loadTexture(residstr, cocos2d::ui::Widget::TextureResType::PLIST);
+		}
+		else
+		{
+			resbox->setVisible(false);
+		}
+	}
+}
+
+void StarDescLayer::showSupperBossRwd()
+{
+	std::string mainmapid = m_mapid.substr(0, m_mapid.find_last_of("-"));
+	for (unsigned int i = 0; i < 8; i++)
+	{
+		std::string resboxname = StringUtils::format("resbox_%d", i);
+		cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)mopupnode->getChildByName(resboxname);
+
+		if (i < GlobalInstance::map_mapsdata[mainmapid].map_sublist[m_mapid].vec_awd.size())
+		{
+			std::string resid = GlobalInstance::map_mapsdata[mainmapid].map_sublist[m_mapid].vec_awd[i];;
+
+
+			std::string boxstr = "ui/resbox.png";
+			int t = 0;
+			int qu = 0;
+			for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+			{
+				if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+					break;
+			}
+			if (t >= T_ARMOR && t <= T_FASHION)
+			{
+				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
+			else if (t >= T_WG && t <= T_NG)
+			{
+				qu = GlobalInstance::map_GF[resid].qu;
+				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
+			else if (t >= T_RENS && t <= T_BOX)
+			{
+				qu = atoi(resid.substr(1).c_str()) - 1;
+				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
+			else if (t == T_EPIECE)
+			{
+				Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+				pieceicon->setAnchorPoint(Vec2(0, 1));
+				pieceicon->setPosition(10, resbox->getContentSize().height - 10);
+				resbox->addChild(pieceicon);
+			}
+
+			resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
+			resbox->setTag(i);
+			resbox->addTouchEventListener(CC_CALLBACK_2(StarDescLayer::onresClick, this));
+
+			CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
+
+			cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
+			std::string residstr = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);//StringUtils::format("ui/%s.png", resid.c_str());
 			res->loadTexture(residstr, cocos2d::ui::Widget::TextureResType::PLIST);
 		}
 		else

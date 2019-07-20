@@ -235,6 +235,8 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 		}
 	}
 
+
+
 	if (g_mainScene->getChildByName("0outtown") != NULL)
 		clickwhere = 3;
 	else if (g_mainScene->getChildByName("8pkground") != NULL)
@@ -342,6 +344,9 @@ bool HeroAttrLayer::init(Hero* herodata, int fromwhere, int clickwhere)
 	}
 	pageView->setCurrentPageIndex(pageIndex);
 
+	hinttext = (cocos2d::ui::Text*)heroattrbottom->getChildByName("hinttext");
+	hinttext->setString(ResourceLang::map_lang["fireherodeschint"]);
+	hinttext->setVisible(btnArr[0]->isVisible());
 
 	this->schedule(schedule_selector(HeroAttrLayer::updataAtrrUI), 1.0f);
 
@@ -849,6 +854,9 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				}
 				updateAtrBtnUI();
 				lvnode->setVisible(true);
+
+				hinttext->setVisible(btnArr[0]->isVisible());
+
 				addexplbl->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), NULL)));
 				equipnode->setVisible(false);
 				if (m_fromwhere == 0)
@@ -890,6 +898,7 @@ void HeroAttrLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				addexplbl->stopAllActions();
 				addexplbl->setOpacity(255);
 				equipnode->setVisible(true);
+				hinttext->setVisible(btnArr[0]->isVisible());
 				if (m_fromwhere == 0)
 				{
 					pageView->setEnabled(true);

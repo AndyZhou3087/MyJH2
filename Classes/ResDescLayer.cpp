@@ -66,6 +66,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 
 	std::string boxstr = "ui/resbox.png";
 	int t = 0;
+	int qu = 0;
 	for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
 	{
 		if (m_res->getId().compare(0, 1, RES_TYPES_CHAR[t]) == 0)
@@ -73,20 +74,27 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 	}
 	if (t >= T_RENS && t <= T_BOX)
 	{
-		int qu = atoi(m_res->getId().substr(1).c_str()) - 1;
+		qu = atoi(m_res->getId().substr(1).c_str()) - 1;
 		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 	}
 	else if (t >= T_HEROCARD && t <= T_ARMCARD)
 	{
-		int qu = atoi(m_res->getId().substr(1).c_str()) + 2;
+		qu = atoi(m_res->getId().substr(1).c_str()) + 2;
 		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
+	}
+	else if (t == T_EPIECE)
+	{
+		Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+		pieceicon->setAnchorPoint(Vec2(0, 1));
+		pieceicon->setPosition(10, resbox->getContentSize().height - 10);
+		resbox->addChild(pieceicon);
 	}
 	resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::ImageView* p_res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
-	std::string str = StringUtils::format("ui/%s.png", res->getId().c_str());
+	std::string str = GlobalInstance::getInstance()->getResUIFrameName(res->getId(), qu);//StringUtils::format("ui/%s.png", res->getId().c_str());
 	p_res->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
 
@@ -212,6 +220,11 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 				btntextstr = "composebtn_text";
 			else
 				btntextstr = "closebtn_text";
+			status = S_CAN_USE;
+		}
+		else if (res->getType() == T_EPIECE)
+		{
+			btntextstr = "composebtn_text";
 			status = S_CAN_USE;
 		}
 		else
@@ -438,6 +451,24 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 					{
 						MovingLabel::show(ResourceLang::map_lang["canntexchangepaisecoin"]);
 					}
+				}
+			}
+			else if (m_res->getType() == T_EPIECE)
+			{
+				if (m_res->getCount().getValue() >= 50)
+				{
+					int qu = 4;
+					int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
+					MyRes::Add(m_res->getId().substr(1), 1, MYSTORAGE, qu, stc);
+					MyRes::Use(m_res->getId(), 50);
+					StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+					storelayer->updateUI();
+				}
+				else
+				{
+					std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources[m_res->getId()].name.c_str());
+					MovingLabel::show(str);
+					return;
 				}
 			}
 		}

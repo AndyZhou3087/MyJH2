@@ -1031,6 +1031,8 @@ public:
 	static int fightwinbosscount;
 
 	static bool isNewYearCard;
+
+	static std::string androidurl;
 	
 private:
 	static int refreshHeroTime;

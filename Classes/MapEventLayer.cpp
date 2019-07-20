@@ -816,6 +816,14 @@ void MapEventLayer::loadBoxUI(cocos2d::ui::ImageView* box, std::string resid)
 		qu = atoi(resid.substr(1).c_str()) - 1;
 		str = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
+
+	else if (t == T_EPIECE)
+	{
+		Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+		pieceicon->setAnchorPoint(Vec2(0, 1));
+		pieceicon->setPosition(10, box->getContentSize().height - 10);
+		box->addChild(pieceicon);
+	}
 	box->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
 	CommonFuncs::playResBoxEffect(box, t, qu, 0);

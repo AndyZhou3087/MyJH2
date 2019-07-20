@@ -163,6 +163,14 @@ bool MazeDescLayer::init()
 		res->setPosition(Vec2(boxItem->getContentSize().width / 2, boxItem->getContentSize().height / 2));
 		boxItem->addChild(res);
 
+		if (t == T_EPIECE)
+		{
+			Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+			pieceicon->setAnchorPoint(Vec2(0, 1));
+			pieceicon->setPosition(10, boxItem->getContentSize().height - 10);
+			boxItem->addChild(pieceicon);
+		}
+
 		Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 28);
 		namelbl->setColor(Color3B(255, 255, 255));
 		namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -18));

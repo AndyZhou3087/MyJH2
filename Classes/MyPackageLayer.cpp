@@ -151,6 +151,14 @@ void MyPackageLayer::updateScrollviewContent()
 		res->setPosition(Vec2(boxItem->getContentSize().width / 2, boxItem->getContentSize().height / 2));
 		boxItem->addChild(res);
 
+		if (vec_res[m]->getType() == T_EPIECE)
+		{
+			Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+			pieceicon->setAnchorPoint(Vec2(0, 1));
+			pieceicon->setPosition(10, boxItem->getContentSize().height - 10);
+			boxItem->addChild(pieceicon);
+		}
+
 		Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 23);
 		namelbl->setColor(Color3B(34, 74, 79));
 		namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -10));

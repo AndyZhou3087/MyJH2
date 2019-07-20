@@ -199,6 +199,14 @@ void StoreHouseLayer::updateContent(int category)
 		res->setPosition(Vec2(boxItem->getContentSize().width / 2, boxItem->getContentSize().height / 2));
 		boxItem->addChild(res);
 
+		if (map_cateRes[category][m]->getType() == T_EPIECE)
+		{
+			Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+			pieceicon->setAnchorPoint(Vec2(0, 1));
+			pieceicon->setPosition(10, boxItem->getContentSize().height - 10);
+			boxItem->addChild(pieceicon);
+		}
+
 		std::string namestr = GlobalInstance::map_AllResources[resid].name;
 		if (map_cateRes[category][m]->getType() >= T_ARMOR && map_cateRes[category][m]->getType() <= T_NG)
 		{
@@ -440,11 +448,15 @@ void StoreHouseLayer::decompose(ResBase* res)
 			std::string stoneid = resequip->vec_stones[n];
 			if (stoneid.length() >= 3)//有镶嵌宝石
 			{
-				if (str.length() > 0)
-					str.append(ResourceLang::map_lang["dunhao"]);
-				std::string resstr = StringUtils::format("%sx%d ", GlobalInstance::map_AllResources[stoneid].name.c_str(), 1);
-				str.append(resstr);
-				MyRes::Add(resequip->vec_stones[n]);
+				int rnd = GlobalInstance::getInstance()->createRandomNum(100);
+				if (rnd < 50)
+				{
+					if (str.length() > 0)
+						str.append(ResourceLang::map_lang["dunhao"]);
+					std::string resstr = StringUtils::format("%sx%d ", GlobalInstance::map_AllResources[stoneid].name.c_str(), 1);
+					str.append(resstr);
+					MyRes::Add(resequip->vec_stones[n]);
+				}
 			}
 		}
 
@@ -494,7 +506,13 @@ void StoreHouseLayer::decompose(ResBase* res)
 			std::string strenthstr;
 			if (resequip->getLv().getValue() > 0)
 			{
-				int scount = resequip->getLv().getValue() / 2;
+				int scount = 0;
+				int slv = resequip->getLv().getValue();
+				for (int n = 1; n <= slv; n++)
+				{
+					scount += n;
+				}
+				scount = scount / 2;
 				if (scount > 0)
 				{
 					for (int i = 0; i < 3; i++)

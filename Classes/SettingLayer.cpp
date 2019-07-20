@@ -128,6 +128,19 @@ bool SettingLayer::init()
 		nicknamebox->setEnabled(false);
 		m_editName->setEnabled(true);
 	}
+	cocos2d::ui::Text* aurltext = (cocos2d::ui::Text*)csbnode->getChildByName("androidurltext");
+	if (GlobalInstance::androidurl.length() > 0)
+	{
+		DrawNode* underlineNode = DrawNode::create();
+		aurltext->addChild(underlineNode, 1);
+		underlineNode->setLineWidth(2.0f);
+		underlineNode->drawLine(Vec2(0, 0), Vec2(aurltext->getContentSize().width, 0), Color4F(aurltext->getTextColor()));
+		aurltext->addTouchEventListener(CC_CALLBACK_2(SettingLayer::onUrlClick, this));
+	}
+	else
+	{
+		aurltext->setVisible(false);
+	}
 
 	//layer 点击事件，屏蔽下层事件
 	auto listener = EventListenerTouchOneByOne::create();
@@ -251,6 +264,28 @@ void SettingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		default:
 			break;
 		}
+	}
+}
+
+void SettingLayer::onUrlClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == ui::Widget::TouchEventType::ENDED)
+	{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+		JniMethodInfo methodInfo;
+		char p_str1[128] = { 0 };
+		sprintf(p_str1, "%s", GlobalInstance::androidurl.c_str());
+		std::string clsname = StringUtils::format("%s/AppActivity", ANDOIRJNICLS);
+		if (JniHelper::getStaticMethodInfo(methodInfo, clsname.c_str(), "copyToClipboard", "(Ljava/lang/String;)V"))
+		{
+			jstring str1 = methodInfo.env->NewStringUTF(p_str1);
+			methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, str1);
+		}
+		MovingLabel::show(ResourceLang::map_lang["copyurl"]);
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+		copytoclipboard((char*)GlobalInstance::androidurl.c_str());
+		MovingLabel::show(ResourceLang::map_lang["copyurl"]);
+#endif
 	}
 }
 

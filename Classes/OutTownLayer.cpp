@@ -690,7 +690,7 @@ void OutTownLayer::onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::
 	{
 		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
 
-		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP * 2 || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP * 2)
+		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
 			clickflag = false;
 	}
 
@@ -888,7 +888,7 @@ void OutTownLayer::checkFormation()
 		int matchcount = 0;
 		for (int i = 0; i < 6; i++)
 		{
-			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getVocation() + 1 == it->second.vec_formation[i])
+			if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getState() != HS_DEAD && GlobalInstance::myCardHeros[i]->getVocation() + 1 == it->second.vec_formation[i])
 			{
 				matchcount++;
 			}
@@ -928,7 +928,7 @@ void OutTownLayer::takeOnFormation(int formationindex)
 	{
 		for (unsigned int j = 0; j < GlobalInstance::map_formations[formationid].vec_formation.size(); j++)
 		{
-			if (GlobalInstance::vec_myHeros[i]->getVocation() + 1 == GlobalInstance::map_formations[formationid].vec_formation[j])
+			if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getVocation() + 1 == GlobalInstance::map_formations[formationid].vec_formation[j])
 			{
 				vec_formationCandidate.push_back(GlobalInstance::vec_myHeros[i]);
 				break;

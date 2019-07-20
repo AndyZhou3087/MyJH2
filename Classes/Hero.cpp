@@ -208,6 +208,8 @@ float Hero::getAtk()
 			heroatk += (takeOnEquip[i]->getAtk()*herobns);
 		}
 	}
+
+	float addpercent = 0.0f;
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	if (m_ftype == 0)
@@ -226,22 +228,23 @@ float Hero::getAtk()
 		{
 			if (it->second.relation[i] == NPC_FRIEND)
 			{
-				heroatk += heroatk*GlobalInstance::map_npcrelation[nid].friendratio[1];
+				addpercent += GlobalInstance::map_npcrelation[nid].friendratio[1];
 			}
 			else if (it->second.relation[i] == NPC_MASTER)
 			{
-				heroatk += heroatk*GlobalInstance::map_npcrelation[nid].masterratio[1];
+				addpercent += GlobalInstance::map_npcrelation[nid].masterratio[1];
 			}
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
-				heroatk += heroatk*GlobalInstance::map_npcrelation[nid].conpelratio[1];
+				addpercent += GlobalInstance::map_npcrelation[nid].conpelratio[1];
 			}
 		}
 	}
+	float renationbns = heroatk * addpercent;
 
-	heroatk += heroatk * GlobalInstance::getInstance()->getFormationBns(1);
+	float formationbns = heroatk * GlobalInstance::getInstance()->getFormationBns(1);
 
-	return heroatk;
+	return heroatk + renationbns + formationbns;
 }
 float Hero::getDf()
 {
@@ -279,6 +282,9 @@ float Hero::getDf()
 			}
 		}
 	}
+
+	float addpercent = 0.0f;
+
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	if (m_ftype == 0)
@@ -297,20 +303,24 @@ float Hero::getDf()
 		{
 			if (it->second.relation[i] == NPC_FRIEND)
 			{
-				herodf += herodf*GlobalInstance::map_npcrelation[nid].friendratio[2];
+				addpercent += GlobalInstance::map_npcrelation[nid].friendratio[2];
 			}
 			else if (it->second.relation[i] == NPC_MASTER)
 			{
-				herodf += herodf*GlobalInstance::map_npcrelation[nid].masterratio[2];
+				addpercent += GlobalInstance::map_npcrelation[nid].masterratio[2];
 			}
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
-				herodf += herodf*GlobalInstance::map_npcrelation[nid].conpelratio[2];
+				addpercent += GlobalInstance::map_npcrelation[nid].conpelratio[2];
 			}
 		}
 	}
-	herodf += herodf * GlobalInstance::getInstance()->getFormationBns(2);
-	return herodf;
+
+	float renationbns = herodf * addpercent;
+
+	float formationbns = herodf * GlobalInstance::getInstance()->getFormationBns(2);
+
+	return herodf + renationbns + formationbns;
 }
 float Hero::getMaxHp()
 {
@@ -349,6 +359,7 @@ float Hero::getMaxHp()
 		}
 	}
 
+	float addpercent = 0.0f;
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 
@@ -368,20 +379,24 @@ float Hero::getMaxHp()
 		{
 			if (it->second.relation[i] == NPC_FRIEND)
 			{
-				herohp += herohp * GlobalInstance::map_npcrelation[nid].friendratio[0];
+				addpercent += GlobalInstance::map_npcrelation[nid].friendratio[0];
 			}
 			else if (it->second.relation[i] == NPC_MASTER)
 			{
-				herohp += herohp * GlobalInstance::map_npcrelation[nid].masterratio[0];
+				addpercent += GlobalInstance::map_npcrelation[nid].masterratio[0];
 			}
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
-				herohp += herohp * GlobalInstance::map_npcrelation[nid].conpelratio[0];
+				addpercent += GlobalInstance::map_npcrelation[nid].conpelratio[0];
 			}
 		}
 	}
 
-	herohp += herohp * GlobalInstance::getInstance()->getFormationBns(0);
+	float renationbns = herohp * addpercent;
+
+	float formationbns = herohp * GlobalInstance::getInstance()->getFormationBns(0);
+
+	herohp = herohp + renationbns + formationbns;
 
 	if (herohp != m_lastmaxhp)
 	{
@@ -414,6 +429,7 @@ float Hero::getAtkSpeed()
 		}
 	}
 
+	float addpercent = 0.0f;
 	std::map<std::string, NpcFriendly> map_friendly;
 
 	std::map<std::string, NpcFriendly>::iterator it;
@@ -433,19 +449,24 @@ float Hero::getAtkSpeed()
 		{
 			if (it->second.relation[i] == NPC_FRIEND)
 			{
-				heroatkspeed += heroatkspeed*GlobalInstance::map_npcrelation[nid].friendratio[5];
+				addpercent += heroatkspeed * GlobalInstance::map_npcrelation[nid].friendratio[5];
 			}
 			else if (it->second.relation[i] == NPC_MASTER)
 			{
-				heroatkspeed += heroatkspeed*GlobalInstance::map_npcrelation[nid].masterratio[5];
+				addpercent += heroatkspeed * GlobalInstance::map_npcrelation[nid].masterratio[5];
 			}
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
-				heroatkspeed += heroatkspeed*GlobalInstance::map_npcrelation[nid].conpelratio[5];
+				addpercent += heroatkspeed * GlobalInstance::map_npcrelation[nid].conpelratio[5];
 			}
 		}
 	}
-	heroatkspeed += heroatkspeed * GlobalInstance::getInstance()->getFormationBns(5);
+
+	float renationbns = heroatkspeed * addpercent;
+
+	float formationbns = heroatkspeed * GlobalInstance::getInstance()->getFormationBns(5);
+
+	heroatkspeed = heroatkspeed + formationbns + formationbns;
 	return heroatkspeed > 3.0f ? 3.0f : heroatkspeed;
 }
 float Hero::getCrit()
@@ -467,7 +488,7 @@ float Hero::getCrit()
 			herocrit += (takeOnEquip[i]->getCrit()*herobns);
 		}
 	}
-
+	float addpercent = 0.0f;
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	if (m_ftype == 0)
@@ -486,20 +507,24 @@ float Hero::getCrit()
 		{
 			if (it->second.relation[i] == NPC_FRIEND)
 			{
-				herocrit += herocrit*GlobalInstance::map_npcrelation[nid].friendratio[4];
+				addpercent += GlobalInstance::map_npcrelation[nid].friendratio[4];
 			}
 			else if (it->second.relation[i] == NPC_MASTER)
 			{
-				herocrit += herocrit*GlobalInstance::map_npcrelation[nid].masterratio[4];
+				addpercent += GlobalInstance::map_npcrelation[nid].masterratio[4];
 			}
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
-				herocrit += herocrit*GlobalInstance::map_npcrelation[nid].conpelratio[4];
+				addpercent += GlobalInstance::map_npcrelation[nid].conpelratio[4];
 			}
 		}
 	}
-	herocrit += herocrit * GlobalInstance::getInstance()->getFormationBns(4);
-	return herocrit;
+
+	float renationbns = herocrit * addpercent;
+
+	float formationbns = herocrit * GlobalInstance::getInstance()->getFormationBns(4);
+
+	return herocrit + renationbns + formationbns;
 }
 float Hero::getDodge()
 {
@@ -520,6 +545,8 @@ float Hero::getDodge()
 			herododge += (takeOnEquip[i]->getDodge()*herobns);
 		}
 	}
+
+	float addpercent = 0.0f;
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	if (m_ftype == 0)
@@ -538,20 +565,24 @@ float Hero::getDodge()
 		{
 			if (it->second.relation[i] == NPC_FRIEND)
 			{
-				herododge += herododge*GlobalInstance::map_npcrelation[nid].friendratio[3];
+				addpercent += GlobalInstance::map_npcrelation[nid].friendratio[3];
 			}
 			else if (it->second.relation[i] == NPC_MASTER)
 			{
-				herododge += herododge*GlobalInstance::map_npcrelation[nid].masterratio[3];
+				addpercent += GlobalInstance::map_npcrelation[nid].masterratio[3];
 			}
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
-				herododge += herododge*GlobalInstance::map_npcrelation[nid].conpelratio[3];
+				addpercent += GlobalInstance::map_npcrelation[nid].conpelratio[3];
 			}
 		}
 	}
-	herododge += herododge * GlobalInstance::getInstance()->getFormationBns(3);
-	return herododge;
+	float renationbns = herododge * addpercent;
+
+	float formationbns = herododge * GlobalInstance::getInstance()->getFormationBns(3);
+
+	herododge = herododge + renationbns + formationbns;
+	return herododge>48?48:herododge;
 }
 
 float Hero::getAtkBy(int breakcount)
@@ -574,6 +605,9 @@ float Hero::getAtkBy(int breakcount)
 			heroatk += (takeOnEquip[i]->getAtk()*herobns);
 		}
 	}
+
+	float addpercent = 0.0f;
+
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	if (m_ftype == 0)
@@ -592,20 +626,22 @@ float Hero::getAtkBy(int breakcount)
 		{
 			if (it->second.relation[i] == NPC_FRIEND)
 			{
-				heroatk += heroatk * GlobalInstance::map_npcrelation[nid].friendratio[1];
+				addpercent += GlobalInstance::map_npcrelation[nid].friendratio[1];
 			}
 			else if (it->second.relation[i] == NPC_MASTER)
 			{
-				heroatk += heroatk * GlobalInstance::map_npcrelation[nid].masterratio[1];
+				addpercent += GlobalInstance::map_npcrelation[nid].masterratio[1];
 			}
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
-				heroatk += heroatk * GlobalInstance::map_npcrelation[nid].conpelratio[1];
+				addpercent += GlobalInstance::map_npcrelation[nid].conpelratio[1];
 			}
 		}
 	}
 
-	return heroatk;
+	float renationbns = heroatk * addpercent;
+
+	return heroatk + renationbns;
 }
 float Hero::getDfBy(int breakcount)
 {
@@ -643,6 +679,7 @@ float Hero::getDfBy(int breakcount)
 			}
 		}
 	}
+	float addpercent = 0.0f;
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	if (m_ftype == 0)
@@ -661,20 +698,20 @@ float Hero::getDfBy(int breakcount)
 		{
 			if (it->second.relation[i] == NPC_FRIEND)
 			{
-				herodf += herodf * GlobalInstance::map_npcrelation[nid].friendratio[2];
+				addpercent += GlobalInstance::map_npcrelation[nid].friendratio[2];
 			}
 			else if (it->second.relation[i] == NPC_MASTER)
 			{
-				herodf += herodf * GlobalInstance::map_npcrelation[nid].masterratio[2];
+				addpercent += GlobalInstance::map_npcrelation[nid].masterratio[2];
 			}
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
-				herodf += herodf * GlobalInstance::map_npcrelation[nid].conpelratio[2];
+				addpercent += GlobalInstance::map_npcrelation[nid].conpelratio[2];
 			}
 		}
 	}
-
-	return herodf;
+	float renationbns = herodf * addpercent;
+	return herodf + renationbns;
 }
 float Hero::getMaxHpBy(int breakcount)
 {
@@ -712,7 +749,7 @@ float Hero::getMaxHpBy(int breakcount)
 			}
 		}
 	}
-
+	float addpercent = 0.0f;
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 
@@ -732,19 +769,20 @@ float Hero::getMaxHpBy(int breakcount)
 		{
 			if (it->second.relation[i] == NPC_FRIEND)
 			{
-				herohp += herohp * GlobalInstance::map_npcrelation[nid].friendratio[0];
+				addpercent += GlobalInstance::map_npcrelation[nid].friendratio[0];
 			}
 			else if (it->second.relation[i] == NPC_MASTER)
 			{
-				herohp += herohp * GlobalInstance::map_npcrelation[nid].masterratio[0];
+				addpercent += GlobalInstance::map_npcrelation[nid].masterratio[0];
 			}
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
-				herohp += herohp * GlobalInstance::map_npcrelation[nid].conpelratio[0];
+				addpercent += GlobalInstance::map_npcrelation[nid].conpelratio[0];
 			}
 		}
 	}
-	return herohp;
+	float renationbns = herohp * addpercent;
+	return herohp + renationbns;
 }
 float Hero::getAtkSpeedBy(int breakcount)
 {
@@ -767,6 +805,7 @@ float Hero::getAtkSpeedBy(int breakcount)
 		}
 	}
 
+	float addpercent = 0.0f;
 	std::map<std::string, NpcFriendly> map_friendly;
 
 	std::map<std::string, NpcFriendly>::iterator it;
@@ -786,19 +825,21 @@ float Hero::getAtkSpeedBy(int breakcount)
 		{
 			if (it->second.relation[i] == NPC_FRIEND)
 			{
-				heroatkspeed += heroatkspeed * GlobalInstance::map_npcrelation[nid].friendratio[5];
+				addpercent += GlobalInstance::map_npcrelation[nid].friendratio[5];
 			}
 			else if (it->second.relation[i] == NPC_MASTER)
 			{
-				heroatkspeed += heroatkspeed * GlobalInstance::map_npcrelation[nid].masterratio[5];
+				addpercent += GlobalInstance::map_npcrelation[nid].masterratio[5];
 			}
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
-				heroatkspeed += heroatkspeed * GlobalInstance::map_npcrelation[nid].conpelratio[5];
+				addpercent += GlobalInstance::map_npcrelation[nid].conpelratio[5];
 			}
 		}
 	}
 
+	float renationbns = heroatkspeed * addpercent;
+	heroatkspeed += renationbns;
 	return heroatkspeed > 3.0f ? 3.0f : heroatkspeed;
 }
 float Hero::getCritBy(int breakcount)
@@ -820,7 +861,7 @@ float Hero::getCritBy(int breakcount)
 			herocrit += (takeOnEquip[i]->getCrit()*herobns);
 		}
 	}
-
+	float addpercent = 0.0f;
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	if (m_ftype == 0)
@@ -839,20 +880,20 @@ float Hero::getCritBy(int breakcount)
 		{
 			if (it->second.relation[i] == NPC_FRIEND)
 			{
-				herocrit += herocrit * GlobalInstance::map_npcrelation[nid].friendratio[4];
+				addpercent += GlobalInstance::map_npcrelation[nid].friendratio[4];
 			}
 			else if (it->second.relation[i] == NPC_MASTER)
 			{
-				herocrit += herocrit * GlobalInstance::map_npcrelation[nid].masterratio[4];
+				addpercent += GlobalInstance::map_npcrelation[nid].masterratio[4];
 			}
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
-				herocrit += herocrit * GlobalInstance::map_npcrelation[nid].conpelratio[4];
+				addpercent += GlobalInstance::map_npcrelation[nid].conpelratio[4];
 			}
 		}
 	}
-
-	return herocrit;
+	float renationbns = herocrit * addpercent;
+	return herocrit + renationbns;
 }
 
 float Hero::getDodgeBy(int breakcount)
@@ -874,6 +915,7 @@ float Hero::getDodgeBy(int breakcount)
 			herododge += (takeOnEquip[i]->getDodge()*herobns);
 		}
 	}
+	float addpercent = 0.0f;
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	if (m_ftype == 0)
@@ -892,20 +934,20 @@ float Hero::getDodgeBy(int breakcount)
 		{
 			if (it->second.relation[i] == NPC_FRIEND)
 			{
-				herododge += herododge * GlobalInstance::map_npcrelation[nid].friendratio[3];
+				addpercent += GlobalInstance::map_npcrelation[nid].friendratio[3];
 			}
 			else if (it->second.relation[i] == NPC_MASTER)
 			{
-				herododge += herododge * GlobalInstance::map_npcrelation[nid].masterratio[3];
+				addpercent += GlobalInstance::map_npcrelation[nid].masterratio[3];
 			}
 			else if (it->second.relation[i] == NPC_COUPEL)
 			{
-				herododge += herododge * GlobalInstance::map_npcrelation[nid].conpelratio[3];
+				addpercent += GlobalInstance::map_npcrelation[nid].conpelratio[3];
 			}
 		}
 	}
-
-	return herododge;
+	float renationbns = herododge * addpercent;
+	return herododge + renationbns;
 }
 
 void Hero::generate()

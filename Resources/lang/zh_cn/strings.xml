@@ -240,6 +240,7 @@
 	<s name="getgoodstext">获得%sx%d</s>
 	<s name="officalQQ">官方客服QQ群：</s>
 	<s name="shoppricetext">￥%d</s>
+	<s name="shoptext_0">购买后立即获得以下物品：</s>
 	<s name="shoptext_1">购买后立即获得以下物品：</s>
 	<s name="shoptext_2">购买后获得%d天%s权利，每天登录获得以下物品：</s>
 	<s name="buy_0">购买成功！</s>
@@ -326,6 +327,7 @@
 	<s name="qq">QQ:</s>
 	<s name="downloadtext">点击下载</s>
 	<s name="copyqq">QQ号已复制到剪切板</s>
+	<s name="copyurl">链接已复制到剪切板，可在浏览器打开</s>
 	<s name="nicknameused">抱歉！该帮派名号已被其他人使用</s>
 	<s name="senstiveword">抱歉！该帮派名号包含敏感词</s>
 	<s name="timegiftprice_0">原价：￥%d</s>
@@ -607,7 +609,13 @@
 	<s name="mopupresetcount">重置今日扫荡次数（5次）需花费20元宝。（今日剩余重置次数%d次）</s>		
 	<s name="unlockformationhint">通关神龙教教主解锁第2章节方可学习阵型</s>
 	<s name="formationlvupnotopen">升级功能暂未开放</s>
-	<s name="m1_5desc1">石龙对石虎，金银万万五。\n谁人识得破，买到成都府。</s>
-	<s name="m1_5mopuphint">战胜当前地图所有BOSS可扫荡</s>
-	<s name="mopupexpdesc">总经验值+%d</s>	
+	<s name="m1-5desc1">石龙对石虎，金银万万五。\n谁人识得破，买到成都府。</s>
+	<s name="m1-6desc1">忽逢桃花林，夹岸数百步。\n中无杂树，芳草鲜美，落英缤纷。</s>
+	<s name="m1-5mopuphint">战胜当前地图所有BOSS可扫荡</s>
+	<s name="mopupexpdesc">总经验值+%d</s>
+	<s name="superbossawdboxdesc">挑战可获得奖励</s>
+	<s name="equipdeschint">分解装备可返还50%的强化材料（按100%强化成功计算）</s>
+	<s name="fireherodeschint">解雇侠客时会返还30%升级材料(人参)</s>
+	<s name="androidurltext">安卓版下载点击复制链接</s>
+	<s name="nofirendlyfight">打了太多次了，不想跟你打了！</s>		
 </strings>

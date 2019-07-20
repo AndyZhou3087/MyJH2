@@ -725,6 +725,11 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		}
 		case 5:
 		{
+			if (GlobalInstance::map_myfriendly[m_npcid].friendly <= -GlobalInstance::map_npcrelation[m_npcid].friendmax)
+			{
+				MovingLabel::show(ResourceLang::map_lang["nofirendlyfight"]);
+				return;
+			}
 			GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::map_npcrelation[m_npcid].fightcost;
 			if (GlobalInstance::map_myfriendly[m_npcid].relation.size() > 0)
 			{

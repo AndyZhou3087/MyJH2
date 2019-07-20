@@ -123,6 +123,13 @@ bool AchieveNode::init(AchieveData* data)
 			{
 				boxstr = StringUtils::format("ui/resbox_qu%d.png", GlobalInstance::map_GF[resid].qu);
 			}
+			else if (t == T_EPIECE)
+			{
+				Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+				pieceicon->setAnchorPoint(Vec2(0, 1));
+				pieceicon->setPosition(10, resbox->getContentSize().height - 10);
+				resbox->addChild(pieceicon);
+			}
 			resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 			if (m_Data->type == ACHIEVE_GOODS)
 			{

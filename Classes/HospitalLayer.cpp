@@ -214,9 +214,11 @@ void HospitalLayer::updateContent()
 		}
 		else
 		{
-			node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+			if (i < 8)
+				node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+			else
+				node->setPosition(Vec2(scrollview->getContentSize().width/2, innerheight - i * itemheight - itemheight * 0.5));
 		}
-		//node->setPosition(Vec2(319, innerheight - i*itemheight - itemheight*0.5));
 	}
 
 	if (scrollpos > 0)

@@ -87,11 +87,18 @@ bool SimpleResPopLayer::init(std::string resid, int forwhere, int needcount)
 		qu = atoi(resid.substr(1).c_str()) + 2;
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
+	else if (t == T_EPIECE)
+	{
+		Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+		pieceicon->setAnchorPoint(Vec2(0, 1));
+		pieceicon->setPosition(10, resbox->getContentSize().height - 10);
+		resbox->addChild(pieceicon);
+	}
 	CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
 	resbox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 
-	std::string resstr = StringUtils::format("ui/%s.png", resid.c_str());
+	std::string resstr = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);//StringUtils::format("ui/%s.png", resid.c_str());
 	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
 	res->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
 

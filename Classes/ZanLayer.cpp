@@ -9,6 +9,7 @@
 #include "MyRes.h"
 #include "ZanRuleLayer.h"
 #include "SoundManager.h"
+#include "DataSave.h"
 
 USING_NS_CC;
 

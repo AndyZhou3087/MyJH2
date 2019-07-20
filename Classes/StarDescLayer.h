@@ -24,6 +24,7 @@ private:
 	void showNewerGuide(int step);
 
 	void showMopUpRwd();
+	void showSupperBossRwd();
 
 	void mopUpAction();
 

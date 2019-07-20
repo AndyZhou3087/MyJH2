@@ -147,6 +147,13 @@ bool MessageDescLayer::init(int index)
 					qu = atoi(resid.substr(1).c_str()) + 2;
 					qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 				}
+				else if(k == T_EPIECE)
+				{
+					Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+					pieceicon->setAnchorPoint(Vec2(0, 1));
+					pieceicon->setPosition(10, resbox->getContentSize().height - 10);
+					resbox->addChild(pieceicon);
+				}
 
 				resbox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
 

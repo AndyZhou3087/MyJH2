@@ -116,12 +116,19 @@ bool BuyResLayer::init(std::vector<MSGAWDSDATA> vec_res, int putwhere, bool inma
 				qu = atoi(resid.substr(1).c_str()) - 1;
 				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
+			else if (t == T_EPIECE)
+			{
+				Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+				pieceicon->setAnchorPoint(Vec2(0, 1));
+				pieceicon->setPosition(10, resbox->getContentSize().height - 10);
+				resbox->addChild(pieceicon);
+			}
 
 			CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
 			resbox->setPositionX(startx[rewardsize - 1] + offsetx[rewardsize - 1] * i);
 			resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
-			std::string resstr = StringUtils::format("ui/%s.png", resid.c_str());
+			std::string resstr = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);//StringUtils::format("ui/%s.png", resid.c_str());
 			res->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
 			namelbl->setString(GlobalInstance::map_AllResources[resid].name);

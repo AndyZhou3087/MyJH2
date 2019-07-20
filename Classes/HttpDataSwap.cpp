@@ -1379,6 +1379,11 @@ void HttpDataSwap::httpGetPlayerIdCB(std::string retdata, int code, std::string 
 				int tempval = atoi(getJsonValueStr(doc["newyearcard"]).c_str());
 				GlobalInstance::isNewYearCard = tempval == 1 ? true : false;
 			}
+
+			if (doc.HasMember("aurl"))
+			{
+				GlobalInstance::androidurl = doc["aurl"].GetString();
+			}
 		}
 		else
 		{

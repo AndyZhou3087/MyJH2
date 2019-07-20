@@ -187,6 +187,7 @@ void TaskLayer::showNewerGuide(int step)
 void TaskLayer::updateContent(int category)
 {
 	scrollview->removeAllChildrenWithCleanup(true);
+	scrollview->jumpToTop();
 
 	for (unsigned int i = 0; i < vec_categoryBtn.size(); i++)
 	{
@@ -268,8 +269,13 @@ void TaskLayer::updateContent(int category)
 					node = TaskNode::create(&GlobalInstance::vec_TaskMain[i]);
 					scrollview->addChild(node);
 
-					node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - m_count * itemheight - itemheight / 2));
-					node->runAction(EaseSineIn::create(MoveBy::create(0.15f + m_count*0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+					if (m_count < 8)
+					{
+						node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - m_count * itemheight - itemheight / 2));
+						node->runAction(EaseSineIn::create(MoveBy::create(0.15f + m_count * 0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+					}
+					else
+						node->setPosition(Vec2(scrollview->getContentSize().width/2, innerheight - m_count * itemheight - itemheight / 2));
 
 					m_count++;
 				}
@@ -281,8 +287,14 @@ void TaskLayer::updateContent(int category)
 					node = TaskNode::create(&GlobalInstance::vec_TaskBranch[i], 1);
 					scrollview->addChild(node);
 
-					node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - b_count * itemheight - itemheight / 2));
-					node->runAction(EaseSineIn::create(MoveBy::create(0.15f + b_count*0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+					if (b_count < 8)
+					{
+						node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - b_count * itemheight - itemheight / 2));
+						node->runAction(EaseSineIn::create(MoveBy::create(0.15f + b_count * 0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+					}
+					else
+						node->setPosition(Vec2(scrollview->getContentSize().width/2, innerheight - b_count * itemheight - itemheight / 2));
+
 					b_count++;
 				}
 			}
@@ -345,8 +357,13 @@ void TaskLayer::updateContent(int category)
 			Node* node = TaskDailyNode::create(vec_all[i]);
 			scrollview->addChild(node);
 
-			node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
-			node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i*0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+			if (i < 8)
+			{
+				node->setPosition(Vec2(scrollview->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
+				node->runAction(EaseSineIn::create(MoveBy::create(0.15f + i * 0.07f, Vec2(-scrollview->getContentSize().width / 2 - 600, 0))));
+			}
+			else
+				node->setPosition(Vec2(scrollview->getContentSize().width/2, innerheight - i * itemheight - itemheight / 2));
 		}
 	}
 	

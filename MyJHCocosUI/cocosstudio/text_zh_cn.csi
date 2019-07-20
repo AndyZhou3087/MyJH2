@@ -436,6 +436,8 @@
       <FilePathData Path="text_zh_cn/formationtitle.png" />
       <FilePathData Path="text_zh_cn/mopup_text.png" />
       <FilePathData Path="text_zh_cn/mopupexp_text.png" />
+      <FilePathData Path="text_zh_cn/m1-6.png" />
+      <FilePathData Path="text_zh_cn/text_gd.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

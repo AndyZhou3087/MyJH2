@@ -60,6 +60,7 @@ bool MarketResNode::init(std::string resid, int rescount, int type)
 
 	std::string boxstr = "ui/resbox.png";
 	int t = 0;
+	int qu = 0;
 	for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
 	{
 		if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
@@ -67,7 +68,7 @@ bool MarketResNode::init(std::string resid, int rescount, int type)
 	}
 	if (t >= T_RENS && t <= T_BOX)
 	{
-		int qu = atoi(resid.substr(1).c_str()) - 1;
+		qu = atoi(resid.substr(1).c_str()) - 1;
 		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
 		CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 	}
@@ -90,7 +91,7 @@ bool MarketResNode::init(std::string resid, int rescount, int type)
 	}
 
 	cocos2d::ui::ImageView* resimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("res");
-	std::string str = StringUtils::format("ui/%s.png", resid.c_str());
+	std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);//StringUtils::format("ui/%s.png", resid.c_str());
 	resimg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//描述

@@ -310,11 +310,18 @@ void SmithyLayer::updateContent(int category)
 		{
 			MakeResNode* itemnode = MakeResNode::create(map_cateRes[category][i]);
 
-			itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
-			itemnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i * 0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
-
-			//itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
-			m_contentscroll->addChild(itemnode, 0, map_cateRes[category][i]);
+			if (i < 8)
+			{
+				itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - i * itemheight - itemheight / 2));
+				itemnode->runAction(EaseSineIn::create(MoveBy::create(0.15f + i * 0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
+			}
+			else
+				itemnode->setPosition(Vec2(m_contentscroll->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
+			
+			std::string name = map_cateRes[category][i];
+			if (name.compare("r019") == 0)
+				name = "r010";
+			m_contentscroll->addChild(itemnode, 0, name);
 			if (itemnode->getResInSmithyLv() > m_buidingData->level.getValue() - brokenlesslv)
 				itemnode->setEnable(false);
 			else
@@ -399,8 +406,15 @@ void SmithyLayer::updateArmContent(int armcategory)
 
 		for (unsigned int i = 0;i< vec_item.size();i++)
 		{
-			vec_item[i]->setPositionX(720);
-			vec_item[i]->runAction(EaseSineIn::create(MoveTo::create(0.15f + i * 0.07f, Vec2(50, vec_item[i]->getPositionY()))));
+			if (i < 8)
+			{
+				vec_item[i]->setPositionX(720);
+				vec_item[i]->runAction(EaseSineIn::create(MoveTo::create(0.15f + i * 0.07f, Vec2(50, vec_item[i]->getPositionY()))));
+			}
+			else
+			{
+				vec_item[i]->setPositionX(50);
+			}
 		}
 	}
 	else
@@ -450,8 +464,13 @@ void SmithyLayer::updateArmContent(int armcategory)
 
 		for (unsigned int i = 0; i < vec_item.size(); i++)
 		{
-			vec_item[i]->setPositionX(720);
-			vec_item[i]->runAction(EaseSineIn::create(MoveTo::create(0.15f + i * 0.07f, Vec2(50, vec_item[i]->getPositionY()))));
+			if (i < 8)
+			{
+				vec_item[i]->setPositionX(720);
+				vec_item[i]->runAction(EaseSineIn::create(MoveTo::create(0.15f + i * 0.07f, Vec2(50, vec_item[i]->getPositionY()))));
+			}
+			else
+				vec_item[i]->setPositionX(50);
 		}
 	}
 }
@@ -581,7 +600,15 @@ void SmithyLayer::makeRes(std::string resid)
 			qu = 3;
 	}
 	int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
-	ResBase* retres = MyRes::Add(resid, 1, MYSTORAGE, qu, stc);
+
+	int count = 1;
+
+	if (resid.compare("r019") == 0)
+	{
+		resid = "r010";
+		count = 100;
+	}
+	ResBase* retres = MyRes::Add(resid, count, MYSTORAGE, qu, stc);
 
 	std::string qukey = StringUtils::format("potential_%d", qu);
 	std::string resstr = StringUtils::format(ResourceLang::map_lang["resmname"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str());

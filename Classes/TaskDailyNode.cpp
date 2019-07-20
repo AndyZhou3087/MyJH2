@@ -107,11 +107,25 @@ bool TaskDailyNode::init(DailyTaskData* data)
 		{
 			qu = atoi(vec[2].c_str());
 		}
-		std::string str = GlobalInstance::getInstance()->getResUIFrameName(vec[0], qu);
+		std::string resid = vec[0];
+		int t = 0;
+		for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+		{
+			if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+				break;
+		}
+		std::string str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
 		Sprite * res = Sprite::createWithSpriteFrameName(str);
 		res->setPosition(Vec2(0 + i * 80, 0));
 		this->addChild(res);
 		res->setScale(0.4f);
+		if (t == T_EPIECE)
+		{
+			Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+			pieceicon->setAnchorPoint(Vec2(0, 1));
+			pieceicon->setPosition(10, res->getContentSize().height - 10);
+			res->addChild(pieceicon);
+		}
 
 		str = StringUtils::format("x%d", count);
 		Label *namelbl = Label::createWithTTF(str, FONT_NAME, 16);

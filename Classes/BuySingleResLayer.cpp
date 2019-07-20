@@ -94,6 +94,13 @@ bool BuySingleResLayer::init(MSGAWDSDATA fproper)
 		qu = atoi(resid.substr(1).c_str()) - 1;
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
+	else if (t == T_EPIECE)
+	{
+		Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+		pieceicon->setAnchorPoint(Vec2(0, 1));
+		pieceicon->setPosition(10, resbox->getContentSize().height - 10);
+		resbox->addChild(pieceicon);
+	}
 
 	resbox->loadTexture(ResourcePath::makePath(qustr), cocos2d::ui::Widget::TextureResType::PLIST);
 

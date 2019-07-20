@@ -325,60 +325,63 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	if (!isMaze)
 	{
-		std::map<int, MapBlock*>::iterator it;
-
-		for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+		if (MapBlock::vec_randMonsters.size() > 0)
 		{
-			MapBlock* block = map_mapBlocks[it->first];
-			if (block->getPosType() == POS_NOTHING && block->getWalkable() && block->map_eventrnd.size() <= 0)
-				vec_normalBlocks.push_back(block);
-		}
+			std::map<int, MapBlock*>::iterator it;
 
-		std::random_shuffle(vec_normalBlocks.begin(), vec_normalBlocks.end());
+			for (it = map_mapBlocks.begin(); it != map_mapBlocks.end(); it++)
+			{
+				MapBlock* block = map_mapBlocks[it->first];
+				if (block->getPosType() == POS_NOTHING && block->getWalkable() && block->map_eventrnd.size() <= 0)
+					vec_normalBlocks.push_back(block);
+			}
 
-		int tcount = vec_normalBlocks.size() / 4;
+			std::random_shuffle(vec_normalBlocks.begin(), vec_normalBlocks.end());
 
-		int mcount = 0;
-		std::vector<MapBlock*>::iterator mit;
+			int tcount = vec_normalBlocks.size() / 4;
 
-		for (mit = vec_normalBlocks.begin(); mit != vec_normalBlocks.end();)
-		{
+			int mcount = 0;
+			std::vector<MapBlock*>::iterator mit;
 
-			if (mcount >= tcount)
-				break;
+			for (mit = vec_normalBlocks.begin(); mit != vec_normalBlocks.end();)
+			{
 
-			bool ret = true;
+				if (mcount >= tcount)
+					break;
+
+				bool ret = true;
+
+				for (unsigned int i = 0; i < vec_monsterBlocks.size(); i++)
+				{
+					int off = abs((*mit)->Row - vec_monsterBlocks[i]->Row) + abs((*mit)->Col - vec_monsterBlocks[i]->Col);
+					if (off <= 4)
+					{
+						ret = false;
+						break;
+					}
+				}
+				if (ret)
+				{
+					vec_monsterBlocks.push_back(*mit);
+					mcount++;
+				}
+				mit = vec_normalBlocks.erase(mit);
+
+			}
+
+			createRndMonsters();
 
 			for (unsigned int i = 0; i < vec_monsterBlocks.size(); i++)
 			{
-				int off = abs((*mit)->Row - vec_monsterBlocks[i]->Row) + abs((*mit)->Col - vec_monsterBlocks[i]->Col);
-				if (off <= 4)
+				vec_monsterBlocks[i]->setPosType(POS_MONSTER);
+
+				int mbindex = vec_monsterBlocks[i]->getTag();
+				if (map_allRndMonsters[mbindex].size() > 0)
 				{
-					ret = false;
-					break;
+					std::string firstmid = map_allRndMonsters[mbindex].at(0)->getId();
+					vec_monsterBlocks[i]->setPosNpcID(GlobalInstance::map_Npcs[firstmid].icon);
+					vec_monsterBlocks[i]->setPosIcon();
 				}
-			}
-			if (ret)
-			{
-				vec_monsterBlocks.push_back(*mit);
-				mcount++;
-			}
-			mit = vec_normalBlocks.erase(mit);
-
-		}
-
-		createRndMonsters();
-
-		for (unsigned int i = 0; i < vec_monsterBlocks.size(); i++)
-		{
-			vec_monsterBlocks[i]->setPosType(POS_MONSTER);
-
-			int mbindex = vec_monsterBlocks[i]->getTag();
-			if (map_allRndMonsters[mbindex].size() > 0)
-			{
-				std::string firstmid = map_allRndMonsters[mbindex].at(0)->getId();
-				vec_monsterBlocks[i]->setPosNpcID(GlobalInstance::map_Npcs[firstmid].icon);
-				vec_monsterBlocks[i]->setPosIcon();
 			}
 		}
 
@@ -1786,7 +1789,7 @@ void MapBlockScene::doMyStatus()
 				isTask = true;
 				this->addChild(TaskTalkLayer::create(mapblock->getPosNpcID(), vec_enemys, 1));
 			}
-			else if (m_mapid.compare("m0-0-0") != 0 && (mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS || mapblock->getPosType() == POS_NPC))
+			else if (m_mapid.compare("m0-0-0") != 0 && m_mapid.compare("m1-6-1") != 0 && (mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS || mapblock->getPosType() == POS_NPC))
 			{
 				isTask = true;
 				NpcLayer* layer = NpcLayer::create(mapblock->getPosNpcID(), vec_enemys);

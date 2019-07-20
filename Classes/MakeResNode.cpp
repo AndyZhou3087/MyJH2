@@ -52,7 +52,12 @@ bool MakeResNode::init(std::string resid)
 	resimg->loadTexture(ResourcePath::makePath(resstr), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
-	namelbl->setString(GlobalInstance::map_AllResources[m_resid].name);
+
+	std::string showresid = m_resid;
+
+	if (m_resid.compare("r019") == 0)
+		showresid = "r010";
+	namelbl->setString(GlobalInstance::map_AllResources[showresid].name);
 
 	cocos2d::ui::Text* desclbl = (cocos2d::ui::Text*)csbnode->getChildByName("desc");
 	desclbl->setString(GlobalInstance::map_AllResources[m_resid].desc);
@@ -71,7 +76,10 @@ bool MakeResNode::init(std::string resid)
 
 void MakeResNode::updateMyOwnCountUI()
 {
-	int count = MyRes::getEquipableCount(m_resid);
+	std::string showresid = m_resid;
+	if (m_resid.compare("r019") == 0)
+		showresid = "r010";
+	int count = MyRes::getEquipableCount(showresid);
 	if (count > 0)
 	{
 		hascount->setVisible(true);

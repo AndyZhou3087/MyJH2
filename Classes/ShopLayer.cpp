@@ -114,9 +114,13 @@ bool ShopLayer::init()
 			ShopNode* node = ShopNode::create(&GlobalInstance::vec_shopdata[i]);
 			node->setTag(i);
 			scrollView->addChild(node);
-			//node->setPosition(Vec2(scrollView->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
-			node->setPosition(Vec2(scrollView->getContentSize().width + 600, innerheight - step * itemheight - itemheight / 2));
-			node->runAction(EaseSineIn::create(MoveBy::create(0.15f + step * 0.07f, Vec2(-scrollView->getContentSize().width / 2 - 600, 0))));
+			if (step < 8)
+			{
+				node->setPosition(Vec2(scrollView->getContentSize().width + 600, innerheight - step * itemheight - itemheight / 2));
+				node->runAction(EaseSineIn::create(MoveBy::create(0.15f + step * 0.07f, Vec2(-scrollView->getContentSize().width / 2 - 600, 0))));
+			}
+			else
+				node->setPosition(Vec2(scrollView->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
 			step++;
 		}
 	}
@@ -312,12 +316,13 @@ void ShopLayer::paySucc()
 	}
 	else if (type == VIP)
 	{
-		if (g_mainScene != NULL)
-		{
-			if (g_mainScene->getChildByName("GiftContentLayer") != NULL)
-				g_mainScene->removeChildByName("GiftContentLayer");
-			g_mainScene->showVipReward(payindex);
-		}
+		g_mainScene->showVipReward(payindex);
+	}
+
+	if (g_mainScene != NULL)
+	{
+		if (g_mainScene->getChildByName("GiftContentLayer") != NULL)
+			g_mainScene->removeChildByName("GiftContentLayer");
 	}
 
 	GlobalInstance::totalPayAmout.setValue(GlobalInstance::totalPayAmout.getValue() + GlobalInstance::vec_shopdata[payindex].price);

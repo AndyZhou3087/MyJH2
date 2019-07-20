@@ -52,6 +52,8 @@ private:
 
 	void showAddModifyNameCount();
 
+	void onUrlClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType type);
+
 private:
 	cocos2d::ui::CheckBox* m_musicCheckBox;//checkbox控件
 	cocos2d::ui::Text* m_musicOnOffText;//点击checkbox的音乐说明控件 “开”,“关”

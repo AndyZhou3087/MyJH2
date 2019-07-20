@@ -264,8 +264,13 @@ void InnRoomLayer::refreshMyHerosUi()
 		//if (herodata->getState() != HS_DEAD)
 		//{
 			MyHeroNode* heronode = MyHeroNode::create(herodata, HS_OWNED, 1);
-			heronode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - c * itemheight - itemheight / 2));
-			heronode->runAction(EaseSineIn::create(MoveBy::create(0.15f + c*0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
+			if (c < 8)
+			{
+				heronode->setPosition(Vec2(m_contentscroll->getContentSize().width + 600, innerheight - c * itemheight - itemheight / 2));
+				heronode->runAction(EaseSineIn::create(MoveBy::create(0.15f + c * 0.07f, Vec2(-m_contentscroll->getContentSize().width / 2 - 600, 0))));
+			}
+			else
+				heronode->setPosition(Vec2(m_contentscroll->getContentSize().width/2, innerheight - c * itemheight - itemheight / 2));
 			m_contentscroll->addChild(heronode, 0, i);
 			c++;
 		//}

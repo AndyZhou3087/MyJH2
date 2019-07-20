@@ -117,7 +117,7 @@
                   <AbstractNodeData Name="m0-1" ActionTag="305235149" Tag="514" IconVisible="True" LeftMargin="2080.0000" RightMargin="344.0000" TopMargin="1095.0000" BottomMargin="505.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <Children>
-                      <AbstractNodeData Name="click" ActionTag="1854282518" Tag="274" IconVisible="False" LeftMargin="-40.0000" RightMargin="-60.0000" TopMargin="-120.0000" BottomMargin="-80.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                      <AbstractNodeData Name="click" CanEdit="False" ActionTag="1854282518" Tag="274" IconVisible="False" LeftMargin="-40.0000" RightMargin="-60.0000" TopMargin="-120.0000" BottomMargin="-80.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
                         <Size X="100.0000" Y="200.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <Position X="10.0000" Y="20.0000" />
@@ -127,7 +127,7 @@
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
                       </AbstractNodeData>
-                      <AbstractNodeData Name="select" ActionTag="-1750442611" Tag="515" IconVisible="False" LeftMargin="-29.5000" RightMargin="-29.5000" TopMargin="-90.0000" BottomMargin="-90.0000" LeftEage="18" RightEage="18" TopEage="28" BottomEage="28" Scale9OriginX="18" Scale9OriginY="28" Scale9Width="23" Scale9Height="107" ctype="ImageViewObjectData">
+                      <AbstractNodeData Name="select" CanEdit="False" ActionTag="-1750442611" Tag="515" IconVisible="False" LeftMargin="-29.5000" RightMargin="-29.5000" TopMargin="-90.0000" BottomMargin="-90.0000" LeftEage="18" RightEage="18" TopEage="28" BottomEage="28" Scale9OriginX="18" Scale9OriginY="28" Scale9Width="23" Scale9Height="107" ctype="ImageViewObjectData">
                         <Size X="59.0000" Y="180.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <Position />
@@ -438,6 +438,67 @@
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.7831" Y="0.8860" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="m1-6" ActionTag="-2132103128" Tag="207" IconVisible="True" LeftMargin="2340.9810" RightMargin="83.0190" TopMargin="237.1880" BottomMargin="1362.8120" ctype="SingleNodeObjectData">
+                    <Size X="0.0000" Y="0.0000" />
+                    <Children>
+                      <AbstractNodeData Name="click" ActionTag="-178250419" Tag="208" IconVisible="False" LeftMargin="-40.0000" RightMargin="-60.0000" TopMargin="-120.0000" BottomMargin="-80.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                        <Size X="100.0000" Y="200.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="10.0000" Y="20.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition />
+                        <PreSize X="0.0000" Y="0.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="select" ActionTag="1681839776" Tag="209" IconVisible="False" LeftMargin="-29.5000" RightMargin="-29.5000" TopMargin="-90.0000" BottomMargin="-90.0000" LeftEage="18" RightEage="18" TopEage="28" BottomEage="28" Scale9OriginX="18" Scale9OriginY="28" Scale9Width="23" Scale9Height="107" ctype="ImageViewObjectData">
+                        <Size X="59.0000" Y="180.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition />
+                        <PreSize X="0.0000" Y="0.0000" />
+                        <FileData Type="MarkedSubImage" Path="mapui/mapname_sel0.png" Plist="mapui.plist" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="normal" ActionTag="1898905799" Tag="210" IconVisible="False" LeftMargin="-26.5000" RightMargin="-26.5000" TopMargin="-87.5000" BottomMargin="-87.5000" TouchEnable="True" LeftEage="18" RightEage="18" TopEage="28" BottomEage="28" Scale9OriginX="18" Scale9OriginY="28" Scale9Width="17" Scale9Height="103" ctype="ImageViewObjectData">
+                        <Size X="53.0000" Y="175.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition />
+                        <PreSize X="0.0000" Y="0.0000" />
+                        <FileData Type="MarkedSubImage" Path="mapui/mapnamebox0.png" Plist="mapui.plist" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="text" ActionTag="2063950215" Tag="211" IconVisible="False" LeftMargin="-17.4992" RightMargin="-17.5008" TopMargin="-72.9998" BottomMargin="-45.0002" LeftEage="8" RightEage="8" TopEage="28" BottomEage="28" Scale9OriginX="8" Scale9OriginY="28" Scale9Width="19" Scale9Height="62" ctype="ImageViewObjectData">
+                        <Size X="35.0000" Y="118.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="0.0008" Y="13.9998" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition />
+                        <PreSize X="0.0000" Y="0.0000" />
+                        <FileData Type="MarkedSubImage" Path="text_zh_cn/m1-6.png" Plist="text_zh_cn.plist" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="tag" ActionTag="-665545709" Tag="212" IconVisible="False" LeftMargin="-25.9994" RightMargin="-22.0006" TopMargin="-117.5000" BottomMargin="66.5000" LeftEage="18" RightEage="18" TopEage="11" BottomEage="11" Scale9OriginX="18" Scale9OriginY="11" Scale9Width="12" Scale9Height="29" ctype="ImageViewObjectData">
+                        <Size X="48.0000" Y="51.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="-1.9994" Y="92.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition />
+                        <PreSize X="0.0000" Y="0.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/mtag1.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint />
+                    <Position X="2340.9810" Y="1362.8120" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.9658" Y="0.8518" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="m2-1" ActionTag="2123194400" Tag="386" IconVisible="True" LeftMargin="1830.0000" RightMargin="594.0000" TopMargin="1255.0000" BottomMargin="345.0000" ctype="SingleNodeObjectData">

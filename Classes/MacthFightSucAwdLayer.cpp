@@ -167,9 +167,16 @@ void MacthFightSucAwdLayer::delayShowResAnim(float dt)
 		qu = atoi(resid.substr(1).c_str()) + 2;
 		qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 	}
+	else if (t == T_EPIECE)
+	{
+		Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+		pieceicon->setAnchorPoint(Vec2(0, 1));
+		pieceicon->setPosition(10, resbox->getContentSize().height - 10);
+		resbox->addChild(pieceicon);
+	}
 
 	resbox->loadTexture(qustr, cocos2d::ui::Widget::TextureResType::PLIST);
-	std::string residstr = StringUtils::format("ui/%s.png", resid.c_str());
+	std::string residstr = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);//StringUtils::format("ui/%s.png", resid.c_str());
 	res->loadTexture(residstr, cocos2d::ui::Widget::TextureResType::PLIST);
 	animnode->setPosition(box[this->getTag()]->getPosition());
 	animnode->setVisible(true);

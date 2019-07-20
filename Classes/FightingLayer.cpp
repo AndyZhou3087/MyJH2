@@ -162,7 +162,13 @@ void FightingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		this->removeFromParentAndCleanup(true);
-		g_MapBlockScene->isRoutingBreakOff = false;
+		if (g_MapBlockScene != NULL)
+			g_MapBlockScene->isRoutingBreakOff = false;
+		else
+		{
+			GlobalInstance::myMatchInfo.lostcount++;
+			HttpDataSwap::init(NULL)->sendMatchResult(0);
+		}
 	}
 }
 
@@ -180,6 +186,10 @@ void FightingLayer::updateMapHero(int which)
 
 		if (fightcount > 10)
 			m_escapebtn->setVisible(true);
+	}
+	else
+	{
+		m_escapebtn->setVisible(true);
 	}
 }
 

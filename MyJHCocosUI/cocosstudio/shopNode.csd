@@ -27,7 +27,7 @@
             <FileData Type="MarkedSubImage" Path="ui/shopitem.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="icon" ActionTag="-118868423" Tag="157" IconVisible="False" LeftMargin="-289.1542" RightMargin="180.1542" TopMargin="-54.5001" BottomMargin="-54.4999" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="icon" ActionTag="-118868423" Tag="157" IconVisible="False" LeftMargin="-289.1542" RightMargin="180.1542" TopMargin="-54.5001" BottomMargin="-54.4999" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
             <Size X="109.0000" Y="109.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-234.6542" Y="0.0001" />
@@ -124,6 +124,16 @@
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="236" G="132" B="78" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="clickimg" Visible="False" ActionTag="-986210693" Tag="783" IconVisible="False" LeftMargin="-310.0000" RightMargin="-130.0000" TopMargin="-70.0000" BottomMargin="-70.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+            <Size X="440.0000" Y="140.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-90.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

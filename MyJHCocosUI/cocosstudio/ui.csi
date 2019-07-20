@@ -673,6 +673,9 @@
       <FilePathData Path="ui/j002.png" />
       <FilePathData Path="ui/formationinfotable.png" />
       <FilePathData Path="ui/j003.png" />
+      <FilePathData Path="ui/mtag1.png" />
+      <FilePathData Path="ui/r019.png" />
+      <FilePathData Path="ui/pieceicon.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

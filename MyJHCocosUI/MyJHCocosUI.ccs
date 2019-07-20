@@ -645,6 +645,7 @@
           <Image Name="m1-3.png" />
           <Image Name="m1-4.png" />
           <Image Name="m1-5.png" />
+          <Image Name="m1-6.png" />
           <Image Name="m2-1.png" />
           <Image Name="m2-2.png" />
           <Image Name="m2-3.png" />
@@ -887,6 +888,7 @@
           <Image Name="texiao_ziti.png" />
           <Image Name="texiao_zmcg.png" />
           <Image Name="texiao_zzcg.png" />
+          <Image Name="text_gd.png" />
           <Image Name="text_gf0.png" />
           <Image Name="text_gf1.png" />
           <Image Name="text_gf2.png" />
@@ -1316,6 +1318,7 @@
           <Image Name="morebtn_n.png" />
           <Image Name="morebtn_s.png" />
           <Image Name="movinglblbg.png" />
+          <Image Name="mtag1.png" />
           <Image Name="myheroitem.png" />
           <Image Name="n001.png" />
           <Image Name="n002.png" />
@@ -1360,6 +1363,7 @@
           <Image Name="npc_talk.png" />
           <Image Name="npctalkframe.png" />
           <Image Name="p001.png" />
+          <Image Name="pieceicon.png" />
           <Image Name="pn001.png" />
           <Image Name="pn002.png" />
           <Image Name="pn003.png" />
@@ -1408,6 +1412,7 @@
           <Image Name="r011.png" />
           <Image Name="r012.png" />
           <Image Name="r013.png" />
+          <Image Name="r019.png" />
           <Image Name="randheadbox.png" />
           <Image Name="randnamebtn.png" />
           <Image Name="rank_1.png" />

@@ -297,6 +297,14 @@ bool TaskDescLayer::init(TaskData* data, int type)
 		res->setPosition(Vec2(box->getContentSize().width / 2, box->getContentSize().height / 2));
 		box->addChild(res);
 
+		if (t == T_EPIECE)
+		{
+			Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+			pieceicon->setAnchorPoint(Vec2(0, 1));
+			pieceicon->setPosition(10, box->getContentSize().height - 10);
+			box->addChild(pieceicon);
+		}
+
 		str = StringUtils::format("%sx%d", GlobalInstance::map_AllResources[resid].name.c_str(), count);
 		Label *namelbl = Label::createWithTTF(str, FONT_NAME, 23);
 		namelbl->setColor(Color3B(255, 255, 255));

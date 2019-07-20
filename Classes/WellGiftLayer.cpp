@@ -86,6 +86,12 @@ bool WellGiftLayer::init()
 		box[i]->addChild(res, 0, "res");
 		res->setPosition(Vec2(box[i]->getContentSize().width / 2, box[i]->getContentSize().height / 2));
 
+		Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+		pieceicon->setAnchorPoint(Vec2(0, 1));
+		pieceicon->setPosition(10, box[i]->getContentSize().height - 10);
+		pieceicon->setVisible(false);
+		box[i]->addChild(pieceicon, 0, "piece");
+
 		Label *namelbl = Label::createWithTTF("", FONT_NAME, 23);
 		namelbl->setPosition(Vec2(box[i]->getContentSize().width / 2, -15));
 		namelbl->setColor(Color3B(255, 241, 205));
@@ -218,6 +224,10 @@ void WellGiftLayer::selectVip(ShopData* data)
 			{
 				qu = 4;
 				str = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
+			else if (t == T_EPIECE)
+			{
+				box[i]->getChildByName("piece")->setVisible(true);
 			}
 			box[i]->setVisible(true);
 			box[i]->setName(resid);

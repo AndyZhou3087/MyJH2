@@ -129,6 +129,9 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere, Hero* herodata)
 	{
 		csbnode = CSLoader::createNode(ResourcePath::makePath("equipDescLayer.csb"));
 		stoneAttrnode = csbnode->getChildByName("attrnode");
+
+		cocos2d::ui::Text* hinttext = (cocos2d::ui::Text*)csbnode->getChildByName("hinttext");
+		hinttext->setString(ResourceLang::map_lang["equipdeschint"]);
 	}
 
 	this->addChild(csbnode);

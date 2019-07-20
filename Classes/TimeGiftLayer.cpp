@@ -187,6 +187,14 @@ bool TimeGiftLayer::init(ShopData* data)
 		box->addChild(res);
 		res->setPosition(Vec2(box->getContentSize().width / 2, box->getContentSize().height / 2));
 
+		if (t == T_EPIECE)
+		{
+			Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+			pieceicon->setAnchorPoint(Vec2(0, 1));
+			pieceicon->setPosition(10, box->getContentSize().height - 10);
+			box->addChild(pieceicon);
+		}
+
 		Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 23);
 		namelbl->setPosition(Vec2(box->getContentSize().width / 2, -15));
 		namelbl->setColor(Color3B(35, 74, 79));

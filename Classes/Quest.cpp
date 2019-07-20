@@ -210,7 +210,9 @@ void Quest::finishTaskMain()
 				MyRes::Add("j004", 2);
 			}
 			else
+			{
 				MyRes::Add("j004", 1);
+			}
 			break;
 		}
 	}

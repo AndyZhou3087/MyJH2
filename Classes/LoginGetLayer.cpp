@@ -157,6 +157,14 @@ void LoginGetLayer::showRwd()
 		res->setPosition(Vec2(resbox->getContentSize().width / 2, resbox->getContentSize().height / 2));
 		resbox->addChild(res, 0, "res");
 
+		if (t == T_EPIECE)
+		{
+			Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+			pieceicon->setAnchorPoint(Vec2(0, 1));
+			pieceicon->setPosition(10, resbox->getContentSize().height - 10);
+			resbox->addChild(pieceicon);
+		}
+
 		Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 23);
 		namelbl->setColor(Color3B(250, 250, 250));
 		namelbl->setPosition(Vec2(resbox->getContentSize().width / 2, -10));

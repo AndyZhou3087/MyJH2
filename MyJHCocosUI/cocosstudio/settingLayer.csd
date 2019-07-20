@@ -276,6 +276,18 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="androidurltext" ActionTag="1515094317" Tag="898" IconVisible="False" LeftMargin="466.5465" RightMargin="41.4535" TopMargin="804.3329" BottomMargin="453.6671" TouchEnable="True" FontSize="19" LabelText="安卓版下载点击复制链接" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="212.0000" Y="22.0000" />
+            <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+            <Position X="678.5465" Y="464.6671" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="30" G="144" B="255" />
+            <PrePosition X="0.9424" Y="0.3630" />
+            <PreSize X="0.2944" Y="0.0172" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

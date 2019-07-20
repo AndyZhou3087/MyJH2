@@ -51,9 +51,11 @@ bool ShopNode::init(ShopData* shopdata)
 	cocos2d::ui::ImageView* icon = (cocos2d::ui::ImageView*)csbnode->getChildByName("icon");
 	std::string str = StringUtils::format("ui/%s.png", shopdata->icon.c_str());
 	icon->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
-	icon->setSwallowTouches(false);
-	if (shopdata->type == GIFT)
-		icon->addTouchEventListener(CC_CALLBACK_2(ShopNode::onBtnClick, this));
+
+	cocos2d::ui::ImageView* click = (cocos2d::ui::ImageView*)csbnode->getChildByName("clickimg");
+	click->setSwallowTouches(false);
+	click->setTag(1000);
+	click->addTouchEventListener(CC_CALLBACK_2(ShopNode::onBtnClick, this));
 
 	//Ãû×Ö
 	cocos2d::ui::Text* namelbl = (cocos2d::ui::Text*)csbnode->getChildByName("name");
@@ -113,7 +115,7 @@ void ShopNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 	{
 		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
 
-		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP*2 || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP*2)
+		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
 			clickflag = false;
 	}
 
@@ -121,10 +123,23 @@ void ShopNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 	{
 		if (!clickflag)
 			return;
-		if (m_shopdata->type == COIN)
+
+		if (clicknode->getTag() < 1000)
 		{
-			if (clicknode->getTag() == 1)
-				ShopLayer::beginPay(this->getTag());
+			ShopLayer::beginPay(this->getTag());
+			//if (m_shopdata->type == COIN)
+			//{
+			//	ShopLayer::beginPay(this->getTag());
+			//}
+			//else
+			//{
+			//	GiftContentLayer* layer = GiftContentLayer::create(m_shopdata, this->getTag());
+			//	if (g_mainScene != NULL)
+			//	{
+			//		g_mainScene->addChild(layer, 0, "GiftContentLayer");
+			//		AnimationEffect::openAniEffect(layer);
+			//	}
+			//}
 		}
 		else
 		{

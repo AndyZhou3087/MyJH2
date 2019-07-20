@@ -182,7 +182,7 @@ private:
 	int m_fromwhere;
 	int m_clickhere;
 	std::vector<Hero*> vec_norheros;
-
+	cocos2d::ui::Text* hinttext;
 
 	int pageMoveClickIndex;
 	Node* effectnode[6];
