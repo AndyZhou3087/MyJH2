@@ -185,6 +185,12 @@ bool GlobalInstance::isNewYearCard = true;
 
 std::string GlobalInstance::androidurl;
 
+S_SUPPERBOSSINFO GlobalInstance::supperbossinfo;
+
+int GlobalInstance::challangeType = CH_NORMAL;
+
+std::vector<S_SUPPERBOSSRANDATA> GlobalInstance::vec_supperBossRankData;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -476,6 +482,9 @@ void GlobalInstance::loadInitData()
 
 	GlobalInstance::myTakeOnFormation = 0;
 	GlobalInstance::fightwinbosscount = 0;
+	GlobalInstance::supperbossinfo.leftcoincount = 0;
+	GlobalInstance::supperbossinfo.leftfreecount = 0;
+	GlobalInstance::supperbossinfo.bosshps = 1;
 }
 
 void GlobalInstance::saveMyHeros()

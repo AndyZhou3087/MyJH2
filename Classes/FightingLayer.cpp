@@ -18,6 +18,7 @@ FightingLayer::FightingLayer()
 {
 	fightcount = 0;
 	ajustFightRet = 0;
+	isFightOver = false;
 }
 
 FightingLayer::~FightingLayer()
@@ -186,11 +187,16 @@ void FightingLayer::updateMapHero(int which)
 
 		if (fightcount > 10)
 			m_escapebtn->setVisible(true);
+
+		if (GlobalInstance::challangeType == CH_SUPERBOSS)
+			m_escapebtn->setVisible(false);
 	}
 	else
 	{
 		m_escapebtn->setVisible(true);
 	}
+
+
 }
 
 void FightingLayer::pauseAtkSchedule()
@@ -257,8 +263,21 @@ void FightingLayer::fightOver(int ret)
 {
 	pauseAtkSchedule();
 	this->runAction(Sequence::create(DelayTime::create(0.7f), RemoveSelf::create(), NULL));
+
+	if (isFightOver)
+		return;
+	isFightOver = true;
 	if (g_MapBlockScene != NULL)
-		g_MapBlockScene->showFightResult(ret);
+	{
+		if (GlobalInstance::challangeType == CH_SUPERBOSS)
+		{
+			g_MapBlockScene->showSuperBossLayer();
+		}
+		else
+		{
+			g_MapBlockScene->showFightResult(ret);
+		}
+	}
 	else
 	{
 		if (g_mainScene != NULL)

@@ -438,6 +438,11 @@
       <FilePathData Path="text_zh_cn/mopupexp_text.png" />
       <FilePathData Path="text_zh_cn/m1-6.png" />
       <FilePathData Path="text_zh_cn/text_gd.png" />
+      <FilePathData Path="text_zh_cn/subosstagtext0_0.png" />
+      <FilePathData Path="text_zh_cn/subosstagtext0_1.png" />
+      <FilePathData Path="text_zh_cn/subosstagtext1_0.png" />
+      <FilePathData Path="text_zh_cn/subosstagtext1_1.png" />
+      <FilePathData Path="text_zh_cn/ruleinfo_text.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

@@ -18,11 +18,11 @@
           </AbstractNodeData>
           <AbstractNodeData Name="scrollview" ActionTag="-1728410848" Tag="63" IconVisible="False" LeftMargin="39.9999" RightMargin="40.0001" TopMargin="182.9998" BottomMargin="187.0003" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="640.0000" Y="910.0000" />
-            <AnchorPoint />
-            <Position X="39.9999" Y="187.0003" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="359.9999" Y="642.0003" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0556" Y="0.1461" />
+            <PrePosition X="0.5000" Y="0.5016" />
             <PreSize X="0.8889" Y="0.7109" />
             <SingleColor A="255" R="255" G="150" B="100" />
             <FirstColor A="255" R="255" G="150" B="100" />

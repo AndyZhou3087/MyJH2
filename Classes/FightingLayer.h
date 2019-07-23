@@ -65,6 +65,8 @@ private:
 
 	std::vector<FightHeroNode*> vec_enemyfront3node;
 	std::vector<FightHeroNode*> vec_enemyback3node;
+
+	bool isFightOver;
 };
 
 #endif

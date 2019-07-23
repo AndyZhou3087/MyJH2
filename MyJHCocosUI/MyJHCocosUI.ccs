@@ -806,6 +806,7 @@
           <Image Name="retry_text.png" />
           <Image Name="reward_text.png" />
           <Image Name="rule_text.png" />
+          <Image Name="ruleinfo_text.png" />
           <Image Name="selectbtn_text.png" />
           <Image Name="selheadtitle.png" />
           <Image Name="settingtitle.png" />
@@ -871,6 +872,10 @@
           <Image Name="storehousetitle.png" />
           <Image Name="strenthbtn_text.png" />
           <Image Name="submaptitle_text.png" />
+          <Image Name="subosstagtext0_0.png" />
+          <Image Name="subosstagtext0_1.png" />
+          <Image Name="subosstagtext1_0.png" />
+          <Image Name="subosstagtext1_1.png" />
           <Image Name="takeoffbtn_text.png" />
           <Image Name="task_text_0_n.png" />
           <Image Name="task_text_0_s.png" />
@@ -1080,6 +1085,7 @@
           <Image Name="carryoutbag.png" />
           <Image Name="catabtn_n.png" />
           <Image Name="catabtn_s.png" />
+          <Image Name="changepiece.png" />
           <Image Name="changevocbreakarrow.png" />
           <Image Name="changevocbtn.png" />
           <Image Name="closebtn.png" />
@@ -1259,6 +1265,7 @@
           <Image Name="j002.png" />
           <Image Name="j003.png" />
           <Image Name="j004.png" />
+          <Image Name="j005.png" />
           <Image Name="k001.png" />
           <Image Name="librarybackbtn.png" />
           <Image Name="librarytextbg.png" />
@@ -1464,6 +1471,7 @@
           <Image Name="starflow2.png" />
           <Image Name="strentharrow.png" />
           <Image Name="strenthicon.png" />
+          <Image Name="supperbossrankbtn.png" />
           <Image Name="t001.png" />
           <Image Name="task_head.png" />
           <Image Name="taskbtn.png" />
@@ -1751,6 +1759,8 @@
         <Project Name="zanLayer.csd" Type="Layer" />
         <Project Name="zanqiuNode.csd" Type="Node" />
         <Project Name="zanrankNode.csd" Type="Node" />
+        <Project Name="supperBossResultLayer.csd" Type="Layer" />
+        <Project Name="supperbossRankNode.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>

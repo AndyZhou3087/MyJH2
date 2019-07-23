@@ -123,6 +123,11 @@ bool TrainSelectLayer::init(Hero* herodata, MyHeroNode* myNode)
 	std::string coinstr = StringUtils::format("x%d", coincount.getValue());
 	coincountlbl->setString(coinstr);
 
+	myfcoutlbl = (cocos2d::ui::Text*)csbnode->getChildByName("countlbl_0");
+
+	updatelbl(0);
+	this->schedule(schedule_selector(TrainSelectLayer::updatelbl), 1);
+
 	updateUI();
 
 	//ÆÁ±ÎÏÂ²ãµã»÷
@@ -292,6 +297,12 @@ bool TrainSelectLayer::checkResIsEnough(int index)
 		}
 	}
 	return true;
+}
+
+void TrainSelectLayer::updatelbl(float dt)
+{
+	std::string str = StringUtils::format("1/%d", MyRes::getMyResCount("c001"));
+	myfcoutlbl->setString(str);
 }
 
 void TrainSelectLayer::onExit()

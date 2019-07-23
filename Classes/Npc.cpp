@@ -52,7 +52,7 @@ float Npc::getMaxHp()
 {
 	float npcmaxhp = GlobalInstance::map_NpcAttrData[m_vocation].vec_maxhp[m_lv] * POTENTIAL_BNS[m_potential];
 
-	return npcmaxhp;
+	return npcmaxhp * GlobalInstance::supperbossinfo.bosshps;
 }
 float Npc::getAtkSpeed()
 {

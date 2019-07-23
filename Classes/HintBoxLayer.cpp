@@ -290,6 +290,11 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 					return;
 				}
 			}
+			else if (m_forwhere == 15)
+			{
+			if (g_MapBlockScene != NULL)
+				g_MapBlockScene->continueSupperBossFight();
+			}
 			node->setEnabled(false);
 			AnimationEffect::closeAniEffect(this);
 			break;

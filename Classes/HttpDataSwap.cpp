@@ -966,6 +966,96 @@ void HttpDataSwap::exchangePraise(int amount)
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpExchangePraiseCB, this));
 }
 
+void HttpDataSwap::getSupperBossInfo()
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_getsuperbossinfo?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetSupperBossInfoCB, this));
+}
+
+void HttpDataSwap::postSupperBossHurt(int usefree)
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_pksuperboss?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	url.append("&contribution=");
+	std::string hurtstr = StringUtils::format("%d", GlobalInstance::supperbossinfo.curhurt);
+	url.append(hurtstr);
+
+	url.append("&usefree=");
+	std::string usefreestr = StringUtils::format("%d", usefree);
+	url.append(usefreestr);
+
+	url.append("&sign=");
+	std::string md5ostr = GlobalInstance::getInstance()->UUID() + hurtstr;
+
+	std::string signstr = md5(md5ostr + "key=zhoujian-87");
+	url.append(signstr);
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpPostSupperBossHurtCB, this));
+}
+
+void HttpDataSwap::getSupperBossRankList(int type)
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_superbossranklist?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	url.append("&thistime=");
+	std::string typestr = StringUtils::format("%d", type);
+	url.append(typestr);
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetSupperBossRankListCB, this));
+}
+
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
@@ -2068,6 +2158,122 @@ void HttpDataSwap::httpExchangePraiseCB(std::string retdata, int code, std::stri
 				rapidjson::Value& myc = doc["leftcount"];
 				GlobalInstance::myj002count.setValue(myc.GetInt());
 			}
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpGetSupperBossInfoCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+ 	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+			if (doc.HasMember("leftfreecount"))
+			{
+				GlobalInstance::supperbossinfo.leftfreecount = atoi(getJsonValueStr(doc["leftfreecount"]).c_str());
+			}
+			if (doc.HasMember("leftcoincount"))
+			{
+				GlobalInstance::supperbossinfo.leftcoincount = atoi(getJsonValueStr(doc["leftcoincount"]).c_str());
+			}
+			if (doc.HasMember("period"))
+			{
+				GlobalInstance::supperbossinfo.starendtime = getJsonValueStr(doc["period"]);
+			}
+
+			if (doc.HasMember("boss"))
+			{
+				GlobalInstance::supperbossinfo.bossdata = getJsonValueStr(doc["boss"]);
+			}
+
+			if (doc.HasMember("rule"))
+			{
+				GlobalInstance::supperbossinfo.awdinfo = doc["rule"].GetString();
+			}
+			
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpPostSupperBossHurtCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpGetSupperBossRankListCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	GlobalInstance::vec_supperBossRankData.clear();
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
+
+			if (doc.HasMember("data"))
+			{
+				rapidjson::Value& mydatav = doc["data"];
+
+				for (unsigned int m = 0; m < mydatav.Size(); m++)
+				{
+					S_SUPPERBOSSRANDATA data;
+					rapidjson::Value& myc = mydatav[m]["playerid"];
+					data.playerid = myc.GetString();
+					myc = mydatav[m]["nickname"];
+					data.nickname = myc.GetString();
+					data.hurt = atoi(getJsonValueStr(mydatav[m]["contribution"]).c_str());
+
+					GlobalInstance::vec_supperBossRankData.push_back(data);
+				}
+			}
+
+			if (doc.HasMember("selfdata"))
+			{
+				GlobalInstance::supperbossinfo.totalhurt = atoi(getJsonValueStr(doc["selfdata"]).c_str());
+			}
+
 		}
 		else
 		{

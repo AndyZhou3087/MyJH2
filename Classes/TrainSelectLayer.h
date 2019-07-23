@@ -31,10 +31,13 @@ private:
 
 	//操作
 	void action();
+
+	void updatelbl(float dt);
 private:
 	cocos2d::ui::ImageView* selArr[3];//选中标签
 	cocos2d::ui::Text* countlbl[3];//
 	cocos2d::ui::Text* coincountlbl;
+	cocos2d::ui::Text* myfcoutlbl;
 	Hero* m_data;//需要传递的数据
 	std::vector<std::map<std::string, int>> vec_res;//需要的资源的数据
 	DynamicValueInt coincount;

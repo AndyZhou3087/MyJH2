@@ -15,6 +15,9 @@
 #include "EquipDescLayer.h"
 #include "SimpleResPopLayer.h"
 #include "HintBoxLayer.h"
+#include "WaitingProgress.h"
+#include "SupperBossRuleLayer.h"
+#include "SupperBossRankLayer.h"
 
 USING_NS_CC;
 
@@ -105,6 +108,23 @@ bool StarDescLayer::init(std::string mapid)
 	std::string descstr;
 
 	cocos2d::ui::Text* desclbl_1 = (cocos2d::ui::Text*)csbnode->getChildByName("desc_1");
+
+	supperbossleftcountlbl = (cocos2d::ui::Text*)csbnode->getChildByName("supperbossleftcount");
+	supperbossleftcountlbl->setPositionX(360);
+	supperbosstimelbl = (cocos2d::ui::Text*)csbnode->getChildByName("supperbossopentime");
+	supperbosstimelbl->setPositionX(360);
+
+	cocos2d::ui::Widget* rulebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("rulebtn");
+	rulebtn->addTouchEventListener(CC_CALLBACK_2(StarDescLayer::onBtnClick, this));
+	rulebtn->setTag(1003);
+	rulebtn->setVisible(false);
+
+	cocos2d::ui::Widget* rankbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("rankbtn");
+	rankbtn->addTouchEventListener(CC_CALLBACK_2(StarDescLayer::onBtnClick, this));
+	rankbtn->setTag(1004);
+	rankbtn->setVisible(false);
+
+	GlobalInstance::challangeType = CH_NORMAL;
 	if (mainmapid.compare("m1-5") == 0 || mainmapid.compare("m1-6") == 0)
 	{
 		descstr = GlobalInstance::map_AllResources[mainmapid].desc;
@@ -135,10 +155,12 @@ bool StarDescLayer::init(std::string mapid)
 			hintlbl->setVisible(false);
 			mopupbtnnode->setVisible(false);
 			actionbtn->setPositionX(360);
+			actionbtn->setEnabled(false);
 			mopupnode->setVisible(false);
 
-			if (mainmapid.compare("m1-6") == 0)
+			if (m_mapid.compare("m1-6-1") == 0)
 			{
+				GlobalInstance::challangeType = CH_SUPERBOSS;
 				mopupnode->setVisible(true);
 				mopupnode->getChildByName("r001count")->setVisible(false);
 				mopupnode->getChildByName("r001")->setVisible(false);
@@ -147,9 +169,15 @@ bool StarDescLayer::init(std::string mapid)
 				cocos2d::ui::Text* awddesctext = (cocos2d::ui::Text*)mopupnode->getChildByName("awddesctext");
 				awddesctext->setString(ResourceLang::map_lang["superbossawdboxdesc"]);
 				showSupperBossRwd();
+
+				rulebtn->setVisible(true);
+				rankbtn->setVisible(true);
+
+				WaitingProgress* waitbox = WaitingProgress::create(ResourceLang::map_lang["doingtext"]);
+				Director::getInstance()->getRunningScene()->addChild(waitbox, 1, "waitbox");
+				HttpDataSwap::init(this)->getSupperBossInfo();
 			}
 		}
-
 	}
 	else
 	{
@@ -350,6 +378,33 @@ void StarDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 		case 1000:
 		{
+			if (GlobalInstance::challangeType == CH_SUPERBOSS)
+			{
+				long long int timeSec = GlobalInstance::servertime + 8 * 60 * 60;
+				time_t timep = timeSec;
+				tm* timeStuct = gmtime(&timep);
+
+				//if (timeStuct->tm_hour < GlobalInstance::supperbossinfo.starthour || timeStuct->tm_hour > GlobalInstance::supperbossinfo.endhour)
+				//{
+				//	std::string str = StringUtils::format(ResourceLang::map_lang["supperbosstimetext"].c_str(), GlobalInstance::supperbossinfo.starthour, GlobalInstance::supperbossinfo.endhour);
+				//	MovingLabel::show(str);
+				//	return;
+				//}
+
+				//int count = 0;
+				//for (int i = 0; i < 6; i++)
+				//{
+				//	if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getLevel() >= 24)
+				//		count++;
+				//}
+				//if (count <= 0)
+				//{
+				//	MovingLabel::show(ResourceLang::map_lang["supperbossherolvlimit"]);
+				//	return;
+				//}
+
+				GlobalInstance::supperbossinfo.curhurt = 0;
+			}
 			std::string mainmapid = m_mapid.substr(0, m_mapid.find_last_of("-"));
 
 			int needph = GlobalInstance::map_mapsdata[mainmapid].map_sublist[m_mapid].ph;
@@ -430,6 +485,20 @@ void StarDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case 1002:
 			mopUpAction();
+			break;
+		case 1003:
+		{
+			SupperBossRuleLayer* layer = SupperBossRuleLayer::create();
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
+			break;
+		case 1004:
+		{
+			SupperBossRankLayer* layer = SupperBossRankLayer::create(true);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
 			break;
 		default:
 			break;
@@ -806,4 +875,37 @@ void StarDescLayer::showNewerGuide(int step)
 		g_NewGuideLayer = NewGuideLayer::create(step, nodes);
 		this->addChild(g_NewGuideLayer, 10);
 	}
+}
+
+void StarDescLayer::onFinish(int errcode)
+{
+	Director::getInstance()->getRunningScene()->removeChildByName("waitbox");
+
+	if (errcode == 0)
+	{
+		std::string str = StringUtils::format(ResourceLang::map_lang["supperbossleftcounttext"].c_str(), GlobalInstance::supperbossinfo.leftfreecount);
+		supperbossleftcountlbl->setString(str);
+
+		std::vector<std::string> vec_;
+		CommonFuncs::split(GlobalInstance::supperbossinfo.bossdata, vec_, "-");
+		GlobalInstance::supperbossinfo.bosslv = atoi(vec_[0].c_str());
+
+		GlobalInstance::supperbossinfo.bosshps = atoi(vec_[1].c_str());
+		vec_.clear();
+		CommonFuncs::split(GlobalInstance::supperbossinfo.starendtime, vec_, "-");
+		GlobalInstance::supperbossinfo.starthour = atoi(vec_[0].c_str());
+
+		GlobalInstance::supperbossinfo.endhour = atoi(vec_[1].c_str());
+
+		str = StringUtils::format(ResourceLang::map_lang["supperbosstimetext"].c_str(), GlobalInstance::supperbossinfo.starthour, GlobalInstance::supperbossinfo.endhour);
+		supperbosstimelbl->setString(str);
+		actionbtn->setEnabled(true);
+	}
+	else
+	{
+		MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
+
+		AnimationEffect::closeAniEffect(this);
+	}
+
 }

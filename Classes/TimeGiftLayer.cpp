@@ -10,6 +10,7 @@
 #include "SoundManager.h"
 #include "SimpleResPopLayer.h"
 #include "EquipDescLayer.h"
+#include "SelectEPieceLayer.h"
 
 USING_NS_CC;
 
@@ -61,6 +62,10 @@ bool TimeGiftLayer::init(ShopData* data)
 	cocos2d::ui::Button* buybtn = (cocos2d::ui::Button*)csbnode->getChildByName("buybtn");
 	buybtn->addTouchEventListener(CC_CALLBACK_2(TimeGiftLayer::onBtnClick, this));
 	buybtn->setTag(0);
+
+	cocos2d::ui::Button* closebtn = (cocos2d::ui::Button*)csbnode->getChildByName("closebtn");
+	closebtn->addTouchEventListener(CC_CALLBACK_2(TimeGiftLayer::onBtnClick, this));
+	closebtn->setTag(1000);
 
 	cocos2d::ui::ImageView* buybtntext = (cocos2d::ui::ImageView*)buybtn->getChildByName("text");
 	buybtntext->loadTexture(ResourcePath::makeTextImgPath("mapeventtext_6_1", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -118,7 +123,7 @@ bool TimeGiftLayer::init(ShopData* data)
 	int startx[] = { 360, 270 ,210 };
 	int offsetx[] = { 0, 180, 150 };
 
-	int starty[] = { 710, 780 };
+	int starty[] = { 730, 800 };
 	int offsety[] = { 0, 170 };
 	int ressize = data->res.size();
 
@@ -162,6 +167,22 @@ bool TimeGiftLayer::init(ShopData* data)
 			qu = atoi(resid.substr(1).c_str()) + 2;
 			str = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
+		else if (t == T_FRAGMENT)
+		{
+			qu = 4;
+			str = StringUtils::format("ui/resbox_qu%d.png", qu);
+		}
+		else if (t == T_EPIECE)
+		{
+			qu = 4;
+			str = StringUtils::format("ui/resbox_qu%d.png", qu);
+			int r = GlobalInstance::getInstance()->createRandomNum(sizeof(qu4epiece) / sizeof(qu4epiece[0]));
+			resid = qu4epiece[r];
+			std::vector<std::string> vec_;
+			vec_.push_back(resid);
+			vec_.push_back(vec_res[1]);
+			data->res[i] = vec_;
+		}
 
 		cocos2d::ui::ImageView* box = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::PLIST);
 		box->addTouchEventListener(CC_CALLBACK_2(TimeGiftLayer::onResclick, this));
@@ -183,8 +204,9 @@ bool TimeGiftLayer::init(ShopData* data)
 		CommonFuncs::playResBoxEffect(box, t, qu, 0);
 
 		str = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
-		Sprite* res = Sprite::createWithSpriteFrameName(str);
-		box->addChild(res);
+		//Sprite* res = Sprite::createWithSpriteFrameName(str);
+		cocos2d::ui::ImageView* res = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::PLIST);
+		box->addChild(res, 0, "res");
 		res->setPosition(Vec2(box->getContentSize().width / 2, box->getContentSize().height / 2));
 
 		if (t == T_EPIECE)
@@ -193,6 +215,13 @@ bool TimeGiftLayer::init(ShopData* data)
 			pieceicon->setAnchorPoint(Vec2(0, 1));
 			pieceicon->setPosition(10, box->getContentSize().height - 10);
 			box->addChild(pieceicon);
+
+			cocos2d::ui::ImageView* changeicon = cocos2d::ui::ImageView::create("ui/changepiece.png", cocos2d::ui::Widget::TextureResType::PLIST);
+			changeicon->addTouchEventListener(CC_CALLBACK_2(TimeGiftLayer::onResclick, this));
+			changeicon->setPosition(Vec2(box->getContentSize().width - 15, box->getContentSize().height - 15));
+			changeicon->setTag(10000 + i);
+			changeicon->setTouchEnabled(true);
+			box->addChild(changeicon);
 		}
 
 		Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 23);
@@ -213,10 +242,6 @@ bool TimeGiftLayer::init(ShopData* data)
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
 	{
 		return true;
-	};
-	listener->onTouchEnded = [=](Touch *touch, Event *event)
-	{
-		AnimationEffect::closeAniEffect((Layer*)this);
 	};
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -240,6 +265,10 @@ void TimeGiftLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		{
 			ShopLayer::beginPay(this->getTag());
 		}
+		else if (tag == 1000)
+		{
+			AnimationEffect::closeAniEffect(this);
+		}
 	}
 }
 
@@ -249,20 +278,33 @@ void TimeGiftLayer::onResclick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	{
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		cocos2d::ui::ImageView* clickres = (cocos2d::ui::ImageView*)pSender;
-		std::string resid = clickres->getName();
 
-		int t = clickres->getTag()%1000;
-
-		if (t >= T_ARMOR && t <= T_NG)
+		int tag = clickres->getTag();
+		if (tag < 10000)
 		{
-			Layer* layer = EquipDescLayer::create(resid, clickres->getTag()/1000, 1);
-			this->addChild(layer);
-			AnimationEffect::openAniEffect(layer);
+			std::string resid = clickres->getName();
+
+			int t = clickres->getTag() % 1000;
+
+			if (t >= T_ARMOR && t <= T_NG)
+			{
+				Layer* layer = EquipDescLayer::create(resid, clickres->getTag() / 1000, 1);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
+			}
+			else
+			{
+				SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 3);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
+			}
 		}
 		else
 		{
-			SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, 3);
-			this->addChild(layer);
+			int w = tag % 10000;
+			int count = atoi(m_data->res[w][1].c_str());
+			SelectEPieceLayer* layer = SelectEPieceLayer::create(clickres->getParent()->getChildByName("res"), count, m_data);
+			this->addChild(layer, 0, w);
 			AnimationEffect::openAniEffect(layer);
 		}
 	}

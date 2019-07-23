@@ -529,7 +529,7 @@
             <PreSize X="0.3889" Y="0.0258" />
             <FileData Type="MarkedSubImage" Path="ui/fightretline.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="actionbtn" ActionTag="-1139177449" Tag="20" IconVisible="False" LeftMargin="120.2751" RightMargin="395.7249" TopMargin="1056.7040" BottomMargin="139.2960" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="actionbtn" ActionTag="-1139177449" Tag="20" IconVisible="False" LeftMargin="120.2800" RightMargin="395.7200" TopMargin="1056.7040" BottomMargin="139.2960" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="207043494" Tag="21" IconVisible="False" LeftMargin="56.0003" RightMargin="43.9997" TopMargin="15.5000" BottomMargin="19.5000" LeftEage="24" RightEage="24" TopEage="12" BottomEage="12" Scale9OriginX="24" Scale9OriginY="12" Scale9Width="56" Scale9Height="25" ctype="ImageViewObjectData">
@@ -544,7 +544,7 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="222.2751" Y="181.2960" />
+            <Position X="222.2800" Y="181.2960" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.3087" Y="0.1416" />
@@ -666,6 +666,72 @@
             <PreSize X="0.7500" Y="0.0781" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="63" G="43" B="3" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="supperbossleftcount" ActionTag="-1719677274" Tag="60" IconVisible="False" LeftMargin="222.2800" RightMargin="497.7200" TopMargin="1044.4503" BottomMargin="235.5496" FontSize="23" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="222.2800" Y="235.5496" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.3087" Y="0.1840" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="supperbossopentime" ActionTag="-703975855" Tag="61" IconVisible="False" LeftMargin="222.2800" RightMargin="497.7200" TopMargin="1152.4001" BottomMargin="127.5998" FontSize="23" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="222.2800" Y="127.5998" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.3087" Y="0.0997" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="rulebtn" ActionTag="-1429354044" Tag="314" IconVisible="False" LeftMargin="58.0282" RightMargin="551.9718" TopMargin="1087.4500" BottomMargin="116.5501" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="80" Scale9Height="54" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="110.0000" Y="76.0000" />
+            <Children>
+              <AbstractNodeData Name="text" ActionTag="1882688372" Tag="315" IconVisible="False" LeftMargin="28.8585" RightMargin="38.1415" TopMargin="50.7887" BottomMargin="3.2113" LeftEage="14" RightEage="14" TopEage="7" BottomEage="7" Scale9OriginX="14" Scale9OriginY="7" Scale9Width="15" Scale9Height="8" ctype="ImageViewObjectData">
+                <Size X="43.0000" Y="22.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="50.3585" Y="14.2113" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4578" Y="0.1870" />
+                <PreSize X="0.3909" Y="0.2895" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/ruleinfo_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="113.0282" Y="154.5501" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1570" Y="0.1207" />
+            <PreSize X="0.1528" Y="0.0594" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/matchruleicon.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/matchruleicon.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/matchruleicon.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="rankbtn" ActionTag="1396146684" Tag="316" IconVisible="False" LeftMargin="564.2505" RightMargin="49.7495" TopMargin="1046.0930" BottomMargin="118.9070" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="76" Scale9Height="93" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="106.0000" Y="115.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="617.2505" Y="176.4070" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.8573" Y="0.1378" />
+            <PreSize X="0.1472" Y="0.0898" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/supperbossrankbtn.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/supperbossrankbtn.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/supperbossrankbtn.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>

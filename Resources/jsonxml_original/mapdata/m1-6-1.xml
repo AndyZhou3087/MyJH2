@@ -49,7 +49,7 @@
     <Cell c="3" r="3" p="3" w="1" prs1="30" pre1="61" m="10.png">
       <npcid>n151</npcid>
       <npcrnd>100</npcrnd>
-      <msatt2 id="n151" qu="4">120</msatt2>
+      <msatt5 id="n151" qu="4">120</msatt5>
       <msawd1 id="r001" qu="0" rnd="10.00">10</msawd1>
     </Cell>
     <Cell c="3" r="4" p="-1" w="1" m="10.png" />
@@ -67,9 +67,7 @@
     <Cell c="4" r="2" p="-1" w="1" m="10.png" />
     <Cell c="4" r="3" p="-1" w="1" m="10.png" />
     <Cell c="4" r="4" p="-1" w="1" m="10.png" />
-    <Cell c="4" r="5" p="3" w="1" m="10.png" d="79.png">
-      <msatt2 id="n151" qu="4">120</msatt2>
-    </Cell>
+    <Cell c="4" r="5" p="-1" w="1" m="10.png" d="79.png" />
     <Cell c="4" r="6" p="-1" w="0" m="10.png" />
     <Cell c="4" r="7" p="-1" w="0" m="10.png" />
     <Cell c="4" r="8" p="-1" w="1" m="10.png" />

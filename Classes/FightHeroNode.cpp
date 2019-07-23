@@ -156,6 +156,9 @@ void FightHeroNode::setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE 
 		{
 			str = StringUtils::format("ui/%s.png", GlobalInstance::map_Npcs[data->getId()].icon.c_str());
 			headimg->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+
+			if (GlobalInstance::challangeType == CH_SUPERBOSS)
+				this->setScale(1.2f);
 		}
 		int v = m_Data->getVocation();
 		if (v >= 4)
@@ -175,6 +178,7 @@ void FightHeroNode::setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE 
 		namelbl->setVisible(true);
 		float percent = data->getHp()*100/ data->getMaxHp();
 		hp_bar->setPercent(percent);
+		hp_bar->setVisible(true);
 		if (state == FS_FIGHTING)
 		{
 			atkspeed_bar->setVisible(true);
@@ -292,12 +296,12 @@ void FightHeroNode::update(float dt)
 			if (gf == NULL || (gf != NULL && (GlobalInstance::map_GF[gf->getId()].skill == SKILL_13 || GlobalInstance::map_GF[gf->getId()].skill == SKILL_15 || GlobalInstance::map_GF[gf->getId()].skill == SKILL_18 || GlobalInstance::map_GF[gf->getId()].skill == SKILL_20)))
 			{
 				showAtkOrHurtAnim(0);
-				this->runAction(Sequence::create(ScaleTo::create(0.22f, 1.2f), ScaleTo::create(0.08f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), DelayTime::create(0.6f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::nextRound, this, 0)), NULL));
+				this->runAction(Sequence::create(ScaleTo::create(0.22f, this->getScale() + 0.2f), ScaleTo::create(0.08f, this->getScale()), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), DelayTime::create(0.6f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::nextRound, this, 0)), NULL));
 			
 			}
 			else
 			{
-				this->runAction(Sequence::create(ScaleTo::create(0.22f, 1.2f), ScaleTo::create(0.08f, 1.0f), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
+				this->runAction(Sequence::create(ScaleTo::create(0.22f, this->getScale() + 0.2f), ScaleTo::create(0.08f, this->getScale()), CallFunc::create(CC_CALLBACK_0(FightHeroNode::atkAnimFinish, this)), NULL));
 			}
 		}
 	}
@@ -376,6 +380,8 @@ void FightHeroNode::hurt(float hp, int stat)//stat -1:不显示普攻动画
 				ActionInterval* ac1 = Spawn::create(Show::create(), FadeIn::create(0.1f), EaseSineIn::create(ScaleTo::create(0.15f, 1)), NULL);
 				statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), NULL));
 
+				if (GlobalInstance::challangeType == CH_SUPERBOSS && m_datatype == F_NPC)
+					GlobalInstance::supperbossinfo.curhurt += hurtup;
 			}
 			else
 			{
@@ -439,9 +445,13 @@ void FightHeroNode::hurtAnimFinish()
 			{
 				pauseTimeSchedule();
 				isPlaySkillAnim = false;
+
 				((Hero*)m_Data)->setState(HS_DEAD);
 
-				((Hero*)m_Data)->setPos(0);
+				if (GlobalInstance::challangeType != CH_SUPERBOSS)
+				{
+					((Hero*)m_Data)->setPos(0);
+				}
 
 				SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_DIE);
 				//nextRound(0);
@@ -993,6 +1003,17 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 				else
 				{
 					whosufferNode->dfbns = GlobalInstance::map_GF[gf->getId()].skilleff1;
+					dt = 0.45f;
+				}
+			}
+			else if (stype == SKILL_18)
+			{
+				if (gf->getSkillCount() >= GlobalInstance::map_GF[gf->getId()].skilleff2)
+				{
+
+				}
+				else
+				{
 					dt = 0.45f;
 				}
 			}

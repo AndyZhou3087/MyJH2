@@ -42,7 +42,7 @@
 
 #define QUMAX 5
 
-#define REPAIRTIME 600
+#define REPAIRTIME 60
 
 //#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 //#define UMENG
@@ -93,4 +93,6 @@ const static int mazesfightbg[] = {2, 3, 2, 2, 3};
 const static int VIPDAYS[] = { 30,30,365,30};
 
 const static int ADDZANMAINTASKCOUNTS[] = {5, 10, 20, 30, 40, 50, 60, 80, 100, 120};
+
+const static std::string qu4epiece[] = {"la008", "la004","la028","la040","la016","la024","la012","la020"};
 #endif // _H_CONST_H_

@@ -79,6 +79,8 @@ public:
 
 	void delayShowExit(float dt);
 
+	void continueSupperBossFight();
+
 	//延迟新手引导
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
@@ -123,6 +125,8 @@ public:
 	void checkMazeStoneHint();
 
 	void zoomGuideEnd();
+
+	void showSuperBossLayer();
 
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);

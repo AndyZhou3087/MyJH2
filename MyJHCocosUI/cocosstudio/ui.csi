@@ -676,6 +676,9 @@
       <FilePathData Path="ui/mtag1.png" />
       <FilePathData Path="ui/r019.png" />
       <FilePathData Path="ui/pieceicon.png" />
+      <FilePathData Path="ui/changepiece.png" />
+      <FilePathData Path="ui/j005.png" />
+      <FilePathData Path="ui/supperbossrankbtn.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

@@ -34,6 +34,7 @@
 #include "StarResultLayer.h"
 #include "CannotTouchLayer.h"
 #include "MapZoomGuideLayer.h"
+#include "SupperBossRankLayer.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -444,6 +445,17 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 	transbtn->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
 	transbtn->setVisible(!isMaze);
 
+	if (GlobalInstance::challangeType == CH_SUPERBOSS)
+	{
+		gocitybtn->setVisible(true);
+		exitmazebtn->setVisible(false);
+		mypackagebtn->setVisible(false);
+		torchbtn->setVisible(false);
+		visionbtn->setVisible(false);
+		allopenbtn->setVisible(false);
+		transbtn->setVisible(false);
+	}
+
 	updateLabel(0);
 	this->schedule(schedule_selector(MapBlockScene::updateLabel), 0.5f);
 
@@ -464,16 +476,19 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	if (!isMaze)
 	{
-		loadTaskUI();
-		if (isNewerGuideMap)
+		if (!(GlobalInstance::challangeType == CH_SUPERBOSS))
 		{
-			m_tasknode->stopAllActions();
-			m_tasknode->setPosition(Vec2(985, m_tasknode->getPositionY()));
-			taskclick->setVisible(true);
-		}
-		else
-		{
-			this->scheduleOnce(schedule_selector(MapBlockScene::closeTaskTipNode), 7.0f);
+			loadTaskUI();
+			if (isNewerGuideMap)
+			{
+				m_tasknode->stopAllActions();
+				m_tasknode->setPosition(Vec2(985, m_tasknode->getPositionY()));
+				taskclick->setVisible(true);
+			}
+			else
+			{
+				this->scheduleOnce(schedule_selector(MapBlockScene::closeTaskTipNode), 7.0f);
+			}
 		}
 	}
 	else
@@ -644,8 +659,6 @@ void MapBlockScene::showNewerGuideGoBack()
 
 void MapBlockScene::showFightingLayer(std::vector<Npc*> enemys)
 {
-	/*FightingLayer* layer = FightingLayer::create(enemys, m_fightbgtype);
-	this->addChild(layer);*/
 	CutScenesLayer* cutlayer = CutScenesLayer::create(enemys, m_fightbgtype);
 	this->addChild(cutlayer, 0, "CutScenesLayer");
 }
@@ -1543,6 +1556,11 @@ void MapBlockScene::createFog()
 	CommonFuncs::split(str, vec_cfg, ";");
 
 
+	if (GlobalInstance::challangeType == CH_SUPERBOSS)
+	{
+		mapIsAllOpen = true;
+		return;
+	}
 	if (vec_cfg.size() >= 2)
 	{
 		//randStartPos = atoi(vec_cfg[1].c_str());
@@ -1798,10 +1816,40 @@ void MapBlockScene::doMyStatus()
 			}
 			if (!isTask)
 			{
-				showFightingLayer(vec_enemys);
+				if (GlobalInstance::challangeType == CH_SUPERBOSS)
+				{
+					if (GlobalInstance::supperbossinfo.leftfreecount <= 0)
+					{
+						if (GlobalInstance::supperbossinfo.leftcoincount > 0)
+						{
+							HintBoxLayer* layer = HintBoxLayer::create(ResourceLang::map_lang["supperbossbuycount"], 15);
+							this->addChild(layer);
+							AnimationEffect::openAniEffect(layer);
+							isRoutingBreakOff = false;
+						}
+						else
+						{
+							MovingLabel::show(ResourceLang::map_lang["supperbosscountlimit"]);
+							isRoutingBreakOff = false;
+						}
+					}
+					else
+					{
+						showFightingLayer(vec_enemys);
+					}
+				}
+				else
+				{
+					showFightingLayer(vec_enemys);
+				}
 			}
 		}
 	}
+}
+
+void MapBlockScene::continueSupperBossFight()
+{
+	showFightingLayer(vec_enemys);
 }
 
 void MapBlockScene::createBoxRewards(MapBlock* mbolck)
@@ -2125,6 +2173,13 @@ void MapBlockScene::showFightResult(int result)
 {
 	int mycr = mycurRow*blockColCount + mycurCol;
 	MapBlock* mapblock = map_mapBlocks[mycr];
+
+	if (GlobalInstance::challangeType == CH_SUPERBOSS)
+	{
+
+		return;
+	}
+
 	if (result == 1)//胜利
 	{
 		if (Quest::getMainQuestMap(m_mapid) && Quest::getMainQuestNpc(mapblock->getPosNpcID()) && (mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS || mapblock->getPosType() == POS_NPC))
@@ -2223,6 +2278,14 @@ void MapBlockScene::showFightResult(int result)
 	}
 
 	this->scheduleOnce(schedule_selector(MapBlockScene::delayShowFightResult), 1.0f);
+}
+
+void MapBlockScene::showSuperBossLayer()
+{
+	SupperBossRankLayer* slayer = SupperBossRankLayer::create();
+	this->addChild(slayer);
+	AnimationEffect::openAniEffect(slayer);
+	isRoutingBreakOff = false;
 }
 
 void MapBlockScene::showUnlockChapter()
@@ -2757,13 +2820,13 @@ void MapBlockScene::parseMapXml(std::string mapname)
 
 							if (mb->map_eventrnd.size() == 1 && mb->map_eventrnd[mb->map_eventrnd.begin()->first] >= 100)
 							{
-							#if MAP_BET
+#if MAP_BET
 								mb->setEventIcon(mb->map_eventrnd.begin()->first);
-							#else
+#else
 								if (mb->map_eventrnd.begin()->first != POS_BET)//去掉bet
 									mb->setEventIcon(mb->map_eventrnd.begin()->first);
-							#endif
-									
+#endif
+
 							}
 						}
 						else if (ename.compare("npcid") == 0)
@@ -2796,6 +2859,8 @@ void MapBlockScene::parseMapXml(std::string mapname)
 							mdata.intPara2 = atoi(e0->GetText());
 							mdata.floatPara3 = 100.0f;
 							mb->npcs[index] = mdata;
+							if (GlobalInstance::challangeType == CH_SUPERBOSS && (postype == POS_BOSS || postype == POS_TBOSS))
+								mb->npcs[index].intPara2 = GlobalInstance::supperbossinfo.bosslv;
 						}
 						else if (ename.compare(0, 5, "msawd") == 0)
 						{

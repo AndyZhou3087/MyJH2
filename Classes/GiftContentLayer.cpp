@@ -160,6 +160,15 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 			qu = 4;
 			str = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
+		else if (t == T_EPIECE)
+		{
+			int r = GlobalInstance::getInstance()->createRandomNum(sizeof(qu4epiece)/sizeof(qu4epiece[0]));
+			resid = qu4epiece[r];
+			std::vector<std::string> vec_; 
+			vec_.push_back(resid);
+			vec_.push_back(vec_res[1]);
+			data->res[i] = vec_;
+		}
 
 		cocos2d::ui::ImageView* box = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::PLIST);
 		box->addTouchEventListener(CC_CALLBACK_2(GiftContentLayer::onResclick, this));

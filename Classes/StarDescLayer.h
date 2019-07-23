@@ -5,9 +5,10 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "GlobalInstance.h"
+#include "HttpDataSwap.h"
 USING_NS_CC;
 
-class StarDescLayer : public cocos2d::Layer
+class StarDescLayer : public cocos2d::Layer, public HTTPDataDelegateProtocol
 {
 public:
 	StarDescLayer();
@@ -31,6 +32,8 @@ private:
 	void updatelabel(float dt);
 
 	bool checkMopupHeroPower();
+
+	void onFinish(int errcode);
 private:
 	std::string m_mapid;
 	cocos2d::ui::Widget* actionbtn;
@@ -38,6 +41,8 @@ private:
 	cocos2d::ui::Text* mopupleftcountlbl;
 	cocos2d::ui::Text* j003leftcountlbl;
 	cocos2d::ui::Text* packagefoodcountlbl;
+	cocos2d::ui::Text* supperbossleftcountlbl;
+	cocos2d::ui::Text* supperbosstimelbl;
 };
 
 #endif

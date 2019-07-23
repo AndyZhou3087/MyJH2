@@ -483,6 +483,33 @@ typedef struct
 	int resetcount;
 }S_MOPUPRWDDATA;
 
+typedef struct
+{
+	int leftfreecount;
+	int leftcoincount;
+	std::string starendtime;
+	std::string bossdata;
+	std::string awdinfo;
+	int bosslv;
+	int bosshps;
+	int starthour;
+	int endhour;
+	int curhurt;
+	int totalhurt;
+}S_SUPPERBOSSINFO;
+
+typedef struct
+{
+	std::string playerid;
+	std::string nickname;
+	int hurt;
+}S_SUPPERBOSSRANDATA;
+
+typedef enum
+{
+	CH_NORMAL,
+	CH_SUPERBOSS
+}CHALLANGE_TYPE;
 
 class GlobalInstance
 {
@@ -1033,6 +1060,13 @@ public:
 	static bool isNewYearCard;
 
 	static std::string androidurl;
+
+	static S_SUPPERBOSSINFO supperbossinfo;
+
+	static int challangeType;
+
+	static std::vector<S_SUPPERBOSSRANDATA> vec_supperBossRankData;
+	
 	
 private:
 	static int refreshHeroTime;

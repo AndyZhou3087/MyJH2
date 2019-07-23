@@ -617,5 +617,15 @@
 	<s name="equipdeschint">分解装备可返还50%的强化材料（按100%强化成功计算）</s>
 	<s name="fireherodeschint">解雇侠客时会返还30%升级材料(人参)</s>
 	<s name="androidurltext">安卓版下载点击复制链接</s>
-	<s name="nofirendlyfight">打了太多次了，不想跟你打了！</s>		
+	<s name="nofirendlyfight">打了太多次了，不想跟你打了！</s>
+	<s name="supperbossleftcounttext">今日免费剩余次数：%d</s>
+	<s name="supperbosstimetext">每日%d点-%d点开放</s>
+	<s name="supperbosstabletile">排名      昵称                 伤害</s>
+	<s name="supperbossmyinfo">我的信息</s>
+	<s name="supperbosstitle">说明</s>
+	<s name="supperbosstotalhurt0">上期贡献：</s>
+	<s name="supperbosstotalhurt1">本期贡献：</s>
+	<s name="supperbossherolvlimit">至少需要一名25级以上侠客</s>
+	<s name="supperbossbuycount">今日免费次数已用完，是否花费20元宝购买一次挑战次数？</s>
+	<s name="supperbosscountlimit">今日挑战次数已用完</s>		
 </strings>
