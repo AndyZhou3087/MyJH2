@@ -1067,6 +1067,7 @@ public:
 
 	static std::vector<S_SUPPERBOSSRANDATA> vec_supperBossRankData;
 	
+	static std::string oneyuanGiftStr;
 	
 private:
 	static int refreshHeroTime;

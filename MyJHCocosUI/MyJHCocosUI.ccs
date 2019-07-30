@@ -783,6 +783,7 @@
           <Image Name="npctext_jjcg.png" />
           <Image Name="npctext_jqcg.png" />
           <Image Name="okbtn_text.png" />
+          <Image Name="oneyuangiftbtn_text.png" />
           <Image Name="onkeyread_text.png" />
           <Image Name="outtowntitle.png" />
           <Image Name="package_text.png" />
@@ -899,6 +900,7 @@
           <Image Name="text_gf2.png" />
           <Image Name="text_gf3.png" />
           <Image Name="text_notice.png" />
+          <Image Name="text_onyuangift.png" />
           <Image Name="text_sale.png" />
           <Image Name="text_unlock.png" />
           <Image Name="text_vip0.png" />
@@ -1369,6 +1371,7 @@
           <Image Name="npc_master1.png" />
           <Image Name="npc_talk.png" />
           <Image Name="npctalkframe.png" />
+          <Image Name="onyuangift.png" />
           <Image Name="p001.png" />
           <Image Name="pieceicon.png" />
           <Image Name="pn001.png" />
@@ -1733,6 +1736,8 @@
         <Image Name="storybg.jpg" />
         <Project Name="storyLayer.csd" Type="Layer" />
         <Project Name="strengthenLayer.csd" Type="Layer" />
+        <Project Name="supperbossRankNode.csd" Type="Node" />
+        <Project Name="supperBossResultLayer.csd" Type="Layer" />
         <Project Name="takeOnLayer.csd" Type="Layer" />
         <Project Name="taskDayNode.csd" Type="Node" />
         <Project Name="taskLayer.csd" Type="Layer" />
@@ -1759,8 +1764,6 @@
         <Project Name="zanLayer.csd" Type="Layer" />
         <Project Name="zanqiuNode.csd" Type="Node" />
         <Project Name="zanrankNode.csd" Type="Node" />
-        <Project Name="supperBossResultLayer.csd" Type="Layer" />
-        <Project Name="supperbossRankNode.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>

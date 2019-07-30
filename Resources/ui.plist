@@ -7451,6 +7451,17 @@
 				<key>sourceSize</key>
 				<string>{106,115}</string>
 			</dict>
+			<key>ui/onyuangift.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{509,2273},{109,109}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{109,109}</string>
+			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>

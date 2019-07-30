@@ -33,6 +33,7 @@ typedef enum
 	TIMEGIFTBTN_1,
 	TIMEGIFTBTN_2,
 	FIRSTCHARGEBTN,//首充礼包
+	ONEYUANGIFTBTN,
 	WELLBTN,//福利
 	HEROBTN,//侠客
 	RANATIONBTN,//江湖知己
@@ -70,6 +71,7 @@ private:
 	cocos2d::ui::Widget* mailredpoint;//邮件小红点
 	cocos2d::ui::Widget* heroredpoint;//侠客小红点
 	cocos2d::ui::Widget* timegiftbtn;
+	cocos2d::ui::Widget* oneyuangiftbtn;
 	cocos2d::ui::Text* timegiftlefttime;//限时礼包剩下时间
 	cocos2d::ui::Widget* firstchargebtn;
 	cocos2d::ui::ImageView* head;//头像

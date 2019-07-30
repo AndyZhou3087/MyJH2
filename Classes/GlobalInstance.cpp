@@ -191,6 +191,8 @@ int GlobalInstance::challangeType = CH_NORMAL;
 
 std::vector<S_SUPPERBOSSRANDATA> GlobalInstance::vec_supperBossRankData;
 
+std::string GlobalInstance::oneyuanGiftStr;
+
 GlobalInstance::GlobalInstance()
 {
 

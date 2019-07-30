@@ -682,6 +682,38 @@
             <PreSize X="0.1215" Y="0.0684" />
             <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
           </AbstractNodeData>
+          <AbstractNodeData Name="oneyuangiftbtn" ActionTag="-1042990870" Tag="130" IconVisible="False" LeftMargin="618.2500" RightMargin="14.2500" TopMargin="379.2500" BottomMargin="813.2500" TouchEnable="True" LeftEage="48" RightEage="48" TopEage="48" BottomEage="48" Scale9OriginX="48" Scale9OriginY="48" Scale9Width="50" Scale9Height="50" ctype="ImageViewObjectData">
+            <Size X="87.5000" Y="87.5000" />
+            <Children>
+              <AbstractNodeData Name="icon" ActionTag="-1811983163" Tag="131" IconVisible="False" LeftMargin="-10.1939" RightMargin="-11.3061" TopMargin="-12.8196" BottomMargin="-8.6804" LeftEage="35" RightEage="35" TopEage="13" BottomEage="13" Scale9OriginX="35" Scale9OriginY="13" Scale9Width="39" Scale9Height="83" ctype="ImageViewObjectData">
+                <Size X="109.0000" Y="109.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="44.3061" Y="45.8196" />
+                <Scale ScaleX="0.6000" ScaleY="0.6000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5064" Y="0.5237" />
+                <PreSize X="1.2457" Y="1.2457" />
+                <FileData Type="MarkedSubImage" Path="ui/onyuangift.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="text" ActionTag="605593536" Tag="132" IconVisible="False" LeftMargin="-23.2734" RightMargin="-30.2266" TopMargin="51.0770" BottomMargin="-5.5770" LeftEage="46" RightEage="46" TopEage="13" BottomEage="13" Scale9OriginX="46" Scale9OriginY="13" Scale9Width="49" Scale9Height="16" ctype="ImageViewObjectData">
+                <Size X="141.0000" Y="42.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="47.2266" Y="15.4230" />
+                <Scale ScaleX="0.6000" ScaleY="0.6000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5397" Y="0.1763" />
+                <PreSize X="1.6114" Y="0.4800" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/oneyuangiftbtn_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="662.0000" Y="857.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9194" Y="0.6695" />
+            <PreSize X="0.1215" Y="0.0684" />
+            <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
+          </AbstractNodeData>
           <AbstractNodeData Name="wellbtn" ActionTag="1127279575" Tag="162" IconVisible="False" LeftMargin="41.5625" RightMargin="592.4375" TopMargin="182.6650" BottomMargin="1010.3350" TouchEnable="True" LeftEage="28" RightEage="28" TopEage="28" BottomEage="28" Scale9OriginX="28" Scale9OriginY="28" Scale9Width="30" Scale9Height="31" ctype="ImageViewObjectData">
             <Size X="86.0000" Y="87.0000" />
             <Children>

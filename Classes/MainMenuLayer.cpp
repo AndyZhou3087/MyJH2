@@ -130,6 +130,13 @@ bool MainMenuLayer::init()
 			textimg->loadTexture(ResourcePath::makeTextImgPath("firstchargegiftbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			clickwidget->setVisible(false);
 		}
+		else if (i == ONEYUANGIFTBTN)
+		{
+			oneyuangiftbtn = clickwidget;
+			cocos2d::ui::ImageView* textimg = (cocos2d::ui::ImageView*)clickwidget->getChildByName("text");
+			textimg->loadTexture(ResourcePath::makeTextImgPath("oneyuangiftbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			clickwidget->setVisible(false);
+		}
 		else if (i == WELLBTN)
 		{
 			wellmorebtnnode->setPosition(clickwidget->getPosition());
@@ -264,8 +271,15 @@ void MainMenuLayer::onFinish(int code)
 				}
 			}
 		}
+
+	}
+	else
+	{
+		oneyuangiftbtn->setPositionY(tgiftbtn[0]->getPositionY());
 	}
 
+	if (GlobalInstance::oneyuanGiftStr.length() > 0)
+		oneyuangiftbtn->setVisible(true);
 	isGetVipData = false;
 
 }
@@ -499,6 +513,32 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					break;
 				}
 			}
+		}
+			break;
+		case ONEYUANGIFTBTN:
+		{
+			std::string giftname = "onyuangift";
+			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+			{
+				if (GlobalInstance::vec_shopdata[i].icon.compare(giftname) == 0)
+				{
+					std::vector<std::vector<std::string>> vec;
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(GlobalInstance::oneyuanGiftStr, vec_tmp, ";");
+					for (unsigned int j = 0; j < vec_tmp.size(); j++)
+					{
+						std::vector<std::string> vec_1;
+						CommonFuncs::split(vec_tmp[j], vec_1, "-");
+						vec.push_back(vec_1);
+					}
+
+					GlobalInstance::vec_shopdata[i].res = vec;
+					GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
+					g_mainScene->addChild(layer, 0, "GiftContentLayer");
+					AnimationEffect::openAniEffect((Layer*)layer);
+					break;
+				}
+			}	
 		}
 			break;
 		case WELLBTN:
