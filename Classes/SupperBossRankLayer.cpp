@@ -207,7 +207,7 @@ void SupperBossRankLayer::onFinish(int code)
 		{
 			if (GlobalInstance::supperbossinfo.leftfreecount > 0)
 				GlobalInstance::supperbossinfo.leftfreecount--;
-			if (GlobalInstance::supperbossinfo.leftcoincount > 0)
+			else if (GlobalInstance::supperbossinfo.leftcoincount > 0)
 				GlobalInstance::supperbossinfo.leftcoincount--;
 			getRankList(lastclicktag);
 		}

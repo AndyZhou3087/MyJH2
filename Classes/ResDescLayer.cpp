@@ -480,13 +480,13 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 					}
 					else if (m_res->getId().compare("j005") == 0)
 					{
-						if (m_res->getCount().getValue() >= 5)
+						if (m_res->getCount().getValue() >= 10)
 						{
 							std::string exchangeres[] = { "la004","la028", "la040" };
 							int r = GlobalInstance::getInstance()->createRandomNum(3);
 
-							MyRes::Add(exchangeres[r], 5);
-							MyRes::Use("j005", 5);
+							MyRes::Add(exchangeres[r], 1);
+							MyRes::Use("j005", 10);
 
 
 							std::string str = StringUtils::format(ResourceLang::map_lang["exchangej005succ"].c_str(), GlobalInstance::map_AllResources[exchangeres[r]].name.c_str());

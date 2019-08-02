@@ -354,7 +354,7 @@ void ZanLayer::onFinish(int code)
 		}
 		else if (httptag == 4)
 		{
-			MovingLabel::show(ResourceLang::map_lang["praisesucc"]);
+			MovingLabel::show(ResourceLang::map_lang["exchangej002succ"]);
 			MyRes::Add("j001", 10);
 
 			std::string j002countstr = StringUtils::format("%d", GlobalInstance::myj002count.getValue());
