@@ -444,7 +444,7 @@
       <FilePathData Path="text_zh_cn/subosstagtext1_1.png" />
       <FilePathData Path="text_zh_cn/ruleinfo_text.png" />
       <FilePathData Path="text_zh_cn/oneyuangiftbtn_text.png" />
-      <FilePathData Path="text_zh_cn/text_onyuangift.png" />
+      <FilePathData Path="text_zh_cn/text_oneyuangift.png" />
       <FilePathData Path="text_zh_cn/quupbtn_text.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />

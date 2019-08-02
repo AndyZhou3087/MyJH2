@@ -1210,9 +1210,9 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 				{
 					GlobalInstance::totalPayAmout.setValue(atoi(getJsonValueStr(doc["payamount"]).c_str())/100);
 				}
-				else if (strid.compare("oneyuanGiftStr") == 0)
+				else if (strid.compare("oneyuangift") == 0)
 				{
-					GlobalInstance::oneyuanGiftStr = getJsonValueStr(doc["oneyuanGiftStr"]);
+					GlobalInstance::oneyuanGiftStr = getJsonValueStr(doc["oneyuangift"]);
 				}
 				else if (strid.compare("newmail") == 0)
 				{

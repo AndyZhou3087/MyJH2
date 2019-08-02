@@ -313,6 +313,10 @@ void ShopLayer::paySucc()
 			if (giftlayer != NULL)
 				AnimationEffect::closeAniEffect((Layer*)giftlayer);
 		}
+		else if (iconname.compare("oneyuangift") == 0)
+		{
+			GlobalInstance::oneyuanGiftStr = "";
+		}
 	}
 	else if (type == VIP)
 	{

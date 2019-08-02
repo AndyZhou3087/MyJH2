@@ -362,6 +362,11 @@ void MainMenuLayer::updateUI(float dt)
 		firstchargebtn->setVisible(false);
 	}
 	heroredpoint->setVisible(GlobalInstance::isHasNewhero);
+
+	if (GlobalInstance::oneyuanGiftStr.length() > 0)
+		oneyuangiftbtn->setVisible(true);
+	else
+		oneyuangiftbtn->setVisible(false);
 }
 
 void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -517,7 +522,7 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			break;
 		case ONEYUANGIFTBTN:
 		{
-			std::string giftname = "onyuangift";
+			std::string giftname = "oneyuangift";
 			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
 			{
 				if (GlobalInstance::vec_shopdata[i].icon.compare(giftname) == 0)

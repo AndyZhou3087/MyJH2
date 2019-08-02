@@ -25,24 +25,5 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="starDescLayer.csd" />
-          <FilePathData Path="winRewardLayer.csd" />
-          <FilePathData Path="supperBossResultLayer.csd" />
-          <FilePathData Path="zanLayer.csd" />
-          <FilePathData Path="zanqiuNode.csd" />
-          <FilePathData Path="zanrankNode.csd" />
-          <FilePathData Path="supperbossRankNode.csd" />
-          <FilePathData Path="matchMainLayer.csd" />
-          <FilePathData Path="matchRuleLayer.csd" />
-          <FilePathData Path="ui.csi" />
-          <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="resDescLayer.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="resDescLayer.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

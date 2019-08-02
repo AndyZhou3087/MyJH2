@@ -901,7 +901,7 @@
           <Image Name="text_gf2.png" />
           <Image Name="text_gf3.png" />
           <Image Name="text_notice.png" />
-          <Image Name="text_onyuangift.png" />
+          <Image Name="text_oneyuangift.png" />
           <Image Name="text_sale.png" />
           <Image Name="text_unlock.png" />
           <Image Name="text_vip0.png" />
@@ -1372,7 +1372,7 @@
           <Image Name="npc_master1.png" />
           <Image Name="npc_talk.png" />
           <Image Name="npctalkframe.png" />
-          <Image Name="onyuangift.png" />
+          <Image Name="oneyuangift.png" />
           <Image Name="p001.png" />
           <Image Name="pieceicon.png" />
           <Image Name="pn001.png" />

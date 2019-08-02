@@ -693,7 +693,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5064" Y="0.5237" />
                 <PreSize X="1.2457" Y="1.2457" />
-                <FileData Type="MarkedSubImage" Path="ui/onyuangift.png" Plist="ui.plist" />
+                <FileData Type="MarkedSubImage" Path="ui/oneyuangift.png" Plist="ui.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="text" ActionTag="605593536" Tag="132" IconVisible="False" LeftMargin="-23.2734" RightMargin="-30.2266" TopMargin="51.0770" BottomMargin="-5.5770" LeftEage="46" RightEage="46" TopEage="13" BottomEage="13" Scale9OriginX="46" Scale9OriginY="13" Scale9Width="49" Scale9Height="16" ctype="ImageViewObjectData">
                 <Size X="141.0000" Y="42.0000" />
