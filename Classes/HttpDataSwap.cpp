@@ -1214,6 +1214,11 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 				{
 					GlobalInstance::oneyuanGiftStr = getJsonValueStr(doc["oneyuanGiftStr"]);
 				}
+				else if (strid.compare("newmail") == 0)
+				{
+					GlobalInstance::isHasNewmail = atoi(getJsonValueStr(doc["newmail"]).c_str()) == 1 ? true : false;
+				}
+
 				else if (strid.compare(0, 3, "vip") == 0)
 				{
 					int val = iter->value.GetInt();
@@ -2030,6 +2035,7 @@ void HttpDataSwap::httpPraiseRankListCB(std::string retdata, int code, std::stri
 			if (doc.HasMember("leftcount"))
 			{
 				rapidjson::Value& myc = doc["leftcount"];
+
 				GlobalInstance::myj002count.setValue(myc.GetInt());
 			}
 

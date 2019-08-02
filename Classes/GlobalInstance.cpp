@@ -193,6 +193,8 @@ std::vector<S_SUPPERBOSSRANDATA> GlobalInstance::vec_supperBossRankData;
 
 std::string GlobalInstance::oneyuanGiftStr;
 
+bool GlobalInstance::isHasNewmail = false;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -487,6 +489,7 @@ void GlobalInstance::loadInitData()
 	GlobalInstance::supperbossinfo.leftcoincount = 0;
 	GlobalInstance::supperbossinfo.leftfreecount = 0;
 	GlobalInstance::supperbossinfo.bosshps = 1;
+	GlobalInstance::isHasNewmail = false;
 }
 
 void GlobalInstance::saveMyHeros()
@@ -1802,6 +1805,9 @@ void GlobalInstance::loadMyResData()
 
 			CommonFuncs::split(vec_tmp[i], vec_one, "-");
 			std::string rid = vec_one[0];
+
+			if (rid.compare("j002") == 0)
+				continue;
 
 			int m = -1;
 			for (int k = 0; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)

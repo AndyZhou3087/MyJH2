@@ -220,7 +220,7 @@ void StoreHouseLayer::updateContent(int category)
 			}
 		}
 
-		Label *namelbl = Label::createWithTTF(namestr, FONT_NAME, 23);
+		Label *namelbl = Label::createWithTTF(namestr, FONT_NAME, 21);
 		namelbl->setColor(Color3B(34, 74,79));
 		namelbl->setPosition(Vec2(boxItem->getContentSize().width / 2, -10));
 		boxItem->addChild(namelbl);

@@ -245,6 +245,33 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="quupbtn" ActionTag="-21538980" VisibleForFrame="False" Tag="401" IconVisible="False" LeftMargin="271.0009" RightMargin="244.9991" TopMargin="899.6400" BottomMargin="296.3600" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="204.0000" Y="84.0000" />
+            <Children>
+              <AbstractNodeData Name="text" ActionTag="2107826116" Tag="402" IconVisible="False" LeftMargin="62.0216" RightMargin="62.9784" TopMargin="20.7404" BottomMargin="25.2596" LeftEage="25" RightEage="25" TopEage="13" BottomEage="13" Scale9OriginX="25" Scale9OriginY="13" Scale9Width="29" Scale9Height="12" ctype="ImageViewObjectData">
+                <Size X="79.0000" Y="38.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="101.5216" Y="44.2596" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4977" Y="0.5269" />
+                <PreSize X="0.3873" Y="0.4524" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/quupbtn_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="373.0009" Y="338.3600" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5181" Y="0.2643" />
+            <PreSize X="0.2833" Y="0.0656" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
           <AbstractNodeData Name="addtext_2" ActionTag="-1875367190" Tag="221" IconVisible="False" LeftMargin="441.8550" RightMargin="220.1450" TopMargin="735.7152" BottomMargin="518.2848" FontSize="23" LabelText="(-15)" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="58.0000" Y="26.0000" />
             <AnchorPoint ScaleY="0.5000" />

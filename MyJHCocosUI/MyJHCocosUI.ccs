@@ -788,6 +788,7 @@
           <Image Name="outtowntitle.png" />
           <Image Name="package_text.png" />
           <Image Name="powericon_text.png" />
+          <Image Name="quupbtn_text.png" />
           <Image Name="ranking_text.png" />
           <Image Name="ranktitle_text.png" />
           <Image Name="rebatgetbtn_text.png" />
@@ -1635,6 +1636,7 @@
         <Project Name="consumeResActionLayer.csd" Type="Layer" />
         <Project Name="equipDescLayer.csd" Type="Layer" />
         <Project Name="equipLibraryInfoLayer.csd" Type="Layer" />
+        <Project Name="equipquupLayer.csd" Type="Layer" />
         <Project Name="errorHintLayer.csd" Type="Layer" />
         <Project Name="eventBusinessLayer.csd" Type="Layer" />
         <Project Name="fighterAttrLayer.csd" Type="Layer" />

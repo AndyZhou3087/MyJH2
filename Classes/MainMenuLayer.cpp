@@ -325,7 +325,7 @@ void MainMenuLayer::updateUI(float dt)
 		}
 	}
 
-	mailredpoint->setVisible(showmessageredpoint);
+	mailredpoint->setVisible(showmessageredpoint || GlobalInstance::isHasNewmail);
 
 	//月卡更新
 	if (GlobalInstance::map_buyVipDays["vip3"] > 0)

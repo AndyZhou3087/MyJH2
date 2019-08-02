@@ -22,6 +22,7 @@
 #include "SetInStoneLayer.h"
 #include "SelectEquipLayer.h"
 #include "Quest.h"
+#include "EquipQuUpLayer.h"
 
 USING_NS_CC;
 
@@ -325,11 +326,51 @@ bool EquipDescLayer::init(ResBase* res, int fromwhere, Hero* herodata)
 	{
 		if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
 		{
-			actionbtn->setPositionX(240);
-			lvbtn->setVisible(true);
-			lvbtn->setTag(100);
-			lvbtntxt->loadTexture(ResourcePath::makeTextImgPath("strenthbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-			lvbtntxt->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("strenthbtn_text", langtype))->getContentSize());
+			bool iscanquup = false;
+
+			for (int i = 0; i < sizeof(qu4epiece) / sizeof(qu4epiece[0]); i++)
+			{
+				if (qu4epiece[i].find(res->getId()) != std::string::npos)
+				{
+					if (res->getQU().getValue() < 4)
+						iscanquup = true;
+				}
+			}
+			if (!iscanquup)
+			{
+				actionbtn->setPositionX(240);
+				lvbtn->setVisible(true);
+				lvbtn->setTag(100);
+				lvbtntxt->loadTexture(ResourcePath::makeTextImgPath("strenthbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+				lvbtntxt->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("strenthbtn_text", langtype))->getContentSize());
+			}
+			else
+			{
+				actionbtn->setPositionX(175);
+				actionbtn->setContentSize(Size(165, 72));
+				actionbtn->getChildByName("text")->setPosition(Vec2(actionbtn->getContentSize().width / 2, actionbtn->getContentSize().height / 2));
+				lvbtn->setContentSize(Size(165, 72));
+				lvbtn->setVisible(true);
+				lvbtn->setPositionX(360);
+				Node* redpoint = lvbtn->getChildByName("redpoint");
+				redpoint->setPosition(Vec2(lvbtn->getContentSize().width - redpoint->getContentSize().width / 2 - 5, lvbtn->getContentSize().height - redpoint->getContentSize().height / 2));
+				lvbtn->setTag(100);
+				lvbtntxt->loadTexture(ResourcePath::makeTextImgPath("strenthbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+				lvbtntxt->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("strenthbtn_text", langtype))->getContentSize());
+				lvbtntxt->setPosition(Vec2(lvbtn->getContentSize().width / 2, lvbtn->getContentSize().height / 2));
+
+				cocos2d::ui::Widget* quupbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("quupbtn");
+				quupbtn->addTouchEventListener(CC_CALLBACK_2(EquipDescLayer::onBtnClick, this));
+				quupbtn->setTag(200);
+				quupbtn->setPositionX(550);
+				quupbtn->setContentSize(Size(165, 72));
+				quupbtn->setVisible(true);
+				cocos2d::ui::ImageView* quupbtntxt = (cocos2d::ui::ImageView*)quupbtn->getChildByName("text");
+				quupbtntxt->ignoreContentAdaptWithSize(true);
+				quupbtntxt->loadTexture(ResourcePath::makeTextImgPath("quupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+				quupbtntxt->setPosition(Vec2(quupbtn->getContentSize().width / 2, quupbtn->getContentSize().height / 2));
+			}
+		
 		}
 		else if (res->getType() >= T_WG && res->getType() <= T_NG)
 		{
@@ -747,6 +788,12 @@ void EquipDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			StrengthenLayer* sLayer = StrengthenLayer::create((Equip*)m_res,1);
 			this->addChild(sLayer);
 			AnimationEffect::openAniEffect((Layer*)sLayer);
+		}
+		else if (tag == 200)
+		{
+			EquipQuUpLayer* sLayer = EquipQuUpLayer::create((Equip*)m_res);
+			this->addChild(sLayer);
+			AnimationEffect::openAniEffect(sLayer);
 		}
 		else if (tag == 1000)
 		{

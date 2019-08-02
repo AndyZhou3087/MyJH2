@@ -13,6 +13,7 @@
 #include "EquipDescLayer.h"
 #include "DataSave.h"
 #include "ZanLayer.h"
+#include "ExchangePieceLayer.h"
 
 USING_NS_CC;
 
@@ -144,8 +145,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 
 		namelbl->setString(GlobalInstance::map_AllResources[awdres].name);
 
-		str = StringUtils::format(ResourceLang::map_lang["rescount"].c_str(), count);
-		coutlbl->setString(str);
+		updateCountlbl();
 
 		MyRes::Use(res->getId(), 1, MYSTORAGE);
 
@@ -212,7 +212,7 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 		}
 		else if (res->getType() == T_FRAGMENT)
 		{
-			if (res->getId().compare("j002") == 0)
+			if (res->getId().compare("j002") == 0 || res->getId().compare("j005") == 0)
 			{
 				btntextstr = "exchangebtn_text";
 			}
@@ -226,6 +226,16 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 		{
 			btntextstr = "composebtn_text";
 			status = S_CAN_USE;
+
+			actionbtn->setPositionX(490);
+			cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
+
+			cocos2d::ui::ImageView* closebtntext = (cocos2d::ui::ImageView*)closebtn->getChildByName("text");
+			closebtntext->ignoreContentAdaptWithSize(true);
+			closebtntext->loadTexture(ResourcePath::makeTextImgPath("exchangebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			closebtn->addTouchEventListener(CC_CALLBACK_2(ResDescLayer::onBtnClick, this));
+			closebtn->setTag(1);
+			closebtn->setVisible(true);
 		}
 		else
 		{
@@ -280,146 +290,229 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		if (status == S_CAN_DECOMPOSE)
+		Node* clicknode = (Node*)pSender;
+		int tag = clicknode->getTag();
+
+		if (tag == 1)
 		{
-			StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
-			if (storelayer != NULL)
+			if (m_res->getCount().getValue() < 5)
 			{
-				storelayer->decomposeCheck(m_res);
+				MovingLabel::show(ResourceLang::map_lang["canntexchangepiece"]);
+			}
+			else
+			{
+				ExchangePieceLayer* layer = ExchangePieceLayer::create(m_res->getId(), 5);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
 			}
 		}
-		else if (status == S_CAN_USE)
+		else
 		{
-			if (m_res->getType() == T_TLMED)
+
+			if (status == S_CAN_DECOMPOSE)
 			{
-				int count = 0;
-				for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
-				{
-					Hero* hero = GlobalInstance::vec_myHeros[i];
-					if (hero->getPower().getValue() >= 100)
-					{
-						count++;
-					}
-					else if (hero->getPower().getValue() > 50)
-					{
-						DynamicValueInt dal;
-						dal.setValue(100);
-						hero->setPower(dal);
-					}
-					else
-					{
-						DynamicValueInt dal;
-						dal.setValue(hero->getPower().getValue() + 50);
-						hero->setPower(dal);
-					}
-				}
-				if (count == GlobalInstance::vec_myHeros.size())
-				{
-					MovingLabel::show(ResourceLang::map_lang["powerlimit"]);
-					return;
-				}
-				MyRes::Use("p001");
-
-				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
-				if (g_mainScene != NULL && storelayer != NULL)
-					storelayer->updateUI();
-			}
-			else if (m_res->getType() == T_BOX)
-			{
-				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
-
-				std::vector<MSGAWDSDATA> vec_rewards;
-
-				int r = GlobalInstance::getInstance()->createRandomNum(1000);
-
-				int index = 0;
-				for (unsigned int i = 0; i < GlobalInstance::map_TBoxs[m_res->getId()].vec_rnd.size(); i++)
-				{
-					if (r < GlobalInstance::map_TBoxs[m_res->getId()].vec_rnd[i])
-					{
-						index = i;
-						break;
-					}
-				}
-
-				std::string awd = GlobalInstance::map_TBoxs[m_res->getId()].vec_awds[index];
-				std::vector<std::string> vec_tmp;
-				CommonFuncs::split(awd, vec_tmp, "-");
-
-				int qu = atoi(vec_tmp[2].c_str());
-
-				MSGAWDSDATA wdata;
-				wdata.rid = vec_tmp[0];
-				wdata.count = atoi(vec_tmp[1].c_str());
-				wdata.qu = qu;
-				vec_rewards.push_back(wdata);
-				RewardLayer* layer = RewardLayer::create(vec_rewards);
-				storelayer->addChild(layer);
-				AnimationEffect::openAniEffect(layer);
-
-				MyRes::Use(m_res->getId());
-
-				if (g_mainScene != NULL && storelayer != NULL)
-					storelayer->updateUI();
-			}
-			//else if (m_res->getType() == T_HEROCARD)
-			//{
-			//	Hero* myhero = new Hero();
-			//	myhero->generate();
-			//	myhero->setPotential(3);
-			//	myhero->setState(HS_OWNED);
-			//	GlobalInstance::vec_myHeros.push_back(myhero);
-			//	GlobalInstance::getInstance()->saveMyHeros();
-			//	MyRes::Use(m_res->getId());
-			//	Layer* layer = HeroAttrLayer::create(myhero, 0, 2);
-			//	layer->setName("heroattrlayer");
-			//	g_mainScene->addChild(layer, 0, GlobalInstance::vec_myHeros.size() - 1);
-			//	AnimationEffect::openAniEffect((Layer*)layer);
-
-			//	StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
-			//	if (storelayer != NULL)
-			//		storelayer->updateUI();
-			//}
-			else if (m_res->getType() == T_ARMCARD)
-			{
-				MyRes::Use(m_res->getId());
-				//品质概率
-				int qu = 3;
-				int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
-				std::vector<std::string> vec_equipres;
-
-				std::map<std::string, EquipData>::iterator it;
-
-				for (it = GlobalInstance::map_Equip.begin(); it != GlobalInstance::map_Equip.end(); it++)
-				{
-					if (GlobalInstance::map_Equip[it->first].type < 100)
-						vec_equipres.push_back(it->first);
-				}
-
-				int r = GlobalInstance::getInstance()->createRandomNum(vec_equipres.size());
-				
-				ResBase* retres = MyRes::Add(vec_equipres[r], 1, MYSTORAGE, qu, stc);
-				std::string resstr = StringUtils::format(ResourceLang::map_lang["resmname"].c_str(), GlobalInstance::map_AllResources[vec_equipres[r]].name.c_str());
-				std::string descstr = StringUtils::format("%s%s%s%s", ResourceLang::map_lang["useequipcardhint"].c_str(), resstr.c_str(), ResourceLang::map_lang["potentialtext"].c_str(), ResourceLang::map_lang["potential_3"].c_str());
-				MovingLabel::show(descstr);
-
 				StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
 				if (storelayer != NULL)
 				{
-					EquipDescLayer* layer = EquipDescLayer::create(retres, 1);
-					storelayer->addChild(layer);
-					AnimationEffect::openAniEffect(layer);
-					storelayer->updateUI();
+					storelayer->decomposeCheck(m_res);
 				}
 			}
-			else if (m_res->getType() == T_FRAGMENT)
+			else if (status == S_CAN_USE)
 			{
-				if (m_res->getId().compare("j001") == 0)
+				if (m_res->getType() == T_TLMED)
 				{
-					if (m_res->getCount().getValue() >= 100)
+					int count = 0;
+					for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
 					{
-						MyRes::Add("u002");
-						MyRes::Use("j001", 100);
+						Hero* hero = GlobalInstance::vec_myHeros[i];
+						if (hero->getPower().getValue() >= 100)
+						{
+							count++;
+						}
+						else if (hero->getPower().getValue() > 50)
+						{
+							DynamicValueInt dal;
+							dal.setValue(100);
+							hero->setPower(dal);
+						}
+						else
+						{
+							DynamicValueInt dal;
+							dal.setValue(hero->getPower().getValue() + 50);
+							hero->setPower(dal);
+						}
+					}
+					if (count == GlobalInstance::vec_myHeros.size())
+					{
+						MovingLabel::show(ResourceLang::map_lang["powerlimit"]);
+						return;
+					}
+					MyRes::Use("p001");
+
+					StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+					if (g_mainScene != NULL && storelayer != NULL)
+						storelayer->updateUI();
+				}
+				else if (m_res->getType() == T_BOX)
+				{
+					StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+
+					std::vector<MSGAWDSDATA> vec_rewards;
+
+					int r = GlobalInstance::getInstance()->createRandomNum(1000);
+
+					int index = 0;
+					for (unsigned int i = 0; i < GlobalInstance::map_TBoxs[m_res->getId()].vec_rnd.size(); i++)
+					{
+						if (r < GlobalInstance::map_TBoxs[m_res->getId()].vec_rnd[i])
+						{
+							index = i;
+							break;
+						}
+					}
+
+					std::string awd = GlobalInstance::map_TBoxs[m_res->getId()].vec_awds[index];
+					std::vector<std::string> vec_tmp;
+					CommonFuncs::split(awd, vec_tmp, "-");
+
+					int qu = atoi(vec_tmp[2].c_str());
+
+					MSGAWDSDATA wdata;
+					wdata.rid = vec_tmp[0];
+					wdata.count = atoi(vec_tmp[1].c_str());
+					wdata.qu = qu;
+					vec_rewards.push_back(wdata);
+					RewardLayer* layer = RewardLayer::create(vec_rewards);
+					storelayer->addChild(layer);
+					AnimationEffect::openAniEffect(layer);
+
+					MyRes::Use(m_res->getId());
+
+					if (g_mainScene != NULL && storelayer != NULL)
+						storelayer->updateUI();
+				}
+				//else if (m_res->getType() == T_HEROCARD)
+				//{
+				//	Hero* myhero = new Hero();
+				//	myhero->generate();
+				//	myhero->setPotential(3);
+				//	myhero->setState(HS_OWNED);
+				//	GlobalInstance::vec_myHeros.push_back(myhero);
+				//	GlobalInstance::getInstance()->saveMyHeros();
+				//	MyRes::Use(m_res->getId());
+				//	Layer* layer = HeroAttrLayer::create(myhero, 0, 2);
+				//	layer->setName("heroattrlayer");
+				//	g_mainScene->addChild(layer, 0, GlobalInstance::vec_myHeros.size() - 1);
+				//	AnimationEffect::openAniEffect((Layer*)layer);
+
+				//	StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+				//	if (storelayer != NULL)
+				//		storelayer->updateUI();
+				//}
+				else if (m_res->getType() == T_ARMCARD)
+				{
+					MyRes::Use(m_res->getId());
+					//品质概率
+					int qu = 3;
+					int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
+					std::vector<std::string> vec_equipres;
+
+					std::map<std::string, EquipData>::iterator it;
+
+					for (it = GlobalInstance::map_Equip.begin(); it != GlobalInstance::map_Equip.end(); it++)
+					{
+						if (GlobalInstance::map_Equip[it->first].type < 100)
+							vec_equipres.push_back(it->first);
+					}
+
+					int r = GlobalInstance::getInstance()->createRandomNum(vec_equipres.size());
+
+					ResBase* retres = MyRes::Add(vec_equipres[r], 1, MYSTORAGE, qu, stc);
+					std::string resstr = StringUtils::format(ResourceLang::map_lang["resmname"].c_str(), GlobalInstance::map_AllResources[vec_equipres[r]].name.c_str());
+					std::string descstr = StringUtils::format("%s%s%s%s", ResourceLang::map_lang["useequipcardhint"].c_str(), resstr.c_str(), ResourceLang::map_lang["potentialtext"].c_str(), ResourceLang::map_lang["potential_3"].c_str());
+					MovingLabel::show(descstr);
+
+					StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+					if (storelayer != NULL)
+					{
+						EquipDescLayer* layer = EquipDescLayer::create(retres, 1);
+						storelayer->addChild(layer);
+						AnimationEffect::openAniEffect(layer);
+						storelayer->updateUI();
+					}
+				}
+				else if (m_res->getType() == T_FRAGMENT)
+				{
+					if (m_res->getId().compare("j001") == 0)
+					{
+						if (m_res->getCount().getValue() >= 100)
+						{
+							MyRes::Add("u002");
+							MyRes::Use("j001", 100);
+							StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+							storelayer->updateUI();
+						}
+						else
+						{
+							std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources[m_res->getId()].name.c_str());
+							MovingLabel::show(str);
+							return;
+						}
+					}
+					else if (m_res->getId().compare("j002") == 0)
+					{
+						if (m_res->getCount().getValue() >= 10)
+						{
+							DynamicValueInt dvcount;
+							dvcount.setValue(m_res->getCount().getValue() - 10);
+							m_res->setCount(dvcount);
+
+							ZanLayer* zanlayer = (ZanLayer*)this->getParent();
+							zanlayer->exchange(10);
+
+							updateCountlbl();
+							return;
+						}
+						else
+						{
+							MovingLabel::show(ResourceLang::map_lang["canntexchangepaisecoin"]);
+						}
+					}
+					else if (m_res->getId().compare("j005") == 0)
+					{
+						if (m_res->getCount().getValue() >= 5)
+						{
+							std::string exchangeres[] = { "la004","la028", "la040" };
+							int r = GlobalInstance::getInstance()->createRandomNum(3);
+
+							MyRes::Add(exchangeres[r], 5);
+							MyRes::Use("j005", 5);
+
+
+							std::string str = StringUtils::format(ResourceLang::map_lang["exchangej005succ"].c_str(), GlobalInstance::map_AllResources[exchangeres[r]].name.c_str());
+							MovingLabel::show(str);
+
+							StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
+							storelayer->updateUI();
+
+							updateCountlbl();
+
+							return;
+						}
+						else
+						{
+							MovingLabel::show(ResourceLang::map_lang["canntexchangej005"]);
+						}
+					}
+				}
+				else if (m_res->getType() == T_EPIECE)
+				{
+					if (m_res->getCount().getValue() >= 50)
+					{
+						int qu = 4;
+						int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
+						MyRes::Add(m_res->getId().substr(1), 1, MYSTORAGE, qu, stc);
+						MyRes::Use(m_res->getId(), 50);
 						StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
 						storelayer->updateUI();
 					}
@@ -430,51 +523,17 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 						return;
 					}
 				}
-				else if (m_res->getId().compare("j002") == 0)
-				{
-					if (m_res->getCount().getValue() >= 10)
-					{
-						DynamicValueInt dvcount;
-						dvcount.setValue(m_res->getCount().getValue() - 10);
-						m_res->setCount(dvcount);
-						int j002count = MyRes::getMyResCount("j002");
-						MyRes::Use("j002", j002count >= 10 ? 10:j002count);
-
-						std::string str = StringUtils::format(ResourceLang::map_lang["rescount"].c_str(), m_res->getCount().getValue());
-						coutlbl->setString(str);
-
-						ZanLayer* zanlayer = (ZanLayer*)this->getParent();
-						zanlayer->exchange(10);
-						return;
-					}
-					else
-					{
-						MovingLabel::show(ResourceLang::map_lang["canntexchangepaisecoin"]);
-					}
-				}
 			}
-			else if (m_res->getType() == T_EPIECE)
-			{
-				if (m_res->getCount().getValue() >= 50)
-				{
-					int qu = 4;
-					int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
-					MyRes::Add(m_res->getId().substr(1), 1, MYSTORAGE, qu, stc);
-					MyRes::Use(m_res->getId(), 50);
-					StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
-					storelayer->updateUI();
-				}
-				else
-				{
-					std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources[m_res->getId()].name.c_str());
-					MovingLabel::show(str);
-					return;
-				}
-			}
+
+			AnimationEffect::closeAniEffect((Layer*)this);
 		}
-
-		AnimationEffect::closeAniEffect((Layer*)this);
 	}
+}
+
+void ResDescLayer::updateCountlbl()
+{
+	std::string str = StringUtils::format(ResourceLang::map_lang["rescount"].c_str(), m_res->getCount().getValue());
+	coutlbl->setString(str);
 }
 
 void ResDescLayer::onExit()

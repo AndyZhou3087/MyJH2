@@ -592,6 +592,10 @@
 	<s name="nopraisehint">点赞券不足！</s>
 	<s name="canntexchangepaisecoin">集满10个赞币才可以兑换！</s>
 	<s name="exchangej002succ">成功兑换10个红侠招募券碎片！</s>
+	<s name="canntexchangej005">青龙券5个起兑！</s>
+	<s name="canntexchangepiece">碎片5个起兑！</s>
+	<s name="exchangepiecesucc">成功兑换「%s」x1！</s>	
+	<s name="exchangej005succ">成功兑换「%s」x5！</s>	
 	<s name="zanruletitle">点赞规则</s>
 	<s name="zanweektext">本周获得</s>
 	<s name="zanexchangetext">可兑换</s>	
@@ -627,5 +631,6 @@
 	<s name="supperbosstotalhurt1">本期贡献：</s>
 	<s name="supperbossherolvlimit">至少需要一名25级以上侠客</s>
 	<s name="supperbossbuycount">今日免费次数已用完，是否花费20元宝购买一次挑战次数？</s>
-	<s name="supperbosscountlimit">今日挑战次数已用完</s>		
+	<s name="supperbosscountlimit">今日挑战次数已用完</s>
+	<s name="quuptitle">升阶装备</s>	
 </strings>

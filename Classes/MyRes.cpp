@@ -54,6 +54,31 @@ int MyRes::getEquipableCount(std::string resid, int inwhere)
 	return count;
 }
 
+int MyRes::getEquipableCountByQU(std::string resid, int qu, int inwhere)
+{
+	int count = 0;
+	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
+	{
+		if (vec_MyResources[i]->getWhere() == inwhere && vec_MyResources[i] ->getQU().getValue() == qu && vec_MyResources[i]->getId().compare(resid) == 0)
+		{
+			count += vec_MyResources[i]->getCount().getValue();
+		}
+	}
+	return count;
+}
+
+ResBase* MyRes::getEquipableByQU(std::string resid, int qu, int inwhere)
+{
+	for (unsigned int i = 0; i < vec_MyResources.size(); i++)
+	{
+		if (vec_MyResources[i]->getId().compare(resid) == 0 && vec_MyResources[i]->getQU().getValue() == qu && vec_MyResources[i]->getWhere() == inwhere)
+		{
+			return vec_MyResources[i];
+		}
+	}
+	return NULL;
+}
+
 int MyRes::getMyPackageCount()
 {
 	int count = 0;

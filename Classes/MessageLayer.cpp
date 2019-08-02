@@ -17,7 +17,17 @@ MessageLayer::MessageLayer()
 
 MessageLayer::~MessageLayer()
 {
-	
+	GlobalInstance::isHasNewmail = false;
+	for (unsigned int i = 0; i < GlobalInstance::vec_messsages.size(); i++)
+	{
+		int type = GlobalInstance::vec_messsages[i].type;
+		int s = GlobalInstance::vec_messsages[i].status;
+		if (s < 1)
+		{
+			GlobalInstance::isHasNewmail = true;
+			break;
+		}
+	}
 }
 
 

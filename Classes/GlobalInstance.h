@@ -1068,6 +1068,8 @@ public:
 	static std::vector<S_SUPPERBOSSRANDATA> vec_supperBossRankData;
 	
 	static std::string oneyuanGiftStr;
+
+	static bool isHasNewmail;
 	
 private:
 	static int refreshHeroTime;

@@ -38,6 +38,10 @@ public:
 	//获取同一种装备和功法的个数
 	static int getEquipableCount(std::string resid, int inwhere = MYSTORAGE);
 
+	static int getEquipableCountByQU(std::string resid, int qu, int inwhere = MYSTORAGE);
+
+	static ResBase* getEquipableByQU(std::string resid, int qu, int inwhere = MYSTORAGE);
+
 	static void removeSivlerAndCoin();
 
 	static void deleteAllRes();

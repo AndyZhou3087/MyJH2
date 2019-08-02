@@ -99,12 +99,17 @@ bool MessageDescLayer::init(int index)
 					std::vector<std::string> one_str;
 					CommonFuncs::split(vec_str[n], one_str, "-");
 
-					MSGAWDSDATA adata;
-					adata.rid = one_str[0];
-					adata.count = atoi(one_str[1].c_str());
-					adata.qu = atoi(one_str[2].c_str());
-					if (GlobalInstance::map_AllResources.find(adata.rid) != GlobalInstance::map_AllResources.end())
-						awdslist.push_back(adata);
+					if (one_str.size() > 1)
+					{
+						MSGAWDSDATA adata;
+						adata.rid = one_str[0];
+						adata.count = atoi(one_str[1].c_str());
+						if (one_str.size() > 2)
+							adata.qu = atoi(one_str[2].c_str());
+
+						if (GlobalInstance::map_AllResources.find(adata.rid) != GlobalInstance::map_AllResources.end())
+							awdslist.push_back(adata);
+					}
 				}
 			}
 		}
