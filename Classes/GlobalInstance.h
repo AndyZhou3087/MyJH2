@@ -491,7 +491,9 @@ typedef struct
 	std::string bossdata;
 	std::string awdinfo;
 	int bosslv;
-	int bosshps;
+	int bossmaxhp;
+	float bossdodge;
+	int bosslefthp;
 	int starthour;
 	int endhour;
 	int curhurt;

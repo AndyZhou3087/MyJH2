@@ -51,13 +51,15 @@ float Npc::getDf()
 float Npc::getMaxHp()
 {
 	float npcmaxhp = GlobalInstance::map_NpcAttrData[m_vocation].vec_maxhp[m_lv] * POTENTIAL_BNS[m_potential];
-
-	return npcmaxhp * GlobalInstance::supperbossinfo.bosshps;
+	if (GlobalInstance::challangeType == CH_SUPERBOSS)
+		npcmaxhp = GlobalInstance::supperbossinfo.bossmaxhp;
+	return npcmaxhp;
 }
 float Npc::getAtkSpeed()
 {
 	float npcatkspeed = GlobalInstance::map_NpcAttrData[m_vocation].vec_speed[m_lv] * POTENTIAL_BNS[m_potential];
-
+	if (npcatkspeed > 3.0f)
+		npcatkspeed = 3.0f;
 	return npcatkspeed;
 }
 float Npc::getCrit()
@@ -70,6 +72,11 @@ float Npc::getDodge()
 {
 	float npcdodge = GlobalInstance::map_NpcAttrData[m_vocation].vec_avoid[m_lv] * POTENTIAL_BNS[m_potential];
 
+	if (GlobalInstance::challangeType == CH_SUPERBOSS)
+		npcdodge = GlobalInstance::supperbossinfo.bossdodge;
+
+	if (npcdodge > 48.0f)
+		npcdodge = 48.0f;
 	return npcdodge;
 }
 

@@ -1818,6 +1818,12 @@ void MapBlockScene::doMyStatus()
 			{
 				if (GlobalInstance::challangeType == CH_SUPERBOSS)
 				{
+
+					if (GlobalInstance::supperbossinfo.bosslefthp <= 0)
+					{
+						MovingLabel::show(ResourceLang::map_lang["supperbossnohp"]);
+						return;
+					}
 					if (GlobalInstance::supperbossinfo.leftfreecount <= 0)
 					{
 						if (GlobalInstance::supperbossinfo.leftcoincount > 0)
@@ -2146,7 +2152,11 @@ void MapBlockScene::creatNpcOrBoss(MapBlock* mbolck)
 			enemyhero->setVocation(GlobalInstance::map_Npcs[sid].vocation);
 			enemyhero->setPotential(propty.intPara1);
 			enemyhero->setLevel(propty.intPara2 - 1);
-			enemyhero->setHp(enemyhero->getMaxHp());
+
+			if (GlobalInstance::challangeType == CH_SUPERBOSS)
+				enemyhero->setHp(GlobalInstance::supperbossinfo.bosslefthp);
+			else
+				enemyhero->setHp(enemyhero->getMaxHp());
 			vec_enemys.push_back(enemyhero);
 		}
 	}
@@ -2176,7 +2186,6 @@ void MapBlockScene::showFightResult(int result)
 
 	if (GlobalInstance::challangeType == CH_SUPERBOSS)
 	{
-
 		return;
 	}
 

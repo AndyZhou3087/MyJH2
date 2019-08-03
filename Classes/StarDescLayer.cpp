@@ -124,6 +124,7 @@ bool StarDescLayer::init(std::string mapid)
 	rankbtn->setTag(1004);
 	rankbtn->setVisible(false);
 
+	GlobalInstance::supperbossinfo.bosslefthp = 0;
 	GlobalInstance::challangeType = CH_NORMAL;
 	if (mainmapid.compare("m1-5") == 0 || mainmapid.compare("m1-6") == 0)
 	{
@@ -345,9 +346,6 @@ bool StarDescLayer::init(std::string mapid)
 	Label* ldsc = (Label*)desclbl->getVirtualRenderer();
 	ldsc->setLineSpacing(8);
 
-
-
-
 	this->scheduleOnce(schedule_selector(StarDescLayer::delayShowNewerGuide), newguidetime);
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
@@ -384,24 +382,24 @@ void StarDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 				time_t timep = timeSec;
 				tm* timeStuct = gmtime(&timep);
 
-				//if (timeStuct->tm_hour < GlobalInstance::supperbossinfo.starthour || timeStuct->tm_hour > GlobalInstance::supperbossinfo.endhour)
-				//{
-				//	std::string str = StringUtils::format(ResourceLang::map_lang["supperbosstimetext"].c_str(), GlobalInstance::supperbossinfo.starthour, GlobalInstance::supperbossinfo.endhour);
-				//	MovingLabel::show(str);
-				//	return;
-				//}
+				if (timeStuct->tm_hour < GlobalInstance::supperbossinfo.starthour || timeStuct->tm_hour > GlobalInstance::supperbossinfo.endhour)
+				{
+					std::string str = StringUtils::format(ResourceLang::map_lang["supperbosstimetext"].c_str(), GlobalInstance::supperbossinfo.starthour, GlobalInstance::supperbossinfo.endhour);
+					MovingLabel::show(str);
+					return;
+				}
 
-				//int count = 0;
-				//for (int i = 0; i < 6; i++)
-				//{
-				//	if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getLevel() >= 24)
-				//		count++;
-				//}
-				//if (count <= 0)
-				//{
-				//	MovingLabel::show(ResourceLang::map_lang["supperbossherolvlimit"]);
-				//	return;
-				//}
+				int count = 0;
+				for (int i = 0; i < 6; i++)
+				{
+					if (GlobalInstance::myCardHeros[i] != NULL && GlobalInstance::myCardHeros[i]->getLevel() >= 24)
+						count++;
+				}
+				if (count <= 0)
+				{
+					MovingLabel::show(ResourceLang::map_lang["supperbossherolvlimit"]);
+					return;
+				}
 
 				GlobalInstance::supperbossinfo.curhurt = 0;
 			}
@@ -888,9 +886,11 @@ void StarDescLayer::onFinish(int errcode)
 
 		std::vector<std::string> vec_;
 		CommonFuncs::split(GlobalInstance::supperbossinfo.bossdata, vec_, "-");
-		GlobalInstance::supperbossinfo.bosslv = atoi(vec_[0].c_str());
 
-		GlobalInstance::supperbossinfo.bosshps = atoi(vec_[1].c_str());
+		GlobalInstance::supperbossinfo.bosslv = atoi(vec_[0].c_str());
+		GlobalInstance::supperbossinfo.bossmaxhp = atoi(vec_[1].c_str());
+
+		GlobalInstance::supperbossinfo.bossdodge = atoi(vec_[2].c_str());
 		vec_.clear();
 		CommonFuncs::split(GlobalInstance::supperbossinfo.starendtime, vec_, "-");
 		GlobalInstance::supperbossinfo.starthour = atoi(vec_[0].c_str());

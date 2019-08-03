@@ -158,7 +158,7 @@ void FightHeroNode::setData(Npc* data, FIGHTDATA_TYPE datatype, FIGHTNODE_STATE 
 			headimg->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
 			if (GlobalInstance::challangeType == CH_SUPERBOSS)
-				this->setScale(1.2f);
+				this->setScale(1.1f);
 		}
 		int v = m_Data->getVocation();
 		if (v >= 4)
@@ -381,7 +381,7 @@ void FightHeroNode::hurt(float hp, int stat)//stat -1:不显示普攻动画
 				statusimg->runAction(Sequence::create(ac1, CallFunc::create(CC_CALLBACK_0(FightHeroNode::hpAnim, this)), DelayTime::create(0.2f), Hide::create(), NULL));
 
 				if (GlobalInstance::challangeType == CH_SUPERBOSS && m_datatype == F_NPC)
-					GlobalInstance::supperbossinfo.curhurt += hurtup;
+					GlobalInstance::supperbossinfo.curhurt += (int)hurtup;
 			}
 			else
 			{

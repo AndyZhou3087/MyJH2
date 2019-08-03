@@ -488,7 +488,6 @@ void GlobalInstance::loadInitData()
 	GlobalInstance::fightwinbosscount = 0;
 	GlobalInstance::supperbossinfo.leftcoincount = 0;
 	GlobalInstance::supperbossinfo.leftfreecount = 0;
-	GlobalInstance::supperbossinfo.bosshps = 1;
 	GlobalInstance::isHasNewmail = false;
 }
 

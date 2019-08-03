@@ -2208,7 +2208,11 @@ void HttpDataSwap::httpGetSupperBossInfoCB(std::string retdata, int code, std::s
 			{
 				GlobalInstance::supperbossinfo.bossdata = getJsonValueStr(doc["boss"]);
 			}
-
+			if (doc.HasMember("leftlife"))
+			{
+				GlobalInstance::supperbossinfo.bosslefthp = atoi(getJsonValueStr(doc["leftlife"]).c_str());
+			}
+				
 			if (doc.HasMember("rule"))
 			{
 				GlobalInstance::supperbossinfo.awdinfo = doc["rule"].GetString();
@@ -2237,6 +2241,11 @@ void HttpDataSwap::httpPostSupperBossHurtCB(std::string retdata, int code, std::
 		{
 			rapidjson::Value& retv = doc["ret"];
 			ret = retv.GetInt();
+
+			if (doc.HasMember("leftlife"))
+			{
+				GlobalInstance::supperbossinfo.bosslefthp = atoi(getJsonValueStr(doc["leftlife"]).c_str());
+			}
 		}
 		else
 		{
