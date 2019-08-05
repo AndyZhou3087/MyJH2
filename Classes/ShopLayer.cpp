@@ -120,7 +120,7 @@ bool ShopLayer::init()
 				node->runAction(EaseSineIn::create(MoveBy::create(0.15f + step * 0.07f, Vec2(-scrollView->getContentSize().width / 2 - 600, 0))));
 			}
 			else
-				node->setPosition(Vec2(scrollView->getContentSize().width / 2, innerheight - i * itemheight - itemheight / 2));
+				node->setPosition(Vec2(scrollView->getContentSize().width / 2, innerheight - step * itemheight - itemheight / 2));
 			step++;
 		}
 	}
@@ -326,7 +326,9 @@ void ShopLayer::paySucc()
 	if (g_mainScene != NULL)
 	{
 		if (g_mainScene->getChildByName("GiftContentLayer") != NULL)
+		{
 			g_mainScene->removeChildByName("GiftContentLayer");
+		}
 	}
 
 	GlobalInstance::totalPayAmout.setValue(GlobalInstance::totalPayAmout.getValue() + GlobalInstance::vec_shopdata[payindex].price);

@@ -66,6 +66,7 @@
       <npcid>n004</npcid>
       <npcrnd>100</npcrnd>
       <msatt2 id="n004" qu="2">15</msatt2>
+      <msawd1 id="r012" qu="0" rnd="20.00">4</msawd1>
     </Cell>
     <Cell c="2" r="2" p="-1" w="0" m="22.png" d="3.png" />
     <Cell c="2" r="3" p="-1" w="0" m="22.png" d="8.png" />
@@ -105,6 +106,7 @@
     <Cell c="3" r="13" p="5" w="1" m="22.png">
       <npcid>5</npcid>
       <npcrnd>1</npcrnd>
+      <msawd1 id="y004" qu="0" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="3" r="14" p="-1" w="1" m="22.png" />
     <Cell c="3" r="15" p="-1" w="1" m="22.png" />
@@ -122,6 +124,7 @@
     <Cell c="4" r="5" p="5" w="1" m="44.png">
       <npcid>3</npcid>
       <npcrnd>1</npcrnd>
+      <msawd1 id="d001" qu="0" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="4" r="6" p="-1" w="1" m="22.png" />
     <Cell c="4" r="7" p="-1" w="1" m="22.png" />
@@ -243,12 +246,12 @@
       <msatt4 id="n007" qu="1">10</msatt4>
       <msatt5 id="n108" qu="2">15</msatt5>
       <msatt6 id="n013" qu="1">10</msatt6>
-      <msawd1 id="d001" qu="0" rnd="20.00">1</msawd1>
-      <msawd2 id="a005" qu="1" rnd="15.00">1</msawd2>
-      <msawd3 id="w021" qu="0" rnd="20.00">1</msawd3>
-      <msawd4 id="a013" qu="1" rnd="15.00">1</msawd4>
-      <msawd5 id="m001" qu="0" rnd="25.00">1</msawd5>
-      <msawd6 id="r008" qu="0" rnd="20.00">10</msawd6>
+      <msawd1 id="d001" qu="0" rnd="10.00">1</msawd1>
+      <msawd2 id="a017" qu="0" rnd="20.00">1</msawd2>
+      <msawd3 id="y001" qu="0" rnd="20.00">1</msawd3>
+      <msawd4 id="a013" qu="0" rnd="20.00">1</msawd4>
+      <msawd5 id="m001" qu="0" rnd="20.00">1</msawd5>
+      <msawd6 id="r008" qu="0" rnd="20.00">5</msawd6>
     </Cell>
     <Cell c="9" r="4" p="-1" w="1" m="22.png" />
     <Cell c="9" r="5" p="-1" w="1" m="22.png" />
@@ -462,7 +465,7 @@
     <Cell c="18" r="1" p="5" w="1" m="22.png">
       <npcid>1</npcid>
       <npcrnd>1</npcrnd>
-      <msawd1 id="r012" qu="0" rnd="100.00">60</msawd1>
+      <msawd1 id="r012" qu="0" rnd="100.00">50</msawd1>
     </Cell>
     <Cell c="18" r="2" p="-1" w="1" m="22.png" />
     <Cell c="18" r="3" p="-1" w="1" m="22.png" />
