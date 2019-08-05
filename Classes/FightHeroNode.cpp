@@ -919,7 +919,11 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 		{
 			if (stype == SKILL_1)//释放技能后吸收对方%.2f血量。
 			{
-				m_Data->setHp(m_Data->getHp() + eff*whosufferNode->getData()->getMaxHp() / 100);
+				float smaxhp = whosufferNode->getData()->getMaxHp();
+				if (whosufferNode->getData()->getMaxHp() > m_Data->getMaxHp())
+					smaxhp = m_Data->getMaxHp();
+
+				m_Data->setHp(m_Data->getHp() + eff * smaxhp / 100);
 
 				float percent = m_Data->getHp() * 100 / m_Data->getMaxHp();
 				this->updateHp();

@@ -352,7 +352,7 @@ void MainMapScene::onFinish(int code)
 
 void MainMapScene::checkShowFlag(Node* mapnode, std::string mainmapid)
 {
-	if (mainmapid.compare("m1-5") != 0)
+	if (mainmapid.compare("m1-5") != 0 && mainmapid.compare("m1-6") != 0)
 	{
 		int submapcount = 0;
 		int getstarcount = 0;

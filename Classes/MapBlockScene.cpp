@@ -3250,7 +3250,7 @@ bool MapBlockScene::checkShowStarUi(int cwhere)
 	int index = m_mapid.find_last_of("-");
 	std::string mainid = m_mapid.substr(0, index);
 
-	if (mainid.compare("m1-5") == 0)
+	if (mainid.compare("m1-5") == 0 || mainid.compare("m1-6") == 0)
 		return false;
 
 	checkotherstar();
