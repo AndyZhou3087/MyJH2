@@ -144,9 +144,16 @@ bool MakeResLayer::init(void* data)
 	needresstr = StringUtils::format(ResourceLang::map_lang["needresdesc"].c_str(), needresstr.c_str());
 	needresdesc->setString(needresstr);
 
+	int t = 0;
+	for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+	{
+		if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+			break;
+	}
+
 	cocos2d::ui::Text* tips = (cocos2d::ui::Text*)csbnode->getChildByName("tips");
 	tips->setString(ResourceLang::map_lang["makerestips"]);
-
+	tips->setVisible(t >= T_ARMOR && t <= T_FASHION);
 	//按钮1
 	cocos2d::ui::Widget* makebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("makebtn");
 	makebtn->setTag(1000);
@@ -190,6 +197,23 @@ bool MakeResLayer::init(void* data)
 			kstr = StringUtils::format("%.2f%%", vec_rnds[i]);
 		rndstr = StringUtils::format(ResourceLang::map_lang[rnddescname].c_str(), kstr.c_str());
 		rnddesc->setString(rndstr);
+		rnddesc->setVisible(t >= T_ARMOR && t <= T_FASHION);
+	}
+
+	Node* makeresdescbox = csbnode->getChildByName("makeresdescbox");
+	makeresdescbox->setVisible(t >= T_ARMOR && t <= T_FASHION);
+
+	if (!(t >= T_ARMOR && t <= T_FASHION))
+	{
+		title->setPositionY(990);
+		closebtn->setPositionY(1000);
+		smallbg->setContentSize(Size(smallbg->getContentSize().width, 800));
+		smallbg->setPositionY(680);
+		Node* makeresnamebox = csbnode->getChildByName("makeresnamebox");
+		makeresnamebox->setPositionY(395);
+		equipname->setPositionY(390);
+		needresdesc->setPositionY(340);
+		resbgnode->setPositionY(610);
 	}
 
 	updateUI(0);

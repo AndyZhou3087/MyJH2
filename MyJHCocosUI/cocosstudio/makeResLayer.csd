@@ -6,14 +6,14 @@
       <ObjectData Name="Layer" Tag="163" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
-          <AbstractNodeData Name="smallbg" ActionTag="1688332015" Tag="217" IconVisible="False" LeftMargin="22.4999" RightMargin="22.5001" TopMargin="91.5000" BottomMargin="173.5000" TouchEnable="True" LeftEage="198" RightEage="198" TopEage="218" BottomEage="218" Scale9OriginX="198" Scale9OriginY="218" Scale9Width="204" Scale9Height="226" ctype="ImageViewObjectData">
-            <Size X="675.0000" Y="1015.0000" />
+          <AbstractNodeData Name="smallbg" ActionTag="1688332015" Tag="217" IconVisible="False" LeftMargin="22.4999" RightMargin="22.5001" TopMargin="174.0000" BottomMargin="256.0000" TouchEnable="True" LeftEage="198" RightEage="198" TopEage="218" BottomEage="218" Scale9OriginX="198" Scale9OriginY="218" Scale9Width="204" Scale9Height="226" ctype="ImageViewObjectData">
+            <Size X="675.0000" Y="850.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="359.9999" Y="681.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5320" />
-            <PreSize X="0.9375" Y="0.7930" />
+            <PreSize X="0.9375" Y="0.6641" />
             <FileData Type="Normal" Path="images/smallbg.png" Plist="" />
           </AbstractNodeData>
           <AbstractNodeData Name="titlename" ActionTag="-1269054136" Tag="218" IconVisible="False" LeftMargin="264.0001" RightMargin="263.9999" TopMargin="168.5345" BottomMargin="1068.4655" FontSize="38" LabelText="铁匠铺升级" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
