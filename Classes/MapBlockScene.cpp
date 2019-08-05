@@ -1848,7 +1848,7 @@ void MapBlockScene::doMyStatus()
 				}
 				else
 				{
-					supperBossFight();
+					showFightingLayer(vec_enemys);
 				}
 			}
 		}
@@ -3543,7 +3543,8 @@ void MapBlockScene::onFinish(int code)
 
 		if (timeStuct->tm_hour < GlobalInstance::supperbossinfo.starthour || timeStuct->tm_hour >= GlobalInstance::supperbossinfo.endhour)
 		{
-			MovingLabel::show(ResourceLang::map_lang["supperbosstimetext"]);
+			std::string str = StringUtils::format(ResourceLang::map_lang["supperbosstimetext"].c_str(), GlobalInstance::supperbossinfo.starthour, GlobalInstance::supperbossinfo.endhour);
+			MovingLabel::show(str);
 			return;
 		}
 
