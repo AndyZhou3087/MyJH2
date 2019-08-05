@@ -278,7 +278,7 @@ void GiftContentLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 		{
 			isgetingvip = true;
 			WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["getmonthlywaiting"]);
-			this->addChild(wp, 0, "waitingprogress");
+			Director::getInstance()->getRunningScene()->addChild(wp, 0, "waitingprogress");
 
 			int id = atoi(m_data->icon.substr(3, 1).c_str());
 			std::string vipid = StringUtils::format("vip%d", id + 2);
@@ -360,7 +360,7 @@ void GiftContentLayer::onFinish(int code)
 	else
 	{
 		isgetingvip = false;
-		this->removeChildByName("waitingprogress");
+		Director::getInstance()->getRunningScene()->removeChildByName("waitingprogress");
 
 		if (code == 0)
 		{

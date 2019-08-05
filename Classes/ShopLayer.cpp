@@ -326,7 +326,9 @@ void ShopLayer::paySucc()
 	if (g_mainScene != NULL)
 	{
 		if (g_mainScene->getChildByName("GiftContentLayer") != NULL)
+		{
 			g_mainScene->removeChildByName("GiftContentLayer");
+		}
 	}
 
 	GlobalInstance::totalPayAmout.setValue(GlobalInstance::totalPayAmout.getValue() + GlobalInstance::vec_shopdata[payindex].price);

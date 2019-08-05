@@ -87,6 +87,7 @@
       <npcid>n008</npcid>
       <npcrnd>100</npcrnd>
       <msatt5 id="n008" qu="2">25</msatt5>
+      <msawd1 id="r012" qu="0" rnd="20.00">4</msawd1>
     </Cell>
     <Cell c="2" r="5" p="-1" w="1" m="6.png" />
     <Cell c="2" r="6" p="-1" w="1" m="6.png" />
@@ -467,6 +468,7 @@
     <Cell c="13" r="19" p="5" w="1" m="6.png">
       <npcid>4</npcid>
       <npcrnd>1</npcrnd>
+      <msawd1 id="d001" qu="0" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="13" r="20" p="-1" w="1" m="6.png" />
     <Cell c="13" r="21" p="-1" w="1" m="6.png" />
@@ -864,7 +866,7 @@
     <Cell c="25" r="19" p="5" w="1" m="6.png">
       <npcid>5</npcid>
       <npcrnd>1</npcrnd>
-      <msawd1 id="q003" qu="0" rnd="100.00">5</msawd1>
+      <msawd1 id="q003" qu="0" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="25" r="20" p="-1" w="0" m="6.png" />
     <Cell c="25" r="21" p="-1" w="0" m="6.png" />
@@ -876,6 +878,7 @@
       <npcid>n115</npcid>
       <npcrnd>100</npcrnd>
       <msatt5 id="n115" qu="2">40</msatt5>
+      <msawd1 id="r012" qu="0" rnd="20.00">4</msawd1>
     </Cell>
     <Cell c="25" r="27" p="-1" w="1" m="6.png" />
     <Cell c="25" r="28" p="-1" w="1" m="6.png" />
@@ -923,12 +926,12 @@
       <msatt4 id="n013" qu="2">15</msatt4>
       <msatt5 id="n014" qu="2">20</msatt5>
       <msatt6 id="n015" qu="2">15</msatt6>
-      <msawd1 id="a021" qu="0" rnd="25.00">1</msawd1>
-      <msawd2 id="a025" qu="0" rnd="25.00">1</msawd2>
-      <msawd3 id="e001" qu="1" rnd="15.00">1</msawd3>
-      <msawd4 id="g001" qu="1" rnd="15.00">1</msawd4>
+      <msawd1 id="a021" qu="0" rnd="20.00">1</msawd1>
+      <msawd2 id="a025" qu="0" rnd="20.00">1</msawd2>
+      <msawd3 id="e001" qu="0" rnd="15.00">1</msawd3>
+      <msawd4 id="g001" qu="0" rnd="15.00">1</msawd4>
       <msawd5 id="m001" qu="0" rnd="25.00">1</msawd5>
-      <msawd6 id="r008" qu="0" rnd="20.00">10</msawd6>
+      <msawd6 id="a037" qu="0" rnd="20.00">1</msawd6>
     </Cell>
     <Cell c="27" r="1" p="-1" w="1" m="6.png" />
     <Cell c="27" r="2" p="-1" w="1" m="6.png" />
