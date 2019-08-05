@@ -1823,6 +1823,7 @@ void MapBlockScene::doMyStatus()
 
 					if (GlobalInstance::supperbossinfo.bosslefthp <= 0)
 					{
+						isRoutingBreakOff = false;
 						MovingLabel::show(ResourceLang::map_lang["supperbossnohp"]);
 						return;
 					}
@@ -1848,8 +1849,7 @@ void MapBlockScene::doMyStatus()
 				}
 				else
 				{
-					//showFightingLayer(vec_enemys);
-					supperBossFight();
+					showFightingLayer(vec_enemys);
 				}
 			}
 		}
