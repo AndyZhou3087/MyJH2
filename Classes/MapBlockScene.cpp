@@ -1848,7 +1848,8 @@ void MapBlockScene::doMyStatus()
 				}
 				else
 				{
-					showFightingLayer(vec_enemys);
+					//showFightingLayer(vec_enemys);
+					supperBossFight();
 				}
 			}
 		}

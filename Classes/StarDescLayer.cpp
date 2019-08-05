@@ -576,7 +576,7 @@ void StarDescLayer::showSupperBossRwd()
 
 		if (i < GlobalInstance::map_mapsdata[mainmapid].map_sublist[m_mapid].vec_awd.size())
 		{
-			std::string resid = GlobalInstance::map_mapsdata[mainmapid].map_sublist[m_mapid].vec_awd[i];;
+			std::string resid = GlobalInstance::map_mapsdata[mainmapid].map_sublist[m_mapid].vec_awd[i];
 
 
 			std::string boxstr = "ui/resbox.png";
@@ -731,11 +731,20 @@ void StarDescLayer::onresClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::Touch
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 		int tag = node->getTag();
 
-		std::vector<std::string> vec_tmp;
-		CommonFuncs::split(GlobalInstance::map_mopuprwds[m_mapid].vec_rwdstr[tag], vec_tmp, "-");
-
-		std::string resid = vec_tmp[0];
-		int qu = atoi(vec_tmp[2].c_str());
+		std::string resid;
+		int qu = 0;
+		if (GlobalInstance::challangeType == CH_SUPERBOSS)
+		{
+			std::string mainmapid = m_mapid.substr(0, m_mapid.find_last_of("-"));
+			resid = GlobalInstance::map_mapsdata[mainmapid].map_sublist[m_mapid].vec_awd[tag];
+		}
+		else
+		{
+			std::vector<std::string> vec_tmp;
+			CommonFuncs::split(GlobalInstance::map_mopuprwds[m_mapid].vec_rwdstr[tag], vec_tmp, "-");
+			resid = vec_tmp[0];
+			qu = atoi(vec_tmp[2].c_str());
+		}
 
 		int t = -1;
 		for (int k = 0; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)

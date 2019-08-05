@@ -149,14 +149,17 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 		if (t >= T_WG && t <= T_NG)
 		{
 			qu = GlobalInstance::map_GF[resid].qu;
+			str = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}		
 		else if (t >= T_RENS && t <= T_BOX)
 		{
 			qu = atoi(resid.substr(1).c_str()) - 1;
+			str = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
 		else if (t == T_FRAGMENT)
 		{
-			qu = 4;
+			//qu = 0;
+			//str = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
 		else if (t == T_EPIECE)
 		{
@@ -167,8 +170,6 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 			vec_.push_back(vec_res[1]);
 			data->res[i] = vec_;
 		}
-
-		str = StringUtils::format("ui/resbox_qu%d.png", qu);
 
 		cocos2d::ui::ImageView* box = cocos2d::ui::ImageView::create(str, cocos2d::ui::Widget::TextureResType::PLIST);
 		box->addTouchEventListener(CC_CALLBACK_2(GiftContentLayer::onResclick, this));

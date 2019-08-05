@@ -12,6 +12,7 @@
 #include "MovingLabel.h"
 #include "SoundManager.h"
 #include "MainMapScene.h"
+#include "MapBlockScene.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -230,6 +231,8 @@ void ErrorHintLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				HttpDataSwap::init(g_mainScene)->getServerTime();
 			else if (g_MainMapScene != NULL)
 				HttpDataSwap::init(g_MainMapScene)->getServerTime();
+			else if (g_MapBlockScene != NULL)
+				HttpDataSwap::init(g_MapBlockScene)->getServerTime();
 		}
 		else if (m_forwhere == 1)
 		{

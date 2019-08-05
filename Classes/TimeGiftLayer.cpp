@@ -169,13 +169,13 @@ bool TimeGiftLayer::init(ShopData* data)
 		}
 		else if (t == T_FRAGMENT)
 		{
-			qu = 4;
-			str = StringUtils::format("ui/resbox_qu%d.png", qu);
+			//qu = 4;
+			//str = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
 		else if (t == T_EPIECE)
 		{
-			qu = 4;
-			str = StringUtils::format("ui/resbox_qu%d.png", qu);
+			//qu = 4;
+			//str = StringUtils::format("ui/resbox_qu%d.png", qu);
 			int r = GlobalInstance::getInstance()->createRandomNum(sizeof(qu4epiece) / sizeof(qu4epiece[0]));
 			resid = qu4epiece[r];
 			std::vector<std::string> vec_;
@@ -217,11 +217,19 @@ bool TimeGiftLayer::init(ShopData* data)
 			box->addChild(pieceicon);
 
 			cocos2d::ui::ImageView* changeicon = cocos2d::ui::ImageView::create("ui/changepiece.png", cocos2d::ui::Widget::TextureResType::PLIST);
-			changeicon->addTouchEventListener(CC_CALLBACK_2(TimeGiftLayer::onResclick, this));
+			//changeicon->addTouchEventListener(CC_CALLBACK_2(TimeGiftLayer::onResclick, this));
 			changeicon->setPosition(Vec2(box->getContentSize().width - 15, box->getContentSize().height - 15));
-			changeicon->setTag(10000 + i);
-			changeicon->setTouchEnabled(true);
+			//changeicon->setTag(10000 + i);
+			//changeicon->setTouchEnabled(true);
 			box->addChild(changeicon);
+
+			cocos2d::ui::ImageView* changeclick = cocos2d::ui::ImageView::create("ui/blank.png", cocos2d::ui::Widget::TextureResType::PLIST);
+			changeclick->addTouchEventListener(CC_CALLBACK_2(TimeGiftLayer::onResclick, this));
+			changeclick->setContentSize(Size(box->getContentSize()));
+			changeclick->setPosition(Vec2(box->getContentSize().width/2, box->getContentSize().height/2));
+			changeclick->setTag(10000 + i);
+			changeclick->setTouchEnabled(true);
+			box->addChild(changeclick);
 		}
 
 		Label *namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[resid].name, FONT_NAME, 23);
