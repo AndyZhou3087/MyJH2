@@ -35,6 +35,8 @@
 #include "CannotTouchLayer.h"
 #include "MapZoomGuideLayer.h"
 #include "SupperBossRankLayer.h"
+#include "ErrorHintLayer.h"
+#include "WaitingProgress.h"
 
 MapBlockScene* g_MapBlockScene = NULL;
 
@@ -1841,21 +1843,23 @@ void MapBlockScene::doMyStatus()
 					}
 					else
 					{
-						showFightingLayer(vec_enemys);
+						supperBossFight();
 					}
 				}
 				else
 				{
-					showFightingLayer(vec_enemys);
+					supperBossFight();
 				}
 			}
 		}
 	}
 }
 
-void MapBlockScene::continueSupperBossFight()
+void MapBlockScene::supperBossFight()
 {
-	showFightingLayer(vec_enemys);
+	WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+	Director::getInstance()->getRunningScene()->addChild(wp, 0, "waitingprogress");
+	HttpDataSwap::init(this)->getServerTime();
 }
 
 void MapBlockScene::createBoxRewards(MapBlock* mbolck)
@@ -3519,6 +3523,58 @@ void MapBlockScene::zoomGuideEnd()
 		this->addChild(notTouchLayer, 1, "cannottouchlayer");
 		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowNewerGuide), 0.5f);
 	}
+}
+
+void MapBlockScene::onFinish(int code)
+{
+	Director::getInstance()->getRunningScene()->removeChildByName("waitingprogress");
+	ErrorHintLayer* networkerrLayer = (ErrorHintLayer*)this->getChildByName("networkerrorlayer");
+	if (code == SUCCESS)
+	{
+		if (networkerrLayer != NULL)
+			networkerrLayer->removeFromParentAndCleanup(true);
+
+		updateTime(0);
+		this->schedule(schedule_selector(MapBlockScene::updateTime), 1);
+
+		long long int timeSec = GlobalInstance::servertime + 8 * 60 * 60;
+		time_t timep = timeSec;
+		tm* timeStuct = gmtime(&timep);
+
+		if (timeStuct->tm_hour < GlobalInstance::supperbossinfo.starthour || timeStuct->tm_hour >= GlobalInstance::supperbossinfo.endhour)
+		{
+			MovingLabel::show(ResourceLang::map_lang["supperbosstimetext"]);
+			return;
+		}
+
+		if (GlobalInstance::supperbossinfo.leftfreecount <= 0 && GlobalInstance::supperbossinfo.leftcoincount > 0)
+		{
+			DynamicValueInt dv;
+			dv.setValue(20);
+			GlobalInstance::getInstance()->costMyCoinCount(dv);
+		}
+
+		showFightingLayer(vec_enemys);
+	}
+	else
+	{
+		if (networkerrLayer == NULL)
+		{
+			ErrorHintLayer* layer = ErrorHintLayer::create(0);
+			this->addChild(layer, 1000, "networkerrorlayer");
+		}
+		else
+		{
+			networkerrLayer->resetBtn();
+		}
+	}
+}
+
+void MapBlockScene::updateTime(float dt)
+{
+	GlobalInstance::servertime++;
+
+	int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
 }
 
 void MapBlockScene::showBossGuideAnim(Vec2 pos)

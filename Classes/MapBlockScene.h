@@ -13,6 +13,7 @@
 #include "FightHeroNode.h"
 #include "GlobalInstance.h"
 #include "AstarRouting.h"
+#include "HttpDataSwap.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -55,7 +56,7 @@ typedef enum
 	MAP_USEINGTRANSER//使用传送卷轴
 }MAP_USINGPROP;
 
-class MapBlockScene :public Layer, public ScrollViewDelegate
+class MapBlockScene :public Layer, public ScrollViewDelegate, public HTTPDataDelegateProtocol
 {
 public:
 	MapBlockScene();
@@ -79,7 +80,7 @@ public:
 
 	void delayShowExit(float dt);
 
-	void continueSupperBossFight();
+	void supperBossFight();
 
 	//延迟新手引导
 	void delayShowNewerGuide(float dt);
@@ -229,6 +230,9 @@ private:
 	void delayShowStarResult(float dt);
 
 	void showBossGuideAnim(Vec2 pos);
+
+	void onFinish(int code);
+	void updateTime(float dt);
 
 private:
 	Node* m_csbnode;

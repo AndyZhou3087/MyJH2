@@ -106,7 +106,7 @@ bool SupperBossRankLayer::init(bool isclickrank)
 	time_t timep = timeSec;
 	tm* timeStuct = gmtime(&timep);
 
-	if (timeStuct->tm_hour < GlobalInstance::supperbossinfo.starthour || timeStuct->tm_hour > GlobalInstance::supperbossinfo.endhour)
+	if (timeStuct->tm_hour < GlobalInstance::supperbossinfo.starthour || timeStuct->tm_hour >= GlobalInstance::supperbossinfo.endhour)
 	{
 		lastclicktag = 0;
 		tag1->setVisible(false);

@@ -292,11 +292,8 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			}
 			else if (m_forwhere == 15)
 			{
-				DynamicValueInt dv;
-				dv.setValue(20);
-				GlobalInstance::getInstance()->costMyCoinCount(dv);
 				if (g_MapBlockScene != NULL)
-					g_MapBlockScene->continueSupperBossFight();
+					g_MapBlockScene->supperBossFight();
 			}
 			node->setEnabled(false);
 			AnimationEffect::closeAniEffect(this);

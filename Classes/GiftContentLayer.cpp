@@ -16,7 +16,6 @@
 #include "EquipDescLayer.h"
 
 USING_NS_CC;
-
 GiftContentLayer::GiftContentLayer()
 {
 	isgetingvip = false;
@@ -24,7 +23,6 @@ GiftContentLayer::GiftContentLayer()
 
 GiftContentLayer::~GiftContentLayer()
 {
-
 }
 
 
@@ -264,7 +262,7 @@ void GiftContentLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Node* node = (Node*)pSender;
+		cocos2d::ui::Widget* node = (cocos2d::ui::Widget*)pSender;
 		int tag = node->getTag();
 		if (tag == 1001)
 		{
@@ -276,6 +274,7 @@ void GiftContentLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 		}
 		else
 		{
+			node->setEnabled(false);
 			isgetingvip = true;
 			WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["getmonthlywaiting"]);
 			Director::getInstance()->getRunningScene()->addChild(wp, 0, "waitingprogress");
@@ -284,6 +283,7 @@ void GiftContentLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 			std::string vipid = StringUtils::format("vip%d", id + 2);
 
 			HttpDataSwap::init(this)->getMonthlyReward(vipid);
+
 		}
 	}
 }
@@ -369,6 +369,7 @@ void GiftContentLayer::onFinish(int code)
 		}
 		else
 		{
+			buybtn->setEnabled(true);
 			MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
 		}
 

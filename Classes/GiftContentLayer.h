@@ -34,5 +34,4 @@ private:
 	int m_type;
 	bool isgetingvip;//是否正在领取月卡
 };
-
 #endif
