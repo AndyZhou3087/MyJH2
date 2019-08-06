@@ -6,14 +6,14 @@
       <ObjectData Name="Layer" Tag="163" ctype="GameLayerObjectData">
         <Size X="720.0000" Y="1280.0000" />
         <Children>
-          <AbstractNodeData Name="smallbg" ActionTag="1688332015" Tag="217" IconVisible="False" LeftMargin="22.4999" RightMargin="22.5001" TopMargin="174.0000" BottomMargin="256.0000" TouchEnable="True" LeftEage="198" RightEage="198" TopEage="218" BottomEage="218" Scale9OriginX="198" Scale9OriginY="218" Scale9Width="204" Scale9Height="226" ctype="ImageViewObjectData">
-            <Size X="675.0000" Y="850.0000" />
+          <AbstractNodeData Name="smallbg" ActionTag="1688332015" Tag="217" IconVisible="False" LeftMargin="22.4999" RightMargin="22.5001" TopMargin="74.0000" BottomMargin="156.0000" TouchEnable="True" LeftEage="198" RightEage="198" TopEage="218" BottomEage="218" Scale9OriginX="198" Scale9OriginY="218" Scale9Width="204" Scale9Height="226" ctype="ImageViewObjectData">
+            <Size X="675.0000" Y="1050.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="359.9999" Y="681.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5320" />
-            <PreSize X="0.9375" Y="0.6641" />
+            <PreSize X="0.9375" Y="0.8203" />
             <FileData Type="Normal" Path="images/smallbg.png" Plist="" />
           </AbstractNodeData>
           <AbstractNodeData Name="titlename" ActionTag="-1269054136" Tag="218" IconVisible="False" LeftMargin="264.0001" RightMargin="263.9999" TopMargin="168.5345" BottomMargin="1068.4655" FontSize="38" LabelText="铁匠铺升级" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
@@ -28,7 +28,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbgnode" ActionTag="1786408000" Tag="222" IconVisible="True" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="580.0000" BottomMargin="700.0000" ctype="SingleNodeObjectData">
+          <AbstractNodeData Name="resbgnode" ActionTag="1786408000" Tag="222" IconVisible="True" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="570.0000" BottomMargin="710.0000" ctype="SingleNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
             <Children>
               <AbstractNodeData Name="makeresbgbox" ActionTag="1769666133" Tag="219" IconVisible="False" LeftMargin="-279.0000" RightMargin="-279.0000" TopMargin="-279.0000" BottomMargin="-279.0000" ctype="SpriteObjectData">
@@ -192,10 +192,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint />
-            <Position X="360.0000" Y="700.0000" />
+            <Position X="360.0000" Y="710.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.5469" />
+            <PrePosition X="0.5000" Y="0.5547" />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
           <AbstractNodeData Name="makeresnamebox" ActionTag="-186626736" Tag="221" IconVisible="False" LeftMargin="226.5000" RightMargin="226.5000" TopMargin="762.5000" BottomMargin="452.5000" ctype="SpriteObjectData">

@@ -495,7 +495,10 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 							StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
 							storelayer->updateUI();
 
-							updateCountlbl();
+							if (MyRes::getMyResCount("j005") > 0)
+								updateCountlbl();
+							else
+								AnimationEffect::closeAniEffect(this);
 
 							return;
 						}

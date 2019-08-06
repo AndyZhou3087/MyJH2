@@ -112,14 +112,27 @@ bool RebateAwdNode::init(std::string awdstr)
 				qu = atoi(resid.substr(1).c_str()) + 2;
 				qustr = StringUtils::format("ui/resbox_qu%d.png", qu);
 			}
+			else if (t == T_FRAGMENT || t == T_EPIECE)
+			{
+				qustr = "ui/resbox.png";
+			}
 			resbox->setTag(i*1000+t);
 			resbox->loadTexture(ResourcePath::makePath(qustr), cocos2d::ui::Widget::TextureResType::PLIST);
 
-			std::string resstr = StringUtils::format("ui/%s.png", resid.c_str());
+			std::string resstr = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);
+
 			res->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
 			
 			std::string counstr = StringUtils::format("%d", count);
 			countlbl->setString(counstr);
+
+			if (t == T_EPIECE)
+			{
+				Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+				pieceicon->setAnchorPoint(Vec2(0, 1));
+				pieceicon->setPosition(5, resbox->getContentSize().height - 5);
+				resbox->addChild(pieceicon);
+			}
 
 			Node* node = CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 			if (node != NULL)

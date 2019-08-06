@@ -930,7 +930,7 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 
 				//whosufferNode->getData()->setHp(whosufferNode->getData()->getHp() - eff*whosufferNode->getData()->getMaxHp() / 100);
 				//whosufferNode->updateHp();
-				whosufferNode->hurt(eff*whosufferNode->getData()->getMaxHp() / 100, -1);
+				whosufferNode->hurt(eff * smaxhp / 100, -1);
 			}
 			else if (stype == SKILL_2)//释放技能后造成%d倍伤害。
 			{

@@ -614,7 +614,7 @@
 	<s name="unlockformationhint">通关神龙教教主解锁第2章节方可学习阵型</s>
 	<s name="formationlvupnotopen">升级功能暂未开放</s>
 	<s name="m1-5desc1">石龙对石虎，金银万万五。\n谁人识得破，买到成都府。</s>
-	<s name="m1-6desc1">忽逢桃花林，夹岸数百步。\n中无杂树，芳草鲜美，落英缤纷。</s>
+	<s name="m1-6desc1">忽逢桃花林，夹岸数百步，\n中无杂树，芳草鲜美，落英缤纷。</s>
 	<s name="m1-5mopuphint">战胜当前地图所有BOSS可扫荡</s>
 	<s name="mopupexpdesc">总经验值+%d</s>
 	<s name="superbossawdboxdesc">挑战可获得奖励</s>
