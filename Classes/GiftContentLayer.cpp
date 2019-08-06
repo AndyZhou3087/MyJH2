@@ -339,7 +339,7 @@ void GiftContentLayer::onFinish(int code)
 					buybtntext->setContentSize(Sprite::createWithSpriteFrameName(ResourcePath::makeTextImgPath("msgallget_text", langtype))->getContentSize());
 					buybtntext->setScale(0.7f);
 				}
-				//price->setVisible(false);
+				//price->setVisible(false);            
 				std::map<std::string, int>::iterator it;
 				for (it = GlobalInstance::map_buyVipDays.begin(); it != GlobalInstance::map_buyVipDays.end(); ++it)
 				{
