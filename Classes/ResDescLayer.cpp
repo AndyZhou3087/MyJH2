@@ -482,6 +482,8 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 					{
 						if (m_res->getCount().getValue() >= 10)
 						{
+							cocos2d::ui::Widget* clickw = (cocos2d::ui::Widget*)clicknode;
+							clickw->setEnabled(false);
 							std::string exchangeres[] = { "la004","la028", "la040" };
 							int r = GlobalInstance::getInstance()->createRandomNum(3);
 
@@ -492,11 +494,15 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 							std::string str = StringUtils::format(ResourceLang::map_lang["exchangej005succ"].c_str(), GlobalInstance::map_AllResources[exchangeres[r]].name.c_str());
 							MovingLabel::show(str);
 
+							
 							StoreHouseLayer* storelayer = (StoreHouseLayer*)this->getParent();
 							storelayer->updateUI();
-
+							
 							if (MyRes::getMyResCount("j005") > 0)
+							{
 								updateCountlbl();
+								clickw->setEnabled(true);
+							}
 							else
 								AnimationEffect::closeAniEffect(this);
 
