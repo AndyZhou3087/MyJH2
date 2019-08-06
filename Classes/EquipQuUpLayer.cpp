@@ -228,7 +228,13 @@ void EquipQuUpLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			MyRes::Use(needjresid, needjcount[qu + 1]);
 			int st = GlobalInstance::getInstance()->generateStoneCount(qu + 1);
 			Equip* adde = (Equip*)MyRes::Add(equipid, 1, MYSTORAGE, qu + 1, st);
+
+			if (dvlv.getValue() > 0)
+				dvlv.setValue(dvlv.getValue() - 1);
 			adde->setLv(dvlv);
+
+			std::string showstr = StringUtils::format(ResourceLang::map_lang["quupsucc"].c_str(), GlobalInstance::map_AllResources[equipid].name.c_str());
+			MovingLabel::show(showstr);
 		}
 
 		AnimationEffect::closeAniEffect((Layer*)this->getParent());

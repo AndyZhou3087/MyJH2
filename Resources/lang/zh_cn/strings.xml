@@ -633,5 +633,6 @@
 	<s name="supperbossnohp">你来晚了一步，高人累了，已经休息了！</s>
 	<s name="supperbossbuycount">今日免费次数已用完，是否花费20元宝购买一次挑战次数？</s>
 	<s name="supperbosscountlimit">今日挑战次数已用完</s>
-	<s name="quuptitle">升阶装备</s>	
+	<s name="quuptitle">升阶装备</s>
+	<s name="quupsucc">%s升阶成功</s>		
 </strings>
