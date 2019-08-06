@@ -211,6 +211,7 @@ bool TimeGiftLayer::init(ShopData* data)
 
 		if (t == T_EPIECE)
 		{
+			box->setTouchEnabled(false);
 			Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
 			pieceicon->setAnchorPoint(Vec2(0, 1));
 			pieceicon->setPosition(10, box->getContentSize().height - 10);
