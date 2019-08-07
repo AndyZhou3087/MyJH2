@@ -94,5 +94,5 @@ const static int VIPDAYS[] = { 30,30,365,30};
 
 const static int ADDZANMAINTASKCOUNTS[] = {5, 10, 20, 30, 40, 50, 60, 80, 100, 120};
 
-const static std::string qu4epiece[] = {"la008", "la004","la028","la040","la016","la024","la012","la020"};
+const static std::string qu4epiece[] = {"la008", "la004","la028","la040","la016","la024","la012","la020","le004", "lg004", "lf004"};
 #endif // _H_CONST_H_

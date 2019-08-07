@@ -56,13 +56,13 @@ bool ExchangePieceLayer::init(std::string exchangeeid, int exchangecount)
 	this->addChild(csbnode);
 
 	cocos2d::ui::ImageView* bg = (cocos2d::ui::ImageView*)csbnode->getChildByName("bg");
-	bg->setContentSize(Size(bg->getContentSize().width, 450));
+	bg->setContentSize(Size(bg->getContentSize().width, 580));
 
 	scrollview = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scrollview");
 	scrollview->setScrollBarEnabled(false);
 	scrollview->setBounceEnabled(true);
 
-	scrollview->setContentSize(Size(scrollview->getContentSize().width, 340));
+	scrollview->setContentSize(Size(scrollview->getContentSize().width, 500));
 
 	loadscrollview();
 
