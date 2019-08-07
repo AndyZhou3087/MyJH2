@@ -340,9 +340,14 @@ void FightHeroNode::hurt(float hp, int stat)//stat -1:不显示普攻动画
 		if (this->isVisible())
 		{
 			if (hp < m_Data->getDf())
-				hp -= 0.1 * hp;
+				hp = 0.1 * hp;
 			else
-				hp -= m_Data->getDf()*(1 + dfbns / 100);
+			{
+				int minhp = 0.1 * hp;
+				hp -= m_Data->getDf() * (1 + dfbns / 100);
+				if (hp < minhp)
+					hp = minhp;
+			}
 
 			if (hp > 0 || stat == 2)
 			{
