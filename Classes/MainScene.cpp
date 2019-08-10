@@ -123,7 +123,7 @@ bool MainScene::init()
 				{
 					int r = GlobalInstance::getInstance()->createRandomNum(1000);
 
-					if (r < 50)
+					if (r < 30)
 					{
 						GlobalInstance::map_buildingrepairdata[bbit->first].state = 1;
 						ishasnew = true;
