@@ -1072,6 +1072,9 @@ public:
 	static std::string oneyuanGiftStr;
 
 	static bool isHasNewmail;
+
+	static std::string myinvitationcode;
+	static std::string myinvitationrwd;
 	
 private:
 	static int refreshHeroTime;

@@ -54,6 +54,8 @@ private:
 
 	void onUrlClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType type);
 
+	void onInvitationcodeClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType type);
+
 private:
 	cocos2d::ui::CheckBox* m_musicCheckBox;//checkbox控件
 	cocos2d::ui::Text* m_musicOnOffText;//点击checkbox的音乐说明控件 “开”,“关”
@@ -62,6 +64,8 @@ private:
 	cocos2d::ui::Text* m_soundOnOffText;//点击checkbox的音效说明控件 “开”,“关”
 	cocos2d::ui::ImageView* nicknamebox;
 	cocos2d::ui::EditBox* m_editName;
+	cocos2d::ui::EditBox* cardnoedit;
+	cocos2d::ui::Widget* exchangebtn;
 	std::string mynickname;
 	std::string lastchangedname;
 	cocos2d::ui::TextField* nameTextField;
@@ -69,6 +73,7 @@ private:
 	cocos2d::ui::Button* addnicknamecountbtn;
 	DynamicValueInt nicknamecount_coin;
 	bool isAddModifyNameCount;
+	int httptag;
 };
 #endif
 

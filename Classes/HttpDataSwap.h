@@ -73,7 +73,11 @@ public:
 	void getSupperBossInfo();//获取超级Boss信息
 
 	void postSupperBossHurt(int usefree);
+
 	void getSupperBossRankList(int type);
+
+	void getExchangeInvitationcode(std::string code);
+
 private:
 	HTTPDataDelegateProtocol *m_pDelegateProtocol;//接口对象
 	HttpDataSwap();
@@ -143,6 +147,9 @@ private:
 	void httpPostSupperBossHurtCB(std::string retdata, int code, std::string extdata);
 	
 	void httpGetSupperBossRankListCB(std::string retdata, int code, std::string extdata);
+
+	void httpGetExchangeInvitationcodeCB(std::string retdata, int code, std::string extdata);
+	
 	
 };
 

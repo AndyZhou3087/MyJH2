@@ -195,6 +195,10 @@ std::string GlobalInstance::oneyuanGiftStr;
 
 bool GlobalInstance::isHasNewmail = false;
 
+std::string GlobalInstance::myinvitationcode;
+
+std::string GlobalInstance::myinvitationrwd;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -218,7 +222,7 @@ std::string GlobalInstance::UUID()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getDeviceIDInKeychain();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "AA67AFAD-AC63-461A-AD29-9774E81C4B3F";//"*******************11";
+	return "*******************124";//"AA67AFAD-AC63-461A-AD29-9774E81C4B3F";//"*******************11";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;

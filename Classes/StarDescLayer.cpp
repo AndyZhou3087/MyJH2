@@ -16,7 +16,7 @@
 #include "SimpleResPopLayer.h"
 #include "HintBoxLayer.h"
 #include "WaitingProgress.h"
-#include "SupperBossRuleLayer.h"
+#include "SimpleRuleLayer.h"
 #include "SupperBossRankLayer.h"
 
 USING_NS_CC;
@@ -486,7 +486,7 @@ void StarDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			break;
 		case 1003:
 		{
-			SupperBossRuleLayer* layer = SupperBossRuleLayer::create();
+			SimpleRuleLayer* layer = SimpleRuleLayer::create(GlobalInstance::supperbossinfo.awdinfo);
 			this->addChild(layer);
 			AnimationEffect::openAniEffect(layer);
 		}

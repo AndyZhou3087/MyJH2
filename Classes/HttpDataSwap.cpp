@@ -1056,6 +1056,39 @@ void HttpDataSwap::getSupperBossRankList(int type)
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetSupperBossRankListCB, this));
 }
 
+void HttpDataSwap::getExchangeInvitationcode(std::string code)
+{
+	std::string url;
+	url.append(HTTPURL);
+	url.append("jh_checkinvitationcode?");
+
+	url.append("playerid=");
+	url.append(GlobalInstance::getInstance()->UUID());
+
+	url.append("&pkg=");
+	url.append(GlobalInstance::getInstance()->getPackageName());
+
+	url.append("&ver=");
+	url.append(GlobalInstance::getInstance()->getVersionCode());
+
+	url.append("&cid=");
+	url.append(GlobalInstance::getInstance()->getChannelId());
+
+	url.append("&plat=");
+	url.append(GlobalInstance::getInstance()->getPlatForm());
+
+	url.append("&invitationcode=");
+	url.append(code);
+
+	url.append("&sign=");
+	std::string md5ostr = GlobalInstance::getInstance()->UUID() + code;
+
+	std::string signstr = md5(md5ostr + "key=zhoujian-87");
+	url.append(signstr);
+
+	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpGetExchangeInvitationcodeCB, this));
+}
+
 void HttpDataSwap::httpGetServerTimeCB(std::string retdata, int code, std::string extdata)
 {
 	int ret = code;
@@ -1478,7 +1511,14 @@ void HttpDataSwap::httpGetPlayerIdCB(std::string retdata, int code, std::string 
 				int tempval = atoi(getJsonValueStr(doc["newyearcard"]).c_str());
 				GlobalInstance::isNewYearCard = tempval == 1 ? true : false;
 			}
-
+			if (doc.HasMember("myinvitationcode"))
+			{
+				GlobalInstance::myinvitationcode = getJsonValueStr(doc["myinvitationcode"]);
+			}
+			if (doc.HasMember("invitation"))
+			{
+				GlobalInstance::myinvitationrwd = getJsonValueStr(doc["invitation"]);
+			}
 			if (doc.HasMember("aurl"))
 			{
 				GlobalInstance::androidurl = doc["aurl"].GetString();
@@ -2293,6 +2333,29 @@ void HttpDataSwap::httpGetSupperBossRankListCB(std::string retdata, int code, st
 				GlobalInstance::supperbossinfo.totalhurt = atoi(getJsonValueStr(doc["selfdata"]).c_str());
 			}
 
+		}
+		else
+		{
+			ret = JSON_ERR;
+		}
+	}
+	if (m_pDelegateProtocol != NULL)
+	{
+		m_pDelegateProtocol->onFinish(ret);
+	}
+	release();
+}
+
+void HttpDataSwap::httpGetExchangeInvitationcodeCB(std::string retdata, int code, std::string extdata)
+{
+	int ret = code;
+	if (code == 0)
+	{
+		rapidjson::Document doc;
+		if (JsonReader(retdata, doc))
+		{
+			rapidjson::Value& retv = doc["ret"];
+			ret = retv.GetInt();
 		}
 		else
 		{

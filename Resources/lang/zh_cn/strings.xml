@@ -399,6 +399,7 @@
 	<s name="npcgivedesc">结交还需：%d,拜师还需：%d,结亲还需：%d</s>
 	<s name="npcgivemost">好友度已达上限</s>
 	<s name="nomatch">未匹配到玩家，请明日再试！</s>
+	<s name="specifiednomatch">每日只能指定挑战同一玩家2次，请明日再试！</s>	
 	<s name="npcgivehint">赠送物品，投其所好，可以改变与NPC的关系。</s>
 	<s name="ra0hint">好友：%s</s>
 	<s name="ra1hint">师徒：%s</s>
@@ -626,7 +627,7 @@
 	<s name="supperbosstimetext">每日%d点-%d点开放</s>
 	<s name="supperbosstabletile">排名      昵称                 伤害</s>
 	<s name="supperbossmyinfo">我的信息</s>
-	<s name="supperbosstitle">说明</s>
+	<s name="simpleruletitle">说明</s>
 	<s name="supperbosstotalhurt0">上期贡献：</s>
 	<s name="supperbosstotalhurt1">本期贡献：</s>
 	<s name="supperbossherolvlimit">至少需要一名25级以上侠客</s>
@@ -634,5 +635,12 @@
 	<s name="supperbossbuycount">今日免费次数已用完，是否花费20元宝购买一次挑战次数？</s>
 	<s name="supperbosscountlimit">今日挑战次数已用完</s>
 	<s name="quuptitle">升阶装备</s>
-	<s name="quupsucc">%s升阶成功</s>		
+	<s name="quupsucc">%s升阶成功</s>	
+	<s name="mycardnotext">我的邀请码：</s>	
+	<s name="mycardinputhint">请输入邀请码</s>
+	<s name="mycardnoinvail">无效的邀请码</s>
+	<s name="mycardnoisexchange">每人只能兑换一次邀请码</s>
+	<s name="mycardnoexpire">您输入邀请码的时间已过期</s>
+	<s name="mycardcopy">邀请码已复制到剪切板</s>
+	<s name="mycardnoruletext">1.系统为每个用户生成一个唯一的邀请码；\n\n2.新用户在首次进入游戏的24小时之内输入正确的邀请码则可获得%d元宝奖励；\n\n3.每个用户只能兑换一次邀请码奖励；\n\n4.其他玩家输入您的邀请码则TA每次充值你都可以获得元宝奖励，元宝奖励数量为：金额数*%d；\n\n5.一个邀请码可以被多个玩家输入兑换奖励</s>
 </strings>

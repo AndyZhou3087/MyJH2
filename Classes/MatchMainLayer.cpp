@@ -781,7 +781,12 @@ void MatchMainLayer::onFinish(int code)
 			if (httptag == 3)
 			{
 				if (code == 3)
-					MovingLabel::show(ResourceLang::map_lang["nomatch"]);
+				{
+					if (isspecifiedfight)
+						MovingLabel::show(ResourceLang::map_lang["specifiednomatch"]);
+					else
+						MovingLabel::show(ResourceLang::map_lang["nomatch"]);
+				}
 				else if (code == 4)
 					MovingLabel::show(ResourceLang::map_lang["matchfightnocount"]);
 				return;
