@@ -513,7 +513,7 @@ void SettingLayer::onFinish(int errcode)
 			std::vector<std::string> vec_;
 			CommonFuncs::split(GlobalInstance::myinvitationrwd, vec_, "-");
 			if (vec_.size() > 1)
-				wdata.count = atoi(vec_[1].c_str());
+				wdata.count = atoi(vec_[0].c_str());
 			else
 				wdata.count = 100;
 			wdata.qu = 0;
