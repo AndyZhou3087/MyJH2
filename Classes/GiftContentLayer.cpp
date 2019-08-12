@@ -161,7 +161,7 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 			//qu = 0;
 			//str = StringUtils::format("ui/resbox_qu%d.png", qu);
 		}
-		else if (t == T_EPIECE)
+		if(data->icon.compare(0, 8, "timegift") == 0 && t == T_EPIECE)
 		{
 			int r = GlobalInstance::getInstance()->createRandomNum(sizeof(qu4epiece)/sizeof(qu4epiece[0]));
 			resid = qu4epiece[r];

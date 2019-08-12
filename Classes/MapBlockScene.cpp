@@ -154,6 +154,14 @@ void MapBlockScene::onExit()
 	Layer::onExit();
 }
 
+void MapBlockScene::onExitTransitionDidStart()
+{
+	if (g_MapBlockScene != NULL)
+		g_MapBlockScene = NULL;
+
+	Layer::onExitTransitionDidStart();
+}
+
 bool MapBlockScene::init(std::string mapname, int bgtype)
 {
 	m_mapid = mapname;

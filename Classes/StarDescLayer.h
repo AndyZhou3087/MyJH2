@@ -43,6 +43,7 @@ private:
 	cocos2d::ui::Text* packagefoodcountlbl;
 	cocos2d::ui::Text* supperbossleftcountlbl;
 	cocos2d::ui::Text* supperbosstimelbl;
+	cocos2d::ui::Text* supperbosshplbl;
 };
 
 #endif

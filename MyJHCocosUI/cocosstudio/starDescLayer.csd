@@ -586,8 +586,8 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="j003" ActionTag="-1829979704" Tag="59" IconVisible="False" LeftMargin="72.7577" RightMargin="-197.7577" TopMargin="-77.3324" BottomMargin="-47.6676" ctype="SpriteObjectData">
-                <Size X="125.0000" Y="125.0000" />
+              <AbstractNodeData Name="j003" ActionTag="-1829979704" Tag="59" IconVisible="False" LeftMargin="80.7577" RightMargin="-189.7577" TopMargin="-69.3324" BottomMargin="-39.6676" ctype="SpriteObjectData">
+                <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="135.2577" Y="14.8324" />
                 <Scale ScaleX="0.4000" ScaleY="0.4000" />
@@ -668,7 +668,7 @@
             <OutlineColor A="255" R="63" G="43" B="3" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="supperbossleftcount" ActionTag="-1719677274" Tag="60" IconVisible="False" LeftMargin="222.2800" RightMargin="497.7200" TopMargin="1044.4503" BottomMargin="235.5496" FontSize="23" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="supperbossleftcount" ActionTag="-1719677274" Tag="60" IconVisible="False" LeftMargin="222.2800" RightMargin="497.7200" TopMargin="1044.4504" BottomMargin="235.5496" FontSize="23" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="0.0000" Y="0.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="222.2800" Y="235.5496" />
@@ -688,6 +688,18 @@
             <CColor A="255" R="121" G="78" B="46" />
             <PrePosition X="0.3087" Y="0.0997" />
             <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="supperbosslefthp" ActionTag="1786318214" Tag="78" IconVisible="False" LeftMargin="200.5000" RightMargin="200.5000" TopMargin="977.0000" BottomMargin="277.0000" FontSize="23" LabelText="（高人血量：120000/5000000）" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="319.0000" Y="26.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="290.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="0" B="0" />
+            <PrePosition X="0.5000" Y="0.2266" />
+            <PreSize X="0.4431" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />

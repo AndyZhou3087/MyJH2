@@ -114,6 +114,9 @@ bool StarDescLayer::init(std::string mapid)
 	supperbosstimelbl = (cocos2d::ui::Text*)csbnode->getChildByName("supperbossopentime");
 	supperbosstimelbl->setPositionX(360);
 
+	supperbosshplbl = (cocos2d::ui::Text*)csbnode->getChildByName("supperbosslefthp");
+	supperbosshplbl->setVisible(false);
+
 	cocos2d::ui::Widget* rulebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("rulebtn");
 	rulebtn->addTouchEventListener(CC_CALLBACK_2(StarDescLayer::onBtnClick, this));
 	rulebtn->setTag(1003);
@@ -909,6 +912,26 @@ void StarDescLayer::onFinish(int errcode)
 		str = StringUtils::format(ResourceLang::map_lang["supperbosstimetext"].c_str(), GlobalInstance::supperbossinfo.starthour, GlobalInstance::supperbossinfo.endhour);
 		supperbosstimelbl->setString(str);
 		actionbtn->setEnabled(true);
+
+		long long int timeSec = GlobalInstance::servertime + 8 * 60 * 60;
+		time_t timep = timeSec;
+		tm* timeStuct = gmtime(&timep);
+
+		if (timeStuct->tm_hour >= GlobalInstance::supperbossinfo.starthour && timeStuct->tm_hour < GlobalInstance::supperbossinfo.endhour)
+		{
+			std::string lefthpstr = ResourceLang::map_lang["supperbossnohptext"];
+
+			if (GlobalInstance::supperbossinfo.bosslefthp > 0)
+			{
+				lefthpstr = StringUtils::format(ResourceLang::map_lang["supperbosslefthptext"].c_str(), GlobalInstance::supperbossinfo.bosslefthp, GlobalInstance::supperbossinfo.bossmaxhp);
+			}
+			supperbosshplbl->setVisible(true);
+			supperbosshplbl->setString(lefthpstr);
+		}
+		else
+		{
+			supperbosshplbl->setVisible(false);
+		}
 	}
 	else
 	{

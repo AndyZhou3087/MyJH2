@@ -202,6 +202,14 @@ void MainMapScene::onEnterTransitionDidFinish()
 	Layer::onEnterTransitionDidFinish();
 }
 
+void MainMapScene::onExitTransitionDidStart()
+{
+	if (g_MainMapScene != NULL)
+		g_MainMapScene = NULL;
+
+	Layer::onExitTransitionDidStart();
+}
+
 void MainMapScene::showNewerGuide(int step, Node* node)
 {
 	std::vector<Node*> nodes;

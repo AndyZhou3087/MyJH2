@@ -20,6 +20,7 @@ public:
 
 	virtual void onExit();
 	virtual void onEnterTransitionDidFinish();
+	virtual void onExitTransitionDidStart();
 	static cocos2d::Scene* createScene();
 
 	void showNewerGuide(int step, Node* node);

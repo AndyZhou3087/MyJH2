@@ -19,6 +19,8 @@ public:
 
 	virtual void onEnterTransitionDidFinish();
 
+	virtual void onExitTransitionDidStart();
+
 	/*********************************
 	监听滑动事件
 	**********************************/

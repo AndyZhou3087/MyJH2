@@ -65,6 +65,7 @@ public:
 	bool init(std::string mapname, int bgtype);
 
 	virtual void onExit();
+	virtual void onExitTransitionDidStart();
 
 	static cocos2d::Scene* createScene(std::string mapname, int bgtype);
 

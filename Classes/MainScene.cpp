@@ -728,6 +728,14 @@ void MainScene::onEnterTransitionDidFinish()
 	this->scheduleOnce(schedule_selector(MainScene::delayGetServerTime), 0.1f);
 }
 
+void MainScene::onExitTransitionDidStart()
+{
+	if (g_mainScene != NULL)
+		g_mainScene = NULL;
+
+	Layer::onExitTransitionDidStart();
+}
+
 void MainScene::srollviewlistenEvent(Ref* ref, ui::ScrollView::EventType eventType)
 {
 	//if (g_NewGuideLayer != NULL)
