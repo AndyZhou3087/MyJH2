@@ -26,7 +26,7 @@ OutTownLayer::OutTownLayer()
 	m_longTouchNode = NULL;
 
 	caryycount = 0;
-	lastselectformation = GlobalInstance::myTakeOnFormation;
+	lastselectformation = 0;
 }
 
 OutTownLayer::~OutTownLayer()
@@ -198,7 +198,7 @@ bool OutTownLayer::init()
 	m_editCount->setDelegate(this);
 	csbnode->addChild(m_editCount);
 
-	selectFormation(lastselectformation);
+	checkFormation();
 
 	this->scheduleOnce(schedule_selector(OutTownLayer::delayShowNewerGuide), newguidetime);
 
@@ -311,6 +311,10 @@ void OutTownLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_ev
 			m_myCardHerosNode[clickHero]->setPosition(Vec2(150 + clickHero % 3 * 210, /*745 + */705 - clickHero / 3 * 245));
 			m_myCardHerosNode[clickHero]->setLocalZOrder(1);
 		
+		}
+		else
+		{
+			checkFormation();
 		}
 		clickHero = -1;
 	}
@@ -704,7 +708,9 @@ void OutTownLayer::onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 
 			if (GlobalInstance::getInstance()->getUnlockChapter() >= 2)
+			{
 				selectFormation(clicknode->getTag());
+			}
 			else
 			{
 				MovingLabel::show(ResourceLang::map_lang["unlockformationhint"]);
@@ -766,6 +772,7 @@ void OutTownLayer::selectFormation(int index)
 		if (GlobalInstance::map_formations[formationid].lv >= 0)
 		{
 			takeOnFormation(index);
+			GlobalInstance::myTakeOnFormation = index;
 		}
 
 	}
@@ -775,6 +782,7 @@ void OutTownLayer::selectFormation(int index)
 	}
 	updateFormationInfo(index);
 
+	GlobalInstance::getInstance()->saveMyFormation();
 }
 
 void OutTownLayer::updateFormationInfo(int index)
@@ -914,7 +922,6 @@ void OutTownLayer::checkFormation()
 		bigformation->setVisible(false);
 	}
 	selectFormation(GlobalInstance::myTakeOnFormation);
-	GlobalInstance::getInstance()->saveMyFormation();
 }
 
 void OutTownLayer::takeOnFormation(int formationindex)
@@ -978,6 +985,7 @@ void OutTownLayer::takeOnFormation(int formationindex)
 		bigformation->setOpacity(255);
 		bigformation->setVisible(true);
 		bigformation->runAction(Repeat::create(Sequence::create(FadeIn::create(0.5), FadeOut::create(0.5), FadeIn::create(0.5), NULL), 3));
+
 	}
 	else
 	{

@@ -461,13 +461,19 @@ float Hero::getAtkSpeed()
 			}
 		}
 	}
+	float formationbns = heroatkspeed * GlobalInstance::getInstance()->getFormationBns(5);
 
 	float renationbns = heroatkspeed * addpercent;
 
-	float formationbns = heroatkspeed * GlobalInstance::getInstance()->getFormationBns(5);
+	heroatkspeed += renationbns;
+	if ((m_vocation + 1) % 4 == 0 && m_vocation > 4)
+		heroatkspeed = heroatkspeed > 3.5f ? 3.5f : heroatkspeed;
+	else
+		heroatkspeed = heroatkspeed > 3.0f ? 3.0f : heroatkspeed;
 
-	heroatkspeed = heroatkspeed + formationbns + formationbns;
-	return heroatkspeed > 3.0f ? 3.0f : heroatkspeed;
+	heroatkspeed += formationbns;
+
+	return heroatkspeed;
 }
 float Hero::getCrit()
 {
@@ -581,8 +587,10 @@ float Hero::getDodge()
 
 	float formationbns = herododge * GlobalInstance::getInstance()->getFormationBns(3);
 
-	herododge = herododge + renationbns + formationbns;
-	return herododge>48?48:herododge;
+	herododge += renationbns;
+	herododge = herododge > 48 ? 48 : herododge;
+
+	return herododge += formationbns;
 }
 
 float Hero::getAtkBy(int breakcount)
@@ -840,6 +848,10 @@ float Hero::getAtkSpeedBy(int breakcount)
 
 	float renationbns = heroatkspeed * addpercent;
 	heroatkspeed += renationbns;
+
+	if (m_vocation % 4 == 0 && m_vocation > 4)
+		heroatkspeed > 4.0f ? 4.0f : heroatkspeed;
+
 	return heroatkspeed > 3.0f ? 3.0f : heroatkspeed;
 }
 float Hero::getCritBy(int breakcount)

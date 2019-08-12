@@ -21,7 +21,7 @@ float Equip::getAtk()
 	atk = ebns * GlobalInstance::map_Equip[getId()].atk;
 	if (getType() == T_ARMOR)
 	{
-		atk += getLv().getValue() *(getLv().getValue()*0.8f + atk * 0.12f + 2);
+		atk += getLv().getValue() *(getLv().getValue()*0.85f + atk * 0.13f + 3);
 	}
 	for (unsigned int i = 0; i < vec_stones.size(); i++)
 	{
@@ -45,7 +45,7 @@ float Equip::getDf()
 	df = ebns *  GlobalInstance::map_Equip[getId()].df;
 	if (getType() == T_EQUIP)
 	{
-		df += getLv().getValue() *(getLv().getValue()*0.5f + df * 0.13f + 1);
+		df += getLv().getValue() *(getLv().getValue()*0.55f + df * 0.14f + 1);
 	}
 	for (unsigned int i = 0; i < vec_stones.size(); i++)
 	{
@@ -71,7 +71,7 @@ float Equip::getHp()
 	hp = ebns * GlobalInstance::map_Equip[getId()].maxhp;
 	if (getType() == T_FASHION)
 	{
-		hp += getLv().getValue() *(getLv().getValue()*1.1f + hp * 0.1f + 10);
+		hp += getLv().getValue() *(getLv().getValue()*1.15f + hp * 0.11f + 11);
 	}
 	for (unsigned int i = 0; i < vec_stones.size(); i++)
 	{
