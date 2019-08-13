@@ -50,10 +50,13 @@ private:
 
 	void fightOver(int ret);
 
+	void changeSpeed(int speedscale);
+
 private:
 	std::vector<Npc*> m_enemyHeros;
 	std::vector<Hero*> m_myHeros;
 	cocos2d::ui::Widget* m_escapebtn;
+	cocos2d::ui::ImageView* changespeedcick;
 	int fightcount;
 	int ajustFightRet;
 

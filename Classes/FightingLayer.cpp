@@ -19,6 +19,7 @@ FightingLayer::FightingLayer()
 	fightcount = 0;
 	ajustFightRet = 0;
 	isFightOver = false;
+	Director::getInstance()->getScheduler()->setTimeScale(1);
 }
 
 FightingLayer::~FightingLayer()
@@ -81,11 +82,17 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 	m_escapebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("escapebtn");
 	m_escapebtn->addTouchEventListener(CC_CALLBACK_2(FightingLayer::onBtnClick, this));
 	m_escapebtn->setVisible(false);
+	m_escapebtn->setTag(0);
 
+	changespeedcick = (cocos2d::ui::ImageView*)csbnode->getChildByName("changespeed");
+	changespeedcick->addTouchEventListener(CC_CALLBACK_2(FightingLayer::onBtnClick, this));
+	changespeedcick->setTag(1);
+
+	changespeedcick->setVisible(!GlobalInstance::challangeType == CH_SUPERBOSS);
+	
 	//cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)m_escapebtn->getChildByName("text");
 
 	//actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("escapebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-
 
 	for (unsigned int i = 0; i < enemyHeros.size(); i++)
 	{
@@ -162,15 +169,35 @@ void FightingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 	CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		this->removeFromParentAndCleanup(true);
-		if (g_MapBlockScene != NULL)
-			g_MapBlockScene->isRoutingBreakOff = false;
+		Node* clicknode = (Node*)pSender;
+		int tag = clicknode->getTag();
+		if (tag == 0)
+		{
+			this->removeFromParentAndCleanup(true);
+			if (g_MapBlockScene != NULL)
+				g_MapBlockScene->isRoutingBreakOff = false;
+			else
+			{
+				GlobalInstance::myMatchInfo.lostcount++;
+				HttpDataSwap::init(NULL)->sendMatchResult(0);
+			}
+		}
 		else
 		{
-			GlobalInstance::myMatchInfo.lostcount++;
-			HttpDataSwap::init(NULL)->sendMatchResult(0);
+			if (tag == 1)
+				changeSpeed(2);
+			else
+				changeSpeed(1);
 		}
 	}
+}
+
+void FightingLayer::changeSpeed(int speedscale)
+{
+	std::string str = StringUtils::format("mapui/fightspeedx%d.png", changespeedcick->getTag());
+	changespeedcick->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+	Director::getInstance()->getScheduler()->setTimeScale(speedscale);
+	changespeedcick->setTag(speedscale);
 }
 
 void FightingLayer::onExit()
@@ -262,6 +289,10 @@ void FightingLayer::resumeAtkSchedule()
 void FightingLayer::fightOver(int ret)
 {
 	pauseAtkSchedule();
+
+	changeSpeed(1);
+	changespeedcick->setEnabled(false);
+
 	this->runAction(Sequence::create(DelayTime::create(0.7f), RemoveSelf::create(), NULL));
 
 	if (isFightOver)

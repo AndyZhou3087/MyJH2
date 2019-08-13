@@ -33,6 +33,16 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="changespeed" ActionTag="-1774680407" Tag="69" IconVisible="False" LeftMargin="653.0578" RightMargin="9.9422" TopMargin="1222.1394" BottomMargin="6.8606" TouchEnable="True" LeftEage="15" RightEage="15" TopEage="13" BottomEage="13" Scale9OriginX="15" Scale9OriginY="13" Scale9Width="19" Scale9Height="23" ctype="ImageViewObjectData">
+            <Size X="57.0000" Y="51.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="681.5578" Y="32.3606" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9466" Y="0.0253" />
+            <PreSize X="0.0792" Y="0.0398" />
+            <FileData Type="MarkedSubImage" Path="mapui/fightspeedx2.png" Plist="mapui.plist" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>
