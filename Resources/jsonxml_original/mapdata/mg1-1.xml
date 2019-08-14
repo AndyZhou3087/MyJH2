@@ -73,6 +73,7 @@
     <Cell c="3" r="11" p="5" w="1" m="44.png">
       <npcid>5</npcid>
       <npcrnd>1</npcrnd>
+      <msawd1 id="r020" qu="0" rnd="50.00">1</msawd1>
     </Cell>
     <Cell c="3" r="12" p="-1" w="0" m="44.png" d="8.png" />
     <Cell c="3" r="13" p="-1" w="1" m="11.png" />

@@ -323,7 +323,7 @@ void SettingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		{
 			std::vector<std::string> vec_;
 			CommonFuncs::split(GlobalInstance::myinvitationrwd, vec_, "-");
-			std::string desc = StringUtils::format(ResourceLang::map_lang["mycardnoruletext"].c_str(), atoi(vec_[0].c_str()), atoi(vec_[1].c_str()));
+			std::string desc = StringUtils::format(ResourceLang::map_lang["mycardnoruletext"].c_str(), atoi(vec_[0].c_str()), vec_[1].c_str());
 			SimpleRuleLayer* layer = SimpleRuleLayer::create(desc);
 			this->addChild(layer);
 			AnimationEffect::openAniEffect(layer);
