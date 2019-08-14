@@ -278,11 +278,12 @@ bool MainScene::init()
 			traintip = (cocos2d::ui::Widget*)buildnametext->getChildByName("main_05_p");
 			traintip->setVisible(false);
 		}
-		//else if (i == 1)
-		//{
-		//	buildnametext->setVisible(false);
-		//	buildingNomal->setEnabled(false);
-		//}
+		else if (i == 1)
+		{
+			buildnametext->setVisible(GlobalInstance::isopenpraise);
+			buildingNomal->setVisible(GlobalInstance::isopenpraise);
+			buildParent->getChildByName("main_01_pic")->setVisible(GlobalInstance::isopenpraise);
+		}
 		buildingSelect->setVisible(false);
 		buildingSelect->setUserData((void*)it->first.c_str());
 		i++;

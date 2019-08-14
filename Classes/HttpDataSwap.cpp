@@ -1523,6 +1523,10 @@ void HttpDataSwap::httpGetPlayerIdCB(std::string retdata, int code, std::string 
 			{
 				GlobalInstance::androidurl = doc["aurl"].GetString();
 			}
+			if (doc.HasMember("praise"))
+			{
+				GlobalInstance::isopenpraise = atoi(getJsonValueStr(doc["praise"]).c_str())>=1?true:false;
+			}
 		}
 		else
 		{

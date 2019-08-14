@@ -201,6 +201,8 @@ std::string GlobalInstance::myinvitationrwd;
 
 bool GlobalInstance::isSpeedup = false;
 
+bool GlobalInstance::isopenpraise = false;
+
 GlobalInstance::GlobalInstance()
 {
 

@@ -1076,6 +1076,8 @@ public:
 	static std::string myinvitationcode;
 	static std::string myinvitationrwd;
 	static bool isSpeedup;
+
+	static bool isopenpraise;
 	
 private:
 	static int refreshHeroTime;
