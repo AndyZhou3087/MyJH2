@@ -89,7 +89,7 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 
 	changespeedcick->setVisible(false);
 	changespeed_text->setVisible(false);
-	if (GlobalInstance::challangeType != CH_SUPERBOSS)
+	if (GlobalInstance::challangeType != CH_SUPERBOSS && GlobalInstance::getInstance()->getHerosLevelCount(20) > 0)
 	{
 		changespeedcick->addTouchEventListener(CC_CALLBACK_2(FightingLayer::onBtnClick, this));
 		changespeedcick->setTag(1);
