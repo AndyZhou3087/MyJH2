@@ -199,6 +199,8 @@ std::string GlobalInstance::myinvitationcode;
 
 std::string GlobalInstance::myinvitationrwd;
 
+bool GlobalInstance::isSpeedup = false;
+
 GlobalInstance::GlobalInstance()
 {
 
@@ -493,6 +495,7 @@ void GlobalInstance::loadInitData()
 	GlobalInstance::supperbossinfo.leftcoincount = 0;
 	GlobalInstance::supperbossinfo.leftfreecount = 0;
 	GlobalInstance::isHasNewmail = false;
+	GlobalInstance::isSpeedup = false;
 }
 
 void GlobalInstance::saveMyHeros()

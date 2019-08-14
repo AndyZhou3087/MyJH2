@@ -53,10 +53,12 @@ private:
 	void changeSpeed(int speedscale);
 
 private:
+	int langtype;
 	std::vector<Npc*> m_enemyHeros;
 	std::vector<Hero*> m_myHeros;
 	cocos2d::ui::Widget* m_escapebtn;
 	cocos2d::ui::ImageView* changespeedcick;
+	cocos2d::ui::ImageView* changespeed_text;
 	int fightcount;
 	int ajustFightRet;
 

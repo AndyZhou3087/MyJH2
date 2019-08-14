@@ -825,6 +825,8 @@
           <Image Name="smcatabtn4_text_s.png" />
           <Image Name="smithylv_text.png" />
           <Image Name="smithytilte.png" />
+          <Image Name="speedx1_text.png" />
+          <Image Name="speedx2_text.png" />
           <Image Name="srefresh_text.png" />
           <Image Name="starscore1_text.png" />
           <Image Name="starscore2_text.png" />

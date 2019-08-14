@@ -76,7 +76,7 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("fightLayer.csb"));
 	this->addChild(csbnode);
-	int langtype = GlobalInstance::getInstance()->getLang();
+	langtype = GlobalInstance::getInstance()->getLang();
 
 	//°´Å¥
 	m_escapebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("escapebtn");
@@ -85,10 +85,23 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 	m_escapebtn->setTag(0);
 
 	changespeedcick = (cocos2d::ui::ImageView*)csbnode->getChildByName("changespeed");
-	changespeedcick->addTouchEventListener(CC_CALLBACK_2(FightingLayer::onBtnClick, this));
-	changespeedcick->setTag(1);
+	changespeed_text = (cocos2d::ui::ImageView*)csbnode->getChildByName("changespeed_text");
 
-	changespeedcick->setVisible(!GlobalInstance::challangeType == CH_SUPERBOSS);
+	changespeedcick->setVisible(false);
+	changespeed_text->setVisible(false);
+	if (GlobalInstance::challangeType != CH_SUPERBOSS)
+	{
+		changespeedcick->addTouchEventListener(CC_CALLBACK_2(FightingLayer::onBtnClick, this));
+		changespeedcick->setTag(1);
+
+		changespeedcick->setVisible(true);
+		changespeed_text->setVisible(true);
+
+		if (GlobalInstance::isSpeedup)
+		{
+			changeSpeed(2);
+		}
+	}
 	
 	//cocos2d::ui::ImageView* actionbtntxt = (cocos2d::ui::ImageView*)m_escapebtn->getChildByName("text");
 
@@ -184,20 +197,39 @@ void FightingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		}
 		else
 		{
+			GlobalInstance::isSpeedup = tag==1;
 			if (tag == 1)
+			{
 				changeSpeed(2);
+
+			}
 			else
+			{
 				changeSpeed(1);
+			}
 		}
 	}
 }
 
 void FightingLayer::changeSpeed(int speedscale)
 {
-	std::string str = StringUtils::format("mapui/fightspeedx%d.png", changespeedcick->getTag());
+	std::string str = StringUtils::format("mapui/fightspeedx%d.png", speedscale);
 	changespeedcick->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+
+	str = StringUtils::format("speedx%d_text", speedscale);
+	changespeed_text->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 	Director::getInstance()->getScheduler()->setTimeScale(speedscale);
 	changespeedcick->setTag(speedscale);
+
+	if (GlobalInstance::isSpeedup)
+	{
+		changespeedcick->runAction(RepeatForever::create(RotateTo::create(10.0f, 720)));
+	}
+	else
+	{
+		changespeedcick->stopAllActions();
+		changespeedcick->setRotation(0);
+	}
 }
 
 void FightingLayer::onExit()

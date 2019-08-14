@@ -58,8 +58,12 @@ float Npc::getMaxHp()
 float Npc::getAtkSpeed()
 {
 	float npcatkspeed = GlobalInstance::map_NpcAttrData[m_vocation].vec_speed[m_lv] * POTENTIAL_BNS[m_potential];
-	if (npcatkspeed > 3.0f)
-		npcatkspeed = 3.0f;
+
+	if ((m_vocation + 1) % 4 == 0 && m_vocation > 4)
+		npcatkspeed = npcatkspeed > 3.5f ? 3.5f : npcatkspeed;
+	else
+		npcatkspeed = npcatkspeed > 3.0f ? 3.0f : npcatkspeed;
+
 	return npcatkspeed;
 }
 float Npc::getCrit()
