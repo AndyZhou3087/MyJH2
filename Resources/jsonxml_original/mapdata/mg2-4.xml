@@ -66,7 +66,7 @@
     <Cell c="2" r="8" p="5" w="0" m="129.png" d="51.png">
       <npcid>7</npcid>
       <npcrnd>1</npcrnd>
-      <msawd1 id="b002" qu="0" rnd="50.00">1</msawd1>
+      <msawd1 id="r020" qu="0" rnd="30.00">1</msawd1>
     </Cell>
     <Cell c="2" r="9" p="-1" w="1" m="129.png" />
     <Cell c="2" r="10" p="5" w="0" m="129.png" d="51.png">
@@ -126,6 +126,7 @@
     <Cell c="4" r="8" p="-1" w="1" m="129.png" />
     <Cell c="4" r="9" p="5" w="1" m="129.png">
       <npcid>8</npcid>
+      <npcrnd>1</npcrnd>
       <msawd1 id="z002" qu="0" rnd="100.00">2</msawd1>
     </Cell>
     <Cell c="4" r="10" p="-1" w="0" m="129.png" d="8.png" />
@@ -133,7 +134,7 @@
     <Cell c="4" r="12" p="5" w="1" m="129.png">
       <npcid>11</npcid>
       <npcrnd>1</npcrnd>
-      <msawd1 id="r012" qu="0" rnd="30.00">50</msawd1>
+      <msawd1 id="r012" qu="0" rnd="30.00">30</msawd1>
     </Cell>
     <Cell c="4" r="13" p="5" w="1" m="129.png">
       <npcid>12</npcid>
@@ -470,7 +471,7 @@
     <Cell c="18" r="1" p="5" w="1" m="129.png">
       <npcid>1</npcid>
       <npcrnd>1</npcrnd>
-      <msawd1 id="y002" qu="0" rnd="50.00">1</msawd1>
+      <msawd1 id="r020" qu="0" rnd="50.00">1</msawd1>
     </Cell>
     <Cell c="18" r="2" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="18" r="3" p="-1" w="1" m="129.png" />
