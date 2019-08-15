@@ -19,7 +19,6 @@ FightingLayer::FightingLayer()
 	fightcount = 0;
 	ajustFightRet = 0;
 	isFightOver = false;
-	Director::getInstance()->getScheduler()->setTimeScale(1);
 }
 
 FightingLayer::~FightingLayer()
@@ -35,6 +34,7 @@ FightingLayer::~FightingLayer()
 	}
 	clearSkillsData(0);
 	clearSkillsData(1);
+	Director::getInstance()->getScheduler()->setTimeScale(1);
 }
 
 
