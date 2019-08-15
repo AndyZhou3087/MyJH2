@@ -224,7 +224,7 @@ GlobalInstance* GlobalInstance::getInstance() {
 std::string GlobalInstance::UUID()
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	return getDeviceIDInKeychain();
+	return "D24E243D-3FFB-483A-9786-2C3A72F23FF8";//getDeviceIDInKeychain();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	return "AA67AFAD-AC63-461A-AD29-9774E81C4B3F";//"*******************11";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
