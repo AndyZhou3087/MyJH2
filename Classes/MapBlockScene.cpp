@@ -3536,6 +3536,9 @@ void MapBlockScene::zoomGuideEnd()
 
 void MapBlockScene::onFinish(int code)
 {
+	if (g_MapBlockScene == NULL)
+		return;
+
 	Director::getInstance()->getRunningScene()->removeChildByName("waitingprogress");
 	ErrorHintLayer* networkerrLayer = (ErrorHintLayer*)this->getChildByName("networkerrorlayer");
 	if (code == SUCCESS)

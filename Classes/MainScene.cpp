@@ -734,6 +734,9 @@ void MainScene::onExitTransitionDidStart()
 	if (g_mainScene != NULL)
 		g_mainScene = NULL;
 
+	if (g_MainMenuLayer != NULL)
+		g_MainMenuLayer = NULL;
+
 	Layer::onExitTransitionDidStart();
 }
 
@@ -983,6 +986,9 @@ void MainScene::onExit()
 
 void MainScene::onFinish(int code)
 {
+	if (g_mainScene == NULL)
+		return;
+
 	if (httpgettype == 0)
 	{
 		ErrorHintLayer* networkerrLayer = (ErrorHintLayer*)this->getChildByName("networkerrorlayer");
@@ -1211,10 +1217,10 @@ void MainScene::updateTime(float dt)
 		}
 	}
 
-	if (istainfinish && this->getChildByName("trainfinishlayer") == NULL)
+	if (istainfinish && g_mainScene != NULL && g_mainScene->getChildByName("trainfinishlayer") == NULL)
 	{
 		TrainFinishLayer* layer = TrainFinishLayer::create();
-		this->addChild(layer, 10000, "trainfinishlayer");
+		g_mainScene->addChild(layer, 10000, "trainfinishlayer");
 	}
 
 	int zerotime = GlobalInstance::servertime + 8 * 60 * 60;

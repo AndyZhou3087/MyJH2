@@ -8,8 +8,8 @@ android {
         applicationId "com.fengs.myjh"
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
-        versionCode 25
-        versionName "2.5.0"
+        versionCode 26
+        versionName "2.5.1"
 
         externalNativeBuild {
             if (PROP_BUILD_TYPE == 'ndk-build') {

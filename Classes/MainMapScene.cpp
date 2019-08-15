@@ -309,6 +309,9 @@ void MainMapScene::updateTime(float dt)
 
 void MainMapScene::onFinish(int code)
 {
+	if (g_MainMapScene == NULL)
+		return;
+
 	ErrorHintLayer* networkerrLayer = (ErrorHintLayer*)this->getChildByName("networkerrorlayer");
 
 	if (code == SUCCESS)
