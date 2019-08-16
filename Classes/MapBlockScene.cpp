@@ -1,4 +1,4 @@
-﻿#include "MapBlockScene.h"
+#include "MapBlockScene.h"
 #include "Resource.h"
 #include "MyRes.h"
 #include "CommonFuncs.h"
@@ -3430,7 +3430,8 @@ void MapBlockScene::removeAllRoutingBlock()
 	}
 
 	map_mapBlocks[0]->getParent()->removeChildByName("bossquan");
-	g_MapBlockScene->removeChildByName("cannottouchlayer");
+    if(g_MapBlockScene != NULL)
+        g_MapBlockScene->removeChildByName("cannottouchlayer");
 
 }
 
