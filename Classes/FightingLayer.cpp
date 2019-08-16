@@ -107,6 +107,19 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 
 	//actionbtntxt->loadTexture(ResourcePath::makeTextImgPath("escapebtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+
+	for (unsigned int i = 0; i < m_myHeros.size(); i++)
+	{
+		if (m_myHeros[i] != NULL)
+		{
+			FightHeroNode* fightHeroNode = FightHeroNode::create();
+			fightHeroNode->setPosition(145 + i % 3 * 215, 460 - i / 3 * 260);
+			m_myHeros[i]->setFightRound(0);
+			fightHeroNode->setData(m_myHeros[i], F_HERO, FS_FIGHTING);
+			addChild(fightHeroNode, 6 + i + 1, i);
+		}
+	}
+
 	for (unsigned int i = 0; i < enemyHeros.size(); i++)
 	{
 		if (enemyHeros[i] != NULL)
@@ -118,18 +131,6 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 				datatype = F_HERO;
 			fightHeroNode->setData(m_enemyHeros[i], datatype, FS_FIGHTING);
 			addChild(fightHeroNode, i + 1, 6 + i);
-		}
-	}
-
-	for (unsigned int i = 0; i < m_myHeros.size(); i++)
-	{
-		if (m_myHeros[i] != NULL)
-		{
-			FightHeroNode * fightHeroNode = FightHeroNode::create();
-			fightHeroNode->setPosition(145 + i % 3 * 215, 460 - i / 3 * 260);
-			m_myHeros[i]->setFightRound(0);
-			fightHeroNode->setData(m_myHeros[i], F_HERO, FS_FIGHTING);
-			addChild(fightHeroNode, 6 + i + 1, i);
 		}
 	}
 
