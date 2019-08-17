@@ -177,6 +177,8 @@ std::vector<S_PAISEDATA> GlobalInstance::vec_ToMyPaiseData;
 
 int GlobalInstance::myTakeOnFormation = 0;
 
+int GlobalInstance::myMatchPairTakeOnFormation = 0;
+
 std::map<std::string, S_MOPUPRWDDATA> GlobalInstance::map_mopuprwds;
 
 int GlobalInstance::fightwinbosscount = 0;
@@ -3635,7 +3637,7 @@ void GlobalInstance::setBuildingBroken()
 	}
 }
 
-void GlobalInstance::saveMyFormation()
+void GlobalInstance::saveMyFormation(int mycurformation)
 {
 	std::string str;
 	std::map<std::string, S_FORMATION>::iterator it;
@@ -3650,15 +3652,15 @@ void GlobalInstance::saveMyFormation()
 			str.append(statestr);
 		}
 	}
-	std::string savestr = StringUtils::format("%d;%s", GlobalInstance::myTakeOnFormation, str.c_str());
+	std::string savestr = StringUtils::format("%d;%s", mycurformation, str.c_str());
 	DataSave::getInstance()->setMyFormation(savestr);
 }
 
-float GlobalInstance::getFormationBns(int whichattr)
+float GlobalInstance::getFormationBns(int whichattr, int mycurformation)
 {
-	if (GlobalInstance::myTakeOnFormation > 0)
+	if (mycurformation > 0)
 	{
-		std::string fid = StringUtils::format("zx%03d", GlobalInstance::myTakeOnFormation);
+		std::string fid = StringUtils::format("zx%03d", mycurformation);
 		return GlobalInstance::map_formations[fid].vec_addattr[whichattr];
 	}
 	return 0;

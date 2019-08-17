@@ -681,6 +681,7 @@
       <FilePathData Path="ui/supperbossrankbtn.png" />
       <FilePathData Path="ui/oneyuangift.png" />
       <FilePathData Path="ui/r020.png" />
+      <FilePathData Path="ui/matchmyinfobox.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

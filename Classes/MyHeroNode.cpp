@@ -182,6 +182,10 @@ bool MyHeroNode::init(Hero* herodata, int showtype, int forwhere)
 			std::string tagtextstr = StringUtils::format("%d", m_heroData->getOnchallengepos());
 			tagtext_1->setString(tagtextstr);
 		}
+		else
+		{
+			statetag_1->setVisible(false);
+		}
 	}
 
 	if (m_heroData->getPower().getValue() >= 100)
@@ -720,6 +724,7 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 					cardheroNode->setData(m_heroData);
 					statetag_1->setVisible(true);
 					btntextstr = "herocancel_text";
+					matchMainLayer->checkFormation();
 				}
 				else if (m_heroData->getOnchallengepos() > 0)
 				{
@@ -735,16 +740,17 @@ void MyHeroNode::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 						}
 					}
 
+					m_heroData->setOnchallengepos(0);
+
 					delete GlobalInstance::myOnChallengeHeros[heropos - 1];
 					GlobalInstance::myOnChallengeHeros[heropos - 1] = NULL;
-
-					m_heroData->setOnchallengepos(0);
 
 					MatchMainLayer* matchMainLayer = (MatchMainLayer*)g_mainScene->getChildByName("8pkground");
 					CardHeroNode *cardheroNode = (CardHeroNode*)matchMainLayer->getMyCardHeroNode(heropos - 1);
 					cardheroNode->setData(NULL);
 					statetag_1->setVisible(false);
 					btntextstr = "herofight_text";
+					matchMainLayer->checkFormation();
 				}
 				GlobalInstance::getInstance()->saveHero(m_heroData);
 				if (statetag_1->isVisible())

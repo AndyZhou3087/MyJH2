@@ -63,185 +63,473 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="changehint" ActionTag="-1871951914" Tag="34" IconVisible="False" LeftMargin="299.0000" RightMargin="299.0000" TopMargin="654.5001" BottomMargin="602.4999" FontSize="20" LabelText="点击更换头像" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="122.0000" Y="23.0000" />
+          <AbstractNodeData Name="formationtitle" ActionTag="151614235" Tag="330" IconVisible="False" LeftMargin="66.1189" RightMargin="324.8811" TopMargin="87.5564" BottomMargin="1161.4436" ctype="SpriteObjectData">
+            <Size X="329.0000" Y="31.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="613.9999" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="28" G="208" B="255" />
-            <PrePosition X="0.5000" Y="0.4797" />
-            <PreSize X="0.1694" Y="0.0180" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="0" G="0" B="0" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="changebtn" ActionTag="-218638831" Tag="35" IconVisible="False" LeftMargin="134.8661" RightMargin="441.1339" TopMargin="608.7672" BottomMargin="591.2328" TouchEnable="True" LeftEage="47" RightEage="47" TopEage="26" BottomEage="26" Scale9OriginX="47" Scale9OriginY="26" Scale9Width="50" Scale9Height="28" ctype="ImageViewObjectData">
-            <Size X="144.0000" Y="80.0000" />
-            <Children>
-              <AbstractNodeData Name="text" ActionTag="-1382586806" Tag="36" IconVisible="False" LeftMargin="1.4996" RightMargin="15.5004" TopMargin="9.5001" BottomMargin="33.4999" LeftEage="27" RightEage="27" TopEage="15" BottomEage="15" Scale9OriginX="27" Scale9OriginY="15" Scale9Width="73" Scale9Height="7" ctype="ImageViewObjectData">
-                <Size X="127.0000" Y="37.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="64.9996" Y="51.9999" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4514" Y="0.6500" />
-                <PreSize X="0.8819" Y="0.4625" />
-                <FileData Type="MarkedSubImage" Path="text_zh_cn/changequene_text.png" Plist="text_zh_cn.plist" />
-              </AbstractNodeData>
-            </Children>
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="206.8661" Y="631.2328" />
+            <Position X="230.6189" Y="1176.9436" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2873" Y="0.4932" />
-            <PreSize X="0.2000" Y="0.0625" />
-            <FileData Type="MarkedSubImage" Path="ui/actionbtn_blue.png" Plist="ui.plist" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="savebtn" ActionTag="1980194047" Tag="43" IconVisible="False" LeftMargin="472.8661" RightMargin="103.1339" TopMargin="609.7672" BottomMargin="590.2328" TouchEnable="True" LeftEage="47" RightEage="47" TopEage="26" BottomEage="26" Scale9OriginX="47" Scale9OriginY="26" Scale9Width="50" Scale9Height="28" ctype="ImageViewObjectData">
-            <Size X="144.0000" Y="80.0000" />
-            <Children>
-              <AbstractNodeData Name="text" ActionTag="-206145568" Tag="44" IconVisible="False" LeftMargin="1.4996" RightMargin="15.5004" TopMargin="9.0001" BottomMargin="32.9999" LeftEage="27" RightEage="27" TopEage="15" BottomEage="15" Scale9OriginX="27" Scale9OriginY="15" Scale9Width="73" Scale9Height="8" ctype="ImageViewObjectData">
-                <Size X="127.0000" Y="38.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="64.9996" Y="51.9999" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4514" Y="0.6500" />
-                <PreSize X="0.8819" Y="0.4750" />
-                <FileData Type="MarkedSubImage" Path="text_zh_cn/matchsave_text.png" Plist="text_zh_cn.plist" />
-              </AbstractNodeData>
-            </Children>
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="544.8661" Y="630.2328" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7568" Y="0.4924" />
-            <PreSize X="0.2000" Y="0.0625" />
-            <FileData Type="MarkedSubImage" Path="ui/actionbtn_blue.png" Plist="ui.plist" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="resitem" ActionTag="-1199761934" Tag="45" IconVisible="False" LeftMargin="46.0000" RightMargin="46.0000" TopMargin="689.0000" BottomMargin="469.0000" ctype="SpriteObjectData">
-            <Size X="628.0000" Y="122.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="360.0000" Y="530.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.4141" />
-            <PreSize X="0.8722" Y="0.0953" />
-            <FileData Type="MarkedSubImage" Path="ui/resitem.png" Plist="ui.plist" />
+            <PrePosition X="0.3203" Y="0.9195" />
+            <PreSize X="0.4569" Y="0.0242" />
+            <FileData Type="MarkedSubImage" Path="text_zh_cn/formationtitle.png" Plist="text_zh_cn.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="setpline" ActionTag="1809768505" Tag="94" IconVisible="False" LeftMargin="256.9972" RightMargin="457.0028" TopMargin="659.0000" BottomMargin="439.0000" ctype="SpriteObjectData">
-            <Size X="6.0000" Y="182.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="259.9972" Y="530.0000" />
-            <Scale ScaleX="1.0000" ScaleY="0.5000" />
+          <AbstractNodeData Name="scrollview" ActionTag="819169466" Tag="329" IconVisible="False" LeftMargin="68.7233" RightMargin="71.2767" TopMargin="119.0007" BottomMargin="1015.9993" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ScrollDirectionType="Horizontal" ctype="ScrollViewObjectData">
+            <Size X="580.0000" Y="145.0000" />
+            <AnchorPoint />
+            <Position X="68.7233" Y="1015.9993" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3611" Y="0.4141" />
-            <PreSize X="0.0083" Y="0.1422" />
-            <FileData Type="MarkedSubImage" Path="ui/setpline0.png" Plist="ui.plist" />
+            <PrePosition X="0.0954" Y="0.7937" />
+            <PreSize X="0.8056" Y="0.1133" />
+            <SingleColor A="255" R="255" G="150" B="100" />
+            <FirstColor A="255" R="255" G="150" B="100" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
+            <InnerNodeSize Width="640" Height="150" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="formationnode" ActionTag="134301182" Tag="302" IconVisible="True" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="355.0000" BottomMargin="925.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <Children>
+              <AbstractNodeData Name="formationdescbox" ActionTag="345973809" Tag="303" IconVisible="False" LeftMargin="-301.5000" RightMargin="-301.5000" TopMargin="-91.0000" BottomMargin="-91.0000" ctype="SpriteObjectData">
+                <Size X="603.0000" Y="182.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="Normal" Path="images/formationdescbox.png" Plist="" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="fname" ActionTag="-1601237550" Tag="304" IconVisible="False" LeftMargin="-279.8723" RightMargin="217.8723" TopMargin="-73.6501" BottomMargin="39.6501" FontSize="30" LabelText="太极" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                <Size X="62.0000" Y="34.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="-279.8723" Y="56.6501" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="80" G="38" B="12" />
+                <ShadowColor A="255" R="0" G="0" B="0" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="desc" ActionTag="-726728151" Tag="305" IconVisible="False" LeftMargin="-280.3095" RightMargin="0.3095" TopMargin="-23.5778" BottomMargin="-36.4222" IsCustomSize="True" FontSize="23" LabelText="阵型角色生命值增加5%" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                <Size X="280.0000" Y="60.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="-280.3095" Y="-6.4222" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="27" G="10" B="3" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="80" G="38" B="12" />
+                <ShadowColor A="255" R="0" G="0" B="0" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="formationinfotable" ActionTag="-1256166495" Tag="306" IconVisible="False" LeftMargin="5.5000" RightMargin="-164.5000" TopMargin="-31.0837" BottomMargin="-71.9163" ctype="SpriteObjectData">
+                <Size X="159.0000" Y="103.0000" />
+                <Children>
+                  <AbstractNodeData Name="vocationbox0" ActionTag="855675794" Tag="307" IconVisible="False" LeftMargin="10.9060" RightMargin="114.0940" TopMargin="4.8608" BottomMargin="64.1392" ctype="SpriteObjectData">
+                    <Size X="34.0000" Y="34.0000" />
+                    <Children>
+                      <AbstractNodeData Name="v" ActionTag="2096559590" Tag="308" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
+                        <Size X="34.0000" Y="34.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="16.0001" Y="18.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.4706" Y="0.5294" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="27.9060" Y="81.1392" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1755" Y="0.7878" />
+                    <PreSize X="0.2138" Y="0.3301" />
+                    <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocationbox1" ActionTag="1343537426" Tag="309" IconVisible="False" LeftMargin="62.9063" RightMargin="62.0937" TopMargin="4.8608" BottomMargin="64.1392" ctype="SpriteObjectData">
+                    <Size X="34.0000" Y="34.0000" />
+                    <Children>
+                      <AbstractNodeData Name="v" ActionTag="-1636761250" Tag="310" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
+                        <Size X="34.0000" Y="34.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="16.0001" Y="18.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.4706" Y="0.5294" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="79.9063" Y="81.1392" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5026" Y="0.7878" />
+                    <PreSize X="0.2138" Y="0.3301" />
+                    <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocationbox2" ActionTag="456149689" Tag="311" IconVisible="False" LeftMargin="114.9065" RightMargin="10.0935" TopMargin="4.8605" BottomMargin="64.1395" ctype="SpriteObjectData">
+                    <Size X="34.0000" Y="34.0000" />
+                    <Children>
+                      <AbstractNodeData Name="v" ActionTag="1232146423" Tag="312" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
+                        <Size X="34.0000" Y="34.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="16.0001" Y="18.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.4706" Y="0.5294" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="131.9065" Y="81.1395" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8296" Y="0.7878" />
+                    <PreSize X="0.2138" Y="0.3301" />
+                    <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocationbox3" ActionTag="1683767798" Tag="313" IconVisible="False" LeftMargin="11.0813" RightMargin="113.9187" TopMargin="54.7061" BottomMargin="14.2939" ctype="SpriteObjectData">
+                    <Size X="34.0000" Y="34.0000" />
+                    <Children>
+                      <AbstractNodeData Name="v" ActionTag="-1080575846" Tag="314" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
+                        <Size X="34.0000" Y="34.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="16.0001" Y="18.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.4706" Y="0.5294" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="28.0813" Y="31.2939" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1766" Y="0.3038" />
+                    <PreSize X="0.2138" Y="0.3301" />
+                    <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocationbox4" ActionTag="982120452" Tag="315" IconVisible="False" LeftMargin="63.0816" RightMargin="61.9184" TopMargin="54.7061" BottomMargin="14.2939" ctype="SpriteObjectData">
+                    <Size X="34.0000" Y="34.0000" />
+                    <Children>
+                      <AbstractNodeData Name="v" ActionTag="-2023257610" Tag="316" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
+                        <Size X="34.0000" Y="34.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="16.0001" Y="18.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.4706" Y="0.5294" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="80.0816" Y="31.2939" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5037" Y="0.3038" />
+                    <PreSize X="0.2138" Y="0.3301" />
+                    <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocationbox5" ActionTag="1458533952" Tag="317" IconVisible="False" LeftMargin="115.0819" RightMargin="9.9181" TopMargin="54.7061" BottomMargin="14.2939" ctype="SpriteObjectData">
+                    <Size X="34.0000" Y="34.0000" />
+                    <Children>
+                      <AbstractNodeData Name="v" ActionTag="872609314" Tag="318" IconVisible="False" LeftMargin="-0.9999" RightMargin="0.9999" TopMargin="-1.0000" BottomMargin="1.0000" LeftEage="11" RightEage="11" TopEage="11" BottomEage="11" Scale9OriginX="11" Scale9OriginY="11" Scale9Width="12" Scale9Height="12" ctype="ImageViewObjectData">
+                        <Size X="34.0000" Y="34.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="16.0001" Y="18.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.4706" Y="0.5294" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                        <FileData Type="MarkedSubImage" Path="ui/cardvocation4.png" Plist="ui.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="132.0819" Y="31.2939" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8307" Y="0.3038" />
+                    <PreSize X="0.2138" Y="0.3301" />
+                    <FileData Type="MarkedSubImage" Path="ui/cardvocationbox.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocname0" ActionTag="1016753963" Tag="319" IconVisible="False" LeftMargin="10.5970" RightMargin="116.4030" TopMargin="31.9297" BottomMargin="53.0703" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                    <Size X="32.0000" Y="18.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="26.5970" Y="62.0703" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1673" Y="0.6026" />
+                    <PreSize X="0.2013" Y="0.1748" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="0" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocname1" ActionTag="-1118392708" Tag="320" IconVisible="False" LeftMargin="63.5997" RightMargin="63.4003" TopMargin="31.9297" BottomMargin="53.0703" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                    <Size X="32.0000" Y="18.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="79.5997" Y="62.0703" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5006" Y="0.6026" />
+                    <PreSize X="0.2013" Y="0.1748" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="0" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocname2" ActionTag="2113850194" Tag="321" IconVisible="False" LeftMargin="115.6030" RightMargin="11.3970" TopMargin="31.9297" BottomMargin="53.0703" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                    <Size X="32.0000" Y="18.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="131.6030" Y="62.0703" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8277" Y="0.6026" />
+                    <PreSize X="0.2013" Y="0.1748" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="0" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocname3" ActionTag="-2099140002" Tag="322" IconVisible="False" LeftMargin="10.5970" RightMargin="116.4030" TopMargin="81.5087" BottomMargin="3.4913" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                    <Size X="32.0000" Y="18.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="26.5970" Y="12.4913" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.1673" Y="0.1213" />
+                    <PreSize X="0.2013" Y="0.1748" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="0" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocname4" ActionTag="1626966733" Tag="323" IconVisible="False" LeftMargin="63.5997" RightMargin="63.4003" TopMargin="81.5087" BottomMargin="3.4913" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                    <Size X="32.0000" Y="18.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="79.5997" Y="12.4913" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5006" Y="0.1213" />
+                    <PreSize X="0.2013" Y="0.1748" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="0" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="vocname5" ActionTag="550160239" Tag="324" IconVisible="False" LeftMargin="115.6030" RightMargin="11.3970" TopMargin="81.5087" BottomMargin="3.4913" FontSize="14" LabelText="侠客" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                    <Size X="32.0000" Y="18.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="131.6030" Y="12.4913" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8277" Y="0.1213" />
+                    <PreSize X="0.2013" Y="0.1748" />
+                    <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                    <OutlineColor A="255" R="0" G="0" B="0" />
+                    <ShadowColor A="255" R="0" G="0" B="0" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="85.0000" Y="-20.4163" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/formationinfotable.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="studybtn" ActionTag="1791518250" Tag="325" IconVisible="False" LeftMargin="176.6119" RightMargin="-290.6119" TopMargin="-4.7321" BottomMargin="-51.2679" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="114.0000" Y="56.0000" />
+                <Children>
+                  <AbstractNodeData Name="btntext" ActionTag="805392874" Tag="326" IconVisible="False" LeftMargin="23.7825" RightMargin="26.2175" TopMargin="7.8770" BottomMargin="15.1230" LeftEage="24" RightEage="24" TopEage="12" BottomEage="12" Scale9OriginX="24" Scale9OriginY="12" Scale9Width="16" Scale9Height="9" ctype="ImageViewObjectData">
+                    <Size X="64.0000" Y="33.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="55.7825" Y="31.6230" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4893" Y="0.5647" />
+                    <PreSize X="0.5614" Y="0.5893" />
+                    <FileData Type="MarkedSubImage" Path="text_zh_cn/learnformation_text.png" Plist="text_zh_cn.plist" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="233.6119" Y="-23.2679" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="MarkedSubImage" Path="ui/buildingactbtn_d.png" Plist="ui.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="countlbl" ActionTag="-1739742327" Tag="327" IconVisible="False" LeftMargin="229.0616" RightMargin="-283.0616" TopMargin="49.4956" BottomMargin="-78.4956" FontSize="25" LabelText="x200" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                <Size X="54.0000" Y="29.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="229.0616" Y="-63.9956" />
+                <Scale ScaleX="0.8500" ScaleY="0.8500" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="0" G="0" B="0" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="coin" ActionTag="831140499" Tag="328" IconVisible="False" LeftMargin="191.9152" RightMargin="-233.9152" TopMargin="48.8993" BottomMargin="-74.8993" ctype="SpriteObjectData">
+                <Size X="42.0000" Y="26.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="212.9152" Y="-61.8993" />
+                <Scale ScaleX="0.8500" ScaleY="0.8500" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint />
+            <Position X="360.0000" Y="925.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.7227" />
+            <PreSize X="0.0000" Y="0.0000" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="carryoutherobox" ActionTag="366403208" Tag="301" IconVisible="False" LeftMargin="56.5000" RightMargin="56.5000" TopMargin="453.5245" BottomMargin="292.4755" ctype="SpriteObjectData">
+            <Size X="607.0000" Y="534.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="559.4755" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.4371" />
+            <PreSize X="0.8431" Y="0.4172" />
+            <FileData Type="Normal" Path="images/carryoutherobox.jpg" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="formation" ActionTag="1794162082" Tag="300" IconVisible="False" LeftMargin="310.5000" RightMargin="310.5000" TopMargin="659.0005" BottomMargin="526.9995" ctype="SpriteObjectData">
+            <Size X="99.0000" Y="94.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="573.9995" />
+            <Scale ScaleX="6.7400" ScaleY="5.4500" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.4484" />
+            <PreSize X="0.1375" Y="0.0734" />
+            <FileData Type="MarkedSubImage" Path="ui/formation1_n.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="matchlvtext" ActionTag="375953449" Tag="95" IconVisible="False" LeftMargin="146.4992" RightMargin="534.5008" TopMargin="716.7900" BottomMargin="542.2100" FontSize="18" LabelText="段位" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="changehint" ActionTag="-1853661351" Tag="299" IconVisible="False" LeftMargin="98.5002" RightMargin="98.4998" TopMargin="959.2083" BottomMargin="297.7917" FontSize="20" LabelText="连续点击某个阵型按钮则可在该阵型的多个候选阵容中切换" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="523.0000" Y="23.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0002" Y="309.2917" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.2416" />
+            <PreSize X="0.7264" Y="0.0180" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="80" G="38" B="12" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="mymatchinfobox" ActionTag="-306596267" Tag="123" IconVisible="False" LeftMargin="49.5900" RightMargin="494.4100" TopMargin="1024.2596" BottomMargin="81.7403" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="150" Scale9Height="148" ctype="ImageViewObjectData">
+            <Size X="176.0000" Y="174.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="137.5900" Y="168.7403" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1911" Y="0.1318" />
+            <PreSize X="0.2444" Y="0.1359" />
+            <FileData Type="MarkedSubImage" Path="ui/matchmyinfobox.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="matchlv" ActionTag="1735913899" Tag="96" IconVisible="False" LeftMargin="86.3120" RightMargin="537.6880" TopMargin="1048.0479" BottomMargin="201.9522" FontSize="23" LabelText="乡野义士" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="96.0000" Y="30.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="134.3120" Y="216.9522" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1865" Y="0.1695" />
+            <PreSize X="0.1333" Y="0.0234" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="0" G="0" B="0" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="matchexptext" ActionTag="356000288" Tag="97" IconVisible="False" LeftMargin="88.3748" RightMargin="592.6252" TopMargin="1096.1880" BottomMargin="162.8120" FontSize="18" LabelText="积分" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
             <Size X="39.0000" Y="21.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="165.9992" Y="552.7100" />
+            <Position X="107.8748" Y="173.3120" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2306" Y="0.4318" />
+            <CColor A="255" R="0" G="0" B="0" />
+            <PrePosition X="0.1498" Y="0.1354" />
             <PreSize X="0.0542" Y="0.0164" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="80" G="38" B="12" />
+            <OutlineColor A="255" R="0" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="matchlv" ActionTag="1735913899" Tag="96" IconVisible="False" LeftMargin="141.9992" RightMargin="530.0008" TopMargin="754.5593" BottomMargin="499.4407" FontSize="23" LabelText="新兵" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="48.0000" Y="26.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="165.9992" Y="512.4407" />
+          <AbstractNodeData Name="matchexp" ActionTag="-696409517" Tag="98" IconVisible="False" LeftMargin="127.1358" RightMargin="579.8642" TopMargin="1095.6184" BottomMargin="161.3816" FontSize="20" LabelText="0" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="13.0000" Y="23.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="127.1358" Y="172.8816" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2306" Y="0.4003" />
-            <PreSize X="0.0667" Y="0.0203" />
+            <CColor A="255" R="0" G="0" B="0" />
+            <PrePosition X="0.1766" Y="0.1351" />
+            <PreSize X="0.0181" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="matchexptext" ActionTag="356000288" Tag="97" IconVisible="False" LeftMargin="342.4878" RightMargin="338.5122" TopMargin="716.7900" BottomMargin="542.2100" FontSize="18" LabelText="积分" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="39.0000" Y="21.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="361.9878" Y="552.7100" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5028" Y="0.4318" />
-            <PreSize X="0.0542" Y="0.0164" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="0" G="0" B="0" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="matchexp" ActionTag="-696409517" Tag="98" IconVisible="False" LeftMargin="341.4810" RightMargin="337.5190" TopMargin="753.0593" BottomMargin="497.9407" FontSize="25" LabelText="133" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="41.0000" Y="29.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="361.9810" Y="512.4407" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5028" Y="0.4003" />
-            <PreSize X="0.0569" Y="0.0227" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="0" G="0" B="0" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="needexp" ActionTag="-1967422367" Tag="99" IconVisible="False" LeftMargin="228.8750" RightMargin="272.1250" TopMargin="813.5609" BottomMargin="441.4391" FontSize="22" LabelText="还需123积分可升级至：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-            <Size X="219.0000" Y="25.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="338.3750" Y="453.9391" />
+          <AbstractNodeData Name="needexp" ActionTag="-1967422367" Tag="99" IconVisible="False" LeftMargin="46.7592" RightMargin="565.2408" TopMargin="1209.1488" BottomMargin="49.8512" FontSize="18" LabelText="还需123积分：" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="108.0000" Y="21.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="46.7592" Y="60.3512" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="121" G="78" B="46" />
-            <PrePosition X="0.4700" Y="0.3546" />
-            <PreSize X="0.3042" Y="0.0195" />
+            <PrePosition X="0.0649" Y="0.0471" />
+            <PreSize X="0.1500" Y="0.0164" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="nextlvtext" ActionTag="-46885610" Tag="118" IconVisible="False" LeftMargin="452.8746" RightMargin="220.1254" TopMargin="813.5611" BottomMargin="441.4389" FontSize="22" LabelText="进阶" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="47.0000" Y="25.0000" />
+          <AbstractNodeData Name="nextlvtext" ActionTag="-46885610" Tag="118" IconVisible="False" LeftMargin="155.2586" RightMargin="490.7414" TopMargin="1208.1492" BottomMargin="50.8508" FontSize="18" LabelText="乡野义士" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="74.0000" Y="21.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="452.8746" Y="453.9389" />
+            <Position X="155.2586" Y="61.3508" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="5" G="165" B="25" />
-            <PrePosition X="0.6290" Y="0.3546" />
-            <PreSize X="0.0653" Y="0.0195" />
+            <PrePosition X="0.2156" Y="0.0479" />
+            <PreSize X="0.1028" Y="0.0164" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="35" G="35" B="35" />
           </AbstractNodeData>
-          <AbstractNodeData Name="ninegrid" ActionTag="-306596267" Tag="123" IconVisible="False" LeftMargin="34.9998" RightMargin="35.0002" TopMargin="1011.4559" BottomMargin="46.5441" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="624" Scale9Height="196" ctype="ImageViewObjectData">
-            <Size X="650.0000" Y="222.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="359.9998" Y="157.5441" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.1231" />
-            <PreSize X="0.9028" Y="0.1734" />
-            <FileData Type="MarkedSubImage" Path="ui/matchreward_bg.png" Plist="ui.plist" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="rulebtn" ActionTag="1361025167" Tag="119" IconVisible="False" LeftMargin="42.0614" RightMargin="567.9386" TopMargin="1152.0962" BottomMargin="51.9038" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="80" Scale9Height="54" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="rulebtn" ActionTag="1361025167" Tag="119" IconVisible="False" LeftMargin="583.1772" RightMargin="26.8228" TopMargin="993.9092" BottomMargin="210.0908" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="80" Scale9Height="54" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="110.0000" Y="76.0000" />
             <Children>
-              <AbstractNodeData Name="text" ActionTag="501663319" Tag="120" IconVisible="False" LeftMargin="10.3585" RightMargin="19.6415" TopMargin="49.7887" BottomMargin="2.2113" LeftEage="23" RightEage="23" TopEage="7" BottomEage="7" Scale9OriginX="23" Scale9OriginY="7" Scale9Width="34" Scale9Height="10" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="text" ActionTag="501663319" Tag="120" IconVisible="False" LeftMargin="7.3585" RightMargin="22.6415" TopMargin="49.7887" BottomMargin="2.2113" LeftEage="23" RightEage="23" TopEage="7" BottomEage="7" Scale9OriginX="23" Scale9OriginY="7" Scale9Width="34" Scale9Height="10" ctype="ImageViewObjectData">
                 <Size X="80.0000" Y="24.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="50.3585" Y="14.2113" />
+                <Position X="47.3585" Y="14.2113" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4578" Y="0.1870" />
+                <PrePosition X="0.4305" Y="0.1870" />
                 <PreSize X="0.7273" Y="0.3158" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/rule_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="97.0614" Y="89.9038" />
+            <Position X="638.1772" Y="248.0908" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1348" Y="0.0702" />
+            <PrePosition X="0.8864" Y="0.1938" />
             <PreSize X="0.1528" Y="0.0594" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/matchruleicon.png" Plist="ui.plist" />
@@ -250,7 +538,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="matchbtn" ActionTag="800813778" Tag="121" IconVisible="False" LeftMargin="416.9700" RightMargin="99.0300" TopMargin="873.3400" BottomMargin="322.6600" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="matchbtn" ActionTag="800813778" Tag="121" IconVisible="False" LeftMargin="461.4848" RightMargin="54.5152" TopMargin="1082.7616" BottomMargin="113.2384" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="1875725972" Tag="122" IconVisible="False" LeftMargin="27.5216" RightMargin="28.4784" TopMargin="21.7404" BottomMargin="26.2596" LeftEage="23" RightEage="23" TopEage="13" BottomEage="13" Scale9OriginX="23" Scale9OriginY="13" Scale9Width="102" Scale9Height="10" ctype="ImageViewObjectData">
@@ -265,10 +553,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="518.9700" Y="364.6600" />
+            <Position X="563.4848" Y="155.2384" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7208" Y="0.2849" />
+            <PrePosition X="0.7826" Y="0.1213" />
             <PreSize X="0.2833" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/matchdoingbtn.png" Plist="ui.plist" />
@@ -277,53 +565,31 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="matchrewardicon" ActionTag="1789521628" Tag="128" IconVisible="False" LeftMargin="408.5681" RightMargin="137.4319" TopMargin="994.3392" BottomMargin="125.6608" TouchEnable="True" LeftEage="49" RightEage="49" TopEage="40" BottomEage="40" Scale9OriginX="49" Scale9OriginY="40" Scale9Width="76" Scale9Height="80" ctype="ImageViewObjectData">
-            <Size X="174.0000" Y="160.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="495.5681" Y="205.6608" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6883" Y="0.1607" />
-            <PreSize X="0.2417" Y="0.1250" />
-            <FileData Type="MarkedSubImage" Path="ui/matchreward_0.png" Plist="ui.plist" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="rewardtext" ActionTag="-680239976" Tag="125" IconVisible="False" LeftMargin="438.6313" RightMargin="159.3687" TopMargin="1208.9410" BottomMargin="48.0590" FontSize="20" LabelText="点击查看奖励" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-            <Size X="122.0000" Y="23.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="499.6313" Y="59.5590" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="48" G="255" B="0" />
-            <PrePosition X="0.6939" Y="0.0465" />
-            <PreSize X="0.1694" Y="0.0180" />
-            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
-            <OutlineColor A="255" R="80" G="38" B="12" />
-            <ShadowColor A="255" R="0" G="0" B="0" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="endtimetxt" ActionTag="130752793" Tag="126" IconVisible="False" LeftMargin="159.9454" RightMargin="427.0546" TopMargin="1100.4323" BottomMargin="154.5677" FontSize="22" LabelText="赛季结束时间" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="endtimetxt" ActionTag="130752793" Tag="126" IconVisible="False" LeftMargin="278.1497" RightMargin="308.8503" TopMargin="1028.4344" BottomMargin="226.5656" FontSize="22" LabelText="赛季结束时间" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
             <Size X="133.0000" Y="25.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="226.4454" Y="167.0677" />
+            <Position X="344.6497" Y="239.0656" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="101" G="76" B="36" />
-            <PrePosition X="0.3145" Y="0.1305" />
+            <CColor A="255" R="121" G="78" B="46" />
+            <PrePosition X="0.4787" Y="0.1868" />
             <PreSize X="0.1847" Y="0.0195" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="endtime" ActionTag="288162021" Tag="127" IconVisible="False" LeftMargin="168.2973" RightMargin="431.7027" TopMargin="1134.9758" BottomMargin="115.0242" FontSize="23" LabelText="2018-02-21" OutlineSize="2" OutlineEnabled="True" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-            <Size X="120.0000" Y="30.0000" />
+          <AbstractNodeData Name="endtime" ActionTag="288162021" Tag="127" IconVisible="False" LeftMargin="434.3751" RightMargin="167.6249" TopMargin="1027.8120" BottomMargin="226.1880" FontSize="23" LabelText="2018-02-21" OutlineSize="2" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="118.0000" Y="26.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="228.2973" Y="130.0242" />
+            <Position X="493.3751" Y="239.1880" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="250" B="221" />
-            <PrePosition X="0.3171" Y="0.1016" />
-            <PreSize X="0.1667" Y="0.0234" />
+            <CColor A="255" R="148" G="63" B="63" />
+            <PrePosition X="0.6852" Y="0.1869" />
+            <PreSize X="0.1639" Y="0.0203" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="175" G="86" B="0" />
             <ShadowColor A="255" R="35" G="35" B="35" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rankbtn" ActionTag="-836280509" Tag="34" IconVisible="False" LeftMargin="111.7280" RightMargin="404.2720" TopMargin="872.2213" BottomMargin="323.7787" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="rankbtn" ActionTag="-836280509" Tag="34" IconVisible="False" LeftMargin="223.6595" RightMargin="292.3405" TopMargin="1084.1869" BottomMargin="111.8131" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="204.0000" Y="84.0000" />
             <Children>
               <AbstractNodeData Name="text" ActionTag="-1999502657" Tag="35" IconVisible="False" LeftMargin="46.0216" RightMargin="46.9784" TopMargin="21.2404" BottomMargin="25.7596" LeftEage="23" RightEage="23" TopEage="13" BottomEage="13" Scale9OriginX="23" Scale9OriginY="13" Scale9Width="65" Scale9Height="11" ctype="ImageViewObjectData">
@@ -338,10 +604,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="213.7280" Y="365.7787" />
+            <Position X="325.6595" Y="153.8131" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2968" Y="0.2858" />
+            <PrePosition X="0.4523" Y="0.1202" />
             <PreSize X="0.2833" Y="0.0656" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="MarkedSubImage" Path="ui/matchdoingbtn.png" Plist="ui.plist" />
@@ -350,52 +616,63 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="setpline_0" ActionTag="1510796996" Tag="931" IconVisible="False" LeftMargin="459.1697" RightMargin="254.8303" TopMargin="659.0000" BottomMargin="439.0000" ctype="SpriteObjectData">
-            <Size X="6.0000" Y="182.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="462.1697" Y="530.0000" />
-            <Scale ScaleX="1.0000" ScaleY="0.5000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6419" Y="0.4141" />
-            <PreSize X="0.0083" Y="0.1422" />
-            <FileData Type="MarkedSubImage" Path="ui/setpline0.png" Plist="ui.plist" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="matchwintext" ActionTag="239568039" Tag="932" IconVisible="False" LeftMargin="533.0389" RightMargin="147.9611" TopMargin="716.7900" BottomMargin="542.2100" FontSize="18" LabelText="胜率" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="matchwintext" ActionTag="239568039" Tag="932" IconVisible="False" LeftMargin="88.3748" RightMargin="592.6252" TopMargin="1138.5681" BottomMargin="120.4319" FontSize="18" LabelText="胜率" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
             <Size X="39.0000" Y="21.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="552.5389" Y="552.7100" />
+            <Position X="107.8748" Y="130.9319" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7674" Y="0.4318" />
+            <CColor A="255" R="0" G="0" B="0" />
+            <PrePosition X="0.1498" Y="0.1023" />
             <PreSize X="0.0542" Y="0.0164" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="matchwin" ActionTag="-223371859" Tag="933" IconVisible="False" LeftMargin="506.0352" RightMargin="120.9648" TopMargin="753.9298" BottomMargin="497.0702" FontSize="25" LabelText="100.00%" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="93.0000" Y="29.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="552.5352" Y="511.5702" />
+          <AbstractNodeData Name="matchwin" ActionTag="-223371859" Tag="933" IconVisible="False" LeftMargin="127.1358" RightMargin="529.8642" TopMargin="1137.1649" BottomMargin="119.8351" FontSize="20" LabelText="100.0%" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+            <Size X="63.0000" Y="23.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="127.1358" Y="131.3351" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7674" Y="0.3997" />
-            <PreSize X="0.1292" Y="0.0227" />
+            <CColor A="255" R="0" G="0" B="0" />
+            <PrePosition X="0.1766" Y="0.1026" />
+            <PreSize X="0.0875" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="leftcount" ActionTag="1404222618" Tag="144" IconVisible="False" LeftMargin="457.4700" RightMargin="139.5300" TopMargin="957.4999" BottomMargin="297.5001" FontSize="22" LabelText="剩余次数：0" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="leftcount" ActionTag="1404222618" Tag="144" IconVisible="False" LeftMargin="501.2912" RightMargin="95.7088" TopMargin="1169.0890" BottomMargin="85.9110" FontSize="22" LabelText="剩余次数：0" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
             <Size X="123.0000" Y="25.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="518.9700" Y="310.0001" />
+            <Position X="562.7912" Y="98.4110" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="121" G="78" B="46" />
-            <PrePosition X="0.7208" Y="0.2422" />
+            <PrePosition X="0.7817" Y="0.0769" />
             <PreSize X="0.1708" Y="0.0195" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="changebtn" ActionTag="696707136" Tag="331" IconVisible="False" LeftMargin="288.0000" RightMargin="288.0000" TopMargin="892.8086" BottomMargin="307.1914" TouchEnable="True" LeftEage="47" RightEage="47" TopEage="26" BottomEage="26" Scale9OriginX="47" Scale9OriginY="26" Scale9Width="50" Scale9Height="28" ctype="ImageViewObjectData">
+            <Size X="144.0000" Y="80.0000" />
+            <Children>
+              <AbstractNodeData Name="text" ActionTag="116042394" Tag="332" IconVisible="False" LeftMargin="1.4997" RightMargin="15.5003" TopMargin="19.4999" BottomMargin="23.5001" LeftEage="27" RightEage="27" TopEage="15" BottomEage="15" Scale9OriginX="27" Scale9OriginY="15" Scale9Width="73" Scale9Height="7" ctype="ImageViewObjectData">
+                <Size X="127.0000" Y="37.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="64.9997" Y="42.0001" />
+                <Scale ScaleX="0.8000" ScaleY="0.8000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4514" Y="0.5250" />
+                <PreSize X="0.8819" Y="0.4625" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/changequene_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0000" Y="347.1914" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.2712" />
+            <PreSize X="0.2000" Y="0.0625" />
+            <FileData Type="MarkedSubImage" Path="ui/actionbtn_blue.png" Plist="ui.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

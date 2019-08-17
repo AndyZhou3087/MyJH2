@@ -307,6 +307,7 @@ void OutTownLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_ev
 				GlobalInstance::myCardHeros[clickHero]->setState(HS_OWNED);
 				GlobalInstance::myCardHeros[clickHero]->setPos(0);
 				GlobalInstance::myCardHeros[clickHero] = NULL;
+				checkFormation();
 			}
 			m_myCardHerosNode[clickHero]->setPosition(Vec2(150 + clickHero % 3 * 210, /*745 + */705 - clickHero / 3 * 245));
 			m_myCardHerosNode[clickHero]->setLocalZOrder(1);
@@ -414,7 +415,6 @@ void OutTownLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			GlobalInstance::getInstance()->recoveCardHeroMaxHp();
 			GlobalInstance::myOutMapCarry = GlobalInstance::getInstance()->getTotalCarry();
 
-			checkFormation();
 #if USE_TRANSCENE
 			Director::getInstance()->replaceScene(TransitionFade::create(0.5f, MyTransitionScene::createScene(TO_MAP)));
 #else
@@ -734,7 +734,7 @@ void OutTownLayer::onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::
 				std::string formationid = StringUtils::format("zx%03d", learnindex);
 
 				GlobalInstance::map_formations[formationid].lv = 0;
-				GlobalInstance::getInstance()->saveMyFormation();
+				GlobalInstance::getInstance()->saveMyFormation(GlobalInstance::myTakeOnFormation);
 				updateFormationInfo(learnindex);
 				DynamicValueInt dvint;
 				dvint.setValue(needcoin);
@@ -782,7 +782,7 @@ void OutTownLayer::selectFormation(int index)
 	}
 	updateFormationInfo(index);
 
-	GlobalInstance::getInstance()->saveMyFormation();
+	GlobalInstance::getInstance()->saveMyFormation(GlobalInstance::myTakeOnFormation);
 }
 
 void OutTownLayer::updateFormationInfo(int index)

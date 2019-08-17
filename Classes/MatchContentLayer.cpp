@@ -11,10 +11,6 @@ USING_NS_CC;
 
 MatchContentLayer::MatchContentLayer()
 {
-	for (int i = 0; i < 6; i++)
-	{
-		GlobalInstance::matchPairHeros[i] = NULL;
-	}
 }
 
 MatchContentLayer::~MatchContentLayer()

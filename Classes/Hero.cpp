@@ -212,13 +212,19 @@ float Hero::getAtk()
 	float addpercent = 0.0f;
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
+
+	int formation = 0;
+
 	if (m_ftype == 0)
 	{
 		map_friendly = GlobalInstance::map_myfriendly;
+
+		formation = GlobalInstance::myTakeOnFormation;
 	}
 	else if (m_ftype == 1)
 	{
 		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+		formation = GlobalInstance::myMatchPairTakeOnFormation;
 	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
@@ -242,7 +248,7 @@ float Hero::getAtk()
 	}
 	float renationbns = heroatk * addpercent;
 
-	float formationbns = heroatk * GlobalInstance::getInstance()->getFormationBns(1);
+	float formationbns = heroatk * GlobalInstance::getInstance()->getFormationBns(1, formation);
 
 	return heroatk + renationbns + formationbns;
 }
@@ -287,13 +293,18 @@ float Hero::getDf()
 
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
+	int formation = 0;
+
 	if (m_ftype == 0)
 	{
 		map_friendly = GlobalInstance::map_myfriendly;
+
+		formation = GlobalInstance::myTakeOnFormation;
 	}
 	else if (m_ftype == 1)
 	{
 		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+		formation = GlobalInstance::myMatchPairTakeOnFormation;
 	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
@@ -318,7 +329,7 @@ float Hero::getDf()
 
 	float renationbns = herodf * addpercent;
 
-	float formationbns = herodf * GlobalInstance::getInstance()->getFormationBns(2);
+	float formationbns = herodf * GlobalInstance::getInstance()->getFormationBns(2, formation);
 
 	return herodf + renationbns + formationbns;
 }
@@ -363,13 +374,18 @@ float Hero::getMaxHp()
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 
+	int formation = 0;
+
 	if (m_ftype == 0)
 	{
 		map_friendly = GlobalInstance::map_myfriendly;
+
+		formation = GlobalInstance::myTakeOnFormation;
 	}
 	else if (m_ftype == 1)
 	{
 		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+		formation = GlobalInstance::myMatchPairTakeOnFormation;
 	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
@@ -394,7 +410,7 @@ float Hero::getMaxHp()
 
 	float renationbns = herohp * addpercent;
 
-	float formationbns = herohp * GlobalInstance::getInstance()->getFormationBns(0);
+	float formationbns = herohp * GlobalInstance::getInstance()->getFormationBns(0, formation);
 
 	herohp = herohp + renationbns + formationbns;
 
@@ -433,13 +449,18 @@ float Hero::getAtkSpeed()
 	std::map<std::string, NpcFriendly> map_friendly;
 
 	std::map<std::string, NpcFriendly>::iterator it;
+	int formation = 0;
+
 	if (m_ftype == 0)
 	{
 		map_friendly = GlobalInstance::map_myfriendly;
+
+		formation = GlobalInstance::myTakeOnFormation;
 	}
 	else if (m_ftype == 1)
 	{
 		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+		formation = GlobalInstance::myMatchPairTakeOnFormation;
 	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
@@ -461,7 +482,7 @@ float Hero::getAtkSpeed()
 			}
 		}
 	}
-	float formationbns = heroatkspeed * GlobalInstance::getInstance()->getFormationBns(5);
+	float formationbns = heroatkspeed * GlobalInstance::getInstance()->getFormationBns(5, formation);
 
 	float renationbns = heroatkspeed * addpercent;
 
@@ -497,13 +518,18 @@ float Hero::getCrit()
 	float addpercent = 0.0f;
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
+	int formation = 0;
+
 	if (m_ftype == 0)
 	{
 		map_friendly = GlobalInstance::map_myfriendly;
+
+		formation = GlobalInstance::myTakeOnFormation;
 	}
 	else if (m_ftype == 1)
 	{
 		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+		formation = GlobalInstance::myMatchPairTakeOnFormation;
 	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
@@ -528,7 +554,7 @@ float Hero::getCrit()
 
 	float renationbns = herocrit * addpercent;
 
-	float formationbns = herocrit * GlobalInstance::getInstance()->getFormationBns(4);
+	float formationbns = herocrit * GlobalInstance::getInstance()->getFormationBns(4, formation);
 
 	return herocrit + renationbns + formationbns;
 }
@@ -555,13 +581,18 @@ float Hero::getDodge()
 	float addpercent = 0.0f;
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
+	int formation = 0;
+
 	if (m_ftype == 0)
 	{
 		map_friendly = GlobalInstance::map_myfriendly;
+
+		formation = GlobalInstance::myTakeOnFormation;
 	}
 	else if (m_ftype == 1)
 	{
 		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
+		formation = GlobalInstance::myMatchPairTakeOnFormation;
 	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
@@ -585,7 +616,7 @@ float Hero::getDodge()
 	}
 	float renationbns = herododge * addpercent;
 
-	float formationbns = herododge * GlobalInstance::getInstance()->getFormationBns(3);
+	float formationbns = herododge * GlobalInstance::getInstance()->getFormationBns(3, formation);
 
 	herododge += renationbns;
 	herododge = herododge > 48 ? 48 : herododge;
@@ -616,16 +647,8 @@ float Hero::getAtkBy(int breakcount)
 
 	float addpercent = 0.0f;
 
-	std::map<std::string, NpcFriendly> map_friendly;
+	std::map<std::string, NpcFriendly> map_friendly = GlobalInstance::map_myfriendly;
 	std::map<std::string, NpcFriendly>::iterator it;
-	if (m_ftype == 0)
-	{
-		map_friendly = GlobalInstance::map_myfriendly;
-	}
-	else if (m_ftype == 1)
-	{
-		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
-	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
 	{
@@ -688,16 +711,8 @@ float Hero::getDfBy(int breakcount)
 		}
 	}
 	float addpercent = 0.0f;
-	std::map<std::string, NpcFriendly> map_friendly;
+	std::map<std::string, NpcFriendly> map_friendly = GlobalInstance::map_myfriendly;
 	std::map<std::string, NpcFriendly>::iterator it;
-	if (m_ftype == 0)
-	{
-		map_friendly = GlobalInstance::map_myfriendly;
-	}
-	else if (m_ftype == 1)
-	{
-		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
-	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
 	{
@@ -758,17 +773,8 @@ float Hero::getMaxHpBy(int breakcount)
 		}
 	}
 	float addpercent = 0.0f;
-	std::map<std::string, NpcFriendly> map_friendly;
+	std::map<std::string, NpcFriendly> map_friendly = GlobalInstance::map_myfriendly;
 	std::map<std::string, NpcFriendly>::iterator it;
-
-	if (m_ftype == 0)
-	{
-		map_friendly = GlobalInstance::map_myfriendly;
-	}
-	else if (m_ftype == 1)
-	{
-		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
-	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
 	{
@@ -814,17 +820,9 @@ float Hero::getAtkSpeedBy(int breakcount)
 	}
 
 	float addpercent = 0.0f;
-	std::map<std::string, NpcFriendly> map_friendly;
+	std::map<std::string, NpcFriendly> map_friendly = GlobalInstance::map_myfriendly;
 
 	std::map<std::string, NpcFriendly>::iterator it;
-	if (m_ftype == 0)
-	{
-		map_friendly = GlobalInstance::map_myfriendly;
-	}
-	else if (m_ftype == 1)
-	{
-		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
-	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
 	{
@@ -874,16 +872,8 @@ float Hero::getCritBy(int breakcount)
 		}
 	}
 	float addpercent = 0.0f;
-	std::map<std::string, NpcFriendly> map_friendly;
+	std::map<std::string, NpcFriendly> map_friendly = GlobalInstance::map_myfriendly;
 	std::map<std::string, NpcFriendly>::iterator it;
-	if (m_ftype == 0)
-	{
-		map_friendly = GlobalInstance::map_myfriendly;
-	}
-	else if (m_ftype == 1)
-	{
-		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
-	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
 	{
@@ -928,16 +918,8 @@ float Hero::getDodgeBy(int breakcount)
 		}
 	}
 	float addpercent = 0.0f;
-	std::map<std::string, NpcFriendly> map_friendly;
+	std::map<std::string, NpcFriendly> map_friendly = GlobalInstance::map_myfriendly;
 	std::map<std::string, NpcFriendly>::iterator it;
-	if (m_ftype == 0)
-	{
-		map_friendly = GlobalInstance::map_myfriendly;
-	}
-	else if (m_ftype == 1)
-	{
-		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
-	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
 	{

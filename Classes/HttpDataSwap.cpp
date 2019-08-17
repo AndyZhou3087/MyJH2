@@ -569,9 +569,11 @@ void HttpDataSwap::postMyMatchHeros()
 	{
 		friendlystr = friendlystr.substr(0, friendlystr.length() - 1);
 	}
+	std::string formationstr = StringUtils::format("%d", GlobalInstance::myTakeOnFormation);
 	writedoc.AddMember("friendly", rapidjson::Value(friendlystr.c_str(), allocator), allocator);
-
+	writedoc.AddMember("formation", rapidjson::Value(formationstr.c_str(), allocator), allocator);
 	std::string jsonstr = JsonWriter(writedoc);
+	log("jsonstr=%s", jsonstr.c_str());
 	jsonstr = StringUtils::format("data=%s", jsonstr.c_str());
 	HttpUtil::getInstance()->doData(url, httputil_calback(HttpDataSwap::httpPostMyMatchHerosCB, this), jsonstr);
 }
@@ -1845,6 +1847,7 @@ void HttpDataSwap::httpGetMatchPairDataCB(std::string retdata, int code, std::st
 		rapidjson::Document doc;
 		if (JsonReader(retdata, doc))
 		{
+			GlobalInstance::myMatchPairTakeOnFormation = 0;
 			GlobalInstance::myMatchInfo.map_pairfriendly.clear();
 
 			rapidjson::Value& retv = doc["ret"];
@@ -1866,6 +1869,8 @@ void HttpDataSwap::httpGetMatchPairDataCB(std::string retdata, int code, std::st
 
 				if (mydatav.HasMember("friendly"))
 					GlobalInstance::getInstance()->parsePairFriendly(mydatav["friendly"].GetString());
+				if (mydatav.HasMember("formation"))
+					GlobalInstance::myMatchPairTakeOnFormation = atoi(getJsonValueStr(mydatav["formation"]).c_str());
 			}
 		}
 		else

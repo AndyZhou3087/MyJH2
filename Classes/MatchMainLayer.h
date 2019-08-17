@@ -6,6 +6,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "CardHeroNode.h"
 #include "HttpDataSwap.h"
+#include "GlobalInstance.h"
 
 USING_NS_CC;
 
@@ -26,6 +27,8 @@ public:
 	void showFightSuccAwdLayer(float dt);
 
 	void getMatchVsPairData(std::string playerid="");//playerid:空字串，任意匹配
+
+	void checkFormation();
 private:
 	bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
 	void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event);
@@ -44,7 +47,22 @@ private:
 
 	void bindHeroData();
 
+
+	void addFormationUi();
+	void onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	void selectFormation(int index);
+
+	void updateFormationInfo(int index);
+
+	void updateChangeHint(float dt);
+
+	void takeOnFormation(int formationindex);
+
+	static bool formationCandidateSort(Hero* a, Hero* b);
+
 private:
+	int langtype;
 	CardHeroNode* m_myCardHerosNode[6];
 	cocos2d::ui::Button* matchbtn;
 	cocos2d::ui::ImageView* matchbtntxt;
@@ -56,13 +74,30 @@ private:
 	cocos2d::ui::Text* nextlvtext;
 	cocos2d::ui::Text* matchwin;
 	cocos2d::ui::Text* endtime;
-	cocos2d::ui::Text* rewardtext;
 	cocos2d::ui::Text* endtimetxt;
-	cocos2d::ui::ImageView* matchrewardicon;
 	cocos2d::ui::Text* leftcountlbl;
 	int httptag;
 	int fightret;
 	bool isspecifiedfight;
+	int mynormalstageformaion;
+
+	cocos2d::ui::ScrollView* scrollview;
+	Node* formationInfoNode;
+	int lastselectformation;
+
+	std::vector<cocos2d::ui::ImageView*> vec_formationboxs;
+	cocos2d::ui::Text* changehintlbl;
+	int changehintindex;
+	Node* carryoutherobox;
+
+	bool clickflag;
+	Node* bigformation;
+	cocos2d::ui::Widget* studybtn;
+	cocos2d::ui::ImageView* studybtntxt;
+	std::vector<Hero*> vec_formationCandidate;
+
+	std::vector<Hero*> vec_selformation;
+	static bool sortbylearned(S_FORMATION* a, S_FORMATION* b);
 };
 
 #endif

@@ -893,9 +893,9 @@ public:
 
 	void parseFormationData();
 
-	void saveMyFormation();
+	void saveMyFormation(int mycurformation);
 
-	float getFormationBns(int whichattr);
+	float getFormationBns(int whichattr, int mycurformation);
 
 	//扫荡数据
 	void parseMopupData();
@@ -1054,6 +1054,8 @@ public:
 	static std::vector<S_PAISEDATA> vec_ToMyPaiseData;
 
 	static int myTakeOnFormation;
+
+	static int myMatchPairTakeOnFormation;
 
 	static std::map<std::string, S_MOPUPRWDDATA> map_mopuprwds;
 

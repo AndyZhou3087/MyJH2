@@ -19,6 +19,7 @@
 #include "MatchRankLayer.h"
 #include "Equip.h"
 #include "MacthFightSucAwdLayer.h"
+#include "BuyCoinLayer.h"
 
 USING_NS_CC;
 
@@ -27,6 +28,8 @@ MatchMainLayer::MatchMainLayer()
 	clickHero = -1;
 	httptag = 0;
 	isspecifiedfight = false;
+
+	mynormalstageformaion = GlobalInstance::myTakeOnFormation;
 }
 
 MatchMainLayer::~MatchMainLayer()
@@ -39,6 +42,7 @@ MatchMainLayer::~MatchMainLayer()
 			GlobalInstance::myOnChallengeHeros[i] = NULL;
 		}
 	}
+	GlobalInstance::myTakeOnFormation = mynormalstageformaion;
 }
 
 
@@ -65,16 +69,35 @@ bool MatchMainLayer::init()
     {
         return false;
     }
-
+	GlobalInstance::myTakeOnFormation = 0;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color,0,"colorLayer");
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("matchMainLayer.csb"));
 	this->addChild(csbnode);
-	int langtype = GlobalInstance::getInstance()->getLang();
+	langtype = GlobalInstance::getInstance()->getLang();
 	//标题
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
 	titleimg->loadTexture(ResourcePath::makeTextImgPath("matchfighttitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	scrollview = (cocos2d::ui::ScrollView*)csbnode->getChildByName("scrollview");
+	scrollview->setScrollBarEnabled(false);
+	scrollview->setBounceEnabled(true);
+	scrollview->setSwallowTouches(true);
+
+	formationInfoNode = csbnode->getChildByName("formationnode");
+
+	studybtn = (cocos2d::ui::Widget*)formationInfoNode->getChildByName("studybtn");
+	studybtn->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onFormationClick, this));
+	studybtntxt = (cocos2d::ui::ImageView*)studybtn->getChildByName("btntext");
+	studybtntxt->loadTexture(ResourcePath::makeTextImgPath("learnformation_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	addFormationUi();
+
+	carryoutherobox = csbnode->getChildByName("carryoutherobox");
+
+	bigformation = csbnode->getChildByName("formation");
+	bigformation->setVisible(false);
 
 	//更换队形按钮
 	cocos2d::ui::Button* changebtn = (cocos2d::ui::Button*)csbnode->getChildByName("changebtn");
@@ -86,12 +109,12 @@ bool MatchMainLayer::init()
 	changebtntxt->loadTexture(ResourcePath::makeTextImgPath("changequene_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//保存队形按钮
-	cocos2d::ui::Button* savebtn = (cocos2d::ui::Button*)csbnode->getChildByName("savebtn");
-	savebtn->setTag(1001);
-	savebtn->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onBtnClick, this));
+	//cocos2d::ui::Button* savebtn = (cocos2d::ui::Button*)csbnode->getChildByName("savebtn");
+	//savebtn->setTag(1001);
+	//savebtn->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onBtnClick, this));
 
-	cocos2d::ui::ImageView* savebtntxt = (cocos2d::ui::ImageView*)savebtn->getChildByName("text");
-	savebtntxt->loadTexture(ResourcePath::makeTextImgPath("matchsave_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	//cocos2d::ui::ImageView* savebtntxt = (cocos2d::ui::ImageView*)savebtn->getChildByName("text");
+	//savebtntxt->loadTexture(ResourcePath::makeTextImgPath("matchsave_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
 	//规则按钮
 	cocos2d::ui::Button* rulebtn = (cocos2d::ui::Button*)csbnode->getChildByName("rulebtn");
@@ -122,15 +145,15 @@ bool MatchMainLayer::init()
 	closebtn->setTag(1004);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onBtnClick, this));
 
-	matchrewardicon = (cocos2d::ui::ImageView*)csbnode->getChildByName("matchrewardicon");
-	matchrewardicon->setTag(1005);
-	matchrewardicon->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onBtnClick, this));
+	changehintlbl = (cocos2d::ui::Text*)csbnode->getChildByName("changehint");
+	changehintlbl->setString(ResourceLang::map_lang["changelineuphint"]);
 
-	cocos2d::ui::Text* changehint = (cocos2d::ui::Text*)csbnode->getChildByName("changehint");
-	changehint->setString(ResourceLang::map_lang["changelineuphint"]);
+	changehintindex = GlobalInstance::getInstance()->createRandomNum(3);
+	std::string changehintkey = StringUtils::format("changelineuphint%d", changehintindex);
+	changehintlbl = (cocos2d::ui::Text*)csbnode->getChildByName("changehint");
+	changehintlbl->setString(ResourceLang::map_lang[changehintkey]);
 
-	cocos2d::ui::Text* matchlvtext = (cocos2d::ui::Text*)csbnode->getChildByName("matchlvtext");
-	matchlvtext->setString(ResourceLang::map_lang["matchlvtext"]);
+	this->schedule(schedule_selector(MatchMainLayer::updateChangeHint), 3);
 
 	cocos2d::ui::Text* matchexptext = (cocos2d::ui::Text*)csbnode->getChildByName("matchexptext");
 	matchexptext->setString(ResourceLang::map_lang["matchexptext"]);
@@ -153,9 +176,6 @@ bool MatchMainLayer::init()
 
 	matchwin = (cocos2d::ui::Text*)csbnode->getChildByName("matchwin");
 
-	rewardtext = (cocos2d::ui::Text*)csbnode->getChildByName("rewardtext");
-	rewardtext->setString(ResourceLang::map_lang["matchrewardtext"]);
-
 	endtimetxt = (cocos2d::ui::Text*)csbnode->getChildByName("endtimetxt");
 	endtimetxt->setString(ResourceLang::map_lang["matchendtimetext"]);
 
@@ -166,7 +186,7 @@ bool MatchMainLayer::init()
 
 	for (int i = 0; i < 6; i++)
 	{
-		Vec2 pos = Vec2(140 + i % 3 * 215, /*745 + */1060 - i / 3 * 250);
+		Vec2 pos = Vec2(150 + i % 3 * 210, 705 - i / 3 * 220);
 		Sprite* cardnodebg = Sprite::create(ResourcePath::makeImagePath("cardherobox_.png"));
 		cardnodebg->setPosition(Vec2(pos.x, pos.y+14));
 		this->addChild(cardnodebg, 0);
@@ -178,7 +198,7 @@ bool MatchMainLayer::init()
 	}
 
 	WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
-	this->addChild(wp, 0, "waitingprogress");
+	this->addChild(wp, 10000, "waitingprogress");
 
 	HttpDataSwap::init(this)->getMyMatchHeros();
 
@@ -253,19 +273,19 @@ void MatchMainLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_
 					CardHeroNode* cardnode = m_myCardHerosNode[clickHero];
 
 					m_myCardHerosNode[clickHero]->setLocalZOrder(1);
-					m_myCardHerosNode[clickHero]->runAction(MoveTo::create(0.2f, Vec2(140 + i % 3 * 215, /*745 + */1060 - i / 3 * 250)));
+					m_myCardHerosNode[clickHero]->runAction(MoveTo::create(0.2f, Vec2(150 + i % 3 * 210, /*745 + */705 - i / 3 * 220)));
 					m_myCardHerosNode[clickHero]->setTag(i);
 					GlobalInstance::myOnChallengeHeros[clickHero]->setOnchallengepos(i + 1);
 					
 					m_myCardHerosNode[i]->setTag(clickHero);
 					if (GlobalInstance::myOnChallengeHeros[i] != NULL)
 					{
-						m_myCardHerosNode[i]->runAction(MoveTo::create(0.2f, Vec2(140 + clickHero % 3 * 215, /*745 + */1060 - clickHero / 3 * 250)));
+						m_myCardHerosNode[i]->runAction(MoveTo::create(0.2f, Vec2(150 + clickHero % 3 * 210, /*745 + */705 - clickHero / 3 * 220)));
 						GlobalInstance::myOnChallengeHeros[i]->setOnchallengepos(clickHero + 1);
 					}
 					else
 					{
-						m_myCardHerosNode[i]->setPosition(Vec2(140 + clickHero % 3 * 215, /*745 + */1060 - clickHero / 3 * 250));
+						m_myCardHerosNode[i]->setPosition(Vec2(150 + clickHero % 3 * 210, /*745 + */705 - clickHero / 3 * 220));
 						m_myCardHerosNode[i]->updateSelPosLbl();
 					}
 
@@ -283,24 +303,20 @@ void MatchMainLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_
 		}
 		if (!ischange)
 		{
-			m_myCardHerosNode[clickHero]->setPosition(Vec2(140 + clickHero % 3 * 215, /*745 + */1060 - clickHero / 3 * 250));
+			if (!carryoutherobox->getBoundingBox().containsPoint(m_myCardHerosNode[clickHero]->getPosition()))
+			{
+				m_myCardHerosNode[clickHero]->setData(NULL);
+				GlobalInstance::myOnChallengeHeros[clickHero]->setOnchallengepos(0);
+				delete GlobalInstance::myOnChallengeHeros[clickHero];
+				GlobalInstance::myOnChallengeHeros[clickHero] = NULL;
+				checkFormation();
+			}
+			m_myCardHerosNode[clickHero]->setPosition(Vec2(150 + clickHero % 3 * 210, /*745 + */705 - clickHero / 3 * 220));
 			m_myCardHerosNode[clickHero]->setLocalZOrder(1);
 		}
 		else
 		{
-			for (int m = 0; m < 6; m++)
-			{
-				if (GlobalInstance::myOnChallengeHeros[m] != NULL)
-				{
-					for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
-					{
-						if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getId().compare(GlobalInstance::myOnChallengeHeros[m]->getId()) == 0)
-						{
-							GlobalInstance::vec_myHeros[i]->setOnchallengepos(GlobalInstance::myOnChallengeHeros[m]->getOnchallengepos());
-						}
-					}
-				}
-			}
+			checkFormation();
 		}
 		clickHero = -1;
 	}
@@ -366,61 +382,7 @@ void MatchMainLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			HttpDataSwap::init(NULL)->postMyMatchHeros();
 			AnimationEffect::closeAniEffect(this);
 		}
-			break;
-		case 1005:
-			if (GlobalInstance::myMatchInfo.getrewardstate == 0)
-			{
-				MatchRewardLayer* layer = MatchRewardLayer::create();
-				this->addChild(layer, 1000);
-				AnimationEffect::openAniEffect((Layer*)layer);
-			}
-			else if (GlobalInstance::myMatchInfo.getrewardstate == 1)
-			{
-				std::vector<MSGAWDSDATA> vec_rewards;
-				std::vector<std::vector<std::string>> vec_matchreward = GlobalInstance::getInstance()->getMatchRewardByLv(GlobalInstance::myMatchInfo.awardindex);
-				for (unsigned int i = 0; i < vec_matchreward.size(); i++)
-				{
-					std::vector<std::string> one_res = vec_matchreward[i];
-					std::string resid = one_res[0];
-					int count = atoi(one_res[1].c_str());
-					int qu = atoi(one_res[2].c_str());
-
-					MSGAWDSDATA wdata;
-					wdata.rid = resid;
-					wdata.count = count;
-					wdata.qu = qu;
-					if (GlobalInstance::map_AllResources.find(wdata.rid) != GlobalInstance::map_AllResources.end())
-						vec_rewards.push_back(wdata);
-				}
-
-				if (GlobalInstance::myMatchInfo.awardindex1.length() > 0)
-				{
-					std::vector<std::string> vec_;
-					CommonFuncs::split(GlobalInstance::myMatchInfo.awardindex1, vec_,";");
-					for (unsigned int i = 0; i < vec_.size(); i++)
-					{
-						std::vector<std::string> vec_one;
-						CommonFuncs::split(vec_[i], vec_one,"-");
-
-						MSGAWDSDATA wdata;
-						wdata.rid = vec_one[0];
-						wdata.count = atoi(vec_one[1].c_str());
-						wdata.qu = atoi(vec_one[2].c_str());
-						if (GlobalInstance::map_AllResources.find(wdata.rid) != GlobalInstance::map_AllResources.end())
-							vec_rewards.push_back(wdata);
-					}
-				}
-
-				if (vec_rewards.size() > 0)
-				{
-					RewardLayer* layer = RewardLayer::create(vec_rewards, MYSTORAGE, 1);
-					this->addChild(layer, 1000);
-					AnimationEffect::openAniEffect((Layer*)layer);
-				}
-				rewardtext->setVisible(false);
-				clicknode->setEnabled(false);
-			}
-			break;
+		break;
 		case 1006:
 		{
 			MatchRankLayer* layer = MatchRankLayer::create();
@@ -722,7 +684,7 @@ void MatchMainLayer::onFinish(int code)
 				networkerrLayer->removeFromParentAndCleanup(true);
 			updateUI();
 			bindHeroData();
-
+			checkFormation();
 		}
 		else if (httptag == 1)
 		{
@@ -747,16 +709,6 @@ void MatchMainLayer::onFinish(int code)
 				GlobalInstance::myMatchInfo.specifiedcount--;
 			else
 				GlobalInstance::myMatchInfo.matchcount--;
-		}
-
-		if (GlobalInstance::myMatchInfo.getrewardstate == 1)
-		{
-			/*endtimetxt->setVisible(false);
-			endtime->setVisible(false);*/
-			rewardtext->setString(ResourceLang::map_lang["matchrewardget"]);
-			//rewardtext->setTextColor(Color4B(28, 208, 255, 255));
-			matchrewardicon->loadTexture("ui/matchreward_1.png", cocos2d::ui::Widget::TextureResType::PLIST);
-			matchrewardicon->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 7), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -7), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
 		}
 	}
 	else
@@ -802,4 +754,422 @@ void MatchMainLayer::showFightSuccAwdLayer(float dt)
 {
 	MacthFightSucAwdLayer* layer = MacthFightSucAwdLayer::create();
 	this->addChild(layer, 2000);
+}
+
+void MatchMainLayer::addFormationUi()
+{
+	int itemwidth = 140;
+
+	int ressize = GlobalInstance::map_formations.size();
+	int innerwidth = itemwidth * ressize;
+
+	int contentwidth = scrollview->getContentSize().width;
+	if (innerwidth < contentwidth)
+		innerwidth = contentwidth;
+	scrollview->setInnerContainerSize(Size(innerwidth, scrollview->getContentSize().height));
+
+	std::vector<S_FORMATION*> vec_formationdatas;
+	std::map<std::string, S_FORMATION>::iterator it;
+
+	for (it = GlobalInstance::map_formations.begin(); it != GlobalInstance::map_formations.end(); it++)
+	{
+		vec_formationdatas.push_back(&it->second);
+		vec_formationboxs.push_back(NULL);
+	}
+
+	std::sort(vec_formationdatas.begin(), vec_formationdatas.end(), sortbylearned);
+
+	for (int m = 0; m < ressize; m++)
+	{
+		std::string formationid = vec_formationdatas[m]->id;
+
+		std::string boxstr = "ui/formationbox_n.png";
+
+		cocos2d::ui::ImageView* box = cocos2d::ui::ImageView::create(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
+		box->addTouchEventListener(CC_CALLBACK_2(MatchMainLayer::onFormationClick, this));
+		box->setTouchEnabled(true);
+		int findex = atoi(formationid.substr(2).c_str());
+		box->setTag(findex);
+		//box->setUserData((void*)GlobalInstance::map_formations[formationid].id.c_str());
+		box->setPosition(Vec2(box->getContentSize().width / 2 + m * itemwidth, scrollview->getContentSize().height / 2 + 10));
+		scrollview->addChild(box);
+		vec_formationboxs[findex - 1] = box;
+		std::string iconstr = "ui/formation1_d.png";
+
+		if (GlobalInstance::map_formations[formationid].lv >= 0)
+			iconstr = "ui/formation1_n.png";
+		cocos2d::ui::ImageView* icon = cocos2d::ui::ImageView::create(iconstr, cocos2d::ui::Widget::TextureResType::PLIST);
+		icon->setPosition(Vec2(box->getContentSize().width / 2, box->getContentSize().height / 2));
+		box->addChild(icon, 0, "f");
+
+
+		Label* namelbl = Label::createWithTTF(GlobalInstance::map_AllResources[formationid].name, FONT_NAME, 20);
+		namelbl->setColor(Color3B(34, 74, 79));
+		namelbl->setPosition(Vec2(box->getContentSize().width / 2, -5));
+		box->addChild(namelbl);
+	}
+}
+
+bool MatchMainLayer::sortbylearned(S_FORMATION* a, S_FORMATION* b)
+{
+	if (a->lv > b->lv)
+		return true;
+	return false;
+}
+
+void MatchMainLayer::onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+
+	cocos2d::ui::Widget* clicknode = (cocos2d::ui::Widget*)pSender;
+	int clicktag = clicknode->getTag();
+
+	if (clicktag > 2000)
+		CommonFuncs::BtnAction(pSender, type);
+	if (type == ui::Widget::TouchEventType::BEGAN)
+	{
+		clickflag = true;
+		beginTouchPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+	}
+	else if (type == ui::Widget::TouchEventType::MOVED)
+	{
+		Vec2 movedPoint = clicknode->convertToWorldSpace(Vec2(clicknode->getPositionX(), clicknode->getPositionY()));
+
+		if (fabs(movedPoint.x - beginTouchPoint.x) >= CLICKOFFSETP || fabs(movedPoint.y - beginTouchPoint.y) >= CLICKOFFSETP)
+			clickflag = false;
+	}
+
+	else if (type == ui::Widget::TouchEventType::ENDED)
+	{
+		if (!clickflag)
+			return;
+
+		if (clicktag < 2000)
+		{
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+
+			if (GlobalInstance::getInstance()->getUnlockChapter() >= 2)
+			{
+				selectFormation(clicknode->getTag());
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["unlockformationhint"]);
+			}
+		}
+		else if (clicktag < 3000)
+		{
+			int learnindex = clicktag % 2000;
+
+			int needcoin = 200;
+
+			cocos2d::ui::Text* coincountlbl = (cocos2d::ui::Text*)formationInfoNode->getChildByName("countlbl");
+			std::string str = StringUtils::format("%d", needcoin);
+			coincountlbl->setString(str);
+
+			if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= needcoin)
+			{
+				cocos2d::ui::ImageView* boxf = (cocos2d::ui::ImageView*)vec_formationboxs[learnindex - 1]->getChildByName("f");
+				boxf->loadTexture("ui/formation1_n.png", cocos2d::ui::Widget::TextureResType::PLIST);
+
+				std::string formationid = StringUtils::format("zx%03d", learnindex);
+
+				GlobalInstance::map_formations[formationid].lv = 0;
+				GlobalInstance::getInstance()->saveMyFormation(mynormalstageformaion);
+				updateFormationInfo(learnindex);
+				DynamicValueInt dvint;
+				dvint.setValue(needcoin);
+				GlobalInstance::getInstance()->costMyCoinCount(dvint);
+				std::string showstr = StringUtils::format(ResourceLang::map_lang["learnsucc"].c_str(), GlobalInstance::map_AllResources[formationid].name.c_str());
+				MovingLabel::show(showstr);
+
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["nomorecoin"]);
+				Layer* layer = BuyCoinLayer::create(needcoin - GlobalInstance::getInstance()->getMyCoinCount().getValue());
+				Director::getInstance()->getRunningScene()->addChild(layer, 100, "buycoinlayer");
+			}
+		}
+		else
+		{
+			MovingLabel::show(ResourceLang::map_lang["formationlvupnotopen"]);
+		}
+	}
+}
+
+void MatchMainLayer::selectFormation(int index)
+{
+	if (index > 0)
+	{
+		if (lastselectformation > 0)
+			vec_formationboxs[lastselectformation - 1]->loadTexture("ui/formationbox_n.png", cocos2d::ui::Widget::TextureResType::PLIST);
+
+		vec_formationboxs[index - 1]->loadTexture("ui/formationbox_s.png", cocos2d::ui::Widget::TextureResType::PLIST);
+
+		lastselectformation = index;
+
+		std::string formationid = StringUtils::format("zx%03d", index);
+		if (GlobalInstance::map_formations[formationid].lv >= 0)
+		{
+			takeOnFormation(index);
+			GlobalInstance::myTakeOnFormation = index;
+		}
+
+	}
+	else if (lastselectformation > 0)
+	{
+		vec_formationboxs[lastselectformation - 1]->loadTexture("ui/formationbox_n.png", cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+	updateFormationInfo(index);
+
+	GlobalInstance::getInstance()->saveMyFormation(mynormalstageformaion);
+
+	for (int m = 0; m < 6; m++)
+	{
+		if (GlobalInstance::myOnChallengeHeros[m] != NULL)
+		{
+			for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+			{
+				if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getId().compare(GlobalInstance::myOnChallengeHeros[m]->getId()) == 0)
+				{
+					GlobalInstance::vec_myHeros[i]->setOnchallengepos(GlobalInstance::myOnChallengeHeros[m]->getOnchallengepos());
+				}
+			}
+		}
+	}
+}
+
+void MatchMainLayer::updateFormationInfo(int index)
+{
+	std::string formationid = StringUtils::format("zx%03d", index);
+
+	cocos2d::ui::Text* fname = (cocos2d::ui::Text*)formationInfoNode->getChildByName("fname");
+
+	cocos2d::ui::Text* fdesc = (cocos2d::ui::Text*)formationInfoNode->getChildByName("desc");
+
+	Label* desclbl = (Label*)fdesc->getVirtualRenderer();
+	desclbl->setLineSpacing(10);
+
+	cocos2d::ui::Text* table = (cocos2d::ui::Text*)formationInfoNode->getChildByName("formationinfotable");
+
+	if (index == 0)
+	{
+		fname->setString(ResourceLang::map_lang["npcrelation_0"]);
+		fdesc->setString(ResourceLang::map_lang["npcrelation_0"]);
+		table->setVisible(false);
+
+		studybtn->setVisible(false);
+		formationInfoNode->getChildByName("countlbl")->setVisible(false);
+		formationInfoNode->getChildByName("coin")->setVisible(false);
+	}
+	else
+	{
+
+
+		fname->setString(GlobalInstance::map_AllResources[formationid].name);
+
+		if (GlobalInstance::map_formations[formationid].lv >= 0)
+		{
+			studybtn->setTag(3000 + index);
+			studybtn->setVisible(true);
+			studybtntxt->loadTexture(ResourcePath::makeTextImgPath("lvupbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+			table->setVisible(true);
+
+			std::string descstr = GlobalInstance::map_AllResources[formationid].desc;
+			for (unsigned int i = 0; i < GlobalInstance::map_formations[formationid].vec_addattr.size(); i++)
+			{
+				float attrval = GlobalInstance::map_formations[formationid].vec_addattr[i];
+
+				if (attrval > 0.00001)
+				{
+					std::string astr = StringUtils::format("%.2f", attrval * 100);
+					CommonFuncs::replace(descstr, "#", astr);
+				}
+			}
+			fdesc->setString(descstr);
+			formationInfoNode->getChildByName("countlbl")->setVisible(false);
+			formationInfoNode->getChildByName("coin")->setVisible(false);
+		}
+		else
+		{
+			studybtn->setTag(2000 + index);
+			studybtn->setVisible(true);
+			studybtntxt->loadTexture(ResourcePath::makeTextImgPath("learnformation_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			table->setVisible(false);
+
+			fdesc->setString(ResourceLang::map_lang["notlearntext"]);
+			formationInfoNode->getChildByName("countlbl")->setVisible(studybtn->isVisible());
+			formationInfoNode->getChildByName("coin")->setVisible(studybtn->isVisible());
+		}
+
+		for (int i = 0; i < 6; i++)
+		{
+			std::string herokey = StringUtils::format("vocationbox%d", i);
+
+			if (index > 0)
+			{
+				std::string formationid = StringUtils::format("zx%03d", index);
+				cocos2d::ui::ImageView* headimg = (cocos2d::ui::ImageView*)table->getChildByName(herokey)->getChildByName("v");
+				herokey = StringUtils::format("ui/cardvocation%d.png", GlobalInstance::map_formations[formationid].vec_formation[i] - 1);
+				headimg->loadTexture(herokey, cocos2d::ui::Widget::TextureResType::PLIST);
+			}
+
+			std::string namekey = StringUtils::format("vocname%d", i);
+
+			if (index > 0)
+			{
+				std::string formationid = StringUtils::format("zx%03d", index);
+				cocos2d::ui::Text* herovocname = (cocos2d::ui::Text*)table->getChildByName(namekey);
+				namekey = StringUtils::format("vocation_%d", GlobalInstance::map_formations[formationid].vec_formation[i] - 1);
+				herovocname->setString(ResourceLang::map_lang[namekey]);
+			}
+		}
+	}
+
+	//formationInfoNode->getChildByName("countlbl")->setVisible(studybtn->isVisible());
+	//formationInfoNode->getChildByName("coin")->setVisible(studybtn->isVisible());
+}
+
+void MatchMainLayer::updateChangeHint(float dt)
+{
+	changehintindex++;
+	if (changehintindex > 2)
+		changehintindex = 0;
+	std::string changehintkey = StringUtils::format("changelineuphint%d", changehintindex);
+	changehintlbl->setString(ResourceLang::map_lang[changehintkey]);
+}
+
+void MatchMainLayer::checkFormation()
+{
+	GlobalInstance::myTakeOnFormation = 0;
+	std::string matchformation;
+	std::map<std::string, S_FORMATION>::iterator it;
+	for (it = GlobalInstance::map_formations.begin(); it != GlobalInstance::map_formations.end(); it++)
+	{
+		int matchcount = 0;
+		for (int i = 0; i < 6; i++)
+		{
+			if (GlobalInstance::myOnChallengeHeros[i] != NULL && GlobalInstance::myOnChallengeHeros[i]->getState() != HS_DEAD && GlobalInstance::myOnChallengeHeros[i]->getVocation() + 1 == it->second.vec_formation[i])
+			{
+				matchcount++;
+			}
+		}
+		if (matchcount >= 6)
+		{
+			matchformation = it->first;
+			break;
+		}
+	}
+
+	if (matchformation.length() > 0)
+	{
+		int takeonf = atoi(matchformation.substr(2).c_str());
+		if (GlobalInstance::map_formations[matchformation].lv >= 0)
+		{
+			GlobalInstance::myTakeOnFormation = takeonf;
+		}
+	}
+	else
+	{
+		bigformation->stopAllActions();
+		bigformation->setVisible(false);
+	}
+	selectFormation(GlobalInstance::myTakeOnFormation);
+}
+
+void MatchMainLayer::takeOnFormation(int formationindex)
+{
+	vec_formationCandidate.clear();
+	vec_selformation.clear();
+
+	std::string formationid = StringUtils::format("zx%03d", formationindex);
+
+	for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+	{
+		for (unsigned int j = 0; j < GlobalInstance::map_formations[formationid].vec_formation.size(); j++)
+		{
+			if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getVocation() + 1 == GlobalInstance::map_formations[formationid].vec_formation[j])
+			{
+				vec_formationCandidate.push_back(GlobalInstance::vec_myHeros[i]);
+				break;
+			}
+		}
+	}
+	std::sort(vec_formationCandidate.begin(), vec_formationCandidate.end(), MatchMainLayer::formationCandidateSort);
+
+
+	std::vector<Hero*>::iterator it;
+	for (unsigned int j = 0; j < GlobalInstance::map_formations[formationid].vec_formation.size(); j++)
+	{
+		for (it = vec_formationCandidate.begin(); it != vec_formationCandidate.end();)
+		{
+			Hero* hero = *it;
+
+			if (hero->getVocation() + 1 == GlobalInstance::map_formations[formationid].vec_formation[j])
+			{
+				vec_selformation.push_back(hero);
+				it = vec_formationCandidate.erase(it);
+				break;
+			}
+
+			else
+			{
+				it++;
+			}
+		}
+	}
+
+	if (vec_selformation.size() >= 6)
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			Hero* myhero = vec_selformation[i];
+
+			if (GlobalInstance::myOnChallengeHeros[i] == NULL)
+			{
+				Hero* hero = new Hero(myhero);
+				GlobalInstance::myOnChallengeHeros[i] = hero;
+				hero->setState(HS_ONCHALLENGE);
+				hero->setOnchallengepos(i+1);
+			}
+
+			DynamicValueInt dvint;
+			dvint.setValue(myhero->getExp().getValue());
+			GlobalInstance::myOnChallengeHeros[i]->setId(myhero->getId());
+			GlobalInstance::myOnChallengeHeros[i]->setExp(dvint);
+			GlobalInstance::myOnChallengeHeros[i]->setName(myhero->getName());
+			GlobalInstance::myOnChallengeHeros[i]->setVocation(myhero->getVocation());
+			GlobalInstance::myOnChallengeHeros[i]->setChangeCount(myhero->getChangeCount());
+
+			for (int k = T_ARMOR; k <= T_NG; k++)
+			{
+				Equipable* eres = myhero->getEquipable(k);
+				if (eres != NULL)
+					GlobalInstance::myOnChallengeHeros[i]->setEquipable(eres, k);
+			}
+			GlobalInstance::myOnChallengeHeros[i]->setState(HS_ONCHALLENGE);
+			GlobalInstance::myOnChallengeHeros[i]->setHp(GlobalInstance::myOnChallengeHeros[i]->getMaxHp());
+			m_myCardHerosNode[i]->setData(GlobalInstance::myOnChallengeHeros[i]);
+		}
+
+		bigformation->stopAllActions();
+		bigformation->setOpacity(255);
+		bigformation->setVisible(true);
+		bigformation->runAction(Repeat::create(Sequence::create(FadeIn::create(0.5), FadeOut::create(0.5), FadeIn::create(0.5), NULL), 3));
+	}
+	else
+	{
+		std::string str = StringUtils::format(ResourceLang::map_lang["noformation"].c_str(), GlobalInstance::map_AllResources[formationid].name.c_str());
+		MovingLabel::show(str);
+	}
+}
+
+bool MatchMainLayer::formationCandidateSort(Hero* a, Hero* b)
+{
+	if (a->getPotential() * 10000 + a->getLevel() > b->getPotential() * 10000 + b->getLevel())
+	{
+		return true;
+	}
+	return false;
 }

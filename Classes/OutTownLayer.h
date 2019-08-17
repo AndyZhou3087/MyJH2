@@ -77,11 +77,12 @@ private:
 
 	cocos2d::ui::EditBox* m_editCount;
 
-	cocos2d::ui::ScrollView* scrollview;
-	Node* formationInfoNode;
+
 	bool clickflag;
 	//Vec2 beginTouchPoint;
 
+	cocos2d::ui::ScrollView* scrollview;
+	Node* formationInfoNode;
 	int lastselectformation;
 
 	std::vector<cocos2d::ui::ImageView*> vec_formationboxs;
