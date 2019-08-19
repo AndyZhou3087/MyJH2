@@ -2254,7 +2254,7 @@ void MapBlockScene::showFightResult(int result)
 			{
 				GlobalInstance::fightwinbosscount++;
 
-				if (GlobalInstance::fightwinbosscount >= totalBoxcount)
+				if (GlobalInstance::fightwinbosscount >= totalbosscount)
 				{
 					DataSave::getInstance()->setFightWinAllBoss(m_mapid, true);
 				}
@@ -2958,7 +2958,7 @@ void MapBlockScene::parseMapXml(std::string mapname)
 
 						if (postype >= POS_BOSS && postype <= POS_TBOSS)
 						{
-							totalBoxcount++;
+							totalbosscount++;
 						}
 
 						if (showPosIcon)
