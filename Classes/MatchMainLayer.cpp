@@ -307,8 +307,18 @@ void MatchMainLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_
 			{
 				m_myCardHerosNode[clickHero]->setData(NULL);
 				GlobalInstance::myOnChallengeHeros[clickHero]->setOnchallengepos(0);
+
+				for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+				{
+					if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getId().compare(GlobalInstance::myOnChallengeHeros[clickHero]->getId()) == 0)
+					{
+						GlobalInstance::vec_myHeros[i]->setOnchallengepos(0);
+					}
+				}
+
 				delete GlobalInstance::myOnChallengeHeros[clickHero];
 				GlobalInstance::myOnChallengeHeros[clickHero] = NULL;
+
 				checkFormation();
 			}
 			m_myCardHerosNode[clickHero]->setPosition(Vec2(150 + clickHero % 3 * 210, /*745 + */705 - clickHero / 3 * 220));
