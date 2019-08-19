@@ -54,6 +54,8 @@ MainScene::MainScene()
 	int z002count = MyRes::getMyResCount("z002", MYPACKAGE);
 	if (z002count > 0)
 		MyRes::Use("z002", z002count, MYPACKAGE);
+
+	GlobalInstance::challangeType = CH_NORMAL;
 }
 
 MainScene::~MainScene()
