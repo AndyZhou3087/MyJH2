@@ -29,6 +29,7 @@ MatchMainLayer::MatchMainLayer()
 	httptag = 0;
 	isspecifiedfight = false;
 
+	lastselectformation = 0;
 	mynormalstageformaion = GlobalInstance::myTakeOnFormation;
 }
 
