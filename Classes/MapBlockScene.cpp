@@ -1193,8 +1193,8 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 
 		if (mycurCol == randStartPos % blockColCount && mycurRow == randStartPos / blockColCount)
 		{
-			isRoutingBreakOff = true;
-			this->scheduleOnce(schedule_selector(MapBlockScene::delayShowExit), 0.45f);
+			//isRoutingBreakOff = true;
+			//this->scheduleOnce(schedule_selector(MapBlockScene::delayShowExit), 0.45f);
 		}
 		else
 		{
@@ -1799,6 +1799,14 @@ void MapBlockScene::doMyStatus()
 			MainScene::addNews(contentstr, 2);
 			calcStar(SA_ENTERMAZE);
 			return;
+		}
+		else if (mapblock->getPosType() == POS_START)
+		{
+			if (mycurCol == randStartPos % blockColCount && mycurRow == randStartPos / blockColCount)
+			{
+				isRoutingBreakOff = true;
+				this->scheduleOnce(schedule_selector(MapBlockScene::delayShowExit), 0.2f);
+			}
 		}
 
 		if (vec_enemys.size() > 0)
