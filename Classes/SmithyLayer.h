@@ -72,6 +72,8 @@ private:
 	Node* buildinglvbox;
 	int brokenlesslv;
 	bool isrepairrefresh;
+	LayerColor* repaircolorlayer;
+	cocos2d::Vec2 repairpos;
 };
 
 #endif

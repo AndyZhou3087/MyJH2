@@ -78,6 +78,8 @@ private:
 	cocos2d::ui::Text* repairtimelbl;
 	cocos2d::ui::Widget* closebtn;
 	cocos2d::ui::Widget* repairbtn;
+	LayerColor* repaircolorlayer;
+	cocos2d::Vec2 repairpos;
 	int langtype;
 	std::vector<cocos2d::ui::Button*> vec_categoryBtn;
 	int lastCategoryindex;

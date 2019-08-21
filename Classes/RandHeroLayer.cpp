@@ -172,10 +172,15 @@ bool RandHeroLayer::init()
 	cocos2d::ui::Text* hintdesc = (cocos2d::ui::Text*)csbnode->getChildByName("hintdesc");
 	hintdesc->setString(ResourceLang::map_lang["innroomhintdesc"]);
 
+	repaircolorlayer = LayerColor::create(Color4B(11, 32, 22, 150));
+	csbnode->addChild(repaircolorlayer, 1, "colorLayer");
+
 	repairbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("repairbtn");
 	repairbtn->setTag(2000);
 	repairbtn->addTouchEventListener(CC_CALLBACK_2(RandHeroLayer::onBtnClick, this));
 	repairbtn->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 10), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -10), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
+	repairbtn->setLocalZOrder(2);
+	repairpos = repairbtn->getPosition();
 
 	repairtimelbl = (cocos2d::ui::Text*)repairbtn->getChildByName("time");
 	repairtimelbl->setString("");
@@ -261,7 +266,7 @@ void RandHeroLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 {
 	Node* clicknode = (Node*)pSender;
 	int tag = clicknode->getTag();
-	if (tag != BTN_ADD_COINBOX && tag != BTN_ADD_SILVERBOX)
+	if (tag != BTN_ADD_COINBOX && tag != BTN_ADD_SILVERBOX && tag != 2000)
 		CommonFuncs::BtnAction(pSender, type);
 	else if (type == ui::Widget::TouchEventType::ENDED)
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
@@ -630,6 +635,7 @@ void RandHeroLayer::updateRepairUi()
 			if (pasttime >= REPAIRTIME)
 			{
 				repairbtn->setVisible(false);
+				repaircolorlayer->setVisible(false);
 			}
 			else
 			{
@@ -639,16 +645,28 @@ void RandHeroLayer::updateRepairUi()
 				repairtimelbl->setString(strlbl);
 				repairbtn->stopAllActions();
 				repairbtn->setRotation(0);
+				if (repairbtn->getScale() > 1.1)
+				{
+					repairbtn->setScale(1);
+					repairbtn->runAction(MoveTo::create(0.8f, repairpos));
+				}
+				repaircolorlayer->setVisible(false);
 			}
 		}
 		else
 		{
+			if (repairbtn->getScale() < 2)
+			{
+				repairbtn->setScale(2);
+				repairbtn->setPosition(Vec2(360, 640));
+			}
 			repairtimelbl->setVisible(false);
 		}
 	}
 	else
 	{
 		repairbtn->setVisible(false);
+		repaircolorlayer->setVisible(false);
 	}
 }
 

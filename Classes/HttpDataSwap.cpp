@@ -1162,6 +1162,11 @@ void HttpDataSwap::httpBuyNoticeCB(std::string retdata, int code, std::string ex
 			{
 				GlobalInstance::ispayconfirm = atoi(getJsonValueStr(doc["confirm"]).c_str()) == 1 ? true : false;
 			}
+
+			if (ret == 4)
+			{
+				MainScene::cheatAction(3);
+			}
 		}
 		else
 		{

@@ -73,6 +73,8 @@ private:
 	DynamicValueInt refreshHeroSilver;
 	cocos2d::ui::Text* repairtimelbl;
 	cocos2d::ui::Widget* repairbtn;
+	LayerColor* repaircolorlayer;
+	cocos2d::Vec2 repairpos;
 };
 
 #endif

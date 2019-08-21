@@ -68,9 +68,14 @@ bool HospitalLayer::init()
 
 	updateContent();
 
+	repaircolorlayer = LayerColor::create(Color4B(11, 32, 22, 150));
+	m_csbnode->addChild(repaircolorlayer, 1, "colorLayer");
+
 	repairbtn = (cocos2d::ui::Widget*)m_csbnode->getChildByName("repairbtn");
 	repairbtn->setTag(1001);
 	repairbtn->addTouchEventListener(CC_CALLBACK_2(HospitalLayer::onBtnClick, this));
+	repairbtn->setLocalZOrder(2);
+	repairpos = repairbtn->getPosition();
 
 	repairbtn->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 10), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -10), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
 
@@ -135,7 +140,10 @@ void HospitalLayer::showNewerGuide(int step)
 
 void HospitalLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	CommonFuncs::BtnAction(pSender, type);
+	Node* clicknode = (Node*)pSender;
+	int tag = clicknode->getTag();
+	if (tag != 1001)
+		CommonFuncs::BtnAction(pSender, type);
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
 		Node* clicknode = (Node*)pSender;
@@ -255,6 +263,7 @@ void HospitalLayer::updateRepairUi()
 			if (pasttime >= REPAIRTIME)
 			{
 				repairbtn->setVisible(false);
+				repaircolorlayer->setVisible(false);
 			}
 			else
 			{
@@ -264,15 +273,28 @@ void HospitalLayer::updateRepairUi()
 				repairtimelbl->setString(strlbl);
 				repairbtn->stopAllActions();
 				repairbtn->setRotation(0);
+
+				if (repairbtn->getScale() > 1.1)
+				{
+					repairbtn->setScale(1);
+					repairbtn->runAction(MoveTo::create(0.8f, repairpos));
+				}
+				repaircolorlayer->setVisible(false);
 			}
 		}
 		else
 		{
+			if (repairbtn->getScale() < 2)
+			{
+				repairbtn->setScale(2);
+				repairbtn->setPosition(Vec2(360, 640));
+			}
 			repairtimelbl->setVisible(false);
 		}
 	}
 	else
 	{
 		repairbtn->setVisible(false);
+		repaircolorlayer->setVisible(false);
 	}
 }

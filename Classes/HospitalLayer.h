@@ -38,6 +38,8 @@ private:
 	cocos2d::ui::Widget* closebtn;
 	cocos2d::ui::Text* repairtimelbl;
 	cocos2d::ui::Widget* repairbtn;
+	LayerColor* repaircolorlayer;
+	cocos2d::Vec2 repairpos;
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void todoNewGuide();

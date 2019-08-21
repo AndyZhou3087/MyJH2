@@ -219,7 +219,10 @@ void FightingLayer::changeSpeed(int speedscale)
 
 	str = StringUtils::format("speedx%d_text", speedscale);
 	changespeed_text->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-	Director::getInstance()->getScheduler()->setTimeScale(speedscale);
+	if (speedscale > 1)
+		Director::getInstance()->getScheduler()->setTimeScale(4);
+	else
+		Director::getInstance()->getScheduler()->setTimeScale(1);
 	changespeedcick->setTag(speedscale);
 
 	if (GlobalInstance::isSpeedup)

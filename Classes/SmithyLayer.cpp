@@ -85,10 +85,15 @@ bool SmithyLayer::init(Building* buidingData)
 	closebtn->setTag(1001);
 	closebtn->addTouchEventListener(CC_CALLBACK_2(SmithyLayer::onBtnClick, this));
 
+	repaircolorlayer = LayerColor::create(Color4B(11, 32, 22, 150));
+	csbnode->addChild(repaircolorlayer, 1, "colorLayer");
+
 	repairbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("repairbtn");
 	repairbtn->setTag(2000);
 	repairbtn->addTouchEventListener(CC_CALLBACK_2(SmithyLayer::onBtnClick, this));
 	repairbtn->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 10), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -10), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
+	repairbtn->setLocalZOrder(2);
+	repairpos = repairbtn->getPosition();
 
 	repairtimelbl = (cocos2d::ui::Text*)repairbtn->getChildByName("time");
 	repairtimelbl->setString("");
@@ -194,12 +199,15 @@ void SmithyLayer::showNewerGuide(int step)
 
 void SmithyLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	CommonFuncs::BtnAction(pSender, type);
+	Node* clicknode = (Node*)pSender;
+	int tag = clicknode->getTag();
+
+	if (tag != 2000)
+		CommonFuncs::BtnAction(pSender, type);
 
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
-		Node* clicknode = (Node*)pSender;
-		int tag = clicknode->getTag();
+
 		switch (tag)
 		{
 		case 1000://升级
@@ -682,6 +690,7 @@ void SmithyLayer::updateRepairUi()
 			if (pasttime >= REPAIRTIME)
 			{
 				repairbtn->setVisible(false);
+				repaircolorlayer->setVisible(false);
 				buildinglvbox->setScaleX(1);
 				brokenlesslv = 0;
 			}
@@ -693,10 +702,22 @@ void SmithyLayer::updateRepairUi()
 				repairtimelbl->setString(strlbl);
 				repairbtn->stopAllActions();
 				repairbtn->setRotation(0);
+
+				if (repairbtn->getScale() > 1.1)
+				{
+					repairbtn->setScale(1);
+					repairbtn->runAction(MoveTo::create(0.8f, repairpos));
+				}
+				repaircolorlayer->setVisible(false);
 			}
 		}
 		else
 		{
+			if (repairbtn->getScale() < 2)
+			{
+				repairbtn->setScale(2);
+				repairbtn->setPosition(Vec2(360, 640));
+			}
 			repairtimelbl->setVisible(false);
 		}
 
@@ -706,6 +727,7 @@ void SmithyLayer::updateRepairUi()
 		buildinglvbox->setScaleX(1);
 		brokenlesslv = 0;
 		repairbtn->setVisible(false);
+		repaircolorlayer->setVisible(false);
 		if (!isrepairrefresh)
 		{
 			isrepairrefresh = true;
