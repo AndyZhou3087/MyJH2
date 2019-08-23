@@ -34,7 +34,23 @@ FightingLayer::~FightingLayer()
 	}
 	clearSkillsData(0);
 	clearSkillsData(1);
-	Director::getInstance()->getScheduler()->setTimeScale(1);
+
+	if (GlobalInstance::isupspeeding && MyRes::getMyResCount("j006") > 0 && GlobalInstance::challangeType != CH_SUPERBOSS)
+	{
+		if (g_MapBlockScene == NULL)
+		{
+			Director::getInstance()->getScheduler()->setTimeScale(1);
+		}
+		else
+		{
+			Director::getInstance()->getScheduler()->setTimeScale(2);
+			g_MapBlockScene->changeSpeed(2);
+		}
+	}
+	else
+	{
+		Director::getInstance()->getScheduler()->setTimeScale(1);
+	}
 }
 
 
@@ -86,20 +102,19 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 
 	changespeedcick = (cocos2d::ui::ImageView*)csbnode->getChildByName("changespeed");
 	changespeed_text = (cocos2d::ui::ImageView*)csbnode->getChildByName("changespeed_text");
-
+	changespeedcick->setTag(1);
 	changespeedcick->setVisible(false);
 	changespeed_text->setVisible(false);
-	if (GlobalInstance::challangeType != CH_SUPERBOSS && GlobalInstance::getInstance()->getHerosLevelCount(20) > 0)
+	if (GlobalInstance::challangeType != CH_SUPERBOSS && (MyRes::getMyResCount("j006") > 0 || GlobalInstance::isBuyYearCard))
 	{
 		changespeedcick->addTouchEventListener(CC_CALLBACK_2(FightingLayer::onBtnClick, this));
-		changespeedcick->setTag(1);
 
 		changespeedcick->setVisible(true);
 		changespeed_text->setVisible(true);
 
-		if (GlobalInstance::isSpeedup)
+		if (GlobalInstance::isupspeeding)
 		{
-			changeSpeed(2);
+			selectSpeed();
 		}
 	}
 	
@@ -198,34 +213,32 @@ void FightingLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 		}
 		else
 		{
-			GlobalInstance::isSpeedup = tag==1;
-			if (tag == 1)
+			if (GlobalInstance::isupspeeding)
 			{
-				changeSpeed(2);
-
+				GlobalInstance::isupspeeding = false;
+				changeSpeed(1);
 			}
 			else
 			{
-				changeSpeed(1);
+				GlobalInstance::isupspeeding = true;
+				selectSpeed();
 			}
 		}
 	}
 }
 
-void FightingLayer::changeSpeed(int speedscale)
+void FightingLayer::changeSpeed(float speedscale)
 {
-	std::string str = StringUtils::format("mapui/fightspeedx%d.png", speedscale);
+
+	std::string str = StringUtils::format("mapui/fightspeedx%d.png", speedscale>1.01f?2:1);
 	changespeedcick->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 
-	str = StringUtils::format("speedx%d_text", speedscale);
+	str = StringUtils::format("speedx%d_text", speedscale > 1.01f ? 2 : 1);
 	changespeed_text->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
-	if (speedscale > 1)
-		Director::getInstance()->getScheduler()->setTimeScale(4);
-	else
-		Director::getInstance()->getScheduler()->setTimeScale(1);
-	changespeedcick->setTag(speedscale);
 
-	if (GlobalInstance::isSpeedup)
+	Director::getInstance()->getScheduler()->setTimeScale(speedscale);
+
+	if (speedscale > 1.01f)
 	{
 		changespeedcick->runAction(RepeatForever::create(RotateTo::create(10.0f, 720)));
 	}
@@ -320,6 +333,17 @@ void FightingLayer::resumeAtkSchedule()
 	{
 		fightOver(ret);
 	}
+}
+
+void FightingLayer::selectSpeed()
+{
+	float timescale = 1.0f;
+
+	if (MyRes::getMyResCount("j006") > 0)
+		timescale = 2.5f;
+	else if (GlobalInstance::isBuyYearCard)
+		timescale = 1.5f;
+	changeSpeed(timescale);
 }
 
 void FightingLayer::fightOver(int ret)

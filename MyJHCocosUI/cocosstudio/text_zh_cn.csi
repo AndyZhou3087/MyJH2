@@ -448,6 +448,12 @@
       <FilePathData Path="text_zh_cn/quupbtn_text.png" />
       <FilePathData Path="text_zh_cn/speedx1_text.png" />
       <FilePathData Path="text_zh_cn/speedx2_text.png" />
+      <FilePathData Path="text_zh_cn/text_flash.png" />
+      <FilePathData Path="text_zh_cn/speedgiftbtn_text.png" />
+      <FilePathData Path="text_zh_cn/text_formationgift.png" />
+      <FilePathData Path="text_zh_cn/formationgiftbtn_text.png" />
+      <FilePathData Path="text_zh_cn/main_activitybtn_text.png" />
+      <FilePathData Path="text_zh_cn/activitytitle.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

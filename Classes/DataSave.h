@@ -552,6 +552,22 @@ public:
 	****************************/
 	bool getFightWinAllBoss(std::string mapid);
 
+
+	/****************************
+	是否购买年卡
+	****************************/
+	void setIsBuyYearCard(bool val);
+
+	/****************************
+	是否购买年卡
+	****************************/
+	bool getIsBuyYearCard();
+
+	//摇树时间
+	int getShakeTreeTime();
+
+	void setShakeTreeTime(int val);
+
 	void deleteDataByKey(std::string key);
 
 private:

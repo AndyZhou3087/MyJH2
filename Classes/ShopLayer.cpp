@@ -10,6 +10,7 @@
 #include "DynamicValue.h"
 #include "MyRes.h"
 #include "GiftContentLayer.h"
+#include "DataSave.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "IOSPurchaseWrap.h"
 #include "iosfunc.h"
@@ -307,6 +308,10 @@ void ShopLayer::paySucc()
 			if (chargelayer != NULL)
 				AnimationEffect::closeAniEffect((Layer*)chargelayer);
 		}
+		else if (iconname.compare("flash") == 0)
+		{
+			GlobalInstance::isBuySpeedGift = true;
+		}
 		else if (iconname.compare(0, 8, "timegift") == 0)
 		{
 			Node* giftlayer = Director::getInstance()->getRunningScene()->getChildByName(iconname);
@@ -321,6 +326,12 @@ void ShopLayer::paySucc()
 	else if (type == VIP)
 	{
 		g_mainScene->showVipReward(payindex);
+		std::string iconname = GlobalInstance::vec_shopdata[payindex].icon;
+		if (iconname.compare("vip2") == 0)
+		{
+			GlobalInstance::isBuyYearCard = true;
+			DataSave::getInstance()->setIsBuyYearCard(true);
+		}
 	}
 
 	if (g_mainScene != NULL)

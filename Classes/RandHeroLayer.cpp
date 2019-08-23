@@ -166,20 +166,20 @@ bool RandHeroLayer::init()
 		heronode[i] = RandHeroNode::create();
 		heronode[i]->setPosition(140+i*220, 740);
 		heronode[i]->setData(GlobalInstance::vec_rand3Heros[i], false);
-		this->addChild(heronode[i], 0, i);
+		csbnode->addChild(heronode[i], 0, i);
 	}
 
 	cocos2d::ui::Text* hintdesc = (cocos2d::ui::Text*)csbnode->getChildByName("hintdesc");
 	hintdesc->setString(ResourceLang::map_lang["innroomhintdesc"]);
 
 	repaircolorlayer = LayerColor::create(Color4B(11, 32, 22, 150));
-	csbnode->addChild(repaircolorlayer, 1, "colorLayer");
+	csbnode->addChild(repaircolorlayer, 5, "colorLayer");
 
 	repairbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("repairbtn");
 	repairbtn->setTag(2000);
 	repairbtn->addTouchEventListener(CC_CALLBACK_2(RandHeroLayer::onBtnClick, this));
 	repairbtn->runAction(RepeatForever::create(Sequence::create(RotateTo::create(0.1f, 10), RotateTo::create(0.1f, 0), RotateTo::create(0.1f, -10), RotateTo::create(0.1f, 0), DelayTime::create(0.5f), NULL)));
-	repairbtn->setLocalZOrder(2);
+	repairbtn->setLocalZOrder(5);
 	repairpos = repairbtn->getPosition();
 
 	repairtimelbl = (cocos2d::ui::Text*)repairbtn->getChildByName("time");

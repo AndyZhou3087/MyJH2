@@ -16,6 +16,7 @@
 #include "MyTransitionScene.h"
 #include "MyMenu.h"
 #include "BuyCoinLayer.h"
+#include "GiftContentLayer.h"
 
 USING_NS_CC;
 
@@ -27,6 +28,7 @@ OutTownLayer::OutTownLayer()
 
 	caryycount = 0;
 	lastselectformation = 0;
+	fneedres = NULL;
 }
 
 OutTownLayer::~OutTownLayer()
@@ -752,7 +754,27 @@ void OutTownLayer::onFormationClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::
 		}
 		else
 		{
-			MovingLabel::show(ResourceLang::map_lang["formationlvupnotopen"]);
+			int learnindex = clicktag % 3000;
+			std::string formationid = StringUtils::format("zx%03d", learnindex);
+
+			if (MyRes::getMyResCount("r021") >= (GlobalInstance::map_formations[formationid].lv + 1)*2)
+			{
+				upLvFormation(learnindex);
+			}
+			else
+			{
+				MovingLabel::show(ResourceLang::map_lang["lackformationlvupres"]);
+				for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+				{
+					if (GlobalInstance::vec_shopdata[i].icon.compare("formationgift") == 0)
+					{
+						GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
+						g_mainScene->addChild(layer, 10, "GiftContentLayer");
+						AnimationEffect::openAniEffect((Layer*)layer);
+						break;
+					}
+				}
+			}
 		}
 	}
 }
@@ -789,9 +811,11 @@ void OutTownLayer::updateFormationInfo(int index)
 {
 	std::string formationid = StringUtils::format("zx%03d", index);
 
-	cocos2d::ui::Text* fname = (cocos2d::ui::Text*)formationInfoNode->getChildByName("fname");
+	fname = (cocos2d::ui::Text*)formationInfoNode->getChildByName("fname");
 
-	cocos2d::ui::Text* fdesc = (cocos2d::ui::Text*)formationInfoNode->getChildByName("desc");
+	fdesc = (cocos2d::ui::Text*)formationInfoNode->getChildByName("desc");
+
+	fneedres = (cocos2d::ui::ImageView*)formationInfoNode->getChildByName("coin");
 
 	Label* desclbl = (Label*)fdesc->getVirtualRenderer();
 	desclbl->setLineSpacing(10);
@@ -810,10 +834,6 @@ void OutTownLayer::updateFormationInfo(int index)
 	}
 	else
 	{
-		
-
-		fname->setString(GlobalInstance::map_AllResources[formationid].name);
-
 		if (GlobalInstance::map_formations[formationid].lv >= 0)
 		{
 			studybtn->setTag(3000 + index);
@@ -825,11 +845,11 @@ void OutTownLayer::updateFormationInfo(int index)
 			std::string descstr = GlobalInstance::map_AllResources[formationid].desc;
 			for (unsigned int i = 0; i < GlobalInstance::map_formations[formationid].vec_addattr.size(); i++)
 			{
-				float attrval = GlobalInstance::map_formations[formationid].vec_addattr[i];
+				float attrval = GlobalInstance::getInstance()->getFormationBns(i, index, GlobalInstance::map_formations[formationid].lv);//GlobalInstance::map_formations[formationid].vec_addattr[i];
 
 				if (attrval > 0.00001)
 				{
-					std::string astr = StringUtils::format("%.2f", attrval * 100);
+					std::string astr = StringUtils::format("%.3f", attrval * 100);
 					CommonFuncs::replace(descstr, "#", astr);
 				}
 			}
@@ -871,6 +891,8 @@ void OutTownLayer::updateFormationInfo(int index)
 				herovocname->setString(ResourceLang::map_lang[namekey]);
 			}
 		}
+
+		updateFormationLvRes(index);
 	}
 
 	//formationInfoNode->getChildByName("countlbl")->setVisible(studybtn->isVisible());
@@ -1001,4 +1023,65 @@ bool OutTownLayer::formationCandidateSort(Hero* a, Hero* b)
 		return true;
 	}
 	return false;
+}
+
+void OutTownLayer::updateFormationLvRes(int index)
+{
+	cocos2d::ui::Text* coincountlbl = (cocos2d::ui::Text*)formationInfoNode->getChildByName("countlbl");
+	std::string formationid = StringUtils::format("zx%03d", index);
+
+	fname->setString(GlobalInstance::map_AllResources[formationid].name);
+	int flv = GlobalInstance::map_formations[formationid].lv;
+	if (flv > 0)
+	{
+		std::string namstr = StringUtils::format("%s +%d", GlobalInstance::map_AllResources[formationid].name.c_str(), flv);
+		fname->setString(namstr);
+	}
+	if (GlobalInstance::map_formations[formationid].lv >= 20)
+	{
+		studybtn->setVisible(false);
+		coincountlbl->setVisible(false);
+		fneedres->setVisible(false);
+		return;
+	}
+
+	coincountlbl->setVisible(true);
+	fneedres->setVisible(true);
+
+	if (GlobalInstance::map_formations[formationid].lv < 0)
+	{
+		int needcoin = 200;
+		std::string str = StringUtils::format("%d", needcoin);
+		coincountlbl->setString(str);
+		fneedres->loadTexture("ui/r012.png", cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+	else
+	{
+		std::string str = StringUtils::format("%d", (GlobalInstance::map_formations[formationid].lv + 1)*2);
+		coincountlbl->setString(str);
+		fneedres->loadTexture("ui/r021.png", cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+}
+
+void OutTownLayer::upLvFormation(int index)
+{
+	std::string formationid = StringUtils::format("zx%03d", index);
+	GlobalInstance::map_formations[formationid].lv++;
+
+	updateFormationLvRes(index);
+	GlobalInstance::getInstance()->saveMyFormation(GlobalInstance::myTakeOnFormation);
+	MyRes::Use("r021", GlobalInstance::map_formations[formationid].lv * 2);
+
+	std::string descstr = GlobalInstance::map_AllResources[formationid].desc;
+	for (unsigned int i = 0; i < GlobalInstance::map_formations[formationid].vec_addattr.size(); i++)
+	{
+		float attrval = GlobalInstance::getInstance()->getFormationBns(i, index, GlobalInstance::map_formations[formationid].lv);//GlobalInstance::map_formations[formationid].vec_addattr[i];
+
+		if (attrval > 0.00001)
+		{
+			std::string astr = StringUtils::format("%.3f", attrval * 100);
+			CommonFuncs::replace(descstr, "#", astr);
+		}
+	}
+	fdesc->setString(descstr);
 }

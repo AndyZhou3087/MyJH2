@@ -273,6 +273,8 @@ void AstarRouting::move()
 	if (_shortPathList.size() == 0) {
 
 		g_MapBlockScene->isMovingRouting = false;
+		g_MapBlockScene->getRoutingAnimNode()->stopAllActions();
+		g_MapBlockScene->removeAllRoutingBlock();
 		g_MapBlockScene->checkMazeStoneHint();
 		return;
 	}
@@ -288,7 +290,10 @@ void AstarRouting::move()
 		_shortPathList.erase(0);
 
 	CallFunc *actionCallBack = CallFunc::create(CC_CALLBACK_0(AstarRouting::move, this));
-	Sequence *actionSq = Sequence::create(DelayTime::create(0.53f), actionCallBack, nullptr);
+	float dt = 0.53f;
+	if (GlobalInstance::isupspeeding)
+		dt = 0.58f;
+	Sequence *actionSq = Sequence::create(DelayTime::create(dt), actionCallBack, nullptr);
 	g_MapBlockScene->getRoutingAnimNode()->runAction(actionSq);
 }
 

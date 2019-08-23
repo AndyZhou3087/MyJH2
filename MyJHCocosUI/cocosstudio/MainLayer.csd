@@ -460,14 +460,14 @@
                 <PreSize X="0.0177" Y="0.1187" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/main_05_t.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="main_05_n" ActionTag="-623690263" Tag="118" IconVisible="False" LeftMargin="1.8665" RightMargin="2128.1335" TopMargin="703.2400" BottomMargin="186.7600" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
-                <Size X="350.0000" Y="390.0000" />
+              <AbstractNodeData Name="main_05_n" ActionTag="-623690263" Tag="118" IconVisible="False" LeftMargin="1.8666" RightMargin="2128.1333" TopMargin="735.0000" BottomMargin="275.0000" TouchEnable="True" LeftEage="34" RightEage="34" TopEage="34" BottomEage="34" Scale9OriginX="34" Scale9OriginY="34" Scale9Width="38" Scale9Height="38" ctype="ImageViewObjectData">
+                <Size X="350.0000" Y="270.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="176.8665" Y="381.7600" />
+                <Position X="176.8666" Y="410.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.0713" Y="0.2983" />
-                <PreSize X="0.1411" Y="0.3047" />
+                <PrePosition X="0.0713" Y="0.3203" />
+                <PreSize X="0.1411" Y="0.2109" />
                 <FileData Type="MarkedSubImage" Path="ui/blank.png" Plist="ui.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="main_05_c" ActionTag="-1041830020" VisibleForFrame="False" Tag="201" IconVisible="False" LeftMargin="-1.0000" RightMargin="2039.0000" TopMargin="734.0000" BottomMargin="210.0000" ctype="SpriteObjectData">
@@ -715,7 +715,7 @@
                 <PreSize X="0.0871" Y="0.0898" />
                 <FileData Type="Normal" Path="mainimg/beggar_s.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="beggar_n" ActionTag="-1762938673" Tag="308" IconVisible="False" LeftMargin="896.9965" RightMargin="1367.0035" TopMargin="1047.4995" BottomMargin="117.5005" TouchEnable="True" LeftEage="69" RightEage="69" TopEage="37" BottomEage="37" Scale9OriginX="69" Scale9OriginY="37" Scale9Width="78" Scale9Height="41" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="beggar_n" ActionTag="-1762938673" Tag="308" IconVisible="False" LeftMargin="896.9961" RightMargin="1367.0039" TopMargin="1047.4945" BottomMargin="117.5055" TouchEnable="True" LeftEage="69" RightEage="69" TopEage="37" BottomEage="37" Scale9OriginX="69" Scale9OriginY="37" Scale9Width="78" Scale9Height="41" ctype="ImageViewObjectData">
                 <Size X="216.0000" Y="115.0000" />
                 <AnchorPoint ScaleX="0.4608" ScaleY="0.4760" />
                 <Position X="996.5289" Y="172.2455" />
@@ -724,6 +724,16 @@
                 <PrePosition X="0.4018" Y="0.1346" />
                 <PreSize X="0.0871" Y="0.0898" />
                 <FileData Type="Normal" Path="mainimg/beggar_n.png" Plist="" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="silvertree" ActionTag="-1077328598" Tag="254" IconVisible="False" LeftMargin="-19.5949" RightMargin="2117.5950" TopMargin="989.8433" BottomMargin="-47.8433" TouchEnable="True" LeftEage="69" RightEage="69" TopEage="78" BottomEage="78" Scale9OriginX="69" Scale9OriginY="78" Scale9Width="244" Scale9Height="182" ctype="ImageViewObjectData">
+                <Size X="382.0000" Y="338.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="171.4051" Y="121.1567" />
+                <Scale ScaleX="0.9000" ScaleY="0.9000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.0691" Y="0.0947" />
+                <PreSize X="0.1540" Y="0.2641" />
+                <FileData Type="Normal" Path="mainimg/silvertree_dd.png" Plist="" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint />

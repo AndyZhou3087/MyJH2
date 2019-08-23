@@ -72,6 +72,8 @@ public:
 	void checkorder(std::string orderid, std::string goodsid, int price);
 
 	static void resetDailyData();
+
+	void calcSilverAndShow();
 public:
 	cocos2d::ui::Widget* traintip;
 
@@ -121,6 +123,7 @@ private:
 	bool ishasbeggar;
 	bool ishintbeggar;
 	cocos2d::ui::ImageView* beggar;
+	cocos2d::ui::ImageView* silvertree;
 	bool isHasSmallStall;
 };
 extern MainScene* g_mainScene;

@@ -130,6 +130,8 @@ public:
 
 	void showSuperBossLayer();
 
+	void changeSpeed(int speedscale);
+
 private:
 	static MapBlockScene* create(std::string mapname, int bgtype);
 	virtual void onEnterTransitionDidFinish();
@@ -248,6 +250,7 @@ private:
 	cocos2d::ui::ImageView* taskclick;
 	cocos2d::ui::Text* textmain;
 	cocos2d::ui::Text* textbranch;
+	int langtype;
 
 	int blockRowCount;
 	int blockColCount;
@@ -292,6 +295,9 @@ private:
 
 	int firstpostype;
 
+
+	cocos2d::ui::ImageView* changespeedcick;
+	cocos2d::ui::ImageView* changespeed_text;
 
 	int usefood;
 

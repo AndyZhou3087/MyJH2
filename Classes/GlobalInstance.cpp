@@ -117,6 +117,10 @@ std::vector<int> GlobalInstance::vec_costprops;
 
 bool GlobalInstance::isBuyFirstCharge = false;
 
+bool GlobalInstance::isBuySpeedGift = false;
+
+bool GlobalInstance::isBuyYearCard = false;
+
 std::vector<int> GlobalInstance::vec_mazeroute;
 
 int GlobalInstance::mazerouteindex = 0;
@@ -201,7 +205,7 @@ std::string GlobalInstance::myinvitationcode;
 
 std::string GlobalInstance::myinvitationrwd;
 
-bool GlobalInstance::isSpeedup = false;
+bool GlobalInstance::isupspeeding = false;
 
 bool GlobalInstance::isopenpraise = false;
 
@@ -499,7 +503,9 @@ void GlobalInstance::loadInitData()
 	GlobalInstance::supperbossinfo.leftcoincount = 0;
 	GlobalInstance::supperbossinfo.leftfreecount = 0;
 	GlobalInstance::isHasNewmail = false;
-	GlobalInstance::isSpeedup = false;
+	GlobalInstance::isupspeeding = false;
+
+	GlobalInstance::isBuyYearCard = DataSave::getInstance()->getIsBuyYearCard();
 }
 
 void GlobalInstance::saveMyHeros()
@@ -3589,6 +3595,11 @@ void GlobalInstance::parseFormationData()
 			{
 				data.vec_addattr.push_back(v[m].GetFloat());
 			}
+			v = jsonvalue["baseindex"];
+			for (unsigned int m = 0; m < v.Size(); m++)
+			{
+				data.vec_baseupattr.push_back(v[m].GetFloat());
+			}
 			data.lv = -1;
 			map_formations[data.id] = data;
 		}
@@ -3611,8 +3622,12 @@ void GlobalInstance::parseFormationData()
 			{
 				std::vector<std::string> vec_1;
 				CommonFuncs::split(vec_[i], vec_1, "-");
-				std::string fid = StringUtils::format("zx%03d", atoi(vec_1[0].c_str()));
-				map_formations[fid].lv = atoi(vec_1[1].c_str());
+				int idindex = atoi(vec_1[0].c_str());
+				if (idindex > 0)
+				{
+					std::string fid = StringUtils::format("zx%03d", atoi(vec_1[0].c_str()));
+					map_formations[fid].lv = atoi(vec_1[1].c_str());
+				}
 			}
 		}
 	}
@@ -3656,12 +3671,15 @@ void GlobalInstance::saveMyFormation(int mycurformation)
 	DataSave::getInstance()->setMyFormation(savestr);
 }
 
-float GlobalInstance::getFormationBns(int whichattr, int mycurformation)
+float GlobalInstance::getFormationBns(int whichattr, int mycurformation, int lv)
 {
 	if (mycurformation > 0)
 	{
 		std::string fid = StringUtils::format("zx%03d", mycurformation);
-		return GlobalInstance::map_formations[fid].vec_addattr[whichattr];
+		if (lv == 0)
+			return GlobalInstance::map_formations[fid].vec_addattr[whichattr];
+		else
+			return getFormationBns(whichattr, mycurformation, lv - 1) + lv * GlobalInstance::map_formations[fid].vec_baseupattr[whichattr];
 	}
 	return 0;
 }

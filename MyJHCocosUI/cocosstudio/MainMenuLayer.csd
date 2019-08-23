@@ -714,6 +714,81 @@
             <PreSize X="0.1215" Y="0.0684" />
             <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
           </AbstractNodeData>
+          <AbstractNodeData Name="speedbtn" ActionTag="1064040475" Tag="121" IconVisible="False" LeftMargin="40.8124" RightMargin="591.6876" TopMargin="581.5057" BottomMargin="610.9943" TouchEnable="True" LeftEage="48" RightEage="48" TopEage="48" BottomEage="48" Scale9OriginX="48" Scale9OriginY="48" Scale9Width="50" Scale9Height="50" ctype="ImageViewObjectData">
+            <Size X="87.5000" Y="87.5000" />
+            <Children>
+              <AbstractNodeData Name="icon" ActionTag="1068670296" Tag="122" IconVisible="False" LeftMargin="-10.1939" RightMargin="-11.3061" TopMargin="-12.8196" BottomMargin="-8.6804" LeftEage="35" RightEage="35" TopEage="13" BottomEage="13" Scale9OriginX="35" Scale9OriginY="13" Scale9Width="39" Scale9Height="83" ctype="ImageViewObjectData">
+                <Size X="109.0000" Y="109.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="44.3061" Y="45.8196" />
+                <Scale ScaleX="0.6000" ScaleY="0.6000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5064" Y="0.5237" />
+                <PreSize X="1.2457" Y="1.2457" />
+                <FileData Type="MarkedSubImage" Path="ui/flash.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="text" ActionTag="-876573906" Tag="124" IconVisible="False" LeftMargin="-28.2738" RightMargin="-35.2262" TopMargin="56.0769" BottomMargin="-14.5769" LeftEage="46" RightEage="46" TopEage="13" BottomEage="13" Scale9OriginX="46" Scale9OriginY="13" Scale9Width="59" Scale9Height="20" ctype="ImageViewObjectData">
+                <Size X="151.0000" Y="46.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="47.2262" Y="8.4231" />
+                <Scale ScaleX="0.6000" ScaleY="0.6000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5397" Y="0.0963" />
+                <PreSize X="1.7257" Y="0.5257" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/speedgiftbtn_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="84.5624" Y="654.7443" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.1174" Y="0.5115" />
+            <PreSize X="0.1215" Y="0.0684" />
+            <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="activitybtn" ActionTag="1512339214" Tag="162" IconVisible="False" LeftMargin="618.2500" RightMargin="14.2500" TopMargin="475.5626" BottomMargin="716.9374" TouchEnable="True" LeftEage="48" RightEage="48" TopEage="48" BottomEage="48" Scale9OriginX="48" Scale9OriginY="48" Scale9Width="50" Scale9Height="50" ctype="ImageViewObjectData">
+            <Size X="87.5000" Y="87.5000" />
+            <Children>
+              <AbstractNodeData Name="icon" ActionTag="-691324895" Tag="163" IconVisible="False" LeftMargin="-10.1939" RightMargin="-11.3061" TopMargin="-12.8196" BottomMargin="-8.6804" LeftEage="35" RightEage="35" TopEage="13" BottomEage="13" Scale9OriginX="35" Scale9OriginY="13" Scale9Width="39" Scale9Height="83" ctype="ImageViewObjectData">
+                <Size X="109.0000" Y="109.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="44.3061" Y="45.8196" />
+                <Scale ScaleX="0.6000" ScaleY="0.6000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5064" Y="0.5237" />
+                <PreSize X="1.2457" Y="1.2457" />
+                <FileData Type="MarkedSubImage" Path="ui/main_activitybtn.png" Plist="ui.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="text" ActionTag="517345349" Tag="164" IconVisible="False" LeftMargin="-28.2734" RightMargin="-35.2266" TopMargin="49.0770" BottomMargin="-7.5770" LeftEage="27" RightEage="27" TopEage="13" BottomEage="13" Scale9OriginX="27" Scale9OriginY="13" Scale9Width="97" Scale9Height="20" ctype="ImageViewObjectData">
+                <Size X="151.0000" Y="46.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="47.2266" Y="15.4230" />
+                <Scale ScaleX="0.6000" ScaleY="0.6000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5397" Y="0.1763" />
+                <PreSize X="1.7257" Y="0.5257" />
+                <FileData Type="MarkedSubImage" Path="text_zh_cn/main_activitybtn_text.png" Plist="text_zh_cn.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="redpoint" ActionTag="1414972547" Tag="111" IconVisible="False" LeftMargin="52.8193" RightMargin="10.6807" TopMargin="3.0017" BottomMargin="60.4983" ctype="SpriteObjectData">
+                <Size X="24.0000" Y="24.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="64.8193" Y="72.4983" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.7408" Y="0.8286" />
+                <PreSize X="0.2743" Y="0.2743" />
+                <FileData Type="MarkedSubImage" Path="ui/main_btn_redpoint.png" Plist="ui.plist" />
+                <BlendFunc Src="1" Dst="771" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="662.0000" Y="760.6874" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9194" Y="0.5943" />
+            <PreSize X="0.1215" Y="0.0684" />
+            <FileData Type="MarkedSubImage" Path="ui/main_menu_box.png" Plist="ui.plist" />
+          </AbstractNodeData>
           <AbstractNodeData Name="wellbtn" ActionTag="1127279575" Tag="162" IconVisible="False" LeftMargin="41.5625" RightMargin="592.4375" TopMargin="182.6650" BottomMargin="1010.3350" TouchEnable="True" LeftEage="28" RightEage="28" TopEage="28" BottomEage="28" Scale9OriginX="28" Scale9OriginY="28" Scale9Width="30" Scale9Height="31" ctype="ImageViewObjectData">
             <Size X="86.0000" Y="87.0000" />
             <Children>

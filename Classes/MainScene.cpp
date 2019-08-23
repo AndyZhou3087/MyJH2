@@ -34,6 +34,8 @@
 #include "ShopLayer.h"
 #include "TrainFinishLayer.h"
 #include "ZanLayer.h"
+#include "RewardLayer.h"
+#include "Shake.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -826,14 +828,16 @@ void MainScene::onEventBuildingClick(cocos2d::Ref* pSender, cocos2d::ui::Widget:
 	{
 	case cocos2d::ui::Widget::TouchEventType::BEGAN:
 	{
-		snode->setVisible(true);
+		if (snode != NULL)
+			snode->setVisible(true);
 	}
 	break;
 	case cocos2d::ui::Widget::TouchEventType::MOVED:
 		break;
 	case cocos2d::ui::Widget::TouchEventType::ENDED:
-	{
-		snode->setVisible(false);
+	{	
+		if (snode != NULL)
+			snode->setVisible(false);
 		if (m_isDraging)
 			return;
 
@@ -849,10 +853,17 @@ void MainScene::onEventBuildingClick(cocos2d::Ref* pSender, cocos2d::ui::Widget:
 			this->addChild(layer);
 			AnimationEffect::openAniEffect(layer);
 		}
+
+		else if (tag == 2)
+		{
+			silvertree->runAction(Shake::create(0.2f, 3.0f));
+			calcSilverAndShow();
+		}
 	}
 	case cocos2d::ui::Widget::TouchEventType::CANCELED:
 	{
-		snode->setVisible(false);
+		if (snode != NULL)
+			snode->setVisible(false);
 	}
 		break;
 	default:
@@ -1374,6 +1385,18 @@ void MainScene::changeDayOrNight()
 	else
 		beggarstr = "mainimg/beggar_n.png";
 	beggar->loadTexture(ResourcePath::makePath(beggarstr), cocos2d::ui::Widget::TextureResType::LOCAL);
+
+	silvertree = (cocos2d::ui::ImageView*)scroll_3->getChildByName("silvertree");
+	silvertree->setTag(2);
+	silvertree->setSwallowTouches(false);
+	silvertree->addTouchEventListener(CC_CALLBACK_2(MainScene::onEventBuildingClick, this));
+	std::string treestr;
+	if (isnight)
+		treestr = "mainimg/slivertree_nn.png";
+	else
+		treestr = "mainimg/silvertree_dd.png";
+	silvertree->loadTexture(ResourcePath::makePath(treestr), cocos2d::ui::Widget::TextureResType::LOCAL);
+	silvertree->setScale(0.8f);
 }
 
 void MainScene::repairFinish(std::string buildingname)
@@ -1690,4 +1713,86 @@ void MainScene::checkStarAchTask()
 	}
 
 	Quest::setAchieveTypeCount(GET_STARS, totalstar);
+}
+
+void MainScene::calcSilverAndShow()
+{
+	if (GlobalInstance::servertime - DataSave::getInstance()->getShakeTreeTime() >= 8 * 3600)
+	{
+		DataSave::getInstance()->setShakeTreeTime(GlobalInstance::servertime);
+
+		int deathmaxlv = -1;
+		int livemaxlv = -1;
+
+		for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+		{
+			if (GlobalInstance::vec_myHeros[i] != NULL)
+			{
+				if (GlobalInstance::vec_myHeros[i]->getState() == HS_DEAD)
+				{
+					if (GlobalInstance::vec_myHeros[i]->getLevel() > deathmaxlv)
+						deathmaxlv = GlobalInstance::vec_myHeros[i]->getLevel();
+				}
+				else {
+					if (GlobalInstance::vec_myHeros[i]->getLevel() > livemaxlv)
+						livemaxlv = GlobalInstance::vec_myHeros[i]->getLevel();
+				}
+			}
+		}
+
+		int silvercount = 0;
+		if (deathmaxlv >= 0 && GlobalInstance::getInstance()->getMySoliverCount().getValue() < 10000)
+		{
+			int r = GlobalInstance::getInstance()->createRandomNum(11);
+			silvercount = deathmaxlv * 100 - r * 100;
+			silvercount = silvercount < 800 ? 800 : silvercount;
+		}
+		else
+		{
+			int r = GlobalInstance::getInstance()->createRandomNum(21) + 10;
+			silvercount = livemaxlv * 100 - r * 100;
+
+			if (silvercount < 500)
+			{
+				r = GlobalInstance::getInstance()->createRandomNum(4) + 2;
+
+				silvercount = r * 100;
+			}
+		}
+		std::vector<MSGAWDSDATA> vec_rewards;
+		MSGAWDSDATA wdata;
+		wdata.rid = "r006";
+		wdata.count = silvercount;
+		wdata.qu = 0;
+		vec_rewards.push_back(wdata);
+		RewardLayer* layer = RewardLayer::create(vec_rewards);
+		g_mainScene->addChild(layer);
+		AnimationEffect::openAniEffect(layer);
+	}
+	else
+	{
+		int lefttime = 8 * 3600 - (GlobalInstance::servertime - DataSave::getInstance()->getShakeTreeTime());
+		int hour = lefttime / 3600;
+		int min = lefttime % 3600 / 60;
+		int sec = lefttime % 3600 % 60;
+		std::string timestr;
+		if (hour > 0)
+		{
+			std::string str = StringUtils::format(ResourceLang::map_lang["treetime0"].c_str(), hour);
+			timestr.append(str);
+		}
+		if (min > 0)
+		{
+			std::string str = StringUtils::format(ResourceLang::map_lang["treetime1"].c_str(), min);
+			timestr.append(str);
+		}
+		if (sec > 0)
+		{
+			std::string str = StringUtils::format(ResourceLang::map_lang["treetime2"].c_str(), sec);
+			timestr.append(str);
+		}
+
+		timestr = StringUtils::format(ResourceLang::map_lang["treetimehint"].c_str(), timestr.c_str());
+		MovingLabel::show(timestr);
+	}
 }

@@ -50,7 +50,8 @@ private:
 
 	void fightOver(int ret);
 
-	void changeSpeed(int speedscale);
+	void selectSpeed();
+	void changeSpeed(float speedscale);
 
 private:
 	int langtype;

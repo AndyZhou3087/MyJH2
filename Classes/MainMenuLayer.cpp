@@ -122,7 +122,6 @@ bool MainMenuLayer::init()
 				text->setVisible(false);
 			}
 		}
-
 		else if (i == FIRSTCHARGEBTN)
 		{
 			firstchargebtn = clickwidget;
@@ -137,6 +136,22 @@ bool MainMenuLayer::init()
 			textimg->loadTexture(ResourcePath::makeTextImgPath("oneyuangiftbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			clickwidget->setVisible(false);
 		}
+
+		else if (i == SPEEDGIFTBTN)
+		{
+			speedgiftbtn = clickwidget;
+			cocos2d::ui::ImageView* textimg = (cocos2d::ui::ImageView*)clickwidget->getChildByName("text");
+			textimg->loadTexture(ResourcePath::makeTextImgPath("speedgiftbtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			clickwidget->setVisible(false);
+		}
+		else if (i == ACTIVITYBTN)
+		{
+			activitybtn = clickwidget;
+			cocos2d::ui::ImageView* textimg = (cocos2d::ui::ImageView*)clickwidget->getChildByName("text");
+			textimg->loadTexture(ResourcePath::makeTextImgPath("main_activitybtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+			clickwidget->setVisible(false);
+		}
+
 		else if (i == WELLBTN)
 		{
 			wellmorebtnnode->setPosition(clickwidget->getPosition());
@@ -239,6 +254,12 @@ void MainMenuLayer::onFinish(int code)
 			if (!timegiftbtn->isVisible())
 				firstchargebtn->setPosition(timegiftbtn->getPosition());
 
+			speedgiftbtn->setVisible(!GlobalInstance::isBuySpeedGift);
+			if (!firstchargebtn->isVisible())
+				speedgiftbtn->setPosition(firstchargebtn->getPosition());
+			else
+				speedgiftbtn->setPositionY(firstchargebtn->getPositionY() - 105);
+
 			HttpDataSwap::init(this)->getMessageList(0);
 
 			if (GlobalInstance::punishment != 0 && g_NewGuideLayer == NULL)
@@ -280,8 +301,25 @@ void MainMenuLayer::onFinish(int code)
 		oneyuangiftbtn->setPositionY(tgiftbtn[0]->getPositionY());
 	}
 
-	if (GlobalInstance::oneyuanGiftStr.length() > 0)
-		oneyuangiftbtn->setVisible(true);
+	bool isbuyyearcard = false;
+	if (GlobalInstance::map_buyVipDays.find("vip2") != GlobalInstance::map_buyVipDays.end())
+	{
+		if (GlobalInstance::map_buyVipDays["vip2"] > 0)
+			isbuyyearcard = true;
+	}
+	GlobalInstance::isBuyYearCard = isbuyyearcard;
+	DataSave::getInstance()->setIsBuyYearCard(isbuyyearcard);
+
+	activitybtn->setVisible(true);
+	if (oneyuangiftbtn->isVisible())
+	{
+		activitybtn->setPositionY(oneyuangiftbtn->getPositionY() - 105);
+	}
+	else
+	{
+		activitybtn->setPosition(oneyuangiftbtn->getPosition());
+	}
+
 	isGetVipData = false;
 
 }
@@ -363,12 +401,29 @@ void MainMenuLayer::updateUI(float dt)
 	{
 		firstchargebtn->setVisible(false);
 	}
+	if (GlobalInstance::isBuySpeedGift)
+	{
+		speedgiftbtn->setVisible(false);
+		if (!firstchargebtn->isVisible())
+			speedgiftbtn->setPosition(firstchargebtn->getPosition());
+		else
+			speedgiftbtn->setPositionY(firstchargebtn->getPositionY() - 105);
+	}
 	heroredpoint->setVisible(GlobalInstance::isHasNewhero);
 
 	if (GlobalInstance::oneyuanGiftStr.length() > 0)
 		oneyuangiftbtn->setVisible(true);
 	else
 		oneyuangiftbtn->setVisible(false);
+
+	if (oneyuangiftbtn->isVisible())
+	{
+		activitybtn->setPositionY(oneyuangiftbtn->getPositionY() - 105);
+	}
+	else
+	{
+		activitybtn->setPosition(oneyuangiftbtn->getPosition());
+	}
 }
 
 void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
@@ -547,6 +602,30 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 				}
 			}	
 		}
+			break;
+		case SPEEDGIFTBTN:
+			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+			{
+				if (GlobalInstance::vec_shopdata[i].icon.compare("flash") == 0)
+				{
+					GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
+					g_mainScene->addChild(layer, 0, "GiftContentLayer");
+					AnimationEffect::openAniEffect((Layer*)layer);
+					break;
+				}
+			}
+			break;
+		case ACTIVITYBTN:
+			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+			{
+				if (GlobalInstance::vec_shopdata[i].icon.compare("formationgift") == 0)
+				{
+					GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
+					g_mainScene->addChild(layer, 0, "GiftContentLayer");
+					AnimationEffect::openAniEffect((Layer*)layer);
+					break;
+				}
+			}
 			break;
 		case WELLBTN:
 		{

@@ -214,17 +214,23 @@ float Hero::getAtk()
 	std::map<std::string, NpcFriendly>::iterator it;
 
 	int formation = 0;
-
+	int formationlv = 0;
 	if (m_ftype == 0)
 	{
 		map_friendly = GlobalInstance::map_myfriendly;
 
 		formation = GlobalInstance::myTakeOnFormation;
+		if (formation > 0)
+		{
+			std::string formationid = StringUtils::format("zx%03d", formation);
+			formationlv = GlobalInstance::map_formations[formationid].lv;
+		}
 	}
 	else if (m_ftype == 1)
 	{
 		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
-		formation = GlobalInstance::myMatchPairTakeOnFormation;
+		formation = GlobalInstance::myMatchPairTakeOnFormation / 1000;
+		formationlv = GlobalInstance::myMatchPairTakeOnFormation % 1000;
 	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
@@ -248,7 +254,7 @@ float Hero::getAtk()
 	}
 	float renationbns = heroatk * addpercent;
 
-	float formationbns = heroatk * GlobalInstance::getInstance()->getFormationBns(1, formation);
+	float formationbns = heroatk * GlobalInstance::getInstance()->getFormationBns(1, formation, formationlv);
 
 	return heroatk + renationbns + formationbns;
 }
@@ -294,17 +300,23 @@ float Hero::getDf()
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	int formation = 0;
-
+	int formationlv = 0;
 	if (m_ftype == 0)
 	{
 		map_friendly = GlobalInstance::map_myfriendly;
 
 		formation = GlobalInstance::myTakeOnFormation;
+		if (formation > 0)
+		{
+			std::string formationid = StringUtils::format("zx%03d", formation);
+			formationlv = GlobalInstance::map_formations[formationid].lv;
+		}
 	}
 	else if (m_ftype == 1)
 	{
 		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
-		formation = GlobalInstance::myMatchPairTakeOnFormation;
+		formation = GlobalInstance::myMatchPairTakeOnFormation / 1000;
+		formationlv = GlobalInstance::myMatchPairTakeOnFormation % 1000;
 	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
@@ -329,7 +341,8 @@ float Hero::getDf()
 
 	float renationbns = herodf * addpercent;
 
-	float formationbns = herodf * GlobalInstance::getInstance()->getFormationBns(2, formation);
+	std::string formationid = StringUtils::format("zx%03d", formation);
+	float formationbns = herodf* GlobalInstance::getInstance()->getFormationBns(2, formation, formationlv);
 
 	return herodf + renationbns + formationbns;
 }
@@ -375,17 +388,23 @@ float Hero::getMaxHp()
 	std::map<std::string, NpcFriendly>::iterator it;
 
 	int formation = 0;
-
+	int formationlv = 0;
 	if (m_ftype == 0)
 	{
 		map_friendly = GlobalInstance::map_myfriendly;
 
 		formation = GlobalInstance::myTakeOnFormation;
+		if (formation > 0)
+		{
+			std::string formationid = StringUtils::format("zx%03d", formation);
+			formationlv = GlobalInstance::map_formations[formationid].lv;
+		}
 	}
 	else if (m_ftype == 1)
 	{
 		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
-		formation = GlobalInstance::myMatchPairTakeOnFormation;
+		formation = GlobalInstance::myMatchPairTakeOnFormation / 1000;
+		formationlv = GlobalInstance::myMatchPairTakeOnFormation % 1000;
 	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
@@ -410,7 +429,8 @@ float Hero::getMaxHp()
 
 	float renationbns = herohp * addpercent;
 
-	float formationbns = herohp * GlobalInstance::getInstance()->getFormationBns(0, formation);
+	std::string formationid = StringUtils::format("zx%03d", formation);
+	float formationbns = herohp * GlobalInstance::getInstance()->getFormationBns(0, formation, formationlv);
 
 	herohp = herohp + renationbns + formationbns;
 
@@ -450,17 +470,23 @@ float Hero::getAtkSpeed()
 
 	std::map<std::string, NpcFriendly>::iterator it;
 	int formation = 0;
-
+	int formationlv = 0;
 	if (m_ftype == 0)
 	{
 		map_friendly = GlobalInstance::map_myfriendly;
 
 		formation = GlobalInstance::myTakeOnFormation;
+		if (formation > 0)
+		{
+			std::string formationid = StringUtils::format("zx%03d", formation);
+			formationlv = GlobalInstance::map_formations[formationid].lv;
+		}
 	}
 	else if (m_ftype == 1)
 	{
 		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
-		formation = GlobalInstance::myMatchPairTakeOnFormation;
+		formation = GlobalInstance::myMatchPairTakeOnFormation / 1000;
+		formationlv = GlobalInstance::myMatchPairTakeOnFormation % 1000;
 	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
@@ -482,20 +508,24 @@ float Hero::getAtkSpeed()
 			}
 		}
 	}
-	float formationbns = heroatkspeed * GlobalInstance::getInstance()->getFormationBns(5, formation);
 
 	float renationbns = heroatkspeed * addpercent;
 
 	heroatkspeed += renationbns;
+
 	if ((m_vocation + 1) % 4 == 0 && m_vocation > 4)
 		heroatkspeed = heroatkspeed > 3.5f ? 3.5f : heroatkspeed;
 	else
 		heroatkspeed = heroatkspeed > 3.0f ? 3.0f : heroatkspeed;
 
+	std::string formationid = StringUtils::format("zx%03d", formation);
+	float formationbns = heroatkspeed * GlobalInstance::getInstance()->getFormationBns(5, formation, formationlv);
+
 	heroatkspeed += formationbns;
 
 	return heroatkspeed;
 }
+
 float Hero::getCrit()
 {
 	float herocrit = GlobalInstance::vec_herosAttr[m_vocation].vec_crit[getLevel()] * POTENTIAL_BNS[m_potential] * BREAK_BNS[m_changecount];
@@ -519,17 +549,23 @@ float Hero::getCrit()
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	int formation = 0;
-
+	int formationlv = 0;
 	if (m_ftype == 0)
 	{
 		map_friendly = GlobalInstance::map_myfriendly;
 
 		formation = GlobalInstance::myTakeOnFormation;
+		if (formation > 0)
+		{
+			std::string formationid = StringUtils::format("zx%03d", formation);
+			formationlv = GlobalInstance::map_formations[formationid].lv;
+		}
 	}
 	else if (m_ftype == 1)
 	{
 		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
-		formation = GlobalInstance::myMatchPairTakeOnFormation;
+		formation = GlobalInstance::myMatchPairTakeOnFormation / 1000;
+		formationlv = GlobalInstance::myMatchPairTakeOnFormation % 1000;
 	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
@@ -554,7 +590,8 @@ float Hero::getCrit()
 
 	float renationbns = herocrit * addpercent;
 
-	float formationbns = herocrit * GlobalInstance::getInstance()->getFormationBns(4, formation);
+	std::string formationid = StringUtils::format("zx%03d", formation);
+	float formationbns = herocrit * GlobalInstance::getInstance()->getFormationBns(4, formation, formationlv);
 
 	return herocrit + renationbns + formationbns;
 }
@@ -582,17 +619,23 @@ float Hero::getDodge()
 	std::map<std::string, NpcFriendly> map_friendly;
 	std::map<std::string, NpcFriendly>::iterator it;
 	int formation = 0;
-
+	int formationlv = 0;
 	if (m_ftype == 0)
 	{
 		map_friendly = GlobalInstance::map_myfriendly;
 
 		formation = GlobalInstance::myTakeOnFormation;
+		if (formation > 0)
+		{
+			std::string formationid = StringUtils::format("zx%03d", formation);
+			formationlv = GlobalInstance::map_formations[formationid].lv;
+		}
 	}
 	else if (m_ftype == 1)
 	{
 		map_friendly = GlobalInstance::myMatchInfo.map_pairfriendly;
-		formation = GlobalInstance::myMatchPairTakeOnFormation;
+		formation = GlobalInstance::myMatchPairTakeOnFormation / 1000;
+		formationlv = GlobalInstance::myMatchPairTakeOnFormation % 1000;
 	}
 
 	for (it = map_friendly.begin(); it != map_friendly.end(); ++it)
@@ -616,10 +659,11 @@ float Hero::getDodge()
 	}
 	float renationbns = herododge * addpercent;
 
-	float formationbns = herododge * GlobalInstance::getInstance()->getFormationBns(3, formation);
-
 	herododge += renationbns;
 	herododge = herododge > 48 ? 48 : herododge;
+
+	std::string formationid = StringUtils::format("zx%03d", formation);
+	float formationbns = herododge * GlobalInstance::getInstance()->getFormationBns(3, formation, formationlv);
 
 	return herododge += formationbns;
 }

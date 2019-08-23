@@ -30,7 +30,6 @@ MessageLayer::~MessageLayer()
 	}
 }
 
-
 MessageLayer* MessageLayer::create()
 {
 	MessageLayer *pRet = new(std::nothrow)MessageLayer();

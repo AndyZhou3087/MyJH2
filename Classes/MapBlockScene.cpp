@@ -156,6 +156,9 @@ void MapBlockScene::onExit()
 
 void MapBlockScene::onExitTransitionDidStart()
 {
+	changeSpeed(1);
+	Director::getInstance()->getScheduler()->setTimeScale(1);
+
 	if (g_MapBlockScene != NULL)
 		g_MapBlockScene = NULL;
 
@@ -168,11 +171,24 @@ bool MapBlockScene::init(std::string mapname, int bgtype)
 
 	if (m_mapid.compare(0, 2, "mg") == 0)
 		isMaze = true;
-	
+
+	langtype = GlobalInstance::getInstance()->getLang();
 	m_fightbgtype = bgtype;
 
 	m_csbnode = CSLoader::createNode(ResourcePath::makePath("mapBlockLayer.csb"));
 	this->addChild(m_csbnode);
+
+	changespeedcick = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("changespeed");
+	changespeed_text = (cocos2d::ui::ImageView*)m_csbnode->getChildByName("changespeed_text");
+
+	changespeedcick->setVisible(false);
+	changespeed_text->setVisible(false);
+	changespeedcick->setTag(3000);
+
+	if (GlobalInstance::challangeType != CH_SUPERBOSS)
+	{
+		changespeedcick->addTouchEventListener(CC_CALLBACK_2(MapBlockScene::onBtnClick, this));
+	}
 
 	std::string mapdisplayname = GlobalInstance::map_AllResources[mapname].name;
 	if (isMaze)
@@ -578,6 +594,21 @@ void MapBlockScene::onEnterTransitionDidFinish()
 		MapZoomGuideLayer* layer = MapZoomGuideLayer::create();
 		this->addChild(layer);
 	}
+
+	if (GlobalInstance::challangeType != CH_SUPERBOSS)
+	{
+
+		if (MyRes::getMyResCount("j006") > 0)
+		{
+			changespeedcick->setVisible(true);
+			changespeed_text->setVisible(true);
+
+			if (GlobalInstance::isupspeeding)
+			{
+				changeSpeed(2);
+			}
+		}
+	}
 }
 
 void MapBlockScene::delayShowMazeHint(float dt)
@@ -675,7 +706,6 @@ void MapBlockScene::showFightingLayer(std::vector<Npc*> enemys)
 
 void MapBlockScene::loadTaskUI()
 {
-	int langtype = GlobalInstance::getInstance()->getLang();
 	//添加任务提示框
 	m_tasknode = CSLoader::createNode(ResourcePath::makePath("taskTipsNode.csb"));
 	m_csbnode->addChild(m_tasknode, -1);
@@ -989,6 +1019,21 @@ void MapBlockScene::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 			AnimationEffect::openAniEffect(layer);
 		}
 			break;
+		case 3000:
+		{
+			if (GlobalInstance::isupspeeding)
+			{
+				GlobalInstance::isupspeeding = false;
+				changeSpeed(1);
+				
+			}
+			else
+			{
+				GlobalInstance::isupspeeding = true;
+				changeSpeed(2);
+			}
+		}
+		break;
 		default:
 			break;
 		}
@@ -3597,6 +3642,27 @@ void MapBlockScene::updateTime(float dt)
 	GlobalInstance::servertime++;
 
 	int zerotime = GlobalInstance::servertime + 8 * 60 * 60;
+}
+
+void MapBlockScene::changeSpeed(int speedscale)
+{
+	std::string str = StringUtils::format("mapui/fightspeedx%d.png", speedscale>1?2:1);
+	changespeedcick->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
+
+	str = StringUtils::format("speedx%d_text", speedscale > 1 ? 2 : 1);
+	changespeed_text->loadTexture(ResourcePath::makeTextImgPath(str, langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
+	Director::getInstance()->getScheduler()->setTimeScale(speedscale);
+
+	if (speedscale > 1)
+	{
+		changespeedcick->runAction(RepeatForever::create(RotateTo::create(10.0f, 720)));
+	}
+	else
+	{
+		changespeedcick->stopAllActions();
+		changespeedcick->setRotation(0);
+	}
 }
 
 void MapBlockScene::showBossGuideAnim(Vec2 pos)

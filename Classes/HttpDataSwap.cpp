@@ -569,7 +569,15 @@ void HttpDataSwap::postMyMatchHeros()
 	{
 		friendlystr = friendlystr.substr(0, friendlystr.length() - 1);
 	}
-	std::string formationstr = StringUtils::format("%d", GlobalInstance::myTakeOnFormation);
+	
+	int formationpara = GlobalInstance::myTakeOnFormation;
+	if (GlobalInstance::myTakeOnFormation > 0)
+	{
+		std::string formationid = StringUtils::format("zx%03d", GlobalInstance::myTakeOnFormation);
+		formationpara = GlobalInstance::myTakeOnFormation * 1000 + GlobalInstance::map_formations[formationid].lv;
+	}
+
+	std::string formationstr = StringUtils::format("%d", formationpara);
 	writedoc.AddMember("friendly", rapidjson::Value(friendlystr.c_str(), allocator), allocator);
 	writedoc.AddMember("formation", rapidjson::Value(formationstr.c_str(), allocator), allocator);
 	std::string jsonstr = JsonWriter(writedoc);
@@ -1238,10 +1246,6 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 				{
 					GlobalInstance::isServerReceipt = atoi(getJsonValueStr(doc["isreceipt"]).c_str()) == 1 ? true : false;
 				}
-				else if (strid.compare("fpayg") == 0)
-				{
-					GlobalInstance::isBuyFirstCharge = atoi(getJsonValueStr(doc["fpayg"]).c_str()) == 1 ? true : false;
-				}
 				else if (strid.compare("tmpmarket") == 0)
 				{
 					GlobalInstance::timeMarketStr = getJsonValueStr(doc["tmpmarket"]);
@@ -1533,6 +1537,15 @@ void HttpDataSwap::httpGetPlayerIdCB(std::string retdata, int code, std::string 
 			if (doc.HasMember("praise"))
 			{
 				GlobalInstance::isopenpraise = atoi(getJsonValueStr(doc["praise"]).c_str())>=1?true:false;
+			}
+			if (doc.HasMember("fpayg"))
+			{
+				GlobalInstance::isBuyFirstCharge = atoi(getJsonValueStr(doc["fpayg"]).c_str()) == 1 ? true : false;
+			}
+
+			if (doc.HasMember("flash"))
+			{
+				GlobalInstance::isBuySpeedGift = atoi(getJsonValueStr(doc["flash"]).c_str()) == 1 ? true : false;
 			}
 		}
 		else

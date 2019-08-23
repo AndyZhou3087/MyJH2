@@ -349,7 +349,7 @@
                 <FileData Type="MarkedSubImage" Path="ui/formationinfotable.png" Plist="ui.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="studybtn" ActionTag="1791518250" Tag="325" IconVisible="False" LeftMargin="176.6119" RightMargin="-290.6119" TopMargin="-4.7321" BottomMargin="-51.2679" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="studybtn" ActionTag="1791518250" Tag="325" IconVisible="False" LeftMargin="176.6118" RightMargin="-290.6118" TopMargin="-12.0004" BottomMargin="-43.9996" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="114.0000" Y="56.0000" />
                 <Children>
                   <AbstractNodeData Name="btntext" ActionTag="805392874" Tag="326" IconVisible="False" LeftMargin="23.7825" RightMargin="26.2175" TopMargin="7.8770" BottomMargin="15.1230" LeftEage="24" RightEage="24" TopEage="12" BottomEage="12" Scale9OriginX="24" Scale9OriginY="12" Scale9Width="16" Scale9Height="9" ctype="ImageViewObjectData">
@@ -364,7 +364,7 @@
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="233.6119" Y="-23.2679" />
+                <Position X="233.6118" Y="-15.9996" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -376,10 +376,10 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="countlbl" ActionTag="-1739742327" Tag="327" IconVisible="False" LeftMargin="229.0616" RightMargin="-283.0616" TopMargin="49.4956" BottomMargin="-78.4956" FontSize="25" LabelText="x200" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-                <Size X="54.0000" Y="29.0000" />
+              <AbstractNodeData Name="countlbl" ActionTag="-377229814" Tag="321" IconVisible="False" LeftMargin="234.0624" RightMargin="-292.0624" TopMargin="44.0013" BottomMargin="-76.0013" FontSize="28" LabelText="x200" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+                <Size X="58.0000" Y="32.0000" />
                 <AnchorPoint ScaleY="0.5000" />
-                <Position X="229.0616" Y="-63.9956" />
+                <Position X="234.0624" Y="-60.0013" />
                 <Scale ScaleX="0.8500" ScaleY="0.8500" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -388,16 +388,15 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="0" G="0" B="0" />
               </AbstractNodeData>
-              <AbstractNodeData Name="coin" ActionTag="831140499" Tag="328" IconVisible="False" LeftMargin="191.9152" RightMargin="-233.9152" TopMargin="48.8993" BottomMargin="-74.8993" ctype="SpriteObjectData">
-                <Size X="42.0000" Y="26.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="212.9152" Y="-61.8993" />
-                <Scale ScaleX="0.8500" ScaleY="0.8500" />
+              <AbstractNodeData Name="coin" ActionTag="2110355426" Tag="322" IconVisible="False" LeftMargin="160.1130" RightMargin="-269.1130" TopMargin="2.5552" BottomMargin="-111.5552" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+                <Size X="109.0000" Y="109.0000" />
+                <AnchorPoint ScaleX="0.4186" ScaleY="0.4833" />
+                <Position X="205.7392" Y="-58.8742" />
+                <Scale ScaleX="0.4800" ScaleY="0.4800" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
                 <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="MarkedSubImage" Path="ui/main_coin.png" Plist="ui.plist" />
-                <BlendFunc Src="1" Dst="771" />
+                <FileData Type="MarkedSubImage" Path="ui/r012.png" Plist="ui.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint />
@@ -441,7 +440,7 @@
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="mymatchinfobox" ActionTag="-306596267" Tag="123" IconVisible="False" LeftMargin="49.5900" RightMargin="494.4100" TopMargin="1024.2596" BottomMargin="81.7403" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="150" Scale9Height="148" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="mymatchinfobox" ActionTag="-306596267" Tag="123" IconVisible="False" LeftMargin="49.5900" RightMargin="494.4100" TopMargin="1024.2598" BottomMargin="81.7403" Scale9Enable="True" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="150" Scale9Height="148" ctype="ImageViewObjectData">
             <Size X="176.0000" Y="174.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="137.5900" Y="168.7403" />

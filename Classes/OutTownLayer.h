@@ -61,6 +61,10 @@ private:
 
 	static bool formationCandidateSort(Hero* a, Hero* b);
 
+	void updateFormationLvRes(int index);
+
+	void upLvFormation(int index);
+
 private:
 	int langtype;
 	CardHeroNode* m_myCardHerosNode[6];
@@ -85,6 +89,9 @@ private:
 	Node* formationInfoNode;
 	int lastselectformation;
 
+	cocos2d::ui::ImageView* fneedres;
+	cocos2d::ui::Text* fname;
+	cocos2d::ui::Text* fdesc;
 	std::vector<cocos2d::ui::ImageView*> vec_formationboxs;
 	cocos2d::ui::Text* changehintlbl;
 	int changehintindex;

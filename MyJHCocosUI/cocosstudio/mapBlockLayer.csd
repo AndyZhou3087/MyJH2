@@ -512,6 +512,26 @@
             <PrePosition X="0.9236" Y="0.8008" />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
+          <AbstractNodeData Name="changespeed" ActionTag="-1714680864" Tag="175" IconVisible="False" LeftMargin="640.0010" RightMargin="-0.0010" TopMargin="1071.9980" BottomMargin="128.0019" TouchEnable="True" LeftEage="15" RightEage="15" TopEage="13" BottomEage="13" Scale9OriginX="15" Scale9OriginY="13" Scale9Width="50" Scale9Height="54" ctype="ImageViewObjectData">
+            <Size X="80.0000" Y="80.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="680.0010" Y="168.0019" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9444" Y="0.1313" />
+            <PreSize X="0.1111" Y="0.0625" />
+            <FileData Type="MarkedSubImage" Path="mapui/fightspeedx1.png" Plist="mapui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="changespeed_text" ActionTag="1703172055" Tag="174" IconVisible="False" LeftMargin="638.6961" RightMargin="1.3039" TopMargin="1073.0702" BottomMargin="126.9298" LeftEage="15" RightEage="15" TopEage="13" BottomEage="13" Scale9OriginX="15" Scale9OriginY="13" Scale9Width="50" Scale9Height="54" ctype="ImageViewObjectData">
+            <Size X="80.0000" Y="80.0000" />
+            <AnchorPoint ScaleX="0.5163" ScaleY="0.5134" />
+            <Position X="680.0001" Y="168.0018" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.9444" Y="0.1313" />
+            <PreSize X="0.1111" Y="0.0625" />
+            <FileData Type="MarkedSubImage" Path="text_zh_cn/speedx1_text.png" Plist="text_zh_cn.plist" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

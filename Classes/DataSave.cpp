@@ -636,3 +636,24 @@ bool DataSave::getFightWinAllBoss(std::string mapid)
 	int val = loadIntDataByKey(key, 0);
 	return val == 1 ? true : false;
 }
+
+void DataSave::setIsBuyYearCard(bool val)
+{
+	saveIntDataByKey("isbuyyearcard", val == true ? 1 : 0);
+
+}
+bool DataSave::getIsBuyYearCard()
+{
+	int val = loadIntDataByKey("isbuyyearcard", 0);
+	return val == 1 ? true : false;
+}
+
+int DataSave::getShakeTreeTime()
+{
+	return loadIntDataByKey("shaketreetime", 0);
+}
+
+void DataSave::setShakeTreeTime(int val)
+{
+	saveIntDataByKey("shaketreetime", val);
+}

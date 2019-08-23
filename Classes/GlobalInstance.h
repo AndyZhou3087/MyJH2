@@ -460,6 +460,7 @@ typedef struct
 	std::string id;
 	std::vector<int> vec_formation;
 	std::vector<float> vec_addattr;
+	std::vector<float> vec_baseupattr;
 	int lv;
 }S_FORMATION;
 
@@ -895,7 +896,7 @@ public:
 
 	void saveMyFormation(int mycurformation);
 
-	float getFormationBns(int whichattr, int mycurformation);
+	float getFormationBns(int whichattr, int mycurformation, int lv);
 
 	//扫荡数据
 	void parseMopupData();
@@ -1004,6 +1005,10 @@ public:
 
 	static bool isBuyFirstCharge;
 
+	static bool isBuySpeedGift;
+
+	static bool isBuyYearCard;
+
 	static std::vector<int> vec_mazeroute;
 	static int mazerouteindex;
 	static std::string eventfrommapid;
@@ -1077,7 +1082,8 @@ public:
 
 	static std::string myinvitationcode;
 	static std::string myinvitationrwd;
-	static bool isSpeedup;
+
+	static bool isupspeeding;
 
 	static bool isopenpraise;
 	
