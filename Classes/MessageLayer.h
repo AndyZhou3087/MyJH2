@@ -12,9 +12,9 @@ class MessageLayer : public cocos2d::Layer, public HTTPDataDelegateProtocol
 public:
 	MessageLayer();
 	~MessageLayer();
-	static MessageLayer* create();
+	static MessageLayer* create(int mode = 0);//0--showall;1--活动
 	virtual void onExit();
-    bool init();
+    bool init(int mode = 0);
 	//更新scrollview
 	void refreshScrollViewUi();
 	void updateStatus(int index);
@@ -24,6 +24,7 @@ private:
 
 private:
 	cocos2d::ui::ScrollView* m_contentscroll;
+	int _mode;
 };
 
 #endif

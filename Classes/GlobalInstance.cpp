@@ -199,7 +199,8 @@ std::vector<S_SUPPERBOSSRANDATA> GlobalInstance::vec_supperBossRankData;
 
 std::string GlobalInstance::oneyuanGiftStr;
 
-bool GlobalInstance::isHasNewmail = false;
+int GlobalInstance::isHasNewmail = 0;
+int GlobalInstance::isHasNewactivity = 0;
 
 std::string GlobalInstance::myinvitationcode;
 
@@ -503,6 +504,7 @@ void GlobalInstance::loadInitData()
 	GlobalInstance::supperbossinfo.leftcoincount = 0;
 	GlobalInstance::supperbossinfo.leftfreecount = 0;
 	GlobalInstance::isHasNewmail = false;
+	GlobalInstance::isHasNewactivity = false;
 	GlobalInstance::isupspeeding = false;
 
 	GlobalInstance::isBuyYearCard = DataSave::getInstance()->getIsBuyYearCard();

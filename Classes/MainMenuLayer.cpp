@@ -150,6 +150,9 @@ bool MainMenuLayer::init()
 			cocos2d::ui::ImageView* textimg = (cocos2d::ui::ImageView*)clickwidget->getChildByName("text");
 			textimg->loadTexture(ResourcePath::makeTextImgPath("main_activitybtn_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 			clickwidget->setVisible(false);
+
+			activitypoint = (cocos2d::ui::Widget*)clickwidget->getChildByName("redpoint");
+			activitypoint->setVisible(false);
 		}
 
 		else if (i == WELLBTN)
@@ -260,7 +263,10 @@ void MainMenuLayer::onFinish(int code)
 			else
 				speedgiftbtn->setPositionY(firstchargebtn->getPositionY() - 105);
 
-			HttpDataSwap::init(this)->getMessageList(0);
+			if (GlobalInstance::isHasNewmail == 1)
+				HttpDataSwap::init(this)->getMessageList(0);
+			else if (GlobalInstance::isHasNewactivity == 1)
+				HttpDataSwap::init(this)->getMessageList(3);
 
 			if (GlobalInstance::punishment != 0 && g_NewGuideLayer == NULL)
 			{
@@ -340,32 +346,9 @@ void MainMenuLayer::updateUI(float dt)
 	str = StringUtils::format("%d", GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	mysilverlbl->setString(str);
 
-	bool showmessageredpoint = false;
+	mailredpoint->setVisible(GlobalInstance::isHasNewmail > 0);
 
-
-	for (unsigned int i = 0; i < GlobalInstance::vec_notice.size(); i++)
-	{
-		int type = GlobalInstance::vec_notice[i].type;
-		int s = GlobalInstance::vec_notice[i].status;
-		if (type == 0 && s == 0)
-		{
-			showmessageredpoint = true;
-			break;
-		}
-	}
-
-	for (unsigned int i = 0; i < GlobalInstance::vec_messsages.size(); i++)
-	{
-		int type = GlobalInstance::vec_messsages[i].type;
-		int s = GlobalInstance::vec_messsages[i].status;
-		if (type != 0 && s < 2)
-		{
-			showmessageredpoint = true;
-			break;
-		}
-	}
-
-	mailredpoint->setVisible(showmessageredpoint || GlobalInstance::isHasNewmail);
+	activitypoint->setVisible(GlobalInstance::isHasNewactivity > 0);
 
 	//月卡更新
 	if (GlobalInstance::map_buyVipDays["vip3"] > 0)
@@ -616,16 +599,11 @@ void MainMenuLayer::onClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEve
 			}
 			break;
 		case ACTIVITYBTN:
-			for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
-			{
-				if (GlobalInstance::vec_shopdata[i].icon.compare("formationgift") == 0)
-				{
-					GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
-					g_mainScene->addChild(layer, 0, "GiftContentLayer");
-					AnimationEffect::openAniEffect((Layer*)layer);
-					break;
-				}
-			}
+		{
+			MessageLayer* layer = MessageLayer::create(1);
+			g_mainScene->addChild(layer, 0, "messagelayer");
+			AnimationEffect::openAniEffect(layer);
+		}
 			break;
 		case WELLBTN:
 		{

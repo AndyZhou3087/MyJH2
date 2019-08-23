@@ -759,14 +759,14 @@
                 <PreSize X="1.2457" Y="1.2457" />
                 <FileData Type="MarkedSubImage" Path="ui/main_activitybtn.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="text" ActionTag="517345349" Tag="164" IconVisible="False" LeftMargin="-28.2734" RightMargin="-35.2266" TopMargin="49.0770" BottomMargin="-7.5770" LeftEage="27" RightEage="27" TopEage="13" BottomEage="13" Scale9OriginX="27" Scale9OriginY="13" Scale9Width="97" Scale9Height="20" ctype="ImageViewObjectData">
-                <Size X="151.0000" Y="46.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="47.2266" Y="15.4230" />
+              <AbstractNodeData Name="text" ActionTag="517345349" Tag="164" IconVisible="False" LeftMargin="9.3163" RightMargin="6.1837" TopMargin="55.2855" BottomMargin="-6.7855" LeftEage="27" RightEage="27" TopEage="13" BottomEage="13" Scale9OriginX="27" Scale9OriginY="13" Scale9Width="18" Scale9Height="13" ctype="ImageViewObjectData">
+                <Size X="72.0000" Y="39.0000" />
+                <AnchorPoint ScaleX="0.5663" ScaleY="0.4172" />
+                <Position X="50.0927" Y="9.4865" />
                 <Scale ScaleX="0.6000" ScaleY="0.6000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5397" Y="0.1763" />
-                <PreSize X="1.7257" Y="0.5257" />
+                <PrePosition X="0.5725" Y="0.1084" />
+                <PreSize X="0.8229" Y="0.4457" />
                 <FileData Type="MarkedSubImage" Path="text_zh_cn/main_activitybtn_text.png" Plist="text_zh_cn.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="redpoint" ActionTag="1414972547" Tag="111" IconVisible="False" LeftMargin="52.8193" RightMargin="10.6807" TopMargin="3.0017" BottomMargin="60.4983" ctype="SpriteObjectData">

@@ -1260,7 +1260,11 @@ void HttpDataSwap::httpVipIsOnCB(std::string retdata, int code, std::string extd
 				}
 				else if (strid.compare("newmail") == 0)
 				{
-					GlobalInstance::isHasNewmail = atoi(getJsonValueStr(doc["newmail"]).c_str()) == 1 ? true : false;
+					GlobalInstance::isHasNewmail = atoi(getJsonValueStr(doc["newmail"]).c_str());
+				}
+				else if (strid.compare("newevent") == 0)
+				{
+					GlobalInstance::isHasNewactivity = atoi(getJsonValueStr(doc["newevent"]).c_str());
 				}
 
 				else if (strid.compare(0, 3, "vip") == 0)
@@ -1431,10 +1435,15 @@ void HttpDataSwap::httpGetMessageListCB(std::string retdata, int code, std::stri
 							else
 								msgdata.subtype = 0;
 
+							if (extdata.length() <= 0)
+							{
+								if (msgdata.type == 3)
+									continue;
+							}
 							GlobalInstance::vec_messsages.push_back(msgdata);
 							
 
-							if (extdata.length() > 0)
+							if (msgdata.type == 0 || msgdata.type == 3)
 							{
 								GlobalInstance::vec_notice.push_back(msgdata);
 							}

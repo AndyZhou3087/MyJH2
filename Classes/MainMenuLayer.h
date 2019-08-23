@@ -76,6 +76,7 @@ private:
 	cocos2d::ui::Widget* oneyuangiftbtn;
 	cocos2d::ui::Widget* speedgiftbtn;
 	cocos2d::ui::Widget* activitybtn;
+	cocos2d::ui::Widget* activitypoint;//活动小红点
 	cocos2d::ui::Text* timegiftlefttime;//限时礼包剩下时间
 	cocos2d::ui::Widget* firstchargebtn;
 	cocos2d::ui::ImageView* head;//头像

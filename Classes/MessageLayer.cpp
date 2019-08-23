@@ -12,28 +12,52 @@ USING_NS_CC;
 
 MessageLayer::MessageLayer()
 {
-
+	_mode = 0;
 }
 
 MessageLayer::~MessageLayer()
 {
-	GlobalInstance::isHasNewmail = false;
-	for (unsigned int i = 0; i < GlobalInstance::vec_messsages.size(); i++)
+	if (_mode == 0)
 	{
-		int type = GlobalInstance::vec_messsages[i].type;
-		int s = GlobalInstance::vec_messsages[i].status;
-		if (s < 1)
+		GlobalInstance::isHasNewmail = 0;
+		for (unsigned int i = 0; i < GlobalInstance::vec_messsages.size(); i++)
 		{
-			GlobalInstance::isHasNewmail = true;
-			break;
+			int type = GlobalInstance::vec_messsages[i].type;
+			int s = GlobalInstance::vec_messsages[i].status;
+
+			if (type == 0 && s == 0)
+			{
+				GlobalInstance::isHasNewmail = 1;
+				break;
+			}
+			else if (type > 0 && type < 3 && s < 2)
+			{
+				GlobalInstance::isHasNewmail = 2;
+				break;
+			}
+		}
+	}
+	else
+	{
+		GlobalInstance::isHasNewactivity = 0;
+		for (unsigned int i = 0; i < GlobalInstance::vec_messsages.size(); i++)
+		{
+			int type = GlobalInstance::vec_messsages[i].type;
+			int s = GlobalInstance::vec_messsages[i].status;
+
+			if (type == 3 && s == 0)
+			{
+				GlobalInstance::isHasNewactivity = 1;
+				break;
+			}
 		}
 	}
 }
 
-MessageLayer* MessageLayer::create()
+MessageLayer* MessageLayer::create(int mode)
 {
 	MessageLayer *pRet = new(std::nothrow)MessageLayer();
-	if (pRet && pRet->init())
+	if (pRet && pRet->init(mode))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -47,22 +71,32 @@ MessageLayer* MessageLayer::create()
 }
 
 // on "init" you need to initialize your instance
-bool MessageLayer::init()
+bool MessageLayer::init(int mode)
 {
     if ( !Layer::init() )
     {
         return false;
     }
-
+	_mode = mode;
 	LayerColor* color = LayerColor::create(Color4B(11, 32, 22, 200));
 	this->addChild(color,0,"colorLayer");
 
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("messageLayer.csb"));
 	this->addChild(csbnode);
 	int langtype = GlobalInstance::getInstance()->getLang();
+
+	cocos2d::ui::ImageView* bg = (cocos2d::ui::ImageView*)csbnode->getChildByName("bg");
+
 	//标题
 	cocos2d::ui::ImageView* titleimg = (cocos2d::ui::ImageView*)csbnode->getChildByName("titleimg");
-	titleimg->loadTexture(ResourcePath::makeTextImgPath("messagetitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	titleimg->ignoreContentAdaptWithSize(true);
+	if (_mode == 0)
+		titleimg->loadTexture(ResourcePath::makeTextImgPath("messagetitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+	else
+	{
+		titleimg->loadTexture(ResourcePath::makeTextImgPath("activitytitle", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+		bg->setContentSize(Size(bg->getContentSize().width, 1200));
+	}
 
 
 	//一键已读按钮
@@ -73,11 +107,13 @@ bool MessageLayer::init()
 	cocos2d::ui::ImageView* onekeyreadbtntxt = (cocos2d::ui::ImageView*)onekeyreadbtn->getChildByName("text");
 	onekeyreadbtntxt->loadTexture(ResourcePath::makeTextImgPath("onkeyread_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+	onekeyreadbtn->setVisible(_mode == 0);
+
 	//清空已读按钮
 	cocos2d::ui::Widget* cleanreadbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("cleanreadbtn");
 	cleanreadbtn->setTag(1001);
 	cleanreadbtn->addTouchEventListener(CC_CALLBACK_2(MessageLayer::onBtnClick, this));
-
+	cleanreadbtn->setVisible(_mode == 0);
 	//清空已读按钮文字
 	cocos2d::ui::ImageView* cleanreadbtntxt = (cocos2d::ui::ImageView*)cleanreadbtn->getChildByName("text");
 	cleanreadbtntxt->loadTexture(ResourcePath::makeTextImgPath("cleanread_text", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -86,7 +122,7 @@ bool MessageLayer::init()
 	cocos2d::ui::Widget* allgetbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("allgetbtn");
 	allgetbtn->setTag(1002);
 	allgetbtn->addTouchEventListener(CC_CALLBACK_2(MessageLayer::onBtnClick, this));
-
+	allgetbtn->setVisible(_mode == 0);
 	//关闭按钮
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
 	closebtn->setTag(1003);
@@ -100,7 +136,15 @@ bool MessageLayer::init()
 
 	WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
 	this->addChild(wp, 0, "waitingprogress");
-	HttpDataSwap::init(this)->getMessageList();
+
+	if (_mode == 0)
+	{
+		HttpDataSwap::init(this)->getMessageList();
+	}
+	else
+	{
+		HttpDataSwap::init(this)->getMessageList(3);
+	}
 
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
@@ -242,6 +286,13 @@ void MessageLayer::refreshScrollViewUi()
 	int size = GlobalInstance::vec_messsages.size();
 	int itemheight = 140;
 	int innerheight = itemheight * size;
+
+	if (_mode == 1)
+	{
+		m_contentscroll->setContentSize(Size(m_contentscroll->getContentSize().width, 1100));
+		m_contentscroll->setInnerContainerSize(Size(m_contentscroll->getContentSize().width, 1100));
+	}
+
 	int contentheight = m_contentscroll->getContentSize().height;
 	if (innerheight < contentheight)
 		innerheight = contentheight;

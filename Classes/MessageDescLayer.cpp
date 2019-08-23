@@ -63,7 +63,7 @@ bool MessageDescLayer::init(int index)
 
 	int textscrollheight = 0;
 	std::string contentstr = data.content;
-	if (data.type == 0)
+	if (data.type == 0 || data.type == 3)
 	{
 		actiontextstr = "closebtn_text";
 		btntag = 1000;

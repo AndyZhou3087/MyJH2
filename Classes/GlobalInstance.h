@@ -238,8 +238,8 @@ typedef struct
 	std::string title;
 	std::string content;
 	int status;
-	int type;
-	int subtype;
+	int type;//0--公告；1--奖励，2--补道具，3-活动
+	int subtype;//0--纯公告；1--强制更新；2--不强制
 }MessageData;
 
 typedef struct
@@ -1078,7 +1078,9 @@ public:
 	
 	static std::string oneyuanGiftStr;
 
-	static bool isHasNewmail;
+	static int isHasNewmail;
+
+	static int isHasNewactivity;
 
 	static std::string myinvitationcode;
 	static std::string myinvitationrwd;

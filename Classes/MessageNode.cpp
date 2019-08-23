@@ -98,7 +98,7 @@ void MessageNode::updataUI()
 
 void MessageNode::refreshStatus(int type, int status)
 {
-	if (type == 0)
+	if (type == 0 || type == 3)
 	{
 		icon->setVisible(false);
 		if (status == 1)
