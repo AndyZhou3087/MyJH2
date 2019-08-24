@@ -342,7 +342,7 @@ void FightingLayer::selectSpeed()
 	float timescale = 1.0f;
 
 	if (MyRes::getMyResCount("j006") > 0)
-		timescale = 2.5f;
+		timescale = 3.0f;
 	else if (GlobalInstance::isBuyYearCard)
 		timescale = 1.5f;
 	changeSpeed(timescale);

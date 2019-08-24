@@ -78,9 +78,14 @@ float Npc::getDodge()
 
 	if (GlobalInstance::challangeType == CH_SUPERBOSS)
 		npcdodge = GlobalInstance::supperbossinfo.bossdodge;
+	else
+	{
+		if (npcdodge > 40.0f)
+			npcdodge *= 0.95f;
+	}
 
-	if (npcdodge > 48.0f)
-		npcdodge = 48.0f;
+	if (npcdodge > 45.0f)
+		npcdodge = 45.0f;
 	return npcdodge;
 }
 

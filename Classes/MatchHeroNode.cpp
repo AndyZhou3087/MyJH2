@@ -112,7 +112,21 @@ bool MatchHeroNode::init(int index, std::string herostr)
 		str = StringUtils::format("images/cardherobox_%s.png", vec_tmp[3].c_str());
 		hbox->loadTexture(str, cocos2d::ui::Widget::TextureResType::LOCAL);
 
-		str = StringUtils::format("Lv.%d", hero->getLevel() + 1);
+		int herolv = 0;
+		int size = GlobalInstance::vec_herosAttr[hero->getVocation()].vec_exp.size();
+		for (int i = 0; i < size; i++)
+		{
+			if (hero->getExp().getValue() < GlobalInstance::vec_herosAttr[hero->getVocation()].vec_exp[i])
+			{
+				herolv = i;
+				break;
+			}
+		}
+		if (hero->getExp().getValue() >= GlobalInstance::vec_herosAttr[hero->getVocation()].vec_exp[size - 1])
+		{
+			herolv = size - 1;
+		}
+		str = StringUtils::format("Lv.%d", herolv + 1);
 		lv->setString(str);
 
 		for (int i = 0; i < hero->getChangeCount() - 1; i++)
