@@ -3,7 +3,7 @@
 {"icon":"vip1","type":"2","name":"高级月卡","price":"68","res":["r012-100","b003-1","s004-1","j003-2"],"desc":"购买后可获得元宝x100、三级宝箱x1、万年人参x1、扫荡券x2","count":"0","show":"1","paycode":"xk010"},
 {"icon":"vip2","type":"2","name":"年卡","price":"98","res":["r012-80","j001-1","m004-1","j003-2"],"ores":["r012-100","b005-1","s004-2","m004-2","i002-1","j003-2"],"desc":"购买后可获得元宝、超级参悟秘籍等资源","count":"0","show":"0","paycode":"xk016"},
 {"icon":"vip3","type":"2","name":"碎片月卡","price":"88","res":["j001-5","t001-1","v001-1","j003-2"],"desc":"购买后可获得红侠招募券碎片x5、回城卷轴x1、视野x1、扫荡券x2","count":"0","show":"1","paycode":"xk017"},
-{"icon":"formationgift","type":"1","name":"阵型礼包","price":"30","res":["r021-20"],"desc":"购买后可获得阵型经验书x20","count":"0","show":"1","paycode":"xk020"},
+{"icon":"formationgift","type":"1","name":"阵型礼包","price":"30","res":["r021-20"],"desc":"购买后可获得阵型经验书x20","count":"0","show":"1","paycode":"xk019"},
 {"icon":"gd0","type":"0","name":"60元宝","price":"6","res":["r012-60"],"desc":"购买后可获得","count":"60","show":"1","paycode":"xk001"},
 {"icon":"gd1","type":"0","name":"380元宝","price":"30","res":["r012-380"],"desc":"购买后可获得","count":"380","show":"1","paycode":"xk002"},
 {"icon":"gd2","type":"0","name":"880元宝","price":"68","res":["r012-880"],"desc":"购买后可获得","count":"880","show":"1","paycode":"xk003"},
@@ -17,5 +17,5 @@
 {"icon":"timegift2","type":"1","name":"68元礼包","price":"68","res":["j001-8","r012-300","q001-10","q002-10","q003-10","la008-4"],"desc":"购买后可获得红侠招募券碎片x8、元宝x300、玄铁x5、混沌石x10、祝福石x10、红装碎片x4","count":"0","show":"0","paycode":"xk014"},
 {"icon":"firstcharge","type":"1","name":"首充礼包","price":"12","res":["r012-120","a006-1-3","w003-1","r006-2000","r001-200","s002-2"],"desc":"购买后可获得金元宝x120、橙色白虹剑、柔云剑法、银两x2000、食物x200、百年人参x2","count":"0","show":"0","paycode":"xk015"},
 {"icon":"oneyuangift","type":"1","name":"1元礼包","price":"1","res":[],"desc":"购买后可获得以下物品","count":"0","show":"0","paycode":"xk018"},
-{"icon":"flash","type":"1","name":"加速礼包","price":"88","res":["j006-1"],"desc":"购买后可获得以下物品","count":"0","show":"0","paycode":"xk019"}
+{"icon":"flash","type":"1","name":"加速礼包","price":"88","res":["j006-1"],"desc":"购买后可获得以下物品","count":"0","show":"0","paycode":"xk020"}
 ]}

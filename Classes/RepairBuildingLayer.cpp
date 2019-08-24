@@ -21,10 +21,10 @@ RepairBuildingLayer::~RepairBuildingLayer()
 }
 
 
-RepairBuildingLayer* RepairBuildingLayer::create(std::string buildingname, int type)
+RepairBuildingLayer* RepairBuildingLayer::create(std::string buildingname, int type, std::vector<std::string> awdvec)
 {
 	RepairBuildingLayer*pRet = new(std::nothrow)RepairBuildingLayer();
-	if (pRet && pRet->init(buildingname, type))
+	if (pRet && pRet->init(buildingname, type, awdvec))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -38,7 +38,7 @@ RepairBuildingLayer* RepairBuildingLayer::create(std::string buildingname, int t
 }
 
 // on "init" you need to initialize your instance
-bool RepairBuildingLayer::init(std::string buildingname, int type)
+bool RepairBuildingLayer::init(std::string buildingname, int type, std::vector<std::string> awdvec)
 {
 	if (!Layer::init())
 	{
@@ -71,6 +71,8 @@ bool RepairBuildingLayer::init(std::string buildingname, int type)
 	int rewardsize = 1;
 	if (type < 2)
 		rewardsize = GlobalInstance::map_buildingrepairdata[buildingname].vec_repairres.size();
+	if (type == 1)
+		rewardsize = awdvec.size();
 
 	cocos2d::ui::Widget* closebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("closebtn");
 	closebtn->addTouchEventListener(CC_CALLBACK_2(RepairBuildingLayer::onBtnClick, this));
@@ -155,7 +157,7 @@ bool RepairBuildingLayer::init(std::string buildingname, int type)
 			if (type == 0)
 				CommonFuncs::split(GlobalInstance::map_buildingrepairdata[buildingname].vec_repairres[i], vec_ret, "-");
 			else if (type == 1)
-				CommonFuncs::split(GlobalInstance::map_buildingrepairdata[buildingname].vec_adws[i], vec_ret, "-");
+				CommonFuncs::split(awdvec[i], vec_ret, "-");
 			else if (type == 2)
 				CommonFuncs::split(vec_showres[i], vec_ret, "-");
 

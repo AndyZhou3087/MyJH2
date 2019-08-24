@@ -162,7 +162,7 @@ bool MainScene::init()
 		if (!NewGuideLayer::checkifNewerGuide(72))
 		{
 			int r = GlobalInstance::getInstance()->createRandomNum(1000);
-			if (r < 50)
+			if (r < 30)
 			{
 				ishasbeggar = true;
 				ishintbeggar = true;
@@ -1588,8 +1588,28 @@ void MainScene::showRepairFinishAwd(std::string buildingname)
 	int r = GlobalInstance::getInstance()->createRandomNum(100);
 	if (r < 20)
 	{
-		RepairBuildingLayer* layer = RepairBuildingLayer::create(buildingname, 1);
-		addChild(layer);
+		int size = GlobalInstance::map_buildingrepairdata[buildingname].vec_adws.size();
+		std::vector<int> vec_rnd;
+		for (int i = 0; i < size; i++)
+		{
+			vec_rnd.push_back(i);
+		}
+
+		std::random_shuffle(vec_rnd.begin(), vec_rnd.end());
+
+		int rndcount = GlobalInstance::getInstance()->createRandomNum(3) + 1;
+
+		std::vector<std::string> vec_ads;
+		for (int i = 0; i < rndcount; i++)
+		{
+			vec_ads.push_back(GlobalInstance::map_buildingrepairdata[buildingname].vec_adws[vec_rnd[i]]);
+		}
+
+		if (vec_ads.size() > 0)
+		{
+			RepairBuildingLayer* layer = RepairBuildingLayer::create(buildingname, 1, vec_ads);
+			addChild(layer);
+		}
 	}
 }
 

@@ -50,6 +50,8 @@ FightingLayer::~FightingLayer()
 	else
 	{
 		Director::getInstance()->getScheduler()->setTimeScale(1);
+		if (g_MapBlockScene != NULL)
+			g_MapBlockScene->changeSpeed(1);
 	}
 }
 
@@ -349,6 +351,9 @@ void FightingLayer::selectSpeed()
 void FightingLayer::fightOver(int ret)
 {
 	pauseAtkSchedule();
+
+	changespeedcick->setVisible(false);
+	changespeed_text->setVisible(false);
 
 	changeSpeed(1);
 	changespeedcick->setEnabled(false);

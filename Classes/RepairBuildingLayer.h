@@ -14,8 +14,8 @@ public:
 	RepairBuildingLayer();
 	~RepairBuildingLayer();
 
-	static RepairBuildingLayer* create(std::string buildingname, int type = 0);
-	bool init(std::string buildingname, int type = 0);
+	static RepairBuildingLayer* create(std::string buildingname, int type = 0, std::vector<std::string> awdvec = {});
+	bool init(std::string buildingname, int type = 0, std::vector<std::string> awdvec = {});
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void removeSelf();

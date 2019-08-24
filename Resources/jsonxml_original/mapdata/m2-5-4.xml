@@ -5,10 +5,10 @@
     <m id="n007" minlv="20" maxlv="30" minqu="0" maxqu="1">25</m>
     <m id="n008" minlv="20" maxlv="30" minqu="0" maxqu="1">25</m>
     <m id="n023" minlv="20" maxlv="30" minqu="0" maxqu="1">25</m>
-    <ma id="r012" c="1" qu="0">20.00</ma>
+    <ma id="r012" c="2" qu="0">20.00</ma>
     <ma id="r002" c="20" qu="0">20.00</ma>
     <ma id="r003" c="20" qu="0">20.00</ma>
-    <ma id="r004" c="20" qu="0">20.00</ma>
+    <ma id="r010" c="4" qu="0">20.00</ma>
     <ma id="r005" c="20" qu="0">20.00</ma>
     <ma id="s002" c="2" qu="0">10.00</ma>
   </Monstors>
@@ -41,6 +41,7 @@
     <Cell c="0" r="21" p="-1" w="1" m="88.png" />
     <Cell c="0" r="22" p="5" w="1" m="88.png">
       <npcid>1</npcid>
+      <npcrnd>1</npcrnd>
       <msawd1 id="a022" qu="2" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="0" r="23" p="-1" w="1" m="88.png" d="26.png">
@@ -317,6 +318,8 @@
     <Cell c="10" r="22" p="-1" w="0" m="84.png" />
     <Cell c="10" r="23" p="5" w="1" m="94.png">
       <npcid>2</npcid>
+      <npcrnd>1</npcrnd>
+      <msawd1 id="la016" qu="0" rnd="100.00">2</msawd1>
     </Cell>
     <Cell c="10" r="24" p="-1" w="0" m="84.png" />
     <Cell c="10" r="25" p="-1" w="0" m="91.png" />
@@ -452,12 +455,11 @@
       <msatt4 id="n023" qu="2">30</msatt4>
       <msatt5 id="n025" qu="3">30</msatt5>
       <msatt6 id="n023" qu="2">30</msatt6>
-      <msawd1 id="x022" qu="0" rnd="15.00">1</msawd1>
-      <msawd2 id="x026" qu="0" rnd="15.00">1</msawd2>
-      <msawd3 id="x030" qu="0" rnd="15.00">1</msawd3>
-      <msawd4 id="x034" qu="0" rnd="15.00">1</msawd4>
+      <msawd1 id="w026" qu="0" rnd="10.00">1</msawd1>
+      <msawd2 id="x017" qu="0" rnd="10.00">1</msawd2>
+      <msawd3 id="la012" qu="0" rnd="20.00">1</msawd3>
+      <msawd4 id="r006" qu="0" rnd="50.00">500</msawd4>
       <msawd5 id="m002" qu="0" rnd="20.00">1</msawd5>
-      <msawd6 id="a025" qu="2" rnd="15.00">1</msawd6>
     </Cell>
     <Cell c="15" r="15" p="-1" w="0" m="94.png" d="17.png" />
     <Cell c="15" r="16" p="-1" w="0" m="94.png" />
@@ -664,6 +666,8 @@
       <npcid>n004</npcid>
       <npcrnd>100</npcrnd>
       <msatt2 id="n004" qu="2">40</msatt2>
+      <msawd1 id="r006" qu="0" rnd="60.00">800</msawd1>
+      <msawd2 id="r012" qu="0" rnd="40.00">4</msawd2>
     </Cell>
     <Cell c="23" r="1" p="-1" w="1" m="94.png" />
     <Cell c="23" r="2" p="-1" w="1" m="94.png" />
