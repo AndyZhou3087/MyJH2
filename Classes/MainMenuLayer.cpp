@@ -61,6 +61,7 @@ bool MainMenuLayer::init()
 	csbnode = CSLoader::createNode(ResourcePath::makePath("MainMenuLayer.csb"));
 	this->addChild(csbnode, 0, "csbnode");
 
+	GlobalInstance::oneyuanGiftStr = "";
 	for (int i = 0; i < csbnode->getChildrenCount(); i++)
 	{
 		std::string name = csbnode->getChildren().at(i)->getName();
