@@ -729,15 +729,16 @@ void MatchMainLayer::onFinish(int code)
 	{
 		if (httptag == 0)
 		{
-			if (networkerrLayer == NULL)
-			{
-				ErrorHintLayer* layer = ErrorHintLayer::create(0);
-				this->addChild(layer, 1000, "networkerrorlayer");
-			}
-			else
-			{
-				networkerrLayer->resetBtn();
-			}
+			MovingLabel::show(ResourceLang::map_lang["matchnetworkerr"]);
+			//if (networkerrLayer == NULL)
+			//{
+			//	ErrorHintLayer* layer = ErrorHintLayer::create(0);
+			//	this->addChild(layer, 1000, "networkerrorlayer");
+			//}
+			//else
+			//{
+			//	networkerrLayer->resetBtn();
+			//}
 		}
 
 		else if (httptag == 2 || httptag == 3)
