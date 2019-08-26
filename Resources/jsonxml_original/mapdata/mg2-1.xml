@@ -320,7 +320,7 @@
     <Cell c="9" r="18" p="5" w="0" m="129.png" d="51.png">
       <npcid>8</npcid>
       <npcrnd>1</npcrnd>
-      <msawd1 id="r020" qu="0" rnd="50.00">2</msawd1>
+      <msawd1 id="r020" qu="0" rnd="30.00">1</msawd1>
     </Cell>
     <Cell c="9" r="19" p="5" w="0" m="129.png" d="51.png">
       <npcid>9</npcid>
@@ -374,7 +374,7 @@
     <Cell c="10" r="20" p="5" w="1" m="129.png">
       <npcid>11</npcid>
       <npcrnd>1</npcrnd>
-      <msawd1 id="i002" qu="0" rnd="30.00">1</msawd1>
+      <msawd1 id="i002" qu="0" rnd="25.00">1</msawd1>
     </Cell>
     <Cell c="10" r="21" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="10" r="22" p="-1" w="0" m="129.png" d="8.png" />
@@ -433,7 +433,7 @@
     <Cell c="12" r="11" p="5" w="1" m="129.png">
       <npcid>5</npcid>
       <npcrnd>1</npcrnd>
-      <msawd1 id="q001" qu="0" rnd="50.00">5</msawd1>
+      <msawd1 id="q001" qu="0" rnd="50.00">4</msawd1>
     </Cell>
     <Cell c="12" r="12" p="-1" w="0" m="129.png" d="30.png" />
     <Cell c="12" r="13" p="-1" w="0" m="135.png" />
@@ -729,7 +729,7 @@
       <msawd2 id="r002" qu="0" rnd="20.00">100</msawd2>
       <msawd3 id="r003" qu="0" rnd="20.00">100</msawd3>
       <msawd4 id="r004" qu="0" rnd="20.00">100</msawd4>
-      <msawd5 id="r012" qu="0" rnd="30.00">1</msawd5>
+      <msawd5 id="r012" qu="0" rnd="25.00">1</msawd5>
     </Cell>
     <Cell c="20" r="18" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="20" r="19" p="-1" w="1" m="129.png" />
@@ -765,7 +765,7 @@
     <Cell c="21" r="17" p="5" w="1" m="129.png">
       <npcid>7</npcid>
       <npcrnd>1</npcrnd>
-      <msawd1 id="r020" qu="0" rnd="50.00">1</msawd1>
+      <msawd1 id="r020" qu="0" rnd="30.00">1</msawd1>
     </Cell>
     <Cell c="21" r="18" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="21" r="19" p="-1" w="1" m="129.png" />
@@ -906,7 +906,7 @@
     <Cell c="25" r="18" p="5" w="0" m="129.png" d="51.png">
       <npcid>18</npcid>
       <npcrnd>1</npcrnd>
-      <msawd1 id="r012" qu="0" rnd="50.00">3</msawd1>
+      <msawd1 id="r012" qu="0" rnd="30.00">2</msawd1>
     </Cell>
     <Cell c="25" r="19" p="-1" w="0" m="129.png" d="8.png" />
     <Cell c="25" r="20" p="6" w="1" m="129.png">

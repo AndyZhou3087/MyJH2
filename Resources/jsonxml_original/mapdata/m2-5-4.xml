@@ -319,7 +319,7 @@
     <Cell c="10" r="23" p="5" w="1" m="94.png">
       <npcid>2</npcid>
       <npcrnd>1</npcrnd>
-      <msawd1 id="la016" qu="0" rnd="100.00">2</msawd1>
+      <msawd1 id="la016" qu="0" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="10" r="24" p="-1" w="0" m="84.png" />
     <Cell c="10" r="25" p="-1" w="0" m="91.png" />
@@ -457,7 +457,7 @@
       <msatt6 id="n023" qu="2">30</msatt6>
       <msawd1 id="w026" qu="0" rnd="10.00">1</msawd1>
       <msawd2 id="x017" qu="0" rnd="10.00">1</msawd2>
-      <msawd3 id="la012" qu="0" rnd="20.00">1</msawd3>
+      <msawd3 id="la012" qu="0" rnd="8.00">1</msawd3>
       <msawd4 id="r006" qu="0" rnd="50.00">500</msawd4>
       <msawd5 id="m002" qu="0" rnd="20.00">1</msawd5>
     </Cell>

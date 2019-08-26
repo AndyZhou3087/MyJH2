@@ -725,32 +725,39 @@ void NpcLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
 		}
 		case 5:
 		{
-			if (GlobalInstance::map_myfriendly[m_npcid].friendly <= -GlobalInstance::map_npcrelation[m_npcid].friendmax)
+
+			if (GlobalInstance::eventstartmappos < 0 && GlobalInstance::map_AllResources[m_npcid].desc.length() > 0)
 			{
-				MovingLabel::show(ResourceLang::map_lang["nofirendlyfight"]);
-				return;
-			}
-			GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::map_npcrelation[m_npcid].fightcost;
-			if (GlobalInstance::map_myfriendly[m_npcid].relation.size() > 0)
-			{
-				std::vector<int>::iterator it;
-				for (it = GlobalInstance::map_myfriendly[m_npcid].relation.begin(); it != GlobalInstance::map_myfriendly[m_npcid].relation.end();)
+				if (GlobalInstance::map_myfriendly[m_npcid].friendly <= -GlobalInstance::map_npcrelation[m_npcid].friendmax)
 				{
-					if ((*it == NPC_FRIEND && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].friendneed)
-						|| (*it == NPC_MASTER && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].masterneed)
-						|| (*it == NPC_COUPEL && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].marryneed))
-					{
-						it = GlobalInstance::map_myfriendly[m_npcid].relation.erase(it);
-					}
-					else
-						it++;
+					MovingLabel::show(ResourceLang::map_lang["nofirendlyfight"]);
+					return;
 				}
+
+				GlobalInstance::map_myfriendly[m_npcid].friendly -= GlobalInstance::map_npcrelation[m_npcid].fightcost;
+				if (GlobalInstance::map_myfriendly[m_npcid].relation.size() > 0)
+				{
+					std::vector<int>::iterator it;
+					for (it = GlobalInstance::map_myfriendly[m_npcid].relation.begin(); it != GlobalInstance::map_myfriendly[m_npcid].relation.end();)
+					{
+						if ((*it == NPC_FRIEND && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].friendneed)
+							|| (*it == NPC_MASTER && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].masterneed)
+							|| (*it == NPC_COUPEL && GlobalInstance::map_myfriendly[m_npcid].friendly < GlobalInstance::map_npcrelation[m_npcid].marryneed))
+						{
+							it = GlobalInstance::map_myfriendly[m_npcid].relation.erase(it);
+						}
+						else
+							it++;
+					}
+				}
+
+				GlobalInstance::getInstance()->saveNpcFriendly();
 			}
 			if (g_MapBlockScene != NULL)
 			{
 				g_MapBlockScene->showFightingLayer(m_vec_enemys);
 			}
-			GlobalInstance::getInstance()->saveNpcFriendly();
+
 			this->removeFromParentAndCleanup(true);
 			break;
 		}

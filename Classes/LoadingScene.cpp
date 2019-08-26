@@ -632,6 +632,11 @@ void LoadingScene::delayGetServerData(float dt)
 
 void LoadingScene::enterNewScene()
 {
+	if (GlobalInstance::isBuySpeedGift && MyRes::getMyResCount("j006") <= 0)
+	{
+		MyRes::Add("j006", 1);
+	}
+
 	if (DataSave::getInstance()->getFirstEnter())
 	{
 		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, StoryScene::createScene()));

@@ -977,8 +977,8 @@
       <msatt6 id="n010" qu="3">35</msatt6>
       <msawd1 id="a002" qu="2" rnd="15.00">1</msawd1>
       <msawd2 id="a006" qu="2" rnd="15.00">1</msawd2>
-      <msawd3 id="i004" qu="0" rnd="10.00">1</msawd3>
-      <msawd4 id="la040" qu="0" rnd="20.00">1</msawd4>
+      <msawd3 id="i004" qu="0" rnd="5.00">1</msawd3>
+      <msawd4 id="la040" qu="0" rnd="8.00">1</msawd4>
       <msawd5 id="r006" qu="0" rnd="20.00">1000</msawd5>
       <msawd6 id="q001" qu="0" rnd="25.00">2</msawd6>
     </Cell>
