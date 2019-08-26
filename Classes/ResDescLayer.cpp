@@ -119,6 +119,9 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 	
 	std::string btntextstr;
 
+	cocos2d::ui::Text* exchangedesc = (cocos2d::ui::Text*)csbnode->getChildByName("exchangedesc");
+	exchangedesc->setVisible(false);
+
 	if (m_fromwhere == 1)
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(1000);
@@ -236,6 +239,8 @@ bool ResDescLayer::init(ResBase* res, int fromwhere)
 			closebtn->addTouchEventListener(CC_CALLBACK_2(ResDescLayer::onBtnClick, this));
 			closebtn->setTag(1);
 			closebtn->setVisible(true);
+			exchangedesc->setString(ResourceLang::map_lang["pieceexchangedesc"]);
+			exchangedesc->setVisible(true);
 		}
 		else
 		{
@@ -295,13 +300,13 @@ void ResDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
 		if (tag == 1)
 		{
-			if (m_res->getCount().getValue() < 5)
+			if (m_res->getCount().getValue() < 3)
 			{
 				MovingLabel::show(ResourceLang::map_lang["canntexchangepiece"]);
 			}
 			else
 			{
-				ExchangePieceLayer* layer = ExchangePieceLayer::create(m_res->getId(), 5);
+				ExchangePieceLayer* layer = ExchangePieceLayer::create(m_res->getId(), 3);
 				this->addChild(layer);
 				AnimationEffect::openAniEffect(layer);
 			}

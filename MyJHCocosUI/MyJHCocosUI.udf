@@ -25,25 +25,5 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="zanLayer.csd" />
-          <FilePathData Path="ui.csi" />
-          <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="matchMainLayer.csd" />
-          <FilePathData Path="outTownLayer.csd" />
-          <FilePathData Path="MainMenuLayer.csd" />
-          <FilePathData Path="mapBlockLayer.csd" />
-          <FilePathData Path="fightLayer.csd" />
-          <FilePathData Path="wellGiftLayer.csd" />
-          <FilePathData Path="winRewardLayer.csd" />
-          <FilePathData Path="MainLayer.csd" />
-          <FilePathData Path="npcLayer.csd" />
-          <FilePathData Path="messageLayer.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="ui.csi" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

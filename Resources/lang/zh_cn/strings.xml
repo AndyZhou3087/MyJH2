@@ -593,7 +593,7 @@
 	<s name="canntexchangepaisecoin">集满10个赞币才可以兑换！</s>
 	<s name="exchangej002succ">成功兑换10个红侠招募券碎片！</s>
 	<s name="canntexchangej005">青龙券10个起兑！</s>
-	<s name="canntexchangepiece">碎片5个起兑！</s>
+	<s name="canntexchangepiece">碎片3个起兑！</s>
 	<s name="exchangepiecesucc">成功兑换「%s」x1！</s>
 	<s name="exchangej005succ">成功兑换「%s」x1！</s>	
 	<s name="zanruletitle">点赞规则</s>
@@ -648,4 +648,5 @@
 	<s name="treetime1">%d分钟</s>
 	<s name="treetime2">%d秒</s>
 	<s name="treetimehint">%s后再来</s>
+	<s name="pieceexchangedesc">3个碎片兑换1个其它碎片</s>
 </strings>
