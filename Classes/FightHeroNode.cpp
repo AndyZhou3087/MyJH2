@@ -915,7 +915,7 @@ void FightHeroNode::changeSkillValue(int stype, FightHeroNode* whosufferNode)
 	isPlaySkillAnim = false;
 	GongFa* gf = m_Data->checkSkillWg();
 
-	float dt = 0.0f;
+	float dt = 0.3f;
 
 	if (gf != NULL)
 	{
