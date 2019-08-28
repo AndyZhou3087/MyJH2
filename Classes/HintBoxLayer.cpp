@@ -292,8 +292,18 @@ void HintBoxLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			}
 			else if (m_forwhere == 15)
 			{
-				if (g_MapBlockScene != NULL)
-					g_MapBlockScene->supperBossFight();
+				int constcoin = 20;
+				if (GlobalInstance::getInstance()->getMyCoinCount().getValue() >= constcoin)
+				{
+					if (g_MapBlockScene != NULL)
+						g_MapBlockScene->supperBossFight();
+				}
+				else
+				{
+					Layer* layer = BuyCoinLayer::create(constcoin - GlobalInstance::getInstance()->getMyCoinCount().getValue());
+					Director::getInstance()->getRunningScene()->addChild(layer, 10000, "buycoinlayer");
+					return;
+				}
 			}
 			node->setEnabled(false);
 			AnimationEffect::closeAniEffect(this);

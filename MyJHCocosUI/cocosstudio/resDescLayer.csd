@@ -151,14 +151,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="exchangedesc" ActionTag="636875245" Tag="50" IconVisible="False" LeftMargin="184.0000" RightMargin="184.0000" TopMargin="891.4404" BottomMargin="359.5596" FontSize="25" LabelText="数量数量数量数量数量数量数量" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
-            <Size X="352.0000" Y="29.0000" />
+          <AbstractNodeData Name="exchangedesc" ActionTag="636875245" Tag="50" IconVisible="False" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="905.9404" BottomMargin="374.0596" FontSize="25" LabelText="" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="0.0000" Y="0.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="374.0596" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.2922" />
-            <PreSize X="0.4889" Y="0.0227" />
+            <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="80" G="38" B="12" />
             <ShadowColor A="255" R="0" G="0" B="0" />
