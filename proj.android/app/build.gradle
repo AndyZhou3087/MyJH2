@@ -8,7 +8,7 @@ android {
         applicationId "com.fengs.myjh"
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
-        versionCode 27
+        versionCode 28
         versionName "2.5.2"
 
         externalNativeBuild {
@@ -114,7 +114,7 @@ android.applicationVariants.all { variant ->
     // delete previous files first
     delete "${buildDir}/intermediates/assets/${variant.dirName}"
 
-    variant.mergeAssets.doLast {
+    variant.mergeAssetsProvider.get().doLast {
         copy {
             from "${buildDir}/../../../Resources"
             into "${buildDir}/intermediates/assets/${variant.dirName}"
