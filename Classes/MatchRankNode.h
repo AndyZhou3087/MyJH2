@@ -20,7 +20,7 @@ public:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	std::string getFirstHeroId();
-	std::string getFirstHeroPotential();
+	std::string getHeroPotentialHeadImg();
 
 private:
 	bool clickflag;

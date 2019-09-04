@@ -369,6 +369,7 @@ typedef struct
 	std::string friendly;
 	int wincount;
 	int lostcount;
+	int formation;
 }MyRankData;
 
 typedef struct

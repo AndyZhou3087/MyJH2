@@ -129,7 +129,7 @@ bool MatchRankNode::init(MyRankData herodata, int index, int type)
 		point->setString(str);
 		str = StringUtils::format("matchlvname_%d", GlobalInstance::getInstance()->getMatchLvByScroe(herodata.matchscore));
 		division->setString(ResourceLang::map_lang[str]);
-		str = getFirstHeroPotential();
+		str = getHeroPotentialHeadImg();
 		herobox->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
 		str = getFirstHeroId();
 		heroimg->loadTexture(str, cocos2d::ui::Widget::TextureResType::PLIST);
@@ -184,10 +184,12 @@ std::string MatchRankNode::getFirstHeroId()
 	return str;
 }
 
-std::string MatchRankNode::getFirstHeroPotential()
+std::string MatchRankNode::getHeroPotentialHeadImg()
 {
 	std::string str = "ui/main_menu_box.png";
 	std::map<std::string, std::string>::iterator it;
+
+	int qu[5] = { 0 };
 	for (it = m_herodata.map_otherheros.begin(); it != m_herodata.map_otherheros.end(); it++)
 	{
 		if (it->second.length() > 0)
@@ -198,10 +200,28 @@ std::string MatchRankNode::getFirstHeroPotential()
 			CommonFuncs::split(vec_heros[0], vec_tmp, "-");
 
 			int potential = atoi(vec_tmp[3].c_str());
-			str = StringUtils::format("ui/herobox_%d.png", potential);
-			break;
+			qu[potential]++;
+
 		}
 	}
+	int squ = 0;
+	if (qu[4] >= 4)
+	{
+		squ = 4;
+	}
+	else if (qu[4] + qu[3] >= 4)
+	{
+		squ = 3;
+	}
+	else if (qu[3] + qu[2] >= 4)
+	{
+		squ = 2;
+	}
+	else if (qu[2] + qu[1] >= 4)
+	{
+		squ = 1;
+	}
+	str = StringUtils::format("ui/herobox_%d.png", squ);
 	return str;
 }
 

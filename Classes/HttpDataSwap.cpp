@@ -1723,7 +1723,10 @@ void HttpDataSwap::httpGetMyMatchRankingCB(std::string retdata, int code, std::s
 						myd = mydatav[m]["friendly"];
 						data.friendly = myd.GetString();
 					}
-						
+					if (mydatav[m].HasMember("formation"))
+					{
+						data.formation = atoi(getJsonValueStr(mydatav[m]["formation"]).c_str());
+					}		
 
 					GlobalInstance::myRankInfo.vec_rankData.push_back(data);
 				}

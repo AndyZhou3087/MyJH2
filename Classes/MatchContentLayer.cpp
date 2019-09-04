@@ -94,9 +94,33 @@ bool MatchContentLayer::init(MyRankData herodata)
 	{
 		MatchHeroNode* node = MatchHeroNode::create(index, it->second);
 		this->addChild(node);
-		node->setPosition(Vec2(153 + (index % 3) * 215, 686 - (index / 3) * 251));
+		node->setPosition(Vec2(153 + (index % 3) * 215, 680 - (index / 3) * 251));
 		index++;
 	}
+
+	cocos2d::ui::Text* formationtext = (cocos2d::ui::Text*)csbnode->getChildByName("formationtext");
+
+	int formation = herodata.formation / 1000;
+	int formationlv = herodata.formation % 1000;
+
+	if (formation > 0)
+	{
+		std::string formationid = StringUtils::format("zx%03d", formation);
+		
+		std::string formationname;
+		if (formationlv > 0)
+			formationname = StringUtils::format("%s+%d", GlobalInstance::map_AllResources[formationid].name.c_str(), formationlv);
+		else
+			formationname = GlobalInstance::map_AllResources[formationid].name;
+			
+		formationname = StringUtils::format(ResourceLang::map_lang["matchformationtext"].c_str(), formationname.c_str());
+		formationtext->setString(formationname);
+	}
+	else
+	{
+		formationtext->setVisible(false);
+	}
+
 
 	GlobalInstance::myMatchInfo.map_pairfriendly.clear();
 	GlobalInstance::getInstance()->parsePairFriendly(herodata.friendly);
