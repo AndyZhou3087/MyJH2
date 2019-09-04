@@ -282,7 +282,8 @@ void FightHeroNode::update(float dt)
 								myhero->clearSkill(gf);
 								this->removeSufferSkillAnim(0);
 							}
-							nextRound(0);
+							//nextRound(0);
+							this->scheduleOnce(schedule_selector(FightHeroNode::nextRound), 0.05);
 							break;
 						}
 					}
