@@ -28,7 +28,7 @@
 #include "RenationLayer.h"
 #include "OutTownLayer.h"
 #include "InnRoomLayer.h"
-
+#include "WaitingProgress.h"
 USING_NS_CC;
 
 MainMenuLayer* g_MainMenuLayer = NULL;
@@ -210,11 +210,19 @@ bool MainMenuLayer::init()
 void MainMenuLayer::delayGetServerData(float dt)
 {
 	isGetVipData = true;
+	if (Director::getInstance()->getRunningScene()->getChildByName("waitingprogress") == NULL)
+	{
+		WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+		Director::getInstance()->getRunningScene()->addChild(wp, 0, "waitingprogress");
+	}
 	HttpDataSwap::init(this)->vipIsOn();
 }
 
 void MainMenuLayer::onFinish(int code)
 {
+
+	Director::getInstance()->getRunningScene()->removeChildByName("waitingprogress");
+
 	if (g_MainMenuLayer == NULL)
 		return;
 	if (code == SUCCESS)
@@ -265,9 +273,23 @@ void MainMenuLayer::onFinish(int code)
 				speedgiftbtn->setPositionY(firstchargebtn->getPositionY() - 105);
 
 			if (GlobalInstance::isHasNewmail == 1)
+			{
+				if (Director::getInstance()->getRunningScene()->getChildByName("waitingprogress") == NULL)
+				{
+					WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+					Director::getInstance()->getRunningScene()->addChild(wp, 0, "waitingprogress");
+				}
 				HttpDataSwap::init(this)->getMessageList(0);
+			}
 			else if (GlobalInstance::isHasNewactivity == 1)
+			{
+				if (Director::getInstance()->getRunningScene()->getChildByName("waitingprogress") == NULL)
+				{
+					WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+					Director::getInstance()->getRunningScene()->addChild(wp, 0, "waitingprogress");
+				}
 				HttpDataSwap::init(this)->getMessageList(3);
+			}
 
 			if (GlobalInstance::punishment != 0 && g_NewGuideLayer == NULL)
 			{

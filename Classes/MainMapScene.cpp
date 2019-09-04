@@ -13,6 +13,7 @@
 #include "CommonFuncs.h"
 #include "AnimationEffect.h"
 #include "ErrorHintLayer.h"
+#include "WaitingProgress.h"
 
 MainMapScene* g_MainMapScene = NULL;
 MainMapScene::MainMapScene()
@@ -187,8 +188,6 @@ bool MainMapScene::init()
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-	HttpDataSwap::init(this)->getServerTime();
-
     //记录位置
     DataSave::getInstance()->setExitScene(1);
 
@@ -199,7 +198,19 @@ bool MainMapScene::init()
 
 void MainMapScene::onEnterTransitionDidFinish()
 {
+	this->scheduleOnce(schedule_selector(MainMapScene::delayGetServerTime), 0.05f);
 	Layer::onEnterTransitionDidFinish();
+}
+
+
+void MainMapScene::delayGetServerTime(float dt)
+{
+	if (Director::getInstance()->getRunningScene()->getChildByName("waitingprogress") == NULL)
+	{
+		WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+		Director::getInstance()->getRunningScene()->addChild(wp, 0, "waitingprogress");
+	}
+	HttpDataSwap::init(this)->getServerTime();
 }
 
 void MainMapScene::onExitTransitionDidStart()
@@ -309,6 +320,8 @@ void MainMapScene::updateTime(float dt)
 
 void MainMapScene::onFinish(int code)
 {
+	Director::getInstance()->getRunningScene()->removeChildByName("waitingprogress");
+
 	if (g_MainMapScene == NULL)
 		return;
 

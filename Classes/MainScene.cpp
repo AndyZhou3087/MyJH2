@@ -36,6 +36,7 @@
 #include "ZanLayer.h"
 #include "RewardLayer.h"
 #include "Shake.h"
+#include "WaitingProgress.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "iosfunc.h"
 #endif
@@ -730,7 +731,8 @@ void MainScene::setScrollGliding()
 void MainScene::onEnterTransitionDidFinish()
 {
 	Layer::onEnterTransitionDidFinish();
-	this->scheduleOnce(schedule_selector(MainScene::delayGetServerTime), 0.1f);
+	//delayGetServerTime(0);
+	this->scheduleOnce(schedule_selector(MainScene::delayGetServerTime), 0.05f);
 }
 
 void MainScene::onExitTransitionDidStart()
@@ -999,6 +1001,9 @@ void MainScene::onExit()
 
 void MainScene::onFinish(int code)
 {
+
+	Director::getInstance()->getRunningScene()->removeChildByName("waitingprogress");
+
 	if (g_mainScene == NULL)
 		return;
 
@@ -1039,6 +1044,11 @@ void MainScene::onFinish(int code)
 			{
 				GlobalInstance::getNewsTime = GlobalInstance::servertime;
 				httpgettype = 1;
+				if (Director::getInstance()->getRunningScene()->getChildByName("waitingprogress") == NULL)
+				{
+					WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+					Director::getInstance()->getRunningScene()->addChild(wp, 0, "waitingprogress");
+				}
 				HttpDataSwap::init(this)->getNews();
 			}
 
@@ -1089,6 +1099,11 @@ void MainScene::onFinish(int code)
 void MainScene::checkorder(std::string orderid, std::string goodsid, int price)
 {
 	httpgettype = 2;
+	if (Director::getInstance()->getRunningScene()->getChildByName("waitingprogress") == NULL)
+	{
+		WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+		Director::getInstance()->getRunningScene()->addChild(wp, 0, "waitingprogress");
+	}
 	HttpDataSwap::init(this)->paySuccNotice(orderid, goodsid, price);
 }
 
@@ -1447,6 +1462,11 @@ void MainScene::showInnRoomNewHeroAnim()
 
 void MainScene::delayGetServerTime(float dt)
 {
+	if (Director::getInstance()->getRunningScene()->getChildByName("waitingprogress") == NULL)
+	{
+		WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+		Director::getInstance()->getRunningScene()->addChild(wp, 0, "waitingprogress");
+	}
 	HttpDataSwap::init(this)->getServerTime();
 }
 

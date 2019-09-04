@@ -26,7 +26,7 @@ public:
 	void showNewerGuide(int step, Node* node);
 	void showNewerGuideNode(int step, std::vector<Node*> nodes);
 
-
+	void delayGetServerTime(float dt);
 private:
 	CREATE_FUNC(MainMapScene);
 

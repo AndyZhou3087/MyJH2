@@ -117,6 +117,11 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 		str = StringUtils::format(ResourceLang::map_lang[str].c_str(), VIPDAYS[m_tag], m_data->name.c_str());
 		desc->setString(str);
 
+		if (Director::getInstance()->getRunningScene()->getChildByName("waitingprogress") == NULL)
+		{
+			WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["datawaitingtext"]);
+			Director::getInstance()->getRunningScene()->addChild(wp, 0, "waitingprogress");
+		}
 		HttpDataSwap::init(this)->vipIsOn();
 
 	}
@@ -277,9 +282,12 @@ void GiftContentLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::To
 		{
 			node->setEnabled(false);
 			isgetingvip = true;
-			WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["getmonthlywaiting"]);
-			Director::getInstance()->getRunningScene()->addChild(wp, 0, "waitingprogress");
 
+			if (Director::getInstance()->getRunningScene()->getChildByName("waitingprogress") == NULL)
+			{
+				WaitingProgress* wp = WaitingProgress::create(ResourceLang::map_lang["getmonthlywaiting"]);
+				Director::getInstance()->getRunningScene()->addChild(wp, 0, "waitingprogress");
+			}
 			int id = atoi(m_data->icon.substr(3, 1).c_str());
 			std::string vipid = StringUtils::format("vip%d", id + 2);
 
@@ -325,6 +333,8 @@ void GiftContentLayer::getVipReward()
 
 void GiftContentLayer::onFinish(int code)
 {
+
+	Director::getInstance()->getRunningScene()->removeChildByName("waitingprogress");
 	if (!isgetingvip)
 	{
 		if (code == 0)
