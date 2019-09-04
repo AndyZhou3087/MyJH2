@@ -19,9 +19,6 @@ FightingLayer::FightingLayer()
 	fightcount = 0;
 	ajustFightRet = 0;
 	isFightOver = false;
-	fighttimecount = 0;
-
-	fightPauseResumecount = 0;
 }
 
 FightingLayer::~FightingLayer()
