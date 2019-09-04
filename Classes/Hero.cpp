@@ -891,10 +891,12 @@ float Hero::getAtkSpeedBy(int breakcount)
 	float renationbns = heroatkspeed * addpercent;
 	heroatkspeed += renationbns;
 
-	if (m_vocation % 4 == 0 && m_vocation > 4)
-		heroatkspeed > 4.0f ? 4.0f : heroatkspeed;
+	if ((m_vocation + 1) % 4 == 0 && m_vocation > 4)
+		heroatkspeed = heroatkspeed > 3.5f ? 3.5f : heroatkspeed;
+	else
+		heroatkspeed = heroatkspeed > 3.0f ? 3.0f : heroatkspeed;
 
-	return heroatkspeed > 3.0f ? 3.0f : heroatkspeed;
+	return heroatkspeed;
 }
 float Hero::getCritBy(int breakcount)
 {

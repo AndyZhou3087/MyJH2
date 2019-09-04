@@ -37,6 +37,10 @@ public:
 	void checkNewGuide();
 	void showNewerGuide(int step);
 
+	int fighttimecount;//用于检测时间，5s内卡住的恢复一次，2次后结算算赢
+
+	int fightPauseResumecount;
+
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 

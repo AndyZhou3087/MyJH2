@@ -713,7 +713,10 @@ void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 	GongFa* gf = m_Data->checkSkillWg();
 
 	if (gf == NULL)
+	{
+		nextRound(0);
 		return;
+	}
 
 	if (m_Data->getId().length() > 10)//是否是自己的英雄
 	{

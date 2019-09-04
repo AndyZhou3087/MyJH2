@@ -19,6 +19,9 @@ FightingLayer::FightingLayer()
 	fightcount = 0;
 	ajustFightRet = 0;
 	isFightOver = false;
+	fighttimecount = 0;
+
+	fightPauseResumecount = 0;
 }
 
 FightingLayer::~FightingLayer()
@@ -152,6 +155,7 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 	}
 
 	checkNewGuide();
+
 
 	//ÆÁ±ÎÏÂ²ãµã»÷
 	auto listener = EventListenerTouchOneByOne::create();
@@ -499,7 +503,25 @@ void FightingLayer::heroFight(int fightertag)
 				fightOver(1);
 			}
 			else
+			{
+				for (int i = 0; i < 6; i++)
+				{
+					FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(i);
+					if (fnode != NULL)
+					{
+						fnode->isPlaySkillAnim = false;
+					}
+				}
+				for (unsigned int i = 0; i < 6; i++)
+				{
+					FightHeroNode* fnode = (FightHeroNode*)this->getChildByTag(6 + i);
+					if (fnode != NULL)
+					{
+						fnode->isPlaySkillAnim = false;
+					}
+				}
 				this->runAction(Sequence::create(DelayTime::create(1.0f), CallFunc::create(CC_CALLBACK_0(FightingLayer::resumeAtkSchedule, this)), NULL));
+			}
 
 			return;
 		}
