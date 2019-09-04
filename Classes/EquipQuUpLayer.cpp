@@ -205,6 +205,7 @@ void EquipQuUpLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 			}
 
 			DynamicValueInt dvlv;
+			int stonescount = 0;
 			for (int i = 0; i < needequipcount[qu + 1]; i++)
 			{
 				ResBase* e = MyRes::getEquipableByQU(equipid, qu);
@@ -213,7 +214,9 @@ void EquipQuUpLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 				if (ep->getLv().getValue() > dvlv.getValue())
 					dvlv.setValue(ep->getLv().getValue());
 
-				
+				if (ep->vec_stones.size() > stonescount)
+					stonescount = ep->vec_stones.size();
+
 				for (unsigned int n = 0; n < ep->vec_stones.size(); n++)
 				{
 					std::string stoneid = ep->vec_stones[n];
@@ -222,15 +225,29 @@ void EquipQuUpLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 						MyRes::Add(ep->vec_stones[n]);
 					}
 				}
+
+
 				MyRes::Use(e);
 			}
 
+			if (dvlv.getValue() >= 16 && dvlv.getValue() <= 20)
+				dvlv.setValue(dvlv.getValue() - 3);
+			else if (dvlv.getValue() >= 11 && dvlv.getValue() <= 15)
+				dvlv.setValue(dvlv.getValue() - 2);
+			else if (dvlv.getValue() >= 6 && dvlv.getValue() <= 10)
+				dvlv.setValue(dvlv.getValue() - 1);
+
+			if (stonescount > 0)
+			{
+				int r = GlobalInstance::getInstance()->createRandomNum(100);
+				if (r < 50)
+					stonescount -= 1;
+			}
+
 			MyRes::Use(needjresid, needjcount[qu + 1]);
-			int st = GlobalInstance::getInstance()->generateStoneCount(qu + 1);
+			int st = stonescount;//GlobalInstance::getInstance()->generateStoneCount(qu + 1);
 			Equip* adde = (Equip*)MyRes::Add(equipid, 1, MYSTORAGE, qu + 1, st);
 
-			if (dvlv.getValue() > 0)
-				dvlv.setValue(dvlv.getValue() - 1);
 			adde->setLv(dvlv);
 
 			std::string showstr = StringUtils::format(ResourceLang::map_lang["quupsucc"].c_str(), GlobalInstance::map_AllResources[equipid].name.c_str());
