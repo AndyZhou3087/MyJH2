@@ -1318,6 +1318,11 @@
           <Image Name="maincityhintbox.png" />
           <Image Name="maintask_icon.png" />
           <Image Name="makeresbox.png" />
+          <Image Name="makeresbox_qu0.png" />
+          <Image Name="makeresbox_qu1.png" />
+          <Image Name="makeresbox_qu2.png" />
+          <Image Name="makeresbox_qu3.png" />
+          <Image Name="makeresbox_qu4.png" />
           <Image Name="makerescountbox.png" />
           <Image Name="makeresnamebox.png" />
           <Image Name="mapbottompropbg.png" />

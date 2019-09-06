@@ -52,7 +52,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="MarkedSubImage" Path="ui/a015.png" Plist="ui.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="makeresbox0" ActionTag="903230117" Tag="223" IconVisible="False" LeftMargin="-95.5000" RightMargin="-95.5000" TopMargin="-347.4997" BottomMargin="156.4997" ctype="SpriteObjectData">
+              <AbstractNodeData Name="makeresbox0" ActionTag="-1526518624" Tag="167" IconVisible="False" LeftMargin="-95.5000" RightMargin="-95.5000" TopMargin="-347.5000" BottomMargin="156.5000" LeftEage="63" RightEage="63" TopEage="63" BottomEage="63" Scale9OriginX="63" Scale9OriginY="63" Scale9Width="65" Scale9Height="65" ctype="ImageViewObjectData">
                 <Size X="191.0000" Y="191.0000" />
                 <Children>
                   <AbstractNodeData Name="makerescountbox" ActionTag="-282353021" Tag="224" IconVisible="False" LeftMargin="52.5000" RightMargin="52.5000" TopMargin="148.5659" BottomMargin="5.4341" ctype="SpriteObjectData">
@@ -78,20 +78,30 @@
                     <FileData Type="MarkedSubImage" Path="ui/makerescountbox.png" Plist="ui.plist" />
                     <BlendFunc Src="1" Dst="771" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="changeicon" ActionTag="-505386013" VisibleForFrame="False" Tag="164" IconVisible="False" LeftMargin="120.3260" RightMargin="27.6740" TopMargin="114.3411" BottomMargin="33.6589" ctype="SpriteObjectData">
+                    <Size X="43.0000" Y="43.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="141.8260" Y="55.1589" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.7425" Y="0.2888" />
+                    <PreSize X="0.2251" Y="0.2251" />
+                    <FileData Type="MarkedSubImage" Path="ui/changepiece.png" Plist="ui.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position Y="251.9997" />
+                <Position Y="252.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="MarkedSubImage" Path="ui/makeresbox.png" Plist="ui.plist" />
-                <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="res0" ActionTag="-639475456" Tag="225" IconVisible="False" LeftMargin="-54.5000" RightMargin="-54.5000" TopMargin="-306.5000" BottomMargin="197.5000" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="res0" ActionTag="-639475456" Tag="225" IconVisible="False" LeftMargin="-54.5000" RightMargin="-54.5000" TopMargin="-309.5000" BottomMargin="200.5000" TouchEnable="True" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
                 <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position Y="252.0000" />
+                <Position Y="255.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />

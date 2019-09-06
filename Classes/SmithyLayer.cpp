@@ -571,42 +571,96 @@ void SmithyLayer::lvup()
 	}
 }
 
-void SmithyLayer::makeRes(std::string resid)
+std::vector<int> SmithyLayer::makeResRnd(int originEquip_qu)
 {
-	//品质概率
-	int qu = 0;
-	int rnd = GlobalInstance::getInstance()->createRandomNum(100);
+	int rnds[5] = { 0,0,0,0,0 };
 	if (m_buidingData->level.getValue() < 4)
 	{
-		qu = 0;
+		rnds[0] = 100;
 	}
 	else if (m_buidingData->level.getValue() < 9)
 	{
-		if (rnd < 80)
-			qu = 0;
-		else
-			qu = 1;
+		rnds[0] = 80;
+		rnds[1] = 20;
 	}
 	else if (m_buidingData->level.getValue() < 14)
 	{
-		if (rnd < 60)
-			qu = 0;
-		else if (rnd < 90)
-			qu = 1;
-		else
-			qu = 2;
+		rnds[0] = 60;
+		rnds[1] = 30;
+		rnds[2] = 10;
 	}
 	else
 	{
-		if (rnd < 55)
-			qu = 0;
-		else if (rnd < 85)
-			qu = 1;
-		else if (rnd < 95)
-			qu = 2;
-		else
-			qu = 3;
+		rnds[0] = 55;
+		rnds[1] = 30;
+		rnds[2] = 10;
+		rnds[3] = 5;
 	}
+
+	if (originEquip_qu > 0)
+	{
+		int oqu = originEquip_qu;
+		if (oqu == 4) {
+			rnds[0] = rnds[0] - 45;
+			rnds[1] = rnds[1] + 10;
+			rnds[2] = rnds[2] + 15;
+			rnds[3] = rnds[3] + 20;
+		}
+
+		else if (oqu == 3) {
+			rnds[0] = rnds[0] - 30;
+			rnds[1] = rnds[1] + 5;
+			rnds[2] = rnds[2] + 10;
+			rnds[3] = rnds[3] + 15;
+		}
+		else if (oqu == 2) {
+			rnds[0] = rnds[0] - 25;
+			rnds[1] = rnds[1] + 10;
+			rnds[2] = rnds[2] + 15;
+		}
+
+		else if (oqu == 1) {
+			rnds[0] = rnds[0] - 15;
+			rnds[1] = rnds[1] + 15;
+		}
+	}
+
+	std::vector<int> vec_ret;
+	for (int i = 0; i < 5; i++)
+	{
+		vec_ret.push_back(rnds[i]);
+	}
+
+	return vec_ret;
+}
+
+void SmithyLayer::makeRes(std::string resid, int originEquip_qu, int originEquip_lv)
+{
+	std::vector<int> vec_rnd = makeResRnd(originEquip_qu);
+	for (int i = 1; i < 5; i++) {
+		vec_rnd[i] = vec_rnd[i] + vec_rnd[i-1];
+	}
+
+	int r = GlobalInstance::getInstance()->createRandomNum(100);
+
+	int qu = 0;
+	for (unsigned int i = 0; i < vec_rnd.size(); i++) {
+
+		if (r < vec_rnd[i])
+		{
+			qu = i;
+			break;
+		}
+	}
+	
+	DynamicValueInt dv;
+	if (originEquip_qu > 0)
+	{
+		if (qu > originEquip_qu)
+			qu = originEquip_qu;
+		dv.setValue(originEquip_lv);
+	}
+
 	int stc = GlobalInstance::getInstance()->generateStoneCount(qu);
 
 	int count = 1;
@@ -617,6 +671,21 @@ void SmithyLayer::makeRes(std::string resid)
 		count = 100;
 	}
 	ResBase* retres = MyRes::Add(resid, count, MYSTORAGE, qu, stc);
+
+	if (dv.getValue() > 0)
+	{
+		if (dv.getValue() <= 5)
+			dv.setValue(dv.getValue() - 1);
+		else if (dv.getValue() <= 10)
+			dv.setValue(dv.getValue() - 2);
+		else if (dv.getValue() <= 15)
+			dv.setValue(dv.getValue() - 3);
+		else
+			dv.setValue(dv.getValue() - 4);
+	}
+
+	if (retres->getType() >= T_ARMOR && retres->getType() <= T_FASHION)
+		((Equip*)retres)->setLv(dv);
 
 	std::string qukey = StringUtils::format("potential_%d", qu);
 	std::string resstr = StringUtils::format(ResourceLang::map_lang["resmname"].c_str(), GlobalInstance::map_AllResources[resid].name.c_str());

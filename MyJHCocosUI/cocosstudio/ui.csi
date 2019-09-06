@@ -772,6 +772,11 @@
       <FilePathData Path="ui/pn070.png" />
       <FilePathData Path="ui/pn071.png" />
       <FilePathData Path="ui/main_activitybtn.png" />
+      <FilePathData Path="ui/makeresbox_qu0.png" />
+      <FilePathData Path="ui/makeresbox_qu1.png" />
+      <FilePathData Path="ui/makeresbox_qu2.png" />
+      <FilePathData Path="ui/makeresbox_qu3.png" />
+      <FilePathData Path="ui/makeresbox_qu4.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

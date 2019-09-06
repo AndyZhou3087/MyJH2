@@ -5,6 +5,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "Building.h"
+#include "Equip.h"
 USING_NS_CC;
 
 typedef enum
@@ -29,7 +30,9 @@ public:
 
 	void lvup();
 
-	void makeRes(std::string resid);
+	std::vector<int> makeResRnd(int originEquip_qu);
+
+	void makeRes(std::string resid, int originEquip_qu, int originEquip_lv);
 
 	void delayShowNewerGuide(float dt);
 

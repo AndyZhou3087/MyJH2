@@ -478,7 +478,7 @@ void ConsumeResActionLayer::action()
 	{
 		std::string rid = (char*)m_data;
 		SmithyLayer* smithyLayer = (SmithyLayer*)this->getParent();
-		smithyLayer->makeRes(rid);
+		smithyLayer->makeRes(rid, 0, 0);
 		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_MAKERES);
 	}
 }

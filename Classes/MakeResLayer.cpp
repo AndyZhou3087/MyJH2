@@ -15,12 +15,17 @@
 #include "CannotTouchLayer.h"
 #include "SimpleResPopLayer.h"
 #include "EquipDescLayer.h"
+#include "SelectMakeEquip.h"
 
 USING_NS_CC;
 
 MakeResLayer::MakeResLayer()
 {
-
+	canSelectEquip = NULL;
+	canSelectEquipImg = NULL;
+	canSelectEquipImgbox = NULL;
+	originequip_qu = 0;
+	originequip_lv = 0;
 }
 
 MakeResLayer::~MakeResLayer()
@@ -114,15 +119,52 @@ bool MakeResLayer::init(void* data)
 
 			std::string rid = map_it->first;
 
-			std::string str = StringUtils::format("ui/%s.png", rid.c_str());
+			int qu = 0;
+			int t = 0;
+			for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+			{
+				if (rid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+					break;
+			}
+
+			int mycount = MyRes::getMyResCount(rid);
+			if (t >= T_ARMOR && t <= T_FASHION)
+			{
+				mycount = MyRes::getEquipableCount(rid);
+				if (mycount > 0)
+				{
+					for (unsigned int i = 0; i < MyRes::vec_MyResources.size(); i++)
+					{
+						ResBase* myres = MyRes::vec_MyResources[i];
+						if (myres->getId() == rid && myres->getWhere() == MYSTORAGE)
+						{
+							canSelectEquipImg = res;
+							canSelectEquip = (Equip*)myres;
+							originequip_qu = canSelectEquip->getQU().getValue();
+							originequip_lv = canSelectEquip->getLv().getValue();
+							qu = myres->getQU().getValue();
+							break;
+						}
+					}
+					canSelectEquipImgbox = (cocos2d::ui::ImageView*)resbgnode->getChildByName(boxnamestr);
+					std::string resboxstr = StringUtils::format("ui/makeresbox_qu%d.png", qu);
+
+					canSelectEquipImgbox->loadTexture(resboxstr, cocos2d::ui::Widget::TextureResType::PLIST);
+
+					resbgnode->getChildByName(boxnamestr)->getChildByName("changeicon")->setVisible(true);
+				}
+			}
+
+			std::string str = GlobalInstance::getInstance()->getResUIFrameName(rid, qu);//StringUtils::format("ui/%s.png", rid.c_str());
 			res->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
 			res->setTag(i);
 			res->addTouchEventListener(CC_CALLBACK_2(MakeResLayer::onResClick, this));
 			res->setUserData((void*)vec_res[i].begin()->first.c_str());
 			countlbl[i] = (cocos2d::ui::TextBMFont*)makerescountbox->getChildByName("count");
 
-			str = StringUtils::format("%d/%d", MyRes::getMyResCount(rid), map_res[rid]);
 
+			str = StringUtils::format("%d/%d", mycount, map_res[rid]);
+	
 			countlbl[i]->setString(str);
 
 			if (map_res[rid] > 0)
@@ -179,26 +221,7 @@ bool MakeResLayer::init(void* data)
 	std::string coinstr = StringUtils::format("x%d", costcoindv.getValue());
 	coincountlbl->setString(coinstr);
 
-	std::vector<float> vec_rnds = makeResRnd();
-	std::string rndstr;
-	std::string rnddescname;
-	for (int i = 0; i < 5; i++)
-	{
-		rnddescname = StringUtils::format("rnddesc%d", i);
-		cocos2d::ui::Text* rnddesc = (cocos2d::ui::Text*)csbnode->getChildByName(rnddescname);
-
-		rnddescname = StringUtils::format("makeresrnd_%d", i);
-
-		std::string kstr;
-		
-		if (vec_rnds[i] < 0.0001)
-			kstr = "--";
-		else
-			kstr = StringUtils::format("%.2f%%", vec_rnds[i]);
-		rndstr = StringUtils::format(ResourceLang::map_lang[rnddescname].c_str(), kstr.c_str());
-		rnddesc->setString(rndstr);
-		rnddesc->setVisible(t >= T_ARMOR && t <= T_FASHION);
-	}
+	updateRndUI();
 
 	Node* makeresdescbox = csbnode->getChildByName("makeresdescbox");
 	makeresdescbox->setVisible(t >= T_ARMOR && t <= T_FASHION);
@@ -257,6 +280,23 @@ void MakeResLayer::showNewerGuide(int step)
 	g_mainScene->showNewerGuideNode(step, nodes);
 }
 
+void MakeResLayer::changeEquip(Equip* equip)
+{
+	canSelectEquip = equip;
+	originequip_qu = canSelectEquip->getQU().getValue();
+	originequip_lv = canSelectEquip->getLv().getValue();
+	if (canSelectEquipImg != NULL)
+	{
+		int qu = equip->getQU().getValue();
+		std::string str = GlobalInstance::getInstance()->getResUIFrameName(equip->getId(), qu);//StringUtils::format("ui/%s.png", rid.c_str());
+		canSelectEquipImg->loadTexture(ResourcePath::makePath(str), cocos2d::ui::Widget::TextureResType::PLIST);
+
+		std::string resboxstr = StringUtils::format("ui/makeresbox_qu%d.png", qu);
+		canSelectEquipImgbox->loadTexture(resboxstr, cocos2d::ui::Widget::TextureResType::PLIST);
+	}
+	updateRndUI();
+}
+
 void MakeResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	Node* clicknode = (Node*)pSender;
@@ -269,7 +309,7 @@ void MakeResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		case 1000://制作
 			if (checkResIsEnough())//资源足够
 			{	//std::vector<std::map<std::string, int>> lvupres = m_building->lvupres[m_building->level.getValue()];
-				
+
 				//减掉资源
 
 				for (unsigned int i = 0; i < vec_res.size(); i++)
@@ -277,9 +317,26 @@ void MakeResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 					std::map<std::string, int> map_res = vec_res[i];
 					std::map<std::string, int>::iterator map_it = map_res.begin();
 					std::string resid = map_it->first;
+
 					ResBase* res = MyRes::getMyRes(resid);
-					MyRes::Use(res, map_res[resid]);
+					if (res->getType() >= T_ARMOR && res->getType() <= T_FASHION)
+					{
+						if (canSelectEquip != NULL) {
+							for (unsigned int n = 0; n < canSelectEquip->vec_stones.size(); n++)
+							{
+								std::string stoneid = canSelectEquip->vec_stones[n];
+								if (stoneid.length() >= 3)//有镶嵌宝石
+								{
+									MyRes::Add(canSelectEquip->vec_stones[n]);
+								}
+							}
+							MyRes::Use(canSelectEquip, map_res[resid]);
+						}
+					}
+					else
+						MyRes::Use(res, map_res[resid]);
 				}
+
 				showMakeAnim();
 			}
 			else
@@ -338,19 +395,18 @@ void MakeResLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		else
 			forwhere = 1;
 
+		int t = -1;
+		for (int k = 0; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)
+		{
+			if (resid.compare(0, 1, RES_TYPES_CHAR[k]) == 0)
+			{
+				t = k;
+				break;
+			}
+		}
+
 		if (tag == 100)
 		{
-
-			int t = -1;
-			for (int k = 0; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)
-			{
-				if (resid.compare(0, 1, RES_TYPES_CHAR[k]) == 0)
-				{
-					t = k;
-					break;
-				}
-			}
-
 			if (t >= T_ARMOR && t <= T_NG)
 			{
 				Layer* layer = EquipDescLayer::create(resid, 3, 1);
@@ -366,9 +422,18 @@ void MakeResLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 		}
 		else
 		{
-			SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, forwhere, buyrescount);
-			this->addChild(layer);
-			AnimationEffect::openAniEffect(layer);
+			if (t >= T_ARMOR && t <= T_FASHION && MyRes::getEquipableCount(resid) > 0)
+			{
+				SelectMakeEquip* layer = SelectMakeEquip::create(resid);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
+			}
+			else
+			{
+				SimpleResPopLayer* layer = SimpleResPopLayer::create(resid, forwhere, buyrescount);
+				this->addChild(layer);
+				AnimationEffect::openAniEffect(layer);
+			}
 		}
 	}
 }
@@ -399,19 +464,60 @@ void MakeResLayer::finishMakeAnim()
 	equipres->runAction(Sequence::create(ScaleTo::create(0.2f, 1.5f), DelayTime::create(0.5f), CallFuncN::create(CC_CALLBACK_0(MakeResLayer::action, this)), NULL));
 }
 
+void MakeResLayer::updateRndUI()
+{
+	SmithyLayer* smithyLayer = (SmithyLayer*)g_mainScene->getChildByName("2smithy");
+
+	std::vector<int> vec_rnds = smithyLayer->makeResRnd(originequip_qu);
+	std::string rndstr;
+	std::string rnddescname;
+
+	std::string resid = (char*)m_data;
+
+	int t = -1;
+	for (int k = 0; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)
+	{
+		if (resid.compare(0, 1, RES_TYPES_CHAR[k]) == 0)
+		{
+			t = k;
+			break;
+		}
+	}
+
+	for (int i = 0; i < 5; i++)
+	{
+		rnddescname = StringUtils::format("rnddesc%d", i);
+		cocos2d::ui::Text* rnddesc = (cocos2d::ui::Text*)csbnode->getChildByName(rnddescname);
+
+		rnddescname = StringUtils::format("makeresrnd_%d", i);
+
+		std::string kstr;
+
+		if (vec_rnds[i] < 0.0001)
+			kstr = "--";
+		else
+			kstr = StringUtils::format("%.2f%%", vec_rnds[i] * 1.0f);
+		rndstr = StringUtils::format(ResourceLang::map_lang[rnddescname].c_str(), kstr.c_str());
+		rnddesc->setString(rndstr);
+		rnddesc->setVisible(t >= T_ARMOR && t <= T_FASHION);
+	}
+}
+
 void MakeResLayer::action()
 {
-	AnimationEffect::closeAniEffect((Layer*)this);
 	std::string rid = (char*)m_data;
 	if (g_mainScene != NULL)
 	{
 		SmithyLayer* smithyLayer = (SmithyLayer*)g_mainScene->getChildByName("2smithy");
 		if (smithyLayer != NULL)
 		{
-			smithyLayer->makeRes(rid);
+			smithyLayer->makeRes(rid, originequip_qu, originequip_lv);
+			
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_MAKERES);
 		}
 	}
+
+	AnimationEffect::closeAniEffect((Layer*)this);
 }
 
 void MakeResLayer::updateUI(float dt)
@@ -424,8 +530,24 @@ void MakeResLayer::updateUI(float dt)
 		std::map<std::string, int>::iterator map_it = map_res.begin();
 
 		std::string resid = map_it->first;
+
+		int t = -1;
+		for (int k = 0; k < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); k++)
+		{
+			if (resid.compare(0, 1, RES_TYPES_CHAR[k]) == 0)
+			{
+				t = k;
+				break;
+			}
+		}
+
 		int mycount = MyRes::getMyResCount(resid);
-		std::string str = StringUtils::format("%d/%d", MyRes::getMyResCount(resid), map_res[resid]);
+		if (t >= T_ARMOR && t <= T_FASHION)
+		{
+			mycount = MyRes::getEquipableCount(resid);
+		}
+
+		std::string str = StringUtils::format("%d/%d", mycount, map_res[resid]);
 
 		countlbl[i]->setString(str);
 		if (mycount < map_res[resid])
@@ -456,45 +578,6 @@ bool MakeResLayer::checkResIsEnough()
 			return false;
 	}
 	return true;
-}
-
-std::vector<float> MakeResLayer::makeResRnd()
-{
-	Building* smithyBuilding = Building::map_buildingDatas["2smithy"];
-	std::vector<float> vec_ret;
-	if (smithyBuilding->level.getValue() < 4)
-	{
-		vec_ret.push_back(100.00f);
-		vec_ret.push_back(0.00f);
-		vec_ret.push_back(0.00f);
-		vec_ret.push_back(0.00f);
-		vec_ret.push_back(0.00f);
-	}
-	else if (smithyBuilding->level.getValue() < 9)
-	{
-		vec_ret.push_back(80.00f);
-		vec_ret.push_back(20.00f);
-		vec_ret.push_back(0.00f);
-		vec_ret.push_back(0.00f);
-		vec_ret.push_back(0.00f);
-	}
-	else if (smithyBuilding->level.getValue() < 14)
-	{
-		vec_ret.push_back(60.00f);
-		vec_ret.push_back(30.00f);
-		vec_ret.push_back(10.00f);
-		vec_ret.push_back(0.00f);
-		vec_ret.push_back(0.00f);
-	}
-	else
-	{
-		vec_ret.push_back(55.00f);
-		vec_ret.push_back(30.00f);
-		vec_ret.push_back(10.00f);
-		vec_ret.push_back(5.00f);
-		vec_ret.push_back(0.00f);
-	}
-	return vec_ret;
 }
 
 void MakeResLayer::onExit()

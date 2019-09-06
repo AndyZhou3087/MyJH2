@@ -5,6 +5,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "Building.h"
+#include "Equip.h"
 USING_NS_CC;
 
 class MakeResLayer : public cocos2d::Layer
@@ -21,6 +22,8 @@ public:
 
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
+
+	void changeEquip(Equip* equip);
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
@@ -37,7 +40,7 @@ private:
 
 	void finishMakeAnim();
 
-	std::vector<float> makeResRnd();
+	void updateRndUI();
 
 private:
 	cocos2d::ui::TextBMFont* countlbl[3];//资源数量LABEL
@@ -46,6 +49,13 @@ private:
 	std::vector<std::map<std::string, int>> vec_res;//需要的资源的数据
 	DynamicValueInt costcoindv;//立即动作需要的元宝数
 	Node* csbnode;
+	Equip* canSelectEquip;
+	cocos2d::ui::ImageView* canSelectEquipImg;
+
+	cocos2d::ui::ImageView* canSelectEquipImgbox;
+
+	int originequip_qu;
+	int originequip_lv;
 };
 
 #endif

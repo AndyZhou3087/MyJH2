@@ -42,10 +42,12 @@
           <FilePathData Path="npcLayer.csd" />
           <FilePathData Path="messageLayer.csd" />
           <FilePathData Path="resDescLayer.csd" />
-          <FilePathData Path="matchContentLayer.csd" />
           <FilePathData Path="matchHeroNode.csd" />
+          <FilePathData Path="smithyLayer.csd" />
+          <FilePathData Path="makeResLayer.csd" />
+          <FilePathData Path="selectEquipLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="matchContentLayer.csd" />
+        <ActiveDocument Path="makeResLayer.csd" />
       </Value>
     </Item>
   </Properties>
