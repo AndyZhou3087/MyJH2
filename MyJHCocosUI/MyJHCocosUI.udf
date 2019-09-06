@@ -28,26 +28,11 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="zanLayer.csd" />
           <FilePathData Path="ui.csi" />
           <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="matchMainLayer.csd" />
-          <FilePathData Path="outTownLayer.csd" />
-          <FilePathData Path="MainMenuLayer.csd" />
-          <FilePathData Path="mapBlockLayer.csd" />
-          <FilePathData Path="fightLayer.csd" />
-          <FilePathData Path="wellGiftLayer.csd" />
-          <FilePathData Path="winRewardLayer.csd" />
-          <FilePathData Path="MainLayer.csd" />
-          <FilePathData Path="npcLayer.csd" />
-          <FilePathData Path="messageLayer.csd" />
-          <FilePathData Path="resDescLayer.csd" />
-          <FilePathData Path="matchHeroNode.csd" />
-          <FilePathData Path="smithyLayer.csd" />
-          <FilePathData Path="makeResLayer.csd" />
-          <FilePathData Path="selectEquipLayer.csd" />
+          <FilePathData Path="strengthenLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="makeResLayer.csd" />
+        <ActiveDocument Path="strengthenLayer.csd" />
       </Value>
     </Item>
   </Properties>

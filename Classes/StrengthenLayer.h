@@ -21,6 +21,8 @@ public:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+
+	void updateSuccRnd();
 private:
 	int langtype;
 	Equip* m_equip;
@@ -29,6 +31,9 @@ private:
 	DynamicValueInt coincount;
 	Node* boxeffectnode;
 	cocos2d::ui::ImageView* resbox_qu;
+	cocos2d::ui::ImageView* res4img;
+	cocos2d::ui::Text* res4lbl;
+	DynamicValueInt luckcount;
 };
 #endif
 

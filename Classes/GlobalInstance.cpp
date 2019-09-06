@@ -210,6 +210,8 @@ bool GlobalInstance::isupspeeding = false;
 
 bool GlobalInstance::isopenpraise = false;
 
+int GlobalInstance::buildingbrokencount = 0;
+
 GlobalInstance::GlobalInstance()
 {
 

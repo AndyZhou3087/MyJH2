@@ -71,7 +71,6 @@
           <Image Name="cardherobox_2.png" />
           <Image Name="cardherobox_3.png" />
           <Image Name="cardherobox_4.png" />
-          <Image Name="carryoutbox.png" />
           <Image Name="carryoutfoodbox.png" />
           <Image Name="carryoutherobox.jpg" />
           <Image Name="changevocbg .png" />
@@ -1514,6 +1513,7 @@
           <Image Name="q001.png" />
           <Image Name="q002.png" />
           <Image Name="q003.png" />
+          <Image Name="q004.png" />
           <Image Name="r001.png" />
           <Image Name="r002.png" />
           <Image Name="r003.png" />
@@ -1559,6 +1559,7 @@
           <Image Name="resbox_qu3.png" />
           <Image Name="resbox_qu4.png" />
           <Image Name="resbox_qu5.png" />
+          <Image Name="resboxaddicon.png" />
           <Image Name="resitem.png" />
           <Image Name="ressunbtn.png" />
           <Image Name="routblock.png" />

@@ -18,11 +18,13 @@
 #include "StoreHouseLayer.h"
 #include "SimpleResPopLayer.h"
 #include "BuyCoinLayer.h"
+#include "GiftContentLayer.h"
 
 StrengthenLayer::StrengthenLayer()
 {
 	coincount.setValue(0);
 	boxeffectnode = NULL;
+	luckcount.setValue(0);
 }
 
 
@@ -92,7 +94,7 @@ bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 
 	name->setTextColor(Color4B(POTENTIALCOLOR[qu]));
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 4; i++)
 	{
 
 		str = StringUtils::format("resbox_%d", i);
@@ -105,29 +107,30 @@ bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 		std::string restr = StringUtils::format("q00%d", i + 1);
 		resname->setString(GlobalInstance::map_AllResources[restr].name);
 
+
 		str = StringUtils::format("rescount_%d", i);
 		cocos2d::ui::Text* rescount = (cocos2d::ui::Text*)csbnode->getChildByName(str);
-		str = StringUtils::format("%d/%d", MyRes::getMyResCount(restr), m_equip->getLv().getValue() + 1);//一级需求一个
-		rescount->setString(str);
-
-		coincount.setValue(coincount.getValue() + GlobalInstance::map_AllResources[restr].coinval * (m_equip->getLv().getValue() + 1));
-		if (MyRes::getMyResCount(restr) < m_equip->getLv().getValue() + 1)
+		if (i < 3)
 		{
-			rescount->setColor(Color3B(255, 0, 0));
+			str = StringUtils::format("%d/%d", MyRes::getMyResCount(restr), m_equip->getLv().getValue() + 1);//一级需求一个
+			rescount->setString(str);
+
+			coincount.setValue(coincount.getValue() + GlobalInstance::map_AllResources[restr].coinval * (m_equip->getLv().getValue() + 1));
+			if (MyRes::getMyResCount(restr) < m_equip->getLv().getValue() + 1)
+			{
+				rescount->setColor(Color3B(255, 0, 0));
+			}
+		}
+		else
+		{
+			res4img = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
+			res4lbl = rescount;
+			std::string countstr = StringUtils::format("0/%d", MyRes::getMyResCount("q004"));
+			rescount->setString(countstr);
 		}
 	}
 
-	cocos2d::ui::Text* tipstext = (cocos2d::ui::Text*)csbnode->getChildByName("tipstext");
-	if (m_equip->getLv().getValue() >= 6)
-	{
-		str = StringUtils::format(ResourceLang::map_lang["tipsstrengthtext"].c_str(), ODDS[m_equip->getLv().getValue()], COSTLV[m_equip->getLv().getValue()]);
-	}
-	else
-	{
-		str = StringUtils::format(ResourceLang::map_lang["tipsstrengthtext1"].c_str(), ODDS[m_equip->getLv().getValue()], COSTLV[m_equip->getLv().getValue()]); 
-	}
-	
-	tipstext->setString(str);
+	updateSuccRnd();
 
 	//强化按钮
 	cocos2d::ui::Widget* actionbtn = (cocos2d::ui::Widget*)csbnode->getChildByName("actionbtn");
@@ -221,7 +224,29 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		Quest::setAchieveTypeCount(STRENG_EQUIP, 1);
 
 		int r = GlobalInstance::getInstance()->createRandomNum(1000);
-		int odds = ODDS[m_equip->getLv().getValue()] * 10;
+		int odds = ODDS[m_equip->getLv().getValue()] * 10 + luckcount.getValue() * 50;
+
+		MyRes::Use("q004", luckcount.getValue());
+
+		if (odds > 1000)
+			odds = 1000;
+
+		if (m_equip->getLv().getValue() + 1 == 18)
+		{
+			if (odds > 800)
+				odds = 800;
+		}
+		else if (m_equip->getLv().getValue() + 1 == 19)
+		{
+			if (odds > 700)
+				odds = 700;
+		}
+		else if (m_equip->getLv().getValue() + 1 == 20)
+		{
+			if (odds > 600)
+				odds = 600;
+		}
+
 		if (r <= odds)
 		{
 			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_STRENTHOK);
@@ -283,12 +308,87 @@ void StrengthenLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 {
 	if (type == ui::Widget::TouchEventType::ENDED)
 	{
+		
 		Node* node = (Node*)pSender;
 		int tag = node->getTag();
-		std::string restr = StringUtils::format("q00%d", tag + 1);
-		SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
-		SimpleResPopLayer* layer = SimpleResPopLayer::create(restr, 2);
-		this->addChild(layer);
-		AnimationEffect::openAniEffect(layer);
+
+		if (tag < 3)
+		{
+			std::string restr = StringUtils::format("q00%d", tag + 1);
+			SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
+			SimpleResPopLayer* layer = SimpleResPopLayer::create(restr, 2);
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
+		else if(tag == 3){
+			std::string luckresid = "q004";
+			luckcount.setValue(luckcount.getValue() + 1);
+			int q004count = MyRes::getMyResCount(luckresid);
+			if (q004count >= luckcount.getValue())
+			{
+				std::string resstr = StringUtils::format("ui/%s.png", luckresid.c_str());
+				res4img->ignoreContentAdaptWithSize(true);
+				res4img->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
+					
+				std::string str = StringUtils::format("%d/%d", luckcount.getValue(), MyRes::getMyResCount(luckresid));
+				res4lbl->setString(str);
+				str = StringUtils::format(ResourceLang::map_lang["strenthaddrnd"].c_str(), luckcount.getValue()*5);
+				MovingLabel::show(str);
+
+				updateSuccRnd();
+			}
+			else
+			{
+				luckcount.setValue(q004count);
+				std::string str = StringUtils::format(ResourceLang::map_lang["notenouph"].c_str(), GlobalInstance::map_AllResources[luckresid].name.c_str());
+				MovingLabel::show(str);
+
+				for (unsigned int i = 0; i < GlobalInstance::vec_shopdata.size(); i++)
+				{
+					if (GlobalInstance::vec_shopdata[i].icon.compare("luckygift") == 0)
+					{
+						GiftContentLayer* layer = GiftContentLayer::create(&GlobalInstance::vec_shopdata[i], i);
+						g_mainScene->addChild(layer, 10, "GiftContentLayer");
+						AnimationEffect::openAniEffect((Layer*)layer);
+						break;
+					}
+				}
+			}
+		}
 	}
+}
+
+void StrengthenLayer::updateSuccRnd()
+{
+	cocos2d::ui::Text* tipstext = (cocos2d::ui::Text*)csbnode->getChildByName("tipstext");
+	std::string str;
+	float odds = ODDS[m_equip->getLv().getValue()] + luckcount.getValue() * 5;
+	if (odds > 100.0f)
+		odds = 100.0f;
+
+	if (m_equip->getLv().getValue() +1 == 18)
+	{
+		if (odds > 80.0f)
+			odds = 80.0f;
+	}
+	else if (m_equip->getLv().getValue()+1 == 19)
+	{
+		if (odds > 70.0f)
+			odds = 70.0f;
+	}
+	else if (m_equip->getLv().getValue()+1 == 20)
+	{
+		if (odds > 60.0f)
+			odds = 60.0f;
+	}
+	if (m_equip->getLv().getValue() >= 6)
+	{
+		str = StringUtils::format(ResourceLang::map_lang["tipsstrengthtext"].c_str(), odds, COSTLV[m_equip->getLv().getValue()]);
+	}
+	else
+	{
+		str = StringUtils::format(ResourceLang::map_lang["tipsstrengthtext1"].c_str(), odds, COSTLV[m_equip->getLv().getValue()]);
+	}
+
+	tipstext->setString(str);
 }

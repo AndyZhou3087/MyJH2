@@ -86,16 +86,15 @@
             <FileData Type="MarkedSubImage" Path="ui/strenthicon.png" Plist="ui.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="brownbox_1" ActionTag="-437573910" Tag="54" IconVisible="False" LeftMargin="130.0000" RightMargin="128.0000" TopMargin="610.0000" BottomMargin="498.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="brownbox" ActionTag="-1032155535" Tag="106" IconVisible="False" LeftMargin="129.0000" RightMargin="129.0000" TopMargin="609.0000" BottomMargin="499.0000" Scale9Enable="True" LeftEage="152" RightEage="152" TopEage="56" BottomEage="56" Scale9OriginX="152" Scale9OriginY="56" Scale9Width="158" Scale9Height="60" ctype="ImageViewObjectData">
             <Size X="462.0000" Y="172.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="361.0000" Y="584.0000" />
+            <Position X="360.0000" Y="585.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5014" Y="0.4563" />
+            <PrePosition X="0.5000" Y="0.4570" />
             <PreSize X="0.6417" Y="0.1344" />
             <FileData Type="Normal" Path="images/brownbox.png" Plist="" />
-            <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="strentharrow_2" ActionTag="-799718756" Tag="55" IconVisible="False" LeftMargin="341.0000" RightMargin="339.0000" TopMargin="580.0000" BottomMargin="658.0000" ctype="SpriteObjectData">
             <Size X="40.0000" Y="42.0000" />
@@ -120,31 +119,31 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resname_2" ActionTag="-775718593" Tag="60" IconVisible="False" LeftMargin="204.6979" RightMargin="472.3021" TopMargin="712.1376" BottomMargin="544.8624" FontSize="20" LabelText="玄铁" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="resname_2" ActionTag="-775718593" Tag="60" IconVisible="False" LeftMargin="170.6979" RightMargin="506.3021" TopMargin="712.1376" BottomMargin="544.8624" FontSize="20" LabelText="玄铁" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="43.0000" Y="23.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="226.1979" Y="556.3624" />
+            <AnchorPoint ScaleX="0.4846" ScaleY="0.4331" />
+            <Position X="191.5372" Y="554.8244" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3142" Y="0.4347" />
+            <PrePosition X="0.2660" Y="0.4335" />
             <PreSize X="0.0597" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rescount_2" ActionTag="683546432" Tag="61" IconVisible="False" LeftMargin="194.3516" RightMargin="462.6484" TopMargin="739.0502" BottomMargin="517.9498" FontSize="20" LabelText="10/100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="rescount_2" ActionTag="683546432" Tag="61" IconVisible="False" LeftMargin="160.3516" RightMargin="496.6484" TopMargin="739.0502" BottomMargin="517.9498" FontSize="20" LabelText="10/100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="63.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="225.8516" Y="529.4498" />
+            <Position X="191.8516" Y="529.4498" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3137" Y="0.4136" />
+            <PrePosition X="0.2665" Y="0.4136" />
             <PreSize X="0.0875" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox_2" ActionTag="1747225200" Tag="186" IconVisible="False" LeftMargin="163.5500" RightMargin="431.4500" TopMargin="606.5000" BottomMargin="548.5000" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox_2" ActionTag="1747225200" Tag="186" IconVisible="False" LeftMargin="129.5500" RightMargin="465.4500" TopMargin="606.5000" BottomMargin="548.5000" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <Children>
               <AbstractNodeData Name="q003_4" ActionTag="1581344763" Tag="59" IconVisible="False" LeftMargin="7.8323" RightMargin="8.1677" TopMargin="7.8340" BottomMargin="8.1660" ctype="SpriteObjectData">
@@ -160,14 +159,14 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="226.0500" Y="611.0000" />
+            <Position X="192.0500" Y="611.0000" />
             <Scale ScaleX="0.6000" ScaleY="0.6000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3140" Y="0.4773" />
+            <PrePosition X="0.2667" Y="0.4773" />
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox_0" ActionTag="1594153159" Tag="187" IconVisible="False" LeftMargin="299.1300" RightMargin="295.8700" TopMargin="606.5000" BottomMargin="548.5000" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox_0" ActionTag="1594153159" Tag="187" IconVisible="False" LeftMargin="294.4349" RightMargin="300.5651" TopMargin="606.5000" BottomMargin="548.5000" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <Children>
               <AbstractNodeData Name="q003_4" ActionTag="794281636" Tag="63" IconVisible="False" LeftMargin="7.8323" RightMargin="8.1677" TopMargin="7.8340" BottomMargin="8.1660" ctype="SpriteObjectData">
@@ -183,14 +182,14 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="361.6300" Y="611.0000" />
+            <Position X="356.9349" Y="611.0000" />
             <Scale ScaleX="0.6000" ScaleY="0.6000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5023" Y="0.4773" />
+            <PrePosition X="0.4957" Y="0.4773" />
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox_1" ActionTag="431448098" Tag="188" IconVisible="False" LeftMargin="434.7100" RightMargin="160.2900" TopMargin="606.5000" BottomMargin="548.5000" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox_1" ActionTag="431448098" Tag="188" IconVisible="False" LeftMargin="459.3198" RightMargin="135.6802" TopMargin="606.5000" BottomMargin="548.5000" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <Children>
               <AbstractNodeData Name="q003_4" ActionTag="-713439878" Tag="67" IconVisible="False" LeftMargin="7.8323" RightMargin="8.1677" TopMargin="7.8340" BottomMargin="8.1660" ctype="SpriteObjectData">
@@ -206,56 +205,56 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="497.2100" Y="611.0000" />
+            <Position X="521.8198" Y="611.0000" />
             <Scale ScaleX="0.6000" ScaleY="0.6000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6906" Y="0.4773" />
+            <PrePosition X="0.7247" Y="0.4773" />
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resname_0" ActionTag="791591506" Tag="64" IconVisible="False" LeftMargin="331.5354" RightMargin="326.4646" TopMargin="712.1371" BottomMargin="544.8629" FontSize="20" LabelText="混沌石" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="resname_0" ActionTag="791591506" Tag="64" IconVisible="False" LeftMargin="319.7490" RightMargin="338.2510" TopMargin="712.1371" BottomMargin="544.8629" FontSize="20" LabelText="混沌石" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="62.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.6114" ScaleY="0.4349" />
-            <Position X="369.4422" Y="554.8656" />
+            <Position X="357.6558" Y="554.8656" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5131" Y="0.4335" />
+            <PrePosition X="0.4967" Y="0.4335" />
             <PreSize X="0.0861" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rescount_0" ActionTag="-1932883777" Tag="65" IconVisible="False" LeftMargin="330.6873" RightMargin="326.3127" TopMargin="740.7290" BottomMargin="516.2710" FontSize="20" LabelText="10/100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="rescount_0" ActionTag="-1932883777" Tag="65" IconVisible="False" LeftMargin="325.2356" RightMargin="331.7644" TopMargin="740.7290" BottomMargin="516.2710" FontSize="20" LabelText="10/100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="63.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="362.1873" Y="527.7710" />
+            <Position X="356.7356" Y="527.7710" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5030" Y="0.4123" />
+            <PrePosition X="0.4955" Y="0.4123" />
             <PreSize X="0.0875" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resname_1" ActionTag="538393895" Tag="68" IconVisible="False" LeftMargin="466.3561" RightMargin="191.6439" TopMargin="712.1376" BottomMargin="544.8624" FontSize="20" LabelText="祝福石" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="resname_1" ActionTag="538393895" Tag="68" IconVisible="False" LeftMargin="487.8000" RightMargin="170.2000" TopMargin="712.1376" BottomMargin="544.8624" FontSize="20" LabelText="祝福石" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="62.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="497.3561" Y="556.3624" />
+            <Position X="518.8000" Y="556.3624" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6908" Y="0.4347" />
+            <PrePosition X="0.7206" Y="0.4347" />
             <PreSize X="0.0861" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
-          <AbstractNodeData Name="rescount_1" ActionTag="385933236" Tag="69" IconVisible="False" LeftMargin="465.5097" RightMargin="191.4903" TopMargin="741.6511" BottomMargin="515.3489" FontSize="20" LabelText="10/100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+          <AbstractNodeData Name="rescount_1" ActionTag="385933236" Tag="69" IconVisible="False" LeftMargin="490.1197" RightMargin="166.8803" TopMargin="741.6511" BottomMargin="515.3489" FontSize="20" LabelText="10/100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
             <Size X="63.0000" Y="23.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="497.0097" Y="526.8489" />
+            <Position X="521.6197" Y="526.8489" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.6903" Y="0.4116" />
+            <PrePosition X="0.7245" Y="0.4116" />
             <PreSize X="0.0875" Y="0.0180" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
@@ -322,6 +321,52 @@
             <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="resbox_3" ActionTag="-847273842" Tag="101" IconVisible="False" LeftMargin="457.9540" RightMargin="137.0460" TopMargin="418.2677" BottomMargin="736.7323" TouchEnable="True" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+            <Size X="125.0000" Y="125.0000" />
+            <Children>
+              <AbstractNodeData Name="res" ActionTag="1092130690" Tag="105" IconVisible="False" LeftMargin="21.0000" RightMargin="21.0000" TopMargin="19.5008" BottomMargin="22.4992" LeftEage="27" RightEage="27" TopEage="27" BottomEage="27" Scale9OriginX="27" Scale9OriginY="27" Scale9Width="29" Scale9Height="29" ctype="ImageViewObjectData">
+                <Size X="83.0000" Y="83.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="62.5000" Y="63.9992" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5120" />
+                <PreSize X="0.6640" Y="0.6640" />
+                <FileData Type="MarkedSubImage" Path="ui/resboxaddicon.png" Plist="ui.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="520.4540" Y="799.2323" />
+            <Scale ScaleX="0.6000" ScaleY="0.6000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.7229" Y="0.6244" />
+            <PreSize X="0.1736" Y="0.0977" />
+            <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="resname_3" ActionTag="-2039111089" Tag="103" IconVisible="False" LeftMargin="489.5995" RightMargin="168.4005" TopMargin="523.9058" BottomMargin="733.0942" FontSize="20" LabelText="祝福石" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="62.0000" Y="23.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="520.5995" Y="744.5942" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.7231" Y="0.5817" />
+            <PreSize X="0.0861" Y="0.0180" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="rescount_3" ActionTag="1170439859" Tag="104" IconVisible="False" LeftMargin="493.7536" RightMargin="173.2464" TopMargin="553.4193" BottomMargin="703.5807" FontSize="20" LabelText="0/100" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ShadowEnabled="True" ctype="TextObjectData">
+            <Size X="53.0000" Y="23.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="520.2536" Y="715.0807" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.7226" Y="0.5587" />
+            <PreSize X="0.0736" Y="0.0180" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="0" G="0" B="0" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

@@ -246,7 +246,8 @@ void FightHeroNode::update(float dt)
 								myhero->clearSkill(gf);
 								this->removeSufferSkillAnim(0);
 							}
-							nextRound(0);
+							//nextRound(0);
+							this->scheduleOnce(schedule_selector(FightHeroNode::nextRound), 0.05f);
 							break;
 						}
 					}
@@ -397,7 +398,8 @@ void FightHeroNode::hurt(float hp, int stat)//stat -1:不显示普攻动画
 		}
 		else
 		{
-			nextRound(0);
+			this->scheduleOnce(schedule_selector(FightHeroNode::nextRound), 0.05f);
+			//nextRound(0);
 		}
 	}
 } 
