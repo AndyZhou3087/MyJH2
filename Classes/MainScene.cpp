@@ -128,10 +128,11 @@ bool MainScene::init()
 				{
 					int r = GlobalInstance::getInstance()->createRandomNum(1000);
 
-					if (r < 30)
+					if (r < 30 && GlobalInstance::buildingbrokencount < 3)
 					{
 						GlobalInstance::map_buildingrepairdata[bbit->first].state = 1;
 						ishasnew = true;
+						GlobalInstance::buildingbrokencount++;
 					}
 				}
 
@@ -1256,6 +1257,7 @@ void MainScene::updateTime(float dt)
 	int t = zerotime / TWENTYFOURHOURSTOSEC;
 	if (t > DataSave::getInstance()->getMyFreshDate())
 	{
+		GlobalInstance::buildingbrokencount = 0;
 		resetDailyData();
 	}
 

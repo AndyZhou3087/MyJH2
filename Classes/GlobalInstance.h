@@ -1089,6 +1089,8 @@ public:
 	static bool isupspeeding;
 
 	static bool isopenpraise;
+
+	static int buildingbrokencount;
 	
 private:
 	static int refreshHeroTime;

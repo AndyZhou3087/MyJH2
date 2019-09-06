@@ -314,6 +314,7 @@ void MainMapScene::updateTime(float dt)
 	int t = zerotime / TWENTYFOURHOURSTOSEC;
 	if (t > DataSave::getInstance()->getMyFreshDate())
 	{
+		GlobalInstance::buildingbrokencount = 0;
 		MainScene::resetDailyData();
 	}
 }

@@ -506,6 +506,7 @@ void GlobalInstance::loadInitData()
 	GlobalInstance::isHasNewmail = false;
 	GlobalInstance::isHasNewactivity = false;
 	GlobalInstance::isupspeeding = false;
+	GlobalInstance::buildingbrokencount = 0;
 
 	GlobalInstance::isBuyYearCard = DataSave::getInstance()->getIsBuyYearCard();
 }
