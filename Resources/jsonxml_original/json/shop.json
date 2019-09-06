@@ -18,5 +18,5 @@
 {"icon":"firstcharge","type":"1","name":"首充礼包","price":"12","res":["r012-120","a006-1-3","w003-1","r006-2000","r001-200","s002-2"],"desc":"购买后可获得金元宝x120、橙色白虹剑、柔云剑法、银两x2000、食物x200、百年人参x2","count":"0","show":"0","paycode":"xk015"},
 {"icon":"oneyuangift","type":"1","name":"1元礼包","price":"1","res":[],"desc":"购买后可获得以下物品","count":"0","show":"0","paycode":"xk018"},
 {"icon":"flash","type":"1","name":"加速礼包","price":"88","res":["j006-1"],"desc":"购买后可获得以下物品","count":"0","show":"0","paycode":"xk020"},
-{"icon":"luckygift","type":"1","name":"幸运石礼包","price":"30","res":["q004-10"],"desc":"购买后可获得以下物品","count":"0","show":"1","paycode":"xk021"}
+{"icon":"luckygift","type":"1","name":"幸运石礼包","price":"30","res":["q004-10"],"desc":"购买后可获幸运石x10","count":"0","show":"1","paycode":"xk021"}
 ]}
