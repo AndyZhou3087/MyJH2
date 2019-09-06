@@ -23,6 +23,8 @@ private:
 	void onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	void updateSuccRnd();
+
+	void updateLuckycountlbl(float dt);
 private:
 	int langtype;
 	Equip* m_equip;

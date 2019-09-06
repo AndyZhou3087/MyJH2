@@ -650,5 +650,5 @@
 	<s name="treetimehint">%s后再来</s>
 	<s name="pieceexchangedesc">3个碎片兑换1个其它碎片</s>
 	<s name="matchformationtext">阵型：%s</s>
-	<s name="strenthaddrnd">强化成功率+%d%%</s>
+	<s name="strenthaddrnd">强化成功率+5%</s>
 </strings>

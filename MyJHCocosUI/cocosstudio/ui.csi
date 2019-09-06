@@ -779,6 +779,7 @@
       <FilePathData Path="ui/makeresbox_qu4.png" />
       <FilePathData Path="ui/resboxaddicon.png" />
       <FilePathData Path="ui/q004.png" />
+      <FilePathData Path="ui/luckygift.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

@@ -908,6 +908,7 @@
           <Image Name="text_gf1.png" />
           <Image Name="text_gf2.png" />
           <Image Name="text_gf3.png" />
+          <Image Name="text_luckygift.png" />
           <Image Name="text_notice.png" />
           <Image Name="text_oneyuangift.png" />
           <Image Name="text_sale.png" />
@@ -1286,6 +1287,7 @@
           <Image Name="loginbtn.png" />
           <Image Name="loginrewardclose.png" />
           <Image Name="loginrewarditem.png" />
+          <Image Name="luckygift.png" />
           <Image Name="m001.png" />
           <Image Name="m002.png" />
           <Image Name="m003.png" />

@@ -125,11 +125,12 @@ bool StrengthenLayer::init(Equip* res_equip, int forwhere)
 		{
 			res4img = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
 			res4lbl = rescount;
-			std::string countstr = StringUtils::format("0/%d", MyRes::getMyResCount("q004"));
-			rescount->setString(countstr);
+
 		}
 	}
 
+	updateLuckycountlbl(0);
+	this->schedule(schedule_selector(StrengthenLayer::updateLuckycountlbl), 1);
 	updateSuccRnd();
 
 	//Ç¿»¯°´Å¥
@@ -330,10 +331,9 @@ void StrengthenLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 				res4img->ignoreContentAdaptWithSize(true);
 				res4img->loadTexture(resstr, cocos2d::ui::Widget::TextureResType::PLIST);
 					
-				std::string str = StringUtils::format("%d/%d", luckcount.getValue(), MyRes::getMyResCount(luckresid));
-				res4lbl->setString(str);
-				str = StringUtils::format(ResourceLang::map_lang["strenthaddrnd"].c_str(), luckcount.getValue()*5);
-				MovingLabel::show(str);
+				updateLuckycountlbl(0);
+				//std::string str = StringUtils::format(ResourceLang::map_lang["strenthaddrnd"].c_str(), luckcount.getValue()*5);
+				MovingLabel::show(ResourceLang::map_lang["strenthaddrnd"]);
 
 				updateSuccRnd();
 			}
@@ -356,6 +356,12 @@ void StrengthenLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			}
 		}
 	}
+}
+
+void StrengthenLayer::updateLuckycountlbl(float dt)
+{
+	std::string countstr = StringUtils::format("%d/%d", luckcount.getValue(), MyRes::getMyResCount("q004"));
+	res4lbl->setString(countstr);
 }
 
 void StrengthenLayer::updateSuccRnd()
