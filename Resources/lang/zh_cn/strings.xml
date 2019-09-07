@@ -455,7 +455,8 @@
 	<s name="makeresrnd_2">紫色品质概率%s</s>
 	<s name="makeresrnd_3">橙色品质概率%s</s>
 	<s name="makeresrnd_4">红色品质概率%s</s>
-	<s name="makerestips">铁匠铺等级越高，打造高品质装备的成功率越高</s>
+	<s name="makerestips0">铁匠铺等级越高，打造高品质装备的成功率越高</s>
+	<s name="makerestips1">原料装备品阶越高，越有可能制作出的更高品阶的装备</s>
 	<s name="getwheretext">获取途径</s>
 	<s name="marketlvlow">「%s」%d级市场开放购买，请先升级市场！</s>
 	<s name="marketlvlow">「%s」%d级市场开放购买，请先升级市场！</s>

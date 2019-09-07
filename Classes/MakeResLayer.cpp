@@ -193,8 +193,8 @@ bool MakeResLayer::init(void* data)
 			break;
 	}
 
-	cocos2d::ui::Text* tips = (cocos2d::ui::Text*)csbnode->getChildByName("tips");
-	tips->setString(ResourceLang::map_lang["makerestips"]);
+	tips = (cocos2d::ui::Text*)csbnode->getChildByName("tips");
+
 	tips->setVisible(t >= T_ARMOR && t <= T_FASHION);
 	//按钮1
 	cocos2d::ui::Widget* makebtn = (cocos2d::ui::Widget*)csbnode->getChildByName("makebtn");
@@ -558,6 +558,10 @@ void MakeResLayer::updateUI(float dt)
 
 	//std::string str = StringUtils::format("x%d", (m_building->level.getValue() + 1) * 100);
 	//coincountlbl->setString(str);
+
+	int r = GlobalInstance::getInstance()->createRandomNum(2);
+	std::string tipstrkey = StringUtils::format("makerestips%d", r);
+	tips->setString(ResourceLang::map_lang[tipstrkey]);
 }
 
 

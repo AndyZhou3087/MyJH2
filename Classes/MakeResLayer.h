@@ -53,6 +53,7 @@ private:
 	cocos2d::ui::ImageView* canSelectEquipImg;
 
 	cocos2d::ui::ImageView* canSelectEquipImgbox;
+	cocos2d::ui::Text* tips;
 
 	int originequip_qu;
 	int originequip_lv;
