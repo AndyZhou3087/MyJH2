@@ -323,6 +323,34 @@ void StrengthenLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		}
 		else if(tag == 3){
 			std::string luckresid = "q004";
+
+			bool ismax = false;
+			int odds = ODDS[m_equip->getLv().getValue()] + (luckcount.getValue() + 1) * 5;
+			if (odds >= 100)
+				ismax = true;
+
+			if (m_equip->getLv().getValue() + 1 == 18)
+			{
+				if (odds >= 80)
+					ismax = true;
+			}
+			else if (m_equip->getLv().getValue() + 1 == 19)
+			{
+				if (odds >= 70)
+					ismax = true;
+			}
+			else if (m_equip->getLv().getValue() + 1 == 20)
+			{
+				if (odds >= 60)
+					ismax = true;
+			}
+
+			if (ismax)
+			{
+				MovingLabel::show(ResourceLang::map_lang["strenthaddrndmax"]);
+				return;
+			}
+
 			luckcount.setValue(luckcount.getValue() + 1);
 			int q004count = MyRes::getMyResCount(luckresid);
 			if (q004count >= luckcount.getValue())

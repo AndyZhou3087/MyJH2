@@ -605,6 +605,13 @@ std::vector<int> SmithyLayer::makeResRnd(int originEquip_qu)
 			rnds[1] = rnds[1] + 10;
 			rnds[2] = rnds[2] + 15;
 			rnds[3] = rnds[3] + 20;
+
+			int a0 = rnds[0];
+			int a1 = rnds[1];
+			rnds[2] = rnds[2] + a0 + a1;
+
+			rnds[0] = 0;
+			rnds[1] = 0;
 		}
 
 		else if (oqu == 3) {
@@ -612,6 +619,10 @@ std::vector<int> SmithyLayer::makeResRnd(int originEquip_qu)
 			rnds[1] = rnds[1] + 5;
 			rnds[2] = rnds[2] + 10;
 			rnds[3] = rnds[3] + 15;
+
+			int a0 = rnds[0];
+			rnds[1] = rnds[1] + a0;
+			rnds[0] = 0;
 		}
 		else if (oqu == 2) {
 			rnds[0] = rnds[0] - 25;
@@ -622,6 +633,10 @@ std::vector<int> SmithyLayer::makeResRnd(int originEquip_qu)
 		else if (oqu == 1) {
 			rnds[0] = rnds[0] - 15;
 			rnds[1] = rnds[1] + 15;
+
+			int a3 = rnds[3];
+			rnds[3] = 0;
+			rnds[0] = rnds[0] + a3;
 		}
 	}
 
@@ -656,8 +671,11 @@ void SmithyLayer::makeRes(std::string resid, int originEquip_qu, int originEquip
 	DynamicValueInt dv;
 	if (originEquip_qu > 0)
 	{
-		if (qu > originEquip_qu)
-			qu = originEquip_qu;
+		if (qu > originEquip_qu + 1)
+			qu = originEquip_qu + 1;
+
+		if (qu < originEquip_qu - 2)
+			qu = originEquip_qu - 2;
 		dv.setValue(originEquip_lv);
 	}
 

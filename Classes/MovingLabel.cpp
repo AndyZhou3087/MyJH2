@@ -140,15 +140,18 @@ void MovingLabel::changeTextColor()
 			std::u32string utf32QuString;
 			StringUtils::UTF8ToUTF32(qustr, utf32QuString);
 
-			findpos = utf32lblString.substr(utf32lblString.length() - 2).find_last_of(utf32QuString);
-			if (findpos != std::string::npos)
+			if (utf32lblString.length() >= 2)
 			{
-				findpos = utf32lblString.length() - 2 + findpos;
-				for (unsigned int m = findpos; m < (findpos + utf32QuString.length()); m++)
+				findpos = utf32lblString.substr(utf32lblString.length() - 2).find_last_of(utf32QuString);
+				if (findpos != std::string::npos)
 				{
-					mlbl->getLetter(m)->setColor(POTENTIALCOLOR[i]);
+					findpos = utf32lblString.length() - 2 + findpos;
+					for (unsigned int m = findpos; m < (findpos + utf32QuString.length()); m++)
+					{
+						mlbl->getLetter(m)->setColor(POTENTIALCOLOR[i]);
+					}
+					break;
 				}
-				break;
 			}
 		}
 	}
