@@ -710,8 +710,8 @@ void FightHeroNode::setMatchFightState()
 
 void FightHeroNode::playSkill(int stype, FightHeroNode* whosufferNode)
 {
-	FightingLayer* fighting = (FightingLayer*)this->getParent();
-	fighting->pauseAtkSchedule();
+	//FightingLayer* fighting = (FightingLayer*)this->getParent();
+	//fighting->pauseAtkSchedule();
 
 	GongFa* gf = m_Data->checkSkillWg();
 
