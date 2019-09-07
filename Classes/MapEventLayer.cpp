@@ -16,7 +16,7 @@
 
 #define BETPRO 460
 
-int maxqupr[5] = { 585,885,985,995,1000 };
+int maxqupr[5] = { 300,750,920,980,1000 };
 
 USING_NS_CC;
 

@@ -1010,6 +1010,8 @@ public:
 
 	static bool isBuyYearCard;
 
+	static bool isBuyHiMonthCard;
+
 	static std::vector<int> vec_mazeroute;
 	static int mazerouteindex;
 	static std::string eventfrommapid;

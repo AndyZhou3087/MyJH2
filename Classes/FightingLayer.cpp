@@ -107,7 +107,7 @@ bool FightingLayer::init(std::vector<Hero*> myHeros, std::vector<Npc*> enemyHero
 	changespeedcick->setTag(1);
 	changespeedcick->setVisible(false);
 	changespeed_text->setVisible(false);
-	if (GlobalInstance::challangeType != CH_SUPERBOSS && (MyRes::getMyResCount("j006") > 0 || GlobalInstance::isBuyYearCard))
+	if (GlobalInstance::challangeType != CH_SUPERBOSS && (MyRes::getMyResCount("j006") > 0 || GlobalInstance::isBuyYearCard || GlobalInstance::isBuyHiMonthCard))
 	{
 		changespeedcick->addTouchEventListener(CC_CALLBACK_2(FightingLayer::onBtnClick, this));
 
@@ -349,7 +349,7 @@ void FightingLayer::selectSpeed()
 
 	if (MyRes::getMyResCount("j006") > 0)
 		timescale = 2.8f;
-	else if (GlobalInstance::isBuyYearCard)
+	else if (GlobalInstance::isBuyYearCard || GlobalInstance::isBuyHiMonthCard)
 		timescale = 1.5f;
 	changeSpeed(timescale);
 }

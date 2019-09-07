@@ -290,7 +290,7 @@ void AstarRouting::move()
 		_shortPathList.erase(0);
 
 	CallFunc *actionCallBack = CallFunc::create(CC_CALLBACK_0(AstarRouting::move, this));
-	float dt = 0.53f;
+	float dt = 0.55f;
 	if (GlobalInstance::isupspeeding)
 		dt = 0.58f;
 	Sequence *actionSq = Sequence::create(DelayTime::create(dt), actionCallBack, nullptr);

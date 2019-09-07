@@ -332,6 +332,11 @@ void ShopLayer::paySucc()
 			GlobalInstance::isBuyYearCard = true;
 			DataSave::getInstance()->setIsBuyYearCard(true);
 		}
+		else if (iconname.compare("vip1") == 0)
+		{
+			GlobalInstance::isBuyHiMonthCard = true;
+			DataSave::getInstance()->setIsBuyHiMonthCard(true);
+		}
 	}
 
 	if (g_mainScene != NULL)

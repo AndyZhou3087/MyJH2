@@ -121,6 +121,8 @@ bool GlobalInstance::isBuySpeedGift = false;
 
 bool GlobalInstance::isBuyYearCard = false;
 
+bool GlobalInstance::isBuyHiMonthCard = false;
+
 std::vector<int> GlobalInstance::vec_mazeroute;
 
 int GlobalInstance::mazerouteindex = 0;
@@ -511,6 +513,8 @@ void GlobalInstance::loadInitData()
 	GlobalInstance::buildingbrokencount = 0;
 
 	GlobalInstance::isBuyYearCard = DataSave::getInstance()->getIsBuyYearCard();
+
+	GlobalInstance::isBuyHiMonthCard = DataSave::getInstance()->getIsBuyHiMonthCard();
 }
 
 void GlobalInstance::saveMyHeros()

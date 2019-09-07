@@ -163,7 +163,7 @@ float Equip::getDodge()
 	dodge = ebns * GlobalInstance::map_Equip[getId()].avoid;
 	if (getType() == T_HANDARMOR)
 	{
-		for (unsigned int i = 0; i < getLv().getValue(); i++)
+		for (int i = 0; i < getLv().getValue(); i++)
 		{
 			if (i < 5)
 				dodge += dodge * 0.01f * (i + 1);

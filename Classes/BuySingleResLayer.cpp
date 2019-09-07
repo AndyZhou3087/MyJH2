@@ -12,6 +12,7 @@
 #include "EventBusinessLayer.h"
 #include "MapBlockScene.h"
 
+float qusalebns[] = { 1.0f, 2.0f, 3.0f, 6.0f, 12.0f };
 BuySingleResLayer::BuySingleResLayer()
 {
 	m_isLongPress = false;
@@ -322,6 +323,18 @@ void BuySingleResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::T
 				saleval = GlobalInstance::map_AllResources[m_fproper.rid].coinval;
 				myrich.setValue(GlobalInstance::getInstance()->getMyCoinCount().getValue());
 				iscoinsale = true;
+
+				int t = 0;
+				for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+				{
+					if (m_fproper.rid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+						break;
+				}
+
+				if (t >= T_ARMOR && t <= T_FASHION)
+				{
+					saleval = int(saleval * qusalebns[m_fproper.qu]);
+				}
 			}
 			else
 			{
@@ -478,7 +491,21 @@ void BuySingleResLayer::updateData()
 		myrich.setValue(GlobalInstance::getInstance()->getMySoliverCount().getValue());
 	}
 
-	std::string salestr = StringUtils::format("%d", buycount * saleval);
+	int t = 0;
+	for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+	{
+		if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+			break;
+	}
+
+	std::string salestr;
+	
+	if (t >= T_ARMOR && t <= T_FASHION)
+	{
+		salestr = StringUtils::format("%d", int(buycount * saleval * qusalebns[m_fproper.qu]));
+	}
+	else
+		salestr = StringUtils::format("%d", buycount * saleval);
 	totalpricelbl->setString(salestr);
 
 	std::string countstr = StringUtils::format("%d/%d", buycount, m_fproper.count);

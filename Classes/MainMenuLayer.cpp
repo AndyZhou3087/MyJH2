@@ -339,6 +339,15 @@ void MainMenuLayer::onFinish(int code)
 	GlobalInstance::isBuyYearCard = isbuyyearcard;
 	DataSave::getInstance()->setIsBuyYearCard(isbuyyearcard);
 
+	bool isbuymonthcard = false;
+	if (GlobalInstance::map_buyVipDays.find("vip1") != GlobalInstance::map_buyVipDays.end())
+	{
+		if (GlobalInstance::map_buyVipDays["vip1"] > 0)
+			isbuymonthcard = true;
+	}
+	GlobalInstance::isBuyHiMonthCard = isbuymonthcard;
+	DataSave::getInstance()->setIsBuyHiMonthCard(isbuymonthcard);
+
 	activitybtn->setVisible(true);
 	if (oneyuangiftbtn->isVisible())
 	{

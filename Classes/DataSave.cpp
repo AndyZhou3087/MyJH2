@@ -648,6 +648,17 @@ bool DataSave::getIsBuyYearCard()
 	return val == 1 ? true : false;
 }
 
+void DataSave::setIsBuyHiMonthCard(bool val)
+{
+	saveIntDataByKey("isbuyhimonthcard", val == true ? 1 : 0);
+}
+
+bool DataSave::getIsBuyHiMonthCard()
+{
+	int val = loadIntDataByKey("isbuyhimonthcard", 0);
+	return val == 1 ? true : false;
+}
+
 int DataSave::getShakeTreeTime()
 {
 	return loadIntDataByKey("shaketreetime", 0);
