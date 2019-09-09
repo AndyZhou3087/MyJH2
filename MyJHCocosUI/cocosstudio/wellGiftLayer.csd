@@ -360,14 +360,14 @@
             <PreSize X="0.0556" Y="0.0156" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/wellvip3name_txt.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc_0" ActionTag="1563483163" Tag="207" IconVisible="False" LeftMargin="144.5232" RightMargin="138.4768" TopMargin="1239.8110" BottomMargin="6.1889" FontSize="30" LabelText="购买年卡享有战斗1.5倍加速特权" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="437.0000" Y="34.0000" />
+          <AbstractNodeData Name="desc_0" ActionTag="1563483163" Tag="207" IconVisible="False" LeftMargin="88.5232" RightMargin="82.4768" TopMargin="1240.8112" BottomMargin="7.1889" FontSize="28" LabelText="购买年卡或高级月卡享有战斗1.5倍加速特权" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="549.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="363.0232" Y="23.1889" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5042" Y="0.0181" />
-            <PreSize X="0.6069" Y="0.0266" />
+            <PreSize X="0.7625" Y="0.0250" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
