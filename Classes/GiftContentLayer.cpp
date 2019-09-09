@@ -105,11 +105,23 @@ bool GiftContentLayer::init(ShopData* data, int tag, int type)
 	{
 		closebtn->setVisible(true);
 	}
-
-	if (data->type == GIFT || data->type == COIN)
+	if (data->type == COIN)
 	{
 		str = StringUtils::format("shoptext_%d", data->type);
 		desc->setString(ResourceLang::map_lang[str]);
+	}
+	else if (data->type == GIFT)
+	{
+		if (data->icon.compare("oneyuangift") == 0) 
+		{
+			str = StringUtils::format("shoptext_%d", data->type);
+			desc->setString(ResourceLang::map_lang[str]);
+		}
+		else
+		{
+			str = data->desc;
+			desc->setString(str);
+		}
 	}
 	else if (data->type == VIP)
 	{

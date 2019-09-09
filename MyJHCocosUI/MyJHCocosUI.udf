@@ -25,20 +25,5 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="ui.csi" />
-          <FilePathData Path="text_zh_cn.csi" />
-          <FilePathData Path="strengthenLayer.csd" />
-          <FilePathData Path="eventBusinessLayer.csd" />
-          <FilePathData Path="buyResLayer.csd" />
-          <FilePathData Path="buySelectLayer.csd" />
-          <FilePathData Path="buySingleResLayer.csd" />
-          <FilePathData Path="wellGiftLayer.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="wellGiftLayer.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

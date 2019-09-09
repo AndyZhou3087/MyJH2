@@ -37,14 +37,14 @@
             <PreSize X="0.2250" Y="0.0445" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/timegifttitle.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="-1128649269" Tag="15" IconVisible="False" LeftMargin="150.9224" RightMargin="139.0776" TopMargin="345.2585" BottomMargin="882.7415" IsCustomSize="True" FontSize="21" LabelText="购买后可获得角色招募卷*2、装备抽取卷*2、银两*5000、元宝*100" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="430.0000" Y="52.0000" />
+          <AbstractNodeData Name="desc" ActionTag="-1128649269" Tag="15" IconVisible="False" LeftMargin="150.9225" RightMargin="139.0775" TopMargin="337.2585" BottomMargin="862.7415" IsCustomSize="True" FontSize="21" LabelText="购买后可获得角色招募卷*2、装备抽取卷*2、银两*5000、元宝*100" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="430.0000" Y="80.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="365.9224" Y="908.7415" />
+            <Position X="365.9225" Y="902.7415" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="100" G="100" B="100" />
-            <PrePosition X="0.5082" Y="0.7100" />
-            <PreSize X="0.5972" Y="0.0406" />
+            <PrePosition X="0.5082" Y="0.7053" />
+            <PreSize X="0.5972" Y="0.0625" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />

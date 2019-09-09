@@ -37,10 +37,10 @@
             <PreSize X="0.2236" Y="0.0453" />
             <FileData Type="MarkedSubImage" Path="text_zh_cn/text_gf0.png" Plist="text_zh_cn.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="desc" ActionTag="-1681043789" Tag="182" IconVisible="False" LeftMargin="175.9223" RightMargin="164.0777" TopMargin="396.2600" BottomMargin="803.7400" IsCustomSize="True" FontSize="24" LabelText="购买后立即获得以下物品" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="desc" ActionTag="-1681043789" Tag="182" IconVisible="False" LeftMargin="175.9225" RightMargin="164.0775" TopMargin="396.2601" BottomMargin="803.7399" IsCustomSize="True" FontSize="24" LabelText="购买后立即获得以下物品" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="380.0000" Y="80.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="365.9223" Y="843.7400" />
+            <Position X="365.9225" Y="843.7399" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="100" G="100" B="100" />
             <PrePosition X="0.5082" Y="0.6592" />
