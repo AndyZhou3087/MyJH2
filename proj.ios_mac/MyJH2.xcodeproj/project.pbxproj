@@ -233,6 +233,7 @@
 		727CFC922160DBEE0004F5DC /* story.txt in Resources */ = {isa = PBXBuildFile; fileRef = 727CFC8F2160DBEE0004F5DC /* story.txt */; };
 		727CFC932160DBEE0004F5DC /* storybg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 727CFC902160DBEE0004F5DC /* storybg.jpg */; };
 		727CFC942160DBEE0004F5DC /* storyLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 727CFC912160DBEE0004F5DC /* storyLayer.csb */; };
+		727EA7002322295D00E59686 /* SelectMakeEquip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 727EA6FD2322295C00E59686 /* SelectMakeEquip.cpp */; };
 		7282706520F5B7B200B07087 /* FightingLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7282703C20F5B7A500B07087 /* FightingLayer.cpp */; };
 		7282706620F5B7B200B07087 /* SetInStoneLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7282704020F5B7A900B07087 /* SetInStoneLayer.cpp */; };
 		7282706720F5B7B200B07087 /* TaskDailyNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7282704220F5B7AA00B07087 /* TaskDailyNode.cpp */; };
@@ -754,6 +755,8 @@
 		727CFC8F2160DBEE0004F5DC /* story.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = story.txt; sourceTree = "<group>"; };
 		727CFC902160DBEE0004F5DC /* storybg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = storybg.jpg; sourceTree = "<group>"; };
 		727CFC912160DBEE0004F5DC /* storyLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = storyLayer.csb; sourceTree = "<group>"; };
+		727EA6FD2322295C00E59686 /* SelectMakeEquip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SelectMakeEquip.cpp; sourceTree = "<group>"; };
+		727EA6FF2322295C00E59686 /* SelectMakeEquip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMakeEquip.h; sourceTree = "<group>"; };
 		7282703C20F5B7A500B07087 /* FightingLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FightingLayer.cpp; sourceTree = "<group>"; };
 		7282703E20F5B7A900B07087 /* MaterialDescLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialDescLayer.h; sourceTree = "<group>"; };
 		7282704020F5B7A900B07087 /* SetInStoneLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SetInStoneLayer.cpp; sourceTree = "<group>"; };
@@ -1279,6 +1282,8 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				727EA6FD2322295C00E59686 /* SelectMakeEquip.cpp */,
+				727EA6FF2322295C00E59686 /* SelectMakeEquip.h */,
 				72421DBA21269C30008B1B57 /* AchieveLayer.cpp */,
 				72421DBF21269C30008B1B57 /* AchieveLayer.h */,
 				72421DBD21269C30008B1B57 /* AchieveNode.cpp */,
@@ -1954,6 +1959,7 @@
 				72A532C2226022860006481E /* StarFrist3AwdLayer.cpp in Sources */,
 				723C870D21F99B9900A0518D /* OpenHolesLayer.cpp in Sources */,
 				7282706520F5B7B200B07087 /* FightingLayer.cpp in Sources */,
+				727EA7002322295D00E59686 /* SelectMakeEquip.cpp in Sources */,
 				7282706B20F5B7B200B07087 /* TaskTalkLayer.cpp in Sources */,
 				720452EA20D892200011D560 /* ResCreator.cpp in Sources */,
 				72120D822154F3F700C00BD1 /* Shake.cpp in Sources */,
