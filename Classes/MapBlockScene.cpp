@@ -3531,15 +3531,25 @@ void MapBlockScene::checkMazeStoneHint()
 			switch (vec_[i])
 			{
 				case KEY_UP:
+
+					if (mycurRow >= blockRowCount - 1)
+						continue;
 					bindex = (mycurRow + 1)*blockColCount + mycurCol;
 					break;
 				case KEY_DOWN:
+					if (mycurRow <= 0)
+						continue;
 					bindex = (mycurRow - 1)*blockColCount + mycurCol;
 					break;
 				case KEY_LEFT:
+					if (mycurCol <= 0)
+						continue;
 					bindex = (mycurRow)*blockColCount + mycurCol - 1;
 					break;
 				case KEY_RIGHT:
+					if (mycurCol >= blockColCount - 1)
+						continue;
+
 					bindex = (mycurRow)*blockColCount + mycurCol + 1;
 					break;
 				default:
