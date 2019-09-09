@@ -1185,6 +1185,16 @@ void HeroAttrLayer::takeOn(ResBase* res)
 	updateEquipUi(res, clickindex);
 
 	m_heroData->setHp(m_heroData->getMaxHp());
+
+	if (m_heroData->getState() == HS_ONCHALLENGE) {
+
+		for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+		{
+			if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getName().compare(m_heroData->getName()) == 0) {
+				GlobalInstance::vec_myHeros[i]->setEquipable((Equipable*)res, res->getType());
+			}
+		}
+	}
 }
 
 void HeroAttrLayer::takeOff(ResBase* res)
@@ -1197,6 +1207,15 @@ void HeroAttrLayer::takeOff(ResBase* res)
 	MyRes::saveData();
 	updateEquipUi(NULL, clickindex);
 	m_heroData->setHp(m_heroData->getMaxHp());
+	if (m_heroData->getState() == HS_ONCHALLENGE) {
+
+		for (unsigned int i = 0; i < GlobalInstance::vec_myHeros.size(); i++)
+		{
+			if (GlobalInstance::vec_myHeros[i]->getState() != HS_DEAD && GlobalInstance::vec_myHeros[i]->getName().compare(m_heroData->getName()) == 0) {
+				GlobalInstance::vec_myHeros[i]->setEquipable(NULL, res->getType());
+			}
+		}
+	}
 }
 
 void HeroAttrLayer::changeEquip(ResBase* res)
