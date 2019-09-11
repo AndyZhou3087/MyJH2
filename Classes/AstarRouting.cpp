@@ -270,6 +270,10 @@ void AstarRouting::constructPathStartMoveFromStep(ShortestPathStep* step)
 
 void AstarRouting::move()
 {
+
+	if (g_MapBlockScene == NULL)
+		return;
+
 	if (_shortPathList.size() == 0) {
 
 		g_MapBlockScene->isMovingRouting = false;
