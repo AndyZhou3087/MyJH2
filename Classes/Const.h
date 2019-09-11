@@ -74,6 +74,8 @@ const static int BASEMAXHEROLV = 50;
 //最大等级后，根据解锁的章节开放多少级
 const static int ADDMAXHEROLV[] = {0,0,0,0,5,5,0};
 
+//强化最高等级
+const static int STHRENTHMAXLV = 20;
 //装备强化失败降级数
 const static int COSTLV[] = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4 };
 //装备强化成功概率

@@ -177,7 +177,7 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 		Node* node = (Node*)pSender;
 		int tag = node->getTag();
 
-		if (m_equip->getLv().getValue() >= sizeof(COSTLV) / sizeof(COSTLV[0]))
+		if (m_equip->getLv().getValue() >= STHRENTHMAXLV)
 		{
 			MovingLabel::show(ResourceLang::map_lang["mostlv"]);
 			return;
@@ -322,6 +322,13 @@ void StrengthenLayer::onResClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 			AnimationEffect::openAniEffect(layer);
 		}
 		else if(tag == 3){
+
+			if (m_equip->getLv().getValue() >= STHRENTHMAXLV)
+			{
+				MovingLabel::show(ResourceLang::map_lang["mostlv"]);
+				return;
+			}
+
 			std::string luckresid = "q004";
 
 			bool ismax = false;
@@ -396,32 +403,40 @@ void StrengthenLayer::updateSuccRnd()
 {
 	cocos2d::ui::Text* tipstext = (cocos2d::ui::Text*)csbnode->getChildByName("tipstext");
 	std::string str;
-	float odds = ODDS[m_equip->getLv().getValue()] + luckcount.getValue() * 5;
-	if (odds > 100.0f)
-		odds = 100.0f;
+	if (m_equip->getLv().getValue() < STHRENTHMAXLV)
+	{
 
-	if (m_equip->getLv().getValue() +1 == 18)
-	{
-		if (odds > 80.0f)
-			odds = 80.0f;
-	}
-	else if (m_equip->getLv().getValue()+1 == 19)
-	{
-		if (odds > 70.0f)
-			odds = 70.0f;
-	}
-	else if (m_equip->getLv().getValue()+1 == 20)
-	{
-		if (odds > 60.0f)
-			odds = 60.0f;
-	}
-	if (m_equip->getLv().getValue() >= 6)
-	{
-		str = StringUtils::format(ResourceLang::map_lang["tipsstrengthtext"].c_str(), odds, COSTLV[m_equip->getLv().getValue()]);
+		float odds = ODDS[m_equip->getLv().getValue()] + luckcount.getValue() * 5;
+		if (odds > 100.0f)
+			odds = 100.0f;
+
+		if (m_equip->getLv().getValue() + 1 == 18)
+		{
+			if (odds > 80.0f)
+				odds = 80.0f;
+		}
+		else if (m_equip->getLv().getValue() + 1 == 19)
+		{
+			if (odds > 70.0f)
+				odds = 70.0f;
+		}
+		else if (m_equip->getLv().getValue() + 1 == 20)
+		{
+			if (odds > 60.0f)
+				odds = 60.0f;
+		}
+		if (m_equip->getLv().getValue() >= 6)
+		{
+			str = StringUtils::format(ResourceLang::map_lang["tipsstrengthtext"].c_str(), odds, COSTLV[m_equip->getLv().getValue()]);
+		}
+		else
+		{
+			str = StringUtils::format(ResourceLang::map_lang["tipsstrengthtext1"].c_str(), odds, COSTLV[m_equip->getLv().getValue()]);
+		}
 	}
 	else
 	{
-		str = StringUtils::format(ResourceLang::map_lang["tipsstrengthtext1"].c_str(), odds, COSTLV[m_equip->getLv().getValue()]);
+		str = ResourceLang::map_lang["mostlv"];
 	}
 
 	tipstext->setString(str);
