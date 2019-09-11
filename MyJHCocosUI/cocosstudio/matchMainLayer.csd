@@ -114,10 +114,10 @@
                 <OutlineColor A="255" R="80" G="38" B="12" />
                 <ShadowColor A="255" R="0" G="0" B="0" />
               </AbstractNodeData>
-              <AbstractNodeData Name="desc" ActionTag="-726728151" Tag="305" IconVisible="False" LeftMargin="-280.3096" RightMargin="0.3096" TopMargin="-30.5780" BottomMargin="-69.4220" IsCustomSize="True" FontSize="23" LabelText="阵型角色生命值增加5%" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="desc" ActionTag="-726728151" Tag="305" IconVisible="False" LeftMargin="-280.3096" RightMargin="0.3096" TopMargin="-30.5800" BottomMargin="-69.4200" IsCustomSize="True" FontSize="23" LabelText="阵型角色生命值增加5%" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
                 <Size X="280.0000" Y="100.0000" />
                 <AnchorPoint ScaleY="0.5000" />
-                <Position X="-280.3096" Y="-19.4220" />
+                <Position X="-280.3096" Y="-19.4200" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="27" G="10" B="3" />
                 <PrePosition />

@@ -114,10 +114,10 @@
                 <OutlineColor A="255" R="80" G="38" B="12" />
                 <ShadowColor A="255" R="0" G="0" B="0" />
               </AbstractNodeData>
-              <AbstractNodeData Name="desc" ActionTag="-93518718" Tag="180" IconVisible="False" LeftMargin="-280.3095" RightMargin="0.3095" TopMargin="-23.5778" BottomMargin="-36.4222" IsCustomSize="True" FontSize="23" LabelText="阵型角色生命值增加5%" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
-                <Size X="280.0000" Y="60.0000" />
+              <AbstractNodeData Name="desc" ActionTag="-93518718" Tag="180" IconVisible="False" LeftMargin="-280.3095" RightMargin="0.3095" TopMargin="-30.5800" BottomMargin="-69.4200" IsCustomSize="True" FontSize="23" LabelText="阵型角色生命值增加5%" VerticalAlignmentType="VT_Center" ShadowOffsetX="1.0000" ShadowOffsetY="-1.0000" ctype="TextObjectData">
+                <Size X="280.0000" Y="100.0000" />
                 <AnchorPoint ScaleY="0.5000" />
-                <Position X="-280.3095" Y="-6.4222" />
+                <Position X="-280.3095" Y="-19.4200" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="27" G="10" B="3" />
                 <PrePosition />
@@ -388,7 +388,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="0" G="0" B="0" />
               </AbstractNodeData>
-              <AbstractNodeData Name="coin" ActionTag="1247726358" Tag="323" IconVisible="False" LeftMargin="160.1130" RightMargin="-269.1130" TopMargin="2.5552" BottomMargin="-111.5552" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="coin" ActionTag="1247726358" Tag="323" IconVisible="False" LeftMargin="160.1118" RightMargin="-269.1118" TopMargin="2.5539" BottomMargin="-111.5539" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="39" Scale9Height="39" ctype="ImageViewObjectData">
                 <Size X="109.0000" Y="109.0000" />
                 <AnchorPoint ScaleX="0.4186" ScaleY="0.4833" />
                 <Position X="205.7392" Y="-58.8742" />

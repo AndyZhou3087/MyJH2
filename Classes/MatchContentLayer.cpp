@@ -15,10 +15,14 @@ MatchContentLayer::MatchContentLayer()
 	{
 		GlobalInstance::matchPairHeros[i] = NULL;
 	}
+	GlobalInstance::myMatchPairTakeOnFormation = 0;
+	mynormalstageformaion = GlobalInstance::myTakeOnFormation;
 }
 
 MatchContentLayer::~MatchContentLayer()
 {
+	GlobalInstance::myMatchPairTakeOnFormation = 0;
+	GlobalInstance::myTakeOnFormation = mynormalstageformaion;
 }
 
 
@@ -121,7 +125,11 @@ bool MatchContentLayer::init(MyRankData herodata)
 		formationtext->setVisible(false);
 	}
 
+	if (herodata.playerid.compare(GlobalInstance::getInstance()->UUID()) == 0) {
+		GlobalInstance::myTakeOnFormation = formation;
+	}
 
+	GlobalInstance::myMatchPairTakeOnFormation = herodata.formation;
 	GlobalInstance::myMatchInfo.map_pairfriendly.clear();
 	GlobalInstance::getInstance()->parsePairFriendly(herodata.friendly);
 
