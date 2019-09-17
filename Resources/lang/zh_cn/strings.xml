@@ -501,7 +501,8 @@
 	<s name="newtemplet7">{%s}进入了迷宫，祝他/她好运！</s>
 	<s name="newtemplet8">恭喜{%s}的[%s]升级到了%d级，厉害！</s>
 	<s name="newtemplet9">恭喜{%s}的[%s]储备容量达到了%d万，厉害！</s>
-	<s name="newtemplet10">恭喜{%s}兑换了10个红色招募券碎片！</s>	
+	<s name="newtemplet10">恭喜{%s}兑换了10个红色招募券碎片！</s>
+	<s name="newtemplet11">{%s}的{%s}强化到了%d级，牛！</s>
 	<s name="newfindstr0">{</s>	
 	<s name="newfindstr1">}</s>	
 	<s name="newfindstr2">[</s>	

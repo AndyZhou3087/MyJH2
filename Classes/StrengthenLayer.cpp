@@ -264,6 +264,9 @@ void StrengthenLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 
 			if (boxeffectnode == NULL)
 				boxeffectnode = CommonFuncs::playResBoxEffect(resbox_qu, m_equip->getType(), m_equip->getQU().getValue(), m_equip->getLv().getValue());
+		
+			std::string contentstr = StringUtils::format(ResourceLang::map_lang["newtemplet11"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str(), GlobalInstance::map_AllResources[m_equip->getId()].name.c_str(), m_equip->getLv().getValue());
+			MainScene::addNews(contentstr, 2);
 		}
 		else
 		{
