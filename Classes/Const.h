@@ -72,7 +72,7 @@ const static float BREAK_BNS[] = { 1.0f, 1.1f, 1.12f, 1.15f, 1.19f, 1.24f, 1.3f}
 const static int BASEMAXHEROLV = 50;
 
 //最大等级后，根据解锁的章节开放多少级
-const static int ADDMAXHEROLV[] = {0,0,0,0,5,5,5,0};
+const static int ADDMAXHEROLV[] = {0,0,0,0,5,5,0,0};
 
 //强化最高等级
 const static int STHRENTHMAXLV = 20;
