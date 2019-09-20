@@ -684,7 +684,7 @@
           <Image Name="m93-3.png" />
           <Image Name="m93-7.png" />
           <Image Name="m93-8.png" />
-          <Image Name="m93-9.png" />
+          <Image Name="m7-1.png" />
           <Image Name="m94-1.png" />
           <Image Name="m94-2.png" />
           <Image Name="m94-3.png" />
@@ -1420,6 +1420,8 @@
           <Image Name="n069.png" />
           <Image Name="n070.png" />
           <Image Name="n071.png" />
+          <Image Name="n152.png" />
+          <Image Name="n153.png" />
           <Image Name="newsbg.png" />
           <Image Name="ninegrid.png" />
           <Image Name="nofiticon.png" />
@@ -1508,6 +1510,8 @@
           <Image Name="pn069.png" />
           <Image Name="pn070.png" />
           <Image Name="pn071.png" />
+          <Image Name="pn152.png" />
+          <Image Name="pn153.png" />
           <Image Name="pointicon_0.png" />
           <Image Name="pointicon_1.png" />
           <Image Name="pointicon_2.png" />

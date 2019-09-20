@@ -4,17 +4,18 @@
     <m id="n007" minlv="30" maxlv="40" minqu="0" maxqu="2">34</m>
     <m id="n008" minlv="30" maxlv="40" minqu="1" maxqu="2">33</m>
     <m id="n027" minlv="30" maxlv="40" minqu="0" maxqu="2">33</m>
-    <ma id="r001" c="20" qu="0">20.00</ma>
+    <ma id="r012" c="2" qu="0">10.00</ma>
     <ma id="r002" c="20" qu="0">20.00</ma>
-    <ma id="r003" c="20" qu="0">20.00</ma>
+    <ma id="m002" c="2" qu="0">5.00</ma>
     <ma id="r004" c="20" qu="0">20.00</ma>
-    <ma id="r005" c="20" qu="0">20.00</ma>
+    <ma id="s002" c="2" qu="0">10.00</ma>
     <ma id="r006" c="100" qu="0">20.00</ma>
   </Monstors>
   <Cells rs="42" cs="40">
     <Cell c="0" r="0" p="5" w="1" m="66.png">
       <npcid>1</npcid>
       <npcrnd>1</npcrnd>
+      <msawd1 id="r011" qu="0" rnd="100.00">2</msawd1>
     </Cell>
     <Cell c="0" r="1" p="-1" w="1" m="66.png" />
     <Cell c="0" r="2" p="-1" w="1" m="66.png" />
@@ -56,6 +57,7 @@
       <npcid>n023</npcid>
       <npcrnd>100</npcrnd>
       <msatt2 id="n023" qu="3">47</msatt2>
+      <msawd1 id="r006" qu="0" rnd="40.00">500</msawd1>
     </Cell>
     <Cell c="0" r="38" p="-1" w="0" m="6.png" d="19.png" />
     <Cell c="0" r="39" p="-1" w="0" m="6.png" />
@@ -835,8 +837,8 @@
       <msawd1 id="r011" qu="0" rnd="20.00">1</msawd1>
       <msawd2 id="d004" qu="0" rnd="10.00">1</msawd2>
       <msawd3 id="b003" qu="0" rnd="10.00">1</msawd3>
-      <msawd4 id="r008" qu="0" rnd="20.00">10</msawd4>
-      <msawd5 id="r007" qu="0" rnd="20.00">10</msawd5>
+      <msawd4 id="r008" qu="0" rnd="15.00">5</msawd4>
+      <msawd5 id="r007" qu="0" rnd="15.00">5</msawd5>
       <msawd6 id="r010" qu="0" rnd="20.00">10</msawd6>
     </Cell>
     <Cell c="19" r="5" p="-1" w="1" m="6.png" />
@@ -1678,6 +1680,8 @@
     <Cell c="38" r="41" p="-1" w="0" m="55.png" />
     <Cell c="39" r="0" p="5" w="1" m="66.png">
       <npcid>2</npcid>
+      <npcrnd>1</npcrnd>
+      <msawd1 id="r008" qu="0" rnd="100.00">3</msawd1>
     </Cell>
     <Cell c="39" r="1" p="-1" w="1" m="66.png" />
     <Cell c="39" r="2" p="-1" w="1" m="66.png" />

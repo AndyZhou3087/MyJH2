@@ -10,7 +10,7 @@
     <ma id="r003" c="30" qu="0">10.00</ma>
     <ma id="r004" c="30" qu="0">10.00</ma>
     <ma id="m003" c="1" qu="0">5.00</ma>
-    <ma id="r006" c="300" qu="0">15.00</ma>
+    <ma id="r006" c="200" qu="0">15.00</ma>
   </Monstors>
   <Cells rs="42" cs="40">
     <Cell c="0" r="0" p="-1" w="0" m="88.png" />
@@ -114,12 +114,9 @@
       <msatt4 id="n105" qu="3">40</msatt4>
       <msatt5 id="n020" qu="3">45</msatt5>
       <msatt6 id="n105" qu="3">40</msatt6>
-      <msawd1 id="s002" qu="0" rnd="5.00">1</msawd1>
-      <msawd2 id="c001" qu="0" rnd="10.00">1</msawd2>
-      <msawd3 id="b003" qu="0" rnd="1.00">1</msawd3>
-      <msawd4 id="q002" qu="0" rnd="5.00">1</msawd4>
-      <msawd5 id="d005" qu="0" rnd="4.00">1</msawd5>
-      <msawd6 id="w008" qu="0" rnd="2.00">1</msawd6>
+      <msawd1 id="w003" qu="0" rnd="8.00">1</msawd1>
+      <msawd2 id="x013" qu="0" rnd="8.00">1</msawd2>
+      <msawd3 id="d004" qu="0" rnd="10.00">1</msawd3>
     </Cell>
     <Cell c="2" r="9" p="-1" w="0" m="94.png" />
     <Cell c="2" r="10" p="-1" w="0" m="94.png" />
@@ -669,6 +666,8 @@
     <Cell c="15" r="6" p="-1" w="1" m="94.png" />
     <Cell c="15" r="7" p="5" w="1" m="94.png">
       <npcid>1</npcid>
+      <npcrnd>1</npcrnd>
+      <msawd1 id="r012" qu="0" rnd="80.00">5</msawd1>
     </Cell>
     <Cell c="15" r="8" p="-1" w="0" m="94.png" />
     <Cell c="15" r="9" p="-1" w="0" m="94.png" />
@@ -813,6 +812,8 @@
     <Cell c="18" r="22" p="-1" w="0" m="96.png" />
     <Cell c="18" r="23" p="5" w="1" m="94.png">
       <npcid>2</npcid>
+      <npcrnd>1</npcrnd>
+      <msawd1 id="m003" qu="0" rnd="50.00">1</msawd1>
     </Cell>
     <Cell c="18" r="24" p="-1" w="1" m="94.png" />
     <Cell c="18" r="25" p="-1" w="1" m="94.png" />
@@ -1634,6 +1635,7 @@
       <npcid>n105</npcid>
       <npcrnd>100</npcrnd>
       <msatt2 id="n105" qu="3">50</msatt2>
+      <msawd1 id="d004" qu="0" rnd="10.00">1</msawd1>
     </Cell>
     <Cell c="38" r="1" p="-1" w="1" m="114.png" />
     <Cell c="38" r="2" p="-1" w="1" m="114.png" />

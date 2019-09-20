@@ -10,8 +10,8 @@
     <ma id="r001" c="20" qu="0">20.00</ma>
     <ma id="r002" c="20" qu="0">20.00</ma>
     <ma id="r003" c="20" qu="0">20.00</ma>
-    <ma id="r004" c="20" qu="0">20.00</ma>
-    <ma id="r005" c="20" qu="0">20.00</ma>
+    <ma id="s002" c="2" qu="0">10.00</ma>
+    <ma id="r012" c="2" qu="0">10.00</ma>
     <ma id="r006" c="100" qu="0">20.00</ma>
   </Monstors>
   <Cells rs="37" cs="35">
@@ -68,6 +68,8 @@
     <Cell c="1" r="13" p="-1" w="0" m="66.png" />
     <Cell c="1" r="14" p="5" w="1" m="11.png">
       <npcid>1</npcid>
+      <npcrnd>1</npcrnd>
+      <msawd1 id="r021" qu="0" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="1" r="15" p="-1" w="0" m="66.png" d="32.png" />
     <Cell c="1" r="16" p="-1" w="0" m="66.png" d="32.png" />
@@ -621,11 +623,11 @@
       <msatt4 id="n009" qu="3">40</msatt4>
       <msatt5 id="n014" qu="3">45</msatt5>
       <msatt6 id="n009" qu="3">40</msatt6>
-      <msawd1 id="a022" qu="2" rnd="5.00">1</msawd1>
-      <msawd2 id="a026" qu="2" rnd="5.00">1</msawd2>
-      <msawd3 id="m002" qu="2" rnd="5.00">1</msawd3>
+      <msawd1 id="a003" qu="1" rnd="10.00">1</msawd1>
+      <msawd2 id="a007" qu="1" rnd="10.00">1</msawd2>
+      <msawd3 id="m002" qu="2" rnd="10.00">1</msawd3>
       <msawd4 id="d004" qu="2" rnd="5.00">1</msawd4>
-      <msawd5 id="q001" qu="2" rnd="5.00">1</msawd5>
+      <msawd5 id="q001" qu="2" rnd="15.00">1</msawd5>
       <msawd6 id="c001" qu="2" rnd="5.00">1</msawd6>
     </Cell>
     <Cell c="16" r="4" p="-1" w="1" m="43.png" />
@@ -1258,6 +1260,7 @@
       <npcid>n010</npcid>
       <npcrnd>100</npcrnd>
       <msatt2 id="n010" qu="3">45</msatt2>
+      <msawd1 id="r006" qu="0" rnd="50.00">1000</msawd1>
     </Cell>
     <Cell c="33" r="2" p="-1" w="1" m="11.png" />
     <Cell c="33" r="3" p="-1" w="1" m="11.png" />
@@ -1273,6 +1276,8 @@
     <Cell c="33" r="13" p="-1" w="0" m="66.png" />
     <Cell c="33" r="14" p="5" w="1" m="11.png">
       <npcid>2</npcid>
+      <npcrnd>1</npcrnd>
+      <msawd1 id="lf004" qu="0" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="33" r="15" p="-1" w="0" m="66.png" />
     <Cell c="33" r="16" p="-1" w="0" m="66.png" />

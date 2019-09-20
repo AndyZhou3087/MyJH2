@@ -780,6 +780,10 @@
       <FilePathData Path="ui/resboxaddicon.png" />
       <FilePathData Path="ui/q004.png" />
       <FilePathData Path="ui/luckygift.png" />
+      <FilePathData Path="ui/n152.png" />
+      <FilePathData Path="ui/n153.png" />
+      <FilePathData Path="ui/pn152.png" />
+      <FilePathData Path="ui/pn153.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

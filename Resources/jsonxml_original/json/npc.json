@@ -142,5 +142,12 @@
 {"id":"n141","cname":"周万通","vocation":"9","nicon":"n018"},
 {"id":"n142","cname":"东方教主","vocation":"3","nicon":"n013"},
 {"id":"n143","cname":"独孤求败","vocation":"4","nicon":"n010"},
-{"id":"n151","cname":"世外高人","vocation":"11","nicon":"n018"}
+{"id":"n151","cname":"世外高人","vocation":"11","nicon":"n018"},
+{"id":"n152","cname":"鹿杖客","vocation":"4","nicon":"n152"},
+{"id":"n153","cname":"鹤笔翁","vocation":"4","nicon":"n153"},
+{"id":"n154","cname":"朝廷反贼","vocation":"0","nicon":"n001"},
+{"id":"n155","cname":"阿三","vocation":"2","nicon":"n003"},
+{"id":"n156","cname":"阿二","vocation":"6","nicon":"n009"},
+{"id":"n157","cname":"阿大","vocation":"5","nicon":"n043"},
+{"id":"n158","cname":"空相大师","vocation":"10","nicon":"n003"}
 ]}

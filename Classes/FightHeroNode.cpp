@@ -247,7 +247,7 @@ void FightHeroNode::update(float dt)
 								this->removeSufferSkillAnim(0);
 							}
 							//nextRound(0);
-							this->scheduleOnce(schedule_selector(FightHeroNode::nextRound), 0.05f);
+							this->scheduleOnce(schedule_selector(FightHeroNode::nextRound), 0.08f);
 							break;
 						}
 					}
@@ -284,7 +284,7 @@ void FightHeroNode::update(float dt)
 								this->removeSufferSkillAnim(0);
 							}
 							//nextRound(0);
-							this->scheduleOnce(schedule_selector(FightHeroNode::nextRound), 0.05f);
+							this->scheduleOnce(schedule_selector(FightHeroNode::nextRound), 0.08f);
 							break;
 						}
 					}
@@ -398,7 +398,7 @@ void FightHeroNode::hurt(float hp, int stat)//stat -1:不显示普攻动画
 		}
 		else
 		{
-			this->scheduleOnce(schedule_selector(FightHeroNode::nextRound), 0.05f);
+			this->scheduleOnce(schedule_selector(FightHeroNode::nextRound), 0.08f);
 			//nextRound(0);
 		}
 	}

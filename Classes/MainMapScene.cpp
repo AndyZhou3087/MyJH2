@@ -134,7 +134,7 @@ bool MainMapScene::init()
 //#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 //		mapname->setVisible(true);
 #else
-		if (c <= 6 && c <= GlobalInstance::getInstance()->getUnlockChapter())
+		if (c <= 7 && c <= GlobalInstance::getInstance()->getUnlockChapter())
 		{
 			mapname->setVisible(true);
 			checkShowFlag(mapname, mname);
