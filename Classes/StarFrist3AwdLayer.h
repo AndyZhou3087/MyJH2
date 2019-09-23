@@ -12,8 +12,8 @@ public:
 	StarFrist3AwdLayer();
 	~StarFrist3AwdLayer();
 
-	static StarFrist3AwdLayer* create(std::string awdstr);
-	bool init(std::string awdstr);
+	static StarFrist3AwdLayer* create(std::vector<std::string> vec_awdstr);
+	bool init(std::vector<std::string> vec_awdstr);
 
 private:
 

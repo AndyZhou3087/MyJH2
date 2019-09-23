@@ -50,7 +50,7 @@
             <FileData Type="Normal" Path="images/f3awdf2.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="resbox0" ActionTag="-953927997" Tag="77" IconVisible="False" LeftMargin="298.5598" RightMargin="296.4402" TopMargin="577.8004" BottomMargin="577.1996" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox1" ActionTag="-953927997" Tag="77" IconVisible="False" LeftMargin="298.5598" RightMargin="296.4402" TopMargin="577.8004" BottomMargin="577.1996" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <Children>
               <AbstractNodeData Name="res" ActionTag="817874244" Tag="78" IconVisible="False" LeftMargin="7.1254" RightMargin="8.8746" TopMargin="7.6421" BottomMargin="8.3579" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="27" Scale9Height="27" ctype="ImageViewObjectData">
@@ -96,18 +96,7 @@
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Particle_1" ActionTag="-1510421420" Tag="82" IconVisible="True" LeftMargin="350.2778" RightMargin="369.7222" TopMargin="635.5582" BottomMargin="644.4418" ctype="ParticleObjectData">
-            <Size X="0.0000" Y="0.0000" />
-            <AnchorPoint />
-            <Position X="350.2778" Y="644.4418" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4865" Y="0.5035" />
-            <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="first3starp.plist" Plist="" />
-            <BlendFunc Src="770" Dst="1" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="resbox1" ActionTag="-2018492918" Tag="513" IconVisible="False" LeftMargin="178.9843" RightMargin="416.0157" TopMargin="577.8004" BottomMargin="577.1996" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="resbox0" ActionTag="-2018492918" Tag="513" IconVisible="False" LeftMargin="178.9843" RightMargin="416.0157" TopMargin="577.8004" BottomMargin="577.1996" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="43" Scale9Height="43" ctype="ImageViewObjectData">
             <Size X="125.0000" Y="125.0000" />
             <Children>
               <AbstractNodeData Name="res" ActionTag="2073526411" Tag="514" IconVisible="False" LeftMargin="7.1254" RightMargin="8.8746" TopMargin="7.6421" BottomMargin="8.3579" LeftEage="41" RightEage="41" TopEage="41" BottomEage="41" Scale9OriginX="41" Scale9OriginY="41" Scale9Width="27" Scale9Height="27" ctype="ImageViewObjectData">
@@ -198,6 +187,17 @@
             <PrePosition X="0.6675" Y="0.4998" />
             <PreSize X="0.1736" Y="0.0977" />
             <FileData Type="MarkedSubImage" Path="ui/resbox.png" Plist="ui.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Particle_1" ActionTag="-1510421420" Tag="82" IconVisible="True" LeftMargin="350.2778" RightMargin="369.7222" TopMargin="635.5582" BottomMargin="644.4418" ctype="ParticleObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint />
+            <Position X="350.2778" Y="644.4418" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.4865" Y="0.5035" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="Normal" Path="first3starp.plist" Plist="" />
+            <BlendFunc Src="770" Dst="1" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

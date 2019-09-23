@@ -194,7 +194,7 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 				}
 			}
 
-			for (unsigned int n = 0; n < 3; n++)
+			for (int n = 0; n < 3; n++)
 			{
 				std::string starname = StringUtils::format("star%d", n);
 				Node* star = subnode->getChildByName(starname);
@@ -492,6 +492,11 @@ void SelectSubMapLayer::showCStarAwdUI()
 			}
 			box[i]->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 		}
+		else if (state == 1)
+		{
+			GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_getstate[i] = 0;
+			saveGetChapterStarAwd();
+		}
 		ukey = StringUtils::format("c%d", i);
 
 		box[i]->setTag(i);
@@ -554,17 +559,10 @@ void SelectSubMapLayer::onAwdBoxClick(cocos2d::Ref *pSender, cocos2d::ui::Widget
 				clicknode->setRotation(0);
 				std::string boxstr = StringUtils::format("ui/cstarbox%d_p.png", boxindex + 1);
 				clicknode->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
-				StarFrist3AwdLayer* layer = StarFrist3AwdLayer::create(GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_adws[boxindex][0]);
+				StarFrist3AwdLayer* layer = StarFrist3AwdLayer::create(GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_adws[boxindex]);
 				this->addChild(layer);
 				AnimationEffect::openAniEffect(layer);
-				std::string savestr;
-
-				for (int i = 0; i < 3; i++)
-				{
-					std::string onestr = StringUtils::format("%d", GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_getstate[i]);
-					savestr.append(onestr);
-				}
-				DataSave::getInstance()->setChapterStarAwd(curchapter, savestr);
+				saveGetChapterStarAwd();
 			}
 		}
 		else if (state == 1)
@@ -572,6 +570,18 @@ void SelectSubMapLayer::onAwdBoxClick(cocos2d::Ref *pSender, cocos2d::ui::Widget
 			MovingLabel::show(ResourceLang::map_lang["cstarawdgeted"], Color4B(Color3B(255, 229, 188)), Vec2(360, 300));
 		}
 	}
+}
+
+void SelectSubMapLayer::saveGetChapterStarAwd()
+{
+	std::string savestr;
+
+	for (int i = 0; i < 3; i++)
+	{
+		std::string onestr = StringUtils::format("%d", GlobalInstance::vec_chaperstarawds[curchapter - 1].vec_getstate[i]);
+		savestr.append(onestr);
+	}
+	DataSave::getInstance()->setChapterStarAwd(curchapter, savestr);
 }
 
 bool SelectSubMapLayer::checkMapIsPass(std::string mapid)

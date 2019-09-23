@@ -204,8 +204,7 @@ void StarResultLayer::showf3starAwd(float dt)
 	actionbtn->setVisible(true);
 	std::string mainmapid = m_mapid.substr(0, m_mapid.find_last_of("-"));
 
-	std::string resstr = GlobalInstance::map_mapsdata[mainmapid].map_sublist[m_mapid].vec_f3starawds[0];
-	StarFrist3AwdLayer* layer = StarFrist3AwdLayer::create(resstr);
+	StarFrist3AwdLayer* layer = StarFrist3AwdLayer::create(GlobalInstance::map_mapsdata[mainmapid].map_sublist[m_mapid].vec_f3starawds);
 	this->addChild(layer);
 	AnimationEffect::openAniEffect(layer);
 }

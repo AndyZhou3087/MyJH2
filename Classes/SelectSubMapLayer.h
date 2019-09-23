@@ -27,6 +27,8 @@ private:
 
 	bool checkMapIsPass(std::string mapid);
 
+	void saveGetChapterStarAwd();
+
 private:
 	std::string m_mainmapid;
 	bool clickflag;

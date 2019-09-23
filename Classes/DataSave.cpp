@@ -563,7 +563,7 @@ std::string DataSave::getChapterStarAwd(int chapter)
 
 void DataSave::setChapterStarAwd(int chapter, std::string val)
 {
-	std::string key = StringUtils::format("ctstarawd%s", chapter);
+	std::string key = StringUtils::format("ctstarawd%d", chapter);
 	saveStringDataByKey(key, val);
 }
 

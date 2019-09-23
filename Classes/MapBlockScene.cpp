@@ -3269,7 +3269,6 @@ void MapBlockScene::calcStar(int ctype, std::string needid, int count)
 {
 	if (!isMaze && !isNewerGuideMap)
 	{
-		bool isfind = false;
 		for (unsigned int i = 0; i < GlobalInstance::map_stardata[m_mapid].size(); i++)
 		{
 			if (GlobalInstance::map_stardata[m_mapid][i].sid == ctype && GlobalInstance::map_stardata[m_mapid][i].needid.compare(needid) == 0)
@@ -3283,17 +3282,20 @@ void MapBlockScene::calcStar(int ctype, std::string needid, int count)
 						showGetStarAnim(i);
 					GlobalInstance::map_stardata[m_mapid][i].status = 1;
 				}
-
-				std::string str = DataSave::getInstance()->getStarData(m_mapid);
-				if (str.length() > 0)
-					str.append(";");
-				std::string  fstr = StringUtils::format("%d-%s-%d-%d", ctype, needid.c_str(), GlobalInstance::map_stardata[m_mapid][i].finishcount, GlobalInstance::map_stardata[m_mapid][i].status);
-				str.append(fstr);
-				DataSave::getInstance()->setStarData(m_mapid, str);
-
 				break;
 			}
 		}
+
+		std::string str;
+		for (unsigned int i = 0; i < GlobalInstance::map_stardata[m_mapid].size(); i++)
+		{
+			if (str.length() > 0)
+				str.append(";");
+			std::string  fstr = StringUtils::format("%d-%s-%d-%d", GlobalInstance::map_stardata[m_mapid][i].sid, GlobalInstance::map_stardata[m_mapid][i].needid.c_str(), GlobalInstance::map_stardata[m_mapid][i].finishcount, GlobalInstance::map_stardata[m_mapid][i].status);
+			str.append(fstr);
+		}
+		if (str.length() > 0)
+			DataSave::getInstance()->setStarData(m_mapid, str);
 	}
 }
 

@@ -2921,7 +2921,7 @@ void GlobalInstance::parseMapJson()
 			sdata.needcount = count;
 			sdata.needid = needid;
 			sdata.finishcount = 0;
-
+			sdata.status = 0;
 			GlobalInstance::map_stardata[s_submap.id].push_back(sdata);
 		}
 	}

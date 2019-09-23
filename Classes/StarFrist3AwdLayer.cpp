@@ -20,10 +20,10 @@ StarFrist3AwdLayer::~StarFrist3AwdLayer()
 }
 
 
-StarFrist3AwdLayer* StarFrist3AwdLayer::create(std::string awdstr)
+StarFrist3AwdLayer* StarFrist3AwdLayer::create(std::vector<std::string> vec_awdstr)
 {
 	StarFrist3AwdLayer *pRet = new(std::nothrow)StarFrist3AwdLayer();
-	if (pRet && pRet->init(awdstr))
+	if (pRet && pRet->init(vec_awdstr))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -37,7 +37,7 @@ StarFrist3AwdLayer* StarFrist3AwdLayer::create(std::string awdstr)
 }
 
 // on "init" you need to initialize your instance
-bool StarFrist3AwdLayer::init(std::string awdstr)
+bool StarFrist3AwdLayer::init(std::vector<std::string> vec_awdstr)
 {
 	if (!Layer::init())
 	{
@@ -50,70 +50,86 @@ bool StarFrist3AwdLayer::init(std::string awdstr)
 	Node* csbnode = CSLoader::createNode(ResourcePath::makePath("first3starawdLayer.csb"));
 	this->addChild(csbnode);
 
-	cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName("resbox");
-	cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
-	cocos2d::ui::Text* rescountlbl = (cocos2d::ui::Text*)resbox->getChildByName("countlbl");
-	cocos2d::ui::Text* resname = (cocos2d::ui::Text*)resbox->getChildByName("name");
+	int startx[] = { 360,300,240 };
+	int offsetx[] = { 0,120,120 };
+	int f3starawdsize = vec_awdstr.size();
+	for (int i = 0; i < 3; i++)
+	{
+		std::string resboxstr = StringUtils::format("resbox%d", i);
+		cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)csbnode->getChildByName(resboxstr);
+		resbox->setPositionX(startx[f3starawdsize - 1] + i * offsetx[f3starawdsize - 1]);
+		if (i < f3starawdsize)
+		{
+			cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
+			cocos2d::ui::Text* rescountlbl = (cocos2d::ui::Text*)resbox->getChildByName("countlbl");
+			cocos2d::ui::Text* resname = (cocos2d::ui::Text*)resbox->getChildByName("name");
 
-	std::vector<std::string> vec_str;
-	CommonFuncs::split(awdstr, vec_str, "-");
-	std::string resid = vec_str[0];
-	int rescount = atoi(vec_str[1].c_str());
-	resname->setString(GlobalInstance::map_AllResources[resid].name);
+			std::vector<std::string> vec_str;
+			CommonFuncs::split(vec_awdstr[i], vec_str, "-");
+			std::string resid = vec_str[0];
+			int rescount = atoi(vec_str[1].c_str());
+			resname->setString(GlobalInstance::map_AllResources[resid].name);
 
-	std::string boxstr = "ui/resbox.png";
-	int t = 0;
-	int qu = 0;
-	for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
-	{
-		if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
-			break;
-	}
-	if (t >= T_ARMOR && t <= T_FASHION)
-	{
-		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
-	}
-	else if (t >= T_WG && t <= T_NG)
-	{
-		qu = GlobalInstance::map_GF[resid].qu;
-		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
-	}
-	else if (t >= T_RENS && t <= T_BOX)
-	{
-		qu = atoi(resid.substr(1).c_str()) - 1;
-		boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
-	}
-	else if (t == T_EPIECE)
-	{
-		Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
-		pieceicon->setAnchorPoint(Vec2(0, 1));
-		pieceicon->setPosition(10, resbox->getContentSize().height - 10);
-		resbox->addChild(pieceicon);
-	}
-	resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
+			std::string boxstr = "ui/resbox.png";
+			int t = 0;
+			int qu = 0;
+			for (; t < sizeof(RES_TYPES_CHAR) / sizeof(RES_TYPES_CHAR[0]); t++)
+			{
+				if (resid.compare(0, 1, RES_TYPES_CHAR[t]) == 0)
+					break;
+			}
+			if (t >= T_ARMOR && t <= T_FASHION)
+			{
+				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
+			else if (t >= T_WG && t <= T_NG)
+			{
+				qu = GlobalInstance::map_GF[resid].qu;
+				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
+			else if (t >= T_RENS && t <= T_BOX)
+			{
+				qu = atoi(resid.substr(1).c_str()) - 1;
+				boxstr = StringUtils::format("ui/resbox_qu%d.png", qu);
+			}
+			else if (t == T_EPIECE)
+			{
+				Sprite* pieceicon = Sprite::createWithSpriteFrameName("ui/pieceicon.png");
+				pieceicon->setAnchorPoint(Vec2(0, 1));
+				pieceicon->setPosition(10, resbox->getContentSize().height - 10);
+				resbox->addChild(pieceicon);
+			}
+			resbox->loadTexture(boxstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
-	Node* effectnode = CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
+			Node* effectnode = CommonFuncs::playResBoxEffect(resbox, t, qu, 0);
 
-	std::string residstr = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);//StringUtils::format("ui/%s.png", resid.c_str());
-	res->loadTexture(residstr, cocos2d::ui::Widget::TextureResType::PLIST);
+			std::string residstr = GlobalInstance::getInstance()->getResUIFrameName(resid, qu);//StringUtils::format("ui/%s.png", resid.c_str());
+			res->loadTexture(residstr, cocos2d::ui::Widget::TextureResType::PLIST);
 
-	std::string countstr = StringUtils::format("%d", rescount);
-	rescountlbl->setString(countstr);
+			std::string countstr = StringUtils::format("%d", rescount);
+			rescountlbl->setString(countstr);
 
-	if (resid.compare("r006") == 0)
-	{
-		DynamicValueInt dvint;
-		dvint.setValue(rescount);
-		GlobalInstance::getInstance()->addMySoliverCount(dvint);
+			if (resid.compare("r006") == 0)
+			{
+				DynamicValueInt dvint;
+				dvint.setValue(rescount);
+				GlobalInstance::getInstance()->addMySoliverCount(dvint);
+			}
+			else if (resid.compare("r012") == 0)
+			{
+				DynamicValueInt dvint;
+				dvint.setValue(rescount);
+				GlobalInstance::getInstance()->addMyCoinCount(dvint);
+			}
+			else
+				MyRes::Add(resid, rescount, MYSTORAGE, qu, GlobalInstance::getInstance()->generateStoneCount(qu));
+		}
+		else
+		{
+			resbox->setVisible(false);
+		}
+
 	}
-	else if (resid.compare("r012") == 0)
-	{
-		DynamicValueInt dvint;
-		dvint.setValue(rescount);
-		GlobalInstance::getInstance()->addMyCoinCount(dvint);
-	}
-	else
-		MyRes::Add(resid, rescount, MYSTORAGE, qu, GlobalInstance::getInstance()->generateStoneCount(qu));
 
 	Node* light = csbnode->getChildByName("light");
 	light->runAction(RepeatForever::create(RotateTo::create(10, 720)));
