@@ -6,6 +6,7 @@
 #include "AnimationEffect.h"
 #include "GfLibraryLayer.h"
 #include "EquipLibraryLayer.h"
+#include "BookLibraryLayer.h"
 
 USING_NS_CC;
 
@@ -87,6 +88,14 @@ bool LibraryLayer::init()
 	cocos2d::ui::ImageView* ngimgtext = (cocos2d::ui::ImageView*)ngimg->getChildByName("text");
 	ngimgtext->loadTexture(ResourcePath::makeTextImgPath("libraryngtext", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
 
+	//十四天书按钮
+	cocos2d::ui::Widget* bookimg = (cocos2d::ui::Widget*)csbnode->getChildByName("bookitem");
+	bookimg->setTag(3);
+	bookimg->addTouchEventListener(CC_CALLBACK_2(LibraryLayer::onBtnClick, this));
+
+	cocos2d::ui::ImageView* bookimgtext = (cocos2d::ui::ImageView*)ngimg->getChildByName("text");
+	bookimgtext->loadTexture(ResourcePath::makeTextImgPath("librarybooktext", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
+
 	//屏蔽下层点击
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [=](Touch *touch, Event *event)
@@ -129,6 +138,13 @@ void LibraryLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 			AnimationEffect::openAniEffect(layer);
 		}
 			break;
+		case 3://十四天书
+		{
+			BookLibraryLayer* layer = BookLibraryLayer::create();
+			this->addChild(layer);
+			AnimationEffect::openAniEffect(layer);
+		}
+		break;
 		case 1000://关闭
 			AnimationEffect::closeAniEffect(this);
 			break;

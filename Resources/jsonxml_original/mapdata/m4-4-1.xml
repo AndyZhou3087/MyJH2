@@ -1371,6 +1371,8 @@
     <Cell c="31" r="30" p="-1" w="0" m="6.png" d="18.png" />
     <Cell c="31" r="31" p="5" w="1" m="6.png">
       <npcid>3</npcid>
+      <npcrnd>1</npcrnd>
+      <msawd1 id="j001" qu="0" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="31" r="32" p="-1" w="1" m="6.png" />
     <Cell c="31" r="33" p="-1" w="0" m="6.png" d="17.png" />

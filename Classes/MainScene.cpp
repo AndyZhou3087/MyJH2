@@ -1741,14 +1741,31 @@ void MainScene::checkStarAchTask()
 	{
 		std::string key = element->Name();
 
-		if (key.find("jhstarm") != std::string::npos)
+		if (key.find("jhthrstarm") != std::string::npos)
 		{
 			if (element->GetText() != NULL)
 			{
-				std::string textstr = DataSave::getInstance()->getFinishStar(key.substr(6));
+				std::string mapid = key.substr(9);
+				std::string textstr = DataSave::getInstance()->getStarData(mapid);
 				std::vector<std::string> vec_tmp;
-				CommonFuncs::split(textstr, vec_tmp, ",");
-				totalstar += vec_tmp.size();
+				CommonFuncs::split(textstr, vec_tmp, ";");
+
+				for (unsigned int i = 0; i < vec_tmp.size(); i++)
+				{
+					std::vector<std::string> vec_onedata;
+					CommonFuncs::split(vec_tmp[i], vec_onedata, "-");
+					int ctype = atoi(vec_onedata[0].c_str());
+					std::string needid = vec_onedata[1];
+					int status = atoi(vec_onedata[3].c_str());
+
+					for (unsigned int m = 0; m < GlobalInstance::map_stardata[mapid].size(); m++)
+					{
+						if (GlobalInstance::map_stardata[mapid][m].sid == ctype && GlobalInstance::map_stardata[mapid][m].needid.compare(needid) == 0 && status == 1)
+						{
+							totalstar++;
+						}
+					}
+				}
 			}
 		}
 		element = element->NextSiblingElement();

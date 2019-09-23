@@ -531,27 +531,39 @@ void DataSave::setRebateAwds(std::string val)
 	saveStringDataByKey("payrebate", val);
 }
 
-std::string DataSave::getFinishStar(std::string mapid)
+std::string DataSave::getOldFinishStar(std::string mapid)
 {
 	std::string key = StringUtils::format("star%s", mapid.c_str());
 	return loadStringDataByKey(key);
 }
 
-void DataSave::setFinishStar(std::string mapid, std::string val)
+std::string DataSave::getStarData(std::string mapid)
 {
-	std::string key = StringUtils::format("star%s", mapid.c_str());
+	std::string key = StringUtils::format("thrstar%s", mapid.c_str());
+	return loadStringDataByKey(key);
+}
+
+void DataSave::setStarData(std::string mapid, std::string val)
+{
+	std::string key = StringUtils::format("thrstar%s", mapid.c_str());
 	saveStringDataByKey(key, val);
+}
+
+std::string DataSave::getOldChapterStarAwd(int chapter)
+{
+	std::string key = StringUtils::format("cstarawd%d", chapter);
+	return loadStringDataByKey(key);
 }
 
 std::string DataSave::getChapterStarAwd(int chapter)
 {
-	std::string key = StringUtils::format("cstarawd%d", chapter);
+	std::string key = StringUtils::format("ctstarawd%d", chapter);
 	return loadStringDataByKey(key);
 }
 
 void DataSave::setChapterStarAwd(int chapter, std::string val)
 {
-	std::string key = StringUtils::format("cstarawd%d", chapter);
+	std::string key = StringUtils::format("ctstarawd%s", chapter);
 	saveStringDataByKey(key, val);
 }
 

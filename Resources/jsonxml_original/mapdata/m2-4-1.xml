@@ -887,7 +887,7 @@
       <npcid>n030</npcid>
       <npcrnd>100</npcrnd>
       <msatt2 id="n030" qu="4">50</msatt2>
-      <msawd1 id="a007" qu="3" rnd="20.00">1</msawd1>
+      <msawd1 id="a007" qu="2" rnd="10.00">1</msawd1>
     </Cell>
     <Cell c="26" r="2" p="-1" w="1" m="44.png" />
     <Cell c="26" r="3" p="-1" w="1" m="44.png" />

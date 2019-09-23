@@ -121,7 +121,7 @@ void CutScenesLayer::updateFadeOut()
 			vec_myheros.push_back(GlobalInstance::myCardHeros[i]);
 		}
 		FightingLayer* layer = FightingLayer::create(vec_myheros, enemys, m_fightbgtype);
-		mapblock->addChild(layer, 0, "FightingLayer");
+		mapblock->addChild(layer, 1, "FightingLayer");
 	}
 	this->removeFromParentAndCleanup(true);
 }

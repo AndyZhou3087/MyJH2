@@ -4,7 +4,7 @@
     <m id="n004" minlv="52" maxlv="60" minqu="0" maxqu="2">50</m>
     <m id="n074" minlv="52" maxlv="60" minqu="0" maxqu="2">50</m>
     <ma id="r001" c="30" qu="0">10.00</ma>
-    <ma id="j001" c="1" qu="0">3.00</ma>
+    <ma id="m002" c="1" qu="0">10.00</ma>
     <ma id="r003" c="30" qu="0">10.00</ma>
     <ma id="j003" c="1" qu="0">5.00</ma>
     <ma id="r005" c="30" qu="0">10.00</ma>

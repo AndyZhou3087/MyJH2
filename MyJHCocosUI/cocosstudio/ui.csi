@@ -784,6 +784,20 @@
       <FilePathData Path="ui/n153.png" />
       <FilePathData Path="ui/pn152.png" />
       <FilePathData Path="ui/pn153.png" />
+      <FilePathData Path="ui/ts01.png" />
+      <FilePathData Path="ui/ts02.png" />
+      <FilePathData Path="ui/ts03.png" />
+      <FilePathData Path="ui/ts04.png" />
+      <FilePathData Path="ui/ts05.png" />
+      <FilePathData Path="ui/ts06.png" />
+      <FilePathData Path="ui/ts07.png" />
+      <FilePathData Path="ui/ts08.png" />
+      <FilePathData Path="ui/ts09.png" />
+      <FilePathData Path="ui/ts10.png" />
+      <FilePathData Path="ui/ts11.png" />
+      <FilePathData Path="ui/ts12.png" />
+      <FilePathData Path="ui/ts13.png" />
+      <FilePathData Path="ui/ts14.png" />
     </ImageFiles>
     <MaxSize Width="4096" Height="4096" />
   </Content>

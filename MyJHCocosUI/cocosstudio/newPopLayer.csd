@@ -60,26 +60,26 @@
             <OutlineColor A="255" R="103" G="65" B="33" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scenetitle" ActionTag="1241613326" Tag="27" IconVisible="False" LeftMargin="102.8895" RightMargin="540.1105" TopMargin="486.7780" BottomMargin="764.2220" FontSize="25" LabelText="新场景" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="scenetitle" ActionTag="1241613326" Tag="27" IconVisible="False" LeftMargin="102.8895" RightMargin="540.1105" TopMargin="471.7776" BottomMargin="779.2224" FontSize="25" LabelText="新场景" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="77.0000" Y="29.0000" />
             <AnchorPoint ScaleY="0.5000" />
-            <Position X="102.8895" Y="778.7220" />
+            <Position X="102.8895" Y="793.7224" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="196" G="108" B="32" />
-            <PrePosition X="0.1429" Y="0.6084" />
+            <PrePosition X="0.1429" Y="0.6201" />
             <PreSize X="0.1069" Y="0.0227" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="scenetext" ActionTag="1419858545" Tag="8" IconVisible="False" LeftMargin="102.9593" RightMargin="117.0407" TopMargin="534.8850" BottomMargin="645.1150" IsCustomSize="True" FontSize="25" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="500.0000" Y="100.0000" />
+          <AbstractNodeData Name="scenetext" ActionTag="1419858545" Tag="8" IconVisible="False" LeftMargin="102.9592" RightMargin="102.0408" TopMargin="514.8848" BottomMargin="665.1152" IsCustomSize="True" FontSize="25" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="515.0000" Y="100.0000" />
             <AnchorPoint ScaleY="1.0000" />
-            <Position X="102.9593" Y="745.1150" />
+            <Position X="102.9592" Y="765.1152" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="100" G="100" B="100" />
-            <PrePosition X="0.1430" Y="0.5821" />
-            <PreSize X="0.6944" Y="0.0781" />
+            <PrePosition X="0.1430" Y="0.5977" />
+            <PreSize X="0.7153" Y="0.0781" />
             <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
@@ -111,19 +111,19 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="contentscroll" ActionTag="-1183649586" Tag="109" IconVisible="False" LeftMargin="102.0000" RightMargin="118.0000" TopMargin="660.0000" BottomMargin="420.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
-            <Size X="500.0000" Y="200.0000" />
+          <AbstractNodeData Name="contentscroll" ActionTag="-1183649586" Tag="109" IconVisible="False" LeftMargin="103.2124" RightMargin="101.7875" TopMargin="674.9995" BottomMargin="405.0005" TouchEnable="True" ClipAble="True" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+            <Size X="515.0000" Y="200.0000" />
             <AnchorPoint ScaleY="1.0000" />
-            <Position X="102.0000" Y="620.0000" />
+            <Position X="103.2124" Y="605.0005" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1417" Y="0.4844" />
-            <PreSize X="0.6944" Y="0.1563" />
+            <PrePosition X="0.1434" Y="0.4727" />
+            <PreSize X="0.7153" Y="0.1563" />
             <SingleColor A="255" R="255" G="150" B="100" />
             <FirstColor A="255" R="255" G="150" B="100" />
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
-            <InnerNodeSize Width="500" Height="200" />
+            <InnerNodeSize Width="515" Height="200" />
           </AbstractNodeData>
           <AbstractNodeData Name="cancelbtn" ActionTag="-2109234386" Tag="269" IconVisible="False" LeftMargin="398.5000" RightMargin="158.5000" TopMargin="906.5000" BottomMargin="306.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="174" Scale9Height="62" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="163.0000" Y="67.0000" />
@@ -150,6 +150,18 @@
             <PressedFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
             <NormalFileData Type="MarkedSubImage" Path="ui/buildingactbtn_n.png" Plist="ui.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="tbookdesc" ActionTag="2054041389" Tag="456" IconVisible="False" LeftMargin="360.0001" RightMargin="359.9999" TopMargin="640.0000" BottomMargin="640.0000" FontSize="27" LabelText="" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="360.0001" Y="640.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="0" B="0" />
+            <PrePosition X="0.5000" Y="0.5000" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/simhei.ttf" Plist="" />
+            <OutlineColor A="255" R="103" G="65" B="33" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>

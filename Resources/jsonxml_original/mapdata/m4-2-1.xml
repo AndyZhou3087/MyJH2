@@ -6,7 +6,7 @@
     <m id="n027" minlv="30" maxlv="40" minqu="0" maxqu="2">33</m>
     <ma id="r012" c="2" qu="0">10.00</ma>
     <ma id="r002" c="20" qu="0">20.00</ma>
-    <ma id="m002" c="2" qu="0">5.00</ma>
+    <ma id="m002" c="2" qu="0">10.00</ma>
     <ma id="r004" c="20" qu="0">20.00</ma>
     <ma id="s002" c="2" qu="0">10.00</ma>
     <ma id="r006" c="100" qu="0">20.00</ma>
@@ -302,7 +302,7 @@
     <Cell c="6" r="26" p="-1" w="1" m="55.png" />
     <Cell c="6" r="27" p="-1" w="1" m="48.png" />
     <Cell c="6" r="28" p="-1" w="1" m="6.png">
-      <event>0;0;100;0;0;0;0</event>
+      <event>0;0;50;0;0;0;0</event>
     </Cell>
     <Cell c="6" r="29" p="-1" w="1" m="6.png" />
     <Cell c="6" r="30" p="-1" w="1" m="6.png" />
@@ -1283,12 +1283,12 @@
     <Cell c="29" r="24" p="-1" w="1" m="6.png" />
     <Cell c="29" r="25" p="-1" w="1" m="6.png" />
     <Cell c="29" r="26" p="-1" w="1" m="6.png" />
-    <Cell c="29" r="27" p="-1" w="1" m="6.png" />
+    <Cell c="29" r="27" p="-1" w="1" m="6.png">
+      <event>0;0;0;80;0;0;0</event>
+    </Cell>
     <Cell c="29" r="28" p="-1" w="1" m="6.png" />
     <Cell c="29" r="29" p="-1" w="1" m="6.png" />
-    <Cell c="29" r="30" p="-1" w="1" m="6.png">
-      <event>0;0;0;100;0;0;0</event>
-    </Cell>
+    <Cell c="29" r="30" p="-1" w="1" m="6.png" />
     <Cell c="29" r="31" p="-1" w="0" m="6.png" />
     <Cell c="29" r="32" p="-1" w="0" m="6.png" d="1.png" />
     <Cell c="29" r="33" p="-1" w="0" m="6.png" />

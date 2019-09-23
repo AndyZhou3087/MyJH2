@@ -104,7 +104,7 @@ public:
 
 	void useTranser();
 
-	void calcStar(int ctype);
+	void calcStar(int ctype, std::string needid, int count);
 
 	void checkotherstar();
 
@@ -237,6 +237,8 @@ private:
 	void onFinish(int code);
 	void updateTime(float dt);
 
+	void showGetStarAnim(int index);
+
 private:
 	Node* m_csbnode;
 	Node* m_tasknode;
@@ -318,7 +320,6 @@ private:
 	Sprite* mapAllOpenFog;
 	std::vector<MapBlock*> vec_boxblock;//宝箱地图块
 	std::map<int, std::vector<MapBlock*>> map_rangeblocks;
-	int totalBoxcount;
 
 	int totalbosscount;
 	AstarRouting* astarrouting;
@@ -332,6 +333,9 @@ private:
 	int destblockindex;
 	bool isoverscreen;
     bool ishalfscreen;
+
+	std::vector<Node*> vec_star;
+	std::vector<cocos2d::ui::Text*> vec_finishcountlbl;
 
 	public:
 		bool isMovingRouting;

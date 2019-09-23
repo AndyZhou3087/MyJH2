@@ -461,6 +461,30 @@ void LoadingScene::optimizeSaveData()
 		GlobalInstance::getInstance()->saveMyTaskBranchData();
 	}
 
+	std::map<std::string, S_MainMap>::iterator mit;
+	std::map<std::string, S_SubMap>::iterator it;
+	for (mit = GlobalInstance::map_mapsdata.begin(); mit != GlobalInstance::map_mapsdata.end(); mit++)
+	{
+		std::string mainmapid = mit->first;
+		for (it = GlobalInstance::map_mapsdata[mainmapid].map_sublist.begin(); it != GlobalInstance::map_mapsdata[mainmapid].map_sublist.end(); it++)
+		{
+			if (DataSave::getInstance()->getOldFinishStar(it->first).length() > 0)
+			{
+				std::string key = StringUtils::format("star%s", it->first.c_str());
+				DataSave::getInstance()->deleteDataByKey(key);
+			}
+		}
+	}
+
+	for (int i = 1; i <= 6; i++)
+	{
+		if (DataSave::getInstance()->getOldChapterStarAwd(i).length() > 0)
+		{
+			std::string key = StringUtils::format("cstarawd%d", i);
+			DataSave::getInstance()->deleteDataByKey(key);
+		}
+	}
+
 	//保存的物品给角色穿戴，名字如果有乱码，无法保存数据到服务器
 
 	bool issavedata = false;

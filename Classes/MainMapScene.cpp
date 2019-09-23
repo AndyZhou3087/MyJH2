@@ -385,10 +385,25 @@ void MainMapScene::checkShowFlag(Node* mapnode, std::string mainmapid)
 		for (it = GlobalInstance::map_mapsdata[mainmapid].map_sublist.begin(); it != GlobalInstance::map_mapsdata[mainmapid].map_sublist.end(); it++)
 		{
 			submapcount++;
-			std::vector<std::string> vec_finishstar;
+			std::vector<std::string> vec_stardata;
 
-			CommonFuncs::split(DataSave::getInstance()->getFinishStar(it->first), vec_finishstar, ",");
-			getstarcount += vec_finishstar.size();
+			CommonFuncs::split(DataSave::getInstance()->getStarData(it->first), vec_stardata, ";");
+
+			for (unsigned int i = 0; i < vec_stardata.size(); i++)
+			{
+				std::vector<std::string> vec_onedata;
+				CommonFuncs::split(vec_stardata[i], vec_onedata, "-");
+
+				int ctype = atoi(vec_onedata[0].c_str());
+				std::string needid = vec_onedata[1];
+				for (unsigned int m = 0; m < GlobalInstance::map_stardata[it->first].size(); m++)
+				{
+					if (GlobalInstance::map_stardata[it->first][m].sid == ctype && GlobalInstance::map_stardata[it->first][m].needid.compare(needid) == 0 && atoi(vec_onedata[3].c_str()) == 1)
+					{
+						getstarcount += 1;
+					}
+				}
+			}
 		}
 
 		if (getstarcount > 0 && getstarcount >= submapcount * 3)

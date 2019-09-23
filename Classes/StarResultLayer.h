@@ -18,7 +18,6 @@ public:
 
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	static bool sortbyfinishstat(S_StarData a, S_StarData b);
 private:
 	std::string m_mapid;
 	int m_cwhere;

@@ -68,8 +68,6 @@ MapBlockScene::MapBlockScene()
 	buildfocus = NULL;
 	mapAllOpenFog = NULL;
 
-	totalBoxcount = 0;
-
 	totalbosscount = 0;
 
 	astarrouting = NULL;
@@ -709,7 +707,7 @@ void MapBlockScene::loadTaskUI()
 	//添加任务提示框
 	m_tasknode = CSLoader::createNode(ResourcePath::makePath("taskTipsNode.csb"));
 	m_csbnode->addChild(m_tasknode, -1);
-	m_tasknode->setPosition(Vec2(458, 992));
+	m_tasknode->setPosition(Vec2(458, 942));
 
 	cocos2d::ui::ImageView* tasktitle = (cocos2d::ui::ImageView*)m_tasknode->getChildByName("title");
 	tasktitle->loadTexture(ResourcePath::makeTextImgPath("maptask_title", langtype), cocos2d::ui::Widget::TextureResType::PLIST);
@@ -722,10 +720,42 @@ void MapBlockScene::loadTaskUI()
 	taskclick->setTag(0);
 	taskclick->setVisible(false);
 
-	textmain = (cocos2d::ui::Text*)m_tasknode->getChildByName("textmain");
-	textbranch = (cocos2d::ui::Text*)m_tasknode->getChildByName("textbranch");
+	textmain = (cocos2d::ui::Text*)m_tasknode->getChildByName("tasknode")->getChildByName("textmain");
+	textbranch = (cocos2d::ui::Text*)m_tasknode->getChildByName("tasknode")->getChildByName("textbranch");
+
+	std::string keyname;
+	for (int i = 0; i < 3; i++)
+	{
+		keyname = StringUtils::format("star%d", i);
+		vec_star.push_back(m_tasknode->getChildByName("starnode")->getChildByName(keyname));
+		vec_star[i]->setVisible(false);
+
+		keyname = StringUtils::format("s%d", i);
+		vec_finishcountlbl.push_back((cocos2d::ui::Text*)m_tasknode->getChildByName("starnode")->getChildByName(keyname));
+	}
+
+	for (unsigned int i = 0; i < GlobalInstance::map_stardata[m_mapid].size(); i++)
+	{
+		int cid = GlobalInstance::map_stardata[m_mapid][i].sid;
+		int count = GlobalInstance::map_stardata[m_mapid][i].needcount;
+
+		std::string keyname = StringUtils::format("stagestar%02d", cid);
+		std::string content;
+
+		if (GlobalInstance::map_stardata[m_mapid][i].needid.compare("0") == 0)
+			content = StringUtils::format(ResourceLang::map_lang[keyname].c_str(), count);
+		else
+			content = StringUtils::format(ResourceLang::map_lang[keyname].c_str(), GlobalInstance::map_AllResources[GlobalInstance::map_stardata[m_mapid][i].needid].name.c_str(), count);
+
+		keyname = StringUtils::format("c%d", i);
+		cocos2d::ui::Text* ctext = (cocos2d::ui::Text*)m_tasknode->getChildByName("starnode")->getChildByName(keyname);
+		ctext->setString(content);
+		vec_finishcountlbl[i]->setPositionX(ctext->getPositionX() + ctext->getContentSize().width + 10);
+	}
+
 	updateTaskInfo(0);
 	this->schedule(schedule_selector(MapBlockScene::updateTaskInfo), 1.0f);
+
 }
 
 void MapBlockScene::updateTaskInfo(float dt)
@@ -787,7 +817,7 @@ void MapBlockScene::updateTaskInfo(float dt)
 		{
 			textbranch->setString(ResourceLang::map_lang["nottasktext"]);
 			textbranch->setVisible(false);
-			cocos2d::ui::Widget* maptask_branch = (cocos2d::ui::Widget*)m_tasknode->getChildByName("maptask_branch_4");
+			cocos2d::ui::Widget* maptask_branch = (cocos2d::ui::Widget*)m_tasknode->getChildByName("tasknode")->getChildByName("maptask_branch_4");
 			maptask_branch->setVisible(false);
 		}
 		else
@@ -808,6 +838,29 @@ void MapBlockScene::updateTaskInfo(float dt)
 				}
 			}
 
+		}
+	}
+	//三星
+
+	for (unsigned int i = 0; i < GlobalInstance::map_stardata[m_mapid].size(); i++)
+	{
+		if (i < vec_star.size())
+		{
+			int cid = GlobalInstance::map_stardata[m_mapid][i].sid;
+			int count = GlobalInstance::map_stardata[m_mapid][i].needcount;
+
+			if (GlobalInstance::map_stardata[m_mapid][i].status == 1)
+			{
+				if (!vec_star[i]->isVisible())
+				{
+					vec_star[i]->setOpacity(0);
+					vec_star[i]->runAction(Sequence::create(Show::create(), FadeIn::create(0.5f), NULL));
+				}
+				GlobalInstance::map_stardata[m_mapid][i].finishcount = GlobalInstance::map_stardata[m_mapid][i].needcount;
+			}
+
+			std::string countstr = StringUtils::format("(%d/%d)", GlobalInstance::map_stardata[m_mapid][i].finishcount, GlobalInstance::map_stardata[m_mapid][i].needcount);
+			vec_finishcountlbl[i]->setString(countstr);
 		}
 	}
 }
@@ -1245,8 +1298,6 @@ void MapBlockScene::go(MAP_KEYTYPE keyArrow)
 		{
 			checkFood();
 		}
-
-		calcStar(SA_GOSTEP);
 	}
 }
 
@@ -1763,13 +1814,18 @@ void MapBlockScene::doMyStatus()
 			MapEventLayer* mlayer = MapEventLayer::create(ret);
 			this->addChild(mlayer);
 			AnimationEffect::openAniEffect((Layer*)mlayer);
-			calcStar(SA_EVENT);
+			
 			sitetext->stopAllActions();
 			removeAllRoutingBlock();
 		}
 		else
 		{
 			status = MAP_S_NOTING;
+		}
+
+		if (ret <= POS_THIEF)
+		{
+			calcStar(STAR_EVENT_ALL, "0", 1);
 		}
 	}
 	else
@@ -1809,6 +1865,8 @@ void MapBlockScene::doMyStatus()
 			mapblock->removePosIcon();
 
 			DataSave::getInstance()->setMapBoxRewards(m_mapid, mid, count + 1);
+
+			calcStar(STAR_GETBOX_ALL, "0", 1);
 		}
 
 		else if (mapblock->getPosType() == POS_MAZEENTRY)//进入迷宫
@@ -1842,7 +1900,7 @@ void MapBlockScene::doMyStatus()
 			MyRes::Add("z002", 10, MYPACKAGE);
 			std::string contentstr = StringUtils::format(ResourceLang::map_lang["newtemplet7"].c_str(), GlobalInstance::getInstance()->getMyNickName().c_str());
 			MainScene::addNews(contentstr, 2);
-			calcStar(SA_ENTERMAZE);
+			calcStar(STAR_ENTERMAZE_ALL, "0", 1);
 			return;
 		}
 		else if (mapblock->getPosType() == POS_START)
@@ -2270,7 +2328,6 @@ void MapBlockScene::showFightResult(int result)
 
 		if (GlobalInstance::npcmasterfinish != 1)
 		{
-			GlobalInstance::starcontinuefightsucccount++;
 			GlobalInstance::curmapcontinuefightsucccount++;
 
 			int liveherocount = 0;
@@ -2283,14 +2340,34 @@ void MapBlockScene::showFightResult(int result)
 
 			if (GlobalInstance::takeoutherocount == liveherocount)
 			{
-				if (GlobalInstance::starcontinuefightsucccount >= 10)
-					calcStar(SA_NODEATH);
+				for (unsigned int i = 0; i < GlobalInstance::map_stardata[m_mapid].size(); i++)
+				{
+					if (GlobalInstance::map_stardata[m_mapid][i].sid == STAR_NODEATH_ONCE)
+					{
+						calcStar(STAR_NODEATH_ONCE, "0", 1);
+						break;
+					}
+
+				}
 			}
 			else
 			{
-				GlobalInstance::starcontinuefightsucccount = 0;
+				for (unsigned int i = 0; i < GlobalInstance::map_stardata[m_mapid].size(); i++)
+				{
+					if (GlobalInstance::map_stardata[m_mapid][i].sid == STAR_NODEATH_ONCE)
+					{
+						GlobalInstance::map_stardata[m_mapid][i].finishcount = 0;
+						break;
+					}
+				}
 			}
-			calcStar(SA_FIGHTSUCC);
+			calcStar(STAR_FIGHTWIN_ONCE, "0", 1);
+			calcStar(STAR_FIGHTWIN_ALL, "0", 1);
+
+			if (mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS || mapblock->getPosType() == POS_NPC)
+			{
+				calcStar(STAR_FIGHTBOSSWIN_ALL, mapblock->getPosNpcID(), 1);
+			}
 		}
 
 		if (mapblock->getPosType() == POS_BOSS || mapblock->getPosType() == POS_TBOSS)
@@ -2323,7 +2400,6 @@ void MapBlockScene::showFightResult(int result)
 	{
 		if (GlobalInstance::npcmasterfinish != 1)
 		{
-			GlobalInstance::starcontinuefightsucccount = 0;
 			GlobalInstance::curmapcontinuefightsucccount = 0;
 		}
 	}
@@ -2492,6 +2568,14 @@ void MapBlockScene::delayShowFightResult(float dt)
 		this->addChild(notTouchLayer, 1, "cannottouchlayer");
 		this->scheduleOnce(schedule_selector(MapBlockScene::delayShowStarResult), 0.5f);
 	}
+	else 
+	{
+		for (unsigned int i = 0; i < vec_winrewards.size(); i++)
+		{
+			calcStar(STAR_GETRES_ALL, vec_winrewards[i].sid, vec_winrewards[i].intPara1);
+			calcStar(STAR_GETRES_ONCE, vec_winrewards[i].sid, vec_winrewards[i].intPara1);
+		}
+	}
 }
 
 void MapBlockScene::delayShowStarResult(float dt)
@@ -2533,8 +2617,6 @@ void MapBlockScene::onBlockClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Tou
 				Node* focus = torchbtn->getChildByName("focus");
 				focus->stopAllActions();
 				focus->setVisible(false);
-
-				calcStar(SA_USETORCH);
 			}
 			else if (usingprop == MAP_USEINGTRANSER)
 			{
@@ -2851,7 +2933,6 @@ void MapBlockScene::parseMapXml(std::string mapname)
 					}
 					else if (postype == POS_BOX)
 					{
-						totalBoxcount++;
 						//v2.01版本之前是用行列计算宝箱位置，领取后不可领取，后期修改位置会重复领取，现在加入序号
 						mb->setPosType(postype);
 						vec_boxblock.push_back(mb);
@@ -3184,29 +3265,55 @@ void MapBlockScene::setBlockRange()
 	}
 }
 
-void MapBlockScene::calcStar(int ctype)
+void MapBlockScene::calcStar(int ctype, std::string needid, int count)
 {
 	if (!isMaze && !isNewerGuideMap)
 	{
 		bool isfind = false;
-		for (unsigned int i = 0; i < GlobalInstance::vec_stardata.size(); i++)
+		for (unsigned int i = 0; i < GlobalInstance::map_stardata[m_mapid].size(); i++)
 		{
-			if (GlobalInstance::vec_stardata[i].sid == ctype)
+			if (GlobalInstance::map_stardata[m_mapid][i].sid == ctype && GlobalInstance::map_stardata[m_mapid][i].needid.compare(needid) == 0)
 			{
-				GlobalInstance::vec_stardata[i].finishcount++;
-				if (GlobalInstance::vec_stardata[i].finishcount == GlobalInstance::vec_stardata[i].needcount)
+				GlobalInstance::map_stardata[m_mapid][i].finishcount += count;
+				if (GlobalInstance::map_stardata[m_mapid][i].finishcount >= GlobalInstance::map_stardata[m_mapid][i].needcount)
 				{
-					std::string str = DataSave::getInstance()->getFinishStar(m_mapid);
-					if (str.length() > 0)
-						str.append(",");
-					std::string  fstr = StringUtils::format("%d", ctype);
-					str.append(fstr);
-					DataSave::getInstance()->setFinishStar(m_mapid, str);
+
+					GlobalInstance::map_stardata[m_mapid][i].finishcount = GlobalInstance::map_stardata[m_mapid][i].needcount;
+					if (GlobalInstance::map_stardata[m_mapid][i].status != 1)
+						showGetStarAnim(i);
+					GlobalInstance::map_stardata[m_mapid][i].status = 1;
 				}
+
+				std::string str = DataSave::getInstance()->getStarData(m_mapid);
+				if (str.length() > 0)
+					str.append(";");
+				std::string  fstr = StringUtils::format("%d-%s-%d-%d", ctype, needid.c_str(), GlobalInstance::map_stardata[m_mapid][i].finishcount, GlobalInstance::map_stardata[m_mapid][i].status);
+				str.append(fstr);
+				DataSave::getInstance()->setStarData(m_mapid, str);
+
 				break;
 			}
 		}
 	}
+}
+
+void MapBlockScene::showGetStarAnim(int index)
+{
+	auto staranimnode = Sprite::createWithSpriteFrameName("ui/mapstagestar.png");
+	staranimnode->setAnchorPoint(Vec2(0.5, 0.5));
+	staranimnode->setScale(2);
+	staranimnode->setPosition(360, 640);
+	this->addChild(staranimnode, 0);
+	Vec2 pos;
+	float dt = 0.5f;
+	if (taskclick->isVisible())
+	{
+		pos = taskclick->getPosition();
+		float dt = 0.8f;
+	}
+	else
+		pos = vec_star[index]->getParent()->convertToWorldSpace(vec_star[index]->getPosition());
+	staranimnode->runAction(Sequence::create(Spawn::create(ScaleTo::create(dt, 1), RotateTo::create(dt, 720), MoveTo::create(dt, pos), NULL), RemoveSelf::create(), NULL));
 }
 
 void MapBlockScene::checkotherstar() 
@@ -3223,54 +3330,13 @@ void MapBlockScene::checkotherstar()
 		{
 			delete pDoc;
 		}
-		tinyxml2::XMLElement *rootEle = pDoc->RootElement();
 
-		tinyxml2::XMLElement *element = rootEle->FirstChildElement();
-		while (element != NULL)
-		{
-			std::string key = element->Name();
-
-			std::string findstr = StringUtils::format("jhbr%s", m_mapid.c_str());
-			if (key.find(findstr) != std::string::npos)
-			{
-				boxcount++;
-			}
-			element = element->NextSiblingElement();
-		}
-
-		if (boxcount >= totalBoxcount)
-		{
-			calcStar(SA_GETALLBOX);
-		}
-
-		for (unsigned int i = 0; i < GlobalInstance::vec_TaskMain.size(); i++)
-		{
-			if (GlobalInstance::vec_TaskMain[i].place.compare(m_mapid) == 0 && GlobalInstance::vec_TaskMain[i].isfinish >= QUEST_FINISH)
-			{
-				calcStar(SA_FINISH_MAINTASK);
-				break;
-			}
-		}
 		for (unsigned int i = 0; i < GlobalInstance::vec_TaskBranch.size(); i++)
 		{
 			if (GlobalInstance::vec_TaskBranch[i].place.compare(m_mapid) == 0 && GlobalInstance::vec_TaskBranch[i].isfinish >= QUEST_FINISH)
 			{
-				calcStar(SA_FINISH_BRANCHTASK);
+				calcStar(STAR_BRANCHTASK, "0", 1);
 				break;
-			}
-		}
-
-		std::string str = DataSave::getInstance()->getMapVisibleArea(m_mapid);
-
-		std::vector<std::string> vec_cfg;
-		CommonFuncs::split(str, vec_cfg, ";");
-
-
-		if (vec_cfg.size() >= 2)
-		{
-			if (vec_cfg[0].compare("-1") == 0)
-			{
-				calcStar(SA_USEALLOPEN);
 			}
 		}
 
@@ -3287,17 +3353,10 @@ void MapBlockScene::checkotherstar()
 				{
 					for (unsigned int n = 0; n < it->second.relation.size(); n++)
 					{
-						if (it->second.relation[n] == NPC_FRIEND)
+						if (it->second.relation[n] == NPC_FRIEND || it->second.relation[n] == NPC_MASTER || it->second.relation[n] == NPC_COUPEL)
 						{
-							calcStar(SA_BEFRIEND);
-						}
-						else if (it->second.relation[n] == NPC_MASTER)
-						{
-							calcStar(SA_BEMASTER);
-						}
-						else if (it->second.relation[n] == NPC_COUPEL)
-						{
-							calcStar(SA_BECOMPLE);
+							calcStar(STAR_RENATION, "0" ,1);
+							break;
 						}
 					}
 				}
@@ -3317,9 +3376,9 @@ bool MapBlockScene::checkShowStarUi(int cwhere)
 	checkotherstar();
 
 	int star = 0;
-	for (unsigned int i = 0; i < GlobalInstance::vec_stardata.size(); i++)
+	for (unsigned int i = 0; i < GlobalInstance::map_stardata[m_mapid].size(); i++)
 	{
-		if (GlobalInstance::vec_stardata[i].finishcount >= GlobalInstance::vec_stardata[i].needcount)
+		if (GlobalInstance::map_stardata[m_mapid][i].status == 1)
 		{
 			star++;
 		}

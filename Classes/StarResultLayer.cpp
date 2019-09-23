@@ -89,26 +89,25 @@ bool StarResultLayer::init(std::string mapid, int towherescene)
 
 	int starcount = 0;
 
-	std::sort(GlobalInstance::vec_stardata.begin(), GlobalInstance::vec_stardata.end(), sortbyfinishstat);
-
-	for (unsigned int i = 0; i < GlobalInstance::vec_stardata.size(); i++)
+	for (unsigned int i = 0; i < GlobalInstance::map_stardata[m_mapid].size(); i++)
 	{
-		int cid = GlobalInstance::vec_stardata[i].sid;
-		int count = GlobalInstance::vec_stardata[i].needcount;
+		int cid = GlobalInstance::map_stardata[m_mapid][i].sid;
+		int count = GlobalInstance::map_stardata[m_mapid][i].needcount;
 
-		std::string keyname = StringUtils::format("stagestar%02d", GlobalInstance::vec_stardata[i].sid);
+		std::string keyname = StringUtils::format("stagestar%02d", cid);
 		std::string content;
 
-		if (cid == SA_FIGHTSUCC || cid == SA_GOSTEP)
+		if (GlobalInstance::map_stardata[m_mapid][i].needid.compare("0") == 0)
 			content = StringUtils::format(ResourceLang::map_lang[keyname].c_str(), count);
 		else
-			content = ResourceLang::map_lang[keyname];
+			content = StringUtils::format(ResourceLang::map_lang[keyname].c_str(), GlobalInstance::map_AllResources[GlobalInstance::map_stardata[m_mapid][i].needid].name.c_str(), count);
+
 
 		keyname = StringUtils::format("c%d", i);
 		cocos2d::ui::Text* ctext = (cocos2d::ui::Text*)csbnode->getChildByName(keyname);
 		ctext->setString(content);
 
-		if (GlobalInstance::vec_stardata[i].finishcount >= GlobalInstance::vec_stardata[i].needcount)
+		if (GlobalInstance::map_stardata[m_mapid][i].status == 1)
 		{
 			star[i]->setVisible(true);
 			starcount++;
@@ -152,14 +151,6 @@ bool StarResultLayer::init(std::string mapid, int towherescene)
 	listener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	return true;
-}
-
-
-bool StarResultLayer::sortbyfinishstat(S_StarData a, S_StarData b)
-{
-	if (a.finishcount >= a.needcount && b.finishcount < b.needcount)
-		return true;
-	return false;
 }
 
 void StarResultLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)

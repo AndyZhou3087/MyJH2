@@ -12,7 +12,7 @@
     <ma id="r003" c="15" qu="0">20.00</ma>
     <ma id="r012" c="1" qu="0">13.00</ma>
     <ma id="r005" c="10" qu="0">20.00</ma>
-    <ma id="s001" c="2" qu="0">20.00</ma>
+    <ma id="s001" c="2" qu="0">18.00</ma>
   </Monstors>
   <Cells rs="22" cs="20">
     <Cell c="0" r="0" p="-1" w="0" m="33.png" d="8.png" />
@@ -251,7 +251,7 @@
       <msawd3 id="y001" qu="0" rnd="20.00">1</msawd3>
       <msawd4 id="a013" qu="0" rnd="20.00">1</msawd4>
       <msawd5 id="m001" qu="0" rnd="20.00">1</msawd5>
-      <msawd6 id="r008" qu="0" rnd="20.00">5</msawd6>
+      <msawd6 id="r008" qu="0" rnd="20.00">4</msawd6>
     </Cell>
     <Cell c="9" r="4" p="-1" w="1" m="22.png" />
     <Cell c="9" r="5" p="-1" w="1" m="22.png" />

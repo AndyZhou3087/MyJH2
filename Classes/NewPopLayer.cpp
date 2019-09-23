@@ -145,6 +145,11 @@ bool NewPopLayer::init(int unlockchapter)
 		contentscoll->setInnerContainerSize(Size(contentscoll->getContentSize().width, innerheight));
 		contentlbl->setPosition(Vec2(0, innerheight));
 
+		cocos2d::ui::Text* tbookdesc = (cocos2d::ui::Text*)csbnode->getChildByName("tbookdesc");
+
+		std::string bookidstr = StringUtils::format("ts%02d", unlockchapter - 1);
+		std::string bookstr = StringUtils::format(ResourceLang::map_lang["getbookdesc"].c_str(), GlobalInstance::map_AllResources[bookidstr].name.c_str());
+		tbookdesc->setString(bookstr);
 	}
 	else
 	{

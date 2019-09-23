@@ -150,13 +150,11 @@ std::vector<bool> GlobalInstance::vec_rebateisget;
 bool GlobalInstance::isHasNewhero = false;
 int GlobalInstance::showz002hinttextcount = 0;
 
-std::vector<S_StarData> GlobalInstance::vec_stardata;
+std::map<std::string, std::vector<S_StarData>> GlobalInstance::map_stardata;
 
 int GlobalInstance::curMapFinishStars = 0;
 
 int GlobalInstance::takeoutherocount = 0;
-
-int GlobalInstance::starcontinuefightsucccount = 0;
 
 int GlobalInstance::curmapcontinuefightsucccount = 0;
 
@@ -237,7 +235,7 @@ std::string GlobalInstance::UUID()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	return getDeviceIDInKeychain();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	return "AA67AFAD-AC63-461A-AD29-9774E81C4B3F";//"*******************11";
+	return "********************";//"*******************11";
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	std::string ret;
 	JniMethodInfo methodInfo;
@@ -2902,6 +2900,30 @@ void GlobalInstance::parseMapJson()
 
 		std::string mainid = s_submap.id.substr(0, s_submap.id.find_last_of("-"));
 		map_mapsdata[mainid].map_sublist[s_submap.id] = s_submap;
+
+
+		for (unsigned int i = 0; i < s_submap.vec_starc.size(); i++)
+		{
+			std::vector<std::string> vec_one;
+			CommonFuncs::split(s_submap.vec_starc[i], vec_one, "-");
+
+			int cid = atoi(vec_one[0].c_str());
+			int count = atoi(vec_one[1].c_str());
+			std::string needid = "0";
+			if (vec_one.size() >= 3)
+			{
+				needid = vec_one[1];
+				count = atoi(vec_one[2].c_str());
+			}
+
+			S_StarData sdata;
+			sdata.sid = cid;
+			sdata.needcount = count;
+			sdata.needid = needid;
+			sdata.finishcount = 0;
+
+			GlobalInstance::map_stardata[s_submap.id].push_back(sdata);
+		}
 	}
 }
 
@@ -3809,7 +3831,7 @@ void GlobalInstance::resetData()
 	loginData.isGeted = false;
 	map_timeMartData.clear();
 	vec_rebateisget.clear();
-	vec_stardata.clear();
+	map_stardata.clear();
 
 	curMapFinishStars = 0;
 }

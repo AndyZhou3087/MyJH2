@@ -6,7 +6,7 @@
     <m id="n006" minlv="55" maxlv="60" minqu="0" maxqu="2">20</m>
     <ma id="r001" c="30" qu="0">10.00</ma>
     <ma id="r002" c="30" qu="0">10.00</ma>
-    <ma id="r012" c="5" qu="0">25.00</ma>
+    <ma id="r012" c="5" qu="0">20.00</ma>
     <ma id="z003" c="1" qu="0">1.00</ma>
     <ma id="j003" c="1" qu="0">8.00</ma>
     <ma id="r006" c="500" qu="0">10.00</ma>

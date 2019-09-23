@@ -171,19 +171,35 @@ bool SelectSubMapLayer::init(std::string mainmapid)
 
 		if (m_mainmapid.compare("m1-5") != 0 && m_mainmapid.compare("m1-6") != 0)
 		{
+			std::vector<std::string> vec_stardata;
 
-			verifyStar(it->first);
+			CommonFuncs::split(DataSave::getInstance()->getStarData(it->first), vec_stardata, ";");
 
-			std::vector<std::string> vec_finishstar;
+			int starcount = 0;
+			for (unsigned int k = 0; k < vec_stardata.size(); k++)
+			{
+				std::vector<std::string> vec_onedata;
+				CommonFuncs::split(vec_stardata[k], vec_onedata, "-");
 
-			CommonFuncs::split(DataSave::getInstance()->getFinishStar(it->first), vec_finishstar, ",");
+				int ctype = atoi(vec_onedata[0].c_str());
+				std::string needid = vec_onedata[1];
+				int status = atoi(vec_onedata[3].c_str());
+
+				for (unsigned int m = 0; m < GlobalInstance::map_stardata[it->first].size(); m++)
+				{
+					if (GlobalInstance::map_stardata[it->first][m].sid == ctype && GlobalInstance::map_stardata[it->first][m].needid.compare(needid) == 0 && status == 1)
+					{
+						starcount++;
+					}
+				}
+			}
 
 			for (unsigned int n = 0; n < 3; n++)
 			{
 				std::string starname = StringUtils::format("star%d", n);
 				Node* star = subnode->getChildByName(starname);
 
-				if (n < vec_finishstar.size())
+				if (n < starcount)
 				{
 					star->setVisible(true);
 				}
@@ -399,7 +415,7 @@ void SelectSubMapLayer::showCStarAwdUI()
 
 	curchapter = atoi(m_mainmapid.substr(1, m_mainmapid.find_first_of("-") - 1).c_str());
 
-	std::string findstr = StringUtils::format("jhstarm%d", curchapter);
+	std::string findstr = StringUtils::format("jhthrstarm%d", curchapter);
 
 	tinyxml2::XMLDocument *pDoc = new tinyxml2::XMLDocument();
 
@@ -421,14 +437,32 @@ void SelectSubMapLayer::showCStarAwdUI()
 		{
 			if (element->GetText() != NULL)
 			{
-				std::string textstr = DataSave::getInstance()->getFinishStar(key.substr(6));
+				std::string mapid = key.substr(9);
+				std::string textstr = DataSave::getInstance()->getStarData(mapid);
 				std::vector<std::string> vec_tmp;
-				CommonFuncs::split(textstr, vec_tmp, ",");
-				mychapterstar += vec_tmp.size();
+				CommonFuncs::split(textstr, vec_tmp, ";");
+
+				for (unsigned int i = 0; i < vec_tmp.size(); i++)
+				{
+					std::vector<std::string> vec_onedata;
+					CommonFuncs::split(vec_tmp[i], vec_onedata, "-");
+					int ctype = atoi(vec_onedata[0].c_str());
+					std::string needid = vec_onedata[1];
+					int status = atoi(vec_onedata[3].c_str());
+
+					for (unsigned int m = 0; m < GlobalInstance::map_stardata[mapid].size(); m++)
+					{
+						if (GlobalInstance::map_stardata[mapid][m].sid == ctype && GlobalInstance::map_stardata[mapid][m].needid.compare(needid) == 0 && status == 1)
+						{
+							mychapterstar++;
+						}
+					}
+				}
 			}
 		}
 		element = element->NextSiblingElement();
 	}
+
 	cocos2d::ui::LoadingBar* bar = (cocos2d::ui::LoadingBar*)starAwdNode->getChildByName("bar");
 	int sectionstarposx[3] = {0};
 
@@ -567,52 +601,4 @@ bool SelectSubMapLayer::checkMapIsPass(std::string mapid)
 	if (curf <= maintaskf)
 		return true;
 	return false;
-}
-
-void SelectSubMapLayer::verifyStar(std::string mapid)
-{
-
-	std::vector<int> vec_starids;
-	std::vector<std::string> vec_starc = GlobalInstance::map_mapsdata[m_mainmapid].map_sublist[mapid].vec_starc;
-
-	for (unsigned int i = 0; i < vec_starc.size(); i++)
-	{
-		std::vector<std::string> vec_one;
-		CommonFuncs::split(vec_starc[i], vec_one, "-");
-
-		int cid = atoi(vec_one[0].c_str());
-
-		vec_starids.push_back(cid);
-	}
-
-	std::string savestr;
-	std::vector<std::string> vec_finishstar;
-	std::string finishstarstr = DataSave::getInstance()->getFinishStar(mapid);
-	CommonFuncs::split(finishstarstr, vec_finishstar, ",");
-
-	for (unsigned int i = 0; i < vec_finishstar.size(); i++)
-	{
-		bool isfind = false;
-		int ctype = atoi(vec_finishstar[i].c_str());
-		for (unsigned int m = 0; m < vec_starids.size(); m++)
-		{
-			if (ctype == vec_starids[m])
-			{
-				isfind = true;
-				break;
-			}
-		}
-		if (isfind)
-		{
-			if (savestr.length() > 0)
-				savestr.append(",");
-			std::string str = StringUtils::format("%d", ctype);
-			savestr.append(str);
-		}
-	}
-
-	if (savestr.compare(finishstarstr) != 0)
-	{
-		DataSave::getInstance()->setFinishStar(mapid, savestr);
-	}
 }

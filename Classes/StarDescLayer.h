@@ -20,7 +20,6 @@ public:
 private:
 	void onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void onresClick(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType type);
-	static bool sortbyfinishstat(S_StarData a, S_StarData b);
 	void delayShowNewerGuide(float dt);
 	void showNewerGuide(int step);
 

@@ -12,7 +12,7 @@
     <ma id="r003" c="10" qu="0">20.00</ma>
     <ma id="r004" c="10" qu="0">20.00</ma>
     <ma id="r005" c="10" qu="0">20.00</ma>
-    <ma id="s001" c="2" qu="0">25.00</ma>
+    <ma id="m001" c="1" qu="0">20.00</ma>
   </Monstors>
   <Cells rs="32" cs="30">
     <Cell c="0" r="0" p="-1" w="0" m="55.png" />

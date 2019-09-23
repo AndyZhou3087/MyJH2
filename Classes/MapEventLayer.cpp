@@ -556,6 +556,11 @@ void MapEventLayer::openDice(float dt)
 			winbs = GlobalInstance::getInstance()->createRandomNum(3) + 4;
 		}
 		isWin = 1;
+
+		if (g_MapBlockScene != NULL)
+		{
+			g_MapBlockScene->calcStar(STAR_BETWIN_ONCE, "0", 1);
+		}
 	}
 	else
 	{
@@ -578,6 +583,11 @@ void MapEventLayer::openDice(float dt)
 	eventnode_4->addChild(dicesprite, 1, "dice");
 
 	this->scheduleOnce(schedule_selector(MapEventLayer::playGamblebox), 1.0f);
+
+	if (g_MapBlockScene != NULL)
+	{
+		g_MapBlockScene->calcStar(STAR_BET_ALL, "0", 1);
+	}
 }
 
 void MapEventLayer::playGamblebox(float dt)

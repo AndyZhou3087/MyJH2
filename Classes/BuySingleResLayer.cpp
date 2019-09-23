@@ -374,6 +374,11 @@ void BuySingleResLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::T
 				{
 					layer->buyRes(m_fproper);
 					AnimationEffect::closeAniEffect(this);
+
+					g_MapBlockScene->calcStar(STAR_BUSIBUYRESCOUNT_ALL, "0", 1);
+
+					if (iscoinsale)
+						g_MapBlockScene->calcStar(STAR_BUSIUSECOIN_ALL, "0", dv.getValue());
 				}
 				else
 				{

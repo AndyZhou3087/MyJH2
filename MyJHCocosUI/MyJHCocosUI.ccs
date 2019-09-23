@@ -119,6 +119,7 @@
           <Image Name="libraryarm_n.png" />
           <Image Name="libraryarm_s.png" />
           <Image Name="librarybg.jpg" />
+          <Image Name="librarybookitem.png" />
           <Image Name="libraryequip_n.png" />
           <Image Name="libraryequip_s.png" />
           <Image Name="libraryequipbox.png" />
@@ -628,6 +629,8 @@
           <Image Name="libqu5text_0.png" />
           <Image Name="libqu5text_1.png" />
           <Image Name="libraryarm_text.png" />
+          <Image Name="librarybooktext.png" />
+          <Image Name="librarybooktitle.png" />
           <Image Name="libraryequip_text.png" />
           <Image Name="libraryequiptext.png" />
           <Image Name="libraryequiptitle.png" />
@@ -671,6 +674,7 @@
           <Image Name="m55-7.png" />
           <Image Name="m6-1.png" />
           <Image Name="m6-2.png" />
+          <Image Name="m7-1.png" />
           <Image Name="m91-96.png" />
           <Image Name="m92-10.png" />
           <Image Name="m921-10.png" />
@@ -684,7 +688,6 @@
           <Image Name="m93-3.png" />
           <Image Name="m93-7.png" />
           <Image Name="m93-8.png" />
-          <Image Name="m7-1.png" />
           <Image Name="m94-1.png" />
           <Image Name="m94-2.png" />
           <Image Name="m94-3.png" />
@@ -1612,6 +1615,20 @@
           <Image Name="trainning_1.png" />
           <Image Name="trainning_2.png" />
           <Image Name="trainning_3.png" />
+          <Image Name="ts01.png" />
+          <Image Name="ts02.png" />
+          <Image Name="ts03.png" />
+          <Image Name="ts04.png" />
+          <Image Name="ts05.png" />
+          <Image Name="ts06.png" />
+          <Image Name="ts07.png" />
+          <Image Name="ts08.png" />
+          <Image Name="ts09.png" />
+          <Image Name="ts10.png" />
+          <Image Name="ts11.png" />
+          <Image Name="ts12.png" />
+          <Image Name="ts13.png" />
+          <Image Name="ts14.png" />
           <Image Name="u001.png" />
           <Image Name="u002.png" />
           <Image Name="v001.png" />

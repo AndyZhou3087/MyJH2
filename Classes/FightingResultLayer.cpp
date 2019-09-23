@@ -73,7 +73,6 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp,
 		matchinfonode->setVisible(false);
 	
 		cocos2d::ui::Text* continuewintext = (cocos2d::ui::Text*)continuenode->getChildByName("continuewintext");
-		cocos2d::ui::Text* continuenodeathwintext = (cocos2d::ui::Text*)continuenode->getChildByName("continuenodeathwintext");
 
 		if (winexp > 0)
 		{
@@ -81,17 +80,6 @@ bool FightingResultLayer::init(std::vector<FOURProperty> reward_res, int winexp,
 			failhintnode->setVisible(false);
 			std::string str = StringUtils::format(ResourceLang::map_lang["continuefighttext"].c_str(), GlobalInstance::curmapcontinuefightsucccount);
 			continuewintext->setString(str);
-			str = StringUtils::format(ResourceLang::map_lang["continuefighnodeathttext"].c_str(), GlobalInstance::starcontinuefightsucccount);
-			for (unsigned int i = 0; i < GlobalInstance::vec_stardata.size(); i++)
-			{
-				if (GlobalInstance::vec_stardata[i].sid == SA_NODEATH)
-				{
-					std::string strkey = StringUtils::format("stagestar%02d", GlobalInstance::vec_stardata[i].sid);
-					str.append(ResourceLang::map_lang[strkey]);
-					break;
-				}
-			}
-			continuenodeathwintext->setString(str);
 		}
 		else
 		{

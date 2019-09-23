@@ -996,6 +996,7 @@
       <npcid>n002</npcid>
       <npcrnd>100</npcrnd>
       <msatt2 id="n002" qu="3">45</msatt2>
+      <msawd1 id="r006" qu="0" rnd="50.00">200</msawd1>
     </Cell>
     <Cell c="29" r="22" p="-1" w="1" m="6.png" />
     <Cell c="29" r="23" p="-1" w="1" m="6.png" />

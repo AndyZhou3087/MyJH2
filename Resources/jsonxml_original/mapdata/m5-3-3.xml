@@ -6,7 +6,7 @@
     <ma id="r012" c="2" qu="0">10.00</ma>
     <ma id="r003" c="30" qu="0">10.00</ma>
     <ma id="r004" c="30" qu="0">10.00</ma>
-    <ma id="s002" c="5" qu="0">10.00</ma>
+    <ma id="s002" c="4" qu="0">10.00</ma>
     <ma id="r006" c="500" qu="0">10.00</ma>
   </Monstors>
   <Cells rs="52" cs="50">
@@ -64,6 +64,8 @@
     <Cell c="0" r="51" p="-1" w="0" m="55.png" />
     <Cell c="1" r="0" p="5" w="1" m="94.png">
       <npcid>1</npcid>
+      <npcrnd>1</npcrnd>
+      <msawd1 id="j001" qu="0" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="1" r="1" p="-1" w="1" m="94.png" />
     <Cell c="1" r="2" p="-1" w="1" m="94.png" />
@@ -705,12 +707,12 @@
       <msatt4 id="n052" qu="3">60</msatt4>
       <msatt5 id="n053" qu="3">60</msatt5>
       <msatt6 id="n052" qu="3">60</msatt6>
-      <msawd1 id="s003" qu="0" rnd="1.00">1</msawd1>
+      <msawd1 id="s003" qu="0" rnd="5.00">1</msawd1>
       <msawd2 id="a018" qu="4" rnd="1.00">1</msawd2>
       <msawd3 id="a022" qu="4" rnd="1.00">1</msawd3>
       <msawd4 id="a026" qu="4" rnd="1.00">1</msawd4>
-      <msawd5 id="m003" qu="0" rnd="1.00">1</msawd5>
-      <msawd6 id="b003" qu="0" rnd="1.00">1</msawd6>
+      <msawd5 id="m003" qu="0" rnd="5.00">1</msawd5>
+      <msawd6 id="b003" qu="0" rnd="3.00">1</msawd6>
     </Cell>
     <Cell c="13" r="7" p="-1" w="1" m="94.png" />
     <Cell c="13" r="8" p="-1" w="0" m="94.png" d="10.png" />
@@ -775,6 +777,7 @@
       <npcid>n014</npcid>
       <npcrnd>100</npcrnd>
       <msatt5 id="n014" qu="3">55</msatt5>
+      <msawd1 id="r001" qu="0" rnd="50.00">80</msawd1>
     </Cell>
     <Cell c="14" r="15" p="-1" w="1" m="94.png" />
     <Cell c="14" r="16" p="-1" w="1" m="94.png" />
@@ -2533,6 +2536,8 @@
     <Cell c="47" r="51" p="-1" w="0" m="55.png" />
     <Cell c="48" r="0" p="5" w="1" m="94.png">
       <npcid>2</npcid>
+      <npcrnd>1</npcrnd>
+      <msawd1 id="r001" qu="0" rnd="100.00">100</msawd1>
     </Cell>
     <Cell c="48" r="1" p="-1" w="1" m="94.png" />
     <Cell c="48" r="2" p="-1" w="1" m="94.png" />

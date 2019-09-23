@@ -480,10 +480,14 @@ public:
 
 	void setRebateAwds(std::string val);
 
-	//完成的3星评分
-	std::string getFinishStar(std::string mapid);
+	std::string getOldFinishStar(std::string mapid);
 
-	void setFinishStar(std::string mapid, std::string val);
+	//完成的3星评分
+	std::string getStarData(std::string mapid);
+
+	void setStarData(std::string mapid, std::string val);
+
+	std::string getOldChapterStarAwd(int chapter);
 
 	//每个章节领取奖励情况
 	std::string getChapterStarAwd(int chapter);

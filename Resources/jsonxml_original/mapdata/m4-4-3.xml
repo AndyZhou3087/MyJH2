@@ -6,7 +6,7 @@
     <m id="n008" minlv="35" maxlv="40" minqu="1" maxqu="2">20</m>
     <m id="n105" minlv="35" maxlv="40" minqu="1" maxqu="2">40</m>
     <ma id="r001" c="30" qu="0">10.00</ma>
-    <ma id="r012" c="2" qu="0">6.00</ma>
+    <ma id="r012" c="2" qu="0">7.00</ma>
     <ma id="r003" c="30" qu="0">10.00</ma>
     <ma id="r004" c="30" qu="0">10.00</ma>
     <ma id="m003" c="1" qu="0">5.00</ma>
@@ -1677,6 +1677,8 @@
     <Cell c="38" r="38" p="-1" w="1" m="94.png" />
     <Cell c="38" r="39" p="5" w="1" m="94.png">
       <npcid>3</npcid>
+      <npcrnd>1</npcrnd>
+      <msawd1 id="j001" qu="0" rnd="100.00">1</msawd1>
     </Cell>
     <Cell c="38" r="40" p="-1" w="0" m="84.png" />
     <Cell c="38" r="41" p="-1" w="0" m="91.png" />

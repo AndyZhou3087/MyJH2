@@ -195,7 +195,6 @@ bool StarDescLayer::init(std::string mapid)
 			}
 		}
 
-		GlobalInstance::vec_stardata.clear();
 		GlobalInstance::curMapFinishStars = 0;
 
 		Node* star[3];
@@ -204,69 +203,62 @@ bool StarDescLayer::init(std::string mapid)
 
 		for (unsigned int i = 0; i < vec_starc.size(); i++)
 		{
-			std::vector<std::string> vec_one;
-			CommonFuncs::split(vec_starc[i], vec_one, "-");
-
-			int cid = atoi(vec_one[0].c_str());
-			int count = atoi(vec_one[1].c_str());
-
-			S_StarData sdata;
-			sdata.sid = cid;
-			sdata.needcount = count;
-			if (cid == SA_NODEATH || cid == SA_GETALLBOX)
-				sdata.finishcount = -1;
-			else
-				sdata.finishcount = 0;
-
-			GlobalInstance::vec_stardata.push_back(sdata);
 			std::string key = StringUtils::format("star%d", i);
 			star[i] = csbnode->getChildByName("starnode")->getChildByName(key);
 			star[i]->setVisible(false);
 		}
 
-		std::vector<std::string> vec_finishstar;
+		std::vector<std::string> vec_stardata;
 
-		CommonFuncs::split(DataSave::getInstance()->getFinishStar(mapid), vec_finishstar, ",");
+		CommonFuncs::split(DataSave::getInstance()->getStarData(mapid), vec_stardata, ";");
 
-		for (unsigned int i = 0; i < vec_finishstar.size(); i++)
+		for (unsigned int i = 0; i < vec_stardata.size(); i++)
 		{
-			int ctype = atoi(vec_finishstar[i].c_str());
-			for (unsigned int m = 0; m < GlobalInstance::vec_stardata.size(); m++)
+			std::vector<std::string> vec_onedata;
+			CommonFuncs::split(vec_stardata[i], vec_onedata, "-");
+
+			int tid = atoi(vec_onedata[0].c_str());
+			std::string needid = vec_onedata[1];
+			int finishcount = atoi(vec_onedata[2].c_str());
+			int status = atoi(vec_onedata[3].c_str());
+
+			for (unsigned int m= 0; m < GlobalInstance::map_stardata[m_mapid].size(); m++)
+			if (tid == GlobalInstance::map_stardata[m_mapid][m].sid && needid.compare(GlobalInstance::map_stardata[m_mapid][m].needid) == 0)
 			{
-				if (ctype == GlobalInstance::vec_stardata[m].sid)
+				GlobalInstance::map_stardata[m_mapid][m].finishcount = finishcount;
+				if (tid == STAR_FIGHTWIN_ONCE || tid == STAR_BETWIN_ONCE || tid == STAR_NODEATH_ONCE || tid == STAR_GETRES_ONCE)
+					GlobalInstance::map_stardata[m_mapid][m].finishcount = 0;
+
+				if (status == 1)
 				{
-					GlobalInstance::vec_stardata[m].finishcount = GlobalInstance::vec_stardata[m].needcount;
-					break;
+					GlobalInstance::curMapFinishStars++;
+					GlobalInstance::map_stardata[m_mapid][m].status = 1;
 				}
 			}
 		}
 
-		std::sort(GlobalInstance::vec_stardata.begin(), GlobalInstance::vec_stardata.end(), sortbyfinishstat);
-
-		for (unsigned int i = 0; i < GlobalInstance::vec_stardata.size(); i++)
+		for (unsigned int i = 0; i < GlobalInstance::map_stardata[m_mapid].size(); i++)
 		{
-			int cid = GlobalInstance::vec_stardata[i].sid;
-			int count = GlobalInstance::vec_stardata[i].needcount;
+			int cid = GlobalInstance::map_stardata[m_mapid][i].sid;
+			int count = GlobalInstance::map_stardata[m_mapid][i].needcount;
 
-			std::string keyname = StringUtils::format("stagestar%02d", GlobalInstance::vec_stardata[i].sid);
+			std::string keyname = StringUtils::format("stagestar%02d", cid);
 			std::string content;
 
-			if (cid == SA_FIGHTSUCC || cid == SA_GOSTEP)
+			if (GlobalInstance::map_stardata[m_mapid][i].needid.compare("0") == 0)
 				content = StringUtils::format(ResourceLang::map_lang[keyname].c_str(), count);
 			else
-				content = ResourceLang::map_lang[keyname];
+				content = StringUtils::format(ResourceLang::map_lang[keyname].c_str(), GlobalInstance::map_AllResources[GlobalInstance::map_stardata[m_mapid][i].needid].name.c_str(), count);
 
 			keyname = StringUtils::format("c%d", i);
 			cocos2d::ui::Text* ctext = (cocos2d::ui::Text*)csbnode->getChildByName("starnode")->getChildByName(keyname);
 			ctext->setString(content);
 
-			if (GlobalInstance::vec_stardata[i].finishcount >= GlobalInstance::vec_stardata[i].needcount)
+			if (GlobalInstance::map_stardata[m_mapid][i].status == 1)
 			{
 				star[i]->setVisible(true);
-				GlobalInstance::curMapFinishStars++;
 			}
 		}
-
 		
 		cocos2d::ui::ImageView* resbox = (cocos2d::ui::ImageView*)first3starboxnode->getChildByName("resbox");
 		cocos2d::ui::ImageView* res = (cocos2d::ui::ImageView*)resbox->getChildByName("res");
@@ -361,14 +353,6 @@ bool StarDescLayer::init(std::string mapid)
 	return true;
 }
 
-
-bool StarDescLayer::sortbyfinishstat(S_StarData a, S_StarData b)
-{
-	if (a.finishcount >= a.needcount && b.finishcount < b.needcount)
-		return true;
-	return false;
-}
-
 void StarDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	CommonFuncs::BtnAction(pSender, type);
@@ -449,7 +433,6 @@ void StarDescLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touch
 
 				btnnode->setEnabled(false);
 				GlobalInstance::ishasmazeentry = GlobalInstance::getInstance()->createRandomNum(100) < 50 ? true : false;
-				GlobalInstance::starcontinuefightsucccount = 0;
 				GlobalInstance::curmapcontinuefightsucccount = 0;
 				GlobalInstance::fightwinbosscount = 0;
 				Director::getInstance()->replaceScene(TransitionFade::create(1.5f, MapBlockScene::createScene(m_mapid, GlobalInstance::map_mapsdata[mainmapid].map_sublist[m_mapid].bgtype)));

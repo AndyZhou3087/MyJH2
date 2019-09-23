@@ -419,7 +419,9 @@ typedef struct
 {
 	int sid;
 	int needcount;
+	std::string needid;//x需要完成的ID,(比如物品，NPC)
 	int finishcount;
+	int status;//0--未完成；1--已完成
 }S_StarData;
 
 typedef struct
@@ -431,20 +433,21 @@ typedef struct
 
 typedef enum
 {
-	SA_FINISH_MAINTASK = 1,
-	SA_FINISH_BRANCHTASK,
-	SA_GETALLBOX,
-	SA_FIGHTSUCC,
-	SA_EVENT,
-	SA_BUSIBUY,
-	SA_ENTERMAZE,
-	SA_NODEATH,
-	SA_GOSTEP,
-	SA_BEFRIEND,
-	SA_BEMASTER,
-	SA_BECOMPLE,
-	SA_USEALLOPEN,
-	SA_USETORCH
+	STAR_BRANCHTASK = 1,
+	STAR_GETBOX_ALL,
+	STAR_FIGHTWIN_ONCE,
+	STAR_FIGHTWIN_ALL,
+	STAR_EVENT_ALL,
+	STAR_BUSIBUYRESCOUNT_ALL,
+	STAR_BUSIUSECOIN_ALL,
+	STAR_ENTERMAZE_ALL,
+	STAR_BET_ALL,
+	STAR_BETWIN_ONCE,
+	STAR_NODEATH_ONCE,
+	STAR_RENATION,
+	STAR_GETRES_ONCE,
+	STAR_FIGHTBOSSWIN_ALL,
+	STAR_GETRES_ALL,
 }STAR_TYPE;
 
 typedef struct
@@ -807,6 +810,7 @@ public:
 	****************************/
 	void saveNpcFriendly();
 
+
 	/****************************
 	读取每章节星级奖励
 	****************************/
@@ -1034,7 +1038,7 @@ public:
 	static bool isHasNewhero;
 	static int showz002hinttextcount;
 
-	static std::vector<S_StarData> vec_stardata;
+	static std::map<std::string, std::vector<S_StarData>> map_stardata;
 
 	static std::vector<S_ChapterStarAwd> vec_chaperstarawds;
 
@@ -1044,7 +1048,6 @@ public:
 	static int curMapFinishStars;
 
 	static int takeoutherocount;
-	static int starcontinuefightsucccount;
 
 	static int curmapcontinuefightsucccount;
 

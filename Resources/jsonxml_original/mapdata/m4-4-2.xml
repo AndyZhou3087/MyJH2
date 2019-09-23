@@ -5,7 +5,7 @@
     <m id="n002" minlv="35" maxlv="40" minqu="1" maxqu="2">20</m>
     <m id="n007" minlv="35" maxlv="40" minqu="1" maxqu="2">20</m>
     <m id="n008" minlv="35" maxlv="40" minqu="1" maxqu="2">20</m>
-    <ma id="r012" c="2" qu="0">5.00</ma>
+    <ma id="r012" c="2" qu="0">8.00</ma>
     <ma id="r002" c="30" qu="0">10.00</ma>
     <ma id="z001" c="1" qu="0">8.00</ma>
     <ma id="r004" c="30" qu="0">10.00</ma>
