@@ -155,7 +155,23 @@ void OpenHolesLayer::updateUi()
 	std::string nodename = StringUtils::format("resbox%d", selectindex);
 	selectNode = csbnode->getChildByName("select");
 	selectNode->setPosition(csbnode->getChildByName(nodename)->getPosition());
-	std::string tipstr = StringUtils::format(ResourceLang::map_lang["openholestips"].c_str(), openRnd[selectindex][m_equip->getQU().getValue()]);
+
+	int openrnd = openRnd[selectindex][m_equip->getQU().getValue()];
+	std::string equipid = m_equip->getId();
+	int eidint = atoi(equipid.substr(1).c_str());
+	int mod4id = eidint % 4;
+	if (selectindex == 0)
+	{
+		if (mod4id > 0)
+			openrnd += (4 - mod4id) * 1;
+	}
+	else
+	{
+		if (mod4id > 0)
+			openrnd += (4 - mod4id) * 2;
+	}
+
+	std::string tipstr = StringUtils::format(ResourceLang::map_lang["openholestips"].c_str(), openrnd);
 	tipstext->setString(tipstr);
 }
 
@@ -183,16 +199,29 @@ void OpenHolesLayer::onBtnClick(cocos2d::Ref *pSender, cocos2d::ui::Widget::Touc
 		int tag = node->getTag();
 
 		std::string resid;
+
+		int openrnd = openRnd[selectindex][m_equip->getQU().getValue()];
+		std::string equipid = m_equip->getId();
+		int eidint = atoi(equipid.substr(1).c_str());
+		int mod4id = eidint % 4;
 		if (selectindex == 0)
+		{
 			resid = "i002";
+			if (mod4id > 0)
+				openrnd += (4 - mod4id) * 1;
+		}
 		else
+		{
 			resid = "i004";
+			if (mod4id > 0)
+				openrnd += (4 - mod4id) * 2;
+		}
 		if (checkRes())
 		{
 			MyRes::Use(resid);
 
 			int r = GlobalInstance::getInstance()->createRandomNum(100) + 1;
-			if (r <= openRnd[selectindex][m_equip->getQU().getValue()])
+			if (r <= openrnd)
 			{
 				if (m_forwher == 0)
 				{
