@@ -7,6 +7,7 @@
 #include "MyRes.h"
 #include "MyMenu.h"
 #include "AnimationEffect.h"
+#include "MovingLabel.h"
 
 BookLibraryLayer::BookLibraryLayer()
 {
@@ -84,8 +85,6 @@ bool BookLibraryLayer::init()
 void BookLibraryLayer::updateScrollviewContent()
 {
 	scrollview->removeAllChildrenWithCleanup(true);
-
-	std::vector<std::string> vec_res;
 
 	for (int i = 0; i < 14; i++)
 	{
@@ -171,6 +170,17 @@ void BookLibraryLayer::onclick(Ref* pSender)
 {
 	SoundManager::getInstance()->playSound(SoundManager::SOUND_ID_BUTTON);
 	Node* node = (Node*)pSender;
+	if (GlobalInstance::getInstance()->getUnlockChapter() <= (node->getTag() + 1))
+	{
+		//std::string str = StringUtils::format(ResourceLang::map_lang["notbookdesc"].c_str(), node->getTag() + 1, GlobalInstance::map_AllResources[vec_res[node->getTag()]].name.c_str());
+		std::string str = StringUtils::format(ResourceLang::map_lang["notbookdesc"].c_str(), GlobalInstance::map_AllResources[vec_res[node->getTag()]].name.c_str());
+		MovingLabel::show(str);
+	}
+	else
+	{
+		MovingLabel::show(GlobalInstance::map_AllResources[vec_res[node->getTag()]].name);
+	}
+
 	//GfLibraryInfoLayer* layer = GfLibraryInfoLayer::create((const char*)node->getUserData());
 	//this->addChild(layer);
 	//AnimationEffect::openAniEffect(layer);

@@ -24,6 +24,7 @@ private:
 
 private:
 	cocos2d::ui::ScrollView* scrollview;
+	std::vector<std::string> vec_res;
 };
 #endif
 

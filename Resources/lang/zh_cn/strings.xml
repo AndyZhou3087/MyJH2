@@ -654,5 +654,6 @@
 	<s name="matchformationtext">阵型：%s</s>
 	<s name="strenthaddrnd">强化成功率+5%</s>
 	<s name="strenthaddrndmax">强化成功率已达最高限制</s>
-	<s name="getbookdesc">获得天书「%s」</s>	
+	<s name="getbookdesc">获得天书「%s」</s>
+	<s name="notbookdesc">未获得天书「%s」</s>	
 </strings>

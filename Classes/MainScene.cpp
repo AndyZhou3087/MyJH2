@@ -128,7 +128,7 @@ bool MainScene::init()
 				{
 					int r = GlobalInstance::getInstance()->createRandomNum(1000);
 
-					if (r < 30 && GlobalInstance::buildingbrokencount < 3)
+					if (r < 20 && GlobalInstance::buildingbrokencount < 3)
 					{
 						GlobalInstance::map_buildingrepairdata[bbit->first].state = 1;
 						ishasnew = true;
@@ -164,7 +164,7 @@ bool MainScene::init()
 		if (!NewGuideLayer::checkifNewerGuide(72))
 		{
 			int r = GlobalInstance::getInstance()->createRandomNum(1000);
-			if (r < 30)
+			if (r < 20)
 			{
 				ishasbeggar = true;
 				ishintbeggar = true;

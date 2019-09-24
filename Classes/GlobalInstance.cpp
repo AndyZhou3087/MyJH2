@@ -3171,19 +3171,19 @@ int GlobalInstance::generateHeroPotential()
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(100000);
 		int il = innroomlv - 9;
-		if (r < 2 + il * 1)//万分之0.2~1.2
+		if (r < 5 + il * 1)//万分之0.5~1.5
 		{
 			return 4;
 		}
-		else if (r < 2 + il * 1 + 50 + il * 10)//千分之0.5~1.5
+		else if (r < 5 + il * 1 + 60 + il * 10)//千分之0.6~1.6
 		{
 			return 3;
 		}
-		else if (r < 2 + il * 1 + 50 + il * 10 + 4000 + il * 500)//百分之4~9
+		else if (r < 5 + il * 1 + 60 + il * 10 + 5000 + il * 500)//百分之5~10
 		{
 			return 2;
 		}
-		else if (r < 2 + il * 1 + 50 + il * 10 + 4000 + il * 500 + 40000 + il*1000)//百分之40~50
+		else if (r < 5 + il * 1 + 60 + il * 10 + 5000 + il * 500 + 40000 + il*1000)//百分之40~50
 		{
 			return 1;
 		}
@@ -3222,9 +3222,9 @@ int GlobalInstance::generateHeroPotentialByCoin()
 	if (innroomlv < 9)
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(10000);
-		if (r < 40 + innroomlv * 5)//千分之4~千分之8
+		if (r < 50 + innroomlv * 5)//千分之5~千分之9
 			return 3;
-		if (r < 40 + innroomlv * 5 + 1000 + innroomlv * 50)//百分10~14
+		if (r < 50 + innroomlv * 5 + 1100 + innroomlv * 50)//百分11~15
 			return 2;
 		return 1;
 	}
@@ -3232,20 +3232,20 @@ int GlobalInstance::generateHeroPotentialByCoin()
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(100000);
 		int il = innroomlv - 9;
-		if (r < 10 + il * 2)//万分之1~3
+		if (r < 30 + il * 2)//万分之3~5
 			return 4;
-		if (r < 10 + il * 2 + 900 + il * 20)//千分之9~11
+		if (r < 30 + il * 2 + 1000 + il * 30)//千分之10~12.7
 			return 3;
-		if (r < 10 + il * 2 + 900 + il * 20 + 15000 + il* 1000)//百分之15~25
+		if (r < 30 + il * 2 + 1000 + il * 30 + 15000 + il* 1000)//百分之15~24
 			return 2;
 		return 1;
 	}
 	else
 	{
 		int r = GlobalInstance::getInstance()->createRandomNum(10000);
-		if (r < 3)//万分之3
+		if (r < 10)//万分之10
 			return 4;
-		if (r < 403)//百分之4
+		if (r < 410)//百分之4
 			return 3;
 		return 2;
 	}
